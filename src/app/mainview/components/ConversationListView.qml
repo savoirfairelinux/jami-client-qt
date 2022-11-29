@@ -132,6 +132,7 @@ JamiListView {
                 "uri": model.dataForRow(row, ConversationList.URI),
                 "isBanned": model.dataForRow(row, ConversationList.IsBanned),
                 "mode": model.dataForRow(row, ConversationList.Mode),
+                "isCoreDialog": model.dataForRow(row, ConversationList.IsCoreDialog),
                 "isTemporary": model.dataForRow(row, ConversationList.ContactType) === Profile.Type.TEMPORARY,
             }
 
@@ -139,6 +140,7 @@ JamiListView {
             responsibleConvUid = item.convId
             isBanned = item.isBanned
             mode = item.mode
+            isCoreDialog = item.isCoreDialog
             contactType = LRCInstance.currentAccountType
             readOnly = mode === Conversation.Mode.NON_SWARM && !item.isTemporary && CurrentAccount.type !== Profile.Type.SIP
 
