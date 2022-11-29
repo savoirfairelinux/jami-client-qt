@@ -177,6 +177,20 @@ public Q_SLOTS:
     void slotAccountProfileReceived(const QString& accountId,
                                     const QString& displayName,
                                     const QString& userPhoto);
+
+    /**
+     * Emit new position
+     * @param accountId
+     * @param peerId
+     * @param body
+     * @param timestamp
+     * @param daemonId
+     */
+    void slotNewPosition(const QString& accountId,
+                         const QString& peerId,
+                         const QString& body,
+                         const uint64_t& timestamp,
+                         const QString& daemonId) const;
 };
 
 AccountModel::AccountModel(Lrc& lrc,
@@ -415,6 +429,10 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
             &CallbacksHandler::accountProfileReceived,
             this,
             &AccountModelPimpl::slotAccountProfileReceived);
+    connect(&callbacksHandler,
+            &CallbacksHandler::newPosition,
+            this,
+            &AccountModelPimpl::slotNewPosition);
 }
 
 AccountModelPimpl::~AccountModelPimpl() {}
@@ -696,6 +714,16 @@ AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
     authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
 
     Q_EMIT linked.profileUpdated(accountId);
+}
+
+void
+AccountModelPimpl::slotNewPosition(const QString& accountId,
+                                   const QString& peerId,
+                                   const QString& body,
+                                   const uint64_t& timestamp,
+                                   const QString& daemonId) const
+{
+    Q_EMIT linked.newPosition(accountId, peerId, body, timestamp, daemonId);
 }
 
 void

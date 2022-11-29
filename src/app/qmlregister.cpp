@@ -111,7 +111,7 @@ registerTypes(QQmlEngine* engine,
     // setup the adapters (their lifetimes are that of MainApplication)
     auto callAdapter = new CallAdapter(systemTray, lrcInstance, parent);
     auto messagesAdapter = new MessagesAdapter(settingsManager, previewEngine, lrcInstance, parent);
-    auto positionManager = new PositionManager(lrcInstance, parent);
+    auto positionManager = new PositionManager(systemTray, lrcInstance, parent);
     auto conversationsAdapter = new ConversationsAdapter(systemTray, lrcInstance, parent);
     auto avAdapter = new AvAdapter(lrcInstance, parent);
     auto contactAdapter = new ContactAdapter(lrcInstance, parent);

@@ -441,14 +441,6 @@ public:
 Q_SIGNALS:
 
     /**
-     * Emitted when a conversation receives a new position
-     */
-    void newPosition(const QString& peerId,
-                     const QString& body,
-                     const uint64_t& timestamp,
-                     const QString& daemonId) const;
-
-    /**
      * Emitted when a conversation receives a new interaction
      * @param uid of conversation
      * @param interactionId

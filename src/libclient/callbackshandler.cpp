@@ -32,6 +32,8 @@
 #include "dbus/presencemanager.h"
 #include "dbus/videomanager.h"
 
+#include "typedefs.h"
+
 // libjami
 #include <datatransfer_interface.h>
 
@@ -386,6 +388,12 @@ CallbacksHandler::slotNewAccountMessage(const QString& accountId,
                                         const MapStringString& payloads)
 {
     auto peerId2 = QString(peerId).replace("@ring.dht", "");
+    for (const auto& payload : payloads.keys()) {
+        if (payload.contains(APPLICATION_GEO)) {
+            Q_EMIT newPosition(accountId, peerId, payloads.value(payload), 0, msgId);
+            return;
+        }
+    }
     Q_EMIT newAccountMessage(accountId, peerId2, msgId, payloads);
 }
 

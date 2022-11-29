@@ -326,6 +326,15 @@ Q_SIGNALS:
      */
     void migrationEnded(const QString& accountId, bool ok);
 
+    /**
+     * Emitted when a conversation receives a new position
+     */
+    void newPosition(const QString& accountId,
+                     const QString& peerId,
+                     const QString& body,
+                     const uint64_t& timestamp,
+                     const QString& daemonId) const;
+
 private:
     std::unique_ptr<AccountModelPimpl> pimpl_;
 };

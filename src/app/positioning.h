@@ -57,7 +57,8 @@ private Q_SLOTS:
     void locationServicesActivated();
 
 Q_SIGNALS:
-    void newPosition(const QString& peerId,
+    void newPosition(const QString& unused_AccountId,
+                     const QString& peerId,
                      const QString& body,
                      const uint64_t& timestamp,
                      const QString& daemonId);

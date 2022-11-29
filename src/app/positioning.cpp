@@ -80,7 +80,7 @@ void
 Positioning::positionUpdated(const QGeoPositionInfo& info)
 {
     Q_EMIT positioningError("");
-    Q_EMIT newPosition(uri_, convertToJson(info), -1, "");
+    Q_EMIT newPosition("", uri_, convertToJson(info), -1, "");
 }
 
 void
