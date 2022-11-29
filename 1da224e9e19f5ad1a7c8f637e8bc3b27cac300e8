@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8b41985_573a07d1",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 3615,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-11-29T14:51:25Z",
+      "side": 1,
+      "message": "Perhaps this variable is not needed, since it\u0027s used once.",
+      "revId": "1da224e9e19f5ad1a7c8f637e8bc3b27cac300e8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c80c33fa_3de0f4c6",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 3621,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-11-29T14:51:25Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused about the `else if`; would a sip message never fall into the first condition block?",
+      "revId": "1da224e9e19f5ad1a7c8f637e8bc3b27cac300e8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
