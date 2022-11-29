@@ -76,10 +76,10 @@ ItemDelegate {
 
             Connections {
                 target: PositionManager
-                function onPositionShareConvIdsChanged () {
+                function onPositionShareConvIdsCountChanged () {
                     avatar.showSharePositionIndicator = PositionManager.isPositionSharedToConv(UID)
                 }
-                function onSharingUrisChanged () {
+                function onSharingUrisCountChanged () {
                     avatar.showSharedPositionIndicator = PositionManager.isConvSharingPosition(UID)
                 }
             }

@@ -3565,8 +3565,6 @@ ConversationModelPimpl::slotNewAccountMessage(const QString& accountId,
     for (const auto& payload : payloads.keys()) {
         if (payload.contains(TEXT_PLAIN)) {
             addIncomingMessage(peerId, payloads.value(payload), 0, msgId);
-        } else if (payload.contains(APPLICATION_GEO)) {
-            Q_EMIT linked.newPosition(peerId, payloads.value(payload), 0, msgId);
         } else {
             qWarning() << payload;
         }
