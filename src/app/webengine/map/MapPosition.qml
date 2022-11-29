@@ -61,7 +61,7 @@ Rectangle {
         property bool isLoaded: false
         property var positionList: PositionManager.positionList;
         property var avatarPositionList: PositionManager.avatarPositionList;
-        property bool isSharing: (PositionManager.positionShareConvIds.length !== 0 )
+        property bool isSharing: (PositionManager.positionShareConvIdsCount !== 0 )
 
         function loadScripts () {
             var scriptMapJs = {
@@ -276,7 +276,7 @@ Rectangle {
                 property bool isError: positioningError.length
                 onClicked: {
                     if (!isError) {
-                        if (PositionManager.positionShareConvIds.length >= 2) {
+                        if (PositionManager.positionShareConvIdsCount >= 2) {
                             stopSharingPositionPopup.open()
                         } else {
                             PositionManager.stopSharingPosition();
