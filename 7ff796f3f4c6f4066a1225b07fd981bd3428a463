@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6baaeaed_a10a6536",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 3614,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-11-29T15:27:29Z",
+      "side": 1,
+      "message": "To avoid duplicate code, perhaps we can tweak the conditional:\n\nif ([...] or isSip) {\nif (!isSip) \n    addContactRequest(peerId);\n\nthe rest stays the same.  What do you think?",
+      "range": {
+        "startLine": 3614,
+        "startChar": 12,
+        "endLine": 3614,
+        "endChar": 46
+      },
+      "revId": "7ff796f3f4c6f4066a1225b07fd981bd3428a463",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
