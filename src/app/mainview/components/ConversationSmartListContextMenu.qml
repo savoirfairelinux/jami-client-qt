@@ -56,7 +56,7 @@ ContextMenuAutoLoader {
     property string responsibleAccountId: ""
     property string responsibleConvUid: ""
     property bool isBanned: false
-    property bool isSwarm: false
+    property bool isSwarm: mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM
     property var mode: undefined
     property int contactType: Profile.Type.INVALID
     property bool hasCall: {
@@ -108,7 +108,7 @@ ContextMenuAutoLoader {
 
             canTrigger: !hasCall && !root.isBanned
             itemName: {
-                if (mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM)
+                if (isSwarm)
                     return JamiStrings.removeConversation
                 else
                     return JamiStrings.removeContact
@@ -148,7 +148,7 @@ ContextMenuAutoLoader {
             id: blockContact
 
             canTrigger: !hasCall && contactType !== Profile.Type.SIP && !root.isBanned
-            itemName: !(mode && mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM) ? JamiStrings.blockContact : JamiStrings.blockSwarm
+            itemName: !(mode && isSwarm) ? JamiStrings.blockContact : JamiStrings.blockSwarm
             iconSource: JamiResources.block_black_24dp_svg
             addMenuSeparatorAfter: contactType !== Profile.Type.SIP
             onClicked: blockDialog.open()
@@ -165,7 +165,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: contactDetails
 
-            property bool oneToOne: !(mode && mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM)
+            property bool oneToOne: !(mode && isSwarm)
             canTrigger: contactType !== Profile.Type.SIP
             itemName: oneToOne ? JamiStrings.contactDetails : JamiStrings.convDetails
             iconSource: JamiResources.person_24dp_svg
