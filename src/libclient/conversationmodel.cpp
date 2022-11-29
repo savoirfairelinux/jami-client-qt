@@ -3611,8 +3611,10 @@ ConversationModelPimpl::addIncomingMessage(const QString& peerId,
         try {
             auto contact = linked.owner.contactModel->getContact(peerId);
             isRequest = contact.profileInfo.type == profile::Type::PENDING;
-            if (isRequest && !contact.isBanned && peerId != linked.owner.profileInfo.uri) {
-                addContactRequest(peerId);
+            // if isSip, it will be a contact!
+            if (isSip || (isRequest && !contact.isBanned && peerId != linked.owner.profileInfo.uri)) {
+                if (!isSip)
+                    addContactRequest(peerId);
                 convIds.push_back(storage::beginConversationWithPeer(db, contact.profileInfo.uri));
                 auto& conv = getConversationForPeerUri(contact.profileInfo.uri).get();
                 conv.uid = convIds[0];
