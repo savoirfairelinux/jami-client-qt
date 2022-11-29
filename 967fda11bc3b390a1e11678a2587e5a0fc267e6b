@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb1a2d8f_9a5cb76a",
+        "filename": "src/app/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-29T19:48:48Z",
+      "side": 1,
+      "message": "Only non_swarm is not a swarm, a 1:1 is a swarm.\n\nIn the rest of the project it\u0027s \"isCoreDialog\" (cf currentconversation)",
+      "range": {
+        "startLine": 59,
+        "startChar": 13,
+        "endLine": 59,
+        "endChar": 104
+      },
+      "revId": "967fda11bc3b390a1e11678a2587e5a0fc267e6b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
