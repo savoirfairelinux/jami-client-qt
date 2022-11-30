@@ -44,13 +44,12 @@ JamiListView {
             MessagesAdapter.loadMoreMessages()
     }
 
-
     function computeTimestampVisibility(item1, item1Index, item2, item2Index) {
         if (item1 && item2) {
             if (item1Index < item2Index) {
                 item1.showTime = item1.timestamp - item2.timestamp > JamiTheme.timestampIntervalTime
                 item1.showDay = item1.formattedDay !== item2.formattedDay
-            }else {
+            } else {
                 item2.showTime = item2.timestamp - item1.timestamp > JamiTheme.timestampIntervalTime
                 item2.showDay = item2.formattedDay !== item1.formattedDay
             }
@@ -83,10 +82,10 @@ JamiListView {
         }
         // index 0 insertion = new message
         if (itemIndex === 0) {
-            Qt.callLater(computeSequencing, null, item, root.itemAtIndex(itemIndex + 1))
-            if (!computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)) {
+            if (!nItem && !CurrentConversation.allMessagesLoaded)
                 Qt.callLater(computeChatview, item, itemIndex)
-            }
+            else
+                computeSequencing( null, item, root.itemAtIndex(itemIndex + 1))
         }
         // top element
         if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
@@ -152,6 +151,7 @@ JamiListView {
             }
         }
     }
+
     Connections {
         target: CurrentConversation
         function onIdChanged() { fadeAnimation.start() }
@@ -268,6 +268,7 @@ JamiListView {
                 }
             }
         }
+
         DelegateChoice {
             roleValue: Interaction.Type.DATA_TRANSFER
 
