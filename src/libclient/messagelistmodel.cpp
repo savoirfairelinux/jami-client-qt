@@ -648,4 +648,17 @@ MessageListModel::lastMessageUid() const
     return {};
 }
 
+QString
+MessageListModel::lastSelfMessageId() const
+{
+    for (auto it = interactions_.rbegin(); it != interactions_.rend(); ++it) {
+        auto lastType = it->second.type;
+        if (lastType == interaction::Type::TEXT
+            and !it->second.body.isEmpty() and it->second.authorUri.isEmpty()) {
+            return it->first;
+        }
+    }
+    return {};
+}
+
 } // namespace lrc

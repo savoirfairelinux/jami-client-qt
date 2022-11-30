@@ -291,4 +291,24 @@ HostPopup {
             }
         }
     }
+
+    Shortcut {
+        sequence: "Ctrl+Shift+Up"
+        context: Qt.ApplicationShortcut
+        enabled: root.visible
+        onActivated: {
+            MessagesAdapter.replyToId = ""
+            MessagesAdapter.editId = CurrentConversation.lastSelfMessageId
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+Shift+Escape"
+        context: Qt.ApplicationShortcut
+        enabled: root.visible
+        onActivated: {
+            MessagesAdapter.replyToId = ""
+            MessagesAdapter.editId = ""
+        }
+    }
 }

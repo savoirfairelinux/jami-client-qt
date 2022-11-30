@@ -105,6 +105,14 @@ Window {
             shortcut: "Shift + Ctrl + A"
             description: qsTr("Accept contact request")
         }
+        ListElement {
+            shortcut: "Ctrl + Shift + ↑"
+            description: qsTr("Edit last message")
+        }
+        ListElement {
+            shortcut: "Ctrl + Shift + Esc"
+            description: qsTr("Cancel message edition")
+        }
     }
 
     ListModel {
