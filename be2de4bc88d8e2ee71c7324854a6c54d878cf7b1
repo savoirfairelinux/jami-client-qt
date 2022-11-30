@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e89936f4_fe394199",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-30T14:40:13Z",
+      "side": 1,
+      "message": "missing space before else (not related to the patch)",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 11
+      },
+      "revId": "be2de4bc88d8e2ee71c7324854a6c54d878cf7b1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f2ac7cb4_84fbf970",
         "filename": "src/app/mainview/components/MessageListView.qml",
         "patchSetId": 3
