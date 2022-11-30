@@ -57,12 +57,14 @@ Rectangle {
                 id: currentAccountAvatar
                 darkTheme: UtilsAdapter.luma(root.color)
                 readOnly: !root.isAdmin
+                width: avatarSize
+                height: avatarSize
 
                 Layout.alignment: Qt.AlignHCenter
 
                 newItem: true
                 imageId: LRCInstance.selectedConvUid
-                avatarSize: JamiTheme.smartListAvatarSize
+                avatarSize: JamiTheme.smartListAvatarSize * 3/2
             }
 
             EditableLineEdit {

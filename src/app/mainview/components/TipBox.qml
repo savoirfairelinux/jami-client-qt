@@ -37,15 +37,15 @@ Item {
     property string type : ""
     property bool hovered: false
     property bool clicked : false
-    property bool opened: activeFocus
+    property bool opened: false
 
     property string customizeTip:"CustomizeTipBox {}"
 
-    property string backupTip: "BackupTipBox {
-            onIgnore: {
-                root.ignoreClicked()
-            }
-        }"
+    property string backupTip: "BackupTipBox {" +
+        "    onIgnore: {" +
+        "        root.ignoreClicked()" +
+        "    }" +
+        "}"
 
     property string infoTip: "InformativeTipBox {}"
 
@@ -89,7 +89,7 @@ Item {
 
     TapHandler {
         target: rect
-        onTapped: opened ? focus = false : root.forceActiveFocus()
+        onTapped: opened = !opened
     }
 
     DropShadow {

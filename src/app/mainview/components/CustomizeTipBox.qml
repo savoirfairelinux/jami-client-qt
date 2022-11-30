@@ -81,9 +81,8 @@ ColumnLayout {
 
     PhotoboothView {
         id: setAvatarWidget
-        Layout.preferredWidth: JamiTheme.accountListAvatarSize
-        Layout.preferredHeight: JamiTheme.accountListAvatarSize
-        Layout.topMargin: 10
+        width: avatarSize + avatarSize / 2
+        height: avatarSize + avatarSize / 2
         Layout.alignment: Qt.AlignHCenter
         darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
         visible: opened
@@ -91,6 +90,7 @@ ColumnLayout {
         buttonSize: 35
         imageId: CurrentAccount.id
         avatarSize: 53
+        doubleEditAvatar: true
         cancelButton: false
 
     }
@@ -103,6 +103,7 @@ ColumnLayout {
 
         Layout.alignment: Qt.AlignCenter
         Layout.preferredWidth: root.width - 32
+        Layout.topMargin: -10
 
         text: CurrentAccount.alias
         placeholderText: JamiStrings.enterNickname

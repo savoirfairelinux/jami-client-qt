@@ -99,6 +99,8 @@ Rectangle {
             id: setAvatarWidget
 
             objectName: "setAvatarWidget"
+            width: avatarSize
+            height: avatarSize
 
             Layout.alignment: Qt.AlignCenter
             darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
