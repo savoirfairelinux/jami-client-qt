@@ -429,6 +429,8 @@ Rectangle {
                             PhotoboothView {
 
                                 id: currentAccountAvatar
+                                width: avatarSize
+                                height: avatarSize
                                 darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
                                 visible: openedNickname
 

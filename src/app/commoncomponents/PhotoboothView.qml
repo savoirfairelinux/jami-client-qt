@@ -38,6 +38,7 @@ Item {
     property real avatarSize
     property real buttonSize: avatarSize
     property bool darkTheme: false
+    property bool doubleEditAvatar: false
 
     signal focusOnPreviousItem
     signal focusOnNextItem
@@ -128,46 +129,47 @@ Item {
         id: imageLayer
 
         anchors.centerIn: parent
-        width: avatarSize
-        height: avatarSize
+        anchors.fill: parent
         color: "transparent"
 
         Avatar {
             id: avatar
 
-            anchors.fill: parent
+            width: avatarSize
+            height: avatarSize
+            anchors.centerIn: parent
             anchors.margins: 1
 
             mode: newItem? Avatar.Mode.Conversation : Avatar.Mode.Account
 
             fillMode: Image.PreserveAspectCrop
             showPresenceIndicator: false
+        }
 
-            PushButton {
-                id: editImage
+        PushButton {
+            id: editImage
 
-                width: avatar.width / 4
-                height: avatar.height / 4
-                anchors.top: parent.top
-                anchors.right: parent.right
-                anchors.margins: avatar.width / 22
+            width: doubleEditAvatar ? avatar.width / 2 : avatar.width / 4
+            height: doubleEditAvatar ? avatar.height / 2 : avatar.height / 4
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.margins: doubleEditAvatar ? height / 4 : avatar.width / 22
 
-                source: JamiResources.round_edit_24dp_svg
+            source: JamiResources.round_edit_24dp_svg
 
-                preferredSize: avatar.width / 6
+            preferredSize: doubleEditAvatar ? avatar.width / 3 : avatar.width / 6
 
-                border.color: JamiTheme.buttonTintedBlue
-                normalColor: "white"
-                imageColor:  JamiTheme.buttonTintedBlue
-                hoveredColor: "#e5eef5"
-                pressedColor: "#e5eef5"
-                enabled: avatar.visible && !root.readOnly
+            border.color: JamiTheme.buttonTintedBlue
+            normalColor: "white"
+            imageColor:  JamiTheme.buttonTintedBlue
+            hoveredColor: "#e5eef5"
+            pressedColor: "#e5eef5"
+            enabled: avatar.visible && !root.readOnly
 
-                onClicked :{
+            onClicked :{
 
-                    imageLayer.visible = false
-                    buttonsRowLayout.visible = true
-                }
+                imageLayer.visible = false
+                buttonsRowLayout.visible = true
             }
         }
     }
