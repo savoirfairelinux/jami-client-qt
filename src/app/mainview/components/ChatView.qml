@@ -57,9 +57,11 @@ Rectangle {
         z: 10
         source: WITH_WEBENGINE ? "qrc:/webengine/map/MapPosition.qml" : ""
     }
-HostPopup {
+
+    HostPopup {
         id: hostPopup
     }
+
     ColumnLayout {
         anchors.fill: root
 
