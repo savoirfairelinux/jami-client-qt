@@ -127,6 +127,7 @@ Q_SIGNALS:
     void chatviewPositionChanged();
     void appThemeChanged();
     void showExperimentalCallSwarm();
+    void changeLanguage();
 
 private:
     QClipboard* clipboard_;

@@ -76,6 +76,7 @@ ColumnLayout {
         fontPointSize: JamiTheme.settingsFontSize
 
         comboModel: ListModel {
+            id: themeModel
             Component.onCompleted: {
                 append({ textDisplay: JamiStrings.dark })
                 append({ textDisplay: JamiStrings.light })
@@ -223,12 +224,21 @@ ColumnLayout {
         }
     }
 
-
     Connections {
         target: UtilsAdapter
 
         function onChangeFontSize() {
             zoomSpinBox.valueField = Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0)
+        }
+
+        function onChangeLanguage() {
+            var idx = themeComboBoxSettings.modelIndex
+            themeModel.clear()
+            themeModel.append({ textDisplay: JamiStrings.dark })
+            themeModel.append({ textDisplay: JamiStrings.light })
+            if (UtilsAdapter.hasNativeDarkTheme())
+                themeModel.append({ textDisplay: JamiStrings.system })
+            themeComboBoxSettings.modelIndex = idx
         }
     }
 
