@@ -104,6 +104,12 @@ JamiFlickable {
             if (keyEvent.matches(StandardKey.Paste)) {
                 MessagesAdapter.onPaste()
                 keyEvent.accepted = true
+            } else if (keyEvent.matches(StandardKey.MoveToPreviousLine)) {
+                if (root.text !== "")
+                    return
+                MessagesAdapter.replyToId = ""
+                MessagesAdapter.editId = CurrentConversation.lastSelfMessageId
+                keyEvent.accepted = true;
             } else if (keyEvent.key === Qt.Key_Enter ||
                        keyEvent.key === Qt.Key_Return) {
                 if (!(keyEvent.modifiers & Qt.ShiftModifier)) {
