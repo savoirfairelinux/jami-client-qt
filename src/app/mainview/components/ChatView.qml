@@ -124,7 +124,6 @@ Rectangle {
             }
         }
 
-
         Connections {
             target: CurrentConversation
             enabled: true
@@ -291,6 +290,16 @@ Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
             }
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+Escape"
+        context: Qt.WindowShortcut
+        enabled: root.visible
+        onActivated: {
+            MessagesAdapter.replyToId = ""
+            MessagesAdapter.editId = ""
         }
     }
 }
