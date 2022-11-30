@@ -90,6 +90,7 @@ ColumnLayout {
         tipText: JamiStrings.layout
         fontPointSize: JamiTheme.settingsFontSize
         comboModel: ListModel {
+            id: layoutModel
             Component.onCompleted: {
                 append({ textDisplay: JamiStrings.horizontalViewOpt })
                 append({ textDisplay: JamiStrings.verticalViewOpt })
@@ -105,6 +106,18 @@ ColumnLayout {
                 Settings.Key.ShowChatviewHorizontally,
                 comboModel.get(modelIndex).textDisplay === JamiStrings.verticalViewOpt
             )
+        }
+
+        Connections {
+            target: UtilsAdapter
+
+            function onChangeLanguage() {
+                var idx = outputComboBoxSetting.modelIndex
+                layoutModel.clear()
+                layoutModel.append({ textDisplay: JamiStrings.horizontalViewOpt })
+                layoutModel.append({ textDisplay: JamiStrings.verticalViewOpt })
+                outputComboBoxSetting.modelIndex = idx
+            }
         }
     }
 }
