@@ -365,8 +365,11 @@ Control {
         },
         Action {
             id: layoutAction
-            property bool openPopupWhenClicked: true
-            checkable: !openPopupWhenClicked
+            onTriggered: {
+                if (!isGrid)
+                    CallAdapter.showGridConferenceLayout()
+            }
+            checkable: true
             icon.source: JamiResources.mosaic_black_24dp_svg
             icon.color: "white"
             text: JamiStrings.layoutSettings
