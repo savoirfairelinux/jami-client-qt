@@ -345,16 +345,20 @@ Rectangle {
 
         spacing: 4
 
-        Label {
+        Text {
             font.bold: true
             font.pointSize: JamiTheme.contactEventPointSize
 
             Layout.margins: 16
             Layout.maximumHeight: 24
+            Layout.alignment: Qt.AlignTop
+            Layout.fillWidth: true
+
+            wrapMode: Text.Wrap
 
             text: {
                 if (highlightedMembers.length === 0)
-                    return JamiStrings.youCanAdd8
+                    return JamiStrings.youCanAdd7
                 return JamiStrings.youCanAddMore.arg(7 - Math.min(highlightedMembers.length, 7))
             }
             color: JamiTheme.textColor
