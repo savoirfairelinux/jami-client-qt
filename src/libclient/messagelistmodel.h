@@ -138,6 +138,7 @@ public:
     void addEdition(const QString& msgId, const interaction::Info& info, bool end);
     void editMessage(const QString& msgId, interaction::Info& info);
     QString lastMessageUid() const;
+    QString lastSelfMessageId() const;
 
 protected:
     using Role = MessageList::Role;
