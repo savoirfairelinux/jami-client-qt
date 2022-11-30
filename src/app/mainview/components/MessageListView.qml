@@ -44,7 +44,6 @@ JamiListView {
             MessagesAdapter.loadMoreMessages()
     }
 
-
     function computeTimestampVisibility(item1, item1Index, item2, item2Index) {
         if (item1 && item2) {
             if (item1Index < item2Index) {
@@ -84,9 +83,7 @@ JamiListView {
         // index 0 insertion = new message
         if (itemIndex === 0) {
             Qt.callLater(computeSequencing, null, item, root.itemAtIndex(itemIndex + 1))
-            if (!computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)) {
-                Qt.callLater(computeChatview, item, itemIndex)
-            }
+            Qt.callLater(computeTimestampVisibility, item, itemIndex, nItem, nItemIndex)
         }
         // top element
         if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
@@ -152,6 +149,7 @@ JamiListView {
             }
         }
     }
+
     Connections {
         target: CurrentConversation
         function onIdChanged() { fadeAnimation.start() }
@@ -268,6 +266,7 @@ JamiListView {
                 }
             }
         }
+
         DelegateChoice {
             roleValue: Interaction.Type.DATA_TRANSFER
 
