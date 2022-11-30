@@ -1307,6 +1307,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
             }
 
             newConv.lastMessageUid = msgId;
+            newConv.lastSelfMessageId = msgId;
             // Emit this signal for chatview in the client
             Q_EMIT newInteraction(convId, msgId, msg);
             // This conversation is now at the top of the list
@@ -1486,6 +1487,9 @@ ConversationModel::clearInteractionFromConversation(const QString& convId,
                 conversation.lastMessageUid = newLastId;
                 lastInteractionUpdated = true;
             }
+            if (conversation.lastSelfMessageId == interactionId) {
+                conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId();
+            }
 
         } catch (const std::out_of_range& e) {
             qDebug() << "can't clear interaction from conversation: " << e.what();
@@ -1521,6 +1525,7 @@ ConversationModel::clearInteractionsCache(const QString& convId)
             }
             conversation.allMessagesLoaded = false;
             conversation.lastMessageUid = "";
+            conversation.lastSelfMessageId = "";
             ConfigurationManager::instance().loadConversationMessages(owner.id, convId, "", 1);
         }
     } catch (const std::out_of_range& e) {
@@ -2469,6 +2474,7 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
         }
 
         conversation.lastMessageUid = conversation.interactions->lastMessageUid();
+        conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId();
         if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
             && messages.size() != 0) {
             if (conversation.interactions->size() > 0) {
@@ -2627,6 +2633,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             return;
         }
         conversation.lastMessageUid = conversation.interactions->lastMessageUid();
+        conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId();
         invalidateModel();
         if (!interaction::isOutgoing(msg)) {
             Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,
@@ -3650,6 +3657,7 @@ ConversationModelPimpl::addIncomingMessage(const QString& peerId,
             conversations[conversationIdx].interactions->emplace(msgId, msg);
         }
         conversations[conversationIdx].lastMessageUid = msgId;
+        // conversations[conversationIdx].lastSelfMessageId = conversation.interactions->lastSelfMessageId();
         conversations[conversationIdx].unreadMessages = getNumberOfUnreadMessagesFor(convIds[0]);
     }
 

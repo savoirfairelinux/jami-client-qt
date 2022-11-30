@@ -54,6 +54,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QVariantList, activeCalls)
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
+    QML_PROPERTY(QString, lastSelfMessageId)
 
     // TODO: these belong in CurrentCall(which doesn't exist yet)
     QML_PROPERTY(bool, hideSelf)

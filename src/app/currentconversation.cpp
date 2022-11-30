@@ -53,6 +53,7 @@ CurrentConversation::updateData()
         const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
         if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
+            set_lastSelfMessageId(convInfo.lastSelfMessageId);
             set_uris(convInfo.participantsUris());
             set_isSwarm(convInfo.isSwarm());
             set_isLegacy(convInfo.isLegacy());

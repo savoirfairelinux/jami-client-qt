@@ -78,6 +78,7 @@ struct Info
     QString confId;
     std::unique_ptr<MessageListModel> interactions;
     QString lastMessageUid;
+    QString lastSelfMessageId;
     QHash<QString, QString> parentsId; // pair messageid/parentid for messages without parent loaded
     unsigned int unreadMessages = 0;
     QVector<QPair<int, QString>> errors;
