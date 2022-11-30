@@ -46,6 +46,30 @@
       },
       "revId": "f3334fed4563a180d1e99a5d5d1dd856ee600225",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15ed9ccc_0cc59b8b",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-30T15:24:55Z",
+      "side": 0,
+      "message": "```\nif (itemIndex \u003d\u003d\u003d 0) {\n    Qt.callLater(computeSequencing, null, item, root.itemAtIndex(itemIndex + 1))\n    if (!nItem \u0026\u0026 !CurrentConversation.allMessagesLoaded) {\n        Qt.callLater(computeChatview, item, itemIndex)\n    }\n    Qt.callLater(computeTimestampVisibility, item, itemIndex, nItem, nItemIndex)\n}\n```\n\nFix it for me (as it will go back in the last condition once allMessagesLoaded is set and stop the loop)",
+      "parentUuid": "a04f1184_4d39aff5",
+      "range": {
+        "startLine": 87,
+        "startChar": 15,
+        "endLine": 89,
+        "endChar": 13
+      },
+      "revId": "f3334fed4563a180d1e99a5d5d1dd856ee600225",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
