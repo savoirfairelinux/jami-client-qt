@@ -92,7 +92,7 @@ ZYPPER_INSTALL_SCRIPT = [
 ZYPPER_DEPENDENCIES = [
     # build system
     'autoconf', 'autoconf-archive', 'automake', 'cmake', 'make', 'patch', 'gcc-c++',
-    'libtool', 'which', 'pandoc','nasm', 'doxygen', 'graphviz',
+    'libtool', 'which', 'pandoc', 'nasm', 'doxygen', 'graphviz',
     # contrib dependencies
     'curl', 'gzip', 'bzip2',
     # daemon
@@ -139,7 +139,7 @@ DNF_CLIENT_DEPENDENCIES = [
     'qrencode-devel', 'NetworkManager-libnm-devel'
 ]
 
-DNF_QT_WEBENGINE = [ 'qt6-qtwebengine-devel' ]
+DNF_QT_WEBENGINE = ['qt6-qtwebengine-devel']
 
 APT_DEPENDENCIES = [
     'autoconf', 'autoconf-archive', 'autopoint', 'automake', 'cmake', 'make', 'dbus', 'doxygen', 'graphviz',
@@ -174,7 +174,7 @@ APT_CLIENT_DEPENDENCIES = [
 APT_QT_WEBENGINE = [
     'libqt6webengine6-data', 'libqt6webenginecore6-bin',
     'qt6-webengine-dev', 'qt6-webengine-dev-tools',
-    'qml6-module-qtwebengine', 'qml6-module-qtwebchannel' ]
+    'qml6-module-qtwebengine', 'qml6-module-qtwebchannel']
 
 PACMAN_DEPENDENCIES = [
     'autoconf', 'autoconf-archive', 'gettext', 'cmake', 'dbus', 'doxygen', 'graphviz',
@@ -194,7 +194,7 @@ PACMAN_CLIENT_DEPENDENCIES = [
     'qrencode', 'libnm'
 ]
 
-PACMAN_QT_WEBENGINE = [ 'qt6-webengine' ]
+PACMAN_QT_WEBENGINE = ['qt6-webengine']
 
 OSX_DEPENDENCIES = [
     'autoconf', 'cmake', 'gettext', 'pkg-config', 'qt6',
@@ -212,6 +212,7 @@ UNINSTALL_DAEMON_SCRIPT = [
 
 ASSUME_YES_FLAG = ' -y'
 ASSUME_YES_FLAG_PACMAN = ' --noconfirm'
+
 
 def run_powershell_cmd(cmd):
     p = subprocess.Popen(["powershell.exe", cmd], stdout=sys.stdout)
@@ -355,13 +356,13 @@ def cwd(path):
 def run_install(args):
     # Platforms with special compilation scripts
     if args.distribution == WIN32_DISTRIBUTION_NAME:
-        winmake = 'daemon/compat/msvc/winmake.py'
-        with cwd(os.path.dirname(winmake)):
-            execute_script(
-                f'python {winmake} -iv -t {args.toolset} -s {args.sdk} -b daemon')
+        # with cwd('daemon/compat/msvc'):
+        #     execute_script(
+        #         ['python winmake.py -iv '
+        #          f'-t {args.toolset} -s {args.sdk} -b daemon'])
         build_windows = 'extras/scripts/build-windows.py'
-        execute_script(f'python {build_windows} init')
-        execute_script(f'python {build_windows}')
+        # execute_script([f'python {build_windows} init'])
+        execute_script([f'python {build_windows}'])
         return True
 
     # Unix-like platforms
@@ -394,7 +395,8 @@ def run_install(args):
         environ['CMAKE_PREFIX_PATH'] = proc.stdout.rstrip("\n")
         environ['CONFIGURE_FLAGS'] = '--without-dbus'
         if not args.qt:
-            raise Exception('provide the Qt path using --qt=/qt/install/prefix')
+            raise Exception(
+                'provide the Qt path using --qt=/qt/install/prefix')
         install_args += ("-Q", args.qt)
     else:
         if args.distribution in ZYPPER_BASED_DISTROS:
@@ -424,7 +426,7 @@ def run_install(args):
                    '--expose=/gnu/store', '--expose=/etc/ssl/certs',
                    '--expose=/usr/bin/env',
                    '--container', '--network'] + share_tarballs_args \
-                   + ['--'] + command
+            + ['--'] + command
 
     print(f'info: Building/installing using the command: {" ".join(command)}')
     return subprocess.run(command, env=environ, check=True)
@@ -437,8 +439,8 @@ def run_uninstall(args):
 
     if (os.path.exists(BUILD_DIR)):
         UNINSTALL_CLIENT_SCRIPT = [
-             f'make -C {BUILD_DIR} uninstall',
-             f'rm -rf {BUILD_DIR}'
+            f'make -C {BUILD_DIR} uninstall',
+            f'rm -rf {BUILD_DIR}'
         ]
         execute_script(UNINSTALL_CLIENT_SCRIPT)
 
@@ -519,8 +521,8 @@ def execute_script(script, settings=None, fail=True):
         line = line % settings
         rv = os.system(line)
         if rv and fail:
-            print('Error executing script! Exit code: %s' %
-                  rv, file=sys.stderr)
+            print('Error executing script! Exit code: %s (%s)' %
+                  (rv, script), file=sys.stderr)
             sys.exit(1)
 
 
@@ -541,7 +543,7 @@ def validate_args(parsed_args):
 
     # Filter unsupported distributions.
     supported_distros = \
-        [ OSX_DISTRIBUTION_NAME, WIN32_DISTRIBUTION_NAME, 'guix'] + \
+        [OSX_DISTRIBUTION_NAME, WIN32_DISTRIBUTION_NAME, 'guix'] + \
         APT_BASED_DISTROS + DNF_BASED_DISTROS + PACMAN_BASED_DISTROS \
         + ZYPPER_BASED_DISTROS + FLATPAK_BASED_RUNTIMES
 

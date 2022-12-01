@@ -319,7 +319,7 @@ if(MSVC)
   add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
 
   # dependencies
-  set(DRING ${PROJECT_SOURCE_DIR}/../daemon)
+  set(DRING ${PROJECT_SOURCE_DIR}/daemon)
   set(QRENCODE_DIR
     ${PROJECT_SOURCE_DIR}/3rdparty/qrencode-win32/qrencode-win32)
 

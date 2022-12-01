@@ -325,7 +325,7 @@ set(LIBCLIENT_HEADERS_API
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR
-  "${PROJECT_SOURCE_DIR}/../../../daemon/contrib")
+  "${PROJECT_SOURCE_DIR}/../../daemon/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
