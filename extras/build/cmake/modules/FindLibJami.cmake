@@ -81,6 +81,7 @@ if(NOT LIBJAMI_LIB)
   if(WITH_DAEMON_SUBMODULE)
     find_library(LIBJAMI_LIB NAMES jami ring
       PATHS ${DAEMON_DIR}/src/.libs
+      PATHS ${CMAKE_INSTALL_PREFIX}
       PATHS ${CMAKE_INSTALL_PREFIX}/lib
       PATHS ${CMAKE_INSTALL_PREFIX}/libexec
       NO_DEFAULT_PATH)
@@ -89,6 +90,7 @@ if(NOT LIBJAMI_LIB)
     find_library(LIBJAMI_LIB NAMES jami ring
       PATHS ${LIBJAMI_BUILD_DIR}/.libs
       PATHS ${RING_BUILD_DIR}/.libs
+      PATHS ${CMAKE_INSTALL_PREFIX}
       PATHS ${CMAKE_INSTALL_PREFIX}/lib
       PATHS ${CMAKE_INSTALL_PREFIX}/libexec
       NO_DEFAULT_PATH)
