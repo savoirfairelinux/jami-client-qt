@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d678b8c_0db6386c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-01T19:18:24Z",
+      "side": 1,
+      "message": "Alice has a 1:1 swarm with Bob\nAlice has group swarm with Bob and Carla\nBob shares location\nAlice has location indicator on both conversations with Bob",
+      "revId": "993f05584d41553d54261fd8a730d933f8fbf310",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
