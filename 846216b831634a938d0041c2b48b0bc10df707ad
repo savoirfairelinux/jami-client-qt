@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66b12e27_963fec14",
+        "filename": "src/app/settingsview/components/AdvancedSDPSettings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-01T20:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc81e72a_08762bbb",
+      "range": {
+        "startLine": 80,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 100
+      },
+      "revId": "846216b831634a938d0041c2b48b0bc10df707ad",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b18b3885_0bcad9c6",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-01T20:16:23Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 96,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 100
+      },
+      "revId": "846216b831634a938d0041c2b48b0bc10df707ad",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "530bd873_51769427",
+        "filename": "src/app/settingsview/components/AdvancedSDPSettings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-01T20:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b18b3885_0bcad9c6",
       "range": {
         "startLine": 96,
         "startChar": 16,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a06f61cf_d1643218",
+        "filename": "src/app/settingsview/components/AdvancedSDPSettings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-01T20:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "761a98fc_c52706da",
+      "range": {
+        "startLine": 113,
+        "startChar": 16,
+        "endLine": 114,
+        "endChar": 100
+      },
+      "revId": "846216b831634a938d0041c2b48b0bc10df707ad",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68d09711_452e891a",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-01T20:16:23Z",
       "side": 1,
       "message": "unecessary",
+      "range": {
+        "startLine": 44,
+        "startChar": 19,
+        "endLine": 44,
+        "endChar": 21
+      },
+      "revId": "846216b831634a938d0041c2b48b0bc10df707ad",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac849a6e_e44fbffe",
+        "filename": "src/app/settingsview/components/SettingSpinBox.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-01T20:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68d09711_452e891a",
       "range": {
         "startLine": 44,
         "startChar": 19,
