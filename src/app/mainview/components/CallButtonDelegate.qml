@@ -27,12 +27,13 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 ItemDelegate {
-    id: wrapper
+    id: root
 
     property bool isFirst: index < 1
     property bool isLast: index + 1 < ListView.view.count ? false : true
     property bool hasLast: ListView.view.centeredGroup !== undefined
-    property bool isVertical: wrapper.ListView.view.orientation === ListView.Vertical
+    property bool isVertical: root.ListView.view.orientation === ListView.Vertical
+    property real barWidth
 
     property alias subMenuVisible: menu.popup.visible
 
@@ -53,7 +54,7 @@ ItemDelegate {
     MouseArea {
         visible: ItemAction.openPopupWhenClicked !== undefined
                  && ItemAction.openPopupWhenClicked && !menu.popup.visible
-        anchors.fill: wrapper
+        anchors.fill: root
         onClicked: menu.popup.open()
     }
 
@@ -63,9 +64,9 @@ ItemDelegate {
         color: {
             if (supplimentaryBackground.visible)
                 return "#c4272727"
-            return wrapper.down ?
+            return root.down ?
                         "#c4777777" :
-                        (wrapper.hovered && !menu.hovered) ?
+                        (root.hovered && !menu.hovered) ?
                             "#c4444444" :
                             "#c4272727"
         }
@@ -96,8 +97,8 @@ ItemDelegate {
         id: supplimentaryBackground
 
         visible: ItemAction.hasBg !== undefined
-        color: wrapper.down ? Qt.lighter(JamiTheme.refuseRed, 1.5) :
-                              wrapper.hovered && !menu.hovered ?
+        color: root.down ? Qt.lighter(JamiTheme.refuseRed, 1.5) :
+                              root.hovered && !menu.hovered ?
                                   JamiTheme.refuseRed :
                                   JamiTheme.refuseRedTransparent
         anchors.fill: parent
@@ -156,7 +157,7 @@ ItemDelegate {
         MaterialToolTip {
             id: toolTip
             parent: parent
-            visible: text.length > 0 && (wrapper.hovered || menu.hovered)
+            visible: text.length > 0 && (root.hovered || menu.hovered)
             text: menu.hovered ? menuAction.text : (ItemAction
                                                     !== undefined ? ItemAction.text : null)
             verticalPadding: 1
@@ -287,11 +288,11 @@ ItemDelegate {
         popup: Popup {
             id: itemPopup
 
-            y: isVertical ? -(implicitHeight - wrapper.height) / 2 - 18 : -implicitHeight - 12
+            y: isVertical ? -(implicitHeight - root.height) / 2 - 18 : -implicitHeight - 12
             x: {
                 if (isVertical)
                     return -implicitWidth - 12
-                var xValue = -(implicitWidth - wrapper.width) / 2 - 18
+                var xValue = -(implicitWidth - root.width) / 2 - 18
                 var mainPoint = mapToItem(mainView, xValue, y)
                 var diff = mainPoint.x + itemListView.implicitWidth - mainView.width
                 return diff > 0 ? xValue - diff - 24 : xValue
@@ -325,25 +326,29 @@ ItemDelegate {
 
                 // recalc list width based on max item width
                 onCountChanged: {
-                    var maxWidth = 0
+                    var mPreferredWidth = 145
+
                     if (count && menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption) {
                         menuItemWidth = 290
                         return
                     }
+
                     for (var i = 0; i < count; ++i) {
-                        if (menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement) {
+                        if (menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement)
                             itemTextMetrics.text = menuAction.listModel.get(i).Name
-                        } else {
+                        else {
                             // Hack: use AudioDeviceModel.DeviceName role for video as well
                             var idx = menuAction.listModel.index(i, 0)
                             itemTextMetrics.text = menuAction.listModel.data(
                                         idx, AudioDeviceModel.DeviceName)
                         }
-                        if (itemTextMetrics.boundingRect.width > maxWidth)
-                            maxWidth = itemTextMetrics.boundingRect.width
+                        if (itemTextMetrics.boundingRect.width > mPreferredWidth)
+                            mPreferredWidth = itemTextMetrics.boundingRect.width
                     }
-                    // 30(icon) + 5(layout spacing) + 12(margins)
-                    menuItemWidth = Math.min(256, maxWidth + 30 + 5 + 12)
+                    // 30(icon) + 5(layout spacing) + 12(margins) + 20 to avoid text elipsis
+                    mPreferredWidth = mPreferredWidth + 30 + 5 + 12 + 20
+                    mPreferredWidth = Math.min(root.barWidth, mPreferredWidth)
+                    menuItemWidth = mPreferredWidth
                 }
             }
 
