@@ -184,7 +184,7 @@ def build_deps():
     patch_file = os.path.join(repo_root_dir, 'qrencode-win32.patch')
     apply_cmd.append(patch_file)
     print(apply_cmd)
-    if(execute_cmd(apply_cmd, False, None, qrencode_dir)):
+    if (execute_cmd(apply_cmd, False, None, qrencode_dir)):
         print("Couldn't patch qrencode-win32.")
 
     vs_env_vars = {}
@@ -207,8 +207,8 @@ def build(config_str, qtver, tests=False):
     vs_env_vars.update(getVSEnv())
 
     qt_dir = os.path.join(qt_root_path, qtver, qt_kit_path)
-    daemon_dir = os.path.dirname(repo_root_dir) + '\\daemon'
-    daemon_bin_dir = daemon_dir + '\\build\\x64\\ReleaseLib_win32\\bin'
+    daemon_dir = os.path.join(repo_root_dir, 'daemon')
+    daemon_bin_dir = os.path.join(daemon_dir, 'build/x64/ReleaseLib_win32/bin')
 
     # We need to update the minimum SDK version to be able to
     # build with system theme support
@@ -230,7 +230,7 @@ def build(config_str, qtver, tests=False):
 
     print('Generating…')
     cmd.extend(cmake_options)
-    if(execute_cmd(cmd, False, vs_env_vars, build_dir)):
+    if (execute_cmd(cmd, False, vs_env_vars, build_dir)):
         print("Cmake generate error")
         sys.exit(1)
 
@@ -240,7 +240,7 @@ def build(config_str, qtver, tests=False):
         '--config', 'Release',
         '--', '-m'
     ]
-    if(execute_cmd(cmd, False, vs_env_vars, build_dir)):
+    if (execute_cmd(cmd, False, vs_env_vars, build_dir)):
         print("Cmake build error")
         sys.exit(1)
 
