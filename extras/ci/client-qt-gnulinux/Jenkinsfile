@@ -55,6 +55,7 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 script {
+                    // Checkout client-qt
                     sh """
                         git rev-parse HEAD
                         git submodule update --init --recursive
