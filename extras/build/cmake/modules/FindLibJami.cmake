@@ -54,6 +54,9 @@ set(CMAKE_FIND_LIBRARY_SUFFIXES ".dylib;.so;.dll")
 if(WITH_DAEMON_SUBMODULE)
   find_library(LIBJAMI_LIB NAMES jami ring
     PATHS ${DAEMON_DIR}/src/.libs
+    PATHS ${CMAKE_INSTALL_PREFIX}/lib
+    PATHS ${CMAKE_INSTALL_PREFIX}/libexec
+    PATHS ${CMAKE_INSTALL_PREFIX}/bin
     NO_DEFAULT_PATH)
 else()
   # Search only in these given PATHS.
@@ -78,6 +81,8 @@ if(NOT LIBJAMI_LIB)
   if(WITH_DAEMON_SUBMODULE)
     find_library(LIBJAMI_LIB NAMES jami ring
       PATHS ${DAEMON_DIR}/src/.libs
+      PATHS ${CMAKE_INSTALL_PREFIX}/lib
+      PATHS ${CMAKE_INSTALL_PREFIX}/libexec
       NO_DEFAULT_PATH)
   else()
     # Search only in these given PATHS.
