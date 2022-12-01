@@ -46,6 +46,7 @@ Rectangle {
         Layout.topMargin: 16
         Layout.preferredWidth: root.width
         spacing: 16
+        visible: root.members.length
 
         Label {
             text: JamiStrings.to
@@ -95,11 +96,21 @@ Rectangle {
                         }
                     }
 
-                    color: "grey"
+                    color: JamiTheme.selectedColor
                 }
                 model: root.members
             }
         }
+    }
+
+    Rectangle {
+        anchors.top: labelsMember.bottom
+        visible: labelsMember.visible
+        height: 1
+        width: root.width
+        color: "transparent"
+        border.width: 1
+        border.color: JamiTheme.selectedColor
     }
 
     ColumnLayout {
