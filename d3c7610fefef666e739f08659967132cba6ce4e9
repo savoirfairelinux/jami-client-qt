@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b8d20d2_ff147c9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-01T14:32:12Z",
+      "side": 1,
+      "message": "else seems ok to me",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "d3c7610fefef666e739f08659967132cba6ce4e9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c8e2de3_9085bac6",
         "filename": "src/libclient/conversationmodel.cpp",
         "patchSetId": 3
