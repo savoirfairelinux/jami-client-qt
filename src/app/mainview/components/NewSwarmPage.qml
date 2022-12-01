@@ -45,7 +45,9 @@ Rectangle {
         id: labelsMember
         Layout.topMargin: 16
         Layout.preferredWidth: root.width
+        Layout.preferredHeight: childrenRect.height
         spacing: 16
+        visible: root.members.length
 
         Label {
             text: JamiStrings.to
@@ -55,10 +57,9 @@ Rectangle {
         }
 
         Flow {
-            Layout.preferredWidth: root.width
             Layout.topMargin: 16
-            Layout.fillWidth: true
-            Layout.preferredHeight: 48
+            Layout.preferredWidth: root.width - 80
+            Layout.preferredHeight: childrenRect.height + 16
             spacing: 8
 
             Repeater {
@@ -95,11 +96,21 @@ Rectangle {
                         }
                     }
 
-                    color: "grey"
+                    color: JamiTheme.selectedColor
                 }
                 model: root.members
             }
         }
+    }
+
+    Rectangle {
+        anchors.top: labelsMember.bottom
+        visible: labelsMember.visible
+        height: 1
+        width: root.width
+        color: "transparent"
+        border.width: 1
+        border.color: JamiTheme.selectedColor
     }
 
     ColumnLayout {
