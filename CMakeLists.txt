@@ -296,7 +296,9 @@ endif()
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
-  ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
+  ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include
+  ${LIBJAMI_CONTRIB_DIR_SUBMODULE}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR_SUBMODULE}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 
 find_package(Vulkan)
