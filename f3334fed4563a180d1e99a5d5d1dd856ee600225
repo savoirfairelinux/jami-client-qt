@@ -118,6 +118,30 @@
       },
       "revId": "f3334fed4563a180d1e99a5d5d1dd856ee600225",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c349e661_a580bc97",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-01T03:31:30Z",
+      "side": 0,
+      "message": "Actually, it seems that the approach proposed by Nicolas doesn\u0027t work and got the same problem as before.",
+      "parentUuid": "4db25c84_9501fe52",
+      "range": {
+        "startLine": 87,
+        "startChar": 15,
+        "endLine": 89,
+        "endChar": 13
+      },
+      "revId": "f3334fed4563a180d1e99a5d5d1dd856ee600225",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
