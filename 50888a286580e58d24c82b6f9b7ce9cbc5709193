@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b77cea9a_04ef65d3",
+        "filename": "src/app/mainview/components/NewSwarmPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-01T18:18:33Z",
+      "side": 0,
+      "message": "Actually, this is still not finished, but the design from Charlotte is https://xd.adobe.com/view/845e3c72-ba65-42f6-aa58-02872d46e1ad-d10d/screen/86f4aa98-b7e9-4990-b425-3380ecb761b5/",
+      "range": {
+        "startLine": 53,
+        "startChar": 29,
+        "endLine": 53,
+        "endChar": 38
+      },
+      "revId": "50888a286580e58d24c82b6f9b7ce9cbc5709193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
