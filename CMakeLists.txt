@@ -289,10 +289,13 @@ endif()
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib")
+set(LIBJAMI_CONTRIB_DIR_SUBMODULE "${PROJECT_SOURCE_DIR}/daemon/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
-  ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
+  ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include
+  ${LIBJAMI_CONTRIB_DIR_SUBMODULE}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR_SUBMODULE}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 
 find_package(Vulkan)
