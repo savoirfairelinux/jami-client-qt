@@ -62,11 +62,6 @@ ColumnLayout {
 
             valueField: CurrentAccount.audioPortMin_Audio
 
-            onInputAcceptableChanged: {
-                if (!inputAcceptable && valueField.length !== 0)
-                    valueField = Qt.binding(function() { return CurrentAccount.audioPortMin_Audio })
-            }
-
             onNewValue: CurrentAccount.audioPortMin_Audio = valueField
         }
 
@@ -79,11 +74,6 @@ ColumnLayout {
             topValue: 65535
 
             valueField: CurrentAccount.audioPortMax_Audio
-
-            onInputAcceptableChanged: {
-                if (!inputAcceptable && valueField.length !== 0)
-                    valueField = Qt.binding(function() { return CurrentAccount.audioPortMax_Audio })
-            }
 
             onNewValue: CurrentAccount.audioPortMax_Audio = valueField
         }
@@ -98,11 +88,6 @@ ColumnLayout {
 
             valueField: CurrentAccount.videoPortMin_Video
 
-            onInputAcceptableChanged: {
-                if (!inputAcceptable && valueField.length !== 0)
-                    valueField = Qt.binding(function() { return CurrentAccount.videoPortMin_Video })
-            }
-
             onNewValue: CurrentAccount.videoPortMin_Video = valueField
         }
 
@@ -115,11 +100,6 @@ ColumnLayout {
             topValue: 65535
 
             valueField: CurrentAccount.videoPortMax_Video
-
-            onInputAcceptableChanged: {
-                if (!inputAcceptable && valueField.length !== 0)
-                    valueField = Qt.binding(function() { return CurrentAccount.videoPortMax_Video })
-            }
 
             onNewValue: CurrentAccount.videoPortMax_Video = valueField
         }

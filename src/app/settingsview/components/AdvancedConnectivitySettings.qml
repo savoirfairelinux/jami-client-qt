@@ -85,11 +85,6 @@ ColumnLayout {
 
             valueField: CurrentAccount.localPort
 
-            onInputAcceptableChanged: {
-                if (!inputAcceptable && valueField.length !== 0)
-                    valueField = Qt.binding(function() { return CurrentAccount.localPort })
-            }
-
             onNewValue: CurrentAccount.localPort = valueField
         }
 
