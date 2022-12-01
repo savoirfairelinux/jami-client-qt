@@ -217,6 +217,7 @@ endif()
 
 if(ENABLE_LIBWRAP)
   # The daemon is only required for when using direct linking
+  message("@@@@${LIBJAMI_LIB}")
   if(NOT LIBJAMI_LIB)
     message(FATAL_ERROR "Jami daemon library is required when \
 building with ENABLE_LIBWRAP")
