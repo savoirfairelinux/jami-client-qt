@@ -55,7 +55,7 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 script {
-                    // Checkout jami-project to obtain daemon/LRC/client-qt repositories
+                    // Checkout client-qt
                     sh """
                         git rev-parse HEAD
                         git submodule update --init --recursive
