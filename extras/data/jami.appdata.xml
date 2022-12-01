@@ -58,16 +58,16 @@
       ügyfélalkalmazásai, így a Jami interoperábilis és többplatformos
       kommunikációs keretrendszerré válik.
     </p>
-   
+
  </description>
 
  <url type="homepage">https://jami.net/</url>
  <url type="bugtracker">https://git.jami.net/savoirfairelinux/jami-client-qt/issues</url>
  <url type="faq">https://jami.net/help/</url>
- <url type="help">https://git.jami.net/savoirfairelinux/jami-project/-/wikis/home</url>
+ <url type="help">https://docs.jami.net</url>
  <url type="donation">https://www.paypal.com/donate/?hosted_button_id=MGUDJLQZ4TP5W</url>
  <url type="translate">https://www.transifex.com/savoirfairelinux/jami</url>
- 
+
  <!-- Maximum caption length is 60 characters -->
  <!-- Officially GIF is not an allowed video format, but it appears to work nonetheless -->
  <screenshots>
