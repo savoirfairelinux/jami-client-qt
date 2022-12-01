@@ -1,0 +1,28 @@
+FROM debian:unstable
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get clean
+RUN apt-get update && \
+    apt-get install -y -o Acquire::Retries=10 \
+        devscripts \
+        equivs \
+        python-is-python3 \
+        libdbus-1-dev \
+        libdbus-c++-dev \
+        wget
+
+ADD extras/packaging/gnu-linux/scripts/prebuild-package-debian.sh /opt/prebuild-package-debian.sh
+
+COPY extras/packaging/gnu-linux/rules/debian-qt/control /tmp/builddeps/debian/control
+RUN /opt/prebuild-package-debian.sh qt-deps
+
+COPY extras/packaging/gnu-linux/rules/debian/control /tmp/builddeps/debian/control
+RUN /opt/prebuild-package-debian.sh jami-deps
+
+# Install CMake 3.19 for Qt 6
+ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
+RUN /opt/install-cmake.sh
+
+ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
+CMD ["/opt/build-package-debian.sh"]

@@ -1,0 +1,264 @@
+// Copyright (C) 2021-2022 Savoir-faire Linux Inc.
+//
+// Author: Maxim Cournoyer <maxim.cournoyer@savoirfairelinux.com>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Packaging validation for supported GNU/Linux systems.
+//
+// Note: To work on this script without having to push a commit each
+// time, use the jenkins-cli command (see:
+// https://wiki.savoirfairelinux.com/wiki/Jenkins.jami.net#Usage_CLI_de_Jenkins).
+//
+// Requirements:
+// 1. gerrit-trigger plugin
+// 2. ws-cleanup plugin
+// 3. ansicolor plugin
+
+// TODO:
+// - GPG-sign release tarballs.
+// - GPG-sign release commits.
+// - Allow publishing from any node, to avoid relying on a single machine.
+
+// Configuration globals.
+def SUBMODULES = ['daemon', '3rdparty/SortFilterProxyModel', '3rdparty/qrencode-win32', 'extras/packaging/update/sparkle/Sparkle']
+def TARGETS = [:]
+def REMOTE_HOST = env.SSH_HOST_DL_RING_CX
+def REMOTE_BASE_DIR = '/srv/repository/ring'
+def JAMI_PUBLIC_KEY_FINGERPRINT = 'A295D773307D25A33AE72F2F64CD5FA175348F84'
+def GIT_USER_EMAIL = 'jenkins@jami.net'
+def GIT_USER_NAME = 'jenkins'
+def GIT_PUSH_URL = 'ssh://jenkins@review.jami.net:29420/jami-client-qt'
+def JENKINS_SSH_KEY = '35cefd32-dd99-41b0-8312-0b386df306ff'
+def DL_SSH_KEY = '5825b39b-dfc6-435f-918e-12acc1f56221'
+def SNAPCRAFT_KEY = '106e398c-43ca-41c0-8f7e-4f45030f8bdd'
+
+pipeline {
+    agent {
+        label 'guix'
+    }
+
+    options {
+        ansiColor('xterm')
+    }
+
+    parameters {
+        string(name: 'GERRIT_REFSPEC',
+               defaultValue: 'refs/heads/master',
+               description: 'The Gerrit refspec to fetch.')
+        booleanParam(name: 'DEPLOY',
+                     defaultValue: false,
+                     description: 'Whether to deploy packages.')
+        booleanParam(name: 'PUBLISH',
+                     defaultValue: false,
+                     description: 'Whether to upload tarball and push to git.')
+        choice(name: 'CHANNEL',
+               choices: 'internal\nnightly\nstable',
+               description: 'The repository channel to deploy to. ' +
+               'Defaults to "internal".')
+        booleanParam(name: 'BUILD_ARM',
+                     defaultValue: false,
+                     description: 'Whether to build ARM packages.')
+        booleanParam(name: 'BUILD_DEB_PACK',
+                     defaultValue: false,
+                     description: 'Whether to build DEB PACK packages.')
+        string(name: 'PACKAGING_TARGETS',
+               defaultValue: '',
+               description: 'A whitespace-separated list of packaging ' +
+               'targets, e.g. "debian_10 snap". ' +
+               'When left unspecified, all the packaging targets are built.')
+    }
+
+    environment {
+        TARBALLS = '/var/cache/jami' // set the cache directory
+    }
+
+    stages {
+        stage('Check configuration') {
+            steps {
+                script {
+                    if (!fileExists(TARBALLS)) {
+                        error "The ${TARBALLS} directory does not exist. \
+See https://wiki.savoirfairelinux.com/wiki/Jenkins.jami.net#Configuration"
+                    }
+
+                    mountType = sh(script: "findmnt ${TARBALLS} -o fstype -n",
+                                   returnStdout: true)
+                    if (!(mountType =~ /^nfs/)) {
+                        error "The ${TARBALLS} directory is not mounted on NFS storage. \
+See https://wiki.savoirfairelinux.com/wiki/Jenkins.jami.net#Configuration_client_NFS"
+                    }
+                }
+            }
+        }
+
+        stage('Configure Git') {
+            steps {
+                sh """git config user.name ${GIT_USER_NAME}
+                      git config user.email ${GIT_USER_EMAIL}
+                   """
+            }
+        }
+
+        stage('Fetch submodules') {
+            steps {
+                echo 'Initializing submodules ' + SUBMODULES.join(', ')
+                sh 'git submodule update --init --recursive'
+            }
+        }
+
+        stage('Generate release tarball') {
+            steps {
+                sh """\
+#!/usr/bin/env -S bash -l
+make -f extras/packaging/gnu-linux/Makefile portable-release-tarball .tarball-version
+"""
+                stash(includes: '*.tar.gz, .tarball-version',
+                      name: 'release-tarball')
+            }
+        }
+
+        stage('Publish release artifacts') {
+            when {
+                expression {
+                    params.PUBLISH && params.CHANNEL != 'internal'
+                }
+            }
+
+            steps {
+                sshagent(credentials: [JENKINS_SSH_KEY, DL_SSH_KEY]) {
+                    echo "Publishing to git repository..."
+                    script {
+                        def tagDate = sh 'date +"%Y%M%d"'
+                        sh """
+                        git tag  -am ${params.CHANNEL}/${tagDate} \"Jami new ${params.CHANNEL} version\"
+                        """
+                        if (params.CHANNEL == 'stable') {
+                            // Only stables releases get tarballs and a tag.
+                            sh 'git push --follow-tags'
+                            echo "Publishing release tarball..."
+                            sh 'rsync --verbose jami*.tar.gz ' +
+                                "${REMOTE_HOST}:${REMOTE_BASE_DIR}" +
+                                "/release/tarballs/"
+                        } else {
+                            sh 'git push --tags'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Build packages') {
+            environment {
+                DISABLE_CONTRIB_DOWNLOADS = 'TRUE'
+            }
+            steps {
+                script {
+                    def targetsText = params.PACKAGING_TARGETS.trim()
+                    if (!targetsText) {
+                        targetsText = sh(script: 'make -f extras/packaging/gnu-linux/Makefile -s list-package-targets',
+                                         returnStdout: true).trim()
+                    }
+
+                    TARGETS = targetsText.split(/\s/)
+                    if (!params.BUILD_ARM) {
+                        TARGETS = TARGETS.findAll { !(it =~ /_(armhf|arm64)$/) }
+                    }
+                    if (!params.BUILD_DEB_PACK) {
+                        TARGETS = TARGETS.findAll { !(it =~ /_(deb-pack)$/) }
+                    }
+
+                    def stages = [:]
+
+                    TARGETS.each { target ->
+                        // Note: The stage calls are wrapped in closures, to
+                        // delay their execution.
+                        stages[target] =  {
+                            stage(target) {
+                                // Offload builds to different agents.
+                                node('linux-builder') {
+                                    cleanWs()
+                                    unstash 'release-tarball'
+                                    catchError(buildResult: 'FAILURE',
+                                               stageResult: 'FAILURE') {
+                                        sh """#!/usr/bin/env -S bash -l
+                                           echo Building on node \$NODE_NAME
+                                           whoami
+                                           tar xf *.tar.gz --strip-components=1
+                                           make -f extras/packaging/gnu-linux/Makefile ${target}
+                                           """
+                                        stash(includes: 'extras/packaging/gnu-linux/packages/**',
+                                              name: target)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    parallel stages
+                }
+            }
+        }
+        stage('Sign & deploy packages') {
+            agent {
+                label 'ring-buildmachine-02.mtl.sfl'
+            }
+
+            when {
+                expression {
+                    params.DEPLOY
+                }
+            }
+
+            steps {
+                sshagent(credentials: [JENKINS_SSH_KEY, DL_SSH_KEY]) {
+                    script {
+                        sh """\
+                        echo "@@@"
+                        hostname
+                        whoami
+                        ls -la .
+                        pwd
+                        """
+                        TARGETS.each { target ->
+                            try {
+                                unstash target
+                            } catch (err) {
+                                echo "Failed to unstash ${target}, skipping..."
+                                return
+                            }
+                        }
+
+                        def distributionsText = sh(
+                            script: 'find extras/packaging/gnu-linux/packages/* -maxdepth 1 -type d -print0 ' +
+                                '| xargs -0 -n1 basename -z',
+                            returnStdout: true).trim()
+                        def distributions = distributionsText.split("\0")
+
+                        distributions.each { distribution ->
+                            echo "Deploying ${distribution} packages..."
+                            withCredentials([string(credentialsId: SNAPCRAFT_KEY, variable: 'SNAPCRAFT_STORE_CREDENTIALS')]) {
+                                sh """extras/packaging/gnu-linux/scripts/deploy-packages.sh \
+  --distribution=${distribution} \
+  --keyid="${JAMI_PUBLIC_KEY_FINGERPRINT}" \
+  --remote-repository-location="${REMOTE_HOST}:${REMOTE_BASE_DIR}/${params.CHANNEL}" \
+  --remote-manual-download-location="${REMOTE_HOST}:${REMOTE_BASE_DIR}/manual-${params.CHANNEL}"
+"""
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
