@@ -142,6 +142,10 @@ Item {
     property color comboboxBorderColor: darkTheme ? tintedBlue : Qt.rgba(0, 0.34, 0.6, 0.36)
     property color comboboxTextColorHovered: darkTheme ? "#03B9E9" : tintedBlue
 
+    //Spinbox
+    property color spinboxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
+    property color spinboxBorderColor: darkTheme ? tintedBlue : Qt.rgba(0, 0.34, 0.6, 0.36)
+
     // Call buttons
     property color acceptButtonGreen: "#4caf50"
     property color acceptButtonHoverGreen: "#5db761"

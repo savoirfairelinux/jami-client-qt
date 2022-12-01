@@ -251,16 +251,12 @@ ColumnLayout {
         tooltipText: JamiStrings.changeTextSize
         itemWidth: root.itemWidth
 
-        valueField: Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0)
+        bottomValue: 50
+        topValue: 200
+        step: 10
 
-        onNewValue: {
-            // here, avoid validator cause it can be painful for the user to change
-            // values by modifying the whole field.
-            if (valueField < 10)
-                valueField = 10
-            else if (valueField > 200)
-                valueField = 200
-            UtilsAdapter.setAppValue(Settings.BaseZoom, Math.round(valueField / 100.0))
-        }
+        valueField: UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0
+
+        onNewValue: UtilsAdapter.setAppValue(Settings.BaseZoom, valueField / 100.0)
     }
 }

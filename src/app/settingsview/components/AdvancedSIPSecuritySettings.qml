@@ -306,11 +306,6 @@ ColumnLayout {
 
             valueField: CurrentAccount.negotiationTimeoutSec_TLS
 
-            onInputAcceptableChanged: {
-                if (!inputAcceptable && valueField.length !== 0)
-                    valueField = Qt.binding(function() { return CurrentAccount.negotiationTimeoutSec_TLS })
-            }
-
             onNewValue: CurrentAccount.negotiationTimeoutSec_TLS = valueField
         }
     }

@@ -62,11 +62,6 @@ ColumnLayout {
 
             valueField: CurrentAccount.audioPortMin_Audio
 
-            onInputAcceptableChanged: {
-                if (!inputAcceptable && valueField.length !== 0)
-                    valueField = Qt.binding(function() { return CurrentAccount.audioPortMin_Audio })
-            }
-
             onNewValue: CurrentAccount.audioPortMin_Audio = valueField
         }
 
@@ -80,12 +75,11 @@ ColumnLayout {
 
             valueField: CurrentAccount.audioPortMax_Audio
 
-            onInputAcceptableChanged: {
-                if (!inputAcceptable && valueField.length !== 0)
+            onNewValue:{
+                CurrentAccount.audioPortMax_Audio = valueField
+                if (valueField.length !== 0)
                     valueField = Qt.binding(function() { return CurrentAccount.audioPortMax_Audio })
             }
-
-            onNewValue: CurrentAccount.audioPortMax_Audio = valueField
         }
 
         SettingSpinBox {
@@ -98,12 +92,10 @@ ColumnLayout {
 
             valueField: CurrentAccount.videoPortMin_Video
 
-            onInputAcceptableChanged: {
-                if (!inputAcceptable && valueField.length !== 0)
+            onNewValue: {CurrentAccount.videoPortMin_Video = valueField
+                if (valueField.length !== 0)
                     valueField = Qt.binding(function() { return CurrentAccount.videoPortMin_Video })
             }
-
-            onNewValue: CurrentAccount.videoPortMin_Video = valueField
         }
 
         SettingSpinBox {
@@ -116,12 +108,11 @@ ColumnLayout {
 
             valueField: CurrentAccount.videoPortMax_Video
 
-            onInputAcceptableChanged: {
-                if (!inputAcceptable && valueField.length !== 0)
+            onNewValue:{
+                CurrentAccount.videoPortMax_Video = valueField
+                if (valueField.length !== 0)
                     valueField = Qt.binding(function() { return CurrentAccount.videoPortMax_Video })
             }
-
-            onNewValue: CurrentAccount.videoPortMax_Video = valueField
         }
     }
 }
