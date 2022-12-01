@@ -47,13 +47,6 @@ Rectangle {
         Layout.preferredWidth: root.width
         spacing: 16
 
-        Label {
-            text: JamiStrings.to
-            font.bold: true
-            color: JamiTheme.textColor
-            Layout.leftMargin: 16
-        }
-
         Flow {
             Layout.preferredWidth: root.width
             Layout.topMargin: 16
