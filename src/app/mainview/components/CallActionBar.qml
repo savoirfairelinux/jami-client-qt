@@ -62,6 +62,7 @@ Control {
         CallButtonDelegate {
             width: root.height
             height: width
+            barWidth: root.width
             onSubMenuVisibleChanged: subMenuOpen = subMenuVisible
         }
     }
@@ -481,6 +482,7 @@ Control {
             }
         }
     }
+
     Item {
         id: overflowRect
         property real remainingSpace: (root.width - centralControls.width) / 2
@@ -519,6 +521,7 @@ Control {
                 model: CallOverlayModel.overflowModel()
                 delegate: buttonDelegate
             }
+
             ComboBox {
                 id: overflowButton
 
