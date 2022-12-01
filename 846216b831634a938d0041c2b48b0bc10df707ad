@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc81e72a_08762bbb",
+        "filename": "src/app/settingsview/components/AdvancedSDPSettings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-01T20:16:23Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 80,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 100
+      },
+      "revId": "846216b831634a938d0041c2b48b0bc10df707ad",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b18b3885_0bcad9c6",
+        "filename": "src/app/settingsview/components/AdvancedSDPSettings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-01T20:16:23Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 96,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 100
+      },
+      "revId": "846216b831634a938d0041c2b48b0bc10df707ad",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "761a98fc_c52706da",
+        "filename": "src/app/settingsview/components/AdvancedSDPSettings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-01T20:16:23Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 113,
+        "startChar": 16,
+        "endLine": 114,
+        "endChar": 100
+      },
+      "revId": "846216b831634a938d0041c2b48b0bc10df707ad",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68d09711_452e891a",
+        "filename": "src/app/settingsview/components/SettingSpinBox.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-01T20:16:23Z",
+      "side": 1,
+      "message": "unecessary",
+      "range": {
+        "startLine": 44,
+        "startChar": 19,
+        "endLine": 44,
+        "endChar": 21
+      },
+      "revId": "846216b831634a938d0041c2b48b0bc10df707ad",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "278d6725_9936495c",
+        "filename": "src/app/settingsview/components/SystemSettings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-01T20:16:23Z",
+      "side": 1,
+      "message": "do we need really need \"*100.0\" and \"/100.0\" ?",
+      "range": {
+        "startLine": 258,
+        "startChar": 64,
+        "endLine": 258,
+        "endChar": 71
+      },
+      "revId": "846216b831634a938d0041c2b48b0bc10df707ad",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
