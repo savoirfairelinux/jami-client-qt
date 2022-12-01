@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20f31047_cf18a763",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-01T15:07:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3b8d20d2_ff147c9d",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "d3c7610fefef666e739f08659967132cba6ce4e9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c8e2de3_9085bac6",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-01T14:24:16Z",
       "side": 1,
       "message": "tom remove?",
+      "range": {
+        "startLine": 3659,
+        "startChar": 42,
+        "endLine": 3660,
+        "endChar": 109
+      },
+      "revId": "d3c7610fefef666e739f08659967132cba6ce4e9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2605cedf_15af4447",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 3660,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-01T15:07:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c8e2de3_9085bac6",
       "range": {
         "startLine": 3659,
         "startChar": 42,
