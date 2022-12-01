@@ -70,6 +70,7 @@ pipeline {
         stage('Init repository') {
             steps {
                 script {
+                    // Checkout client-qt
                     sh """
                         git rev-parse HEAD
                         git submodule update --init --recursive
