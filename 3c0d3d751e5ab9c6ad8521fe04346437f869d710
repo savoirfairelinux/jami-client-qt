@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dbddbcd3_7a3fab4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-02T21:50:38Z",
+      "side": 1,
+      "message": "didn\u0027t understand your point !",
+      "parentUuid": "b0c30a91_32509ec5",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "3c0d3d751e5ab9c6ad8521fe04346437f869d710",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1f8e98d_a754105c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 11
@@ -60,6 +84,54 @@
       "writtenOn": "2022-12-02T17:12:28Z",
       "side": 1,
       "message": "\"Copy\"/\"Edit\"/\"Delete\" are only clickable on a button at the left, the whole line should be selectable",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "3c0d3d751e5ab9c6ad8521fe04346437f869d710",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a66f3e48_a16f34ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-02T21:50:38Z",
+      "side": 1,
+      "message": "yes, it will be in a next patch",
+      "parentUuid": "c1f8e98d_a754105c",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "3c0d3d751e5ab9c6ad8521fe04346437f869d710",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4678e69f_a919b9f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-02T21:50:38Z",
+      "side": 1,
+      "message": "Ok !",
+      "parentUuid": "de317f0a_3da7f2be",
       "range": {
         "startLine": 9,
         "startChar": 11,
