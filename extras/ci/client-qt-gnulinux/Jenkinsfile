@@ -55,21 +55,10 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 script {
-                    deleteDir()
                     // Checkout jami-project to obtain daemon/LRC/client-qt repositories
                     sh """
-
-                        git clone --depth=1 --branch=master https://${JAMI_GERRIT_URL}/jami-project
-                        cd jami-project
-                        # git submodule update --init daemon lrc client-qt
-                        git submodule update --init daemon client-qt
-                        git submodule foreach 'git checkout master'
-
-                        cd client-qt
-                        git fetch "https://${JAMI_GERRIT_URL}/jami-client-qt" ${GERRIT_REFSPEC}
-                        git checkout FETCH_HEAD
-                        git submodule update --init --recursive
-                        cd ..
+                        ls
+                        ./build.py --init
                     """
                 }
             }
@@ -77,10 +66,8 @@ pipeline {
 
         stage('Building Docker Image') {
             steps {
-                dir (pwd() + '/jami-project') {
-                    script {
-                        docker.build('client-validation', "-f client-qt/extras/build/docker/Dockerfile.client-qt-gnulinux --no-cache .")
-                    }
+                script {
+                    docker.build('client-validation', "-f extras/build/docker/Dockerfile.client-qt-gnulinux --no-cache .")
                 }
             }
         }
@@ -98,19 +85,17 @@ pipeline {
                             def base_cmd = 'docker exec -t '+container.id+" sh -c '"
                             def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
 
-                            def dockerTopDir = '/foo/jami-project'
-                            def clientDir = dockerTopDir + '/client-qt'
+                            def dockerTopDir = '/foo/'
                             ansiColor('css') {
                                 exec_cmd("""
-                                    cd ${clientDir}
-                                    ./build.py --init
+                                    cd ${dockerTopDir}
                                     ./build.py --install --qt /usr/lib/libqt-jami/
                                     cd build
                                     cmake .. -DENABLE_TESTS=True
                                     make -j${cpuCount}
                                 """)
                                 exec_cmd("""
-                                    cd ${clientDir}
+                                    cd ${dockerTopDir}
                                     cd tests/qml/src
                                     ../../../build/tests/qml_tests
                                 """)
