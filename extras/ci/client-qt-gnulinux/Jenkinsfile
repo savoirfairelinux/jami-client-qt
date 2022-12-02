@@ -22,7 +22,11 @@
 // - ansicolor plugin
 
 pipeline {
-    agent 'jami-buildmachine-04.mtl.sfl'
+    agent {
+        node {
+            label 'jami-buildmachine-04.mtl.sfl'
+        }
+    }
 
     triggers {
         gerrit customUrl: '',
@@ -46,8 +50,6 @@ pipeline {
                 defaultValue: 'refs/heads/master',
                 description: 'The Gerrit refspec to fetch.')
     }
-
-    def cpuCount = sh returnStdout: true, script: 'nproc || echo -n 4'
 
     stage('SCM Checkout') {
         deleteDir()
@@ -77,6 +79,7 @@ pipeline {
         def jenkinsUID = sh(returnStdout: true, script: 'id -u jenkins').replaceAll("\n", '').trim()
         def jenkinsGID = sh(returnStdout: true, script: 'id -g jenkins').replaceAll("\n", '').trim()
         def jenkinsUser = jenkinsUID+':'+jenkinsGID
+        def cpuCount = sh returnStdout: true, script: 'nproc || echo -n 4'
 
         docker.image('client-validation').withRun('-t -u '+jenkinsUser+' -v '+pwd()+':/foo:rw -w /foo -e BATCH_MODE=1', '/bin/bash') {
             container -> code:{
