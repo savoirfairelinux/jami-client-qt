@@ -39,6 +39,12 @@ Rectangle {
     signal messagesCleared
     signal messagesLoaded
 
+     onVisibleChanged: {
+        if (visible)
+            return
+        UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id)
+    }
+
     function focusChatView() {
         chatViewFooter.textInput.forceActiveFocus()
         swarmDetailsPanel.visible = false

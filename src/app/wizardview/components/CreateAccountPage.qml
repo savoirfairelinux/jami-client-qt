@@ -246,6 +246,8 @@ Rectangle {
                 NoUsernamePopup {
                     id: popup
 
+                    objectName: "popup"
+
                     visible: false
 
                     onJoinClicked: {

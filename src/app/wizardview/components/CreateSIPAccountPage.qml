@@ -73,7 +73,6 @@ Rectangle {
             ColumnLayout {
                 id: createSIPAccountPageColumnLayout
 
-
                 spacing: JamiTheme.wizardViewPageLayoutSpacing
 
                 anchors.horizontalCenter: parent.horizontalCenter
