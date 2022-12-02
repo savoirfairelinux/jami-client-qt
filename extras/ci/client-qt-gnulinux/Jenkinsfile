@@ -85,7 +85,7 @@ pipeline {
             }
         }
 
-        stage('Build project') {
+        /*stage('Build project') {
             steps {
                 script {
                     def jenkinsUID = sh(returnStdout: true, script: 'id -u jenkins').replaceAll("\n", '').trim()
@@ -141,7 +141,6 @@ pipeline {
                     }
                 }
             }
-        }
-        }
+        }*/
     }
 }
