@@ -95,50 +95,48 @@ pipeline {
 
                     docker.image('client-validation').withRun('-t -u '+jenkinsUser+' -v '+pwd()+':/foo:rw -w /foo -e BATCH_MODE=1', '/bin/bash') {
                         container -> code:{
-                            stages {
-                                stage('Build Client') {
-                                    steps {
-                                        script {
-                                            def base_cmd = 'docker exec -t '+container.id+" sh -c '"
-                                            def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
+                            stage('Build Client') {
+                                steps {
+                                    script {
+                                        def base_cmd = 'docker exec -t '+container.id+" sh -c '"
+                                        def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
 
-                                            def dockerTopDir = '/foo'
-                                            def daemonDir = dockerTopDir + '/daemon'
-                                            def clientDir = dockerTopDir + '/client-qt'
-                                            def installDir = dockerTopDir + '/install'
-                                            ansiColor('css') {
-                                                exec_cmd("""
-                                                    cd ${clientDir}
-                                                    mkdir build
-                                                    cd build
-                                                    cmake .. -DCMAKE_INSTALL_PREFIX=${installDir}/client-qt \
-                                                        -DLIBJAMI_INCLUDE_DIR=${daemonDir}/src/jami \
-                                                        -DLIBJAMI_XML_INTERFACES_DIR=${daemonDir}/bin/dbus \
-                                                        -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami \
-                                                        -DENABLE_TESTS=True
-                                                    make -j${cpuCount}
-                                                    make install
-                                                """)
-                                            }
+                                        def dockerTopDir = '/foo'
+                                        def daemonDir = dockerTopDir + '/daemon'
+                                        def clientDir = dockerTopDir + '/client-qt'
+                                        def installDir = dockerTopDir + '/install'
+                                        ansiColor('css') {
+                                            exec_cmd("""
+                                                cd ${clientDir}
+                                                mkdir build
+                                                cd build
+                                                cmake .. -DCMAKE_INSTALL_PREFIX=${installDir}/client-qt \
+                                                    -DLIBJAMI_INCLUDE_DIR=${daemonDir}/src/jami \
+                                                    -DLIBJAMI_XML_INTERFACES_DIR=${daemonDir}/bin/dbus \
+                                                    -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami \
+                                                    -DENABLE_TESTS=True
+                                                make -j${cpuCount}
+                                                make install
+                                            """)
                                         }
                                     }
                                 }
+                            }
 
-                                stage('Run Tests') {
-                                    steps {
-                                        script {
-                                            def base_cmd = 'docker exec -t '+container.id+" sh -c '"
-                                            def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
+                            stage('Run Tests') {
+                                steps {
+                                    script {
+                                        def base_cmd = 'docker exec -t '+container.id+" sh -c '"
+                                        def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
 
-                                            def dockerTopDir = '/foo'
-                                            def clientDir = dockerTopDir + '/client-qt'
-                                            ansiColor('css') {
-                                                exec_cmd("""
-                                                    cd ${clientDir}
-                                                    cd tests/qml
-                                                    ../../../build/tests/qml_tests
-                                                """)
-                                            }
+                                        def dockerTopDir = '/foo'
+                                        def clientDir = dockerTopDir + '/client-qt'
+                                        ansiColor('css') {
+                                            exec_cmd("""
+                                                cd ${clientDir}
+                                                cd tests/qml
+                                                ../../../build/tests/qml_tests
+                                            """)
                                         }
                                     }
                                 }
