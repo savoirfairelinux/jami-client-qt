@@ -95,6 +95,7 @@ Popup {
                 Layout.alignment: Qt.AlignCenter
 
                 MaterialButton {
+                    objectName: "joinButton"
                     preferredWidth: text.contentWidth
                     textLeftPadding: JamiTheme.buttontextPadding
                     textRightPadding: JamiTheme.buttontextPadding
