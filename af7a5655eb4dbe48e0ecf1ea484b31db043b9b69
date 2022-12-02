@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd7c6621_a41943e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-02T17:09:22Z",
+      "side": 1,
+      "message": "I would not reference daemon from client repo now..",
+      "revId": "af7a5655eb4dbe48e0ecf1ea484b31db043b9b69",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6695c829_e745939b",
+        "filename": "src/libclient/CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-02T17:09:22Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 328,
+        "startChar": 28,
+        "endLine": 328,
+        "endChar": 31
+      },
+      "revId": "af7a5655eb4dbe48e0ecf1ea484b31db043b9b69",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

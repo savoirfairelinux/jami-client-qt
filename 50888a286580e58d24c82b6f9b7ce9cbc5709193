@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c83fc4d6_bff6e94b",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-02T17:09:22Z",
+      "side": 0,
+      "message": "do not use client repo daemon for now",
+      "range": {
+        "startLine": 322,
+        "startChar": 33,
+        "endLine": 322,
+        "endChar": 37
+      },
+      "revId": "50888a286580e58d24c82b6f9b7ce9cbc5709193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
