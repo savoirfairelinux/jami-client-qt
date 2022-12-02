@@ -56,7 +56,6 @@ pipeline {
             steps {
                 script {
                     sh """
-                        git fetch ssh://jenkins@review.jami.net:29420/jami-client-qt $GERRIT_REFSPEC && git checkout FETCH_HEAD
                         git rev-parse HEAD
                         git submodule update --init --recursive
                     """
