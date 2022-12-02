@@ -99,21 +99,15 @@ pipeline {
                             def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
 
                             def dockerTopDir = '/foo/jami-project'
-                            def daemonDir = dockerTopDir + '/daemon'
                             def clientDir = dockerTopDir + '/client-qt'
-                            def installDir = dockerTopDir + '/install'
                             ansiColor('css') {
                                 exec_cmd("""
                                     cd ${clientDir}
-                                    mkdir build
+                                    ./build.py --init
+                                    ./build.py --install --qt /usr/lib/libqt-jami/
                                     cd build
-                                    cmake .. -DCMAKE_INSTALL_PREFIX=${installDir}/client-qt \
-                                        -DLIBJAMI_INCLUDE_DIR=${daemonDir}/src/jami \
-                                        -DLIBJAMI_XML_INTERFACES_DIR=${daemonDir}/bin/dbus \
-                                        -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami \
-                                        -DENABLE_TESTS=True
+                                    cmake .. -DENABLE_TESTS=True
                                     make -j${cpuCount}
-                                    make install
                                 """)
                                 exec_cmd("""
                                     cd ${clientDir}
