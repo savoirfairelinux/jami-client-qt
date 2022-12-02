@@ -98,7 +98,7 @@ pipeline {
                             def base_cmd = 'docker exec -t '+container.id+" sh -c '"
                             def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
 
-                            def dockerTopDir = '/foo'
+                            def dockerTopDir = '/foo/jami-project'
                             def daemonDir = dockerTopDir + '/daemon'
                             def clientDir = dockerTopDir + '/client-qt'
                             def installDir = dockerTopDir + '/install'
