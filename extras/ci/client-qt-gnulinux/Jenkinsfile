@@ -51,70 +51,72 @@ pipeline {
                 description: 'The Gerrit refspec to fetch.')
     }
 
-    stage('SCM Checkout') {
-        deleteDir()
-        // Checkout jami-project to obtain daemon/LRC/client-qt repositories
-        sh """
+    stages {
+        stage('SCM Checkout') {
+            deleteDir()
+            // Checkout jami-project to obtain daemon/LRC/client-qt repositories
+            sh """
 
-            git clone --depth=1 --branch=master https://${JAMI_GERRIT_URL}/jami-project
-            cd jami-project
-            # git submodule update --init daemon lrc client-qt
-            git submodule update --init daemon client-qt
-            git submodule foreach 'git checkout master'
+                git clone --depth=1 --branch=master https://${JAMI_GERRIT_URL}/jami-project
+                cd jami-project
+                # git submodule update --init daemon lrc client-qt
+                git submodule update --init daemon client-qt
+                git submodule foreach 'git checkout master'
 
-            cd client-qt
-            git fetch "https://${JAMI_GERRIT_URL}/jami-client-qt" ${GERRIT_REFSPEC}
-            git checkout FETCH_HEAD
-            git submodule update --init --recursive
-            cd ..
-        """
-        topDir = pwd() + '/jami-project'
-    }
-
-    dir (topDir) {
-        stage('Building Docker Image') {
-            docker.build('client-validation', "-f client-qt/extras/build/docker/Dockerfile.client-qt-gnulinux --no-cache .")
+                cd client-qt
+                git fetch "https://${JAMI_GERRIT_URL}/jami-client-qt" ${GERRIT_REFSPEC}
+                git checkout FETCH_HEAD
+                git submodule update --init --recursive
+                cd ..
+            """
+            topDir = pwd() + '/jami-project'
         }
 
-        def jenkinsUID = sh(returnStdout: true, script: 'id -u jenkins').replaceAll("\n", '').trim()
-        def jenkinsGID = sh(returnStdout: true, script: 'id -g jenkins').replaceAll("\n", '').trim()
-        def jenkinsUser = jenkinsUID+':'+jenkinsGID
-        def cpuCount = sh returnStdout: true, script: 'nproc || echo -n 4'
+        dir (topDir) {
+            stage('Building Docker Image') {
+                docker.build('client-validation', "-f client-qt/extras/build/docker/Dockerfile.client-qt-gnulinux --no-cache .")
+            }
 
-        docker.image('client-validation').withRun('-t -u '+jenkinsUser+' -v '+pwd()+':/foo:rw -w /foo -e BATCH_MODE=1', '/bin/bash') {
-            container -> code:{
-                def base_cmd = 'docker exec -t '+container.id+" sh -c '"
-                def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
+            def jenkinsUID = sh(returnStdout: true, script: 'id -u jenkins').replaceAll("\n", '').trim()
+            def jenkinsGID = sh(returnStdout: true, script: 'id -g jenkins').replaceAll("\n", '').trim()
+            def jenkinsUser = jenkinsUID+':'+jenkinsGID
+            def cpuCount = sh returnStdout: true, script: 'nproc || echo -n 4'
 
-                def dockerTopDir = '/foo'
-                def daemonDir = dockerTopDir + '/daemon'
-                def clientDir = dockerTopDir + '/client-qt'
-                def installDir = dockerTopDir + '/install'
+            docker.image('client-validation').withRun('-t -u '+jenkinsUser+' -v '+pwd()+':/foo:rw -w /foo -e BATCH_MODE=1', '/bin/bash') {
+                container -> code:{
+                    def base_cmd = 'docker exec -t '+container.id+" sh -c '"
+                    def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
 
-                stage('Build Client') {
-                    ansiColor('css') {
-                        exec_cmd("""
-                            cd ${clientDir}
-                            mkdir build
-                            cd build
-                            cmake .. -DCMAKE_INSTALL_PREFIX=${installDir}/client-qt \
-                                -DLIBJAMI_INCLUDE_DIR=${daemonDir}/src/jami \
-                                -DLIBJAMI_XML_INTERFACES_DIR=${daemonDir}/bin/dbus \
-                                -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami \
-                                -DENABLE_TESTS=True
-                            make -j${cpuCount}
-                            make install
-                        """)
+                    def dockerTopDir = '/foo'
+                    def daemonDir = dockerTopDir + '/daemon'
+                    def clientDir = dockerTopDir + '/client-qt'
+                    def installDir = dockerTopDir + '/install'
+
+                    stage('Build Client') {
+                        ansiColor('css') {
+                            exec_cmd("""
+                                cd ${clientDir}
+                                mkdir build
+                                cd build
+                                cmake .. -DCMAKE_INSTALL_PREFIX=${installDir}/client-qt \
+                                    -DLIBJAMI_INCLUDE_DIR=${daemonDir}/src/jami \
+                                    -DLIBJAMI_XML_INTERFACES_DIR=${daemonDir}/bin/dbus \
+                                    -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami \
+                                    -DENABLE_TESTS=True
+                                make -j${cpuCount}
+                                make install
+                            """)
+                        }
                     }
-                }
 
-                stage('Run Tests') {
-                    ansiColor('css') {
-                        exec_cmd("""
-                            cd ${clientDir}
-                            cd tests/qml
-                            ../../../build/tests/qml_tests
-                        """)
+                    stage('Run Tests') {
+                        ansiColor('css') {
+                            exec_cmd("""
+                                cd ${clientDir}
+                                cd tests/qml
+                                ../../../build/tests/qml_tests
+                            """)
+                        }
                     }
                 }
             }
