@@ -117,7 +117,7 @@ pipeline {
                                 """)
                                 exec_cmd("""
                                     cd ${clientDir}
-                                    cd tests/qml
+                                    cd tests/qml/src
                                     ../../../build/tests/qml_tests
                                 """)
                             }
