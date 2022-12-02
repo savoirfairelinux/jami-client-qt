@@ -85,7 +85,7 @@ pipeline {
             }
         }
 
-        /*stage('Build project') {
+        stage('Build project') {
             steps {
                 script {
                     def jenkinsUID = sh(returnStdout: true, script: 'id -u jenkins').replaceAll("\n", '').trim()
@@ -124,7 +124,7 @@ pipeline {
                                 }
                             }
 
-                            stage('Run Tests') {
+                            /*stage('Run Tests') {
                                 steps {
                                     script {
                                         ansiColor('css') {
@@ -136,11 +136,11 @@ pipeline {
                                         }
                                     }
                                 }
-                            }
+                            }*/
                         }
                     }
                 }
             }
-        }*/
+        }
     }
 }
