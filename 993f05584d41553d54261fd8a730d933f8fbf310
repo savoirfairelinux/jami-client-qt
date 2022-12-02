@@ -34,6 +34,23 @@
       "parentUuid": "1d678b8c_0db6386c",
       "revId": "993f05584d41553d54261fd8a730d933f8fbf310",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f880d52_8e1992e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-02T15:40:17Z",
+      "side": 1,
+      "message": "Works fine on Linux. What was the location icons fix ?",
+      "revId": "993f05584d41553d54261fd8a730d933f8fbf310",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
