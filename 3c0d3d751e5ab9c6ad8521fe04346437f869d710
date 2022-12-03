@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8302364_b5ad09ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-03T00:58:37Z",
+      "side": 1,
+      "message": "Charlotte did a design, provided in https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/875\n\nAnd the result is not corresponding to this design",
+      "parentUuid": "dbddbcd3_7a3fab4d",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "3c0d3d751e5ab9c6ad8521fe04346437f869d710",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1f8e98d_a754105c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 11
