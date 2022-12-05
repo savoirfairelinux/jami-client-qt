@@ -190,7 +190,7 @@ Rectangle {
             }
 
             onShowMapClicked: {
-                PositionManager.setMapActive(true);
+                PositionManager.setMapActive(CurrentAccount.id)
             }
 
             onSendFileButtonClicked: jamiFileDialog.open()

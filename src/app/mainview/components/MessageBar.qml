@@ -65,10 +65,31 @@ ColumnLayout {
         spacing: JamiTheme.chatViewFooterRowSpacing
 
         PushButton {
-            id: sendFileButton
+            id: showMapButton
 
             Layout.alignment: Qt.AlignVCenter
             Layout.leftMargin: marginSize
+            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
+            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
+            visible: WITH_WEBENGINE && !CurrentConversation.isSip
+
+            radius: JamiTheme.chatViewFooterButtonRadius
+            preferredSize: JamiTheme.chatViewFooterButtonIconSize
+
+            toolTipText: JamiStrings.shareLocation
+
+            source: JamiResources.share_location_svg
+
+            normalColor: JamiTheme.primaryBackgroundColor
+            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
+
+            onClicked: root.showMapClicked()
+        }
+
+        PushButton {
+            id: sendFileButton
+
+            Layout.alignment: Qt.AlignVCenter
             Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
             Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
 
@@ -128,27 +149,6 @@ ColumnLayout {
             onClicked: root.videoRecordMessageButtonClicked()
 
             Component.onCompleted: JamiQmlUtils.videoRecordMessageButtonObj = videoRecordMessageButton
-        }
-
-        PushButton {
-            id: showMapButton
-
-            Layout.alignment: Qt.AlignVCenter
-            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-            visible: WITH_WEBENGINE && !CurrentConversation.isSip
-
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize
-
-            toolTipText: JamiStrings.shareLocation
-
-            source: JamiResources.share_location_svg
-
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
-
-            onClicked: root.showMapClicked()
         }
 
         MessageBarTextArea {
