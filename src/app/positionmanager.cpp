@@ -19,21 +19,20 @@ PositionManager::PositionManager(SystemTray* systemTray, LRCInstance* instance, 
         set_timeSharingRemaining(timerStopSharing_->remainingTime());
     });
     connect(timerStopSharing_, &QTimer::timeout, [=] { stopSharingPosition(); });
-    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
-        set_mapAutoOpening(true);
-    });
-    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this]() {
-        if (!localPositioning_) // Not yet initialized
-            return;
-        localPositioning_->setUri(lrcInstance_->getCurrentAccountInfo().profileInfo.uri);
-    });
-    set_isMapActive(false);
+    connect(lrcInstance_,
+            &LRCInstance::selectedConvUidChanged,
+            this,
+            &PositionManager::onNewConversation);
+    connect(lrcInstance_,
+            &LRCInstance::currentAccountIdChanged,
+            this,
+            &PositionManager::onNewAccount);
 }
 
 void
 PositionManager::safeInit()
 {
-    localPositioning_.reset(new Positioning(lrcInstance_->getCurrentAccountInfo().profileInfo.uri));
+    localPositioning_.reset(new Positioning());
     connectAccountModel();
 }
 
@@ -50,24 +49,26 @@ PositionManager::connectAccountModel()
 void
 PositionManager::startPositioning()
 {
-    currentConvSharingUris_.clear();
-    localPositioning_->start();
-    connect(localPositioning_.get(),
-            &Positioning::newPosition,
-            this,
-            &PositionManager::onPositionReceived,
-            Qt::UniqueConnection);
+    if (localPositioning_)
+        localPositioning_->start();
+
     connect(localPositioning_.get(),
             &Positioning::positioningError,
             this,
             &PositionManager::onPositionErrorReceived,
+            Qt::UniqueConnection);
+    connect(localPositioning_.get(),
+            &Positioning::newPosition,
+            this,
+            &PositionManager::sendPosition,
             Qt::UniqueConnection);
 }
 
 void
 PositionManager::stopPositioning()
 {
-    localPositioning_->stop();
+    if (localPositioning_)
+        localPositioning_->stop();
 }
 
 QString
@@ -93,18 +94,30 @@ PositionManager::isConvSharingPosition(const QString& convUri)
 }
 
 void
-PositionManager::loadPreviousLocations()
+PositionManager::loadPreviousLocations(QString& accountId, QString& convId)
 {
     QVariantMap shareInfo;
     for (auto it = objectListSharingUris_.begin(); it != objectListSharingUris_.end(); it++) {
-        QJsonObject jsonObj;
-        jsonObj.insert("type", QJsonValue("Position"));
-        jsonObj.insert("lat", it.value()->getLatitude().toString());
-        jsonObj.insert("long", it.value()->getLongitude().toString());
-        QJsonDocument doc(jsonObj);
-        QString strJson(doc.toJson(QJsonDocument::Compact));
-        onPositionReceived(it.key().first, it.key().second, strJson, -1, "");
+        if (isUriInConversation(it.key().second, accountId, convId)) {
+            QJsonObject jsonObj;
+            jsonObj.insert("type", QJsonValue("Position"));
+            jsonObj.insert("lat", it.value()->getLatitude().toString());
+            jsonObj.insert("long", it.value()->getLongitude().toString());
+            QJsonDocument doc(jsonObj);
+            QString strJson(doc.toJson(QJsonDocument::Compact));
+            // parse the position from json
+            QVariantMap positionReceived = parseJsonPosition(strJson, it.key().second);
+            addPositionToMap(it.key(), positionReceived);
+        }
     }
+}
+
+QString
+PositionManager::getmapTitle(QString& accountId)
+{
+    if (!accountId.isEmpty())
+        return lrcInstance_->getAccountInfo(accountId).registeredName;
+    return {};
 }
 
 bool
@@ -137,6 +150,20 @@ PositionManager::sendPosition(const QString& body)
     } catch (const std::exception& e) {
         qDebug() << Q_FUNC_INFO << e.what();
     }
+    // position processing
+    QSet<QString> allAccountsPositioning;
+    allAccountsPositioning.insert(lrcInstance_->get_currentAccountId());
+    for (auto it = objectListSharingUris_.begin(); it != objectListSharingUris_.end(); it++) {
+        allAccountsPositioning.insert(it.key().first);
+    }
+    for (auto accountId = allAccountsPositioning.begin(); accountId != allAccountsPositioning.end();
+         accountId++) {
+        onPositionReceived(*accountId,
+                           lrcInstance_->getAccountInfo(*accountId).profileInfo.uri,
+                           body,
+                           -1,
+                           "");
+    }
 }
 
 void
@@ -153,22 +180,11 @@ PositionManager::onWatchdogTimeout()
 }
 
 void
-PositionManager::sharePosition(int maximumTime)
+PositionManager::sharePosition(int maximumTime, QString accountId, QString convId)
 {
-    connect(
-        localPositioning_.get(),
-        &Positioning::newPosition,
-        this,
-        [&](const QString&, const QString&, const QString& body, const uint64_t&, const QString&) {
-            sendPosition(body);
-        },
-        Qt::UniqueConnection);
-
     try {
         startPositionTimers(maximumTime);
-        const auto convUid = lrcInstance_->get_selectedConvUid();
-        positionShareConvIds_.append(
-            QPair<QString, QString> {lrcInstance_->get_currentAccountId(), convUid});
+        positionShareConvIds_.append(QPair<QString, QString> {accountId, convId});
         set_positionShareConvIdsCount(positionShareConvIds_.size());
     } catch (...) {
         qDebug() << "Exception during sharePosition:";
@@ -176,7 +192,7 @@ PositionManager::sharePosition(int maximumTime)
 }
 
 void
-PositionManager::stopSharingPosition(const QString convId)
+PositionManager::stopSharingPosition(QString accountId, const QString convId)
 {
     QString stopMsg;
     stopMsg = "{\"type\":\"Stop\"}";
@@ -186,7 +202,7 @@ PositionManager::stopSharingPosition(const QString convId)
         positionShareConvIds_.clear();
         set_positionShareConvIdsCount(positionShareConvIds_.size());
     } else {
-        const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
+        const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
         Q_FOREACH (const QString& uri, convInfo.participantsUris()) {
             if (lrcInstance_->getCurrentAccountInfo().profileInfo.uri != uri) {
                 lrcInstance_->getCurrentAccountInfo().contactModel->sendDhtMessage(uri,
@@ -206,10 +222,59 @@ PositionManager::stopSharingPosition(const QString convId)
 }
 
 void
-PositionManager::setMapActive(bool state)
+PositionManager::unPinMap(QString key)
 {
-    set_isMapActive(state);
-    Q_EMIT isMapActiveChanged();
+    if (mapStatus_.find(key) != mapStatus_.end()) {
+        mapStatus_[key] = true;
+        Q_EMIT mapStatusChanged();
+        qWarning() << "unpin";
+
+    } else {
+        qWarning() << "Error: Can't unpin a map that doesn't exist";
+    }
+}
+
+void
+PositionManager::pinMap(QString key)
+{
+    if (mapStatus_.find(key) != mapStatus_.end()) {
+        mapStatus_[key] = false;
+        Q_EMIT mapStatusChanged();
+        qWarning() << "pin";
+    } else {
+        qWarning() << "Error: Can't pin a map that doesn't exist";
+    }
+}
+void
+PositionManager::setMapInactive(const QString key)
+{
+    if (mapStatus_.find(key) != mapStatus_.end()) {
+        mapStatus_.remove(key);
+        Q_EMIT mapStatusChanged();
+        if (!mapStatus_.size()) {
+            stopPositioning();
+        }
+
+    } else {
+        qWarning() << "Error: Can't set inactive a map that doesn't exists";
+    }
+}
+
+void
+PositionManager::setMapActive(QString key)
+{
+    //  si la map n'existe pas encore
+    if (mapStatus_.find(key) == mapStatus_.end()) {
+        mapStatus_.insert(key, false);
+        // mapStatus_[key] = isUnpin;
+        Q_EMIT mapStatusChanged();
+        // creation on QML
+        Q_EMIT openNewMap();
+
+    } else {
+        pinMap(key);
+    }
+    qWarning() << "mapStatus_: " << mapStatus_;
 }
 
 QString
@@ -305,112 +370,166 @@ PositionManager::showNotification(const QString& accountId,
 }
 
 void
+PositionManager::onNewConversation()
+{
+    set_mapAutoOpening(true);
+}
+
+void
+PositionManager::onNewAccount()
+{}
+
+bool
+PositionManager::isNewMessageTriggersMap(bool endSharing, bool isPeerIdInConv, const QString& uri)
+{
+    return !endSharing && isPeerIdInConv && mapAutoOpening_
+           && (uri != lrcInstance_->getCurrentAccountInfo().profileInfo.uri);
+}
+
+void
+PositionManager::addPositionToMap(QPair<QString, QString> key, QVariantMap position)
+{
+    // avatar only sent one time to qml, when a new position is added
+    position["avatar"] = getAvatar(key.first, key.second);
+    Q_EMIT positionShareAdded(position);
+}
+
+void
+PositionManager::addPositionToMemory(QPair<QString, QString> key, QVariantMap positionReceived)
+{
+    // add the position to the list
+    auto obj = new PositionObject(positionReceived["lat"], positionReceived["long"], this);
+    objectListSharingUris_.insert(key, obj);
+
+    // information for qml
+    set_sharingUrisCount(objectListSharingUris_.size());
+
+    // watchdog
+    connect(obj,
+            &PositionObject::timeout,
+            this,
+            &PositionManager::onWatchdogTimeout,
+            Qt::DirectConnection);
+
+    // Add position to the current map if needed)
+    addPositionToMap(key, positionReceived);
+
+    // show notification
+    auto& accountId = key.first;
+    auto& uri = key.second;
+    if (accountId != "") {
+        auto& convInfo = lrcInstance_->getConversationFromPeerUri(uri, accountId);
+        if (!convInfo.uid.isEmpty()) {
+            showNotification(accountId, convInfo.uid, uri);
+        }
+    }
+}
+
+void
+PositionManager::updatePositionInMemory(QPair<QString, QString> key, QVariantMap positionReceived)
+{
+    auto it = objectListSharingUris_.find(key);
+    if (it != objectListSharingUris_.end()) {
+        if (it.value()) {
+            // reset watchdog
+            it.value()->resetWatchdog();
+            // update position
+            it.value()->updatePosition(positionReceived["lat"], positionReceived["long"]);
+        } else {
+            qWarning() << "error in PositionManager::updatePositionInMemory(), it.value() is null";
+        }
+    } else {
+        qWarning()
+            << "Error: A position intented to be updated while not in objectListSharingUris_ ";
+    }
+
+    // update position on the map (if needed)
+    Q_EMIT positionShareUpdated(positionReceived);
+}
+
+void
+PositionManager::removePositionFromMemory(QPair<QString, QString> key, QVariantMap positionReceived)
+{
+    // Remove
+    auto it = objectListSharingUris_.find(key);
+    if (it != objectListSharingUris_.end()) {
+        // free memory
+        it.value()->deleteLater();
+        // delete value
+        objectListSharingUris_.erase(it);
+        // update list count for qml
+        set_sharingUrisCount(objectListSharingUris_.size());
+    } else {
+        qWarning()
+            << "Error: A position intented to be removed while not in objectListSharingUris_ ";
+    }
+    // if needed, remove from map
+    Q_EMIT positionShareRemoved(key.second);
+
+    // close the map if you're not sharing and you don't receive position anymore
+    //    if (!positionShareConvIds_.length()
+    //        && ((sharingUrisCount_ == 1
+    //             && objectListSharingUris_.contains(
+    //                 QPair<QString, QString> {"",
+    //                                          lrcInstance_->getCurrentAccountInfo().profileInfo.uri}))
+    //            || sharingUrisCount_ == 0)) {
+    //        setMapInactive(convertKeytoString(key.first, key.second));
+    //    }
+}
+
+bool
+PositionManager::isUriInConversation(const QString& uri,
+                                     const QString& accountId,
+                                     const QString& convId)
+{
+    // Get the contacts from the conversation of the map
+    const auto& convParticipants = lrcInstance_->getConversationFromConvUid(convId, accountId)
+                                       .participantsUris();
+    // to know if the position received is from someone in the conversation of the map
+    bool isPeerIdInConv = (std::find(convParticipants.begin(), convParticipants.end(), uri)
+                           != convParticipants.end());
+    return isPeerIdInConv;
+}
+
+void
 PositionManager::onPositionReceived(const QString& accountId,
                                     const QString& peerId,
                                     const QString& body,
                                     const uint64_t& timestamp,
                                     const QString& daemonId)
 {
-    // only show shared positions from contacts in the current conversation
-    const auto& convParticipants = lrcInstance_
-                                       ->getConversationFromConvUid(
-                                           lrcInstance_->get_selectedConvUid())
-                                       .participantsUris();
-    // to know if the position received is from someone in the current conversation
-    bool isPeerIdInConv = (std::find(convParticipants.begin(), convParticipants.end(), peerId)
-                           != convParticipants.end());
+    // handlers variables
 
-    QVariantMap newPosition = parseJsonPosition(body, peerId);
-    auto getShareInfo = [&](bool update) -> QVariantMap {
-        QVariantMap shareInfo;
-        shareInfo["author"] = peerId;
-        if (!update) {
-            shareInfo["avatar"] = getAvatar(accountId, peerId);
-        }
-        shareInfo["long"] = newPosition["long"];
-        shareInfo["lat"] = newPosition["lat"];
-        return shareInfo;
-    };
-    auto endSharing = newPosition["type"] == "Stop";
+    // is the message received from a peer in this conversation
+    bool isPeerIdInCurrentConv = isUriInConversation(peerId,
+                                                     lrcInstance_->get_currentAccountId(),
+                                                     lrcInstance_->get_selectedConvUid());
 
+    // parse the position from json
+    QVariantMap positionReceived = parseJsonPosition(body, peerId);
+
+    // is it a message that notify an end of position sharing
+    auto endSharing = positionReceived["type"] == "Stop";
+
+    // key to identify the peer
     auto key = QPair<QString, QString> {accountId, peerId};
 
-    if (!endSharing) {
-        // open map on position reception
-        if (!isMapActive_ && mapAutoOpening_ && isPeerIdInConv
-            && peerId != lrcInstance_->getCurrentAccountInfo().profileInfo.uri) {
-            set_isMapActive(true);
-        }
-    }
-    auto iter = std::find(currentConvSharingUris_.begin(), currentConvSharingUris_.end(), key);
-    if (iter == currentConvSharingUris_.end()) {
-        // New share
-        if (!endSharing) {
-            // list to save more information on position + watchdog
-            auto it = objectListSharingUris_.find(key);
-            auto isNewSharing = it == objectListSharingUris_.end();
-            if (isNewSharing) {
-                auto obj = new PositionObject(newPosition["lat"], newPosition["long"], this);
+    // check if the position exists in all shared positions, even if not visible to the screen
+    auto findPeerIdinAllPeers = objectListSharingUris_.find(key);
 
-                objectListSharingUris_.insert(key, obj);
-                set_sharingUrisCount(objectListSharingUris_.size());
-                connect(obj,
-                        &PositionObject::timeout,
-                        this,
-                        &PositionManager::onWatchdogTimeout,
-                        Qt::DirectConnection);
-            }
+    // open the map on position reception if needed
+    if (isNewMessageTriggersMap(endSharing, isPeerIdInCurrentConv, peerId))
+        setMapActive(accountId);
 
-            if (isPeerIdInConv) {
-                currentConvSharingUris_.insert(key);
-                Q_EMIT positionShareAdded(getShareInfo(false));
-            } else if (isNewSharing && accountId != "") {
-                auto& convInfo = lrcInstance_->getConversationFromPeerUri(peerId, accountId);
-                if (!convInfo.uid.isEmpty()) {
-                    showNotification(accountId, convInfo.uid, peerId);
-                }
-            }
-            // stop sharing position
-        } else {
-            auto it = objectListSharingUris_.find(key);
-            if (it != objectListSharingUris_.end()) {
-                it.value()->deleteLater();
-                objectListSharingUris_.erase(it);
-                set_sharingUrisCount(objectListSharingUris_.size());
-            }
-        }
+    // if the position already exists
+    if (findPeerIdinAllPeers != objectListSharingUris_.end()) {
+        if (endSharing)
+            removePositionFromMemory(key, positionReceived);
+        else
+            updatePositionInMemory(key, positionReceived);
+
     } else {
-        // Update/remove existing
-        if (endSharing) {
-            // Remove
-            auto it = objectListSharingUris_.find(key);
-            if (it != objectListSharingUris_.end()) {
-                it.value()->deleteLater();
-                objectListSharingUris_.erase(it);
-                set_sharingUrisCount(objectListSharingUris_.size());
-            }
-            if (isPeerIdInConv) {
-                currentConvSharingUris_.remove(key);
-                Q_EMIT positionShareRemoved(peerId);
-                // close the map if you're not sharing and you don't receive position anymore
-                if (!positionShareConvIds_.length()
-                    && ((sharingUrisCount_ == 1
-                         && objectListSharingUris_.contains(QPair<QString, QString> {
-                             "", lrcInstance_->getCurrentAccountInfo().profileInfo.uri}))
-                        || sharingUrisCount_ == 0)) {
-                    set_isMapActive(false);
-                }
-            }
-        } else {
-            // Update
-            if (isPeerIdInConv)
-                Q_EMIT positionShareUpdated(getShareInfo(true));
-            // reset watchdog
-
-            auto it = objectListSharingUris_.find(key);
-            if (it != objectListSharingUris_.end()) {
-                it.value()->resetWatchdog();
-            }
-        }
+        // It is the first time a position is received from this peer
+        addPositionToMemory(key, positionReceived);
     }
 }

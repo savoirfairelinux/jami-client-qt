@@ -30,6 +30,7 @@
 typedef QMap<QString, QString> MapStringString;
 typedef QMap<QString, int> MapStringInt;
 typedef QMap<QString, double> MapStringDouble;
+typedef QMap<QPair<QString, QString>, bool> MapPairStrStrBool;
 typedef QVector<int> VectorInt;
 typedef QVector<uint> VectorUInt;
 typedef QVector<qulonglong> VectorULongLong;

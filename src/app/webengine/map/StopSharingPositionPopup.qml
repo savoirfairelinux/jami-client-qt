@@ -101,10 +101,11 @@ Popup {
                     color: JamiTheme.buttonTintedBlue
                     hoveredColor: JamiTheme.buttonTintedBlueHovered
                     pressedColor: JamiTheme.buttonTintedBluePressed
-                    text: JamiStrings.stopConvSharing
+                    text: JamiStrings.stopConvSharing.arg(PositionManager.getmapTitle(attachedAccountId))
 
                     onClicked: {
-                        PositionManager.stopSharingPosition(PositionManager.getSelectedConvId())
+                        console.warn(attachedAccountId)
+                        PositionManager.stopSharingPosition(attachedAccountId, attachedConvId)
                         shareButtonVisibility = true
                         root.close()
                     }
