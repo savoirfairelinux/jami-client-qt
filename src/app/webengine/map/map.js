@@ -94,6 +94,12 @@ function setSource (coordos, authorI,imageI) {
 }
 
 function newPosition (coordos, authorI, image) {
+    var layerArray = map.getLayers().getArray();
+    for (var i = 0; i < layerArray.length; i++ ){
+        if(layerArray[i].layer_type === authorI) {
+            return
+        }
+    }
     vectorSource = setSource(coordos, authorI, image)
     var iconLayer = new ol.layer.Vector({source: vectorSource})
     iconLayer.layer_type = authorI
