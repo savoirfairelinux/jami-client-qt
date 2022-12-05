@@ -63,6 +63,16 @@ Rectangle {
             itemWidth: preferredColumnWidth
         }
 
+        // location sharing setting panel
+        LocationSharingSettings {
+            Layout.fillWidth: true
+            Layout.topMargin: JamiTheme.preferredMarginSize
+            Layout.leftMargin: JamiTheme.preferredMarginSize
+            Layout.rightMargin: JamiTheme.preferredMarginSize
+
+            itemWidth: preferredColumnWidth
+        }
+
         // file transfer setting panel
         FileTransferSettings {
             id: fileTransferSettings
