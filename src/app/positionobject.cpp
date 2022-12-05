@@ -2,7 +2,7 @@
 
 PositionObject::PositionObject(QVariant latitude, QVariant longitude, QObject* parent)
     : QObject(parent)
-    , resetTime(20000)
+    , resetTime(40000)
     , longitude_(longitude)
     , latitude_(latitude)
 
@@ -27,4 +27,11 @@ QVariant
 PositionObject::getLatitude()
 {
     return latitude_;
+}
+
+void
+PositionObject::updatePosition(QVariant latitude, QVariant longitude)
+{
+    longitude_ = longitude;
+    latitude_ = latitude;
 }
