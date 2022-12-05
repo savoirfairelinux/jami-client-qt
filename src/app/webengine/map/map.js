@@ -61,7 +61,7 @@ var proj = new ol.proj.Projection({
     extent: extent
 })
 
-function setSource (coordos, authorI,imageI) {
+function setSource (coordos, avatar) {
     var coord = ol.proj.fromLonLat(coordos)
     var pointFeature = new ol.Feature({
        geometry: new ol.geom.Point(coord),
@@ -69,16 +69,16 @@ function setSource (coordos, authorI,imageI) {
     })
 
     var preStyle = new ol.style.Icon({
-                src: "data:image/png;base64," +  imageI})
+                src: "data:image/png;base64," +  avatar})
 
-    //resize the image to 40 px
+    //resize the image to 35 px
     var image = preStyle.getImage()
     if (!image.width) {
       image.addEventListener('load', function () {
-        preStyle.setScale([40 / image.width, 40 / image.height])
+        preStyle.setScale([35 / image.width, 35 / image.height])
       })
     } else {
-      preStyle.setScale([40 / image.width, 40 / image.height])
+      preStyle.setScale([35 / image.width, 35 / image.height])
     }
 
     var  iconStyle = new ol.style.Style({
@@ -93,18 +93,24 @@ function setSource (coordos, authorI,imageI) {
     return vectorSource
 }
 
-function newPosition (coordos, authorI, image) {
-    vectorSource = setSource(coordos, authorI, image)
+function newPosition (coordos, authorUri, avatar) {
+    var layerArray = map.getLayers().getArray();
+    for (var i = 0; i < layerArray.length; i++ ){
+        if(layerArray[i].layer_type === authorUri) {
+            return
+        }
+    }
+    vectorSource = setSource(coordos, avatar)
     var iconLayer = new ol.layer.Vector({source: vectorSource})
-    iconLayer.layer_type = authorI
+    iconLayer.layer_type = authorUri
     map.addLayer(iconLayer)
 }
 
-function updatePosition (coordos, authorI) {
+function updatePosition (coordos, authorUri) {
     var coord = ol.proj.fromLonLat(coordos);
     var layerArray = map.getLayers().getArray();
     for (var i = 0; i < layerArray.length; i++ ){
-        if(layerArray[i].layer_type === authorI) {
+        if(layerArray[i].layer_type === authorUri) {
             layerArray[i].getSource().getFeatures()[0].getGeometry().setCoordinates(coord)
             return
         }
@@ -123,10 +129,10 @@ function zoomTolayersExtent() {
                              padding: [80 ,80 ,80 ,80]})
 }
 
-function removePosition (authorI) {
+function removePosition (authorUri) {
     var layerArray = map.getLayers().getArray();
     for (var i = 0; i < layerArray.length; i++ ){
-        if(layerArray[i].layer_type === authorI) {
+        if(layerArray[i].layer_type === authorUri) {
             map.removeLayer(layerArray[i])
             return
         }

@@ -30,6 +30,7 @@
 typedef QMap<QString, QString> MapStringString;
 typedef QMap<QString, int> MapStringInt;
 typedef QMap<QString, double> MapStringDouble;
+typedef QMap<QPair<QString, QString>, bool> MapPairStrStrBool;
 typedef QVector<int> VectorInt;
 typedef QVector<uint> VectorUInt;
 typedef QVector<qulonglong> VectorULongLong;
@@ -41,6 +42,8 @@ typedef QMap<QString, QMap<QString, QStringList>> MapStringMapStringStringList;
 typedef QMap<QString, QStringList> MapStringStringList;
 typedef QVector<QByteArray> VectorVectorByte;
 typedef uint64_t DataTransferId;
+// accountId, conversationId
+typedef QPair<QString, QString> PositionKey;
 
 constexpr static const char* TRUE_STR = "true";
 constexpr static const char* TEXT_PLAIN = "text/plain";
