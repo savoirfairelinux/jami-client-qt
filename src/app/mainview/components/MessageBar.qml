@@ -136,7 +136,7 @@ ColumnLayout {
             Layout.alignment: Qt.AlignVCenter
             Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
             Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-            visible: WITH_WEBENGINE
+            visible: WITH_WEBENGINE && !CurrentConversation.isSip
 
             radius: JamiTheme.chatViewFooterButtonRadius
             preferredSize: JamiTheme.chatViewFooterButtonIconSize

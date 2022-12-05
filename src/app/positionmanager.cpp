@@ -23,6 +23,8 @@ PositionManager::PositionManager(SystemTray* systemTray, LRCInstance* instance, 
         set_mapAutoOpening(true);
     });
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this]() {
+        if (!localPositioning_) // Not yet initialized
+            return;
         localPositioning_->setUri(lrcInstance_->getCurrentAccountInfo().profileInfo.uri);
     });
     set_isMapActive(false);
