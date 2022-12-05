@@ -270,7 +270,11 @@ AccountModel::setAccountConfig(const QString& accountId,
             finalCred.append(credMap);
         }
 
-        ConfigurationManager::instance().setCredentials(accountId, finalCred);
+        auto oldCredentials = ConfigurationManager::instance().getCredentials(accountId);
+        if (oldCredentials[0][ConfProperties::PASSWORD] != finalCred[0][ConfProperties::PASSWORD] ||
+            oldCredentials[0][ConfProperties::REALM] != finalCred[0][ConfProperties::REALM] ||
+            oldCredentials[0][ConfProperties::USERNAME] != finalCred[0][ConfProperties::USERNAME])
+            ConfigurationManager::instance().setCredentials(accountId, finalCred);
         details[ConfProperties::USERNAME] = confProperties.username;
         accountInfo.confProperties.credentials.swap(credentialsVec);
     }
