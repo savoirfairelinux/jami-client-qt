@@ -27,7 +27,7 @@ class Positioning : public QObject
     Q_OBJECT
 
 public:
-    Positioning(QString uri, QObject* parent = 0);
+    Positioning(QObject* parent = 0);
     /**
      * start to retreive the current position
      */
@@ -42,8 +42,6 @@ public:
      */
     QString convertToJson(const QGeoPositionInfo& info);
 
-    void setUri(QString uri);
-
 private Q_SLOTS:
     void slotError(QGeoPositionInfoSource::Error error);
     void positionUpdated(const QGeoPositionInfo& info);
@@ -57,15 +55,12 @@ private Q_SLOTS:
     void locationServicesActivated();
 
 Q_SIGNALS:
-    void newPosition(const QString& unused_AccountId,
-                     const QString& peerId,
-                     const QString& body,
-                     const uint64_t& timestamp,
-                     const QString& daemonId);
+    void newPosition(const QString& body);
     void positioningError(const QString error);
 
 private:
     QString uri_;
     QGeoPositionInfoSource* source_ = nullptr;
     bool isPositioning = false;
+    QTimer* timer;
 };
