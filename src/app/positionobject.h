@@ -20,6 +20,8 @@ public:
     QVariant getLongitude();
     QVariant getLatitude();
 
+    void updatePosition(QVariant latitude, QVariant longitude);
+
 private:
     QVariant latitude_;
     QVariant longitude_;
