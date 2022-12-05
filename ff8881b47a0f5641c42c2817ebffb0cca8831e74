@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8668ed0f_8c438e50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-12-05T20:19:03Z",
+      "side": 1,
+      "message": "* menu shadow\n* \"more icon\" margin\n* emoji bottom margin\n* bar too visible",
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1dbb575_c0677081",
