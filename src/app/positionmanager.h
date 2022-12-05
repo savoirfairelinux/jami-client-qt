@@ -55,8 +55,10 @@ protected:
     void positionWatchDog();
     void startPositionTimers(int timeSharing);
     void stopPositionTimers();
+    bool isMapUnpin();
 
     Q_INVOKABLE void connectAccountModel();
+    Q_INVOKABLE void lockMapConv(QString convId, QString accountId);
     Q_INVOKABLE void setMapActive(bool state);
     Q_INVOKABLE void sharePosition(int maximumTime);
     Q_INVOKABLE void stopSharingPosition(const QString convId = "");
@@ -69,6 +71,10 @@ protected:
     Q_INVOKABLE bool isConvSharingPosition(const QString& convUri);
 
     Q_INVOKABLE void loadPreviousLocations();
+    Q_INVOKABLE QString getmapConvTitle();
+    Q_INVOKABLE QString getsharedConvId();
+    Q_INVOKABLE QString getsharedAccountId();
+    Q_INVOKABLE void clearUnpinMapsharePosition();
 
 private Q_SLOTS:
     void onPositionErrorReceived(const QString error);
@@ -80,6 +86,8 @@ private Q_SLOTS:
     void sendPosition(const QString& body);
     void onWatchdogTimeout();
     void showNotification(const QString& accountId, const QString& convId, const QString& from);
+    void onNewConversation();
+    void onNewAccount();
 
 private:
     SystemTray* systemTray_;
@@ -89,4 +97,5 @@ private:
     QSet<QPair<QString, QString>> currentConvSharingUris_;
     QMap<QPair<QString, QString>, PositionObject*> objectListSharingUris_;
     QList<QPair<QString, QString>> positionShareConvIds_;
+    QPair<QString, QString> mapsharedConversation_;
 };
