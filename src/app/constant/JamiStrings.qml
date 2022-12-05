@@ -309,7 +309,7 @@ Item {
     property string locationServicesError: qsTr("Your precise location could not be determined.\nIn Device Settings, please turn on \"Location Services\".\nOther participants' location can still be received.")
     property string locationServicesClosedError: qsTr("Your precise location could not be determined. Please check your Internet connection.")
     property string stopAllSharings: qsTr("Turn off location sharing");
-    property string stopConvSharing: qsTr("Stop location sharing in this conversation");
+    property string stopConvSharing: qsTr("Stop location sharing in this conversation (%1)");
     property string stopSharingPopupBody: qsTr("Location is shared in several conversations");
     property string minimizeMapTooltip: qsTr("Minimize");
     property string maximizeMapTooltip: qsTr("Maximize");
@@ -318,6 +318,8 @@ Item {
     property string dragMapTooltip: qsTr("Drag");
     property string centerMapTooltip: qsTr("Center");
     property string closeMapTooltip: qsTr("Close");
+    property string unpin: qsTr("Unpin");
+    property string pinWindow: qsTr("Pin");
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
@@ -694,6 +696,7 @@ Item {
     // SmartList
     property string clearText: qsTr("Clear Text")
     property string conversations: qsTr("Conversations")
+    property string conversation: qsTr("Conversation")
     property string searchResults: qsTr("Search Results")
 
     // SmartList context menu
