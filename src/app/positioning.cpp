@@ -21,14 +21,12 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 
-Positioning::Positioning(QString uri, QObject* parent)
+Positioning::Positioning(QObject* parent)
     : QObject(parent)
-    , uri_(uri)
 {
     source_ = QGeoPositionInfoSource::createDefaultSource(this);
-    QTimer* timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &Positioning::requestPosition);
-    timer->start(5000);
+    timer_ = new QTimer(this);
+    connect(timer_, &QTimer::timeout, this, &Positioning::requestPosition);
     connect(source_, &QGeoPositionInfoSource::errorOccurred, this, &Positioning::slotError);
     connect(source_, &QGeoPositionInfoSource::positionUpdated, this, &Positioning::positionUpdated);
     // if location services are activated, positioning will be activated automatically
@@ -41,6 +39,8 @@ Positioning::Positioning(QString uri, QObject* parent)
 void
 Positioning::start()
 {
+    requestPosition();
+    timer_->start(10000);
     if (source_ && !isPositioning) {
         source_->startUpdates();
         isPositioning = true;
@@ -53,6 +53,7 @@ Positioning::stop()
     if (source_ && isPositioning)
         source_->stopUpdates();
     isPositioning = false;
+    timer_->stop();
 }
 
 QString
@@ -71,16 +72,10 @@ Positioning::convertToJson(const QGeoPositionInfo& info)
 }
 
 void
-Positioning::setUri(QString uri)
-{
-    uri_ = uri;
-}
-
-void
 Positioning::positionUpdated(const QGeoPositionInfo& info)
 {
     Q_EMIT positioningError("");
-    Q_EMIT newPosition("", uri_, convertToJson(info), -1, "");
+    Q_EMIT newPosition(convertToJson(info));
 }
 
 void
