@@ -28,3 +28,10 @@ PositionObject::getLatitude()
 {
     return latitude_;
 }
+
+void
+PositionObject::updatePosition(QVariant latitude, QVariant longitude)
+{
+    longitude_ = longitude;
+    latitude_ = latitude;
+}
