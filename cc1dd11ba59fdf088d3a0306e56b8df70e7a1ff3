@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93e66744_f18586a3",
+        "filename": "src/app/settingsview/components/SystemSettings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T17:22:11Z",
+      "side": 1,
+      "message": "maybe we can add \"UtilsAdapter.hasNativeDarkTheme() ? 1 : 0\" directly there and not in the onCompleted?",
+      "range": {
+        "startLine": 75,
+        "startChar": 27,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "cc1dd11ba59fdf088d3a0306e56b8df70e7a1ff3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
