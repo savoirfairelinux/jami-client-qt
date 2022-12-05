@@ -37,6 +37,8 @@ Rectangle {
 
     onVisibleChanged: {
         UtilsAdapter.setTempCreationImageFromString()
+        title.clear()
+        description.clear()
     }
 
     property var members: []

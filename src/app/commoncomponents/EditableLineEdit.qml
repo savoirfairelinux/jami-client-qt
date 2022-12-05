@@ -79,6 +79,7 @@ Item {
 
     function clear() {
         lineEdit.clear()
+        lineEdit.focus = false
     }
 
     function toggleEchoMode(){
