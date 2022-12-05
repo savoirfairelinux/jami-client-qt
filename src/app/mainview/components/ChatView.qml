@@ -34,7 +34,7 @@ Rectangle {
     id: root
 
     property bool allMessagesLoaded
-
+    property var mapPositions: PositionManager.mapStatus
     signal needToHideConversationInCall
     signal messagesCleared
     signal messagesLoaded
@@ -45,19 +45,29 @@ Rectangle {
         addMemberPanel.visible = false
     }
 
+    function instanceMapObject() {
+        if (WITH_WEBENGINE) {
+            var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
+            var sprite = component.createObject(root, {maxWidth: root.width, maxHeight: root.height});
+
+            if (sprite === null) {
+                // Error Handling
+                console.log("Error creating object");
+            }
+        }
+    }
+    Connections {
+        target: PositionManager
+
+        function onOpenNewMap() {
+            instanceMapObject()
+        }
+    }
+
     color: JamiTheme.chatviewBgColor
 
     property string currentConvId: CurrentConversation.id
-    onCurrentConvIdChanged: PositionManager.setMapActive(false);
-
-    Loader {
-        id: mapLoader
-
-        active: PositionManager.isMapActive
-        z: 10
-        source: WITH_WEBENGINE ? "qrc:/webengine/map/MapPosition.qml" : ""
-    }
-
+    
     HostPopup {
         id: hostPopup
     }
@@ -213,7 +223,7 @@ Rectangle {
                     Layout.rightMargin: JamiTheme.chatviewMargin
 
                     currentIndex: CurrentConversation.isRequest ||
-                                CurrentConversation.needsSyncing
+                                  CurrentConversation.needsSyncing
 
                     Loader {
                         active: CurrentConversation.id !== ""
