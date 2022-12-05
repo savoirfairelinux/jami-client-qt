@@ -164,6 +164,30 @@
       },
       "revId": "3c0d3d751e5ab9c6ad8521fe04346437f869d710",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774a6b4b_736e6245",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "So it should not be added in this patch (else users will have a button that will not work)",
+      "parentUuid": "a66f3e48_a16f34ce",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "3c0d3d751e5ab9c6ad8521fe04346437f869d710",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

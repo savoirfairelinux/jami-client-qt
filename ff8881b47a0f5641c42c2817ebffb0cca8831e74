@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1dbb575_c0677081",
+        "filename": "src/app/commoncomponents/ChatviewmessageOptions.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "Missing license at to of the file",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0970152_ca38e4c9",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "split the line (here it\u0027s a bit long)",
+      "range": {
+        "startLine": 218,
+        "startChar": 21,
+        "endLine": 218,
+        "endChar": 105
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7589d33e_10fd8a90",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "clean debug logs",
+      "range": {
+        "startLine": 196,
+        "startChar": 11,
+        "endLine": 196,
+        "endChar": 41
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ae2b971_930e4a58",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "why? should be the same logic for a reaction",
+      "range": {
+        "startLine": 334,
+        "startChar": 24,
+        "endLine": 334,
+        "endChar": 26
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "841936f2_36d69377",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "clean commented code",
+      "range": {
+        "startLine": 1350,
+        "startChar": 27,
+        "endLine": 1351,
+        "endChar": 27
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ff2302b_af0c053c",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 1365,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "clean commented code",
+      "range": {
+        "startLine": 1364,
+        "startChar": 16,
+        "endLine": 1365,
+        "endChar": 16
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daeb5b5b_4825e9c6",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 2486,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "clean commented code",
+      "range": {
+        "startLine": 2484,
+        "startChar": 31,
+        "endLine": 2486,
+        "endChar": 101
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d00d065a_3675ba72",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 2643,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "clean commented code",
+      "range": {
+        "startLine": 2638,
+        "startChar": 13,
+        "endLine": 2643,
+        "endChar": 28
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2d0123d_bf7e02c5",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "needed?",
+      "range": {
+        "startLine": 625,
+        "startChar": 9,
+        "endLine": 625,
+        "endChar": 35
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f24ce0ca_b1f8b8ae",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "members don\u0027t start by a capital letter",
+      "range": {
+        "startLine": 685,
+        "startChar": 19,
+        "endLine": 685,
+        "endChar": 35
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a37e2696_e1f550d4",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T15:35:04Z",
+      "side": 1,
+      "message": "can be replaced by std::find_if",
+      "range": {
+        "startLine": 757,
+        "startChar": 10,
+        "endLine": 761,
+        "endChar": 9
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
