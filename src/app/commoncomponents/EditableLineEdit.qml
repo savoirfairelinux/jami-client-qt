@@ -36,6 +36,7 @@ Item {
     property color borderColor: lineEdit.borderColor
     property alias underlined: lineEdit.underlined
     property alias wrapMode: lineEdit.wrapMode
+    property alias lineEdit: lineEdit
     property alias padding: lineEdit.padding
     property alias echoMode: lineEdit.echoMode
     property string inactiveColor: JamiTheme.tintedBlue
@@ -79,6 +80,7 @@ Item {
 
     function clear() {
         lineEdit.clear()
+        lineEdit.focus = false
     }
 
     function toggleEchoMode(){

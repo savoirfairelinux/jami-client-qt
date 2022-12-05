@@ -37,6 +37,8 @@ Rectangle {
 
     onVisibleChanged: {
         UtilsAdapter.setTempCreationImageFromString()
+        title.clear()
+        description.clear()
     }
 
     property var members: []
@@ -115,6 +117,7 @@ Rectangle {
 
     ColumnLayout {
         id: mainLayout
+        objectName: "mainLayout"
         anchors.centerIn: root
 
         PhotoboothView {
@@ -133,6 +136,7 @@ Rectangle {
 
         EditableLineEdit {
             id: title
+            objectName: "titleLineEdit"
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
             Layout.preferredWidth: JamiTheme.preferredFieldWidth
@@ -166,6 +170,7 @@ Rectangle {
 
         EditableLineEdit {
             id: description
+            objectName: "descriptionLineEdit"
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
             Layout.preferredWidth: JamiTheme.preferredFieldWidth
