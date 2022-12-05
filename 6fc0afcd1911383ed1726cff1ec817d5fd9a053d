@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e718216a_e5804d64",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-05T17:52:09Z",
+      "side": 1,
+      "message": "only in the .h for doxygen",
+      "range": {
+        "startLine": 603,
+        "startChar": 0,
+        "endLine": 611,
+        "endChar": 4
+      },
+      "revId": "6fc0afcd1911383ed1726cff1ec817d5fd9a053d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
