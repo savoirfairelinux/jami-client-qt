@@ -54,7 +54,9 @@ extern const QString defaultDownloadPath;
     X(WindowGeometry, QRectF(qQNaN(), qQNaN(), 0., 0.)) \
     X(WindowState, QWindow::AutomaticVisibility) \
     X(EnableExperimentalSwarm, false) \
-    X(LANG, "SYSTEM")
+    X(LANG, "SYSTEM") \
+    X(PositionShareDuration, 15) \
+    X(PositionShareLimit, true)
 
 /*
  * A class to expose settings keys in both c++ and QML.

@@ -19,12 +19,11 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import Qt5Compat.GraphicalEffects
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import Qt5Compat.GraphicalEffects
-
 
 import "../../commoncomponents"
 
@@ -101,11 +100,10 @@ Popup {
                     color: JamiTheme.buttonTintedBlue
                     hoveredColor: JamiTheme.buttonTintedBlueHovered
                     pressedColor: JamiTheme.buttonTintedBluePressed
-                    text: JamiStrings.stopConvSharing
+                    text: JamiStrings.stopConvSharing.arg(PositionManager.getmapTitle(attachedAccountId, CurrentConversation.id))
 
                     onClicked: {
-                        PositionManager.stopSharingPosition(PositionManager.getSelectedConvId())
-                        shareButtonVisibility = true
+                        PositionManager.stopSharingPosition(attachedAccountId, CurrentConversation.id)
                         root.close()
                     }
                 }
@@ -123,12 +121,10 @@ Popup {
 
                     onClicked: {
                         PositionManager.stopSharingPosition()
-                        shareButtonVisibility = true
                         root.close()
                     }
                 }
             }
-
         }
     }
 
