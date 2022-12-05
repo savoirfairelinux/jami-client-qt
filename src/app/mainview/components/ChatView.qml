@@ -48,7 +48,7 @@ Rectangle {
     color: JamiTheme.chatviewBgColor
 
     property string currentConvId: CurrentConversation.id
-    onCurrentConvIdChanged: PositionManager.setMapActive(false);
+    
 
     Loader {
         id: mapLoader
@@ -58,7 +58,7 @@ Rectangle {
         source: WITH_WEBENGINE ? "qrc:/webengine/map/MapPosition.qml" : ""
     }
 
-    HostPopup {
+HostPopup {
         id: hostPopup
     }
 

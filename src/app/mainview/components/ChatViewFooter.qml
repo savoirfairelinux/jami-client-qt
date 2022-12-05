@@ -188,7 +188,7 @@ Rectangle {
             }
 
             onShowMapClicked: {
-                PositionManager.setMapActive(true);
+                PositionManager.setMapActive(true)
             }
 
             onSendFileButtonClicked: jamiFileDialog.open()
