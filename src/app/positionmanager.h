@@ -52,11 +52,25 @@ protected:
 
     QString getAvatar(const QString& accountId, const QString& peerId);
     QVariantMap parseJsonPosition(const QString& body, const QString& peerId);
+    void addPositionToMap(QPair<QString, QString> key, QVariantMap position);
+    void addPositionToMemory(bool mapChange,
+                             QPair<QString, QString> key,
+                             QVariantMap positionReceived);
+    void updatePositionInMemory(bool mapChange,
+                                QPair<QString, QString> key,
+                                QVariantMap positionReceived);
+    void removePositionFromMemory(bool mapChange,
+                                  QPair<QString, QString> key,
+                                  QVariantMap positionReceived);
+    bool isUriInCurrentMap(const QString& uri);
     void positionWatchDog();
     void startPositionTimers(int timeSharing);
     void stopPositionTimers();
+    bool isMapUnpin();
+    bool isNewMessageTriggersMap(bool endSharing, bool isPeerIdInConv, const QString& uri);
 
     Q_INVOKABLE void connectAccountModel();
+    Q_INVOKABLE void lockMapConv(QString convId, QString accountId);
     Q_INVOKABLE void setMapActive(bool state);
     Q_INVOKABLE void sharePosition(int maximumTime);
     Q_INVOKABLE void stopSharingPosition(const QString convId = "");
@@ -69,6 +83,10 @@ protected:
     Q_INVOKABLE bool isConvSharingPosition(const QString& convUri);
 
     Q_INVOKABLE void loadPreviousLocations();
+    Q_INVOKABLE QString getmapConvTitle();
+    Q_INVOKABLE QString getsharedConvId();
+    Q_INVOKABLE QString getsharedAccountId();
+    Q_INVOKABLE void clearUnpinMapsharePosition();
 
 private Q_SLOTS:
     void onPositionErrorReceived(const QString error);
@@ -80,13 +98,16 @@ private Q_SLOTS:
     void sendPosition(const QString& body);
     void onWatchdogTimeout();
     void showNotification(const QString& accountId, const QString& convId, const QString& from);
+    void onNewConversation();
+    void onNewAccount();
 
 private:
     SystemTray* systemTray_;
     std::unique_ptr<Positioning> localPositioning_;
     QTimer* timerTimeLeftSharing_ = nullptr;
     QTimer* timerStopSharing_ = nullptr;
-    QSet<QPair<QString, QString>> currentConvSharingUris_;
+    // QSet<QPair<QString, QString>> currentConvSharingUris_;
     QMap<QPair<QString, QString>, PositionObject*> objectListSharingUris_;
     QList<QPair<QString, QString>> positionShareConvIds_;
+    QPair<QString, QString> mapsharedConversation_;
 };
