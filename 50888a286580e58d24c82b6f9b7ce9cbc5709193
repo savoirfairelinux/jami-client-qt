@@ -46,6 +46,30 @@
       },
       "revId": "50888a286580e58d24c82b6f9b7ce9cbc5709193",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ab6bb82_a709f76e",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-12-05T16:45:10Z",
+      "side": 0,
+      "message": "I\u0027m not sure about the macOS jenkins job, but the Windows job needs an update for this to build. Locally, a from-scratch build using the client-qt repo and submodules will fail. These variables point at jami-project\u0027s daemon.",
+      "parentUuid": "e13c5025_692938f3",
+      "range": {
+        "startLine": 322,
+        "startChar": 33,
+        "endLine": 322,
+        "endChar": 37
+      },
+      "revId": "50888a286580e58d24c82b6f9b7ce9cbc5709193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
