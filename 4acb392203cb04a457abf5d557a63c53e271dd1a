@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35ab7823_ed072d17",
+        "filename": "src/app/currentcall.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-06T18:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03771d4d_d321ebcc",
+      "range": {
+        "startLine": 126,
+        "startChar": 20,
+        "endLine": 126,
+        "endChar": 32
+      },
+      "revId": "4acb392203cb04a457abf5d557a63c53e271dd1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cf0f5f6_176b2489",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-05T12:57:11Z",
       "side": 1,
       "message": "video muted does not look correct while muting/unmuting from screen sharing",
+      "range": {
+        "startLine": 285,
+        "startChar": 12,
+        "endLine": 285,
+        "endChar": 78
+      },
+      "revId": "4acb392203cb04a457abf5d557a63c53e271dd1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f62020bc_7d0249ea",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-06T18:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cf0f5f6_176b2489",
       "range": {
         "startLine": 285,
         "startChar": 12,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d451d1c3_4c077aa0",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-06T18:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "190f7c87_618c03b0",
+      "range": {
+        "startLine": 286,
+        "startChar": 12,
+        "endLine": 286,
+        "endChar": 45
+      },
+      "revId": "4acb392203cb04a457abf5d557a63c53e271dd1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0f4ad1e_dac9b760",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-05T12:57:11Z",
       "side": 1,
       "message": "CurrentCall ?",
+      "range": {
+        "startLine": 319,
+        "startChar": 25,
+        "endLine": 319,
+        "endChar": 39
+      },
+      "revId": "4acb392203cb04a457abf5d557a63c53e271dd1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5f697dd_1c786ac8",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-06T18:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0f4ad1e_dac9b760",
       "range": {
         "startLine": 319,
         "startChar": 25,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70e2b9da_dd1a19e6",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-06T18:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1deec35e_788e1b63",
+      "range": {
+        "startLine": 323,
+        "startChar": 18,
+        "endLine": 323,
+        "endChar": 32
+      },
+      "revId": "4acb392203cb04a457abf5d557a63c53e271dd1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72ccd41d_74d58a4b",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-12-05T12:57:11Z",
       "side": 1,
       "message": "why don\u0027t move to inside initialcallpage.qml?",
+      "range": {
+        "startLine": 154,
+        "startChar": 8,
+        "endLine": 154,
+        "endChar": 44
+      },
+      "revId": "4acb392203cb04a457abf5d557a63c53e271dd1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee84ba86_88656605",
+        "filename": "src/app/mainview/components/CallStackView.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-06T18:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72ccd41d_74d58a4b",
       "range": {
         "startLine": 154,
         "startChar": 8,
