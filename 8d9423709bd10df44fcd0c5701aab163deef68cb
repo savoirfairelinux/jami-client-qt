@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95c44c8c_f6dff3e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-06T16:08:08Z",
+      "side": 1,
+      "message": "I guess it should ellipsize, also I see some title still with 2 lines",
+      "revId": "8d9423709bd10df44fcd0c5701aab163deef68cb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
