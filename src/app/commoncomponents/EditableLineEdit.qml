@@ -47,7 +47,8 @@ Item {
     property alias selectByMouse:lineEdit.selectByMouse
     property alias loseFocusWhenEnterPressed: lineEdit.loseFocusWhenEnterPressed
     property alias validator: lineEdit.validator
-    property alias text: lineEdit.text
+    property alias acceptedText: lineEdit.acceptedText
+    property string text
     property alias color: lineEdit.color
     property alias verticalAlignment: lineEdit.verticalAlignment
     property alias horizontalAlignment: lineEdit.horizontalAlignment
@@ -74,6 +75,7 @@ Item {
     property bool inactive: true
     property bool validated: false
     property bool error: false
+    property bool elide: false
 
     property string tooltipText: ""
     property int preferredWidth: JamiTheme.preferredFieldWidth
@@ -161,15 +163,26 @@ Item {
             id: lineEdit
             anchors.horizontalCenter: row.horizontalCenter
             anchors.bottom: row.bottom
+
+            TextMetrics {
+                id: formatedText
+
+                font.pointSize: JamiTheme.titleFontSize
+                elide: root.elide ? Text.ElideRight : Text.ElideNone
+                elideWidth: lineEdit.width - 25
+                text: lineEdit.readOnly ? root.text : ""
+            }
+
             width: row.width - firstIco_.width - thirdIco_.width - secIco_.width - thirdIco_.anchors.rightMargin
             readOnly: !editable || root.readOnly
             underlined: true
             verticalAlignment: Text.AlignBottom
 
             borderColor: root.editIconColor
-            placeholderText: readOnly? root.placeholderText : ""
+            text: readOnly ? formatedText.elidedText : root.text
+            placeholderText: readOnly ? root.placeholderText : ""
 
-            wrapMode: readOnly? TextEdit.WrapAnywhere : TextEdit.NoWrap
+            wrapMode: TextEdit.NoWrap
             horizontalAlignment: !readOnly || text !== "" ? Qt.AlignLeft : Qt.AlignHCenter
 
             onFocusChanged: function(focus) {

@@ -72,11 +72,18 @@ Rectangle {
 
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.topMargin: 5
 
                 font.pointSize: JamiTheme.titleFontSize
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+
+                TextMetrics {
+                    id: titleMetric
+                    font.pointSize: JamiTheme.titleFontSize
+                }
+                elide: titleMetric.boundingRect.width > (lineEdit.width - 25)
 
                 firstIco:  JamiResources.round_edit_24dp_svg
                 secondIco: editable ? JamiResources.close_black_24dp_svg : ""
@@ -85,6 +92,9 @@ Rectangle {
                 borderColor: "transparent"
 
                 text: CurrentConversation.title
+                onTextChanged: {
+                    titleMetric.text = text
+                }
                 readOnly: !root.isAdmin
                 placeholderText: JamiStrings.swarmName
                 placeholderTextColor: {
@@ -109,11 +119,10 @@ Rectangle {
                            JamiTheme.chatviewTextColorDark
 
                 onEditingFinished: {
-                    if (text !== CurrentConversation.title)
-                        ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, text)
+                    if (acceptedText !== CurrentConversation.title)
+                        ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, acceptedText)
                 }
                 onSecondIcoClicked: {editable = !editable}
-
             }
 
             EditableLineEdit {
@@ -128,12 +137,20 @@ Rectangle {
 
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 fontSize: 16
+                TextMetrics {
+                    id: descriptionMetric
+                    font.pointSize: JamiTheme.titleFontSize
+                }
+                elide: descriptionMetric.boundingRect.width > (descriptionLine.width - 25)
 
                 firstIco:  JamiResources.round_edit_24dp_svg
                 secondIco: editable ? JamiResources.close_black_24dp_svg : ""
                 borderColor: "transparent"
 
                 text: CurrentConversation.description
+                onTextChanged: {
+                    descriptionMetric.text = text
+                }
                 readOnly: !root.isAdmin
                 visible: root.isAdmin || text.length > 0
                 placeholderText: JamiStrings.addADescription
@@ -159,8 +176,8 @@ Rectangle {
                            JamiTheme.chatviewTextColorDark
 
                 onEditingFinished: {
-                    if (text !== CurrentConversation.description)
-                        ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, text)
+                    if (acceptedText !== CurrentConversation.description)
+                        ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, acceptedText)
                 }
 
                 onSecondIcoClicked: {editable = !editable}
