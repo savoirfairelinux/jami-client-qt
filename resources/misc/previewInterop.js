@@ -84,5 +84,5 @@ function parseMessage(messageId, message, showPreview) {
     }
     if (showPreview)
         getPreviewInfo(messageId, links[0].href)
-    window.jsbridge.emitLinkified(messageId, linkifyStr(message))
+    window.jsbridge.emitLinkified(messageId, linkifyStr(message, "#ff0000"))
 }
