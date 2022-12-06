@@ -72,7 +72,18 @@ Rectangle {
 
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.topMargin: 5
 
+                TextMetrics {
+                    id: formatedTitle
+
+                    font.pointSize: JamiTheme.titleFontSize
+                    elide: !titleLine.editable ? Text.ElideRight : Text.ElideNone
+                    elideWidth: titleLine.lineEdit.width - 25
+                    text: CurrentConversation.title
+                }
+
+                wrapMode: Text.NoWrap
                 font.pointSize: JamiTheme.titleFontSize
 
                 horizontalAlignment: Text.AlignHCenter
@@ -84,7 +95,7 @@ Rectangle {
                 fontSize: 20
                 borderColor: "transparent"
 
-                text: CurrentConversation.title
+                text: formatedTitle.elidedText
                 readOnly: !root.isAdmin
                 placeholderText: JamiStrings.swarmName
                 placeholderTextColor: {
@@ -113,7 +124,6 @@ Rectangle {
                         ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, text)
                 }
                 onSecondIcoClicked: {editable = !editable}
-
             }
 
             EditableLineEdit {
@@ -133,7 +143,18 @@ Rectangle {
                 secondIco: editable ? JamiResources.close_black_24dp_svg : ""
                 borderColor: "transparent"
 
-                text: CurrentConversation.description
+                TextMetrics {
+                    id: formatedDescription
+
+                    font.pointSize: JamiTheme.titleFontSize
+                    elide: !descriptionLine.editable ? Text.ElideRight : Text.ElideNone
+                    elideWidth: descriptionLine.lineEdit.width - 25
+                    text: CurrentConversation.description
+                }
+
+                wrapMode: Text.NoWrap
+
+                text: formatedDescription.elidedText
                 readOnly: !root.isAdmin
                 visible: root.isAdmin || text.length > 0
                 placeholderText: JamiStrings.addADescription

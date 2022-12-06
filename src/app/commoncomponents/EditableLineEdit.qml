@@ -167,9 +167,9 @@ Item {
             verticalAlignment: Text.AlignBottom
 
             borderColor: root.editIconColor
-            placeholderText: readOnly? root.placeholderText : ""
+            placeholderText: readOnly ? root.placeholderText : ""
 
-            wrapMode: readOnly? TextEdit.WrapAnywhere : TextEdit.NoWrap
+            wrapMode: readOnly ? TextEdit.WrapAnywhere : TextEdit.NoWrap
             horizontalAlignment: !readOnly || text !== "" ? Qt.AlignLeft : Qt.AlignHCenter
 
             onFocusChanged: function(focus) {
@@ -183,10 +183,11 @@ Item {
                     lineEdit.forceActiveFocus()
                 }
             }
+
             onAccepted: {
-                editable = !editable
                 root.accepted()
                 root.editingFinished()
+                editable = !editable
                 focus = false
             }
         }
