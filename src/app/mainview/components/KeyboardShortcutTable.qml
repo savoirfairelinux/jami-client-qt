@@ -110,7 +110,7 @@ Window {
             description: qsTr("Edit last message")
         }
         ListElement {
-            shortcut: "Ctrl + Esc"
+            shortcut: "Esc"
             description: qsTr("Cancel message edition")
         }
     }

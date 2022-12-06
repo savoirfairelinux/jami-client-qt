@@ -625,7 +625,11 @@ Rectangle {
     Shortcut {
         sequence: "Escape"
         context: Qt.ApplicationShortcut
-        onActivated: layoutManager.popFullScreenItem()
+        onActivated: {
+            MessagesAdapter.replyToId = ""
+            MessagesAdapter.editId = ""
+            layoutManager.popFullScreenItem()
+        }
     }
 
     Shortcut {
