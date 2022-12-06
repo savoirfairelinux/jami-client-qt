@@ -125,6 +125,7 @@ DeviceModelPimpl::DeviceModelPimpl(const DeviceModel& linked,
     const MapStringString aDetails = ConfigurationManager::instance().getAccountDetails(
         linked.owner.id);
     currentDeviceId_ = aDetails.value(libjami::Account::ConfProperties::DEVICE_ID);
+    if (currentDeviceId_.isEmpty()) currentDeviceId_ = aDetails.value(libjami::Account::ConfProperties::DEVICE_NAME);
     const MapStringString accountDevices = ConfigurationManager::instance().getKnownRingDevices(
         linked.owner.id);
     auto it = accountDevices.begin();
@@ -133,8 +134,9 @@ DeviceModelPimpl::DeviceModelPimpl(const DeviceModel& linked,
             std::lock_guard<std::mutex> lock(devicesMtx_);
             auto device = Device {/* id= */ it.key(),
                                   /* name= */ it.value(),
-                                  /* isCurrent= */ it.key() == currentDeviceId_};
+                                  /* isCurrent= */ it.value() == currentDeviceId_ || it.key() == currentDeviceId_};
             if (device.isCurrent) {
+                currentDeviceId_ = it.key();
                 devices_.push_back(device);
             } else {
                 devices_.push_back(device);
