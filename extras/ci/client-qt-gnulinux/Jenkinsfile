@@ -94,13 +94,21 @@ pipeline {
                     def jenkinsUser = jenkinsUID+':'+jenkinsGID
                     def cpuCount = sh returnStdout: true, script: 'nproc || echo -n 4'
 
-                    docker.image('client-validation').withRun('-t -u '+jenkinsUser+' -v '+pwd()+':/foo:rw -w /foo -e BATCH_MODE=1', '/bin/bash') {
+                    docker.image('client-validation').withRun('-t -u '+jenkinsUser+' -v '+pwd()+':/foo:rw -v /var/cache/jami:/var/cache/jami:rw -w /foo -e BATCH_MODE=1', '/bin/bash') {
                         container -> code:{
                             def base_cmd = 'docker exec -t '+container.id+" sh -c '"
                             def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
 
                             def dockerTopDir = '/foo/'
                             ansiColor('css') {
+                                exec_cmd("""
+                                    cd ${dockerTopDir}/daemon/contrib
+                                    mkdir native
+                                    cd native
+                                    ../bootstrap --cache-dir=/var/cache/jami --cache-builds
+                                    make list
+                                    make fetch
+                                """)
                                 exec_cmd("""
                                     cd ${dockerTopDir}
                                     ./build.py --install --qt /usr/lib/libqt-jami/
