@@ -62,9 +62,9 @@ ColumnLayout {
                 uut.visible = true
 
                 compare(title.focus, false)
-                compare(title.text, "")
+                compare(title.text, "Title")
                 compare(description.focus, false)
-                compare(description.text, "")
+                compare(description.text, "description")
 
             }
         }

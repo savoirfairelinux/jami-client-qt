@@ -72,11 +72,14 @@ Rectangle {
 
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.topMargin: 5
 
                 font.pointSize: JamiTheme.titleFontSize
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+
+                elide: true
 
                 firstIco:  JamiResources.round_edit_24dp_svg
                 secondIco: editable ? JamiResources.close_black_24dp_svg : ""
@@ -109,11 +112,10 @@ Rectangle {
                            JamiTheme.chatviewTextColorDark
 
                 onEditingFinished: {
-                    if (text !== CurrentConversation.title)
-                        ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, text)
+                    if (acceptedText !== CurrentConversation.title)
+                        ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, acceptedText)
                 }
                 onSecondIcoClicked: {editable = !editable}
-
             }
 
             EditableLineEdit {
@@ -128,6 +130,7 @@ Rectangle {
 
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 fontSize: 16
+                elide: true
 
                 firstIco:  JamiResources.round_edit_24dp_svg
                 secondIco: editable ? JamiResources.close_black_24dp_svg : ""
@@ -159,8 +162,8 @@ Rectangle {
                            JamiTheme.chatviewTextColorDark
 
                 onEditingFinished: {
-                    if (text !== CurrentConversation.description)
-                        ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, text)
+                    if (acceptedText !== CurrentConversation.description)
+                        ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, acceptedText)
                 }
 
                 onSecondIcoClicked: {editable = !editable}
