@@ -27,6 +27,8 @@ TextField {
 
     property int fontSize: JamiTheme.materialLineEditPointSize
 
+    property string acceptedText
+
     property var backgroundColor: JamiTheme.secondaryBackgroundColor
     property var borderColor: JamiTheme.greyBorderColor
 
@@ -53,6 +55,10 @@ TextField {
 
         lineEditObj: root
         selectOnly: readOnly
+    }
+
+    onAccepted: {
+        acceptedText = text
     }
 
     background: Rectangle {
