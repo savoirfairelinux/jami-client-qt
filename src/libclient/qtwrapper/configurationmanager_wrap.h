@@ -600,57 +600,6 @@ public Q_SLOTS: // METHODS
         return convertStringList(libjami::getSupportedAudioManagers());
     }
 
-    QStringList getSupportedTlsMethod()
-    {
-        QStringList temp = convertStringList(libjami::getSupportedTlsMethod());
-        return temp;
-    }
-
-    MapStringString validateCertificate(const QString& unused, const QString& certificate)
-    {
-        MapStringString temp = convertMap(
-            libjami::validateCertificate(unused.toStdString(), certificate.toStdString()));
-        return temp;
-    }
-
-    MapStringString validateCertificatePath(const QString& unused,
-                                            const QString& certificate,
-                                            const QString& privateKey,
-                                            const QString& privateKeyPass,
-                                            const QString& caListPath)
-    {
-        MapStringString temp = convertMap(
-            libjami::validateCertificatePath(unused.toStdString(),
-                                             certificate.toStdString(),
-                                             privateKey.toStdString(),
-                                             privateKeyPass.toStdString(),
-                                             caListPath.toStdString()));
-        return temp;
-    }
-
-    MapStringString getCertificateDetails(const QString& certificate)
-    {
-        MapStringString temp = convertMap(libjami::getCertificateDetails(certificate.toStdString()));
-        return temp;
-    }
-
-    MapStringString getCertificateDetailsPath(const QString& certificate,
-                                              const QString& privateKey,
-                                              const QString& privateKeyPass)
-    {
-        MapStringString temp = convertMap(
-            libjami::getCertificateDetailsPath(certificate.toStdString(),
-                                               privateKey.toStdString(),
-                                               privateKeyPass.toStdString()));
-        return temp;
-    }
-
-    QStringList getSupportedCiphers(const QString& accountID)
-    {
-        QStringList temp = convertStringList(libjami::getSupportedCiphers(accountID.toStdString()));
-        return temp;
-    }
-
     double getVolume(const QString& device)
     {
         return libjami::getVolume(device.toStdString());
@@ -826,53 +775,6 @@ public Q_SLOTS: // METHODS
         MapStringString temp = convertMap(
             libjami::getVolatileAccountDetails(accountID.toStdString()));
         return temp;
-    }
-
-    QStringList getPinnedCertificates()
-    {
-        QStringList temp = convertStringList(libjami::getPinnedCertificates());
-        return temp;
-    }
-
-    QStringList pinCertificate(const QByteArray& content, bool local)
-    {
-        std::vector<unsigned char> raw(content.begin(), content.end());
-        return convertStringList(libjami::pinCertificate(raw, local));
-    }
-
-    bool unpinCertificate(const QString& certId)
-    {
-        return libjami::unpinCertificate(certId.toStdString());
-    }
-
-    void pinCertificatePath(const QString& certPath)
-    {
-        libjami::pinCertificatePath(certPath.toStdString());
-    }
-
-    uint unpinCertificatePath(const QString& certPath)
-    {
-        return libjami::unpinCertificatePath(certPath.toStdString());
-    }
-
-    bool pinRemoteCertificate(const QString& accountId, const QString& certPath)
-    {
-        return libjami::pinRemoteCertificate(accountId.toStdString(), certPath.toStdString());
-    }
-
-    bool setCertificateStatus(const QString& accountId,
-                              const QString& certPath,
-                              const QString& status)
-    {
-        return libjami::setCertificateStatus(accountId.toStdString(),
-                                             certPath.toStdString(),
-                                             status.toStdString());
-    }
-
-    QStringList getCertificatesByStatus(const QString& accountId, const QString& status)
-    {
-        return convertStringList(
-            libjami::getCertificatesByStatus(accountId.toStdString(), status.toStdString()));
     }
 
     VectorMapStringString getTrustRequests(const QString& accountId)
