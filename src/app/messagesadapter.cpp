@@ -529,9 +529,12 @@ MessagesAdapter::onConversationMessagesLoaded(uint32_t, const QString& convId)
 }
 
 void
-MessagesAdapter::parseMessageUrls(const QString& messageId, const QString& msg, bool showPreview)
+MessagesAdapter::parseMessageUrls(const QString& messageId,
+                                  const QString& msg,
+                                  bool showPreview,
+                                  QString color)
 {
-    previewEngine_->parseMessage(messageId, msg, showPreview);
+    previewEngine_->parseMessage(messageId, msg, showPreview, color);
 }
 
 void
