@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cedb007f_2b0251aa",
+        "filename": "src/libclient/accountmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-06T12:30:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98813eb7_9a19530e",
+      "range": {
+        "startLine": 273,
+        "startChar": 8,
+        "endLine": 273,
+        "endChar": 12
+      },
+      "revId": "e1e0dd9ebd8a20a91ee06ab0f59505d1dacdb18d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "758cd8b1_08172c8b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-05T17:55:49Z",
       "side": 1,
       "message": "I would check that oldCredential and finalCred are not empty (if one is, setCredentials can be called)",
+      "range": {
+        "startLine": 274,
+        "startChar": 13,
+        "endLine": 274,
+        "endChar": 29
+      },
+      "revId": "e1e0dd9ebd8a20a91ee06ab0f59505d1dacdb18d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74ea76c1_81eda8e4",
+        "filename": "src/libclient/accountmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-06T12:30:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "758cd8b1_08172c8b",
       "range": {
         "startLine": 274,
         "startChar": 13,
