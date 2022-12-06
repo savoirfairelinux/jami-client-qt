@@ -843,7 +843,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.password = details[ConfProperties::PASSWORD];
     confProperties.realm = details[ConfProperties::REALM];
     confProperties.localInterface = details[ConfProperties::LOCAL_INTERFACE];
-    confProperties.deviceId = details[ConfProperties::DEVICE_ID];
+    confProperties.deviceId = volatileDetails[ConfProperties::DEVICE_ID];
     confProperties.deviceName = details[ConfProperties::DEVICE_NAME];
     confProperties.publishedSameAsLocal = toBool(details[ConfProperties::PUBLISHED_SAMEAS_LOCAL]);
     confProperties.localPort = toInt(details[ConfProperties::LOCAL_PORT]);
