@@ -70,10 +70,10 @@ public:
                       QWebEngineScript::MainWorld);
     }
 
-    void parseMessage(const QString& messageId, const QString& msg, bool showPreview)
+    void parseMessage(const QString& messageId, const QString& msg, bool showPreview, QString color)
     {
-        runJavaScript(QString("parseMessage(`%1`, `%2`, %3)")
-                          .arg(messageId, msg, showPreview ? "true" : "false"));
+        runJavaScript(QString("parseMessage(`%1`, `%2`, %3, %4)")
+                          .arg(messageId, msg, showPreview ? "true" : "false", color));
     }
 };
 
@@ -85,9 +85,12 @@ PreviewEngine::PreviewEngine(QObject* parent)
 PreviewEngine::~PreviewEngine() {}
 
 void
-PreviewEngine::parseMessage(const QString& messageId, const QString& msg, bool showPreview)
+PreviewEngine::parseMessage(const QString& messageId,
+                            const QString& msg,
+                            bool showPreview,
+                            QString color)
 {
-    pimpl_->parseMessage(messageId, msg, showPreview);
+    pimpl_->parseMessage(messageId, msg, showPreview, color);
 }
 
 void

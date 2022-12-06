@@ -77,12 +77,12 @@ function getPreviewInfo(messageId, url) {
     })
 }
 
-function parseMessage(messageId, message, showPreview) {
+function parseMessage(messageId, message, showPreview, color='#0645AD') {
     var links = linkify.find(message)
     if (links.length === 0) {
         return
     }
     if (showPreview)
         getPreviewInfo(messageId, links[0].href)
-    window.jsbridge.emitLinkified(messageId, linkifyStr(message))
+    window.jsbridge.emitLinkified(messageId, linkifyStr(message, color))
 }
