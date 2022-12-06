@@ -33,6 +33,9 @@ SBSMessageBase {
     property bool isRemoteImage
     property bool isEmojiOnly: IsEmojiOnly
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
+    property string colorUrl: UtilsAdapter.luma(bubble.color) ?
+                                  JamiTheme.chatviewLinkColorLight :
+                                  JamiTheme.chatviewLinkColorDark
 
     isOutgoing: Author === ""
     author: Author
@@ -41,6 +44,7 @@ SBSMessageBase {
     formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
+
 
     EditedPopup {
         id: editedPopup
@@ -238,13 +242,11 @@ SBSMessageBase {
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
-                        color: UtilsAdapter.luma(bubble.color) ?
-                                JamiTheme.chatviewTextColorLight :
-                                JamiTheme.chatviewTextColorDark
                         visible: LinkPreviewInfo.description !== null
-                        text: '<a href=" " style="text-decoration: ' +
-                              ( hoveredLink ? 'underline' : 'none') + ';"' +
-                              '>' + LinkPreviewInfo.description + '</a>'
+                        font.underline: root.hoveredLink
+                        text: LinkPreviewInfo.description
+                        color: root.colorUrl
+
                     }
                     Label {
                         width: parent.width
@@ -267,7 +269,7 @@ SBSMessageBase {
     Behavior on opacity { NumberAnimation { duration: 100 } }
     Component.onCompleted: {
         if (!Linkified) {
-            MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews))
+            MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl)
         }
         opacity = 1
     }
