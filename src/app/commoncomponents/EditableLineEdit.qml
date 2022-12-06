@@ -169,7 +169,7 @@ Item {
             borderColor: root.editIconColor
             placeholderText: readOnly? root.placeholderText : ""
 
-            wrapMode: readOnly? TextEdit.WrapAnywhere : TextEdit.NoWrap
+            wrapMode: readOnly ? TextEdit.Wrap : TextEdit.NoWrap
             horizontalAlignment: !readOnly || text !== "" ? Qt.AlignLeft : Qt.AlignHCenter
 
             onFocusChanged: function(focus) {
