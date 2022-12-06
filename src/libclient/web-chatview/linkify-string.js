@@ -56,7 +56,7 @@
 			return result.join(' ');
 		}
 
-		function linkifyStr(str) {
+        function linkifyStr(str, color='#0000ff') {
 			var opts = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
 			opts = new Options(opts);
@@ -99,7 +99,7 @@
 					link += ' ' + attributesToString(attributes);
 				}
 
-				link += '>' + escapeText(formatted) + '</' + tagName + '>';
+                link += ' style="color: '+color+';">' + escapeText(formatted) + '</' + tagName + '>';
 				result.push(link);
 			}
 
