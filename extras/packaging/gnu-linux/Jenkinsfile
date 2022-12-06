@@ -46,7 +46,7 @@ def SNAPCRAFT_KEY = '106e398c-43ca-41c0-8f7e-4f45030f8bdd'
 
 pipeline {
     agent {
-        label 'guix'
+        label 'jami-buildmachine-04.mtl.sfl'
     }
 
     options {
@@ -223,13 +223,6 @@ make -f extras/packaging/gnu-linux/Makefile portable-release-tarball .tarball-ve
             steps {
                 sshagent(credentials: [JENKINS_SSH_KEY, DL_SSH_KEY]) {
                     script {
-                        sh """\
-                        echo "@@@"
-                        hostname
-                        whoami
-                        ls -la .
-                        pwd
-                        """
                         TARGETS.each { target ->
                             try {
                                 unstash target
