@@ -292,14 +292,4 @@ Rectangle {
             }
         }
     }
-
-    Shortcut {
-        sequence: "Ctrl+Escape"
-        context: Qt.WindowShortcut
-        enabled: root.visible
-        onActivated: {
-            MessagesAdapter.replyToId = ""
-            MessagesAdapter.editId = ""
-        }
-    }
 }
