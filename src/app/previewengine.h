@@ -30,7 +30,10 @@ public:
     PreviewEngine(QObject* parent = nullptr);
     ~PreviewEngine();
 
-    void parseMessage(const QString& messageId, const QString& msg, bool showPreview);
+    void parseMessage(const QString& messageId,
+                      const QString& msg,
+                      bool showPreview,
+                      QColor color = "#0645AD");
 
     Q_INVOKABLE void log(const QString& str);
     Q_INVOKABLE void emitInfoReady(const QString& messageId, const QVariantMap& info);
