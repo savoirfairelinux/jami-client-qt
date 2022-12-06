@@ -72,11 +72,13 @@ Rectangle {
 
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.topMargin: 5
 
                 font.pointSize: JamiTheme.titleFontSize
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                lineEdit.maximumLength: 22
 
                 firstIco:  JamiResources.round_edit_24dp_svg
                 secondIco: editable ? JamiResources.close_black_24dp_svg : ""
@@ -128,6 +130,7 @@ Rectangle {
 
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 fontSize: 16
+                lineEdit.maximumLength: 78
 
                 firstIco:  JamiResources.round_edit_24dp_svg
                 secondIco: editable ? JamiResources.close_black_24dp_svg : ""
