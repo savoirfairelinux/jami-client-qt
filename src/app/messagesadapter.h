@@ -92,7 +92,8 @@ protected:
     Q_INVOKABLE QString getFormattedTime(const quint64 timestamp);
     Q_INVOKABLE void parseMessageUrls(const QString& messageId,
                                       const QString& msg,
-                                      bool showPreview);
+                                      bool showPreview,
+                                      QColor color = "#0645AD");
     Q_INVOKABLE void onPaste();
     Q_INVOKABLE int getIndexOfMessage(const QString& messageId) const;
     Q_INVOKABLE QString getStatusString(int status);
