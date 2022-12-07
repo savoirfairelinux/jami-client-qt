@@ -134,6 +134,9 @@ Loader {
                                 Layout.leftMargin: 12
                                 Layout.preferredWidth: 24
                                 Layout.preferredHeight: 24
+                                color: UtilsAdapter.luma(bubble.color)
+                                       ? JamiTheme.chatviewTextColorLight
+                                       : JamiTheme.chatviewTextColorDark
                             }
                         }
                         Component {
@@ -176,6 +179,7 @@ Loader {
                         spacing: 6
                         TextEdit {
                             id: transferName
+
                             width: Math.min(implicitWidth, maxMsgWidth)
                             topPadding: 10
                             text: CurrentConversation.isSwarm ?
@@ -186,9 +190,9 @@ Loader {
                             font.pointSize: 11
                             renderType: Text.NativeRendering
                             readOnly: true
-                            color: isOutgoing ?
-                                       JamiTheme.messageOutTxtColor :
-                                       JamiTheme.messageInTxtColor
+                            color: UtilsAdapter.luma(bubble.color)
+                                   ? JamiTheme.chatviewTextColorLight
+                                   : JamiTheme.chatviewTextColorDark
                             MouseArea {
                                 anchors.fill: parent
                                 cursorShape: canOpen ?
@@ -204,6 +208,7 @@ Loader {
                         }
                         Label {
                             id: transferInfo
+
                             width: Math.min(implicitWidth, maxMsgWidth)
                             bottomPadding: 10
                             text: {
@@ -221,14 +226,15 @@ Loader {
                             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                             font.pointSize: 10
                             renderType: Text.NativeRendering
-                            color: Qt.lighter((isOutgoing ?
-                                       JamiTheme.messageOutTxtColor :
-                                       JamiTheme.messageInTxtColor), 1.5)
+                            color: UtilsAdapter.luma(bubble.color)
+                                   ? JamiTheme.chatviewTextColorLight
+                                   : JamiTheme.chatviewTextColorDark
                         }
                     }
                 }
                 ,ProgressBar {
                     id: progressBar
+
                     visible: Status === Interaction.Status.TRANSFER_ONGOING
                     height: visible * implicitHeight
                     value: transferStats.progress / transferStats.totalSize
@@ -259,6 +265,7 @@ Loader {
             innerContent.children: [
                 Loader {
                     id: localMediaCompLoader
+
                     anchors.right: isOutgoing ? parent.right : undefined
                     asynchronous: true
                     width: sourceComponent.width
@@ -272,6 +279,7 @@ Loader {
                     }
                     Component {
                         id: avComp
+
                         Loader {
                             Component.onCompleted: {
                                 var qml = WITH_WEBENGINE ?
@@ -285,6 +293,7 @@ Loader {
                         id: animatedImageComp
                         AnimatedImage {
                             id: animatedImg
+
                             anchors.right: isOutgoing ? parent.right : undefined
                             property real minSize: 192
                             property real maxSize: 256
