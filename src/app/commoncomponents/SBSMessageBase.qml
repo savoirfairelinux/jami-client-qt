@@ -355,7 +355,7 @@ Control {
             id: emojiReaction
 
             visible: Reactions && Object.entries(Reactions).length
-            property bool isOutgoing: Author === ""
+            property bool isOutgoing: Author === CurrentAccount.uri
 
 
             Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft

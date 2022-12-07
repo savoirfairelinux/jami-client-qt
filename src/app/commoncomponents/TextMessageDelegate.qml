@@ -34,7 +34,7 @@ SBSMessageBase {
     property bool isEmojiOnly: IsEmojiOnly
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
 
-    isOutgoing: Author === ""
+    isOutgoing: Author === CurrentAccount.uri
     author: Author
     readers: Readers
     timestamp: Timestamp
