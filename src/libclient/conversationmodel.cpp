@@ -2441,6 +2441,7 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
             }
             auto msgId = message["id"];
             auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+            conversation.interactions->reactToMessage(msgId, msg);
             conversation.interactions->editMessage(msgId, msg);
             auto downloadFile = false;
             if (msg.type == interaction::Type::INITIAL) {
@@ -2581,6 +2582,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         }
         auto msgId = message["id"];
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+        conversation.interactions->reactToMessage(msgId, msg);
         conversation.interactions->editMessage(msgId, msg);
         api::datatransfer::Info info;
         QString fileId;

@@ -588,7 +588,7 @@ void
 MessageListModel::removeReaction(QString& msgId, QString& reactionId, QString& authorId)
 {
     //  if it's a deleted reaction emoji, removal from ReactedMessage_
-    auto& messageReactions = reactedMessages_[msgId];
+    /*auto& messageReactions = reactedMessages_[msgId];
     auto& authorReaction = messageReactions[authorId];
     authorReaction.remove(reactionId);
 
@@ -597,9 +597,9 @@ MessageListModel::removeReaction(QString& msgId, QString& reactionId, QString& a
         if (messageReactions.size() == 0) {
             reactedMessages_.remove(msgId);
         }
-    }
+    }*/
     auto message = find(msgId);
-    if (message) {
+    if (message != interactions_.end()) {
         message->second.reactions = convertReactMessagetoQVariant(reactedMessages_[msgId]);
         emitDataChanged(message, {Role::Reactions});
     }
@@ -612,6 +612,11 @@ MessageListModel::addEdition(const QString& msgId, const interaction::Info& info
     if (editedId.isEmpty())
         return;
     auto& edited = editedBodies_[editedId];
+    auto editedMsgIt = std::find_if(edited.begin(), edited.end(), [&](const auto& v) {
+        return msgId == v.commitId;
+    });
+    if (editedMsgIt != edited.end())
+        return; // Already added
     auto value = interaction::Body {msgId, info.body, info.timestamp};
     if (end)
         edited.push_back(value);
@@ -621,11 +626,10 @@ MessageListModel::addEdition(const QString& msgId, const interaction::Info& info
     if (editedIt != interactions_.end()) {
         // If already there, we can update the content
         editMessage(editedId, editedIt->second);
-    }
-    editMessages_.append(editedId);
-    auto reactedMessage = findReactedMessage(editedId);
-    if (reactedMessage.size()) {
-        removeReaction(reactedMessage["reactedId"], editedId, reactedMessage["authorId"]);
+        if (!editedIt->second.react_to.isEmpty()) {
+            auto reactToIt = find(editedIt->second.react_to);
+            reactToMessage(editedIt->second.react_to, reactToIt->second);
+        }
     }
 }
 
@@ -635,32 +639,38 @@ MessageListModel::addReaction(const QString& authorURI,
                               QString reaction,
                               const QString& reactionId)
 {
-    // if the reaction was not deleted = is not in editMessages_
-    if (!editMessages_.contains(reactionId)) {
-        // if a reaction was already added for this id
-        if (reactedMessages_.contains(replyToId)) {
-            auto& msgMap = reactedMessages_[replyToId];
-            if (msgMap.contains(authorURI)) {
-                msgMap[authorURI].insert(reactionId, reaction);
-
-            } else {
-                MapStringString tempMap;
-                tempMap.insert(reactionId, reaction);
-                msgMap.insert(authorURI, tempMap);
+    // if the reaction was not deleted = is not in editedBodies_
+    auto itReacted = reactedMessages_.find(replyToId);
+    // TODO can be simplified
+    // TODO reactedMessages_ can be QMap<QString /*editedId*/, QStringList /*reactionIds*/>
+    if (itReacted != reactedMessages_.end()) {
+        auto itAuthor = itReacted->find(authorURI);
+        if (itAuthor != itReacted->end()) {
+            auto itReaction = itAuthor->find(reactionId);
+            if (itReaction != itAuthor->end()) {
+                return; // Already added
             }
-
+            itAuthor->insert(reactionId, reaction);
         } else {
-            QMap<QString, MapStringString> mapQ;
             MapStringString tempMap;
             tempMap.insert(reactionId, reaction);
-            mapQ.insert(authorURI, tempMap);
-            reactedMessages_.insert(replyToId, mapQ);
+            itReacted->insert(authorURI, tempMap);
         }
-        auto interaction = find(replyToId);
-        if (interaction != interactions_.end()) {
-            // If already there, we can update the content
-            editMessage(replyToId, interaction->second);
-        }
+    } else {
+        QMap<QString, MapStringString> mapQ;
+        MapStringString tempMap;
+        tempMap.insert(reactionId, reaction);
+        mapQ.insert(authorURI, tempMap);
+        reactedMessages_.insert(replyToId, mapQ);
+    }
+    auto interaction = find(reactionId);
+    if (interaction != interactions_.end()) {
+        // Edit reaction if needed
+        editMessage(reactionId, interaction->second);
+    }
+    auto reactInteraction = find(replyToId);
+    if (reactInteraction != interactions_.end()) {
+        reactToMessage(replyToId, reactInteraction->second);
     }
 }
 
@@ -672,7 +682,17 @@ MessageListModel::convertReactMessagetoQVariant(const QMap<QString, MapStringStr
         QStringList emojiList;
         // reaction ids are irrelevant for qml (j.key()), the conversion ignore them
         for (auto j = i.value().begin(); j != i.value().end(); j++) {
-            emojiList.append(j.value());
+            auto key = j.key(); // TODO if reactedMessages_, no need to be complex!
+            // But interactions_ must contains the reaction first
+            auto itKey = find(key);
+            QString reaction;
+            if (itKey == interactions_.end())
+                reaction = j.value();
+            else
+                reaction = itKey->second.body;
+            if (reaction.isEmpty())
+                continue;
+            emojiList.append(reaction);
         }
         convertedMap.insert(i.key(), emojiList);
     }
@@ -682,12 +702,6 @@ MessageListModel::convertReactMessagetoQVariant(const QMap<QString, MapStringStr
 void
 MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
 {
-    auto itReact = reactedMessages_.find(msgId);
-    if (itReact != reactedMessages_.end()) {
-        info.reactions = convertReactMessagetoQVariant(reactedMessages_[msgId]);
-        emitDataChanged(find(msgId), {Role::Reactions});
-    }
-
     auto it = editedBodies_.find(msgId);
     if (it != editedBodies_.end()) {
         if (info.previousBodies.isEmpty()) {
@@ -717,6 +731,17 @@ MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
             QModelIndex modelIndex = QAbstractListModel::index(index, 0);
             Q_EMIT dataChanged(modelIndex, modelIndex, {Role::ReplyToBody});
         }
+    }
+}
+
+void
+MessageListModel::reactToMessage(const QString& msgId, interaction::Info& info)
+{
+    // If already there, we can update the content
+    auto itReact = reactedMessages_.find(msgId);
+    if (itReact != reactedMessages_.end()) {
+        info.reactions = convertReactMessagetoQVariant(reactedMessages_[msgId]);
+        emitDataChanged(find(msgId), {Role::Reactions});
     }
 }
 

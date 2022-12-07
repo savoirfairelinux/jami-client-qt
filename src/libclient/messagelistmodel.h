@@ -142,6 +142,7 @@ public:
                      QString reaction,
                      const QString& reactionId);
     void editMessage(const QString& msgId, interaction::Info& info);
+    void reactToMessage(const QString& msgId, interaction::Info& info);
     QVariantMap convertReactMessagetoQVariant(const QMap<QString, MapStringString>& map);
     QString lastMessageUid() const;
     QString lastSelfMessageId() const;
@@ -166,7 +167,7 @@ private:
     QMap<QString, QSet<QString>> replyTo_;
     void updateReplies(item_t& message);
     QMap<QString, QVector<interaction::Body>> editedBodies_;
-    QStringList editMessages_;
+    // QStringList editMessages_;
     QMap<QString, QMap<QString, MapStringString>> reactedMessages_;
     // QMap<QString, QVariantMap> ReactedMessages_;
 
