@@ -67,7 +67,7 @@ Loader {
                                        2 * hPadding - avatarBlockWidth
                                        - buttonsLoader.width - 24 - 6 - 24
 
-            isOutgoing: Author === ""
+            isOutgoing: Author === CurrentAccount.uri
             showTime: root.showTime
             seq: root.seq
             author: Author

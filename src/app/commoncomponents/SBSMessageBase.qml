@@ -232,6 +232,7 @@ Control {
                         } else {
                             y = 0
                         }
+
                         var distBorders = root.width - bubble.width - width
                         if (isOutgoing) {
                             if (distBorders > 0)
@@ -246,6 +247,7 @@ Control {
                         }
                     }
                 }
+
 
                 MessageBubble {
                     id: bubble
@@ -360,7 +362,7 @@ Control {
         EmojiReactions {
             id: emojiReaction
 
-            property bool isOutgoing: Author === ""
+            property bool isOutgoing: Author === CurrentAccount.uri
             Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
             Layout.rightMargin: isOutgoing ? status.width : undefined
             Layout.leftMargin: !isOutgoing ? avatarBlock.width : undefined
@@ -412,5 +414,6 @@ Control {
         id: reactionPopup
 
         emojiReaction: Reactions
+
     }
 }
