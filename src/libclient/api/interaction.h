@@ -325,14 +325,12 @@ struct Info
         if (message.contains("react-to") && type == Type::TEXT) {
             type = to_type("REACTION");
             react_to = message["react-to"];
-            authorUri = message["author"];
         }
+        authorUri = message["author"];
 
         if (type == Type::TEXT || type == Type::EDITED || type == Type::REACTION) {
             body = message["body"];
         }
-        if (type != Type::REACTION)
-            authorUri = accountURI == message["author"] ? "" : message["author"];
         timestamp = message["timestamp"].toInt();
         status = Status::SUCCESS;
         parentId = message["linearizedParent"];
