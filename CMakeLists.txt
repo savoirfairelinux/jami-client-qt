@@ -288,7 +288,11 @@ else()
 endif()
 
 # For libavutil/avframe.
-set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib")
+if (WITH_DAEMON_SUBMODULE)
+  set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/daemon/contrib")
+else()
+  set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib")
+endif()
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
@@ -319,7 +323,11 @@ if(MSVC)
   add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
 
   # dependencies
-  set(DRING ${PROJECT_SOURCE_DIR}/../daemon)
+  if (WITH_DAEMON_SUBMODULE)
+    set(DRING ${PROJECT_SOURCE_DIR}/daemon)
+  else()
+    set(DRING ${PROJECT_SOURCE_DIR}/../daemon)
+  endif()
   set(QRENCODE_DIR
     ${PROJECT_SOURCE_DIR}/3rdparty/qrencode-win32/qrencode-win32)
 
