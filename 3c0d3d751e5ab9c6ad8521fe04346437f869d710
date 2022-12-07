@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e41df69_ee7d0d94",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-07T14:41:54Z",
+      "side": 1,
+      "message": "Yes, the design is not complete: No design to select other emojis and no design for the buttons and the beahvour when emojis are already sent. So I had to add thoses to the initial design.  Moreover, we thought with Adrian it would be better to have 2 small buttons when the bubble is hovered to select the menu, and not a huge button each time a bubble is hovered. It was a choice to change this part of the design.",
+      "parentUuid": "f8302364_b5ad09ab",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "3c0d3d751e5ab9c6ad8521fe04346437f869d710",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1f8e98d_a754105c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 11
@@ -180,6 +204,54 @@
       "side": 1,
       "message": "So it should not be added in this patch (else users will have a button that will not work)",
       "parentUuid": "a66f3e48_a16f34ce",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "3c0d3d751e5ab9c6ad8521fe04346437f869d710",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ebe8aa8_090797ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-07T14:41:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4678e69f_a919b9f4",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "3c0d3d751e5ab9c6ad8521fe04346437f869d710",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6450cfe4_51c648df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-07T14:41:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "774a6b4b_736e6245",
       "range": {
         "startLine": 9,
         "startChar": 11,
