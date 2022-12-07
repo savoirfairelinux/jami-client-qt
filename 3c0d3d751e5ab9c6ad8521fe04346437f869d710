@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32d9126f_04a4ec4e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-07T21:54:45Z",
+      "side": 1,
+      "message": "Ok, and what about the spacing (https://git.jami.net/savoirfairelinux/jami-client-qt/uploads/71827f99742943a31422362fca8fddfa/Screenshot_from_2022-11-03_09-51-30.png the box is 20px in the message, not outside)",
+      "parentUuid": "3e41df69_ee7d0d94",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "3c0d3d751e5ab9c6ad8521fe04346437f869d710",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1f8e98d_a754105c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 11

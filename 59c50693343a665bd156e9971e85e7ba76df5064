@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea661823_2a1c245e",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-07T21:54:45Z",
+      "side": 1,
+      "message": "I rewrote a lot of things in https://review.jami.net/c/jami-client-qt/+/23366, you can squash and continue the cleanup",
+      "range": {
+        "startLine": 642,
+        "startChar": 22,
+        "endLine": 643,
+        "endChar": 23
+      },
+      "revId": "59c50693343a665bd156e9971e85e7ba76df5064",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
