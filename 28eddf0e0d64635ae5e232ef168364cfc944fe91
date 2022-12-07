@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b476f364_606f46ea",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-12-07T18:16:27Z",
+      "side": 1,
+      "message": "why not simply using \"DEAMON_DIR\" instead of having if/elses all over the place",
+      "range": {
+        "startLine": 291,
+        "startChar": 4,
+        "endLine": 291,
+        "endChar": 25
+      },
+      "revId": "28eddf0e0d64635ae5e232ef168364cfc944fe91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
