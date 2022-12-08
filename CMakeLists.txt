@@ -288,11 +288,7 @@ else()
 endif()
 
 # For libavutil/avframe.
-if (WITH_DAEMON_SUBMODULE)
-  set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/daemon/contrib")
-else()
-  set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib")
-endif()
+set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
@@ -323,11 +319,6 @@ if(MSVC)
   add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
 
   # dependencies
-  if (WITH_DAEMON_SUBMODULE)
-    set(DRING ${PROJECT_SOURCE_DIR}/daemon)
-  else()
-    set(DRING ${PROJECT_SOURCE_DIR}/../daemon)
-  endif()
   set(QRENCODE_DIR
     ${PROJECT_SOURCE_DIR}/3rdparty/qrencode-win32/qrencode-win32)
 
@@ -352,9 +343,9 @@ if(MSVC)
     ${QRENCODE_DIR}/vc8/qrcodelib/x64/Release-Lib/qrcodelib.lib)
 
   # daemon
-  set(DRING_SRC_PATH ${DRING}/contrib/msvc/include)
-  set(DRING_LIB ${DRING}/build/x64/ReleaseLib_win32/bin/jami.lib)
-  set(GNUTLS_LIB ${DRING}/contrib/msvc/lib/x64/libgnutls.lib)
+  set(JAMID_SRC_PATH ${DAEMON_DIR}/contrib/msvc/include)
+  set(JAMID_LIB ${DAEMON_DIR}/build/x64/ReleaseLib_win32/bin/jami.lib)
+  set(GNUTLS_LIB ${DAEMON_DIR}/contrib/msvc/lib/x64/libgnutls.lib)
 
   # Beta config
   if(BETA)
@@ -367,7 +358,7 @@ if(MSVC)
   endif()
 
   include_directories(
-    ${DRING_SRC_PATH}
+    ${JAMID_SRC_PATH}
     ${LIBCLIENT_SRC_DIR}
     ${QRENCODE_DIR})
 elseif (NOT APPLE)
@@ -517,7 +508,7 @@ if(MSVC)
   target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
-    ${DRING_LIB}
+    ${JAMID_LIB}
     ${GNUTLS_LIB}
     ${LIBCLIENT_NAME}
     ${QT_LIBS}
@@ -568,7 +559,7 @@ if(MSVC)
     WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
     COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
     -DCOPY_TO_PATH=$<TARGET_FILE_DIR:${PROJECT_NAME}>
-    -DDRING_PATH=${DRING}
+    -DDRING_PATH=${DAEMON_DIR}
     -DPROJECT_ROOT_DIR=${PROJECT_SOURCE_DIR}
     -DPACKAGING_DIR=${PACKAGING_DIR}
     -P ${EXTRAS_DIR}/build/cmake/windows_daemon_deploy.cmake)

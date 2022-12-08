@@ -325,7 +325,7 @@ set(LIBCLIENT_HEADERS_API
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR
-  "${PROJECT_SOURCE_DIR}/../../../daemon/contrib")
+  "${DAEMON_DIR}/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
@@ -355,8 +355,8 @@ else()
     set(dbus_xml_introspecs_path ${RING_XML_INTERFACES_DIR})
   elseif(DEFINED LIBJAMI_XML_INTERFACES_DIR)
     set(dbus_xml_introspecs_path ${LIBJAMI_XML_INTERFACES_DIR})
-  elseif(EXISTS "${LIBJAMI_BUILD_DIR}/../bin/dbus")
-    set(dbus_xml_introspecs_path ${LIBJAMI_BUILD_DIR}/../bin/dbus)
+  elseif(EXISTS "${DAEMON_DIR}/bin/dbus")
+    set(dbus_xml_introspecs_path ${DAEMON_DIR}/bin/dbus)
   else()
     set(dbus_xml_introspecs_path
       ${CMAKE_INSTALL_PREFIX}/share/dbus-1/interfaces)
