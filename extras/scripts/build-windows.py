@@ -320,8 +320,8 @@ def main():
         print('These scripts will only run on a 64-bit Windows system for now!')
         sys.exit(1)
 
-    if int(getLatestVSVersion()) < 15:
-        print('These scripts require at least Visual Studio v15 2017!')
+    if int(getLatestVSVersion()) < 16:
+        print('These scripts require at least Visual Studio v16 2019!')
         sys.exit(1)
 
     parsed_args = parse_args()

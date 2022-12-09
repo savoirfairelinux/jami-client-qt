@@ -33,7 +33,6 @@ WIN32_DISTRIBUTION_NAME = "win32"
 
 # vs vars
 win_sdk_default = '10.0.18362.0'
-win_toolset_default = '142'
 
 APT_BASED_DISTROS = [
     'debian',
@@ -358,7 +357,7 @@ def run_install(args):
         winmake = 'daemon/compat/msvc/winmake.py'
         with cwd(os.path.dirname(winmake)):
             execute_script(
-                f'python {winmake} -iv -t {args.toolset} -s {args.sdk} -b daemon')
+                f'python {winmake} -iv -s {args.sdk} -b daemon')
         build_windows = 'extras/scripts/build-windows.py'
         execute_script(f'python {build_windows} init')
         execute_script(f'python {build_windows}')
@@ -615,8 +614,6 @@ def parse_args():
     dist = choose_distribution()
 
     if dist == WIN32_DISTRIBUTION_NAME:
-        ap.add_argument('--toolset', default=win_toolset_default, type=str,
-                        help='Windows use only, specify Visual Studio toolset version')
         ap.add_argument('--sdk', default=win_sdk_default, type=str,
                         help='Windows use only, specify Windows SDK version')
 
