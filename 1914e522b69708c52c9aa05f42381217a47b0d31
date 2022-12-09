@@ -70,6 +70,30 @@
       },
       "revId": "1914e522b69708c52c9aa05f42381217a47b0d31",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bd15ac6_f121df8b",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-09T21:16:54Z",
+      "side": 1,
+      "message": "Done, I can\u0027t highlight when the link is hover because handlers are broken in qt6, so the link is hover when the root is hovered",
+      "parentUuid": "05159e20_4d28b263",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 25
+      },
+      "revId": "1914e522b69708c52c9aa05f42381217a47b0d31",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
