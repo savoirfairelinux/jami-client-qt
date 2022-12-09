@@ -22,6 +22,30 @@
       },
       "revId": "1914e522b69708c52c9aa05f42381217a47b0d31",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4321bf64_bd67808a",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-09T20:05:23Z",
+      "side": 1,
+      "message": "The rectangle is here to draw the link highlight as it is not down by css style anymore. I don\u0027t have your issue of two links opening in one click, how did you do that?",
+      "parentUuid": "6e34549e_a3c26337",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 25
+      },
+      "revId": "1914e522b69708c52c9aa05f42381217a47b0d31",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
