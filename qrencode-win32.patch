@@ -48,7 +48,7 @@ index aabc6b6..8d8293b 100644
      <ProjectGuid>{9A90BF5C-84B0-41F6-B83C-C20EADC1F46C}</ProjectGuid>
      <RootNamespace>qrcodelib</RootNamespace>
      <Keyword>Win32Proj</Keyword>
-+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Lib|Win32'" Label="Configuration">
