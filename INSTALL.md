@@ -160,11 +160,11 @@ Only 64-bit MSVC build can be compiled.
     - Qt WebSockets
     - Qt WebView
 
-- Download [Visual Studio](https://visualstudio.microsoft.com/) (version == 2019). Note: version 2022 does not work. _See the SDK and Toolset notes below._
+- Download [Visual Studio](https://visualstudio.microsoft.com/) (versions 2019 or 2022). _See the SDK notes below._
 
-  |              | SDK          | Toolset | MFC    |
-  | ------------ | ------------ | ------- | ------ |
-  | Requirement: | 10.0.18362.0 | V142    | latest |
+  |              | SDK          | Toolset       | MFC              |
+  | ------------ | ------------ | ------------- | ---------------- |
+  | Requirement: | 10.0.18362.0 | V142 (VisualStudio 2019) / V143 (VisualStudio 2022)  | matching Toolset |
 
 - Install Qt Vs Tools under extensions, and configure msvc2017_64 path under Qt Options. _See the Qt notes below._
 
@@ -199,11 +199,11 @@ Only 64-bit MSVC build can be compiled.
     python build.py --install
 ```
 
-> **SDK and Toolset** Note:
-> Jami can be build with more recent Windows SDK and Toolset than the ones specified in the table above. However, if your have another version than SDK 10.0.18362.0 and/or Toolset v142 installed, you need to identify it according to the example below. For the SDK, you still need to have the required version in addition to the one you chose.
+> **SDK** Note:
+> Jami can be build with more recent Windows SDK than the one specified in the table above. However, if your have another version than SDK 10.0.18362.0 installed, you need to identify it according to the example below. And you still need to have the required version in addition to the one you chose.
 
 ```bash
-    python build.py --install --sdk <your-sdk-version> --toolset <your-toolset-version>
+    python build.py --install --sdk <your-sdk-version>
 ```
 
 > **Qt** Note: If you have another version than qt 6.2.3 installed this step will build daemon correctly but will fail for the client.
@@ -227,7 +227,7 @@ Only 64-bit MSVC build can be compiled.
 - On MSVC folder (daemon\MSVC):
 
 ```sh
-    cmake -DCMAKE_CONFIGURATION_TYPES="ReleaseLib_win32" -DCMAKE_VS_PLATFORM_NAME="x64" -G "Visual Studio 16 2019" -A x64 -T '$(DefaultPlatformToolset)' ..
+    cmake -DCMAKE_CONFIGURATION_TYPES="ReleaseLib_win32" -DCMAKE_VS_PLATFORM_NAME="x64" -G "Visual Studio 17 2022" -A x64 -T '$(DefaultPlatformToolset)' ..
     python winmake.py -b daemon
 ```
 
