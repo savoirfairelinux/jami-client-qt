@@ -16,6 +16,24 @@
       "message": "This patch introduces a regression detected by client-qt-new\n\nScenario (test_focus_new_swarm_page):\n\nOpen NewSwarmPage, change the text to \"Title\", validate \u003d\u003e \"compare(title.text, \"Title\")\" fails\n\nThe test can be built with \"-DENABLE_TESTS\u003dtrue\"\n\nAnd laucnhed with ~/Projects/jami/client-qt/tests/qml/src  ➦ de153f3b ●  HOME\u003d/tmp ../../../build/tests/qml_tests",
       "revId": "0cfd4faab1e6a581c66a4df2fdd95367a2f32acd",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd28e6b1_3104d658",
+        "filename": "src/app/commoncomponents/EditableLineEdit.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-09T11:34:15Z",
+      "side": 1,
+      "message": "After extensive test and having the exactly same behavior for both",
+      "parentUuid": "a4765605_ddeda416",
+      "revId": "0cfd4faab1e6a581c66a4df2fdd95367a2f32acd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
