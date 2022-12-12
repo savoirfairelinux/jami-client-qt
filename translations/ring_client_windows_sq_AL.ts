@@ -967,7 +967,7 @@ Nëse po, kësaj llogarie do t’i përshoqërihet vetëm një identifikues prej
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
         <source>You can add 7 people in the swarm</source>
-        <translation type="unfinished"/>
+        <translation>Mund të shtoni 7 persona te zgjoi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
@@ -3236,12 +3236,12 @@ Kopjojeni dhe jepuani shokëve!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="110"/>
         <source>Edit last message</source>
-        <translation type="unfinished"/>
+        <translation>Përpunoni mesazhin e  fundit</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="114"/>
         <source>Cancel message edition</source>
-        <translation type="unfinished"/>
+        <translation>Anulo përpunimin e mesazhit</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="123"/>
@@ -3322,12 +3322,12 @@ Kopjojeni dhe jepuani shokëve!</translation>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="285"/>
         <source>%1 is sharing it&apos;s location</source>
-        <translation type="unfinished"/>
+        <translation>%1 po e tregon vendndodhjen e vet</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="290"/>
         <source>Location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Tregim vendndodhjeje</translation>
     </message>
 </context>
 <context>
@@ -3396,17 +3396,17 @@ Kopjojeni dhe jepuani shokëve!</translation>
         <translation>Përfundoi</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation>Sot</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Dje</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>mu tani</translation>
     </message>

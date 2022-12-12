@@ -973,7 +973,7 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
         <source>You can add 7 people in the swarm</source>
-        <translation type="unfinished"/>
+        <translation>Vous pouvez ajouter jusqu&apos;à 7 personnes à un swarm</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
@@ -1416,49 +1416,52 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>10 minutes</source>
-        <translation type="unfinished"/>
+        <translation>10 minutes</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>One hour</source>
-        <translation type="unfinished"/>
+        <translation>Une heure</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
         <source>%1 minutes left</source>
-        <translation type="unfinished"/>
+        <translation>%1 minutes restantes</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
         <source>%1 minute left</source>
-        <translation type="unfinished"/>
+        <translation>%1 minute restante</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
         <source>Your precise location could not be determined.
 In Device Settings, please turn on &quot;Location Services&quot;.
 Other participants&apos; location can still be received.</source>
-        <translation type="unfinished"/>
+        <translation>Votre position ne peut être déterminée.
+Dans les paramètres de l&apos;appareil, veuillez activer le &quot;service de localisation&quot;.
+La localisation des autres participants peut continuer à être reçue.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
         <source>Your precise location could not be determined. Please check your Internet connection.</source>
-        <translation type="unfinished"/>
+        <translation>Votre localisation précise ne peut être déterminée.
+Veuillez vérifier votre connection Internet.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="311"/>
         <source>Turn off location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Désactiver le partage de localisation.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
         <source>Stop location sharing in this conversation</source>
-        <translation type="unfinished"/>
+        <translation>Arrêter le partage de localisation pour cette conversation</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source>Location is shared in several conversations</source>
-        <translation type="unfinished"/>
+        <translation>La localisation est partagée avec plusieurs conversations. </translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
@@ -3067,7 +3070,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
         <source>Leave conversation</source>
-        <translation type="unfinished"/>
+        <translation>Quitter la conversation</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="785"/>
@@ -3225,12 +3228,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="110"/>
         <source>Edit last message</source>
-        <translation type="unfinished"/>
+        <translation>Modifier le dernier message</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="114"/>
         <source>Cancel message edition</source>
-        <translation type="unfinished"/>
+        <translation>Annuler l&apos;édition du message</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="123"/>
@@ -3311,12 +3314,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="285"/>
         <source>%1 is sharing it&apos;s location</source>
-        <translation type="unfinished"/>
+        <translation>%1 partage sa localisation</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="290"/>
         <source>Location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Partage de localisation</translation>
     </message>
 </context>
 <context>
@@ -3785,12 +3788,12 @@ connects to synchronize the conversation.</source>
         <translation>Délai d&apos;attente de votre contact dépassé</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation>Aujourd&apos;hui</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Hier</translation>
     </message>
@@ -3805,7 +3808,7 @@ connects to synchronize the conversation.</source>
         <translation>En cours</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>juste maintenant</translation>
     </message>

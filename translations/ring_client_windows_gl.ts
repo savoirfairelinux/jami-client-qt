@@ -3385,17 +3385,17 @@ Copiao e compárteo coas túas amizades!</translation>
         <translation>Rematada</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation>Hoxe</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Onte</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>xusto agora</translation>
     </message>

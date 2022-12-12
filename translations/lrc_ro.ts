@@ -972,7 +972,7 @@ Profilul poate fi modificat în orice moment în reglările contului.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
         <source>You can add 7 people in the swarm</source>
-        <translation type="unfinished"/>
+        <translation>Poți adăuga 7 persoane în grup</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
@@ -1007,7 +1007,7 @@ Profilul poate fi modificat în orice moment în reglările contului.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="39"/>
         <source>Start swarm</source>
-        <translation>Începe un grup</translation>
+        <translation>Grup nou</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
@@ -1973,7 +1973,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="478"/>
         <source>in MB, 0 = unlimited</source>
-        <translation>în MB, 0 = nelimitat</translation>
+        <translation>în Mo, 0 = nelimitat</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="481"/>
@@ -3227,12 +3227,12 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="110"/>
         <source>Edit last message</source>
-        <translation type="unfinished"/>
+        <translation>Modifică ultimul mesaj</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="114"/>
         <source>Cancel message edition</source>
-        <translation type="unfinished"/>
+        <translation>Anulează modificarea mesajului</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="123"/>
@@ -3313,12 +3313,12 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="285"/>
         <source>%1 is sharing it&apos;s location</source>
-        <translation type="unfinished"/>
+        <translation>%1 își distribuie poziția</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="290"/>
         <source>Location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Distribuirea poziției</translation>
     </message>
 </context>
 <context>
@@ -3787,12 +3787,12 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <translation>Timpul de așteptare a expirat</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation>Azi</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Ieri</translation>
     </message>
@@ -3807,7 +3807,7 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <translation>În curs</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>chiar acum</translation>
     </message>

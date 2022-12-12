@@ -972,7 +972,7 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
         <source>You can add 7 people in the swarm</source>
-        <translation type="unfinished"/>
+        <translation>A jelenlegi rajcsoportoknak legfeljebb 8 résztvevője lehet</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
@@ -3227,12 +3227,12 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="110"/>
         <source>Edit last message</source>
-        <translation type="unfinished"/>
+        <translation>A legutóbbi üzenet szerkesztése</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="114"/>
         <source>Cancel message edition</source>
-        <translation type="unfinished"/>
+        <translation>Üzenet szerkesztésének megszakítása</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="123"/>
@@ -3313,12 +3313,12 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="285"/>
         <source>%1 is sharing it&apos;s location</source>
-        <translation type="unfinished"/>
+        <translation>%1 megosztja a tartózkodási helyét</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="290"/>
         <source>Location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Helymegosztás</translation>
     </message>
 </context>
 <context>
@@ -3787,12 +3787,12 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
         <translation>Időtúllépés várt a kapcsolattartásra</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation>Ma</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Tegnap</translation>
     </message>
@@ -3807,7 +3807,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
         <translation>Folyamatban lévő</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>most</translation>
     </message>

@@ -972,7 +972,7 @@ Il profilo può essere modificato in qualsiasi momento nelle impostazioni dell&a
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
         <source>You can add 7 people in the swarm</source>
-        <translation type="unfinished"/>
+        <translation>È possibile aggiungere 7 persone nel gruppo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
@@ -1007,7 +1007,7 @@ Il profilo può essere modificato in qualsiasi momento nelle impostazioni dell&a
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="39"/>
         <source>Start swarm</source>
-        <translation>Avvia un gruppo</translation>
+        <translation>Avvia gruppo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
@@ -3228,12 +3228,12 @@ si connetta per sincronizzare la conversazione.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="110"/>
         <source>Edit last message</source>
-        <translation type="unfinished"/>
+        <translation>Modifica l&apos;ultimo messaggio</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="114"/>
         <source>Cancel message edition</source>
-        <translation type="unfinished"/>
+        <translation>Annulla la modifica del messaggio</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="123"/>
@@ -3314,12 +3314,12 @@ si connetta per sincronizzare la conversazione.</translation>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="285"/>
         <source>%1 is sharing it&apos;s location</source>
-        <translation type="unfinished"/>
+        <translation>%1 sta condividendo la sua posizione</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="290"/>
         <source>Location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Condivisione della posizione</translation>
     </message>
 </context>
 <context>
@@ -3788,12 +3788,12 @@ si connetta per sincronizzare la conversazione.</translation>
         <translation>Tempo scaduto in attesa di contatto</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation>Oggi</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Ieri</translation>
     </message>
@@ -3808,7 +3808,7 @@ si connetta per sincronizzare la conversazione.</translation>
         <translation>In corso</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>ora</translation>
     </message>

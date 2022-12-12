@@ -3786,12 +3786,12 @@ připojí, aby se sesynchronizovala konverzace.</translation>
         <translation>Vypršel čas čekání na kontakt</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation>Dnes</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Včera</translation>
     </message>
@@ -3806,7 +3806,7 @@ připojí, aby se sesynchronizovala konverzace.</translation>
         <translation>Průběžně</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>teď</translation>
     </message>

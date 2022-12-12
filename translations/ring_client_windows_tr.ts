@@ -4,12 +4,12 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="152"/>
         <source>Missed call</source>
-        <translation>Cevapsız arama</translation>
+        <translation>Yanıtsız arama</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="153"/>
         <source>Missed call with %1</source>
-        <translation>%1 ile cevapsız arama</translation>
+        <translation>%1 ile yanıtsız arama</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="547"/>
@@ -637,7 +637,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="99"/>
         <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation>Bir mesajın görüntülendiğini belirten bildirimleri gönderin ve alın</translation>
+        <translation>İletinin görüldüğünü belirten bildirimleri gönder ve al</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="125"/>
@@ -707,7 +707,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="143"/>
         <source>Allow IP Auto Rewrite</source>
-        <translation>Otomatik IP Yeniden Yazmaya(IP Auto Rewrite) İzin Ver</translation>
+        <translation>IP Auto Rewrite&apos;a izin ver</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="144"/>
@@ -923,7 +923,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="205"/>
         <source>no video</source>
-        <translation>video yok</translation>
+        <translation>görüntü yok</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
@@ -1987,7 +1987,7 @@ Lütfen yeniden deneyin.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>Belgeler</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
@@ -1997,7 +1997,7 @@ Lütfen yeniden deneyin.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="778"/>
         <source>Add a description</source>
-        <translation type="unfinished"/>
+        <translation>Açıklama ekle</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="781"/>
@@ -2297,7 +2297,7 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
         <source>Leave audio message</source>
-        <translation>Sesli mesaj bırak</translation>
+        <translation>Sesli ileti bırak</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
@@ -3389,17 +3389,17 @@ Kopyalayın ve arkadaşlarınızla paylaşın!</translation>
         <translation>Bitti</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation>Bugün</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Dün</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>Şu an</translation>
     </message>
@@ -3641,7 +3641,7 @@ Kopyalayın ve arkadaşlarınızla paylaşın!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Proxy Authentication Required</source>
-        <translation>Proxy Kimlik Doğrulaması Gerekiyor</translation>
+        <translation>Vekil Kimlik Doğrulaması Gerekli</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
@@ -3786,7 +3786,7 @@ Kopyalayın ve arkadaşlarınızla paylaşın!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Message Too Large</source>
-        <translation>Mesaj Çok Büyük</translation>
+        <translation>İleti Çok Büyük</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="115"/>

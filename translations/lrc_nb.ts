@@ -3781,12 +3781,12 @@ kobler seg til for å synkronisere samtalen.</translation>
         <translation>Tidsavbrudd ventet på kontakt</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Igår</translation>
     </message>
@@ -3801,7 +3801,7 @@ kobler seg til for å synkronisere samtalen.</translation>
         <translation>Pågående</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>akkurat nå</translation>
     </message>

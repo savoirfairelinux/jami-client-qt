@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="de_DE" sourcelanguage="en">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="de_DE" sourcelanguage="en">
 <context>
     <name>CallAdapter</name>
     <message>
@@ -824,7 +826,7 @@ Wenn ja, wird diesem Konto nur ein zufällig generierter 40-stellige Identifikat
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
-        <source>This profile is only shared with this account's contacts.
+        <source>This profile is only shared with this account&apos;s contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
         <translation>Dieses Profil wird nur mit den Kontakten dieses Kontos geteilt.
 Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translation>
@@ -972,7 +974,7 @@ Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
         <source>You can add 7 people in the swarm</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
@@ -3228,12 +3230,12 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="110"/>
         <source>Edit last message</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="114"/>
         <source>Cancel message edition</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="123"/>
@@ -3314,12 +3316,12 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="285"/>
         <source>%1 is sharing it&apos;s location</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="290"/>
         <source>Location sharing</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3788,12 +3790,12 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
         <translation>Frist für das Warten auf Kontakt verstrichen</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation>Heute</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Gestern</translation>
     </message>
@@ -3808,7 +3810,7 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
         <translation>Übertragung läuft</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>gerade eben</translation>
     </message>

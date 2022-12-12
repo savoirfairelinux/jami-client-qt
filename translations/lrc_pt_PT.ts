@@ -3781,12 +3781,12 @@ conectar para sincronizar a conversação.</translation>
         <translation>O tempo de aguardo pelo contato chegou ao fim</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation>Hoje</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Ontem</translation>
     </message>
@@ -3801,7 +3801,7 @@ conectar para sincronizar a conversação.</translation>
         <translation>Em andamento</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>agora mesmo</translation>
     </message>

@@ -3785,12 +3785,12 @@ se conecte para sincronizar la conversación.</translation>
         <translation>Expiró el tiempo de espera al contacto</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="673"/>
+        <location filename="../src/app/messagesadapter.cpp" line="676"/>
         <source>Today</source>
         <translation>Hoy</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="675"/>
+        <location filename="../src/app/messagesadapter.cpp" line="678"/>
         <source>Yesterday</source>
         <translation>Ayer</translation>
     </message>
@@ -3805,7 +3805,7 @@ se conecte para sincronizar la conversación.</translation>
         <translation>En curso</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="664"/>
+        <location filename="../src/app/messagesadapter.cpp" line="667"/>
         <source>just now</source>
         <translation>hace un momento</translation>
     </message>
