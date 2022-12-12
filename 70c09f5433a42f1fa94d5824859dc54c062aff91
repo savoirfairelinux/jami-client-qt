@@ -729,6 +729,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37ab32bc_ecffc4a7",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82025033_af119934",
+      "range": {
+        "startLine": 211,
+        "startChar": 16,
+        "endLine": 211,
+        "endChar": 38
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91d29a14_fcaff0ef",
@@ -801,6 +825,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d069e314_b1e5118b",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "yes, so it\u0027s corrected with your patch, so we can merge it after this one ?",
+      "parentUuid": "64e63d08_f2e11c68",
+      "range": {
+        "startLine": 358,
+        "startChar": 38,
+        "endLine": 358,
+        "endChar": 51
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c5e7040_b00f5e0f",
         "filename": "src/libclient/messagelistmodel.cpp",
         "patchSetId": 15
@@ -812,6 +860,30 @@
       "writtenOn": "2022-12-07T21:54:45Z",
       "side": 1,
       "message": "can crash if message \u003d interactions_.end()",
+      "range": {
+        "startLine": 602,
+        "startChar": 8,
+        "endLine": 602,
+        "endChar": 15
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "129802b8_d5f97fd9",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c5e7040_b00f5e0f",
       "range": {
         "startLine": 602,
         "startChar": 8,
@@ -845,6 +917,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c45b978c_8afb9d26",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92ab98d6_509fea93",
+      "range": {
+        "startLine": 638,
+        "startChar": 16,
+        "endLine": 640,
+        "endChar": 18
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63455b84_0c2f6cd7",
@@ -858,6 +954,30 @@
       "writtenOn": "2022-12-07T21:54:45Z",
       "side": 1,
       "message": "avoid contains and use iterator. Can be simplified",
+      "range": {
+        "startLine": 644,
+        "startChar": 18,
+        "endLine": 644,
+        "endChar": 28
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efe5b8b3_102e4443",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63455b84_0c2f6cd7",
       "range": {
         "startLine": 644,
         "startChar": 18,
@@ -891,6 +1011,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fc09799_8ff1b03e",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "170b4500_1faea053",
+      "range": {
+        "startLine": 659,
+        "startChar": 18,
+        "endLine": 663,
+        "endChar": 9
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32bcb94f_6730d0a0",
@@ -904,6 +1048,30 @@
       "writtenOn": "2022-12-07T21:54:45Z",
       "side": 1,
       "message": "must be explained (a triple for loop is generally not good) and use constIterator",
+      "range": {
+        "startLine": 770,
+        "startChar": 16,
+        "endLine": 772,
+        "endChar": 19
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db92b90b_ec3cbef4",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "function deleted",
+      "parentUuid": "32bcb94f_6730d0a0",
       "range": {
         "startLine": 770,
         "startChar": 16,
@@ -937,6 +1105,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48c22c23_0ef58c50",
+        "filename": "src/libclient/messagelistmodel.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "733797c7_b815e6f3",
+      "range": {
+        "startLine": 141,
+        "startChar": 36,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd52632d_0104714c",
@@ -960,6 +1152,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05100ed1_6f150f87",
+        "filename": "src/libclient/messagelistmodel.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd52632d_0104714c",
+      "range": {
+        "startLine": 170,
+        "startChar": 3,
+        "endLine": 170,
+        "endChar": 51
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72ed1642_7d439736",
@@ -973,6 +1189,30 @@
       "writtenOn": "2022-12-07T21:54:45Z",
       "side": 1,
       "message": "if useless, remove",
+      "range": {
+        "startLine": 171,
+        "startChar": 11,
+        "endLine": 171,
+        "endChar": 18
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89a51b10_62f4f882",
+        "filename": "src/libclient/messagelistmodel.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72ed1642_7d439736",
       "range": {
         "startLine": 171,
         "startChar": 11,

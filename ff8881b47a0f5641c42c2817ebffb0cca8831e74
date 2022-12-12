@@ -250,6 +250,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42faf41c_3f7b5ba3",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "corrected with your patch",
+      "parentUuid": "dff15caf_71193223",
+      "range": {
+        "startLine": 334,
+        "startChar": 24,
+        "endLine": 334,
+        "endChar": 26
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "841936f2_36d69377",
         "filename": "src/libclient/conversationmodel.cpp",
         "patchSetId": 12
@@ -473,6 +497,30 @@
       "side": 1,
       "message": "Yeah editedBodies is supposed to have this information already, so indeed it should not be needed. However, it didn\u0027t work by checking in editedbodies, so I need to check that out with you.",
       "parentUuid": "c2d0123d_bf7e02c5",
+      "range": {
+        "startLine": 625,
+        "startChar": 9,
+        "endLine": 625,
+        "endChar": 35
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70a01496_cdc4dbb1",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-12T19:21:00Z",
+      "side": 1,
+      "message": "deleted",
+      "parentUuid": "b8409253_a2de0c64",
       "range": {
         "startLine": 625,
         "startChar": 9,
