@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65b81c09_dcbb3f59",
+        "filename": "src/app/commoncomponents/ChatviewMessageOptions.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-13T20:28:57Z",
+      "side": 1,
+      "message": "remove debug log",
+      "range": {
+        "startLine": 203,
+        "startChar": 9,
+        "endLine": 204,
+        "endChar": 5
+      },
+      "revId": "0967c01a30756027a2cc9acc9a729779637c753d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7e5f9f6_5189fec7",
+        "filename": "src/app/commoncomponents/ChatviewMessageOptions.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-13T20:28:57Z",
+      "side": 1,
+      "message": "removeReaction doesn\u0027t work",
+      "range": {
+        "startLine": 204,
+        "startChar": 5,
+        "endLine": 205,
+        "endChar": 1
+      },
+      "revId": "0967c01a30756027a2cc9acc9a729779637c753d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6f1c3a5_74edcdad",
+        "filename": "src/app/commoncomponents/ChatviewMessageOptions.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-13T20:28:57Z",
+      "side": 1,
+      "message": "Lot of empty lines",
+      "revId": "0967c01a30756027a2cc9acc9a729779637c753d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adada449_06231dcf",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 2586,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-13T20:28:57Z",
+      "side": 1,
+      "message": "should not be added in two places in the same method.",
+      "range": {
+        "startLine": 2585,
+        "startChar": 59,
+        "endLine": 2586,
+        "endChar": 62
+      },
+      "revId": "0967c01a30756027a2cc9acc9a729779637c753d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "842e7a9a_30b72215",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-13T20:28:57Z",
+      "side": 1,
+      "message": "remove TODO",
+      "range": {
+        "startLine": 621,
+        "startChar": 26,
+        "endLine": 622,
+        "endChar": 28
+      },
+      "revId": "0967c01a30756027a2cc9acc9a729779637c753d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e16d52ce_70fe16c6",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-13T20:28:57Z",
+      "side": 1,
+      "message": "\u0026\u0026, no need for two if",
+      "range": {
+        "startLine": 749,
+        "startChar": 46,
+        "endLine": 750,
+        "endChar": 16
+      },
+      "revId": "0967c01a30756027a2cc9acc9a729779637c753d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
