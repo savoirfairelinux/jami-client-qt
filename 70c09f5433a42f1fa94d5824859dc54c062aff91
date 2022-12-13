@@ -969,6 +969,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2bda4397_e9a7c675",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-13T20:30:57Z",
+      "side": 1,
+      "message": "One should be rebased on the other. Just to be sure that everything is fine after merging both patches.",
+      "parentUuid": "d069e314_b1e5118b",
+      "range": {
+        "startLine": 358,
+        "startChar": 38,
+        "endLine": 358,
+        "endChar": 51
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c5e7040_b00f5e0f",
         "filename": "src/libclient/messagelistmodel.cpp",
         "patchSetId": 15
