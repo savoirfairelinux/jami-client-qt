@@ -213,6 +213,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37a0c23a_09587e0b",
+        "filename": "src/app/commoncomponents/ChatviewmessageOptions.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-13T19:06:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea01bfe1_59eefcbd",
+      "range": {
+        "startLine": 116,
+        "startChar": 20,
+        "endLine": 116,
+        "endChar": 30
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c83715e4_3525021d",
@@ -414,6 +438,30 @@
       "writtenOn": "2022-12-07T21:54:45Z",
       "side": 1,
       "message": "Bug: when someone add new reactions, the size of the popup is not updated, so we don\u0027t see reactions until we go to another conversation and come back",
+      "range": {
+        "startLine": 83,
+        "startChar": 24,
+        "endLine": 83,
+        "endChar": 40
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ea992ce_bb5a757b",
+        "filename": "src/app/commoncomponents/EmojiReactionPopup.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-13T19:06:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e59642bf_bd0a78e4",
       "range": {
         "startLine": 83,
         "startChar": 24,
