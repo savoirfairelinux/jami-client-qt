@@ -991,6 +991,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79f17bdc_c728d548",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-13T22:15:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bda4397_e9a7c675",
+      "range": {
+        "startLine": 358,
+        "startChar": 38,
+        "endLine": 358,
+        "endChar": 51
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c5e7040_b00f5e0f",
