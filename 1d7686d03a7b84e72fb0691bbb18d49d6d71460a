@@ -22,6 +22,30 @@
       },
       "revId": "1d7686d03a7b84e72fb0691bbb18d49d6d71460a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b11d202_aadf6b9f",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-13T20:17:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "975c01e0_5d7cb90c",
+      "range": {
+        "startLine": 147,
+        "startChar": 24,
+        "endLine": 147,
+        "endChar": 43
+      },
+      "revId": "1d7686d03a7b84e72fb0691bbb18d49d6d71460a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
