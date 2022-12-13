@@ -660,6 +660,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29fb4b31_0bbc1c00",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-13T20:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8904753a_7c2be071",
+      "range": {
+        "startLine": 178,
+        "startChar": 34,
+        "endLine": 178,
+        "endChar": 106
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c55b55ef_d14cbdb3",
@@ -707,6 +731,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1485f83e_7b6373d5",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-13T20:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfd997fa_2a5e74ac",
+      "range": {
+        "startLine": 201,
+        "startChar": 46,
+        "endLine": 201,
+        "endChar": 105
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a08a084_b41b1be3",
@@ -744,6 +792,30 @@
       "side": 1,
       "message": "yes, but it\u0027s not related to my patch ?",
       "parentUuid": "6a08a084_b41b1be3",
+      "range": {
+        "startLine": 204,
+        "startChar": 48,
+        "endLine": 205,
+        "endChar": 48
+      },
+      "revId": "70c09f5433a42f1fa94d5824859dc54c062aff91",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbf4153d_f8a3b023",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-13T20:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4040ea7_489723e8",
       "range": {
         "startLine": 204,
         "startChar": 48,
