@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8f8739c_98c01521",
+        "filename": "src/app/commoncomponents/ChatviewMessageOptions.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-13T21:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65b81c09_dcbb3f59",
+      "range": {
+        "startLine": 203,
+        "startChar": 9,
+        "endLine": 204,
+        "endChar": 5
+      },
+      "revId": "0967c01a30756027a2cc9acc9a729779637c753d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7e5f9f6_5189fec7",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a20e4232_4fce3123",
+        "filename": "src/app/commoncomponents/ChatviewMessageOptions.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-13T21:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7e5f9f6_5189fec7",
+      "range": {
+        "startLine": 204,
+        "startChar": 5,
+        "endLine": 205,
+        "endChar": 1
+      },
+      "revId": "0967c01a30756027a2cc9acc9a729779637c753d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6f1c3a5_74edcdad",
@@ -60,6 +108,24 @@
       "writtenOn": "2022-12-13T20:28:57Z",
       "side": 1,
       "message": "Lot of empty lines",
+      "revId": "0967c01a30756027a2cc9acc9a729779637c753d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fcc921f_4feb647c",
+        "filename": "src/app/commoncomponents/ChatviewMessageOptions.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-13T21:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6f1c3a5_74edcdad",
       "revId": "0967c01a30756027a2cc9acc9a729779637c753d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
