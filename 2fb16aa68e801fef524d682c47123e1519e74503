@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e4f8ad4e_59031057",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-14T14:46:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7955a1c_a79ce619",
+      "range": {
+        "startLine": 135,
+        "startChar": 24,
+        "endLine": 135,
+        "endChar": 65
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b0d702d6_4c372bd7",
         "filename": "src/app/commoncomponents/SBSMessageBase.qml",
         "patchSetId": 31
@@ -93,6 +117,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c597d9_07bc9b4e",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-14T14:46:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70146aa2_708a580f",
+      "range": {
+        "startLine": 302,
+        "startChar": 4,
+        "endLine": 310,
+        "endChar": 5
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74ebc304_687de960",
@@ -106,6 +154,30 @@
       "writtenOn": "2022-12-14T13:48:42Z",
       "side": 1,
       "message": "unused?",
+      "range": {
+        "startLine": 207,
+        "startChar": 13,
+        "endLine": 207,
+        "endChar": 20
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd833591_1c4f686a",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-14T14:46:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74ebc304_687de960",
       "range": {
         "startLine": 207,
         "startChar": 13,

@@ -153,6 +153,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2bab6cf_3e80af16",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 2586,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-14T14:46:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adada449_06231dcf",
+      "range": {
+        "startLine": 2585,
+        "startChar": 59,
+        "endLine": 2586,
+        "endChar": 62
+      },
+      "revId": "0967c01a30756027a2cc9acc9a729779637c753d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "842e7a9a_30b72215",
