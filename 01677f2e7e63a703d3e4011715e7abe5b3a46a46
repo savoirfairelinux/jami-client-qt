@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea25ec27_3dca7c6c",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 32
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-14T15:29:14Z",
+      "side": 1,
+      "message": "COUNT__ must be at the end",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 45,
+        "endChar": 12
+      },
+      "revId": "01677f2e7e63a703d3e4011715e7abe5b3a46a46",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
