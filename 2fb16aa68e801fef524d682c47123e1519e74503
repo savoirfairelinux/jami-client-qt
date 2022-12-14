@@ -211,6 +211,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9074648b_9ae43a5f",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 1354,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-14T15:44:45Z",
+      "side": 1,
+      "message": "An enum was created to make this clearer",
+      "parentUuid": "ea6ed43c_a6832ed4",
+      "range": {
+        "startLine": 1354,
+        "startChar": 87,
+        "endLine": 1354,
+        "endChar": 88
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "612f9eb3_c8e8e674",
@@ -224,6 +248,30 @@
       "writtenOn": "2022-12-14T13:48:42Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 1366,
+        "startChar": 85,
+        "endLine": 1366,
+        "endChar": 86
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df4c3eb3_b0cf5b35",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 1366,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-14T15:44:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "612f9eb3_c8e8e674",
       "range": {
         "startLine": 1366,
         "startChar": 85,
