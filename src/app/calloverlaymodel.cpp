@@ -357,7 +357,7 @@ CallOverlayModel::eventFilter(QObject* object, QEvent* event)
 void
 CallOverlayModel::setControlRanges()
 {
-    overflowModel_->setRange(0, overflowIndex_ - 1);
+    overflowModel_->setRange(0, overflowIndex_);
     overflowVisibleModel_->setRange(overflowIndex_, secondaryModel_->rowCount());
-    overflowHiddenModel_->setRange(overflowIndex_, secondaryModel_->rowCount());
+    overflowHiddenModel_->setRange(overflowIndex_ + 1, secondaryModel_->rowCount());
 }
