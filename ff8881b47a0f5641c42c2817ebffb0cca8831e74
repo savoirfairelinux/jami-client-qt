@@ -272,6 +272,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c656ec9_ec69245c",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-14T13:48:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42faf41c_3f7b5ba3",
+      "range": {
+        "startLine": 334,
+        "startChar": 24,
+        "endLine": 334,
+        "endChar": 26
+      },
+      "revId": "ff8881b47a0f5641c42c2817ebffb0cca8831e74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "841936f2_36d69377",

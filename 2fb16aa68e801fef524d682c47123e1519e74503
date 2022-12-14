@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7955a1c_a79ce619",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-14T13:48:42Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 135,
+        "startChar": 24,
+        "endLine": 135,
+        "endChar": 65
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0d702d6_4c372bd7",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-14T13:48:42Z",
+      "side": 1,
+      "message": "imho icons are too big, but better accept this now and then make adjustments with charlotte after she is back",
+      "range": {
+        "startLine": 183,
+        "startChar": 24,
+        "endLine": 184,
+        "endChar": 55
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2b1ced7_fe230471",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-14T13:48:42Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 199,
+        "startChar": 24,
+        "endLine": 200,
+        "endChar": 55
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70146aa2_708a580f",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-14T13:48:42Z",
+      "side": 1,
+      "message": "Remove. it looks to be a rebasing left over.",
+      "range": {
+        "startLine": 302,
+        "startChar": 4,
+        "endLine": 310,
+        "endChar": 5
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74ebc304_687de960",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-14T13:48:42Z",
+      "side": 1,
+      "message": "unused?",
+      "range": {
+        "startLine": 207,
+        "startChar": 13,
+        "endLine": 207,
+        "endChar": 20
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea6ed43c_a6832ed4",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 1354,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-14T13:48:42Z",
+      "side": 1,
+      "message": "Not directly related but it would be good to have a more direct way to know what does this flag mean.",
+      "range": {
+        "startLine": 1354,
+        "startChar": 87,
+        "endLine": 1354,
+        "endChar": 88
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "612f9eb3_c8e8e674",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 1366,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-14T13:48:42Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 1366,
+        "startChar": 85,
+        "endLine": 1366,
+        "endChar": 86
+      },
+      "revId": "2fb16aa68e801fef524d682c47123e1519e74503",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
