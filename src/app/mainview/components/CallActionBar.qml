@@ -503,14 +503,14 @@ Control {
 
                 property int overflowIndex: {
                     var maxItems = Math.floor(
-                                (overflowRect.remainingSpace - 24) / root.height) - 1
+                                (overflowRect.remainingSpace) / (root.height + itemSpacing)) - 2
                     return Math.min(overflowItemCount, maxItems)
                 }
                 property int nOverflowItems: overflowItemCount - overflowIndex
                 onNOverflowItemsChanged: {
                     var diff = overflowItemListView.count - nOverflowItems
                     var effectiveOverflowIndex = overflowIndex
-                    if (effectiveOverflowIndex === overflowItemCount - 1)
+                    if (effectiveOverflowIndex === overflowItemCount - 2)
                         effectiveOverflowIndex += diff
 
                     CallOverlayModel.overflowIndex = effectiveOverflowIndex
@@ -523,7 +523,7 @@ Control {
             ComboBox {
                 id: overflowButton
 
-                visible: CallOverlayModel.overflowIndex < overflowItemCount
+                visible: CallOverlayModel.overflowIndex < overflowItemCount - 2
                 width: root.height
                 height: width
 
