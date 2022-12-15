@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01ac8387_a7a73504",
+        "filename": "src/libclient/accountmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-15T15:24:02Z",
+      "side": 1,
+      "message": "Note that I think AccountModelPimpl::slotVolatileAccountDetailsChanged must be modified as fromDetails may be called before any change and should be updated with the registeredName",
+      "range": {
+        "startLine": 846,
+        "startChar": 30,
+        "endLine": 846,
+        "endChar": 45
+      },
+      "revId": "c533179cf004e8bd2944961f5277a50e5336bc61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7015de50_5dd7e1d9",
+        "filename": "src/libclient/devicemodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-15T15:24:02Z",
+      "side": 1,
+      "message": "I guess the ID must not be empty\n\nMaybe we need to listen for volatiledetailschanged for this",
+      "range": {
+        "startLine": 128,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 117
+      },
+      "revId": "c533179cf004e8bd2944961f5277a50e5336bc61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
