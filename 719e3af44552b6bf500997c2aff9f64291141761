@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c29c807_6fd870a5",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 11
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-15T15:15:19Z",
+      "side": 0,
+      "message": "Issue on SIP: in audio only, holding the call does not show the hold icon",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 1
+      },
+      "revId": "719e3af44552b6bf500997c2aff9f64291141761",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8faae401_e25f7d35",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-15T15:15:19Z",
+      "side": 0,
+      "message": "yeay!",
+      "range": {
+        "startLine": 705,
+        "startChar": 13,
+        "endLine": 705,
+        "endChar": 30
+      },
+      "revId": "719e3af44552b6bf500997c2aff9f64291141761",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

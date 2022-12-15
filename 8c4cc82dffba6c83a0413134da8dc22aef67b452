@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e16dca4_d117b9f7",
+        "filename": "src/app/mainview/components/CallOverlay.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-15T15:15:19Z",
+      "side": 1,
+      "message": "maybe can be moved directly where needed and no need to create properties as it\u0027s not modified",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 61
+      },
+      "revId": "8c4cc82dffba6c83a0413134da8dc22aef67b452",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
