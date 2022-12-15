@@ -22,6 +22,30 @@
       },
       "revId": "f6d6ced9dafebcc0cc6f378bb8e59b41c695a35c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57ce111c_85e6e8ad",
+        "filename": "INSTALL.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-15T14:54:17Z",
+      "side": 1,
+      "message": "yeah, i see want you want but it will only show like it on wide enough display/window",
+      "parentUuid": "2b96ac89_05eec123",
+      "range": {
+        "startLine": 166,
+        "startChar": 47,
+        "endLine": 167,
+        "endChar": 48
+      },
+      "revId": "f6d6ced9dafebcc0cc6f378bb8e59b41c695a35c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
