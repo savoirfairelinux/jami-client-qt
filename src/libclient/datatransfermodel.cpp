@@ -192,6 +192,10 @@ DataTransferModel::copyTo(const QString& accountId,
         filename = srcfi.isSymLink() ? srcfi.symLinkTarget() : path;
     auto dest = pimpl_->getUniqueFilePath(filename, destPath);
     qDebug() << "Copy to " << dest;
+    // create directory if it does not exist
+    QDir dir(destPath);
+    if (!dir.exists())
+        dir.mkpath(".");
     src.copy(dest);
 }
 
