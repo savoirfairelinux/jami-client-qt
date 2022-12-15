@@ -39,8 +39,16 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Main project directories:
-# daemon
-set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/daemon)
+
+# jami-daemon
+if(NOT DEFINED WITH_DAEMON_SUBMODULE)
+  set(WITH_DAEMON_SUBMODULE false)
+  # daemon
+  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/../daemon)
+else()
+  # daemon
+  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/daemon)
+endif()
 # src
 set(LIBCLIENT_SRC_DIR ${PROJECT_SOURCE_DIR}/src/libclient)
 set(APP_SRC_DIR ${PROJECT_SOURCE_DIR}/src/app)
@@ -105,10 +113,6 @@ set(CMAKE_CXX_FLAGS
   ${CMAKE_CXX_FLAGS} ${Qt6Widgets_EXECUTABLE_COMPILE_FLAGS})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
-# jami-daemon
-if(NOT DEFINED WITH_DAEMON_SUBMODULE)
-  set(WITH_DAEMON_SUBMODULE false)
-endif()
 if (WITH_DAEMON_SUBMODULE AND NOT EXISTS ${DAEMON_DIR}/src)
   message(FATAL_ERROR
     "Jami Daemon sources not found in ${DAEMON_DIR}/src.  If you \
