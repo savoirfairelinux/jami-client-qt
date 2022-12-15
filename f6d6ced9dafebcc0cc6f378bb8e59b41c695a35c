@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b96ac89_05eec123",
+        "filename": "INSTALL.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-15T14:44:20Z",
+      "side": 1,
+      "message": "headers in the table should be on the top (not a big deal as the markdown will be correctly rendered)",
+      "range": {
+        "startLine": 166,
+        "startChar": 47,
+        "endLine": 167,
+        "endChar": 48
+      },
+      "revId": "f6d6ced9dafebcc0cc6f378bb8e59b41c695a35c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
