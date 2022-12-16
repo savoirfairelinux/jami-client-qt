@@ -353,7 +353,7 @@ CallModel::updateCallMediaList(const QString& callId, bool acceptVideo)
                  it++) {
                 if ((*it)[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO
                     && !acceptVideo) {
-                    (*it)[MediaAttributeKey::ENABLED] = FALSE_STR;
+                    (*it)[MediaAttributeKey::ENABLED] = TRUE_STR;
                     (*it)[MediaAttributeKey::MUTED] = TRUE_STR;
                     callInfos->second->videoMuted = !acceptVideo;
                 }
