@@ -251,7 +251,7 @@ Loader {
         SBSMessageBase {
             id: localMediaMsgItem
 
-            isOutgoing: Author === ""
+            isOutgoing: Author === CurrentAccount.uri
             showTime: root.showTime
             seq: root.seq
             author: Author

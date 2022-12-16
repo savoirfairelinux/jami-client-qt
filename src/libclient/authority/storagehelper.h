@@ -56,11 +56,12 @@ QString prepareUri(const QString& uri, api::profile::Type type);
 
 /**
  * Get a formatted string for a call interaction's body
+ * @param isSelf
  * @param info
  * @return the formatted and translated call message string
  */
-QString getCallInteractionString(const api::interaction::Info& info);
-QString getCallInteractionStringNonSwarm(const QString& authorUri, const std::time_t& duration);
+QString getCallInteractionString(bool isSelf, const api::interaction::Info& info);
+QString getCallInteractionStringNonSwarm(bool isSelf, const std::time_t& duration);
 
 /**
  * Get a formatted string for a contact interaction's body
@@ -195,7 +196,7 @@ QString beginConversationWithPeer(Database& db,
  * @param  db
  * @param  conversation to modify
  */
-void getHistory(Database& db, api::conversation::Info& conversation);
+void getHistory(Database& db, api::conversation::Info& conversation, const QString& localUri);
 
 /**
  * Add an entry into interactions linked to a conversation.

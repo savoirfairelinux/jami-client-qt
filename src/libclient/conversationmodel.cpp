@@ -1457,7 +1457,7 @@ ConversationModel::clearHistory(const QString& uid)
         std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[conversation.uid]);
         conversation.interactions->clear();
     }
-    storage::getHistory(pimpl_->db, conversation); // will contain "Conversation started"
+    storage::getHistory(pimpl_->db, conversation, pimpl_->linked.owner.profileInfo.uri); // will contain "Conversation started"
 
     Q_EMIT modelChanged();
     Q_EMIT conversationCleared(uid);
@@ -1639,7 +1639,7 @@ ConversationModel::clearAllHistory()
             std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[conversation.uid]);
             conversation.interactions->clear();
         }
-        storage::getHistory(pimpl_->db, conversation);
+        storage::getHistory(pimpl_->db, conversation, pimpl_->linked.owner.profileInfo.uri);
         Q_EMIT dataChanged(pimpl_->indexOf(conversation.uid));
     }
     Q_EMIT modelChanged();
@@ -2480,7 +2480,7 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                 linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
                 downloadFile = (bytesProgress == 0);
             } else if (msg.type == interaction::Type::CALL) {
-                msg.body = storage::getCallInteractionString(msg);
+                msg.body = storage::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri, msg);
             } else if (msg.type == interaction::Type::CONTACT) {
                 auto bestName = msg.authorUri == linked.owner.profileInfo.uri
                                     ? linked.owner.accountModel->bestNameForAccount(linked.owner.id)
@@ -2629,7 +2629,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             // If we're a call in a swarm
             if (msg.authorUri != linked.owner.profileInfo.uri)
                 updateUnread = true;
-            msg.body = storage::getCallInteractionString(msg);
+            msg.body = storage::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri, msg);
         } else if (msg.type == interaction::Type::CONTACT) {
             auto bestName = msg.authorUri == linked.owner.profileInfo.uri
                                 ? linked.owner.accountModel->bestNameForAccount(linked.owner.id)
@@ -3309,7 +3309,7 @@ ConversationModelPimpl::addConversationWith(const QString& convId,
     } catch (...) {
         conversation.callId = "";
     }
-    storage::getHistory(db, conversation);
+    storage::getHistory(db, conversation, linked.owner.profileInfo.uri);
     std::vector<std::function<void(void)>> updateSlots;
     {
         std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
@@ -3574,7 +3574,7 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
     // update the db
     auto msgId = storage::addOrUpdateMessage(db, conv_it->uid, msg, callId);
     // now set the formatted call message string in memory only
-    msg.body = storage::getCallInteractionString(msg);
+    msg.body = storage::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri, msg);
     bool newInteraction = false;
     {
         std::lock_guard<std::mutex> lk(interactionsLocks[conv_it->uid]);
