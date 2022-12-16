@@ -42,9 +42,8 @@ Rectangle {
     property int previewMarginYBottom: previewMargin + 84
     property int previewToX: 0
     property int previewToY: 0
-    property bool isAudioOnly: false
     property var linkedWebview: null
-    property string callPreviewId: ""
+    property string callPreviewId
 
     onCallPreviewIdChanged: {
         controlPreview.start()
@@ -67,7 +66,6 @@ Rectangle {
         linkedWebview.needToHideConversationInCall.connect(
                     closeInCallConversation)
     }
-
 
     Connections {
         target: UtilsAdapter
@@ -182,7 +180,7 @@ Rectangle {
                 anchors.fill: parent
                 z: -1
 
-                visible: participantsLayer.count === 0 && !root.isAudioOnly
+                visible: !CurrentCall.isConference && !CurrentCall.isAudioOnly
             }
 
             ParticipantsLayer {
@@ -190,16 +188,15 @@ Rectangle {
                 anchors.fill: parent
                 anchors.centerIn: parent
                 anchors.margins: 1
-                visible: participantsLayer.count !== 0
+                visible: CurrentCall.isConference
                 participantsSide: callOverlay.participantsSide
-
-                onCountChanged: {
-                    callOverlay.isConference = participantsLayer.count > 0
-                }
             }
 
             LocalVideo {
                 id: previewRenderer
+
+                visible: (CurrentCall.isSharing || !CurrentCall.isVideoMuted)
+                                                  && !CurrentCall.isConference
 
                 height: width * invAspectRatio
                 width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
@@ -217,6 +214,7 @@ Rectangle {
                         previewRenderer.startWithId(rendId)
                     }
                 }
+
                 onVisibleChanged: {
                     controlPreview.stop()
                     if (visible) {
@@ -297,7 +295,6 @@ Rectangle {
                 id: callOverlay
 
                 anchors.fill: parent
-                isConference: participantsLayer.count > 0
 
                 function toggleConversation() {
                     if (inCallMessageWebViewStack.visible)
@@ -307,35 +304,19 @@ Rectangle {
                 }
 
                 Connections {
-                    target: CallAdapter
+                    target: CurrentCall
 
-                    function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted,
-                                             isSIP, isGrid, previewId) {
-                        root.callPreviewId = previewId
-                        callOverlay.showOnHoldImage(isPaused)
-                        root.isAudioOnly = isAudioOnly
-                        callOverlay.showOnHoldImage(isPaused)
-                        audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly && participantsLayer.count === 0
-                        callOverlay.updateUI(isPaused, isAudioOnly,
-                                             isAudioMuted,
-                                             isSIP,
-                                             isGrid)
-                        callOverlay.isVideoMuted = !AvAdapter.isCapturing()
-                        callOverlay.sharingActive = AvAdapter.isSharing()
-                        previewRenderer.visible = (AvAdapter.isSharing() || AvAdapter.isCapturing()) && participantsLayer.count == 0
-                    }
-
-                    function onShowOnHoldLabel(isPaused) {
-                        callOverlay.showOnHoldImage(isPaused)
-                        audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly && participantsLayer.count === 0
-                    }
-
-                    function onRemoteRecordingChanged(label, state) {
-                        callOverlay.showRemoteRecording(label, state)
-                    }
-
-                    function onEraseRemoteRecording() {
-                        callOverlay.resetRemoteRecording()
+                    function onPreviewIdChanged() {
+                        if (CurrentCall.previewId !== "") {
+                            if (callPreviewId !== "" &&
+                                    callPreviewId !== CurrentCall.previewId) {
+                                VideoDevices.stopDevice(root.callPreviewId)
+                            }
+                            VideoDevices.startDevice(CurrentCall.previewId)
+                        } else {
+                            VideoDevices.stopDevice(root.callPreviewId)
+                        }
+                        root.callPreviewId = CurrentCall.previewId
                     }
                 }
 
@@ -367,7 +348,9 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                visible: root.isAudioOnly
+                visible: !CurrentCall.isPaused &&
+                         CurrentCall.isAudioOnly &&
+                         !CurrentCall.isConference
 
                 ConversationAvatar {
                     id: contactImage

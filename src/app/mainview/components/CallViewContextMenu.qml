@@ -31,11 +31,6 @@ import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 ContextMenuAutoLoader {
     id: root
 
-    property bool isSIP: false
-    property bool isPaused: false
-    property bool isVideoMuted: false
-    property bool isRecording: false
-
     property bool windowSelection: false
 
     signal pluginItemClicked
@@ -47,9 +42,11 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: resumePauseCall
 
-            canTrigger: isSIP
-            itemName: isPaused ? JamiStrings.resumeCall : JamiStrings.pauseCall
-            iconSource: isPaused ?
+            canTrigger: CurrentCall.isSIP
+            itemName: CurrentCall.isPaused ?
+                          JamiStrings.resumeCall :
+                          JamiStrings.pauseCall
+            iconSource: CurrentCall.isPaused ?
                             JamiResources.play_circle_outline_24dp_svg :
                             JamiResources.pause_circle_outline_24dp_svg
             onClicked: {
@@ -59,7 +56,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: inputPanelSIP
 
-            canTrigger: isSIP
+            canTrigger: CurrentCall.isSIP
             itemName: JamiStrings.sipInputPanel
             iconSource: JamiResources.ic_keypad_svg
             onClicked: {
@@ -69,10 +66,10 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: callTransfer
 
-            canTrigger: isSIP
+            canTrigger: CurrentCall.isSIP
             itemName: JamiStrings.transferCall
             iconSource: JamiResources.phone_forwarded_24dp_svg
-            addMenuSeparatorAfter: isSIP
+            addMenuSeparatorAfter: CurrentCall.isSIP
             onClicked: {
                 root.transferCallButtonClicked()
             }
@@ -80,7 +77,9 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: localRecord
 
-            itemName: root.isRecording ? JamiStrings.stopRec : JamiStrings.startRec
+            itemName: CurrentCall.isRecordingLocally ?
+                          JamiStrings.stopRec :
+                          JamiStrings.startRec
             iconSource: JamiResources.fiber_manual_record_24dp_svg
             iconColor: JamiTheme.recordIconColor
             onClicked: {
@@ -103,8 +102,9 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: stopSharing
 
-            canTrigger: AvAdapter.isSharing()
-                        && !isSIP && !isVideoMuted
+            canTrigger: CurrentCall.isSharing
+                        && !CurrentCall.isSIP
+                        && !CurrentCall.isVideoMuted
             itemName: JamiStrings.stopSharing
             iconSource: JamiResources.share_stop_black_24dp_svg
             iconColor: JamiTheme.redColor
@@ -113,8 +113,9 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: shareScreen
 
-            canTrigger: CurrentAccount.videoEnabled_Video && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
-                        && !isSIP
+            canTrigger: CurrentAccount.videoEnabled_Video
+                        && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
+                        && !CurrentCall.isSIP
             itemName: JamiStrings.shareScreen
             iconSource: JamiResources.laptop_black_24dp_svg
             onClicked: {
@@ -129,8 +130,10 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: shareWindow
 
-            canTrigger: Qt.platform.os === "linux" && CurrentAccount.videoEnabled_Video && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
-                        && !isSIP
+            canTrigger: Qt.platform.os === "linux"
+                        && CurrentAccount.videoEnabled_Video
+                        && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
+                        && !CurrentCall.isSIP
             itemName: JamiStrings.shareWindow
             iconSource: JamiResources.window_black_24dp_svg
             onClicked: {
@@ -144,8 +147,9 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: shareScreenArea
 
-            canTrigger: CurrentAccount.videoEnabled_Video && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
-                        && !isSIP
+            canTrigger: CurrentAccount.videoEnabled_Video
+                        && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
+                        && !CurrentCall.isSIP
             itemName: JamiStrings.shareScreenArea
             iconSource: JamiResources.share_area_black_24dp_svg
             onClicked: {
@@ -160,7 +164,8 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: shareFile
 
-            canTrigger: CurrentAccount.videoEnabled_Video && !isSIP
+            canTrigger: CurrentAccount.videoEnabled_Video
+                        && !CurrentCall.isSIP
             itemName: JamiStrings.shareFile
             iconSource: JamiResources.file_black_24dp_svg
             onClicked: {
@@ -170,7 +175,8 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: viewPlugin
 
-            canTrigger: PluginAdapter.isEnabled && PluginAdapter.callMediaHandlersListCount
+            canTrigger: PluginAdapter.isEnabled &&
+                        PluginAdapter.callMediaHandlersListCount
             itemName: JamiStrings.viewPlugin
             iconSource: JamiResources.extension_24dp_svg
             onClicked: {
