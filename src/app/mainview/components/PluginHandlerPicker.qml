@@ -58,7 +58,7 @@ Popup {
                 function onAboutToShow(visible) {
                     // Reset the model on each show.
                     if (isCall) {
-                        pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentConversation.callId)
+                        pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
                     } else {
                         var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversation.uris[0]
                         pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId)
@@ -68,8 +68,8 @@ Popup {
 
             function toggleHandlerSlot(handlerId, isLoaded) {
                 if (isCall) {
-                    PluginModel.toggleCallMediaHandler(handlerId, CurrentConversation.callId, !isLoaded)
-                    pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentConversation.callId)
+                    PluginModel.toggleCallMediaHandler(handlerId, CurrentCall.id, !isLoaded)
+                    pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
                 } else {
                     var accountId = LRCInstance.currentAccountId
                     var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversation.uris[0]
@@ -125,7 +125,7 @@ Popup {
 
                     model: {
                         if (isCall) {
-                            return PluginAdapter.getMediaHandlerSelectableModel(CurrentConversation.callId)
+                            return PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
                         } else {
                             var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversation.uris[0]
                             return PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId)

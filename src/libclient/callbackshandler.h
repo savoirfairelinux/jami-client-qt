@@ -377,6 +377,7 @@ Q_SIGNALS:
     void conversationPreferencesUpdated(const QString& accountId,
                                         const QString& conversationId,
                                         const MapStringString& preferences);
+    void recordingStateChanged(const QString& callId, bool state);
 
     /**
      * Emitted when a conversation receives a new position

@@ -32,7 +32,21 @@ Item {
     id: root
 
     property string timeText: "00:00"
-    property string remoteRecordingLabel: ""
+    property string remoteRecordingLabel
+
+    Connections {
+        target: CurrentCall
+
+        function onIsRecordingRemotelyChanged() {
+            var label = ""
+            if (CurrentCall.isRecordingRemotely) {
+                label = CurrentCall.remoteRecorderNameList.join(", ") + " "
+                label += (CurrentCall.remoteRecorderNameList.length > 1) ?
+                            JamiStrings.areRecording : JamiStrings.isRecording
+            }
+            root.remoteRecordingLabel = label
+        }
+    }
 
     property alias callActionBar: __callActionBar
 
@@ -43,8 +57,6 @@ Item {
 
     property string muteAlertMessage: ""
     property bool muteAlertActive: false
-    property bool remoteRecording: false
-    property bool isRecording: false
 
     onMuteAlertActiveChanged: {
         if (muteAlertActive) {
@@ -117,7 +129,7 @@ Item {
             root.timeText = CallAdapter.getCallDurationTime(
                         LRCInstance.currentAccountId,
                         LRCInstance.selectedConvUid)
-            if (root.opacity === 0 && !root.remoteRecording)
+            if (root.opacity === 0 && !CurrentCall.isRecordingRemotely)
                 root.remoteRecordingLabel = ""
         }
     }
@@ -149,11 +161,11 @@ Item {
 
                 font.pointSize: JamiTheme.textFontSize
                 text: {
-                    if (!root.isAudioOnly) {
-                        if (remoteRecordingLabel === "") {
+                    if (!CurrentCall.isAudioOnly) {
+                        if (root.remoteRecordingLabel === "") {
                             return CurrentConversation.title
                         } else {
-                            return remoteRecordingLabel
+                            return root.remoteRecordingLabel
                         }
                     }
                     return ""
@@ -180,7 +192,7 @@ Item {
 
             Rectangle {
                 id: recordingRect
-                visible: root.isRecording || root.remoteRecording
+                visible: CurrentCall.isRecordingLocally || CurrentCall.isRecordingRemotely
 
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                 Layout.rightMargin: JamiTheme.preferredMarginSize
