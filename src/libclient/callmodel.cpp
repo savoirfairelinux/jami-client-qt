@@ -259,9 +259,16 @@ public Q_SLOTS:
     /**
      * Listen from CallbacksHandler when the peer start recording
      * @param callId
+     * @param peerUri
      * @param state the new state
      */
-    void remoteRecordingChanged(const QString& callId, const QString& peerNumber, bool state);
+    void onRemoteRecordingChanged(const QString& callId, const QString& peerUri, bool state);
+    /**
+     * Listen from CallbacksHandler when we start/stop recording
+     * @param callId
+     * @param state the new state
+     */
+    void onRecordingStateChanged(const QString& callId, bool state);
 };
 
 CallModel::CallModel(const account::Info& owner,
@@ -382,7 +389,7 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
     }
 #ifdef ENABLE_LIBWRAP
     auto callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
-#else  // dbus
+#else // dbus
     // do not use auto here (QDBusPendingReply<QString>)
     QString callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
 #endif // ENABLE_LIBWRAP
@@ -975,7 +982,11 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
     connect(&callbacksHandler,
             &CallbacksHandler::remoteRecordingChanged,
             this,
-            &CallModelPimpl::remoteRecordingChanged);
+            &CallModelPimpl::onRemoteRecordingChanged);
+    connect(&callbacksHandler,
+            &CallbacksHandler::recordingStateChanged,
+            this,
+            &CallModelPimpl::onRecordingStateChanged);
 
 #ifndef ENABLE_LIBWRAP
     // Only necessary with dbus since the daemon runs separately
@@ -1140,7 +1151,7 @@ CallModel::setCurrentCall(const QString& callId) const
         }
 
         if (!lrc::api::Lrc::holdConferences) {
-            return;
+            continue;
         }
         // If the account is the host and it is attached to the conference,
         // then we should hold it.
@@ -1157,6 +1168,8 @@ CallModel::setCurrentCall(const QString& callId) const
             }
         }
     }
+
+    Q_EMIT currentCallChanged(callId);
 }
 
 void
@@ -1599,7 +1612,7 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId,
         }
     }
     Q_EMIT linked.callInfosChanged(linked.owner.id, confId);
-    Q_EMIT linked.onParticipantsChanged(confId);
+    Q_EMIT linked.participantsChanged(confId);
 }
 
 bool
@@ -1686,13 +1699,14 @@ CallModelPimpl::sendProfile(const QString& callId)
 }
 
 void
-CallModelPimpl::remoteRecordingChanged(const QString& callId, const QString& peerNumber, bool state)
+CallModelPimpl::onRemoteRecordingChanged(const QString& callId, const QString& peerUri, bool state)
 {
     auto it = calls.find(callId);
-    if (it == calls.end() or not it->second)
+    if (it == calls.end() or !it->second) {
         return;
+    }
 
-    auto uri = peerNumber;
+    auto uri = peerUri;
 
     if (uri.contains("ring:"))
         uri.remove("ring:");
@@ -1701,15 +1715,19 @@ CallModelPimpl::remoteRecordingChanged(const QString& callId, const QString& pee
     if (uri.contains("@ring.dht"))
         uri.remove("@ring.dht");
 
-    // Add peer to peerRec set
-    if (state && not it->second->peerRec.contains(uri))
-        it->second->peerRec.insert(uri);
+    // Add/remove peer to recordingPeers, preventing duplicates.
+    if (state && !it->second->recordingPeers.contains(uri))
+        it->second->recordingPeers.append(uri);
+    else if (!state && it->second->recordingPeers.contains(uri))
+        it->second->recordingPeers.removeAll(uri);
 
-    // remove peer from peerRec set
-    if (!state && it->second->peerRec.contains(uri))
-        it->second->peerRec.remove(uri);
+    Q_EMIT linked.remoteRecordersChanged(callId, it->second->recordingPeers);
+}
 
-    Q_EMIT linked.remoteRecordingChanged(callId, it->second->peerRec, state);
+void
+CallModelPimpl::onRecordingStateChanged(const QString& callId, bool state)
+{
+    Q_EMIT linked.recordingStateChanged(callId, state);
 }
 
 } // namespace lrc
