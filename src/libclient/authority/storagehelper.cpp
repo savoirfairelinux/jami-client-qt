@@ -167,15 +167,15 @@ getFormattedCallDuration(const std::time_t duration)
 }
 
 QString
-getCallInteractionStringNonSwarm(const QString& authorUri, const std::time_t& duration)
+getCallInteractionStringNonSwarm(bool isSelf, const std::time_t& duration)
 {
     if (duration < 0) {
-        if (authorUri.isEmpty()) {
+        if (isSelf) {
             return QObject::tr("Outgoing call");
         } else {
             return QObject::tr("Incoming call");
         }
-    } else if (authorUri.isEmpty()) {
+    } else if (isSelf) {
         if (duration) {
             return QObject::tr("Outgoing call") + " - " + getFormattedCallDuration(duration);
         } else {
@@ -191,14 +191,14 @@ getCallInteractionStringNonSwarm(const QString& authorUri, const std::time_t& du
 }
 
 QString
-getCallInteractionString(const api::interaction::Info& info)
+getCallInteractionString(bool isSelf, const api::interaction::Info& info)
 {
     if (!info.confId.isEmpty()) {
         if (info.duration <= 0) {
             return QObject::tr("Join call");
         }
     }
-    return getCallInteractionStringNonSwarm(info.authorUri, info.duration);
+    return getCallInteractionStringNonSwarm(isSelf, info.duration);
 }
 
 QString
@@ -497,7 +497,7 @@ beginConversationWithPeer(Database& db,
 }
 
 void
-getHistory(Database& db, api::conversation::Info& conversation)
+getHistory(Database& db, api::conversation::Info& conversation, const QString& localUri)
 {
     auto interactionsResult
         = db.select("id, author, body, timestamp, type, status, is_read, extra_data",
@@ -521,7 +521,7 @@ getHistory(Database& db, api::conversation::Info& conversation)
                                        : std::stoi(durationString.toStdString());
             auto status = api::interaction::to_status(payloads[i + 5]);
             if (type == api::interaction::Type::CALL) {
-                body = getCallInteractionStringNonSwarm(payloads[i + 1], duration);
+                body = getCallInteractionStringNonSwarm(payloads[i + 1] == localUri, duration);
             } else if (type == api::interaction::Type::CONTACT) {
                 body = getContactInteractionString(payloads[i + 1], status);
             }

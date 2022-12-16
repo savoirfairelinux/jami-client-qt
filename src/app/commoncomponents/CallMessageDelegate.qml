@@ -39,7 +39,7 @@ SBSMessageBase {
 
     property bool isRemoteImage
 
-    isOutgoing: Author === ""
+    isOutgoing: Author === "" || Author === CurrentAccount.uri
     author: Author
     readers: Readers
     formattedTime: MessagesAdapter.getFormattedTime(Timestamp)

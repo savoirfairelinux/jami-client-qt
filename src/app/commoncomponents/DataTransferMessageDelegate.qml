@@ -67,7 +67,7 @@ Loader {
                                        2 * hPadding - avatarBlockWidth
                                        - buttonsLoader.width - 24 - 6 - 24
 
-            isOutgoing: Author === CurrentAccount.uri
+            isOutgoing: Author === CurrentAccount.uri || Author === ""
             showTime: root.showTime
             seq: root.seq
             author: Author
@@ -251,7 +251,7 @@ Loader {
         SBSMessageBase {
             id: localMediaMsgItem
 
-            isOutgoing: Author === ""
+            isOutgoing: Author === "" || Author === CurrentAccount.uri
             showTime: root.showTime
             seq: root.seq
             author: Author

@@ -361,7 +361,7 @@ Control {
         EmojiReactions {
             id: emojiReaction
 
-            property bool isOutgoing: Author === CurrentAccount.uri
+            property bool isOutgoing: Author === CurrentAccount.uri || Author === ""
             Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
             Layout.rightMargin: isOutgoing ? status.width : undefined
             Layout.leftMargin: !isOutgoing ? avatarBlock.width : undefined

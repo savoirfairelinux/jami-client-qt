@@ -37,7 +37,7 @@ SBSMessageBase {
                                   JamiTheme.chatviewLinkColorLight :
                                   JamiTheme.chatviewLinkColorDark
 
-    isOutgoing: Author === CurrentAccount.uri
+    isOutgoing: Author === CurrentAccount.uri || Author === ""
     author: Author
     readers: Readers
     timestamp: Timestamp
