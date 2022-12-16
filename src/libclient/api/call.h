@@ -139,7 +139,7 @@ struct Info
     bool isAudioOnly = false;
     Layout layout = Layout::GRID;
     VectorMapStringString mediaList = {};
-    QSet<QString> peerRec {};
+    QStringList recordingPeers {};
 
     bool hasMediaWithType(const QString& type, const QString& mediaType) const
     {

@@ -186,7 +186,6 @@ Rectangle {
             callStackView.setLinkedWebview(chatView)
             callStackView.responsibleAccountId = LRCInstance.currentAccountId
             callStackView.responsibleConvUid = convId
-            callStackView.isAudioOnly = item.isAudioOnly
             currentConvUID = convId
 
             if (item.callState === Call.Status.IN_PROGRESS ||

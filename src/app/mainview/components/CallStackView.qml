@@ -28,7 +28,6 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property bool isAudioOnly: false
     property var sipKeys: [
         "1", "2", "3", "A",
         "4", "5", "6", "B",
@@ -126,7 +125,6 @@ Rectangle {
         function onCallInfosChanged(audioOnly, accountId, convUid) {
             if (callStackMainView.currentItem.stackNumber === CallStackView.OngoingPageStack
                     && responsibleConvUid === convUid && responsibleAccountId === accountId) {
-                ongoingCallPage.isAudioOnly = audioOnly
             }
         }
 
@@ -143,8 +141,6 @@ Rectangle {
 
         property int stackNumber: CallStackView.OngoingPageStack
 
-        isAudioOnly: root.isAudioOnly
-
         visible: callStackMainView.currentItem.stackNumber === stackNumber
     }
 
@@ -152,8 +148,6 @@ Rectangle {
         id: initialCallPage
 
         property int stackNumber: CallStackView.InitialPageStack
-
-        isAudioOnly: root.isAudioOnly
 
         onCallAccepted: {
             CallAdapter.acceptACall(responsibleAccountId, responsibleConvUid)
