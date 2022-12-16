@@ -35,47 +35,10 @@ import "../../commoncomponents"
 Item {
     id: root
 
-    property bool isPaused
-    property bool isAudioOnly
-    property bool isAudioMuted
-    property bool isVideoMuted
-    property bool isRecording
-    property bool remoteRecording
-    property bool isSIP
-    property bool isModerator
-    property bool isConference
-    property bool isGrid
     property bool participantsSide: UtilsAdapter.getAppValue(Settings.ParticipantsSide)
-    property bool localHandRaised
-    property bool sharingActive: AvAdapter.isSharing()
-    property string callId: ""
 
     signal chatButtonClicked
     signal fullScreenClicked
-
-    function setRecording(localIsRecording) {
-        callViewContextMenu.localIsRecording = localIsRecording
-        mainOverlay.recordingVisible = localIsRecording
-                || callViewContextMenu.peerIsRecording
-    }
-
-    function updateUI(isPaused, isAudioOnly, isAudioMuted, isSIP, isGrid) {
-        if (isPaused !== undefined) {
-            root.isPaused = isPaused
-            root.isAudioOnly = isAudioOnly
-            root.isAudioMuted = isAudioMuted
-            callViewContextMenu.isVideoMuted = root.isVideoMuted
-            root.isSIP = isSIP
-            root.isGrid = isGrid
-            root.localHandRaised = CallAdapter.isHandRaised()
-        }
-        root.isRecording = CallAdapter.isRecordingThisCall()
-        root.isModerator = CallAdapter.isModerator()
-    }
-
-    function showOnHoldImage(visible) {
-        onHoldImage.visible = visible
-    }
 
     function closeContextMenuAndRelatedWindows() {
         ContactPickerCreation.closeContactPicker()
@@ -92,29 +55,6 @@ Item {
         callViewContextMenu.x = x
         callViewContextMenu.y = y
         callViewContextMenu.openMenu()
-    }
-
-    function showRemoteRecording(peers, state) {
-        var label = ""
-        var i = 0
-        if (state) {
-            for (var p in peers) {
-                label += peers[p]
-                if (i !== (peers.length - 1))
-                    label += ", "
-                i += 1
-            }
-            label += " " + ((peers.length > 1) ? JamiStrings.areRecording : JamiStrings.isRecording)
-        }
-
-        mainOverlay.remoteRecordingLabel = state ? label : JamiStrings.peerStoppedRecording
-        root.remoteRecording = state
-        callOverlayRectMouseArea.entered()
-    }
-
-    function resetRemoteRecording() {
-        mainOverlay.remoteRecordingLabel = ""
-        root.remoteRecording = false
     }
 
     DropArea {
@@ -158,7 +98,7 @@ Item {
         width: 200
         height: 200
 
-        visible: false
+        visible: CurrentCall.isPaused
 
         source: JamiResources.ic_pause_white_100px_svg
     }
@@ -199,17 +139,10 @@ Item {
         PluginHandlerPickerCreation.openPluginHandlerPicker()
     }
 
-    function recordClicked() {
-        CallAdapter.recordThisCallToggle()
-        updateUI()
-    }
-
     MainOverlay {
         id: mainOverlay
 
         anchors.fill: parent
-        isRecording: root.isRecording
-        remoteRecording: root.remoteRecording
 
         Connections {
             target: mainOverlay.callActionBar
@@ -222,7 +155,7 @@ Item {
             function onShareWindowClicked() { openShareWindow() }
             function onStopSharingClicked() { AvAdapter.stopSharing() }
             function onShareScreenAreaClicked() { openShareScreenArea() }
-            function onRecordCallClicked() { recordClicked() }
+            function onRecordCallClicked() { CallAdapter.recordThisCallToggle() }
             function onShareFileClicked() { jamiFileDialog.open() }
             function onPluginsClicked() { openPluginsMenu() }
             function onFullScreenClicked() { root.fullScreenClicked() }
@@ -232,13 +165,9 @@ Item {
     CallViewContextMenu {
         id: callViewContextMenu
 
-        isSIP: root.isSIP
-        isPaused: root.isPaused
-        isRecording: root.isRecording
-
         onTransferCallButtonClicked: openContactPicker(ContactList.TRANSFER)
         onPluginItemClicked: openPluginsMenu()
-        onRecordCallClicked: root.recordClicked()
+        onRecordCallClicked: CallAdapter.recordThisCallToggle()
         onOpenSelectionWindow: {
             SelectScreenWindowCreation.createSelectScreenWindowObject(appWindow)
             SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, windowSelection)

@@ -162,7 +162,7 @@ Control {
                         layoutModel.get(index).ActiveSetting = layoutManager.isCallFullscreen
                         break
                   case JamiStrings.mosaic:
-                        if (!isGrid)
+                        if (!CurrentCall.isGrid)
                             CallAdapter.showGridConferenceLayout()
                         break
                   case JamiStrings.participantsSide:
@@ -189,10 +189,10 @@ Control {
             }
             onTriggered: {
                 layoutModel.clear()
-                if (isConference) {
+                if (CurrentCall.isConference) {
                     layoutModel.append({"Name": JamiStrings.mosaic,
                                         "IconSource": JamiResources.mosaic_black_24dp_svg,
-                                        "ActiveSetting": isGrid,
+                                        "ActiveSetting": CurrentCall.isGrid,
                                         "TopMargin": true,
                                         "BottomMargin": true,
                                         "SectionEnd": true})
@@ -223,8 +223,8 @@ Control {
                                     "ActiveSetting": layoutManager.isCallFullscreen,
                                     "TopMargin": true,
                                     "BottomMargin": true,
-                                    "SectionEnd": isConference})
-                if (isConference) {
+                                    "SectionEnd": CurrentCall.isConference})
+                if (CurrentCall.isConference) {
                     layoutModel.append({"Name": JamiStrings.hideSpectators,
                                         "IconSource": JamiResources.videocam_off_24dp_svg,
                                         "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSpectators),
@@ -263,6 +263,7 @@ Control {
                              JamiResources.micro_black_24dp_svg
             icon.color: checked ? "red" : "white"
             text: !checked ? JamiStrings.mute : JamiStrings.unmute
+            checked: CurrentCall.isAudioMuted
             property var menuAction: audioInputMenuAction
         },
         Action {
@@ -282,6 +283,7 @@ Control {
                              JamiResources.videocam_24dp_svg
             icon.color: checked ? "red" : "white"
             text: !checked ? JamiStrings.muteCamera : JamiStrings.unmuteCamera
+            checked: !CurrentCall.isCapturing
             property var menuAction: videoInputMenuAction
         }
     ]
@@ -314,11 +316,13 @@ Control {
         Action {
             id: resumePauseCallAction
             onTriggered: root.resumePauseCallClicked()
-            icon.source: isPaused ?
+            icon.source: CurrentCall.isPaused ?
                              JamiResources.play_circle_outline_24dp_svg :
                              JamiResources.pause_circle_outline_24dp_svg
             icon.color: "white"
-            text: isPaused ? JamiStrings.resumeCall : JamiStrings.pauseCall
+            text: CurrentCall.isPaused ?
+                      JamiStrings.resumeCall :
+                      JamiStrings.pauseCall
         },
         Action {
             id: inputPanelSIPAction
@@ -337,17 +341,17 @@ Control {
         Action {
             id: shareAction
             onTriggered: {
-                if (sharingActive)
+                if (CurrentCall.isSharing)
                     root.stopSharingClicked()
                 else
                     root.shareScreenClicked()
             }
-            icon.source: sharingActive ?
+            icon.source: CurrentCall.isSharing ?
                              JamiResources.share_stop_black_24dp_svg :
                              JamiResources.share_screen_black_24dp_svg
-            icon.color: sharingActive ?
+            icon.color: CurrentCall.isSharing ?
                             "red" : "white"
-            text: sharingActive ?
+            text: CurrentCall.isSharing ?
                       JamiStrings.stopSharing :
                       JamiStrings.shareScreen
             property real size: 34
@@ -362,12 +366,13 @@ Control {
             text: checked ?
                       JamiStrings.lowerHand :
                       JamiStrings.raiseHand
+            checked: CurrentCall.isHandRaised
             property real size: 34
         },
         Action {
             id: layoutAction
             onTriggered: {
-                if (!isGrid)
+                if (!CurrentCall.isGrid)
                     CallAdapter.showGridConferenceLayout()
             }
             checkable: true
@@ -386,6 +391,7 @@ Control {
             text: !checked ? JamiStrings.startRec : JamiStrings.stopRec
             property bool blinksWhenChecked: true
             property real size: 28
+            checked: CurrentCall.isRecordingLocally
             onCheckedChanged: function(checked) {
                 CallOverlayModel.setUrgentCount(recordAction,
                                                 checked ? -1 : 0)
@@ -397,27 +403,29 @@ Control {
             icon.source: JamiResources.plugins_24dp_svg
             icon.color: "white"
             text: JamiStrings.viewPlugin
-            enabled: PluginAdapter.isEnabled && PluginAdapter.callMediaHandlersListCount
+            enabled: PluginAdapter.isEnabled
+                     && PluginAdapter.callMediaHandlersListCount
         }
     ]
 
     property var overflowItemCount
 
     Connections {
-        target: callOverlay
+        target: CurrentCall
 
-        function onIsAudioOnlyChanged() { Qt.callLater(reset) }
-        function onIsSIPChanged() { Qt.callLater(reset) }
+        function onIsActiveChanged() { if (CurrentCall.isActive) reset() }
+        function onIsRecordingLocallyChanged() { Qt.callLater(reset) }
+        function onIsHandRaisedChanged() { Qt.callLater(reset) }
+        function onIsConferenceChanged() { Qt.callLater(reset) }
         function onIsModeratorChanged() { Qt.callLater(reset) }
+        function onIsSIPChanged() { Qt.callLater(reset) }
+        function onIsAudioOnlyChanged() { Qt.callLater(reset) }
         function onIsAudioMutedChanged() { Qt.callLater(reset) }
         function onIsVideoMutedChanged() { Qt.callLater(reset) }
-        function onIsRecordingChanged() { Qt.callLater(reset) }
-        function onLocalHandRaisedChanged() { Qt.callLater(reset) }
-        function onIsConferenceChanged() { Qt.callLater(reset) }
     }
+
     Connections {
         target: CurrentAccount
-
         function onVideoEnabledVideoChanged() { reset() }
     }
 
@@ -433,29 +441,24 @@ Control {
 
         // overflow controls
         CallOverlayModel.addSecondaryControl(audioOutputAction)
-        if (isConference) {
+        if (CurrentCall.isConference) {
             CallOverlayModel.addSecondaryControl(raiseHandAction)
-            raiseHandAction.checked = CallAdapter.isHandRaised()
         }
-        if (isModerator && !isSIP)
+        if (CurrentCall.isModerator && !CurrentCall.isSIP)
             CallOverlayModel.addSecondaryControl(addPersonAction)
-        if (isSIP) {
+        if (CurrentCall.isSIP) {
             CallOverlayModel.addSecondaryControl(resumePauseCallAction)
             CallOverlayModel.addSecondaryControl(inputPanelSIPAction)
             CallOverlayModel.addSecondaryControl(callTransferAction)
         }
         CallOverlayModel.addSecondaryControl(chatAction)
-        if (CurrentAccount.videoEnabled_Video)
+        if (CurrentAccount.videoEnabled_Video && !CurrentCall.isSIP)
             CallOverlayModel.addSecondaryControl(shareAction)
         CallOverlayModel.addSecondaryControl(layoutAction)
         CallOverlayModel.addSecondaryControl(recordAction)
         if (pluginsAction.enabled)
             CallOverlayModel.addSecondaryControl(pluginsAction)
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount()
-
-        muteAudioAction.checked = isAudioMuted
-        recordAction.checked = CallAdapter.isRecordingThisCall()
-        muteVideoAction.checked = isAudioOnly ? true : isVideoMuted
     }
 
     Item {
