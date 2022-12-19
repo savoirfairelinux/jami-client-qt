@@ -35,6 +35,7 @@ add_executable(qml_tests
                ${QML_RESOURCES}
                ${QML_RESOURCES_QML}
                ${TEST_QML_RESOURCES}
+               ${SFPM_OBJECTS}
                $<TARGET_OBJECTS:test_common_obj>)
 
 target_link_libraries(qml_tests

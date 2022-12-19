@@ -249,10 +249,10 @@ Rectangle {
                 ChatViewFooter {
                     id: chatViewFooter
 
-                    visible: {
+                    function updateVisibility() {
                         if (CurrentAccount.type  === Profile.Type.SIP)
                             return true
-                        if (CurrentConversation.isBlocked)
+                        if (CurrentConversation.isBanned)
                             return false
                         else if (CurrentConversation.needsSyncing)
                             return false
@@ -260,6 +260,8 @@ Rectangle {
                             return false
                         return CurrentConversation.isSwarm || CurrentConversation.isTemporary
                     }
+
+                    visible: updateVisibility()
 
                     Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
