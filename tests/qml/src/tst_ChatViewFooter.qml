@@ -22,8 +22,9 @@ import QtQuick.Layouts
 
 import QtTest
 
-import net.jami.Models 1.1
+import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Models 1.1
 
 import "../../../src/app/mainview/components"
 
@@ -61,29 +62,6 @@ ColumnLayout {
                 // Text cleared in messageBarTextArea will cause sendMessageButton to hide
                 messageBarTextArea.clearText()
                 compare(sendMessageButton.visible, false)
-
-                // File added into filesToSendContainer will cause sendMessageButton to show
-                filesToSendContainer.filesToSendListModel.addToPending(
-                            ":/src/app/resources/png_test.png")
-                compare(filesToSendContainer.filesToSendCount, 1)
-                compare(sendMessageButton.visible, true)
-
-                // Files cleared from filesToSendContainer will cause sendMessageButton to hide
-                filesToSendContainer.filesToSendListModel.flush()
-                compare(filesToSendContainer.filesToSendCount, 0)
-                compare(sendMessageButton.visible, false)
-
-                // When the text and files both exist,
-                // clear one of them will still make sendMessageButton to show
-                messageBarTextArea.insertText("test")
-                filesToSendContainer.filesToSendListModel.addToPending(
-                            ":/src/app/resources/png_test.png")
-                messageBarTextArea.clearText()
-                compare(sendMessageButton.visible, true)
-
-                messageBarTextArea.insertText("test")
-                filesToSendContainer.filesToSendListModel.flush()
-                compare(sendMessageButton.visible, true)
 
                 // Both are cleared
                 messageBarTextArea.clearText()

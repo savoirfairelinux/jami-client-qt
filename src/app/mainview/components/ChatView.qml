@@ -252,7 +252,7 @@ Rectangle {
                     visible: {
                         if (CurrentAccount.type  === Profile.Type.SIP)
                             return true
-                        if (CurrentConversation.isBlocked)
+                        if (CurrentConversation.isBanned)
                             return false
                         else if (CurrentConversation.needsSyncing)
                             return false
