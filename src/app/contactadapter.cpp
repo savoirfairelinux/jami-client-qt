@@ -249,10 +249,20 @@ ContactAdapter::removeContact(const QString& peerUri, bool banContact)
 void
 ContactAdapter::connectSignals()
 {
-    if (lrcInstance_->getCurrentContactModel())
+    if (lrcInstance_->getCurrentContactModel()) {
         connect(lrcInstance_->getCurrentContactModel(),
                 &ContactModel::bannedStatusChanged,
                 this,
                 &ContactAdapter::bannedStatusChanged,
                 Qt::UniqueConnection);
+        connect(
+            lrcInstance_->getCurrentContactModel(),
+            &ContactModel::modelUpdated,
+            this,
+            [&](const auto& uri) {
+                // Refresh contacts shown
+                selectableProxyModel_->invalidate();
+            },
+            Qt::UniqueConnection);
+    }
 }
