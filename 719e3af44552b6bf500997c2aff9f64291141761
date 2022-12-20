@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "852c4d91_8fdf8445",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 11
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-20T14:12:06Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "1c29c807_6fd870a5",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 1
+      },
+      "revId": "719e3af44552b6bf500997c2aff9f64291141761",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8faae401_e25f7d35",
         "filename": "src/app/calladapter.cpp",
         "patchSetId": 11
