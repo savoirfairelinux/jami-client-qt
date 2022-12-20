@@ -22,6 +22,30 @@
       },
       "revId": "168eb89f9e8f4f1a79a31316c5f5e67371589caf",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69d89d7d_9407a35b",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-20T12:57:54Z",
+      "side": 1,
+      "message": "started a qml test for this (didn\u0027t finish due to missing thing I started to re-add like the webengine/videoProvider), so the chatviewfooter would need a connection to update it at some point.",
+      "parentUuid": "8d3629be_7a198184",
+      "range": {
+        "startLine": 252,
+        "startChar": 21,
+        "endLine": 252,
+        "endChar": 45
+      },
+      "revId": "168eb89f9e8f4f1a79a31316c5f5e67371589caf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
