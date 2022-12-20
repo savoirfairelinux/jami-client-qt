@@ -122,7 +122,7 @@ DeviceModelPimpl::DeviceModelPimpl(const DeviceModel& linked,
     , callbacksHandler(callbacksHandler)
     , devices_({})
 {
-    const MapStringString aDetails = ConfigurationManager::instance().getAccountDetails(
+    const MapStringString aDetails = ConfigurationManager::instance().getVolatileAccountDetails(
         linked.owner.id);
     currentDeviceId_ = aDetails.value(libjami::Account::ConfProperties::DEVICE_ID);
     const MapStringString accountDevices = ConfigurationManager::instance().getKnownRingDevices(
@@ -135,6 +135,7 @@ DeviceModelPimpl::DeviceModelPimpl(const DeviceModel& linked,
                                   /* name= */ it.value(),
                                   /* isCurrent= */ it.key() == currentDeviceId_};
             if (device.isCurrent) {
+                currentDeviceId_ = it.key();
                 devices_.push_back(device);
             } else {
                 devices_.push_back(device);
