@@ -505,11 +505,6 @@ AccountModelPimpl::updateAccountDetails(account::Info& accountInfo)
     }
 
     accountInfo.confProperties.credentials.swap(credToStore);
-
-    MapStringString volatileDetails = ConfigurationManager::instance().getVolatileAccountDetails(
-        accountInfo.id);
-    QString daemonStatus = volatileDetails[libjami::Account::ConfProperties::Registration::STATUS];
-    accountInfo.status = lrc::api::account::to_status(daemonStatus);
 }
 
 account::Info&
@@ -598,6 +593,11 @@ AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId,
     if (new_usernameIt == details.end())
         return;
     accountInfo.registeredName = new_usernameIt.value();
+
+    auto new_deviceId = details.find(libjami::Account::ConfProperties::DEVICE_ID);
+    if (new_deviceId != details.end())
+        accountInfo.confProperties.deviceId = new_deviceId.value();
+
     Q_EMIT linked.profileUpdated(accountId);
 }
 
@@ -695,11 +695,6 @@ AccountModelPimpl::slotMigrationEnded(const QString& accountId, bool ok)
         auto& accountInfo = it->second.first;
         MapStringString details = ConfigurationManager::instance().getAccountDetails(accountId);
         accountInfo.fromDetails(details);
-        MapStringString volatileDetails = ConfigurationManager::instance().getVolatileAccountDetails(
-            accountId);
-        QString daemonStatus
-            = volatileDetails[libjami::Account::ConfProperties::Registration::STATUS];
-        accountInfo.status = lrc::api::account::to_status(daemonStatus);
     }
     Q_EMIT linked.migrationEnded(accountId, ok);
 }
@@ -827,6 +822,8 @@ account::Info::fromDetails(const MapStringString& details)
                          : "";
     profileInfo.alias = details[ConfProperties::DISPLAYNAME];
     enabled = toBool(details[ConfProperties::ENABLED]);
+    status = lrc::api::account::to_status(
+                volatileDetails[libjami::Account::ConfProperties::Registration::STATUS]);
     confProperties.mailbox = details[ConfProperties::MAILBOX];
     confProperties.dtmfType = details[ConfProperties::DTMF_TYPE];
     confProperties.autoAnswer = toBool(details[ConfProperties::AUTOANSWER]);
@@ -843,7 +840,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.password = details[ConfProperties::PASSWORD];
     confProperties.realm = details[ConfProperties::REALM];
     confProperties.localInterface = details[ConfProperties::LOCAL_INTERFACE];
-    confProperties.deviceId = details[ConfProperties::DEVICE_ID];
+    confProperties.deviceId = volatileDetails[ConfProperties::DEVICE_ID];
     confProperties.deviceName = details[ConfProperties::DEVICE_NAME];
     confProperties.publishedSameAsLocal = toBool(details[ConfProperties::PUBLISHED_SAMEAS_LOCAL]);
     confProperties.localPort = toInt(details[ConfProperties::LOCAL_PORT]);
