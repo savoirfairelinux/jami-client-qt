@@ -36,11 +36,11 @@ Item {
     property int count: 0
     property bool inLine: CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL
     property bool participantsSide
-    property bool enableHideSpectators: CallParticipantsModel.count > 1 && CurrentConversation.hideSpectators
+    property bool enableHideSpectators: CallParticipantsModel.count > 1 && CurrentCall.hideSpectators
 
     onVisibleChanged: {
-        CurrentConversation.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
-        CurrentConversation.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators)
+        CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
+        CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators)
     }
 
     Component {
@@ -92,7 +92,7 @@ Item {
             ValueFilter { roleName: "Active"; value: false }
             ValueFilter {
                 enabled: CallParticipantsModel.count > 1 &&
-                         CurrentConversation.hideSelf
+                         CurrentCall.hideSelf
                 roleName: "IsLocal"
                 value: false
             }

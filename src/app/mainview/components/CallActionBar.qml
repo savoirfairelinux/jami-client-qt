@@ -179,11 +179,11 @@ Control {
                         break
                   case JamiStrings.hideSelf:
                         UtilsAdapter.setAppValue(Settings.HideSelf, !layoutModel.get(index).ActiveSetting)
-                        CurrentConversation.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
+                        CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
                         break
                   case JamiStrings.hideSpectators:
                         UtilsAdapter.setAppValue(Settings.HideSpectators, !layoutModel.get(index).ActiveSetting)
-                        CurrentConversation.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators)
+                        CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators)
                         break
                 }
             }
