@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01bb9f20_ccb759aa",
+        "filename": "src/libclient/accountmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-20T14:12:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "01ac8387_a7a73504",
+      "range": {
+        "startLine": 846,
+        "startChar": 30,
+        "endLine": 846,
+        "endChar": 45
+      },
+      "revId": "c533179cf004e8bd2944961f5277a50e5336bc61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7015de50_5dd7e1d9",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-15T15:24:02Z",
       "side": 1,
       "message": "I guess the ID must not be empty\n\nMaybe we need to listen for volatiledetailschanged for this",
+      "range": {
+        "startLine": 128,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 117
+      },
+      "revId": "c533179cf004e8bd2944961f5277a50e5336bc61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc3fa6d8_91572868",
+        "filename": "src/libclient/devicemodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-20T14:12:17Z",
+      "side": 1,
+      "message": "there are already device added/changed/removed signals for after the first setup, i think adding a listener to volatile details would only add complexity without benefits. as for the daemon changes deviceid must not be empty, if it is, then there is a regression in daemon. removing that check from the patch.",
+      "parentUuid": "7015de50_5dd7e1d9",
       "range": {
         "startLine": 128,
         "startChar": 4,
