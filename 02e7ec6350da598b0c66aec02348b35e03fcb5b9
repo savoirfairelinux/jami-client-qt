@@ -160,6 +160,75 @@
       },
       "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3353163b_18b4362b",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-20T19:35:38Z",
+      "side": 1,
+      "message": ":why? I guess this file needs some cleanup",
+      "range": {
+        "startLine": 341,
+        "startChar": 25,
+        "endLine": 341,
+        "endChar": 50
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8f11573_2ab9f14d",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-20T19:35:38Z",
+      "side": 1,
+      "message": "btnMaximize",
+      "range": {
+        "startLine": 472,
+        "startChar": 28,
+        "endLine": 472,
+        "endChar": 39
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c623a3df_e984224d",
+        "filename": "src/app/webengine/map/map.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-20T19:35:38Z",
+      "side": 1,
+      "message": "what is \"authorI\"?",
+      "range": {
+        "startLine": 99,
+        "startChar": 40,
+        "endLine": 99,
+        "endChar": 47
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
