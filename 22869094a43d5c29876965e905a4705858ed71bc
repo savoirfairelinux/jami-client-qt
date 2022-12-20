@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69ddfbb6_77f36195",
+        "filename": "src/app/currentcall.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-20T15:20:29Z",
+      "side": 1,
+      "message": "Scenario (I gues it\u0027s a regression)\nCall 1:1\nAdd member to the call (conference)\nNew member stop the call\nThe call is marked in hold and I need to reselect it to go to current",
+      "range": {
+        "startLine": 33,
+        "startChar": 26,
+        "endLine": 33,
+        "endChar": 31
+      },
+      "revId": "22869094a43d5c29876965e905a4705858ed71bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
