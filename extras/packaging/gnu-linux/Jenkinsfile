@@ -140,9 +140,8 @@ make -f extras/packaging/gnu-linux/Makefile portable-release-tarball .tarball-ve
                 sshagent(credentials: [JENKINS_SSH_KEY, DL_SSH_KEY]) {
                     echo "Publishing to git repository..."
                     script {
-                        def tagDate = sh 'date +"%Y%M%d"'
                         sh """
-                        git tag  -am ${params.CHANNEL}/${tagDate} \"Jami new ${params.CHANNEL} version\"
+                        git tag  -am \"Jami new ${params.CHANNEL} version\" ${params.CHANNEL}/\$(date +\"%Y%M%d\")
                         """
                         if (params.CHANNEL == 'stable') {
                             // Only stables releases get tarballs and a tag.
@@ -152,6 +151,7 @@ make -f extras/packaging/gnu-linux/Makefile portable-release-tarball .tarball-ve
                                 "${REMOTE_HOST}:${REMOTE_BASE_DIR}" +
                                 "/release/tarballs/"
                         } else {
+                            sh 'git log | head -n 100'
                             sh 'git push --tags'
                         }
                     }
