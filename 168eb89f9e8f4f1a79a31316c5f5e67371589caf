@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d3629be_7a198184",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-12-20T12:25:52Z",
+      "side": 1,
+      "message": "why?",
+      "range": {
+        "startLine": 252,
+        "startChar": 21,
+        "endLine": 252,
+        "endChar": 45
+      },
+      "revId": "168eb89f9e8f4f1a79a31316c5f5e67371589caf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
