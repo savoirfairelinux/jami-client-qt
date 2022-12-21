@@ -422,6 +422,14 @@ PositionManager::addPositionToMap(PositionKey key, QVariantMap position)
 {
     // avatar only sent one time to qml, when a new position is added
     position["avatar"] = getAvatar(key.first, key.second);
+    QString authorName = lrcInstance_->getAccountInfo(key.first).contactModel->bestNameForContact(
+        key.second);
+    QString shorterAuthorName = authorName;
+    shorterAuthorName.truncate(10);
+    if (authorName != shorterAuthorName) {
+        shorterAuthorName = shorterAuthorName + "...";
+    }
+    position["authorName"] = shorterAuthorName;
     Q_EMIT positionShareAdded(position);
 }
 

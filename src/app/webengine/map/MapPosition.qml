@@ -178,7 +178,8 @@ Item {
                             if (shareInfo.account === attachedAccountId) {
                                 var curLong = shareInfo.long
                                 var curLat = shareInfo.lat
-                                webView.runJavaScript("newPosition([" + curLong + "," + curLat  + "], '" + shareInfo.author + "', '" + shareInfo.avatar + "' )" );
+                                webView.runJavaScript("newPosition([" + curLong + "," + curLat  + "], '" +
+                                                      shareInfo.author + "', '" + shareInfo.avatar + "', '" + shareInfo.authorName + "' )" );
                                 webView.runJavaScript("zoomTolayersExtent()" );
                             }
                         }
@@ -214,7 +215,7 @@ Item {
                         attachedAccountId = CurrentAccount.id
                         runJavaScript(UtilsAdapter.getStyleSheet("olcss",UtilsAdapter.qStringFromFile(olCss)))
                         webView.isLoaded = true
-                        runJavaScript("setMapView([" + 0 + ","+ 0  + "], " + 1 + " );" );
+                        webView.runJavaScript("setMapView([" + 0 + ","+ 0  + "], " + 1 + " );" );
                         PositionManager.startPositioning()
                         //load locations that were received before this conversation was opened
                         PositionManager.loadPreviousLocations(attachedAccountId);
