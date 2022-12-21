@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddc3016e_241a15cf",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-21T17:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06be56bd_b65ea6ba",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 4
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bbf40f5_9aeb0c80",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-20T18:21:47Z",
       "side": 1,
       "message": "timer_",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 9
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b91d2a2_75e4b9e2",
+        "filename": "src/app/positioning.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-21T17:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bbf40f5_9aeb0c80",
       "range": {
         "startLine": 28,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5f95cba_5ff12429",
+        "filename": "src/app/positioning.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-21T17:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b481744c_f8af3c7b",
+      "range": {
+        "startLine": 43,
+        "startChar": 17,
+        "endLine": 43,
+        "endChar": 21
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "550b77b4_20b60a13",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-20T18:21:47Z",
       "side": 1,
       "message": "do not emit while locked, this can cause unwanted locks",
+      "range": {
+        "startLine": 245,
+        "startChar": 30,
+        "endLine": 246,
+        "endChar": 30
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e003a33b_cbeaae3b",
+        "filename": "src/app/positionmanager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-21T17:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "550b77b4_20b60a13",
       "range": {
         "startLine": 245,
         "startChar": 30,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c75556af_a4012483",
+        "filename": "src/app/positionmanager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-21T17:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b08b586_340b1c33",
+      "range": {
+        "startLine": 305,
+        "startChar": 52,
+        "endLine": 307,
+        "endChar": 52
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f82b3982_e0bc67b9",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-12-20T18:21:47Z",
       "side": 1,
       "message": "no need to add Signal at the end",
+      "range": {
+        "startLine": 52,
+        "startChar": 9,
+        "endLine": 52,
+        "endChar": 23
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76430f59_721f5f37",
+        "filename": "src/app/positionmanager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-21T17:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f82b3982_e0bc67b9",
       "range": {
         "startLine": 52,
         "startChar": 9,
@@ -162,6 +306,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e73ed30_a1ecdadf",
+        "filename": "src/app/positionmanager.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-21T17:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6bfb2a1_1ba55683",
+      "range": {
+        "startLine": 65,
+        "startChar": 26,
+        "endLine": 65,
+        "endChar": 49
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3353163b_18b4362b",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-12-20T19:35:38Z",
       "side": 1,
       "message": ":why? I guess this file needs some cleanup",
+      "range": {
+        "startLine": 341,
+        "startChar": 25,
+        "endLine": 341,
+        "endChar": 50
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d102253f_5b8d5ae0",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-21T17:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3353163b_18b4362b",
       "range": {
         "startLine": 341,
         "startChar": 25,
@@ -208,6 +400,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62124ed2_8c57b5c6",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-21T17:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8f11573_2ab9f14d",
+      "range": {
+        "startLine": 472,
+        "startChar": 28,
+        "endLine": 472,
+        "endChar": 39
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c623a3df_e984224d",
@@ -221,6 +437,30 @@
       "writtenOn": "2022-12-20T19:35:38Z",
       "side": 1,
       "message": "what is \"authorI\"?",
+      "range": {
+        "startLine": 99,
+        "startChar": 40,
+        "endLine": 99,
+        "endChar": 47
+      },
+      "revId": "02e7ec6350da598b0c66aec02348b35e03fcb5b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0b30d4d_9455a901",
+        "filename": "src/app/webengine/map/map.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-21T17:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c623a3df_e984224d",
       "range": {
         "startLine": 99,
         "startChar": 40,
