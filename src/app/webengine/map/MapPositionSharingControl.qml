@@ -58,7 +58,7 @@ ColumnLayout {
                     minutes = minutes % 60
                     var sec = seconds % 60
                     if (hour) {
-                        if (min)
+                        if (minutes)
                             return qsTr("%1h%2min").arg(hour).arg(minutes)
                         else
                             return qsTr("%1h").arg(hour)

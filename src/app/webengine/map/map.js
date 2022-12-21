@@ -61,7 +61,7 @@ var proj = new ol.proj.Projection({
     extent: extent
 })
 
-function setSource (coordos, avatar) {
+function setSource (coordos, avatar, authorName) {
     var coord = ol.proj.fromLonLat(coordos)
     var pointFeature = new ol.Feature({
        geometry: new ol.geom.Point(coord),
@@ -71,14 +71,14 @@ function setSource (coordos, avatar) {
     var preStyle = new ol.style.Icon({
                 src: "data:image/png;base64," +  avatar})
 
-    //resize the image to 35 px
+    //resize the image to 40 px
     var image = preStyle.getImage()
     if (!image.width) {
       image.addEventListener('load', function () {
-        preStyle.setScale([35 / image.width, 35 / image.height])
+        preStyle.setScale([40 / image.width, 40 / image.height])
       })
     } else {
-      preStyle.setScale([35 / image.width, 35 / image.height])
+      preStyle.setScale([40 / image.width, 40 / image.height])
     }
 
     var  iconStyle = new ol.style.Style({
@@ -86,21 +86,44 @@ function setSource (coordos, avatar) {
     })
 
     pointFeature.setStyle(iconStyle)
+
+    // create a text label
+    var textLabel = new ol.Feature({
+      geometry: new ol.geom.Point(coord),
+      text: authorName
+    });
+
+    // set the style for the text label
+    textLabel.setStyle(new ol.style.Style({
+      text: new ol.style.Text({
+        text: textLabel.get('text'),
+        font: '20px Arial',
+        fill: new ol.style.Fill({
+          color: 'black'
+        }),
+        stroke: new ol.style.Stroke({
+          color: 'white',
+          width: 3
+        })
+      })
+    }));
+
     var vectorSource = new ol.source.Vector({
-      features: [pointFeature],
+      features: [pointFeature,textLabel],
     })
 
     return vectorSource
 }
 
-function newPosition (coordos, authorUri, avatar) {
+
+function newPosition (coordos, authorUri, avatar, authorName) {
     var layerArray = map.getLayers().getArray();
     for (var i = 0; i < layerArray.length; i++ ){
         if(layerArray[i].layer_type === authorUri) {
             return
         }
     }
-    vectorSource = setSource(coordos, avatar)
+    vectorSource = setSource(coordos, avatar, authorName)
     var iconLayer = new ol.layer.Vector({source: vectorSource})
     iconLayer.layer_type = authorUri
     map.addLayer(iconLayer)
@@ -112,6 +135,7 @@ function updatePosition (coordos, authorUri) {
     for (var i = 0; i < layerArray.length; i++ ){
         if(layerArray[i].layer_type === authorUri) {
             layerArray[i].getSource().getFeatures()[0].getGeometry().setCoordinates(coord)
+            layerArray[i].getSource().getFeatures()[1].getGeometry().setCoordinates(coord)
             return
         }
     }

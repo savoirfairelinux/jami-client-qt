@@ -361,7 +361,13 @@ PositionManager::showNotification(const QString& accountId,
                                   const QString& convId,
                                   const QString& from)
 {
-    auto bestName = lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(from);
+    QString bestName;
+    if (from == lrcInstance_->getAccountInfo(accountId).profileInfo.uri)
+        bestName = lrcInstance_->getAccountInfo(accountId).accountModel->bestNameForAccount(
+            accountId);
+    else
+        bestName = lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(from);
+
     auto body = tr("%1 is sharing it's location").arg(bestName);
 #ifdef Q_OS_LINUX
     auto contactPhoto = Utils::contactPhoto(lrcInstance_, from, QSize(50, 50), accountId);
@@ -422,6 +428,22 @@ PositionManager::addPositionToMap(PositionKey key, QVariantMap position)
 {
     // avatar only sent one time to qml, when a new position is added
     position["avatar"] = getAvatar(key.first, key.second);
+    auto accountId = key.first;
+    auto uri = key.second;
+    auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
+    QString bestName;
+
+    if (uri == accountInfo.profileInfo.uri) {
+        bestName = accountInfo.accountModel->bestNameForAccount(accountId);
+    } else
+        bestName = accountInfo.contactModel->bestNameForContact(uri);
+
+    QString shorterAuthorName = bestName;
+    shorterAuthorName.truncate(10);
+    if (bestName != shorterAuthorName) {
+        shorterAuthorName = shorterAuthorName + "…";
+    }
+    position["authorName"] = shorterAuthorName;
     Q_EMIT positionShareAdded(position);
 }
 
