@@ -31,6 +31,7 @@ Rectangle {
 
     property alias textInput: messageBar.textAreaObj
     property string previousConvId: ""
+    property string previousAccountId: ""
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
@@ -48,8 +49,8 @@ Rectangle {
 
         function onSelectedConvUidChanged() {
             // Handle Draft
-            if (previousConvId !== "") {
-                LRCInstance.setContentDraft(previousConvId, LRCInstance.currentAccountId,
+            if (previousConvId !== "" && previousAccountId != "") {
+                LRCInstance.setContentDraft(previousConvId, previousAccountId,
                                             messageBar.text);
             }
 
@@ -58,6 +59,7 @@ Rectangle {
 
             messageBar.textAreaObj.clearText()
             previousConvId = LRCInstance.selectedConvUid
+            previousAccountId = LRCInstance.currentAccountId
 
             var restoredContent = LRCInstance.getContentDraft(LRCInstance.selectedConvUid,
                                                               LRCInstance.currentAccountId);
