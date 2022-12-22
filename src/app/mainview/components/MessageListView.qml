@@ -154,14 +154,21 @@ JamiListView {
         target: CurrentConversation
         function onIdChanged() { fadeAnimation.start() }
         function onScrollTo(id) {
+            console.warn("id recherché: ", id)
             var idx = -1
             for (var i = 1; i < root.count; i++) {
+                if (!root.itemAtIndex(i))
+                    positionViewAtIndex(i-1, ListView.Beginning)
                 var delegate = root.itemAtIndex(i)
+                console.warn("icurrent i: ",i," delegate id: ", delegate.id)
                 if (delegate && delegate.id === id) {
-                    idx = i
+                    positionViewAtIndex(i, ListView.Center)
+                    console.warn("positionview at current index, delegate id: ", delegate.id)
+                    if (delegate.replyAnimation)
+                        delegate.replyAnimation.start()
+                    return
                 }
             }
-            positionViewAtIndex(idx, ListView.Center)
         }
     }
 

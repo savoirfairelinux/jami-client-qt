@@ -54,6 +54,7 @@ Control {
     readonly property real msgRadius: 20
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
     property bool textHovered: false
+    property alias replyAnimation: selectAnimation
     width: ListView.view ? ListView.view.width : 0
     height: mainColumnLayout.implicitHeight
 
@@ -362,15 +363,6 @@ Control {
                     anchors.fill: bubble
                     source: bubble
                     maskSource: bg
-                }
-
-                Connections {
-                    target: CurrentConversation
-                    function onScrollTo(id) {
-                        if (id !== root.id)
-                            return
-                        selectAnimation.start()
-                    }
                 }
             }
 
