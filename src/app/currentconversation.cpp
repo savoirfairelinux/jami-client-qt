@@ -339,7 +339,7 @@ CurrentConversation::updateActiveCalls(const QString&, const QString& convId)
 }
 
 void
-CurrentConversation::scrollToMsg(const QString& msg)
+CurrentConversation::scrollToMsg(const QString& msgId)
 {
-    Q_EMIT scrollTo(msg);
+    Q_EMIT scrollTo(msgId);
 }
