@@ -158,12 +158,16 @@ JamiListView {
         function onScrollTo(id) {
             var idx = -1
             for (var i = 1; i < root.count; i++) {
+                if (!root.itemAtIndex(i))
+                    positionViewAtIndex(i, ListView.Center)
                 var delegate = root.itemAtIndex(i)
                 if (delegate && delegate.id === id) {
-                    idx = i
+                    positionViewAtIndex(i, ListView.Center)
+                    if (delegate.replyAnimation)
+                        delegate.replyAnimation.start()
+                    return
                 }
             }
-            positionViewAtIndex(idx, ListView.Center)
         }
     }
 
