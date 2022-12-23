@@ -96,7 +96,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: clearConversation
 
-            canTrigger: isCoreDialog && !hasCall && !root.isBanned
+            canTrigger: mode === Conversation.Mode.NON_SWARM && !hasCall && !root.isBanned
             itemName: JamiStrings.clearConversation
             iconSource: JamiResources.ic_clear_24dp_svg
             onClicked: MessagesAdapter.clearConversationHistory(
