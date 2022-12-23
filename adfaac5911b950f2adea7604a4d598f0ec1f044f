@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6da920be_a2e0356b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-23T21:27:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "098dbf7d_31c56b0b",
+      "range": {
+        "startLine": 9,
+        "startChar": 16,
+        "endLine": 9,
+        "endChar": 20
+      },
+      "revId": "adfaac5911b950f2adea7604a4d598f0ec1f044f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9aac8239_9bd0789f",
@@ -95,6 +119,78 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0142421_abe23553",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-23T21:27:29Z",
+      "side": 1,
+      "message": "I don\u0027t understand! Yes if two positions are in the same coordinates, both labels may override",
+      "parentUuid": "9ceefd99_461784c6",
+      "range": {
+        "startLine": 11,
+        "startChar": 11,
+        "endLine": 11,
+        "endChar": 52
+      },
+      "revId": "adfaac5911b950f2adea7604a4d598f0ec1f044f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4be60915_d8bd5ccc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-23T21:27:29Z",
+      "side": 1,
+      "message": "I had lot\u0027s of things to change because I had only one timer for the positionManager, Moreover I could only stop sharing to everyone or a conversation. Now, when the timer is timedout, automatically, it stop sharing to everyone in the account.",
+      "parentUuid": "9aac8239_9bd0789f",
+      "range": {
+        "startLine": 11,
+        "startChar": 20,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "adfaac5911b950f2adea7604a4d598f0ec1f044f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fe38e59_1dbdce20",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-23T21:27:29Z",
+      "side": 1,
+      "message": "mhh I don\u0027t know what is the correct behaviour as we have one map for every conversations. It should be unlimited for both conversations even if we started to share to the first one before changing the settings ?",
+      "parentUuid": "f2331e3d_b25aed95",
+      "range": {
+        "startLine": 11,
+        "startChar": 11,
+        "endLine": 11,
+        "endChar": 52
+      },
+      "revId": "adfaac5911b950f2adea7604a4d598f0ec1f044f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4adc2fa_697b33f0",
         "filename": "src/app/mainview/components/ChatView.qml",
         "patchSetId": 20
@@ -106,6 +202,30 @@
       "writtenOn": "2022-12-22T18:43:19Z",
       "side": 1,
       "message": "please clean your patch (trailing spaces)",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 4
+      },
+      "revId": "adfaac5911b950f2adea7604a4d598f0ec1f044f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d5dcbb6_fcd18862",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 20
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-23T21:27:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4adc2fa_697b33f0",
       "range": {
         "startLine": 76,
         "startChar": 0,
@@ -139,6 +259,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa0ec339_60b3a84b",
+        "filename": "src/app/positionmanager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-23T21:27:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab585d7d_b9ca03f4",
+      "range": {
+        "startLine": 416,
+        "startChar": 5,
+        "endLine": 416,
+        "endChar": 65
+      },
+      "revId": "adfaac5911b950f2adea7604a4d598f0ec1f044f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38b04480_433e28ca",
@@ -162,6 +306,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8e3c25f_0759c0cd",
+        "filename": "src/app/positionmanager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-23T21:27:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "38b04480_433e28ca",
+      "range": {
+        "startLine": 539,
+        "startChar": 0,
+        "endLine": 544,
+        "endChar": 16
+      },
+      "revId": "adfaac5911b950f2adea7604a4d598f0ec1f044f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af696a8e_fe18b85a",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-12-22T18:43:19Z",
       "side": 1,
       "message": "if min is 0 I\u0027d show \"10h\" instead of \"10h0min\"",
+      "range": {
+        "startLine": 64,
+        "startChar": 42,
+        "endLine": 67,
+        "endChar": 9
+      },
+      "revId": "adfaac5911b950f2adea7604a4d598f0ec1f044f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b155a96b_670ba551",
+        "filename": "src/app/settingsview/components/LocationSharingSettings.qml",
+        "patchSetId": 20
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-23T21:27:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af696a8e_fe18b85a",
       "range": {
         "startLine": 64,
         "startChar": 42,
