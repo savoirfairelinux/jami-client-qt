@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c675d50b_b52668c5",
+        "filename": "src/app/positionmanager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-23T22:50:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d08b0f8_ac5f2d91",
+      "range": {
+        "startLine": 425,
+        "startChar": 79,
+        "endLine": 425,
+        "endChar": 97
+      },
+      "revId": "63e271b0a91e5f52f5af76016697dce61c38ddcd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72c3d8aa_69820c98",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ba5f3a2_d48e9f9f",
+        "filename": "src/app/positionmanager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-23T22:50:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72c3d8aa_69820c98",
+      "range": {
+        "startLine": 430,
+        "startChar": 48,
+        "endLine": 430,
+        "endChar": 54
+      },
+      "revId": "63e271b0a91e5f52f5af76016697dce61c38ddcd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8371fd07_c0dcc130",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-12-22T18:28:10Z",
       "side": 1,
       "message": "finally it\u0027s on the avatar?",
+      "range": {
+        "startLine": 182,
+        "startChar": 120,
+        "endLine": 182,
+        "endChar": 132
+      },
+      "revId": "63e271b0a91e5f52f5af76016697dce61c38ddcd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbd84dc9_7130c060",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-23T22:50:16Z",
+      "side": 1,
+      "message": "I don\u0027t know, should I put it under the avatar ?",
+      "parentUuid": "8371fd07_c0dcc130",
       "range": {
         "startLine": 182,
         "startChar": 120,
