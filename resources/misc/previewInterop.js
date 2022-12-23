@@ -10,8 +10,9 @@ function getPreviewInfo(messageId, url) {
     var title = null
     var description = null
     var image = null
-    if (!url.includes("http://") && !url.includes("https://")) {
-        url = "http://".concat(url)
+    var u = new URL(url)
+    if (u.protocol === '') {
+        url = "https://".concat(url)
     }
     var domain = (new URL(url))
     fetch(url, {
