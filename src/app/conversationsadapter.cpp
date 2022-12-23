@@ -163,10 +163,11 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
                                              const QString& interactionId,
                                              const interaction::Info& interaction)
 {
-    if (!interaction.authorUri.isEmpty()
-        && (!QApplication::focusWindow() || accountId != lrcInstance_->get_currentAccountId()
-            || convUid != lrcInstance_->get_selectedConvUid())) {
+    if (!QApplication::focusWindow() || accountId != lrcInstance_->get_currentAccountId()
+            || convUid != lrcInstance_->get_selectedConvUid()) {
         auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
+        if (interaction.authorUri == accountInfo.profileInfo.uri)
+            return;
         auto from = accountInfo.contactModel->bestNameForContact(interaction.authorUri);
 
         auto preferences = accountInfo.conversationModel->getConversationPreferences(convUid);
