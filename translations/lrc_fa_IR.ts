@@ -35,12 +35,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="184"/>
         <source>New message</source>
         <translation>پیام جدید</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="242"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="243"/>
         <source>Trust request</source>
         <translation>درخواست اعتماد</translation>
     </message>
@@ -3050,7 +3050,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>اسناد</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="778"/>
@@ -3060,7 +3060,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="779"/>
         <source>Add a description</source>
-        <translation type="unfinished"/>
+        <translation>توضیحی اضافه کنید</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="782"/>
@@ -4033,22 +4033,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="483"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="455"/>
         <source>Searching…</source>
         <translation>در حال جستجو...</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1025"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="989"/>
         <source>Invalid ID</source>
         <translation>شناسهٔ نامعتبر</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1028"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="992"/>
         <source>Username not found</source>
         <translation>نام کاربری پیدا نشد</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1031"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="995"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>ناتوانی در جستجو…</translation>
     </message>
@@ -4056,7 +4056,7 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="444"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="416"/>
         <source>Bad URI scheme</source>
         <translation>شمای نشانی بد</translation>
     </message>

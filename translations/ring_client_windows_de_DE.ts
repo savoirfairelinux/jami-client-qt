@@ -37,12 +37,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="184"/>
         <source>New message</source>
         <translation>Neue Nachricht</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="242"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="243"/>
         <source>Trust request</source>
         <translation>Vertrauensbeweis gefordert</translation>
     </message>
@@ -4061,22 +4061,22 @@ Kopieren Sie ihn und teilen Sie ihn mit Ihren Freunden!</translation>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="483"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="455"/>
         <source>Searching…</source>
         <translation>Suche ...</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1025"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="989"/>
         <source>Invalid ID</source>
         <translation>Ungültige Identifikation (ID)</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1028"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="992"/>
         <source>Username not found</source>
         <translation>Benutzername nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1031"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="995"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Nicht gefunden ...</translation>
     </message>
@@ -4084,7 +4084,7 @@ Kopieren Sie ihn und teilen Sie ihn mit Ihren Freunden!</translation>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="444"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="416"/>
         <source>Bad URI scheme</source>
         <translation>Diese Art die Anfrage zu formulieren wird nicht unterstützt</translation>
     </message>

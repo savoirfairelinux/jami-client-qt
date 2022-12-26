@@ -9,7 +9,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="153"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 からの不在着信</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="547"/>
@@ -35,12 +35,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="184"/>
         <source>New message</source>
         <translation>新規メッセージ</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="242"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="243"/>
         <source>Trust request</source>
         <translation>要求を信頼</translation>
     </message>
@@ -4031,22 +4031,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="483"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="455"/>
         <source>Searching…</source>
         <translation>検索中…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1025"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="989"/>
         <source>Invalid ID</source>
         <translation>不正なID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1028"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="992"/>
         <source>Username not found</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1031"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="995"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>見つけられませんでした...</translation>
     </message>
@@ -4054,7 +4054,7 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="444"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="416"/>
         <source>Bad URI scheme</source>
         <translation>不正なURLスキーム</translation>
     </message>

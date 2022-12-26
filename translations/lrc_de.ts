@@ -35,12 +35,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="184"/>
         <source>New message</source>
         <translation>Neue Nachricht</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="242"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="243"/>
         <source>Trust request</source>
         <translation>Anfrage vertrauen</translation>
     </message>
@@ -887,7 +887,7 @@ Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="745"/>
         <source>more emojis</source>
-        <translation type="unfinished"/>
+        <translation>mehr Emojis</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
@@ -2383,7 +2383,7 @@ Möchten Sie jetzt updaten?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
         <source>Edit message</source>
-        <translation type="unfinished"/>
+        <translation>Nachricht bearbeiten</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
@@ -4043,22 +4043,22 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="483"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="455"/>
         <source>Searching…</source>
         <translation>Suchen…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1025"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="989"/>
         <source>Invalid ID</source>
         <translation>Ungültige ID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1028"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="992"/>
         <source>Username not found</source>
         <translation>Benutzername nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1031"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="995"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Konnte nicht nachschlagen...</translation>
     </message>
@@ -4066,7 +4066,7 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="444"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="416"/>
         <source>Bad URI scheme</source>
         <translation>Ungültiges URI-Schema</translation>
     </message>

@@ -35,12 +35,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="184"/>
         <source>New message</source>
         <translation>Nuovo messaggio</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="242"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="243"/>
         <source>Trust request</source>
         <translation>Richiesta fidata</translation>
     </message>
@@ -1908,7 +1908,7 @@ Vuoi aggiornare ora?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="745"/>
         <source>more emojis</source>
-        <translation type="unfinished"/>
+        <translation>più emoji</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
@@ -2103,7 +2103,7 @@ Vuoi aggiornare ora?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
         <source>Edit message</source>
-        <translation type="unfinished"/>
+        <translation>Modifica messaggio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
@@ -4059,22 +4059,22 @@ Copia e condividi con i tuoi amici!</translation>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="483"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="455"/>
         <source>Searching…</source>
         <translation>Ricerca...</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1025"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="989"/>
         <source>Invalid ID</source>
         <translation>ID non valido</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1028"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="992"/>
         <source>Username not found</source>
         <translation>Nome utente non trovato</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1031"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="995"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Impossibile cercare…</translation>
     </message>
@@ -4082,7 +4082,7 @@ Copia e condividi con i tuoi amici!</translation>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="444"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="416"/>
         <source>Bad URI scheme</source>
         <translation>Schema URI errato</translation>
     </message>
