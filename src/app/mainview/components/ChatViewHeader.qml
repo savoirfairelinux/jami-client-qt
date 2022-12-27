@@ -154,6 +154,17 @@ Rectangle {
             spacing: 16
 
             PushButton {
+                id: startMessagesResearch
+
+                source: JamiResources.search_svg
+                toolTipText: JamiStrings.startMessagesResearch
+
+                normalColor: JamiTheme.chatviewBgColor
+                imageColor: JamiTheme.chatviewButtonColor
+
+            }
+
+            PushButton {
                 id: startAAudioCallButton
 
                 visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))

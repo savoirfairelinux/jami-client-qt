@@ -350,6 +350,7 @@ Item {
     property string backendError: qsTr("This is the error from the backend: %0")
     property string disabledAccount: qsTr("The account is disabled")
     property string noNetworkConnectivity: qsTr("No network connectivity")
+    property string startMessagesResearch: qsTr("start messages research")
 
     // Chatview footer
     property string jumpToLatest: qsTr("Jump to latest")
