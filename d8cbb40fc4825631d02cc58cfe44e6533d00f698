@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad55a218_67fc78c5",
+        "filename": "src/app/positionmanager.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-27T15:11:27Z",
+      "side": 1,
+      "message": "Qt::UniqueConnection",
+      "range": {
+        "startLine": 22,
+        "startChar": 57,
+        "endLine": 30,
+        "endChar": 44
+      },
+      "revId": "d8cbb40fc4825631d02cc58cfe44e6533d00f698",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
