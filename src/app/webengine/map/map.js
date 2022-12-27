@@ -97,7 +97,7 @@ function setSource (coordos, avatar, authorName) {
     textLabel.setStyle(new ol.style.Style({
       text: new ol.style.Text({
         text: textLabel.get('text'),
-        font: '20px Arial',
+        font: '15px Arial',
         fill: new ol.style.Fill({
           color: 'black'
         }),
