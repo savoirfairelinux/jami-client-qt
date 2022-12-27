@@ -57,17 +57,19 @@ Flickable {
         anchors.horizontalCenter: parent.horizontalCenter
 
         Repeater {
-            model: MessagesAdapter.mediaMessageListModel
+            model: root.visible ? MessagesAdapter.mediaMessageListModel : 0
 
             delegate: Loader {
                 id: loaderRoot
 
                 sourceComponent: {
-                    if(Status === Interaction.Status.TRANSFER_FINISHED || Status === Interaction.Status.SUCCESS ){
-                        if (Object.keys(MessagesAdapter.getMediaInfo(Body)).length !== 0 && WITH_WEBENGINE)
-                            return localMediaMsgComp
+                    if (MessagesAdapter.isDocument(Type)) {
+                        if(Status === Interaction.Status.TRANSFER_FINISHED || Status === Interaction.Status.SUCCESS ){
+                            if (Object.keys(MessagesAdapter.getMediaInfo(Body)).length !== 0 && WITH_WEBENGINE)
+                                return localMediaMsgComp
 
-                        return fileMsgComp
+                            return fileMsgComp
+                        }
                     }
                 }
 

@@ -54,6 +54,8 @@ Q_SIGNALS:
 protected:
     void safeInit() override;
 
+    Q_INVOKABLE bool isDocument(const interaction::Type type);
+    Q_INVOKABLE bool isTextMessage(const interaction::Type type);
     Q_INVOKABLE void setupChatView(const QVariantMap& convInfo);
     Q_INVOKABLE void loadMoreMessages();
     Q_INVOKABLE void loadConversationUntil(const QString& to);
@@ -107,6 +109,7 @@ protected:
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;
     Q_INVOKABLE void getConvMedias();
+    Q_INVOKABLE void startMessagesResearch(QString& text);
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);

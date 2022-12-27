@@ -58,6 +58,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
         set_messageListModel(QVariant::fromValue(conversation.interactions.get()));
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
+        mediaInteractions_.reset(new MessageListModel(this));
+        set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
     });
 
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
@@ -71,6 +73,18 @@ MessagesAdapter::safeInit()
         connectConversationModel();
     });
     connectConversationModel();
+}
+
+bool
+MessagesAdapter::isDocument(const interaction::Type type)
+{
+    return interaction::Type::DATA_TRANSFER == type;
+}
+
+bool
+MessagesAdapter::isTextMessage(const interaction::Type type)
+{
+    return interaction::Type::TEXT == type;
 }
 
 void
@@ -581,9 +595,15 @@ MessagesAdapter::onMessagesFoundProcessed(const QString& accountId,
                                           const VectorMapStringString& messageIds,
                                           const QVector<interaction::Info>& messageInformations)
 {
+    qWarning() << "message found 1";
+    if (messageIds.length() != messageInformations.length()) {
+        qWarning() << "error in onMessagesFoundProcessed, messageIds/messageInformations";
+        return;
+    }
     if (lrcInstance_->get_currentAccountId() != accountId) {
         return;
     }
+    qWarning() << "message found 2";
     bool isSearchInProgress = messageIds.length();
     if (isSearchInProgress) {
         int index = -1;
@@ -732,10 +752,27 @@ MessagesAdapter::getConvMedias()
     auto convId = lrcInstance_->get_selectedConvUid();
 
     mediaInteractions_.reset(new MessageListModel(this));
-
     try {
         lrcInstance_->getCurrentConversationModel()->getConvMediasInfos(accountId, convId);
     } catch (...) {
-        qDebug() << "Exception during getConvMedia:";
+        qDebug() << "Exception during getConvMedia()";
+    }
+}
+
+void
+MessagesAdapter::startMessagesResearch(QString& text)
+{
+    mediaInteractions_.reset(new MessageListModel(this));
+    set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
+    if (text.isEmpty())
+        return;
+
+    auto accountId = lrcInstance_->get_currentAccountId();
+    auto convId = lrcInstance_->get_selectedConvUid();
+
+    try {
+        lrcInstance_->getCurrentConversationModel()->getMessagesInfos(accountId, convId, text);
+    } catch (...) {
+        qDebug() << "Exception during startMessagesResearch()";
     }
 }
