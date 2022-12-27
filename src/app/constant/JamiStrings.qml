@@ -354,6 +354,12 @@ Item {
     property string noNetworkConnectivity: qsTr("No network connectivity")
     property string deletedMessage: qsTr("Deleted message")
 
+    //MessagesResearch
+    property string jumpTo: qsTr("Jump to")
+    property string messages: qsTr("Messages")
+    property string files: qsTr("Files")
+    property string search: qsTr("Search")
+
     // Chatview footer
     property string jumpToLatest: qsTr("Jump to latest")
     property string typeIndicatorSingle: qsTr("{} is typing…")

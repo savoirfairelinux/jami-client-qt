@@ -35,6 +35,7 @@ class MessagesAdapter final : public QmlAdapterBase
     QML_PROPERTY(QString, editId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
     QML_PROPERTY(QVariant, mediaMessageListModel)
+    QML_PROPERTY(QString, searchbarPrompt)
 
 public:
     explicit MessagesAdapter(AppSettingsManager* settingsManager,
@@ -54,6 +55,7 @@ Q_SIGNALS:
 protected:
     void safeInit() override;
 
+    Q_INVOKABLE bool isDocument(const interaction::Type type);
     Q_INVOKABLE void setupChatView(const QVariantMap& convInfo);
     Q_INVOKABLE void loadMoreMessages();
     Q_INVOKABLE void loadConversationUntil(const QString& to);
@@ -106,7 +108,7 @@ protected:
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;
-    Q_INVOKABLE void getConvMedias();
+    Q_INVOKABLE void startSearch(QString& text, bool isMedia = false);
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
@@ -125,7 +127,7 @@ private Q_SLOTS:
                                   bool isComposing);
     void onMessagesFoundProcessed(const QString& accountId,
                                   const VectorMapStringString& messageIds,
-                                  const QVector<interaction::Info>& messageInformations);
+                                  const QVector<interaction::Info>& messageInformation);
 
 private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
