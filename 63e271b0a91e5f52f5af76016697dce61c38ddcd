@@ -140,6 +140,30 @@
       },
       "revId": "63e271b0a91e5f52f5af76016697dce61c38ddcd",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "826e9abc_ff33e7d3",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-12-27T15:55:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbd84dc9_7130c060",
+      "range": {
+        "startLine": 182,
+        "startChar": 120,
+        "endLine": 182,
+        "endChar": 132
+      },
+      "revId": "63e271b0a91e5f52f5af76016697dce61c38ddcd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
