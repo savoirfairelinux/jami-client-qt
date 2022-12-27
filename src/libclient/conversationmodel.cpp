@@ -243,7 +243,8 @@ public:
 
     std::map<QString, std::mutex> interactionsLocks; ///< {convId, mutex}
     MapStringString transfIdToDbIntId;
-    uint32_t currentMsgRequestId;
+    uint32_t mediaResearchRequestId;
+    uint32_t msgResearchRequestId;
 
 public Q_SLOTS:
     /**
@@ -1452,7 +1453,9 @@ ConversationModel::clearHistory(const QString& uid)
         std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[conversation.uid]);
         conversation.interactions->clear();
     }
-    storage::getHistory(pimpl_->db, conversation, pimpl_->linked.owner.profileInfo.uri); // will contain "Conversation started"
+    storage::getHistory(pimpl_->db,
+                        conversation,
+                        pimpl_->linked.owner.profileInfo.uri); // will contain "Conversation started"
 
     Q_EMIT modelChanged();
     Q_EMIT conversationCleared(uid);
@@ -1507,7 +1510,8 @@ ConversationModel::clearInteractionFromConversation(const QString& convId,
                 lastInteractionUpdated = true;
             }
             if (conversation.lastSelfMessageId == interactionId) {
-                conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(owner.profileInfo.uri);
+                conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
+                    owner.profileInfo.uri);
             }
 
         } catch (const std::out_of_range& e) {
@@ -2467,7 +2471,9 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                 linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
                 downloadFile = (bytesProgress == 0);
             } else if (msg.type == interaction::Type::CALL) {
-                msg.body = storage::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri, msg);
+                msg.body = storage::getCallInteractionString(msg.authorUri
+                                                                 == linked.owner.profileInfo.uri,
+                                                             msg);
             } else if (msg.type == interaction::Type::CONTACT) {
                 auto bestName = msg.authorUri == linked.owner.profileInfo.uri
                                     ? linked.owner.accountModel->bestNameForAccount(linked.owner.id)
@@ -2535,28 +2541,33 @@ ConversationModelPimpl::slotMessagesFound(uint32_t requestId,
                                           const QString& conversationId,
                                           const VectorMapStringString& messageIds)
 {
-    if (requestId != currentMsgRequestId) {
-        return;
-    }
     QVector<interaction::Info> messageDetailedinformations;
-    Q_FOREACH (const MapStringString& msg, messageIds) {
-        auto intInfo = interaction::Info(msg, "");
-        if (intInfo.type == interaction::Type::DATA_TRANSFER) {
-            auto fileId = msg["fileId"];
+    if (requestId == mediaResearchRequestId) {
+        Q_FOREACH (const MapStringString& msg, messageIds) {
+            auto intInfo = interaction::Info(msg, "");
+            if (intInfo.type == interaction::Type::DATA_TRANSFER) {
+                auto fileId = msg["fileId"];
 
-            QString path;
-            qlonglong bytesProgress, totalSize;
-            linked.owner.dataTransferModel->fileTransferInfo(accountId,
-                                                             conversationId,
-                                                             fileId,
-                                                             path,
-                                                             totalSize,
-                                                             bytesProgress);
-            intInfo.body = path;
+                QString path;
+                qlonglong bytesProgress, totalSize;
+                linked.owner.dataTransferModel->fileTransferInfo(accountId,
+                                                                 conversationId,
+                                                                 fileId,
+                                                                 path,
+                                                                 totalSize,
+                                                                 bytesProgress);
+                intInfo.body = path;
+            }
+            messageDetailedinformations.append(intInfo);
         }
-        messageDetailedinformations.append(intInfo);
+    } else if (requestId == msgResearchRequestId) {
+        Q_FOREACH (const MapStringString& msg, messageIds) {
+            auto intInfo = interaction::Info(msg, "");
+            if (intInfo.type == interaction::Type::TEXT) {
+                messageDetailedinformations.append(intInfo);
+            }
+        }
     }
-
     Q_EMIT linked.messagesFoundProcessed(accountId, messageIds, messageDetailedinformations);
 }
 
@@ -2617,7 +2628,9 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             // If we're a call in a swarm
             if (msg.authorUri != linked.owner.profileInfo.uri)
                 updateUnread = true;
-            msg.body = storage::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri, msg);
+            msg.body = storage::getCallInteractionString(msg.authorUri
+                                                             == linked.owner.profileInfo.uri,
+                                                         msg);
         } else if (msg.type == interaction::Type::CONTACT) {
             auto bestName = msg.authorUri == linked.owner.profileInfo.uri
                                 ? linked.owner.accountModel->bestNameForAccount(linked.owner.id)
@@ -3977,11 +3990,18 @@ ConversationModel::sendFile(const QString& convUid, const QString& path, const Q
 }
 
 void
-ConversationModel::getConvMediasInfos(const QString& accountId, const QString& conversationId)
+ConversationModel::getConvMediasInfos(const QString& accountId,
+                                      const QString& conversationId,
+                                      const QString& text,
+                                      const bool isDocuments)
 {
-    pimpl_->currentMsgRequestId = ConfigurationManager::instance().searchConversation(
-        accountId, conversationId, "", "", "", "application/data-transfer+json", 0, 0, 0, 0);
-};
+    if (isDocuments)
+        pimpl_->mediaResearchRequestId = ConfigurationManager::instance().searchConversation(
+            accountId, conversationId, "", "", text, "application/data-transfer+json", 0, 0, 0, 0);
+    else
+        pimpl_->msgResearchRequestId = ConfigurationManager::instance().searchConversation(
+            accountId, conversationId, "", "", text, "text/plain", 0, 0, 0, 0);
+}
 
 void
 ConversationModel::acceptTransfer(const QString& convUid, const QString& interactionId)

@@ -316,9 +316,12 @@ public:
                          api::datatransfer::Info& info) const;
 
     /**
-     * Starts a search of all medias and files in a conversation
+     * Starts a search of all medias in a conversation
      */
-    void getConvMediasInfos(const QString& accountId, const QString& conversationId);
+    void getConvMediasInfos(const QString& accountId,
+                            const QString& conversationId,
+                            const QString& text,
+                            const bool isDocuments);
     /**
      * @param convUid, uid of the conversation
      * @return the number of unread messages for the conversation

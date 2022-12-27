@@ -58,6 +58,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
         set_messageListModel(QVariant::fromValue(conversation.interactions.get()));
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
+        mediaInteractions_.reset(new MessageListModel(this));
+        set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
     });
 
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
@@ -71,6 +73,18 @@ MessagesAdapter::safeInit()
         connectConversationModel();
     });
     connectConversationModel();
+}
+
+bool
+MessagesAdapter::isDocument(const interaction::Type type)
+{
+    return interaction::Type::DATA_TRANSFER == type;
+}
+
+bool
+MessagesAdapter::isTextMessage(const interaction::Type type)
+{
+    return interaction::Type::TEXT == type;
 }
 
 void
@@ -581,6 +595,10 @@ MessagesAdapter::onMessagesFoundProcessed(const QString& accountId,
                                           const VectorMapStringString& messageIds,
                                           const QVector<interaction::Info>& messageInformations)
 {
+    if (messageIds.length() != messageInformations.length()) {
+        qWarning() << "error in onMessagesFoundProcessed, messageIds/messageInformations";
+        return;
+    }
     if (lrcInstance_->get_currentAccountId() != accountId) {
         return;
     }
@@ -726,16 +744,23 @@ MessagesAdapter::getFormattedDay(const quint64 timestamp)
 }
 
 void
-MessagesAdapter::getConvMedias()
+MessagesAdapter::startResearch(QString& text, bool isDocuments)
 {
+    mediaInteractions_.reset(new MessageListModel(this));
+    set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
+
+    if (text.isEmpty() && !isDocuments)
+        return;
+
     auto accountId = lrcInstance_->get_currentAccountId();
     auto convId = lrcInstance_->get_selectedConvUid();
 
-    mediaInteractions_.reset(new MessageListModel(this));
-
     try {
-        lrcInstance_->getCurrentConversationModel()->getConvMediasInfos(accountId, convId);
+        lrcInstance_->getCurrentConversationModel()->getConvMediasInfos(accountId,
+                                                                        convId,
+                                                                        text,
+                                                                        isDocuments);
     } catch (...) {
-        qDebug() << "Exception during getConvMedia:";
+        qDebug() << "Exception during startResearch()";
     }
 }

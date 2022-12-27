@@ -371,7 +371,7 @@ Item {
     property real swarmDetailsPageDocumentsMargins: 5
     property real swarmDetailsPageDocumentsMediaRadius: 15
     property real swarmDetailsPageDocumentsPaperClipSize: 24
-    property real swarmDetailsPageDocumentsMediaSize: 175
+    property real swarmDetailsPageDocumentsMediaSize: 150
 
     //Call information
     property real textFontPointSize: calcSize(10)
@@ -395,6 +395,10 @@ Item {
 
     // Modal Popup
     property real modalPopupRadius: 20
+
+    //MessagesResearch
+    property color blueLinkColor: darkTheme ? "#3366BB" : "#0645AD"
+    property real jumpToFontSize: calcSize(13)
 
     // MessageWebView
     property real chatViewHairLineSize: 1
