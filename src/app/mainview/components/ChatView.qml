@@ -107,7 +107,14 @@ Rectangle {
 
             onShowDetailsClicked: {
                 addMemberPanel.visible = false
+                messagesResearchPanel.visible = false
                 swarmDetailsPanel.visible = !swarmDetailsPanel.visible
+            }
+            onStartResearchClicked: {
+                addMemberPanel.visible = false
+                swarmDetailsPanel.visible = false
+                messagesResearchPanel.visible = !messagesResearchPanel.visible
+
             }
 
             Connections {
@@ -285,8 +292,20 @@ Rectangle {
 
             SwarmDetailsPanel {
                 id: swarmDetailsPanel
-                visible: false
 
+                visible: false
+                SplitView.maximumWidth: splitView.width
+                SplitView.preferredWidth: Math.max(JamiTheme.detailsPageMinWidth, splitView.width / 3)
+                SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
+                SplitView.fillHeight: true
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+            }
+
+            MessagesResearchPanel {
+                id: messagesResearchPanel
+
+                visible: false
                 SplitView.maximumWidth: splitView.width
                 SplitView.preferredWidth: Math.max(JamiTheme.detailsPageMinWidth, splitView.width / 3)
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
@@ -297,8 +316,8 @@ Rectangle {
 
             AddMemberPanel {
                 id: addMemberPanel
-                visible: false
 
+                visible: false
                 SplitView.maximumWidth: splitView.width
                 SplitView.preferredWidth: Math.max(JamiTheme.detailsPageMinWidth, splitView.width / 3)
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth

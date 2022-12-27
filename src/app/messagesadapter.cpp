@@ -50,6 +50,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , settingsManager_(settingsManager)
     , previewEngine_(previewEngine)
     , mediaInteractions_(std::make_unique<MessageListModel>())
+    , messageResearchList_(std::make_unique<MessageListModel>())
 {
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
         set_replyToId("");
@@ -581,6 +582,10 @@ MessagesAdapter::onMessagesFoundProcessed(const QString& accountId,
                                           const VectorMapStringString& messageIds,
                                           const QVector<interaction::Info>& messageInformations)
 {
+    if (messageIds.length() != messageInformations.length()) {
+        qWarning() << "error in onMessagesFoundProcessed, messageIds/messageInformations";
+        return;
+    }
     if (lrcInstance_->get_currentAccountId() != accountId) {
         return;
     }
@@ -732,10 +737,25 @@ MessagesAdapter::getConvMedias()
     auto convId = lrcInstance_->get_selectedConvUid();
 
     mediaInteractions_.reset(new MessageListModel(this));
-
     try {
         lrcInstance_->getCurrentConversationModel()->getConvMediasInfos(accountId, convId);
     } catch (...) {
-        qDebug() << "Exception during getConvMedia:";
+        qDebug() << "Exception during getConvMedia()";
+    }
+}
+
+void
+MessagesAdapter::startMessagesResearch(QString& text)
+{
+    if (text.isEmpty())
+        return;
+    auto accountId = lrcInstance_->get_currentAccountId();
+    auto convId = lrcInstance_->get_selectedConvUid();
+    messageResearchList_.reset(new MessageListModel(this));
+    qWarning() << "message research MesssagesAdapter";
+    try {
+        lrcInstance_->getCurrentConversationModel()->getMessagesInfos(accountId, convId, text);
+    } catch (...) {
+        qDebug() << "Exception during startMessagesResearch()";
     }
 }

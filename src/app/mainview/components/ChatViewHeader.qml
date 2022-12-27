@@ -19,6 +19,7 @@
 
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -35,6 +36,7 @@ Rectangle {
     signal addToConversationClicked
     signal pluginSelector
     signal showDetailsClicked
+    signal startResearchClicked
 
     Connections {
         target: CurrentConversation
@@ -153,6 +155,115 @@ Rectangle {
             Layout.rightMargin: 8
             spacing: 16
 
+            RowLayout {
+                id: rowSearchBar
+
+                function searchBarInteraction() {
+                    startResearchClicked()
+                    rectTextArea.isSearch = !rectTextArea.isSearch
+                    anim.start()
+                    if (rectTextArea.isSearch)
+                        textArea.focus = true
+                }
+
+                PushButton {
+                    id: startMessagesResearch
+
+                    source: JamiResources.search_svg
+                    toolTipText: JamiStrings.startMessagesResearch
+
+                    normalColor: JamiTheme.chatviewBgColor
+                    imageColor: JamiTheme.chatviewButtonColor
+
+                    onClicked: {
+                        rowSearchBar.searchBarInteraction()
+                    }
+                }
+
+                SequentialAnimation {
+                    id: anim
+
+                    PropertyAnimation {
+                        target: rectTextArea; properties: "visible"
+                        to: true
+                        duration: 0
+                    }
+
+                    ParallelAnimation {
+
+                        NumberAnimation {
+                            target: rectTextArea; properties: "opacity"
+                            from: rectTextArea.isSearch ? 0 : 1
+                            to: rectTextArea.isSearch ? 1 : 0
+                            duration: 150
+                        }
+
+                        NumberAnimation {
+                            target: rectTextArea; properties: "Layout.preferredWidth"
+                            from: rectTextArea.isSearch ? 0 : rectTextArea.textAreaWidth
+                            to: rectTextArea.isSearch ? rectTextArea.textAreaWidth : 0
+                            duration: 150
+                        }
+                    }
+
+                    PropertyAnimation {
+                        target: rectTextArea; properties: "visible"
+                        to: rectTextArea.isSearch
+                        duration: 0
+                    }
+
+                }
+                Rectangle {
+                    id: rectTextArea
+
+                    property bool isSearch: false
+                    visible: false
+                    Layout.preferredHeight: startMessagesResearch.height
+                    Layout.alignment: Qt.AlignVCenter
+                    property int textAreaWidth: 150
+
+                    color: "transparent"
+                    border.color: "grey"
+                    radius: 10
+                    border.width: 2
+
+                    TextField {
+                        id: textArea
+
+                        background.visible: false
+                        anchors.right: clearTextButton.left
+                        anchors.left: rectTextArea.left
+                        onTextChanged: {MessagesAdapter.startMessagesResearch(text)}
+                    }
+
+                    PushButton {
+                        id: clearTextButton
+
+                        anchors.verticalCenter: rectTextArea.verticalCenter
+                        anchors.right: rectTextArea.right
+                        anchors.margins: 5
+                        preferredSize: 21
+
+                        radius: rectTextArea.radius
+
+                        visible: textArea.text.length
+                        opacity: visible ? 1 : 0
+
+                        normalColor: "transparent"
+                        imageColor: JamiTheme.chatviewButtonColor
+
+                        source: JamiResources.ic_clear_24dp_svg
+                        toolTipText: JamiStrings.clearText
+
+                        onClicked: textArea.clear()
+
+                        Behavior on opacity {
+                            NumberAnimation { duration: 500; easing.type: Easing.OutCubic }
+                        }
+                    }
+                }
+            }
+
             PushButton {
                 id: startAAudioCallButton
 
@@ -223,8 +334,8 @@ Rectangle {
                 imageColor: JamiTheme.chatviewButtonColor
 
                 onClicked: CurrentConversation.isBanned ?
-                                MessagesAdapter.unbanConversation(CurrentConversation.id)
-                                : MessagesAdapter.sendConversationRequest()
+                               MessagesAdapter.unbanConversation(CurrentConversation.id)
+                             : MessagesAdapter.sendConversationRequest()
             }
 
             PushButton {

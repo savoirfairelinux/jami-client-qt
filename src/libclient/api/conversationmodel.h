@@ -320,6 +320,12 @@ public:
      */
     void getConvMediasInfos(const QString& accountId, const QString& conversationId);
     /**
+     * Starts a search of all messages in a conversation
+     */
+    void getMessagesInfos(const QString& accountId,
+                          const QString& conversationId,
+                          const QString& text);
+    /**
      * @param convUid, uid of the conversation
      * @return the number of unread messages for the conversation
      */

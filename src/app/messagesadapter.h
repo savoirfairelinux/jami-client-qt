@@ -107,6 +107,7 @@ protected:
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;
     Q_INVOKABLE void getConvMedias();
+    Q_INVOKABLE void startMessagesResearch(QString& text);
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
@@ -136,4 +137,5 @@ private:
     static constexpr const int loadChunkSize_ {20};
 
     std::unique_ptr<MessageListModel> mediaInteractions_;
+    std::unique_ptr<MessageListModel> messageResearchList_;
 };
