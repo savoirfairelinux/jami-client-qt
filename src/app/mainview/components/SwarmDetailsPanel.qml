@@ -71,7 +71,7 @@ Rectangle {
                 id: titleLine
 
                 Layout.alignment: Qt.AlignHCenter
-                Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.preferredWidth: parent.width - 32
                 Layout.topMargin: 5
 
                 TextMetrics {
@@ -130,13 +130,13 @@ Rectangle {
                 id: descriptionLine
 
                 Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.width - 32
 
                 font.pointSize: JamiTheme.menuFontSize
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
 
-                Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 fontSize: 16
 
                 firstIco:  JamiResources.round_edit_24dp_svg
