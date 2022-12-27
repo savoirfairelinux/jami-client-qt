@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19fcde19_82d6a8f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2022-12-27T08:29:35Z",
+      "side": 1,
+      "message": "translations/lrc_de_DE.ts should be deleted",
+      "revId": "24d4faa5b1689f134c318a5dfe21230ca113d735",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
