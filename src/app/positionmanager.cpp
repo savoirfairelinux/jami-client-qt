@@ -486,7 +486,7 @@ PositionManager::addPositionToMap(PositionKey key, QVariantMap position)
         bestName = accountInfo.contactModel->bestNameForContact(uri);
 
     QString shorterAuthorName = bestName;
-    shorterAuthorName.truncate(10);
+    shorterAuthorName.truncate(20);
     if (bestName != shorterAuthorName) {
         shorterAuthorName = shorterAuthorName + "…";
     }
