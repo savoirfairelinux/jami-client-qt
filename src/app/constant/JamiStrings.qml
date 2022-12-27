@@ -351,6 +351,15 @@ Item {
     property string disabledAccount: qsTr("The account is disabled")
     property string noNetworkConnectivity: qsTr("No network connectivity")
 
+    //MessagesResearch
+    property string startSearchMessages: qsTr("Start search messages")
+    property string closeSearchMessages: qsTr("Close search messages")
+    property string you: qsTr("You")
+    property string jumpTo: qsTr("Jump to")
+    property string messages: qsTr("Messages")
+    property string files: qsTr("Files")
+    property string search: qsTr("Search")
+
     // Chatview footer
     property string jumpToLatest: qsTr("Jump to latest")
     property string typeIndicatorSingle: qsTr("{} is typing…")
