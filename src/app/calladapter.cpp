@@ -127,6 +127,7 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
     auto& callModel = accInfo.callModel;
     const auto call = callModel->getCall(callId);
+    auto to = lrcInstance_->accountModel().bestNameForAccount(accountId);
 
     const auto& convInfo = lrcInstance_->getConversationFromCallId(callId, accountId);
     if (convInfo.uid.isEmpty() || call.isOutgoing)
@@ -149,7 +150,7 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
             auto from = accInfo.conversationModel->title(convInfo.uid);
             auto notifId = QString("%1;%2").arg(accountId).arg(convInfo.uid);
             systemTray_->showNotification(notifId,
-                                          tr("Missed call"),
+                                          tr("%1 missed call").arg(to),
                                           tr("Missed call with %1").arg(from),
                                           NotificationType::CHAT,
                                           Utils::QImageToByteArray(convAvatar));
@@ -569,6 +570,7 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
 {
     auto& accInfo = lrcInstance_->getAccountInfo(accountId);
     auto title = accInfo.conversationModel->title(convUid);
+    auto to = lrcInstance_->accountModel().bestNameForAccount(accountId);
 
     auto preferences = accInfo.conversationModel->getConversationPreferences(convUid);
     // Ignore notifications for this conversation
@@ -579,7 +581,7 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
     auto convAvatar = Utils::conversationAvatar(lrcInstance_, convUid, QSize(50, 50), accountId);
     auto notifId = QString("%1;%2").arg(accountId).arg(convUid);
     systemTray_->showNotification(notifId,
-                                  tr("Incoming call"),
+                                  tr("%1 incoming call").arg(to),
                                   tr("%1 is calling you").arg(title),
                                   NotificationType::CALL,
                                   Utils::QImageToByteArray(convAvatar));
