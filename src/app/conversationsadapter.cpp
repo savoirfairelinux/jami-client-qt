@@ -164,11 +164,12 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
                                              const interaction::Info& interaction)
 {
     if (!QApplication::focusWindow() || accountId != lrcInstance_->get_currentAccountId()
-            || convUid != lrcInstance_->get_selectedConvUid()) {
+        || convUid != lrcInstance_->get_selectedConvUid()) {
         auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
         if (interaction.authorUri == accountInfo.profileInfo.uri)
             return;
         auto from = accountInfo.contactModel->bestNameForContact(interaction.authorUri);
+        auto to = lrcInstance_->accountModel().bestNameForAccount(accountId);
 
         auto preferences = accountInfo.conversationModel->getConversationPreferences(convUid);
         // Ignore notifications for this conversation
@@ -181,7 +182,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
                                                 accountId);
         auto notifId = QString("%1;%2;%3").arg(accountId).arg(convUid).arg(interactionId);
         systemTray_->showNotification(notifId,
-                                      tr("New message"),
+                                      tr("%1 received a new message").arg(to),
                                       from + ": " + interaction.body,
                                       NotificationType::CHAT,
                                       Utils::QImageToByteArray(contactPhoto));
@@ -232,6 +233,7 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId,
         }
         auto& accInfo = lrcInstance_->getAccountInfo(accountId);
         auto from = accInfo.contactModel->bestNameForContact(peerUri);
+        auto to = lrcInstance_->accountModel().bestNameForAccount(accountId);
 
         auto preferences = accInfo.conversationModel->getConversationPreferences(convId);
         // Ignore notifications for this conversation
@@ -240,7 +242,7 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId,
         auto contactPhoto = Utils::contactPhoto(lrcInstance_, peerUri, QSize(50, 50), accountId);
         auto notifId = QString("%1;%2").arg(accountId).arg(conv);
         systemTray_->showNotification(notifId,
-                                      tr("Trust request"),
+                                      tr("%1 received a new trust request").arg(to),
                                       "New request from " + from,
                                       NotificationType::REQUEST,
                                       Utils::QImageToByteArray(contactPhoto));
