@@ -91,27 +91,35 @@ MessagesAdapter::loadMoreMessages()
 {
     auto accountId = lrcInstance_->get_currentAccountId();
     auto convId = lrcInstance_->get_selectedConvUid();
-    const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
-    if (convInfo.isSwarm()) {
-        auto* convModel = lrcInstance_->getCurrentConversationModel();
-        convModel->loadConversationMessages(convId, loadChunkSize_);
+    try {
+        const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
+        if (convInfo.isSwarm()) {
+            auto* convModel = lrcInstance_->getCurrentConversationModel();
+            convModel->loadConversationMessages(convId, loadChunkSize_);
+        }
+    } catch (const std::exception& e) {
+        qWarning() << e.what();
     }
 }
 
 void
 MessagesAdapter::loadConversationUntil(const QString& to)
 {
-    if (auto* model = messageListModel_.value<MessageListModel*>()) {
-        auto idx = model->indexOfMessage(to);
-        if (idx == -1) {
-            auto accountId = lrcInstance_->get_currentAccountId();
-            auto convId = lrcInstance_->get_selectedConvUid();
-            const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
-            if (convInfo.isSwarm()) {
-                auto* convModel = lrcInstance_->getCurrentConversationModel();
-                convModel->loadConversationUntil(convId, to);
+    try {
+        if (auto* model = messageListModel_.value<MessageListModel*>()) {
+            auto idx = model->indexOfMessage(to);
+            if (idx == -1) {
+                auto accountId = lrcInstance_->get_currentAccountId();
+                auto convId = lrcInstance_->get_selectedConvUid();
+                const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
+                if (convInfo.isSwarm()) {
+                    auto* convModel = lrcInstance_->getCurrentConversationModel();
+                    convModel->loadConversationUntil(convId, to);
+                }
             }
         }
+    } catch (const std::exception& e) {
+        qWarning() << e.what();
     }
 }
 
