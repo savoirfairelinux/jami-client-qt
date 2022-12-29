@@ -142,7 +142,7 @@ public:
     void reactToMessage(const QString& msgId, interaction::Info& info);
     QVariantMap convertReactMessagetoQVariant(const QSet<QString>&);
     QString lastMessageUid() const;
-    QString lastSelfMessageId() const;
+    QString lastSelfMessageId(const QString& id) const;
 
     QString findEmojiReaction(const QString& emoji,
                               const QString& authorURI,
