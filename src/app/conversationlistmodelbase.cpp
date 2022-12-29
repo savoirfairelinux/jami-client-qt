@@ -119,7 +119,12 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     }
     case Role::LastInteraction: {
         if (!item.interactions->empty()) {
-            return QVariant(item.interactions->at(item.lastMessageUid).body);
+            auto interaction = item.interactions->at(item.lastMessageUid);
+            auto body_ = interaction.body;
+            if (interaction.type == interaction::Type::DATA_TRANSFER) {
+                body_ = interaction.commit.value("displayName");
+            }
+            return QVariant(body_);
         }
         break;
     }
