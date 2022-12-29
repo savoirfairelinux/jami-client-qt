@@ -656,6 +656,11 @@ elseif (NOT APPLE)
     FILES ${DATA_DIR}/jami.appdata.xml
     DESTINATION ${CMAKE_INSTALL_PREFIX}/share/metainfo)
 
+  # man page
+  install(
+    FILES ${DOC_DIR}/jami.1
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/man/man1)
+
   # Add a target to generate API documentation using Doxygen and
   # graphviz-dot.
   find_package(Doxygen)

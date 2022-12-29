@@ -1,21 +1,76 @@
 .\" Manpage for jami.
-.TH man 8 "08 April 2021" "1.0" "jami man page"
+.TH JAMI 1 "2022-12-29" "Jami" "GNU"
 .SH NAME
-jami \- Client for jami.net
+jami \- Qt-based user interface for Jami
 .SH SYNOPSIS
 jami [options]
 .SH DESCRIPTION
-jami is a qt client for jami.net
+jami is a Qt-based client application (user interface) for Jami, an
+official GNU package for universal communication that respects the
+freedom and privacy of its users.
 .SH OPTIONS
-.B \-v, \-\-version
-Display the version and exit.
-.TP
-.B \-d, \-\-debug
-Enable debug.
 .TP
 .B \-h, \-\-help
-Display help text and exit.
+Display help on command line options and exit.
+.TP
+.B \-\-help\-all
+Display help including Qt-specific command line options and exit.
+.TP
+.B \-v, \-\-version
+Display version information and exit.
+.TP
+.B \-\-disable\-web\-security
+Don't enforce the same-origin policy.  This is currently used by jami
+by default to allow loading local resources in the chatview (for media
+and link preview, and emoji picker).
+
+This is a Qt WebEngine Chromium flag and is only applicable if jami
+was built with Qt WebEngine.
+.TP
+.B \-\-no\-sandbox
+Disable the security sandbox for Qt WebEngine's renderer and plugin
+processes.
+
+This is a Qt WebEngine Chromium flag and is only applicable if jami
+was built with Qt WebEngine.
+.TP
+.B \-\-single\-process
+Run Qt WebEngine's renderer and plugins in the same process as its
+browser, useful for getting stack traces for renderer crashes.  This
+is currently used by jami by default.
+
+This is a Qt WebEngine Chromium flag and is only applicable if jami
+was built with Qt WebEngine.
+.TP
+.B \-\-remote\-debugging\-port=<port_number>
+Local port to run the Qt WebEngine developer tools interface on,
+useful for inspecting and debugging web views.
+
+To access the Qt WebEngine developer tools after launching jami with
+this flag, open the address http://localhost:<port_number> in your web
+browser.
+
+This is a Qt WebEngine flag and is only applicable if jami was built
+with Qt WebEngine.
+.TP
+.B \-m, \-\-minimized
+Start jami minimized.
+.TP
+.B \-d, \-\-debug
+Enable debug mode for more verbose console output.
+.TP
+.B \-f, \-\-file=<file>
+Write debug output to <file>.
+.TP
+.B \-t, \-\-term
+Terminate all other currently running instances of jami.
+.TP
+.B \-q, \-\-quiet
+Mute daemon logging, useful for debugging only the Qt-based client
+application (user interface).
+
+This is only applicable when debug mode is enabled.
 .SH SEE ALSO
 jamid(1)
 .SH AUTHOR
-Alexandre Viau (alexandre.viau@savoirfairelinux.net)
+Amin Bandali (bandali@gnu.org)
