@@ -35,7 +35,7 @@ Rectangle {
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
-            var path = UtilsAdapter.getAbsPath(filePaths[index])
+            var path = UtilsAdapter.getAbsPath(decodeURIComponent(filePaths[index]))
             dataTransferSendContainer.filesToSendListModel.addToPending(path)
         }
     }
