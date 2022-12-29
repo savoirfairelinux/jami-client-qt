@@ -126,14 +126,14 @@ public Q_SLOTS: // METHODS
     QString openVideoInput(const QString& resource)
     {
 #ifdef ENABLE_VIDEO
-        return libjami::openVideoInput(resource.toStdString()).c_str();
+        return libjami::openVideoInput(resource.toLatin1().toStdString()).c_str();
 #endif
     }
 
     void closeVideoInput(const QString& resource)
     {
 #ifdef ENABLE_VIDEO
-        libjami::closeVideoInput(resource.toStdString());
+        libjami::closeVideoInput(resource.toLatin1().toStdString());
 #endif
     }
 

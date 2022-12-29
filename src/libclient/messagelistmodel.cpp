@@ -722,12 +722,12 @@ MessageListModel::lastMessageUid() const
 }
 
 QString
-MessageListModel::lastSelfMessageId() const
+MessageListModel::lastSelfMessageId(const QString& id) const
 {
     for (auto it = interactions_.rbegin(); it != interactions_.rend(); ++it) {
         auto lastType = it->second.type;
         if (lastType == interaction::Type::TEXT and !it->second.body.isEmpty()
-            and it->second.authorUri.isEmpty()) {
+            and (it->second.authorUri.isEmpty() || it->second.authorUri == id)) {
             return it->first;
         }
     }

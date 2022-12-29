@@ -1507,7 +1507,7 @@ ConversationModel::clearInteractionFromConversation(const QString& convId,
                 lastInteractionUpdated = true;
             }
             if (conversation.lastSelfMessageId == interactionId) {
-                conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId();
+                conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(owner.profileInfo.uri);
             }
 
         } catch (const std::out_of_range& e) {
@@ -2488,7 +2488,8 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
         }
 
         conversation.lastMessageUid = conversation.interactions->lastMessageUid();
-        conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId();
+        conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
+            linked.owner.profileInfo.uri);
         if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
             && messages.size() != 0) {
             if (conversation.interactions->size() > 0) {
@@ -2657,7 +2658,8 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             return;
         }
         conversation.lastMessageUid = conversation.interactions->lastMessageUid();
-        conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId();
+        conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
+            linked.owner.profileInfo.uri);
         invalidateModel();
         if (!interaction::isOutgoing(msg)) {
             Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,
