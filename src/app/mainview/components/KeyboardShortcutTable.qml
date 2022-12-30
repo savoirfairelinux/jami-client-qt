@@ -31,6 +31,7 @@ Window {
 
     title: JamiStrings.keyboardShortcutTableWindowTitle
     width: 500
+    minimumWidth: 300
     height: 480
 
     ListModel {
