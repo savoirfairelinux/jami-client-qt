@@ -23,121 +23,177 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
-Rectangle {
+Item {
+
     id: root
 
     property real margin: 5
-
     signal removeFileButtonClicked(int index)
 
-    radius: JamiTheme.filesToSendDelegateRadius
+    RowLayout {
 
-    color: CurrentConversation.color
+        anchors.fill: root
+        spacing : 2
 
-    ColumnLayout {
-        id: delegateFileWrapperColumnLayout
+        Rectangle {
+            id: mainRect
 
-        anchors.fill: parent
+            radius: JamiTheme.filesToSendDelegateRadius
+            Layout.preferredHeight: root.height - 4 * margin
+            Layout.preferredWidth: JamiTheme.layoutWidthFileTransfer
+            color: JamiTheme.transparentColor
 
-        spacing: 0
+            Rectangle {
+                id: rect
 
-        visible: !IsImage
+                anchors.fill: parent
+                color: CurrentConversation.color // "#E5E5E5"
+                layer.enabled: true
 
-        ResponsiveImage {
-            id: fileIcon
+                layer.effect: OpacityMask {
+                    maskSource: Item {
+                        width: rect.width
+                        height: rect.height
+                        Rectangle {
+                            anchors.centerIn: parent
+                            width:  rect.width
+                            height:  rect.height
+                            radius: JamiTheme.chatViewFooterButtonRadius
+                        }
+                    }
+                }
 
-            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-            Layout.topMargin: margin
-            Layout.leftMargin: margin
+                Rectangle {
+                    width: parent.width
+                    anchors.bottom: parent.bottom
+                    height: 3/4 * mainRect.height
+                    color: CurrentConversation.color
+                }
 
-            visible: !IsImage
+                Rectangle {
 
-            source: JamiResources.file_black_24dp_svg
-        }
+                    anchors.fill: parent
+                    anchors.margins: margin
+                    radius: JamiTheme.chatViewFooterButtonRadius
+                    color: JamiTheme.whiteColor
 
-        Text {
-            id: fileName
+                    ResponsiveImage {
+                        id: fileIcon
+                        visible : !IsImage
+                        anchors.fill: parent
+                        anchors.margins: margin
+                        source: JamiResources.file_black_24dp_svg
+                    }
 
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-            Layout.leftMargin: margin
-            Layout.preferredWidth: root.width - margin * 2
+                    AnimatedImage {
+                        id: name
 
-            visible: !IsImage
+                        anchors.fill: parent
+                        anchors.margins: margin
 
-            font.pointSize: JamiTheme.filesToSendDelegateFontPointSize
+                        asynchronous: true
+                        fillMode: Image.PreserveAspectCrop
+                        source: {
+                            if (!IsImage)
+                                return ""
 
-            text: FileName
-            elide: Text.ElideMiddle
-        }
+                            // :/ -> resource url for test purposes
+                            var sourceUrl = FilePath
+                            if (!sourceUrl.startsWith(":/"))
+                                return JamiQmlUtils.qmlFilePrefix + sourceUrl
+                            else
+                                return "qrc" + sourceUrl
+                        }
 
-        Text {
-            id: fileSize
+                        layer.enabled: true
+                        layer.effect: OpacityMask {
+                            maskSource: Rectangle {
+                                width: mainRect.width
+                                height: mainRect.height
+                                radius: JamiTheme.filesToSendDelegateRadius
+                            }
+                        }
+                    }
+                }
+            }
 
-            Layout.alignment: Qt.AlignBottom
-            Layout.leftMargin: margin
-            Layout.bottomMargin: margin
-            Layout.preferredWidth: root.width - margin * 2
+            PushButton {
+                id: removeFileButton
 
-            visible: !IsImage
+                anchors.right: mainRect.right
+                anchors.rightMargin: -margin
+                anchors.top: mainRect.top
+                anchors.topMargin: -margin
 
-            font.pointSize: JamiTheme.filesToSendDelegateFontPointSize
+                radius: 24
 
-            text: FileSize
-            elide: Text.ElideMiddle
-        }
-    }
+                preferredSize: 30
+                imageContainerWidth: 52
+                imageContainerHeight: 52
+                toolTipText: JamiStrings.optionRemove
 
-    AnimatedImage {
-        id: name
+                source: JamiResources.cross_black_24dp_svg
 
-        anchors.fill: parent
+                normalColor: JamiTheme.backgroundColor
+                imageColor: JamiTheme.textColor
 
-        asynchronous: true
-        fillMode: Image.PreserveAspectCrop
-        source: {
-            if (!IsImage)
-                return ""
-
-            // :/ -> resource url for test purposes
-            var sourceUrl = FilePath
-            if (!sourceUrl.startsWith(":/"))
-                return JamiQmlUtils.qmlFilePrefix + sourceUrl
-            else
-                return "qrc" + sourceUrl
-        }
-
-        layer.enabled: true
-        layer.effect: OpacityMask {
-            maskSource: Rectangle {
-                width: root.width
-                height: root.height
-                radius: JamiTheme.filesToSendDelegateRadius
+                onClicked: root.removeFileButtonClicked(index)
             }
         }
-    }
 
-    PushButton {
-        id: removeFileButton
+        Rectangle {
 
-        anchors.right: root.right
-        anchors.rightMargin: -margin
-        anchors.top: root.top
-        anchors.topMargin: -margin
+            id: info
+            Layout.preferredHeight: root.height -margin
+            Layout.preferredWidth: JamiTheme.layoutWidthFileTransfer
+            color : JamiTheme.transparentColor
+            Layout.alignment: Qt.AlignLeft
 
-        radius: margin
-        preferredSize: JamiTheme.filesToSendDelegateButtonSize
+            ColumnLayout {
 
-        toolTipText: JamiStrings.optionRemove
+                anchors.margins: margin
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
 
-        source: JamiResources.cross_black_24dp_svg
+                Text {
+                    id: fileName
 
-        normalColor:  JamiTheme.removeFileButtonColor
-        hoveredColor: JamiTheme.lightGrey_
-        imageColor: JamiTheme.textColor
+                    Layout.alignment: Qt.AlignLeft
+                    Layout.preferredWidth: info.width
+                    font.pointSize: JamiTheme.filesToSendDelegateFontPointSize
+                    color: JamiTheme.chatviewTextColor
+                    font.bold : true
+                    text: FileName
+                    elide: Text.ElideRight
+                }
 
-        onClicked: root.removeFileButtonClicked(index)
+                RowLayout {
+
+                    Layout.alignment: Qt.AlignLeft
+
+                    Text {
+                        id: fileExtension
+                        Layout.alignment: Qt.AlignLeft
+                        font.pointSize: JamiTheme.filesToSendDelegateFontPointSize
+                        font.capitalization: Font.AllUppercase
+                        color: JamiTheme.chatviewTextColor
+                        text: FileExtension
+
+                        elide: Text.ElideMiddle
+                    }
+
+                    Text {
+                        id: fileSize
+                        font.pointSize: JamiTheme.filesToSendDelegateFontPointSize
+                        color: JamiTheme.chatviewTextColor
+                        Layout.alignment: Qt.AlignLeft
+                        text: FileSize
+                        elide: Text.ElideMiddle
+                    }
+                }
+            }
+        }
     }
 }
