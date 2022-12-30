@@ -64,7 +64,11 @@ FilesToSendListModel::addToPending(QString filePath)
         isImage = true;
 
     beginInsertRows(QModelIndex(), pendingFiles_.size(), pendingFiles_.size());
-    auto item = FilesToSend::Item(filePath, fileInfo.fileName(), isImage, fileInfo.size());
+    auto item = FilesToSend::Item(filePath,
+                                  fileInfo.baseName(),
+                                  fileInfo.suffix(),
+                                  isImage,
+                                  fileInfo.size());
     pendingFiles_.append(item);
     endInsertRows();
 }
@@ -97,6 +101,8 @@ FilesToSendListModel::data(const QModelIndex& index, int role) const
         return QVariant(item.fileName);
     case Role::FilePath:
         return QVariant(item.filePath);
+    case Role::FileExtension:
+        return QVariant(item.fileExtension);
     case Role::FileSize:
         return QVariant(Utils::humanFileSize(item.fileSizeInByte));
     case Role::IsImage:

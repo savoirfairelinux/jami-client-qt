@@ -405,7 +405,6 @@ Item {
     property real chatViewFooterButtonSize: 36
     property real chatViewFooterButtonIconSize: 48
     property real chatViewFooterButtonRadius: 5
-    property real chatViewFooterFileContainerPreferredHeight: 150
     property real chatViewFooterTextAreaMaximumHeight: 130
     property real chatViewScrollToBottomButtonBottomMargin: 8
 
@@ -419,13 +418,14 @@ Item {
     property real typingDotsSize: 8
 
     // MessageWebView File Transfer Container
-    property real filesToSendContainerSpacing: 5
+    property real filesToSendContainerSpacing: 120
     property real filesToSendContainerPadding: 10
     property real filesToSendDelegateWidth: 100
     property real filesToSendDelegateHeight: 100
     property real filesToSendDelegateRadius: 7
     property real filesToSendDelegateButtonSize: 16
     property real filesToSendDelegateFontPointSize: calcSize(textFontSize + 2)
+    property real layoutWidthFileTransfer: 80
 
     // SBSMessageBase
     property int sbsMessageBasePreferredPadding: 12
