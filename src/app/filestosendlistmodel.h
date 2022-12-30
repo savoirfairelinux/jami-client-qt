@@ -25,6 +25,7 @@
     X(FileName) \
     X(FilePath) \
     X(FileSize) \
+    X(FileExtension) \
     X(IsImage)
 
 namespace FilesToSend {
@@ -39,15 +40,21 @@ Q_ENUM_NS(Role)
 
 struct Item
 {
-    Item(QString filePath, QString fileName, bool isImage, qint64 fileSizeInByte)
+    Item(QString filePath,
+         QString fileName,
+         QString fileExtension,
+         bool isImage,
+         qint64 fileSizeInByte)
         : filePath(filePath)
         , fileName(fileName)
+        , fileExtension(fileExtension)
         , isImage(isImage)
         , fileSizeInByte(fileSizeInByte)
     {}
 
     QString filePath;
     QString fileName;
+    QString fileExtension;
     bool isImage;
     qint64 fileSizeInByte;
 };
