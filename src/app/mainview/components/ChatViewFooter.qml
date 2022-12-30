@@ -260,7 +260,7 @@ Rectangle {
             Layout.preferredWidth: footerColumnLayout.width
             Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
             Layout.preferredHeight: filesToSendCount ?
-                                        JamiTheme.chatViewFooterFileContainerPreferredHeight : 0
+                                        JamiTheme.filesToSendDelegateHeight : 0
         }
     }
 }
