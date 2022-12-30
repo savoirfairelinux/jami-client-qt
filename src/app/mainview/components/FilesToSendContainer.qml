@@ -30,7 +30,7 @@ Rectangle {
     property alias filesToSendListModel: repeater.model
     property alias filesToSendCount: repeater.count
 
-    color: JamiTheme.messageOutBgColor
+    color: "transparent"
 
     JamiFlickable {
         id: filesToSendContainerScrollView
