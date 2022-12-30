@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fef61cb1_03759b2a",
+        "filename": "src/libclient/web-chatview/linkify-string.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-30T14:14:08Z",
+      "side": 1,
+      "message": "I prefer to not alter the file and keep their original code but seems they don\u0027t add their own copyright, so I added it.",
+      "parentUuid": "2ecd24d7_f001e98f",
+      "revId": "e100a16130d5458d158c6509af5b84ff80456e01",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53b70d00_79dc1e90",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-30T11:08:38Z",
       "side": 1,
       "message": "ditto",
+      "revId": "e100a16130d5458d158c6509af5b84ff80456e01",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab49c7d1_5d82ffb6",
+        "filename": "src/libclient/web-chatview/linkify.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-12-30T14:14:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53b70d00_79dc1e90",
       "revId": "e100a16130d5458d158c6509af5b84ff80456e01",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
