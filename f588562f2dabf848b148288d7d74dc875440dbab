@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68e132e4_27ff5ce1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-01T08:46:20Z",
+      "side": 1,
+      "message": "Hope it is okay to comment on your code.\n\nWishing you a great 2023.",
+      "revId": "f588562f2dabf848b148288d7d74dc875440dbab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc0ee30e_33a518a5",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-01T08:46:20Z",
+      "side": 1,
+      "message": "Typo?",
+      "range": {
+        "startLine": 429,
+        "startChar": 33,
+        "endLine": 429,
+        "endChar": 42
+      },
+      "revId": "f588562f2dabf848b148288d7d74dc875440dbab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5164a836_ab149ec2",
+        "filename": "src/app/mainview/components/FilesToSendDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-01T08:46:20Z",
+      "side": 1,
+      "message": "Typo?",
+      "range": {
+        "startLine": 150,
+        "startChar": 60,
+        "endLine": 150,
+        "endChar": 69
+      },
+      "revId": "f588562f2dabf848b148288d7d74dc875440dbab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd86113f_4358c1ff",
+        "filename": "src/app/mainview/components/FilesToSendDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-01T08:46:20Z",
+      "side": 1,
+      "message": "Should `infos` be `info`?\n\n\u003e This is one of the most common mistakes among English learners. There’s nothing wrong with saying “Informationen” in German or “informations” in French, both being the plural form of “information”. In English, however, the word is uncountable, i.e. there is \u003cb\u003eno plural form of it\u003c/b\u003e. The singular form already expresses the same idea as “informations” in other languages.\n\nhttps://jakubmarian.com/information-is-vs-informations-are-is-information-plural-or-singular-in-english/",
+      "range": {
+        "startLine": 164,
+        "startChar": 43,
+        "endLine": 164,
+        "endChar": 48
+      },
+      "revId": "f588562f2dabf848b148288d7d74dc875440dbab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
