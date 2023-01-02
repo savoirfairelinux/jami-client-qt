@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca8a88ad_4ad40ce1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2023-01-02T22:13:11Z",
+      "side": 1,
+      "message": "Delete duplicate \"de_DE\"\n\nSee: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/921",
+      "revId": "d16a9bc68140dd19f261395ef649f072ab2ec3fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
