@@ -44,6 +44,7 @@ ColumnLayout {
     }
 
     onVisibleChanged: {
+        flipControl.checked = UtilsAdapter.getAppValue(Settings.FlipSelf)
         if (visible) {
             hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration()
             if (previewWidget.visible)
@@ -230,6 +231,21 @@ ColumnLayout {
         }
     }
 
+    ToggleSwitch {
+        id: flipControl
+
+        Layout.fillWidth: true
+        Layout.leftMargin: JamiTheme.preferredMarginSize
+
+        labelText: JamiStrings.enableFlip
+        fontPointSize: JamiTheme.settingsFontSize
+
+        onSwitchToggled: {
+            UtilsAdapter.setAppValue(Settings.FlipSelf, checked)
+            CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf)
+        }
+    }
+
     // video Preview
     Rectangle {
         visible: VideoDevices.listSize !== 0
@@ -248,6 +264,7 @@ ColumnLayout {
             id: previewWidget
 
             anchors.fill: parent
+            flip: flipControl.checked
 
             underlayItems: Text {
                 anchors.centerIn: parent

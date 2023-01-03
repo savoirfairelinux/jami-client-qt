@@ -41,6 +41,7 @@ Item {
     onVisibleChanged: {
         CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
         CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators)
+        CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf)
     }
 
     Component {

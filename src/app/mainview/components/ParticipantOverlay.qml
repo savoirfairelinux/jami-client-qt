@@ -109,6 +109,7 @@ Item {
         anchors.margins: 2
         rendererId: root.sinkId
         crop: !participantIsActive
+        flip: isMe && CurrentCall.flipSelf
 
         underlayItems: Avatar {
             property real componentSize: Math.min(mediaDistRender.contentRect.width / 2, mediaDistRender.contentRect.height / 2)

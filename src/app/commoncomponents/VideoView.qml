@@ -31,6 +31,7 @@ Item {
                                    / videoOutput.sourceRect.width) ||
                                   0.5625 // 16:9 default
     property bool crop: false
+    property bool flip: false
 
     // This rect describes the actual rendered content rectangle
     // as the VideoOutput component may use PreserveAspectFit
@@ -45,6 +46,18 @@ Item {
             videoProvider.registerSink(rendererId, videoSink)
         }
     }
+
+    Matrix4x4 {
+        id: inverseTransform
+        matrix: Qt.matrix4x4(-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+    }
+
+    Translate {
+        id: translateTransform
+        x: root.width
+    }
+
+    transform: root.flip ? [inverseTransform, translateTransform] : []
 
     Rectangle {
         id: bgRect
