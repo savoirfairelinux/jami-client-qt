@@ -22,6 +22,30 @@
       },
       "revId": "70a29c448d1fd60ccadf4b0fd2e9aead4a20176d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fcadeb5_46a7e4eb",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-03T16:43:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c1c47a5_ce2cc041",
+      "range": {
+        "startLine": 600,
+        "startChar": 21,
+        "endLine": 601,
+        "endChar": 20
+      },
+      "revId": "70a29c448d1fd60ccadf4b0fd2e9aead4a20176d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
