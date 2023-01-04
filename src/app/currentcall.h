@@ -50,6 +50,8 @@ class CurrentCall final : public QObject
     QML_PROPERTY(bool, hideSelf)
     QML_PROPERTY(bool, hideSpectators)
 
+    QML_PROPERTY(bool, flipSelf)
+
 public:
     explicit CurrentCall(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentCall() = default;
