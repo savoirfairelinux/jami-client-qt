@@ -168,21 +168,51 @@ AVModel::~AVModel()
     }
 }
 
-void
-AVModel::updateRenderersInfo()
+MapStringString
+AVModel::getRenderersInfo(QString id)
 {
-    QVariantList renderersInfoList;
-
+    // std::lock_guard<std::mutex> lk(pimpl_->renderers_mtx_);
     for (auto r = pimpl_->renderers_.begin(); r != pimpl_->renderers_.end(); r++) {
-        QVariantMap qmap;
+        MapStringString qmap;
+        auto& rend = r->second;
+        MapStringString mapInfo = rend->getInfos();
+        if (mapInfo["RENDERER_ID"] == id) {
+            qmap.insert(rend->RES, mapInfo["RES"]);
+            qmap.insert(rend->RENDERER_ID, mapInfo["RENDERER_ID"]);
+            qmap.insert(rend->FPS, mapInfo["FPS"]);
+            return qmap;
+        }
+    }
+    return {};
+}
+
+QList<MapStringString>
+AVModel::getRenderersInfo()
+{
+    // std::lock_guard<std::mutex> lk(pimpl_->renderers_mtx_);
+    QList<MapStringString> infoList;
+    for (auto r = pimpl_->renderers_.begin(); r != pimpl_->renderers_.end(); r++) {
+        MapStringString qmap;
         auto& rend = r->second;
         MapStringString mapInfo = rend->getInfos();
         qmap.insert(rend->RES, mapInfo["RES"]);
-        qmap.insert(rend->ID, mapInfo["ID"]);
+        qmap.insert(rend->RENDERER_ID, mapInfo["RENDERER_ID"]);
         qmap.insert(rend->FPS, mapInfo["FPS"]);
-        renderersInfoList.append(qmap);
+        infoList.append(qmap);
     }
-    Q_EMIT onRendererInfosUpdated(renderersInfoList);
+    return infoList;
+}
+
+void
+AVModel::updateRenderersFPSInfo(QString rendererId)
+{
+    auto it = std::find_if(pimpl_->renderers_.begin(),
+                           pimpl_->renderers_.end(),
+                           [&rendererId](const auto& c) {
+                               return rendererId == c.second->getInfos()["RENDERER_ID"];
+                           });
+    if (it != pimpl_->renderers_.end())
+        Q_EMIT onRendererFpsChange(qMakePair(rendererId, it->second->getInfos()["FPS"]));
 }
 
 bool
@@ -846,7 +876,7 @@ AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& sh
             renderer,
             &Renderer::fpsChanged,
             this,
-            [this, id](void) { Q_EMIT linked_.updateRenderersInfo(); },
+            [this, id](void) { Q_EMIT linked_.updateRenderersFPSInfo(id); },
             Qt::DirectConnection);
         connect(
             renderer,

@@ -75,8 +75,12 @@ Item {
         id: callInformationWindow
 
         visible: false
-        advancedList: CallAdapter.callInformation
+        advancedList: CallAdapter.callInformationList
         fps: AvAdapter.renderersInfoList
+
+        Component.onDestruction: {
+            CallAdapter.stopTimerInformation();
+        }
     }
 
     JamiFileDialog {
