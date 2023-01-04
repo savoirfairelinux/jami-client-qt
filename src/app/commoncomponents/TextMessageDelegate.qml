@@ -83,7 +83,7 @@ SBSMessageBase {
             renderType: Text.NativeRendering
             textFormat: Text.MarkdownText
             onLinkHovered: root.hoveredLink = hoveredLink
-            onLinkActivated: Qt.openUrlExternally(hoveredLink)
+            onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
             readOnly: true
             color: getBaseColor()
 

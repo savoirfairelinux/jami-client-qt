@@ -92,7 +92,7 @@ Component {
                                     ctxMenu.y = mouse.y
                                     ctxMenu.openMenu()
                                 } else {
-                                    Qt.openUrlExternally("file://" + Body)
+                                    Qt.openUrlExternally(new Url("file://" + Body))
                                 }
                             }
                         }

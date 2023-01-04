@@ -70,6 +70,7 @@ Rectangle {
                 }
 
                 text: metrics.elidedText
+                textFormat: Text.MarkdownText
                 color:  UtilsAdapter.luma(root.color) ?
                             JamiTheme.chatviewTextColorLight :
                             JamiTheme.chatviewTextColorDark

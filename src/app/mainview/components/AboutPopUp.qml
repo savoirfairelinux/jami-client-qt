@@ -155,7 +155,7 @@ BaseModalDialog {
                 textFormat: TextEdit.RichText
                 selectByMouse: true
                 readOnly: true
-                onLinkActivated: Qt.openUrlExternally(link)
+                onLinkActivated: Qt.openUrlExternally(new Url(link))
 
                 TextMetrics {
                     id: textMetricsjamiDeclarationHyperText
@@ -189,7 +189,7 @@ BaseModalDialog {
                 textFormat: TextEdit.RichText
                 selectByMouse: true
                 readOnly: true
-                onLinkActivated: Qt.openUrlExternally(link)
+                onLinkActivated: Qt.openUrlExternally(new Url(link))
 
                 TextMetrics {
                     id: textMetricsjamiNoneWarrantyHyperText

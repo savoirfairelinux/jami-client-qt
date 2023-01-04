@@ -86,6 +86,7 @@ Item {
 
                 text: ReplyToBody
                 elide: Text.ElideRight
+                textFormat: Text.MarkdownText
 
                 color:  UtilsAdapter.luma(bubble.color) ?
                     JamiTheme.chatviewTextColorLight :

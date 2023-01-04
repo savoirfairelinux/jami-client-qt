@@ -180,6 +180,7 @@ MessagesAdapter::editMessage(const QString& convId, const QString& newBody, cons
         if (editId.isEmpty()) {
             return;
         }
+        set_editId("");
         lrcInstance_->getCurrentConversationModel()->editMessage(convId, newBody, editId);
     } catch (...) {
         qDebug() << "Exception during message edition:" << messageId;

@@ -202,7 +202,7 @@ Loader {
                                     dataTransferItem.hoveredLink = canOpen ?
                                                 ("file:///" + Body) : ""
                                     if (dataTransferItem.hoveredLink)
-                                        Qt.openUrlExternally(dataTransferItem.hoveredLink)
+                                        Qt.openUrlExternally(new Url(dataTransferItem.hoveredLink))
                                 }
                             }
                         }
