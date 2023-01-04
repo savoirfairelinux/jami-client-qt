@@ -2505,6 +2505,9 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                     return;
                 }
             }
+            if (conversation.interactions->size() > 100) {
+                qWarning() << "@@@@@ WARNING WEIRD CONV: " << conversationId;
+            }
             // In this case, we only have loaded merge commits. Load more messages
             ConfigurationManager::instance().loadConversationMessages(linked.owner.id,
                                                                       conversationId,
