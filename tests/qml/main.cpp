@@ -40,123 +40,129 @@
 #include <windows.h>
 #endif
 
-#if defined _MSC_VER && !COMPILE_ONLY
-#include <gnutls/gnutls.h>
-#endif
-
-class Setup : public QObject {
-  Q_OBJECT
+class Setup : public QObject
+{
+    Q_OBJECT
 
 public:
-  Setup(bool muteDring = false) : muteDring_(muteDring) {}
+    Setup(bool muteDring = false)
+        : muteDring_(muteDring)
+    {}
 
-  void init() {
-    connectivityMonitor_.reset(new ConnectivityMonitor(this));
-    settingsManager_.reset(new AppSettingsManager(this));
-    systemTray_.reset(new SystemTray(settingsManager_.get(), this));
+    void init()
+    {
+        connectivityMonitor_.reset(new ConnectivityMonitor(this));
+        settingsManager_.reset(new AppSettingsManager(this));
+        systemTray_.reset(new SystemTray(settingsManager_.get(), this));
 
-    QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
+        QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
 
 #if defined _MSC_VER && !COMPILE_ONLY
-    gnutls_global_init();
+        gnutls_global_init();
 #endif
 
-    lrcInstance_.reset(new LRCInstance(nullptr, nullptr, "",
-                                       connectivityMonitor_.get(), muteDring_));
-    lrcInstance_->subscribeToDebugReceived();
+        lrcInstance_.reset(
+            new LRCInstance(nullptr, nullptr, "", connectivityMonitor_.get(), muteDring_));
+        lrcInstance_->subscribeToDebugReceived();
 
-    auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
-    lrcInstance_->accountModel().downloadDirectory =
-        downloadPath.toString() + "/";
-  }
+        auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
+        lrcInstance_->accountModel().downloadDirectory = downloadPath.toString() + "/";
+    }
 
-  void qmlEngineRegistration(QQmlEngine *engine) {
-    // Expose custom types to the QML engine.
-    Utils::registerTypes(engine, systemTray_.get(), lrcInstance_.get(),
-                         settingsManager_.get(), previewEngine_.get(),
-                         &screenInfo_, this);
-  }
+    void qmlEngineRegistration(QQmlEngine* engine)
+    {
+        // Expose custom types to the QML engine.
+        Utils::registerTypes(engine,
+                             systemTray_.get(),
+                             lrcInstance_.get(),
+                             settingsManager_.get(),
+                             previewEngine_.get(),
+                             &screenInfo_,
+                             this);
+    }
 
 public Q_SLOTS:
 
-  /*!
-   * Called once before qmlEngineAvailable.
-   */
-  void applicationAvailable() { init(); }
+    /*!
+     * Called once before qmlEngineAvailable.
+     */
+    void applicationAvailable() { init(); }
 
-  /*!
-   * Called when the QML engine is available. Any import paths, plugin paths,
-   * and extra file selectors will have been set on the engine by this point.
-   * This function is called once for each QML test file, so any arguments are
-   * unique to that test. For example, this means that each QML test file will
-   * have its own QML engine.
-   *
-   * This function can be used to register QML types and add import paths,
-   * amongst other things.
-   */
-  void qmlEngineAvailable(QQmlEngine *engine) {
-    auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
-    engine->rootContext()->setContextProperty("videoProvider", videoProvider);
+    /*!
+     * Called when the QML engine is available. Any import paths, plugin paths,
+     * and extra file selectors will have been set on the engine by this point.
+     * This function is called once for each QML test file, so any arguments are
+     * unique to that test. For example, this means that each QML test file will
+     * have its own QML engine.
+     *
+     * This function can be used to register QML types and add import paths,
+     * amongst other things.
+     */
+    void qmlEngineAvailable(QQmlEngine* engine)
+    {
+        auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
+        engine->rootContext()->setContextProperty("videoProvider", videoProvider);
 #ifdef WITH_WEBENGINE
-    engine->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(true));
+        engine->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(true));
 #else
-    engine->rootContext()->setContextProperty("WITH_WEBENGINE",
-                                              QVariant(false));
+        engine->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(false));
 #endif
-    qmlEngineRegistration(engine);
-  }
+        qmlEngineRegistration(engine);
+    }
 
-  /*!
-   * Called once right after the all test execution has finished. Use this
-   * function to clean up before everything is destroyed.
-   */
-  void cleanupTestCase() {}
+    /*!
+     * Called once right after the all test execution has finished. Use this
+     * function to clean up before everything is destroyed.
+     */
+    void cleanupTestCase() {}
 
 private:
-  QScopedPointer<LRCInstance> lrcInstance_;
+    QScopedPointer<LRCInstance> lrcInstance_;
 
-  QScopedPointer<ConnectivityMonitor> connectivityMonitor_;
-  QScopedPointer<AppSettingsManager> settingsManager_;
-  QScopedPointer<SystemTray> systemTray_;
-  QScopedPointer<PreviewEngine> previewEngine_;
-  ScreenInfo screenInfo_;
+    QScopedPointer<ConnectivityMonitor> connectivityMonitor_;
+    QScopedPointer<AppSettingsManager> settingsManager_;
+    QScopedPointer<SystemTray> systemTray_;
+    QScopedPointer<PreviewEngine> previewEngine_;
+    ScreenInfo screenInfo_;
 
-  bool muteDring_{false};
+    bool muteDring_ {false};
 };
 
-int main(int argc, char **argv) {
-  QDir tempDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation));
+int
+main(int argc, char** argv)
+{
+    QDir tempDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation));
 
-  auto jamiDataDir = tempDir.absolutePath() + "\\jami_test\\jami";
-  auto jamiConfigDir = tempDir.absolutePath() + "\\jami_test\\.config";
-  auto jamiCacheDir = tempDir.absolutePath() + "\\jami_test\\.cache";
+    auto jamiDataDir = tempDir.absolutePath() + "\\jami_test\\jami";
+    auto jamiConfigDir = tempDir.absolutePath() + "\\jami_test\\.config";
+    auto jamiCacheDir = tempDir.absolutePath() + "\\jami_test\\.cache";
 
-  bool envSet = qputenv("JAMI_DATA_HOME", jamiDataDir.toLocal8Bit());
-  envSet &= qputenv("JAMI_CONFIG_HOME", jamiConfigDir.toLocal8Bit());
-  envSet &= qputenv("JAMI_CACHE_HOME", jamiCacheDir.toLocal8Bit());
-  if (!envSet)
-    return 1;
+    bool envSet = qputenv("JAMI_DATA_HOME", jamiDataDir.toLocal8Bit());
+    envSet &= qputenv("JAMI_CONFIG_HOME", jamiConfigDir.toLocal8Bit());
+    envSet &= qputenv("JAMI_CACHE_HOME", jamiCacheDir.toLocal8Bit());
+    if (!envSet)
+        return 1;
 
-  bool muteDring{false};
+    bool muteDring {false};
 
-  // Remove "-mutejamid" from argv, as quick_test_main_with_setup() will
-  // fail if given an invalid command-line argument.
-  auto end = std::remove_if(argv + 1, argv + argc, [](char *argv) {
-    return (strcmp(argv, "-mutejamid") == 0);
-  });
+    // Remove "-mutejamid" from argv, as quick_test_main_with_setup() will
+    // fail if given an invalid command-line argument.
+    auto end = std::remove_if(argv + 1, argv + argc, [](char* argv) {
+        return (strcmp(argv, "-mutejamid") == 0);
+    });
 
-  if (end != argv + argc) {
-    muteDring = true;
+    if (end != argv + argc) {
+        muteDring = true;
 
-    // Adjust the argument count.
-    argc = std::distance(argv, end);
-  }
+        // Adjust the argument count.
+        argc = std::distance(argv, end);
+    }
 #ifdef WITH_WEBENGINE
-  QtWebEngineQuick::initialize();
+    QtWebEngineQuick::initialize();
 #endif
-  QTEST_SET_MAIN_SOURCE_PATH
-  Setup setup(muteDring);
-  return quick_test_main_with_setup(argc, argv, "qml_test", nullptr, &setup);
+    QTEST_SET_MAIN_SOURCE_PATH
+    Setup setup(muteDring);
+    return quick_test_main_with_setup(argc, argv, "qml_test", nullptr, &setup);
 }
 
 #include "main.moc"
