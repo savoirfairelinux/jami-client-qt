@@ -67,6 +67,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8fe9038_f1d3df6f",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-04T20:58:57Z",
+      "side": 1,
+      "message": "If `Mirror local video` is enabled, does the video preview in `Settings`, `Audio/Video` show a mirrored video?\n\nThank you",
+      "range": {
+        "startLine": 202,
+        "startChar": 38,
+        "endLine": 202,
+        "endChar": 55
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a014b971_dab4e340",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 2
