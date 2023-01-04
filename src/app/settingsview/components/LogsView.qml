@@ -220,7 +220,7 @@ Window {
                     autoAccelerator: true
 
                     onClicked: Qt.openUrlExternally(
-                                   "https://jami.net/bugs-and-improvements/")
+                                   new Url("https://jami.net/bugs-and-improvements/"))
                 }
             }
         }
