@@ -29,15 +29,31 @@ import "../../commoncomponents"
 Popup {
     id: root
 
-    width: parent.width * 1 / 2
-    height: parent.height * 1 / 3
+    property real maxHeight: parent.height * 40 / 100
+
+    property real informationHeight: {
+        return Math.max(callInfoListview.contentHeight,
+                        renderersInfoListview.contentHeight)
+    }
+
+    width: parent.width * 60/ 100
+    height: maxHeight
+
     closePolicy: Popup.NoAutoClosed
 
     property var advancedList
     property var fps
 
-    Component.onDestruction: {
+    onClosed: {
         CallAdapter.stopTimerInformation()
+    }
+    onOpened: {
+        console.warn("opening")
+        AvAdapter.resetRendererInfos()
+        CallAdapter.resetCallInfos()
+
+        CallAdapter.setCallInfos()
+        AvAdapter.setRendererInfos()
     }
 
     background: Rectangle {
@@ -77,10 +93,11 @@ Popup {
 
             ColumnLayout {
                 spacing: JamiTheme.callInformationBlockSpacing
+                Layout.margins: JamiTheme.callInformationlayoutMargins
 
                 Text{
                     color: JamiTheme.callInfoColor
-                    text: "Call information"
+                    text: JamiStrings.callInformation
                     font.pointSize: JamiTheme.titleFontPointSize
                 }
 
@@ -92,9 +109,11 @@ Popup {
                     clip: true
 
                     ListView {
+                        id: callInfoListview
+
                         model: advancedList
                         width: parent.width
-                        height: root.height
+                        height: {return Math.min (informationHeight, maxHeight)}
                         spacing: JamiTheme.callInformationBlockSpacing
 
                         delegate: Column {
@@ -102,7 +121,7 @@ Popup {
 
                             Text {
                                 color: JamiTheme.callInfoColor
-                                text: "Call id: " + modelData.CALL_ID
+                                text: "Call id: " + CALL_ID
                                 font.pointSize: JamiTheme.textFontPointSize
                                 wrapMode: Text.WrapAnywhere
                                 width: itemCallInformation.width
@@ -113,7 +132,51 @@ Popup {
                                     return peerNumber.replace("@ring.dht","") ;
                                 }
                                 color: JamiTheme.callInfoColor
-                                text: "PEER_NUMBER: " + stringWithoutRing(modelData.PEER_NUMBER)
+                                text: "Peer number: " + stringWithoutRing(PEER_NUMBER)
+                                font.pointSize: JamiTheme.textFontPointSize
+                                wrapMode: Text.WrapAnywhere
+                                width: itemCallInformation.width
+                            }
+                            Column {
+                                id: socketLayout
+
+                                property bool showAll: false
+                                width: itemCallInformation.width
+
+                                RowLayout {
+                                   Text {
+                                        color: JamiTheme.callInfoColor
+                                        text: "Sockets"
+                                        font.pointSize: JamiTheme.textFontPointSize
+                                        wrapMode: Text.WrapAnywhere
+                                        width: itemCallInformation.width
+                                    }
+
+                                    PushButton {
+                                        source: socketLayout.showAll ? JamiResources.expand_more_24dp_svg : JamiResources.expand_less_24dp_svg
+                                        normalColor: JamiTheme.transparentColor
+                                        Layout.preferredWidth: 20
+                                        Layout.preferredHeight: 20
+                                        imageColor: JamiTheme.callInfoColor
+                                        onClicked: {
+                                            socketLayout.showAll = !socketLayout.showAll
+                                        }
+                                    }
+                                }
+
+                                Text {
+                                    color: JamiTheme.callInfoColor
+                                    text: SOCKETS
+                                    font.pointSize: JamiTheme.textFontPointSize
+                                    wrapMode: Text.WrapAnywhere
+                                    visible: socketLayout.showAll
+                                    width: parent.width
+                                }
+                            }
+
+                            Text {
+                                color: JamiTheme.callInfoColor
+                                text: "Video codec: " + VIDEO_CODEC
                                 font.pointSize: JamiTheme.textFontPointSize
                                 wrapMode: Text.WrapAnywhere
                                 width: itemCallInformation.width
@@ -121,7 +184,7 @@ Popup {
 
                             Text {
                                 color: JamiTheme.callInfoColor
-                                text: "Sockets: " + modelData.SOCKETS
+                                text: "Audio codec: " + AUDIO_CODEC
                                 font.pointSize: JamiTheme.textFontPointSize
                                 wrapMode: Text.WrapAnywhere
                                 width: itemCallInformation.width
@@ -129,7 +192,7 @@ Popup {
 
                             Text {
                                 color: JamiTheme.callInfoColor
-                                text: "Video codec: " + modelData.VIDEO_CODEC
+                                text: "Hardware acceleration: " + HARDWARE_ACCELERATION
                                 font.pointSize: JamiTheme.textFontPointSize
                                 wrapMode: Text.WrapAnywhere
                                 width: itemCallInformation.width
@@ -137,23 +200,7 @@ Popup {
 
                             Text {
                                 color: JamiTheme.callInfoColor
-                                text: "Audio codec: " + modelData.AUDIO_CODEC
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
-
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Hardware acceleration: " + modelData.HARDWARE_ACCELERATION
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
-
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Video bitrate: " + modelData.VIDEO_BITRATE
+                                text: "Video bitrate: " + VIDEO_BITRATE + " bps"
                                 font.pointSize: JamiTheme.textFontPointSize
                                 wrapMode: Text.WrapAnywhere
                                 width: itemCallInformation.width
@@ -165,10 +212,11 @@ Popup {
 
             ColumnLayout {
                 spacing: JamiTheme.callInformationBlockSpacing
+                Layout.margins: JamiTheme.callInformationlayoutMargins
 
                 Text {
                     color: JamiTheme.callInfoColor
-                    text: "Renderers information"
+                    text: JamiStrings.renderersInformation
                     font.pointSize: JamiTheme.titleFontPointSize
                 }
 
@@ -181,8 +229,10 @@ Popup {
 
 
                     ListView {
+                        id: renderersInfoListview
+
                         width: parent.width
-                        height: root.height
+                        height: {return Math.min (informationHeight, maxHeight)}
                         spacing: JamiTheme.callInformationBlockSpacing
                         model: fps
 
@@ -191,26 +241,26 @@ Popup {
 
                             Text{
                                 color: JamiTheme.callInfoColor
-                                text: "Renderer id: " + modelData.ID
+                                text: "Renderer id: " + RENDERER_ID
                                 font.pointSize: JamiTheme.textFontPointSize
                                 wrapMode: Text.WrapAnywhere
-                                width: itemParticipantInformation.width
+                                width: itemCallInformation.width
                             }
 
                             Text {
                                 color: JamiTheme.callInfoColor
-                                text: "Fps: " + modelData.FPS
+                                text: "Fps: " + FPS
                                 font.pointSize: JamiTheme.textFontPointSize
                                 wrapMode: Text.WrapAnywhere
-                                width: itemParticipantInformation.width
+                                width: itemCallInformation.width
                             }
 
                             Text {
                                 color: JamiTheme.callInfoColor
-                                text: "Resolution: " + modelData.RES
+                                text: "Resolution: " + RES
                                 font.pointSize: JamiTheme.textFontPointSize
                                 wrapMode: Text.WrapAnywhere
-                                width: itemParticipantInformation.width
+                                width: itemCallInformation.width
                             }
                         }
                     }

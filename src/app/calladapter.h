@@ -31,13 +31,15 @@
 #include <QVariant>
 #include <QSystemTrayIcon>
 
+#include "callInformationListModel.h"
+
 class SystemTray;
 
 class CallAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     QML_PROPERTY(bool, hasCall)
-    QML_RO_PROPERTY(QVariantList, callInformation)
+    QML_RO_PROPERTY(QVariant, callInformationList)
 
 public:
     QTimer* timer;
@@ -92,6 +94,8 @@ public:
                                 const QString& accountId = {},
                                 bool forceCallOnly = false);
     Q_INVOKABLE QString getCallDurationTime(const QString& accountId, const QString& convUid);
+    Q_INVOKABLE void resetCallInfos();
+    Q_INVOKABLE void setCallInfos();
     Q_INVOKABLE void updateAdvancedInformation();
 
 Q_SIGNALS:
@@ -126,4 +130,6 @@ private:
     QScopedPointer<CallOverlayModel> overlayModel_;
     QScopedPointer<CallParticipantsModel> participantsModel_;
     VectorString currentConfSubcalls_;
+
+    std::unique_ptr<CallInformationListModel> callInformationListModel_;
 };

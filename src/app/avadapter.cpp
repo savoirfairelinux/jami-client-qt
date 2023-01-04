@@ -37,7 +37,9 @@
 
 AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
+    , rendererInformationListModel_(std::make_unique<RendererInformationListModel>())
 {
+    set_renderersInfoList(QVariant::fromValue(rendererInformationListModel_.get()));
     connect(&lrcInstance_->avModel(),
             &lrc::api::AVModel::audioDeviceEvent,
             this,
@@ -47,9 +49,13 @@ AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
             this,
             &AvAdapter::onRendererStarted);
     connect(&lrcInstance_->avModel(),
-            &lrc::api::AVModel::onRendererInfosUpdated,
+            &lrc::api::AVModel::rendererStopped,
             this,
-            &AvAdapter::setRenderersInfoList);
+            &AvAdapter::onRendererStopped);
+    connect(&lrcInstance_->avModel(),
+            &lrc::api::AVModel::onRendererFpsChange,
+            this,
+            &AvAdapter::updateRenderersFPSInfo);
 }
 
 // The top left corner of primary screen is (0, 0).
@@ -309,12 +315,28 @@ AvAdapter::onRendererStarted(const QString& id, const QSize& size)
     if (callId.isEmpty()) {
         return;
     }
+    qWarning() << "renderer started " << id;
+    // update renderer Information list
+    //    auto& avModel = lrcInstance_->avModel();
+    //    auto rendererInfo = avModel.getRenderersInfo(id);
+    //    if (!rendererInformationListModel_->isRowAlreadyExists(id)) {
+    //        rendererInformationListModel_->addElement(qMakePair(id, rendererInfo));
+    //    }
+
     auto callModel = lrcInstance_->getCurrentCallModel();
     auto renderDevice = callModel->getCurrentRenderedDevice(callId);
     if (!id.contains("://"))
         return;
     set_currentRenderingDeviceId(id);
     set_currentRenderingDeviceType(renderDevice.type);
+}
+
+void
+AvAdapter::onRendererStopped(const QString& id)
+{
+    if (rendererInformationListModel_->isRowAlreadyExists(id)) {
+        rendererInformationListModel_->removeElement(id);
+    }
 }
 
 bool
@@ -430,7 +452,25 @@ AvAdapter::setHardwareAcceleration(bool accelerate)
 }
 
 void
-AvAdapter::setRenderersInfoList(QVariantList renderersInfo)
+AvAdapter::resetRendererInfos()
 {
-    set_renderersInfoList(renderersInfo);
+    rendererInformationListModel_->resetList();
+}
+
+void
+AvAdapter::setRendererInfos()
+{
+    auto& avModel = lrcInstance_->avModel();
+    for (auto rendererInfo : avModel.getRenderersInfo()) {
+        if (!rendererInformationListModel_->isRowAlreadyExists(rendererInfo["RENDERER_ID"])) {
+            rendererInformationListModel_->addElement(
+                qMakePair(rendererInfo["RENDERER_ID"], rendererInfo));
+        }
+    }
+}
+
+void
+AvAdapter::updateRenderersFPSInfo(QPair<QString, QString> fpsInfo)
+{
+    rendererInformationListModel_->updateFps(fpsInfo.first, fpsInfo.second);
 }

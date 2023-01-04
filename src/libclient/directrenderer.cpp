@@ -123,6 +123,7 @@ DirectRenderer::~DirectRenderer() {}
 void
 DirectRenderer::startRendering()
 {
+    qWarning() << "startDirectRenderer";
     Q_EMIT started(size());
 }
 
