@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce8d522c_4f1f1a79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-04T19:54:42Z",
+      "side": 1,
+      "message": "Is the button to mirror the video on the tile?\n\nThank you",
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b248bfd1_db663798",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-04T19:54:42Z",
+      "side": 1,
+      "message": "1. Is \u0027Enable\u0027 in the string required as the setting of the toggle would indicate `Enable`/`Disable`?\n\n2. Should `flip` be changed to `mirror`?\n\nIt is understood that Jitsi Meet uses `flip` and Zoom uses `mirror`. Not sure what terminology Teams and other alternatives use.\n\nIf this feature is to only change the orientation of the video preview in the horizontal, should `mirror` be used instead of `flip`?\n\n\u003e flip: To change the orientation of a selected object horizontally, vertically, or in both directions.\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dflip\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined\n\n3. Should `preview` be added as it only mirrors the local video preview, not the remove video?\n\n4. Should the string be something link:\n`Mirror local video`\nor\n`Mirror video locally`\nor\n`Locally mirror video`\n?\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dmirror%20video\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 202,
+        "startChar": 38,
+        "endLine": 202,
+        "endChar": 56
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a014b971_dab4e340",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-04T19:54:42Z",
+      "side": 1,
+      "message": "1. Change `Flip` to `Mirror`?\n\n2. It is understood that the daemon allows for 32 video streams. Can each video stream be independently mirrored?\n\nIs this option on the video, like in Jitsi Meet?\n\n3. If this only mirrors the local video, should the string be:\n`Mirror local video`\nor\n`Mirror video`\n?\n\nThis string would also allow for further development so that incoming video could be mirrored.\n\nUse case: a student could mirror a teacher\u0027s video (which would only be shown on the student\u0027s device. A video showing a graph of `f(x)` could quickly be converted to `f(-x)`.\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 260,
+        "startChar": 36,
+        "endLine": 260,
+        "endChar": 45
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
