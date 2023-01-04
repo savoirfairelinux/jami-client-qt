@@ -188,6 +188,8 @@ MessageListModel::size() const
 void
 MessageListModel::clear()
 {
+    qWarning("@@@ clear %p", this);
+    std::lock_guard<std::mutex> lk(mtx_);
     Q_EMIT beginResetModel();
     interactions_.clear();
     replyTo_.clear();
@@ -199,12 +201,14 @@ MessageListModel::clear()
 bool
 MessageListModel::empty() const
 {
+    qWarning("@@@empty  %p", this);
     return interactions_.empty();
 }
 
 interaction::Info
 MessageListModel::at(const QString& msgId) const
 {
+    qWarning("@@@at  %p", this);
     for (auto it = interactions_.cbegin(); it != interactions_.cend(); ++it) {
         if (it->first == msgId) {
             return it->second;
@@ -216,24 +220,28 @@ MessageListModel::at(const QString& msgId) const
 QPair<QString, interaction::Info>
 MessageListModel::front() const
 {
+    qWarning("@@@at  %p", this);
     return interactions_.front();
 }
 
 QPair<QString, interaction::Info>
 MessageListModel::last() const
 {
+    qWarning("@@@last  %p", this);
     return interactions_.last();
 }
 
 QPair<QString, interaction::Info>
 MessageListModel::atIndex(int index) const
 {
+    qWarning("@@@atIndx  %p", this);
     return interactions_.at(index);
 }
 
 QPair<iterator, bool>
 MessageListModel::insert(int index, QPair<QString, interaction::Info> message)
 {
+    qWarning("@@@insert  %p", this);
     iterator itr;
     for (itr = interactions_.begin(); itr != interactions_.end(); ++itr) {
         if (itr->first == message.first) {
@@ -251,6 +259,7 @@ MessageListModel::insert(int index, QPair<QString, interaction::Info> message)
 int
 MessageListModel::indexOfMessage(const QString& msgId, bool reverse) const
 {
+    qWarning("@@@indexOfMessage  %p", this);
     auto getIndex = [reverse, &msgId](const auto& start, const auto& end) -> int {
         auto it = std::find_if(start, end, [&msgId](const auto& it) { return it.first == msgId; });
         if (it == end) {
@@ -265,6 +274,8 @@ MessageListModel::indexOfMessage(const QString& msgId, bool reverse) const
 void
 MessageListModel::moveMessages(QList<QString> msgIds, const QString& parentId)
 {
+    qWarning("@@@ move Msg %p", this);
+    std::lock_guard<std::mutex> lk(mtx_);
     for (auto msgId : msgIds) {
         moveMessage(msgId, parentId);
     }
@@ -325,6 +336,8 @@ MessageListModel::updateReplies(item_t& message)
 void
 MessageListModel::insertMessage(int index, item_t& message)
 {
+    qWarning("@@@ insertMessage Msg %p", this);
+    std::lock_guard<std::mutex> lk(mtx_);
     Q_EMIT beginInsertRows(QModelIndex(), index, index);
     interactions_.insert(index, message);
     Q_EMIT endInsertRows();
@@ -334,6 +347,8 @@ MessageListModel::insertMessage(int index, item_t& message)
 iterator
 MessageListModel::insertMessage(iterator it, item_t& message)
 {
+    qWarning("@@@ insertMessage2 Msg %p", this);
+    std::lock_guard<std::mutex> lk(mtx_);
     auto index = std::distance(begin(), it);
     Q_EMIT beginInsertRows(QModelIndex(), index, index);
     auto insertion = interactions_.insert(it, message);
@@ -345,6 +360,8 @@ MessageListModel::insertMessage(iterator it, item_t& message)
 void
 MessageListModel::removeMessage(int index, iterator it)
 {
+    qWarning("@@@ removeMessage Msg %p", this);
+    std::lock_guard<std::mutex> lk(mtx_);
     Q_EMIT beginRemoveRows(QModelIndex(), index, index);
     interactions_.erase(it);
     Q_EMIT endRemoveRows();

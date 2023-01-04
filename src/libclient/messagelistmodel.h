@@ -23,6 +23,7 @@
 
 #include <QAbstractListModel>
 #include <QTimer>
+#include <mutex>
 
 namespace lrc {
 namespace api {
@@ -152,6 +153,7 @@ protected:
     using Role = MessageList::Role;
 
 private:
+    std::mutex mtx_;
     QList<QPair<QString, interaction::Info>> interactions_;
     // Note: because read status are updated even if interaction is not loaded
     // we need to keep track of these status outside the interaction::Info
