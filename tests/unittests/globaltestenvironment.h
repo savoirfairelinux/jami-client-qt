@@ -33,10 +33,6 @@
 #include <windows.h>
 #endif
 
-#if defined _MSC_VER && !COMPILE_ONLY
-#include <gnutls/gnutls.h>
-#endif
-
 class TestEnvironment
 {
 public:
