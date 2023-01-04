@@ -209,6 +209,7 @@ Rectangle {
                 width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                 x: callPageMainRect.width - previewRenderer.width - previewMargin
                 y: previewMarginYTop
+                flip: CurrentCall.flipSelf && !CurrentCall.isSharing
 
                 // HACK: this is a workaround to the preview video starting
                 // and stopping a few times. The root cause should be investigated ASAP.

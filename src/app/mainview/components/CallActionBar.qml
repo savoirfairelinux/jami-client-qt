@@ -188,6 +188,10 @@ Control {
                         UtilsAdapter.setAppValue(Settings.HideSpectators, !layoutModel.get(index).ActiveSetting)
                         CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators)
                         break
+                  case JamiStrings.mirrorLocalVideo:
+                        UtilsAdapter.setAppValue(Settings.FlipSelf, !layoutModel.get(index).ActiveSetting)
+                        CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf)
+                        break
                 }
             }
             onTriggered: {
@@ -218,9 +222,17 @@ Control {
                                         "IconSource": JamiResources.hidemyself_black_24dp_svg,
                                         "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSelf),
                                         "TopMargin": true,
-                                        "BottomMargin": true,
-                                        "SectionEnd": true})
+                                        "BottomMargin": false,
+                                        "SectionEnd": false})
                 }
+
+                layoutModel.append({"Name": JamiStrings.mirrorLocalVideo,
+                                    "IconSource": JamiResources.flip_24dp_svg,
+                                    "ActiveSetting": UtilsAdapter.getAppValue(Settings.FlipSelf),
+                                    "TopMargin": !CurrentCall.isConference,
+                                    "BottomMargin": true,
+                                    "SectionEnd": true})
+
                 layoutModel.append({"Name": JamiStrings.viewFullScreen,
                                     "IconSource": JamiResources.open_in_full_24dp_svg,
                                     "ActiveSetting": layoutManager.isCallFullscreen,

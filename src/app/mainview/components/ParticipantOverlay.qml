@@ -59,6 +59,7 @@ Item {
     property bool voiceActive: false
     property bool isLocalMuted: true
     property bool isRecording: false
+    property bool isSharing: false
 
     property bool meHost: CallAdapter.isCurrentHost()
     property bool meModerator: CallAdapter.isModerator()
@@ -123,6 +124,8 @@ Item {
         anchors.margins: 2
         rendererId: root.sinkId
         crop: !participantIsActive
+        flip: isMe && !isSharing && CurrentCall.flipSelf
+
         underlayItems: Avatar {
             property real componentSize: Math.min(mediaDistRender.contentRect.width / 2, mediaDistRender.contentRect.height / 2)
             height:  componentSize
