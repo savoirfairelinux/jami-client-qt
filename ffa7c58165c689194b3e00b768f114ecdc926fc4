@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "68959dee_5f8bd36a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-04T21:01:36Z",
+      "side": 1,
+      "message": "Should the commit message be updated to:\n`add option to mirror local videos`\n?",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "278e2904_4c2de429",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-04T21:01:36Z",
+      "side": 1,
+      "message": "`mirroring`?",
+      "range": {
+        "startLine": 9,
+        "startChar": 68,
+        "endLine": 9,
+        "endChar": 76
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce8d522c_4f1f1a79",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -14,6 +60,23 @@
       "writtenOn": "2023-01-04T19:54:42Z",
       "side": 1,
       "message": "Is the button to mirror the video on the tile?\n\nThank you",
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79328de8_f73b6993",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-04T21:01:36Z",
+      "side": 1,
+      "message": "Hopefully this patch does not mirror all local videos.",
       "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
