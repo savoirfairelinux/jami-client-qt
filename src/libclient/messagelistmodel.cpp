@@ -188,6 +188,7 @@ MessageListModel::size() const
 void
 MessageListModel::clear()
 {
+    std::lock_guard<std::mutex> lk(mtx_);
     Q_EMIT beginResetModel();
     interactions_.clear();
     replyTo_.clear();
@@ -265,6 +266,7 @@ MessageListModel::indexOfMessage(const QString& msgId, bool reverse) const
 void
 MessageListModel::moveMessages(QList<QString> msgIds, const QString& parentId)
 {
+    std::lock_guard<std::mutex> lk(mtx_);
     for (auto msgId : msgIds) {
         moveMessage(msgId, parentId);
     }
