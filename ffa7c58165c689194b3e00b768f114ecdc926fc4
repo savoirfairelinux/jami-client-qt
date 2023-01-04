@@ -70,6 +70,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be689b07_1622e286",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-04T21:36:03Z",
+      "side": 1,
+      "message": "1:1 also can mirror the preview, however the 1:1 have no problem with cheking if the video is from a file or a display sharing or if from  a camera, so the restriction mentionend if the coment is only related to the conferences.",
+      "parentUuid": "343d6495_14f297a4",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce8d522c_4f1f1a79",
@@ -100,6 +124,42 @@
       "writtenOn": "2023-01-04T21:01:36Z",
       "side": 1,
       "message": "Hopefully this patch does not mirror all local videos.",
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5378852d_f6d23b3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-04T21:36:03Z",
+      "side": 1,
+      "message": "no, the preference can be either set in the audio/video settings or in the layout options in the call. the preview tile is not a button itself",
+      "parentUuid": "ce8d522c_4f1f1a79",
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03ef39ae_4f2710fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-04T21:36:03Z",
+      "side": 1,
+      "message": "while preference is set, local cameras are mirroed. filesharing and windows/screen sharing are not",
+      "parentUuid": "79328de8_f73b6993",
       "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -164,6 +224,30 @@
       "writtenOn": "2023-01-04T20:58:57Z",
       "side": 1,
       "message": "If `Mirror local video` is enabled, does the video preview in `Settings`, `Audio/Video` show a mirrored video?\n\nThank you",
+      "range": {
+        "startLine": 202,
+        "startChar": 38,
+        "endLine": 202,
+        "endChar": 55
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd3ce23f_fe91d4e9",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-04T21:36:03Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "e8fe9038_f1d3df6f",
       "range": {
         "startLine": 202,
         "startChar": 38,
