@@ -52,10 +52,6 @@
 #include "dbuserrorhandler.h"
 #endif
 
-#if defined _MSC_VER
-#include <gnutls/gnutls.h>
-#endif
-
 static QString
 getRenderInterfaceString()
 {
@@ -139,10 +135,6 @@ MainApplication::init()
     qputenv("JAMI_LANG", settingsManager_->getValue(Settings::Key::LANG).toByteArray());
     settingsManager_->loadTranslations();
     setApplicationFont();
-
-#if defined _MSC_VER
-    gnutls_global_init();
-#endif
 
     initLrc(runOptions_[Option::UpdateUrl].toString(),
             connectivityMonitor_.get(),
