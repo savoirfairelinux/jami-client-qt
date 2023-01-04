@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "45317541_097f6c36",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2023-01-04T20:23:29Z",
+      "side": 1,
+      "message": "I support \"Mirror local video\"",
+      "parentUuid": "b248bfd1_db663798",
+      "range": {
+        "startLine": 202,
+        "startChar": 38,
+        "endLine": 202,
+        "endChar": 56
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a014b971_dab4e340",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2023-01-04T19:54:42Z",
       "side": 1,
       "message": "1. Change `Flip` to `Mirror`?\n\n2. It is understood that the daemon allows for 32 video streams. Can each video stream be independently mirrored?\n\nIs this option on the video, like in Jitsi Meet?\n\n3. If this only mirrors the local video, should the string be:\n`Mirror local video`\nor\n`Mirror video`\n?\n\nThis string would also allow for further development so that incoming video could be mirrored.\n\nUse case: a student could mirror a teacher\u0027s video (which would only be shown on the student\u0027s device. A video showing a graph of `f(x)` could quickly be converted to `f(-x)`.\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 260,
+        "startChar": 36,
+        "endLine": 260,
+        "endChar": 45
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "672b041c_2965d408",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2023-01-04T20:23:29Z",
+      "side": 1,
+      "message": "I also agree with \"Mirror local video\".",
+      "parentUuid": "a014b971_dab4e340",
       "range": {
         "startLine": 260,
         "startChar": 36,
