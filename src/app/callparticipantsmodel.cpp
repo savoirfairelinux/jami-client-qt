@@ -94,6 +94,9 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
         return QVariant(item.value(VOICEACTIVITY).toBool());
     case Role::IsRecording:
         return QVariant(item.value(ISRECORDING).toBool());
+    case Role::IsSharing:
+        // this only works when using local sinks in conference
+        return QVariant(item.value(STREAMID).toString().startsWith("file://") || item.value(STREAMID).toString().startsWith("display://"));
     }
     return QVariant();
 }

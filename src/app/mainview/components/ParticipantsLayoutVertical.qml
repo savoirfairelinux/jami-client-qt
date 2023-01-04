@@ -217,6 +217,7 @@ SplitView {
                             property bool isHandRaised_: HandRaised
                             property bool voiceActive_: VoiceActivity
                             property bool isRecording_: IsRecording
+                            property bool isSharing_: IsSharing
                         }
                     }
                 }
@@ -292,6 +293,7 @@ SplitView {
                 property bool isHandRaised_: HandRaised
                 property bool voiceActive_: VoiceActivity
                 property bool isRecording_: IsRecording
+                property bool isSharing_: IsSharing
             }
         }
     }
