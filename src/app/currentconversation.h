@@ -19,6 +19,7 @@
 #pragma once
 
 #include "lrcinstance.h"
+#include "currentconversationmembers.h"
 
 #include <QObject>
 #include <QString>
@@ -32,7 +33,6 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QString, id)
     QML_PROPERTY(QString, title)
     QML_PROPERTY(QString, description)
-    QML_PROPERTY(QStringList, uris)
     QML_PROPERTY(bool, isSwarm)
     QML_PROPERTY(bool, isLegacy)
     QML_PROPERTY(bool, isCoreDialog)
@@ -66,6 +66,7 @@ public:
     Q_INVOKABLE QString getPreference(const QString& key) const;
     Q_INVOKABLE MapStringString getPreferences() const;
     Q_INVOKABLE void setInfo(const QString& key, const QString& value);
+    CurrentConversationMembers* uris() const;
 
 Q_SIGNALS:
     void scrollTo(const QString& msgId);
@@ -87,6 +88,7 @@ Q_SIGNALS:
 
 private:
     LRCInstance* lrcInstance_;
+    CurrentConversationMembers* uris_;
 
     void connectModel();
 };

@@ -24,6 +24,7 @@ CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* pare
     : QObject(parent)
     , lrcInstance_(lrcInstance)
 {
+    uris_ = new CurrentConversationMembers(lrcInstance, this);
     // whenever the account changes, reconnect the new conversation model
     // for updates to the conversation and call state/id
     connect(lrcInstance_,
@@ -59,7 +60,23 @@ CurrentConversation::updateData()
         if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
             set_lastSelfMessageId(convInfo.lastSelfMessageId);
-            set_uris(convInfo.participantsUris());
+            QStringList uris, bannedUris;
+            auto isAdmin = false;
+            for (const auto& p : convInfo.participants) {
+                if (p.uri == accInfo.profileInfo.uri) {
+                    isAdmin = p.role == member::Role::ADMIN;
+                }
+                if (p.role == member::Role::BANNED) {
+                    bannedUris.push_back(p.uri);
+                } else {
+                    uris.push_back(p.uri);
+                }
+            }
+            if (isAdmin) {
+                for (const auto& banned : bannedUris)
+                    uris.push_back(banned);
+            }
+            uris_->setMembers(accountId, convId, uris);
             set_isSwarm(convInfo.isSwarm());
             set_isLegacy(convInfo.isLegacy());
             set_isCoreDialog(convInfo.isCoreDialog());
@@ -168,6 +185,12 @@ CurrentConversation::setInfo(const QString& key, const QString& value)
     const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
     auto convId = lrcInstance_->get_selectedConvUid();
     accInfo.conversationModel->updateConversationInfos(convId, infos);
+}
+
+CurrentConversationMembers*
+CurrentConversation::uris() const
+{
+    return uris_;
 }
 
 void

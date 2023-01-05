@@ -63,10 +63,9 @@ Rectangle {
             model: ContactAdapter.getContactSelectableModel(type)
 
             Connections {
-                enabled: visible
-                target: CurrentConversation
+                target: CurrentConversationMembers
 
-                function onUrisChanged(uris) {
+                function onCountChanged() {
                     contactPickerListView.model = ContactAdapter.getContactSelectableModel(type)
                 }
             }

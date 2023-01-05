@@ -74,12 +74,17 @@ ContextMenuAutoLoader {
         },
         GeneralMenuItem {
             id: kickMember
-            itemName: JamiStrings.kickMember
+            property var memberRole: UtilsAdapter.getParticipantRole(CurrentAccount.id, conversationId, participantUri)
+            itemName: memberRole === Member.Role.BANNED ? JamiStrings.reinstateMember : JamiStrings.kickMember
             iconSource: JamiResources.kick_member_svg
             canTrigger: role === Member.Role.ADMIN
 
             onClicked: {
-                MessagesAdapter.removeConversationMember(conversationId, participantUri)
+                if (memberRole === Member.Role.BANNED) {
+                    MessagesAdapter.addConversationMember(conversationId, participantUri)
+                } else {
+                    MessagesAdapter.removeConversationMember(conversationId, participantUri)
+                }
             }
         }
     ]
