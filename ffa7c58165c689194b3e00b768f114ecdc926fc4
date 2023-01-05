@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce09cb94_6d6e9032",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-05T13:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68959dee_5f8bd36a",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "278e2904_4c2de429",
@@ -89,6 +113,30 @@
         "startChar": 0,
         "endLine": 9,
         "endChar": 16
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5d9b835_7efc12b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-05T13:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "278e2904_4c2de429",
+      "range": {
+        "startLine": 9,
+        "startChar": 68,
+        "endLine": 9,
+        "endChar": 76
       },
       "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
@@ -258,6 +306,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6bec36d_cce36141",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-05T13:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45317541_097f6c36",
+      "range": {
+        "startLine": 202,
+        "startChar": 38,
+        "endLine": 202,
+        "endChar": 56
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a014b971_dab4e340",
@@ -295,6 +367,30 @@
       "side": 1,
       "message": "I also agree with \"Mirror local video\".",
       "parentUuid": "a014b971_dab4e340",
+      "range": {
+        "startLine": 260,
+        "startChar": 36,
+        "endLine": 260,
+        "endChar": 45
+      },
+      "revId": "ffa7c58165c689194b3e00b768f114ecdc926fc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "566f54c2_a77dfcb7",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-05T13:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "672b041c_2965d408",
       "range": {
         "startLine": 260,
         "startChar": 36,
