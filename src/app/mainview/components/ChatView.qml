@@ -153,17 +153,21 @@ Rectangle {
             Connections {
                 target: CurrentConversation
 
-                function onUrisChanged(uris) {
-                    if (CurrentConversation.uris.length >= 8 && addMemberPanel.visible) {
-                        swarmDetailsPanel.visible = false
-                        addMemberPanel.visible = !addMemberPanel.visible
-                    }
-                }
-
                 function onNeedsHost() {
                     viewCoordinator.presentDialog(
                                 appWindow,
                                 "mainview/components/HostPopup.qml")
+                }
+            }
+
+            Connections {
+                target: CurrentConversationMembers
+
+                function onCountChanged() {
+                    if (CurrentConversationMembers.count >= 8 && addMemberPanel.visible) {
+                        swarmDetailsPanel.visible = false
+                        addMemberPanel.visible = !addMemberPanel.visible
+                    }
                 }
             }
 
