@@ -92,6 +92,7 @@ Control {
                 color: JamiTheme.chatviewUsernameColor
                 lineHeight: JamiTheme.usernameBlockLineHeight
                 leftPadding: JamiTheme.usernameBlockPadding
+                textFormat: TextEdit.PlainText
             }
         }
 

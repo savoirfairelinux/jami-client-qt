@@ -77,13 +77,14 @@ Column {
                 Label {
                     id: textLabel
 
-                    Layout.rightMargin: 6                    
+                    Layout.rightMargin: 6
                     width: parent.width
                     text: Body
                     horizontalAlignment: Qt.AlignHCenter
                     font.pointSize: JamiTheme.contactEventPointSize
                     font.bold: true
                     color: JamiTheme.chatviewTextColor
+                    textFormat: TextEdit.PlainText
                 }
             }
         }
