@@ -517,6 +517,13 @@ MessagesAdapter::removeConversationMember(const QString& convUid, const QString&
 }
 
 void
+MessagesAdapter::addConversationMember(const QString& convUid, const QString& memberUri)
+{
+    auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+    accInfo.conversationModel->addConversationMember(convUid, memberUri);
+}
+
+void
 MessagesAdapter::removeContact(const QString& convUid, bool banContact)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();

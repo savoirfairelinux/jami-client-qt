@@ -208,7 +208,7 @@ Rectangle {
                     normalColor: JamiTheme.chatviewBgColor
                     imageColor: JamiTheme.chatviewButtonColor
 
-                    visible: CurrentConversation.uris.length < 8 && addMemberVisibility
+                    visible: CurrentConversationMembers.count < 8 && addMemberVisibility
 
                     onClicked: addToConversationClicked()
                 }
