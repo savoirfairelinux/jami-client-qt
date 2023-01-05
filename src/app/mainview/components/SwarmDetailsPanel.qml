@@ -237,7 +237,7 @@ Rectangle {
 
                     down: tabBar.currentIndex === 1
                     labelText: {
-                        var membersNb = CurrentConversation.uris.length;
+                        var membersNb = CurrentConversationMembers.count;
                         if (membersNb > 1)
                             return JamiStrings.members.arg(membersNb)
                         return JamiStrings.member
@@ -589,7 +589,7 @@ Rectangle {
                     }
                 }
 
-                model: CurrentConversation.uris
+                model: CurrentConversationMembers
                 delegate: ItemDelegate {
                     id: member
                     width: members.width
@@ -598,7 +598,7 @@ Rectangle {
                     background: Rectangle {
                         anchors.fill: parent
                         color: {
-                            if (member.hovered)
+                            if (member.hovered || avatar.hovered || bestName.hovered || roleLabel.hovered)
                                 return Qt.darker(JamiTheme.selectedColor, 1.05)
                             else
                                 return "transparent"
@@ -607,10 +607,10 @@ Rectangle {
 
                     MouseArea {
                         anchors.fill: parent
-                        enabled: modelData != CurrentAccount.uri
+                        enabled: MemberUri != CurrentAccount.uri
                         acceptedButtons: Qt.RightButton
                         onClicked: function (mouse) {
-                            contextMenu.openMenuAt(x + mouse.x, y + mouse.y, modelData)
+                            contextMenu.openMenuAt(x + mouse.x, y + mouse.y, MemberUri)
                         }
                     }
 
@@ -618,19 +618,17 @@ Rectangle {
                         spacing: 10
 
                         Avatar {
+                            id: avatar
                             width: JamiTheme.smartListAvatarSize
                             height: JamiTheme.smartListAvatarSize
                             Layout.leftMargin: JamiTheme.preferredMarginSize
                             Layout.topMargin: JamiTheme.preferredMarginSize / 2
                             z: -index
-                            opacity: {
-                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
-                                return role === Member.Role.INVITED ? 0.5 : 1
-                            }
+                            opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED)? 0.5 : 1
 
-                            imageId: CurrentAccount.uri == modelData ? CurrentAccount.id : modelData
-                            showPresenceIndicator: UtilsAdapter.getContactPresence(CurrentAccount.id, modelData)
-                            mode: CurrentAccount.uri == modelData ? Avatar.Mode.Account : Avatar.Mode.Contact
+                            imageId: CurrentAccount.uri == MemberUri ? CurrentAccount.id : MemberUri
+                            showPresenceIndicator: UtilsAdapter.getContactPresence(CurrentAccount.id, MemberUri)
+                            mode: CurrentAccount.uri == MemberUri ? Avatar.Mode.Account : Avatar.Mode.Contact
                         }
 
                         ElidedTextLabel {
@@ -639,42 +637,37 @@ Rectangle {
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
                             Layout.topMargin: JamiTheme.preferredMarginSize / 2
 
-                            eText: UtilsAdapter.getContactBestName(CurrentAccount.id, modelData)
+                            eText: UtilsAdapter.getContactBestName(CurrentAccount.id, MemberUri)
                             maxWidth: JamiTheme.preferredFieldWidth
 
                             font.pointSize: JamiTheme.participantFontSize
                             color: JamiTheme.primaryForegroundColor
-                            opacity: {
-                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
-                                return role === Member.Role.INVITED ? 0.5 : 1
-                            }
+                            opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED)? 0.5 : 1
                             font.kerning: true
 
                             verticalAlignment: Text.AlignVCenter
                         }
 
                         ElidedTextLabel {
-                            id: role
+                            id: roleLabel
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
                             Layout.topMargin: JamiTheme.preferredMarginSize / 2
 
                             eText: {
-                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
-                                if (role === Member.Role.ADMIN)
+                                if (MemberRole === Member.Role.ADMIN)
                                     return JamiStrings.administrator
-                                if (role === Member.Role.INVITED)
+                                if (MemberRole === Member.Role.INVITED)
                                     return JamiStrings.invited
+                                if (MemberRole === Member.Role.BANNED)
+                                    return JamiStrings.banned
                                 return ""
                             }
                             maxWidth: JamiTheme.preferredFieldWidth
 
                             font.pointSize: JamiTheme.participantFontSize
                             color: JamiTheme.textColorHovered
-                            opacity: {
-                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
-                                return role === Member.Role.INVITED ? 0.5 : 1
-                            }
+                            opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED)? 0.5 : 1
                             font.kerning: true
 
                             horizontalAlignment: Text.AlignRight

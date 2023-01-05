@@ -60,7 +60,7 @@ Popup {
                     if (isCall) {
                         pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
                     } else {
-                        var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversation.uris[0]
+                        var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0]
                         pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId)
                     }
                 }
@@ -72,7 +72,7 @@ Popup {
                     pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
                 } else {
                     var accountId = LRCInstance.currentAccountId
-                    var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversation.uris[0]
+                    var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0]
                     PluginModel.toggleChatHandler(handlerId, accountId, peerId, !isLoaded)
                     pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
                 }
@@ -127,7 +127,7 @@ Popup {
                         if (isCall) {
                             return PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
                         } else {
-                            var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversation.uris[0]
+                            var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0]
                             return PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId)
                         }
                     }
