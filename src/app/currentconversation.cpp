@@ -54,7 +54,23 @@ CurrentConversation::updateData()
         if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
             set_lastSelfMessageId(convInfo.lastSelfMessageId);
-            set_uris(convInfo.participantsUris());
+            QStringList uris, bannedUris;
+            auto isAdmin = false;
+            for (const auto& p : convInfo.participants) {
+                if (p.uri == accInfo.profileInfo.uri) {
+                    isAdmin = p.role == member::Role::ADMIN;
+                }
+                if (p.role == member::Role::BANNED) {
+                    bannedUris.push_back(p.uri);
+                } else {
+                    uris.push_back(p.uri);
+                }
+            }
+            if (isAdmin) {
+                for (const auto& banned : bannedUris)
+                    uris.push_back(banned);
+            }
+            set_uris(uris);
             set_isSwarm(convInfo.isSwarm());
             set_isLegacy(convInfo.isLegacy());
             set_isCoreDialog(convInfo.isCoreDialog());

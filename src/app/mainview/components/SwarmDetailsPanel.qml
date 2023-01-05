@@ -598,7 +598,7 @@ Rectangle {
                     background: Rectangle {
                         anchors.fill: parent
                         color: {
-                            if (member.hovered)
+                            if (member.hovered || avatar.hovered || bestName.hovered || roleLabel.hovered)
                                 return Qt.darker(JamiTheme.selectedColor, 1.05)
                             else
                                 return "transparent"
@@ -618,14 +618,15 @@ Rectangle {
                         spacing: 10
 
                         Avatar {
+                            id: avatar
                             width: JamiTheme.smartListAvatarSize
                             height: JamiTheme.smartListAvatarSize
                             Layout.leftMargin: JamiTheme.preferredMarginSize
                             Layout.topMargin: JamiTheme.preferredMarginSize / 2
                             z: -index
                             opacity: {
-                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
-                                return role === Member.Role.INVITED ? 0.5 : 1
+                                var memberRole = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
+                                return (memberRole === Member.Role.INVITED || memberRole === Member.Role.BANNED)? 0.5 : 1
                             }
 
                             imageId: CurrentAccount.uri == modelData ? CurrentAccount.id : modelData
@@ -645,8 +646,8 @@ Rectangle {
                             font.pointSize: JamiTheme.participantFontSize
                             color: JamiTheme.primaryForegroundColor
                             opacity: {
-                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
-                                return role === Member.Role.INVITED ? 0.5 : 1
+                                var memberRole = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
+                                return (memberRole === Member.Role.INVITED || memberRole === Member.Role.BANNED)? 0.5 : 1
                             }
                             font.kerning: true
 
@@ -654,17 +655,19 @@ Rectangle {
                         }
 
                         ElidedTextLabel {
-                            id: role
+                            id: roleLabel
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
                             Layout.topMargin: JamiTheme.preferredMarginSize / 2
 
                             eText: {
-                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
-                                if (role === Member.Role.ADMIN)
+                                var memberRole = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
+                                if (memberRole === Member.Role.ADMIN)
                                     return JamiStrings.administrator
-                                if (role === Member.Role.INVITED)
+                                if (memberRole === Member.Role.INVITED)
                                     return JamiStrings.invited
+                                if (memberRole === Member.Role.BANNED)
+                                    return JamiStrings.banned
                                 return ""
                             }
                             maxWidth: JamiTheme.preferredFieldWidth
@@ -672,8 +675,8 @@ Rectangle {
                             font.pointSize: JamiTheme.participantFontSize
                             color: JamiTheme.textColorHovered
                             opacity: {
-                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
-                                return role === Member.Role.INVITED ? 0.5 : 1
+                                var memberRole = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
+                                return (memberRole === Member.Role.INVITED || memberRole === Member.Role.BANNED)? 0.5 : 1
                             }
                             font.kerning: true
 
