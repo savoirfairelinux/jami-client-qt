@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25eb109a_a9567d18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-05T22:41:50Z",
+      "side": 1,
+      "message": "Issue with mutex: deadlock in AVModel::getRenderersInfo() or AVModel::getRenderersInfo(QString id).\n",
+      "revId": "237ed8397775fc137657fad6c6ccbaf2a8e5a10a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
