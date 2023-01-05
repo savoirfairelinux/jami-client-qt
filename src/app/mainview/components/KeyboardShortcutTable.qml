@@ -33,6 +33,7 @@ Window {
     width: 500
     minimumWidth: 300
     height: 480
+    minimumHeight: 300
 
     ListModel {
         id: keyboardGeneralShortcutsModel
