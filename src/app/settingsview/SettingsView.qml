@@ -29,8 +29,11 @@ import "components"
 import "../commoncomponents"
 import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
-Rectangle {
+BaseView {
     id: root
+    objectName: "SettingsView"
+
+    requiresIndex: true
 
     enum SettingsMenu {
         Account,
@@ -39,11 +42,7 @@ Rectangle {
         Plugin
     }
 
-    onVisibleChanged: {
-        if(visible){
-            setSelected(selectedMenu,true)
-        }
-    }
+    onVisibleChanged: if(visible) setSelected(selectedMenu, true)
 
     function setSelected(sel, recovery = false) {
         if(selectedMenu === sel && (!recovery)) { return }
@@ -65,7 +64,9 @@ Rectangle {
         }
     }
 
-    // slots
+    // All of this is strange and should be verified
+    signal settingsViewNeedToShowMainView
+    signal settingsViewNeedToShowNewWizardWindow
     function leaveSettingsSlot(showMainView) {
         settingsViewRect.stopBooth()
         if (showMainView)
@@ -75,11 +76,6 @@ Rectangle {
     }
 
     property int selectedMenu: SettingsView.Account
-    // signal to redirect the page to main view
-    signal settingsViewNeedToShowMainView()
-    signal settingsViewNeedToShowNewWizardWindow
-
-    signal settingsBackArrowClicked
 
     visible: true
 
@@ -126,7 +122,7 @@ Rectangle {
                 }
             }
 
-            onBackArrowClicked: root.settingsBackArrowClicked()
+            onBackArrowClicked: viewCoordinator.hideCurrentView()
         }
 
         JamiFlickable {
