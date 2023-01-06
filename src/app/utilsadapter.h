@@ -42,7 +42,6 @@ class SystemTray;
 
 #define LOGSLIMIT 10000
 
-
 #if defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
 /**
  * @brief Read if "AppsUseLightTheme" registry exists and its value
@@ -65,8 +64,6 @@ public:
                           LRCInstance* instance,
                           QObject* parent = nullptr);
     ~UtilsAdapter() = default;
-
-    void safeInit() override {}
 
     Q_INVOKABLE const QString getProjectCredits();
     Q_INVOKABLE const QString getVersionStr();

@@ -27,6 +27,17 @@ FileDialog {
     // Use enum to avoid importing Qt.labs.platform when using JamiFileDialog.
     property int mode: JamiFileDialog.Mode.OpenFile
 
+    signal fileAccepted(string file)
+    signal filesAccepted(var files)
+
+    onAccepted: {
+        switch(fileMode) {
+        case FileDialog.OpenFile: fileAccepted(file); break
+        case FileDialog.OpenFiles: filesAccepted(files); break
+        default: fileAccepted(file)
+        }
+    }
+
     enum Mode {
         OpenFile = 0,
         OpenFiles,
