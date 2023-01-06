@@ -30,8 +30,11 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
-Rectangle {
+BaseView {
     id: root
+
+    rootViewName: "WelcomePage"
+    onDismissed: LRCInstance.deselectConversation()
 
     property bool allMessagesLoaded
     property var mapPositions: PositionManager.mapStatus
@@ -97,9 +100,7 @@ Rectangle {
                 onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
             }
 
-            onBackClicked: {
-                mainView.showWelcomeView()
-            }
+            onBackClicked: root.dismiss()
 
             onNeedToHideConversationInCall: {
                 root.needToHideConversationInCall()
