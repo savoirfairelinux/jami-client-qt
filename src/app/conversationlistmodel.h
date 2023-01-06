@@ -22,8 +22,6 @@
 #include "conversationlistmodelbase.h"
 #include "selectablelistproxymodel.h"
 
-#include "api/profile.h"
-
 #include <QSortFilterProxyModel>
 
 // A wrapper view model around ConversationModel's underlying data
