@@ -57,7 +57,7 @@ Item {
 
         onAccepted: {
             // Is there password? If so, go to password dialog, else, go to following directly
-            if (AccountAdapter.hasPassword()) {
+            if (CurrentAccount.hasArchivePassword) {
                 passwordDialog.path = UtilsAdapter.getAbsPath(file)
                 passwordDialog.open()
             } else {
