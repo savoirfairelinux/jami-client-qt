@@ -40,8 +40,6 @@ public:
     ~PluginAdapter() = default;
 
 protected:
-    void safeInit() override {};
-
     Q_INVOKABLE QVariant getMediaHandlerSelectableModel(const QString& callId);
     Q_INVOKABLE QVariant getChatHandlerSelectableModel(const QString& accountId,
                                                        const QString& peerId);

@@ -38,11 +38,7 @@ PositionManager::PositionManager(AppSettingsManager* settingsManager,
             onPositionReceived(accountId, peerId, body, -1, "");
         },
         Qt::QueuedConnection);
-}
 
-void
-PositionManager::safeInit()
-{
     localPositioning_.reset(new Positioning());
     connectAccountModel();
 }
