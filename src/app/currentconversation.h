@@ -55,12 +55,13 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
     QML_PROPERTY(QString, lastSelfMessageId)
+    QML_RO_PROPERTY(bool, hasCall)
 
 public:
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentConversation() = default;
     Q_INVOKABLE void scrollToMsg(const QString& msgId);
-    Q_INVOKABLE void showSwarmDetails() const;
+    Q_INVOKABLE void showSwarmDetails();
     Q_INVOKABLE void setPreference(const QString& key, const QString& value);
     Q_INVOKABLE QString getPreference(const QString& key) const;
     Q_INVOKABLE MapStringString getPreferences() const;
@@ -68,7 +69,7 @@ public:
 
 Q_SIGNALS:
     void scrollTo(const QString& msgId);
-    void showDetails() const;
+    void showDetails();
 
 private Q_SLOTS:
     void updateData();
@@ -78,6 +79,8 @@ private Q_SLOTS:
     void updateErrors(const QString& convId);
     void updateConversationPreferences(const QString& convId);
     void updateActiveCalls(const QString&, const QString& convId);
+    void onCallStatusChanged(const QString& callId, int code);
+    void onShowIncomingCallView(const QString& accountId, const QString& convUid);
 
 Q_SIGNALS:
     void needsHost();
