@@ -68,6 +68,259 @@
       },
       "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0fb0e02_87154f44",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "\"Info\" not \"Infos\"",
+      "range": {
+        "startLine": 1115,
+        "startChar": 13,
+        "endLine": 1115,
+        "endChar": 27
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41235579_1e3185c8",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 1121,
+        "startChar": 13,
+        "endLine": 1121,
+        "endChar": 25
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9058c073_36237c05",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "can be only one method. like addElement can check if the row exists or not. Moreover, map is unused. Please check if any other warnings are created with your patch (several unused map)",
+      "range": {
+        "startLine": 1126,
+        "startChar": 11,
+        "endLine": 1131,
+        "endChar": 13
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66c92850_3398c88d",
+        "filename": "src/app/mainview/components/CallInformationWindow.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "we may want to translate this (also add strings to jamistrings)",
+      "range": {
+        "startLine": 114,
+        "startChar": 34,
+        "endLine": 114,
+        "endChar": 45
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "839101d6_c6cafc22",
+        "filename": "src/app/mainview/components/CallInformationWindow.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "Ideally for audio codec we want to got bitrate (like Opus 48Khz)",
+      "range": {
+        "startLine": 177,
+        "startChar": 52,
+        "endLine": 177,
+        "endChar": 63
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57db055a_96f90cb7",
+        "filename": "src/libclient/api/avmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "ideally we add docStrings in headers",
+      "range": {
+        "startLine": 280,
+        "startChar": 20,
+        "endLine": 281,
+        "endChar": 19
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aee10df3_ddd50589",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "you may use getRenderersInfo to avoid duplicated",
+      "range": {
+        "startLine": 190,
+        "startChar": 9,
+        "endLine": 190,
+        "endChar": 25
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcb6c0b2_f5752512",
+        "filename": "src/libclient/callInformationListModel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "weird name",
+      "range": {
+        "startLine": 99,
+        "startChar": 26,
+        "endLine": 99,
+        "endChar": 44
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fbd106f_4b0ea6ed",
+        "filename": "src/libclient/callInformationListModel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "const auto\u0026 or find_if",
+      "range": {
+        "startLine": 100,
+        "startChar": 1,
+        "endLine": 104,
+        "endChar": 5
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e71ba991_893f547a",
+        "filename": "src/libclient/rendererinformationlistmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "reset()",
+      "range": {
+        "startLine": 101,
+        "startChar": 30,
+        "endLine": 101,
+        "endChar": 39
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a5f4ed_c0fcf85d",
+        "filename": "src/libclient/rendererinformationlistmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "weird name",
+      "range": {
+        "startLine": 109,
+        "startChar": 30,
+        "endLine": 109,
+        "endChar": 48
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
