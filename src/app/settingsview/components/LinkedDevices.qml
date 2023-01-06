@@ -33,42 +33,28 @@ ColumnLayout {
     id:root
 
     function removeDeviceSlot(index){
-        var idOfDevice = settingsListView.model.data(settingsListView.model.index(index,0),
+        var deviceId = settingsListView.model.data(settingsListView.model.index(index,0),
                                                      DeviceItemListModel.DeviceID)
-        if(AccountAdapter.hasPassword()){
-            revokeDevicePasswordDialog.openRevokeDeviceDialog(idOfDevice)
+        if(CurrentAccount.hasArchivePassword){
+            viewCoordinator.presentDialog(
+                        appWindow,
+                        "settingsview/components/RevokeDevicePasswordDialog.qml",
+                        { deviceId: deviceId })
         } else {
-            revokeDeviceMessageBox.idOfDev = idOfDevice
-            revokeDeviceMessageBox.open()
+            viewCoordinator.presentDialog(
+                        appWindow,
+                        "commoncomponents/SimpleMessageDialog.qml",
+                        {
+                            title: JamiStrings.removeDevice,
+                            infoText: JamiStrings.sureToRemoveDevice,
+                            buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel],
+                            buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
+                                           SimpleMessageDialog.ButtonStyle.TintedBlack],
+                            buttonCallBacks: [
+                                function() { DeviceItemListModel.revokeDevice(deviceId, "") }
+                            ]
+                        })
         }
-    }
-
-    LinkDeviceDialog {
-        id: linkDeviceDialog
-    }
-
-    RevokeDevicePasswordDialog{
-        id: revokeDevicePasswordDialog
-
-        onRevokeDeviceWithPassword: function(idOfDevice, password) {
-            DeviceItemListModel.revokeDevice(idOfDevice, password)
-        }
-    }
-
-    SimpleMessageDialog {
-        id: revokeDeviceMessageBox
-
-        property string idOfDev: ""
-
-        title: JamiStrings.removeDevice
-        infoText: JamiStrings.sureToRemoveDevice
-
-        buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel]
-        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                       SimpleMessageDialog.ButtonStyle.TintedBlack]
-        buttonCallBacks: [
-            function() { DeviceItemListModel.revokeDevice(idOfDev, "") }
-        ]
     }
 
     Label {
@@ -132,6 +118,8 @@ ColumnLayout {
 
         text: JamiStrings.linkAnotherDevice
 
-        onClicked: linkDeviceDialog.open()
+        onClicked: viewCoordinator.presentDialog(
+                                   appWindow,
+                                   "settingsview/components/LinkDeviceDialog.qml")
     }
 }
