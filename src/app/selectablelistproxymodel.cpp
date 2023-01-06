@@ -30,6 +30,9 @@ void
 SelectableListProxyModel::bindSourceModel(QAbstractListModel* model)
 {
     setSourceModel(model);
+    if (!model) {
+        return;
+    }
     connect(sourceModel(),
             &QAbstractListModel::dataChanged,
             this,
@@ -159,7 +162,7 @@ SelectableListProxyGroupModel::SelectableListProxyGroupModel(QList<SelectableLis
     , models_(models)
 {
     Q_FOREACH (auto* m, models_) {
-        connect(m, &SelectableListProxyModel::validSelectionChanged, [this, m] {
+        connect(m, &SelectableListProxyModel::validSelectionChanged, this, [this, m] {
             // deselct all other lists in the group
             Q_FOREACH (auto* otherM, models_) {
                 if (m != otherM) {

@@ -29,8 +29,19 @@ import "components"
 import "../commoncomponents"
 import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
-Rectangle {
+BaseView {
     id: root
+    objectName: "SettingsView"
+    requiresIndex: true
+
+    onDismissed: {
+        settingsViewRect.stopBooth()
+        if (UtilsAdapter.getAccountListSize() === 0) {
+            viewCoordinator.requestAppWindowWizardView()
+        } else {
+            AccountAdapter.changeAccount(0)
+        }
+    }
 
     enum SettingsMenu {
         Account,
@@ -39,49 +50,21 @@ Rectangle {
         Plugin
     }
 
-    onVisibleChanged: {
-        if(visible){
-            setSelected(selectedMenu,true)
-        }
-    }
-
-    function setSelected(sel, recovery = false) {
-        if(selectedMenu === sel && (!recovery)) { return }
-        switch(sel) {
-            case SettingsView.Account:
-                selectedMenu = sel
-                pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
-                break
-            case SettingsView.General:
-                selectedMenu = sel
-                break
-            case SettingsView.Media:
-                selectedMenu = sel
-                avSettings.populateAVSettings()
-                break
-            case SettingsView.Plugin:
-                selectedMenu = sel
-                break
-        }
-    }
-
-    // slots
-    function leaveSettingsSlot(showMainView) {
-        settingsViewRect.stopBooth()
-        if (showMainView)
-            settingsViewNeedToShowMainView()
-        else
-            settingsViewNeedToShowNewWizardWindow()
-    }
+    onVisibleChanged: if(visible) setSelected(selectedMenu, true)
 
     property int selectedMenu: SettingsView.Account
-    // signal to redirect the page to main view
-    signal settingsViewNeedToShowMainView()
-    signal settingsViewNeedToShowNewWizardWindow
+    onSelectedMenuChanged: {
+        if (selectedMenu === SettingsView.Account) {
+            pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
+        } else if (selectedMenu === SettingsView.Media) {
+            avSettings.populateAVSettings()
+        }
+    }
 
-    signal settingsBackArrowClicked
-
-    visible: true
+    function setSelected(idx, recovery = false) {
+        if (selectedMenu === idx && !recovery) return
+        selectedMenu = idx
+    }
 
     Rectangle {
         id: settingsViewRect
@@ -126,7 +109,7 @@ Rectangle {
                 }
             }
 
-            onBackArrowClicked: root.settingsBackArrowClicked()
+            onBackArrowClicked: viewCoordinator.hideCurrentView()
         }
 
         JamiFlickable {
@@ -182,13 +165,8 @@ Rectangle {
 
                     isSIP: settingsViewRect.isSIP
 
-                    onNavigateToMainView: {
-                        leaveSettingsSlot(true)
-                    }
-
-                    onNavigateToNewWizardView: {
-                        leaveSettingsSlot(false)
-                    }
+                    onNavigateToMainView: dismiss()
+                    onNavigateToNewWizardView: dismiss()
 
                     onAdvancedSettingsToggled: function (settingsVisible) {
                         if (settingsVisible)

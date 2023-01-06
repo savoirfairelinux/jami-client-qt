@@ -47,25 +47,6 @@ ColumnLayout {
         }
     }
 
-    JamiFileDialog {
-        id: ringtonePath_Dialog
-
-        mode: JamiFileDialog.OpenFile
-        title: JamiStrings.selectNewRingtone
-        folder: JamiQmlUtils.qmlFilePrefix + UtilsAdapter.toFileAbsolutepath(
-                    CurrentAccount.ringtonePath_Ringtone)
-
-        nameFilters: [JamiStrings.audioFile,
-            JamiStrings.allFiles]
-
-        onAccepted: {
-            var url = UtilsAdapter.getAbsPath(file.toString())
-
-            if(url.length !== 0)
-                CurrentAccount.ringtonePath_Ringtone = url
-        }
-    }
-
     ElidedTextLabel {
         Layout.fillWidth: true
 
@@ -125,7 +106,26 @@ ColumnLayout {
             titleField: JamiStrings.selectCustomRingtone
             source: JamiResources.round_folder_24dp_svg
             itemWidth: root.itemWidth
-            onClick: ringtonePath_Dialog.open()
+
+            onClick: {
+                var dlg = viewCoordinator.presentDialog(
+                            appWindow,
+                            "commoncomponents/JamiFileDialog.qml",
+                            {
+                                title: JamiStrings.selectNewRingtone,
+                                fileMode: JamiFileDialog.OpenFile,
+                                folder: JamiQmlUtils.qmlFilePrefix +
+                                        UtilsAdapter.toFileAbsolutepath(
+                                            CurrentAccount.ringtonePath_Ringtone),
+                                nameFilters: [JamiStrings.audioFile, JamiStrings.allFiles]
+                            })
+                dlg.fileAccepted.connect(function (file) {
+                    var url = UtilsAdapter.getAbsPath(file.toString())
+                    if(url.length !== 0) {
+                        CurrentAccount.ringtonePath_Ringtone = url
+                    }
+                })
+            }
         }
 
         ToggleSwitch {
@@ -213,10 +213,9 @@ ColumnLayout {
             text: JamiStrings.addDefaultModerator
 
             onClicked: {
-                ContactPickerCreation.createContactPickerObjects(
+                ContactPickerCreation.presentContactPickerPopup(
                             ContactList.CONVERSATION,
-                            mainView)
-                ContactPickerCreation.openContactPicker()
+                            appWindow)
             }
         }
 
