@@ -17,7 +17,6 @@
  */
 
 #include "currentconversation.h"
-#include "qmlregister.h"
 
 #include <api/conversationmodel.h>
 
@@ -38,6 +37,12 @@ CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* pare
             &LRCInstance::selectedConvUidChanged,
             this,
             &CurrentConversation::updateData);
+
+    connect(&lrcInstance_->behaviorController(),
+            &BehaviorController::showIncomingCallView,
+            this,
+            &CurrentConversation::onShowIncomingCallView);
+
     updateData();
 }
 
@@ -45,9 +50,9 @@ void
 CurrentConversation::updateData()
 {
     auto convId = lrcInstance_->get_selectedConvUid();
+    set_id(convId);
     if (convId.isEmpty())
         return;
-    set_id(convId);
     try {
         auto accountId = lrcInstance_->get_currentAccountId();
         const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
@@ -93,7 +98,6 @@ CurrentConversation::updateData()
                 }
             set_isContact(isContact);
 
-            QString modeString;
             if (convInfo.mode == conversation::Mode::ONE_TO_ONE) {
                 set_modeString(tr("Private"));
             } else if (convInfo.mode == conversation::Mode::ADMIN_INVITES_ONLY) {
@@ -137,7 +141,7 @@ CurrentConversation::setPreference(const QString& key, const QString& value)
 QString
 CurrentConversation::getPreference(const QString& key) const
 {
-    return getPreferences()[key];
+    return getPreferences().value(key);
 }
 
 MapStringString
@@ -147,7 +151,6 @@ CurrentConversation::getPreferences() const
     const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
     auto convId = lrcInstance_->get_selectedConvUid();
     if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
-        auto& convInfo = optConv->get();
         auto preferences = accInfo.conversationModel->getConversationPreferences(convId);
         return preferences;
     }
@@ -212,7 +215,6 @@ CurrentConversation::updateConversationPreferences(const QString& convId)
     const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
     if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
         auto& convInfo = optConv->get();
-        auto preferences = convInfo.preferences;
         auto color = Utils::getAvatarColor(convId).name();
         if (convInfo.preferences.contains("color")) {
             color = convInfo.preferences["color"];
@@ -261,10 +263,15 @@ CurrentConversation::connectModel()
             this,
             &CurrentConversation::onNeedsHost,
             Qt::UniqueConnection);
+    connect(lrcInstance_->getCurrentCallModel(),
+            &CallModel::callStatusChanged,
+            this,
+            &CurrentConversation::onCallStatusChanged,
+            Qt::UniqueConnection);
 }
 
 void
-CurrentConversation::showSwarmDetails() const
+CurrentConversation::showSwarmDetails()
 {
     Q_EMIT showDetails();
 }
@@ -275,11 +282,11 @@ CurrentConversation::updateErrors(const QString& convId)
     if (convId != id_)
         return;
     try {
+        QStringList newErrors;
+        QStringList newBackendErr;
         const auto& convModel = lrcInstance_->getCurrentConversationModel();
         if (auto optConv = convModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
-            QStringList newErrors;
-            QStringList newBackendErr;
             for (const auto& [code, error] : convInfo.errors) {
                 if (code == 1) {
                     newErrors.append(tr("An error occurred while fetching this repository"));
@@ -295,9 +302,9 @@ CurrentConversation::updateErrors(const QString& convId)
                 }
                 newBackendErr.push_back(error);
             }
-            set_backendErrors(newBackendErr);
-            set_errors(newErrors);
         }
+        set_backendErrors(newBackendErr);
+        set_errors(newErrors);
     } catch (...) {
     }
 }
@@ -335,6 +342,33 @@ CurrentConversation::updateActiveCalls(const QString&, const QString& convId)
             callList.append(mapCall);
         }
         set_activeCalls(callList);
+        set_hasCall(callList.size());
+    }
+}
+
+void
+CurrentConversation::onCallStatusChanged(const QString& callId, int)
+{
+    if (callId != callId_) {
+        return;
+    }
+    auto callModel = lrcInstance_->getCurrentCallModel();
+    if (callModel->hasCall(callId_)) {
+        auto callInfo = callModel->getCall(callId_);
+        set_hasCall(callInfo.status != call::Status::ENDED);
+    }
+}
+
+void
+CurrentConversation::onShowIncomingCallView(const QString& accountId, const QString& convUid)
+{
+    if (accountId != lrcInstance_->get_currentAccountId()) {
+        return;
+    }
+    const auto& convModel = lrcInstance_->getCurrentConversationModel();
+    if (auto optConv = convModel->getConversationForUid(convUid)) {
+        auto& convInfo = optConv->get();
+        set_hasCall(!convInfo.getCallId().isEmpty());
     }
 }
 
