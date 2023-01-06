@@ -16,55 +16,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-/*
- * Global contact picker component, object variable for creation.
- */
-var contactPickerComponent
-var contactPickerObject
-
-function createContactPickerObjects(type, parent) {
-    if (contactPickerObject) {
-
-        /*
-         * If already created, reset parameters, since object cannot be destroyed.
-         */
-        contactPickerObject.parent = parent
-        contactPickerObject.type = type
-        return
-    }
-    contactPickerComponent = Qt.createComponent(
+function presentContactPickerPopup(type, parent) {
+    var comp = Qt.createComponent(
                 "../components/ContactPicker.qml")
-    if (contactPickerComponent.status === Component.Ready)
-        finishCreation(type, parent)
-    else if (contactPickerComponent.status === Component.Error)
-        console.log("Error loading component:",
-                    contactPickerComponent.errorString())
-}
-
-function finishCreation(type, parent) {
-    contactPickerObject = contactPickerComponent.createObject(parent, {
-                                                                  "type": type
-                                                              })
-    if (contactPickerObject === null) {
-        /*
-         * Error Handling.
-         */
-        console.log("Error creating object for contact picker")
-    } else {
-        contactPickerObject.x = Qt.binding(function(){
-            return parent.width/2 - contactPickerObject.width / 2})
-        contactPickerObject.y = Qt.binding(function(){
-            return parent.height/2 - contactPickerObject.height / 2})
+    if (comp.status === Component.Ready) {
+        var obj = comp.createObject(parent, { type: type })
+        if (obj === null) {
+            console.log("Error creating object for contact picker")
+        } else {
+            obj.x = Qt.binding(() => parent.width / 2 - obj.width / 2)
+            obj.y = Qt.binding(() => parent.height / 2 - obj.height / 2)
+            obj.closed.connect(() => obj.destroy())
+            obj.open()
+        }
+    } else if (comp.status === Component.Error) {
+        console.log("Error loading component:", comp.errorString())
     }
-}
-
-function openContactPicker() {
-    if (contactPickerObject)
-        contactPickerObject.open()
-}
-
-function closeContactPicker() {
-    if (contactPickerObject)
-        contactPickerObject.close()
 }
