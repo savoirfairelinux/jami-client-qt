@@ -22,6 +22,30 @@
       },
       "revId": "0820c1c72bb8303a0910166c341948a3c7a62fe8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16116b36_7af40489",
+        "filename": "src/app/mainview/components/CallInformationOverlay.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T22:19:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bb341a8_6b3574f8",
+      "range": {
+        "startLine": 145,
+        "startChar": 32,
+        "endLine": 145,
+        "endChar": 42
+      },
+      "revId": "0820c1c72bb8303a0910166c341948a3c7a62fe8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
