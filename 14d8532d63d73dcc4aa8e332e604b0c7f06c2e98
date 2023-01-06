@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de91e25d_f389de8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72d8e44b_06221fc6",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df789294_78aaeb7a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-06T15:57:14Z",
       "side": 1,
       "message": "add a note to explain this double lock",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 32
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87f8afb4_64010be3",
+        "filename": "src/app/avadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df789294_78aaeb7a",
       "range": {
         "startLine": 51,
         "startChar": 16,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e0122c2_d74822a5",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe358de3_0cf0ce4c",
+      "range": {
+        "startLine": 111,
+        "startChar": 29,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0fb0e02_87154f44",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-01-06T17:57:40Z",
       "side": 1,
       "message": "\"Info\" not \"Infos\"",
+      "range": {
+        "startLine": 1115,
+        "startChar": 13,
+        "endLine": 1115,
+        "endChar": 27
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7ec8087_b6b1ac8c",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0fb0e02_87154f44",
       "range": {
         "startLine": 1115,
         "startChar": 13,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28e7711b_afa1fd06",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41235579_1e3185c8",
+      "range": {
+        "startLine": 1121,
+        "startChar": 13,
+        "endLine": 1121,
+        "endChar": 25
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9058c073_36237c05",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-01-06T17:57:40Z",
       "side": 1,
       "message": "can be only one method. like addElement can check if the row exists or not. Moreover, map is unused. Please check if any other warnings are created with your patch (several unused map)",
+      "range": {
+        "startLine": 1126,
+        "startChar": 11,
+        "endLine": 1131,
+        "endChar": 13
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16de456a_cb7ac456",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9058c073_36237c05",
       "range": {
         "startLine": 1126,
         "startChar": 11,
@@ -164,6 +308,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de79f328_293d1bff",
+        "filename": "src/app/mainview/components/CallInformationWindow.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Yes, but translation could be inaccurate for technical terms no ?",
+      "parentUuid": "66c92850_3398c88d",
+      "range": {
+        "startLine": 114,
+        "startChar": 34,
+        "endLine": 114,
+        "endChar": 45
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "839101d6_c6cafc22",
         "filename": "src/app/mainview/components/CallInformationWindow.qml",
         "patchSetId": 4
@@ -175,6 +343,30 @@
       "writtenOn": "2023-01-06T17:57:40Z",
       "side": 1,
       "message": "Ideally for audio codec we want to got bitrate (like Opus 48Khz)",
+      "range": {
+        "startLine": 177,
+        "startChar": 52,
+        "endLine": 177,
+        "endChar": 63
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6bb50df_f4a1bfd1",
+        "filename": "src/app/mainview/components/CallInformationWindow.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "ok in an other patch",
+      "parentUuid": "839101d6_c6cafc22",
       "range": {
         "startLine": 177,
         "startChar": 52,
@@ -208,6 +400,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03305890_7b45a8d1",
+        "filename": "src/libclient/api/avmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57db055a_96f90cb7",
+      "range": {
+        "startLine": 280,
+        "startChar": 20,
+        "endLine": 281,
+        "endChar": 19
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aee10df3_ddd50589",
@@ -221,6 +437,30 @@
       "writtenOn": "2023-01-06T17:57:40Z",
       "side": 1,
       "message": "you may use getRenderersInfo to avoid duplicated",
+      "range": {
+        "startLine": 190,
+        "startChar": 9,
+        "endLine": 190,
+        "endChar": 25
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca0cd9af_5c146a5c",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aee10df3_ddd50589",
       "range": {
         "startLine": 190,
         "startChar": 9,
@@ -254,6 +494,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c04ee48_dbc9287d",
+        "filename": "src/libclient/callInformationListModel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dcb6c0b2_f5752512",
+      "range": {
+        "startLine": 99,
+        "startChar": 26,
+        "endLine": 99,
+        "endChar": 44
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fbd106f_4b0ea6ed",
@@ -267,6 +531,30 @@
       "writtenOn": "2023-01-06T17:57:40Z",
       "side": 1,
       "message": "const auto\u0026 or find_if",
+      "range": {
+        "startLine": 100,
+        "startChar": 1,
+        "endLine": 104,
+        "endChar": 5
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afa155c5_c59f84bf",
+        "filename": "src/libclient/callInformationListModel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fbd106f_4b0ea6ed",
       "range": {
         "startLine": 100,
         "startChar": 1,
@@ -300,6 +588,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f645322d_fda49f16",
+        "filename": "src/libclient/rendererinformationlistmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e71ba991_893f547a",
+      "range": {
+        "startLine": 101,
+        "startChar": 30,
+        "endLine": 101,
+        "endChar": 39
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40a5f4ed_c0fcf85d",
@@ -313,6 +625,30 @@
       "writtenOn": "2023-01-06T17:57:40Z",
       "side": 1,
       "message": "weird name",
+      "range": {
+        "startLine": 109,
+        "startChar": 30,
+        "endLine": 109,
+        "endChar": 48
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c799cd10_8f6dacf5",
+        "filename": "src/libclient/rendererinformationlistmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-06T19:16:56Z",
+      "side": 1,
+      "message": "function no longer exists",
+      "parentUuid": "40a5f4ed_c0fcf85d",
       "range": {
         "startLine": 109,
         "startChar": 30,
