@@ -30,8 +30,6 @@ Rectangle {
     id: root
 
     property alias textInput: messageBar.textAreaObj
-    property string previousConvId: ""
-    property string previousAccountId: ""
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
@@ -45,26 +43,22 @@ Rectangle {
     color: JamiTheme.primaryBackgroundColor
 
     Connections {
-        target: LRCInstance
+        target: CurrentConversation
 
-        function onSelectedConvUidChanged() {
-            // Handle Draft
-            if (previousConvId !== "" && previousAccountId != "") {
-                LRCInstance.setContentDraft(previousConvId, previousAccountId,
-                                            messageBar.text);
-            }
+        function onIdChanged() {
+            LRCInstance.setContentDraft(CurrentConversation.id,
+                                        CurrentAccount.id,
+                                        messageBar.text);
 
             // turn off the button animations when switching convs
             messageBar.animate = false
-
             messageBar.textAreaObj.clearText()
-            previousConvId = LRCInstance.selectedConvUid
-            previousAccountId = LRCInstance.currentAccountId
 
-            var restoredContent = LRCInstance.getContentDraft(LRCInstance.selectedConvUid,
-                                                              LRCInstance.currentAccountId);
-            if (restoredContent)
+            var restoredContent = LRCInstance.getContentDraft(CurrentConversation.id,
+                                                              CurrentAccount.id);
+            if (restoredContent) {
                 messageBar.textAreaObj.insertText(restoredContent)
+            }
 
             messageBar.animate = true
         }
@@ -72,10 +66,6 @@ Rectangle {
 
     Connections {
         target: MessagesAdapter
-
-        function onNewMessageBarPlaceholderText(placeholderText) {
-            messageBar.textAreaObj.placeholderText = JamiStrings.writeTo.arg(placeholderText)
-        }
 
         function onNewFilePasted(filePath) {
             dataTransferSendContainer.filesToSendListModel.addToPending(filePath)

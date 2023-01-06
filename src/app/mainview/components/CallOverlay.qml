@@ -93,6 +93,7 @@ Item {
 
     JamiFileDialog {
         id: jamiFileDialog
+        objectName: "shareFileDialog"
 
         mode: JamiFileDialog.Mode.OpenFile
 

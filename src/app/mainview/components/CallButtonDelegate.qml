@@ -299,8 +299,8 @@ ItemDelegate {
                 if (isVertical)
                     return -implicitWidth - 12
                 var xValue = -(implicitWidth - root.width) / 2 - 18
-                var mainPoint = mapToItem(mainView, xValue, y)
-                var diff = mainPoint.x + itemListView.implicitWidth - mainView.width
+                var mainPoint = mapToItem(viewCoordinator.rootView, xValue, y)
+                var diff = mainPoint.x + itemListView.implicitWidth - viewCoordinator.rootView.width
                 return diff > 0 ? xValue - diff - 24 : xValue
             }
 
