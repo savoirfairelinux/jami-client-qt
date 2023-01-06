@@ -30,29 +30,6 @@ ContextMenuAutoLoader {
 
     signal showSwarmDetails
 
-    ConfirmDialog {
-        id: rmDialog
-
-        title: JamiStrings.confirmAction
-        textLabel: JamiStrings.confirmRmConversation
-        confirmLabel: JamiStrings.optionRemove
-        onAccepted: {
-            if (!isCoreDialog)
-                MessagesAdapter.removeConversation(responsibleConvUid)
-            else
-                MessagesAdapter.removeContact(responsibleConvUid)
-        }
-    }
-
-    ConfirmDialog {
-        id: blockDialog
-
-        title: JamiStrings.confirmAction
-        textLabel: JamiStrings.confirmBlockConversation
-        confirmLabel: JamiStrings.optionBlock
-        onAccepted: MessagesAdapter.blockConversation(responsibleConvUid)
-    }
-
     property string responsibleAccountId: ""
     property string responsibleConvUid: ""
     property bool isBanned: false
@@ -66,6 +43,11 @@ ContextMenuAutoLoader {
         return false
     }
     property bool readOnly
+
+    // For UserProfile dialog.
+    property string aliasText
+    property string registeredNameText
+    property string idText
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
@@ -114,7 +96,22 @@ ContextMenuAutoLoader {
                     return JamiStrings.removeContact
             }
             iconSource: JamiResources.ic_hangup_participant_24dp_svg
-            onClicked: rmDialog.open()
+            onClicked: {
+                var dlg = viewCoordinator.presentDialog(
+                            appWindow,
+                            "commoncomponents/ConfirmDialog.qml",
+                            {
+                                title: JamiStrings.confirmAction,
+                                textLabel: JamiStrings.confirmRmConversation,
+                                confirmLabel: JamiStrings.optionRemove
+                            })
+                dlg.accepted.connect(function() {
+                    if (!isCoreDialog)
+                        MessagesAdapter.removeConversation(responsibleConvUid)
+                    else
+                        MessagesAdapter.removeContact(responsibleConvUid)
+                })
+            }
         },
         GeneralMenuItem {
             id: hangup
@@ -151,7 +148,19 @@ ContextMenuAutoLoader {
             itemName: !(mode && isCoreDialog) ? JamiStrings.blockContact : JamiStrings.blockSwarm
             iconSource: JamiResources.block_black_24dp_svg
             addMenuSeparatorAfter: canTrigger
-            onClicked: blockDialog.open()
+            onClicked: {
+                var dlg = viewCoordinator.presentDialog(
+                            appWindow,
+                            "commoncomponents/ConfirmDialog.qml",
+                            {
+                                title: JamiStrings.confirmAction,
+                                textLabel: JamiStrings.confirmBlockConversation,
+                                confirmLabel: JamiStrings.optionBlock
+                            })
+                dlg.accepted.connect(function() {
+                    MessagesAdapter.blockConversation(responsibleConvUid)
+                })
+            }
         },
         GeneralMenuItem {
             id: unblockContact
@@ -169,10 +178,19 @@ ContextMenuAutoLoader {
             itemName: isCoreDialog ? JamiStrings.contactDetails : JamiStrings.convDetails
             iconSource: JamiResources.person_24dp_svg
             onClicked: {
-                if (isCoreDialog)
-                    userProfile.open()
-                else
+                if (isCoreDialog) {
+                    viewCoordinator.presentDialog(
+                                appWindow,
+                                "mainview/components/UserProfile.qml",
+                                {
+                                    aliasText: aliasText,
+                                    registeredNameText: registeredNameText,
+                                    idText: idText,
+                                    convId: responsibleConvUid
+                                })
+                } else {
                     root.showSwarmDetails()
+                }
             }
         }
     ]
