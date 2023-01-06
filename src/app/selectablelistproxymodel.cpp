@@ -30,6 +30,9 @@ void
 SelectableListProxyModel::bindSourceModel(QAbstractListModel* model)
 {
     setSourceModel(model);
+    if (!model) {
+        return;
+    }
     connect(sourceModel(),
             &QAbstractListModel::dataChanged,
             this,
