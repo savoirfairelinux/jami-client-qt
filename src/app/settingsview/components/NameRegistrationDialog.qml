@@ -30,19 +30,12 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    property string registerdName : ""
+    property string registeredName : ""
 
     signal accepted
 
-    function openNameRegistrationDialog(registerNameIn) {
-        if (registerNameIn === '')
-            return
-        registerdName = registerNameIn
-        open()
-    }
-
-    width: Math.min(mainView.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(mainView.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
+    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
 
     title: JamiStrings.setUsername
 
@@ -64,7 +57,7 @@ BaseModalDialog {
 
             onTriggered: {
                 AccountAdapter.model.registerName(LRCInstance.currentAccountId,
-                                                  passwordEdit.text, registerdName)
+                                                  passwordEdit.text, registeredName)
             }
         }
 
@@ -96,7 +89,7 @@ BaseModalDialog {
                 lblRegistrationError.text = JamiStrings.somethingWentWrong
                 passwordEdit.clear()
 
-                if (AccountAdapter.hasPassword()){
+                if (CurrentAccount.hasArchivePassword){
                     stackedWidget.currentIndex = nameRegisterEnterPasswordPage.pageIndex
                     passwordEdit.forceActiveFocus()
                 } else {
