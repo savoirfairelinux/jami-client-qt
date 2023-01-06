@@ -31,6 +31,26 @@ BaseModalDialog {
 
     autoClose: false
 
+    Connections {
+        target: {
+            if (Qt.platform.os.toString()  !== "windows" && Qt.platform.os.toString()  !== "osx")
+                return DBusErrorHandler
+            return null
+        }
+        ignoreUnknownSignals: true
+
+        function onShowDaemonReconnectPopup(visible) {
+            if (!visible) {
+                viewCoordinator.dismiss(this)
+            }
+        }
+
+        function onDaemonReconnectFailed() {
+            connectionFailed = true
+        }
+    }
+
+
     onPopupContentLoadStatusChanged: {
         if (popupContentLoadStatus === Loader.Ready) {
             root.height = Qt.binding(function() {

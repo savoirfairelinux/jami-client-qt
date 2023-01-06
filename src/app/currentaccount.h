@@ -132,6 +132,8 @@ class CurrentAccount final : public QObject
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(int, publishedPort)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(int, registrationExpire)
 
+    QML_RO_PROPERTY(bool, hasArchivePassword)
+
     // Moderator settings
     Q_PROPERTY(bool isAllModeratorsEnabled READ get_isAllModeratorsEnabled WRITE
                    set_isAllModeratorsEnabled NOTIFY isAllModeratorsEnabledChanged)

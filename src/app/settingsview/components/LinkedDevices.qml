@@ -35,7 +35,7 @@ ColumnLayout {
     function removeDeviceSlot(index){
         var idOfDevice = settingsListView.model.data(settingsListView.model.index(index,0),
                                                      DeviceItemListModel.DeviceID)
-        if(AccountAdapter.hasPassword()){
+        if(CurrentAccount.hasArchivePassword){
             revokeDevicePasswordDialog.openRevokeDeviceDialog(idOfDevice)
         } else {
             revokeDeviceMessageBox.idOfDev = idOfDevice
