@@ -61,7 +61,6 @@ Rectangle {
     KeyNavigation.up: newAccountButton
     KeyNavigation.down: KeyNavigation.tab
 
-
     ColumnLayout {
         id: welcomePageColumnLayout
 
@@ -71,13 +70,6 @@ Rectangle {
         anchors.top: parent.top
         anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
         width: Math.max(508, root.width - 100)
-
-        AboutPopUp {
-            id: aboutPopUpDialog
-
-            width: Math.min(parent.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
-            height: Math.min(parent.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
-        }
 
         ResponsiveImage {
             id: welcomeLogo
@@ -231,7 +223,6 @@ Rectangle {
             onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.ImportFromBackup)
         }
 
-
         MaterialButton {
             id: showAdvancedButton
 
@@ -337,7 +328,6 @@ Rectangle {
                            WizardViewStepModel.AccountCreationOption.CreateSipAccount)
         }
 
-
         MaterialButton {
             id: btnAboutPopUp
 
@@ -355,7 +345,9 @@ Rectangle {
 
             text: JamiStrings.aboutJami
 
-            onClicked: aboutPopUpDialog.open()
+            onClicked: viewCoordinator.presentDialog(
+                           parent,
+                           "mainview/components/AboutPopUp.qml")
         }
     }
 
@@ -385,7 +377,5 @@ Rectangle {
         KeyNavigation.down: KeyNavigation.tab
 
         onClicked: WizardViewStepModel.previousStep()
-
     }
-
 }

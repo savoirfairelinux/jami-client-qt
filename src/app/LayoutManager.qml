@@ -126,7 +126,7 @@ QtObject {
     // Adds an item to the fullscreen item stack. Automatically puts
     // the main window in fullscreen mode if needed. Callbacks should be used
     // to perform component-specific tasks upon successful transitions.
-    function pushFullScreenItem(item, originalParent, pushedCb, removedCb) {
+    function pushFullScreenItem(item, prevParent, pushedCb, removedCb) {
         if (item === null || item === undefined
                 || priv.fullScreenItems.length >= 3) {
             return
@@ -138,10 +138,12 @@ QtObject {
         // Add the item to our list and reparent it to appContainer.
         priv.fullScreenItems.push({
                                  "item": item,
-                                 "originalParent": originalParent,
+                                 "prevParent": prevParent,
+                                 "prevAnchorsFill": item.anchors.fill,
                                  "removedCb": removedCb
                              })
         item.parent = appContainer
+        item.anchors.fill = item.parent
         if (pushedCb) {
             pushedCb()
         }
@@ -164,7 +166,8 @@ QtObject {
         }
         if (obj !== undefined) {
             if (obj.item !== appWindow) {
-                obj.item.parent = obj.originalParent
+                obj.item.anchors.fill = obj.prevAnchorsFill
+                obj.item.parent = obj.prevParent
                 if (obj.removedCb) {
                     obj.removedCb()
                 }

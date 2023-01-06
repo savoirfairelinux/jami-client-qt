@@ -21,7 +21,6 @@
 
 #include "lrcinstance.h"
 #include "qmladapterbase.h"
-#include "smartlistmodel.h"
 #include "conversationlistmodel.h"
 #include "searchresultslistmodel.h"
 
@@ -43,11 +42,9 @@ public:
                                   QObject* parent = nullptr);
     ~ConversationsAdapter() = default;
 
-protected:
-    void safeInit() override;
-
 public:
-    Q_INVOKABLE bool connectConversationModel();
+    void connectConversationModel();
+
     Q_INVOKABLE void createSwarm(const QString& title,
                                  const QString& description,
                                  const QString& avatar,

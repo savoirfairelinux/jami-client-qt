@@ -84,7 +84,9 @@ TabButton {
     }
 
     Rectangle {
-        width: underlineContentOnly ? informations.width + JamiTheme.menuBorderPreferredHeight : contentRect.width
+        width: underlineContentOnly ?
+                   informations.width + JamiTheme.menuBorderPreferredHeight :
+                   contentRect.width
         anchors.horizontalCenter: contentRect.horizontalCenter
         anchors.bottom: contentRect.bottom
         height: borderWidth

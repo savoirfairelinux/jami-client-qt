@@ -51,6 +51,16 @@ ApplicationWindow {
     property LayoutManager layoutManager: LayoutManager {
         appContainer: appContainer
     }
+    property ViewCoordinator viewCoordinator: ViewCoordinator {
+        resources: {
+            "WelcomePage": "mainview/components/WelcomePage.qml",
+            "SidePanel": "mainview/components/SidePanel.qml",
+            "ConversationView": "mainview/ConversationView.qml",
+            "NewSwarmPage": "mainview/components/NewSwarmPage.qml",
+            "WizardView": "wizardview/WizardView.qml",
+            "SettingsView": "settingsview/SettingsView.qml",
+        }
+    }
 
     property bool windowSettingsLoaded: false
     property bool allowVisibleWindow: true
@@ -105,10 +115,6 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
-    DaemonReconnectPopup {
-        id: daemonReconnectPopup
-    }
-
     Loader {
         id: mainApplicationLoader
 
@@ -117,7 +123,6 @@ ApplicationWindow {
 
         asynchronous: true
         visible: status == Loader.Ready
-        source: ""
 
         Connections {
             target: mainApplicationLoader.item
@@ -149,6 +154,13 @@ ApplicationWindow {
                 // Main window, load any valid app settings, and allow the
                 // layoutManager to handle as much as possible.
                 layoutManager.restoreWindowSettings()
+
+                // Present the welcome view once the viewCoordinator is setup.
+                viewCoordinator.initialized.connect(function() {
+                    viewCoordinator.present("WelcomePage")
+                })
+                // Set the viewCoordinator's root item.
+                viewCoordinator.setRootView(item)
             }
             if (Qt.platform.os.toString() === "osx") {
                 MainApplication.setEventFilter()
@@ -206,14 +218,11 @@ ApplicationWindow {
         ignoreUnknownSignals: true
 
         function onShowDaemonReconnectPopup(visible) {
-            if (visible)
-                daemonReconnectPopup.open()
-            else
-                daemonReconnectPopup.close()
-        }
-
-        function onDaemonReconnectFailed() {
-            daemonReconnectPopup.connectionFailed = true
+            if (visible) {
+                viewCoordinator.presentDialog(
+                            appWindow,
+                            "commoncomponents/DaemonReconnectPopup.qml")
+            }
         }
     }
 

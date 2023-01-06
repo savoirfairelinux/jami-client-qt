@@ -33,50 +33,6 @@ Item {
 
     signal ignore
 
-    PasswordDialog {
-        id: passwordDialog
-
-        visible: false
-        purpose: PasswordDialog.ExportAccount
-
-        onDoneSignal: function (success) {
-            root.ignore()
-        }
-    }
-
-    // JamiFileDialog for exporting account
-    JamiFileDialog {
-        id: exportDialog
-
-        mode: JamiFileDialog.SaveFile
-
-        title: JamiStrings.backupAccountHere
-        folder: StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop"
-
-        nameFilters: [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
-
-        onAccepted: {
-            // Is there password? If so, go to password dialog, else, go to following directly
-            if (AccountAdapter.hasPassword()) {
-                passwordDialog.path = UtilsAdapter.getAbsPath(file)
-                passwordDialog.open()
-            } else {
-                if (file.toString().length > 0)
-                    root.ignore()
-            }
-        }
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
-
-        onRejected: {
-            backupBtn.forceActiveFocus()
-        }
-    }
-
     ColumnLayout {
         id: backupLayout
 
@@ -156,7 +112,40 @@ Item {
             hoveredColor: JamiTheme.buttonTintedGreyHovered
             pressedColor: JamiTheme.buttonTintedGreyPressed
 
-            onClicked: exportDialog.open()
+            onClicked: {
+                var dlg = viewCoordinator.presentDialog(
+                            appWindow,
+                            "commoncomponents/JamiFileDialog.qml",
+                            {
+                                //objectName: "exportDialog",
+                                title: JamiStrings.backupAccountHere,
+                                fileMode: JamiFileDialog.SaveFile,
+                                folder: StandardPaths.writableLocation(
+                                            StandardPaths.HomeLocation) + "/Desktop",
+                                nameFilters: [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+                            })
+                dlg.fileAccepted.connect(function (file) {
+                    // Is there password? If so, go to password dialog, else, go to following directly
+                    if (CurrentAccount.hasArchivePassword) {
+                        var pwdDlg = viewCoordinator.presentDialog(
+                                    appWindow,
+                                    "commoncomponents/PasswordDialog.qml",
+                                    {
+                                        //objectName: "passwordDialog",
+                                        path: UtilsAdapter.getAbsPath(file),
+                                        purpose: PasswordDialog.ExportAccount
+                                    })
+                        pwdDlg.done.connect(function () { root.ignore() })
+                    } else {
+                        if (file.toString().length > 0) {
+                            root.ignore()
+                        }
+                    }
+                })
+                dlg.rejected.connect(function () {
+                    backupBtn.forceActiveFocus()
+                })
+            }
         }
     }
 }

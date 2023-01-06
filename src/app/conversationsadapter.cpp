@@ -19,7 +19,6 @@
 
 #include "conversationsadapter.h"
 
-#include "utils.h"
 #include "qtutils.h"
 #include "systemtray.h"
 #include "qmlregister.h"
@@ -49,7 +48,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
         convModel_->setFilterRequests(filterRequests_);
     });
 
-    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
+    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, [this]() {
         auto convId = lrcInstance_->get_selectedConvUid();
         if (convId.isEmpty()) {
             // deselected
@@ -76,7 +75,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
         }
     });
 
-    connect(lrcInstance_, &LRCInstance::draftSaved, [this](const QString& convId) {
+    connect(lrcInstance_, &LRCInstance::draftSaved, this, [this](const QString& convId) {
         auto row = lrcInstance_->indexOf(convId);
         const auto index = convSrcModel_->index(row, 0);
         Q_EMIT convSrcModel_->dataChanged(index, index);
@@ -103,13 +102,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                 accInfo.conversationModel->removeConversation(convUid);
             });
 #endif
-}
 
-void
-ConversationsAdapter::safeInit()
-{
-    // TODO: remove these safeInits, they are possibly called
-    // multiple times during qml component inits
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::newUnreadInteraction,
             this,
@@ -580,11 +573,14 @@ ConversationsAdapter::openDialogConversationWith(const QString& peerUri)
     lrcInstance_->selectConversation(convInfo.uid);
 }
 
-bool
+void
 ConversationsAdapter::connectConversationModel()
 {
     // Signal connections
     auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
+    if (currentConversationModel == nullptr) {
+        return;
+    }
 
     QObject::connect(currentConversationModel,
                      &ConversationModel::modelChanged,
@@ -657,8 +653,6 @@ ConversationsAdapter::connectConversationModel()
     searchModel_->bindSourceModel(searchSrcModel_.get());
 
     updateConversationFilterData();
-
-    return true;
 }
 
 void

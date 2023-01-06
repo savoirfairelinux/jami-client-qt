@@ -34,21 +34,15 @@ ItemDelegate {
     property string pluginIcon: ""
     property bool isLoaded: false
     property string activeId: ""
-    height: pluginPreferencesView.visible ? implicitHeight + pluginPreferencesView.childrenRect.height : implicitHeight
+    height: pluginPreferencesView.visible ?
+                implicitHeight + pluginPreferencesView.childrenRect.height :
+                implicitHeight
 
     signal settingsClicked
 
-    onActiveIdChanged: {
-        pluginPreferencesView.visible = activeId != pluginId ? false : !pluginPreferencesView.visible
-    }
-
-    SimpleMessageDialog {
-        id: msgDialog
-
-        buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel]
-        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                       SimpleMessageDialog.ButtonStyle.TintedBlack]
-    }
+    onActiveIdChanged: pluginPreferencesView.visible = activeId != pluginId ?
+                           false :
+                           !pluginPreferencesView.visible
 
     ColumnLayout {
         width: parent.width

@@ -33,6 +33,11 @@ CurrentCall::CurrentCall(LRCInstance* lrcInstance, QObject* parent)
             this,
             &CurrentCall::onCurrentConvIdChanged);
 
+    connect(&lrcInstance_->behaviorController(),
+            &BehaviorController::showIncomingCallView,
+            this,
+            &CurrentCall::onShowIncomingCallView);
+
     connectModel();
 }
 
@@ -57,9 +62,7 @@ CurrentCall::updateId(QString callId)
 
     // Set the current id_ if there is a call.
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-    if (accInfo.callModel->hasCall(callId)) {
-        set_id(callId);
-    }
+    set_id((accInfo.callModel->hasCall(callId) ? callId : QString()));
 }
 
 void
@@ -102,6 +105,7 @@ CurrentCall::updateCallInfo()
 
     auto callInfo = callModel->getCall(id_);
 
+    set_isOutgoing(callInfo.isOutgoing);
     set_isGrid(callInfo.layout == call::Layout::GRID);
     set_isAudioOnly(callInfo.isAudioOnly);
 
@@ -178,41 +182,41 @@ CurrentCall::updateRecordingState(bool state)
 void
 CurrentCall::connectModel()
 {
-    try {
-        auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-        connect(accInfo.callModel.get(),
-                &CallModel::callStatusChanged,
-                this,
-                &CurrentCall::onCallStatusChanged,
-                Qt::UniqueConnection);
-        connect(accInfo.callModel.get(),
-                &CallModel::callInfosChanged,
-                this,
-                &CurrentCall::onCallInfosChanged,
-                Qt::UniqueConnection);
-        connect(accInfo.callModel.get(),
-                &CallModel::currentCallChanged,
-                this,
-                &CurrentCall::onCurrentCallChanged,
-                Qt::UniqueConnection);
-        connect(accInfo.callModel.get(),
-                &CallModel::participantsChanged,
-                this,
-                &CurrentCall::onParticipantsChanged,
-                Qt::UniqueConnection);
-        connect(accInfo.callModel.get(),
-                &CallModel::remoteRecordersChanged,
-                this,
-                &CurrentCall::onRemoteRecordersChanged,
-                Qt::UniqueConnection);
-        connect(accInfo.callModel.get(),
-                &CallModel::recordingStateChanged,
-                this,
-                &CurrentCall::onRecordingStateChanged,
-                Qt::UniqueConnection);
-    } catch (const std::exception& e) {
-        qWarning() << "Exception getting account info." << e.what();
+    auto callModel = lrcInstance_->getCurrentCallModel();
+    if (callModel == nullptr) {
+        return;
     }
+
+    connect(callModel,
+            &CallModel::callStatusChanged,
+            this,
+            &CurrentCall::onCallStatusChanged,
+            Qt::UniqueConnection);
+    connect(callModel,
+            &CallModel::callInfosChanged,
+            this,
+            &CurrentCall::onCallInfosChanged,
+            Qt::UniqueConnection);
+    connect(callModel,
+            &CallModel::currentCallChanged,
+            this,
+            &CurrentCall::onCurrentCallChanged,
+            Qt::UniqueConnection);
+    connect(callModel,
+            &CallModel::participantsChanged,
+            this,
+            &CurrentCall::onParticipantsChanged,
+            Qt::UniqueConnection);
+    connect(callModel,
+            &CallModel::remoteRecordersChanged,
+            this,
+            &CurrentCall::onRemoteRecordersChanged,
+            Qt::UniqueConnection);
+    connect(callModel,
+            &CallModel::recordingStateChanged,
+            this,
+            &CurrentCall::onRecordingStateChanged,
+            Qt::UniqueConnection);
 }
 
 void
@@ -274,7 +278,7 @@ CurrentCall::onCurrentCallChanged(const QString& callId)
     // If this status change's callId is not the current, it's possible that
     // the current value of id_ is stale, and needs to be updated after checking
     // the current conversation's getCallId(). Other slots need not do this, as the
-    // id_ is updated here.
+    // id_ is updated in CurrentCall::updateId.
     if (id_ == callId) {
         return;
     }
@@ -313,4 +317,19 @@ CurrentCall::onRecordingStateChanged(const QString& callId, bool state)
     }
 
     updateRecordingState(state);
+}
+
+void
+CurrentCall::onShowIncomingCallView(const QString& accountId, const QString& convUid)
+{
+    if (accountId != lrcInstance_->get_currentAccountId()
+        || convUid != lrcInstance_->get_selectedConvUid()) {
+        return;
+    }
+
+    // Update the id in case the current conversation now has a call
+    // that matches the current id.
+    updateId();
+    updateCallStatus();
+    updateCallInfo();
 }
