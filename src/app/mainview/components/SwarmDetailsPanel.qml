@@ -181,7 +181,8 @@ Rectangle {
 
                 onEditingFinished: {
                     if (text !== CurrentConversation.description)
-                        ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, text)
+                        ConversationsAdapter.updateConversationDescription(
+                                    LRCInstance.selectedConvUid, text)
                 }
 
                 onSecondIcoClicked: {editable = !editable}

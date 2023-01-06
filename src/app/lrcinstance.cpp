@@ -339,6 +339,10 @@ LRCInstance::setContentDraft(const QString& convUid,
                              const QString& accountId,
                              const QString& content)
 {
+    if (accountId.isEmpty() || convUid.isEmpty()) {
+        return;
+    }
+
     auto draftKey = accountId + "_" + convUid;
 
     // prevent a senseless dataChanged signal from the
@@ -354,11 +358,12 @@ LRCInstance::setContentDraft(const QString& convUid,
 void
 LRCInstance::selectConversation(const QString& convId, const QString& accountId)
 {
-    // reselection can be used to update the conversation
-    if (convId == selectedConvUid_ && accountId == currentAccountId_) {
-        Q_EMIT conversationUpdated(convId, accountId);
-        return;
-    }
+    //    // reselection can be used to update the conversation
+    //    if (convId == selectedConvUid_ && accountId == currentAccountId_) {
+    //        Q_EMIT conversationUpdated(convId, accountId);
+    //        return;
+    //    }
+
     // if the account is not currently selected, do that first, then
     // proceed to select the conversation
     if (!accountId.isEmpty() && accountId != get_currentAccountId()) {

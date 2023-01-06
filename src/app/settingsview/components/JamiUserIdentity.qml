@@ -31,13 +31,6 @@ ColumnLayout {
 
     property int itemWidth
 
-    NameRegistrationDialog {
-        id : nameRegistrationDialog
-
-        onAccepted: currentRegisteredID.nameRegistrationState =
-                    UsernameLineEdit.NameRegistrationState.BLANK
-    }
-
     // Identity
     Row {
         Layout.fillWidth: true
@@ -162,6 +155,18 @@ ColumnLayout {
         hoveredColor: JamiTheme.buttonTintedGreyHovered
         pressedColor: JamiTheme.buttonTintedGreyPressed
 
-        onClicked: nameRegistrationDialog.openNameRegistrationDialog(currentRegisteredID.text)
+        onClicked: {
+            if (currentRegisteredID.text === '') {
+                return
+            }
+            var dlg = viewCoordinator.presentDialog(
+                        appWindow,
+                        "settingsview/components/NameRegistrationDialog.qml",
+                        { registeredName: currentRegisteredID.text })
+            dlg.accepted.connect(function() {
+                currentRegisteredID.nameRegistrationState =
+                        UsernameLineEdit.NameRegistrationState.BLANK
+            })
+        }
     }
 }

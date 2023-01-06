@@ -50,8 +50,6 @@ public:
                             QObject* parent = nullptr);
     ~AccountAdapter() = default;
 
-    void safeInit() override {}
-
     // Change to account corresponding to combox box index.
     Q_INVOKABLE void changeAccount(int row);
 
@@ -64,8 +62,6 @@ public:
     Q_INVOKABLE void deleteCurrentAccount();
 
     // Conf property
-    Q_INVOKABLE bool hasPassword();
-    Q_INVOKABLE void setArchiveHasPassword(bool isHavePassword);
     Q_INVOKABLE bool exportToFile(const QString& accountId,
                                   const QString& path,
                                   const QString& password = {}) const;

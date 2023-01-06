@@ -68,10 +68,13 @@ Item {
 
     // (un)subscribe to an app-wide mouse move event trap filtered
     // for the overlay's geometry
-    onVisibleChanged: visible ? CallOverlayModel.registerFilter(
-                                    appWindow,
-                                    this) : CallOverlayModel.unregisterFilter(
+    onVisibleChanged: {
+        print("&&&&&&&&&&&&&&& onVisibleChanged", visible)
+        visible ? CallOverlayModel.registerFilter(
+                                    appWindow, this) :
+                                CallOverlayModel.unregisterFilter(
                                     appWindow, this)
+    }
 
     Connections {
         target: CallOverlayModel
@@ -83,7 +86,6 @@ Item {
             }
         }
     }
-
 
     Shortcut {
         sequence: "M"
@@ -129,7 +131,7 @@ Item {
             root.timeText = CallAdapter.getCallDurationTime(
                         LRCInstance.currentAccountId,
                         LRCInstance.selectedConvUid)
-            if (root.opacity === 0 && !CurrentCall.isRecordingRemotely)
+            if (!root.opacity && !CurrentCall.isRecordingRemotely)
                 root.remoteRecordingLabel = ""
         }
     }

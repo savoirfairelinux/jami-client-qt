@@ -53,6 +53,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , mediaInteractions_(std::make_unique<MessageListModel>())
     , timestampTimer_(new QTimer(this))
 {
+    setObjectName(typeid(*this).name());
+
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
         set_replyToId("");
         set_editId("");
@@ -71,28 +73,11 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
 
     connect(timestampTimer_, &QTimer::timeout, this, &MessagesAdapter::timestampUpdated);
     timestampTimer_->start(timestampUpdateIntervalMs_);
-}
 
-void
-MessagesAdapter::safeInit()
-{
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this]() {
         connectConversationModel();
     });
     connectConversationModel();
-}
-
-void
-MessagesAdapter::setupChatView(const QVariantMap& convInfo)
-{
-    auto* convModel = lrcInstance_->getCurrentConversationModel();
-    auto convId = convInfo["convId"].toString();
-    if (convInfo["isSwarm"].toBool()) {
-        convModel->loadConversationMessages(convId, loadChunkSize_);
-    }
-
-    // TODO: current conv observe
-    Q_EMIT newMessageBarPlaceholderText(convInfo["title"].toString());
 }
 
 void

@@ -18,6 +18,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -25,8 +26,11 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-Rectangle {
+BaseView {
     id: root
+
+    property Item chatViewContainer
+    //property alias chatViewContainer: outgoingCallPage.chatViewContainer
 
     property var sipKeys: [
         "1", "2", "3", "A",
@@ -34,11 +38,6 @@ Rectangle {
         "7", "8", "9", "C",
         "*", "0", "#", "D"
     ]
-
-    enum StackNumber {
-        InitialPageStack,
-        OngoingPageStack
-    }
 
     Shortcut {
         sequence: "Ctrl+D"
@@ -58,101 +57,98 @@ Rectangle {
         }
     }
 
-    // When selected conversation is changed,
-    // these values will also be changed.
-    property string responsibleConvUid: ""
-    property string responsibleAccountId: ""
-
-    // TODO: this should all be done by listening to
-    // parent visibility change or parent `Component.onDestruction`
-    function needToCloseInCallConversationAndPotentialWindow() {
-        // Close potential window, context menu releated windows.
-        ongoingCallPage.closeInCallConversation()
-        ongoingCallPage.closeContextMenuAndRelatedWindows()
-    }
+//    // TODO: this should all be done by listening to
+//    // parent visibility change or parent `Component.onDestruction`
+//    function needToCloseInCallConversationAndPotentialWindow() {
+//        // Close potential window, context menu releated windows.
+//        ongoingCallPage.closeInCallConversation()
+//        ongoingCallPage.closeContextMenuAndRelatedWindows()
+//    }
 
     function setLinkedWebview(webViewId) {
-        ongoingCallPage.setLinkedWebview(webViewId)
-    }
-
-    function getItemFromStack(itemNumber) {
-        return callStackMainView.find(function (item) {
-            return item.stackNumber === itemNumber
-        })
-    }
-
-    function showInitialCallPage(callState, isAudioOnly) {
-        var itemToFind = getItemFromStack(CallStackView.InitialPageStack)
-        if (!itemToFind) {
-            callStackMainView.push(initialCallPage, StackView.Immediate)
-        } else {
-            callStackMainView.pop(itemToFind, StackView.Immediate)
-        }
-        initialCallPage.callStatus = callState
-        initialCallPage.isAudioOnly = isAudioOnly
-        if (initialCallPage.callStatus === Call.Status.INCOMING_RINGING)
-            initialCallPage.isIncoming = true
-        else
-            initialCallPage.isIncoming = false
-    }
-
-    function showOngoingCallPage() {
-        var itemToFind = getItemFromStack(CallStackView.OngoingPageStack)
-        if (!itemToFind) {
-            callStackMainView.push(ongoingCallPage, StackView.Immediate)
-        } else {
-            callStackMainView.pop(itemToFind, StackView.Immediate)
-        }
-        ongoingCallPage.accountPeerPair = [responsibleAccountId, responsibleConvUid]
+        //ongoingCallPage.setLinkedWebview(webViewId)
     }
 
     function toggleFullScreen() {
-        if (!layoutManager.isCallFullscreen) {
+        if (layoutManager.isCallFullscreen) {
+            layoutManager.removeFullScreenItem(
+                        callStackMainView.currentItem)
+        } else {
             layoutManager.pushFullScreenItem(
                         callStackMainView.currentItem,
                         callStackMainView,
                         null,
                         null)
-        } else {
-            layoutManager.removeFullScreenItem(
-                        callStackMainView.currentItem)
         }
     }
 
-    Connections {
-        target: CallAdapter
+//    StackLayout {
+//        id: callStackMainView
 
-        function onCallStatusChanged(status, accountId, convUid) {
-            if (callStackMainView.currentItem.stackNumber === CallStackView.InitialPageStack
-                    && responsibleConvUid === convUid && responsibleAccountId === accountId) {
-                initialCallPage.callStatus = status
+//        anchors.fill: parent
+
+//        property Item currentItem: itemAt(currentIndex)
+
+//        currentIndex: {
+//            switch (CurrentCall.status) {
+//            case Call.Status.IN_PROGRESS:
+//            case Call.Status.CONNECTED:
+//            case Call.Status.PAUSED:
+//                return 1
+//            case Call.Status.SEARCHING:
+//            case Call.Status.CONNECTING:
+//            case Call.Status.INCOMING_RINGING:
+//            case Call.Status.OUTGOING_RINGING:
+//            default:
+//                return 0
+//            }
+//        }
+
+//        InitialCallPage {}
+//        OngoingCallPage {
+//            id: outgoingCallPage
+//        }
+//    }
+
+    Component {
+        id: ongoingCallPageComp
+        OngoingCallPage {}
+    }
+
+    Component {
+        id: initialCallPageComp
+        InitialCallPage {}
+    }
+
+    Connections {
+        target: CurrentConversation
+        function onHasCallChanged() {
+            if (!CurrentConversation.hasCall) {
+                callStackMainView.clear()
             }
         }
     }
 
-    OngoingCallPage {
-        id: ongoingCallPage
-
-        property int stackNumber: CallStackView.OngoingPageStack
-
-        visible: callStackMainView.currentItem.stackNumber === stackNumber
-    }
-
-    InitialCallPage {
-        id: initialCallPage
-
-        property int stackNumber: CallStackView.InitialPageStack
-
-        onCallAccepted: {
-            CallAdapter.acceptACall(responsibleAccountId, responsibleConvUid)
-            mainViewSidePanel.selectTab(SidePanelTabBar.Conversations)
+    Connections {
+        target: CurrentCall
+        function onStatusChanged() {
+            switch (CurrentCall.status) {
+            case Call.Status.IN_PROGRESS:
+            case Call.Status.CONNECTED:
+            case Call.Status.PAUSED:
+                callStackMainView.replace(ongoingCallPageComp, StackView.Immediate)
+                return
+            case Call.Status.SEARCHING:
+            case Call.Status.CONNECTING:
+            case Call.Status.INCOMING_RINGING:
+            case Call.Status.OUTGOING_RINGING:
+                callStackMainView.replace(initialCallPageComp, StackView.Immediate)
+                return
+            default:
+                callStackMainView.clear()
+                return
+            }
         }
-
-        onCallCanceled: {
-            CallAdapter.hangUpACall(responsibleAccountId, responsibleConvUid)
-        }
-
-        visible: callStackMainView.currentItem.stackNumber === stackNumber
     }
 
     StackView {
@@ -160,6 +156,6 @@ Rectangle {
 
         anchors.fill: parent
 
-        initialItem: initialCallPage
+        initialItem: initialCallPageComp
     }
 }
