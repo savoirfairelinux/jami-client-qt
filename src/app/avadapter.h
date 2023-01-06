@@ -50,8 +50,6 @@ Q_SIGNALS:
     void audioDeviceListChanged(int inputs, int outputs);
 
 protected:
-    void safeInit() override {};
-
     /**
      * Check if user is sharing a media
      */
@@ -89,7 +87,9 @@ protected:
     Q_INVOKABLE void shareWindow(const QString& windowProcessId, const QString& windowId);
 
     // Returns the screensharing resource
-    Q_INVOKABLE QString getSharingResource(int screenId = -2, const QString& windowProcessId = "", const QString& key = "");
+    Q_INVOKABLE QString getSharingResource(int screenId = -2,
+                                           const QString& windowProcessId = "",
+                                           const QString& key = "");
 
     Q_INVOKABLE void getListWindows();
 

@@ -29,8 +29,11 @@ import "components"
 import "../commoncomponents"
 import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
-Rectangle {
+BaseView {
     id: root
+    objectName: "SettingsView"
+
+    requiresIndex: true
 
     enum SettingsMenu {
         Account,
@@ -41,7 +44,7 @@ Rectangle {
 
     onVisibleChanged: {
         if(visible){
-            setSelected(selectedMenu,true)
+            setSelected(selectedMenu, true)
         }
     }
 
@@ -126,7 +129,10 @@ Rectangle {
                 }
             }
 
-            onBackArrowClicked: root.settingsBackArrowClicked()
+            onBackArrowClicked: {
+                //root.settingsBackArrowClicked()
+                viewCoordinator.hide()
+            }
         }
 
         JamiFlickable {

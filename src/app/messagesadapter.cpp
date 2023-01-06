@@ -53,7 +53,11 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , mediaInteractions_(std::make_unique<MessageListModel>())
     , timestampTimer_(new QTimer(this))
 {
-    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
+    setObjectName(typeid(*this).name());
+
+    set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
+
+    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, [this]() {
         set_replyToId("");
         set_editId("");
         const QString& convId = lrcInstance_->get_selectedConvUid();
@@ -61,7 +65,6 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
 
         // Reset the source model for the proxy model.
         filteredMsgListModel_->setSourceModel(conversation.interactions.get());
-        set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
 
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
     });
@@ -71,28 +74,11 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
 
     connect(timestampTimer_, &QTimer::timeout, this, &MessagesAdapter::timestampUpdated);
     timestampTimer_->start(timestampUpdateIntervalMs_);
-}
 
-void
-MessagesAdapter::safeInit()
-{
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this]() {
         connectConversationModel();
     });
     connectConversationModel();
-}
-
-void
-MessagesAdapter::setupChatView(const QVariantMap& convInfo)
-{
-    auto* convModel = lrcInstance_->getCurrentConversationModel();
-    auto convId = convInfo["convId"].toString();
-    if (convInfo["isSwarm"].toBool()) {
-        convModel->loadConversationMessages(convId, loadChunkSize_);
-    }
-
-    // TODO: current conv observe
-    Q_EMIT newMessageBarPlaceholderText(convInfo["title"].toString());
 }
 
 void
