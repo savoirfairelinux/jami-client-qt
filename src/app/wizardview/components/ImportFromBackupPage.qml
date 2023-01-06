@@ -69,6 +69,7 @@ Rectangle {
 
     JamiFileDialog {
         id: importFromFileDialog
+        objectName: "importFromFileDialog"
 
         mode: JamiFileDialog.OpenFile
         title: JamiStrings.openFile

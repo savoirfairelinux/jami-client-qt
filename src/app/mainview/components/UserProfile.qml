@@ -27,6 +27,9 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
+    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
+
     property string convId
     property string aliasText
     property string registeredNameText
