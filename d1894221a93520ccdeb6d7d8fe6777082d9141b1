@@ -16,6 +16,24 @@
       "message": "This redirect to the wrong message (I replied on a text message containing a text, I got redirected to a \"Incoming call\" message)",
       "revId": "d1894221a93520ccdeb6d7d8fe6777082d9141b1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33e136d8_f2a7c1fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-06T15:30:57Z",
+      "side": 1,
+      "message": "EDIT:",
+      "parentUuid": "1a2e18d2_2c3ddfd5",
+      "revId": "d1894221a93520ccdeb6d7d8fe6777082d9141b1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
