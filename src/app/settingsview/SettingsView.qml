@@ -29,8 +29,11 @@ import "components"
 import "../commoncomponents"
 import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
-Rectangle {
+BaseView {
     id: root
+    objectName: "SettingsView"
+
+    requiresIndex: true
 
     enum SettingsMenu {
         Account,
@@ -39,33 +42,25 @@ Rectangle {
         Plugin
     }
 
-    onVisibleChanged: {
-        if(visible){
-            setSelected(selectedMenu,true)
+    onVisibleChanged: if(visible) setSelected(selectedMenu, true)
+
+    property int selectedMenu: SettingsView.Account
+    onSelectedMenuChanged: {
+        if (selectedMenu === SettingsView.Account) {
+            pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
+        } else if (selectedMenu === SettingsView.Media) {
+            avSettings.populateAVSettings()
         }
     }
 
-    function setSelected(sel, recovery = false) {
-        if(selectedMenu === sel && (!recovery)) { return }
-        switch(sel) {
-            case SettingsView.Account:
-                selectedMenu = sel
-                pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
-                break
-            case SettingsView.General:
-                selectedMenu = sel
-                break
-            case SettingsView.Media:
-                selectedMenu = sel
-                avSettings.populateAVSettings()
-                break
-            case SettingsView.Plugin:
-                selectedMenu = sel
-                break
-        }
+    function setSelected(idx, recovery = false) {
+        if (selectedMenu === idx && !recovery) return
+        selectedMenu = idx
     }
 
-    // slots
+    // All of this is strange and should be verified
+    signal settingsViewNeedToShowMainView
+    signal settingsViewNeedToShowNewWizardWindow
     function leaveSettingsSlot(showMainView) {
         settingsViewRect.stopBooth()
         if (showMainView)
@@ -73,15 +68,6 @@ Rectangle {
         else
             settingsViewNeedToShowNewWizardWindow()
     }
-
-    property int selectedMenu: SettingsView.Account
-    // signal to redirect the page to main view
-    signal settingsViewNeedToShowMainView()
-    signal settingsViewNeedToShowNewWizardWindow
-
-    signal settingsBackArrowClicked
-
-    visible: true
 
     Rectangle {
         id: settingsViewRect
@@ -126,7 +112,7 @@ Rectangle {
                 }
             }
 
-            onBackArrowClicked: root.settingsBackArrowClicked()
+            onBackArrowClicked: viewCoordinator.hideCurrentView()
         }
 
         JamiFlickable {

@@ -39,7 +39,7 @@ Popup {
         return visible ? Math.min(
                              JamiTheme.accountListItemHeight * Math.min(
                                  5, listView.model.count + 1),
-                             mainViewSidePanelRect.height) : 0
+                             appWindow.height - parent.height) : 0
     }
     padding: 0
     modal: true
@@ -101,7 +101,7 @@ Popup {
 
             onClicked: {
                 root.close()
-                mainView.startWizard()
+                viewCoordinator.present("WizardView")
             }
         }
     }
