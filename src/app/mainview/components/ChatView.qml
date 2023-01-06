@@ -30,7 +30,7 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
-Rectangle {
+BaseView {
     id: root
 
     property bool allMessagesLoaded
@@ -98,7 +98,8 @@ Rectangle {
             }
 
             onBackClicked: {
-                mainView.showWelcomeView()
+                viewCoordinator.present("WelcomePage")
+                LRCInstance.deselectConversation()
             }
 
             onNeedToHideConversationInCall: {

@@ -31,6 +31,7 @@ import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
 Rectangle {
     id: root
+    objectName: "SettingsView"
 
     enum SettingsMenu {
         Account,

@@ -40,6 +40,31 @@ import "commoncomponents"
 ApplicationWindow {
     id: root
 
+    Window {
+        id: controls
+        visible: true
+        transientParent: null
+        flags: Qt.Tool | Qt.FramelessWindowHint
+
+        x: appWindow.x + appWindow.width + 2; y: appWindow.y
+        width: 200
+        height: appWindow.height
+
+        Rectangle {
+            anchors.fill: parent
+            border.color: "black"
+            border.width: 1
+
+            Column {
+                anchors.centerIn: parent
+                Button {
+                    text: "info"
+                    onClicked: viewCoordinator.printStackInfo()
+                }
+            }
+        }
+    }
+
     enum LoadedSource {
         WizardView = 0,
         MainView,
@@ -50,6 +75,17 @@ ApplicationWindow {
     property ApplicationWindow appWindow: root
     property LayoutManager layoutManager: LayoutManager {
         appContainer: appContainer
+    }
+    property ViewCoordinator viewCoordinator: ViewCoordinator {
+        resources: {
+            "WelcomePage": "mainview/components/WelcomePage.qml",
+            "SidePanel": "mainview/components/SidePanel.qml",
+            "ChatView": "mainview/components/ChatView.qml",
+            "CallStackView": "mainview/components/CallStackView.qml",
+            "NewSwarmPage": "mainview/components/NewSwarmPage.qml",
+            "WizardView": "wizardview/WizardView.qml",
+            "SettingsView": "settingsview/SettingsView.qml",
+        }
     }
 
     property bool windowSettingsLoaded: false
@@ -149,6 +185,9 @@ ApplicationWindow {
                 // Main window, load any valid app settings, and allow the
                 // layoutManager to handle as much as possible.
                 layoutManager.restoreWindowSettings()
+
+                // Set the viewCoordinator's root item.
+                viewCoordinator.setRootView(item)
             }
             if (Qt.platform.os.toString() === "osx") {
                 MainApplication.setEventFilter()
@@ -167,6 +206,14 @@ ApplicationWindow {
 
             // Handle a start URI if set as start option.
             MainApplication.handleUriAction();
+        }
+    }
+
+    Connections {
+        target: viewCoordinator
+        function onInitialized() {
+            viewCoordinator.setControlPanelView("SidePanel")
+            viewCoordinator.present("WelcomePage")
         }
     }
 

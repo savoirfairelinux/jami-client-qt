@@ -25,7 +25,7 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-Rectangle {
+BaseView {
     id: root
 
     property var sipKeys: [
