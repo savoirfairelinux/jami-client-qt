@@ -33,30 +33,23 @@ import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 Rectangle {
     id: root
 
-    property bool allMessagesLoaded
+    color: JamiTheme.chatviewBgColor
+
     property var mapPositions: PositionManager.mapStatus
-    property var inCallView: false
 
     property int lastContentsSplitSize: JamiTheme.detailsPageMinWidth
     property int lastDetailsSplitSize: JamiTheme.detailsPageMinWidth
     property int previousWidth: width
+    required property bool inCallView
 
-    signal needToHideConversationInCall
-    signal messagesCleared
-    signal messagesLoaded
-
-    onInCallViewChanged: {
-        notificationArea.visible = CurrentConversation.activeCalls.length > 0 && !root.inCallView
-    }
-
-    onVisibleChanged: {
-        if (visible)
-            return
-        UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id)
-    }
+    signal dismiss
 
     function focusChatView() {
+        chatViewFooter.updateMessageDraft()
         chatViewFooter.textInput.forceActiveFocus()
+    }
+
+    function resetPanels() {
         swarmDetailsPanel.visible = false
         addMemberPanel.visible = false
     }
@@ -72,20 +65,19 @@ Rectangle {
             }
         }
     }
+
     Connections {
         target: PositionManager
-
         function onOpenNewMap() {
             instanceMapObject()
         }
     }
 
-    color: JamiTheme.chatviewBgColor
-
-    property string currentConvId: CurrentConversation.id
-
-    HostPopup {
-        id: hostPopup
+    Connections {
+        target: CurrentConversation
+        function onIdChanged() {
+            MessagesAdapter.loadMoreMessages()
+        }
     }
 
     ColumnLayout {
@@ -107,13 +99,7 @@ Rectangle {
                 onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
             }
 
-            onBackClicked: {
-                mainView.showWelcomeView()
-            }
-
-            onNeedToHideConversationInCall: {
-                root.needToHideConversationInCall()
-            }
+            onBackClicked: root.dismiss()
 
             onShowDetailsClicked: {
                 addMemberPanel.visible = false
@@ -155,7 +141,9 @@ Rectangle {
                 }
 
                 function onNeedsHost() {
-                    hostPopup.open()
+                    viewCoordinator.presentDialog(
+                                appWindow,
+                                "mainview/components/HostPopup.qml")
                 }
             }
 
@@ -242,18 +230,18 @@ Rectangle {
 
             handle: Rectangle {
                 implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-                implicitHeight: splitView.height
+                implicitHeight: viewCoordinator.splitView.height
                 color: JamiTheme.primaryBackgroundColor
                 Rectangle {
                     implicitWidth: 1
-                    implicitHeight: splitView.height
+                    implicitHeight: viewCoordinator.splitView.height
                     color: JamiTheme.tabbarBorderColor
                 }
             }
 
             ColumnLayout {
                 id: chatContents
-                SplitView.maximumWidth: splitView.width
+                SplitView.maximumWidth: viewCoordinator.splitView.width
                 SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
 
                 SplitView.preferredWidth: chatViewHeader.width -
@@ -330,7 +318,7 @@ Rectangle {
                 id: swarmDetailsPanel
                 visible: false
 
-                SplitView.maximumWidth: splitView.width
+                SplitView.maximumWidth: viewCoordinator.splitView.width
                 SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
             }
@@ -339,7 +327,7 @@ Rectangle {
                 id: addMemberPanel
                 visible: false
 
-                SplitView.maximumWidth: splitView.width
+                SplitView.maximumWidth: viewCoordinator.splitView.width
                 SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
             }
