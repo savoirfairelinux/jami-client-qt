@@ -48,7 +48,7 @@ struct UpdateManager::Impl : public QObject
         , tempPath_(QDir::tempPath())
         , updateTimer_(new QTimer(this))
     {
-        connect(updateTimer_, &QTimer::timeout, [this] {
+        connect(updateTimer_, &QTimer::timeout, this, [this] {
             // Quiet period update check.
             parent_.checkForUpdates(true);
         });
@@ -96,7 +96,7 @@ struct UpdateManager::Impl : public QObject
                 &NetWorkManager::errorOccured,
                 &parent_,
                 &UpdateManager::updateDownloadErrorOccurred);
-        connect(&parent_, &NetWorkManager::statusChanged, [this](GetStatus status) {
+        connect(&parent_, &NetWorkManager::statusChanged, this, [this](GetStatus status) {
             switch (status) {
             case GetStatus::STARTED:
                 connect(&parent_,

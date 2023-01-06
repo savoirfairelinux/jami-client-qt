@@ -30,8 +30,8 @@ Rectangle {
     id: root
 
     property alias textInput: messageBar.textAreaObj
-    property string previousConvId: ""
-    property string previousAccountId: ""
+    property string previousConvId
+    property string previousAccountId
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
@@ -44,38 +44,33 @@ Rectangle {
 
     color: JamiTheme.primaryBackgroundColor
 
-    Connections {
-        target: LRCInstance
+    function updateMessageDraft() {
+        LRCInstance.setContentDraft(previousConvId,
+                                    previousAccountId,
+                                    messageBar.text);
 
-        function onSelectedConvUidChanged() {
-            // Handle Draft
-            if (previousConvId !== "" && previousAccountId != "") {
-                LRCInstance.setContentDraft(previousConvId, previousAccountId,
-                                            messageBar.text);
-            }
+        previousConvId = CurrentConversation.id
+        previousAccountId = CurrentAccount.id
 
-            // turn off the button animations when switching convs
-            messageBar.animate = false
+        // turn off the button animations when switching convs
+        messageBar.animate = false
+        messageBar.textAreaObj.clearText()
 
-            messageBar.textAreaObj.clearText()
-            previousConvId = LRCInstance.selectedConvUid
-            previousAccountId = LRCInstance.currentAccountId
-
-            var restoredContent = LRCInstance.getContentDraft(LRCInstance.selectedConvUid,
-                                                              LRCInstance.currentAccountId);
-            if (restoredContent)
-                messageBar.textAreaObj.insertText(restoredContent)
-
-            messageBar.animate = true
+        var restoredContent = LRCInstance.getContentDraft(CurrentConversation.id,
+                                                          CurrentAccount.id);
+        if (restoredContent) {
+            messageBar.textAreaObj.insertText(restoredContent)
         }
     }
 
     Connections {
-        target: MessagesAdapter
+        target: CurrentConversation
 
-        function onNewMessageBarPlaceholderText(placeholderText) {
-            messageBar.textAreaObj.placeholderText = JamiStrings.writeTo.arg(placeholderText)
-        }
+        function onIdChanged() { messageBar.animate = true }
+    }
+
+    Connections {
+        target: MessagesAdapter
 
         function onNewFilePasted(filePath) {
             dataTransferSendContainer.filesToSendListModel.addToPending(filePath)
@@ -104,14 +99,6 @@ Rectangle {
         id: recordBox
 
         visible: false
-    }
-
-    JamiFileDialog {
-        id: jamiFileDialog
-
-        mode: JamiFileDialog.Mode.OpenFiles
-
-        onAccepted: setFilePathsToSend(jamiFileDialog.files)
     }
 
     ColumnLayout {
@@ -193,7 +180,19 @@ Rectangle {
                 PositionManager.setMapActive(CurrentAccount.id)
             }
 
-            onSendFileButtonClicked: jamiFileDialog.open()
+            onSendFileButtonClicked: {
+                var dlg = viewCoordinator.presentDialog(
+                            appWindow,
+                            "commoncomponents/JamiFileDialog.qml",
+                            {
+                                fileMode: JamiFileDialog.OpenFiles,
+                                nameFilters: [JamiStrings.allFiles]
+                            })
+                dlg.filesAccepted.connect(function(files) {
+                    setFilePathsToSend(files)
+                })
+            }
+
             onSendMessageButtonClicked: {
                 // Send text message
                 if (messageBar.text) {
