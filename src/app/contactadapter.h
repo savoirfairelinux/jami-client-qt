@@ -57,7 +57,7 @@ public:
         filterPredicate_ = filterPredicate;
     }
 
-    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
+    bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
     {
         // Accept all contacts in conversation list filtered with account type, except those in a call.
         auto index = sourceModel()->index(sourceRow, 0, sourceParent);
@@ -85,8 +85,6 @@ public:
     ~ContactAdapter() = default;
 
     using Role = ConversationList::Role;
-
-    void safeInit() override {}
 
     Q_INVOKABLE QVariant getContactSelectableModel(int type);
     Q_INVOKABLE void setSearchFilter(const QString& filter);
