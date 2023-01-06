@@ -75,11 +75,6 @@ JamiListView {
 
     onCountChanged: positionViewAtBeginning()
 
-    Component.onCompleted: {
-        // TODO: remove this
-        ConversationsAdapter.setQmlObject(this)
-    }
-
     add: Transition {
         NumberAnimation {
             property: "opacity"; from: 0; to: 1.0
@@ -113,42 +108,31 @@ JamiListView {
     ConversationSmartListContextMenu {
         id: contextMenu
 
-        property var index: -1
+        property int index: -1
 
         function openMenuAt(x, y) {
             contextMenu.x = x
             contextMenu.y = y
 
-            // TODO:
-            // - accountId, convId only
-            // - userProfile dialog should use a loader/popup
+            index = root.indexAt(x, y + root.contentY)
 
-            var row = root.indexAt(x, y + root.contentY)
-            index = row
-            var item = {
-                "convId": model.dataForRow(row, ConversationList.UID),
-                "displayId": model.dataForRow(row, ConversationList.BestId),
-                "title": model.dataForRow(row, ConversationList.Title),
-                "uri": model.dataForRow(row, ConversationList.URI),
-                "isBanned": model.dataForRow(row, ConversationList.IsBanned),
-                "mode": model.dataForRow(row, ConversationList.Mode),
-                "isCoreDialog": model.dataForRow(row, ConversationList.IsCoreDialog),
-                "isTemporary": model.dataForRow(row, ConversationList.ContactType) === Profile.Type.TEMPORARY,
-            }
-
+            // TODO: use accountId and convId only
             responsibleAccountId = LRCInstance.currentAccountId
-            responsibleConvUid = item.convId
-            isBanned = item.isBanned
-            mode = item.mode
-            isCoreDialog = item.isCoreDialog
+            responsibleConvUid = model.dataForRow(index, ConversationList.UID)
+            isBanned = model.dataForRow(index, ConversationList.IsBanned)
+            mode = model.dataForRow(index, ConversationList.Mode)
+            isCoreDialog = model.dataForRow(index, ConversationList.IsCoreDialog)
             contactType = LRCInstance.currentAccountType
-            readOnly = mode === Conversation.Mode.NON_SWARM && !item.isTemporary && CurrentAccount.type !== Profile.Type.SIP
+            readOnly = mode === Conversation.Mode.NON_SWARM &&
+                    (model.dataForRow(index, ConversationList.ContactType) !==
+                                                   Profile.Type.TEMPORARY) &&
+                    CurrentAccount.type !== Profile.Type.SIP
 
-            if (model.dataForRow(row, ConversationList.IsCoreDialog)) {
-                userProfile.aliasText = item.title
-                userProfile.registeredNameText = item.displayId
-                userProfile.idText = item.uri
-                userProfile.convId = item.convId
+            // For UserProfile dialog.
+            if (isCoreDialog) {
+                aliasText = model.dataForRow(index, ConversationList.Title)
+                registeredNameText = model.dataForRow(index, ConversationList.BestId)
+                idText = model.dataForRow(index, ConversationList.URI)
             }
 
             openMenu()
@@ -182,18 +166,16 @@ JamiListView {
         context: Qt.ApplicationShortcut
         enabled: root.visible
         onActivated: MessagesAdapter.clearConversationHistory(
-                         LRCInstance.currentAccountId,
-                         LRCInstance.selectedConvUid)
+                         CurrentAccount.id,
+                         CurrentConversation.id)
     }
 
     Shortcut {
         sequence: "Ctrl+Shift+B"
         context: Qt.ApplicationShortcut
         enabled: root.visible
-        onActivated: {
-            MessagesAdapter.blockConversation(
-                        LRCInstance.selectedConvUid)
-        }
+        onActivated: MessagesAdapter.blockConversation(
+                         CurrentConversation.id)
     }
 
     Shortcut {

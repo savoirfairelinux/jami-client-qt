@@ -28,7 +28,7 @@ VideoView {
     crop: true
 
     function startWithId(id, force = false) {
-        if (id.length === 0) {
+        if (id !== undefined && id.length === 0) {
             VideoDevices.stopDevice(rendererId)
             rendererId = id
         } else {
