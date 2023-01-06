@@ -44,8 +44,8 @@ BaseModalDialog {
         open()
     }
 
-    width: Math.min(mainView.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(mainView.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
+    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
 
     title: {
         switch(purpose){
@@ -56,6 +56,31 @@ BaseModalDialog {
         case PasswordDialog.SetPassword:
             return JamiStrings.setPassword
         }
+    }
+
+    function reportStatus(success) {
+        const title = success ? JamiStrings.success : JamiStrings.error
+        var info
+        switch(purpose) {
+            case PasswordDialog.ExportAccount:
+                info = success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed
+                break
+            case PasswordDialog.ChangePassword:
+                info = success ? JamiStrings.changePasswordSuccess : JamiStrings.changePasswordFailed
+                break
+            case PasswordDialog.SetPassword:
+                info = success ? JamiStrings.setPasswordSuccess : JamiStrings.setPasswordFailed
+                break
+        }
+        viewCoordinator.presentDialog(
+                    appWindow,
+                    "commoncomponents/SimpleMessageDialog.qml",
+                    {
+                        title: title,
+                        infoText: info,
+                        buttonTitles: [JamiStrings.optionOk],
+                        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
+                    })
     }
 
     popupContent: ColumnLayout {
@@ -86,20 +111,17 @@ BaseModalDialog {
                             path,
                             currentPasswordEdit.text)
             }
-            doneSignal(success, purpose)
+            reportStatus(success)
+
             close()
         }
 
         function savePasswordQML() {
-            var success = false
-            success = AccountAdapter.savePassword(
+            var success = AccountAdapter.savePassword(
                         LRCInstance.currentAccountId,
                         currentPasswordEdit.text,
                         passwordEdit.text)
-            if (success) {
-                AccountAdapter.setArchiveHasPassword(passwordEdit.text.length !== 0)
-            }
-            doneSignal(success, purpose)
+            reportStatus(success)
             close()
         }
 

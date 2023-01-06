@@ -173,15 +173,21 @@ Rectangle {
 
             text: JamiStrings.uninstall
 
-            onClicked: {
-                msgDialog.buttonCallBacks = [function () {
-                    pluginPreferencesView.visible = false
-                    PluginModel.uninstallPlugin(pluginId)
-                    installedPluginsModel.removePlugin(index)
-                }]
-                msgDialog.openWithParameters(JamiStrings.uninstallPlugin,
-                                             JamiStrings.pluginUninstallConfirmation.arg(pluginName))
-            }
+            onClicked: viewCoordinator.presentDialog(
+                           appWindow,
+                           "commoncomponents/SimpleMessageDialog.qml",
+                           {
+                               title: JamiStrings.uninstallPlugin,
+                               infoText: JamiStrings.pluginUninstallConfirmation.arg(pluginName),
+                               buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel],
+                               buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
+                                              SimpleMessageDialog.ButtonStyle.TintedBlack],
+                               buttonCallBacks: [function () {
+                                   pluginPreferencesView.visible = false
+                                   PluginModel.uninstallPlugin(pluginId)
+                                   installedPluginsModel.removePlugin(index)
+                               }]
+                           })
         }
 
         Rectangle {

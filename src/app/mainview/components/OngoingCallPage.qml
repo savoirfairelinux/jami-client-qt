@@ -33,20 +33,19 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    anchors.fill: parent
-
-    property var accountPeerPair: ["", ""]
+    property var accountPeerPair: [CurrentAccount.id, CurrentConversation.id]
     property variant clickPos: "1,1"
     property int previewMargin: 15
     property int previewMarginYTop: previewMargin + 42
     property int previewMarginYBottom: previewMargin + 84
     property int previewToX: 0
     property int previewToY: 0
-    property var linkedWebview: null
+    property alias chatViewContainer: chatViewContainer
     property string callPreviewId
 
     onCallPreviewIdChanged: {
-        controlPreview.start()
+        //controlPreview.start()
+        previewRenderer.startWithId(callPreviewId)
     }
 
     color: "black"
@@ -58,11 +57,11 @@ Rectangle {
     }
 
     function setLinkedWebview(webViewId) {
-        linkedWebview = webViewId
-        linkedWebview.needToHideConversationInCall.disconnect(
-                    closeInCallConversation)
-        linkedWebview.needToHideConversationInCall.connect(
-                    closeInCallConversation)
+//        linkedWebview = webViewId
+//        linkedWebview.needToHideConversationInCall.disconnect(
+//                    closeInCallConversation)
+//        linkedWebview.needToHideConversationInCall.connect(
+//                    closeInCallConversation)
     }
 
     Connections {
@@ -75,18 +74,18 @@ Rectangle {
 
     function openInCallConversation() {
         mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally)
-        inCallMessageWebViewStack.visible = true
-        inCallMessageWebViewStack.push(linkedWebview)
+        chatViewContainer.visible = true
+        //inCallMessageWebViewStack.push(linkedWebview)
     }
 
     function closeInCallConversation() {
-        inCallMessageWebViewStack.visible = false
-        inCallMessageWebViewStack.clear()
+        chatViewContainer.visible = false
+        //inCallMessageWebViewStack.clear()
     }
 
-    function closeContextMenuAndRelatedWindows() {
-        callOverlay.closeContextMenuAndRelatedWindows()
-    }
+//    function closeContextMenuAndRelatedWindows() {
+//        callOverlay.closeContextMenuAndRelatedWindows()
+//    }
 
     function previewMagneticSnap() {
         // Calculate the position where the previewRenderer should attach to.
@@ -202,29 +201,33 @@ Rectangle {
                 x: callPageMainRect.width - previewRenderer.width - previewMargin
                 y: previewMarginYTop
 
-                // HACK: this is a workaround to the preview video starting
-                // and stopping a few times. The root cause should be investigated ASAP.
-                Timer {
-                    id: controlPreview
-                    property bool startVideo
-                    interval: 1000
-                    onTriggered: {
-                        var rendId = visible && startVideo ? root.callPreviewId : ""
-                        previewRenderer.startWithId(rendId)
-                    }
+                Component.onDestruction: {
+                    previewRenderer.startWithId()
                 }
 
-                onVisibleChanged: {
-                    controlPreview.stop()
-                    if (visible) {
-                        controlPreview.startVideo = true
-                        controlPreview.interval = 1000
-                    } else {
-                        controlPreview.startVideo = false
-                        controlPreview.interval = 0
-                    }
-                    controlPreview.start()
-                }
+//                // HACK: this is a workaround to the preview video starting
+//                // and stopping a few times. The root cause should be investigated ASAP.
+//                Timer {
+//                    id: controlPreview
+//                    property bool startVideo
+//                    interval: 1000
+//                    onTriggered: {
+//                        var rendId = visible && startVideo ? root.callPreviewId : ""
+//                        previewRenderer.startWithId(rendId)
+//                    }
+//                }
+
+//                onVisibleChanged: {
+//                    controlPreview.stop()
+//                    if (visible) {
+//                        controlPreview.startVideo = true
+//                        controlPreview.interval = 1000
+//                    } else {
+//                        controlPreview.startVideo = false
+//                        controlPreview.interval = 0
+//                    }
+//                    controlPreview.start()
+//                }
 
                 states: [
                     State {
@@ -325,13 +328,14 @@ Rectangle {
 
                     function onNewInteraction(id, interactionType) {
                         // Ignore call notifications, as we are in the call.
-                        if (interactionType !== Interaction.Type.CALL && !inCallMessageWebViewStack.visible)
+                        if (interactionType !== Interaction.Type.CALL &&
+                                !chatViewContainer.visible)
                             openInCallConversation()
                     }
                 }
 
                 onChatButtonClicked: {
-                    inCallMessageWebViewStack.visible ?
+                    chatViewContainer.visible ?
                                 closeInCallConversation() :
                                 openInCallConversation()
                 }
@@ -343,6 +347,7 @@ Rectangle {
 
             ColumnLayout {
                 id: audioCallPageRectCentralRect
+
                 anchors.centerIn: parent
                 anchors.left: parent.left
                 anchors.right: parent.right
@@ -381,15 +386,16 @@ Rectangle {
             color: "transparent"
         }
 
-        StackView {
-            id: inCallMessageWebViewStack
+        Item {
+            id: chatViewContainer
 
-            SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : root.height / 3
-            SplitView.preferredWidth: mainColumnLayout.isHorizontal ? root.width / 3 : root.width
-            SplitView.fillWidth: false
-
+            SplitView.preferredHeight: mainColumnLayout.isHorizontal ?
+                                           root.height :
+                                           root.height / 3
+            SplitView.preferredWidth: mainColumnLayout.isHorizontal ?
+                                          root.width / 3 :
+                                          root.width
             visible: false
-
             clip: true
         }
     }

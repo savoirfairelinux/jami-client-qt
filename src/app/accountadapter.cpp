@@ -328,23 +328,6 @@ AccountAdapter::getDefaultModerators(const QString& accountId)
 }
 
 bool
-AccountAdapter::hasPassword()
-{
-    auto confProps = lrcInstance_->accountModel().getAccountConfig(
-        lrcInstance_->get_currentAccountId());
-    return confProps.archiveHasPassword;
-}
-
-void
-AccountAdapter::setArchiveHasPassword(bool isHavePassword)
-{
-    auto confProps = lrcInstance_->accountModel().getAccountConfig(
-        lrcInstance_->get_currentAccountId());
-    confProps.archiveHasPassword = isHavePassword;
-    lrcInstance_->accountModel().setAccountConfig(lrcInstance_->get_currentAccountId(), confProps);
-}
-
-bool
 AccountAdapter::exportToFile(const QString& accountId,
                              const QString& path,
                              const QString& password) const

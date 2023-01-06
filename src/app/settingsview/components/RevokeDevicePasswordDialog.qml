@@ -22,24 +22,17 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import net.jami.Constants 1.1
+import net.jami.Models 1.1
 
 import "../../commoncomponents"
 
 BaseModalDialog {
     id: root
 
-    property string deviceId : ""
+    required property string deviceId
 
-    signal revokeDeviceWithPassword(string idOfDevice, string password)
-
-    function openRevokeDeviceDialog(deviceIdIn) {
-        deviceId = deviceIdIn
-
-        open()
-    }
-
-    width: Math.min(mainView.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(mainView.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
+    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
 
     title: JamiStrings.removeDevice
 
@@ -106,7 +99,7 @@ BaseModalDialog {
                 text: JamiStrings.optionRemove
 
                 onClicked: {
-                    revokeDeviceWithPassword(deviceId, passwordEdit.text)
+                    DeviceItemListModel.revokeDevice(deviceId, passwordEdit.text)
                     close()
                 }
             }
@@ -130,6 +123,6 @@ BaseModalDialog {
 
                 onClicked: close()
             }
-    }
+        }
     }
 }

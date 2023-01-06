@@ -400,7 +400,7 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
     }
 #ifdef ENABLE_LIBWRAP
     auto callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
-#else  // dbus
+#else // dbus
     // do not use auto here (QDBusPendingReply<QString>)
     QString callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
 #endif // ENABLE_LIBWRAP

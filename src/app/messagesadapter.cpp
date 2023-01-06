@@ -51,6 +51,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , previewEngine_(previewEngine)
     , mediaInteractions_(std::make_unique<MessageListModel>())
 {
+    setObjectName(typeid(*this).name());
+
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
         set_replyToId("");
         set_editId("");
@@ -62,28 +64,11 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
 
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
     connect(previewEngine_, &PreviewEngine::linkified, this, &MessagesAdapter::onMessageLinkified);
-}
 
-void
-MessagesAdapter::safeInit()
-{
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this]() {
         connectConversationModel();
     });
     connectConversationModel();
-}
-
-void
-MessagesAdapter::setupChatView(const QVariantMap& convInfo)
-{
-    auto* convModel = lrcInstance_->getCurrentConversationModel();
-    auto convId = convInfo["convId"].toString();
-    if (convInfo["isSwarm"].toBool()) {
-        convModel->loadConversationMessages(convId, loadChunkSize_);
-    }
-
-    // TODO: current conv observe
-    Q_EMIT newMessageBarPlaceholderText(convInfo["title"].toString());
 }
 
 void
