@@ -84,47 +84,6 @@ Item {
         }
     }
 
-    JamiFileDialog {
-        id: importFromFileDialog
-
-        objectName: "photoboothImportFromFileDialog"
-
-        mode: JamiFileDialog.OpenFile
-        title: JamiStrings.chooseAvatarImage
-        folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
-
-        nameFilters: [
-            JamiStrings.imageFiles,
-            JamiStrings.allFiles
-        ]
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
-
-        onAccepted: {
-            if (importButton.focusAfterFileDialogClosed) {
-                importButton.focusAfterFileDialogClosed = false
-                importButton.forceActiveFocus()
-            }
-
-            var filePath = UtilsAdapter.getAbsPath(file)
-            if (!root.newItem)
-                AccountAdapter.setCurrentAccountAvatarFile(filePath)
-            else
-                UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId)
-        }
-
-        onRejected: {
-            if (importButton.focusAfterFileDialogClosed) {
-                importButton.focusAfterFileDialogClosed = false
-                importButton.forceActiveFocus()
-            }
-        }
-    }
-
     Rectangle {
         id: imageLayer
 
@@ -245,8 +204,6 @@ Item {
 
             objectName: "photoboothViewImportButton"
 
-            property bool focusAfterFileDialogClosed: false
-
             Layout.alignment: Qt.AlignHCenter
             visible: parent.visible
 
@@ -266,7 +223,6 @@ Item {
             Keys.onPressed: function (keyEvent) {
                 if (keyEvent.key === Qt.Key_Enter ||
                         keyEvent.key === Qt.Key_Return) {
-                    focusAfterFileDialogClosed = true
                     clicked()
                     keyEvent.accepted = true
                 } else if (keyEvent.key === Qt.Key_Down ||
@@ -281,10 +237,27 @@ Item {
             onClicked: {
                 stopBooth()
                 buttonsRowLayout.backToAvatar()
-                importFromFileDialog.open()
+                var dlg = viewCoordinator.presentDialog(
+                            appWindow,
+                            "commoncomponents/JamiFileDialog.qml",
+                            {
+                                title: JamiStrings.chooseAvatarImage,
+                                fileMode: JamiFileDialog.OpenFile,
+                                folder: StandardPaths.writableLocation(
+                                            StandardPaths.PicturesLocation),
+                                nameFilters: [JamiStrings.imageFiles,
+                                    JamiStrings.allFiles]
+                            })
+                dlg.fileAccepted.connect(function(file) {
+                    var filePath = UtilsAdapter.getAbsPath(file)
+                    if (!root.newItem) {
+                        AccountAdapter.setCurrentAccountAvatarFile(filePath)
+                    } else {
+                        UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId)
+                    }
+                })
             }
         }
-
 
         PushButton {
             id: clearButton

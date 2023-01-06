@@ -53,6 +53,8 @@ Item {
     property point videoRecordMessageButtonInMainViewPoint
     property var emojiPickerButtonInMainViewPoint
 
+    signal settingsPageRequested(int index)
+
     function updateMessageBarButtonsPoints() {
         if (messageBarButtonsRowObj && audioRecordMessageButtonObj && videoRecordMessageButtonObj) {
             audioRecordMessageButtonInMainViewPoint =

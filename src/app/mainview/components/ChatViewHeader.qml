@@ -31,7 +31,6 @@ Rectangle {
     id: root
 
     signal backClicked
-    signal needToHideConversationInCall
     signal addToConversationClicked
     signal pluginSelector
     signal showDetailsClicked
@@ -87,9 +86,7 @@ Rectangle {
             normalColor: JamiTheme.chatviewBgColor
             imageColor: JamiTheme.chatviewButtonColor
 
-            onClicked: CurrentConversation.inCall ?
-                           root.needToHideConversationInCall() :
-                           root.backClicked()
+            onClicked: root.backClicked()
         }
 
         Rectangle {
@@ -133,7 +130,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
                     visible: text.length &&
-                             CurrentConversation.title != CurrentConversation.description
+                             CurrentConversation.title !== CurrentConversation.description
                     font.pointSize: JamiTheme.textFontSize
                     color: JamiTheme.faddedLastInteractionFontColor
 

@@ -33,17 +33,11 @@ import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 Rectangle {
     id: root
 
-    property bool allMessagesLoaded
-    property var mapPositions: PositionManager.mapStatus
-    signal needToHideConversationInCall
-    signal messagesCleared
-    signal messagesLoaded
+    color: JamiTheme.chatviewBgColor
 
-     onVisibleChanged: {
-        if (visible)
-            return
-        UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id)
-    }
+    property var mapPositions: PositionManager.mapStatus
+
+    signal dismiss
 
     function focusChatView() {
         chatViewFooter.textInput.forceActiveFocus()
@@ -62,20 +56,19 @@ Rectangle {
             }
         }
     }
+
     Connections {
         target: PositionManager
-
         function onOpenNewMap() {
             instanceMapObject()
         }
     }
 
-    color: JamiTheme.chatviewBgColor
-
-    property string currentConvId: CurrentConversation.id
-
-    HostPopup {
-        id: hostPopup
+    Connections {
+        target: CurrentConversation
+        function onIdChanged() {
+            MessagesAdapter.loadMoreMessages()
+        }
     }
 
     ColumnLayout {
@@ -97,13 +90,7 @@ Rectangle {
                 onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
             }
 
-            onBackClicked: {
-                mainView.showWelcomeView()
-            }
-
-            onNeedToHideConversationInCall: {
-                root.needToHideConversationInCall()
-            }
+            onBackClicked: root.dismiss()
 
             onShowDetailsClicked: {
                 addMemberPanel.visible = false
@@ -121,7 +108,9 @@ Rectangle {
                 }
 
                 function onNeedsHost() {
-                    hostPopup.open()
+                    viewCoordinator.presentDialog(
+                                appWindow,
+                                "mainview/components/HostPopup.qml")
                 }
             }
 
@@ -202,19 +191,21 @@ Rectangle {
 
             handle: Rectangle {
                 implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-                implicitHeight: splitView.height
+                implicitHeight: viewCoordinator.splitView.height
                 color: JamiTheme.primaryBackgroundColor
                 Rectangle {
                     implicitWidth: 1
-                    implicitHeight: splitView.height
+                    implicitHeight: viewCoordinator.splitView.height
                     color: JamiTheme.tabbarBorderColor
                 }
             }
 
             ColumnLayout {
-                SplitView.maximumWidth: splitView.width
-                // Note, without JamiTheme.detailsPageMinWidth, sometimes the details page is hidden at the right
-                SplitView.preferredWidth: Math.max(0, 2 * splitView.width / 3 - JamiTheme.detailsPageMinWidth)
+                SplitView.maximumWidth: viewCoordinator.splitView.width
+                // Note, without JamiTheme.detailsPageMinWidth, sometimes the details page is
+                // hidden at the right.
+                SplitView.preferredWidth: Math.max(0, 2 * viewCoordinator.splitView.width / 3 -
+                                                   JamiTheme.detailsPageMinWidth)
                 SplitView.fillHeight: true
 
                 StackLayout {
@@ -287,8 +278,9 @@ Rectangle {
                 id: swarmDetailsPanel
                 visible: false
 
-                SplitView.maximumWidth: splitView.width
-                SplitView.preferredWidth: Math.max(JamiTheme.detailsPageMinWidth, splitView.width / 3)
+                SplitView.maximumWidth: viewCoordinator.splitView.width
+                SplitView.preferredWidth: Math.max(JamiTheme.detailsPageMinWidth,
+                                                   viewCoordinator.splitView.width / 3)
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
                 SplitView.fillHeight: true
                 Layout.fillHeight: true
@@ -299,8 +291,9 @@ Rectangle {
                 id: addMemberPanel
                 visible: false
 
-                SplitView.maximumWidth: splitView.width
-                SplitView.preferredWidth: Math.max(JamiTheme.detailsPageMinWidth, splitView.width / 3)
+                SplitView.maximumWidth: viewCoordinator.splitView.width
+                SplitView.preferredWidth: Math.max(JamiTheme.detailsPageMinWidth,
+                                                   viewCoordinator.splitView.width / 3)
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
                 SplitView.fillHeight: true
                 Layout.fillHeight: true

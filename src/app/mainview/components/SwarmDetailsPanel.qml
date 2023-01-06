@@ -34,12 +34,9 @@ Rectangle {
 
     color: CurrentConversation.color
     property var isAdmin: !CurrentConversation.isCoreDialog &&
-        UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
-
-
-    DevicesListPopup {
-        id: devicesListPopup
-    }
+        UtilsAdapter.getParticipantRole(CurrentAccount.id,
+                                        CurrentConversation.id,
+                                        CurrentAccount.uri) === Member.Role.ADMIN
 
     ColumnLayout {
         id: swarmProfileDetails
@@ -181,7 +178,8 @@ Rectangle {
 
                 onEditingFinished: {
                     if (text !== CurrentConversation.description)
-                        ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, text)
+                        ConversationsAdapter.updateConversationDescription(
+                                    LRCInstance.selectedConvUid, text)
                 }
 
                 onSecondIcoClicked: {editable = !editable}
@@ -265,22 +263,16 @@ Rectangle {
             }
         }
 
-        ColorDialog {
-            id: colorDialog
-            title: JamiStrings.chooseAColor
-            onAccepted: {
-                CurrentConversation.setPreference("color", colorDialog.color)
-            }
-        }
-
-        ConfirmDialog {
-            id: rmDialog
-
-            title: JamiStrings.confirmAction
-            textLabel: JamiStrings.confirmRmConversation
-            confirmLabel: JamiStrings.optionRemove
-            onAccepted: {
-                MessagesAdapter.removeConversation(LRCInstance.selectedConvUid)
+        Component {
+            id: colorDialogComp
+            ColorDialog {
+                id: colorDialog
+                title: JamiStrings.chooseAColor
+                onAccepted: {
+                    CurrentConversation.setPreference("color", colorDialog.color)
+                    this.destroy()
+                }
+                onRejected: this.destroy()
             }
         }
 
@@ -343,7 +335,17 @@ Rectangle {
                         target: parent
                         enabled: parent.visible
                         onTapped: function onTapped(eventPoint) {
-                            rmDialog.open()
+                            var dlg = viewCoordinator.presentDialog(
+                                        appWindow,
+                                        "commoncomponents/ConfirmDialog.qml",
+                                        {
+                                            title: JamiStrings.confirmAction,
+                                            textLabel: JamiStrings.confirmRmConversation,
+                                            confirmLabel: JamiStrings.optionRemove
+                                        })
+                            dlg.accepted.connect(function() {
+                                MessagesAdapter.removeConversation(LRCInstance.selectedConvUid)
+                            })
                         }
                     }
                 }
@@ -388,7 +390,8 @@ Rectangle {
                         target: parent
                         enabled: parent.visible
                         onTapped: function onTapped(eventPoint) {
-                            colorDialog.open()
+                            var obj = colorDialogComp.createObject(appWindow)
+                            obj.open()
                         }
                     }
                 }
@@ -496,7 +499,9 @@ Rectangle {
 
                         enabled: parent.visible && root.isAdmin
                         onTapped: function onTapped(eventPoint) {
-                            devicesListPopup.open()
+                            viewCoordinator.presentDialog(
+                                        appWindow,
+                                        "mainview/components/DevicesListPopup.qml")
                         }
                     }
                 }

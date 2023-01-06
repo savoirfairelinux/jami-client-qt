@@ -22,34 +22,18 @@
 
 class LRCInstance;
 
-// The main purpose of this class is to operate on qml objects,
-// or provide api calls to qml objects that cannot be done directly in qml.
+// Base class for adapters that need an LRC instance.
 class QmlAdapterBase : public QObject
 {
     Q_OBJECT
 public:
     explicit QmlAdapterBase(LRCInstance* instance, QObject* parent = nullptr)
         : QObject(parent)
-        , qmlObj_(nullptr)
         , lrcInstance_(instance) {};
 
     virtual ~QmlAdapterBase() = default;
 
-    // This function should be called in the Component.onCompleted slot
-    // in the qml component that this adapter should attach to.
-    Q_INVOKABLE void setQmlObject(QObject* obj)
-    {
-        qmlObj_ = obj;
-        safeInit();
-    };
-
 protected:
-    // Once the qml object is set, Qml method invokation can be done
-    virtual void safeInit() = 0;
-
-    // Object pointer.
-    QObject* qmlObj_;
-
     // LRCInstance pointer
     LRCInstance* lrcInstance_ {nullptr};
 };

@@ -26,6 +26,9 @@ import net.jami.Constants 1.1
 Popup {
     id: root
 
+    Component.onCompleted: print("+", this)
+    Component.onDestruction: print("-", this)
+
     // convient access to closePolicy
     property bool autoClose: true
     property alias backgroundColor: container.color

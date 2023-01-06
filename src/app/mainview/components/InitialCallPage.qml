@@ -30,12 +30,17 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property bool isIncoming: false
-    property bool isAudioOnly: CurrentCall.isAudioOnly
-    property int callStatus: 0
-
     signal callCanceled
     signal callAccepted
+
+    onCallAccepted: {
+        CallAdapter.acceptACall(CurrentAccount.id, CurrentConversation.id)
+        // mainViewSidePanel.selectTab(SidePanelTabBar.Conversations)
+    }
+
+    onCallCanceled: {
+        CallAdapter.hangUpACall(CurrentAccount.id, CurrentConversation.id)
+    }
 
     color: "black"
 
@@ -43,12 +48,12 @@ Rectangle {
         id: previewRenderer
         anchors.centerIn: parent
         anchors.fill: parent
-        visible: !root.isAudioOnly &&
+        visible: !CurrentCall.isAudioOnly &&
                  CurrentAccount.videoEnabled_Video &&
                  VideoDevices.listSize !== 0 &&
-                 ((callStatus >= Call.Status.INCOMING_RINGING
-                   && callStatus <= Call.Status.SEARCHING)
-                  || callStatus === Call.Status.CONNECTED)
+                 ((CurrentCall.status >= Call.Status.INCOMING_RINGING
+                   && CurrentCall.status <= Call.Status.SEARCHING)
+                  || CurrentCall.status === Call.Status.CONNECTED)
         opacity: 0.5
 
         // HACK: this is a workaround to the preview video starting
@@ -150,8 +155,8 @@ Rectangle {
             property string title: CurrentConversation.title
 
             text: {
-                if (root.isIncoming)
-                    return root.isAudioOnly ?
+                if (!CurrentCall.isOutgoing)
+                    return CurrentCall.isAudioOnly ?
                                 JamiStrings.incomingAudioCallFrom.replace("{}", title) :
                                 JamiStrings.incomingVideoCallFrom.replace("{}", title)
                 else
@@ -159,7 +164,7 @@ Rectangle {
             }
             wrapMode: Text.WordWrap
             elide: Text.ElideRight
-            maximumLineCount: root.isIncoming ? 2 : 1
+            maximumLineCount: !CurrentCall.isOutgoing ? 2 : 1
             color: "white"
         }
 
@@ -173,9 +178,9 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            text: UtilsAdapter.getCallStatusStr(callStatus) + "…"
+            text: UtilsAdapter.getCallStatusStr(CurrentCall.status) + "…"
             color: JamiTheme.whiteColor
-            visible: !root.isIncoming
+            visible: CurrentCall.isOutgoing
         }
 
         RowLayout {
@@ -184,10 +189,10 @@ Rectangle {
 
             Repeater {
                 id: controlButtons
-                model: root.isIncoming ? incomingControlsModel : outgoingControlsModel
+                model: !CurrentCall.isOutgoing ? incomingControlsModel : outgoingControlsModel
 
                 delegate: ColumnLayout {
-                    visible: (type === "cam" && root.isAudioOnly) ? false : true;
+                    visible: (type === "cam" && CurrentCall.isAudioOnly) ? false : true
 
                     PushButton {
                         id: actionButton
@@ -248,7 +253,7 @@ Rectangle {
                             else if (type === "cam")
                                 return JamiStrings.acceptVideo
                             else if (type === "mic")
-                                return root.isAudioOnly ? JamiStrings.accept : JamiStrings.acceptAudio
+                                return CurrentCall.isAudioOnly ? JamiStrings.accept : JamiStrings.acceptAudio
                             else if (type === "cancel")
                                 return JamiStrings.endCall
                             return ""

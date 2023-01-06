@@ -91,14 +91,17 @@ Item {
         }
     }
 
-    JamiFileDialog {
-        id: jamiFileDialog
-
-        mode: JamiFileDialog.Mode.OpenFile
-
-        onAccepted: {
-            AvAdapter.shareFile(jamiFileDialog.file)
-        }
+    function openShareFileDialog() {
+        var dlg = viewCoordinator.presentDialog(
+                    appWindow,
+                    "commoncomponents/JamiFileDialog.qml",
+                    {
+                        fileMode: JamiFileDialog.OpenFile,
+                        nameFilters: [JamiStrings.allFiles]
+                    })
+        dlg.fileAccepted.connect(function(file) {
+            AvAdapter.shareFile(file)
+        })
     }
 
     ResponsiveImage {
@@ -168,7 +171,7 @@ Item {
             function onStopSharingClicked() { AvAdapter.stopSharing() }
             function onShareScreenAreaClicked() { openShareScreenArea() }
             function onRecordCallClicked() { CallAdapter.recordThisCallToggle() }
-            function onShareFileClicked() { jamiFileDialog.open() }
+            function onShareFileClicked() { openShareFileDialog() }
             function onPluginsClicked() { openPluginsMenu() }
             function onFullScreenClicked() { root.fullScreenClicked() }
         }

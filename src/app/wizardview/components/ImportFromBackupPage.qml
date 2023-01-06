@@ -67,35 +67,6 @@ Rectangle {
 
     color: JamiTheme.secondaryBackgroundColor
 
-    JamiFileDialog {
-        id: importFromFileDialog
-
-        mode: JamiFileDialog.OpenFile
-        title: JamiStrings.openFile
-        folder: StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop"
-
-        nameFilters: [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
-
-        onRejected: {
-            fileImportBtn.forceActiveFocus()
-        }
-
-        onAccepted: {
-            filePath = file
-            if (file.length !== "") {
-                fileImportBtnText = UtilsAdapter.toFileInfoName(file)
-            } else {
-                fileImportBtnText = JamiStrings.archive
-            }
-        }
-    }
-
     ColumnLayout {
         id: importFromBackupPageColumnLayout
 
@@ -157,7 +128,28 @@ Rectangle {
 
             onClicked: {
                 errorText = ""
-                importFromFileDialog.open()
+                var dlg = viewCoordinator.presentDialog(
+                            appWindow,
+                            "commoncomponents/JamiFileDialog.qml",
+                            {
+                                title: JamiStrings.openFile,
+                                fileMode: JamiFileDialog.OpenFile,
+                                folder: StandardPaths.writableLocation(
+                                            StandardPaths.HomeLocation) + "/Desktop",
+                                nameFilters: [JamiStrings.jamiArchiveFiles,
+                                    JamiStrings.allFiles]
+                            })
+                dlg.fileAccepted.connect(function(file) {
+                    filePath = file
+                    if (file.length !== "") {
+                        fileImportBtnText = UtilsAdapter.toFileInfoName(file)
+                    } else {
+                        fileImportBtnText = JamiStrings.archive
+                    }
+                })
+                dlg.rejected.connect(function() {
+                    fileImportBtn.forceActiveFocus()
+                })
             }
         }
 

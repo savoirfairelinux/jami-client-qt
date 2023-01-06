@@ -473,6 +473,8 @@ Control {
             spacing: 0
 
             ListView {
+                id: itemListView
+
                 property bool centeredGroup: true
 
                 orientation: ListView.Horizontal

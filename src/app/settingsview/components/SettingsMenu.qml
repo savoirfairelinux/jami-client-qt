@@ -22,96 +22,81 @@ import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
-// TODO: these includes should generally be resource uris
 import "../../commoncomponents"
 import "../../settingsview"
 
 Rectangle {
     id: root
 
-    signal itemSelected(int index)
-    signal buttonSelectedManually(int index)
-
     color: JamiTheme.backgroundColor
+
+    // The following bindings provide the settings menu selection persistence behavior.
+    property bool singlePane: viewCoordinator.singlePane
+    onSinglePaneChanged: {
+        if (!viewCoordinator.singlePane && viewCoordinator.inSettings) {
+            const idx = viewCoordinator.currentView.selectedMenu
+            buttonGroup.checkedButton = buttonGroup.buttons[idx]
+        }
+    }
+    onVisibleChanged: buttonGroup.checkedButton = visible && !viewCoordinator.singlePane ?
+                        buttonGroup.buttons[0] :
+                        null
+
+    // Bind to requests for a settings page to be selected via shorcut.
+    Connections {
+        target: JamiQmlUtils
+        function onSettingsPageRequested(index) {
+            buttonGroup.checkedButton = buttonGroup.buttons[index]
+        }
+    }
 
     ButtonGroup {
         id: buttonGroup
+        buttons: settingsButtons.children
 
-        buttons: buttons.children
-        onCheckedButtonChanged: itemSelected(checkedButton.menuType)
+        // When the selection changes, we present the SettingsView at
+        // the selected index.
+        onCheckedButtonChanged: {
+            for (var i = 0; i < buttons.length; i++)
+                if (buttons[i] === checkedButton) {
+                    if (viewCoordinator.singlePane) {
+                        viewCoordinator.present("SettingsView").selectedMenu = i
+                    } else if (!viewCoordinator.busy) {
+                        var settingsView = viewCoordinator.getView("SettingsView")
+                        settingsView.selectedMenu = i
+                    }
+                }
+        }
     }
 
     Column {
-        id: buttons
+        id: settingsButtons
 
         spacing: 0
         anchors.left: parent.left
         anchors.right: parent.right
         height: childrenRect.height
 
-        SettingsMenuButton {
-            id: accountPushButton
-            property int menuType: SettingsView.Account
-            Connections {
-                target: root
+        component SMB: SettingsMenuButton { normalColor: root.color }
 
-                function onButtonSelectedManually(index) {
-                    if (accountPushButton.menuType === index)
-                        buttonGroup.checkedButton = accountPushButton
-                }
-            }
-            checked: true
+        SMB {
             buttonText: JamiStrings.accountSettingsMenuTitle
             source: JamiResources.account_24dp_svg
-            normalColor: root.color
         }
 
-        SettingsMenuButton {
-            id: generalPushButton
-            property int menuType: SettingsView.General
-            Connections {
-                target: root
-
-                function onButtonSelectedManually(index) {
-                    if (generalPushButton.menuType === index)
-                        buttonGroup.checkedButton = generalPushButton
-                }
-            }
+        SMB {
             buttonText: JamiStrings.generalSettingsTitle
             source: JamiResources.gear_black_24dp_svg
-            normalColor: root.color
         }
 
-        SettingsMenuButton {
-            id: mediaPushButton
-            property int menuType: SettingsView.Media
-            Connections {
-                target: root
-
-                function onButtonSelectedManually(index) {
-                    if (mediaPushButton.menuType === index)
-                        buttonGroup.checkedButton = mediaPushButton
-                }
-            }
+        SMB {
             buttonText: JamiStrings.avSettingsMenuTitle
             source: JamiResources.media_black_24dp_svg
-            normalColor: root.color
         }
 
-        SettingsMenuButton {
-            id: pluginPushButton
-            property int menuType: SettingsView.Plugin
-            Connections {
-                target: root
-
-                function onButtonSelectedManually(index) {
-                    if (pluginPushButton.menuType === index)
-                        buttonGroup.checkedButton = pluginPushButton
-                }
-            }
+        SMB {
             buttonText: JamiStrings.pluginSettingsTitle
             source: JamiResources.plugin_settings_black_24dp_svg
-            normalColor: root.color
         }
     }
 }

@@ -71,7 +71,6 @@ public:
 
 Q_SIGNALS:
     void newInteraction(const QString& id, int type);
-    void newMessageBarPlaceholderText(QString placeholderText);
     void newFilePasted(QString filePath);
     void newTextPasted();
     void previewInformationToQML(QString messageId, QStringList previewInformation);
@@ -79,9 +78,6 @@ Q_SIGNALS:
     void timestampUpdated();
 
 protected:
-    void safeInit() override;
-
-    Q_INVOKABLE void setupChatView(const QVariantMap& convInfo);
     Q_INVOKABLE void loadMoreMessages();
     Q_INVOKABLE void loadConversationUntil(const QString& to);
     Q_INVOKABLE void connectConversationModel();

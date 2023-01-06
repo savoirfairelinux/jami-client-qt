@@ -46,12 +46,6 @@ SBSMessageBase {
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
     textHovered: textHoverhandler.hovered
 
-    EditedPopup {
-        id: editedPopup
-
-        previousBodies: PreviousBodies
-    }
-
     innerContent.children: [
         TextEdit {
             id: textEditId
@@ -155,7 +149,10 @@ SBSMessageBase {
                 TapHandler {
                     acceptedButtons: Qt.LeftButton
                     onTapped: {
-                        editedPopup.open()
+                        viewCoordinator.presentDialog(
+                                    appWindow,
+                                    "commoncomponents/EditedPopup.qml",
+                                    {previousBodies: PreviousBodies})
                     }
                 }
             }

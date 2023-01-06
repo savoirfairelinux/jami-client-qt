@@ -54,7 +54,9 @@ PendingConferenceesListModel::PendingConferenceesListModel(LRCInstance* instance
     , lrcInstance_(instance)
 {
     connectSignals();
-    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this]() { connectSignals(); });
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, [this]() {
+        connectSignals();
+    });
 }
 
 int
@@ -128,10 +130,14 @@ PendingConferenceesListModel::connectSignals()
         return;
 
     using namespace PendingConferences;
-    callsStatusChanged_
-        = connect(currentCallModel, &CallModel::callStatusChanged, [this](const QString&, int) {
-              Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1), {Role::CallStatus});
-          });
+    callsStatusChanged_ = connect(currentCallModel,
+                                  &CallModel::callStatusChanged,
+                                  this,
+                                  [this](const QString&, int) {
+                                      Q_EMIT dataChanged(index(0, 0),
+                                                         index(rowCount() - 1),
+                                                         {Role::CallStatus});
+                                  });
 
     beginInsertPendingConferencesRows_ = connect(
         currentCallModel,

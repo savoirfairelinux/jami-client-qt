@@ -280,21 +280,27 @@ Rectangle {
 
             text: JamiStrings.reset
 
-            onClicked: {
-                msgDialog.buttonCallBacks = [function () {
-                    if (isLoaded) {
-                        PluginModel.unloadPlugin(pluginId)
-                        PluginModel.resetPluginPreferencesValues(pluginId, accountId)
-                        PluginModel.loadPlugin(pluginId)
-                    } else {
-                        PluginModel.resetPluginPreferencesValues(pluginId, accountId)
-                    }
-                    preferencesPerCategoryModel.reset()
-                    generalPreferencesModel.reset()
-                }]
-                msgDialog.openWithParameters(JamiStrings.resetPreferences,
-                                             JamiStrings.pluginResetConfirmation.arg(pluginName))
-            }
+            onClicked: viewCoordinator.presentDialog(
+                           appWindow,
+                           "commoncomponents/SimpleMessageDialog.qml",
+                           {
+                               title: JamiStrings.resetPreferences,
+                               infoText: JamiStrings.pluginResetConfirmation.arg(pluginName),
+                               buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel],
+                               buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
+                                              SimpleMessageDialog.ButtonStyle.TintedBlack],
+                               buttonCallBacks: [function () {
+                                   if (isLoaded) {
+                                       PluginModel.unloadPlugin(pluginId)
+                                       PluginModel.resetPluginPreferencesValues(pluginId, accountId)
+                                       PluginModel.loadPlugin(pluginId)
+                                   } else {
+                                       PluginModel.resetPluginPreferencesValues(pluginId, accountId)
+                                   }
+                                   preferencesPerCategoryModel.reset()
+                                   generalPreferencesModel.reset()
+                               }]
+                           })
         }
     }
 }

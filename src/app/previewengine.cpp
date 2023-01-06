@@ -19,6 +19,8 @@
 
 #include "previewengine.h"
 
+#include "utils.h"
+
 #include <QWebEngineScript>
 #include <QWebEngineProfile>
 #include <QWebEngineSettings>
@@ -111,6 +113,3 @@ PreviewEngine::emitLinkified(const QString& messageId, const QString& linkifiedS
 {
     Q_EMIT linkified(messageId, linkifiedStr);
 }
-
-#include "moc_previewengine.cpp"
-#include "previewengine.moc"

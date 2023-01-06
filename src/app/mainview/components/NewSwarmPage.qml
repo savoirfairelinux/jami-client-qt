@@ -26,8 +26,7 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-
-Rectangle {
+BaseView {
     id: root
 
     color: JamiTheme.chatviewBgColor
@@ -217,9 +216,9 @@ Rectangle {
 
             text: JamiStrings.createTheSwarm
 
-            onClicked: {
-                createSwarmClicked(title.text, description.text, UtilsAdapter.tempCreationImage())
-            }
+            onClicked: createSwarmClicked(title.text,
+                                          description.text,
+                                          UtilsAdapter.tempCreationImage())
         }
     }
 }

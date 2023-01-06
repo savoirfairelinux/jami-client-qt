@@ -34,14 +34,14 @@ BaseModalDialog {
 
     title: JamiStrings.addDevice
 
-    width: Math.min(mainView.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(mainView.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
+    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
 
     popupContent: StackLayout {
         id: stackedWidget
 
         function setGeneratingPage() {
-            if(passwordEdit.length === 0 && AccountAdapter.hasPassword()){
+            if(passwordEdit.length === 0 && CurrentAccount.hasArchivePassword){
                 setExportPage(NameDirectory.ExportOnRingStatus.WRONG_PASSWORD, "")
                 return
             }
@@ -102,7 +102,7 @@ BaseModalDialog {
                 infoLabel.text = JamiStrings.pinTimerInfos
                 passwordEdit.clear()
 
-                if(AccountAdapter.hasPassword()) {
+                if(CurrentAccount.hasArchivePassword) {
                     stackedWidget.currentIndex = enterPasswordPage.pageIndex
                     passwordEdit.forceActiveFocus()
                 } else {

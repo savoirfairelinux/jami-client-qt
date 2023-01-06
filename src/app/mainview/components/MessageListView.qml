@@ -167,9 +167,6 @@ JamiListView {
 
     topMargin: 12
     spacing: 2
-    anchors.centerIn: parent
-    height: parent.height
-    width: parent.width
     // this offscreen caching is pretty huge
     // displayMarginEnd may be removed
 
