@@ -40,14 +40,14 @@ Item {
     signal chatButtonClicked
     signal fullScreenClicked
 
-    function closeContextMenuAndRelatedWindows() {
-        ContactPickerCreation.closeContactPicker()
-        sipInputPanel.close()
-        SelectScreenWindowCreation.destroySelectScreenWindow()
-        ScreenRubberBandCreation.destroyScreenRubberBandWindow()
-        PluginHandlerPickerCreation.closePluginHandlerPicker()
-        callInformationOverlay.close()
-    }
+//    function closeContextMenuAndRelatedWindows() {
+//        ContactPickerCreation.closeContactPicker()
+//        sipInputPanel.close()
+//        SelectScreenWindowCreation.destroySelectScreenWindow()
+//        ScreenRubberBandCreation.destroyScreenRubberBandWindow()
+//        PluginHandlerPickerCreation.closePluginHandlerPicker()
+//        callInformationOverlay.close()
+//    }
 
     // x, y position does not need to be translated
     // since they all fill the call page
@@ -85,6 +85,7 @@ Item {
 
     JamiFileDialog {
         id: jamiFileDialog
+        objectName: "shareFileDialog"
 
         mode: JamiFileDialog.Mode.OpenFile
 

@@ -84,9 +84,9 @@ Rectangle {
         inCallMessageWebViewStack.clear()
     }
 
-    function closeContextMenuAndRelatedWindows() {
-        callOverlay.closeContextMenuAndRelatedWindows()
-    }
+//    function closeContextMenuAndRelatedWindows() {
+//        callOverlay.closeContextMenuAndRelatedWindows()
+//    }
 
     function previewMagneticSnap() {
         // Calculate the position where the previewRenderer should attach to.

@@ -57,8 +57,6 @@ Q_SIGNALS:
     void sendCountdownUpdate(const QString& accountId, const int remainingTime);
 
 protected:
-    void safeInit() override;
-
     QString getAvatar(const QString& accountId, const QString& peerId);
     QVariantMap parseJsonPosition(const QString& accountId,
                                   const QString& peerId,

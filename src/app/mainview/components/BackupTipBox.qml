@@ -35,6 +35,7 @@ Item {
 
     PasswordDialog {
         id: passwordDialog
+        objectName: "passwordDialog"
 
         visible: false
         purpose: PasswordDialog.ExportAccount
@@ -47,6 +48,7 @@ Item {
     // JamiFileDialog for exporting account
     JamiFileDialog {
         id: exportDialog
+        objectName: "exportDialog"
 
         mode: JamiFileDialog.SaveFile
 
@@ -57,7 +59,7 @@ Item {
 
         onAccepted: {
             // Is there password? If so, go to password dialog, else, go to following directly
-            if (AccountAdapter.hasPassword()) {
+            if (CurrentAccount.hasArchivePassword) {
                 passwordDialog.path = UtilsAdapter.getAbsPath(file)
                 passwordDialog.open()
             } else {

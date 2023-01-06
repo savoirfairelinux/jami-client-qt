@@ -103,13 +103,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                 accInfo.conversationModel->removeConversation(convUid);
             });
 #endif
-}
 
-void
-ConversationsAdapter::safeInit()
-{
-    // TODO: remove these safeInits, they are possibly called
-    // multiple times during qml component inits
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::newUnreadInteraction,
             this,

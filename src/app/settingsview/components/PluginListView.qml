@@ -35,22 +35,6 @@ Rectangle {
     visible: false
     color: JamiTheme.secondaryBackgroundColor
 
-    JamiFileDialog {
-        id: pluginPathDialog
-
-        mode: JamiFileDialog.OpenFile
-        title: JamiStrings.selectPluginInstall
-        folder: StandardPaths.writableLocation(StandardPaths.DownloadLocation)
-
-        nameFilters: [JamiStrings.pluginFiles, JamiStrings.allFiles]
-
-        onAccepted: {
-            var url = UtilsAdapter.getAbsPath(file.toString())
-            PluginModel.installPlugin(url, true)
-            installedPluginsModel.addPlugin()
-        }
-    }
-
     ColumnLayout {
         anchors.left: root.left
         anchors.right: root.right
@@ -88,7 +72,22 @@ Rectangle {
 
             text: JamiStrings.installPlugin
 
-            onClicked: pluginPathDialog.open()
+            onClicked: {
+                var dlg = viewCoordinator.presentDialog(
+                            appWindow,
+                            "commoncomponents/JamiFileDialog.qml",
+                            {
+                                title: JamiStrings.selectPluginInstall,
+                                fileMode: JamiFileDialog.OpenFile,
+                                folder: StandardPaths.writableLocation(StandardPaths.DownloadLocation),
+                                nameFilters: [JamiStrings.pluginFiles, JamiStrings.allFiles]
+                            })
+                dlg.fileAccepted.connect(function (file) {
+                    var url = UtilsAdapter.getAbsPath(file.toString())
+                    PluginModel.installPlugin(url, true)
+                    installedPluginsModel.addPlugin()
+                })
+            }
         }
 
         ListView {
