@@ -30,8 +30,10 @@ import "../"
 import "../commoncomponents"
 import "components"
 
-Rectangle {
+BaseView {
     id: root
+    objectName: "WizardView"
+    singlePaneOnly: true
 
     // signal to redirect the page to main view
     signal loaderSourceChangeRequested(int sourceToLoad)
@@ -59,6 +61,7 @@ Rectangle {
 
         function onCloseWizardView() {
             loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+            root.dismiss()
         }
     }
 
