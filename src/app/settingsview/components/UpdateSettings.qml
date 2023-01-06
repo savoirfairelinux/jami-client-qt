@@ -103,11 +103,36 @@ ColumnLayout {
         toolTipText: JamiStrings.betaInstall
         text: JamiStrings.betaInstall
 
-        onClicked: {
-            confirmInstallDialog.beta = true
-            confirmInstallDialog.openWithParameters(JamiStrings.updateDialogTitle,
-                                                    JamiStrings.confirmBeta)
-        }
+        onClicked: presentConfirmInstallDialog(JamiStrings.confirmBeta, true)
+    }
+
+    function presentInfoDialog(infoText) {
+        viewCoordinator.presentDialog(
+            appWindow,
+            "commoncomponents/SimpleMessageDialog.qml",
+            {
+                title: JamiStrings.updateDialogTitle,
+                infoText: infoText,
+                buttonTitles: [JamiStrings.optionOk],
+                buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                buttonCallBacks: []
+            })
+    }
+
+    function presentConfirmInstallDialog(infoText, beta) {
+        viewCoordinator.presentDialog(
+            appWindow,
+            "commoncomponents/SimpleMessageDialog.qml",
+            {
+                title: JamiStrings.updateDialogTitle,
+                infoText: infoText,
+                buttonTitles: [JamiStrings.optionUpgrade, JamiStrings.optionLater],
+                buttonStyles: [
+                    SimpleMessageDialog.ButtonStyle.TintedBlue,
+                    SimpleMessageDialog.ButtonStyle.TintedBlue
+                ],
+                buttonCallBacks: [function() {UpdateManager.applyUpdates(beta)}]
+            })
     }
 
     Connections {
@@ -129,128 +154,31 @@ ColumnLayout {
             }
         }
 
+        function onUpdateDownloadStarted() {
+            viewCoordinator.presentDialog(
+                appWindow,
+                "settingsview/components/UpdateDownloadDialog.qml",
+                {title: JamiStrings.updateDialogTitle})
+        }
+
         function onUpdateCheckReplyReceived(ok, found) {
             if (!ok) {
-                issueDialog.openWithParameters(JamiStrings.updateDialogTitle,
-                                               JamiStrings.updateCheckError)
+                presentInfoDialog(JamiStrings.updateCheckError)
                 return
             }
             if (!found) {
-                issueDialog.openWithParameters(JamiStrings.updateDialogTitle,
-                                               JamiStrings.updateNotFound)
+                presentInfoDialog(JamiStrings.updateNotFound)
             } else {
-                confirmInstallDialog.openWithParameters(JamiStrings.updateDialogTitle,
-                                                        JamiStrings.updateFound)
+                presentConfirmInstallDialog(JamiStrings.confirmUpdate, false)
             }
-        }
-
-        function onUpdateCheckErrorOccurred(error) {
-            issueDialog.openWithParameters(JamiStrings.updateDialogTitle,
-                                           errorToString(error))
-        }
-
-        function onUpdateDownloadStarted() {
-            downloadDialog.setDownloadProgress(0, 0)
-            downloadDialog.openWithParameters(JamiStrings.updateDialogTitle)
-        }
-
-        function onUpdateDownloadProgressChanged(bytesRead, totalBytes) {
-            downloadDialog.setDownloadProgress(bytesRead, totalBytes)
         }
 
         function onUpdateDownloadErrorOccurred(error) {
-            downloadDialog.close()
-            issueDialog.openWithParameters(JamiStrings.updateDialogTitle,
-                                           errorToString(error))
+            presentInfoDialog(errorToString(error))
         }
 
-        function onUpdateDownloadFinished() { downloadDialog.close() }
-    }
-
-    SimpleMessageDialog {
-        id: confirmInstallDialog
-
-        property bool beta: false
-
-        buttonTitles: [JamiStrings.optionUpgrade, JamiStrings.optionLater]
-        buttonStyles: [
-            SimpleMessageDialog.ButtonStyle.TintedBlue,
-            SimpleMessageDialog.ButtonStyle.TintedBlue
-        ]
-        buttonCallBacks: [function() {UpdateManager.applyUpdates(beta)}]
-    }
-
-    SimpleMessageDialog {
-        id: issueDialog
-
-        buttonTitles: [JamiStrings.optionOk]
-        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
-        buttonCallBacks: []
-    }
-
-    SimpleMessageDialog {
-        id: downloadDialog
-
-        property int bytesRead: 0
-        property int totalBytes: 0
-        property string hSizeRead:  UtilsAdapter.humanFileSize(bytesRead)
-        property string hTotalBytes: UtilsAdapter.humanFileSize(totalBytes)
-        property alias progressBarValue: progressBar.value
-
-        function setDownloadProgress(bytesRead, totalBytes) {
-            downloadDialog.bytesRead = bytesRead
-            downloadDialog.totalBytes = totalBytes
-        }
-
-        infoText: JamiStrings.updateDownloading +
-                  " (%1 / %2)".arg(hSizeRead).arg(hTotalBytes)
-
-        innerContentData: ProgressBar {
-            id: progressBar
-
-            value: downloadDialog.bytesRead /
-                   downloadDialog.totalBytes
-
-            anchors.left: parent.left
-            anchors.leftMargin: JamiTheme.preferredMarginSize
-            anchors.right: parent.right
-            anchors.rightMargin: JamiTheme.preferredMarginSize
-
-            background: Rectangle {
-                implicitWidth: parent.width
-                implicitHeight: 24
-                color: JamiTheme.darkGrey
-            }
-
-            contentItem: Item {
-                implicitWidth: parent.width
-                implicitHeight: 22
-
-                Rectangle {
-                    width: progressBar.visualPosition * parent.width
-                    height: parent.height
-                    color: JamiTheme.selectionBlue
-                }
-                Label {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    color: JamiTheme.whiteColor
-                    font.bold: true
-                    font.pointSize: JamiTheme.textFontSize + 1
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    text: Math.ceil(progressBar.value * 100).toString() + "%"
-                }
-            }
-        }
-
-        buttonTitles: [JamiStrings.optionCancel]
-        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
-        buttonCallBacks: [function() {UpdateManager.cancelUpdate()}]
-        onVisibleChanged: {
-            if (!visible)
-                UpdateManager.cancelUpdate()
+        function onUpdateCheckErrorOccurred(error) {
+            presentInfoDialog(errorToString(error))
         }
     }
 }

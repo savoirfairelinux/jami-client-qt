@@ -31,6 +31,9 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
+    width: Math.min(parent.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
+    height: Math.min(parent.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
+
     popupContentMargins: 14
 
     PushButton {

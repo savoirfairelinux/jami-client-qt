@@ -42,117 +42,13 @@ Rectangle {
 
     function updateAccountInfoDisplayed() {
         bannedContacts.updateAndShowBannedContactsSlot()
-        setPasswordButtonText()
-    }
-
-    function passwordClicked() {
-        if (AccountAdapter.hasPassword()) {
-            passwordDialog.openDialog(PasswordDialog.ChangePassword)
-        } else {
-            passwordDialog.openDialog(PasswordDialog.SetPassword)
-        }
-    }
-
-    function exportAccountSlot() {
-        exportBtn_Dialog.open()
-    }
-
-    function delAccountSlot() {
-        deleteAccountDialog.isSIP = CurrentAccount.type === Profile.Type.SIP
-        deleteAccountDialog.bestName = CurrentAccount.bestName
-        deleteAccountDialog.accountId = CurrentAccount.uri
-        deleteAccountDialog.open()
     }
 
     function getAdvancedSettingsScrollPosition() {
         return advancedSettings.y
     }
 
-    function setPasswordButtonText() {
-        var hasPassword = AccountAdapter.hasPassword()
-        passwdPushButton.toolTipText = hasPassword ?
-                    JamiStrings.changeCurrentPassword :
-                    JamiStrings.setAPassword
-
-        passwdPushButton.text = hasPassword ?
-                    JamiStrings.changePassword :
-                    JamiStrings.setPassword
-    }
-
     color: JamiTheme.secondaryBackgroundColor
-
-    SimpleMessageDialog {
-        id: msgDialog
-
-        buttonTitles: [JamiStrings.optionOk]
-        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
-        buttonCallBacks: [setPasswordButtonText]
-    }
-
-    DeleteAccountDialog {
-        id: deleteAccountDialog
-
-        onAccepted: {
-            if(UtilsAdapter.getAccountListSize() > 0) {
-                navigateToMainView()
-            } else {
-                navigateToNewWizardView()
-            }
-        }
-    }
-
-    PasswordDialog {
-        id: passwordDialog
-
-        onDoneSignal: function (success, currentPurpose) {
-            var title = success ? JamiStrings.success : JamiStrings.error
-
-            var info
-            switch(currentPurpose) {
-                case PasswordDialog.ExportAccount:
-                    info = success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed
-                    break
-                case PasswordDialog.ChangePassword:
-                    info = success ? JamiStrings.changePasswordSuccess : JamiStrings.changePasswordFailed
-                    break
-                case PasswordDialog.SetPassword:
-                    info = success ? JamiStrings.setPasswordSuccess : JamiStrings.setPasswordFailed
-                    passwdPushButton.text = success ? JamiStrings.changePassword : JamiStrings.setPassword
-                    break
-            }
-
-            msgDialog.openWithParameters(title, info)
-        }
-    }
-
-    JamiFileDialog {
-        id: exportBtn_Dialog
-
-        mode: JamiFileDialog.SaveFile
-
-        title: JamiStrings.backupAccountHere
-        folder: StandardPaths.writableLocation(StandardPaths.DesktopLocation)
-
-        nameFilters: [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
-
-        onAccepted: {
-            // is there password? If so, go to password dialog, else, go to following directly
-            var exportPath = UtilsAdapter.getAbsPath(file.toString())
-            if (AccountAdapter.hasPassword()) {
-                passwordDialog.openDialog(PasswordDialog.ExportAccount,exportPath)
-                return
-            } else {
-                if (exportPath.length > 0) {
-                    var isSuccessful = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId,
-                                                                         exportPath, "")
-                    var title = isSuccessful ? JamiStrings.success : JamiStrings.error
-                    var info = isSuccessful ? JamiStrings.backupSuccessful : JamiStrings.backupFailed
-
-                    msgDialog.openWithParameters(title,info)
-                }
-            }
-        }
-    }
 
     ColumnLayout {
         id: currentAccountSettingsColumnLayout
@@ -212,16 +108,21 @@ Rectangle {
             pressedColor: JamiTheme.buttonTintedBlackPressed
             secondary: true
 
-            toolTipText: AccountAdapter.hasPassword() ?
+            toolTipText: CurrentAccount.hasArchivePassword ?
                              JamiStrings.changeCurrentPassword :
                              JamiStrings.setAPassword
-            text: AccountAdapter.hasPassword() ?
+            text: CurrentAccount.hasArchivePassword ?
                       JamiStrings.changePassword :
                       JamiStrings.setPassword
 
             iconSource: JamiResources.round_edit_24dp_svg
 
-            onClicked: passwordClicked()
+            onClicked: viewCoordinator.presentDialog(
+                                   appWindow,
+                                   "commoncomponents/PasswordDialog.qml",
+                                   { purpose: CurrentAccount.hasArchivePassword ?
+                                                  PasswordDialog.ChangePassword :
+                                                  PasswordDialog.SetPassword })
         }
 
         MaterialButton {
@@ -243,7 +144,42 @@ Rectangle {
 
             iconSource: JamiResources.round_save_alt_24dp_svg
 
-            onClicked: exportAccountSlot()
+            onClicked: {
+                var dlg = viewCoordinator.presentDialog(
+                            appWindow,
+                            "commoncomponents/JamiFileDialog.qml",
+                            {
+                                title: JamiStrings.backupAccountHere,
+                                fileMode: FileDialog.SaveFile,
+                                folder: StandardPaths.writableLocation(StandardPaths.DesktopLocation),
+                                nameFilters: [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+                            })
+                dlg.fileAccepted.connect(function (file) {
+                    // is there password? If so, go to password dialog, else, go to following directly
+                    var exportPath = UtilsAdapter.getAbsPath(file.toString())
+                    if (CurrentAccount.hasArchivePassword) {
+                        viewCoordinator.presentDialog(
+                                    appWindow,
+                                    "commoncomponents/PasswordDialog.qml",
+                                    {
+                                        purpose: PasswordDialog.ExportAccount,
+                                        path: exportPath
+                                    })
+                        return
+                    } else if (exportPath.length > 0) {
+                        var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath)
+                        viewCoordinator.presentDialog(
+                                    appWindow,
+                                    "commoncomponents/SimpleMessageDialog.qml",
+                                    {
+                                        title: success ? JamiStrings.success : JamiStrings.error,
+                                        infoText: success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
+                                        buttonTitles: [JamiStrings.optionOk],
+                                        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
+                                    })
+                    }
+                })
+            }
         }
 
         MaterialButton {
@@ -262,7 +198,24 @@ Rectangle {
 
             iconSource: JamiResources.delete_forever_24dp_svg
 
-            onClicked: delAccountSlot()
+            onClicked: {
+                var dlg = viewCoordinator.presentDialog(
+                        appWindow,
+                        "commoncomponents/DeleteAccountDialog.qml",
+                        {
+                            isSIP: CurrentAccount.type === Profile.Type.SIP,
+                            bestName: CurrentAccount.bestName,
+                            accountId: CurrentAccount.uri
+                        })
+                // TODO: put this navigation code inside DeleteAccountDialog
+                dlg.accepted.connect(function() {
+                    if(UtilsAdapter.getAccountListSize() > 0) {
+                        navigateToMainView()
+                    } else {
+                        navigateToNewWizardView()
+                    }
+                })
+            }
         }
 
         LinkedDevices {

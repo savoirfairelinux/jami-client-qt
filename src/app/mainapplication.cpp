@@ -104,7 +104,7 @@ MainApplication::MainApplication(int& argc, char** argv)
     }
 
     parseArguments();
-    QObject::connect(this, &QApplication::aboutToQuit, [this] { cleanup(); });
+    QObject::connect(this, &QApplication::aboutToQuit, this, &MainApplication::cleanup);
 }
 
 MainApplication::~MainApplication()
@@ -158,7 +158,7 @@ MainApplication::init()
     }
 #endif
 
-    connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, [this] {
+    connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, this, [this] {
         QTimer::singleShot(500, this, [&]() { lrcInstance_->connectivityChanged(); });
     });
 

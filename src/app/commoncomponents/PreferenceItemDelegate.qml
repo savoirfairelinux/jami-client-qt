@@ -19,6 +19,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt.labs.platform
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -53,10 +54,20 @@ ItemDelegate {
                 break
             case PreferenceItemListModel.PATH:
                 if (index === 0) {
-                    preferenceFilePathDialog.title = JamiStrings.selectAnImage.arg(preferenceName)
-                    preferenceFilePathDialog.nameFilters = fileFilters
-                    preferenceFilePathDialog.selectedNameFilter.index = fileFilters.length - 1
-                    preferenceFilePathDialog.open()
+                    var dlg = viewCoordinator.presentDialog(
+                                appWindow,
+                                "commoncomponents/JamiFileDialog.qml",
+                                {
+                                    title: JamiStrings.selectAnImage.arg(preferenceName),
+                                    fileMode: JamiFileDialog.OpenFile,
+                                    folder: JamiQmlUtils.qmlFilePrefix + currentPath,
+                                    nameFilters: fileFilters
+                                })
+                    dlg.fileAccepted.connect(function (file) {
+                        var url = UtilsAdapter.getAbsPath(file.toString())
+                        preferenceNewValue = url
+                        btnPreferenceClicked()
+                    })
                 }
                 else
                     btnPreferenceClicked()
@@ -71,19 +82,6 @@ ItemDelegate {
                 break
             default:
                 break
-        }
-    }
-
-    JamiFileDialog {
-        id: preferenceFilePathDialog
-
-        title: JamiStrings.selectFile
-        folder: JamiQmlUtils.qmlFilePrefix + currentPath
-
-        onAccepted: {
-            var url = UtilsAdapter.getAbsPath(file.toString())
-            preferenceNewValue = url
-            btnPreferenceClicked()
         }
     }
 

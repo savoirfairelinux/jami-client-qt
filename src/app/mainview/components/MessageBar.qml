@@ -162,6 +162,8 @@ ColumnLayout {
                     textAreaObj.forceActiveFocus()
             }
 
+            placeholderText: JamiStrings.writeTo.arg(CurrentConversation.title)
+
             Layout.alignment: Qt.AlignVCenter
             Layout.fillWidth: true
             Layout.margins: marginSize / 2
