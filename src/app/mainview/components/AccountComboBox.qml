@@ -33,6 +33,10 @@ Label {
     signal settingBtnClicked
     property alias popup: comboBoxPopup
 
+    property bool inSettingsView: {
+        viewCoordinator.currentViewName === "SettingsView"
+    }
+
     // TODO: remove these refresh hacks use QAbstractItemModels correctly
     Connections {
         target: AccountAdapter
@@ -194,23 +198,22 @@ Label {
                 normalColor: JamiTheme.backgroundColor
                 imageColor: JamiTheme.textColor
 
-                onClicked: {
-                    if (visible)
-                        qrDialog.open()
-                }
+                onClicked: viewCoordinator.presentDialog(
+                               appWindow,
+                               "mainview/components/WelcomePageQrDialog.qml")
             }
 
             PushButton {
                 id: settingsButton
 
                 anchors.verticalCenter: parent.verticalCenter
-                source: !mainView.inSettingsView ?
+                source: !inSettingsView ?
                             JamiResources.settings_24dp_svg :
                             JamiResources.round_close_24dp_svg
 
                 normalColor: JamiTheme.backgroundColor
                 imageColor: JamiTheme.textColor
-                toolTipText: !mainView.inSettingsView ?
+                toolTipText: !inSettingsView ?
                                  JamiStrings.openSettings :
                                  JamiStrings.closeSettings
 
