@@ -131,6 +131,8 @@ CurrentAccount::updateData()
         set_publishedPort(accConfig.publishedPort, true);
         set_registrationExpire(accConfig.registrationExpire, true);
 
+        set_hasArchivePassword(accConfig.archiveHasPassword);
+
         // DHT
         set_PublicInCallsDHT(accConfig.DHT.PublicInCalls, true);
 
