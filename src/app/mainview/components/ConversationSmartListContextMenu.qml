@@ -67,6 +67,11 @@ ContextMenuAutoLoader {
     }
     property bool readOnly
 
+    // For UserProfile dialog.
+    property string aliasText
+    property string registeredNameText
+    property string idText
+
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: startVideoCallItem
@@ -169,10 +174,19 @@ ContextMenuAutoLoader {
             itemName: isCoreDialog ? JamiStrings.contactDetails : JamiStrings.convDetails
             iconSource: JamiResources.person_24dp_svg
             onClicked: {
-                if (isCoreDialog)
-                    userProfile.open()
-                else
+                if (isCoreDialog) {
+                    viewCoordinator.presentDialog(
+                                appWindow,
+                                "mainview/components/UserProfile.qml",
+                                {
+                                    aliasText: aliasText,
+                                    registeredNameText: registeredNameText,
+                                    idText: idText,
+                                    convId: responsibleConvUid
+                                })
+                } else {
                     root.showSwarmDetails()
+                }
             }
         }
     ]

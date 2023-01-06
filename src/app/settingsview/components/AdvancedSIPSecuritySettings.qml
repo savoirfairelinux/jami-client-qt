@@ -31,58 +31,20 @@ ColumnLayout {
 
     property int itemWidth
 
-    JamiFileDialog {
-        id: caCert_Dialog_SIP
-
-        property string oldPath: CurrentAccount.certificateListFile_TLS
-        property string openPath: oldPath === "" ?
-                                      (UtilsAdapter.getCurrentPath() + "/ringtones/") :
-                                      (UtilsAdapter.toFileAbsolutepath(oldPath))
-
-        mode: JamiFileDialog.OpenFile
-        title: JamiStrings.selectCACert
-        folder: openPath
-        nameFilters: [JamiStrings.certificateFile,
-            JamiStrings.allFiles]
-
-        onAccepted: CurrentAccount.certificateListFile_TLS =
-                    UtilsAdapter.getAbsPath(file.toString())
-    }
-
-    JamiFileDialog {
-        id: userCert_Dialog_SIP
-
-        property string oldPath: CurrentAccount.certificateFile_TLS
-        property string openPath: oldPath === "" ?
-                                      (UtilsAdapter.getCurrentPath() + "/ringtones/") :
-                                      (UtilsAdapter.toFileAbsolutepath(oldPath))
-
-        mode: JamiFileDialog.OpenFile
-        title: JamiStrings.selectUserCert
-        folder: openPath
-        nameFilters: [JamiStrings.certificateFile,
-            JamiStrings.allFiles]
-
-        onAccepted: CurrentAccount.certificateFile_TLS =
-                    UtilsAdapter.getAbsPath(file.toString())
-    }
-
-    JamiFileDialog {
-        id: privateKey_Dialog_SIP
-
-        property string oldPath: CurrentAccount.privateKeyFile_TLS
-        property string openPath: oldPath === "" ?
-                                      (UtilsAdapter.getCurrentPath() + "/ringtones/") :
-                                      (UtilsAdapter.toFileAbsolutepath(oldPath))
-
-        mode: JamiFileDialog.OpenFile
-        title: JamiStrings.selectPrivateKey
-        folder: openPath
-        nameFilters: [JamiStrings.keyFile,
-            JamiStrings.allFiles]
-
-        onAccepted: CurrentAccount.privateKeyFile_TLS =
-                    UtilsAdapter.getAbsPath(file.toString())
+    function openFileDialog(title, oldPath, fileType, onAcceptedCb) {
+        var openPath = oldPath === "" ?
+                    (UtilsAdapter.getCurrentPath() + "/ringtones/") :
+                    (UtilsAdapter.toFileAbsolutepath(oldPath))
+        var dlg = viewCoordinator.presentDialog(
+                    appWindow,
+                    "commoncomponents/JamiFileDialog.qml",
+                    {
+                        title: title,
+                        fileMode: JamiFileDialog.OpenFile,
+                        folder: openPath,
+                        nameFilters: [fileType, JamiStrings.allFiles]
+                    })
+        dlg.fileAccepted.connect(onAcceptedCb)
     }
 
     ElidedTextLabel {
@@ -160,7 +122,13 @@ ColumnLayout {
 
             textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateListFile_TLS)
 
-            onClick: caCert_Dialog_SIP.open()
+            onClick: openFileDialog(JamiStrings.selectCACert,
+                                    CurrentAccount.certificateListFile_TLS,
+                                    JamiStrings.certificateFile,
+                                    function (file) {
+                                        CurrentAccount.certificateListFile_TLS =
+                                                UtilsAdapter.getAbsPath(file.toString())
+                                    })
         }
 
         SettingMaterialButton {
@@ -177,7 +145,13 @@ ColumnLayout {
 
             textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateFile_TLS)
 
-            onClick: userCert_Dialog_SIP.open()
+            onClick: openFileDialog(JamiStrings.selectUserCert,
+                                    CurrentAccount.certificateFile_TLS,
+                                    JamiStrings.certificateFile,
+                                    function (file) {
+                                        CurrentAccount.certificateFile_TLS =
+                                                UtilsAdapter.getAbsPath(file.toString())
+                                    })
         }
 
         SettingMaterialButton {
@@ -194,7 +168,13 @@ ColumnLayout {
 
             textField: UtilsAdapter.toFileInfoName(CurrentAccount.privateKeyFile_TLS)
 
-            onClick: privateKey_Dialog_SIP.open()
+            onClick: openFileDialog(JamiStrings.selectPrivateKey,
+                                    CurrentAccount.privateKeyFile_TLS,
+                                    JamiStrings.keyFile,
+                                    function (file) {
+                                        CurrentAccount.privateKeyFile_TLS =
+                                                UtilsAdapter.getAbsPath(file.toString())
+                                    })
         }
 
         // Private key password

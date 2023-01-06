@@ -58,7 +58,6 @@
 #include "pluginlistmodel.h"
 #include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
-#include "version.h"
 #include "wizardviewstepmodel.h"
 
 #include "api/peerdiscoverymodel.h"
@@ -127,6 +126,8 @@ registerTypes(QQmlEngine* engine,
     auto tipsModel = new TipsModel(settingsManager, parent);
     auto videoDevices = new VideoDevices(lrcInstance, parent);
     auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, parent);
+    auto avatarRegistry = new AvatarRegistry(lrcInstance, parent);
+    auto wizardViewStepModel = new WizardViewStepModel(lrcInstance, accountAdapter, settingsManager, parent);
 
     // qml adapter registration
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
@@ -144,6 +145,8 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccount, "CurrentAccount");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, videoDevices, "VideoDevices");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccountToMigrate, "CurrentAccountToMigrate")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, avatarRegistry, "AvatarRegistry");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, wizardViewStepModel, "WizardViewStepModel")
 
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())
@@ -175,7 +178,6 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, CallInformationListModel);
     QML_REGISTERTYPE(NS_MODELS, RendererInformationListModel);
 
-
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");
     QML_REGISTERNAMESPACE(NS_MODELS, ConversationList::staticMetaObject, "ConversationList");
@@ -194,11 +196,6 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, screenInfo, "CurrentScreenInfo")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, lrcInstance, "LRCInstance")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, settingsManager, "AppSettingsManager")
-
-    auto avatarRegistry = new AvatarRegistry(lrcInstance, parent);
-    auto wizardViewStepModel = new WizardViewStepModel(lrcInstance, accountAdapter, settingsManager, parent);
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, avatarRegistry, "AvatarRegistry");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, wizardViewStepModel, "WizardViewStepModel")
 
     // C++ singletons
     // TODO: remove this

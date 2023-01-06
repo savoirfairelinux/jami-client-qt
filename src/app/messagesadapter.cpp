@@ -51,6 +51,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , previewEngine_(previewEngine)
     , mediaInteractions_(std::make_unique<MessageListModel>())
 {
+    setObjectName(typeid(*this).name());
+
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
         set_replyToId("");
         set_editId("");
@@ -62,11 +64,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
 
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
     connect(previewEngine_, &PreviewEngine::linkified, this, &MessagesAdapter::onMessageLinkified);
-}
 
-void
-MessagesAdapter::safeInit()
-{
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this]() {
         connectConversationModel();
     });

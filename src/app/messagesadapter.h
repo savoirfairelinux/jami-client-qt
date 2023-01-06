@@ -52,8 +52,6 @@ Q_SIGNALS:
     void moreMessagesLoaded();
 
 protected:
-    void safeInit() override;
-
     Q_INVOKABLE void setupChatView(const QVariantMap& convInfo);
     Q_INVOKABLE void loadMoreMessages();
     Q_INVOKABLE void loadConversationUntil(const QString& to);

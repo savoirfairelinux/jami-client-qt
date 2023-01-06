@@ -27,11 +27,11 @@ import net.jami.Models 1.1
 import "../../commoncomponents"
 import "../js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
-Rectangle {
-
+BaseView {
     id: root
-    color: JamiTheme.secondaryBackgroundColor
+    objectName: "WelcomePage"
 
+    color: JamiTheme.secondaryBackgroundColor
 
     JamiFlickable {
         id: welcomeView
@@ -136,8 +136,6 @@ Rectangle {
                         anchors.margins: JamiTheme.preferredMarginSize
                     }
 
-
-
                     Image {
                         id: welcomeLogo
 
@@ -203,7 +201,6 @@ Rectangle {
                 }
             }
 
-
             Item {
                 id: bottomRow
                 width: Math.max(300, root.width)
@@ -218,7 +215,9 @@ Rectangle {
                     preferredWidth: JamiTheme.aboutButtonPreferredWidthth
                     text: JamiStrings.aboutJami
 
-                    onClicked: aboutPopUpDialog.open()
+                    onClicked: viewCoordinator.presentDialog(
+                                   appWindow,
+                                   "mainview/components/AboutPopUp.qml")
                 }
 
                 PushButton {

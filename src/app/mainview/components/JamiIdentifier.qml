@@ -30,12 +30,6 @@ import "../../settingsview/components"
 Item {
     id: root
 
-    NameRegistrationDialog {
-        id : nameRegistrationDialog
-        onAccepted: usernameTextEdit.nameRegistrationState =
-                    UsernameLineEdit.NameRegistrationState.BLANK
-    }
-
     width: childrenRect.width
     height: controlsLayout.height + usernameTextEdit.height
             + 2 * JamiTheme.preferredMarginSize
@@ -154,7 +148,19 @@ Item {
             Layout.rightMargin: JamiTheme.preferredMarginSize
             fontPointSize: JamiTheme.textFontSize + 1
 
-            onAccepted: nameRegistrationDialog.openNameRegistrationDialog(dynamicText)
+            onAccepted: {
+                if (dynamicText === '') {
+                    return
+                }
+                var dlg = viewCoordinator.presentDialog(
+                            appWindow,
+                            "settingsview/components/NameRegistrationDialog.qml",
+                            { registeredName: dynamicText })
+                dlg.accepted.connect(function() {
+                    currentRegisteredID.nameRegistrationState =
+                            UsernameLineEdit.NameRegistrationState.BLANK
+                })
+            }
         }
     }
 }
