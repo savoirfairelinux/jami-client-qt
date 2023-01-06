@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "utils.h"
+#include <QColor>
 #include <QObject>
 
 class PreviewEngine : public QObject
