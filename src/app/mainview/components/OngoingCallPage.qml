@@ -33,16 +33,13 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    anchors.fill: parent
-
-    property var accountPeerPair: ["", ""]
-    property variant clickPos: "1,1"
+    property point clickPos
     property int previewMargin: 15
     property int previewMarginYTop: previewMargin + 42
     property int previewMarginYBottom: previewMargin + 84
     property int previewToX: 0
     property int previewToY: 0
-    property var linkedWebview: null
+    property alias chatViewContainer: chatViewContainer
     property string callPreviewId
 
     onCallPreviewIdChanged: {
@@ -51,18 +48,11 @@ Rectangle {
 
     color: "black"
 
-    onAccountPeerPairChanged: {
-        if (accountPeerPair[0] === "" || accountPeerPair[1] === "")
-            return
-        contactImage.imageId = accountPeerPair[1]
-    }
-
-    function setLinkedWebview(webViewId) {
-        linkedWebview = webViewId
-        linkedWebview.needToHideConversationInCall.disconnect(
-                    closeInCallConversation)
-        linkedWebview.needToHideConversationInCall.connect(
-                    closeInCallConversation)
+    Connections {
+        target: CurrentConversation
+        function onIdChanged() {
+            if (CurrentConversation.id !== "") contactImage.imageId = CurrentConversation.id
+        }
     }
 
     Connections {
@@ -75,13 +65,11 @@ Rectangle {
 
     function openInCallConversation() {
         mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally)
-        inCallMessageWebViewStack.visible = true
-        inCallMessageWebViewStack.push(linkedWebview)
+        chatViewContainer.visible = true
     }
 
     function closeInCallConversation() {
-        inCallMessageWebViewStack.visible = false
-        inCallMessageWebViewStack.clear()
+        chatViewContainer.visible = false
     }
 
     function closeContextMenuAndRelatedWindows() {
@@ -329,10 +317,12 @@ Rectangle {
 
                     function onNewInteraction(id, interactionType) {
                         // Ignore call notifications, as we are in the call.
-                        if (interactionType !== Interaction.Type.CALL && !inCallMessageWebViewStack.visible)
+                        if (interactionType !== Interaction.Type.CALL &&
+                                !chatViewContainer.visible)
                             openInCallConversation()
                     }
                 }
+
                 onCloseClicked: {
                     participantsLayer.hoveredOverlayUri = ""
                     participantsLayer.hoveredOverlaySinkId = ""
@@ -340,7 +330,7 @@ Rectangle {
                 }
 
                 onChatButtonClicked: {
-                    inCallMessageWebViewStack.visible ?
+                    chatViewContainer.visible ?
                                 closeInCallConversation() :
                                 openInCallConversation()
                 }
@@ -352,6 +342,7 @@ Rectangle {
 
             ColumnLayout {
                 id: audioCallPageRectCentralRect
+
                 anchors.centerIn: parent
                 anchors.left: parent.left
                 anchors.right: parent.right
@@ -390,15 +381,16 @@ Rectangle {
             color: "transparent"
         }
 
-        StackView {
-            id: inCallMessageWebViewStack
+        Item {
+            id: chatViewContainer
 
-            SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : root.height / 3
-            SplitView.preferredWidth: mainColumnLayout.isHorizontal ? root.width / 3 : root.width
-            SplitView.fillWidth: false
-
+            SplitView.preferredHeight: mainColumnLayout.isHorizontal ?
+                                           root.height :
+                                           root.height / 3
+            SplitView.preferredWidth: mainColumnLayout.isHorizontal ?
+                                          root.width / 3 :
+                                          root.width
             visible: false
-
             clip: true
         }
     }
