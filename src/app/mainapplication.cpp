@@ -158,7 +158,7 @@ MainApplication::init()
     }
 #endif
 
-    connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, [this] {
+    connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, this, [this] {
         QTimer::singleShot(500, this, [&]() { lrcInstance_->connectivityChanged(); });
     });
 

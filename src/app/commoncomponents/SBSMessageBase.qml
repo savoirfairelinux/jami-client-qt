@@ -186,7 +186,6 @@ Control {
                             messageOptionPopup.open()
                             messageOptionPopup.x = messageOptionPopup.setXposition(messageOptionPopup.width)
                             messageOptionPopup.y = messageOptionPopup.setYposition(messageOptionPopup.height)
-
                         }
                     }
 
@@ -245,7 +244,6 @@ Control {
                             emojiPicker.x = setXposition(JamiTheme.emojiPickerWidth)
                         messageOptionPopup.x = setXposition(width)
                         messageOptionPopup.y = setYposition(height)
-
                     }
 
                     Connections {
@@ -267,8 +265,9 @@ Control {
                                                                                  x: setXposition(JamiTheme.emojiPickerWidth),
                                                                                  y: setYposition(JamiTheme.emojiPickerHeight)
                                                                                 });
-                        messageOptionPopup.emojiPicker.open()
-                        if (messageOptionPopup.emojiPicker === null) {
+                        if (messageOptionPopup.emojiPicker !== null) {
+                            messageOptionPopup.emojiPicker.open()
+                        } else {
                             console.log("Error creating emojiPicker in SBSMessageBase");
                         }
                     }
@@ -291,14 +290,24 @@ Control {
                     }
 
                     function setYposition(height) {
-                        var mappedCoord = bubble.mapToItem(appWindow.contentItem,0, 0)
-                        var distBottomScreen = appWindow.height - mappedCoord.y - height - JamiQmlUtils.messageBarButtonsRowObj.height
+                        var bottomOffset = 0
+                        if (JamiQmlUtils.messageBarButtonsRowObj !== undefined &&
+                                JamiQmlUtils.messageBarButtonsRowObj !== null) {
+                            bottomOffset = JamiQmlUtils.messageBarButtonsRowObj.height
+                        }
+                        var mappedCoord = bubble.mapToItem(appWindow.contentItem, 0, 0)
+                        var distBottomScreen = appWindow.height - mappedCoord.y - height - bottomOffset
                         if (distBottomScreen < 0) {
                             return distBottomScreen
                         }
-                        var distTopScreen = mappedCoord.y - JamiQmlUtils.messagingHeaderRectRowLayout.height
+                        var topOffset = 0
+                        if (JamiQmlUtils.messagingHeaderRectRowLayout !== undefined &&
+                                JamiQmlUtils.messagingHeaderRectRowLayout !== null) {
+                            topOffset = JamiQmlUtils.messagingHeaderRectRowLayout.height
+                        }
+                        var distTopScreen = mappedCoord.y - topOffset
                         if (distTopScreen < 0)
-                            return - distTopScreen
+                            return -distTopScreen
                         return 0
                     }
                 }

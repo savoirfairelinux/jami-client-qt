@@ -46,9 +46,9 @@ class CurrentCall final : public QObject
     QML_RO_PROPERTY(bool, isHandRaised)
     QML_RO_PROPERTY(bool, isConference)
     QML_RO_PROPERTY(bool, isModerator)
-
     QML_PROPERTY(bool, hideSelf)
     QML_PROPERTY(bool, hideSpectators)
+    QML_RO_PROPERTY(bool, isOutgoing)
 
 public:
     explicit CurrentCall(LRCInstance* lrcInstance, QObject* parent = nullptr);

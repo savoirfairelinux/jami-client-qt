@@ -21,7 +21,6 @@
 
 #include "lrcinstance.h"
 #include "qmladapterbase.h"
-#include "smartlistmodel.h"
 #include "conversationlistmodel.h"
 #include "searchresultslistmodel.h"
 
@@ -42,9 +41,6 @@ public:
                                   LRCInstance* instance,
                                   QObject* parent = nullptr);
     ~ConversationsAdapter() = default;
-
-protected:
-    void safeInit() override;
 
 public:
     Q_INVOKABLE bool connectConversationModel();

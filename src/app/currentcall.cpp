@@ -57,9 +57,7 @@ CurrentCall::updateId(QString callId)
 
     // Set the current id_ if there is a call.
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-    if (accInfo.callModel->hasCall(callId)) {
-        set_id(callId);
-    }
+    set_id((accInfo.callModel->hasCall(callId) ? callId : QString()));
 }
 
 void
@@ -102,6 +100,7 @@ CurrentCall::updateCallInfo()
 
     auto callInfo = callModel->getCall(id_);
 
+    set_isOutgoing(callInfo.isOutgoing);
     set_isGrid(callInfo.layout == call::Layout::GRID);
     set_isAudioOnly(callInfo.isAudioOnly);
 

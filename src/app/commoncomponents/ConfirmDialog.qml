@@ -29,11 +29,13 @@ BaseModalDialog {
 
     signal accepted
 
-    width: Math.min(mainView.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(mainView.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize,
+                    JamiTheme.preferredDialogWidth)
+    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize,
+                     JamiTheme.preferredDialogHeight)
 
-    property var confirmLabel: ""
-    property var textLabel: ""
+    property string confirmLabel: ""
+    property string textLabel: ""
 
     popupContent: ColumnLayout {
         id: column

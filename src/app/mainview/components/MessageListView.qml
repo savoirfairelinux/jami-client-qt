@@ -169,9 +169,6 @@ JamiListView {
 
     topMargin: 12
     spacing: 2
-    anchors.centerIn: parent
-    height: parent.height
-    width: parent.width
     // this offscreen caching is pretty huge
     // displayMarginEnd may be removed
 
@@ -223,6 +220,11 @@ JamiListView {
         sorters: ExpressionSorter {
             expression: modelLeft.index > modelRight.index
         }
+    }
+
+    Connections {
+        target: appWindow
+        function onClosing(closeEvent) { model = null }
     }
 
     delegate: DelegateChooser {

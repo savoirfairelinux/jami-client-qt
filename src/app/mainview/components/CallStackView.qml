@@ -25,7 +25,7 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-Rectangle {
+BaseView {
     id: root
 
     property var sipKeys: [
@@ -58,18 +58,16 @@ Rectangle {
         }
     }
 
-    // When selected conversation is changed,
-    // these values will also be changed.
-    property string responsibleConvUid: ""
-    property string responsibleAccountId: ""
+    readonly property string responsibleConvUid: CurrentConversation.id
+    readonly property string responsibleAccountId: CurrentAccount.id
 
-    // TODO: this should all be done by listening to
-    // parent visibility change or parent `Component.onDestruction`
-    function needToCloseInCallConversationAndPotentialWindow() {
-        // Close potential window, context menu releated windows.
-        ongoingCallPage.closeInCallConversation()
-        ongoingCallPage.closeContextMenuAndRelatedWindows()
-    }
+//    // TODO: this should all be done by listening to
+//    // parent visibility change or parent `Component.onDestruction`
+//    function needToCloseInCallConversationAndPotentialWindow() {
+//        // Close potential window, context menu releated windows.
+//        ongoingCallPage.closeInCallConversation()
+//        ongoingCallPage.closeContextMenuAndRelatedWindows()
+//    }
 
     function setLinkedWebview(webViewId) {
         ongoingCallPage.setLinkedWebview(webViewId)

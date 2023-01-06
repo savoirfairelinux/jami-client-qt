@@ -49,7 +49,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
         convModel_->setFilterRequests(filterRequests_);
     });
 
-    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
+    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, [this]() {
         auto convId = lrcInstance_->get_selectedConvUid();
         if (convId.isEmpty()) {
             // deselected
@@ -103,13 +103,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                 accInfo.conversationModel->removeConversation(convUid);
             });
 #endif
-}
 
-void
-ConversationsAdapter::safeInit()
-{
-    // TODO: remove these safeInits, they are possibly called
-    // multiple times during qml component inits
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::newUnreadInteraction,
             this,

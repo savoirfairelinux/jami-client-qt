@@ -49,9 +49,6 @@ public:
     explicit CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject* parent = nullptr);
     ~CallAdapter() = default;
 
-protected:
-    void safeInit() override {};
-
 public:
     Q_INVOKABLE void startTimerInformation();
     Q_INVOKABLE void stopTimerInformation();
