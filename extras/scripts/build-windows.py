@@ -200,7 +200,7 @@ def build_deps():
     build_project(msbuild, msbuild_args, proj_path, vs_env_vars)
 
 
-def build(config_str, qtver, tests=False):
+def build(config_str, qtver, daemon_submodule, tests=False):
     print("Building with Qt " + qtver)
 
     vs_env_vars = {}
@@ -213,10 +213,9 @@ def build(config_str, qtver, tests=False):
     # We need to update the minimum SDK version to be able to
     # build with system theme support
     cmake_options = [
-        '-DWITH_DAEMON_SUBMODULE=ON',
+        '-DWITH_DAEMON_SUBMODULE=' + ('OFF', 'ON')[daemon_submodule],
         '-DCMAKE_PREFIX_PATH=' + qt_dir,
         '-DCMAKE_INSTALL_PREFIX=' + daemon_bin_dir,
-        '-DLIBJAMI_INCLUDE_DIR=' + daemon_dir + '\\src\\jami',
         '-DCMAKE_SYSTEM_VERSION=10.0.18362.0'
     ]
     if tests:
@@ -302,6 +301,9 @@ def parse_args():
     ap.add_argument(
         '-m', '--mute', action='store_true', default=False,
         help='Mute jamid logs')
+    ap.add_argument(
+        '-d', '--daemon', action='store_true', default=False,
+        help='Use the daemon submodule')
 
     subparser.add_parser('init')
     subparser.add_parser('pack')
@@ -336,7 +338,8 @@ def main():
         sys.exit(1)
     else:
         config = ('Release', 'Beta')[parsed_args.beta]
-        build(config, parsed_args.qtver, parsed_args.runtests)
+        build(config, parsed_args.qtver,
+              parsed_args.daemon, parsed_args.runtests)
         if parsed_args.runtests:
             run_tests(parsed_args.mutejamid, parsed_args.outputtofiles)
 

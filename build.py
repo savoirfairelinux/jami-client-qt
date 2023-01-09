@@ -361,7 +361,8 @@ def run_install(args):
                  f'-s {args.sdk} -b daemon'])
         build_windows = 'extras/scripts/build-windows.py'
         execute_script([f'python {build_windows} init'])
-        execute_script([f'python {build_windows}'])
+        # Specify the use of the daemon submodule here.
+        execute_script([f'python {build_windows} --daemon'])
         return True
 
     # Unix-like platforms
