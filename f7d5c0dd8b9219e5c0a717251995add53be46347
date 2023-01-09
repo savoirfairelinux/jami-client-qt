@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72f488ea_f2eba607",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 9
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-09T14:04:27Z",
+      "side": 1,
+      "message": "also you need to bump daemon submodule once daemon patch is merged ;)",
+      "range": {
+        "startLine": 310,
+        "startChar": 6,
+        "endLine": 310,
+        "endChar": 22
+      },
+      "revId": "f7d5c0dd8b9219e5c0a717251995add53be46347",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
