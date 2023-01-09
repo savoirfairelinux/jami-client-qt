@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="153"/>
         <source>%1 missed call</source>
-        <translation type="unfinished"/>
+        <translation>%1 zgrešeni klic(i)</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="154"/>
@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="584"/>
         <source>%1 incoming call</source>
-        <translation type="unfinished"/>
+        <translation>%1 dohodni klic(i)</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="585"/>
@@ -37,12 +37,12 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="190"/>
         <source>%1 received a new message</source>
-        <translation type="unfinished"/>
+        <translation>%1 je prejel_a novo sporočilo</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="250"/>
         <source>%1 received a new trust request</source>
-        <translation type="unfinished"/>
+        <translation>%1 je prejel_a novo prošnjo zaupanja</translation>
     </message>
 </context>
 <context>
@@ -1343,17 +1343,17 @@ Lokacijo drugih udeležencev lahko vseeno sprejemate.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
-        <translation type="unfinished"/>
+        <translation>Pripnite zemljevid, da lahko delite lokacijo, ali izključite lokacijo v določenih pogovorih</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Lokacijo delite v več pogovorih, s klikom izberite, kako želite izključiti deljenje lokacije</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <source>Share location to participants of this conversation (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Deli lokacijo z udeleženci tega pogovora (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
@@ -1378,22 +1378,22 @@ Lokacijo drugih udeležencev lahko vseeno sprejemate.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
         <source>Unpin</source>
-        <translation type="unfinished"/>
+        <translation>Odpni</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
         <source>Pin</source>
-        <translation type="unfinished"/>
+        <translation>Pripni</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="327"/>
         <source>Position share duration</source>
-        <translation type="unfinished"/>
+        <translation>Trajanje deljenja lokacije</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
         <source>Limit the duration of location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Omejite trajanje deljenja lokacije</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
@@ -2526,12 +2526,12 @@ poveže, da sinhroniziramo pogovor.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
         <source>Turn off sharing</source>
-        <translation type="unfinished"/>
+        <translation>Izključi skupno rabo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source>Stop location sharing in this conversation (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Prenehaj deliti lokacijo v tem pogovoru (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
@@ -3215,147 +3215,147 @@ Kopirajte ga in delite s prijatelji!</translation>
 <context>
     <name>KeyboardShortcutTable</name>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="42"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="43"/>
         <source>Open account list</source>
         <translation>Odpri seznam računov</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="46"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="47"/>
         <source>Focus conversations list</source>
         <translation>Fokusiraj seznam pogovorov</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="50"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="51"/>
         <source>Requests list</source>
         <translation>Zahteva seznam</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="54"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="55"/>
         <source>Previous conversation</source>
         <translation>Prejšnji pogovori</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="58"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="59"/>
         <source>Next conversation</source>
         <translation>Naslednji pogovori</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="62"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="63"/>
         <source>Search bar</source>
         <translation>Iskalna vrstica</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="66"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="67"/>
         <source>Full screen</source>
         <translation>Cel zaslon</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="70"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="71"/>
         <source>Increase font size</source>
         <translation>Povečaj pisavo</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="74"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="75"/>
         <source>Decrease font size</source>
         <translation>Zmanjšaj pisavo</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="78"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="79"/>
         <source>Reset font size</source>
         <translation>Ponastavi velikost pisave</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="87"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
         <source>Start an audio call</source>
         <translation>Začni z zvočnim klicem</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="91"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Start a video call</source>
         <translation>Začni video klic</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="95"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Clear history</source>
         <translation>Počisti zgodovino</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="99"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
         <source>Block contact</source>
         <translation>Blokiraj stik</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="103"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
         <source>Remove conversation</source>
         <translation>Odstrani pogovor</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="107"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="108"/>
         <source>Accept contact request</source>
         <translation>Sprejmi zahtevo stika</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="111"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="112"/>
         <source>Edit last message</source>
         <translation>Uredi zadnje sporočilo</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="115"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Cancel message edition</source>
         <translation>Prekliči izdajo sporočila</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="125"/>
         <source>Media settings</source>
         <translation>Nastavitve medija</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="129"/>
         <source>General settings</source>
         <translation>Splošne nastavitve</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
         <source>Account settings</source>
         <translation>Nastavitve računa</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
         <source>Plugin settings</source>
         <translation>Nastavitve vstavka</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="140"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="141"/>
         <source>Open account creation wizard</source>
         <translation>Odpri čarovnika za ustvarjanje računa</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="144"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="145"/>
         <source>Open keyboard shortcut table</source>
         <translation>Odpri tabelo tipk za bližnjice</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="153"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="154"/>
         <source>Answer an incoming call</source>
         <translation>Odgovori na dohodni klic</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="157"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="158"/>
         <source>End call</source>
         <translation>Končaj klic</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="161"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="162"/>
         <source>Decline the call request</source>
         <translation>Zavrni klic</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="165"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="166"/>
         <source>Mute microphone</source>
         <translation>Izključi mikrofon</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="169"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="170"/>
         <source>Stop camera</source>
         <translation>Izklopi kamero</translation>
     </message>
@@ -3365,33 +3365,33 @@ Kopirajte ga in delite s prijatelji!</translation>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettings.qml" line="84"/>
         <source>%1h%2min</source>
-        <translation type="unfinished"/>
+        <translation>%1 u %2 min.</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettings.qml" line="86"/>
         <source>%1h</source>
-        <translation type="unfinished"/>
+        <translation>%1 u</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettings.qml" line="88"/>
         <source>%1min</source>
-        <translation type="unfinished"/>
+        <translation>%1 min.</translation>
     </message>
 </context>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="367"/>
+        <location filename="../src/app/mainapplication.cpp" line="359"/>
         <source>E&amp;xit</source>
         <translation>&amp;Zapri</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="369"/>
+        <location filename="../src/app/mainapplication.cpp" line="361"/>
         <source>&amp;Quit</source>
         <translation>I&amp;zhod</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="375"/>
+        <location filename="../src/app/mainapplication.cpp" line="367"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Pokaži Jami</translation>
     </message>
@@ -3401,27 +3401,27 @@ Kopirajte ga in delite s prijatelji!</translation>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="62"/>
         <source>%1h%2min</source>
-        <translation type="unfinished"/>
+        <translation>%1 u %2 min.</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
         <source>%1h</source>
-        <translation type="unfinished"/>
+        <translation>%1 u</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="68"/>
         <source>%1m%2sec</source>
-        <translation type="unfinished"/>
+        <translation>%1 min. %2 s</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="70"/>
         <source>%1m</source>
-        <translation type="unfinished"/>
+        <translation>%1 min.</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="73"/>
         <source>%1sec</source>
-        <translation type="unfinished"/>
+        <translation>%1 s</translation>
     </message>
 </context>
 <context>
@@ -3440,80 +3440,80 @@ Kopirajte ga in delite s prijatelji!</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="353"/>
+        <location filename="../src/app/messagesadapter.cpp" line="354"/>
         <source>Sending</source>
         <translation>Pošiljanje</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="355"/>
+        <location filename="../src/app/messagesadapter.cpp" line="356"/>
         <source>Failure</source>
         <translation>Ni uspelo</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="357"/>
+        <location filename="../src/app/messagesadapter.cpp" line="358"/>
         <source>Sent</source>
         <translation>Poslano</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="359"/>
+        <location filename="../src/app/messagesadapter.cpp" line="360"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
         <translation>Povezovanje</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="361"/>
+        <location filename="../src/app/messagesadapter.cpp" line="362"/>
         <source>Accept</source>
         <translation>Sprejmi</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="363"/>
+        <location filename="../src/app/messagesadapter.cpp" line="364"/>
         <source>Canceled</source>
         <translation>Preklicano</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="366"/>
+        <location filename="../src/app/messagesadapter.cpp" line="367"/>
         <source>Unable to make contact</source>
         <translation>Stika ni mogoče vzpostaviti</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="368"/>
+        <location filename="../src/app/messagesadapter.cpp" line="369"/>
         <source>Ongoing</source>
         <translation>V teku</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="370"/>
+        <location filename="../src/app/messagesadapter.cpp" line="371"/>
         <source>Waiting for contact</source>
         <translation>Čakanje na stik</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="372"/>
+        <location filename="../src/app/messagesadapter.cpp" line="373"/>
         <source>Incoming transfer</source>
         <translation>Dohodni prenos</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="374"/>
+        <location filename="../src/app/messagesadapter.cpp" line="375"/>
         <source>Timed out waiting for contact</source>
         <translation>Čas čakanja na stik je pretekel</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="376"/>
+        <location filename="../src/app/messagesadapter.cpp" line="377"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
         <translation>Končano</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="711"/>
+        <location filename="../src/app/messagesadapter.cpp" line="712"/>
         <source>Today</source>
         <translation>Danes</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="713"/>
+        <location filename="../src/app/messagesadapter.cpp" line="714"/>
         <source>Yesterday</source>
         <translation>Včeraj</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="702"/>
+        <location filename="../src/app/messagesadapter.cpp" line="703"/>
         <source>just now</source>
         <translation>ravnokar</translation>
     </message>
@@ -3646,8 +3646,8 @@ Kopirajte ga in delite s prijatelji!</translation>
         <translation>Povabilo je potrjeno</translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="365"/>
-        <location filename="../src/libclient/avmodel.cpp" line="384"/>
+        <location filename="../src/libclient/avmodel.cpp" line="370"/>
+        <location filename="../src/libclient/avmodel.cpp" line="389"/>
         <source>default</source>
         <translation>privzeto</translation>
     </message>
