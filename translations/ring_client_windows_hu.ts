@@ -3214,147 +3214,147 @@ Másolja ki, és ossza meg barátaival!</translation>
 <context>
     <name>KeyboardShortcutTable</name>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="42"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="43"/>
         <source>Open account list</source>
         <translation>Fióklista megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="46"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="47"/>
         <source>Focus conversations list</source>
         <translation>Beszélgetéslista összpontosítása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="50"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="51"/>
         <source>Requests list</source>
         <translation>Kérések listája</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="54"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="55"/>
         <source>Previous conversation</source>
         <translation>Előző beszélgetés</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="58"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="59"/>
         <source>Next conversation</source>
         <translation>Következő beszélgetés</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="62"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="63"/>
         <source>Search bar</source>
         <translation>Keresősáv</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="66"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="67"/>
         <source>Full screen</source>
         <translation>Teljes képernyős nézet</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="70"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="71"/>
         <source>Increase font size</source>
         <translation>Betűméret növelése</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="74"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="75"/>
         <source>Decrease font size</source>
         <translation>Betűméret csökkentése</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="78"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="79"/>
         <source>Reset font size</source>
         <translation>Betűméret visszaállítása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="87"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
         <source>Start an audio call</source>
         <translation>Hanghívás indítása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="91"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Start a video call</source>
         <translation>Videohívás indítása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="95"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Clear history</source>
         <translation>Előzmények törlése</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="99"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
         <source>Block contact</source>
         <translation>Kapcsolat letiltása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="103"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
         <source>Remove conversation</source>
         <translation>Beszélgetés törlése</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="107"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="108"/>
         <source>Accept contact request</source>
         <translation>Kapcsolatfelvételi kérelem elfogadása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="111"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="112"/>
         <source>Edit last message</source>
         <translation>A legutóbbi üzenet szerkesztése</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="115"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Cancel message edition</source>
         <translation>Üzenet szerkesztésének megszakítása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="125"/>
         <source>Media settings</source>
         <translation>Média beállítások</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="129"/>
         <source>General settings</source>
         <translation>Általános beállítások</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
         <source>Account settings</source>
         <translation>Fiókbeállítások</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
         <source>Plugin settings</source>
         <translation>Beépülő modul beállításai</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="140"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="141"/>
         <source>Open account creation wizard</source>
         <translation>Fiók létrehozása varázsló megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="144"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="145"/>
         <source>Open keyboard shortcut table</source>
         <translation>Billentyűparancsok táblázatának megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="153"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="154"/>
         <source>Answer an incoming call</source>
         <translation>Bejövő hívás fogadása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="157"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="158"/>
         <source>End call</source>
         <translation>Hívás befejezése</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="161"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="162"/>
         <source>Decline the call request</source>
         <translation>Hívás kérelem elutasítása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="165"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="166"/>
         <source>Mute microphone</source>
         <translation>Mikrofon elnémítása</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="169"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="170"/>
         <source>Stop camera</source>
         <translation>Fényképezőgép leállása</translation>
     </message>
@@ -3380,17 +3380,17 @@ Másolja ki, és ossza meg barátaival!</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="367"/>
+        <location filename="../src/app/mainapplication.cpp" line="359"/>
         <source>E&amp;xit</source>
         <translation>&amp;Kilépés</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="369"/>
+        <location filename="../src/app/mainapplication.cpp" line="361"/>
         <source>&amp;Quit</source>
         <translation>&amp;Kilépés</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="375"/>
+        <location filename="../src/app/mainapplication.cpp" line="367"/>
         <source>&amp;Show Jami</source>
         <translation>Jami &amp;megjelenítése</translation>
     </message>
@@ -3439,80 +3439,80 @@ Másolja ki, és ossza meg barátaival!</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="353"/>
+        <location filename="../src/app/messagesadapter.cpp" line="354"/>
         <source>Sending</source>
         <translation>Küldés folyamatban</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="355"/>
+        <location filename="../src/app/messagesadapter.cpp" line="356"/>
         <source>Failure</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="357"/>
+        <location filename="../src/app/messagesadapter.cpp" line="358"/>
         <source>Sent</source>
         <translation>Elküldve</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="359"/>
+        <location filename="../src/app/messagesadapter.cpp" line="360"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
         <translation>Kapcsolódás</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="361"/>
+        <location filename="../src/app/messagesadapter.cpp" line="362"/>
         <source>Accept</source>
         <translation>Elfogadás</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="363"/>
+        <location filename="../src/app/messagesadapter.cpp" line="364"/>
         <source>Canceled</source>
         <translation>Megszakítva</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="366"/>
+        <location filename="../src/app/messagesadapter.cpp" line="367"/>
         <source>Unable to make contact</source>
         <translation>Nem sikerült kapcsolatba lépni</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="368"/>
+        <location filename="../src/app/messagesadapter.cpp" line="369"/>
         <source>Ongoing</source>
         <translation>Folyamatban lévő</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="370"/>
+        <location filename="../src/app/messagesadapter.cpp" line="371"/>
         <source>Waiting for contact</source>
         <translation>Várakozás a kapcsolatfelvételre</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="372"/>
+        <location filename="../src/app/messagesadapter.cpp" line="373"/>
         <source>Incoming transfer</source>
         <translation>Bejövő fájlküldés</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="374"/>
+        <location filename="../src/app/messagesadapter.cpp" line="375"/>
         <source>Timed out waiting for contact</source>
         <translation>Időtúllépés várt a kapcsolattartásra</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="376"/>
+        <location filename="../src/app/messagesadapter.cpp" line="377"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
         <translation>Befejezett</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="711"/>
+        <location filename="../src/app/messagesadapter.cpp" line="712"/>
         <source>Today</source>
         <translation>Ma</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="713"/>
+        <location filename="../src/app/messagesadapter.cpp" line="714"/>
         <source>Yesterday</source>
         <translation>Tegnap</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="702"/>
+        <location filename="../src/app/messagesadapter.cpp" line="703"/>
         <source>just now</source>
         <translation>most</translation>
     </message>
@@ -3645,8 +3645,8 @@ Másolja ki, és ossza meg barátaival!</translation>
         <translation>Meghívás elfogadott</translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="365"/>
-        <location filename="../src/libclient/avmodel.cpp" line="384"/>
+        <location filename="../src/libclient/avmodel.cpp" line="370"/>
+        <location filename="../src/libclient/avmodel.cpp" line="389"/>
         <source>default</source>
         <translation>alapértelmezett</translation>
     </message>

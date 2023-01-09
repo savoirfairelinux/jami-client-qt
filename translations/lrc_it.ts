@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="153"/>
         <source>%1 missed call</source>
-        <translation type="unfinished"/>
+        <translation>%1 ha perso la chiamata</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="154"/>
@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="584"/>
         <source>%1 incoming call</source>
-        <translation type="unfinished"/>
+        <translation>%1 riceve una chiamata</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="585"/>
@@ -37,12 +37,12 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="190"/>
         <source>%1 received a new message</source>
-        <translation type="unfinished"/>
+        <translation>%1 ha ricevuto un nuovo messaggio</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="250"/>
         <source>%1 received a new trust request</source>
-        <translation type="unfinished"/>
+        <translation>%1 ha ricevuto una nuova richiesta fidata</translation>
     </message>
 </context>
 <context>
@@ -767,12 +767,12 @@ Jami ora si chiuderà.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
         <source>Turn off sharing</source>
-        <translation type="unfinished"/>
+        <translation>Ferma la condivisione</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source>Stop location sharing in this conversation (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Ferma la condivisione della posizione in questa conversazione (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
@@ -1474,17 +1474,17 @@ Nelle impostazioni del dispositivo, attivare &quot;Servizi di localizzazione&quo
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
-        <translation type="unfinished"/>
+        <translation>Fissa la mappa per poter condividere la posizione o disattivare la localizzazione in conversazioni specifiche.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
-        <translation type="unfinished"/>
+        <translation>La posizione è condivisa in diverse conversazioni, fare clic per scegliere come disattivare la condivisione della posizione.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <source>Share location to participants of this conversation (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Condividi la posizione con i partecipanti a questa conversazione (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
@@ -1509,22 +1509,22 @@ Nelle impostazioni del dispositivo, attivare &quot;Servizi di localizzazione&quo
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
         <source>Unpin</source>
-        <translation type="unfinished"/>
+        <translation>Sblocca</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
         <source>Pin</source>
-        <translation type="unfinished"/>
+        <translation>Fissa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="327"/>
         <source>Position share duration</source>
-        <translation type="unfinished"/>
+        <translation>Durata posizione condivisa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
         <source>Limit the duration of location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Limita la durata della condivisione della posizione</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
@@ -3207,147 +3207,147 @@ si connetta per sincronizzare la conversazione.</translation>
 <context>
     <name>KeyboardShortcutTable</name>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="42"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="43"/>
         <source>Open account list</source>
         <translation>Apri l&apos;elenco degli account</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="46"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="47"/>
         <source>Focus conversations list</source>
         <translation>Mostra l&apos;elenco delle conversazioni</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="50"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="51"/>
         <source>Requests list</source>
         <translation>Elenco delle richieste</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="54"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="55"/>
         <source>Previous conversation</source>
         <translation>Conversazione precedente</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="58"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="59"/>
         <source>Next conversation</source>
         <translation>Prossima conversazione</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="62"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="63"/>
         <source>Search bar</source>
         <translation>Barra di ricerca</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="66"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="67"/>
         <source>Full screen</source>
         <translation>Schermo intero</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="70"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="71"/>
         <source>Increase font size</source>
         <translation>Aumenta la dimensione dei caratteri</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="74"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="75"/>
         <source>Decrease font size</source>
         <translation>Diminuisci la dimensione dei caratteri</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="78"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="79"/>
         <source>Reset font size</source>
         <translation>Ripristina la dimensione dei caratteri</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="87"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
         <source>Start an audio call</source>
         <translation>Avvia una chiamata vocale</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="91"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Start a video call</source>
         <translation>Avvia una videochiamata</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="95"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Clear history</source>
         <translation>Elimina le conversazioni</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="99"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
         <source>Block contact</source>
         <translation>Blocca contatto</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="103"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
         <source>Remove conversation</source>
         <translation>Rimuovi conversazione</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="107"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="108"/>
         <source>Accept contact request</source>
         <translation>Accetta la richiesta di contatto</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="111"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="112"/>
         <source>Edit last message</source>
         <translation>Modifica l&apos;ultimo messaggio</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="115"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Cancel message edition</source>
         <translation>Annulla la modifica del messaggio</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="125"/>
         <source>Media settings</source>
         <translation>Impostazioni multimediali</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="129"/>
         <source>General settings</source>
         <translation>Impostazioni generali</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
         <source>Account settings</source>
         <translation>Impostazioni account</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
         <source>Plugin settings</source>
         <translation>Impostazioni plugin</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="140"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="141"/>
         <source>Open account creation wizard</source>
         <translation>Apri la procedura guidata per la creazione dell&apos;account</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="144"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="145"/>
         <source>Open keyboard shortcut table</source>
         <translation>Mostra i tasti rapidi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="153"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="154"/>
         <source>Answer an incoming call</source>
         <translation>Rispondi a una chiamata in arrivo</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="157"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="158"/>
         <source>End call</source>
         <translation>Termina chiamata</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="161"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="162"/>
         <source>Decline the call request</source>
         <translation>Rifiuta la chiamata</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="165"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="166"/>
         <source>Mute microphone</source>
         <translation>Disattiva microfono</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="169"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="170"/>
         <source>Stop camera</source>
         <translation>Stop camera</translation>
     </message>
@@ -3357,33 +3357,33 @@ si connetta per sincronizzare la conversazione.</translation>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettings.qml" line="84"/>
         <source>%1h%2min</source>
-        <translation type="unfinished"/>
+        <translation>%1h%2min</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettings.qml" line="86"/>
         <source>%1h</source>
-        <translation type="unfinished"/>
+        <translation>%1h</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettings.qml" line="88"/>
         <source>%1min</source>
-        <translation type="unfinished"/>
+        <translation>%1min</translation>
     </message>
 </context>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="367"/>
+        <location filename="../src/app/mainapplication.cpp" line="359"/>
         <source>E&amp;xit</source>
         <translation>E&amp;sci</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="369"/>
+        <location filename="../src/app/mainapplication.cpp" line="361"/>
         <source>&amp;Quit</source>
         <translation>&amp;Esci</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="375"/>
+        <location filename="../src/app/mainapplication.cpp" line="367"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Mostra Jami</translation>
     </message>
@@ -3393,27 +3393,27 @@ si connetta per sincronizzare la conversazione.</translation>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="62"/>
         <source>%1h%2min</source>
-        <translation type="unfinished"/>
+        <translation>%1h%2min</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
         <source>%1h</source>
-        <translation type="unfinished"/>
+        <translation>%1h</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="68"/>
         <source>%1m%2sec</source>
-        <translation type="unfinished"/>
+        <translation>%1m%2sec</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="70"/>
         <source>%1m</source>
-        <translation type="unfinished"/>
+        <translation>%1m</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="73"/>
         <source>%1sec</source>
-        <translation type="unfinished"/>
+        <translation>%1sec</translation>
     </message>
 </context>
 <context>
@@ -3462,7 +3462,7 @@ si connetta per sincronizzare la conversazione.</translation>
         <translation>Stai chiamando</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="359"/>
+        <location filename="../src/app/messagesadapter.cpp" line="360"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
         <translation>Connessione in corso </translation>
@@ -3478,7 +3478,7 @@ si connetta per sincronizzare la conversazione.</translation>
         <translation>Inattivo</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="376"/>
+        <location filename="../src/app/messagesadapter.cpp" line="377"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
@@ -3578,8 +3578,8 @@ si connetta per sincronizzare la conversazione.</translation>
         <translation>Invito accettato</translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="365"/>
-        <location filename="../src/libclient/avmodel.cpp" line="384"/>
+        <location filename="../src/libclient/avmodel.cpp" line="370"/>
+        <location filename="../src/libclient/avmodel.cpp" line="389"/>
         <source>default</source>
         <translation>predefinito</translation>
     </message>
@@ -3860,67 +3860,67 @@ si connetta per sincronizzare la conversazione.</translation>
         <translation>Non accettabile ovunque</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="361"/>
+        <location filename="../src/app/messagesadapter.cpp" line="362"/>
         <source>Accept</source>
         <translation>Accetta</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="353"/>
+        <location filename="../src/app/messagesadapter.cpp" line="354"/>
         <source>Sending</source>
         <translation>Invio in corso</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="357"/>
+        <location filename="../src/app/messagesadapter.cpp" line="358"/>
         <source>Sent</source>
         <translation>Inviato</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="366"/>
+        <location filename="../src/app/messagesadapter.cpp" line="367"/>
         <source>Unable to make contact</source>
         <translation>Impossibile prendere contatto</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="370"/>
+        <location filename="../src/app/messagesadapter.cpp" line="371"/>
         <source>Waiting for contact</source>
         <translation>In attesa di contatto</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="372"/>
+        <location filename="../src/app/messagesadapter.cpp" line="373"/>
         <source>Incoming transfer</source>
         <translation>Trasferimento in entrata</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="374"/>
+        <location filename="../src/app/messagesadapter.cpp" line="375"/>
         <source>Timed out waiting for contact</source>
         <translation>Tempo scaduto in attesa di contatto</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="711"/>
+        <location filename="../src/app/messagesadapter.cpp" line="712"/>
         <source>Today</source>
         <translation>Oggi</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="713"/>
+        <location filename="../src/app/messagesadapter.cpp" line="714"/>
         <source>Yesterday</source>
         <translation>Ieri</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="363"/>
+        <location filename="../src/app/messagesadapter.cpp" line="364"/>
         <source>Canceled</source>
         <translation>Annullato</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="368"/>
+        <location filename="../src/app/messagesadapter.cpp" line="369"/>
         <source>Ongoing</source>
         <translation>In corso</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="702"/>
+        <location filename="../src/app/messagesadapter.cpp" line="703"/>
         <source>just now</source>
         <translation>ora</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="355"/>
+        <location filename="../src/app/messagesadapter.cpp" line="356"/>
         <source>Failure</source>
         <translation>Fallimento</translation>
     </message>
