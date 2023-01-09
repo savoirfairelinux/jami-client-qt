@@ -200,23 +200,32 @@ def build_deps():
     build_project(msbuild, msbuild_args, proj_path, vs_env_vars)
 
 
-def build(config_str, qtver, tests=False):
+def build(config_str, qtver, daemon_path, tests=False):
     print("Building with Qt " + qtver)
 
     vs_env_vars = {}
     vs_env_vars.update(getVSEnv())
 
     qt_dir = os.path.join(qt_root_path, qtver, qt_kit_path)
-    daemon_dir = os.path.join(repo_root_dir, 'daemon')
-    daemon_bin_dir = os.path.join(daemon_dir, 'build/x64/ReleaseLib_win32/bin')
+
+    # If daemon_path is not specified, we use the daemon submodule.
+    use_daemon_submodule = daemon_path == None
+    if use_daemon_submodule:
+        daemon_dir = os.path.join(repo_root_dir, 'daemon')
+    else:
+        daemon_dir = daemon_path
+
+    daemon_include_dir = os.path.join(daemon_dir, 'src', 'jami')
+    daemon_lib_dir = os.path.join(
+        daemon_dir, 'build', 'x64', 'ReleaseLib_win32', 'bin')
 
     # We need to update the minimum SDK version to be able to
     # build with system theme support
     cmake_options = [
-        '-DWITH_DAEMON_SUBMODULE=ON',
+        '-DWITH_DAEMON_SUBMODULE=' + ('OFF', 'ON')[use_daemon_submodule],
         '-DCMAKE_PREFIX_PATH=' + qt_dir,
-        '-DCMAKE_INSTALL_PREFIX=' + daemon_bin_dir,
-        '-DLIBJAMI_INCLUDE_DIR=' + daemon_dir + '\\src\\jami',
+        '-DLIBJAMI_INCLUDE_DIR=' + daemon_include_dir,
+        '-DCMAKE_INSTALL_PREFIX=' + daemon_lib_dir,
         '-DCMAKE_SYSTEM_VERSION=10.0.18362.0'
     ]
     if tests:
@@ -302,6 +311,11 @@ def parse_args():
     ap.add_argument(
         '-m', '--mute', action='store_true', default=False,
         help='Mute jamid logs')
+    # The daemon submodule is used by default, but if a path to the daemon
+    # is provided, we use that instead.
+    ap.add_argument(
+        '-d', '--daemon', default=None,
+        help='Path to the daemon')
 
     subparser.add_parser('init')
     subparser.add_parser('pack')
@@ -336,7 +350,8 @@ def main():
         sys.exit(1)
     else:
         config = ('Release', 'Beta')[parsed_args.beta]
-        build(config, parsed_args.qtver, parsed_args.runtests)
+        build(config, parsed_args.qtver,
+              parsed_args.daemon, parsed_args.runtests)
         if parsed_args.runtests:
             run_tests(parsed_args.mutejamid, parsed_args.outputtofiles)
 
