@@ -354,6 +354,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3eae44f_ff63bdb0",
+        "filename": "src/app/mainview/components/CallInformationWindow.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-09T20:01:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "401aaecd_6b37e6e4",
+      "range": {
+        "startLine": 114,
+        "startChar": 34,
+        "endLine": 114,
+        "endChar": 45
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "839101d6_c6cafc22",
@@ -391,6 +415,30 @@
       "side": 1,
       "message": "ok in an other patch",
       "parentUuid": "839101d6_c6cafc22",
+      "range": {
+        "startLine": 177,
+        "startChar": 52,
+        "endLine": 177,
+        "endChar": 63
+      },
+      "revId": "14d8532d63d73dcc4aa8e332e604b0c7f06c2e98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee6cec78_1c7861db",
+        "filename": "src/app/mainview/components/CallInformationWindow.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-09T20:01:11Z",
+      "side": 1,
+      "message": "done in this patch",
+      "parentUuid": "c6bb50df_f4a1bfd1",
       "range": {
         "startLine": 177,
         "startChar": 52,
