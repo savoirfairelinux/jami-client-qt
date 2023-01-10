@@ -68,7 +68,7 @@ convertMap(const std::map<std::string, std::string>& m)
 {
     MapStringString temp;
     for (const auto& [key, value] : m) {
-        temp[QString(key.c_str())] = QString(value.c_str());
+        temp[QString(key.c_str())] = QString::fromLatin1(QByteArray::fromStdString(value));
     }
     return temp;
 }

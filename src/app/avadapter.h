@@ -86,10 +86,10 @@ protected:
     Q_INVOKABLE void shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height);
 
     // Select window to display.
-    Q_INVOKABLE void shareWindow(const QString& windowId);
+    Q_INVOKABLE void shareWindow(const QString& windowProcessId, const QString& windowId);
 
     // Returns the screensharing resource
-    Q_INVOKABLE QString getSharingResource(int screenId, const QString& key);
+    Q_INVOKABLE QString getSharingResource(int screenId = -2, const QString& windowProcessId = "", const QString& key = "");
 
     Q_INVOKABLE void getListWindows();
 
