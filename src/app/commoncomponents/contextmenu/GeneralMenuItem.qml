@@ -49,6 +49,7 @@ MenuItem {
     property int itemTextMargin: 20
 
     signal clicked
+    property bool itemHovered: menuItemContentRect.hovered
 
     contentItem: AbstractButton {
         id: menuItemContentRect
