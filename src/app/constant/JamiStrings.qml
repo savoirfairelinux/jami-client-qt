@@ -298,6 +298,8 @@ Item {
     property string lowerHand: qsTr("Lower hand")
     property string raiseHand: qsTr("Raise hand")
     property string layoutSettings: qsTr("Layout settings")
+    property string tileScreenshot: qsTr("Take tile screenshot")
+    property string screenshotTaken: qsTr("Screenshot saved to %1")
 
     //advanced information
     property string renderersInformation: qsTr("Renderers information")
@@ -508,15 +510,16 @@ Item {
     // Context Menu
     property string saveFile: qsTr("Save file")
     property string openLocation: qsTr("Open location")
+    property string me: qsTr("Me")
 
     // Updates
     property string betaInstall: qsTr("Install beta version")
     property string checkForUpdates: qsTr("Check for updates now")
     property string enableAutoUpdates: qsTr("Enable/Disable automatic updates")
-    property string tipAutoUpdate: qsTr("toggle automatic updates")
+    property string tipAutoUpdate: qsTr("Toggle automatic updates")
     property string updatesTitle: qsTr("Updates")
     property string updateDialogTitle: qsTr("Update")
-    property string updateFound: qsTr("A new version of Jami was found\n Would you like to update now?")
+    property string updateFound: qsTr("A new version of Jami was found\nWould you like to update now?")
     property string updateNotFound: qsTr("No new version of Jami was found")
     property string updateCheckError: qsTr("An error occured when checking for a new version")
     property string updateNetworkError: qsTr("Network error")
@@ -538,7 +541,8 @@ Item {
     // Recording Settings
     property string tipRecordFolder: qsTr("Select a record directory")
     property string quality: qsTr("Quality")
-    property string saveIn: qsTr("Save in")
+    property string saveRecordingsTo: qsTr("Save recordings to")
+    property string saveScreenshotsTo: qsTr("Save screenshots to")
     property string callRecording: qsTr("Call Recording")
     property string alwaysRecordCalls: qsTr("Always record calls")
 

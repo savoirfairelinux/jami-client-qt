@@ -146,6 +146,11 @@ Item {
     property color spinboxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
     property color spinboxBorderColor: darkTheme ? tintedBlue : Qt.rgba(0, 0.34, 0.6, 0.36)
 
+    //Toast
+    property color toastColor: darkTheme ? "#f0f0f0" : "#000000"
+    property color toastRectColor: !darkTheme ? "#f0f0f0" : "#000000"
+    property real toastFontSize: calcSize(15)
+
     // Call buttons
     property color acceptButtonGreen: "#4caf50"
     property color acceptButtonHoverGreen: "#5db761"

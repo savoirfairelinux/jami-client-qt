@@ -107,9 +107,11 @@ public:
     Q_INVOKABLE QVariant getAppValue(const Settings::Key key);
     Q_INVOKABLE void setAppValue(const Settings::Key key, const QVariant& value);
     Q_INVOKABLE QString getDirDocument();
+    Q_INVOKABLE QString getDirScreenshot();
     Q_INVOKABLE QString getDirDownload();
     Q_INVOKABLE void setRunOnStartUp(bool state);
     Q_INVOKABLE void setDownloadPath(QString dir);
+    Q_INVOKABLE void setScreenshotPath(QString dir);
     Q_INVOKABLE void monitor(const bool& continuous);
     Q_INVOKABLE void clearInteractionsCache(const QString& accountId, const QString& convUid);
     Q_INVOKABLE QVariantMap supportedLang();
