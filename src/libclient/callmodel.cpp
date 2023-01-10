@@ -55,6 +55,11 @@
 #include <random>
 #include <map>
 
+#ifdef WIN32
+#define NOMINMAX
+#include "Windows.h"
+#endif
+
 using namespace libjami::Media;
 
 constexpr static const char HARDWARE_ACCELERATION[] = "HARDWARE_ACCELERATION";
@@ -942,8 +947,36 @@ CallModel::getDisplay(int idx, int x, int y, int w, int h)
         .arg(h);
 }
 
+
+
+#ifdef WIN32
+BOOL CALLBACK
+EnumWindowsProcMy(HWND hwnd, LPARAM lParam)
+{
+    std::pair<DWORD, QString>* dataPair = reinterpret_cast<std::pair<DWORD, QString>*>(
+        lParam);
+    DWORD lpdwProcessId;
+    if (auto parent = GetWindow(hwnd, GW_OWNER))
+        GetWindowThreadProcessId(parent, &lpdwProcessId);
+    else
+        GetWindowThreadProcessId(hwnd, &lpdwProcessId);
+    int len = GetWindowTextLength(hwnd) + 1;
+    std::vector<wchar_t> buf(len);
+    GetWindowText(hwnd, &buf[0], len);
+    std::wstring wide = &buf[0];
+
+    if (lpdwProcessId == dataPair->first) {
+        if (!IsWindowVisible(hwnd))
+            return TRUE;
+        dataPair->second = QString::fromStdWString(wide);
+        return FALSE;
+    }
+    return TRUE;
+}
+#endif
+
 QString
-CallModel::getDisplay(const QString& windowId)
+CallModel::getDisplay(const QString& windowProcessId, const QString& windowId)
 {
     QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
     QString ret{};
@@ -951,13 +984,25 @@ CallModel::getDisplay(const QString& windowId)
     ret = QString("%1%2:+0,0 window-id:%3")
         .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
         .arg(sep)
-        .arg(windowId);
+              .arg(windowProcessId);
 #endif
 #ifdef WIN32
+	// If window changed the name we must look for the parent process window
+    QString newWindowId = windowId;
+    auto hwnd = FindWindow(NULL, windowId.toStdWString().c_str());
+    if (!hwnd) {
+        std::pair<DWORD, QString> idName(windowProcessId.toInt(), {});
+        LPARAM lParam = reinterpret_cast<LPARAM>(&idName);
+        EnumWindows(EnumWindowsProcMy, lParam);
+        if (!idName.second.isEmpty()) {
+            newWindowId = idName.second;
+        }
+    }
+
     ret = QString("%1%2:+0,0 window-id:title=%3")
         .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
         .arg(sep)
-        .arg(windowId);
+        .arg(newWindowId);
 #endif
     return ret;
 }

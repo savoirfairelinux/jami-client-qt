@@ -167,7 +167,7 @@ Window {
                             }
                             Component.onCompleted: {
                                 if (visible) {
-                                    const rId = AvAdapter.getSharingResource(index, "")
+                                    const rId = AvAdapter.getSharingResource(index)
                                     if (rId !== "") {
                                         rendererId = VideoDevices.startDevice(rId)
                                     }
@@ -237,7 +237,7 @@ Window {
                         }
                         Component.onCompleted: {
                             if (visible) {
-                                const rId = AvAdapter.getSharingResource(-1, "")
+                                const rId = AvAdapter.getSharingResource(-1)
                                 if (rId !== "") {
                                     rendererId = VideoDevices.startDevice(rId)
                                 }
@@ -315,7 +315,7 @@ Window {
                             }
                             Component.onCompleted: {
                                 if (visible) {
-                                    const rId = AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[index - Qt.application.screens.length])
+                                    const rId = AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[index - Qt.application.screens.length], AvAdapter.windowsNames[index - Qt.application.screens.length])
                                     if (rId !== "") {
                                         rendererId = VideoDevices.startDevice(rId)
                                     }
@@ -376,7 +376,7 @@ Window {
                     if (selectedScreenNumber < Qt.application.screens.length)
                         AvAdapter.shareEntireScreen(selectedScreenNumber)
                     else {
-                        AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber - Qt.application.screens.length])
+                        AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber - Qt.application.screens.length], AvAdapter.windowsNames[selectedScreenNumber - Qt.application.screens.length])
                     }
                 }
                 root.close()
