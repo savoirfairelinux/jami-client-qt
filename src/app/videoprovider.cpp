@@ -118,6 +118,13 @@ VideoProvider::frame(const QString& id)
 QString
 VideoProvider::captureVideoFrame(const QString& id)
 {
+    auto img = captureRawVideoFrame(id);
+    return Utils::byteArrayToBase64String(Utils::QImageToByteArray(img));
+}
+
+QImage
+VideoProvider::captureRawVideoFrame(const QString& id)
+{
     QMutexLocker framesLk(&framesObjsMutex_);
     if (auto* videoFrame = frame(id)) {
         auto imageFormat = QVideoFrameFormat::imageFormatFromPixelFormat(
@@ -127,7 +134,7 @@ VideoProvider::captureVideoFrame(const QString& id)
                           videoFrame->height(),
                           videoFrame->bytesPerLine(0),
                           imageFormat);
-        return Utils::byteArrayToBase64String(Utils::QImageToByteArray(img));
+        return img;
     }
     return {};
 }
