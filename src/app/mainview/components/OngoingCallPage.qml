@@ -166,7 +166,10 @@ Rectangle {
                 onTapped: function (eventPoint, button) {
                     if (button === Qt.RightButton) {
                         callOverlay.openCallViewContextMenuInPos(eventPoint.position.x,
-                                                                 eventPoint.position.y)
+                                                                 eventPoint.position.y,
+                                                                 participantsLayer.hoveredOverlayUri,
+                                                                 participantsLayer.hoveredOverlaySinkId,
+                                                                 participantsLayer.hoveredOverVideoMuted)
                     }
                 }
             }
@@ -184,6 +187,7 @@ Rectangle {
 
             ParticipantsLayer {
                 id: participantsLayer
+
                 anchors.fill: parent
                 anchors.centerIn: parent
                 anchors.margins: 1
@@ -191,9 +195,18 @@ Rectangle {
                 participantsSide: callOverlay.participantsSide
             }
 
+            ToastManager {
+                id: toastManager
+
+                anchors.fill: parent
+
+                function instantiateToast() {
+                    instantiate(JamiStrings.screenshotTaken.arg(UtilsAdapter.getDirScreenshot()),1000,400)
+                }
+            }
+
             LocalVideo {
                 id: previewRenderer
-
                 visible: (CurrentCall.isSharing || !CurrentCall.isVideoMuted)
                          && !CurrentCall.isConference
 
@@ -328,6 +341,11 @@ Rectangle {
                         if (interactionType !== Interaction.Type.CALL && !inCallMessageWebViewStack.visible)
                             openInCallConversation()
                     }
+                }
+                onCloseClicked: {
+                    participantsLayer.hoveredOverlayUri = ""
+                    participantsLayer.hoveredOverlaySinkId = ""
+                    participantsLayer.hoveredOverVideoMuted = true
                 }
 
                 onChatButtonClicked: {
