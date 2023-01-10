@@ -37,6 +37,12 @@ ContextMenuAutoLoader {
     signal transferCallButtonClicked
     signal recordCallClicked
     signal openSelectionWindow
+    signal screenshotTaken
+    property bool screenshotButtonHovered: screenShot.itemHovered
+
+    property string hoveredOverlayUri: ""
+    property string hoveredOverlaySinkId: ""
+    property bool hoveredOverVideoMuted: true
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
@@ -194,8 +200,34 @@ ContextMenuAutoLoader {
                 CallAdapter.startTimerInformation();
                 callInformationOverlay.open()
             }
+        },
+        GeneralMenuItem {
+            id: screenShot
+
+            canTrigger: hoveredOverlayUri !== "" && hoveredOverVideoMuted === false
+            itemName: JamiStrings.screenshotParticipant
+            iconSource: JamiResources.baseline_camera_alt_24dp_svg
+
+            MaterialToolTip {
+                id: tooltip
+
+                parent: screenShot
+                visible: screenShot.itemHovered
+                delay: Qt.styleHints.mousePressAndHoldInterval
+                property bool isMe: CurrentAccount.uri === hoveredOverlayUri
+                text: isMe ? JamiStrings.me
+                           : UtilsAdapter.getBestNameForUri(CurrentAccount.id, hoveredOverlayUri)
+            }
+
+            onClicked: {
+                if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId),
+                                               UtilsAdapter.getDirScreenshot())) {
+                    screenshotTaken()
+                }
+            }
         }
     ]
+
 
     Component.onCompleted: menuItemsToLoad = menuItems
 }

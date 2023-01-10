@@ -37,6 +37,10 @@ Item {
     property bool inLine: CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL
     property bool participantsSide
     property bool enableHideSpectators: CallParticipantsModel.count > 1 && CurrentCall.hideSpectators
+    property string hoveredOverlayUri: ""
+    property string hoveredOverlaySinkId: ""
+    property bool hoveredOverVideoMuted: true
+    property bool screenshotButtonHovered: false
 
     onVisibleChanged: {
         CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
@@ -51,7 +55,10 @@ Item {
 
             anchors.fill: parent
             anchors.leftMargin: leftMargin_
-
+            isScreenshotButtonHovered: screenshotButtonHovered && hoveredOverlaySinkId === sinkId_
+            opacity: screenshotButtonHovered
+                     ? hoveredOverlaySinkId !== sinkId ? 0.1 : 1
+                     : 1
             sinkId: sinkId_
             uri: uri_
             deviceId: deviceId_
@@ -69,6 +76,14 @@ Item {
             isRecording: isRecording_
             participantIsModeratorMuted: audioModeratorMuted_
             participantHandIsRaised: isHandRaised_
+
+            onParticipantHoveredChanged:  {
+                if (participantHovered) {
+                    hoveredOverlayUri = overlay.uri
+                    hoveredOverlaySinkId = overlay.sinkId
+                    hoveredOverVideoMuted = videoMuted_
+                }
+            }
 
             Connections {
                 id: registeredNameFoundConnection

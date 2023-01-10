@@ -388,6 +388,22 @@ UtilsAdapter::getDirDocument()
 }
 
 QString
+UtilsAdapter::getDirScreenshot()
+{
+    QString screenshotPath = lrcInstance_->accountModel().downloadDirectory;
+    if (screenshotPath.isEmpty()) {
+        QString folderName = "Jami";
+        auto picture = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+        QDir dir;
+        dir.mkdir(picture + QDir::separator() + folderName);
+        screenshotPath = picture + QDir::separator() + folderName;
+        setScreenshotPath(screenshotPath);
+        lrcInstance_->accountModel().downloadDirectory = screenshotPath;
+    }
+    return screenshotPath;
+}
+
+QString
 UtilsAdapter::getDirDownload()
 {
     QString downloadPath = QDir::toNativeSeparators(lrcInstance_->accountModel().downloadDirectory);
@@ -423,6 +439,13 @@ UtilsAdapter::setDownloadPath(QString dir)
 {
     setAppValue(Settings::Key::DownloadPath, dir);
     lrcInstance_->accountModel().downloadDirectory = dir + "/";
+}
+
+void
+UtilsAdapter::setScreenshotPath(QString dir)
+{
+    setAppValue(Settings::Key::ScreenshotPath, dir);
+    lrcInstance_->accountModel().downloadDirectory = dir + QDir::separator();
 }
 
 void
