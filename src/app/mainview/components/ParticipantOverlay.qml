@@ -67,6 +67,18 @@ Item {
     property string muteAlertMessage: ""
     property bool muteAlertActive: false
 
+    property bool participantHovered: hoverIndicator.hovered
+    property bool isScreenshotButtonHovered: false
+
+    function takeScreenshot() {
+        if (!hoveredOverVideoMuted) {
+            if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId),
+                                           UtilsAdapter.getDirScreenshot())) {
+                toastManager.instantiateToast();
+            }
+        }
+    }
+
     onMuteAlertActiveChanged: {
         if (muteAlertActive) {
             alertTimer.restart()
@@ -94,9 +106,11 @@ Item {
 
     Rectangle {
         z: -1
-        color: JamiTheme.buttonTintedBlue
+        border.color: JamiTheme.buttonTintedBlue
+        border.width: 2
+        color: "transparent"
         radius: 10
-        visible:voiceActive
+        visible: voiceActive || isScreenshotButtonHovered
         width: participantIsActive ? mediaDistRender.contentRect.width + 2 : undefined
         height: participantIsActive ? mediaDistRender.contentRect.height + 2 : undefined
         anchors.centerIn: participantIsActive ? parent : undefined
@@ -109,7 +123,6 @@ Item {
         anchors.margins: 2
         rendererId: root.sinkId
         crop: !participantIsActive
-
         underlayItems: Avatar {
             property real componentSize: Math.min(mediaDistRender.contentRect.width / 2, mediaDistRender.contentRect.height / 2)
             height:  componentSize
@@ -140,7 +153,25 @@ Item {
             anchors.centerIn: participantIsActive ? parent : undefined
             anchors.fill: participantIsActive ? undefined : parent
 
+            TapHandler {
+                acceptedButtons: Qt.MiddleButton
+                acceptedModifiers: Qt.ControlModifier
+                onTapped: {
+                    takeScreenshot()
+                }
+            }
+
+            MultiPointTouchArea {
+                anchors.fill: parent
+                minimumTouchPoints: 3
+                onPressed: {
+                    takeScreenshot()
+                }
+            }
+
             HoverHandler {
+                id: hoverIndicator
+
                 onPointChanged: {
                     participantRect.opacity = 1
                     fadeOutTimer.restart()
@@ -164,6 +195,7 @@ Item {
                 // Participant buttons for moderation
                 ParticipantOverlayMenu {
                     id: overlayMenu
+
                     visible: isMe || meModerator
                     anchors.fill: parent
 
@@ -209,6 +241,7 @@ Item {
 
                     RowLayout {
                         id: participantFootInfo
+
                         height: parent.height
                         anchors.verticalCenter: parent.verticalCenter
                         Text {
