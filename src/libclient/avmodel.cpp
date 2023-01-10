@@ -618,7 +618,9 @@ CbEnumAltTab(HWND hwnd, LPARAM lParam)
     if (keys.indexOf(name) > 0) {
         return FALSE;
     } else {
-        windowList->insert(name, name);
+        DWORD processId;
+        GetWindowThreadProcessId(hwnd, &processId);
+        windowList->insert(name, QVariant::fromValue(processId));
     }
 
     return TRUE;

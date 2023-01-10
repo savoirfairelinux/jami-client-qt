@@ -233,9 +233,9 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
 }
 
 void
-AvAdapter::shareWindow(const QString& windowId)
+AvAdapter::shareWindow(const QString& windowProcessId, const QString& windowId)
 {
-    auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(windowId);
+    auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(windowProcessId, windowId);
     auto callId = lrcInstance_->getCurrentCallId();
 
     muteCamera_ = !isCapturing();
@@ -243,9 +243,8 @@ AvAdapter::shareWindow(const QString& windowId)
         ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
 
-#pragma optimize("", off)
 QString
-AvAdapter::getSharingResource(int screenId = -2, const QString& windowId = "")
+AvAdapter::getSharingResource(int screenId, const QString& windowProcessId, const QString& windowId)
 {
     if (screenId == -1) {
         const auto arrangementRect = getAllScreensBoundingRect();
@@ -276,7 +275,7 @@ AvAdapter::getSharingResource(int screenId = -2, const QString& windowId = "")
                                                                rect.height()
                                                                    * screen->devicePixelRatio());
     } else if (!windowId.isEmpty()) {
-        return lrcInstance_->getCurrentCallModel()->getDisplay(windowId);
+        return lrcInstance_->getCurrentCallModel()->getDisplay(windowProcessId, windowId);
     }
 
     return "";
