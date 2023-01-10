@@ -169,6 +169,10 @@ Window {
             shortcut: "V"
             description: qsTr("Stop camera")
         }
+        ListElement {
+            shortcut: "Ctrl + Middle click"
+            description: qsTr("Take tile screenshot")
+        }
     }
 
     Rectangle {
