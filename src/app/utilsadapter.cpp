@@ -388,6 +388,22 @@ UtilsAdapter::getDirDocument()
 }
 
 QString
+UtilsAdapter::getDirScreenshot()
+{
+    QString screenshotPath = lrcInstance_->accountModel().downloadDirectory;
+    if (screenshotPath.isEmpty()) {
+        QString folderName = "Jami-" + QObject::tr("Screenshots");
+        auto picture = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+        QDir dir;
+        dir.mkdir(picture + QDir::separator() + folderName);
+        screenshotPath = picture + QDir::separator() + folderName + QDir::separator();
+        setScreenshotPath(screenshotPath);
+        lrcInstance_->accountModel().downloadDirectory = screenshotPath;
+    }
+    return screenshotPath;
+}
+
+QString
 UtilsAdapter::getDirDownload()
 {
     QString downloadPath = QDir::toNativeSeparators(lrcInstance_->accountModel().downloadDirectory);
@@ -423,6 +439,13 @@ UtilsAdapter::setDownloadPath(QString dir)
 {
     setAppValue(Settings::Key::DownloadPath, dir);
     lrcInstance_->accountModel().downloadDirectory = dir + "/";
+}
+
+void
+UtilsAdapter::setScreenshotPath(QString dir)
+{
+    setAppValue(Settings::Key::ScreenshotPath, dir + QDir::separator());
+    lrcInstance_->accountModel().downloadDirectory = dir + QDir::separator();
 }
 
 void
@@ -692,7 +715,6 @@ UtilsAdapter::useApplicationTheme()
         return false;
     return isSystemThemeDark();
 }
-
 
 bool
 UtilsAdapter::hasNativeDarkTheme() const
