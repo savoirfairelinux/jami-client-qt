@@ -168,10 +168,8 @@ DISTRIBUTIONS := \
 	ubuntu_20.04 \
 	ubuntu_22.04 \
 	ubuntu_22.10 \
-	fedora_35 \
 	fedora_36 \
 	fedora_37 \
-	opensuse-leap_15.3 \
 	opensuse-leap_15.4 \
 	snap
 
@@ -191,6 +189,7 @@ $(1)-docker-image-name := jami-packaging-$(1)
 $(1)-docker-image-file := .docker-image-$$($(1)-docker-image-name)
 $(1)-docker-run-command := docker run \
   --rm --privileged --security-opt apparmor=docker-default \
+  --user $(CURRENT_UID):$(CURRENT_GID) \
   -e RELEASE_VERSION="$(RELEASE_VERSION)" \
   -e RELEASE_TARBALL_FILENAME="$(RELEASE_TARBALL_FILENAME)" \
   -e DEBIAN_VERSION="$(DEBIAN_VERSION)" \
