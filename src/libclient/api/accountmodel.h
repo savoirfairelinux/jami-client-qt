@@ -73,6 +73,7 @@ public:
      * Should contains the full directory with the end marker (/ on linux for example)
      */
     QString downloadDirectory;
+    QString screenshotDirectory;
     /**
      * Accept transfer from trusted contacts
      */
