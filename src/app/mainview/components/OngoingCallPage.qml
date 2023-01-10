@@ -166,7 +166,9 @@ Rectangle {
                 onTapped: function (eventPoint, button) {
                     if (button === Qt.RightButton) {
                         callOverlay.openCallViewContextMenuInPos(eventPoint.position.x,
-                                                                 eventPoint.position.y)
+                                                                 eventPoint.position.y,
+                                                                 participantsLayer.hoveredOverlayUri,
+                                                                 participantsLayer.hoveredOverlaySinkId)
                     }
                 }
             }
@@ -184,6 +186,7 @@ Rectangle {
 
             ParticipantsLayer {
                 id: participantsLayer
+
                 anchors.fill: parent
                 anchors.centerIn: parent
                 anchors.margins: 1
@@ -193,7 +196,6 @@ Rectangle {
 
             LocalVideo {
                 id: previewRenderer
-
                 visible: (CurrentCall.isSharing || !CurrentCall.isVideoMuted)
                          && !CurrentCall.isConference
 
@@ -328,6 +330,11 @@ Rectangle {
                         if (interactionType !== Interaction.Type.CALL && !inCallMessageWebViewStack.visible)
                             openInCallConversation()
                     }
+                }
+                onCloseClicked: {
+                    participantsLayer.hoveredOverlayUri = ""
+                    participantsLayer.hoveredOverlaySinkId = ""
+                    console.warn("closed")
                 }
 
                 onChatButtonClicked: {

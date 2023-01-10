@@ -38,6 +38,9 @@ ContextMenuAutoLoader {
     signal recordCallClicked
     signal openSelectionWindow
 
+    property string hoveredOverlayUri: ""
+    property string hoveredOverlaySinkId: ""
+
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: resumePauseCall
@@ -193,6 +196,27 @@ ContextMenuAutoLoader {
             onClicked: {
                 CallAdapter.startTimerInformation();
                 callInformationWindow.show()
+            }
+        },
+        GeneralMenuItem {
+            id: screenShot
+
+            canTrigger: hoveredOverlayUri != ""
+            itemName: JamiStrings.screenshotParticipant
+            iconSource: JamiResources.baseline_camera_alt_24dp_svg
+
+            MaterialToolTip {
+                parent: screenShot
+                visible: screenShot.itemHovered
+                delay: Qt.styleHints.mousePressAndHoldInterval
+                property bool isMe: CurrentAccount.uri === hoveredOverlayUri
+                text: isMe ? "("+ JamiStrings.me +")"
+                           : "(" + UtilsAdapter.getBestNameForUri(CurrentAccount.id, hoveredOverlayUri) + ")"
+            }
+
+            onClicked: {
+                var success = CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId))
+                console.warn("screenshot succes: ", success)
             }
         }
     ]

@@ -94,6 +94,8 @@ public:
     Q_INVOKABLE QString getCallDurationTime(const QString& accountId, const QString& convUid);
     Q_INVOKABLE void updateAdvancedInformation();
 
+    Q_INVOKABLE bool takeScreenshot(QImage& image);
+
 Q_SIGNALS:
     void callStatusChanged(int index, const QString& accountId, const QString& convUid);
     void callInfosChanged(const QVariant& infos, const QString& accountId, const QString& convUid);
