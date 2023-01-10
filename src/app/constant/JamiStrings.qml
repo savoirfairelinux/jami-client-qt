@@ -298,6 +298,10 @@ Item {
     property string lowerHand: qsTr("Lower hand")
     property string raiseHand: qsTr("Raise hand")
     property string layoutSettings: qsTr("Layout settings")
+    property string screenshotParticipant: qsTr("screenshot participant")
+    property string screenshotTaken: qsTr("screenshot of %1 view")
+    property string view: qsTr("view")
+
 
     //advanced information
     property string renderersInformation: qsTr("Renderers information")
@@ -508,6 +512,8 @@ Item {
     // Context Menu
     property string saveFile: qsTr("Save file")
     property string openLocation: qsTr("Open location")
+    property string me: qsTr("me")
+    property string yourOwn: qsTr("your own")
 
     // Updates
     property string betaInstall: qsTr("Install beta version")
@@ -538,7 +544,8 @@ Item {
     // Recording Settings
     property string tipRecordFolder: qsTr("Select a record directory")
     property string quality: qsTr("Quality")
-    property string saveIn: qsTr("Save in")
+    property string saveIn: qsTr("Save recording in")
+    property string saveScreenshotIn: qsTr("Save screenshots in")
     property string callRecording: qsTr("Call Recording")
     property string alwaysRecordCalls: qsTr("Always record calls")
 
