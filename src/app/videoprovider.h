@@ -46,6 +46,7 @@ public:
     Q_INVOKABLE void registerSink(const QString& id, QVideoSink* obj);
     Q_INVOKABLE void unregisterSink(QVideoSink* obj);
     Q_INVOKABLE QString captureVideoFrame(const QString& id);
+    Q_INVOKABLE QImage captureRawVideoFrame(const QString& id);
 
 private Q_SLOTS:
     void onRendererStarted(const QString& id, const QSize& size);
