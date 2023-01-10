@@ -1145,6 +1145,28 @@ CallAdapter::updateAdvancedInformation()
     }
 }
 
+bool
+CallAdapter::takeScreenshot(QImage& image, QString& path)
+{
+    QString name = QObject::tr("Screenshot") + " "
+                   + QLocale::system().toString(QDate::currentDate(), QLocale::system().ShortFormat)
+                   + " "
+                   + QLocale::system().toString(QTime::currentTime(), QLocale::system().LongFormat);
+
+    bool fileAlreadyExists = true;
+    int nb = 0;
+    QString filePath = path + name;
+    while (fileAlreadyExists) {
+        filePath = path + name;
+        if (nb)
+            filePath = filePath + "(" + QString::number(nb) + ")";
+        QFileInfo check_file(filePath);
+        fileAlreadyExists = check_file.exists() & check_file.isFile();
+        nb++;
+    }
+    return image.save(filePath, "PNG");
+}
+
 void
 CallAdapter::preventScreenSaver(bool state)
 {
