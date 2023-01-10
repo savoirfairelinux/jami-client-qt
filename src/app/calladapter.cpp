@@ -553,7 +553,7 @@ CallAdapter::fillParticipantData(QJsonObject& participant) const
     auto uri = participant[URI].toString();
     participant[ISLOCAL] = false;
     if (uri == accInfo.profileInfo.uri && participant[DEVICE] == getCurrentDeviceId(accInfo)) {
-        participant[BESTNAME] = tr("me");
+        participant[BESTNAME] = tr("Me");
         participant[ISLOCAL] = true;
     } else {
         try {
@@ -1143,6 +1143,27 @@ CallAdapter::updateAdvancedInformation()
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
+}
+
+bool
+CallAdapter::takeScreenshot(const QImage& image, const QString& path)
+{
+    QString name = QString("%1 %2")
+                       .arg(tr("Screenshot"))
+                       .arg(QDateTime::currentDateTime().toString(Qt::ISODate));
+
+    bool fileAlreadyExists = true;
+    int nb = 0;
+    QString filePath = QString("%1%2.png").arg(path).arg(name);
+    while (fileAlreadyExists) {
+        filePath = QString("%1%2.png").arg(path).arg(name);
+        if (nb)
+            filePath = QString("%1(%2).png").arg(filePath).arg(QString::number(nb));
+        QFileInfo check_file(filePath);
+        fileAlreadyExists = check_file.exists() && check_file.isFile();
+        nb++;
+    }
+    return image.save(filePath, "PNG");
 }
 
 void

@@ -39,6 +39,7 @@ Item {
 
     signal chatButtonClicked
     signal fullScreenClicked
+    signal closeClicked
 
     function closeContextMenuAndRelatedWindows() {
         ContactPickerCreation.closeContactPicker()
@@ -46,14 +47,22 @@ Item {
         SelectScreenWindowCreation.destroySelectScreenWindow()
         ScreenRubberBandCreation.destroyScreenRubberBandWindow()
         PluginHandlerPickerCreation.closePluginHandlerPicker()
+        root.closeClicked()
         callInformationOverlay.close()
     }
 
     // x, y position does not need to be translated
     // since they all fill the call page
-    function openCallViewContextMenuInPos(x, y) {
+    function openCallViewContextMenuInPos(x, y,
+                                          hoveredOverlayUri,
+                                          hoveredOverlaySinkId,
+                                          hoveredOverVideoMuted)
+    {
         callViewContextMenu.x = x
         callViewContextMenu.y = y
+        callViewContextMenu.hoveredOverlayUri = hoveredOverlayUri
+        callViewContextMenu.hoveredOverlaySinkId = hoveredOverlaySinkId
+        callViewContextMenu.hoveredOverVideoMuted = hoveredOverVideoMuted
         callViewContextMenu.openMenu()
     }
 
@@ -171,10 +180,16 @@ Item {
 
         onTransferCallButtonClicked: openContactPicker(ContactList.TRANSFER)
         onPluginItemClicked: openPluginsMenu()
+        onScreenshotTaken: {
+            toastManager.instantiateToast();
+        }
         onRecordCallClicked: CallAdapter.recordThisCallToggle()
         onOpenSelectionWindow: {
             SelectScreenWindowCreation.createSelectScreenWindowObject(appWindow)
             SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, windowSelection)
+        }
+        onScreenshotButtonHoveredChanged: {
+            participantsLayer.screenshotButtonHovered = screenshotButtonHovered
         }
     }
 }
