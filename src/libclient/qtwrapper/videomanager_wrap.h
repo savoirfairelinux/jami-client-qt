@@ -126,7 +126,7 @@ public Q_SLOTS: // METHODS
     QString openVideoInput(const QString& resource)
     {
 #ifdef ENABLE_VIDEO
-        return QByteArray::fromStdString(libjami::openVideoInput(resource.toLatin1().toStdString()));
+        return QString::fromLatin1(QByteArray::fromStdString(libjami::openVideoInput(resource.toStdString())));
 #endif
     }
 
