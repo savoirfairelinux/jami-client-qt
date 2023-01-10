@@ -28,29 +28,50 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 ColumnLayout {
-    id:root
+    id: root
 
     property int itemWidth
     property string recordPath: AVModel.getRecordPath()
+    property string screenshotPath: UtilsAdapter.getDirScreenshot()
 
     onRecordPathChanged: {
-        if(recordPath === "") return
+        if(recordPath === "")
+            return
 
-        if(AVModel){
+        if(AVModel) {
             AVModel.setRecordPath(recordPath)
         }
+    }
+
+    onScreenshotPathChanged: {
+        if (screenshotPath === "")
+            return
+        UtilsAdapter.setScreenshotPath(screenshotPath)
     }
 
     FolderDialog {
         id: recordPathDialog
 
         title: JamiStrings.selectFolder
-        currentFolder: StandardPaths.writableLocation(StandardPaths.HomeLocation)
+        currentFolder: UtilsAdapter.getDirScreenshot()
         options: FolderDialog.ShowDirsOnly
 
         onAccepted: {
             var dir = UtilsAdapter.getAbsPath(folder.toString())
             recordPath = dir
+        }
+    }
+
+    FolderDialog {
+        id: screenshotPathDialog
+
+        title: JamiStrings.selectFolder
+        currentFolder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
+        options: FolderDialog.ShowDirsOnly
+
+        onAccepted: {
+            var dir = UtilsAdapter.getAbsPath(folder.toString())
+            screenshotPath = dir
         }
     }
 
@@ -197,6 +218,43 @@ ColumnLayout {
             pressedColor: JamiTheme.buttonTintedGreyPressed
 
             onClicked: recordPathDialog.open()
+        }
+    }
+
+    RowLayout {
+        Layout.fillWidth: true
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+        Layout.leftMargin: JamiTheme.preferredMarginSize
+
+        Label {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            text: JamiStrings.saveScreenshotIn
+            color: JamiTheme.textColor
+            font.pointSize: JamiTheme.settingsFontSize
+            font.kerning: true
+
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        MaterialButton {
+            id: screenshotPathButton
+
+            Layout.alignment: Qt.AlignRight
+
+            preferredWidth: itemWidth
+            preferredHeight: JamiTheme.preferredFieldHeight
+
+            toolTipText: UtilsAdapter.getDirScreenshot()
+            text: screenshotPath
+            iconSource: JamiResources.round_folder_24dp_svg
+            color: JamiTheme.buttonTintedGrey
+            hoveredColor: JamiTheme.buttonTintedGreyHovered
+            pressedColor: JamiTheme.buttonTintedGreyPressed
+
+            onClicked: screenshotPathDialog.open()
         }
     }
 }
