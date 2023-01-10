@@ -62,7 +62,9 @@ RowLayout {
 
             anchors.centerIn: parent
 
-            text: shortcut
+            text: shortcut2 === "" ?
+                      shortcut :
+                      shortcut + " + " + shortcut2
             font.pointSize: JamiTheme.textFontSize + 3
             font.weight: Font.DemiBold
             color: JamiTheme.textColor

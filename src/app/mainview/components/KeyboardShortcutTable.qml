@@ -40,42 +40,52 @@ Window {
 
         ListElement {
             shortcut: "Ctrl + J"
+            shortcut2: ""
             description: qsTr("Open account list")
         }
         ListElement {
             shortcut: "Ctrl + L"
+            shortcut2: ""
             description: qsTr("Focus conversations list")
         }
         ListElement {
             shortcut: "Ctrl + R"
+            shortcut2: ""
             description: qsTr("Requests list")
         }
         ListElement {
             shortcut: "Ctrl + ↑"
+            shortcut2: ""
             description: qsTr("Previous conversation")
         }
         ListElement {
             shortcut: "Ctrl + ↓"
+            shortcut2: ""
             description: qsTr("Next conversation")
         }
         ListElement {
             shortcut: "Ctrl + F"
+            shortcut2: ""
             description: qsTr("Search bar")
         }
         ListElement {
             shortcut: "F11"
+            shortcut2: ""
             description: qsTr("Full screen")
         }
         ListElement {
             shortcut: "Ctrl + +"
+            shortcut2: ""
             description: qsTr("Increase font size")
         }
         ListElement {
             shortcut: "Ctrl + -"
+            shortcut2: ""
             description: qsTr("Decrease font size")
         }
         ListElement {
             shortcut: "Ctrl + 0"
+            shortcut2: ""
             description: qsTr("Reset font size")
         }
     }
@@ -85,34 +95,42 @@ Window {
 
         ListElement {
             shortcut: "Ctrl + Shift + C"
+            shortcut2: ""
             description: qsTr("Start an audio call")
         }
         ListElement {
             shortcut: "Ctrl + Shift + X"
+            shortcut2: ""
             description: qsTr("Start a video call")
         }
         ListElement {
             shortcut: "Ctrl + Shift + L"
+            shortcut2: ""
             description: qsTr("Clear history")
         }
         ListElement {
             shortcut: "Ctrl + Shift + B"
+            shortcut2: ""
             description: qsTr("Block contact")
         }
         ListElement {
             shortcut: "Ctrl + Shift + Delete"
+            shortcut2: ""
             description: qsTr("Remove conversation")
         }
         ListElement {
             shortcut: "Shift + Ctrl + A"
+            shortcut2: ""
             description: qsTr("Accept contact request")
         }
         ListElement {
             shortcut: "↑"
+            shortcut2: ""
             description: qsTr("Edit last message")
         }
         ListElement {
             shortcut: "Esc"
+            shortcut2: ""
             description: qsTr("Cancel message edition")
         }
     }
@@ -122,26 +140,32 @@ Window {
 
         ListElement {
             shortcut: "Ctrl + M"
+            shortcut2: ""
             description: qsTr("Media settings")
         }
         ListElement {
             shortcut: "Ctrl + G"
+            shortcut2: ""
             description: qsTr("General settings")
         }
         ListElement {
             shortcut: "Ctrl + I"
+            shortcut2: ""
             description: qsTr("Account settings")
         }
         ListElement {
             shortcut: "Ctrl + P"
+            shortcut2: ""
             description: qsTr("Plugin settings")
         }
         ListElement {
             shortcut: "Ctrl + Shift + N"
+            shortcut2: ""
             description: qsTr("Open account creation wizard")
         }
         ListElement {
             shortcut: "F10"
+            shortcut2: ""
             description: qsTr("Open keyboard shortcut table")
         }
     }
@@ -151,23 +175,33 @@ Window {
 
         ListElement {
             shortcut: "Ctrl + Y"
+            shortcut2: ""
             description: qsTr("Answer an incoming call")
         }
         ListElement {
             shortcut: "Ctrl + D"
+            shortcut2: ""
             description: qsTr("End call")
         }
         ListElement {
             shortcut: "Ctrl + Shift + D"
+            shortcut2: ""
             description: qsTr("Decline the call request")
         }
         ListElement {
             shortcut: "M"
+            shortcut2: ""
             description: qsTr("Mute microphone")
         }
         ListElement {
             shortcut: "V"
+            shortcut2: ""
             description: qsTr("Stop camera")
+        }
+        ListElement {
+            shortcut: "Ctrl"
+            shortcut2: qsTr("Middle click")
+            description: qsTr("Take tile screenshot")
         }
     }
 

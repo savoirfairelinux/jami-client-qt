@@ -98,6 +98,8 @@ public:
     Q_INVOKABLE void setCallInfo();
     Q_INVOKABLE void updateAdvancedInformation();
 
+    Q_INVOKABLE bool takeScreenshot(const QImage &image, const QString &path);
+
 Q_SIGNALS:
     void callStatusChanged(int index, const QString& accountId, const QString& convUid);
     void callInfosChanged(const QVariant& infos, const QString& accountId, const QString& convUid);
