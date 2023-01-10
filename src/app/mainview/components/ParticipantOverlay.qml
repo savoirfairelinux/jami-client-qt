@@ -67,6 +67,8 @@ Item {
     property string muteAlertMessage: ""
     property bool muteAlertActive: false
 
+    signal participantHovered(isHovered: bool)
+
     onMuteAlertActiveChanged: {
         if (muteAlertActive) {
             alertTimer.restart()
@@ -109,7 +111,6 @@ Item {
         anchors.margins: 2
         rendererId: root.sinkId
         crop: !participantIsActive
-
         underlayItems: Avatar {
             property real componentSize: Math.min(mediaDistRender.contentRect.width / 2, mediaDistRender.contentRect.height / 2)
             height:  componentSize
@@ -147,11 +148,13 @@ Item {
                 }
 
                 onHoveredChanged: {
+                    root.participantHovered(overlayMenu.hovered)
                     if (overlayMenu.hovered) {
                         participantRect.opacity = 1
                         fadeOutTimer.restart()
                         return
                     }
+
                     participantRect.opacity = hovered ? 1 : 0
                 }
             }

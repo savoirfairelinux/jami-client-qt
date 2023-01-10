@@ -37,6 +37,8 @@ Item {
     property bool inLine: CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL
     property bool participantsSide
     property bool enableHideSpectators: CallParticipantsModel.count > 1 && CurrentCall.hideSpectators
+    property string hoveredOverlayUri: ""
+    property string hoveredOverlaySinkId: ""
 
     onVisibleChanged: {
         CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
@@ -69,6 +71,19 @@ Item {
             isRecording: isRecording_
             participantIsModeratorMuted: audioModeratorMuted_
             participantHandIsRaised: isHandRaised_
+
+            onParticipantHovered: function(isHovered) {
+                if (isHovered) {
+                    hoveredOverlayUri = overlay.uri
+                    hoveredOverlaySinkId = overlay.sinkId
+                }
+                else {
+                    if (hoveredOverlayUri === overlay.uri) {
+                        hoveredOverlayUri = ""
+                        hoveredOverlaySinkId = ""
+                    }
+                }
+            }
 
             Connections {
                 id: registeredNameFoundConnection

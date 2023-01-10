@@ -298,6 +298,9 @@ Item {
     property string lowerHand: qsTr("Lower hand")
     property string raiseHand: qsTr("Raise hand")
     property string layoutSettings: qsTr("Layout settings")
+    property string screenshotParticipant: qsTr("screenshot participant")
+    property string view: qsTr("view")
+
 
     //advanced information
     property string renderersInformation: qsTr("Renderers information")
@@ -508,6 +511,7 @@ Item {
     // Context Menu
     property string saveFile: qsTr("Save file")
     property string openLocation: qsTr("Open location")
+    property string me: qsTr("me")
 
     // Updates
     property string betaInstall: qsTr("Install beta version")
