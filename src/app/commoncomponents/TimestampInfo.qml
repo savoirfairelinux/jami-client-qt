@@ -37,8 +37,8 @@ ColumnLayout {
 
     Connections {
         target: MessagesAdapter.messageListModel
-        function onTimestampUpdate() {
-            if (showTime || showDay) {
+        function onTimestampUpdated() {
+            if ((showTime || showDay) && Timestamp !== undefined) {
                 formattedTime = MessagesAdapter.getFormattedTime(Timestamp)
             }
         }
