@@ -1,5 +1,9 @@
 FROM opensuse/leap:15.4
 
+ARG DOCKER_USER=jenkins
+ARG UID=1000
+ARG GID=1000
+
 RUN zypper refresh
 
 RUN zypper --non-interactive install -y \
@@ -97,10 +101,18 @@ RUN zypper --non-interactive install -y \
         gstreamer-plugins-bad-devel \
         gstreamer-plugins-base-devel \
         cmake \
+        sudo \
         wget
 
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 50
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 50
+
+RUN groupadd -g ${GID} ${DOCKER_USER} || true
+RUN useradd -m -u "${UID}" -g "${GID}" "${DOCKER_USER}"
+RUN usermod -a -G sudo ${DOCKER_USER}
+RUN chown -R ${UID}:${GID} /opt
+USER ${DOCKER_USER}
+WORKDIR /home/${DOCKER_USER}
 
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 

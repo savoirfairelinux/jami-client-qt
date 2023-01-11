@@ -213,6 +213,9 @@ $(1)-docker-run-command := docker run \
 
 $$($(1)-docker-image-file): extras/packaging/gnu-linux/docker/Dockerfile_$(1)
 	docker build \
+	  --build-arg DOCKER_USER=${USER} \
+      --build-arg UID=$(CURRENT_UID) \
+	  --build-arg GID=$(CURRENT_GID) \
 	  -t $$($(1)-docker-image-name) \
 	  -f extras/packaging/gnu-linux/docker/Dockerfile_$(1) $(2) $(CURDIR) && \
 	touch "$$@"

@@ -1,5 +1,9 @@
 FROM fedora:37
 
+ARG DOCKER_USER=jenkins
+ARG UID=1000
+ARG GID=1000
+
 RUN dnf clean all
 
 RUN dnf install -y dnf-command\(builddep\) rpmdevtools && \
@@ -96,7 +100,15 @@ RUN dnf install -y \
         libxshmfence-devel \
         ninja-build \
         clang \
+        sudo \
         cmake
+
+RUN groupadd -g ${GID} ${DOCKER_USER} || true
+RUN useradd -m -u "${UID}" -g "${GID}" "${DOCKER_USER}"
+RUN usermod -a -G sudo ${DOCKER_USER}
+RUN chown -R ${UID}:${GID} /opt
+USER ${DOCKER_USER}
+WORKDIR /home/${DOCKER_USER}
 
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 
