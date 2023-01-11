@@ -171,7 +171,7 @@ private:
     void insertMessage(int index, item_t& message);
     iterator insertMessage(iterator it, item_t& message);
     void removeMessage(int index, iterator it);
-    void moveMessage(int from, int to);
+    void moveMessages(int from, int last, int to);
 
     QTimer* timestampTimer_ {nullptr};
 };
