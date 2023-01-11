@@ -8,6 +8,7 @@ RUN apt-get update && \
         devscripts \
         equivs \
         python-is-python3 \
+        sudo \
         wget
 
 ADD extras/packaging/gnu-linux/scripts/prebuild-package-debian.sh /opt/prebuild-package-debian.sh
@@ -24,6 +25,11 @@ RUN /opt/install-cmake.sh
 # nodejs
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt install nodejs -y
+
+RUN chown -R ${UID}:${GID} /opt
+RUN useradd -m ${DOCKER_USER}
+RUN usermod -a -G sudo ${DOCKER_USER}
+WORKDIR /home/${DOCKER_USER}
 
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
 CMD ["/opt/build-package-debian.sh"]

@@ -193,6 +193,7 @@ $(1)-docker-run-command := docker run \
   -e RELEASE_TARBALL_FILENAME="$(RELEASE_TARBALL_FILENAME)" \
   -e DEBIAN_VERSION="$(DEBIAN_VERSION)" \
   -e DEBIAN_QT_VERSION="$(DEBIAN_QT_VERSION)" \
+  --user $(CURRENT_UID):$(CURRENT_GID) \
   -e CURRENT_UID="$(CURRENT_UID)" \
   -e CURRENT_GID="$(CURRENT_GID)" \
   -e DISTRIBUTION="$(1)" \
@@ -213,6 +214,9 @@ $(1)-docker-run-command := docker run \
 
 $$($(1)-docker-image-file): extras/packaging/gnu-linux/docker/Dockerfile_$(1)
 	docker build \
+	  --build-arg USER=${DOCKER_USER} \
+      --build-arg UID=$(CURRENT_UID) \
+	  --build-arg GID=$(CURRENT_GID) \
 	  -t $$($(1)-docker-image-name) \
 	  -f extras/packaging/gnu-linux/docker/Dockerfile_$(1) $(2) $(CURDIR) && \
 	touch "$$@"
