@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d59de965_0e4ba1ff",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-01-11T17:22:43Z",
+      "side": 1,
+      "message": "this should be now called `moveMessages`",
+      "range": {
+        "startLine": 302,
+        "startChar": 4,
+        "endLine": 302,
+        "endChar": 15
+      },
+      "revId": "48d64438c613bf29125e16f2cf9fb2ae309c5f29",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b32c070_f3a3b319",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-01-11T17:22:43Z",
+      "side": 1,
+      "message": "this parameter is deduced from the first 3 parameters, has no default value; could just be inside the method",
+      "range": {
+        "startLine": 302,
+        "startChar": 66,
+        "endLine": 302,
+        "endChar": 76
+      },
+      "revId": "48d64438c613bf29125e16f2cf9fb2ae309c5f29",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
