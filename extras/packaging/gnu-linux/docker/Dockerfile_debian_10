@@ -2,6 +2,10 @@ FROM debian:buster
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+ARG USER=jenkins
+ARG UID=1000
+ARG GID=1000
+
 RUN apt-get clean
 RUN apt-get update -y
 RUN apt-get install -y -o Acquire::Retries=10 \
@@ -32,6 +36,11 @@ ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
 RUN /opt/install-cmake.sh
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt install nodejs -y
+
+RUN chown -R ${UID}:${GID} /opt
+RUN useradd -m $USER
+RUN adduser $USER sudo
+WORKDIR /home/${USER}
 
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
 

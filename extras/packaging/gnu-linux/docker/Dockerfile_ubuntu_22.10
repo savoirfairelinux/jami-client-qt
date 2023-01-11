@@ -18,5 +18,10 @@ RUN /opt/prebuild-package-debian.sh qt-deps
 COPY extras/packaging/gnu-linux/rules/debian/control /tmp/builddeps/debian/control
 RUN /opt/prebuild-package-debian.sh jami-deps
 
+RUN chown -R ${UID}:${GID} /opt
+RUN useradd -m $USER
+RUN adduser $USER sudo
+WORKDIR /home/${USER}
+
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
 CMD ["/opt/build-package-debian.sh"]
