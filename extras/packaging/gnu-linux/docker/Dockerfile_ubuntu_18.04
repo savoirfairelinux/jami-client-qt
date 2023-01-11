@@ -2,6 +2,10 @@ FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+ARG USER=jenkins
+ARG UID=1000
+ARG GID=1000
+
 RUN apt-get clean
 RUN apt-get update && \
     apt-get install -y -o Acquire::Retries=10 \
@@ -35,6 +39,10 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10
 # Install CMake 3.19 for Qt 6
 ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
 RUN /opt/install-cmake.sh
+
+ARG USER=jenkins
+ARG UID=1000
+ARG GID=1000
 
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
 CMD ["/opt/build-package-debian.sh"]

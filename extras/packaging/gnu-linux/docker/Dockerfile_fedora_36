@@ -1,5 +1,9 @@
 FROM fedora:36
 
+ARG USER=jenkins
+ARG UID=1000
+ARG GID=1000
+
 RUN dnf clean all
 
 RUN dnf install -y dnf-command\(builddep\) rpmdevtools && \
@@ -97,6 +101,9 @@ RUN dnf install -y \
         ninja-build \
         clang \
         cmake
+
+USER ${UID}:${GID}
+WORKDIR /home/${USER}
 
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 

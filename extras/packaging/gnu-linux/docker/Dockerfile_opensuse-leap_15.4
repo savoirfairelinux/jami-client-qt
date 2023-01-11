@@ -1,5 +1,9 @@
 FROM opensuse/leap:15.4
 
+ARG USER=jenkins
+ARG UID=1000
+ARG GID=1000
+
 RUN zypper refresh
 
 RUN zypper --non-interactive install -y \
@@ -101,6 +105,9 @@ RUN zypper --non-interactive install -y \
 
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 50
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 50
+
+USER ${UID}:${GID}
+WORKDIR /home/${USER}
 
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 
