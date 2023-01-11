@@ -1,9 +1,5 @@
 FROM opensuse/leap:15.4
 
-ARG USER=jenkins
-ARG UID=1000
-ARG GID=1000
-
 RUN zypper refresh
 
 RUN zypper --non-interactive install -y \

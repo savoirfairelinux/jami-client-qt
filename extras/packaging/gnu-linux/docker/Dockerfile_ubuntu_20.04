@@ -25,10 +25,5 @@ RUN /opt/install-cmake.sh
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt install nodejs -y
 
-RUN chown -R ${UID}:${GID} /opt
-RUN adduser ${USER} sudo
-USER ${UID}:${GID}
-WORKDIR /home/${USER}
-
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
 CMD ["/opt/build-package-debian.sh"]

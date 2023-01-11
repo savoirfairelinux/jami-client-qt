@@ -104,7 +104,7 @@ ${QT_MAJOR}.${QT_MINOR}/${qt_version}/single
 fi
 
 # install libqt-jami from cache
-sudo apt-get install -y "${qt_deb_path}"
+apt-get install -y "${qt_deb_path}"
 
 # copy libqt-jami to output
 cp "${qt_deb_path}" /opt/output/
