@@ -297,12 +297,8 @@ MessageListModel::moveMessage(const QString& msgId, const QString& parentId)
     if (currentIndex == newIndex || newIndex == -1)
         return;
 
-    moveMessage(currentIndex, newIndex);
-
-    // move a child message
-    if (!childMessageIdToMove.isEmpty()) {
-        moveMessage(childMessageIdToMove, msgId);
-    }
+    // Pretty every messages is moved
+    moveMessages(currentIndex, interactions_.size() - 1, newIndex);
 }
 
 void
@@ -351,11 +347,23 @@ MessageListModel::removeMessage(int index, iterator it)
 }
 
 void
-MessageListModel::moveMessage(int from, int to)
+MessageListModel::moveMessages(int from, int last, int to)
 {
-    Q_EMIT beginMoveRows(QModelIndex(), from, from, QModelIndex(), to);
-    interactions_.move(from, to);
-    Q_EMIT endMoveRows();
+    auto resetModel = (from <= 2 && last == interactions_.size() - 1);
+    if (last < from)
+        return;
+    if (resetModel) {
+        Q_EMIT beginResetModel();
+    } else {
+        Q_EMIT beginMoveRows(QModelIndex(), from, last, QModelIndex(), to);
+    }
+    for (int i = 0; i < (last - from); ++i)
+        interactions_.move(last, to);
+    if (resetModel) {
+        Q_EMIT endResetModel();
+    } else {
+        Q_EMIT endMoveRows();
+    }
 }
 
 bool
