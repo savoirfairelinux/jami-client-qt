@@ -39,7 +39,7 @@ MessageListModel::MessageListModel(QObject* parent)
     : QAbstractListModel(parent)
     , timestampTimer_(new QTimer(this))
 {
-    connect(timestampTimer_, &QTimer::timeout, this, &MessageListModel::timestampUpdate);
+    connect(timestampTimer_, &QTimer::timeout, this, &MessageListModel::timestampUpdated);
     timestampTimer_->start(1000);
 }
 

@@ -134,7 +134,7 @@ public:
     void emitDataChanged(const QString& msgId, VectorInt roles = {});
     bool isOnlyEmoji(const QString& text) const;
 
-    Q_SIGNAL void timestampUpdate();
+    Q_SIGNAL void timestampUpdated();
 
     void addEdition(const QString& msgId, const interaction::Info& info, bool end);
     void addReaction(const QString& messageId, const QString& reactionId);
