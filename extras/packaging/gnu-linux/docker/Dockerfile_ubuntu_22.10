@@ -2,6 +2,10 @@ FROM ubuntu:22.10
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+ARG USER=jenkins
+ARG UID=1000
+ARG GID=1000
+
 RUN apt-get clean
 RUN apt-get update && \
     apt-get install -y -o Acquire::Retries=10 \
@@ -17,6 +21,10 @@ RUN /opt/prebuild-package-debian.sh qt-deps
 
 COPY extras/packaging/gnu-linux/rules/debian/control /tmp/builddeps/debian/control
 RUN /opt/prebuild-package-debian.sh jami-deps
+
+RUN chown -R ${UID}:${GID} /opt
+USER ${UID}:${GID}
+WORKDIR /home/${USER}
 
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
 CMD ["/opt/build-package-debian.sh"]

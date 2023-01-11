@@ -27,6 +27,7 @@ RUN /opt/prebuild-package-debian.sh jami-deps
 ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
 RUN /opt/install-cmake.sh
 
+RUN chown -R ${UID}:${GID} /opt
 USER ${UID}:${GID}
 WORKDIR /home/${USER}
 

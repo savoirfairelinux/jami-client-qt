@@ -102,6 +102,7 @@ RUN dnf install -y \
         clang \
         cmake
 
+RUN chown -R ${UID}:${GID} /opt
 USER ${UID}:${GID}
 WORKDIR /home/${USER}
 

@@ -132,5 +132,3 @@ dpkg-buildpackage -b -uc -us ${DPKG_BUILD_OPTIONS}
 
 # Move the artifacts to the output.
 mv ../*deb /opt/output        # .deb and .ddeb packages
-chown -R "${CURRENT_UID}:${CURRENT_UID}" /opt/output
-chown -R "${CURRENT_UID}:${CURRENT_UID}" .

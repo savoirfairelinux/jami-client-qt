@@ -37,6 +37,7 @@ RUN /opt/install-cmake.sh
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt install nodejs -y
 
+RUN chown -R ${UID}:${GID} /opt
 USER ${UID}:${GID}
 WORKDIR /home/${USER}
 
