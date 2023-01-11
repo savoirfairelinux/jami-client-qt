@@ -1,5 +1,9 @@
 FROM fedora:37
 
+ARG USER=jenkins
+ARG UID=1000
+ARG GID=1000
+
 RUN dnf clean all
 
 RUN dnf install -y dnf-command\(builddep\) rpmdevtools && \

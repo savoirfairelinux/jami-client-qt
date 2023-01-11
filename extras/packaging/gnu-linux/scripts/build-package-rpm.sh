@@ -143,8 +143,8 @@ rpmbuild --define "debug_package %{nil}" -ba jami.spec
 # Move the built packages to the output directory.
 mv /root/rpmbuild/RPMS/*/* /opt/output
 touch /opt/output/.packages-built
-chown -R "$CURRENT_UID:$CURRENT_UID" /opt/output
 chown -R "${CURRENT_UID}:${CURRENT_UID}" .
+chown -R "$CURRENT_UID:$CURRENT_UID" /opt/output
 
 # TODO: One click install: create a package that combines the already
 # built package into one.
