@@ -34,9 +34,9 @@ rm jami-libqt.spec
 rpmdev-setuptree
 
 # Copy the source tarball.
-cp --reflink=auto "/src/$RELEASE_TARBALL_FILENAME" /root/rpmbuild/SOURCES
+cp --reflink=auto "/src/$RELEASE_TARBALL_FILENAME" ${HOME}/rpmbuild/SOURCES
 
-cp patches/0001-qtbug-101201-fatal-error-getcurrenkeyboard.patch /root/rpmbuild/SOURCES/
+cp patches/0001-qtbug-101201-fatal-error-getcurrenkeyboard.patch ${HOME}/rpmbuild/SOURCES/
 
 QT_JAMI_PREFIX="/usr/lib64/qt-jami"
 PATH="${QT_JAMI_PREFIX}/bin:${PATH}"
@@ -93,7 +93,7 @@ if [ ! -f "${RPM_PATH}" ]; then
             ) 8>"${CACHED_QT_TARBALL}.lock"
         fi
 
-        cp "$CACHED_QT_TARBALL" "/root/rpmbuild/SOURCES/jami-qtlib_$QT_MAJOR_MINOR_PATCH.tar.xz"
+        cp "$CACHED_QT_TARBALL" "${HOME}/rpmbuild/SOURCES/jami-qtlib_$QT_MAJOR_MINOR_PATCH.tar.xz"
         sed -i "s/RELEASE_VERSION/$QT_MAJOR_MINOR_PATCH/g" jami-libqt.spec
         rpmdev-bumpspec --comment="Automatic nightly release" \
                         --userstring="Jenkins <jami@lists.savoirfairelinux.net>" jami-libqt.spec
@@ -104,23 +104,23 @@ if [ ! -f "${RPM_PATH}" ]; then
 
         # Cache the built Qt RPM package.
         if [[ "${DISTRIBUTION:0:4}" == "rhel" ]]; then
-            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.el8.x86_64.rpm "${RPM_PATH}"
+            cp ${HOME}/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.el8.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_33" ]]; then
-            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc33.x86_64.rpm "${RPM_PATH}"
+            cp ${HOME}/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc33.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_34" ]]; then
-            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc34.x86_64.rpm "${RPM_PATH}"
+            cp ${HOME}/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc34.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_35" ]]; then
-            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc35.x86_64.rpm "${RPM_PATH}"
+            cp ${HOME}/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc35.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_36" ]]; then
-            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc36.x86_64.rpm "${RPM_PATH}"
+            cp ${HOME}/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc36.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_37" ]]; then
-            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc37.x86_64.rpm "${RPM_PATH}"
+            cp ${HOME}/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc37.x86_64.rpm "${RPM_PATH}"
         else
-            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-*.rpm "${RPM_PATH}"
+            cp ${HOME}/rpmbuild/RPMS/x86_64/jami-libqt-*.rpm "${RPM_PATH}"
         fi
     ) 9>"${RPM_PATH}.lock"
 fi
-rpm --install "${RPM_PATH}"
+sudo rpm --install "${RPM_PATH}"
 cp "${RPM_PATH}" /opt/output
 cd /opt/client-qt
 
@@ -131,7 +131,7 @@ rpmdev-bumpspec --comment="Automatic nightly release" \
 
 # Build the daemon and install it.
 rpmbuild --define "debug_package %{nil}" -ba jami-daemon.spec
-rpm --install /root/rpmbuild/RPMS/x86_64/jami-daemon-*
+sudo rpm --install ${HOME}/rpmbuild/RPMS/x86_64/jami-daemon-*
 
 # Build the temporary transitional packages.
 rpmbuild --define "debug_package %{nil}" -ba jami-libclient.spec
@@ -141,10 +141,10 @@ rpmbuild --define "debug_package %{nil}" -ba jami-qt.spec
 rpmbuild --define "debug_package %{nil}" -ba jami.spec
 
 # Move the built packages to the output directory.
-mv /root/rpmbuild/RPMS/*/* /opt/output
+mv ${HOME}/rpmbuild/RPMS/*/* /opt/output
 touch /opt/output/.packages-built
-chown -R "$CURRENT_UID:$CURRENT_UID" /opt/output
-chown -R "${CURRENT_UID}:${CURRENT_UID}" .
+#chown -R "${CURRENT_UID}:${CURRENT_UID}" .
+#chown -R "$CURRENT_UID:$CURRENT_UID" /opt/output
 
 # TODO: One click install: create a package that combines the already
 # built package into one.

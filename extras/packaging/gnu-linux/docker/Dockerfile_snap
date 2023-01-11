@@ -6,6 +6,10 @@ ARG RISK
 ARG UBUNTU
 RUN echo "Building snapcraft:$RISK in ubuntu:$UBUNTU"
 
+ARG DOCKER_USER=jenkins
+ARG UID=1000
+ARG GID=1000
+
 # Grab dependencies
 RUN apt-get update
 RUN apt-get dist-upgrade --yes
@@ -69,7 +73,7 @@ COPY --from=builder /snap/snapcraft /snap/snapcraft
 COPY --from=builder /snap/bin/snapcraft /snap/bin/snapcraft
 
 # Generate locale and install dependencies.
-RUN apt-get update && apt-get dist-upgrade --yes && apt-get install --yes snapd sudo apt-transport-https locales && locale-gen en_US.UTF-8
+RUN apt-get update && apt-get dist-upgrade --yes && apt-get install --yes snapd sudo apt-transport-https locales sudo && locale-gen en_US.UTF-8
 
 # Set the proper environment.
 ENV LANG="en_US.UTF-8"
@@ -79,6 +83,14 @@ ENV PATH="/snap/bin:/snap/snapcraft/current/usr/bin:/snap/snapcraft/current/libe
 ENV SNAP="/snap/snapcraft/current"
 ENV SNAP_NAME="snapcraft"
 ENV SNAP_ARCH="amd64"
+
+RUN cat /etc/passwd | grep ${GID}
+RUN groupadd -g ${GID} ${DOCKER_USER} || true
+RUN useradd -m -u "${UID}" -g "${GID}" "${DOCKER_USER}"
+RUN usermod -a -G sudo ${DOCKER_USER}
+RUN chown -R ${UID}:${GID} /opt
+USER ${DOCKER_USER}
+WORKDIR /home/${DOCKER_USER}
 
 ADD extras/packaging/gnu-linux/scripts/build-package-snap.sh /opt/build-package-snap.sh
 CMD ["/opt/build-package-snap.sh"]
