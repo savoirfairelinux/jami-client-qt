@@ -478,7 +478,7 @@ UtilsAdapter::supportedLang()
     for (const auto& f : trFiles) {
         auto match = regex.indexIn(f);
         if (regex.capturedTexts().size() == 2) {
-            const auto& l = regex.capturedTexts()[1];
+            auto l = regex.capturedTexts()[1];
             auto nativeName = QLocale(l).nativeLanguageName();
             if (nativeName.isEmpty()) // If a locale doesn't have any nativeLanguageName, ignore it.
                 continue;
@@ -692,7 +692,6 @@ UtilsAdapter::useApplicationTheme()
         return false;
     return isSystemThemeDark();
 }
-
 
 bool
 UtilsAdapter::hasNativeDarkTheme() const
