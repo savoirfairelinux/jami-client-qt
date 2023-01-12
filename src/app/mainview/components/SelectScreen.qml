@@ -42,13 +42,16 @@ Window {
     property string currentPreview: ""
     property var screens: []
     property real componentMinWidth: 200
-    property real componentWidthDoubleColumn: screenSelectionScrollView.width / 2 -
-                                            screenSelectionScrollViewFlow.spacing / 2 - JamiTheme.preferredMarginSize
-    property real componentWidthSingleColumn: screenSelectionScrollView.width -
+    property real componentWidthDoubleColumn: test.width / 2 -
+                                            testFlow.spacing / 2 - JamiTheme.preferredMarginSize
+    property real componentWidthSingleColumn: test.width -
                                               2 * JamiTheme.preferredMarginSize
 
     modality: Qt.ApplicationModal
     title: window ? JamiStrings.selectWindow : JamiStrings.selectScreen
+
+    minimumWidth: 500
+    minimumHeight: 500
 
     // How many rows the ScrollView should have.
     function calculateRepeaterModel() {
@@ -72,11 +75,11 @@ Window {
             selectedScreenNumber = -1
             selectAllScreens = false
         }
-        screenInfo.model = {}
-        screenInfo2.model = {}
+        screenInfoT.model = {}
+        //screenInfo2.model = {}
         calculateRepeaterModel()
-        screenInfo.model = screens.length
-        screenInfo2.model = screens.length
+        screenInfoT.model = screens.length
+        //screenInfo2.model = screens.length
         windowsText.visible = root.window
     }
 
@@ -88,14 +91,45 @@ Window {
         color: JamiTheme.backgroundColor
 
         ScrollView {
+            id: test
+            anchors.fill: parent
+
+            Flow {
+                id: testFlow
+                anchors.fill: parent
+                topPadding: JamiTheme.preferredMarginSize
+                rightPadding: JamiTheme.preferredMarginSize
+                leftPadding: JamiTheme.preferredMarginSize
+
+                spacing: JamiTheme.preferredMarginSize
+                Repeater {
+                    id: screenInfoT
+
+                    model: 3
+
+                    delegate: Rectangle {
+                        id: screenItemT
+
+                        color: "red"
+                        width: componentWidthDoubleColumn > componentMinWidth ? componentWidthDoubleColumn : componentWidthSingleColumn
+                        height: 3 * width / 4
+
+                    }
+                }
+            }
+
+
+        }
+
+        /*ScrollView {
             id: screenSelectionScrollView
 
             anchors.topMargin: JamiTheme.preferredMarginSize
             anchors.horizontalCenter: selectScreenWindowRect.horizontalCenter
 
-            width: selectScreenWindowRect.width
-            height: selectScreenWindowRect.height -
-                    (selectButton.height + JamiTheme.preferredMarginSize * 4)
+            width: Math.max(500, selectScreenWindowRect.width)
+            height: Math.max(500, selectScreenWindowRect.height -
+                    (selectButton.height + JamiTheme.preferredMarginSize * 4))
 
             clip: true
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
@@ -338,7 +372,7 @@ Window {
                     }
                 }
             }
-        }
+        }*/
     }
 
     RowLayout {
