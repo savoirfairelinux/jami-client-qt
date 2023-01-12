@@ -108,6 +108,7 @@ apt-get install -y "${qt_deb_path}"
 
 # copy libqt-jami to output
 cp "${qt_deb_path}" /opt/output/
+chown -R "$CURRENT_UID:$CURRENT_UID" /opt/output
 
 # Set up work directory.
 mkdir -p /jami/work && cd /jami/work

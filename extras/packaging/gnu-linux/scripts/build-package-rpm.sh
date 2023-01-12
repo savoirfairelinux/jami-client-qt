@@ -122,6 +122,7 @@ if [ ! -f "${RPM_PATH}" ]; then
 fi
 rpm --install "${RPM_PATH}"
 cp "${RPM_PATH}" /opt/output
+chown -R "$CURRENT_UID:$CURRENT_UID" /opt/output
 cd /opt/client-qt
 
 # Set the version and associated comment.
