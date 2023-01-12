@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37ff3321_b7814428",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-12T19:06:29Z",
+      "side": 1,
+      "message": "no need for the int, just std::to_string directly?",
+      "range": {
+        "startLine": 623,
+        "startChar": 8,
+        "endLine": 623,
+        "endChar": 27
+      },
+      "revId": "e906c968324ee67e1d92851302465266ea252555",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4284cdbf_5ced54cb",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-12T19:06:29Z",
+      "side": 1,
+      "message": "why not QString::fromStdString(str) ? txtId should only be a number",
+      "range": {
+        "startLine": 625,
+        "startChar": 41,
+        "endLine": 625,
+        "endChar": 95
+      },
+      "revId": "e906c968324ee67e1d92851302465266ea252555",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b8c1419_65623a74",
+        "filename": "src/libclient/qtwrapper/videomanager_wrap.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-12T19:06:29Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 129,
+        "startChar": 21,
+        "endLine": 129,
+        "endChar": 60
+      },
+      "revId": "e906c968324ee67e1d92851302465266ea252555",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
