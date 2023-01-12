@@ -124,8 +124,21 @@ PositionManager::getmapTitle(QString& accountId, QString convId)
     if (!convId.isEmpty() && !accountId.isEmpty()) {
         return lrcInstance_->getAccountInfo(accountId).conversationModel->title(convId);
     }
-    if (!accountId.isEmpty())
-        return lrcInstance_->getAccountInfo(accountId).registeredName;
+
+    if (!accountId.isEmpty()) {
+        auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
+        auto alias = accountInfo.profileInfo.alias;
+        auto registeredName = accountInfo.registeredName;
+        auto uri = accountInfo.profileInfo.uri;
+
+        if (!alias.isEmpty() && !registeredName.isEmpty())
+            return alias + " (" + registeredName + ")";
+        if (!alias.isEmpty())
+            return alias;
+        if (!registeredName.isEmpty())
+            return registeredName;
+        return uri;
+    }
     return {};
 }
 
