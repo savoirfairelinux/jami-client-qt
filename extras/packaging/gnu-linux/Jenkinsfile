@@ -200,6 +200,8 @@ make -f extras/packaging/gnu-linux/Makefile portable-release-tarball .tarball-ve
                                            whoami
                                            tar xf *.tar.gz --strip-components=1
                                            make -f extras/packaging/gnu-linux/Makefile ${target}
+                                           ls -la .
+                                           ls -la extras/packaging/gnu-linux/packages/
                                            """
                                         stash(includes: 'extras/packaging/gnu-linux/packages/**',
                                               name: target)

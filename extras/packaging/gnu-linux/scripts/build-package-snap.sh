@@ -36,4 +36,4 @@ snapcraft # requires snapcraft >= 4.8
 # move the built snap to output
 mv *.snap /opt/output/
 chown -R "${CURRENT_UID}:${CURRENT_UID}" .
-chown ${CURRENT_UID}:${CURRENT_GID} /opt/output/*.snap
+chown -R ${CURRENT_UID}:${CURRENT_GID} /opt/output/

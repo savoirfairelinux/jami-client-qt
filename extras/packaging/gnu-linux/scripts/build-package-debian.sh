@@ -108,6 +108,7 @@ apt-get install -y "${qt_deb_path}"
 
 # copy libqt-jami to output
 cp "${qt_deb_path}" /opt/output/
+chown -R "$CURRENT_UID:$CURRENT_GID" /opt/
 
 # Set up work directory.
 mkdir -p /jami/work && cd /jami/work
@@ -132,5 +133,7 @@ dpkg-buildpackage -b -uc -us ${DPKG_BUILD_OPTIONS}
 
 # Move the artifacts to the output.
 mv ../*deb /opt/output        # .deb and .ddeb packages
-chown -R "${CURRENT_UID}:${CURRENT_UID}" /opt/output
-chown -R "${CURRENT_UID}:${CURRENT_UID}" .
+chown -R "$CURRENT_UID:$CURRENT_GID" /opt/
+chown -R "$CURRENT_UID:$CURRENT_GID" .
+ls -la .
+ls -la /opt/output
