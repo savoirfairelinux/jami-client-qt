@@ -334,7 +334,10 @@ AvAdapter::onRendererStarted(const QString& id, const QSize& size)
 
     // update renderer Information list
     auto& avModel = lrcInstance_->avModel();
-    auto rendererInfo = avModel.getRenderersInfo(id)[0];
+    auto rendererInfoList = avModel.getRenderersInfo(id);
+    if (rendererInfoList.isEmpty())
+        return;
+    auto rendererInfo = rendererInfoList.first();
     rendererInformationListModel_->addElement(qMakePair(id, rendererInfo));
 
     auto callModel = lrcInstance_->getCurrentCallModel();
