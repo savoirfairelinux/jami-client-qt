@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7baf4bd2_175ccd3b",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-12T21:15:50Z",
+      "side": 1,
+      "message": "the name would not be too long ? There is no duplicate as I add (x) after the name of the file if it already exists",
+      "parentUuid": "7d422968_2a5b06bd",
+      "range": {
+        "startLine": 1152,
+        "startChar": 39,
+        "endLine": 1152,
+        "endChar": 94
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "708f40fb_d8201628",
         "filename": "src/app/calladapter.h",
         "patchSetId": 6
@@ -112,6 +136,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52975280_f8121b12",
+        "filename": "src/app/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-12T21:15:50Z",
+      "side": 1,
+      "message": "We could have both ?",
+      "parentUuid": "6d24d9c7_b2d058c3",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 23
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c25878b_e4de8bc0",
         "filename": "src/app/utilsadapter.cpp",
         "patchSetId": 6
@@ -123,6 +171,30 @@
       "writtenOn": "2023-01-12T19:57:58Z",
       "side": 1,
       "message": "Just Jami should be ok I guess",
+      "range": {
+        "startLine": 395,
+        "startChar": 29,
+        "endLine": 395,
+        "endChar": 66
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8adf86a_ccd2e43e",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-12T21:15:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c25878b_e4de8bc0",
       "range": {
         "startLine": 395,
         "startChar": 29,
