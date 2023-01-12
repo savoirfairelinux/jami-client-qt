@@ -205,8 +205,8 @@ $(1)-docker-run-command := docker run \
   -e SNAP_PKG_NAME="$(or $(SNAP_PKG_NAME),jami)" \
   -e TARBALLS="$(TARBALLS)" \
   -v '$(TARBALLS)':'$(TARBALLS)' \
-  -v '$(CURDIR)/$(RELEASE_TARBALL_FILENAME)':'/src/$(RELEASE_TARBALL_FILENAME)' \
-  -v '$(CURDIR)/extras/packaging/gnu-linux/packages/$(1)':/opt/output \
+  -v '$(CURDIR)/$(RELEASE_TARBALL_FILENAME)':'/src/$(RELEASE_TARBALL_FILENAME)':Z \
+  -v '$(CURDIR)/extras/packaging/gnu-linux/packages/$(1)':/opt/output:Z \
   -t $(and $(IS_SHELL_INTERACTIVE),-i) \
   $(3) \
   "$$($(1)-docker-image-name)"

@@ -122,6 +122,7 @@ if [ ! -f "${RPM_PATH}" ]; then
 fi
 rpm --install "${RPM_PATH}"
 cp "${RPM_PATH}" /opt/output
+chown -R "$CURRENT_UID:$CURRENT_GID" /opt/
 cd /opt/client-qt
 
 # Set the version and associated comment.
@@ -143,8 +144,11 @@ rpmbuild --define "debug_package %{nil}" -ba jami.spec
 # Move the built packages to the output directory.
 mv /root/rpmbuild/RPMS/*/* /opt/output
 touch /opt/output/.packages-built
-chown -R "$CURRENT_UID:$CURRENT_UID" /opt/output
-chown -R "${CURRENT_UID}:${CURRENT_UID}" .
+chmod a+rwX -R /opt/
+chown -R "$CURRENT_UID:$CURRENT_GID" /opt/
+chown -R "$CURRENT_UID:$CURRENT_GID" .
+ls -la .
+ls -la /opt/output
 
 # TODO: One click install: create a package that combines the already
 # built package into one.
