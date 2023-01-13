@@ -297,7 +297,7 @@ JamiListView {
         }
 
         function onMoreMessagesLoaded() {
-            if (root.contentHeight < root.height) {
+            if (root.contentHeight < root.height || root.atYBeginning) {
                 root.loadMoreMsgsIfNeeded()
             }
         }
