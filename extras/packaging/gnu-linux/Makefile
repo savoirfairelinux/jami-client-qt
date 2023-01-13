@@ -163,7 +163,6 @@ DISTRIBUTIONS := \
 	debian_11 \
 	debian_testing \
 	debian_unstable \
-	raspbian_10_armhf \
 	ubuntu_18.04 \
 	ubuntu_20.04 \
 	ubuntu_22.04 \
@@ -217,13 +216,13 @@ $$($(1)-docker-image-file): extras/packaging/gnu-linux/docker/Dockerfile_$(1)
 	  -f extras/packaging/gnu-linux/docker/Dockerfile_$(1) $(2) $(CURDIR) && \
 	touch "$$@"
 
-packages/$(1)/.packages-built: $(RELEASE_TARBALL_FILENAME) $$($(1)-docker-image-file)
+extras/packaging/gnu-linux/packages/$(1)/.packages-built: $(RELEASE_TARBALL_FILENAME) $$($(1)-docker-image-file)
 	mkdir -p "$$$$(dirname "$$@")" && \
 	$$($(1)-docker-run-command) && \
 	touch "$$@"
 
 .PHONY: $(1)
-$(1): packages/$(1)/.packages-built
+$(1): extras/packaging/gnu-linux/packages/$(1)/.packages-built
 PACKAGE-TARGETS += $(1)
 
 .PHONY: $(1)-interactive
@@ -253,7 +252,7 @@ endef
 
 # Arg1: the GNU architecture type (e.g., x86_64, i686, powerpcle, etc.)
 define define-deb-pack-rule
-deb-file-name := packages/guix-deb-pack/jami-$(RELEASE_VERSION)-$(1).deb
+deb-file-name := extras/packaging/gnu-linux/packages/guix-deb-pack/jami-$(RELEASE_VERSION)-$(1).deb
 DEB_PACK_TARGETS += deb-pack-$(subst _,-,$(1))
 .PHONY: deb-pack-$(subst _,-,$(1))
 deb-pack-$(subst _,-,$(1)): $$(deb-file-name)
@@ -298,7 +297,7 @@ clean:
 	rm -rf env
 	rm -rf docs/build
 	rm -f jami_*.tar.gz
-	rm -rf packages
+	rm -rf extras/packaging/gnu-linux/packages
 	rm -f Makefile.packaging.distro_targets
 	rm -f .docker-image-*
 	rm -rf client-qt/daemon/contrib/tarballs/*
