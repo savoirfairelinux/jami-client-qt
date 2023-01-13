@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ffc257f_b62b78cd",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-13T11:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37ff3321_b7814428",
+      "range": {
+        "startLine": 623,
+        "startChar": 8,
+        "endLine": 623,
+        "endChar": 27
+      },
+      "revId": "e906c968324ee67e1d92851302465266ea252555",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4284cdbf_5ced54cb",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48669f36_1aca4cbc",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-13T11:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4284cdbf_5ced54cb",
+      "range": {
+        "startLine": 625,
+        "startChar": 41,
+        "endLine": 625,
+        "endChar": 95
+      },
+      "revId": "e906c968324ee67e1d92851302465266ea252555",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b8c1419_65623a74",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-01-12T19:06:29Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 129,
+        "startChar": 21,
+        "endLine": 129,
+        "endChar": 60
+      },
+      "revId": "e906c968324ee67e1d92851302465266ea252555",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31494f67_d09e1a6b",
+        "filename": "src/libclient/qtwrapper/videomanager_wrap.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-13T11:09:40Z",
+      "side": 1,
+      "message": "If removed, some windows titles like\n\"Recorder: auto record does not take video in video calls (#762) · Issues · savoirfairelinux / jami-daemon · GitLab - Google Chrome\"\nare not correctly parsed.",
+      "parentUuid": "1b8c1419_65623a74",
       "range": {
         "startLine": 129,
         "startChar": 21,
