@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7964d5e5_01324cd7",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-14T10:14:15Z",
+      "side": 1,
+      "message": "Please include seconds. For example, a filename of a screenshot in Linux Mint 21.1 is:\n`Screenshot from 2023-01-14 20-47-44.png`",
+      "parentUuid": "0e829d34_76c5c57b",
+      "range": {
+        "startLine": 1152,
+        "startChar": 39,
+        "endLine": 1152,
+        "endChar": 94
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "708f40fb_d8201628",
         "filename": "src/app/calladapter.h",
         "patchSetId": 6
@@ -107,6 +131,168 @@
         "startChar": 0,
         "endLine": 302,
         "endChar": 65
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af765344_9788b6e2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-14T10:14:15Z",
+      "side": 1,
+      "message": "1. Should `view` be called `tile`?\n2. Should this string start with a capital letter?",
+      "parentUuid": "58de5bb3_b119ee4e",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 65
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "410fef31_98a9e672",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-14T10:14:15Z",
+      "side": 1,
+      "message": "1. Should this start with a capital letter?\n2. Should `screenshot participant` be changed to `Take screenshot` or `Take tile screenshot`? As you might be taking a picture of a screenshare, a video of of the whiteboard that the teacher is sharing in a hybrid (in-person and online) classroom.\n\nDoes Jami have a Mosaic layout? Is each participants view called a `tile`? Perhaps it should be called `Take tile screenshot`?",
+      "range": {
+        "startLine": 301,
+        "startChar": 71,
+        "endLine": 302,
+        "endChar": 49
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fdec033_113ae4a1",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-14T10:14:15Z",
+      "side": 1,
+      "message": "Is this the `tile`?",
+      "range": {
+        "startLine": 303,
+        "startChar": 32,
+        "endLine": 303,
+        "endChar": 36
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5848509_cbdd1f6c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-14T10:14:15Z",
+      "side": 1,
+      "message": "Should this start with a capital letter?",
+      "range": {
+        "startLine": 515,
+        "startChar": 30,
+        "endLine": 515,
+        "endChar": 32
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9092b7d7_02bd095c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-14T10:14:15Z",
+      "side": 1,
+      "message": "1. Should this start with a capital letter?\n2. What does this string refer to?\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dyour%20own\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 516,
+        "startChar": 35,
+        "endLine": 516,
+        "endChar": 43
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73f6bbcd_403c4593",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-14T10:14:15Z",
+      "side": 1,
+      "message": "1. Should `s` be added to `recording` to become `recordings`?\n2. Should `in` be replaced with `to`?\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dsave%20files%20to\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined\n\nhttps://transvision.mozfr.org/?recherche\u003dsave+files+to\u0026repo\u003dall_projects\u0026sourcelocale\u003den-US\u0026locale\u003dfr\u0026search_type\u003dstrings\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dsave%20recordings\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 547,
+        "startChar": 34,
+        "endLine": 547,
+        "endChar": 51
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a69bd0f3_59444c4b",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-14T10:14:15Z",
+      "side": 1,
+      "message": "1. Should `in` be replaced with `to`?\n2. Is the default directory/folder `Pictures`?\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dsave%20screenshots\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined\n\nhttps://transvision.mozfr.org/?recherche\u003dsave+files+to\u0026repo\u003dall_projects\u0026sourcelocale\u003den-US\u0026locale\u003dfr\u0026search_type\u003dstrings",
+      "range": {
+        "startLine": 548,
+        "startChar": 44,
+        "endLine": 548,
+        "endChar": 63
       },
       "revId": "a0066c341db75da17268af6d72203febb696b92c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
@@ -196,6 +382,30 @@
       "side": 1,
       "message": "No we only add the right click",
       "parentUuid": "52975280_f8121b12",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 23
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6b11f00_f2082643",
+        "filename": "src/app/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-14T10:14:15Z",
+      "side": 1,
+      "message": "Having a way to quickly take a screenshot can be very helpful, i.e. one-step/one-click.\n\nIf the mouse cursor is over a tile, can mouse-centre-button please also take a screenshot?",
+      "parentUuid": "c53c3c41_9c2eeae5",
       "range": {
         "startLine": 204,
         "startChar": 8,
