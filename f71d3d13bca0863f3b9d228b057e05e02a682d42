@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec09c01f_2bc89dc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-17T17:57:26Z",
+      "side": 1,
+      "message": "Things to do:\n- Shortcuts\n- 1 to 1 conv\n- Button on overlay ?",
+      "revId": "f71d3d13bca0863f3b9d228b057e05e02a682d42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

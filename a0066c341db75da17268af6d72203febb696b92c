@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "02a4c396_3d6fc5bb",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-17T17:57:26Z",
+      "side": 1,
+      "message": "With a short format for date and a long format for time, here is the result: \"Screenshot 2023-01-17 12 h 26 min 05 s EST\" And \"Screenshot 2023-01-17 12 h 26 min 05 s EST(1)\"",
+      "parentUuid": "7964d5e5_01324cd7",
+      "range": {
+        "startLine": 1152,
+        "startChar": 39,
+        "endLine": 1152,
+        "endChar": 94
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "708f40fb_d8201628",
         "filename": "src/app/calladapter.h",
         "patchSetId": 6
@@ -183,6 +207,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6abe2afc_c8686ddd",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-17T17:57:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af765344_9788b6e2",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 65
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eebfc0a1_5bbd54ae",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-17T17:57:26Z",
+      "side": 1,
+      "message": "I put pictures of this feature in gitlab: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/698",
+      "parentUuid": "410fef31_98a9e672",
+      "range": {
+        "startLine": 301,
+        "startChar": 71,
+        "endLine": 302,
+        "endChar": 49
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fdec033_113ae4a1",
@@ -196,6 +268,30 @@
       "writtenOn": "2023-01-14T10:14:15Z",
       "side": 1,
       "message": "Is this the `tile`?",
+      "range": {
+        "startLine": 303,
+        "startChar": 32,
+        "endLine": 303,
+        "endChar": 36
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f668bdaf_46086000",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-17T17:57:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fdec033_113ae4a1",
       "range": {
         "startLine": 303,
         "startChar": 32,
@@ -229,6 +325,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0206cf95_77ab2603",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-17T17:57:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5848509_cbdd1f6c",
+      "range": {
+        "startLine": 515,
+        "startChar": 30,
+        "endLine": 515,
+        "endChar": 32
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9092b7d7_02bd095c",
@@ -242,6 +362,30 @@
       "writtenOn": "2023-01-14T10:14:15Z",
       "side": 1,
       "message": "1. Should this start with a capital letter?\n2. What does this string refer to?\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dyour%20own\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 516,
+        "startChar": 35,
+        "endLine": 516,
+        "endChar": 43
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc6999a2_54ddb424",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-17T17:57:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9092b7d7_02bd095c",
       "range": {
         "startLine": 516,
         "startChar": 35,
@@ -275,6 +419,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f11c697_06a3b311",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-17T17:57:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73f6bbcd_403c4593",
+      "range": {
+        "startLine": 547,
+        "startChar": 34,
+        "endLine": 547,
+        "endChar": 51
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a69bd0f3_59444c4b",
@@ -288,6 +456,30 @@
       "writtenOn": "2023-01-14T10:14:15Z",
       "side": 1,
       "message": "1. Should `in` be replaced with `to`?\n2. Is the default directory/folder `Pictures`?\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dsave%20screenshots\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined\n\nhttps://transvision.mozfr.org/?recherche\u003dsave+files+to\u0026repo\u003dall_projects\u0026sourcelocale\u003den-US\u0026locale\u003dfr\u0026search_type\u003dstrings",
+      "range": {
+        "startLine": 548,
+        "startChar": 44,
+        "endLine": 548,
+        "endChar": 63
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3170e90d_866e62bd",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-17T17:57:26Z",
+      "side": 1,
+      "message": "the default folder is \"Pictures / \"Jami-\" + QObject::tr(\"Screenshots\")\" and it can be changed in the settings",
+      "parentUuid": "a69bd0f3_59444c4b",
       "range": {
         "startLine": 548,
         "startChar": 44,
