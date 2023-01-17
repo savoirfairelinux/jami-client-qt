@@ -43,7 +43,6 @@ Item {
     function closeContextMenuAndRelatedWindows() {
         ContactPickerCreation.closeContactPicker()
         sipInputPanel.close()
-        SelectScreenWindowCreation.destroySelectScreenWindow()
         ScreenRubberBandCreation.destroyScreenRubberBandWindow()
         PluginHandlerPickerCreation.closePluginHandlerPicker()
         callInformationOverlay.close()
@@ -116,16 +115,16 @@ Item {
         if (Qt.application.screens.length === 1) {
             AvAdapter.shareEntireScreen(0)
         } else {
-            SelectScreenWindowCreation.createSelectScreenWindowObject(appWindow)
-            SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, false)
+            SelectScreenWindowCreation.presentSelectScreenWindow(
+                        appWindow, callPreviewId, false)
         }
     }
 
     function openShareWindow() {
         AvAdapter.getListWindows()
         if (AvAdapter.windowsNames.length >= 1) {
-            SelectScreenWindowCreation.createSelectScreenWindowObject(appWindow)
-            SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, true)
+            SelectScreenWindowCreation.presentSelectScreenWindow(
+                        appWindow, callPreviewId, true)
         }
     }
 
@@ -173,8 +172,8 @@ Item {
         onPluginItemClicked: openPluginsMenu()
         onRecordCallClicked: CallAdapter.recordThisCallToggle()
         onOpenSelectionWindow: {
-            SelectScreenWindowCreation.createSelectScreenWindowObject(appWindow)
-            SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, windowSelection)
+            SelectScreenWindowCreation.presentSelectScreenWindow(
+                        appWindow, callPreviewId, windowSelection)
         }
     }
 }
