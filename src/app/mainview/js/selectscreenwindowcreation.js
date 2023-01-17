@@ -16,53 +16,27 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Global select screen window component, object variable for creation.
-var selectScreenWindowComponent
-var selectScreenWindowObject
-var mainWindow
-
-function createSelectScreenWindowObject(appWindow) {
-    if (selectScreenWindowObject)
-        return
-    selectScreenWindowComponent = Qt.createComponent(
+function presentSelectScreenWindow(parent, previewId, selectWindows) {
+    var comp = Qt.createComponent(
                 "../components/SelectScreen.qml")
-    mainWindow = appWindow
-    if (selectScreenWindowComponent.status === Component.Ready)
-        finishCreation()
-    else if (selectScreenWindowComponent.status === Component.Error)
-        console.log("Error loading component:",
-                    selectScreenWindowComponent.errorString())
-}
-
-function finishCreation() {
-    selectScreenWindowObject = selectScreenWindowComponent.createObject()
-    if (selectScreenWindowObject === null) {
-        // Error Handling.
-        console.log("Error creating select screen object")
+    if (comp.status === Component.Ready) {
+        var obj = comp.createObject(parent, {
+                                        currentPreview: previewId,
+                                        showWindows: selectWindows
+                                    })
+        if (obj === null) {
+            // Error Handling.
+            console.log("Error creating select screen object")
+        } else {
+            var centerX = appWindow.x + appWindow.width / 2
+            var centerY = appWindow.y + appWindow.height / 2
+            obj.width = 0.75 * appWindow.width
+            obj.height = 0.75 * appWindow.height
+            obj.x = centerX - obj.width / 2
+            obj.y = centerY - obj.height / 2
+            obj.show()
+        }
+    } else if (comp.status === Component.Error) {
+        console.log("Error loading component:", comp.errorString())
     }
-
-    // Signal connection.
-    selectScreenWindowObject.onClosing.connect(destroySelectScreenWindow)
-}
-
-function showSelectScreenWindow(previewId, window) {
-    selectScreenWindowObject.currentPreview = previewId
-    selectScreenWindowObject.window = window
-    selectScreenWindowObject.show()
-
-    var centerX = mainWindow.x + mainWindow.width / 2
-    var centerY = mainWindow.y + mainWindow.height / 2
-
-    selectScreenWindowObject.width = 0.75 * appWindow.width
-    selectScreenWindowObject.height = 0.75 * appWindow.height
-    selectScreenWindowObject.x = centerX - selectScreenWindowObject.width / 2
-    selectScreenWindowObject.y = centerY - selectScreenWindowObject.height / 2
-}
-
-// Destroy and reset selectScreenWindowObject when window is closed.
-function destroySelectScreenWindow() {
-    if(!selectScreenWindowObject)
-        return
-    selectScreenWindowObject.destroy()
-    selectScreenWindowObject = false
 }
