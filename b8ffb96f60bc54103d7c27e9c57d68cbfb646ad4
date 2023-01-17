@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1a4f3e_cb371212",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-17T10:17:26Z",
+      "side": 1,
+      "message": "`search messages`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dsearch%20messages\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003d0",
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88e43b91_c10ada69",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-17T10:17:26Z",
+      "side": 1,
+      "message": "`Start search messages`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dsearch%20messages\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003d0",
+      "range": {
+        "startLine": 355,
+        "startChar": 49,
+        "endLine": 355,
+        "endChar": 72
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95aeaf59_b4b2c8f8",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-17T10:17:26Z",
+      "side": 1,
+      "message": "`Stop search messages`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dsearch%20messages\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003d0\n\nCan you please advise what `stop` refers to? `Cancel`, `End`?\n\nThank you",
+      "range": {
+        "startLine": 356,
+        "startChar": 48,
+        "endLine": 356,
+        "endChar": 70
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d1a8aee_19726a17",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-17T10:17:26Z",
+      "side": 1,
+      "message": "Might be hard to translate if this is just the start of a string.",
+      "range": {
+        "startLine": 358,
+        "startChar": 34,
+        "endLine": 358,
+        "endChar": 42
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
