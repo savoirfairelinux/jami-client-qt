@@ -22,6 +22,30 @@
       },
       "revId": "84fb218d380650c0b6a9eb172995bce34e696953",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47504431_e293c9f0",
+        "filename": "src/app/positionmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-17T18:53:13Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "45fcbcd5_244f8198",
+      "range": {
+        "startLine": 128,
+        "startChar": 15,
+        "endLine": 128,
+        "endChar": 70
+      },
+      "revId": "84fb218d380650c0b6a9eb172995bce34e696953",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
