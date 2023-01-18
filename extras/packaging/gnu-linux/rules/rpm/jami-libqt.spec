@@ -26,9 +26,7 @@ License:       GPLv3+
 Vendor:        Savoir-faire Linux Inc.
 URL:           https://jami.net/
 Source:        jami-libqt-%{version}.tar.xz
-Patch0:        0001-qtbug-101201-fatal-error-getcurrenkeyboard.patch
-Patch1:        0002-check-ulimit.patch
-Patch2:        0003-fix-gcc13.patch
+Patch1:        0001-fix-gcc13.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -64,8 +62,6 @@ This package contains Qt libraries for Jami.
 %prep
 %setup -n qt-everywhere-src-%{version}
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 echo "Building Qt using %{job_count} parallel jobs"
