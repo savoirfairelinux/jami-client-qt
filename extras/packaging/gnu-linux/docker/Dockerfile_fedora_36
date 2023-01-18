@@ -32,6 +32,7 @@ RUN dnf install -y \
         libXfixes-devel \
         yasm \
         python2.7 \
+        python3-html5lib \
         speex-devel \
         gsm-devel \
         chrpath \
@@ -97,7 +98,8 @@ RUN dnf install -y \
         ninja-build \
         clang \
         cmake \
-        fmt-devel
+        fmt-devel \
+        cups-devel #Chromium for Qt
 
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 
