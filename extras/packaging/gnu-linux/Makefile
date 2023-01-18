@@ -46,10 +46,10 @@ DEBIAN_DSC_FILENAME := jami_$(DEBIAN_VERSION).dsc
 
 # Qt versions
 QT_MAJOR := 6
-QT_MINOR := 2
-QT_PATCH := 3
-QT_TARBALL_CHECKSUM := f784998a159334d1f47617fd51bd0619b9dbfe445184567d2cd7c820ccb12771
-DEBIAN_QT_VERSION := $(QT_MAJOR).$(QT_MINOR).$(QT_PATCH)-2
+QT_MINOR := 4
+QT_PATCH := 0
+QT_TARBALL_CHECKSUM := 8936b0354d95fa26e87be65cc9c840495360ad93fd09b069bc780cbcab4a2ca1
+DEBIAN_QT_VERSION := $(QT_MAJOR).$(QT_MINOR).$(QT_PATCH)-1
 DEBIAN_QT_DSC_FILENAME := libqt-jami_$(DEBIAN_QT_VERSION).dsc
 QT_JAMI_PREFIX := /usr/lib/libqt-jami
 
@@ -159,11 +159,9 @@ endif
 # Traditionally built packages (in Docker containers).
 #
 DISTRIBUTIONS := \
-	debian_10 \
 	debian_11 \
 	debian_testing \
 	debian_unstable \
-	ubuntu_18.04 \
 	ubuntu_20.04 \
 	ubuntu_22.04 \
 	ubuntu_22.10 \
