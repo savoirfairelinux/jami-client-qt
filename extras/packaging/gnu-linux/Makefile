@@ -26,12 +26,12 @@ export TARBALLS ?= /var/cache/jami
 ##############################
 TARBALL_VERSION := $(shell cat $(CURDIR)/.tarball-version 2> /dev/null)
 
-ifeq ($(TARBALL_VERSION),)
+#ifeq ($(TARBALL_VERSION),)
 RELEASE_VERSION := $(shell ./extras/packaging/gnu-linux/scripts/release-version.sh)
-else
-$(warning Using version from the .tarball-version file: $(TARBALL_VERSION))
-RELEASE_VERSION := $(TARBALL_VERSION)
-endif
+#else
+#$(warning Using version from the .tarball-version file: $(TARBALL_VERSION))
+#RELEASE_VERSION := $(TARBALL_VERSION)
+#endif
 RELEASE_DIRNAME := jami-$(RELEASE_VERSION)
 RELEASE_TARBALL_FILENAME := $(RELEASE_DIRNAME).tar.gz
 
@@ -46,10 +46,10 @@ DEBIAN_DSC_FILENAME := jami_$(DEBIAN_VERSION).dsc
 
 # Qt versions
 QT_MAJOR := 6
-QT_MINOR := 2
-QT_PATCH := 3
-QT_TARBALL_CHECKSUM := f784998a159334d1f47617fd51bd0619b9dbfe445184567d2cd7c820ccb12771
-DEBIAN_QT_VERSION := $(QT_MAJOR).$(QT_MINOR).$(QT_PATCH)-2
+QT_MINOR := 4
+QT_PATCH := 0
+QT_TARBALL_CHECKSUM := 8936b0354d95fa26e87be65cc9c840495360ad93fd09b069bc780cbcab4a2ca1
+DEBIAN_QT_VERSION := $(QT_MAJOR).$(QT_MINOR).$(QT_PATCH)-1
 DEBIAN_QT_DSC_FILENAME := libqt-jami_$(DEBIAN_QT_VERSION).dsc
 QT_JAMI_PREFIX := /usr/lib/libqt-jami
 
@@ -117,7 +117,7 @@ tarballs.manifest: daemon/contrib/native/Makefile
 	$(MAKE) fetch -j && \
 	$(MAKE) --no-print-directory --silent list-tarballs > "$(CURDIR)/$@"
 
-ifeq ($(TARBALL_VERSION),)
+#ifeq ($(TARBALL_VERSION),)
 # Generate the release tarball.  To regenerate a fresh tarball
 # manually clear the tarballs.manifest file.
 $(RELEASE_TARBALL_FILENAME): tarballs.manifest
@@ -145,11 +145,11 @@ $(RELEASE_TARBALL_FILENAME): tarballs.manifest
 	gzip --no-name $(TMPDIR)/$(RELEASE_DIRNAME).tar
 	mv $(TMPDIR)/$(RELEASE_DIRNAME).tar.gz "$@"
 	rm -rf $(TMPDIR)
-else
-# If TARBALL_VERSION is defined, assume it's already been generated,
-# without doing any checks, which would require Git.
-$(RELEASE_TARBALL_FILENAME):
-endif
+#else
+## If TARBALL_VERSION is defined, assume it's already been generated,
+## without doing any checks, which would require Git.
+#$(RELEASE_TARBALL_FILENAME):
+#endif
 
 #######################
 ## Packaging targets ##
@@ -159,11 +159,9 @@ endif
 # Traditionally built packages (in Docker containers).
 #
 DISTRIBUTIONS := \
-	debian_10 \
 	debian_11 \
 	debian_testing \
 	debian_unstable \
-	ubuntu_18.04 \
 	ubuntu_20.04 \
 	ubuntu_22.04 \
 	ubuntu_22.10 \
