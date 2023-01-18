@@ -32,6 +32,7 @@ RUN dnf install -y \
         libXfixes-devel \
         yasm \
         python2.7 \
+        python3-html5lib \
         speex-devel \
         gsm-devel \
         chrpath \

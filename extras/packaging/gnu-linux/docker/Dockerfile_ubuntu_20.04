@@ -22,7 +22,7 @@ RUN /opt/prebuild-package-debian.sh jami-deps
 ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
 RUN /opt/install-cmake.sh
 # nodejs
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt install nodejs -y
 
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
