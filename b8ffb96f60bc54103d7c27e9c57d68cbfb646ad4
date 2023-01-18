@@ -181,6 +181,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "366ba6e5_6450ef76",
+        "filename": "src/app/mainview/components/Searchbar.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:48:32Z",
+      "side": 1,
+      "message": "placeholder is black in darktheme",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 24
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3cc5cbf3_d683f4fb",
         "filename": "src/app/messagesadapter.cpp",
         "patchSetId": 5
