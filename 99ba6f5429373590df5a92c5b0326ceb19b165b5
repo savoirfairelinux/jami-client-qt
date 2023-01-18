@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fb09b0f_34a872e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:23:11Z",
+      "side": 1,
+      "message": "https://review.jami.net/c/jami-client-qt/+/23642",
+      "revId": "99ba6f5429373590df5a92c5b0326ceb19b165b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
