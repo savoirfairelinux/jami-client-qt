@@ -28,14 +28,6 @@ JAMI_DAEMON_PKG_NAME="jami-daemon"
 
 # Bundled packages from contrib
 BUNDLED_PKGS=""
-ifeq (debian_10,$(findstring debian_10, $(DISTRIBUTION)))
-# Daemon's bundled libarchive does not build on Debian 10
-BUNDLED_PKGS="--disable-libarchive"
-endif
-ifeq (ubuntu_18.04,$(findstring ubuntu_18.04, $(DISTRIBUTION)))
-# Daemon's bundled libarchive does not build on Ubuntu 18.04
-BUNDLED_PKGS="--disable-libarchive"
-endif
 ifeq (raspbian_10_armhf,$(findstring raspbian_10_armhf, $(DISTRIBUTION)))
 # Raspbian's yaml-cpp lib does not work properly
 BUNDLED_PKGS="--enable-ffmpeg --enable-yaml-cpp"
@@ -68,9 +60,6 @@ override_dh_auto_configure:
 override_dh_auto_build:
 	# Daemon contribs build + configure
 	mkdir -p daemon/contrib/native
-ifeq (ubuntu_18.04,$(findstring ubuntu_18.04, $(DISTRIBUTION)))
-	sed -i 's/GNUTLS_CONF :=/& --without-zstd/' daemon/contrib/src/gnutls/rules.mak
-endif
 	cd daemon/contrib/native && \
 	../bootstrap \
 	  --host=${HOST_ARCH} \
