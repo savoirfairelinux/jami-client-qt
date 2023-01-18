@@ -19,11 +19,11 @@ set -e
 # of the distribution or version. The end tag is automatically appended,
 # depending on the system the postinst script is run on. Examples:
 #
-# Ubuntu 18.04:
-# $JAMI_REPO = $JAMI_REPO_BASE/ubuntu_18.04/
+# Ubuntu 22.04:
+# $JAMI_REPO = $JAMI_REPO_BASE/ubuntu_22.04/
 #
-# Debian 10:
-# $JAMI_REPO = $JAMI_REPO_BASE/debian_10
+# Debian 11:
+# $JAMI_REPO = $JAMI_REPO_BASE/debian_11
 #
 # To update the appended end tags, modify the switch in [2].
 JAMI_REPO_BASE="https://dl.jami.net/nightly"
@@ -91,14 +91,8 @@ if [ -f /etc/os-release ]; then
     . /etc/os-release
 
     # Set-up Jami repository end tag
-    if [ "${VERSION_CODENAME}" = "buster" ] || [ "${ID}_${VERSION_ID}" = "debian_10" ]; then
-        ENDTAG="debian_10"
-    elif [ "${VERSION_CODENAME}" = "bullseye" ] || [ "${ID}_${VERSION_ID}" = "debian_11" ]; then
+    if [ "${VERSION_CODENAME}" = "bullseye" ] || [ "${ID}_${VERSION_ID}" = "debian_11" ]; then
         ENDTAG="debian_11"
-    elif [ "${ID}_${VERSION_ID}" = "trisquel_9.0" ]; then
-        ENDTAG="ubuntu_18.04"
-    elif [ "${UBUNTU_CODENAME}" = "bionic" ] || [ "${ID}_${VERSION_ID}" = "ubuntu_18.04" ]; then
-        ENDTAG="ubuntu_18.04"
     elif [ "${UBUNTU_CODENAME}" = "focal" ] || [ "${ID}_${VERSION_ID}" = "ubuntu_20.04" ]; then
         ENDTAG="ubuntu_20.04"
     elif [ "${UBUNTU_CODENAME}" = "jammy" ] || [ "${ID}_${VERSION_ID}" = "ubuntu_22.04" ]; then
