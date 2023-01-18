@@ -84,8 +84,8 @@ ${QT_MAJOR}.${QT_MINOR}/${qt_version}/single
         cd "libqt-jami-${qt_version}"
 
         # Extract the debian folder
-        tar xf "/src/$RELEASE_TARBALL_FILENAME" client-qt/extras/packaging/gnu-linux/rules/debian-qt \
-            --strip-components=5 && mv debian-qt debian
+        tar xf "/src/$RELEASE_TARBALL_FILENAME" extras/packaging/gnu-linux/rules/debian-qt \
+            --strip-components=4 && mv debian-qt debian
 
         # Create the changelog file.
         DEBEMAIL="The Jami project <jami@gnu.org>" dch --create \
