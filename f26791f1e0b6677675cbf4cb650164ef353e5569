@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "205e16b1_dfcb31ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T21:27:59Z",
+      "side": 1,
+      "message": "just some small nitpiks",
+      "revId": "f26791f1e0b6677675cbf4cb650164ef353e5569",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abbd3f81_c6e19ad1",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T21:27:59Z",
+      "side": 1,
+      "message": "remove one space",
+      "range": {
+        "startLine": 54,
+        "startChar": 33,
+        "endLine": 54,
+        "endChar": 35
+      },
+      "revId": "f26791f1e0b6677675cbf4cb650164ef353e5569",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6840046b_118081c1",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T21:27:59Z",
+      "side": 1,
+      "message": "by default it seems to got 1 item per column. Maybe it\u0027s too wide. 2 should be good. Maybe minWidth of 300 is large enough (even 200 I guess)",
+      "range": {
+        "startLine": 51,
+        "startChar": 27,
+        "endLine": 62,
+        "endChar": 5
+      },
+      "revId": "f26791f1e0b6677675cbf4cb650164ef353e5569",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82296128_e4796d65",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T21:27:59Z",
+      "side": 1,
+      "message": "can you add a link in a comment to the bug you opened on bugtracker (qt) to not loose the track of this bug",
+      "range": {
+        "startLine": 114,
+        "startChar": 39,
+        "endLine": 114,
+        "endChar": 69
+      },
+      "revId": "f26791f1e0b6677675cbf4cb650164ef353e5569",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
