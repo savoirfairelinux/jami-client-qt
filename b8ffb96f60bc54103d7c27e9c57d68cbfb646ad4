@@ -66,6 +66,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "40973563_bb793ae0",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:47:50Z",
+      "side": 1,
+      "message": "No need for (You), we generally know who we are",
+      "range": {
+        "startLine": 357,
+        "startChar": 29,
+        "endLine": 357,
+        "endChar": 35
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d1a8aee_19726a17",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 5
@@ -82,6 +105,213 @@
         "startChar": 34,
         "endLine": 358,
         "endChar": 42
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc321370_d01d6bb9",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:47:50Z",
+      "side": 1,
+      "message": "this button got a weird style.",
+      "range": {
+        "startLine": 358,
+        "startChar": 34,
+        "endLine": 358,
+        "endChar": 38
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f81acf8e_05b9e612",
+        "filename": "src/app/mainview/components/ContactSearchBar.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:47:50Z",
+      "side": 1,
+      "message": "remove debug log",
+      "range": {
+        "startLine": 132,
+        "startChar": 20,
+        "endLine": 132,
+        "endChar": 28
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d63fa93_513dbd43",
+        "filename": "src/app/mainview/components/MessagesResearchView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:47:50Z",
+      "side": 1,
+      "message": "not sure it should be linked to isVisible, caller can do it.",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 49
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cc5cbf3_d683f4fb",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:47:50Z",
+      "side": 1,
+      "message": "should be const, but not convinced by this method, checking the type directly is correct.",
+      "range": {
+        "startLine": 85,
+        "startChar": 18,
+        "endLine": 85,
+        "endChar": 60
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eea8030_c6429077",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:47:50Z",
+      "side": 1,
+      "message": "no \"s\"",
+      "range": {
+        "startLine": 596,
+        "startChar": 76,
+        "endLine": 596,
+        "endChar": 95
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ed347cf_a223e103",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:47:50Z",
+      "side": 1,
+      "message": "startSearch",
+      "range": {
+        "startLine": 747,
+        "startChar": 17,
+        "endLine": 747,
+        "endChar": 30
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffc82362_98a5abf0",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:47:50Z",
+      "side": 1,
+      "message": "isDocument? or isMedia?",
+      "range": {
+        "startLine": 752,
+        "startChar": 27,
+        "endLine": 752,
+        "endChar": 38
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06ef5e47_a829292a",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 2567,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:47:50Z",
+      "side": 1,
+      "message": "informations-\u003eInformation (no \"s\" + caps)",
+      "range": {
+        "startLine": 2567,
+        "startChar": 16,
+        "endLine": 2567,
+        "endChar": 43
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "628bdf39_e1b69c31",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 3996,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T14:47:50Z",
+      "side": 1,
+      "message": "no need for const bool and fix variable name (also maybe homogeneize file/document/media)",
+      "range": {
+        "startLine": 3996,
+        "startChar": 49,
+        "endLine": 3996,
+        "endChar": 60
       },
       "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
