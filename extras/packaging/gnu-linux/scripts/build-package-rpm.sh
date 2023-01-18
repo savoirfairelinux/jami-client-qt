@@ -36,17 +36,15 @@ rpmdev-setuptree
 # Copy the source tarball.
 cp --reflink=auto "/src/$RELEASE_TARBALL_FILENAME" /root/rpmbuild/SOURCES
 
-cp patches/0001-qtbug-101201-fatal-error-getcurrenkeyboard.patch /root/rpmbuild/SOURCES/
-
 QT_JAMI_PREFIX="/usr/lib64/qt-jami"
 PATH="${QT_JAMI_PREFIX}/bin:${PATH}"
 LD_LIBRARY_PATH="${QT_JAMI_PREFIX}/lib:${LD_LIBRARY_PATH}"
 PKG_CONFIG_PATH="${QT_JAMI_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}"
 CMAKE_PREFIX_PATH="${QT_JAMI_PREFIX}/lib/cmake:${CMAKE_PREFIX_PATH}"
 QT_MAJOR=6
-QT_MINOR=2
-QT_PATCH=3
-QT_RELEASE_PATCH=5
+QT_MINOR=4
+QT_PATCH=2
+QT_RELEASE_PATCH=1
 
 QT_MAJOR_MINOR=${QT_MAJOR}.${QT_MINOR}
 QT_MAJOR_MINOR_PATCH=${QT_MAJOR}.${QT_MINOR}.${QT_PATCH}

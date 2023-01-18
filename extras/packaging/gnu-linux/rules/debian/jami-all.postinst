@@ -22,8 +22,8 @@ set -e
 # Ubuntu 18.04:
 # $JAMI_REPO = $JAMI_REPO_BASE/ubuntu_18.04/
 #
-# Debian 10:
-# $JAMI_REPO = $JAMI_REPO_BASE/debian_10
+# Debian 11:
+# $JAMI_REPO = $JAMI_REPO_BASE/debian_11
 #
 # To update the appended end tags, modify the switch in [2].
 JAMI_REPO_BASE="https://dl.jami.net/nightly"
@@ -91,9 +91,7 @@ if [ -f /etc/os-release ]; then
     . /etc/os-release
 
     # Set-up Jami repository end tag
-    if [ "${VERSION_CODENAME}" = "buster" ] || [ "${ID}_${VERSION_ID}" = "debian_10" ]; then
-        ENDTAG="debian_10"
-    elif [ "${VERSION_CODENAME}" = "bullseye" ] || [ "${ID}_${VERSION_ID}" = "debian_11" ]; then
+    if [ "${VERSION_CODENAME}" = "bullseye" ] || [ "${ID}_${VERSION_ID}" = "debian_11" ]; then
         ENDTAG="debian_11"
     elif [ "${ID}_${VERSION_ID}" = "trisquel_9.0" ]; then
         ENDTAG="ubuntu_18.04"
