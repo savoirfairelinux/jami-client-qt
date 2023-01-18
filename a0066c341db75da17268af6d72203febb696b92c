@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55ba73c9_2bafbf44",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-18T15:01:08Z",
+      "side": 1,
+      "message": "ok for me to have seconds.",
+      "parentUuid": "02a4c396_3d6fc5bb",
+      "range": {
+        "startLine": 1152,
+        "startChar": 39,
+        "endLine": 1152,
+        "endChar": 94
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "708f40fb_d8201628",
         "filename": "src/app/calladapter.h",
         "patchSetId": 6
