@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f15a6b1f_b9000751",
+        "filename": "src/app/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-18T22:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48cbbffb_a4bc3750",
+      "range": {
+        "startLine": 207,
+        "startChar": 39,
+        "endLine": 207,
+        "endChar": 47
+      },
+      "revId": "f71d3d13bca0863f3b9d228b057e05e02a682d42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5829b25d_9297f511",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-01-18T15:01:08Z",
       "side": 1,
       "message": "opacity {",
+      "range": {
+        "startLine": 49,
+        "startChar": 30,
+        "endLine": 49,
+        "endChar": 35
+      },
+      "revId": "f71d3d13bca0863f3b9d228b057e05e02a682d42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2615fe14_92283d5b",
+        "filename": "src/app/mainview/components/Toast.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-18T22:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5829b25d_9297f511",
       "range": {
         "startLine": 49,
         "startChar": 30,
@@ -87,6 +135,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a89cc743_d7d53412",
+        "filename": "src/app/mainview/components/Toast.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-18T22:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb790909_e7cf4ee6",
+      "range": {
+        "startLine": 54,
+        "startChar": 19,
+        "endLine": 54,
+        "endChar": 24
+      },
+      "revId": "f71d3d13bca0863f3b9d228b057e05e02a682d42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bfadeeb_b7d76564",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-01-18T15:01:08Z",
       "side": 1,
       "message": "weird format",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 40
+      },
+      "revId": "f71d3d13bca0863f3b9d228b057e05e02a682d42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "668149f4_d79ab040",
+        "filename": "src/app/settingsview/components/RecordingSettings.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-18T22:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bfadeeb_b7d76564",
       "range": {
         "startLine": 46,
         "startChar": 8,
@@ -133,6 +229,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "464c7f19_10b7a6f6",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-18T22:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c59d8c0_44c29da7",
+      "range": {
+        "startLine": 395,
+        "startChar": 25,
+        "endLine": 395,
+        "endChar": 66
+      },
+      "revId": "f71d3d13bca0863f3b9d228b057e05e02a682d42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15393f98_707d86af",
@@ -146,6 +266,30 @@
       "writtenOn": "2023-01-18T15:01:08Z",
       "side": 1,
       "message": "no screenshot taken for me",
+      "range": {
+        "startLine": 121,
+        "startChar": 15,
+        "endLine": 121,
+        "endChar": 35
+      },
+      "revId": "f71d3d13bca0863f3b9d228b057e05e02a682d42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97f2ad7d_eb182c7d",
+        "filename": "src/app/videoprovider.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-18T22:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15393f98_707d86af",
       "range": {
         "startLine": 121,
         "startChar": 15,

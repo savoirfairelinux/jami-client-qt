@@ -144,6 +144,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88e309ca_ee54da2f",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-18T22:48:00Z",
+      "side": 1,
+      "message": "isoDate",
+      "parentUuid": "55ba73c9_2bafbf44",
+      "range": {
+        "startLine": 1152,
+        "startChar": 39,
+        "endLine": 1152,
+        "endChar": 94
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "708f40fb_d8201628",
@@ -157,6 +181,24 @@
       "writtenOn": "2023-01-12T19:57:58Z",
       "side": 1,
       "message": "can be const parameters",
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f5edd58_dcc4a6e8",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-18T22:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "708f40fb_d8201628",
       "revId": "a0066c341db75da17268af6d72203febb696b92c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -527,6 +569,30 @@
       "writtenOn": "2023-01-12T19:57:58Z",
       "side": 1,
       "message": "trailing + weird format",
+      "range": {
+        "startLine": 50,
+        "startChar": 10,
+        "endLine": 51,
+        "endChar": 10
+      },
+      "revId": "a0066c341db75da17268af6d72203febb696b92c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c2c50ef_22976069",
+        "filename": "src/app/mainview/components/CallOverlay.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-18T22:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09842e00_14f39a1c",
       "range": {
         "startLine": 50,
         "startChar": 10,
