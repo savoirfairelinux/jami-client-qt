@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8dcb877d_1e7ae3f8",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T14:58:54Z",
+      "side": 1,
+      "message": "Yes, but I found 200 to be too small when the user is in fullscreen. Maybe I can keep 400 if there is at least 2 items per row and set a minimum of 2 per row if width is higher than 200 ?",
+      "parentUuid": "6840046b_118081c1",
+      "range": {
+        "startLine": 51,
+        "startChar": 27,
+        "endLine": 62,
+        "endChar": 5
+      },
+      "revId": "f26791f1e0b6677675cbf4cb650164ef353e5569",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "82296128_e4796d65",
         "filename": "src/app/mainview/components/SelectScreen.qml",
         "patchSetId": 4
