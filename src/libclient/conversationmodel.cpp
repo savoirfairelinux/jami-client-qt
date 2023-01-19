@@ -1773,6 +1773,27 @@ ConversationModel::loadConversationUntil(const QString& conversationId, const QS
                                                                   to);
 }
 
+int
+ConversationModel::loadMessageReplied(const QString& conversationId, const QString& messageId)
+{
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (!conversationOpt.has_value()) {
+        return -1;
+    }
+    auto& conversation = conversationOpt->get();
+    if (conversation.allMessagesLoaded) {
+        return -1;
+    }
+    auto lastMsgId = conversation.interactions->empty() ? ""
+                                                        : conversation.interactions->front().first;
+    auto token = ConfigurationManager::instance().loadConversationMessages(owner.id,
+                                                                           conversationId,
+                                                                           messageId,
+                                                                           1);
+    tokenLoadMessages_.insert(token);
+    return token;
+}
+
 void
 ConversationModel::acceptConversationRequest(const QString& conversationId)
 {
@@ -2421,6 +2442,13 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                                                const QString& conversationId,
                                                const VectorMapStringString& messages)
 {
+    if (linked.tokenLoadMessages_.contains(requestId)) {
+        auto msg = messages.at(0);
+        Q_EMIT linked.repliedBody(requestId, msg["body"]);
+        qWarning() << "messages:" << requestId << " --- " << messages;
+        return;
+    }
+
     if (accountId != linked.owner.id) {
         return;
     }

@@ -338,6 +338,8 @@ public:
      */
     int loadConversationMessages(const QString& conversationId, const int size = 1);
     int loadConversationUntil(const QString& conversationId, const QString& to);
+    int loadMessageReplied(const QString& conversationId, const QString& messageId);
+
     /**
      * accept request for conversation
      * @param conversationId conversation's id
@@ -446,6 +448,8 @@ public:
     member::Role memberRole(const QString& conversationId, const QString& memberUri) const;
 
 Q_SIGNALS:
+
+    void repliedBody(const uint32_t token, const QString& body) const;
 
     /**
      * Emitted when a conversation receives a new interaction
@@ -626,6 +630,9 @@ Q_SIGNALS:
 
 private:
     std::unique_ptr<ConversationModelPimpl> pimpl_;
+
+public:
+    QSet<uint32_t> tokenLoadMessages_;
 };
 } // namespace api
 } // namespace lrc

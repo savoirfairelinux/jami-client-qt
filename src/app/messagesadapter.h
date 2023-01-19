@@ -56,6 +56,7 @@ protected:
 
     Q_INVOKABLE void setupChatView(const QVariantMap& convInfo);
     Q_INVOKABLE void loadMoreMessages();
+    Q_INVOKABLE int loadMessageReplied(const QString& messageId);
     Q_INVOKABLE void loadConversationUntil(const QString& to);
     Q_INVOKABLE void connectConversationModel();
     Q_INVOKABLE void sendConversationRequest();

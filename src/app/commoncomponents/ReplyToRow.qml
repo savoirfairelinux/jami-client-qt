@@ -29,13 +29,22 @@ Item {
     visible: ReplyTo !== ""
     width: visible ? replyToRow.width : 0
     height: replyToRow.height + replyToRow.anchors.topMargin
+    property int token
+    property string repliedBody
 
     Component.onCompleted: {
         // Make sure we show the original post
         // In the future, we may just want to load the previous interaction of the thread
         // and not show it, but for now we can simplify.
         if (ReplyTo !== "")
-            MessagesAdapter.loadConversationUntil(ReplyTo)
+            token = MessagesAdapter.loadMessageReplied(ReplyTo)
+    }
+    Connections {
+        target: MessagesAdapter
+        function onRepliedBody(t, msg) {
+            if (t === token)
+                repliedBody  = msg
+        }
     }
 
     MouseArea {
@@ -84,7 +93,7 @@ Item {
                 Layout.maximumWidth: JamiTheme.preferredFieldWidth - JamiTheme.preferredMarginSize
                 Layout.rightMargin: JamiTheme.preferredMarginSize
 
-                text: ReplyToBody
+                text: repliedBody
                 elide: Text.ElideRight
                 textFormat: Text.MarkdownText
 
