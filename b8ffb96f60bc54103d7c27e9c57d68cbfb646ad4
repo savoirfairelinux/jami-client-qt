@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "046eba29_98a60a96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e1a4f3e_cb371212",
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88e43b91_c10ada69",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-01-17T10:17:26Z",
       "side": 1,
       "message": "`Start search messages`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dsearch%20messages\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003d0",
+      "range": {
+        "startLine": 355,
+        "startChar": 49,
+        "endLine": 355,
+        "endChar": 72
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c087b070_a93fe3f3",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88e43b91_c10ada69",
       "range": {
         "startLine": 355,
         "startChar": 49,
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ba7cf24_7907c481",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Theses strings are tooltip shown when the user hover the search icon: So to open the search bar and to close it (and the search results). What would be better according to you: \"close search messages\"?",
+      "parentUuid": "95aeaf59_b4b2c8f8",
+      "range": {
+        "startLine": 356,
+        "startChar": 48,
+        "endLine": 356,
+        "endChar": 70
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40973563_bb793ae0",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 5
@@ -77,6 +143,30 @@
       "writtenOn": "2023-01-18T14:47:50Z",
       "side": 1,
       "message": "No need for (You), we generally know who we are",
+      "range": {
+        "startLine": 357,
+        "startChar": 29,
+        "endLine": 357,
+        "endChar": 35
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9b6805b_ca89285b",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "I thought it could be a good idea because we can have multiple accounts or if the user has no username and only a Uri etc.",
+      "parentUuid": "40973563_bb793ae0",
       "range": {
         "startLine": 357,
         "startChar": 29,
@@ -135,6 +225,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb870d77_6f0339ed",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "This is the text used on the button the user has to click on to find the message (Similar to mattermost)",
+      "parentUuid": "9d1a8aee_19726a17",
+      "range": {
+        "startLine": 358,
+        "startChar": 34,
+        "endLine": 358,
+        "endChar": 42
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "921b2be7_9bab88f2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Yes I know but what design should I pic for this ?",
+      "parentUuid": "fc321370_d01d6bb9",
+      "range": {
+        "startLine": 358,
+        "startChar": 34,
+        "endLine": 358,
+        "endChar": 38
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f81acf8e_05b9e612",
         "filename": "src/app/mainview/components/ContactSearchBar.qml",
         "patchSetId": 5
@@ -146,6 +284,30 @@
       "writtenOn": "2023-01-18T14:47:50Z",
       "side": 1,
       "message": "remove debug log",
+      "range": {
+        "startLine": 132,
+        "startChar": 20,
+        "endLine": 132,
+        "endChar": 28
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3e2bb14_e0ff0cde",
+        "filename": "src/app/mainview/components/ContactSearchBar.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f81acf8e_05b9e612",
       "range": {
         "startLine": 132,
         "startChar": 20,
@@ -181,6 +343,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "afd80130_fa68c558",
+        "filename": "src/app/mainview/components/MessagesResearchPanel.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Not sure to understand. By keeping the rectangle with the conversation color ?",
+      "parentUuid": "8104436e_82516801",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 63,
+        "endChar": 27
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d63fa93_513dbd43",
         "filename": "src/app/mainview/components/MessagesResearchView.qml",
         "patchSetId": 5
@@ -204,6 +390,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab00e85b_119d5aea",
+        "filename": "src/app/mainview/components/MessagesResearchView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "It is binded with visibility because the TabBar works with visibiltity ( In MessagesResearchPanel). the view is set to visible if researchTabBar.currentIndex \u003d\u003d\u003d x. So visibility is linked to appearance of the view. But it is true it won\u0027t update if there is a new message for instance, but I only need to call startresearch on a newMessageAdded to fix it ?",
+      "parentUuid": "4d63fa93_513dbd43",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 49
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "366ba6e5_6450ef76",
         "filename": "src/app/mainview/components/Searchbar.qml",
         "patchSetId": 5
@@ -215,6 +425,30 @@
       "writtenOn": "2023-01-18T14:48:32Z",
       "side": 1,
       "message": "placeholder is black in darktheme",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 24
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2814a4a3_bb32f5ac",
+        "filename": "src/app/mainview/components/Searchbar.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "366ba6e5_6450ef76",
       "range": {
         "startLine": 110,
         "startChar": 12,
@@ -250,6 +484,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32192223_bffb09b4",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Yes ok, but I don\u0027t have access to interaction from qml to check the type, so I don\u0027t know how can I check this without a c++ method ?",
+      "parentUuid": "3cc5cbf3_d683f4fb",
+      "range": {
+        "startLine": 85,
+        "startChar": 18,
+        "endLine": 85,
+        "endChar": 60
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0eea8030_c6429077",
         "filename": "src/app/messagesadapter.cpp",
         "patchSetId": 5
@@ -261,6 +519,30 @@
       "writtenOn": "2023-01-18T14:47:50Z",
       "side": 1,
       "message": "no \"s\"",
+      "range": {
+        "startLine": 596,
+        "startChar": 76,
+        "endLine": 596,
+        "endChar": 95
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8c67a6d_009a5f64",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0eea8030_c6429077",
       "range": {
         "startLine": 596,
         "startChar": 76,
@@ -294,6 +576,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3457570_41df73df",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ed347cf_a223e103",
+      "range": {
+        "startLine": 747,
+        "startChar": 17,
+        "endLine": 747,
+        "endChar": 30
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffc82362_98a5abf0",
@@ -307,6 +613,30 @@
       "writtenOn": "2023-01-18T14:47:50Z",
       "side": 1,
       "message": "isDocument? or isMedia?",
+      "range": {
+        "startLine": 752,
+        "startChar": 27,
+        "endLine": 752,
+        "endChar": 38
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61017dcb_64dc3f46",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffc82362_98a5abf0",
       "range": {
         "startLine": 752,
         "startChar": 27,
@@ -340,6 +670,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50f8ba6d_d1d3eb84",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 2567,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06ef5e47_a829292a",
+      "range": {
+        "startLine": 2567,
+        "startChar": 16,
+        "endLine": 2567,
+        "endChar": 43
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "628bdf39_e1b69c31",
@@ -353,6 +707,30 @@
       "writtenOn": "2023-01-18T14:47:50Z",
       "side": 1,
       "message": "no need for const bool and fix variable name (also maybe homogeneize file/document/media)",
+      "range": {
+        "startLine": 3996,
+        "startChar": 49,
+        "endLine": 3996,
+        "endChar": 60
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4068b5a4_f14fbea8",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 3996,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-19T16:04:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "628bdf39_e1b69c31",
       "range": {
         "startLine": 3996,
         "startChar": 49,
