@@ -36,6 +36,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d77cf4ec_0b3cfb24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-19T17:31:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e73a8be_ebacb4dd",
+      "revId": "f26791f1e0b6677675cbf4cb650164ef353e5569",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abbd3f81_c6e19ad1",
@@ -167,6 +185,30 @@
       "side": 1,
       "message": "https://bugreports.qt.io/browse/QTBUG-110323",
       "parentUuid": "82296128_e4796d65",
+      "range": {
+        "startLine": 114,
+        "startChar": 39,
+        "endLine": 114,
+        "endChar": 69
+      },
+      "revId": "f26791f1e0b6677675cbf4cb650164ef353e5569",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5573c59_c0dbf8f1",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-19T17:31:23Z",
+      "side": 1,
+      "message": "I mean in a comment in the code ;)",
+      "parentUuid": "91bb4afd_7df8a630",
       "range": {
         "startLine": 114,
         "startChar": 39,
