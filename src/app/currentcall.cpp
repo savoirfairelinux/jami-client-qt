@@ -141,6 +141,14 @@ CurrentCall::updateCallInfo()
     set_isCapturing(isCapturing);
     set_isHandRaised(callModel->isHandRaised(id_));
     set_isModerator(callModel->isModerator(id_));
+
+    QStringList recorders {};
+    if (callModel->hasCall(id_)) {
+        auto callInfo = callModel->getCall(id_);
+        recorders = callInfo.recordingPeers;
+    }
+    updateRecordingState(callModel->isRecording(id_));
+    updateRemoteRecorders(recorders);
 }
 
 void
