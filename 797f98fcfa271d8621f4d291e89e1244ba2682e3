@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51e9c17c_33f63d61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-20T14:23:15Z",
+      "side": 1,
+      "message": "Crash in QSGBatchRenderer::Renderer::updateMaterialDynamicData",
+      "revId": "797f98fcfa271d8621f4d291e89e1244ba2682e3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
