@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28345294_2117e8cc",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-22T10:57:13Z",
+      "side": 1,
+      "message": "Please allow translations of `Screenshot`. Please see image at https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/698#note_40672",
+      "parentUuid": "62f0f03f_e427685e",
+      "range": {
+        "startLine": 1151,
+        "startChar": 19,
+        "endLine": 1151,
+        "endChar": 44
+      },
+      "revId": "f1dc0e700ffc2e3e0e6a6efb62cfcfedbca9e587",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3dc9bd22_a2b821ac",
         "filename": "src/app/calladapter.cpp",
         "patchSetId": 10
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc2e9b98_76d792e1",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-22T10:57:13Z",
+      "side": 1,
+      "message": "\u003e participant: a **person** who takes part in or becomes involved in a particular activity\n\nhttps://dictionary.cambridge.org/dictionary/english/participant\n\nCan a participant can share more than 1 video stream? It is understood that the daemon allows a participant to share up to 32 video streams. Does this feature take a screenshot of a specific tile as a participant may be sharing a video of their whiteboard, hence the view is not a participant (i.e. a person) but their whiteboard. Also a person who is renting a home may have the tile showing a property, once again not a participant but a home. In a bush fire (aka forest fire), a drone may be streaming video of the bush fire, once again not a participant but a landscape.",
+      "parentUuid": "3c16fc36_23eb8caf",
+      "range": {
+        "startLine": 301,
+        "startChar": 49,
+        "endLine": 301,
+        "endChar": 69
+      },
+      "revId": "f1dc0e700ffc2e3e0e6a6efb62cfcfedbca9e587",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a35f95e2_b194156b",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 10
@@ -83,6 +131,30 @@
       "writtenOn": "2023-01-19T19:04:12Z",
       "side": 1,
       "message": "Maybe something like \"Screenshot saved in %1\" (with path) will be more useful. Here the text is weird",
+      "range": {
+        "startLine": 302,
+        "startChar": 43,
+        "endLine": 302,
+        "endChar": 64
+      },
+      "revId": "f1dc0e700ffc2e3e0e6a6efb62cfcfedbca9e587",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8141b1f8_cfc1746d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-22T10:57:13Z",
+      "side": 1,
+      "message": "Is the convention `to` instead of `in`? i.e. `Screenshot saved to %1`?",
+      "parentUuid": "a35f95e2_b194156b",
       "range": {
         "startLine": 302,
         "startChar": 43,
