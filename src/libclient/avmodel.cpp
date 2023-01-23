@@ -564,10 +564,13 @@ AVModel::stopPreview(const QString& resource)
 BOOL
 IsAltTabWindow(HWND hwnd)
 {
-    LONG style = GetWindowLong(hwnd, GWL_STYLE);
-    if (!((style & WS_DISABLED) != WS_DISABLED)) {
+    auto styles = (DWORD) GetWindowLongPtr(hwnd, GWL_STYLE);
+    auto ex_styles = (DWORD) GetWindowLongPtr(hwnd, GWL_EXSTYLE);
+
+    if (ex_styles & WS_EX_TOOLWINDOW)
         return false;
-    }
+    if (styles & WS_CHILD)
+        return false;
 
     DWORD cloaked = FALSE;
     HRESULT hrTemp = DwmGetWindowAttribute(hwnd, DWMWA_CLOAKED, &cloaked, sizeof(cloaked));
@@ -591,20 +594,9 @@ IsAltTabWindow(HWND hwnd)
 BOOL CALLBACK
 CbEnumAltTab(HWND hwnd, LPARAM lParam)
 {
-    // Do not show invisible windows
-    if (!IsWindowVisible(hwnd))
-        return TRUE;
-
-    // Alt-tab test as described by Raymond Chen
-    if (!IsAltTabWindow(hwnd))
-        return TRUE;
-
     const size_t MAX_WINDOW_NAME = 256;
     TCHAR windowName[MAX_WINDOW_NAME];
-    if (hwnd == GetShellWindow())
-        return TRUE;
-    else
-        GetWindowText(hwnd, windowName, MAX_WINDOW_NAME);
+    GetWindowText(hwnd, windowName, MAX_WINDOW_NAME);
 
     // Do not show windows that has no caption
     if (0 == windowName[0])
@@ -613,14 +605,28 @@ CbEnumAltTab(HWND hwnd, LPARAM lParam)
     std::wstring msg = std::wstring(windowName);
     auto name = QString::fromStdWString(msg);
 
+    // Do not show invisible windows
+    if (!IsWindowVisible(hwnd))
+        return TRUE;
+
+    // Alt-tab test as described by Raymond Chen
+    if (!IsAltTabWindow(hwnd))
+        return TRUE;
+
+    auto isShellWindow = hwnd == GetShellWindow();
+
+    if (isShellWindow)
+        return TRUE;
+
     QMap<QString, QVariant>* windowList = reinterpret_cast<QMap<QString, QVariant>*>(lParam);
     auto keys = windowList->keys();
     if (keys.indexOf(name) > 0) {
         return FALSE;
     } else {
-        DWORD processId;
-        GetWindowThreadProcessId(hwnd, &processId);
-        windowList->insert(name, QVariant::fromValue(processId));
+        std::wstringstream ss;
+        ss << std::hex << L"0x" << std::setw(16) << std::setfill(L'0')
+           << *reinterpret_cast<uint64_t*>(&hwnd);
+        windowList->insert(name, QString::fromStdWString(ss.str()));
     }
 
     return TRUE;
