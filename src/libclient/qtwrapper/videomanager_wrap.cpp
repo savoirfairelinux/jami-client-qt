@@ -30,16 +30,16 @@ VideoManagerInterface::VideoManagerInterface()
                                                                     int width,
                                                                     int height,
                                                                     bool isMixer) {
-               Q_EMIT decodingStarted(QString::fromLatin1(QByteArray::fromStdString(id)),
-                                      QString::fromLatin1(QByteArray::fromStdString(shmPath)),
+               Q_EMIT decodingStarted(QString(id.c_str()),
+                                      QString(shmPath.c_str()),
                                       width,
                                       height,
                                       isMixer);
            }),
            exportable_callback<VideoSignal::DecodingStopped>(
                [this](const std::string& id, const std::string& shmPath, bool isMixer) {
-                   Q_EMIT decodingStopped(QString::fromLatin1(QByteArray::fromStdString(id)),
-                                          QString::fromLatin1(QByteArray::fromStdString(shmPath)),
+                   Q_EMIT decodingStopped(QString(id.c_str()),
+                                          QString(shmPath.c_str()),
                                           isMixer);
                })};
 #endif
