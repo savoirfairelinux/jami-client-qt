@@ -782,16 +782,9 @@ ContactModelPimpl::slotContactAdded(const QString& accountId,
     if (accountId != linked.owner.id)
         return;
     auto contact = contacts.find(contactUri);
-    if (contact != contacts.end()) {
-        if (contact->profileInfo.type == profile::Type::PENDING) {
-            Q_EMIT behaviorController.trustRequestTreated(linked.owner.id, contactUri);
-        } else if (contact->profileInfo.type == profile::Type::JAMI && !contact->isBanned
-                   && confirmed) {
-            // This means that the peer accepted the trust request. We don't need to re-add the
-            // contact a second time (and this reset the presence to false).
-            return;
-        }
-    }
+    if (contact != contacts.end() && contact->profileInfo.type == profile::Type::PENDING)
+        Q_EMIT behaviorController.trustRequestTreated(linked.owner.id, contactUri);
+
     // for jams account we already have profile with avatar, use it to save to vCard
     bool isJamsAccount = !linked.owner.confProperties.managerUri.isEmpty();
     if (isJamsAccount) {
@@ -925,7 +918,6 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
     if (!lrc::api::Lrc::cacheAvatars.load())
         contactInfo.profileInfo.avatar.clear();
 
-    // lookup address in case of RING contact
     if (type == profile::Type::JAMI) {
         ConfigurationManager::instance().lookupAddress(linked.owner.id, "", contactUri);
         PresenceManager::instance().subscribeBuddy(linked.owner.id, contactUri, !banned);
