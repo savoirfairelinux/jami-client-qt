@@ -284,6 +284,7 @@ Window {
 
                         border.color: selectedScreenNumber === index ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
                         visible: root.window && JamiStrings.selectScreen !== screens[index] && index >= Qt.application.screens.length
+                                 && screenName2.text !=  JamiStrings.selectWindow
 
                         Text {
                             id: screenName2

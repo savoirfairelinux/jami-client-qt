@@ -947,33 +947,6 @@ CallModel::getDisplay(int idx, int x, int y, int w, int h)
         .arg(h);
 }
 
-
-
-#ifdef WIN32
-BOOL CALLBACK
-EnumWindowsProcMy(HWND hwnd, LPARAM lParam)
-{
-    std::pair<DWORD, QString>* dataPair = reinterpret_cast<std::pair<DWORD, QString>*>(
-        lParam);
-    DWORD lpdwProcessId;
-    if (auto parent = GetWindow(hwnd, GW_OWNER))
-        GetWindowThreadProcessId(parent, &lpdwProcessId);
-    else
-        GetWindowThreadProcessId(hwnd, &lpdwProcessId);
-    int len = GetWindowTextLength(hwnd) + 1;
-    std::vector<wchar_t> buf(len);
-    GetWindowText(hwnd, &buf[0], len);
-
-    if (lpdwProcessId == dataPair->first) {
-        if (!IsWindowVisible(hwnd))
-            return TRUE;
-        dataPair->second = QString::fromStdWString(&buf[0]);
-        return FALSE;
-    }
-    return TRUE;
-}
-#endif
-
 QString
 CallModel::getDisplay(const QString& windowProcessId, const QString& windowId)
 {
@@ -986,22 +959,10 @@ CallModel::getDisplay(const QString& windowProcessId, const QString& windowId)
         .arg(windowProcessId);
 #endif
 #ifdef WIN32
-    // If window changed the name we must look for the parent process window
-    QString newWindowId = windowId;
-    auto hwnd = FindWindow(NULL, windowId.toStdWString().c_str());
-    if (!hwnd) {
-        std::pair<DWORD, QString> idName(windowProcessId.toInt(), {});
-        LPARAM lParam = reinterpret_cast<LPARAM>(&idName);
-        EnumWindows(EnumWindowsProcMy, lParam);
-        if (!idName.second.isEmpty()) {
-            newWindowId = idName.second;
-        }
-    }
-
-    ret = QString("%1%2:+0,0 window-id:title=%3")
+    ret = QString("%1%2:+0,0 window-id:hwnd=%3")
         .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
         .arg(sep)
-        .arg(newWindowId);
+        .arg(windowProcessId);
 #endif
     return ret;
 }
