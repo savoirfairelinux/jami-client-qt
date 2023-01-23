@@ -37,12 +37,12 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="190"/>
         <source>%1 received a new message</source>
-        <translation type="unfinished"/>
+        <translation>Új üzenet érkezett a következőtől: %1</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="250"/>
         <source>%1 received a new trust request</source>
-        <translation type="unfinished"/>
+        <translation>Új megbízhatósági kérelmet kapott: %1</translation>
     </message>
 </context>
 <context>
@@ -1289,37 +1289,37 @@ Ha igen, akkor csak egy véletlenszerűen generált 40 karakterű azonosító ke
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="303"/>
         <source>Renderers information</source>
-        <translation type="unfinished"/>
+        <translation>Leképező adatai</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
         <source>Call information</source>
-        <translation type="unfinished"/>
+        <translation>Hívás adatai</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Peer number</source>
-        <translation type="unfinished"/>
+        <translation>Társszám</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Call id</source>
-        <translation type="unfinished"/>
+        <translation>Hívásazonosító</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
         <source>Sockets</source>
-        <translation type="unfinished"/>
+        <translation>Foglalatok</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
         <source>Video codec</source>
-        <translation type="unfinished"/>
+        <translation>Videokodek</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
         <source>Hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Hardveres gyorsítás</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
@@ -1329,12 +1329,12 @@ Ha igen, akkor csak egy véletlenszerűen generált 40 karakterű azonosító ke
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="311"/>
         <source>Audio codec</source>
-        <translation type="unfinished"/>
+        <translation>Hangcodek</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
         <source>Renderer id</source>
-        <translation type="unfinished"/>
+        <translation>Leképező azonosító</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
@@ -1398,17 +1398,17 @@ A többi résztvevő tartózkodási helye továbbra is megkapható.</translation
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
-        <translation type="unfinished"/>
+        <translation>Rögzítse a térképet a tartózkodási hely megosztásához vagy a tartózkodási hely kikapcsolásához bizonyos beszélgetésekben</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
-        <translation type="unfinished"/>
+        <translation>A helymegosztás több beszélgetésben is meg van osztva. Kattintson a helymegosztás kikapcsolásának módjának kiválasztásához</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
         <source>Share location to participants of this conversation (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Hely megosztása a beszélgetés résztvevőivel (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
@@ -1433,22 +1433,22 @@ A többi résztvevő tartózkodási helye továbbra is megkapható.</translation
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
         <source>Unpin</source>
-        <translation type="unfinished"/>
+        <translation>Rögzítés feloldása</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
         <source>Pin</source>
-        <translation type="unfinished"/>
+        <translation>Rögzítés</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
         <source>Position share duration</source>
-        <translation type="unfinished"/>
+        <translation>Helymegosztás időtartama</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
         <source>Limit the duration of location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Helymegosztás időtartamának korlátozása</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="342"/>
@@ -1997,7 +1997,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="768"/>
         <source>more emojis</source>
-        <translation type="unfinished"/>
+        <translation>több hangulatjel</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="774"/>
@@ -2192,7 +2192,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="836"/>
         <source>Edit message</source>
-        <translation type="unfinished"/>
+        <translation>Üzenet szerkesztése</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="506"/>
@@ -2580,12 +2580,12 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
         <source>Turn off sharing</source>
-        <translation type="unfinished"/>
+        <translation>Megosztás kikapcsolása</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
         <source>Stop location sharing in this conversation (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Helymegosztás leállítása ebben a beszélgetésben (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="345"/>
@@ -3419,17 +3419,17 @@ Másolja ki, és ossza meg barátaival!</translation>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettings.qml" line="84"/>
         <source>%1h%2min</source>
-        <translation type="unfinished"/>
+        <translation>%1 óra %2 perc</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettings.qml" line="86"/>
         <source>%1h</source>
-        <translation type="unfinished"/>
+        <translation>%1 óra</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettings.qml" line="88"/>
         <source>%1min</source>
-        <translation type="unfinished"/>
+        <translation>%1 perc</translation>
     </message>
 </context>
 <context>
@@ -3455,38 +3455,38 @@ Másolja ki, és ossza meg barátaival!</translation>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="62"/>
         <source>%1h%2min</source>
-        <translation type="unfinished"/>
+        <translation>%1 óra %2 perc</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
         <source>%1h</source>
-        <translation type="unfinished"/>
+        <translation>%1 óra</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="68"/>
         <source>%1m%2sec</source>
-        <translation type="unfinished"/>
+        <translation>%1 perc %2 másodperc</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="70"/>
         <source>%1m</source>
-        <translation type="unfinished"/>
+        <translation>%1 perc</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="73"/>
         <source>%1sec</source>
-        <translation type="unfinished"/>
+        <translation>%1 másodperc</translation>
     </message>
 </context>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="399"/>
+        <location filename="../src/app/positionmanager.cpp" line="401"/>
         <source>%1 is sharing it&apos;s location</source>
         <translation>%1 megosztja a tartózkodási helyét</translation>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="404"/>
+        <location filename="../src/app/positionmanager.cpp" line="406"/>
         <source>Location sharing</source>
         <translation>Helymegosztás</translation>
     </message>
@@ -3706,278 +3706,278 @@ Másolja ki, és ossza meg barátaival!</translation>
         <translation>alapértelmezett</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="67"/>
+        <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
         <translation>Semmis</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="68"/>
+        <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Trying</source>
         <translation>Próbálkozik…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="69"/>
+        <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
         <translation>Csörögni</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="70"/>
+        <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
         <translation>Hívásátirányítás…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="71"/>
+        <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Queued</source>
         <translation>Sorban áll</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="72"/>
+        <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Progress</source>
         <translation>Készültségi fok</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="73"/>
+        <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>OK</source>
         <translation>Rendben</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="74"/>
+        <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Accepted</source>
         <translation>Elfogadott</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="75"/>
+        <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
         <translation>Több választási lehetőség</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="76"/>
+        <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
         <translation>Véglegesen áthelyezve</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="77"/>
+        <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
         <translation>Ideiglenesen áthelyezve</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="78"/>
+        <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
         <translation>Meghatalmazás használata</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="79"/>
+        <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
         <translation>Alternatív szolgáltatás</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="80"/>
+        <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
         <translation>Rossz kérés</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="81"/>
+        <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
         <translation>Jogtalan</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="82"/>
+        <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
         <translation>Fizetés szükséges</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="83"/>
+        <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
         <translation>Tiltott</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="84"/>
+        <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
         <translation>Nem található</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="85"/>
+        <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
         <translation>Nem megengedett módszer</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="86"/>
-        <location filename="../src/libclient/callmodel.cpp" line="106"/>
+        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
         <translation>Elfogadhatatlan</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="87"/>
+        <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
         <translation>Meghatalmazott hitelesítés szükséges</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="88"/>
+        <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
         <translation>Időt kér</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="89"/>
+        <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Gone</source>
         <translation>Elmúlt</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="90"/>
+        <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
         <translation>A kérelem entitása túl nagy</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
         <translation>URI kérés túl hosszú</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="92"/>
+        <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
         <translation>Nem támogatott médiatípus</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="93"/>
+        <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
         <translation>Nem támogatott URI rendszer</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="94"/>
+        <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
         <translation>Hibás bővítmény</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="95"/>
+        <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
         <translation>Bővítmény szükséges</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="96"/>
+        <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
         <translation>A munkamenet időzítője túl rövid</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="97"/>
+        <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
         <translation>Túl rövid időintervallum</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="98"/>
+        <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
         <translation>Ideiglenesen nem elérhető</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="99"/>
+        <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
         <translation>A TSX nem létezik</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="100"/>
+        <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
         <translation>Érzékelt hurok</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="101"/>
+        <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
         <translation>Túl sok komló</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="102"/>
+        <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
         <translation>A cím hiányos</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="103"/>
+        <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
         <translation>Kétértelmű</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="104"/>
+        <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
         <translation>Foglalt</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="105"/>
+        <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
         <translation>Kérés megszűnt</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="107"/>
+        <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
         <translation>Rossz esemény</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="108"/>
+        <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
         <translation>A kérelem frissítése megtörtént</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="109"/>
+        <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
         <translation>A kérelem függőben</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="110"/>
+        <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
         <translation>Megfejthetetlen</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="111"/>
+        <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
         <translation>Belső kiszolgálóhiba</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="112"/>
+        <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
         <translation>Nincs végrehajtott</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="113"/>
+        <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
         <translation>Rossz átjáró</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="114"/>
+        <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
         <translation>A szolgáltatás nem elérhető</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="115"/>
+        <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
         <translation>Kiszolgáló időtúllépése</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="116"/>
+        <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
         <translation>Verzió nem támogatott</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="117"/>
+        <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
         <translation>Üzenet túl hosszú</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="118"/>
+        <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
         <translation>Előfeltétel meghiúsulása</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="119"/>
+        <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
         <translation>Mindenhol elfoglalt</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="120"/>
+        <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
         <translation>Hívás visszautasított</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="121"/>
+        <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
         <translation>Sehol nem létezik</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="122"/>
+        <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
         <translation>Bárhol nem elfogadható</translation>
     </message>

@@ -3469,12 +3469,12 @@ Skopírujte ho a zdieľajte s priateľmi!</translation>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="399"/>
+        <location filename="../src/app/positionmanager.cpp" line="401"/>
         <source>%1 is sharing it&apos;s location</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="404"/>
+        <location filename="../src/app/positionmanager.cpp" line="406"/>
         <source>Location sharing</source>
         <translation type="unfinished"/>
     </message>
@@ -3694,278 +3694,278 @@ Skopírujte ho a zdieľajte s priateľmi!</translation>
         <translation>predvolený</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="67"/>
+        <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
         <translation>Null</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="68"/>
+        <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Trying</source>
         <translation>Pokúšam sa</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="69"/>
+        <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
         <translation>Zvonenie</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="70"/>
+        <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
         <translation>Presmeruje sa</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="71"/>
+        <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Queued</source>
         <translation>Zaradené</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="72"/>
+        <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Progress</source>
         <translation>Priebeh</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="73"/>
+        <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>OK</source>
         <translation>V poriadku</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="74"/>
+        <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Accepted</source>
         <translation>Prijaté</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="75"/>
+        <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
         <translation>Viaceré možnosti</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="76"/>
+        <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
         <translation>Moved Permanently</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="77"/>
+        <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
         <translation>Moved Temporarily</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="78"/>
+        <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
         <translation>Použiť Proxy</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="79"/>
+        <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
         <translation>Alternatívna služba</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="80"/>
+        <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
         <translation>Bad Request</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="81"/>
+        <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
         <translation>Unauthorized</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="82"/>
+        <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
         <translation>Payment Required</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="83"/>
+        <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
         <translation>Forbidden</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="84"/>
+        <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
         <translation>Not Found</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="85"/>
+        <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
         <translation>Method Not Allowed</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="86"/>
-        <location filename="../src/libclient/callmodel.cpp" line="106"/>
+        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
         <translation>Not Acceptable</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="87"/>
+        <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
         <translation>Proxy Authentication Required</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="88"/>
+        <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
         <translation>Čas na splnenie žiadosti vypršal</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="89"/>
+        <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Gone</source>
         <translation>Gone</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="90"/>
+        <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
         <translation>Request Entity Too Large</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
         <translation>Request URI Too Long</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="92"/>
+        <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
         <translation>Unsupported Media Type</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="93"/>
+        <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
         <translation>Unsupported URI Scheme</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="94"/>
+        <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
         <translation>Bad Extension</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="95"/>
+        <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
         <translation>Extension Required</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="96"/>
+        <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
         <translation>Session Timer Too Small</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="97"/>
+        <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
         <translation>Interval Too Brief</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="98"/>
+        <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
         <translation>Temporarily Unavailable</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="99"/>
+        <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
         <translation>Call TSX Does Not Exist</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="100"/>
+        <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
         <translation>Loop Detected</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="101"/>
+        <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
         <translation>Too Many Hops</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="102"/>
+        <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
         <translation>Address Incomplete</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="103"/>
+        <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
         <translation>Ambiguous</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="104"/>
+        <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
         <translation>Obsadené</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="105"/>
+        <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
         <translation>Request Terminated</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="107"/>
+        <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
         <translation>Bad Event</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="108"/>
+        <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
         <translation>Request Updated</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="109"/>
+        <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
         <translation>Request Pending</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="110"/>
+        <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
         <translation>Undecipherable</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="111"/>
+        <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
         <translation>Internal Server Error</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="112"/>
+        <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
         <translation>Not Implemented</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="113"/>
+        <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
         <translation>Bad Gateway</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="114"/>
+        <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
         <translation>Service Unavailable</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="115"/>
+        <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
         <translation>Server Timeout</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="116"/>
+        <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
         <translation>Version Not Supported</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="117"/>
+        <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
         <translation>Správa príliš veľká</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="118"/>
+        <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
         <translation>Precondition Failure</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="119"/>
+        <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
         <translation>Busy Everywhere</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="120"/>
+        <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
         <translation>Hovor odmietnutý</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="121"/>
+        <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
         <translation>Neexistuje</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="122"/>
+        <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
         <translation>Neprijateľný</translation>
     </message>

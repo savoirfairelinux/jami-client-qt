@@ -1294,17 +1294,17 @@ Nëse po, kësaj llogarie do t’i përshoqërihet vetëm një identifikues prej
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
         <source>Call information</source>
-        <translation type="unfinished"/>
+        <translation>Hollësi thirrjeje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Peer number</source>
-        <translation type="unfinished"/>
+        <translation>Numër i palës tjetër</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Call id</source>
-        <translation type="unfinished"/>
+        <translation>ID thirrjeje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
@@ -1314,12 +1314,12 @@ Nëse po, kësaj llogarie do t’i përshoqërihet vetëm një identifikues prej
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
         <source>Video codec</source>
-        <translation type="unfinished"/>
+        <translation>Kodek videoje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
         <source>Hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Përshpejtim hardware</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
@@ -1329,7 +1329,7 @@ Nëse po, kësaj llogarie do t’i përshoqërihet vetëm një identifikues prej
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="311"/>
         <source>Audio codec</source>
-        <translation type="unfinished"/>
+        <translation>Kodek audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
@@ -1403,12 +1403,12 @@ Mundet ende të merret vendndodhja e pjesëmarrësve të tjerë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Vendndodhja tregohet në disa biseda, klikoni për të zgjedhur se si të çaktivizohet tregimi i vendndodhjes</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
         <source>Share location to participants of this conversation (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Tregoju vendndodhjen pjesëmarrësve te kjo bisedë (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
@@ -1433,12 +1433,12 @@ Mundet ende të merret vendndodhja e pjesëmarrësve të tjerë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
         <source>Unpin</source>
-        <translation type="unfinished"/>
+        <translation>Çfiksoje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
         <source>Pin</source>
-        <translation type="unfinished"/>
+        <translation>Fiksoje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
@@ -3482,12 +3482,12 @@ Kopjojeni dhe jepuani shokëve!</translation>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="399"/>
+        <location filename="../src/app/positionmanager.cpp" line="401"/>
         <source>%1 is sharing it&apos;s location</source>
         <translation>%1 po e tregon vendndodhjen e vet</translation>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="404"/>
+        <location filename="../src/app/positionmanager.cpp" line="406"/>
         <source>Location sharing</source>
         <translation>Tregim vendndodhjeje</translation>
     </message>
@@ -3707,278 +3707,278 @@ Kopjojeni dhe jepuani shokëve!</translation>
         <translation>parazgjedhja</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="67"/>
+        <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="68"/>
+        <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Trying</source>
         <translation>Po provohet</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="69"/>
+        <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
         <translation>Po i bihet ziles</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="70"/>
+        <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
         <translation>Po Përcillet</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="71"/>
+        <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Queued</source>
         <translation>Në Radhë</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="72"/>
+        <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Progress</source>
         <translation>Ecuri</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="73"/>
+        <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>OK</source>
         <translation>Në rregull</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="74"/>
+        <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Accepted</source>
         <translation>E pranuar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="75"/>
+        <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
         <translation>Zgjedhje të Shumta</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="76"/>
+        <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
         <translation>Lëvizur Përgjithmonë</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="77"/>
+        <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
         <translation>Lëvizur Përkohësisht</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="78"/>
+        <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
         <translation>Përdor Ndërmjetës</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="79"/>
+        <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
         <translation>Shërbim Alternativ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="80"/>
+        <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
         <translation>Kërkesë e Gabuar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="81"/>
+        <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
         <translation>E paautorizuar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="82"/>
+        <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
         <translation>Lypset Pagesë</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="83"/>
+        <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
         <translation>E ndaluar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="84"/>
+        <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
         <translation>S’u Gjet</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="85"/>
+        <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
         <translation>Metodë e Palejuar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="86"/>
-        <location filename="../src/libclient/callmodel.cpp" line="106"/>
+        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
         <translation>E papranueshme</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="87"/>
+        <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
         <translation>Lypset Mirëfilltësim Ndërmjetësi</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="88"/>
+        <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
         <translation>Mbarim Kohe për Kërkesën</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="89"/>
+        <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Gone</source>
         <translation>U avullua</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="90"/>
+        <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
         <translation>Njësi Kërkese Shumë e Gjatë</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
         <translation>URI Kërkese Shumë i Gjatë</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="92"/>
+        <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
         <translation>Lloj Media i Pambuluar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="93"/>
+        <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
         <translation>Skemë URI e Pambuluar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="94"/>
+        <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
         <translation>Zgjatim i Gabuar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="95"/>
+        <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
         <translation>Zgjatim i Domosdoshëm</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="96"/>
+        <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
         <translation>Kohëmatës Sesioni Shumë i Vogël</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="97"/>
+        <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
         <translation>Interval Shumë i Shkurtër</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="98"/>
+        <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
         <translation>Përkohësisht Jo i Passhëm</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="99"/>
+        <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
         <translation>S’ekziston TSX Thirrjeje</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="100"/>
+        <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
         <translation>U pikas Qerthull</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="101"/>
+        <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
         <translation>Shumë Kërcime</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="102"/>
+        <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
         <translation>Adresë e Paplotë</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="103"/>
+        <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
         <translation>E dykuptimtë</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="104"/>
+        <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
         <translation>I zënë</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="105"/>
+        <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
         <translation>Kërkesa u Përfundua</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="107"/>
+        <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
         <translation>Akt i Gabuar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="108"/>
+        <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
         <translation>Kërkesa u Përditësua</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="109"/>
+        <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
         <translation>Kërkesë Pezull</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="110"/>
+        <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
         <translation>E padeshifrueshme</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="111"/>
+        <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
         <translation>Gabim i Brendshëm Shërbyesi</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="112"/>
+        <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
         <translation>E pasendërtuar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="113"/>
+        <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
         <translation>Kanal i Gabuar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="114"/>
+        <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
         <translation>Shërbim i Pakapshëm</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="115"/>
+        <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
         <translation>Mbarim Kohe Shërbyesi</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="116"/>
+        <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
         <translation>Version i Pambuluar</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="117"/>
+        <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
         <translation>Mesazh Shumë i Gjatë</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="118"/>
+        <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
         <translation>Dështim Parakushti</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="119"/>
+        <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
         <translation>Ngado i Zënë</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="120"/>
+        <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
         <translation>Thirrje e Hedhur Poshtë</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="121"/>
+        <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
         <translation>S’ekziston Gjëkundi</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="122"/>
+        <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
         <translation>E papranuar Gjëkundi</translation>
     </message>
