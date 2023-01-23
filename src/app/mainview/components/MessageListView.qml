@@ -38,10 +38,15 @@ JamiListView {
                          (1.0 - ScrollBar.vertical.size)
         return Math.abs(scrollDiff) * contentHeight
     }
+    Timer {
+           interval: 2000; running: true; repeat: true
+           onTriggered: { MessagesAdapter.addInteractionToDisplay()}
+       }
 
     function loadMoreMsgsIfNeeded() {
         if (atYBeginning && !CurrentConversation.allMessagesLoaded)
-            MessagesAdapter.loadMoreMessages()
+            MessagesAdapter.addInteractionToDisplay();
+            //MessagesAdapter.loadMoreMessages()
     }
 
     function computeTimestampVisibility(item1, item1Index, item2, item2Index) {
@@ -185,6 +190,7 @@ JamiListView {
     // This connection to dataChanged resolves the styling for
     // messages before and after an erased message.
     Connections {
+        //target: MessagesAdapter.reducedMessageListModel
         target: MessagesAdapter.messageListModel
         function onDataChanged(tl, br, roles) {
             if (!(roles.includes(MessageList.Body) &&
@@ -209,8 +215,13 @@ JamiListView {
         // events in the expression for sourceModel. This was originally
         // masked behind an unchanging QSortFilterProxyModel object that
         // just reset it's sourceModel in MessagesAdapter.
+        //property var messageListModel: MessagesAdapter.reducedMessageListModel
         property var messageListModel: MessagesAdapter.messageListModel
-        onMessageListModelChanged: sourceModel = messageListModel
+
+        onMessageListModelChanged: {
+            console.warn("liat changed")
+            sourceModel = messageListModel
+        }
         filters: ExpressionFilter {
             readonly property int mergeType: Interaction.Type.MERGE
             readonly property int editedType: Interaction.Type.EDITED
@@ -220,9 +231,9 @@ JamiListView {
                         && Type !== editedType
                         && Type !== reactionType
         }
-        sorters: ExpressionSorter {
-            expression: modelLeft.index > modelRight.index
-        }
+//        sorters: ExpressionSorter {
+//            expression: modelLeft.index > modelRight.index
+//        }
     }
 
     delegate: DelegateChooser {

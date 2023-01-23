@@ -56,7 +56,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         set_editId("");
         const QString& convId = lrcInstance_->get_selectedConvUid();
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
-        set_messageListModel(QVariant::fromValue(conversation.interactions.get()));
+        set_messageListModel(QVariant::fromValue(conversation.displayedInteractions.get()));
+        setReducedListModel();
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
     });
 
@@ -106,6 +107,7 @@ void
 MessagesAdapter::loadConversationUntil(const QString& to)
 {
     try {
+        // to do change with interaction
         if (auto* model = messageListModel_.value<MessageListModel*>()) {
             auto idx = model->indexOfMessage(to);
             if (idx == -1) {
@@ -202,6 +204,61 @@ MessagesAdapter::removeEmojiReaction(const QString& convId,
     } catch (...) {
         qDebug() << "Exception during removeEmojiReaction():" << messageId;
     }
+}
+
+void
+MessagesAdapter::addInteractionToDisplay()
+{
+    const QString& convId = lrcInstance_->get_selectedConvUid();
+    const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
+
+    if (!displayMoreMessage()) {
+        loadMoreMessages();
+        displayMoreMessage();
+    }
+    // qWarning() << "size: " << conversation.interactions->size();
+}
+
+void
+MessagesAdapter::removeInteractionToDisplay()
+{}
+
+void
+MessagesAdapter::updateInformationToDisplay()
+{}
+
+bool
+MessagesAdapter::displayMoreMessage()
+{
+    const QString& convId = lrcInstance_->get_selectedConvUid();
+    const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
+
+    MessageListModel::reverseIterator nextMsg;
+    //    if (!conversation.interactions->empty()) {
+    //        qWarning() << conversation.interactions->begin()->second.body
+    //                   << conversation.interactions->begin()->second.type;
+    //    }
+
+    if (!conversation.displayedInteractions->empty()) {
+        auto it = conversation.displayedInteractions->rbegin();
+        nextMsg = conversation.interactions->rfind(it->first);
+        nextMsg++;
+    } else {
+        nextMsg = conversation.interactions->rbegin();
+    }
+
+    while (nextMsg != conversation.interactions->rend()
+           && nextMsg->second.type != interaction::Type::TEXT) {
+        nextMsg++;
+    }
+    if (nextMsg != conversation.interactions->rend()) {
+        conversation.displayedInteractions->insert(std::make_pair(nextMsg->first, nextMsg->second),
+                                                   false);
+        // qWarning() << "display more msg" << nextMsg->second.body;
+        return true;
+    }
+    // qWarning() << " no display more msg";
+    return false;
 }
 
 void
@@ -601,6 +658,23 @@ MessagesAdapter::onMessagesFoundProcessed(const QString& accountId,
     } else {
         set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
     }
+}
+
+void
+MessagesAdapter::setReducedListModel()
+{
+    //    const QString& convId = lrcInstance_->get_selectedConvUid();
+    //    const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
+    //    qWarning() << "1";
+    //    auto interaction = conversation.interactions.get();
+    //    tempList->clear();
+    //    qWarning() << "2";
+    //    for (auto it = interaction->begin(); it != interaction->end(); it++) {
+    //        tempList->insert(*it);
+    //    }
+    //    qWarning() << "3";
+    //    set_reducedMessageListModel(QVariant::fromValue(tempList.get()));
+    //    qWarning() << "4";
 }
 
 QList<QString>

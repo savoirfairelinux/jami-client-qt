@@ -87,6 +87,7 @@ public:
                                   interaction::Info message,
                                   bool beginning = false);
     iterator find(const QString& msgId);
+    reverseIterator rfind(const QString& msgId);
     iterator findActiveCall(const MapStringString& commit);
     iterator erase(const iterator& it);
 
@@ -96,6 +97,7 @@ public:
     Q_INVOKABLE int erase(const QString& msgId);
     interaction::Info& operator[](const QString& messageId);
     iterator end();
+    reverseIterator rend();
     constIterator end() const;
     constIterator cend() const;
     iterator begin();
@@ -114,12 +116,16 @@ public:
     void moveMessages(QList<QString> msgIds, const QString& parentId);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    Q_INVOKABLE virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
-    Q_INVOKABLE virtual QVariant data(int idx, int role = Qt::DisplayRole) const;
+    Q_INVOKABLE virtual QVariant data(const QModelIndex& index,
+                                      int role = Qt::DisplayRole) const override;
+    Q_INVOKABLE QVariant data(int idx, int role = Qt::DisplayRole) const;
+    // Q_INVOKABLE virtual QVariant dataInMemory(int idx, int role = Qt::DisplayRole) const;
     QHash<int, QByteArray> roleNames() const override;
-    QVariant dataForItem(item_t item, int indexRow, int role = Qt::DisplayRole) const;
+    QVariant virtual dataForItem(item_t item, int indexRow, int role = Qt::DisplayRole) const;
     bool contains(const QString& msgId);
     int getIndexOfMessage(const QString& messageId) const;
+    int getIndexOfMemoryMessage(const QString& messageId) const;
+
     void addHyperlinkInfo(const QString& messageId, const QVariantMap& info);
     void linkifyMessage(const QString& messageId, const QString& linkified);
 
@@ -147,11 +153,11 @@ public:
     QString findEmojiReaction(const QString& emoji,
                               const QString& authorURI,
                               const QString& messageId);
+    QList<QPair<QString, interaction::Info>>& getInteractionList();
 
 protected:
     using Role = MessageList::Role;
 
-private:
     QList<QPair<QString, interaction::Info>> interactions_;
     // Note: because read status are updated even if interaction is not loaded
     // we need to keep track of these status outside the interaction::Info
@@ -161,15 +167,15 @@ private:
     QMap<QString, QString> lastDisplayedMessageUid_;
     QMap<QString, QStringList> messageToReaders_;
     QMap<QString, QSet<QString>> replyTo_;
-    void updateReplies(item_t& message);
+    void virtual updateReplies(item_t& message);
     QMap<QString, QVector<interaction::Body>> editedBodies_;
 
     // key = messageId and values = QSet of reactionIds
     QMap<QString, QSet<QString>> reactedMessages_;
 
     void moveMessage(const QString& msgId, const QString& parentId);
-    void insertMessage(int index, item_t& message);
-    iterator insertMessage(iterator it, item_t& message);
+    void virtual insertMessage(int index, item_t& message);
+    iterator virtual insertMessage(iterator it, item_t& message);
     void removeMessage(int index, iterator it);
     void moveMessages(int from, int last, int to);
 

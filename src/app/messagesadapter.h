@@ -35,6 +35,7 @@ class MessagesAdapter final : public QmlAdapterBase
     QML_PROPERTY(QString, editId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
     QML_PROPERTY(QVariant, mediaMessageListModel)
+    // QML_PROPERTY(QVariant, reducedMessageListModel)
 
 public:
     explicit MessagesAdapter(AppSettingsManager* settingsManager,
@@ -78,6 +79,11 @@ protected:
     Q_INVOKABLE void removeEmojiReaction(const QString& convId,
                                          const QString& emoji,
                                          const QString& messageId);
+    Q_INVOKABLE void addInteractionToDisplay();
+    Q_INVOKABLE void removeInteractionToDisplay();
+    Q_INVOKABLE void updateInformationToDisplay();
+    bool displayMoreMessage();
+
     Q_INVOKABLE void sendFile(const QString& message);
     Q_INVOKABLE void acceptFile(const QString& arg);
     Q_INVOKABLE void cancelFile(const QString& arg);
@@ -112,6 +118,8 @@ protected:
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
     void setMessagesFileContent(const QString& path);
     void setSendMessageContent(const QString& content);
+
+    void setReducedListModel();
 
 private Q_SLOTS:
     void onNewInteraction(const QString& convUid,

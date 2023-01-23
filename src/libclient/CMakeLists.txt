@@ -261,6 +261,8 @@ set(LIBCLIENT_SOURCES
   behaviorcontroller.cpp
   datatransfermodel.cpp
   messagelistmodel.cpp
+  displayedmessagelistmodel.cpp
+  memorymessagelistmodel.cpp
   callInformationListModel.cpp
   rendererinformationlistmodel.cpp
 
@@ -291,6 +293,8 @@ set(LIBCLIENT_HEADERS
   vcard.h
   namedirectory.h
   messagelistmodel.h
+  displayedmessagelistmodel.h
+  memorymessagelistmodel.h
   callInformationListModel.h
   rendererinformationlistmodel.h
 

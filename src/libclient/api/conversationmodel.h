@@ -93,6 +93,8 @@ public:
 
     void initConversations();
 
+    void updateDisplayedList();
+
     /**
      * Get unfiltered underlying conversation data. This is intended to
      * serve as the underlying data for QAbstractListModel based objects.

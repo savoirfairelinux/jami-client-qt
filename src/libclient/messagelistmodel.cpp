@@ -69,6 +69,17 @@ MessageListModel::find(const QString& msgId)
     return interactions_.end();
 }
 
+reverseIterator
+MessageListModel::rfind(const QString& msgId)
+{
+    for (auto it = interactions_.rbegin(); it != interactions_.rend(); ++it) {
+        if (it->first == msgId) {
+            return it;
+        }
+    }
+    return interactions_.rend();
+}
+
 iterator
 MessageListModel::findActiveCall(const MapStringString& commit)
 {
@@ -147,6 +158,12 @@ iterator
 MessageListModel::end()
 {
     return interactions_.end();
+}
+
+reverseIterator
+MessageListModel::rend()
+{
+    return interactions_.rend();
 }
 
 constIterator
@@ -234,6 +251,9 @@ MessageListModel::atIndex(int index) const
 QPair<iterator, bool>
 MessageListModel::insert(int index, QPair<QString, interaction::Info> message)
 {
+    qWarning() << "insert, mesddsage added in interaction memory";
+    if (message.second.body == "103")
+        qWarning() << "insert, message added in interaction memory";
     iterator itr;
     for (itr = interactions_.begin(); itr != interactions_.end(); ++itr) {
         if (itr->first == message.first) {
@@ -417,6 +437,11 @@ MessageListModel::dataForItem(item_t item, int, int role) const
 {
     auto replyId = item.second.commit["reply-to"];
     auto repliedMsg = getIndexOfMessage(replyId);
+    //    if (memoryinteractions_ != nullptr)
+    //        repliedMsg = getIndexOfMemoryMessage(replyId);
+
+    //    if (!replyId.isEmpty())
+    //        qWarning() << item.second.body << "efefefef" << repliedMsg << "--" << interactions_.size();
     switch (role) {
     case Role::Id:
         return QVariant(item.first);
@@ -492,6 +517,18 @@ MessageListModel::data(int idx, int role) const
     }
     return dataForItem(interactions_.at(index.row()), index.row(), role);
 }
+// QVariant
+// MessageListModel::dataInMemory(int idx, int role) const
+//{
+//     if (memoryinteractions_ == nullptr)
+//         return QVariant();
+
+//    QModelIndex index = QAbstractListModel::index(idx, 0);
+//    if (!index.isValid() || index.row() < 0 || index.row() >= memoryinteractions_->size()) {
+//        return {};
+//    }
+//    return dataForItem(memoryinteractions_->at(index.row()), index.row(), role);
+//}
 
 QVariant
 MessageListModel::data(const QModelIndex& index, int role) const
@@ -512,6 +549,19 @@ MessageListModel::getIndexOfMessage(const QString& messageId) const
     }
     return -1;
 }
+
+// int
+// MessageListModel::getIndexOfMemoryMessage(const QString& messageId) const
+//{
+//     if (memoryinteractions_ == nullptr)
+//         return -1;
+//     for (int i = 0; i < memoryinteractions_->size(); i++) {
+//         if (memoryinteractions_->at(i).first == messageId) {
+//             return i;
+//         }
+//     }
+//     return -1;
+// }
 
 void
 MessageListModel::addHyperlinkInfo(const QString& messageId, const QVariantMap& info)
@@ -756,5 +806,11 @@ MessageListModel::findEmojiReaction(const QString& emoji,
         }
     }
     return {};
+}
+
+QList<QPair<QString, interaction::Info>>&
+MessageListModel::getInteractionList()
+{
+    return interactions_;
 }
 } // namespace lrc

@@ -20,6 +20,8 @@
 
 #include "interaction.h"
 #include "messagelistmodel.h"
+#include "memorymessagelistmodel.h"
+#include "displayedmessagelistmodel.h"
 #include "member.h"
 #include "typedefs.h"
 
@@ -60,8 +62,13 @@ to_mode(const int intMode)
 struct Info
 {
     Info()
-        : interactions(std::make_unique<MessageListModel>(nullptr))
-    {}
+        : interactions(std::make_unique<MemoryMessageListModel>(nullptr))
+        , displayedInteractions(
+              std::make_unique<DisplayedMessageListModel>(nullptr,
+                                                          interactions.get()->getInteractionList()))
+    {
+        interactions->setDisplayedList(&displayedInteractions);
+    }
     Info(const Info& other) = delete;
     Info(Info&& other) = default;
     Info& operator=(const Info& other) = delete;
@@ -76,7 +83,8 @@ struct Info
 
     QString callId;
     QString confId;
-    std::unique_ptr<MessageListModel> interactions;
+    std::unique_ptr<MemoryMessageListModel> interactions;
+    std::unique_ptr<DisplayedMessageListModel> displayedInteractions;
     QString lastMessageUid;
     QString lastSelfMessageId;
     QHash<QString, QString> parentsId; // pair messageid/parentid for messages without parent loaded
