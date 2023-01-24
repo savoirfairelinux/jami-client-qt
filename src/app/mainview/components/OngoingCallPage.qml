@@ -175,9 +175,7 @@ Rectangle {
                 id: distantRenderer
 
                 rendererId: CurrentCall.id
-                anchors.centerIn: parent
                 anchors.fill: parent
-                z: -1
 
                 visible: !CurrentCall.isConference && !CurrentCall.isAudioOnly
             }

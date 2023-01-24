@@ -41,7 +41,6 @@ Rectangle {
 
     LocalVideo {
         id: previewRenderer
-        anchors.centerIn: parent
         anchors.fill: parent
         visible: !root.isAudioOnly &&
                  CurrentAccount.videoEnabled_Video &&
