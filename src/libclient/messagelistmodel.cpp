@@ -288,17 +288,26 @@ MessageListModel::moveMessage(const QString& msgId, const QString& parentId)
         }
     }
 
+    auto endIdx = currentIndex;
+    auto pId = msgId;
+
     // move a message
     int newIndex = indexOfMessage(parentId) + 1;
     if (newIndex >= interactions_.size()) {
         newIndex = interactions_.size() - 1;
+        // If we can move all the messages after the current one, we can do it directly
+        childMessageIdToMove.clear();
+        endIdx = std::max(endIdx, newIndex - 1);
     }
 
     if (currentIndex == newIndex || newIndex == -1)
         return;
 
     // Pretty every messages is moved
-    moveMessages(currentIndex, interactions_.size() - 1, newIndex);
+    moveMessages(currentIndex, endIdx, newIndex);
+    // move a child message
+    if (!childMessageIdToMove.isEmpty())
+        moveMessage(childMessageIdToMove, msgId);
 }
 
 void
@@ -349,21 +358,13 @@ MessageListModel::removeMessage(int index, iterator it)
 void
 MessageListModel::moveMessages(int from, int last, int to)
 {
-    auto resetModel = (from <= 2 && last == interactions_.size() - 1);
     if (last < from)
         return;
-    if (resetModel) {
-        Q_EMIT beginResetModel();
-    } else {
-        Q_EMIT beginMoveRows(QModelIndex(), from, last, QModelIndex(), to);
-    }
-    for (int i = 0; i < (last - from); ++i)
-        interactions_.move(last, to);
-    if (resetModel) {
-        Q_EMIT endResetModel();
-    } else {
-        Q_EMIT endMoveRows();
-    }
+    QModelIndex sourceIndex = QAbstractListModel::index(from, 0);
+    QModelIndex destinationIndex = QAbstractListModel::index(to, 0);
+    Q_EMIT beginMoveRows(sourceIndex, from, from, destinationIndex, to);
+    interactions_.move(from, to);
+    Q_EMIT endMoveRows();
 }
 
 bool
