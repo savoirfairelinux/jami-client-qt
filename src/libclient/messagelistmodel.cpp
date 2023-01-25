@@ -417,8 +417,11 @@ MessageListModel::isOnlyEmoji(const QString& text) const
 QVariant
 MessageListModel::dataForItem(item_t item, int, int role) const
 {
-    auto replyId = item.second.commit["reply-to"];
-    auto repliedMsg = getIndexOfMessage(replyId);
+    QString replyId = item.second.commit["reply-to"];
+    int repliedMsg;
+    if (!replyId.isEmpty() && (role == Role::ReplyToAuthor || role == Role::ReplyToBody)) {
+        repliedMsg = getIndexOfMessage(replyId);
+    }
     switch (role) {
     case Role::Id:
         return QVariant(item.first);
