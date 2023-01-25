@@ -95,6 +95,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c7190a2_fed32eff",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1162,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-25T21:32:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dc9bd22_a2b821ac",
+      "range": {
+        "startLine": 1162,
+        "startChar": 47,
+        "endLine": 1162,
+        "endChar": 50
+      },
+      "revId": "f1dc0e700ffc2e3e0e6a6efb62cfcfedbca9e587",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c16fc36_23eb8caf",
@@ -168,6 +192,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e9297218_f0a5ac8b",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-25T21:32:41Z",
+      "side": 1,
+      "message": "ok, so no change",
+      "parentUuid": "f5a9cd2a_4288f740",
+      "range": {
+        "startLine": 301,
+        "startChar": 49,
+        "endLine": 301,
+        "endChar": 69
+      },
+      "revId": "f1dc0e700ffc2e3e0e6a6efb62cfcfedbca9e587",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a35f95e2_b194156b",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 10
@@ -203,6 +251,30 @@
       "side": 1,
       "message": "Is the convention `to` instead of `in`? i.e. `Screenshot saved to %1`?",
       "parentUuid": "a35f95e2_b194156b",
+      "range": {
+        "startLine": 302,
+        "startChar": 43,
+        "endLine": 302,
+        "endChar": 64
+      },
+      "revId": "f1dc0e700ffc2e3e0e6a6efb62cfcfedbca9e587",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f85ad41_877954cc",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-25T21:32:41Z",
+      "side": 1,
+      "message": "ok: Screenshot saved to + path",
+      "parentUuid": "8141b1f8_cfc1746d",
       "range": {
         "startLine": 302,
         "startChar": 43,
