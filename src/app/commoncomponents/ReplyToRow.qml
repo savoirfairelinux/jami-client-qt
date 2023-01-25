@@ -84,9 +84,15 @@ Item {
                 Layout.maximumWidth: JamiTheme.preferredFieldWidth - JamiTheme.preferredMarginSize
                 Layout.rightMargin: JamiTheme.preferredMarginSize
 
-                text: ReplyToBody
-                elide: Text.ElideRight
+                TextMetrics {
+                    id: metrics
+                    elide: Text.ElideRight
+                    elideWidth: JamiTheme.preferredFieldWidth - JamiTheme.preferredMarginSize
+                    text: ReplyToBody
+                }
+
                 textFormat: Text.MarkdownText
+                text: metrics.elidedText
 
                 color:  UtilsAdapter.luma(bubble.color) ?
                     JamiTheme.chatviewTextColorLight :
