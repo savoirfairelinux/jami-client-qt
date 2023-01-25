@@ -22,6 +22,30 @@
       },
       "revId": "9a29b2022c53405713a5a455f6c79ede65f61ce5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95aaf484_268d3651",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-25T21:14:25Z",
+      "side": 1,
+      "message": "I tried to fix without success.\nIn windows I had an empty selectscreen windows although all devices were started. Moreover, when opening the window i could reproduce that the displays were started too, not only the windows.\nThe patch would not be restarted from scratch but reverted until nicolas has it working properly on windows.",
+      "parentUuid": "907ade7b_2e5d470b",
+      "range": {
+        "startLine": 400,
+        "startChar": 30,
+        "endLine": 400,
+        "endChar": 42
+      },
+      "revId": "9a29b2022c53405713a5a455f6c79ede65f61ce5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
