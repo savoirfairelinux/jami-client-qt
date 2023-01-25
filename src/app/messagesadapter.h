@@ -133,7 +133,7 @@ private:
     AppSettingsManager* settingsManager_;
     PreviewEngine* previewEngine_;
 
-    static constexpr const int loadChunkSize_ {20};
+    static constexpr const int loadChunkSize_ {20000};
 
     std::unique_ptr<MessageListModel> mediaInteractions_;
 };

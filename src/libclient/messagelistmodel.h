@@ -23,6 +23,7 @@
 
 #include <QAbstractListModel>
 #include <QTimer>
+#include <QMutex>
 
 namespace lrc {
 namespace api {
@@ -131,6 +132,7 @@ public:
     // view model and absorb the interaction management logic to avoid exposing
     // these emission wrappers
     void emitDataChanged(iterator it, VectorInt roles = {});
+    void emitDataChanged(int index, VectorInt roles);
     void emitDataChanged(const QString& msgId, VectorInt roles = {});
     bool isOnlyEmoji(const QString& text) const;
 
@@ -147,11 +149,17 @@ public:
     QString findEmojiReaction(const QString& emoji,
                               const QString& authorURI,
                               const QString& messageId);
+public Q_SLOTS:
+    void updateInsertMessages();
 
 protected:
     using Role = MessageList::Role;
 
 private:
+    // QList<QPair<QPair<int, iterator>, QPair<QString, interaction::Info>>> insertMessagesQueue = {};
+    QList<QPair<QPair<int, iterator>, QPair<QString, interaction::Info>>> insertMessagesQueue = {};
+    QTimer* timer_;
+    QMutex insertMutex_;
     QList<QPair<QString, interaction::Info>> interactions_;
     // Note: because read status are updated even if interaction is not loaded
     // we need to keep track of these status outside the interaction::Info

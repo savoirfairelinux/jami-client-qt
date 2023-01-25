@@ -202,7 +202,7 @@ JamiListView {
             computeSequencing(pItem, nItem, nnItem)
         }
     }
-
+    //model: MessagesAdapter.messageListModel
     model: SortFilterProxyModel {
         id: proxyModel
         // There doesn't seem to a subscription to property change
@@ -215,13 +215,18 @@ JamiListView {
             readonly property int mergeType: Interaction.Type.MERGE
             readonly property int editedType: Interaction.Type.EDITED
             readonly property int reactionType: Interaction.Type.REACTION
-            expression: Body !== ""
+
+            expression: { console.warn("eifjeifjewjiejfiowef nulllll")
+                return Body !== ""
                         && Type !== mergeType
                         && Type !== editedType
                         && Type !== reactionType
+                }
         }
         sorters: ExpressionSorter {
-            expression: modelLeft.index > modelRight.index
+            expression: {
+                //console.warn("eifjeifjewjiejfiowef nulllll")
+                modelLeft.index > modelRight.index }
         }
     }
 

@@ -38,8 +38,11 @@ using reverseIterator = MessageListModel::reverseIterator;
 MessageListModel::MessageListModel(QObject* parent)
     : QAbstractListModel(parent)
     , timestampTimer_(new QTimer(this))
+    , timer_(new QTimer(this))
 {
     connect(timestampTimer_, &QTimer::timeout, this, &MessageListModel::timestampUpdated);
+    connect(timer_, &QTimer::timeout, this, &MessageListModel::updateInsertMessages);
+    timer_->start(333);
     timestampTimer_->start(1000);
 }
 
@@ -327,9 +330,50 @@ MessageListModel::updateReplies(item_t& message)
     }
 }
 
+// void
+// MessageListModel::insertMessage(int index, item_t& message)
+//{
+//     auto a = qMakePair(qMakePair(index, iterator()), message);
+//     QMutexLocker lk(&insertMutex_);
+//     insertMessagesQueue.append(a);
+//     //    Q_EMIT beginInsertRows(QModelIndex(), index, index);
+//     //    interactions_.insert(index, message);
+//     //    Q_EMIT endInsertRows();
+//     //    updateReplies(message);
+// }
+
+// iterator
+// MessageListModel::insertMessage(iterator it, item_t& message)
+//{
+//     auto index = std::distance(begin(), it);
+//     auto a = qMakePair(qMakePair(index, it), message);
+//     QMutexLocker lk(&insertMutex_);
+//     insertMessagesQueue.append(a);
+//     // Q_EMIT beginInsertRows(QModelIndex(), index, index);
+//     // auto insertion = interactions_.insert(it, message);
+//     // Q_EMIT endInsertRows();
+//     // updateReplies(message);
+//     return it; // insertion;
+// }
+
+// void
+// MessageListModel::insertMessage(int index, item_t& message)
+//{
+//     auto a = qMakePair(qMakePair(index, iterator()), message);
+//     QMutexLocker lk(&insertMutex_);
+//     insertMessagesQueue.append(a);
+//     //    Q_EMIT beginInsertRows(QModelIndex(), index, index);
+//     //    interactions_.insert(index, message);
+//     //    Q_EMIT endInsertRows();
+//     //    updateReplies(message);
+// }
+
 void
 MessageListModel::insertMessage(int index, item_t& message)
 {
+    // auto a = qMakePair(qMakePair(index, iterator()), message);
+    // QMutexLocker lk(&insertMutex_);
+    // insertMessagesQueue.append(a);
     Q_EMIT beginInsertRows(QModelIndex(), index, index);
     interactions_.insert(index, message);
     Q_EMIT endInsertRows();
@@ -340,12 +384,28 @@ iterator
 MessageListModel::insertMessage(iterator it, item_t& message)
 {
     auto index = std::distance(begin(), it);
+    // auto a = qMakePair(qMakePair(index, it), message);
+    // QMutexLocker lk(&insertMutex_);
     Q_EMIT beginInsertRows(QModelIndex(), index, index);
     auto insertion = interactions_.insert(it, message);
     Q_EMIT endInsertRows();
     updateReplies(message);
     return insertion;
 }
+
+// iterator
+// MessageListModel::insertMessage(iterator it, item_t& message)
+//{
+//     auto index = std::distance(begin(), it);
+//     auto a = qMakePair(qMakePair(index, it), message);
+//     QMutexLocker lk(&insertMutex_);
+//     insertMessagesQueue.append(a);
+//     // Q_EMIT beginInsertRows(QModelIndex(), index, index);
+//     // auto insertion = interactions_.insert(it, message);
+//     // Q_EMIT endInsertRows();
+//     // updateReplies(message);
+//     return it; // insertion;
+// }
 
 void
 MessageListModel::removeMessage(int index, iterator it)
@@ -377,6 +437,10 @@ MessageListModel::contains(const QString& msgId)
 int
 MessageListModel::rowCount(const QModelIndex&) const
 {
+    // simulate lazy loading
+    // make a synthetic limit
+    //    if (interactions_.size() > 20)
+    //        return 20;
     return interactions_.size();
 }
 
@@ -525,10 +589,8 @@ MessageListModel::addHyperlinkInfo(const QString& messageId, const QVariantMap& 
     if (index == -1) {
         return;
     }
-    QModelIndex modelIndex = QAbstractListModel::index(index, 0);
-
     interactions_[index].second.linkPreviewInfo = info;
-    Q_EMIT dataChanged(modelIndex, modelIndex, {Role::LinkPreviewInfo});
+    emitDataChanged(index, {Role::LinkPreviewInfo});
 }
 
 void
@@ -583,6 +645,13 @@ void
 MessageListModel::emitDataChanged(iterator it, VectorInt roles)
 {
     auto index = std::distance(begin(), it);
+    QModelIndex modelIndex = QAbstractListModel::index(index, 0);
+    Q_EMIT dataChanged(modelIndex, modelIndex, roles);
+}
+
+void
+MessageListModel::emitDataChanged(int index, VectorInt roles)
+{
     QModelIndex modelIndex = QAbstractListModel::index(index, 0);
     Q_EMIT dataChanged(modelIndex, modelIndex, roles);
 }
@@ -762,4 +831,35 @@ MessageListModel::findEmojiReaction(const QString& emoji,
     }
     return {};
 }
+
+// void
+// MessageListModel::updateInsertMessages()
+//{
+//     if (insertMessagesQueue.empty())
+//         return;
+//     qWarning() << insertMessagesQueue.begin()->first;
+//     QMutexLocker lk(&insertMutex_);
+//     const auto max = std::max_element(insertMessagesQueue.begin(),
+//                                       insertMessagesQueue.end(),
+//                                       [](const auto& lhs, const auto& rhs) {
+//                                           return lhs.first.first < rhs.first.first;
+//                                       });
+//     const auto min = std::max_element(insertMessagesQueue.begin(),
+//                                       insertMessagesQueue.end(),
+//                                       [](const auto& lhs, const auto& rhs) {
+//                                           return lhs.first.first > rhs.first.first;
+//                                       });
+//     Q_EMIT beginInsertRows(QModelIndex(), min->first.first, max->first.first);
+//     for (auto it = insertMessagesQueue.begin(); it != insertMessagesQueue.end(); it++) {
+//         if (it->first.second != iterator())
+//             interactions_.insert(it->first.second, it->second);
+//         else
+//             interactions_.insert(it->first.first, it->second);
+//     }
+//     Q_EMIT endInsertRows();
+//     for (auto it = insertMessagesQueue.begin(); it != insertMessagesQueue.end(); it++) {
+//         updateReplies(it->second);
+//     }
+//     insertMessagesQueue.clear();
+// }
 } // namespace lrc
