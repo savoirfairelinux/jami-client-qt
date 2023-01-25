@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "907ade7b_2e5d470b",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-25T21:06:20Z",
+      "side": 1,
+      "message": "Not possible to just rebase it correctly? Or all the patch must be restarted?",
+      "range": {
+        "startLine": 400,
+        "startChar": 30,
+        "endLine": 400,
+        "endChar": 42
+      },
+      "revId": "9a29b2022c53405713a5a455f6c79ede65f61ce5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
