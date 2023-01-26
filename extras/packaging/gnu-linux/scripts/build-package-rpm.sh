@@ -26,7 +26,7 @@ set -e
 # Import the spec file.
 mkdir -p /opt/client-qt
 cd /opt/client-qt
-tar xf "/src/$RELEASE_TARBALL_FILENAME" client-qt/extras/packaging/gnu-linux/rules/rpm \
+tar xf "/src/$RELEASE_TARBALL_FILENAME" --wildcards 'jami-*/extras/packaging/gnu-linux/rules/rpm' \
     --strip-components=5 && mv rpm/* . && rmdir rpm
 rm jami-libqt.spec
 
@@ -74,7 +74,7 @@ if [ ! -f "${RPM_PATH}" ]; then
         mkdir /opt/qt-jami-build
         cd /opt/qt-jami-build
         tar xf "/src/$RELEASE_TARBALL_FILENAME" \
-            client-qt/extras/packaging/gnu-linux/rules/rpm/jami-libqt.spec \
+            --wildcards 'jami-*/extras/packaging/gnu-linux/rules/rpm/jami-libqt.spec' \
             --strip-components=6
 
         # Fetch and cache the tarball, if not already available.
@@ -93,7 +93,7 @@ if [ ! -f "${RPM_PATH}" ]; then
             ) 8>"${CACHED_QT_TARBALL}.lock"
         fi
 
-        cp "$CACHED_QT_TARBALL" "/root/rpmbuild/SOURCES/jami-qtlib_$QT_MAJOR_MINOR_PATCH.tar.xz"
+        cp "$CACHED_QT_TARBALL" "/root/rpmbuild/SOURCES/jami-libqt-$QT_MAJOR_MINOR_PATCH.tar.xz"
         sed -i "s/RELEASE_VERSION/$QT_MAJOR_MINOR_PATCH/g" jami-libqt.spec
         rpmdev-bumpspec --comment="Automatic nightly release" \
                         --userstring="Jenkins <jami@lists.savoirfairelinux.net>" jami-libqt.spec
