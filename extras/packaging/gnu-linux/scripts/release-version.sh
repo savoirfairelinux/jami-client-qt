@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
-# Copyright (C) 2020-2021 Savoir-faire Linux Inc.
+# Copyright (C) 2023 Savoir-faire Linux Inc.
 #
 # Author: Amin Bandali <amin.bandali@savoirfairelinux.com>
 #
@@ -20,20 +20,16 @@
 # This script is used in the packaging containers to build a snap
 # package on an ubuntu base distro.
 
+if [ $# -gt 1 ]; then
+    echo "Usage: $0 {stable,beta,nightly}"
+    exit 1
+fi
 
-set -e
+# default to stable if no release type given
+release_type=${1:-stable}
 
-tar xf "/src/$RELEASE_TARBALL_FILENAME" -C /opt
-cd /opt/jami-*/
-cp -r extras/packaging/gnu-linux/rules/snap/common .
-cp -r extras/packaging/gnu-linux/rules/snap/${SNAP_PKG_NAME}/snapcraft.yaml .
-
-# set the version and tarball filename
-sed -i "s/RELEASE_VERSION/${RELEASE_VERSION}/g" snapcraft.yaml
-
-snapcraft # requires snapcraft >= 4.8
-
-# move the built snap to output
-mv *.snap /opt/output/
-chown -R "${CURRENT_UID}:${CURRENT_UID}" .
-chown ${CURRENT_UID}:${CURRENT_GID} /opt/output/*.snap
+last_commit_date=$(git log -1 --format=%cd --date=format:'%Y%m%d')
+same_day_releases=$(git tag -l "${release_type}/${last_commit_date}*" | wc -l)
+release_counter=${same_day_releases:-0}
+release_version=${last_commit_date}.${release_counter}
+printf "${release_version}"
