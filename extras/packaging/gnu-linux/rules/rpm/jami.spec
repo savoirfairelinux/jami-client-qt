@@ -10,7 +10,7 @@ Group:         Applications/Internet
 License:       GPLv3+
 Vendor:        Savoir-faire Linux
 URL:           https://jami.net/
-Source:        jami_%{version}.tar.gz
+Source:        jami-%{version}.tar.gz
 Requires:      jami-daemon = %{version}
 Requires:      jami-libqt
 Provides:      jami-qt = %{version}
@@ -36,12 +36,12 @@ software for universal communication which respects freedoms and
 privacy of its users.
 
 %prep
-%setup -n client-qt
+%setup -n jami-%{version}
 
 %build
 # Configure and build bundled ffmpeg (for libavutil/avframe).
-mkdir -p %{_builddir}/client-qt/daemon/contrib/native
-cd %{_builddir}/client-qt/daemon/contrib/native && \
+mkdir -p %{_builddir}/jami-%{version}/daemon/contrib/native
+cd %{_builddir}/jami-%{version}/daemon/contrib/native && \
     ../bootstrap \
         --no-checksums \
         --disable-ogg \
@@ -57,19 +57,19 @@ cd %{_builddir}/client-qt/daemon/contrib/native && \
     make fetch && \
     make %{_smp_mflags} V=1 .ffmpeg
 # Qt-related variables
-cd %{_builddir}/client-qt && \
+cd %{_builddir}/jami-%{version} && \
     mkdir build && cd build && \
     cmake -DENABLE_LIBWRAP=true \
-          -DLIBJAMI_BUILD_DIR=%{_builddir}/client-qt/daemon/src \
+          -DLIBJAMI_BUILD_DIR=%{_builddir}/jami-%{version}/daemon/src \
           -DCMAKE_INSTALL_PREFIX=%{_prefix} \
           -DCMAKE_INSTALL_LIBDIR=%{_libdir} \
           -DWITH_DAEMON_SUBMODULE=true \
           -DCMAKE_BUILD_TYPE=Release \
           ..
-make -C %{_builddir}/client-qt/build %{_smp_mflags} V=1
+make -C %{_builddir}/jami-%{version}/build %{_smp_mflags} V=1
 
 %install
-DESTDIR=%{buildroot} make -C %{_builddir}/client-qt/build install
+DESTDIR=%{buildroot} make -C %{_builddir}/jami-%{version}/build install
 
 %files
 %defattr(-,root,root,-)

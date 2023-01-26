@@ -36,3 +36,10 @@ src/app/constant/JamiResources.qml
 
 # macOS
 .DS_Store
+
+# packaging
+.tarball-version
+tarballs.manifest
+jami-*.tar.gz
+extras/packaging/gnu-linux/packages/
+.docker-image-*

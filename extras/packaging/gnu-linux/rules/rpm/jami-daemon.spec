@@ -10,7 +10,7 @@ Group:         Applications/Internet
 License:       GPLv3+
 Vendor:        Savoir-faire Linux
 URL:           https://jami.net/
-Source:        jami_%{version}.tar.gz
+Source:        jami-%{version}.tar.gz
 Requires:      jami-daemon = %{version}
 
 # Build dependencies
@@ -59,14 +59,14 @@ universal communication which respects the freedoms and privacy of its
 users.
 
 %prep
-%setup -n client-qt
+%setup -n jami-%{version}
 
 %build
 CFLAGS="${CFLAGS} -fno-lto"
 CXXFLAGS="${CXXFLAGS} -fno-lto"
 # Configure the Jami bundled libraries (ffmpeg & pjproject).
 mkdir -p daemon/contrib/native
-cd %{_builddir}/client-qt/daemon/contrib/native && \
+cd %{_builddir}/jami-%{version}/daemon/contrib/native && \
     ../bootstrap \
         --no-checksums \
         --disable-ogg \
@@ -83,19 +83,19 @@ cd %{_builddir}/client-qt/daemon/contrib/native && \
     make %{_smp_mflags} V=1 && \
     make %{_smp_mflags} V=1 .ffmpeg
 # Configure the daemon.
-cd %{_builddir}/client-qt/daemon && \
+cd %{_builddir}/jami-%{version}/daemon && \
     ./autogen.sh && \
     ./configure \
         --prefix=%{_prefix} \
         --libdir=%{_libdir}
 # Build the daemon.
-make -C %{_builddir}/client-qt/daemon %{_smp_mflags} V=1
-pod2man %{_builddir}/client-qt/daemon/man/jamid.pod \
-        > %{_builddir}/client-qt/daemon/jamid.1
+make -C %{_builddir}/jami-%{version}/daemon %{_smp_mflags} V=1
+pod2man %{_builddir}/jami-%{version}/daemon/man/jamid.pod \
+        > %{_builddir}/jami-%{version}/daemon/jamid.1
 
 %install
 DESTDIR=%{buildroot} make -C daemon install
-cp %{_builddir}/client-qt/daemon/jamid.1 \
+cp %{_builddir}/jami-%{version}/daemon/jamid.1 \
    %{buildroot}/%{_mandir}/man1/jamid.1
 rm -rfv %{buildroot}/%{_libdir}/*.a
 rm -rfv %{buildroot}/%{_libdir}/*.la
