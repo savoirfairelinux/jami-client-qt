@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3365e68_541b055b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-26T16:42:48Z",
+      "side": 1,
+      "message": "on linux:\n\nwindows sharing options appear but, no preview is available.\non daemon logs there is no indication that the client requested them to be opened. IN place of the windows, we can see that the screen sharing was requested to open even if it was not desired.",
+      "revId": "c6a2e4a690c3918356ce6d687b500a821c815331",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50625aa9_9b6eb08f",
         "filename": "src/app/mainview/components/ScreensharingElementPreview.qml",
         "patchSetId": 1
