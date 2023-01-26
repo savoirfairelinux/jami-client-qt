@@ -43,7 +43,6 @@
 #include "moderatorlistmodel.h"
 #include "deviceitemlistmodel.h"
 #include "smartlistmodel.h"
-#include "conversationlistmodelbase.h"
 #include "filestosendlistmodel.h"
 #include "callInformationListModel.h"
 #include "rendererinformationlistmodel.h"

@@ -509,12 +509,14 @@ void
 CallModel::addMedia(const QString& callId, const QString& source, MediaRequestType type, bool mute)
 {
     auto& callInfo = pimpl_->calls[callId];
-    if (!callInfo)
+    if (!callInfo || source.isEmpty())
         return;
 
     QString resource {};
     auto id = 0;
     for (const auto& media : callInfo->mediaList) {
+        if (media[MediaAttributeKey::SOURCE] == source)
+            break;
         if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO)
             id++;
     }
@@ -947,14 +949,11 @@ CallModel::getDisplay(int idx, int x, int y, int w, int h)
         .arg(h);
 }
 
-
-
 #ifdef WIN32
 BOOL CALLBACK
 EnumWindowsProcMy(HWND hwnd, LPARAM lParam)
 {
-    std::pair<DWORD, QString>* dataPair = reinterpret_cast<std::pair<DWORD, QString>*>(
-        lParam);
+    std::pair<DWORD, QString>* dataPair = reinterpret_cast<std::pair<DWORD, QString>*>(lParam);
     DWORD lpdwProcessId;
     if (auto parent = GetWindow(hwnd, GW_OWNER))
         GetWindowThreadProcessId(parent, &lpdwProcessId);
@@ -978,12 +977,13 @@ QString
 CallModel::getDisplay(const QString& windowProcessId, const QString& windowId)
 {
     QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
-    QString ret{};
+    QString ret {};
 #if (defined(Q_OS_UNIX) && !defined(__APPLE__))
+    Q_UNUSED(windowId);
     ret = QString("%1%2:+0,0 window-id:%3")
-        .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
-        .arg(sep)
-        .arg(windowProcessId);
+              .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
+              .arg(sep)
+              .arg(windowProcessId);
 #endif
 #ifdef WIN32
     // If window changed the name we must look for the parent process window
@@ -999,9 +999,9 @@ CallModel::getDisplay(const QString& windowProcessId, const QString& windowId)
     }
 
     ret = QString("%1%2:+0,0 window-id:title=%3")
-        .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
-        .arg(sep)
-        .arg(newWindowId);
+              .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
+              .arg(sep)
+              .arg(newWindowId);
 #endif
     return ret;
 }
