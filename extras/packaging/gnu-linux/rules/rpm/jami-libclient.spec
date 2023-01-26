@@ -15,7 +15,7 @@ Group:         Applications/Internet
 License:       GPLv3+
 Vendor:        Savoir-faire Linux
 URL:           https://jami.net/
-Source:        jami_%{version}.tar.gz
+Source:        jami-%{version}.tar.gz
 
 %description
 This is a transitional package. Jami libclient has been merged into
