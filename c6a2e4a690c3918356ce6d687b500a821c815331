@@ -58,6 +58,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "952ed03f_fe28378a",
+        "filename": "src/app/mainview/components/ScreensharingElementPreview.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-26T19:22:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50625aa9_9b6eb08f",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "c6a2e4a690c3918356ce6d687b500a821c815331",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "deafb1f8_2e2f3b1c",
@@ -81,6 +105,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfbcb247_e8628bfb",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-26T19:22:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "deafb1f8_2e2f3b1c",
+      "range": {
+        "startLine": 155,
+        "startChar": 28,
+        "endLine": 155,
+        "endChar": 82
+      },
+      "revId": "c6a2e4a690c3918356ce6d687b500a821c815331",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67470695_6399a3a8",
@@ -94,6 +142,30 @@
       "writtenOn": "2023-01-26T16:28:17Z",
       "side": 1,
       "message": "uneeded",
+      "range": {
+        "startLine": 165,
+        "startChar": 28,
+        "endLine": 172,
+        "endChar": 29
+      },
+      "revId": "c6a2e4a690c3918356ce6d687b500a821c815331",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c11093db_67ca1170",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-26T19:22:49Z",
+      "side": 1,
+      "message": "This was already there before the refactoring, but yes, you\u0027re right",
+      "parentUuid": "67470695_6399a3a8",
       "range": {
         "startLine": 165,
         "startChar": 28,
