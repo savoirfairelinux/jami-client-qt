@@ -214,6 +214,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c63da717_80930b16",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-26T20:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9297218_f0a5ac8b",
+      "range": {
+        "startLine": 301,
+        "startChar": 49,
+        "endLine": 301,
+        "endChar": 69
+      },
+      "revId": "f1dc0e700ffc2e3e0e6a6efb62cfcfedbca9e587",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a35f95e2_b194156b",

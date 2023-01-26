@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c969d797_8a95b7d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-26T20:59:01Z",
+      "side": 1,
+      "message": "Some last small comments",
+      "revId": "43a8a17675f9676990cb88cdecbf710d931683db",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "706dd706_e550b7e0",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-26T20:59:01Z",
+      "side": 1,
+      "message": "missing .png at the end;",
+      "range": {
+        "startLine": 1152,
+        "startChar": 63,
+        "endLine": 1152,
+        "endChar": 72
+      },
+      "revId": "43a8a17675f9676990cb88cdecbf710d931683db",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b541a87a_7935b1d1",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-26T20:59:01Z",
+      "side": 1,
+      "message": "note that translated strings already contains \"me\", so we may want to change \"Me\" in \"me\" to avoid new strings",
+      "range": {
+        "startLine": 513,
+        "startChar": 27,
+        "endLine": 513,
+        "endChar": 34
+      },
+      "revId": "43a8a17675f9676990cb88cdecbf710d931683db",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb963443_24b6e2bf",
+        "filename": "src/app/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-26T20:59:01Z",
+      "side": 1,
+      "message": "parenthesis not necessary I think",
+      "range": {
+        "startLine": 218,
+        "startChar": 29,
+        "endLine": 218,
+        "endChar": 53
+      },
+      "revId": "43a8a17675f9676990cb88cdecbf710d931683db",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
