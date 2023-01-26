@@ -36,3 +36,7 @@ src/app/constant/JamiResources.qml
 
 # macOS
 .DS_Store
+
+# releases
+tarballs.manifest
+jami-*.tar.gz

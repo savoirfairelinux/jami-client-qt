@@ -27,17 +27,17 @@ export TARBALLS ?= /var/cache/jami
 TARBALL_VERSION := $(shell cat $(CURDIR)/.tarball-version 2> /dev/null)
 
 ifeq ($(TARBALL_VERSION),)
-LAST_COMMIT_DATE := $(shell git log -1 --format=%cd --date=format:'%Y%m%d.%H%M')
-COMMIT_ID := $(shell git rev-parse --short HEAD)
-RELEASE_VERSION := $(LAST_COMMIT_DATE).$(COMMIT_ID)
+RELEASE_VERSION := $(shell ./extras/packaging/gnu-linux/scripts/release-version.sh)
 else
 $(warning Using version from the .tarball-version file: $(TARBALL_VERSION))
 RELEASE_VERSION := $(TARBALL_VERSION)
 endif
-RELEASE_TARBALL_FILENAME := jami_$(RELEASE_VERSION).tar.gz
+RELEASE_DIRNAME := jami-$(RELEASE_VERSION)
+RELEASE_TARBALL_FILENAME := $(RELEASE_DIRNAME).tar.gz
 
 # Export for consumption in child processes.
 export RELEASE_VERSION
+export RELEASE_DIRNAME
 export RELEASE_TARBALL_FILENAME
 
 # Debian versions
@@ -78,7 +78,7 @@ TAR_REPRODUCIBILITY_OPTIONS = \
 	echo $(RELEASE_VERSION) > $@
 
 purge-release-tarballs:
-	rm -f jami_*.tar.* tarballs.manifest
+	rm -f jami-*.tar.* tarballs.manifest
 
 release-tarball:
 	rm -f "$(RELEASE_TARBALL_FILENAME)" tarballs.manifest
@@ -123,27 +123,27 @@ ifeq ($(TARBALL_VERSION),)
 $(RELEASE_TARBALL_FILENAME): tarballs.manifest
 # Prepare the sources of the top repository and relevant submodules.
 	rm -f "$@"
-	mkdir $(TMPDIR)/client-qt
-	git archive HEAD | tar xf - -C $(TMPDIR)/client-qt
+	mkdir $(TMPDIR)/$(RELEASE_DIRNAME)
+	git archive HEAD | tar xf - -C $(TMPDIR)/$(RELEASE_DIRNAME)
 	for m in \
 	    ./daemon \
 	    . \
 	    ./3rdparty/SortFilterProxyModel; do \
 	  (cd "$$m" && git archive --prefix "$$m/" HEAD \
-		| tar xf - -C $(TMPDIR)/client-qt); \
+	    | tar xf - -C $(TMPDIR)/$(RELEASE_DIRNAME)); \
 	done
 # Create the base archive.
-	tar -cf $(TMPDIR)/client-qt.tar $(TMPDIR)/client-qt \
-	  --transform 's,.*/client-qt,client-qt,' \
+	tar -cf $(TMPDIR)/$(RELEASE_DIRNAME).tar $(TMPDIR)/$(RELEASE_DIRNAME) \
+	  --transform "s,.*/$(RELEASE_DIRNAME),$(RELEASE_DIRNAME)," \
 	  $(TAR_REPRODUCIBILITY_OPTIONS)
 # Append the cached tarballs listed in the manifest.
-	tar --append --file $(TMPDIR)/client-qt.tar \
+	tar --append --file $(TMPDIR)/$(RELEASE_DIRNAME).tar \
 	  --files-from $< \
-	  --transform 's,^.*/,client-qt/daemon/contrib/tarballs/,' \
-          $(TAR_REPRODUCIBILITY_OPTIONS)
+	  --transform "s,^.*/,$(RELEASE_DIRNAME)/daemon/contrib/tarballs/," \
+        $(TAR_REPRODUCIBILITY_OPTIONS)
 # Compress the tarball and move it into place.
-	gzip --no-name $(TMPDIR)/client-qt.tar
-	mv $(TMPDIR)/client-qt.tar.gz "$@"
+	gzip --no-name $(TMPDIR)/$(RELEASE_DIRNAME).tar
+	mv $(TMPDIR)/$(RELEASE_DIRNAME).tar.gz "$@"
 	rm -rf $(TMPDIR)
 else
 # If TARBALL_VERSION is defined, assume it's already been generated,
@@ -189,6 +189,7 @@ $(1)-docker-image-file := .docker-image-$$($(1)-docker-image-name)
 $(1)-docker-run-command := docker run \
   --rm --privileged --security-opt apparmor=docker-default \
   -e RELEASE_VERSION="$(RELEASE_VERSION)" \
+  -e RELEASE_DIRNAME="$(RELEASE_DIRNAME)" \
   -e RELEASE_TARBALL_FILENAME="$(RELEASE_TARBALL_FILENAME)" \
   -e DEBIAN_VERSION="$(DEBIAN_VERSION)" \
   -e DEBIAN_QT_VERSION="$(DEBIAN_QT_VERSION)" \
@@ -296,8 +297,7 @@ env:
 clean:
 	rm -rf env
 	rm -rf docs/build
-	rm -f jami_*.tar.gz
+	rm -f jami-*.tar.gz
 	rm -rf extras/packaging/gnu-linux/packages
-	rm -f Makefile.packaging.distro_targets
 	rm -f .docker-image-*
-	rm -rf client-qt/daemon/contrib/tarballs/*
+	rm -rf daemon/contrib/tarballs/*
