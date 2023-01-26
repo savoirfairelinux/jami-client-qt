@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "024960c8_91c136b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-26T16:28:17Z",
+      "side": 1,
+      "message": "still breaks the sharing:\n* None of the options opens in the selection screen;\n* on windows all sharings devices are open both windows and screens despite trying to share window.",
+      "revId": "c6a2e4a690c3918356ce6d687b500a821c815331",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50625aa9_9b6eb08f",
+        "filename": "src/app/mainview/components/ScreensharingElementPreview.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-26T16:28:17Z",
+      "side": 1,
+      "message": "unused",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "c6a2e4a690c3918356ce6d687b500a821c815331",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deafb1f8_2e2f3b1c",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-26T16:28:17Z",
+      "side": 1,
+      "message": "JamiStrings.selectScreen !\u003d\u003d listModel[index] \u0026\u0026 JamiStrings.selectWindow !\u003d\u003d listModel[index]\n\n`JamiStrings.selectWindow !\u003d\u003d listModel[index]` because we do not want to show the selection window as a shareable option",
+      "range": {
+        "startLine": 155,
+        "startChar": 28,
+        "endLine": 155,
+        "endChar": 82
+      },
+      "revId": "c6a2e4a690c3918356ce6d687b500a821c815331",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67470695_6399a3a8",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-26T16:28:17Z",
+      "side": 1,
+      "message": "uneeded",
+      "range": {
+        "startLine": 165,
+        "startChar": 28,
+        "endLine": 172,
+        "endChar": 29
+      },
+      "revId": "c6a2e4a690c3918356ce6d687b500a821c815331",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
