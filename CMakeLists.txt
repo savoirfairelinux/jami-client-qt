@@ -449,12 +449,6 @@ else() # APPLE
       HINTS ${sparkle_dir})
     add_definitions(-DENABLE_SPARKLE)
     message("Sparkle is here:" ${SPARKLE_FRAMEWORK})
-    set(PUBLIC_KEY_PATH "${sparkle_dir}/dsa_pub.pem")
-    set_source_files_properties(
-      ${PUBLIC_KEY_PATH}
-      PROPERTIES
-      MACOSX_PACKAGE_LOCATION Resources)
-    set(PUBLIC_KEY ${PUBLIC_KEY_PATH})
   endif()
   if(BETA)
     message(STATUS "Beta config enabled")
@@ -766,6 +760,7 @@ else()
       else()
           set_target_properties(${PROJECT_NAME} PROPERTIES
                 SPARKLE_URL "${SPARKLE_URL}"
+                SPARKLE_PUBLIC_KEY "${SPARKLE_PUBLIC_KEY}"
                 XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
                 XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
       endif()
