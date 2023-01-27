@@ -274,6 +274,30 @@
       },
       "revId": "ee43e4493c4d259d3a94f4e89f88879776f7bef2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a8a0966_bfefa359",
+        "filename": "src/app/mainview/js/selectscreenwindowcreation.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-27T15:55:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec3a9bb3_92371ab0",
+      "range": {
+        "startLine": 25,
+        "startChar": 53,
+        "endLine": 25,
+        "endChar": 59
+      },
+      "revId": "ee43e4493c4d259d3a94f4e89f88879776f7bef2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
