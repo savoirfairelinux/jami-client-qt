@@ -39,6 +39,30 @@
       },
       "revId": "5111784210f64343bb104f5b7a5d6397f1abf681",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9de2bf44_32066d04",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T23:01:26Z",
+      "side": 1,
+      "message": "Side note: If people have a touch screen display, then the touch/tap/gesture mapping of the mouse buttons should also work.\n\nhttps://www.howtogeek.com/26552/stupid-geek-tricks-use-both-laptop-mouse-buttons-to-simulate-middle-click/\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dthree%20finger%20tap\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "parentUuid": "10e149fc_fb99ff92",
+      "range": {
+        "startLine": 203,
+        "startChar": 29,
+        "endLine": 203,
+        "endChar": 41
+      },
+      "revId": "5111784210f64343bb104f5b7a5d6397f1abf681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
