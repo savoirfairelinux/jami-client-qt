@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d6e11b2_f88dac21",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T09:36:00Z",
+      "side": 1,
+      "message": "Should the strings that use `me` be changed to `Me`?",
+      "parentUuid": "b541a87a_7935b1d1",
+      "range": {
+        "startLine": 513,
+        "startChar": 27,
+        "endLine": 513,
+        "endChar": 34
+      },
+      "revId": "43a8a17675f9676990cb88cdecbf710d931683db",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb963443_24b6e2bf",
         "filename": "src/app/mainview/components/CallViewContextMenu.qml",
         "patchSetId": 11

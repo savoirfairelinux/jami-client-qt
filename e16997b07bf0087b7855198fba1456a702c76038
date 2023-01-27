@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc8120c_9ddc284d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T09:36:00Z",
+      "side": 1,
+      "message": "If the tile has video (i.e. not audio-only) and the mouse cursor is above the tile, can middle mouse click please take a screenshot of the tile?",
+      "revId": "e16997b07bf0087b7855198fba1456a702c76038",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
