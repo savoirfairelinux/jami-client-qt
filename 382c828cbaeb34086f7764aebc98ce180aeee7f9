@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "180bc6fb_f6e11c31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T18:34:22Z",
+      "side": 1,
+      "message": "+1 from my tests, but still the case with Aline to debug. cc @atraczyk",
+      "revId": "382c828cbaeb34086f7764aebc98ce180aeee7f9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
