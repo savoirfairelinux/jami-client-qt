@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c68d7586_1af02b27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:50:38Z",
+      "side": 1,
+      "message": "some nitpicks but it\u0027s working (tested on windows 11 + linux) for me",
+      "revId": "ee43e4493c4d259d3a94f4e89f88879776f7bef2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d88557b_c535d90f",
+        "filename": "src/app/mainview/components/ScreensharingElementPreview.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:50:38Z",
+      "side": 1,
+      "message": "split line",
+      "range": {
+        "startLine": 33,
+        "startChar": 23,
+        "endLine": 33,
+        "endChar": 124
+      },
+      "revId": "ee43e4493c4d259d3a94f4e89f88879776f7bef2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "169c54f7_7fb6a7de",
+        "filename": "src/app/mainview/components/ScreensharingElementPreview.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:50:38Z",
+      "side": 1,
+      "message": "parent (it\u0027s the same, but anchors only apply to parents, and it\u0027s easier to change",
+      "range": {
+        "startLine": 45,
+        "startChar": 21,
+        "endLine": 45,
+        "endChar": 29
+      },
+      "revId": "ee43e4493c4d259d3a94f4e89f88879776f7bef2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfe63c79_72522cb7",
+        "filename": "src/app/mainview/components/ScreensharingElementPreview.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:50:38Z",
+      "side": 1,
+      "message": "parent",
+      "range": {
+        "startLine": 47,
+        "startChar": 34,
+        "endLine": 47,
+        "endChar": 38
+      },
+      "revId": "ee43e4493c4d259d3a94f4e89f88879776f7bef2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "904e9a44_00bde972",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:50:38Z",
+      "side": 1,
+      "message": "should be commenteds to avoid magic numbers (or var/undefined?)",
+      "range": {
+        "startLine": 48,
+        "startChar": 39,
+        "endLine": 48,
+        "endChar": 41
+      },
+      "revId": "ee43e4493c4d259d3a94f4e89f88879776f7bef2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b9b96c0_4070db8f",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:50:38Z",
+      "side": 1,
+      "message": "\u003d\u003d\u003d\n\nbut can be replaced by undefined",
+      "range": {
+        "startLine": 49,
+        "startChar": 57,
+        "endLine": 49,
+        "endChar": 60
+      },
+      "revId": "ee43e4493c4d259d3a94f4e89f88879776f7bef2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec3a9bb3_92371ab0",
+        "filename": "src/app/mainview/js/selectscreenwindowcreation.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:50:38Z",
+      "side": 1,
+      "message": "even gerrit detects \"window\" as a keyword. I would rename window in selectWindow or similar.",
+      "range": {
+        "startLine": 25,
+        "startChar": 53,
+        "endLine": 25,
+        "endChar": 59
+      },
+      "revId": "ee43e4493c4d259d3a94f4e89f88879776f7bef2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
