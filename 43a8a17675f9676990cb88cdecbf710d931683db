@@ -246,6 +246,30 @@
       },
       "revId": "43a8a17675f9676990cb88cdecbf710d931683db",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53f0fe33_b6ba74f8",
+        "filename": "src/app/videoprovider.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-27T17:29:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1c260ad_de1ffaae",
+      "range": {
+        "startLine": 126,
+        "startChar": 15,
+        "endLine": 126,
+        "endChar": 35
+      },
+      "revId": "43a8a17675f9676990cb88cdecbf710d931683db",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
