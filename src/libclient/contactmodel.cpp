@@ -777,7 +777,7 @@ ContactModelPimpl::slotNewBuddySubscription(const QString& accountId,
 void
 ContactModelPimpl::slotContactAdded(const QString& accountId,
                                     const QString& contactUri,
-                                    bool confirmed)
+                                    bool)
 {
     if (accountId != linked.owner.id)
         return;

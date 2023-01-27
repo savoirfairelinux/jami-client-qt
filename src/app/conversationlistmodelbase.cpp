@@ -173,10 +173,26 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
 
     if (item.isCoreDialog()) {
         auto peerUriList = model_->peersForConversation(item.uid);
-        if (peerUriList.isEmpty()) {
+        if (peerUriList.isEmpty())
             return {};
-        }
         auto peerUri = peerUriList.at(0);
+        if (peerUri == lrcInstance_->getCurrentAccountInfo().profileInfo.uri) {
+            // Conversation alone with self
+            switch (role) {
+            case Role::BestId:
+                return QVariant(lrcInstance_->accountModel().bestIdForAccount(peerUri));
+            case Role::Alias:
+                return QVariant(lrcInstance_->getCurrentAccountInfo().profileInfo.alias);
+            case Role::RegisteredName:
+                return QVariant(lrcInstance_->getCurrentAccountInfo().registeredName);
+            case Role::URI:
+                return QVariant(peerUri);
+            case Role::IsBanned:
+                return QVariant(false);
+            case Role::ContactType:
+                return QVariant(static_cast<int>(lrcInstance_->getCurrentAccountInfo().profileInfo.type));
+            }
+        }
         ContactModel* contactModel;
         contact::Info contact {};
         contactModel = lrcInstance_->getCurrentAccountInfo().contactModel.get();
