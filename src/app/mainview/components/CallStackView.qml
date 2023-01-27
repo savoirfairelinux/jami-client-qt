@@ -28,6 +28,10 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
+    property string hoveredOverlaySinkId: ""
+    property string hoveredOverlayUri: ""
+    property bool hoveredOverVideoMuted: true
+
     property var sipKeys: [
         "1", "2", "3", "A",
         "4", "5", "6", "B",

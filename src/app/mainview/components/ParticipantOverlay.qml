@@ -147,12 +147,16 @@ Item {
             HoverHandler {
                 id: hoverIndicator
 
+                //hoverEnabled: true
+                //propagateComposedEvents: true
+
                 onPointChanged: {
                     participantRect.opacity = 1
                     fadeOutTimer.restart()
                 }
 
                 onHoveredChanged: {
+                    //console.warn("hover change")
                     if (overlayMenu.hovered) {
                         participantRect.opacity = 1
                         fadeOutTimer.restart()

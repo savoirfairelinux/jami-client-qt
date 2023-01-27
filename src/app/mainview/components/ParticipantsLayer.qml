@@ -37,9 +37,9 @@ Item {
     property bool inLine: CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL
     property bool participantsSide
     property bool enableHideSpectators: CallParticipantsModel.count > 1 && CurrentCall.hideSpectators
-    property string hoveredOverlayUri: ""
-    property string hoveredOverlaySinkId: ""
-    property bool hoveredOverVideoMuted: true
+//    property string hoveredOverlayUri: ""
+//    property string hoveredOverlaySinkId: ""
+//    property bool hoveredOverVideoMuted: true
     property bool screenshotButtonHovered: false
 
     onVisibleChanged: {

@@ -121,6 +121,15 @@ Rectangle {
         onDoubleClicked: function (mouse) {
             mouse.accepted = true
         }
+        onClicked: function(mouse) {
+            console.warn("screenshot yyiyi")
+            if (mouse.button === Qt.MiddleButton && !hoveredOverVideoMuted) {
+                if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId),
+                                               UtilsAdapter.getDirScreenshot())) {
+                    toastManager.instantiateToast();
+                }
+            }
+        }
     }
 
     ColumnLayout {
