@@ -16,6 +16,24 @@
       "message": "If the tile has video (i.e. not audio-only) and the mouse cursor is above the tile, can middle mouse click please take a screenshot of the tile?",
       "revId": "e16997b07bf0087b7855198fba1456a702c76038",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67c2660c_c3dc24ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:26:05Z",
+      "side": 1,
+      "message": "Seems a really weird shortcut. And I prefer not.",
+      "parentUuid": "bfc8120c_9ddc284d",
+      "revId": "e16997b07bf0087b7855198fba1456a702c76038",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
