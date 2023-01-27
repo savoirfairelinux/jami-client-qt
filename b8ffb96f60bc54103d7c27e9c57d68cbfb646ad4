@@ -132,6 +132,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8a77de7_9d34d538",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T09:45:58Z",
+      "side": 1,
+      "message": "Sorry, still don\u0027t understand how this string works.\n\nDoes the following work better:\n\n`Close message search`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dmessage%20search\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "parentUuid": "9ba7cf24_7907c481",
+      "range": {
+        "startLine": 356,
+        "startChar": 48,
+        "endLine": 356,
+        "endChar": 70
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40973563_bb793ae0",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 5
@@ -167,6 +191,30 @@
       "side": 1,
       "message": "I thought it could be a good idea because we can have multiple accounts or if the user has no username and only a Uri etc.",
       "parentUuid": "40973563_bb793ae0",
+      "range": {
+        "startLine": 357,
+        "startChar": 29,
+        "endLine": 357,
+        "endChar": 35
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ad2cfca_e12f30f5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T09:45:58Z",
+      "side": 1,
+      "message": "It is understood that you would write `Me`, not `You`. Jitsi Meet (https://meet.jit.si) writes `me`; however, starting with a capital to be `Me` seems better.",
+      "parentUuid": "f9b6805b_ca89285b",
       "range": {
         "startLine": 357,
         "startChar": 29,
@@ -266,6 +314,30 @@
         "startChar": 34,
         "endLine": 358,
         "endChar": 38
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59807bce_0da32418",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T09:45:58Z",
+      "side": 1,
+      "message": "Sorry, never used mattermost.\n\nSeems that `Jump to` is correct. Sorry for the noise.\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003djump%20to\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "parentUuid": "fb870d77_6f0339ed",
+      "range": {
+        "startLine": 358,
+        "startChar": 34,
+        "endLine": 358,
+        "endChar": 42
       },
       "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
