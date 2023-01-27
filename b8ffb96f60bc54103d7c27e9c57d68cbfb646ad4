@@ -156,6 +156,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f714e5d3_d58dca80",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:38:18Z",
+      "side": 1,
+      "message": "https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/918 for a screenshot.\n\nTo be honest, I would remove the tooltip as not really useful (pretty all search bar doesn\u0027t have a tooltip)",
+      "parentUuid": "a8a77de7_9d34d538",
+      "range": {
+        "startLine": 356,
+        "startChar": 48,
+        "endLine": 356,
+        "endChar": 70
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40973563_bb793ae0",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 5
@@ -215,6 +239,30 @@
       "side": 1,
       "message": "It is understood that you would write `Me`, not `You`. Jitsi Meet (https://meet.jit.si) writes `me`; however, starting with a capital to be `Me` seems better.",
       "parentUuid": "f9b6805b_ca89285b",
+      "range": {
+        "startLine": 357,
+        "startChar": 29,
+        "endLine": 357,
+        "endChar": 35
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a2e3161_af0f3b0f",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:38:18Z",
+      "side": 1,
+      "message": "yeah, and I still think it\u0027s not useful, even with multiple accounts, but I\u0027ll not block a patch for this. We may ask the designer later",
+      "parentUuid": "7ad2cfca_e12f30f5",
       "range": {
         "startLine": 357,
         "startChar": 29,
@@ -345,6 +393,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea081b78_92f8bd3f",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:38:18Z",
+      "side": 1,
+      "message": "Just normal text I guess (cf mattermost), with an hover. But we can also ask the designer next week as messagelistmodel may not be finished today ;)",
+      "parentUuid": "921b2be7_9bab88f2",
+      "range": {
+        "startLine": 358,
+        "startChar": 34,
+        "endLine": 358,
+        "endChar": 38
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f81acf8e_05b9e612",
         "filename": "src/app/mainview/components/ContactSearchBar.qml",
         "patchSetId": 5
@@ -439,6 +511,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce50a9fc_660d6c5a",
+        "filename": "src/app/mainview/components/MessagesResearchPanel.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:38:18Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "afd80130_fa68c558",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 63,
+        "endChar": 27
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d63fa93_513dbd43",
         "filename": "src/app/mainview/components/MessagesResearchView.qml",
         "patchSetId": 5
@@ -474,6 +570,30 @@
       "side": 1,
       "message": "It is binded with visibility because the TabBar works with visibiltity ( In MessagesResearchPanel). the view is set to visible if researchTabBar.currentIndex \u003d\u003d\u003d x. So visibility is linked to appearance of the view. But it is true it won\u0027t update if there is a new message for instance, but I only need to call startresearch on a newMessageAdded to fix it ?",
       "parentUuid": "4d63fa93_513dbd43",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 49
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4178eab5_2660df26",
+        "filename": "src/app/mainview/components/MessagesResearchView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:38:18Z",
+      "side": 1,
+      "message": "you can add a method called by the upper layer.",
+      "parentUuid": "ab00e85b_119d5aea",
       "range": {
         "startLine": 47,
         "startChar": 12,
