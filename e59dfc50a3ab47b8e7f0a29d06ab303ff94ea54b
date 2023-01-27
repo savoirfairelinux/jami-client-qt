@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "371063a2_f029ac7f",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-27T20:26:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc683f23_1be74509",
+      "range": {
+        "startLine": 1161,
+        "startChar": 22,
+        "endLine": 1161,
+        "endChar": 66
+      },
+      "revId": "e59dfc50a3ab47b8e7f0a29d06ab303ff94ea54b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "246239a6_cdd1bd27",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-27T20:00:07Z",
       "side": 1,
       "message": "`Tile`?",
+      "range": {
+        "startLine": 301,
+        "startChar": 30,
+        "endLine": 301,
+        "endChar": 41
+      },
+      "revId": "e59dfc50a3ab47b8e7f0a29d06ab303ff94ea54b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "523dc15b_18e797cf",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-27T20:26:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "246239a6_cdd1bd27",
       "range": {
         "startLine": 301,
         "startChar": 30,
@@ -129,6 +177,30 @@
       "writtenOn": "2023-01-27T20:00:07Z",
       "side": 1,
       "message": "1. Should `s` be added so `Screenshot` becomes `Screenshots`?\n2. Should `In` be `To`?\n\n`saveScreenshotsTo`?",
+      "range": {
+        "startLine": 545,
+        "startChar": 20,
+        "endLine": 545,
+        "endChar": 36
+      },
+      "revId": "e59dfc50a3ab47b8e7f0a29d06ab303ff94ea54b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae7e6920_733cc84d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-27T20:26:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b78db8f4_f7f346fc",
       "range": {
         "startLine": 545,
         "startChar": 20,
