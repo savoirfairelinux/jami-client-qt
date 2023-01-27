@@ -22,6 +22,121 @@
       },
       "revId": "e59dfc50a3ab47b8e7f0a29d06ab303ff94ea54b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "246239a6_cdd1bd27",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T20:00:07Z",
+      "side": 1,
+      "message": "`Tile`?",
+      "range": {
+        "startLine": 301,
+        "startChar": 30,
+        "endLine": 301,
+        "endChar": 41
+      },
+      "revId": "e59dfc50a3ab47b8e7f0a29d06ab303ff94ea54b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1bc72de_2d6b1bec",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T20:00:07Z",
+      "side": 1,
+      "message": "Not related to this patch.\n\nShould this start with a capital letter, i.e. `T`?",
+      "range": {
+        "startLine": 519,
+        "startChar": 41,
+        "endLine": 519,
+        "endChar": 42
+      },
+      "revId": "e59dfc50a3ab47b8e7f0a29d06ab303ff94ea54b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84ca1dfd_1ffe8c94",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T20:00:07Z",
+      "side": 1,
+      "message": "Not related to this patch.\n\nShould the space ` ` be removed?",
+      "range": {
+        "startLine": 522,
+        "startChar": 72,
+        "endLine": 522,
+        "endChar": 73
+      },
+      "revId": "e59dfc50a3ab47b8e7f0a29d06ab303ff94ea54b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b6eb30b_ec630dbe",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T20:00:07Z",
+      "side": 1,
+      "message": "Should `In` be `To`\n\n`saveRecordingsTo`?",
+      "range": {
+        "startLine": 544,
+        "startChar": 20,
+        "endLine": 544,
+        "endChar": 26
+      },
+      "revId": "e59dfc50a3ab47b8e7f0a29d06ab303ff94ea54b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b78db8f4_f7f346fc",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T20:00:07Z",
+      "side": 1,
+      "message": "1. Should `s` be added so `Screenshot` becomes `Screenshots`?\n2. Should `In` be `To`?\n\n`saveScreenshotsTo`?",
+      "range": {
+        "startLine": 545,
+        "startChar": 20,
+        "endLine": 545,
+        "endChar": 36
+      },
+      "revId": "e59dfc50a3ab47b8e7f0a29d06ab303ff94ea54b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
