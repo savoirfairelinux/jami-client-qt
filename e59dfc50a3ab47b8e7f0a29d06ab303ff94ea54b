@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc683f23_1be74509",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T17:30:10Z",
+      "side": 1,
+      "message": "you need to format there too",
+      "range": {
+        "startLine": 1161,
+        "startChar": 22,
+        "endLine": 1161,
+        "endChar": 66
+      },
+      "revId": "e59dfc50a3ab47b8e7f0a29d06ab303ff94ea54b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
