@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "754afa0d_1c54382c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-27T14:52:33Z",
+      "side": 1,
+      "message": "Will use it at the beginning of next week to test, the content seems ok",
+      "revId": "a4dcf7681e16c7299981f591dd650851882df5c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
