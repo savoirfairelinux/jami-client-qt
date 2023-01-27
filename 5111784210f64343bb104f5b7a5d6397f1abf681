@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e1d9172_1496eea3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T22:46:01Z",
+      "side": 1,
+      "message": "Thank you for implementing mouse middle click.",
+      "revId": "5111784210f64343bb104f5b7a5d6397f1abf681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e149fc_fb99ff92",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-27T22:46:01Z",
+      "side": 1,
+      "message": "Should `Mouse` be added so the string becomes `Mouse middle click`?\n\nHaving `Mouse` in the string might make it easier for translators to as it provides context.\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dmiddle%20click\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 203,
+        "startChar": 29,
+        "endLine": 203,
+        "endChar": 41
+      },
+      "revId": "5111784210f64343bb104f5b7a5d6397f1abf681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
