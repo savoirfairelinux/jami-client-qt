@@ -34,6 +34,24 @@
       "parentUuid": "bfc8120c_9ddc284d",
       "revId": "e16997b07bf0087b7855198fba1456a702c76038",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28dcb432_67d99c9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-27T17:29:25Z",
+      "side": 1,
+      "message": "So finally, we will try the middle mouse click to take screenshot ( in a next patch)",
+      "parentUuid": "67c2660c_c3dc24ef",
+      "revId": "e16997b07bf0087b7855198fba1456a702c76038",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
