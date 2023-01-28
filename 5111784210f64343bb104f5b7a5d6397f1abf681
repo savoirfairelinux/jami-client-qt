@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "440ecce2_263b77df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-01-28T08:45:19Z",
+      "side": 1,
+      "message": "Should the `All features by client` webpage at https://docs.jami.net/user/all-features-by-client.html#calling be updated to include this feature, something like `Screenshot tile`?",
+      "revId": "5111784210f64343bb104f5b7a5d6397f1abf681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10e149fc_fb99ff92",
         "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
         "patchSetId": 17
