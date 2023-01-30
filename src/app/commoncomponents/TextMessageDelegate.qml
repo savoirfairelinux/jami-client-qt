@@ -58,7 +58,7 @@ SBSMessageBase {
 
             padding: isEmojiOnly ? 0 : JamiTheme.preferredMarginSize
             anchors.right: isOutgoing ? parent.right : undefined
-            text: Body
+            text: Body === "" ? "*(Deleted Message)*" : Body
             horizontalAlignment: Text.AlignLeft
 
             HoverHandler {
