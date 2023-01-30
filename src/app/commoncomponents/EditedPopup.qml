@@ -55,8 +55,9 @@ BaseModalDialog {
                     anchors.centerIn: parent
 
                     Text {
-                        Layout.preferredWidth: root.width / 4
+                        Layout.maximumWidth: root.width / 2
                         Layout.leftMargin: JamiTheme.settingsMarginSize
+                        elide: Text.ElideRight
 
                         text: MessagesAdapter.getFormattedDay(modelData.timestamp.toString())
                               + " - " + MessagesAdapter.getFormattedTime(modelData.timestamp.toString())
@@ -72,7 +73,7 @@ BaseModalDialog {
                             id: metrics
                             elide: Text.ElideRight
                             elideWidth: 3 * rowBody.width / 4 - 2 * JamiTheme.preferredMarginSize
-                            text: modelData.body
+                            text: modelData.body === "" ? JamiStrings.deletedMessage : modelData.body
                         }
 
                         text: metrics.elidedText

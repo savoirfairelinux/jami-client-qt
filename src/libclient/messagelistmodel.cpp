@@ -394,6 +394,8 @@ MessageListModel::roleNames() const
 bool
 MessageListModel::isOnlyEmoji(const QString& text) const
 {
+    if (text.isEmpty())
+        return false;
     auto codepointList = text.toUcs4();
     for (QList<uint>::iterator it = codepointList.begin(); it != codepointList.end(); it++) {
         auto cur = false;
@@ -418,7 +420,7 @@ QVariant
 MessageListModel::dataForItem(item_t item, int, int role) const
 {
     QString replyId = item.second.commit["reply-to"];
-    int repliedMsg;
+    int repliedMsg = -1;
     if (!replyId.isEmpty() && (role == Role::ReplyToAuthor || role == Role::ReplyToBody)) {
         repliedMsg = getIndexOfMessage(replyId);
     }
@@ -695,7 +697,10 @@ MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
         }
         info.body = it->rbegin()->body;
         editedBodies_.erase(it);
-        emitDataChanged(msgId, {MessageList::Role::Body, MessageList::Role::PreviousBodies});
+        emitDataChanged(msgId,
+                        {MessageList::Role::Body,
+                         MessageList::Role::PreviousBodies,
+                         MessageList::Role::IsEmojiOnly});
 
         // Body changed, replies should update
         for (const auto& replyId : replyTo_[msgId]) {
