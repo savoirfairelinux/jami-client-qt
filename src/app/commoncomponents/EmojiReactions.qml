@@ -31,7 +31,7 @@ Item {
     property real contentWidth: bubble.width
     property var emojiTexts: ownEmojiList
 
-    visible: emojis ? emojis.length : false
+    visible: emojis.length && Body !== ""
 
     property string emojis: {
         var space = ""
