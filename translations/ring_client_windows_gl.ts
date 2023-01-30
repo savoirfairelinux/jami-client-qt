@@ -4200,17 +4200,17 @@ Copiao e compárteo coas túas amizades!</translation>
         <translation>Buscando...</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="989"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="981"/>
         <source>Invalid ID</source>
         <translation>ID non válido</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="992"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="984"/>
         <source>Username not found</source>
         <translation>Non se atopou a usuaria</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="995"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="987"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Non se puido establecer..</translation>
     </message>

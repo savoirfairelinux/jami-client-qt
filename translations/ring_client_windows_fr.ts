@@ -4211,17 +4211,17 @@ Copy and share it with your friends!</source>
         <translation>Recherche en cours ...</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="989"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="981"/>
         <source>Invalid ID</source>
         <translation>ID invalide</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="992"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="984"/>
         <source>Username not found</source>
         <translation>Nom d&apos;utilisateur non trouvé</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="995"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="987"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Impossible de vérifier le nom d&apos;utilisateur</translation>
     </message>

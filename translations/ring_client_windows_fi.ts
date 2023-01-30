@@ -4204,17 +4204,17 @@ Kopioi ja jaa se ystäviesi kanssa!</translation>
         <translation>Etsitään...</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="989"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="981"/>
         <source>Invalid ID</source>
         <translation>Virheellinen tunnus</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="992"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="984"/>
         <source>Username not found</source>
         <translation>Käyttäjää ei löydy</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="995"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="987"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Ei voitu etsiä...</translation>
     </message>

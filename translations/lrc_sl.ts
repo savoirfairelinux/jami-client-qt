@@ -1425,32 +1425,32 @@ Profil lahko kadar koli spremenite v nastavitvah računa.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
         <source>Call information</source>
-        <translation type="unfinished"/>
+        <translation>Podatki o klicu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Peer number</source>
-        <translation type="unfinished"/>
+        <translation>Številka soležnika</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Call id</source>
-        <translation type="unfinished"/>
+        <translation>ID klica</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
         <source>Sockets</source>
-        <translation type="unfinished"/>
+        <translation>Vtičnice</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
         <source>Video codec</source>
-        <translation type="unfinished"/>
+        <translation>Video kodek</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
         <source>Hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Strojno pospeševanje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
@@ -1460,7 +1460,7 @@ Profil lahko kadar koli spremenite v nastavitvah računa.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="311"/>
         <source>Audio codec</source>
-        <translation type="unfinished"/>
+        <translation>Zvočni kodek</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
@@ -1470,7 +1470,7 @@ Profil lahko kadar koli spremenite v nastavitvah računa.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source>Fps</source>
-        <translation type="unfinished"/>
+        <translation>sl/s</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
@@ -4195,17 +4195,17 @@ poveže, da sinhroniziramo pogovor.</translation>
         <translation>Iskanje</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="989"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="981"/>
         <source>Invalid ID</source>
         <translation>Napačen ID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="992"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="984"/>
         <source>Username not found</source>
         <translation>Uporabniškega imena ni mogoče najti</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="995"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="987"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Ni mogoče pridobiti ...</translation>
     </message>

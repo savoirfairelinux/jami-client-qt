@@ -4200,17 +4200,17 @@ Deel hem met uw vrienden!</translation>
         <translation>Bezig met zoeken…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="989"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="981"/>
         <source>Invalid ID</source>
         <translation>Ongeldige ID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="992"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="984"/>
         <source>Username not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="995"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="987"/>
         <source>Couldn&apos;t lookup…</source>
         <translation type="unfinished"></translation>
     </message>

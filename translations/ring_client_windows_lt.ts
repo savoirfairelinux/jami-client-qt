@@ -1023,7 +1023,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="219"/>
         <source>Recommended</source>
-        <translation>Rekomenduojamas</translation>
+        <translation>Rekomenduojama</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="224"/>
@@ -1110,7 +1110,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
         <source>Moderator</source>
-        <translation type="unfinished"/>
+        <translation>Moderatorius</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
@@ -1275,7 +1275,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="299"/>
         <source>Raise hand</source>
-        <translation type="unfinished"/>
+        <translation>Pakelti ranką</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
@@ -2080,7 +2080,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>Dokumentai</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
@@ -2090,7 +2090,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
         <source>Add a description</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti aprašą</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
@@ -2170,7 +2170,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="828"/>
         <source>Dismiss</source>
-        <translation type="unfinished"/>
+        <translation>Atmesti</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="831"/>
@@ -2276,7 +2276,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="667"/>
         <source>Enter your name</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite savo vardą</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="697"/>
@@ -2811,7 +2811,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
         <source>Account settings</source>
-        <translation type="unfinished"/>
+        <translation>Paskyros nustatymai</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
@@ -2997,7 +2997,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="640"/>
         <source>Reset</source>
-        <translation type="unfinished"/>
+        <translation>Atstatyti</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="641"/>
@@ -3359,7 +3359,7 @@ Nukopijuokite ir dalinkitės juo su draugais!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
         <source>Account settings</source>
-        <translation type="unfinished"/>
+        <translation>Paskyros nustatymai</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
@@ -4198,17 +4198,17 @@ Nukopijuokite ir dalinkitės juo su draugais!</translation>
         <translation>Ieškoma…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="989"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="981"/>
         <source>Invalid ID</source>
         <translation>Neteisingas ID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="992"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="984"/>
         <source>Username not found</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="995"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="987"/>
         <source>Couldn&apos;t lookup…</source>
         <translation type="unfinished"/>
     </message>
