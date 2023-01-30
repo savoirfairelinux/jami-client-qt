@@ -16,6 +16,24 @@
       "message": "To dig: snap \u0026 rpm (snap fedora_36 fedora_37 opensuse-leap_15.4) are broken (pass without this patch)",
       "revId": "30d0560765561fb9730ea8d647f2277327c6fac6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93df7415_348dec3b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-30T16:09:10Z",
+      "side": 1,
+      "message": "https://jenkins.jami.net/view/packaging/job/packaging-gnu-linux-new/147/",
+      "parentUuid": "3462cbf5_c18df7b6",
+      "revId": "30d0560765561fb9730ea8d647f2277327c6fac6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
