@@ -161,6 +161,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fed45969_4926236a",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-01-30T12:57:42Z",
+      "side": 1,
+      "message": "just a last thin.. current preview looks not to be necessary anymore",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 43
+      },
+      "revId": "ee43e4493c4d259d3a94f4e89f88879776f7bef2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "904e9a44_00bde972",
         "filename": "src/app/mainview/components/SelectScreen.qml",
         "patchSetId": 3
