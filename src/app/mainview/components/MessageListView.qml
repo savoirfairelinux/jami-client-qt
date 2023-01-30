@@ -215,8 +215,7 @@ JamiListView {
             readonly property int mergeType: Interaction.Type.MERGE
             readonly property int editedType: Interaction.Type.EDITED
             readonly property int reactionType: Interaction.Type.REACTION
-            expression: Body !== ""
-                        && Type !== mergeType
+            expression: Type !== mergeType
                         && Type !== editedType
                         && Type !== reactionType
         }

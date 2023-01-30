@@ -88,7 +88,7 @@ Item {
                     id: metrics
                     elide: Text.ElideRight
                     elideWidth: JamiTheme.preferredFieldWidth - JamiTheme.preferredMarginSize
-                    text: ReplyToBody
+                    text: ReplyToBody === "" && ReplyToAuthor !== "" ? "*(Deleted Message)*" : ReplyToBody
                 }
 
                 textFormat: Text.MarkdownText
