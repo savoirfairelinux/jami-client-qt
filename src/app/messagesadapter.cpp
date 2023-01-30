@@ -652,6 +652,7 @@ MessagesAdapter::getMediaInfo(const QString& msg)
         return fileInfo;
     }
     static const QRegExp vPattern("(video/)(avi|mov|webm|webp|rmvb)$", Qt::CaseInsensitive);
+    vPattern.indexIn(mime.name());
     QString type = vPattern.capturedTexts().size() == 3 ? vPattern.capturedTexts()[1] : "";
     if (!type.isEmpty()) {
         return {
@@ -660,6 +661,7 @@ MessagesAdapter::getMediaInfo(const QString& msg)
         };
     } else {
         static const QRegExp aPattern("(audio/)(ogg|flac|wav|mpeg|mp3)$", Qt::CaseInsensitive);
+        aPattern.indexIn(mime.name());
         type = aPattern.capturedTexts().size() == 3 ? aPattern.capturedTexts()[1] : "";
         if (!type.isEmpty()) {
             return {
