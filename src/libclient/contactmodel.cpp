@@ -47,7 +47,6 @@
 
 // Std
 #include <algorithm>
-#include <mutex>
 
 namespace lrc {
 
@@ -120,6 +119,7 @@ public:
     std::mutex contactsMtx_;
     std::mutex bannedContactsMtx_;
     QString searchStatus_ {};
+    QMap<QString, QString> nonContactLookup_;
 
 public Q_SLOTS:
     /**
@@ -509,6 +509,11 @@ ContactModel::sendDhtMessage(const QString& contactUri,
 const QString
 ContactModel::bestNameForContact(const QString& contactUri) const
 {
+    if (contactUri.isEmpty())
+        return contactUri;
+    if (contactUri == owner.profileInfo.uri)
+        return owner.accountModel->bestNameForAccount(owner.id);
+    QString res = contactUri;
     try {
         auto contact = getContact(contactUri);
         auto alias = contact.profileInfo.alias.simplified();
@@ -517,8 +522,15 @@ ContactModel::bestNameForContact(const QString& contactUri) const
         }
         return alias;
     } catch (const std::out_of_range&) {
+        auto itContact = pimpl_->nonContactLookup_.find(contactUri);
+        if (itContact != pimpl_->nonContactLookup_.end()) {
+            return *itContact;
+        } else {
+            // This is not a contact, but we should get the registered name
+            ConfigurationManager::instance().lookupAddress(owner.id, "", contactUri);
+        }
     }
-    return contactUri;
+    return res;
 }
 
 QString
@@ -775,9 +787,7 @@ ContactModelPimpl::slotNewBuddySubscription(const QString& accountId,
 }
 
 void
-ContactModelPimpl::slotContactAdded(const QString& accountId,
-                                    const QString& contactUri,
-                                    bool)
+ContactModelPimpl::slotContactAdded(const QString& accountId, const QString& contactUri, bool)
 {
     if (accountId != linked.owner.id)
         return;
@@ -950,12 +960,12 @@ ContactModelPimpl::slotRegisteredNameFound(const QString& accountId,
 
     if (status == 0 /* SUCCESS */) {
         std::lock_guard<std::mutex> lk(contactsMtx_);
-
         if (contacts.find(uri) != contacts.end()) {
             // update contact and remove temporary item
             contacts[uri].registeredName = registeredName;
             searchResult.clear();
         } else {
+            nonContactLookup_[uri] = registeredName;
             if ((searchQuery != uri && searchQuery != registeredName) || searchQuery.isEmpty()) {
                 // we are notified that a previous lookup ended
                 return;
