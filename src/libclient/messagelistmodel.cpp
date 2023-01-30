@@ -394,6 +394,8 @@ MessageListModel::roleNames() const
 bool
 MessageListModel::isOnlyEmoji(const QString& text) const
 {
+    if (text.isEmpty())
+        return false;
     auto codepointList = text.toUcs4();
     for (QList<uint>::iterator it = codepointList.begin(); it != codepointList.end(); it++) {
         auto cur = false;
@@ -692,7 +694,10 @@ MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
         }
         info.body = it->rbegin()->body;
         editedBodies_.erase(it);
-        emitDataChanged(msgId, {MessageList::Role::Body, MessageList::Role::PreviousBodies});
+        emitDataChanged(msgId,
+                        {MessageList::Role::Body,
+                         MessageList::Role::PreviousBodies,
+                         MessageList::Role::IsEmojiOnly});
 
         // Body changed, replies should update
         for (const auto& replyId : replyTo_[msgId]) {

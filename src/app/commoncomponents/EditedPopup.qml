@@ -55,8 +55,9 @@ BaseModalDialog {
                     anchors.centerIn: parent
 
                     Text {
-                        Layout.preferredWidth: root.width / 4
+                        Layout.maximumWidth: root.width / 2
                         Layout.leftMargin: JamiTheme.settingsMarginSize
+                        elide: Text.ElideRight
 
                         text: MessagesAdapter.getFormattedDay(modelData.timestamp.toString())
                               + " - " + MessagesAdapter.getFormattedTime(modelData.timestamp.toString())
