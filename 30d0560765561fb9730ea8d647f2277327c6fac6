@@ -34,6 +34,24 @@
       "parentUuid": "3462cbf5_c18df7b6",
       "revId": "30d0560765561fb9730ea8d647f2277327c6fac6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58c59b15_9515e756",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2023-01-30T23:16:54Z",
+      "side": 1,
+      "message": "whoops, sorry about that; the latest patchset should be better",
+      "parentUuid": "93df7415_348dec3b",
+      "revId": "30d0560765561fb9730ea8d647f2277327c6fac6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
