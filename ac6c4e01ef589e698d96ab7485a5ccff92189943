@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bab1d7d_d6a7df8a",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-01-31T18:29:55Z",
+      "side": 1,
+      "message": "This breaks the downloadDirectory (which is not the screenshot directory)",
+      "range": {
+        "startLine": 181,
+        "startChar": 16,
+        "endLine": 182,
+        "endChar": 79
+      },
+      "revId": "ac6c4e01ef589e698d96ab7485a5ccff92189943",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
