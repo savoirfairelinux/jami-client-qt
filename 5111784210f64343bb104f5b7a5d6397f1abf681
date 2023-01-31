@@ -140,6 +140,30 @@
       },
       "revId": "5111784210f64343bb104f5b7a5d6397f1abf681",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62ddf367_7f7c4ec1",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-31T18:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ed12810_8c4da58c",
+      "range": {
+        "startLine": 203,
+        "startChar": 29,
+        "endLine": 203,
+        "endChar": 41
+      },
+      "revId": "5111784210f64343bb104f5b7a5d6397f1abf681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
