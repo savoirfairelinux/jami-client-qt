@@ -109,7 +109,7 @@ public:
     QPair<QString, interaction::Info> last() const;
     QPair<QString, interaction::Info> atIndex(int index) const;
 
-    QPair<iterator, bool> insert(int index, QPair<QString, interaction::Info> message);
+    // QPair<iterator, bool> insert(int index, QPair<QString, interaction::Info> message);
     int indexOfMessage(const QString& msgId, bool reverse = true) const;
     void moveMessages(QList<QString> msgIds, const QString& parentId);
 
@@ -147,6 +147,9 @@ public:
     QString findEmojiReaction(const QString& emoji,
                               const QString& authorURI,
                               const QString& messageId);
+    void insertMessage(int index, item_t& message);
+    void insertMessageTest(item_t& message);
+    iterator insertMessage(iterator it, item_t& message);
 
 protected:
     using Role = MessageList::Role;
@@ -168,8 +171,7 @@ private:
     QMap<QString, QSet<QString>> reactedMessages_;
 
     void moveMessage(const QString& msgId, const QString& parentId);
-    void insertMessage(int index, item_t& message);
-    iterator insertMessage(iterator it, item_t& message);
+
     void removeMessage(int index, iterator it);
     void moveMessages(int from, int last, int to);
 

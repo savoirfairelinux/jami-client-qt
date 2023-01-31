@@ -79,7 +79,8 @@ MessagesAdapter::setupChatView(const QVariantMap& convInfo)
     auto* convModel = lrcInstance_->getCurrentConversationModel();
     auto convId = convInfo["convId"].toString();
     if (convInfo["isSwarm"].toBool()) {
-        convModel->loadConversationMessages(convId, loadChunkSize_);
+        // qWarning() << "MessagesAdapter setupchatview loadConversationMessage debug";
+        // convModel->loadConversationMessages(convId, loadChunkSize_);
     }
 
     // TODO: current conv observe
@@ -89,6 +90,7 @@ MessagesAdapter::setupChatView(const QVariantMap& convInfo)
 void
 MessagesAdapter::loadMoreMessages()
 {
+    qWarning() << "loadMore messages if needed";
     auto accountId = lrcInstance_->get_currentAccountId();
     auto convId = lrcInstance_->get_selectedConvUid();
     try {
@@ -105,6 +107,7 @@ MessagesAdapter::loadMoreMessages()
 void
 MessagesAdapter::loadConversationUntil(const QString& to)
 {
+    qWarning() << "loadConversationUntil debug MessagesAdapter";
     try {
         if (auto* model = messageListModel_.value<MessageListModel*>()) {
             auto idx = model->indexOfMessage(to);

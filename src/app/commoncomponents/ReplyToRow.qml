@@ -35,6 +35,7 @@ Item {
         // In the future, we may just want to load the previous interaction of the thread
         // and not show it, but for now we can simplify.
         if (ReplyTo !== "")
+            console.warn("ReplyToRow.qml debug: loadConversationUntil ")
             MessagesAdapter.loadConversationUntil(ReplyTo)
     }
 

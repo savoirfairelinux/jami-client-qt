@@ -40,8 +40,9 @@ JamiListView {
     }
 
     function loadMoreMsgsIfNeeded() {
-        if (atYBeginning && !CurrentConversation.allMessagesLoaded)
+        if (atYBeginning && !CurrentConversation.allMessagesLoaded) {
             MessagesAdapter.loadMoreMessages()
+        }
     }
 
     function computeTimestampVisibility(item1, item1Index, item2, item2Index) {

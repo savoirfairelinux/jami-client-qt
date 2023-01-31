@@ -231,22 +231,25 @@ MessageListModel::atIndex(int index) const
     return interactions_.at(index);
 }
 
-QPair<iterator, bool>
-MessageListModel::insert(int index, QPair<QString, interaction::Info> message)
-{
-    iterator itr;
-    for (itr = interactions_.begin(); itr != interactions_.end(); ++itr) {
-        if (itr->first == message.first) {
-            return qMakePair(itr, false);
-        }
-    }
-    if (index >= size()) {
-        auto iterator = insertMessage(interactions_.end(), message);
-        return qMakePair(iterator, true);
-    }
-    insertMessage(index, message);
-    return qMakePair(interactions_.end(), true);
-}
+// QPair<iterator, bool>
+// MessageListModel::insert(int index, QPair<QString, interaction::Info> message)
+//{
+//     iterator itr;
+//     for (itr = interactions_.begin(); itr != interactions_.end(); ++itr) {
+//         if (itr->first == message.first) {
+//             return qMakePair(itr, false);
+//         }
+//     }
+//     if (index >= size()) {
+//         auto iterator = insertMessage(interactions_.end(), message);
+//         // qWarning() << "try insertion messageListModel index < size()";
+
+//        return qMakePair(iterator, true);
+//    }
+//    // qWarning() << "try insertion messageListModel index < size()";
+//    insertMessage(index, message);
+//    return qMakePair(interactions_.end(), true);
+//}
 
 int
 MessageListModel::indexOfMessage(const QString& msgId, bool reverse) const
@@ -332,6 +335,14 @@ MessageListModel::insertMessage(int index, item_t& message)
 {
     Q_EMIT beginInsertRows(QModelIndex(), index, index);
     interactions_.insert(index, message);
+    Q_EMIT endInsertRows();
+    updateReplies(message);
+}
+void
+MessageListModel::insertMessageTest(item_t& message)
+{
+    Q_EMIT beginInsertRows(QModelIndex(), interactions_.size(), interactions_.size());
+    interactions_.push_back(message);
     Q_EMIT endInsertRows();
     updateReplies(message);
 }

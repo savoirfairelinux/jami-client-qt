@@ -765,6 +765,7 @@ CallbacksHandler::slotConversationLoaded(uint32_t requestId,
                                          const QString& conversationId,
                                          const VectorMapStringString& messages)
 {
+    qWarning() << "sdgergerbre ----------------------slotConversationLoaded ddd";
     Q_EMIT conversationLoaded(requestId, accountId, conversationId, messages);
 }
 void

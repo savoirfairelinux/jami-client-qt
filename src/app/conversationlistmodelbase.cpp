@@ -190,7 +190,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             case Role::IsBanned:
                 return QVariant(false);
             case Role::ContactType:
-                return QVariant(static_cast<int>(lrcInstance_->getCurrentAccountInfo().profileInfo.type));
+                return QVariant(
+                    static_cast<int>(lrcInstance_->getCurrentAccountInfo().profileInfo.type));
             }
         }
         ContactModel* contactModel;
@@ -199,8 +200,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         try {
             contact = contactModel->getContact(peerUri);
         } catch (const std::exception&) {
-            qWarning() << Q_FUNC_INFO << "Can't find contact" << peerUri
-                       << " this is a bug, please report";
+            //            qWarning() << Q_FUNC_INFO << "Can't find contact" << peerUri
+            //                       << " this is a bug, please report";
         }
 
         switch (role) {
