@@ -44,7 +44,10 @@ MessageListModel::MessageListModel(QObject* parent)
 }
 
 QPair<iterator, bool>
-MessageListModel::emplace(const QString& msgId, interaction::Info message, bool beginning)
+MessageListModel::emplace(const QString& msgId,
+                          interaction::Info message,
+                          bool beginning,
+                          bool triggersQml)
 {
     iterator it;
     for (it = interactions_.begin(); it != interactions_.end(); ++it) {
@@ -53,7 +56,7 @@ MessageListModel::emplace(const QString& msgId, interaction::Info message, bool 
         }
     }
     auto iter = beginning ? interactions_.begin() : interactions_.end();
-    auto iterator = insertMessage(iter, qMakePair(msgId, message));
+    auto iterator = insertMessage(iter, qMakePair(msgId, message), triggersQml);
     return qMakePair(iterator, true);
 }
 
@@ -106,9 +109,11 @@ MessageListModel::find(const QString& msgId) const
 }
 
 QPair<iterator, bool>
-MessageListModel::insert(std::pair<QString, interaction::Info> message, bool beginning)
+MessageListModel::insert(std::pair<QString, interaction::Info> message,
+                         bool beginning,
+                         bool triggersQml)
 {
-    return emplace(message.first, message.second, beginning);
+    return emplace(message.first, message.second, beginning, triggersQml);
 }
 
 int
@@ -232,7 +237,7 @@ MessageListModel::atIndex(int index) const
 }
 
 QPair<iterator, bool>
-MessageListModel::insert(int index, QPair<QString, interaction::Info> message)
+MessageListModel::insert(int index, QPair<QString, interaction::Info> message, bool triggersQml)
 {
     iterator itr;
     for (itr = interactions_.begin(); itr != interactions_.end(); ++itr) {
@@ -244,7 +249,7 @@ MessageListModel::insert(int index, QPair<QString, interaction::Info> message)
         auto iterator = insertMessage(interactions_.end(), message);
         return qMakePair(iterator, true);
     }
-    insertMessage(index, message);
+    insertMessage(index, message, triggersQml);
     return qMakePair(interactions_.end(), true);
 }
 
@@ -328,21 +333,26 @@ MessageListModel::updateReplies(item_t& message)
 }
 
 void
-MessageListModel::insertMessage(int index, item_t& message)
+MessageListModel::insertMessage(int index, item_t& message, bool triggersQml)
 {
-    Q_EMIT beginInsertRows(QModelIndex(), index, index);
+    if (triggersQml)
+        Q_EMIT beginInsertRows(QModelIndex(), index, index);
     interactions_.insert(index, message);
-    Q_EMIT endInsertRows();
+    if (triggersQml)
+        Q_EMIT endInsertRows();
     updateReplies(message);
 }
 
 iterator
-MessageListModel::insertMessage(iterator it, item_t& message)
+MessageListModel::insertMessage(iterator it, item_t& message, bool triggersQml)
 {
     auto index = std::distance(begin(), it);
-    Q_EMIT beginInsertRows(QModelIndex(), index, index);
+    // qWarning() << "std::distance(begin(), it); " << index;
+    if (triggersQml)
+        Q_EMIT beginInsertRows(QModelIndex(), index, index);
     auto insertion = interactions_.insert(it, message);
-    Q_EMIT endInsertRows();
+    if (triggersQml)
+        Q_EMIT endInsertRows();
     updateReplies(message);
     return insertion;
 }
@@ -762,4 +772,17 @@ MessageListModel::findEmojiReaction(const QString& emoji,
     }
     return {};
 }
+
+void
+MessageListModel::beginInsert(const QModelIndex& parent, int first, int last)
+{
+    Q_EMIT beginInsertRows(parent, first, last);
+}
+
+void
+MessageListModel::endInsert()
+{
+    Q_EMIT endInsertRows();
+}
+
 } // namespace lrc

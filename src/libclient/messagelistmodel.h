@@ -85,14 +85,16 @@ public:
     // map functions
     QPair<iterator, bool> emplace(const QString& msgId,
                                   interaction::Info message,
-                                  bool beginning = false);
+                                  bool beginning = false,
+                                  bool triggersQml = true);
     iterator find(const QString& msgId);
     iterator findActiveCall(const MapStringString& commit);
     iterator erase(const iterator& it);
 
     constIterator find(const QString& msgId) const;
     QPair<iterator, bool> insert(std::pair<QString, interaction::Info> message,
-                                 bool beginning = false);
+                                 bool beginning = false,
+                                 bool triggersQml = true);
     Q_INVOKABLE int erase(const QString& msgId);
     interaction::Info& operator[](const QString& messageId);
     iterator end();
@@ -109,7 +111,9 @@ public:
     QPair<QString, interaction::Info> last() const;
     QPair<QString, interaction::Info> atIndex(int index) const;
 
-    QPair<iterator, bool> insert(int index, QPair<QString, interaction::Info> message);
+    QPair<iterator, bool> insert(int index,
+                                 QPair<QString, interaction::Info> message,
+                                 bool triggersQml = true);
     int indexOfMessage(const QString& msgId, bool reverse = true) const;
     void moveMessages(QList<QString> msgIds, const QString& parentId);
 
@@ -147,6 +151,8 @@ public:
     QString findEmojiReaction(const QString& emoji,
                               const QString& authorURI,
                               const QString& messageId);
+    void beginInsert(const QModelIndex& parent, int first, int last);
+    void endInsert();
 
 protected:
     using Role = MessageList::Role;
@@ -168,8 +174,8 @@ private:
     QMap<QString, QSet<QString>> reactedMessages_;
 
     void moveMessage(const QString& msgId, const QString& parentId);
-    void insertMessage(int index, item_t& message);
-    iterator insertMessage(iterator it, item_t& message);
+    void insertMessage(int index, item_t& message, bool triggersQml = true);
+    iterator insertMessage(iterator it, item_t& message, bool triggersQml = true);
     void removeMessage(int index, iterator it);
     void moveMessages(int from, int last, int to);
 
