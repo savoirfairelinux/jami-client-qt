@@ -80,6 +80,30 @@
       },
       "revId": "5111784210f64343bb104f5b7a5d6397f1abf681",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ed12810_8c4da58c",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-01-31T15:08:24Z",
+      "side": 1,
+      "message": "Done for \"Mouse middle click\" and the touch mapping with a trackpad is already working.",
+      "parentUuid": "9de2bf44_32066d04",
+      "range": {
+        "startLine": 203,
+        "startChar": 29,
+        "endLine": 203,
+        "endChar": 41
+      },
+      "revId": "5111784210f64343bb104f5b7a5d6397f1abf681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
