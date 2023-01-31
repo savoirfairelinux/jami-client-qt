@@ -219,7 +219,8 @@ public:
     bool insertSwarmInteraction(const QString& interactionId,
                                 interaction::Info& interaction,
                                 conversation::Info& conversation,
-                                bool insertAtBegin);
+                                bool insertAtBegin,
+                                bool triggersQml = true);
     void invalidateModel();
     void emplaceBackConversation(conversation::Info&& conversation);
     void eraseConversation(const QString& convId);
@@ -1452,7 +1453,9 @@ ConversationModel::clearHistory(const QString& uid)
         std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[conversation.uid]);
         conversation.interactions->clear();
     }
-    storage::getHistory(pimpl_->db, conversation, pimpl_->linked.owner.profileInfo.uri); // will contain "Conversation started"
+    storage::getHistory(pimpl_->db,
+                        conversation,
+                        pimpl_->linked.owner.profileInfo.uri); // will contain "Conversation started"
 
     Q_EMIT modelChanged();
     Q_EMIT conversationCleared(uid);
@@ -1507,7 +1510,8 @@ ConversationModel::clearInteractionFromConversation(const QString& convId,
                 lastInteractionUpdated = true;
             }
             if (conversation.lastSelfMessageId == interactionId) {
-                conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(owner.profileInfo.uri);
+                conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
+                    owner.profileInfo.uri);
             }
 
         } catch (const std::out_of_range& e) {
@@ -2424,9 +2428,9 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
     if (accountId != linked.owner.id) {
         return;
     }
-
+    qWarning() << messages.length();
     auto allLoaded = messages.size() == 0;
-
+    QList<QPair<QString, int>> downloadFilesList;
     try {
         auto& conversation = getConversationForUid(conversationId).get();
         QString oldLast, oldBegin; // Used to detect loading loops just in case.
@@ -2434,8 +2438,10 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
             oldBegin = conversation.interactions->begin()->first;
             oldLast = conversation.interactions->rbegin()->first;
         }
+        conversation.interactions->beginInsert(QModelIndex(), 0, messages.length());
         for (const auto& message : messages) {
             if (message["type"].isEmpty()) {
+                qWarning() << "emptylalala";
                 continue;
             }
             auto msgId = message["id"];
@@ -2467,7 +2473,9 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                 linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
                 downloadFile = (bytesProgress == 0);
             } else if (msg.type == interaction::Type::CALL) {
-                msg.body = storage::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri, msg);
+                msg.body = storage::getCallInteractionString(msg.authorUri
+                                                                 == linked.owner.profileInfo.uri,
+                                                             msg);
             } else if (msg.type == interaction::Type::CONTACT) {
                 auto bestName = msg.authorUri == linked.owner.profileInfo.uri
                                     ? linked.owner.accountModel->bestNameForAccount(linked.owner.id)
@@ -2480,12 +2488,16 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
             } else if (msg.type == interaction::Type::REACTION) {
                 conversation.interactions->addReaction(msg.react_to, msgId);
             }
-            insertSwarmInteraction(msgId, msg, conversation, true);
-            if (downloadFile) {
-                // Note, we must do this after insertSwarmInteraction to find the interaction
-                handleIncomingFile(conversationId, msgId, message["totalSize"].toInt());
-            }
+            auto index = conversation.interactions->indexOfMessage(msg.parentId);
+
+            downloadFilesList.append(qMakePair(msgId, message["totalSize"].toInt()));
+            insertSwarmInteraction(msgId, msg, conversation, true, false);
         }
+        Q_FOREACH (auto downloadInfo, downloadFilesList) {
+            handleIncomingFile(conversationId, downloadInfo.first, downloadInfo.second);
+        }
+        conversation.interactions->endInsert();
+        downloadFilesList.clear();
 
         conversation.lastMessageUid = conversation.interactions->lastMessageUid();
         conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
@@ -2617,7 +2629,9 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             // If we're a call in a swarm
             if (msg.authorUri != linked.owner.profileInfo.uri)
                 updateUnread = true;
-            msg.body = storage::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri, msg);
+            msg.body = storage::getCallInteractionString(msg.authorUri
+                                                             == linked.owner.profileInfo.uri,
+                                                         msg);
         } else if (msg.type == interaction::Type::CONTACT) {
             auto bestName = msg.authorUri == linked.owner.profileInfo.uri
                                 ? linked.owner.accountModel->bestNameForAccount(linked.owner.id)
@@ -2698,7 +2712,8 @@ bool
 ConversationModelPimpl::insertSwarmInteraction(const QString& interactionId,
                                                interaction::Info& interaction,
                                                conversation::Info& conversation,
-                                               bool insertAtBegin)
+                                               bool insertAtBegin,
+                                               bool triggersQml)
 {
     std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
     auto itExists = conversation.interactions->find(interactionId);
@@ -2718,12 +2733,14 @@ ConversationModelPimpl::insertSwarmInteraction(const QString& interactionId,
     int index = conversation.interactions->indexOfMessage(interaction.parentId);
     if (index >= 0) {
         auto result = conversation.interactions->insert(index + 1,
-                                                        qMakePair(interactionId, interaction));
+                                                        qMakePair(interactionId, interaction),
+                                                        triggersQml);
         if (!result.second)
             return false;
     } else {
         auto result = conversation.interactions->insert(std::make_pair(interactionId, interaction),
-                                                        insertAtBegin);
+                                                        insertAtBegin,
+                                                        triggersQml);
         if (!result.second)
             return false;
         if (!interaction.parentId.isEmpty())
