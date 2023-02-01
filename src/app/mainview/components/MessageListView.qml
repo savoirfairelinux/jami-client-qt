@@ -22,8 +22,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.qmlmodels
 
-import SortFilterProxyModel 0.2
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -203,27 +201,7 @@ JamiListView {
         }
     }
 
-    model: SortFilterProxyModel {
-        id: proxyModel
-        // There doesn't seem to a subscription to property change
-        // events in the expression for sourceModel. This was originally
-        // masked behind an unchanging QSortFilterProxyModel object that
-        // just reset it's sourceModel in MessagesAdapter.
-        property var messageListModel: MessagesAdapter.messageListModel
-        onMessageListModelChanged: sourceModel = messageListModel
-        filters: ExpressionFilter {
-            readonly property int mergeType: Interaction.Type.MERGE
-            readonly property int editedType: Interaction.Type.EDITED
-            readonly property int reactionType: Interaction.Type.REACTION
-            expression: Type !== mergeType
-                        && Type !== editedType
-                        && Type !== reactionType
-        }
-        sorters: ExpressionSorter {
-            expression: modelLeft.index > modelRight.index
-        }
-    }
-
+    model: MessagesAdapter.messageListModel
     delegate: DelegateChooser {
         id: delegateChooser
 
