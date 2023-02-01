@@ -24,6 +24,33 @@
 
 #include <QObject>
 #include <QString>
+#include <QTimer>
+
+#include <QSortFilterProxyModel>
+
+class FilteredMsgListModel final : public QSortFilterProxyModel
+{
+    Q_OBJECT
+public:
+    explicit FilteredMsgListModel(QObject* parent = nullptr)
+        : QSortFilterProxyModel(parent)
+    {
+        sort(0, Qt::AscendingOrder);
+    }
+    bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
+    {
+        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
+        auto type = static_cast<interaction::Type>(
+            sourceModel()->data(index, MessageList::Role::Type).toInt());
+        auto hasBody = !sourceModel()->data(index, MessageList::Role::Body).toString().isEmpty();
+        return hasBody && type != interaction::Type::MERGE && type != interaction::Type::EDITED
+               && type != interaction::Type::REACTION;
+    };
+    bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
+    {
+        return left.row() > right.row();
+    };
+};
 
 class AppSettingsManager;
 
@@ -50,6 +77,7 @@ Q_SIGNALS:
     void newTextPasted();
     void previewInformationToQML(QString messageId, QStringList previewInformation);
     void moreMessagesLoaded();
+    void timestampUpdated();
 
 protected:
     void safeInit() override;
@@ -113,6 +141,8 @@ protected:
     void setMessagesFileContent(const QString& path);
     void setSendMessageContent(const QString& content);
 
+    inline MessageListModel* getMsgListSourceModel() const;
+
 private Q_SLOTS:
     void onNewInteraction(const QString& convUid,
                           const QString& interactionId,
@@ -132,8 +162,12 @@ private:
 
     AppSettingsManager* settingsManager_;
     PreviewEngine* previewEngine_;
+    FilteredMsgListModel* filteredMsgListModel_;
 
     static constexpr const int loadChunkSize_ {20};
 
     std::unique_ptr<MessageListModel> mediaInteractions_;
+
+    QTimer* timestampTimer_ {nullptr};
+    static constexpr const int timestampUpdateIntervalMs_ {1000};
 };
