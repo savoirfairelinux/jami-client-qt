@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "621bc85c_7bac2263",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-01T16:07:07Z",
+      "side": 1,
+      "message": "screen sharing is 2 words, possibly hyphenated, so ScreenSharing..., and Element seems like filler here, so how about ScreenSharePreview?",
+      "range": {
+        "startLine": 143,
+        "startChar": 41,
+        "endLine": 143,
+        "endChar": 69
+      },
+      "revId": "9af1829b91c2873954f880d6d6e398c851991eb1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b5b1cbc_6801ffd2",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-01T16:07:07Z",
+      "side": 1,
+      "message": "so a ScreensharingElementPreview shows screen info?",
+      "range": {
+        "startLine": 153,
+        "startChar": 28,
+        "endLine": 153,
+        "endChar": 38
+      },
+      "revId": "9af1829b91c2873954f880d6d6e398c851991eb1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "779d1c2b_d3920415",
         "filename": "src/app/mainview/js/selectscreenwindowcreation.js",
         "patchSetId": 6
