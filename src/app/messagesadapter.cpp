@@ -49,6 +49,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
     , previewEngine_(previewEngine)
+    , filteredMsgListModel_(new FilteredMsgListModel(this))
     , mediaInteractions_(std::make_unique<MessageListModel>())
 {
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
@@ -56,7 +57,17 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         set_editId("");
         const QString& convId = lrcInstance_->get_selectedConvUid();
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
-        set_messageListModel(QVariant::fromValue(conversation.interactions.get()));
+
+        // Reset the source model for the proxy model.
+        filteredMsgListModel_->setSourceModel(conversation.interactions.get());
+        set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
+
+        connect(conversation.interactions.get(),
+                &MessageListModel::timestampUpdated,
+                this,
+                &MessagesAdapter::timestampUpdated,
+                Qt::UniqueConnection);
+
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
     });
 
@@ -106,7 +117,7 @@ void
 MessagesAdapter::loadConversationUntil(const QString& to)
 {
     try {
-        if (auto* model = messageListModel_.value<MessageListModel*>()) {
+        if (auto* model = getMsgListSourceModel()) {
             auto idx = model->indexOfMessage(to);
             if (idx == -1) {
                 auto accountId = lrcInstance_->get_currentAccountId();
@@ -393,7 +404,7 @@ MessagesAdapter::getTransferStats(const QString& msgId, int status)
 QVariant
 MessagesAdapter::dataForInteraction(const QString& interactionId, int role) const
 {
-    if (auto* model = messageListModel_.value<MessageListModel*>()) {
+    if (auto* model = getMsgListSourceModel()) {
         auto idx = model->indexOfMessage(interactionId);
         if (idx != -1)
             return model->data(idx, role);
@@ -404,7 +415,7 @@ MessagesAdapter::dataForInteraction(const QString& interactionId, int role) cons
 int
 MessagesAdapter::getIndexOfMessage(const QString& interactionId) const
 {
-    if (auto* model = messageListModel_.value<MessageListModel*>()) {
+    if (auto* model = getMsgListSourceModel()) {
         return model->indexOfMessage(interactionId);
     }
     return {};
@@ -740,4 +751,12 @@ MessagesAdapter::getConvMedias()
     } catch (...) {
         qDebug() << "Exception during getConvMedia:";
     }
+}
+
+MessageListModel*
+MessagesAdapter::getMsgListSourceModel() const
+{
+    // We are certain that filteredMsgListModel_'s source model is a MessageListModel,
+    // However it may be a nullptr if not yet set.
+    return static_cast<MessageListModel*>(filteredMsgListModel_->sourceModel());
 }
