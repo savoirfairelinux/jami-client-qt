@@ -150,7 +150,7 @@ ContextMenuAutoLoader {
             canTrigger: !hasCall && contactType !== Profile.Type.SIP && !root.isBanned
             itemName: !(mode && isCoreDialog) ? JamiStrings.blockContact : JamiStrings.blockSwarm
             iconSource: JamiResources.block_black_24dp_svg
-            addMenuSeparatorAfter: contactType !== Profile.Type.SIP
+            addMenuSeparatorAfter: canTrigger
             onClicked: blockDialog.open()
         },
         GeneralMenuItem {
@@ -159,7 +159,7 @@ ContextMenuAutoLoader {
             canTrigger: root.isBanned
             itemName: JamiStrings.reinstateContact
             iconSource: JamiResources.round_remove_circle_24dp_svg
-            addMenuSeparatorAfter: contactType !== Profile.Type.SIP
+            addMenuSeparatorAfter: canTrigger
             onClicked: MessagesAdapter.unbanConversation(responsibleConvUid)
         },
         GeneralMenuItem {
