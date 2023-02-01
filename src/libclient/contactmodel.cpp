@@ -930,6 +930,7 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
     if (iter != contacts.end()) {
         auto info = iter.value();
         contactInfo.registeredName = info.registeredName;
+        contactInfo.isPresent = info.isPresent;
         iter.value() = contactInfo;
     } else
         contacts.insert(iter, contactInfo.profileInfo.uri, contactInfo);
