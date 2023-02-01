@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2908ec1d_1172c294",
+        "filename": "src/app/mainview/js/selectscreenwindowcreation.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-01T15:57:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "779d1c2b_d3920415",
+      "range": {
+        "startLine": 19,
+        "startChar": 43,
+        "endLine": 19,
+        "endChar": 52
+      },
+      "revId": "9af1829b91c2873954f880d6d6e398c851991eb1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3104d815_3f69625e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-01T12:15:19Z",
       "side": 1,
       "message": "left over",
+      "range": {
+        "startLine": 24,
+        "startChar": 40,
+        "endLine": 24,
+        "endChar": 66
+      },
+      "revId": "9af1829b91c2873954f880d6d6e398c851991eb1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e53d778f_80c688d7",
+        "filename": "src/app/mainview/js/selectscreenwindowcreation.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-01T15:57:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3104d815_3f69625e",
       "range": {
         "startLine": 24,
         "startChar": 40,
