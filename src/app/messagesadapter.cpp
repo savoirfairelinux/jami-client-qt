@@ -695,8 +695,8 @@ MessagesAdapter::isRemoteImage(const QString& msg)
 QString
 MessagesAdapter::getFormattedTime(const quint64 timestamp)
 {
-    const auto now = QDateTime::currentDateTime();
-    const auto seconds = now.toSecsSinceEpoch() - timestamp;
+    const auto currentTime = QDateTime::currentDateTime();
+    const auto seconds = currentTime.toSecsSinceEpoch() - timestamp;
     auto interval = qFloor(seconds / 60);
 
     if (interval > 1) {
@@ -715,13 +715,23 @@ MessagesAdapter::getFormattedTime(const quint64 timestamp)
 }
 
 QString
+MessagesAdapter::getBestFormattedDate(const quint64 timestamp)
+{
+    auto currentDate = QDate::currentDate();
+    auto timestampDate = QDateTime::fromSecsSinceEpoch(timestamp).date();
+    if (timestampDate == currentDate)
+        return getFormattedTime(timestamp);
+    return getFormattedDay(timestamp);
+}
+
+QString
 MessagesAdapter::getFormattedDay(const quint64 timestamp)
 {
-    auto now = QDate::currentDate();
-    auto before = QDateTime::fromSecsSinceEpoch(timestamp).date();
-    if (before == now)
+    auto currentDate = QDate::currentDate();
+    auto timestampDate = QDateTime::fromSecsSinceEpoch(timestamp).date();
+    if (timestampDate == currentDate)
         return QObject::tr("Today");
-    if (before.daysTo(now) == 1)
+    if (timestampDate.daysTo(currentDate) == 1)
         return QObject::tr("Yesterday");
 
     auto curLang = settingsManager_->getValue(Settings::Key::LANG);
