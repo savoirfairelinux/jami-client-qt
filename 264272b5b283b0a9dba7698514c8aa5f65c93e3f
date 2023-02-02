@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93cb767f_b17f04b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-02T22:03:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88975e73_a4a5c18c",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "264272b5b283b0a9dba7698514c8aa5f65c93e3f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5314ecbd_6edfb4cf",
@@ -70,6 +94,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d1f9784_afdef139",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-02T22:03:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7a906e7_c6a40caf",
+      "range": {
+        "startLine": 721,
+        "startChar": 9,
+        "endLine": 721,
+        "endChar": 15
+      },
+      "revId": "264272b5b283b0a9dba7698514c8aa5f65c93e3f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "305eb17d_b5ab62ce",
@@ -83,6 +131,30 @@
       "writtenOn": "2023-02-02T21:05:27Z",
       "side": 1,
       "message": "remove debug log",
+      "range": {
+        "startLine": 125,
+        "startChar": 66,
+        "endLine": 126,
+        "endChar": 77
+      },
+      "revId": "264272b5b283b0a9dba7698514c8aa5f65c93e3f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eeec8650_88f45a5e",
+        "filename": "src/app/messagesadapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-02T22:03:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "305eb17d_b5ab62ce",
       "range": {
         "startLine": 125,
         "startChar": 66,
