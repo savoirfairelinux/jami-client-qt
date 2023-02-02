@@ -173,7 +173,7 @@ Item {
                 Connections {
                     target: PositionManager
 
-                    function onPositionShareAdded(shareInfo) {
+                    function oattacnPositionShareAdded(shareInfo) {
                         if(webView.isLoaded) {
                             if (shareInfo.account === attachedAccountId) {
                                 var curLong = shareInfo.long
@@ -219,6 +219,7 @@ Item {
                         PositionManager.startPositioning()
                         //load locations that were received before this conversation was opened
                         PositionManager.loadPreviousLocations(attachedAccountId);
+                        isSharingToCurrentConversation = PositionManager.isPositionSharedToConv(attachedAccountId, currentConvId)
                     }
                 }
             }
@@ -230,7 +231,6 @@ Item {
             StopSharingPositionPopup {
                 id: stopSharingPositionPopup
 
-                property alias attachedAccountId: root.attachedAccountId
             }
         }
     }

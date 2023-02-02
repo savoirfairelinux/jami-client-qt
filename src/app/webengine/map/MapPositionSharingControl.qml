@@ -98,7 +98,8 @@ ColumnLayout {
             textLeftPadding: JamiTheme.buttontextPadding
             textRightPadding: JamiTheme.buttontextPadding
             primary: true
-            visible: !isSharingToCurrentConversation && !isUnpin
+            visible: !isSharingToCurrentConversation && !isUnpin && webView.isLoaded
+
             text: JamiStrings.shareLocation
             color: isError
                    ? JamiTheme.buttonTintedGreyInactive
