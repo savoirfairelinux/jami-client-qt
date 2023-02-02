@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88975e73_a4a5c18c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-02-02T20:07:43Z",
+      "side": 1,
+      "message": "Typo? Should `t` be `d`? i.e. Change `Standart` to `Standard`?",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "264272b5b283b0a9dba7698514c8aa5f65c93e3f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
