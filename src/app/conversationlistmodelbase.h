@@ -31,7 +31,6 @@
     X(URI) \
     X(UnreadMessagesCount) \
     X(LastInteractionTimeStamp) \
-    X(LastInteractionDate) \
     X(LastInteraction) \
     X(ContactType) \
     X(IsSwarm) \
