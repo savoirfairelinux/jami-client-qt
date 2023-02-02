@@ -150,18 +150,60 @@ JamiListView {
         }
     }
 
+    property var wantedId: undefined // We need to scroll until this id
+    property var lastTestedIdx: 1 // Avoid to reloop on same element
+    property var finalIdx: undefined // if we found the index
+
+    onContentYChanged: {
+        if (wantedId !== undefined) {
+            scrollTo(wantedId);
+        }
+    }
+
+    function highlightItem() {
+        var delegate = root.itemAtIndex(finalIdx)
+        if (delegate.replyAnimation)
+            delegate.replyAnimation.start()
+        wantedId = undefined
+        finalIdx = undefined
+    }
+
+    function scrollTo(id) {
+        // The first case is that we found the index to highlight, so just start the animation
+        if (finalIdx !== undefined) {
+            highlightItem()
+            return;
+        }
+        for (var i = lastTestedIdx; i < root.count; i++) {
+            if (!root.itemAtIndex(i)) {
+                lastTestedIdx = Math.max(1, i - 1)
+                break;
+            }
+            var delegate = root.itemAtIndex(i)
+            // If delegate is not null, it's in the cache
+            if (delegate && delegate.id === id) {
+                finalIdx = i
+                lastTestedIdx = 1
+                var yoff = Math.round(delegate.y - root.contentY)
+                // If delegate is really shown (and not in cache)
+                if (yoff > root.y && yoff + delegate.height < root.y + root.height) {
+                    highlightItem()
+                    return;
+                }
+                positionViewAtIndex(finalIdx, ListView.Visible) // ListView.Center is centered in the cache
+                return;
+            }
+        }
+        // If not visible, scroll more
+        positionViewAtIndex(lastTestedIdx, ListView.Beginning)
+    }
+
     Connections {
         target: CurrentConversation
         function onIdChanged() { fadeAnimation.start() }
-        function onScrollTo(id) {
-            var idx = -1
-            for (var i = 1; i < root.count; i++) {
-                var delegate = root.itemAtIndex(i)
-                if (delegate && delegate.id === id) {
-                    idx = i
-                }
-            }
-            positionViewAtIndex(idx, ListView.Center)
+        function onScrollTo(id, wanted) {
+            wantedId = id;
+            scrollTo(wantedId);
         }
     }
 
