@@ -165,6 +165,7 @@ Item {
             hoveredColor: "#e5eef5"
             pressedColor: "#e5eef5"
             enabled: avatar.visible && !root.readOnly
+            visible: enabled
 
             onClicked :{
 
