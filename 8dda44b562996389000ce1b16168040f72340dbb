@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3addea85_bd80da87",
+        "filename": "extras/packaging/gnu-linux/scripts/build-package-rpm.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-02T14:45:28Z",
+      "side": 0,
+      "message": "+ rm -rf client-qt\n+ /usr/lib/rpm/rpmuncompress -x -v /root/rpmbuild/SOURCES/jami_20230202.0.tar.gz\nerror: File /root/rpmbuild/SOURCES/jami_20230202.0.tar.gz: No such file or directory\nerror: Bad exit status from /var/tmp/rpm-tmp.NbNk94 (%prep)\n\nRPM build warnings:\n    source_date_epoch_from_changelog set but %changelog is missing",
+      "revId": "8dda44b562996389000ce1b16168040f72340dbb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
