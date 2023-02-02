@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbf1c170_ec14e875",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-02T22:26:17Z",
+      "side": 1,
+      "message": "I think it\u0027ll be best to use the term mirror everywhere.",
+      "revId": "4c257957bf9c6abaa68b57732476fed9a3c399e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5929fe9b_1c7df4c2",
+        "filename": "src/app/commoncomponents/VideoView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-02T22:26:17Z",
+      "side": 1,
+      "message": "the built-in Scale component (origin.x: parent.width / 2; xScale: -1) will be easier to read",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 74
+      },
+      "revId": "4c257957bf9c6abaa68b57732476fed9a3c399e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
