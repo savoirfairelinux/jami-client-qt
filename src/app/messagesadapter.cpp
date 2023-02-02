@@ -715,6 +715,16 @@ MessagesAdapter::getFormattedTime(const quint64 timestamp)
 }
 
 QString
+MessagesAdapter::getBestFormattedDate(const quint64 timestamp)
+{
+    auto now = QDate::currentDate();
+    auto before = QDateTime::fromSecsSinceEpoch(timestamp).date();
+    if (before == now)
+        return getFormattedTime(timestamp);
+    return getFormattedDay(timestamp);
+}
+
+QString
 MessagesAdapter::getFormattedDay(const quint64 timestamp)
 {
     auto now = QDate::currentDate();
