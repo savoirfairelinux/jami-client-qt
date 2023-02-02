@@ -40,11 +40,23 @@ ItemDelegate {
 
     highlighted: ListView.isCurrentItem
     property bool interactive: true
+    property string lastInteractionDate: LastInteractionTimeStamp === undefined
+                                         ? ""
+                                         : LastInteractionTimeStamp
+
+    property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionDate)
 
     onVisibleChanged: {
         if (visible)
             return
         UtilsAdapter.clearInteractionsCache(root.accountId, root.convId)
+    }
+
+    Connections {
+        target: MessagesAdapter
+        function onTimestampUpdated() {
+            lastInteractionFormattedDate = MessagesAdapter.getBestFormattedDate(lastInteractionDate)
+        }
     }
 
     Component.onCompleted: {
@@ -131,7 +143,7 @@ ItemDelegate {
             RowLayout {
                 visible: ContactType !== Profile.Type.TEMPORARY
                          && !IsBanned
-                         && LastInteractionDate !== undefined
+                         && lastInteractionFormattedDate !== undefined
                          && interactive
                 Layout.fillWidth: true
                 Layout.minimumHeight: 20
@@ -140,7 +152,7 @@ ItemDelegate {
                 // last Interaction date
                 Text {
                     Layout.alignment: Qt.AlignVCenter
-                    text: LastInteractionDate === undefined ? "" : LastInteractionDate
+                    text: lastInteractionFormattedDate === undefined ? "" : lastInteractionFormattedDate
                     textFormat: TextEdit.PlainText
                     font.pointSize: JamiTheme.smartlistItemInfoFontSize
                     font.weight: UnreadMessagesCount ? Font.DemiBold : Font.Normal

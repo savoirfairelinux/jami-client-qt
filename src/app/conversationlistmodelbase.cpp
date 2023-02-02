@@ -110,13 +110,6 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         }
         break;
     }
-    case Role::LastInteractionDate: {
-        if (!item.interactions->empty()) {
-            return QVariant(
-                Utils::formatTimeString(item.interactions->at(item.lastMessageUid).timestamp));
-        }
-        break;
-    }
     case Role::LastInteraction: {
         if (!item.interactions->empty()) {
             auto interaction = item.interactions->at(item.lastMessageUid);
@@ -190,7 +183,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             case Role::IsBanned:
                 return QVariant(false);
             case Role::ContactType:
-                return QVariant(static_cast<int>(lrcInstance_->getCurrentAccountInfo().profileInfo.type));
+                return QVariant(
+                    static_cast<int>(lrcInstance_->getCurrentAccountInfo().profileInfo.type));
             }
         }
         ContactModel* contactModel;

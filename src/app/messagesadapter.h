@@ -123,6 +123,8 @@ protected:
     Q_INVOKABLE bool isRemoteImage(const QString& msg);
     Q_INVOKABLE QString getFormattedDay(const quint64 timestamp);
     Q_INVOKABLE QString getFormattedTime(const quint64 timestamp);
+    // return getFormattedTime() if today, otherwise return getFormattedDay()
+    Q_INVOKABLE QString getBestFormattedDate(const quint64 timestamp);
     Q_INVOKABLE void parseMessageUrls(const QString& messageId,
                                       const QString& msg,
                                       bool showPreview,
