@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc24707c_4a113ade",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-02-02T02:27:36Z",
+      "side": 1,
+      "message": "It seems that `screensharing` can also be one word.\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dscreensharing\u0026langID\u003d293\u0026Source\u003dtrue\u0026productid\u003d0",
+      "parentUuid": "4af8fe5e_a5aded30",
+      "range": {
+        "startLine": 143,
+        "startChar": 41,
+        "endLine": 143,
+        "endChar": 69
+      },
+      "revId": "9af1829b91c2873954f880d6d6e398c851991eb1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b5b1cbc_6801ffd2",
