@@ -596,19 +596,6 @@ Utils::profileType(const lrc::api::conversation::Info& conv,
     }
 }
 
-QString
-Utils::formatTimeString(const std::time_t& timeStamp)
-{
-    auto currentTimeStamp = QDateTime::fromSecsSinceEpoch(timeStamp);
-    auto now = QDateTime::currentDateTime();
-    auto timeStampDMY = currentTimeStamp.toString("dd/MM/yy");
-    if (timeStampDMY == now.toString("dd/MM/yy")) {
-        return currentTimeStamp.toString("hh:mm");
-    } else {
-        return timeStampDMY;
-    }
-}
-
 bool
 Utils::isInteractionGenerated(const lrc::api::interaction::Type& type)
 {
