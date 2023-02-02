@@ -16,6 +16,24 @@
       "message": "there is the following error: QML Connections: Detected function \"onTimestampUpdated\" in Connections element. This is probably intended to be a signal handler but no signal of the target matches the name.\n\nmessageListModel is no longer a MessageListModel element so doesn\u0027t have the TimeStampUdpatedfunction anymore, leading to the following error from a connection in TimestampInfo",
       "revId": "e8073afb2b5c0fc36baf6a9856fd5c6189dd81da",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ab14afd_3133507a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-02T16:18:32Z",
+      "side": 1,
+      "message": ".",
+      "parentUuid": "18281aa3_43d29c4a",
+      "revId": "e8073afb2b5c0fc36baf6a9856fd5c6189dd81da",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
