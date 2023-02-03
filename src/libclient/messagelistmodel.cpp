@@ -152,6 +152,12 @@ MessageListModel::end() const
     return interactions_.end();
 }
 
+reverseIterator
+MessageListModel::rend()
+{
+    return interactions_.rend();
+}
+
 constIterator
 MessageListModel::cend() const
 {

@@ -751,6 +751,18 @@ MessagesAdapter::getConvMedias()
     }
 }
 
+int
+MessagesAdapter::getMessageIndexFromid(QString& id)
+{
+    auto msgList = getMsgListSourceModel();
+    qWarning() << id;
+    auto it = std::find_if(msgList->rbegin(), msgList->rend(), [&id](auto& ite) {
+        return ite.first == id;
+    });
+    qWarning() << it->first;
+    return std::distance(msgList->rbegin(), it);
+}
+
 MessageListModel*
 MessagesAdapter::getMsgListSourceModel() const
 {
