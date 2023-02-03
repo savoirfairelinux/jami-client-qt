@@ -47,6 +47,13 @@ enum class Type {
     COUNT__
 };
 Q_ENUM_NS(Type)
+static inline bool
+isDisplayedInChatview(const Type& type)
+{
+    return type != interaction::Type::MERGE && type != interaction::Type::EDITED
+           && type != interaction::Type::REACTION && type != interaction::Type::VOTE
+           && type != interaction::Type::UPDATE_PROFILE && type != interaction::Type::INVALID;
+}
 
 static inline const QString
 to_string(const Type& type)

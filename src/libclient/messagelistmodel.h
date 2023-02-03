@@ -96,6 +96,8 @@ public:
     interaction::Info& operator[](const QString& messageId);
     iterator end();
     constIterator end() const;
+    reverseIterator rend();
+
     constIterator cend() const;
     iterator begin();
     constIterator begin() const;
