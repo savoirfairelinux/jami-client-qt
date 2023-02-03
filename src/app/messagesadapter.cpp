@@ -761,6 +761,23 @@ MessagesAdapter::getConvMedias()
     }
 }
 
+int
+MessagesAdapter::getMessageIndexFromId(QString& id)
+{
+    const QString& convId = lrcInstance_->get_selectedConvUid();
+    const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
+    auto allInteractions = conversation.interactions.get();
+    int index = 0;
+    for (auto it = allInteractions->rbegin(); it != allInteractions->rend(); it++) {
+        if (interaction::isDisplayedInChatview(it->second.type)) {
+            if (it->first == id)
+                return index;
+            index++;
+        }
+    }
+    return -1;
+}
+
 MessageListModel*
 MessagesAdapter::getMsgListSourceModel() const
 {

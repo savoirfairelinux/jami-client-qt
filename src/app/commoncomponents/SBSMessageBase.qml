@@ -54,6 +54,7 @@ Control {
     readonly property real msgRadius: 20
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
     property bool textHovered: false
+    property alias replyAnimation: selectAnimation
     width: ListView.view ? ListView.view.width : 0
     height: mainColumnLayout.implicitHeight
 
@@ -339,6 +340,20 @@ Control {
                 SequentialAnimation {
                     id: selectAnimation
 
+                    PropertyAnimation {
+                        properties: "opacity"
+                        target: opacityMask
+                        from: 0
+                        to: 1
+                        duration: JamiTheme.longFadeDuration
+                    }
+                    PropertyAnimation {
+                        properties: "opacity"
+                        target: opacityMask
+                        from: 1
+                        to: 0
+                        duration: JamiTheme.longFadeDuration
+                    }
                     PropertyAnimation {
                         properties: "opacity"
                         target: opacityMask

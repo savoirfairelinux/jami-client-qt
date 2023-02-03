@@ -152,16 +152,9 @@ JamiListView {
 
     Connections {
         target: CurrentConversation
-        function onIdChanged() { fadeAnimation.start() }
         function onScrollTo(id) {
-            var idx = -1
-            for (var i = 1; i < root.count; i++) {
-                var delegate = root.itemAtIndex(i)
-                if (delegate && delegate.id === id) {
-                    idx = i
-                }
-            }
-            positionViewAtIndex(idx, ListView.Center)
+            var idx = MessagesAdapter.getMessageIndexFromId(id)
+            positionViewAtIndex(idx, ListView.Visible)
         }
     }
 
