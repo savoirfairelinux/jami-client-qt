@@ -39,6 +39,30 @@
       },
       "revId": "4c257957bf9c6abaa68b57732476fed9a3c399e0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e9967d8_9894d991",
+        "filename": "src/app/commoncomponents/VideoView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-03T18:00:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5929fe9b_1c7df4c2",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 74
+      },
+      "revId": "4c257957bf9c6abaa68b57732476fed9a3c399e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
