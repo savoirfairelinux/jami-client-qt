@@ -60,6 +60,7 @@ class MessagesAdapter final : public QmlAdapterBase
     QML_PROPERTY(QString, editId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
     QML_PROPERTY(QVariant, mediaMessageListModel)
+    QML_PROPERTY(QString, searchbarPrompt)
 
 public:
     explicit MessagesAdapter(AppSettingsManager* settingsManager,
@@ -70,6 +71,7 @@ public:
 
 Q_SIGNALS:
     void newInteraction(const QString& id, int type);
+    void newMessageBarPlaceholderText(QString placeholderText);
     void newFilePasted(QString filePath);
     void newTextPasted();
     void previewInformationToQML(QString messageId, QStringList previewInformation);
@@ -77,6 +79,7 @@ Q_SIGNALS:
     void timestampUpdated();
 
 protected:
+    Q_INVOKABLE bool isDocument(const interaction::Type type);
     Q_INVOKABLE void loadMoreMessages();
     Q_INVOKABLE void loadConversationUntil(const QString& to);
     Q_INVOKABLE void connectConversationModel();
@@ -129,7 +132,7 @@ protected:
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;
-    Q_INVOKABLE void getConvMedias();
+    Q_INVOKABLE void startSearch(QString& text, bool isMedia = false);
     Q_INVOKABLE int getMessageIndexFromId(QString& id);
 
     // Run corrsponding js functions, c++ to qml.
