@@ -22,6 +22,30 @@
       },
       "revId": "6d4daee846c9712f8010aac4bdc8f67e22182d53",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94f71a63_4c195819",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-03T21:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e75b082e_e3892cf4",
+      "range": {
+        "startLine": 176,
+        "startChar": 29,
+        "endLine": 176,
+        "endChar": 54
+      },
+      "revId": "6d4daee846c9712f8010aac4bdc8f67e22182d53",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
