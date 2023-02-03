@@ -32,14 +32,10 @@ Rectangle {
     color: JamiTheme.backgroundColor
     property int type: ContactList.ADDCONVMEMBER
 
-    width: 250
-
     ColumnLayout {
         id: contactPickerPopupRectColumnLayout
 
-        anchors.top: root.top
-        anchors.bottom: root.bottom
-        anchors.margins: 16
+        anchors.fill: parent
 
         ContactSearchBar {
             id: contactPickerContactSearchBar
@@ -59,9 +55,10 @@ Rectangle {
         JamiListView {
             id: contactPickerListView
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: root.width - 8
-            Layout.preferredHeight: contactPickerPopupRectColumnLayout.height - contactPickerContactSearchBar.height
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.leftMargin: 4
+            Layout.rightMargin: 4
 
             model: ContactAdapter.getContactSelectableModel(type)
 

@@ -35,6 +35,11 @@ Rectangle {
 
     property bool allMessagesLoaded
     property var mapPositions: PositionManager.mapStatus
+
+    property int lastContentsSplitSize: JamiTheme.detailsPageMinWidth
+    property int lastDetailsSplitSize: JamiTheme.detailsPageMinWidth
+    property int previousWidth: width
+
     signal needToHideConversationInCall
     signal messagesCleared
     signal messagesLoaded
@@ -107,7 +112,31 @@ Rectangle {
 
             onShowDetailsClicked: {
                 addMemberPanel.visible = false
+                if (swarmDetailsPanel.visible) {
+                    chatContents.visible = true
+                } else {
+                    if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.chatViewHeaderMinimumWidth)
+                        chatContents.visible = false
+                }
                 swarmDetailsPanel.visible = !swarmDetailsPanel.visible
+            }
+
+            onWidthChanged: {
+                var isExpanding = previousWidth < width
+
+                if (!swarmDetailsPanel.visible && !addMemberPanel.visible)
+                    return
+
+                if (chatViewHeader.width < JamiTheme.detailsPageMinWidth + JamiTheme.chatViewHeaderMinimumWidth
+                    && !isExpanding && chatContents.visible) {
+                    lastContentsSplitSize = chatContents.width
+                    lastDetailsSplitSize = swarmDetailsPanel.visible ? swarmDetailsPanel.width : addMemberPanel.width
+                    chatContents.visible = false
+                } else if (chatViewHeader.width >= JamiTheme.chatViewHeaderMinimumWidth + lastDetailsSplitSize
+                         && isExpanding && !layoutManager.isFullScreen && !chatContents.visible) {
+                    chatContents.visible = true
+                }
+                previousWidth = width
             }
 
             Connections {
@@ -127,6 +156,12 @@ Rectangle {
 
             onAddToConversationClicked: {
                 swarmDetailsPanel.visible = false
+                if (addMemberPanel.visible) {
+                    chatContents.visible = true
+                } else {
+                    if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.chatViewHeaderMinimumWidth)
+                        chatContents.visible = false
+                }
                 addMemberPanel.visible = !addMemberPanel.visible
             }
 
@@ -212,10 +247,13 @@ Rectangle {
             }
 
             ColumnLayout {
+                id: chatContents
                 SplitView.maximumWidth: splitView.width
-                // Note, without JamiTheme.detailsPageMinWidth, sometimes the details page is hidden at the right
-                SplitView.preferredWidth: Math.max(0, 2 * splitView.width / 3 - JamiTheme.detailsPageMinWidth)
-                SplitView.fillHeight: true
+                SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
+
+                SplitView.preferredWidth: chatViewHeader.width -
+                                          (swarmDetailsPanel.visible ? swarmDetailsPanel.width :
+                                            ( addMemberPanel.visible ? addMemberPanel.width : 0))
 
                 StackLayout {
                     id: chatViewStack
@@ -288,11 +326,8 @@ Rectangle {
                 visible: false
 
                 SplitView.maximumWidth: splitView.width
-                SplitView.preferredWidth: Math.max(JamiTheme.detailsPageMinWidth, splitView.width / 3)
+                SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
-                SplitView.fillHeight: true
-                Layout.fillHeight: true
-                Layout.fillWidth: true
             }
 
             AddMemberPanel {
@@ -300,11 +335,8 @@ Rectangle {
                 visible: false
 
                 SplitView.maximumWidth: splitView.width
-                SplitView.preferredWidth: Math.max(JamiTheme.detailsPageMinWidth, splitView.width / 3)
+                SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
-                SplitView.fillHeight: true
-                Layout.fillHeight: true
-                Layout.fillWidth: true
             }
         }
     }

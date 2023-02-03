@@ -43,8 +43,7 @@ Rectangle {
 
     ColumnLayout {
         id: swarmProfileDetails
-        Layout.fillHeight: true
-        Layout.fillWidth: true
+        anchors.fill: parent
         spacing: 0
 
         ColumnLayout {
@@ -71,7 +70,9 @@ Rectangle {
                 id: titleLine
 
                 Layout.alignment: Qt.AlignHCenter
-                Layout.preferredWidth: parent.width - 32
+                Layout.fillWidth: true
+                Layout.leftMargin: 16
+                Layout.rightMargin: 16
                 Layout.topMargin: 5
 
                 TextMetrics {
@@ -130,7 +131,9 @@ Rectangle {
                 id: descriptionLine
 
                 Layout.alignment: Qt.AlignHCenter
-                Layout.preferredWidth: parent.width - 32
+                Layout.fillWidth: true
+                Layout.leftMargin: 16
+                Layout.rightMargin: 16
 
                 font.pointSize: JamiTheme.menuFontSize
 
@@ -616,6 +619,8 @@ Rectangle {
 
                     RowLayout {
                         spacing: 10
+                        anchors.fill: parent
+                        anchors.rightMargin: JamiTheme.preferredMarginSize
 
                         Avatar {
                             width: JamiTheme.smartListAvatarSize
@@ -638,9 +643,10 @@ Rectangle {
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
                             Layout.topMargin: JamiTheme.preferredMarginSize / 2
+                            Layout.fillWidth: true
 
                             eText: UtilsAdapter.getContactBestName(CurrentAccount.id, modelData)
-                            maxWidth: JamiTheme.preferredFieldWidth
+                            maxWidth: width
 
                             font.pointSize: JamiTheme.participantFontSize
                             color: JamiTheme.primaryForegroundColor
