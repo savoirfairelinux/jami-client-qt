@@ -35,11 +35,16 @@ Rectangle {
 
     property bool allMessagesLoaded
     property var mapPositions: PositionManager.mapStatus
+    property var inCallView: false
     signal needToHideConversationInCall
     signal messagesCleared
     signal messagesLoaded
 
-     onVisibleChanged: {
+    onInCallViewChanged: {
+        notificationArea.visible = CurrentConversation.activeCalls.length > 0 && !root.inCallView
+    }
+
+    onVisibleChanged: {
         if (visible)
             return
         UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id)
@@ -150,7 +155,7 @@ Rectangle {
                     notificationArea.uri = CurrentConversation.activeCalls[0]["uri"]
                     notificationArea.device = CurrentConversation.activeCalls[0]["device"]
                 }
-                notificationArea.visible = CurrentConversation.activeCalls.length > 0
+                notificationArea.visible = CurrentConversation.activeCalls.length > 0 && !root.inCallView
             }
 
             function onErrorsChanged() {
@@ -192,7 +197,7 @@ Rectangle {
             id: notificationArea
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
-            visible: false
+            visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
         }
 
         SplitView {
