@@ -80,6 +80,30 @@
       },
       "revId": "83d67f003bd2b6c2a8de6c0ae50c5e23b00feb51",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd8b1489_bcf163d3",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-03T17:41:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a339949e_0c428578",
+      "range": {
+        "startLine": 166,
+        "startChar": 3,
+        "endLine": 166,
+        "endChar": 31
+      },
+      "revId": "83d67f003bd2b6c2a8de6c0ae50c5e23b00feb51",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
