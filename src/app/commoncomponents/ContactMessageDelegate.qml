@@ -39,6 +39,7 @@ Column {
 
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
+        width: parent.width
 
         TimestampInfo {
             id:timestampItem
@@ -56,7 +57,7 @@ Column {
             width: childrenRect.width
             height: JamiTheme.contactMessageAvatarSize + 12
             radius: JamiTheme.contactMessageAvatarSize / 2 + 6
-            Layout.alignment: Qt.AlignVCenter
+            Layout.alignment: Qt.AlignCenter
             color: "transparent"
             border.width: 1
             border.color: CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : CurrentConversation.color
