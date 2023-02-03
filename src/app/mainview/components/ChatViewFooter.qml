@@ -96,7 +96,7 @@ Rectangle {
 
         function onReplyToIdChanged() {
             if (MessagesAdapter.replyToId.length > 0)
-                messageBar.forceActiveFocus()
+                messageBar.textAreaObj.forceActiveFocus()
         }
     }
 
