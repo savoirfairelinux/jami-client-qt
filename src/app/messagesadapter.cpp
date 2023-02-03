@@ -67,6 +67,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         filteredMsgListModel_->setSourceModel(conversation.interactions.get());
 
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
+        mediaInteractions_.reset(new MessageListModel(this));
+        set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
     });
 
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
@@ -80,6 +82,12 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     });
 
     connectConversationModel();
+}
+
+bool
+MessagesAdapter::isDocument(const interaction::Type type)
+{
+    return interaction::Type::DATA_TRANSFER == type;
 }
 
 void
@@ -576,8 +584,12 @@ MessagesAdapter::onComposingStatusChanged(const QString& convId,
 void
 MessagesAdapter::onMessagesFoundProcessed(const QString& accountId,
                                           const VectorMapStringString& messageIds,
-                                          const QVector<interaction::Info>& messageInformations)
+                                          const QVector<interaction::Info>& messageInformation)
 {
+    if (messageIds.length() != messageInformation.length()) {
+        qWarning() << "error in onMessagesFoundProcessed, messageIds/messageInformations";
+        return;
+    }
     if (lrcInstance_->get_currentAccountId() != accountId) {
         return;
     }
@@ -588,7 +600,7 @@ MessagesAdapter::onMessagesFoundProcessed(const QString& accountId,
             index++;
             try {
                 std::pair<QString, interaction::Info> message(msg["id"],
-                                                              messageInformations.at(index));
+                                                              messageInformation.at(index));
                 mediaInteractions_->insert(message);
             } catch (...) {
                 qWarning() << "error in onMessagesFoundProcessed, message insertion on index: "
@@ -735,17 +747,24 @@ MessagesAdapter::getFormattedDay(const quint64 timestamp)
 }
 
 void
-MessagesAdapter::getConvMedias()
+MessagesAdapter::startSearch(QString& text, bool isMedia)
 {
+    mediaInteractions_.reset(new MessageListModel(this));
+    set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
+
+    if (text.isEmpty() && !isMedia)
+        return;
+
     auto accountId = lrcInstance_->get_currentAccountId();
     auto convId = lrcInstance_->get_selectedConvUid();
 
-    mediaInteractions_.reset(new MessageListModel(this));
-
     try {
-        lrcInstance_->getCurrentConversationModel()->getConvMediasInfos(accountId, convId);
+        lrcInstance_->getCurrentConversationModel()->getConvMediasInfos(accountId,
+                                                                        convId,
+                                                                        text,
+                                                                        isMedia);
     } catch (...) {
-        qDebug() << "Exception during getConvMedia:";
+        qDebug() << "Exception during startSearch()";
     }
 }
 
