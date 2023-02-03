@@ -128,7 +128,9 @@ Rectangle {
     Shortcut {
         sequence: "Ctrl+F"
         context: Qt.ApplicationShortcut
-        onActivated: contactSearchBar.forceActiveFocus()
+        onActivated: {
+            contactSearchBar.forceActiveFocus()
+        }
     }
 
     Keys.onPressed: function (keyEvent) {

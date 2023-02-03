@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
+ * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -117,6 +117,7 @@ Rectangle {
 
             onShowDetailsClicked: {
                 addMemberPanel.visible = false
+                messagesResearchPanel.visible = false
                 if (swarmDetailsPanel.visible) {
                     chatContents.visible = true
                 } else {
@@ -126,16 +127,30 @@ Rectangle {
                 swarmDetailsPanel.visible = !swarmDetailsPanel.visible
             }
 
+            onSearchBarOpened: {
+                addMemberPanel.visible = false
+                swarmDetailsPanel.visible = false
+                messagesResearchPanel.visible = true
+            }
+
+            onSearchBarClosed: {
+                messagesResearchPanel.visible = false
+            }
+		
             onWidthChanged: {
                 var isExpanding = previousWidth < width
 
-                if (!swarmDetailsPanel.visible && !addMemberPanel.visible)
+                if (!swarmDetailsPanel.visible && !addMemberPanel.visible && !messagesResearchPanel.visible)
                     return
 
                 if (chatViewHeader.width < JamiTheme.detailsPageMinWidth + JamiTheme.chatViewHeaderMinimumWidth
                     && !isExpanding && chatContents.visible) {
                     lastContentsSplitSize = chatContents.width
-                    lastDetailsSplitSize = swarmDetailsPanel.visible ? swarmDetailsPanel.width : addMemberPanel.width
+                    lastDetailsSplitSize = swarmDetailsPanel.visible
+                            ? swarmDetailsPanel.width
+                            : addMemberPanel.visible
+                              ? addMemberPanel.width
+                              : messagesResearchPanel.width
                     chatContents.visible = false
                 } else if (chatViewHeader.width >= JamiTheme.chatViewHeaderMinimumWidth + lastDetailsSplitSize
                          && isExpanding && !layoutManager.isFullScreen && !chatContents.visible) {
@@ -255,10 +270,7 @@ Rectangle {
                 id: chatContents
                 SplitView.maximumWidth: splitView.width
                 SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
-
-                SplitView.preferredWidth: chatViewHeader.width -
-                                          (swarmDetailsPanel.visible ? swarmDetailsPanel.width :
-                                            ( addMemberPanel.visible ? addMemberPanel.width : 0))
+                SplitView.fillWidth: true
 
                 StackLayout {
                     id: chatViewStack
@@ -324,6 +336,16 @@ Rectangle {
                         onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
                     }
                 }
+            }
+
+            MessagesResearchPanel {
+                id: messagesResearchPanel
+
+                visible: false
+                SplitView.maximumWidth: splitView.width
+                SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
+                SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
+                SplitView.fillHeight: true
             }
 
             SwarmDetailsPanel {
