@@ -3063,6 +3063,17 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
     conversation.mode = mode;
     conversation.isRequest = true;
 
+    MapStringString messageMap = {
+        {"type", "initial"},
+        {"author", peerUri},
+        {"timestamp", convRequest["received"]},
+        {"linearizedParent", ""},
+    };
+    auto msg = interaction::Info(messageMap, linked.owner.profileInfo.uri);
+
+    insertSwarmInteraction(convId, msg, conversation, true);
+    conversation.lastMessageUid = convId;
+
     // add the author to the contact model's contact list as a PENDING
     // if they aren't already a contact
     auto isSelf = linked.owner.profileInfo.uri == peerUri;
