@@ -1186,7 +1186,7 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
             profileInfo.alias = e.split(":")[1];
 
     if (peer == linked.owner.profileInfo.uri) {
-        if (linked.owner.profileInfo.avatar.isEmpty() && !profileInfo.avatar.isEmpty()) {
+        if (!profileInfo.avatar.isEmpty()) {
             auto dest = storage::getPath() + accountId + "/profile.vcf";
             QFile oldvCard(dest);
             if (oldvCard.exists())
