@@ -33,7 +33,7 @@ Component {
     Rectangle {
         id: localMediaRect
 
-        width: (documents.width - spacingLength) /  numberElementsPerRow
+        width: (flickableWidth - spacingLength) /  numberElementsPerRow
         height: width
         color: "transparent"
 
@@ -62,7 +62,7 @@ Component {
 
                     anchors.fill: parent
                     anchors.margins: JamiTheme.swarmDetailsPageDocumentsMargins
-                    color: CurrentConversation.color
+                    color: themeColor
                     layer.enabled: true
                     layer.effect: OpacityMask {
                         maskSource: Item {
