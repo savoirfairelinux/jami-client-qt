@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b85dfa1_86af336f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-03T23:04:43Z",
+      "side": 1,
+      "message": "the commit message is a description of a bug; it should describe what the patch does",
+      "revId": "f37c538e3a01c75b6797c9dfe24fe501adf659e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "040de829_f6b2cb3b",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
