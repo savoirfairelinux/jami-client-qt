@@ -52,6 +52,24 @@
       "parentUuid": "0bc40df9_92bd6634",
       "revId": "8dda44b562996389000ce1b16168040f72340dbb",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ece34c49_c9f14a54",
+        "filename": "extras/packaging/gnu-linux/scripts/build-package-rpm.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2023-02-03T00:04:17Z",
+      "side": 0,
+      "message": "Ok I actually tested rpm generation for all currently supported rpm distros, and it seems that my latest patchset is now working as expected; though I currently don\u0027t have any VMs to install and test the packages, so please feel free to do that.\n\nOh, and the warning about changelog doesn\u0027t seem related to my changes here.\n\nI think this is finally good to go.",
+      "parentUuid": "e5a7beca_a02f0d69",
+      "revId": "8dda44b562996389000ce1b16168040f72340dbb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
