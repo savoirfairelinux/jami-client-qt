@@ -42,6 +42,8 @@ enum class Type {
     MERGE,
     EDITED,
     REACTION,
+    VOTE,
+    UPDATE_PROFILE,
     COUNT__
 };
 Q_ENUM_NS(Type)
@@ -62,6 +64,10 @@ to_string(const Type& type)
         return "DATA_TRANSFER";
     case Type::MERGE:
         return "MERGE";
+    case Type::VOTE:
+        return "VOTE";
+    case Type::UPDATE_PROFILE:
+        return "UPDATE_PROFILE";
     case Type::EDITED:
         return "EDITED";
     case Type::REACTION:
@@ -90,6 +96,10 @@ to_type(const QString& type)
         return interaction::Type::DATA_TRANSFER;
     else if (type == "merge")
         return interaction::Type::MERGE;
+    else if (type == "application/update-profile")
+        return interaction::Type::UPDATE_PROFILE;
+    else if (type == "vote")
+        return interaction::Type::VOTE;
     else if (type == "application/edited-message")
         return interaction::Type::EDITED;
     else
