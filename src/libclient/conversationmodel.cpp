@@ -243,7 +243,8 @@ public:
 
     std::map<QString, std::mutex> interactionsLocks; ///< {convId, mutex}
     MapStringString transfIdToDbIntId;
-    uint32_t currentMsgRequestId;
+    uint32_t mediaResearchRequestId;
+    uint32_t msgResearchRequestId;
 
 public Q_SLOTS:
     /**
@@ -2540,29 +2541,34 @@ ConversationModelPimpl::slotMessagesFound(uint32_t requestId,
                                           const QString& conversationId,
                                           const VectorMapStringString& messageIds)
 {
-    if (requestId != currentMsgRequestId) {
-        return;
-    }
-    QVector<interaction::Info> messageDetailedinformations;
-    Q_FOREACH (const MapStringString& msg, messageIds) {
-        auto intInfo = interaction::Info(msg, "");
-        if (intInfo.type == interaction::Type::DATA_TRANSFER) {
-            auto fileId = msg["fileId"];
+    QMap<QString, interaction::Info> messageDetailedInformation;
+    if (requestId == mediaResearchRequestId) {
+        Q_FOREACH (const MapStringString& msg, messageIds) {
+            auto intInfo = interaction::Info(msg, "");
+            if (intInfo.type == interaction::Type::DATA_TRANSFER) {
+                auto fileId = msg["fileId"];
 
-            QString path;
-            qlonglong bytesProgress, totalSize;
-            linked.owner.dataTransferModel->fileTransferInfo(accountId,
-                                                             conversationId,
-                                                             fileId,
-                                                             path,
-                                                             totalSize,
-                                                             bytesProgress);
-            intInfo.body = path;
+                QString path;
+                qlonglong bytesProgress, totalSize;
+                linked.owner.dataTransferModel->fileTransferInfo(accountId,
+                                                                 conversationId,
+                                                                 fileId,
+                                                                 path,
+                                                                 totalSize,
+                                                                 bytesProgress);
+                intInfo.body = path;
+            }
+            messageDetailedInformation[msg["id"]] = intInfo;
         }
-        messageDetailedinformations.append(intInfo);
+    } else if (requestId == msgResearchRequestId) {
+        Q_FOREACH (const MapStringString& msg, messageIds) {
+            auto intInfo = interaction::Info(msg, "");
+            if (intInfo.type == interaction::Type::TEXT) {
+                messageDetailedInformation[msg["id"]] = intInfo;
+            }
+        }
     }
-
-    Q_EMIT linked.messagesFoundProcessed(accountId, messageIds, messageDetailedinformations);
+    Q_EMIT linked.messagesFoundProcessed(accountId, messageDetailedInformation);
 }
 
 void
@@ -3999,11 +4005,18 @@ ConversationModel::sendFile(const QString& convUid, const QString& path, const Q
 }
 
 void
-ConversationModel::getConvMediasInfos(const QString& accountId, const QString& conversationId)
+ConversationModel::getConvMediasInfos(const QString& accountId,
+                                      const QString& conversationId,
+                                      const QString& text,
+                                      bool isMedia)
 {
-    pimpl_->currentMsgRequestId = ConfigurationManager::instance().searchConversation(
-        accountId, conversationId, "", "", "", "application/data-transfer+json", 0, 0, 0, 0);
-};
+    if (isMedia)
+        pimpl_->mediaResearchRequestId = ConfigurationManager::instance().searchConversation(
+            accountId, conversationId, "", "", text, "application/data-transfer+json", 0, 0, 0, 0);
+    else
+        pimpl_->msgResearchRequestId = ConfigurationManager::instance().searchConversation(
+            accountId, conversationId, "", "", text, "text/plain", 0, 0, 0, 0);
+}
 
 void
 ConversationModel::acceptTransfer(const QString& convUid, const QString& interactionId)
