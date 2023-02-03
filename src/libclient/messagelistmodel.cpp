@@ -479,7 +479,8 @@ MessageListModel::dataForItem(item_t item, int, int role) const
     case Role::Readers:
         return QVariant(messageToReaders_[item.first]);
     case Role::IsEmojiOnly:
-        return QVariant(isOnlyEmoji(item.second.body));
+        return QVariant(replyId.isEmpty() && item.second.previousBodies.isEmpty()
+                        && isOnlyEmoji(item.second.body));
     case Role::Reactions:
         return QVariant(item.second.reactions);
     default:
