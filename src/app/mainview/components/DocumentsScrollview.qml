@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2022-2023 Savoir-faire Linux Inc.
+ * Author: Nicolas Vengeon <nicolas.vengeon@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,39 +36,46 @@ Flickable {
     contentWidth: width
 
     property int spacingFlow: JamiTheme.swarmDetailsPageDocumentsMargins
+    property real flickableWidth: width
     property int numberElementsPerRow: {
         var sizeW = flow.width
         var breakSize = JamiTheme.swarmDetailsPageDocumentsMediaSize
         return Math.floor(sizeW / breakSize)
     }
     property int spacingLength: spacingFlow * (numberElementsPerRow - 1)
+    property color themeColor: CurrentConversation.color
+    property string textFilter: ""
 
     onVisibleChanged: {
         if (visible) {
-            MessagesAdapter.getConvMedias()
-        } else {
-            MessagesAdapter.mediaMessageListModel = null
+            MessagesAdapter.startSearch(textFilter,true)
         }
     }
+    onTextFilterChanged: {
+        MessagesAdapter.startSearch(textFilter,true)
+    }
+
     Flow {
         id: flow
 
         width: parent.width
         spacing: spacingFlow
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.horizontalCenter: parent.horizontalCenter      
 
         Repeater {
-            model: MessagesAdapter.mediaMessageListModel
+            model: root.visible ? MessagesAdapter.mediaMessageListModel : 0
 
             delegate: Loader {
                 id: loaderRoot
 
                 sourceComponent: {
-                    if(Status === Interaction.Status.TRANSFER_FINISHED || Status === Interaction.Status.SUCCESS ){
-                        if (Object.keys(MessagesAdapter.getMediaInfo(Body)).length !== 0 && WITH_WEBENGINE)
-                            return localMediaMsgComp
+                    if (MessagesAdapter.isDocument(Type)) {
+                        if(Status === Interaction.Status.TRANSFER_FINISHED || Status === Interaction.Status.SUCCESS ){
+                            if (Object.keys(MessagesAdapter.getMediaInfo(Body)).length !== 0 && WITH_WEBENGINE)
+                                return localMediaMsgComp
 
-                        return fileMsgComp
+                            return fileMsgComp
+                        }
                     }
                 }
 
