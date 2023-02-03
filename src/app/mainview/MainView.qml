@@ -91,6 +91,7 @@ Rectangle {
     }
 
     function pushCallStackView() {
+        chatView.inCallView = true
         if (sidePanelOnly) {
             sidePanelViewStack.pop(StackView.Immediate)
             sidePanelViewStack.push(callStackView, StackView.Immediate)
@@ -102,6 +103,7 @@ Rectangle {
     }
 
     function pushCommunicationMessageWebView() {
+        chatView.inCallView = false
         if (sidePanelOnly) {
             sidePanelViewStack.pop(StackView.Immediate)
             sidePanelViewStack.push(chatView, StackView.Immediate)
@@ -412,6 +414,7 @@ Rectangle {
 
         objectName: "chatView"
         visible: false
+        inCallView: false
         Component.onCompleted: {
             MessagesAdapter.setQmlObject(this)
             PositionManager.setQmlObject(this)
