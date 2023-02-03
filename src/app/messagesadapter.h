@@ -136,6 +136,7 @@ protected:
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;
     Q_INVOKABLE void getConvMedias();
+    Q_INVOKABLE int getMessageIndexFromid(QString& id);
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
