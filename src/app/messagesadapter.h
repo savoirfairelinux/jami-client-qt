@@ -43,7 +43,8 @@ public:
         auto type = static_cast<interaction::Type>(
             sourceModel()->data(index, MessageList::Role::Type).toInt());
         return type != interaction::Type::MERGE && type != interaction::Type::EDITED
-               && type != interaction::Type::REACTION;
+               && type != interaction::Type::REACTION && type != interaction::Type::VOTE
+               && type != interaction::Type::UPDATE_PROFILE && type != interaction::Type::INVALID;
     };
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
     {
