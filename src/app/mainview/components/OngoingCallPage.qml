@@ -319,15 +319,6 @@ Rectangle {
                     target: CurrentCall
 
                     function onPreviewIdChanged() {
-                        if (CurrentCall.previewId !== "") {
-                            if (root.callPreviewId !== "" &&
-                                    root.callPreviewId !== CurrentCall.previewId) {
-                                VideoDevices.stopDevice(root.callPreviewId)
-                            }
-                            VideoDevices.startDevice(CurrentCall.previewId)
-                        } else {
-                            VideoDevices.stopDevice(root.callPreviewId)
-                        }
                         root.callPreviewId = CurrentCall.previewId
                     }
                 }
