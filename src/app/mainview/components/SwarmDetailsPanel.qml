@@ -36,7 +36,6 @@ Rectangle {
     property var isAdmin: !CurrentConversation.isCoreDialog &&
         UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
 
-
     DevicesListPopup {
         id: devicesListPopup
     }
