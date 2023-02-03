@@ -196,6 +196,7 @@ AVModel::getRenderersInfo(QString id)
 void
 AVModel::updateRenderersFPSInfo(QString rendererId)
 {
+    std::unique_lock<std::mutex> lk(pimpl_->renderers_mtx_);
     auto it = std::find_if(pimpl_->renderers_.begin(),
                            pimpl_->renderers_.end(),
                            [&rendererId](const auto& c) {
