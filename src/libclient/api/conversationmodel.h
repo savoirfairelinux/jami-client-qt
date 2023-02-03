@@ -316,9 +316,12 @@ public:
                          api::datatransfer::Info& info) const;
 
     /**
-     * Starts a search of all medias and files in a conversation
+     * Starts a search of all medias in a conversation
      */
-    void getConvMediasInfos(const QString& accountId, const QString& conversationId);
+    void getConvMediasInfos(const QString& accountId,
+                            const QString& conversationId,
+                            const QString& text,
+                            bool isMedia);
     /**
      * @param convUid, uid of the conversation
      * @return the number of unread messages for the conversation
@@ -612,12 +615,11 @@ Q_SIGNALS:
     /**
      * Emitted once a message search has been done and processed
      * @param accountId
-     * @param messageIds ids of all the messages found by the search
-     * @param messageInformations message datas
+     * @param messageInformation message datas
      */
-    void messagesFoundProcessed(const QString& accountId,
-                                const VectorMapStringString& messageIds,
-                                const QVector<interaction::Info>& messageInformations) const;
+    void messagesFoundProcessed(
+        const QString& accountId,
+        const QVector<QPair<QString, interaction::Info>>& messageInformation) const;
     /**
      * Emitted once a conversation needs somebody to host the call
      * @param callId
