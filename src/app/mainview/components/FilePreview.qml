@@ -34,7 +34,7 @@ Component {
         id: dataTransferRect
 
         clip: true
-        width: (documents.width - spacingLength ) / numberElementsPerRow
+        width: (contentWidth - spacingLength ) / numberElementsPerRow
         height: width
         color: "transparent"
 
@@ -64,7 +64,7 @@ Component {
                     anchors.fill: parent
                     anchors.margins: JamiTheme.swarmDetailsPageDocumentsMargins
                     color: "transparent"
-                    border.color: CurrentConversation.color
+                    border.color: themeColor
                     border.width: 2
                     radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
                     layer.enabled: true
