@@ -121,8 +121,9 @@ struct ParticipantInfos
                && audioModeratorMuted == other.audioModeratorMuted && avatar == other.avatar
                && bestName == other.bestName && isContact == other.isContact
                && islocal == other.islocal && videoMuted == other.videoMuted
-               && handRaised == other.handRaised && voiceActivity == other.voiceActivity
-               && isRecording == other.isRecording;
+               && isModerator == other.isModerator && voiceActivity == other.voiceActivity
+               && handRaised == other.handRaised && isRecording == other.isRecording
+               && device == other.device;
     }
 };
 
