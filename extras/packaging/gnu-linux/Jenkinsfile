@@ -32,7 +32,10 @@
 // - Allow publishing from any node, to avoid relying on a single machine.
 
 // Configuration globals.
-def SUBMODULES = ['daemon', '3rdparty/SortFilterProxyModel', '3rdparty/qrencode-win32', 'extras/packaging/update/sparkle/Sparkle']
+def SUBMODULES = ['daemon',
+                  '3rdparty/SortFilterProxyModel',
+                  '3rdparty/qrencode-win32',
+                  'extras/packaging/update/sparkle/Sparkle']
 def TARGETS = [:]
 def REMOTE_HOST = env.SSH_HOST_DL_RING_CX
 def REMOTE_BASE_DIR = '/srv/repository/ring'
@@ -43,6 +46,7 @@ def GIT_PUSH_URL = 'ssh://jenkins@review.jami.net:29420/jami-client-qt'
 def JENKINS_SSH_KEY = '35cefd32-dd99-41b0-8312-0b386df306ff'
 def DL_SSH_KEY = '5825b39b-dfc6-435f-918e-12acc1f56221'
 def SNAPCRAFT_KEY = '106e398c-43ca-41c0-8f7e-4f45030f8bdd'
+def PACKAGING_DIR = 'extras/packaging/gnu-linux'
 
 pipeline {
     agent {
@@ -122,7 +126,7 @@ See https://wiki.savoirfairelinux.com/wiki/Jenkins.jami.net#Configuration_client
             steps {
                 sh """\
 #!/usr/bin/env -S bash -l
-make -f extras/packaging/gnu-linux/Makefile portable-release-tarball .tarball-version
+make -f ${PACKAGING_DIR}/Makefile portable-release-tarball .tarball-version
 """
                 stash(includes: '*.tar.gz, .tarball-version',
                       name: 'release-tarball')
@@ -141,7 +145,8 @@ make -f extras/packaging/gnu-linux/Makefile portable-release-tarball .tarball-ve
                     echo "Publishing to git repository..."
                     script {
                         def wantedTag = "${params.CHANNEL}/" + sh (
-                            script: "./extras/packaging/gnu-linux/scripts/release-version.sh ${params.CHANNEL}",
+                            script: "${PACKAGING_DIR}/scripts/release-version.sh" +
+                                " ${params.CHANNEL}",
                             returnStdout: true
                         ).trim()
                         sh """
@@ -170,8 +175,10 @@ make -f extras/packaging/gnu-linux/Makefile portable-release-tarball .tarball-ve
                 script {
                     def targetsText = params.PACKAGING_TARGETS.trim()
                     if (!targetsText) {
-                        targetsText = sh(script: 'make -f extras/packaging/gnu-linux/Makefile -s list-package-targets',
-                                         returnStdout: true).trim()
+                        targetsText = sh(
+                            script: "make -f ${PACKAGING_DIR}/Makefile" +
+                                ' -s list-package-targets',
+                            returnStdout: true).trim()
                     }
 
                     TARGETS = targetsText.split(/\s/)
@@ -199,9 +206,9 @@ make -f extras/packaging/gnu-linux/Makefile portable-release-tarball .tarball-ve
                                            echo Building on node \$NODE_NAME
                                            whoami
                                            tar xf *.tar.gz --strip-components=1
-                                           make -f extras/packaging/gnu-linux/Makefile ${target}
+                                           make -f ${PACKAGING_DIR}/Makefile ${target}
                                            """
-                                        stash(includes: 'extras/packaging/gnu-linux/packages/**',
+                                        stash(includes: "${PACKAGING_DIR}/packages/**",
                                               name: target)
                                     }
                                 }
@@ -236,15 +243,18 @@ make -f extras/packaging/gnu-linux/Makefile portable-release-tarball .tarball-ve
                         }
 
                         def distributionsText = sh(
-                            script: 'find extras/packaging/gnu-linux/packages/* -maxdepth 1 -type d -print0 ' +
+                            script: "find ${PACKAGING_DIR}/packages/* " +
+                                '-maxdepth 1 -type d -print0 ' +
                                 '| xargs -0 -n1 basename -z',
                             returnStdout: true).trim()
                         def distributions = distributionsText.split("\0")
 
                         distributions.each { distribution ->
                             echo "Deploying ${distribution} packages..."
-                            withCredentials([string(credentialsId: SNAPCRAFT_KEY, variable: 'SNAPCRAFT_STORE_CREDENTIALS')]) {
-                                sh """extras/packaging/gnu-linux/scripts/deploy-packages.sh \
+                            withCredentials(
+                                [string(credentialsId: SNAPCRAFT_KEY,
+                                        variable: 'SNAPCRAFT_STORE_CREDENTIALS')]) {
+                                sh """${PACKAGING_DIR}/scripts/deploy-packages.sh \
   --distribution=${distribution} \
   --keyid="${JAMI_PUBLIC_KEY_FINGERPRINT}" \
   --remote-repository-location="${REMOTE_HOST}:${REMOTE_BASE_DIR}/${params.CHANNEL}" \
