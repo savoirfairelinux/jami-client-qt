@@ -293,78 +293,54 @@ Rectangle {
             Layout.preferredHeight: root.height - header.height - JamiTheme.preferredMarginSize
             color: JamiTheme.secondaryBackgroundColor
 
-            ColumnLayout {
-                id: aboutSwarm
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.rightMargin: JamiTheme.settingsMarginSize
-                visible: tabBar.currentIndex === 0
-                Layout.alignment: Qt.AlignTop
 
-                SwarmDetailsItem {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+            JamiFlickable {
+                id: settingsScrollView
+                property ScrollBar vScrollBar: ScrollBar.vertical
+                anchors.fill: parent
 
-                    ToggleSwitch {
-                        id: ignoreSwarm
+                contentHeight: aboutSwarm.height + JamiTheme.preferredMarginSize
 
-                        anchors.fill: parent
-                        anchors.leftMargin: JamiTheme.preferredMarginSize
+                ColumnLayout {
+                    id: aboutSwarm
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.rightMargin: JamiTheme.settingsMarginSize
+                    visible: tabBar.currentIndex === 0
+                    Layout.alignment: Qt.AlignTop
 
-                        checked: CurrentConversation.ignoreNotifications
+                    SwarmDetailsItem {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
-                        labelText: JamiStrings.muteConversation
-                        fontPointSize: JamiTheme.settingsFontSize
+                        ToggleSwitch {
+                            id: ignoreSwarm
 
-                        tooltipText: JamiStrings.ignoreNotificationsTooltip
+                            anchors.fill: parent
+                            anchors.leftMargin: JamiTheme.preferredMarginSize
 
-                        onSwitchToggled: {
-                            CurrentConversation.setPreference("ignoreNotifications", checked ? "true" : "false")
+                            checked: CurrentConversation.ignoreNotifications
+
+                            labelText: JamiStrings.muteConversation
+                            fontPointSize: JamiTheme.settingsFontSize
+
+                            tooltipText: JamiStrings.ignoreNotificationsTooltip
+
+                            onSwitchToggled: {
+                                CurrentConversation.setPreference("ignoreNotifications", checked ? "true" : "false")
+                            }
                         }
                     }
-                }
 
-                SwarmDetailsItem {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
-
-                    Text {
-                        anchors.left: parent.left
-                        anchors.top: parent.top
-                        anchors.margins: JamiTheme.preferredMarginSize
-                        text: JamiStrings.leaveConversation
-                        font.pointSize: JamiTheme.settingsFontSize
-                        font.kerning: true
-                        elide: Text.ElideRight
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-
-                        color: JamiTheme.textColor
-                    }
-
-                    TapHandler {
-                        target: parent
-                        enabled: parent.visible
-                        onTapped: function onTapped(eventPoint) {
-                            rmDialog.open()
-                        }
-                    }
-                }
-
-                SwarmDetailsItem {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
-
-                    RowLayout {
-                        anchors.fill: parent
-                        anchors.leftMargin: JamiTheme.preferredMarginSize
+                    SwarmDetailsItem {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
                         Text {
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 30
-                            Layout.rightMargin: JamiTheme.preferredMarginSize
-
-                            text: JamiStrings.chooseAColor
+                            anchors.left: parent.left
+                            anchors.top: parent.top
+                            anchors.margins: JamiTheme.preferredMarginSize
+                            text: JamiStrings.leaveConversation
                             font.pointSize: JamiTheme.settingsFontSize
                             font.kerning: true
                             elide: Text.ElideRight
@@ -374,198 +350,231 @@ Rectangle {
                             color: JamiTheme.textColor
                         }
 
-                        Rectangle {
-                            id: chooseAColorBtn
-
-                            Layout.alignment: Qt.AlignRight
-
-                            width: JamiTheme.aboutBtnSize
-                            height: JamiTheme.aboutBtnSize
-                            radius: JamiTheme.aboutBtnSize / 2
-
-                            color: CurrentConversation.color
+                        TapHandler {
+                            target: parent
+                            enabled: parent.visible
+                            onTapped: function onTapped(eventPoint) {
+                                rmDialog.open()
+                            }
                         }
                     }
 
-                    TapHandler {
-                        target: parent
-                        enabled: parent.visible
-                        onTapped: function onTapped(eventPoint) {
-                            colorDialog.open()
-                        }
-                    }
-                }
-
-                SwarmDetailsItem {
-                    id: settingsSwarmItem
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
-
-                    RowLayout {
-                        anchors.fill: parent
-                        anchors.leftMargin: JamiTheme.preferredMarginSize
-
-                        Text {
-                            id: settingsSwarmText
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 30
-                            Layout.rightMargin: JamiTheme.preferredMarginSize
-                            Layout.maximumWidth: settingsSwarmItem.width / 2
-
-                            text: JamiStrings.defaultCallHost
-                            font.pointSize: JamiTheme.settingsFontSize
-                            font.kerning: true
-                            elide: Text.ElideRight
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
-
-                            color: JamiTheme.textColor
-                        }
-
+                    SwarmDetailsItem {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
                         RowLayout {
-                            id: swarmRdvPref
-                            spacing: 10
-                            Layout.alignment: Qt.AlignRight
-                            Layout.maximumWidth: settingsSwarmItem.width / 2
+                            anchors.fill: parent
+                            anchors.leftMargin: JamiTheme.preferredMarginSize
 
-                            Connections {
-                                target: CurrentConversation
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 30
+                                Layout.rightMargin: JamiTheme.preferredMarginSize
 
-                                function onRdvAccountChanged() {
-                                    // This avoid incorrect avatar by always modifying the mode before the imageId
-                                    avatar.mode = CurrentConversation.rdvAccount === CurrentAccount.uri ? Avatar.Mode.Account : Avatar.Mode.Contact
-                                    avatar.imageId = CurrentConversation.rdvAccount === CurrentAccount.uri ? CurrentAccount.id : CurrentConversation.rdvAccount
-                                }
+                                text: JamiStrings.chooseAColor
+                                font.pointSize: JamiTheme.settingsFontSize
+                                font.kerning: true
+                                elide: Text.ElideRight
+                                horizontalAlignment: Text.AlignLeft
+                                verticalAlignment: Text.AlignVCenter
+
+                                color: JamiTheme.textColor
                             }
 
-                            Avatar {
-                                id: avatar
-                                width: JamiTheme.contactMessageAvatarSize
-                                height: JamiTheme.contactMessageAvatarSize
-                                Layout.leftMargin: JamiTheme.preferredMarginSize
-                                Layout.topMargin: JamiTheme.preferredMarginSize / 2
-                                visible: CurrentConversation.rdvAccount !== ""
+                            Rectangle {
+                                id: chooseAColorBtn
 
-                                imageId: ""
-                                showPresenceIndicator: false
-                                mode: Avatar.Mode.Account
+                                Layout.alignment: Qt.AlignRight
+
+                                width: JamiTheme.aboutBtnSize
+                                height: JamiTheme.aboutBtnSize
+                                radius: JamiTheme.aboutBtnSize / 2
+
+                                color: CurrentConversation.color
                             }
+                        }
 
-                            ColumnLayout {
-                                spacing: 0
-                                Layout.alignment: Qt.AlignVCenter
-
-                                ElidedTextLabel {
-                                    id: bestName
-
-                                    eText: {
-                                        if (CurrentConversation.rdvAccount === "")
-                                            return JamiStrings.none
-                                        else if (CurrentConversation.rdvAccount === CurrentAccount.uri)
-                                            return CurrentAccount.bestName
-                                        else
-                                            return UtilsAdapter.getBestNameForUri(CurrentAccount.id, CurrentConversation.rdvAccount)
-                                    }
-                                    maxWidth: JamiTheme.preferredFieldWidth
-
-                                    font.pointSize: JamiTheme.participantFontSize
-                                    color: JamiTheme.primaryForegroundColor
-                                    font.kerning: true
-
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-
-                                ElidedTextLabel {
-                                    id: deviceId
-
-                                    eText: CurrentConversation.rdvDevice === "" ? JamiStrings.none : CurrentConversation.rdvDevice
-                                    visible: CurrentConversation.rdvDevice !== ""
-                                    maxWidth: JamiTheme.preferredFieldWidth
-
-                                    font.pointSize: JamiTheme.participantFontSize
-                                    color: JamiTheme.textColorHovered
-                                    font.kerning: true
-
-                                    horizontalAlignment: Text.AlignRight
-                                    verticalAlignment: Text.AlignVCenter
-                                }
+                        TapHandler {
+                            target: parent
+                            enabled: parent.visible
+                            onTapped: function onTapped(eventPoint) {
+                                colorDialog.open()
                             }
                         }
                     }
 
-                    TapHandler {
-                        target: parent
-
-                        enabled: parent.visible && root.isAdmin
-                        onTapped: function onTapped(eventPoint) {
-                            devicesListPopup.open()
-                        }
-                    }
-                }
-
-                RowLayout {
-                    Layout.leftMargin: JamiTheme.preferredMarginSize
-                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
-
-                    Text {
+                    SwarmDetailsItem {
+                        id: settingsSwarmItem
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 30
-                        Layout.rightMargin: JamiTheme.preferredMarginSize
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
-                        text: JamiStrings.typeOfSwarm
-                        font.pointSize: JamiTheme.settingsFontSize
-                        font.kerning: true
-                        elide: Text.ElideRight
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
+                        RowLayout {
+                            anchors.fill: parent
+                            anchors.leftMargin: JamiTheme.preferredMarginSize
 
-                        color: JamiTheme.textColor
+                            Text {
+                                id: settingsSwarmText
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 30
+                                Layout.rightMargin: JamiTheme.preferredMarginSize
+                                Layout.maximumWidth: settingsSwarmItem.width / 2
+
+                                text: JamiStrings.defaultCallHost
+                                font.pointSize: JamiTheme.settingsFontSize
+                                font.kerning: true
+                                elide: Text.ElideRight
+                                horizontalAlignment: Text.AlignLeft
+                                verticalAlignment: Text.AlignVCenter
+
+                                color: JamiTheme.textColor
+                            }
+
+
+                            RowLayout {
+                                id: swarmRdvPref
+                                spacing: 10
+                                Layout.alignment: Qt.AlignRight
+                                Layout.maximumWidth: settingsSwarmItem.width / 2
+
+                                Connections {
+                                    target: CurrentConversation
+
+                                    function onRdvAccountChanged() {
+                                        // This avoid incorrect avatar by always modifying the mode before the imageId
+                                        avatar.mode = CurrentConversation.rdvAccount === CurrentAccount.uri ? Avatar.Mode.Account : Avatar.Mode.Contact
+                                        avatar.imageId = CurrentConversation.rdvAccount === CurrentAccount.uri ? CurrentAccount.id : CurrentConversation.rdvAccount
+                                    }
+                                }
+
+                                Avatar {
+                                    id: avatar
+                                    width: JamiTheme.contactMessageAvatarSize
+                                    height: JamiTheme.contactMessageAvatarSize
+                                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                                    Layout.topMargin: JamiTheme.preferredMarginSize / 2
+                                    visible: CurrentConversation.rdvAccount !== ""
+
+                                    imageId: ""
+                                    showPresenceIndicator: false
+                                    mode: Avatar.Mode.Account
+                                }
+
+                                ColumnLayout {
+                                    spacing: 0
+                                    Layout.alignment: Qt.AlignVCenter
+
+                                    ElidedTextLabel {
+                                        id: bestName
+
+                                        eText: {
+                                            if (CurrentConversation.rdvAccount === "")
+                                                return JamiStrings.none
+                                            else if (CurrentConversation.rdvAccount === CurrentAccount.uri)
+                                                return CurrentAccount.bestName
+                                            else
+                                                return UtilsAdapter.getBestNameForUri(CurrentAccount.id, CurrentConversation.rdvAccount)
+                                        }
+                                        maxWidth: JamiTheme.preferredFieldWidth
+
+                                        font.pointSize: JamiTheme.participantFontSize
+                                        color: JamiTheme.primaryForegroundColor
+                                        font.kerning: true
+
+                                        verticalAlignment: Text.AlignVCenter
+                                    }
+
+                                    ElidedTextLabel {
+                                        id: deviceId
+
+                                        eText: CurrentConversation.rdvDevice === "" ? JamiStrings.none : CurrentConversation.rdvDevice
+                                        visible: CurrentConversation.rdvDevice !== ""
+                                        maxWidth: JamiTheme.preferredFieldWidth
+
+                                        font.pointSize: JamiTheme.participantFontSize
+                                        color: JamiTheme.textColorHovered
+                                        font.kerning: true
+
+                                        horizontalAlignment: Text.AlignRight
+                                        verticalAlignment: Text.AlignVCenter
+                                    }
+                                }
+                            }
+                        }
+
+                        TapHandler {
+                            target: parent
+
+                            enabled: parent.visible && root.isAdmin
+                            onTapped: function onTapped(eventPoint) {
+                                devicesListPopup.open()
+                            }
+                        }
                     }
 
-                    Label {
-                        id: typeOfSwarmLabel
+                    RowLayout {
+                        Layout.leftMargin: JamiTheme.preferredMarginSize
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
-                        Layout.alignment: Qt.AlignRight
+                        Text {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 30
+                            Layout.rightMargin: JamiTheme.preferredMarginSize
 
-                        color: JamiTheme.textColor
+                            text: JamiStrings.typeOfSwarm
+                            font.pointSize: JamiTheme.settingsFontSize
+                            font.kerning: true
+                            elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
 
-                        text: CurrentConversation.modeString
-                    }
-                }
+                            color: JamiTheme.textColor
+                        }
 
-                RowLayout {
-                    Layout.leftMargin: JamiTheme.preferredMarginSize
-                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
-                    Layout.maximumWidth: parent.width
-                    visible: LRCInstance.debugMode()
+                        Label {
+                            id: typeOfSwarmLabel
 
-                    Text {
-                        id: idLabel
-                        Layout.preferredHeight: 30
-                        Layout.rightMargin: JamiTheme.preferredMarginSize
-                        Layout.maximumWidth: parent.width / 2
+                            Layout.alignment: Qt.AlignRight
 
-                        text: JamiStrings.identifier
-                        font.pointSize: JamiTheme.settingsFontSize
-                        font.kerning: true
-                        elide: Text.ElideRight
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
+                            color: JamiTheme.textColor
 
-                        color: JamiTheme.textColor
+                            text: CurrentConversation.modeString
+                        }
                     }
 
-                    Text {
-                        Layout.alignment: Qt.AlignRight
-                        Layout.maximumWidth: parent.width / 2
+                    RowLayout {
+                        Layout.leftMargin: JamiTheme.preferredMarginSize
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        Layout.maximumWidth: parent.width
+                        visible: LRCInstance.debugMode()
 
-                        color: JamiTheme.textColor
+                        Text {
+                            id: idLabel
+                            Layout.preferredHeight: 30
+                            Layout.rightMargin: JamiTheme.preferredMarginSize
+                            Layout.maximumWidth: parent.width / 2
+
+                            text: JamiStrings.identifier
+                            font.pointSize: JamiTheme.settingsFontSize
+                            font.kerning: true
+                            elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+                        }
+
+                        Text {
+                            Layout.alignment: Qt.AlignRight
+                            Layout.maximumWidth: parent.width / 2
+
+                            color: JamiTheme.textColor
 
 
-                        text: CurrentConversation.id
-                        elide: Text.ElideRight
+                            text: CurrentConversation.id
+                            elide: Text.ElideRight
 
+                        }
                     }
                 }
             }
