@@ -85,5 +85,9 @@ function parseMessage(messageId, message, showPreview, color='#0645AD') {
     }
     if (showPreview)
         getPreviewInfo(messageId, links[0].href)
-    window.jsbridge.emitLinkified(messageId, linkifyStr(message, color))
+    window.jsbridge.emitLinkified(messageId, linkifyStr(message, {
+        attributes: {
+          style: "color:" + color + ";"
+        }
+    }))
 }
