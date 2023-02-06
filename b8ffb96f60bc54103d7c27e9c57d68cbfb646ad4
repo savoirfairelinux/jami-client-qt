@@ -178,6 +178,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9be25fd4_4a6a7baa",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-06T19:46:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f714e5d3_d58dca80",
+      "range": {
+        "startLine": 356,
+        "startChar": 48,
+        "endLine": 356,
+        "endChar": 70
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40973563_bb793ae0",
@@ -263,6 +287,30 @@
       "side": 1,
       "message": "yeah, and I still think it\u0027s not useful, even with multiple accounts, but I\u0027ll not block a patch for this. We may ask the designer later",
       "parentUuid": "7ad2cfca_e12f30f5",
+      "range": {
+        "startLine": 357,
+        "startChar": 29,
+        "endLine": 357,
+        "endChar": 35
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3491280_d1bdcb45",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-06T19:46:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a2e3161_af0f3b0f",
       "range": {
         "startLine": 357,
         "startChar": 29,
@@ -415,6 +463,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "003c9d6d_c0abe7f1",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-06T19:46:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea081b78_92f8bd3f",
+      "range": {
+        "startLine": 358,
+        "startChar": 34,
+        "endLine": 358,
+        "endChar": 38
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f81acf8e_05b9e612",
@@ -533,6 +605,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9a0211f_ce364a16",
+        "filename": "src/app/mainview/components/MessagesResearchPanel.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-06T19:46:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce50a9fc_660d6c5a",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 63,
+        "endChar": 27
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d63fa93_513dbd43",
@@ -594,6 +690,30 @@
       "side": 1,
       "message": "you can add a method called by the upper layer.",
       "parentUuid": "ab00e85b_119d5aea",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 49
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02f12cdf_7cfa493c",
+        "filename": "src/app/mainview/components/MessagesResearchView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-06T19:46:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4178eab5_2660df26",
       "range": {
         "startLine": 47,
         "startChar": 12,
@@ -712,6 +832,30 @@
       "side": 1,
       "message": "Interaction.Type.TEXT used in several places",
       "parentUuid": "32192223_bffb09b4",
+      "range": {
+        "startLine": 85,
+        "startChar": 18,
+        "endLine": 85,
+        "endChar": 60
+      },
+      "revId": "b8ffb96f60bc54103d7c27e9c57d68cbfb646ad4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "444792eb_1af3ed9d",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-06T19:46:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40668cd9_b12a1425",
       "range": {
         "startLine": 85,
         "startChar": 18,
