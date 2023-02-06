@@ -267,7 +267,7 @@ AvAdapter::getSharingResource(int screenId, const QString& windowProcessId, cons
         rect.moveTop(0);
 #endif
 
-        return lrcInstance_->getCurrentCallModel()->getDisplay(screenId,
+        return lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(screenId),
                                                                rect.x(),
                                                                rect.y(),
                                                                rect.width()
