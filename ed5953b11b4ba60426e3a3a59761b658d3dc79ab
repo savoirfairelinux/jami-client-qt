@@ -16,6 +16,24 @@
       "message": "on administrator side kicked member stays in the list but it does not appear as \"banned\" nor faded out",
       "revId": "ed5953b11b4ba60426e3a3a59761b658d3dc79ab",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8539ec32_5057126b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-06T16:45:47Z",
+      "side": 1,
+      "message": "sigh it was working fine and tested when I pushed it in review :/",
+      "parentUuid": "26eb9dff_3211ac08",
+      "revId": "ed5953b11b4ba60426e3a3a59761b658d3dc79ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
