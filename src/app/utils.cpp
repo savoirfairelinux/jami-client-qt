@@ -275,7 +275,7 @@ Utils::removeOldVersions()
     QString node64 = "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node";
     QString hkcuSoftwareKey = "HKEY_CURRENT_USER\\Software\\";
     QString uninstKey = "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\";
-    QString company = "Savoir-Faire Linux";
+    QString company = "Savoir-faire Linux Inc.";
 
     /*
      * 1. Configuration reg keys for Ring-x64.

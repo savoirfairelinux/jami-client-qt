@@ -8,7 +8,7 @@ Release:       %{release}%{?dist}
 Summary:       Qt client for Jami
 Group:         Applications/Internet
 License:       GPLv3+
-Vendor:        Savoir-faire Linux
+Vendor:        Savoir-faire Linux Inc.
 URL:           https://jami.net/
 Source:        jami-%{version}.tar.gz
 Requires:      jami-daemon = %{version}

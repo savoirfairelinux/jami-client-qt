@@ -23,7 +23,7 @@ Release:       %{release}%{?dist}
 Summary:       Library for Jami-qt
 Group:         Applications/Internet
 License:       GPLv3+
-Vendor:        Savoir-faire Linux
+Vendor:        Savoir-faire Linux Inc.
 URL:           https://jami.net/
 Source:        jami-libqt-%{version}.tar.xz
 Patch0:        0001-qtbug-101201-fatal-error-getcurrenkeyboard.patch

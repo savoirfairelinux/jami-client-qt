@@ -1,5 +1,5 @@
 /******************************************************************************
- *   Copyright (C) 2014-2023 by Savoir-faire Linux                            *
+ *   Copyright (C) 2014-2023 by Savoir-faire Linux Inc.                       *
  *   Author : Philippe Groarke <philippe.groarke@savoirfairelinux.com>        *
  *                                                                            *
  *   This library is free software; you can redistribute it and/or            *

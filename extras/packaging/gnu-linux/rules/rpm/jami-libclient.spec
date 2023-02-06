@@ -13,7 +13,7 @@ Release:       %{release}%{?dist}
 Summary:       Transitional package for Jami; can be safely removed
 Group:         Applications/Internet
 License:       GPLv3+
-Vendor:        Savoir-faire Linux
+Vendor:        Savoir-faire Linux Inc.
 URL:           https://jami.net/
 Source:        jami-%{version}.tar.gz
 
