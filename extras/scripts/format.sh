@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # format.sh --- set up clang-format for source files
 
-# Copyright (C) 2020-2022 Savoir-faire Linux Inc.
+# Copyright (C) 2020-2023 Savoir-faire Linux Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
