@@ -34,6 +34,41 @@
       "parentUuid": "26eb9dff_3211ac08",
       "revId": "ed5953b11b4ba60426e3a3a59761b658d3dc79ab",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb57420e_73893e64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-06T17:43:30Z",
+      "side": 1,
+      "message": "rebase then +2",
+      "revId": "ed5953b11b4ba60426e3a3a59761b658d3dc79ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac908111_4e91c84e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-06T17:43:30Z",
+      "side": 1,
+      "message": "i cannot reproduce the bug anymore..",
+      "parentUuid": "8539ec32_5057126b",
+      "revId": "ed5953b11b4ba60426e3a3a59761b658d3dc79ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
