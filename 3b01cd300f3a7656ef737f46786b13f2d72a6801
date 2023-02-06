@@ -46,6 +46,30 @@
       },
       "revId": "3b01cd300f3a7656ef737f46786b13f2d72a6801",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ee1f179_eee93b2f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-06T19:56:44Z",
+      "side": 1,
+      "message": "basically, you can check if the account is a SIP account or not. Because SIP conversations are managed by the client. (You can also create a SIP account with empty details).",
+      "parentUuid": "f526bf8a_2e0867d3",
+      "range": {
+        "startLine": 10,
+        "startChar": 9,
+        "endLine": 10,
+        "endChar": 12
+      },
+      "revId": "3b01cd300f3a7656ef737f46786b13f2d72a6801",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
