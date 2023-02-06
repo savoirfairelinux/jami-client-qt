@@ -949,7 +949,7 @@ AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& sh
             &Renderer::fpsChanged,
             this,
             [this, id](void) { Q_EMIT linked_.updateRenderersFPSInfo(id); },
-            Qt::DirectConnection);
+            Qt::QueuedConnection);
         connect(
             renderer,
             &Renderer::started,
