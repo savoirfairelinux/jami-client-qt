@@ -613,13 +613,14 @@ Rectangle {
                 model: CurrentConversation.uris
                 delegate: ItemDelegate {
                     id: member
+
                     width: members.width
                     height: JamiTheme.smartListItemHeight
 
                     background: Rectangle {
                         anchors.fill: parent
                         color: {
-                            if (member.hovered)
+                            if (member.hovered || nameTextEditHover.hovered)
                                 return Qt.darker(JamiTheme.selectedColor, 1.05)
                             else
                                 return "transparent"
@@ -627,11 +628,14 @@ Rectangle {
                     }
 
                     MouseArea {
+                        id: memberMouseArea
+
                         anchors.fill: parent
-                        enabled: modelData != CurrentAccount.uri
+                        enabled: modelData !== CurrentAccount.uri
                         acceptedButtons: Qt.RightButton
                         onClicked: function (mouse) {
-                            contextMenu.openMenuAt(x + mouse.x, y + mouse.y, modelData)
+                            var position = mapToItem(members, mouse.x, mouse.y)
+                            contextMenu.openMenuAt(position.x, position.y, modelData)
                         }
                     }
 
@@ -657,7 +661,7 @@ Rectangle {
                         }
 
                         ElidedTextLabel {
-                            id: bestName
+                            id: nameTextEdit
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
                             Layout.topMargin: JamiTheme.preferredMarginSize / 2
@@ -672,9 +676,14 @@ Rectangle {
                                 var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
                                 return role === Member.Role.INVITED ? 0.5 : 1
                             }
+
                             font.kerning: true
 
                             verticalAlignment: Text.AlignVCenter
+
+                            HoverHandler {
+                                id: nameTextEditHover
+                            }
                         }
 
                         ElidedTextLabel {
