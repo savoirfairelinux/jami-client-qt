@@ -57,7 +57,6 @@ Rectangle {
 
     function focusChatView() {
         chatViewFooter.textInput.forceActiveFocus()
-        swarmDetailsPanel.visible = false
         addMemberPanel.visible = false
     }
 
