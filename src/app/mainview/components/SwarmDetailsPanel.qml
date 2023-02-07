@@ -34,8 +34,9 @@ Rectangle {
 
     color: CurrentConversation.color
     property var isAdmin: !CurrentConversation.isCoreDialog &&
-        UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
+                          UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
 
+    property bool showAdvanced: false
 
     DevicesListPopup {
         id: devicesListPopup
@@ -305,7 +306,6 @@ Rectangle {
                     id: aboutSwarm
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    anchors.rightMargin: JamiTheme.settingsMarginSize
                     visible: tabBar.currentIndex === 0
                     Layout.alignment: Qt.AlignTop
 
@@ -318,6 +318,7 @@ Rectangle {
 
                             anchors.fill: parent
                             anchors.leftMargin: JamiTheme.preferredMarginSize
+                            anchors.rightMargin: JamiTheme.preferredMarginSize
 
                             checked: CurrentConversation.ignoreNotifications
 
@@ -366,6 +367,7 @@ Rectangle {
                         RowLayout {
                             anchors.fill: parent
                             anchors.leftMargin: JamiTheme.preferredMarginSize
+                            anchors.rightMargin: JamiTheme.preferredMarginSize
 
                             Text {
                                 Layout.fillWidth: true
@@ -405,9 +407,71 @@ Rectangle {
                     }
 
                     SwarmDetailsItem {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+
+                        Text {
+                            anchors.left: parent.left
+                            anchors.top: parent.top
+                            anchors.margins: JamiTheme.preferredMarginSize
+                            text: JamiStrings.advancedSwarmSettings
+                            font.pointSize: JamiTheme.settingsFontSize
+                            font.kerning: true
+                            font.underline: true
+                            font.bold : true
+                            elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+                        }
+
+                        TapHandler {
+                            target: parent
+                            enabled: parent.visible
+                            onTapped: function onTapped(eventPoint) {
+                                showAdvanced = !showAdvanced
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        Layout.leftMargin: JamiTheme.preferredMarginSize
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+
+                        visible: showAdvanced
+                        Text {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 30
+                            Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                            text: JamiStrings.typeOfSwarm
+                            font.pointSize: JamiTheme.settingsFontSize
+                            font.kerning: true
+                            elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+                        }
+
+                        Label {
+                            id: typeOfSwarmLabel
+
+                            Layout.alignment: Qt.AlignRight
+                            color: JamiTheme.textColorHovered
+
+                            text: CurrentConversation.modeString
+                        }
+                    }
+
+                    SwarmDetailsItem {
                         id: settingsSwarmItem
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        visible : showAdvanced
 
                         RowLayout {
                             anchors.fill: parent
@@ -430,12 +494,14 @@ Rectangle {
                                 color: JamiTheme.textColor
                             }
 
-
                             RowLayout {
                                 id: swarmRdvPref
                                 spacing: 10
                                 Layout.alignment: Qt.AlignRight
                                 Layout.maximumWidth: settingsSwarmItem.width / 2
+                                Layout.rightMargin: JamiTheme.preferredMarginSize
+                                visible: showAdvanced
+
 
                                 Connections {
                                     target: CurrentConversation
@@ -509,36 +575,6 @@ Rectangle {
                             onTapped: function onTapped(eventPoint) {
                                 devicesListPopup.open()
                             }
-                        }
-                    }
-
-                    RowLayout {
-                        Layout.leftMargin: JamiTheme.preferredMarginSize
-                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
-
-                        Text {
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 30
-                            Layout.rightMargin: JamiTheme.preferredMarginSize
-
-                            text: JamiStrings.typeOfSwarm
-                            font.pointSize: JamiTheme.settingsFontSize
-                            font.kerning: true
-                            elide: Text.ElideRight
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
-
-                            color: JamiTheme.textColor
-                        }
-
-                        Label {
-                            id: typeOfSwarmLabel
-
-                            Layout.alignment: Qt.AlignRight
-
-                            color: JamiTheme.textColor
-
-                            text: CurrentConversation.modeString
                         }
                     }
 
@@ -619,7 +655,7 @@ Rectangle {
 
                     MouseArea {
                         anchors.fill: parent
-                        enabled: modelData != CurrentAccount.uri
+                        enabled: modelData !== CurrentAccount.uri
                         acceptedButtons: Qt.RightButton
                         onClicked: function (mouse) {
                             contextMenu.openMenuAt(x + mouse.x, y + mouse.y, modelData)
@@ -628,8 +664,6 @@ Rectangle {
 
                     RowLayout {
                         spacing: 10
-                        anchors.fill: parent
-                        anchors.rightMargin: JamiTheme.preferredMarginSize
 
                         Avatar {
                             width: JamiTheme.smartListAvatarSize
@@ -642,9 +676,9 @@ Rectangle {
                                 return role === Member.Role.INVITED ? 0.5 : 1
                             }
 
-                            imageId: CurrentAccount.uri == modelData ? CurrentAccount.id : modelData
+                            imageId: CurrentAccount.uri === modelData ? CurrentAccount.id : modelData
                             showPresenceIndicator: UtilsAdapter.getContactPresence(CurrentAccount.id, modelData)
-                            mode: CurrentAccount.uri == modelData ? Avatar.Mode.Account : Avatar.Mode.Contact
+                            mode: CurrentAccount.uri === modelData ? Avatar.Mode.Account : Avatar.Mode.Contact
                         }
 
                         ElidedTextLabel {
@@ -652,10 +686,9 @@ Rectangle {
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
                             Layout.topMargin: JamiTheme.preferredMarginSize / 2
-                            Layout.fillWidth: true
 
                             eText: UtilsAdapter.getContactBestName(CurrentAccount.id, modelData)
-                            maxWidth: width
+                            maxWidth: JamiTheme.preferredFieldWidth
 
                             font.pointSize: JamiTheme.participantFontSize
                             color: JamiTheme.primaryForegroundColor

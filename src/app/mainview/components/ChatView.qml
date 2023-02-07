@@ -248,6 +248,7 @@ Rectangle {
                     implicitWidth: 1
                     implicitHeight: splitView.height
                     color: JamiTheme.tabbarBorderColor
+                    anchors.right : parent.right
                 }
             }
 

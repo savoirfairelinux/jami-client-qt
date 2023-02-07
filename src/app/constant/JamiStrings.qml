@@ -814,6 +814,7 @@ Item {
     property string leave: qsTr("Leave")
     property string typeOfSwarm: qsTr("Type of swarm")
     property string none: qsTr("None")
+    property string advancedSwarmSettings: qsTr("Advanced settings")
 
     // NewSwarmPage
     property string youCanAdd7: qsTr("You can add 7 people in the swarm")
