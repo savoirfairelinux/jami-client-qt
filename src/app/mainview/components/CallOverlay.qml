@@ -165,7 +165,7 @@ Item {
             function onShowInputPanelClicked() { sipInputPanel.open() }
             function onShareScreenClicked() { openShareScreen() }
             function onShareWindowClicked() { openShareWindow() }
-            function onStopSharingClicked() { AvAdapter.stopSharing() }
+            function onStopSharingClicked() { AvAdapter.stopSharing(CurrentCall.sharingSource) }
             function onShareScreenAreaClicked() { openShareScreenArea() }
             function onRecordCallClicked() { CallAdapter.recordThisCallToggle() }
             function onShareFileClicked() { jamiFileDialog.open() }

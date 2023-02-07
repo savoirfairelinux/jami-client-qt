@@ -114,7 +114,7 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.stopSharing
             iconSource: JamiResources.share_stop_black_24dp_svg
             iconColor: JamiTheme.redColor
-            onClicked: AvAdapter.stopSharing()
+            onClicked: AvAdapter.stopSharing(CurrentCall.sharingSource)
         },
         GeneralMenuItem {
             id: shareScreen
