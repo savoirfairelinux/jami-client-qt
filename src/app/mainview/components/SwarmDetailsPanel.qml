@@ -24,6 +24,7 @@ import Qt5Compat.GraphicalEffects
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
+import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 
 import "../../commoncomponents"
@@ -193,17 +194,25 @@ Rectangle {
             TabBar {
                 id: tabBar
 
-                currentIndex: 0
+                currentIndex: getTabIndex()
 
                 onVisibleChanged: {
-                    tabBar.currentIndex = 0
+                    getTabIndex()
                 }
 
                 Layout.preferredWidth: root.width
                 Layout.preferredHeight: settingsTabButton.height
+                onCurrentIndexChanged: {
+                    UtilsAdapter.setAppValue(Settings.SwarmDetailsPanelTabIndex, currentIndex)
+                }
+
+                function getTabIndex() {
+                    tabBar.currentIndex = UtilsAdapter.getAppValue(Settings.SwarmDetailsPanelTabIndex)
+                }
 
                 FilterTabButton {
                     id: settingsTabButton
+
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
                     borderWidth: 4
@@ -216,7 +225,7 @@ Rectangle {
                                    JamiTheme.chatviewTextColorLight :
                                    JamiTheme.chatviewTextColorDark
 
-                    down: tabBar.currentIndex === 0
+                    down: tabBar.currentIndex === 0 || (CurrentConversation.isCoreDialog && tabBar.currentIndex === 1 )
                     labelText: JamiStrings.settings
                     Layout.fillWidth: true
                 }
@@ -224,6 +233,7 @@ Rectangle {
                 FilterTabButton {
                     id: membersTabButton
                     visible: !CurrentConversation.isCoreDialog
+
                     Layout.fillWidth: true
                     width: visible ? tabBar.width/3 : 0
                     backgroundColor: CurrentConversation.color
@@ -238,7 +248,7 @@ Rectangle {
                                    JamiTheme.chatviewTextColorLight :
                                    JamiTheme.chatviewTextColorDark
 
-                    down: tabBar.currentIndex === 1
+                    down: tabBar.currentIndex === 1 && !CurrentConversation.isCoreDialog
                     labelText: {
                         var membersNb = CurrentConversation.uris.length;
                         if (membersNb > 1)
@@ -306,7 +316,7 @@ Rectangle {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.rightMargin: JamiTheme.settingsMarginSize
-                    visible: tabBar.currentIndex === 0
+                    visible: tabBar.currentIndex === 0 || (CurrentConversation.isCoreDialog && tabBar.currentIndex === 1)
                     Layout.alignment: Qt.AlignTop
 
                     SwarmDetailsItem {
@@ -585,7 +595,7 @@ Rectangle {
                 anchors.bottomMargin: JamiTheme.preferredMarginSize
                 anchors.fill: parent
 
-                visible: tabBar.currentIndex === 1
+                visible: tabBar.currentIndex === 1 && !CurrentConversation.isCoreDialog
 
                 SwarmParticipantContextMenu {
                     id: contextMenu

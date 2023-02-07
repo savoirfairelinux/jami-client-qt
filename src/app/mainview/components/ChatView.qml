@@ -25,6 +25,7 @@ import Qt5Compat.GraphicalEffects
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
+import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 
 import "../../commoncomponents"
@@ -57,7 +58,6 @@ Rectangle {
 
     function focusChatView() {
         chatViewFooter.textInput.forceActiveFocus()
-        swarmDetailsPanel.visible = false
         addMemberPanel.visible = false
     }
 
@@ -328,8 +328,16 @@ Rectangle {
 
             SwarmDetailsPanel {
                 id: swarmDetailsPanel
-                visible: false
 
+                property bool isCompleted: false
+                Component.onCompleted: {
+                    isCompleted = true
+                    visible = UtilsAdapter.getAppValue(Settings.SwarmDetailsPanelState)
+                }
+                onVisibleChanged: {
+                    if (isCompleted)
+                        UtilsAdapter.setAppValue(Settings.SwarmDetailsPanelState, visible)
+                }
                 SplitView.maximumWidth: splitView.width
                 SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
