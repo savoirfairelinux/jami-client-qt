@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2163eac9_30dbe9fa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-02-07T10:17:24Z",
+      "side": 1,
+      "message": "Does `banned` mean `kicked` or `blocked` or both or something else?",
+      "range": {
+        "startLine": 9,
+        "startChar": 49,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "ed5953b11b4ba60426e3a3a59761b658d3dc79ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26eb9dff_3211ac08",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
