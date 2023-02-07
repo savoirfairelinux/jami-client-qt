@@ -290,14 +290,23 @@ AvAdapter::getListWindows()
 }
 
 void
-AvAdapter::stopSharing()
+AvAdapter::stopSharing(const QString& source)
 {
     auto callId = lrcInstance_->getCurrentCallId();
-    if (!callId.isEmpty()) {
-        lrcInstance_->getCurrentCallModel()->removeMedia(callId,
-                                                         libjami::Media::Details::MEDIA_TYPE_VIDEO,
-                                                         libjami::Media::VideoProtocolPrefix::DISPLAY,
-                                                         muteCamera_);
+    if (!source.isEmpty() && !callId.isEmpty()) {
+        if (source.startsWith(libjami::Media::VideoProtocolPrefix::DISPLAY)) {
+            qDebug() << "Stopping display: " << source;
+            lrcInstance_->getCurrentCallModel()->removeMedia(callId,
+                                                            libjami::Media::Details::MEDIA_TYPE_VIDEO,
+                                                            libjami::Media::VideoProtocolPrefix::DISPLAY,
+                                                            muteCamera_);
+        } else {
+            qDebug() << "Stopping file: " << source;
+            lrcInstance_->getCurrentCallModel()->removeMedia(callId,
+                                                            libjami::Media::Details::MEDIA_TYPE_VIDEO,
+                                                            libjami::Media::VideoProtocolPrefix::FILE,
+                                                            muteCamera_);
+        }
     }
 }
 

@@ -94,7 +94,7 @@ protected:
     Q_INVOKABLE void getListWindows();
 
     // Stop sharing the screen or file
-    Q_INVOKABLE void stopSharing();
+    Q_INVOKABLE void stopSharing(const QString& source = {});
 
     Q_INVOKABLE void startAudioMeter();
     Q_INVOKABLE void stopAudioMeter();
