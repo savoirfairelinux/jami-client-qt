@@ -108,6 +108,7 @@ CurrentCall::updateCallInfo()
     bool isAudioMuted {};
     bool isVideoMuted {};
     bool isSharing {};
+    QString sharingSource {};
     bool isCapturing {};
     QString previewId {};
     using namespace libjami::Media;
@@ -117,6 +118,7 @@ CurrentCall::updateCallInfo()
                 if (media[MediaAttributeKey::SOURCE].startsWith(VideoProtocolPrefix::DISPLAY)
                     || media[MediaAttributeKey::SOURCE].startsWith(VideoProtocolPrefix::FILE)) {
                     isSharing = true;
+                    sharingSource = media[MediaAttributeKey::SOURCE];
                 }
                 if (media[MediaAttributeKey::ENABLED] == TRUE_STR
                     && media[MediaAttributeKey::MUTED] == FALSE_STR && previewId.isEmpty()) {
@@ -138,6 +140,7 @@ CurrentCall::updateCallInfo()
     set_isAudioMuted(isAudioMuted);
     set_isVideoMuted(isVideoMuted);
     set_isSharing(isSharing);
+    set_sharingSource(sharingSource);
     set_isCapturing(isCapturing);
     set_isHandRaised(callModel->isHandRaised(id_));
     set_isModerator(callModel->isModerator(id_));
