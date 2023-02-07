@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "964e0f07_a361462a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-07T19:34:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b85dfa1_86af336f",
+      "revId": "f37c538e3a01c75b6797c9dfe24fe501adf659e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "040de829_f6b2cb3b",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-02-03T21:35:29Z",
       "side": 1,
       "message": "missing issue from gitlab",
+      "range": {
+        "startLine": 10,
+        "startChar": 30,
+        "endLine": 12,
+        "endChar": 30
+      },
+      "revId": "f37c538e3a01c75b6797c9dfe24fe501adf659e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a02ae9d2_657d248b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-07T19:34:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "040de829_f6b2cb3b",
       "range": {
         "startLine": 10,
         "startChar": 30,
