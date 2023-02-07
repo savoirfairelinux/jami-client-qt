@@ -57,7 +57,9 @@ extern const QString defaultDownloadPath;
     X(EnableExperimentalSwarm, false) \
     X(LANG, "SYSTEM") \
     X(PositionShareDuration, 15) \
-    X(PositionShareLimit, true)
+    X(PositionShareLimit, true) \
+    X(SwarmDetailsPanelState, false) \
+    X(SwarmDetailsPanelTabIndex, 0)
 
 /*
  * A class to expose settings keys in both c++ and QML.
