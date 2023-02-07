@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe990198_83f02e5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-02-07T20:33:02Z",
+      "side": 1,
+      "message": "Does this patch also save the width of the SwarmDetailsPanel?\n\n1. Open SwarmDetailsPanel and it shows as the original width\n2. Click and drag the the left of SwarmDetailsPanel to make it wider\n3. Click on another conversation\n4. Open the SwarmDetailsPanel\n5. The SwarmDetailsPanel shows as the original width\n\nThank you",
+      "revId": "8af9272f4640a0f666394d76171963318c223ae5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
