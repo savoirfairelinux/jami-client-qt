@@ -67,7 +67,7 @@ Rectangle {
                 target: CurrentConversation
 
                 function onUrisChanged(uris) {
-                    model = ContactAdapter.getContactSelectableModel(type)
+                    contactPickerListView.model = ContactAdapter.getContactSelectableModel(type)
                 }
             }
 
