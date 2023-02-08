@@ -36,5 +36,7 @@
 	<string>Jami requires to access your microphone to make calls and record audio</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Jami requires to access your photo library to show image on profile and send via chat</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<true/>
 </dict>
 </plist>
