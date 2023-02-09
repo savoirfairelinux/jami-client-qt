@@ -94,6 +94,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08b424d3_c3e848c2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 26
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-09T23:19:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baee8945_96d1f65a",
+      "range": {
+        "startLine": 18,
+        "startChar": 9,
+        "endLine": 18,
+        "endChar": 52
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98cf7830_a63d28e3",
@@ -201,6 +225,30 @@
       "writtenOn": "2023-02-09T21:28:25Z",
       "side": 1,
       "message": "sad this check is ugly (null + undefined)",
+      "range": {
+        "startLine": 295,
+        "startChar": 73,
+        "endLine": 296,
+        "endChar": 74
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0478644e_666ae74e",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-09T23:19:44Z",
+      "side": 1,
+      "message": "Yeah, I think the worst part is storing component references in JamiQmlUtils. This function should also be called getYPosition instead.",
+      "parentUuid": "5d88773c_ce88abf0",
       "range": {
         "startLine": 295,
         "startChar": 73,
