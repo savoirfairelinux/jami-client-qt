@@ -68,6 +68,190 @@
       },
       "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98cf7830_a63d28e3",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-09T21:28:25Z",
+      "side": 1,
+      "message": "this necessary if lambda?",
+      "range": {
+        "startLine": 135,
+        "startChar": 35,
+        "endLine": 135,
+        "endChar": 39
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "277f0510_d19ec73e",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-09T21:28:25Z",
+      "side": 1,
+      "message": "Bug 6: Dbus photobooth is blue? (don\u0027t know if reproducible, seems weird)",
+      "range": {
+        "startLine": 294,
+        "startChar": 28,
+        "endLine": 294,
+        "endChar": 40
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d88773c_ce88abf0",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-09T21:28:25Z",
+      "side": 1,
+      "message": "sad this check is ugly (null + undefined)",
+      "range": {
+        "startLine": 295,
+        "startChar": 73,
+        "endLine": 296,
+        "endChar": 74
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d1571e1_cbc3e290",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-09T21:28:25Z",
+      "side": 1,
+      "message": "Bug 7: Draft mode is broken (clicking on several conversation_)",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 31
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb8240e4_bca9a9cc",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-09T21:28:25Z",
+      "side": 1,
+      "message": "Bug 8: Link device doesn\u0027t work anymore",
+      "range": {
+        "startLine": 185,
+        "startChar": 28,
+        "endLine": 185,
+        "endChar": 30
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0332ad13_d640ed61",
+        "filename": "src/app/mainview/components/ConversationListView.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-09T21:28:25Z",
+      "side": 1,
+      "message": "missing TODO",
+      "range": {
+        "startLine": 119,
+        "startChar": 17,
+        "endLine": 119,
+        "endChar": 40
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaf0a13f_fdaad055",
+        "filename": "src/app/settingsview/components/AdvancedSIPSecuritySettings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-09T21:28:25Z",
+      "side": 1,
+      "message": "Bug 9: Select custom ringtone doesn\u0027t work anymore",
+      "range": {
+        "startLine": 173,
+        "startChar": 36,
+        "endLine": 173,
+        "endChar": 47
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1819a49f_af313d9a",
+        "filename": "src/app/settingsview/components/AdvancedSIPSecuritySettings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-09T21:28:25Z",
+      "side": 1,
+      "message": "Bug 10: Add default moderators doesn\u0027t work",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 60
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
