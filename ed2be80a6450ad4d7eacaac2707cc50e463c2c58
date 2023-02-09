@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82061363_bd8229fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 27
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-09T23:15:11Z",
+      "side": 1,
+      "message": "I can\u0027t reproduce this",
+      "parentUuid": "ac2f38f8_27e88731",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 24
+      },
+      "revId": "ed2be80a6450ad4d7eacaac2707cc50e463c2c58",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d4ed2f8_72f4b631",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-09T21:32:04Z",
       "side": 1,
       "message": "Swarm (multi accounts): With another account in the same swarm, start a call. If you click on this swarm, it should show the conversation. Now the callview with state\u003d ERROR is shown.",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "ed2be80a6450ad4d7eacaac2707cc50e463c2c58",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5e8f239_20680578",
+        "filename": "src/app/accountadapter.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-09T23:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d4ed2f8_72f4b631",
       "range": {
         "startLine": 64,
         "startChar": 12,

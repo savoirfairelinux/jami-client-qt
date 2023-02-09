@@ -47,6 +47,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23020006_fb858540",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 26
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-09T23:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45723447_861a2ef6",
+      "range": {
+        "startLine": 16,
+        "startChar": 94,
+        "endLine": 16,
+        "endChar": 105
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "baee8945_96d1f65a",
@@ -93,6 +117,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e14e5382_6c7f31b4",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-09T23:15:11Z",
+      "side": 1,
+      "message": "the intent is to prevent slot execution after deletion\n(https://github.com/KDE/clazy/blob/1.11/docs/checks/README-connect-3arg-lambda.md)",
+      "parentUuid": "98cf7830_a63d28e3",
+      "range": {
+        "startLine": 135,
+        "startChar": 35,
+        "endLine": 135,
+        "endChar": 39
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "277f0510_d19ec73e",
@@ -106,6 +154,30 @@
       "writtenOn": "2023-02-09T21:28:25Z",
       "side": 1,
       "message": "Bug 6: Dbus photobooth is blue? (don\u0027t know if reproducible, seems weird)",
+      "range": {
+        "startLine": 294,
+        "startChar": 28,
+        "endLine": 294,
+        "endChar": 40
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3ee3b34_76048c9e",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-09T23:15:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "277f0510_d19ec73e",
       "range": {
         "startLine": 294,
         "startChar": 28,
@@ -185,6 +257,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32b587d5_9f49ac20",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-09T23:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb8240e4_bca9a9cc",
+      "range": {
+        "startLine": 185,
+        "startChar": 28,
+        "endLine": 185,
+        "endChar": 30
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0332ad13_d640ed61",
@@ -231,6 +327,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8e707f8_e5206646",
+        "filename": "src/app/settingsview/components/AdvancedSIPSecuritySettings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-09T23:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaf0a13f_fdaad055",
+      "range": {
+        "startLine": 173,
+        "startChar": 36,
+        "endLine": 173,
+        "endChar": 47
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1819a49f_af313d9a",
@@ -244,6 +364,30 @@
       "writtenOn": "2023-02-09T21:28:25Z",
       "side": 1,
       "message": "Bug 10: Add default moderators doesn\u0027t work",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 60
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e9b8784_a96923a3",
+        "filename": "src/app/settingsview/components/AdvancedSIPSecuritySettings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-09T23:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1819a49f_af313d9a",
       "range": {
         "startLine": 176,
         "startChar": 0,
