@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f8ea52f_3431f33e",
+        "filename": "src/app/accountadapter.h",
+        "patchSetId": 26
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-09T20:26:30Z",
+      "side": 0,
+      "message": "Bug 2: Create a swarm alone \u003d\u003e Right click doesn\u0027t work (seems ok on master)",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 17
+      },
+      "revId": "010930febe2c28374c65e25c3147f08bdc2efecc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8da9bd74_706ffc40",
+        "filename": "src/app/accountadapter.h",
+        "patchSetId": 26
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-09T20:26:30Z",
+      "side": 0,
+      "message": "Bug 1\n\n+ go to small size, open swarm details panel (it takes all width)\n+ go to another conversation \u003d\u003e No messages (need to reclick on swarm details panel)",
+      "range": {
+        "startLine": 53,
+        "startChar": 17,
+        "endLine": 53,
+        "endChar": 19
+      },
+      "revId": "010930febe2c28374c65e25c3147f08bdc2efecc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
