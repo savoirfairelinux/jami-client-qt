@@ -31,6 +31,9 @@ JamiFlickable {
     property var textAreaObj: textArea
     property alias placeholderText: textArea.placeholderText
 
+    ScrollBar.vertical.visible: textArea.text
+    ScrollBar.horizontal.visible: textArea.text
+
     signal sendMessagesRequired
 
     function insertText(text) {
