@@ -38,10 +38,6 @@ Item {
         Object.assign(JamiQmlUtils.accountCreationInputParaObject, inputPara)
         return accountCreationInputParaObject
     }
-    //to know if the chatview is being scrolled
-    property bool isChatviewScrolling
-    //chatviewHeader
-    property var messagingHeaderRectRowLayout
 
     // MessageBar buttons in mainview points
     property var mainViewRectObj

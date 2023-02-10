@@ -260,7 +260,6 @@ Rectangle {
             }
 
         }
-        Component.onCompleted: JamiQmlUtils.messagingHeaderRectRowLayout = messagingHeaderRectRowLayout
     }
 
     CustomBorder {

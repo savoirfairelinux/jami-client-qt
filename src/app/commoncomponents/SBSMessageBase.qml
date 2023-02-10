@@ -55,8 +55,14 @@ Control {
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
     property bool textHovered: false
     property alias replyAnimation: selectAnimation
-    width: ListView.view ? ListView.view.width : 0
+    width: listView.width
     height: mainColumnLayout.implicitHeight
+
+    // If the ListView attached properties are not available,
+    // then the root delegate is likely a Loader.
+    readonly property ListView listView: ListView.view ?
+                                             ListView.view :
+                                             parent.ListView.view
 
     rightPadding: hPadding
     leftPadding: hPadding
@@ -184,9 +190,18 @@ Control {
                         height: optionButtonItem.height
 
                         onClicked: {
-                            messageOptionPopup.open()
-                            messageOptionPopup.x = messageOptionPopup.setXposition(messageOptionPopup.width)
-                            messageOptionPopup.y = messageOptionPopup.setYposition(messageOptionPopup.height)
+                            var component = Qt.createComponent("qrc:/commoncomponents/MessageOptionsPopup.qml")
+                            var obj = component.createObject(bubble, {
+                                                                 "emojiReplied": Qt.binding(() => emojiReaction.emojiTexts),
+                                                                 "isOutgoing": isOutgoing,
+                                                                 "msgId": Id,
+                                                                 "msgBody": Body,
+                                                                 "type": Type,
+                                                                 "transferName": TransferName,
+                                                                 "msgBubble": bubble,
+                                                                 "listView": listView
+                                                             })
+                            obj.open()
                         }
                     }
 
@@ -214,103 +229,6 @@ Control {
                     }
                 }
 
-                ChatviewMessageOptions {
-                    id: messageOptionPopup
-
-                    emojiReplied: emojiReaction.emojiTexts
-                    out: isOutgoing
-                    msgId: Id
-                    msg: Body
-                    type: Type
-                    transferName: TransferName
-                    visible: false
-
-                    property bool isScrolling: JamiQmlUtils.isChatviewScrolling
-                    property real rootWidth: root.width
-                    property var emojiPicker
-
-                    onIsScrollingChanged: {
-                        messageOptionPopup.close()
-                        if (messageOptionPopup.emojiPicker)
-                            messageOptionPopup.emojiPicker.closeEmojiPicker()
-                    }
-
-                    onAddMoreEmoji: {
-                        JamiQmlUtils.updateMessageBarButtonsPoints()
-                        openEmojiPicker()
-                    }
-
-                    onRootWidthChanged: {
-                        if (emojiPicker)
-                            emojiPicker.x = setXposition(JamiTheme.emojiPickerWidth)
-                        messageOptionPopup.x = setXposition(width)
-                        messageOptionPopup.y = setYposition(height)
-                    }
-
-                    Connections {
-                        target: messageOptionPopup.emojiPicker ? messageOptionPopup.emojiPicker : null
-                        function onEmojiIsPicked(content) {
-                            if (messageOptionPopup.emojiReplied.includes(content))
-                                MessagesAdapter.removeEmojiReaction(CurrentConversation.id,content,messageOptionPopup.msgId)
-                            else
-                                MessagesAdapter.addEmojiReaction(CurrentConversation.id,content,messageOptionPopup.msgId)
-                        }
-                    }
-
-                    function openEmojiPicker() {
-                        var component =  WITH_WEBENGINE
-                                  ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml")
-                                  : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml")
-                        messageOptionPopup.emojiPicker = component.createObject(msgRowlayout,
-                                                                                {
-                                                                                 x: setXposition(JamiTheme.emojiPickerWidth),
-                                                                                 y: setYposition(JamiTheme.emojiPickerHeight)
-                                                                                });
-                        if (messageOptionPopup.emojiPicker !== null) {
-                            messageOptionPopup.emojiPicker.open()
-                        } else {
-                            console.log("Error creating emojiPicker in SBSMessageBase");
-                        }
-                    }
-
-                    function setXposition(width) {
-
-                        var distBorders = root.width - bubble.width - width
-                        if (isOutgoing) {
-                            if (distBorders > 0)
-                                x = bubble.x - width
-                            else
-                                x = bubble.x
-                        } else {
-                            if (distBorders > 0)
-                                x = bubble.x + bubble.width
-                            else
-                                x = bubble.x + bubble.width - width
-                        }
-                        return x
-                    }
-
-                    function setYposition(height) {
-                        var bottomOffset = 0
-                        if (JamiQmlUtils.messageBarButtonsRowObj) {
-                            bottomOffset = JamiQmlUtils.messageBarButtonsRowObj.height
-                        }
-                        var mappedCoord = bubble.mapToItem(appWindow.contentItem, 0, 0)
-                        var distBottomScreen = appWindow.height - mappedCoord.y - height - bottomOffset
-                        if (distBottomScreen < 0) {
-                            return distBottomScreen
-                        }
-                        var topOffset = 0
-                        if (JamiQmlUtils.messagingHeaderRectRowLayout) {
-                            topOffset = JamiQmlUtils.messagingHeaderRectRowLayout.height
-                        }
-                        var distTopScreen = mappedCoord.y - topOffset
-                        if (distTopScreen < 0)
-                            return -distTopScreen
-                        return 0
-                    }
-                }
-
                 MessageBubble {
                     id: bubble
 
@@ -321,7 +239,8 @@ Control {
                     function getBaseColor() {
                         var baseColor = isOutgoing ? JamiTheme.messageOutBgColor
                                                    : CurrentConversation.isCoreDialog ?
-                                                         JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+                                                         JamiTheme.messageInBgColor :
+                                                         Qt.lighter(CurrentConversation.color, 1.5)
                         if (Id === MessagesAdapter.replyToId || Id === MessagesAdapter.editId) {
                             // If we are replying to or editing the message
                             return Qt.darker(baseColor, 1.5)
