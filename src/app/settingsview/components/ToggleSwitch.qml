@@ -43,7 +43,7 @@ RowLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: heightOfLayout
         Layout.rightMargin: JamiTheme.preferredMarginSize
-
+        visible: labelText !== ""
         text: root.labelText
         font.pointSize: fontPointSize
         font.kerning: true

@@ -24,15 +24,14 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
-import "../../commoncomponents"
-import "../../settingsview/components"
+//import "../../settingsview/components"
 
 Item {
     id: root
 
     width: childrenRect.width
     height: controlsLayout.height + usernameTextEdit.height
-            + 2 * JamiTheme.preferredMarginSize
+            //+ 2 * JamiTheme.preferredMarginSize
 
     // Background rounded rectangle.
     Rectangle {
@@ -44,7 +43,8 @@ Item {
     // Logo masked by outerRect.
     Item {
         anchors.fill: outerRect
-        layer.enabled: true; layer.effect: OpacityMask { maskSource: outerRect }
+        layer.enabled: true
+        layer.effect: OpacityMask { maskSource: outerRect }
 
         Rectangle {
             id: logoRect
@@ -77,8 +77,8 @@ Item {
         RowLayout {
             id: controlsLayout
 
-            Layout.alignment: Qt.AlignTop | Qt.AlignRight
-            Layout.topMargin: JamiTheme.pushButtonMargin
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            Layout.topMargin: JamiTheme.pushButtonMargin / 2
             Layout.rightMargin: JamiTheme.pushButtonMargin
             Layout.preferredHeight: childrenRect.height
 

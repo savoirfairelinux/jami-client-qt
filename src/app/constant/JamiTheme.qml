@@ -338,7 +338,7 @@ Item {
     property int menuItemsCommonBorderWidth: 1
     property int menuBorderPreferredHeight: 8
 
-    property real maximumWidthSettingsView: 600
+    property real maximumWidthSettingsView: 700
     property real settingsHeaderpreferredHeight: 64
     property real preferredFieldWidth: 256
     property real preferredFieldHeight: 32

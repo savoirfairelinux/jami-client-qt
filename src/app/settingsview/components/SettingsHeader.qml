@@ -30,6 +30,7 @@ RowLayout {
 
     property string title: ""
     signal backArrowClicked
+    anchors.topMargin: 70
 
     BackButton {
         id: backToSettingsMenuButton
@@ -44,7 +45,6 @@ RowLayout {
 
     Label {
         Layout.fillWidth: true
-
         text: root.title
         font.pointSize: JamiTheme.titleFontSize
         font.kerning: true

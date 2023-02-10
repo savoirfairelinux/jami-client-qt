@@ -25,8 +25,10 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-ColumnLayout {
+RowLayout {
     id: root
+
+    spacing: 40
 
     Connections {
         target: settingsViewRect
@@ -38,21 +40,6 @@ ColumnLayout {
 
     function stopBooth() {
         currentAccountAvatar.stopBooth()
-    }
-
-    Text {
-        Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-        text: JamiStrings.profile
-        elide: Text.ElideRight
-
-        font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
-        color: JamiTheme.textColor
-
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
     }
 
     PhotoboothView {

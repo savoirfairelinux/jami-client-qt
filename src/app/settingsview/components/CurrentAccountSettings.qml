@@ -57,30 +57,6 @@ Rectangle {
 
         width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
 
-        ToggleSwitch {
-            id: accountEnableCheckBox
-
-            Layout.topMargin: JamiTheme.preferredMarginSize
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-
-            labelText: JamiStrings.enableAccount
-            fontPointSize: JamiTheme.headerFontSize
-
-            checked: CurrentAccount.enabled
-
-            onSwitchToggled: CurrentAccount.enableAccount(checked)
-        }
-
-        AccountProfile {
-            id: accountProfile
-
-            Layout.fillWidth: true
-            Layout.topMargin: JamiTheme.preferredMarginSize
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-        }
-
         UserIdentity {
             id: userIdentity
             isSIP: root.isSIP
@@ -182,34 +158,6 @@ Rectangle {
             }
         }
 
-        MaterialButton {
-            Layout.alignment: Qt.AlignHCenter
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-
-            preferredWidth: JamiTheme.preferredFieldWidth
-            preferredHeight: JamiTheme.preferredFieldHeight
-
-            color: JamiTheme.buttonTintedRed
-            hoveredColor: JamiTheme.buttonTintedRedHovered
-            pressedColor: JamiTheme.buttonTintedRedPressed
-
-            text: JamiStrings.deleteAccount
-
-            iconSource: JamiResources.delete_forever_24dp_svg
-
-            onClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                        appWindow,
-                        "commoncomponents/DeleteAccountDialog.qml",
-                        {
-                            isSIP: CurrentAccount.type === Profile.Type.SIP,
-                            bestName: CurrentAccount.bestName,
-                            accountId: CurrentAccount.uri
-                        })
-                dlg.accepted.connect(navigateToMainView)
-            }
-        }
 
         LinkedDevices {
             id: linkedDevices

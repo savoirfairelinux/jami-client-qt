@@ -38,10 +38,9 @@ ItemDelegate {
 
     signal btnRemoveDeviceClicked
 
-    highlighted: ListView.isCurrentItem
-
     background: Rectangle {
-        color: highlighted? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
+        color:JamiTheme.selectedColor
+        height: isCurrent ? 70 : undefined
     }
 
     RowLayout {
