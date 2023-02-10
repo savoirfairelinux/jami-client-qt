@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba5ca19c_d06c3a5a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-02-10T20:51:26Z",
+      "side": 1,
+      "message": "https://git.jami.net/savoirfairelinux/jami-client-android/-/issues/1167",
+      "parentUuid": "7610f39f_fbbbfd46",
+      "range": {
+        "startLine": 9,
+        "startChar": 49,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "ed5953b11b4ba60426e3a3a59761b658d3dc79ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26eb9dff_3211ac08",
