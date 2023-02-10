@@ -21,6 +21,7 @@ import QtQuick.Controls
 
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
+import QtQuick.Layouts
 
 import "../../commoncomponents"
 import "../../settingsview"
@@ -39,8 +40,8 @@ Rectangle {
         }
     }
     onVisibleChanged: buttonGroup.checkedButton = visible && !viewCoordinator.singlePane ?
-                        buttonGroup.buttons[0] :
-                        null
+                          buttonGroup.buttons[0] :
+                          null
 
     // Bind to requests for a settings page to be selected via shorcut.
     Connections {
@@ -69,7 +70,7 @@ Rectangle {
         }
     }
 
-    Column {
+    ColumnLayout {
         id: settingsButtons
 
         spacing: 0
@@ -77,7 +78,10 @@ Rectangle {
         anchors.right: parent.right
         height: childrenRect.height
 
-        component SMB: SettingsMenuButton { normalColor: root.color }
+        component SMB: SettingsMenuButton {
+            normalColor: root.color
+            Layout.fillWidth: true
+        }
 
         SMB {
             buttonText: JamiStrings.accountSettingsMenuTitle
@@ -98,6 +102,31 @@ Rectangle {
             buttonText: JamiStrings.pluginSettingsTitle
             source: JamiResources.plugin_settings_black_24dp_svg
         }
+
+
+        SMB {
+            buttonText: JamiStrings.manageAccountSettingsTitle
+        }
+
+
+        SMB {
+            buttonText: JamiStrings.customizeProfileSettingsTitle
+        }
+
+        SMB {
+            buttonText: JamiStrings.linkedDevicesSettingsTitle
+        }
+        SMB {
+            buttonText: JamiStrings.advancedSettingsTitle
+        }
+        SMB {
+            buttonText: JamiStrings.callSettingsTitle
+        }
+        SMB {
+            buttonText: JamiStrings.chatSettingsTitle
+        }
+
+
     }
 }
 

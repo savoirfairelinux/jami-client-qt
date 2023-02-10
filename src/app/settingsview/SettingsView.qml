@@ -47,7 +47,14 @@ BaseView {
         Account,
         General,
         Media,
-        Plugin
+        Plugin,
+        ManageAccount,
+        CustomizeProfile,
+        LinkedDevices,
+        AdvancedSettings,
+        CallSettings,
+        ChatSettings
+
     }
 
     onVisibleChanged: if(visible) setSelected(selectedMenu, true)
@@ -70,16 +77,18 @@ BaseView {
         id: settingsViewRect
 
         anchors.fill: root
+        anchors.topMargin: JamiTheme.wizardViewPageBackButtonMargins
+
         color: JamiTheme.secondaryBackgroundColor
 
         signal stopBooth
 
         property bool isSIP: {
             switch (CurrentAccount.type) {
-                case Profile.Type.SIP:
-                    return true;
-                default:
-                    return false;
+            case Profile.Type.SIP:
+                return true;
+            default:
+                return false;
             }
         }
 
@@ -87,25 +96,50 @@ BaseView {
             id: settingsHeader
 
             anchors.top: settingsViewRect.top
+
             anchors.left: settingsViewRect.left
-            anchors.leftMargin: {
-                var pageWidth = rightSettingsStackLayout.itemAt(
-                            rightSettingsStackLayout.currentIndex).contentWidth
-                return (settingsViewRect.width - pageWidth) / 2 + JamiTheme.preferredMarginSize
-            }
+            anchors.leftMargin: JamiTheme.preferredMarginSize * 2
+
+            //            anchors.leftMargin: {
+            //                var pageWidth = rightSettingsStackLayout.itemAt(
+            //                            rightSettingsStackLayout.currentIndex).contentWidth
+            //                return (settingsViewRect.width - pageWidth) / 2 + JamiTheme.preferredMarginSize
+            //            }
 
             height: JamiTheme.settingsHeaderpreferredHeight
 
             title: {
                 switch(selectedMenu){
-                    case SettingsView.Account:
-                        return JamiStrings.accountSettingsTitle
-                    case SettingsView.General:
-                        return JamiStrings.generalSettingsTitle
-                    case SettingsView.Media:
-                        return JamiStrings.avSettingsTitle
-                    case SettingsView.Plugin:
-                        return JamiStrings.pluginSettingsTitle
+                case SettingsView.Account:
+                    return JamiStrings.accountSettingsTitle
+
+                case SettingsView.General:
+                    return JamiStrings.generalSettingsTitle
+
+                case SettingsView.Media:
+                    return JamiStrings.avSettingsTitle
+
+                case SettingsView.Plugin:
+                    return JamiStrings.pluginSettingsTitle
+
+                case SettingsView.CustomizeProfile:
+                    return JamiStrings.customizeProfileSettingsTitle
+
+                case SettingsView.ManageAccount:
+                    return JamiStrings.manageAccountSettingsTitle
+
+                case SettingsView.LinkedDevices:
+                    return JamiStrings.linkedDevicesSettingsTitle
+
+                case SettingsView.CallSettings:
+                    return JamiStrings.callSettingsTitle
+
+                case SettingsView.ChatSettings:
+                    return JamiStrings.chatSettingsTitle
+
+                case SettingsView.AdvancedSettings:
+                    return JamiStrings.advancedSettingsTitle
+
                 }
             }
 
@@ -115,7 +149,7 @@ BaseView {
         JamiFlickable {
             id: settingsViewScrollView
 
-            anchors.top: settingsHeader.bottom
+           // anchors.top: settingsHeader.bottom
             anchors.horizontalCenter: settingsViewRect.horizontalCenter
 
             height: settingsViewRect.height - settingsHeader.height
@@ -128,23 +162,53 @@ BaseView {
 
                 anchors.centerIn: parent
 
+
                 width: settingsViewScrollView.width
 
                 property int pageIdCurrentAccountSettingsPage: 0
                 property int pageIdGeneralSettingsPage: 1
                 property int pageIdAvSettingPage: 2
                 property int pageIdPluginSettingsPage: 3
+                property int pageIdManageAccountPage: 4
+                property int pageIdCustomizeProfilePage: 5
+                property int pageIdLinkedDevicesPage: 6
+                property int pageIdAdvancedSettingsPage: 7
+                property int pageIdCallSettingsPage: 8
+                property int pageIdChatSettingsPage: 9
+
 
                 currentIndex: {
                     switch(selectedMenu){
-                        case SettingsView.Account:
-                            return pageIdCurrentAccountSettingsPage
-                        case SettingsView.General:
-                            return pageIdGeneralSettingsPage
-                        case SettingsView.Media:
-                            return pageIdAvSettingPage
-                        case SettingsView.Plugin:
-                            return pageIdPluginSettingsPage
+                    case SettingsView.Account:
+                        return pageIdCurrentAccountSettingsPage
+
+                    case SettingsView.General:
+                        return pageIdGeneralSettingsPage
+
+                    case SettingsView.Media:
+                        return pageIdAvSettingPage
+
+                    case SettingsView.Plugin:
+                        return pageIdPluginSettingsPage
+
+                    case SettingsView.CustomizeProfile:
+                        return pageIdCustomizeProfilePage
+
+                    case SettingsView.ManageAccount:
+                        return pageIdManageAccountPage
+
+                    case SettingsView.LinkedDevices:
+                        return pageIdLinkedDevicesPage
+
+                    case SettingsView.CallSettings:
+                        return pageIdCallSettingsPage
+
+                    case SettingsView.ChatSettings:
+                        return pageIdChatSettingsPage
+
+                    case SettingsView.AdvancedSettings:
+                        return pageIdAdvancedSettingsPage
+
                     }
                 }
 
@@ -157,7 +221,8 @@ BaseView {
                     })
                 }
 
-                // current account setting scroll page, index 0
+                //current account setting scroll page, index 0
+
                 CurrentAccountSettings {
                     id: pageIdCurrentAccountSettings
 
@@ -196,6 +261,47 @@ BaseView {
 
                     Layout.alignment: Qt.AlignCenter
                 }
+
+                ManageAccountPage {
+                    id: manageAccount
+                    Layout.alignment: Qt.AlignCenter
+                    isSIP: settingsViewRect.isSIP
+                    onNavigateToMainView: dismiss()
+                    onNavigateToNewWizardView: dismiss()
+                }
+
+                CustomizeProfilePage {
+                    id: customizeAccount
+                    Layout.alignment: Qt.AlignCenter
+
+                }
+
+                LinkedDevicesPage {
+                    id: linkedDevices
+                    Layout.alignment: Qt.AlignCenter
+
+                }
+
+                AdvancedSettingsPage {
+                    id: advancedSettings
+                    Layout.alignment: Qt.AlignCenter
+
+                }
+
+                CallSettingsPage {
+                    id: callSettings
+                    Layout.alignment: Qt.AlignCenter
+
+                }
+
+                ChatSettingsPage {
+                    id: chatSettings
+                    Layout.alignment: Qt.AlignCenter
+
+                }
+
+
+
             }
         }
     }

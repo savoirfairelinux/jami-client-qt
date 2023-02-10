@@ -46,18 +46,25 @@ ColumnLayout {
         dlg.fileAccepted.connect(onAcceptedCb)
     }
 
-    ElidedTextLabel {
-        Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+    Text {
 
-        eText: JamiStrings.security
-        fontSize: JamiTheme.headerFontSize
-        maxWidth: width
+        Layout.alignment: Qt.AlignLeft
+        Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins *2
+        Layout.preferredWidth: Math.min(350, root.width - JamiTheme.preferredMarginSize * 2)
+
+        text: JamiStrings.security
+        color: JamiTheme.textColor
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+
+        font.weight: Font.Medium
+        font.pixelSize: 22
+        font.kerning: true
     }
 
     ColumnLayout {
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         SettingMaterialButton {
             id: btnCACert
