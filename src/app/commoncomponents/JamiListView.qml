@@ -26,6 +26,8 @@ import net.jami.Models 1.1
 ListView {
     id: root
 
+    property alias verticalScrollBar: verticalScrollBar
+
     layer.mipmap: false
     clip: true
     maximumFlickVelocity: 1024
@@ -34,11 +36,6 @@ ListView {
         id: verticalScrollBar
 
         attachedFlickableMoving: root.moving
-    }
-
-    property bool isScrolling: verticalScrollBar.active
-    onIsScrollingChanged: {
-        JamiQmlUtils.isChatviewScrolling = isScrolling
     }
 
     Keys.onUpPressed: verticalScrollBar.decrease()
