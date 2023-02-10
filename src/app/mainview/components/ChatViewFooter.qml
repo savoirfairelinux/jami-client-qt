@@ -150,7 +150,11 @@ Rectangle {
                           ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml")
                           : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml")
                 messageBar.emojiPicker =
-                        component.createObject(messageBar, {x: setXposition(), y: setYposition()});
+                        component.createObject(messageBar, {
+                                                   x: setXposition(),
+                                                   y: setYposition(),
+                                                   listView: null
+                                               });
                 if (messageBar.emojiPicker === null) {
                     console.log("Error creating emojiPicker in chatViewFooter");
                 }
