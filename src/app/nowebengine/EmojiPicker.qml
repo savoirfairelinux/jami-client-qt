@@ -21,6 +21,8 @@ import QtQuick
 Rectangle {
     id: root
 
+    required property ListView listView
+
     signal emojiIsPicked(string content)
     function openEmojiPicker() {}
     function closeEmojiPicker() {}
