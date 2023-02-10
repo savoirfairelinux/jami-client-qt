@@ -376,6 +376,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f072f828_d9eb2751",
+        "filename": "src/app/mainview/components/ConversationListView.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-10T13:58:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fc2bf49_e3da903a",
+      "range": {
+        "startLine": 119,
+        "startChar": 17,
+        "endLine": 119,
+        "endChar": 40
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eaf0a13f_fdaad055",
