@@ -307,6 +307,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e668ae3_f8fcd803",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-10T18:37:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80986aa7_a1d7a6ad",
+      "range": {
+        "startLine": 295,
+        "startChar": 73,
+        "endLine": 296,
+        "endChar": 74
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d1571e1_cbc3e290",
