@@ -80,6 +80,30 @@
       "parentUuid": "4c4516ae_dee0e892",
       "revId": "010930febe2c28374c65e25c3147f08bdc2efecc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "798261fa_b54b5be6",
+        "filename": "src/app/accountadapter.h",
+        "patchSetId": 26
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-10T10:37:09Z",
+      "side": 0,
+      "message": "1. intended from https://review.jami.net/c/jami-client-qt/+/23821\n2. present in master, probably introduced with patch above.\n\nFix: https://review.jami.net/c/jami-client-qt/+/23886",
+      "parentUuid": "8da9bd74_706ffc40",
+      "range": {
+        "startLine": 53,
+        "startChar": 17,
+        "endLine": 53,
+        "endChar": 19
+      },
+      "revId": "010930febe2c28374c65e25c3147f08bdc2efecc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
