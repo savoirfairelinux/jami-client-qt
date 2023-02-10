@@ -22,6 +22,30 @@
       },
       "revId": "a0e2c4ac3073e8bf52c05d5b45288b53e1620f5b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3139aaf0_c1a1098c",
+        "filename": "src/app/os/macos/connectivitymonitor.mm",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2023-02-10T22:18:38Z",
+      "side": 1,
+      "message": "It is called regardless wifi state, when system wakes up. But but there is a delay, because mainapplication.cpp adding a delay before passing the signal to lrcInstance.",
+      "parentUuid": "ca8cc5e8_03e43285",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 13
+      },
+      "revId": "a0e2c4ac3073e8bf52c05d5b45288b53e1620f5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
