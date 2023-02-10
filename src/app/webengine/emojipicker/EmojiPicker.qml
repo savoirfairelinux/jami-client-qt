@@ -23,6 +23,7 @@ import Qt5Compat.GraphicalEffects
 import QtWebEngine
 import QtWebChannel
 
+import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
@@ -31,7 +32,16 @@ import "../"
 Popup {
     id: root
 
+    required property ListView listView
+
     signal emojiIsPicked(string content)
+
+    // Close the picker when attached to a listView that receives height/scroll
+    // property changes.
+    property real listViewHeight: listView ? listView.height : 0
+    onListViewHeightChanged: close()
+    property bool isScrolling: listView ? listView.verticalScrollBar.active : false
+    onIsScrollingChanged: close()
 
     function openEmojiPicker() {
         root.open()

@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
@@ -32,21 +33,78 @@ Popup {
     padding: 0
     background.visible: false
 
-    property string msgId
-    property string msg
-    property var emojiReplied
-    property bool out
-    property int type
+    required property string msgId
+    required property string msgBody
+    required property var emojiReplied
+    required property bool isOutgoing
+    required property int type
+    required property string transferName
+    required property Item msgBubble
+    required property ListView listView
+
     property string transferId: msgId
-    property string location: Body
-    property string transferName
+    property string location: msgBody
     property bool closeWithoutAnimation: false
+    property var emojiPicker
+
+    function xPositionProvider(width) {
+        // Use the width at function scope to retrigger property evaluation.
+        const listViewWidth = listView.width
+        if (isOutgoing) {
+            const leftMargin = msgBubble.mapToItem(listView, 0, 0).x
+            return width > leftMargin ? -leftMargin : -width
+        } else {
+            const rightMargin = listViewWidth - (msgBubble.x + msgBubble.width)
+            return width > rightMargin ? msgBubble.width - width : msgBubble.width
+        }
+    }
+    function yPositionProvider(height) {
+        const topOffset = msgBubble.mapToItem(listView, 0, 0).y
+        if (topOffset < 0) return -topOffset
+        const bottomOffset = topOffset + height - listView.height
+        if (bottomOffset > 0) return -bottomOffset
+        return 0
+    }
+    x: xPositionProvider(width)
+    y: yPositionProvider(height)
 
     signal addMoreEmoji
-
-    onOpened: {
-        root.closeWithoutAnimation = false
+    onAddMoreEmoji: {
+        JamiQmlUtils.updateMessageBarButtonsPoints()
+        openEmojiPicker()
     }
+
+    function openEmojiPicker() {
+        var component =  WITH_WEBENGINE ?
+                    Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") :
+                    Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml")
+        emojiPicker = component.createObject(root.parent, { listView: listView })
+        emojiPicker.emojiIsPicked.connect(function(content) {
+            if (emojiReplied.includes(content)) {
+                MessagesAdapter.removeEmojiReaction(CurrentConversation.id, content, msgId)
+            } else {
+                MessagesAdapter.addEmojiReaction(CurrentConversation.id, content, msgId)
+            }
+        })
+        if (emojiPicker !== null) {
+            root.opacity = 0
+            emojiPicker.closed.connect(() => close())
+            emojiPicker.x = xPositionProvider(JamiTheme.emojiPickerWidth)
+            emojiPicker.y = yPositionProvider(JamiTheme.emojiPickerHeight)
+            emojiPicker.open()
+        } else {
+            console.log("Error creating emojiPicker from message options popup");
+        }
+    }
+
+    // Close the picker when listView vertical properties change.
+    property real listViewHeight: listView.height
+    onListViewHeightChanged: close()
+    property bool isScrolling: listView.verticalScrollBar.active
+    onIsScrollingChanged: close()
+
+    onOpened: root.closeWithoutAnimation = false
+    onClosed: if (emojiPicker) emojiPicker.closeEmojiPicker()
 
     function getModel() {
         var model = ["👍", "👎", "😂"]
@@ -132,7 +190,7 @@ Popup {
                     onClicked: {
                         root.closeWithoutAnimation = true
                         root.addMoreEmoji()
-                        close()
+                        //close()
                     }
                 }
             }
@@ -152,7 +210,7 @@ Popup {
                 Layout.fillWidth: true
                 Layout.margins: 5
                 onClicked: {
-                    UtilsAdapter.setClipboardText(msg)
+                    UtilsAdapter.setClipboardText(msgBody)
                     close()
                 }
             }
@@ -184,7 +242,7 @@ Popup {
             MessageOptionButton {
                 id: buttonEdit
 
-                visible: root.out && type === Interaction.Type.TEXT
+                visible: root.isOutgoing && type === Interaction.Type.TEXT
                 textButton: JamiStrings.editMessage
                 iconSource: JamiResources.edit_svg
                 Layout.fillWidth: true
@@ -198,7 +256,7 @@ Popup {
             }
 
             MessageOptionButton {
-                visible: root.out && type === Interaction.Type.TEXT
+                visible: root.isOutgoing && type === Interaction.Type.TEXT
                 textButton: JamiStrings.deleteMessage
                 iconSource: JamiResources.delete_svg
                 Layout.fillWidth: true
