@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
@@ -32,21 +33,88 @@ Popup {
     padding: 0
     background.visible: false
 
-    property string msgId
-    property string msg
-    property var emojiReplied
-    property bool out
-    property int type
+    required property string msgId
+    required property string msgBody
+    required property var emojiReplied
+    required property bool isOutgoing
+    required property int type
+    required property string transferName
+    required property Item msgBubble
+    required property Item delegate
+
     property string transferId: msgId
-    property string location: Body
-    property string transferName
+    property string location: msgBody
     property bool closeWithoutAnimation: false
+    property var emojiPicker
+
+    function xPositionProvider(width) {
+        if (isOutgoing) {
+            const leftMargin = msgBubble.mapToItem(root_delegate, 0, 0).x
+            return width > leftMargin ? -leftMargin : -width
+        } else {
+            const bubbleRightX = msgBubble.x + msgBubble.width
+            const rightMargin = root_delegate.width -
+                              msgBubble.mapToItem(root_delegate, bubbleRightX, 0).x
+            print(width, rightMargin)
+            return width > rightMargin ? root_delegate.width - msgBubble.width :
+                                         msgBubble.width
+        }
+    }
+    function yPositionProvider(height) {
+//        var bottomOffset = 0
+//        if (JamiQmlUtils.messageBarButtonsRowObj) {
+//            bottomOffset = JamiQmlUtils.messageBarButtonsRowObj.height
+//        }
+//        var mappedCoord = bubble.mapToItem(appWindow.contentItem, 0, 0)
+//        var distBottomScreen = appWindow.height - mappedCoord.y - height - bottomOffset
+//        if (distBottomScreen < 0) {
+//            return distBottomScreen
+//        }
+//        var topOffset = 0
+//        if (JamiQmlUtils.messagingHeaderRectRowLayout) {
+//            topOffset = JamiQmlUtils.messagingHeaderRectRowLayout.height
+//        }
+//        var distTopScreen = mappedCoord.y - topOffset
+//        if (distTopScreen < 0)
+//            return -distTopScreen
+        return 0
+    }
+    x: xPositionProvider(width)
+    y: yPositionProvider(height)
 
     signal addMoreEmoji
-
-    onOpened: {
-        root.closeWithoutAnimation = false
+    onAddMoreEmoji: {
+        JamiQmlUtils.updateMessageBarButtonsPoints()
+        openEmojiPicker()
     }
+
+    function openEmojiPicker() {
+        var component =  WITH_WEBENGINE
+                  ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml")
+                  : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml")
+        emojiPicker = component.createObject(root.parent)
+        emojiPicker.emojiIsPicked.connect(function(content) {
+            if (emojiReplied.includes(content)) {
+                MessagesAdapter.removeEmojiReaction(CurrentConversation.id, content, msgId)
+            } else {
+                MessagesAdapter.addEmojiReaction(CurrentConversation.id, content, msgId)
+            }
+        })
+        if (emojiPicker !== null) {
+            emojiPicker.closed.connect(() => close())
+            emojiPicker.x = Qt.binding(() => xPositionProvider(emojiPicker.width))
+            emojiPicker.y = Qt.binding(() => xPositionProvider(emojiPicker.height))
+            emojiPicker.open()
+        } else {
+            console.log("Error creating emojiPicker from message options popup");
+        }
+    }
+
+    property bool isScrolling: JamiQmlUtils.isChatviewScrolling
+    onIsScrollingChanged: close()
+
+    onOpened: root.closeWithoutAnimation = false
+    onClosed: if (emojiPicker) emojiPicker.closeEmojiPicker()
 
     function getModel() {
         var model = ["👍", "👎", "😂"]
@@ -132,7 +200,7 @@ Popup {
                     onClicked: {
                         root.closeWithoutAnimation = true
                         root.addMoreEmoji()
-                        close()
+                        //close()
                     }
                 }
             }
@@ -152,7 +220,7 @@ Popup {
                 Layout.fillWidth: true
                 Layout.margins: 5
                 onClicked: {
-                    UtilsAdapter.setClipboardText(msg)
+                    UtilsAdapter.setClipboardText(msgBody)
                     close()
                 }
             }
@@ -184,7 +252,7 @@ Popup {
             MessageOptionButton {
                 id: buttonEdit
 
-                visible: root.out && type === Interaction.Type.TEXT
+                visible: root.isOutgoing && type === Interaction.Type.TEXT
                 textButton: JamiStrings.editMessage
                 iconSource: JamiResources.edit_svg
                 Layout.fillWidth: true
@@ -198,7 +266,7 @@ Popup {
             }
 
             MessageOptionButton {
-                visible: root.out && type === Interaction.Type.TEXT
+                visible: root.isOutgoing && type === Interaction.Type.TEXT
                 textButton: JamiStrings.deleteMessage
                 iconSource: JamiResources.delete_svg
                 Layout.fillWidth: true

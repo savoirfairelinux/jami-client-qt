@@ -26,7 +26,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 Control {
-    id: root
+    id: root_delegate
 
     property alias avatarBlockWidth: avatarBlock.width
     property alias innerContent: innerContent
@@ -71,10 +71,10 @@ Control {
         TimestampInfo {
             id: timestampItem
 
-            showDay: root.showDay
-            showTime: root.showTime
-            formattedTime: root.formattedTime
-            formattedDay: root.formattedDay
+            showDay: root_delegate.showDay
+            showTime: root_delegate.showTime
+            formattedTime: root_delegate.formattedTime
+            formattedDay: root_delegate.formattedDay
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -101,7 +101,7 @@ Control {
         RowLayout {
             id: msgRowlayout
 
-            Layout.preferredHeight: innerContent.height + root.extraHeight
+            Layout.preferredHeight: innerContent.height + root_delegate.extraHeight
             Layout.topMargin: (seq === MsgSeq.first || seq === MsgSeq.single) ? 6 : 0
 
             Item {
@@ -115,7 +115,7 @@ Control {
                     anchors.bottom: parent.bottom
                     width: avatarSize
                     height: avatarSize
-                    imageId: root.author
+                    imageId: root_delegate.author
                     showPresenceIndicator: false
                     mode: Avatar.Mode.Contact
                 }
@@ -133,8 +133,8 @@ Control {
                     anchors.fill: bubble
                     hoverEnabled: true
                     onClicked: function (mouse) {
-                        if (root.hoveredLink) {
-                            MessagesAdapter.openUrl(root.hoveredLink)
+                        if (root_delegate.hoveredLink) {
+                            MessagesAdapter.openUrl(root_delegate.hoveredLink)
                         }
                     }
                     property bool bubbleHovered: containsMouse || textHovered
@@ -184,9 +184,18 @@ Control {
                         height: optionButtonItem.height
 
                         onClicked: {
-                            messageOptionPopup.open()
-                            messageOptionPopup.x = messageOptionPopup.setXposition(messageOptionPopup.width)
-                            messageOptionPopup.y = messageOptionPopup.setYposition(messageOptionPopup.height)
+                            var component = Qt.createComponent("qrc:/commoncomponents/MessageOptionsPopup.qml")
+                            var obj = component.createObject(bubble, {
+                                                                 "emojiReplied": Qt.binding(() => emojiReaction.emojiTexts),
+                                                                 "isOutgoing": isOutgoing,
+                                                                 "msgId": Id,
+                                                                 "msgBody": Body,
+                                                                 "type": Type,
+                                                                 "transferName": TransferName,
+                                                                 "msgBubble": bubble,
+                                                                 "delegate": root_delegate
+                                                             })
+                            obj.open()
                         }
                     }
 
@@ -214,103 +223,6 @@ Control {
                     }
                 }
 
-                ChatviewMessageOptions {
-                    id: messageOptionPopup
-
-                    emojiReplied: emojiReaction.emojiTexts
-                    out: isOutgoing
-                    msgId: Id
-                    msg: Body
-                    type: Type
-                    transferName: TransferName
-                    visible: false
-
-                    property bool isScrolling: JamiQmlUtils.isChatviewScrolling
-                    property real rootWidth: root.width
-                    property var emojiPicker
-
-                    onIsScrollingChanged: {
-                        messageOptionPopup.close()
-                        if (messageOptionPopup.emojiPicker)
-                            messageOptionPopup.emojiPicker.closeEmojiPicker()
-                    }
-
-                    onAddMoreEmoji: {
-                        JamiQmlUtils.updateMessageBarButtonsPoints()
-                        openEmojiPicker()
-                    }
-
-                    onRootWidthChanged: {
-                        if (emojiPicker)
-                            emojiPicker.x = setXposition(JamiTheme.emojiPickerWidth)
-                        messageOptionPopup.x = setXposition(width)
-                        messageOptionPopup.y = setYposition(height)
-                    }
-
-                    Connections {
-                        target: messageOptionPopup.emojiPicker ? messageOptionPopup.emojiPicker : null
-                        function onEmojiIsPicked(content) {
-                            if (messageOptionPopup.emojiReplied.includes(content))
-                                MessagesAdapter.removeEmojiReaction(CurrentConversation.id,content,messageOptionPopup.msgId)
-                            else
-                                MessagesAdapter.addEmojiReaction(CurrentConversation.id,content,messageOptionPopup.msgId)
-                        }
-                    }
-
-                    function openEmojiPicker() {
-                        var component =  WITH_WEBENGINE
-                                  ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml")
-                                  : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml")
-                        messageOptionPopup.emojiPicker = component.createObject(msgRowlayout,
-                                                                                {
-                                                                                 x: setXposition(JamiTheme.emojiPickerWidth),
-                                                                                 y: setYposition(JamiTheme.emojiPickerHeight)
-                                                                                });
-                        if (messageOptionPopup.emojiPicker !== null) {
-                            messageOptionPopup.emojiPicker.open()
-                        } else {
-                            console.log("Error creating emojiPicker in SBSMessageBase");
-                        }
-                    }
-
-                    function setXposition(width) {
-
-                        var distBorders = root.width - bubble.width - width
-                        if (isOutgoing) {
-                            if (distBorders > 0)
-                                x = bubble.x - width
-                            else
-                                x = bubble.x
-                        } else {
-                            if (distBorders > 0)
-                                x = bubble.x + bubble.width
-                            else
-                                x = bubble.x + bubble.width - width
-                        }
-                        return x
-                    }
-
-                    function setYposition(height) {
-                        var bottomOffset = 0
-                        if (JamiQmlUtils.messageBarButtonsRowObj) {
-                            bottomOffset = JamiQmlUtils.messageBarButtonsRowObj.height
-                        }
-                        var mappedCoord = bubble.mapToItem(appWindow.contentItem, 0, 0)
-                        var distBottomScreen = appWindow.height - mappedCoord.y - height - bottomOffset
-                        if (distBottomScreen < 0) {
-                            return distBottomScreen
-                        }
-                        var topOffset = 0
-                        if (JamiQmlUtils.messagingHeaderRectRowLayout) {
-                            topOffset = JamiQmlUtils.messagingHeaderRectRowLayout.height
-                        }
-                        var distTopScreen = mappedCoord.y - topOffset
-                        if (distTopScreen < 0)
-                            return -distTopScreen
-                        return 0
-                    }
-                }
-
                 MessageBubble {
                     id: bubble
 
@@ -321,7 +233,8 @@ Control {
                     function getBaseColor() {
                         var baseColor = isOutgoing ? JamiTheme.messageOutBgColor
                                                    : CurrentConversation.isCoreDialog ?
-                                                         JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+                                                         JamiTheme.messageInBgColor :
+                                                         Qt.lighter(CurrentConversation.color, 1.5)
                         if (Id === MessagesAdapter.replyToId || Id === MessagesAdapter.editId) {
                             // If we are replying to or editing the message
                             return Qt.darker(baseColor, 1.5)
@@ -333,7 +246,7 @@ Control {
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
                     width: innerContent.childrenRect.width
-                    height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
+                    height: innerContent.childrenRect.height + (visible ? root_delegate.extraHeight : 0)
                 }
 
                 Rectangle {
@@ -389,7 +302,7 @@ Control {
                 Connections {
                     target: CurrentConversation
                     function onScrollTo(id) {
-                        if (id !== root.id)
+                        if (id !== root_delegate.id)
                             return
                         selectAnimation.start()
                     }
@@ -418,19 +331,19 @@ Control {
                 ReadStatus {
                     id: readsOne
 
-                    visible: root.readers.length === 1 && CurrentAccount.sendReadReceipt
+                    visible: root_delegate.readers.length === 1 && CurrentAccount.sendReadReceipt
 
                     width: {
-                        if (root.readers.length === 0)
+                        if (root_delegate.readers.length === 0)
                             return 0
-                        var nbAvatars = root.readers.length
+                        var nbAvatars = root_delegate.readers.length
                         var margin = JamiTheme.avatarReadReceiptSize / 3
                         return nbAvatars * JamiTheme.avatarReadReceiptSize - (nbAvatars - 1) * margin
                     }
                     height: JamiTheme.avatarReadReceiptSize
 
                     anchors.bottom: parent.bottom
-                    readers: root.readers
+                    readers: root_delegate.readers
                 }
             }
         }
@@ -469,11 +382,11 @@ Control {
 
             ReadStatus {
                 id: readsMultiple
-                visible: root.readers.length > 1 && CurrentAccount.sendReadReceipt
+                visible: root_delegate.readers.length > 1 && CurrentAccount.sendReadReceipt
                 width: {
-                    if (root.readers.length === 0)
+                    if (root_delegate.readers.length === 0)
                         return 0
-                    var nbAvatars = root.readers.length
+                    var nbAvatars = root_delegate.readers.length
                     var margin = JamiTheme.avatarReadReceiptSize / 3
                     return nbAvatars * JamiTheme.avatarReadReceiptSize - (nbAvatars - 1) * margin
                 }
@@ -481,7 +394,7 @@ Control {
                 anchors.right: parent.right
                 anchors.top : parent.top
                 anchors.topMargin: 1
-                readers: root.readers
+                readers: root_delegate.readers
             }
         }
     }

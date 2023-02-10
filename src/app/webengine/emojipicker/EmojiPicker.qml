@@ -23,6 +23,7 @@ import Qt5Compat.GraphicalEffects
 import QtWebEngine
 import QtWebChannel
 
+import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
@@ -32,6 +33,9 @@ Popup {
     id: root
 
     signal emojiIsPicked(string content)
+
+    property bool isScrolling: JamiQmlUtils.isChatviewScrolling
+    onIsScrollingChanged: close()
 
     function openEmojiPicker() {
         root.open()

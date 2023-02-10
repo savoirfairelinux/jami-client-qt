@@ -130,6 +130,10 @@ JamiListView {
             item.seq = MsgSeq.middle
     }
 
+    // Used to close popups etc.
+    property bool isScrolling: verticalScrollBar.active
+    onIsScrollingChanged: JamiQmlUtils.isChatviewScrolling = isScrolling
+
     // fade-in mechanism
     Component.onCompleted: fadeAnimation.start()
     Rectangle {
