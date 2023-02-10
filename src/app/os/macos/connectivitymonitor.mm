@@ -17,14 +17,46 @@
  */
 
 #include <CoreFoundation/CoreFoundation.h>
+#include <AppKit/AppKit.h>
 #include <IOKit/pwr_mgt/IOPMLib.h>
 #include <SystemConfiguration/SystemConfiguration.h>
 
 #include "connectivitymonitor.h"
 #include <QDebug>
 
+typedef void(^SystemMonitorCallback)(void);
+
+@interface SystemMonitor: NSObject
+
+-(void)startWithCallBack:(SystemMonitorCallback) callback;
+@property (nonatomic, copy) SystemMonitorCallback callback;
+
+@end
+
+@implementation SystemMonitor
+
+-(void)startWithCallBack:(SystemMonitorCallback)callback {
+    self.callback = callback;
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                                     selector: @selector(receiveWakeNotification:)
+      name: NSWorkspaceDidWakeNotification object: NULL];
+}
+
+- (void)receiveWakeNotification:(NSNotification*)note
+{
+    _callback();
+}
+
+-(void)dealloc {
+    [_callback release], _callback = nil;
+    [super dealloc];
+}
+
+@end
+
 dispatch_queue_t scNetworkQueue;
 SCNetworkReachabilityRef currentReachability;
+SystemMonitor* systemMonitor;
 
 static void ReachabilityCallback(SCNetworkReachabilityRef __unused target, SCNetworkConnectionFlags flags, void* info)
 {
@@ -36,6 +68,10 @@ ConnectivityMonitor::ConnectivityMonitor(QObject* parent)
     : QObject(parent)
 {
     scNetworkQueue = dispatch_queue_create("scNetworkReachability", DISPATCH_QUEUE_SERIAL);
+    systemMonitor = [[SystemMonitor alloc] init];
+    [systemMonitor startWithCallBack: ^(void) {
+        Q_EMIT connectivityChanged();
+    }];
     SCNetworkReachabilityRef reachabilityRef = NULL;
        void (^callbackBlock)(SCNetworkReachabilityFlags) = ^(SCNetworkReachabilityFlags flags) {
            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -61,7 +97,6 @@ ConnectivityMonitor::~ConnectivityMonitor()
 {
     SCNetworkReachabilitySetCallback(currentReachability, NULL, NULL);
     currentReachability = NULL;
-    qDebug() << "Destroying connectivity monitor";
 }
 
 bool
