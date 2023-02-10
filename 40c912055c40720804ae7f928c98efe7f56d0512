@@ -354,6 +354,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3fc2bf49_e3da903a",
+        "filename": "src/app/mainview/components/ConversationListView.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-10T00:42:00Z",
+      "side": 1,
+      "message": "that\u0027s the remainder of the preceding TODO",
+      "parentUuid": "0332ad13_d640ed61",
+      "range": {
+        "startLine": 119,
+        "startChar": 17,
+        "endLine": 119,
+        "endChar": 40
+      },
+      "revId": "40c912055c40720804ae7f928c98efe7f56d0512",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eaf0a13f_fdaad055",
         "filename": "src/app/settingsview/components/AdvancedSIPSecuritySettings.qml",
         "patchSetId": 26
