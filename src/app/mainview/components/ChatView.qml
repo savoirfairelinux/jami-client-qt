@@ -52,6 +52,9 @@ Rectangle {
     onVisibleChanged: {
         if (visible)
             return
+        swarmDetailsPanel.visible = false
+        addMemberPanel.visible = false
+        chatContents.visible = true
         UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id)
     }
 
