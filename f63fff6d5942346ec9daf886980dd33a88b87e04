@@ -46,6 +46,30 @@
       },
       "revId": "f63fff6d5942346ec9daf886980dd33a88b87e04",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d62f31f2_c0762665",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 31
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-11T13:24:09Z",
+      "side": 1,
+      "message": "Done. I confirm it\u0027s working on patchset 31",
+      "parentUuid": "8588cbfb_950b6413",
+      "range": {
+        "startLine": 9,
+        "startChar": 15,
+        "endLine": 9,
+        "endChar": 30
+      },
+      "revId": "f63fff6d5942346ec9daf886980dd33a88b87e04",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

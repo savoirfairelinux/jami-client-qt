@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e10075f6_85799da4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-11T13:24:09Z",
+      "side": 1,
+      "message": "If at least someone else can validate this big monster.\n\nOnly thing I don\u0027t like is the check of null + undefined, but can be changed later.",
+      "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
