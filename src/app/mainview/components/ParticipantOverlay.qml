@@ -106,7 +106,7 @@ Item {
 
     Rectangle {
         z: -1
-        border.color: JamiTheme.buttonTintedBlue
+        border.color: voiceActive ? JamiTheme.buttonTintedBlue : "yellow"
         border.width: 2
         color: "transparent"
         radius: 10
