@@ -34,7 +34,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="1152"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Foto ekrani</translation>
     </message>
 </context>
 <context>
@@ -888,17 +888,18 @@ Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translatio
         <location filename="../src/app/constant/JamiStrings.qml" line="523"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation type="unfinished"/>
+        <translation>U gjet një version i ri i Jami-t
+Do të donit të përditësohet tani?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
         <source>Save recordings to</source>
-        <translation type="unfinished"/>
+        <translation>Incizimet ruaji te</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>Save screenshots to</source>
-        <translation type="unfinished"/>
+        <translation>Fotot e ekranit ruaji te</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
@@ -1451,12 +1452,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Screenshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Fotoja e ekranit u ruajt te %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Renderers information</source>
-        <translation type="unfinished"/>
+        <translation>Hollësi vizatuesish</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
@@ -1501,7 +1502,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="314"/>
         <source>Renderer id</source>
-        <translation type="unfinished"/>
+        <translation>ID vizatuesi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
@@ -1565,7 +1566,7 @@ Mundet ende të merret vendndodhja e pjesëmarrësve të tjerë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
-        <translation type="unfinished"/>
+        <translation>Fiksoni hartën, që të jeni në gjendje t’u tregoni të tjerëve vendndodhje, ose për të çaktivizuar tregim vendndodhje për biseda të caktuara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
@@ -1660,7 +1661,7 @@ Mundet ende të merret vendndodhja e pjesëmarrësve të tjerë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="355"/>
         <source>Deleted message</source>
-        <translation type="unfinished"/>
+        <translation>Mesazh i fshirë</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
@@ -3438,7 +3439,7 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="203"/>
         <source>Mouse middle click</source>
-        <translation type="unfinished"/>
+        <translation>Klikim me butonin e mesit të miut</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="204"/>

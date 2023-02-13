@@ -34,7 +34,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="1152"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Screenshot</translation>
     </message>
 </context>
 <context>
@@ -943,17 +943,18 @@ Wenn ja, wird diesem Konto nur ein zufällig generierter 40-stellige Identifikat
         <location filename="../src/app/constant/JamiStrings.qml" line="523"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation type="unfinished"/>
+        <translation>Eine neue Version von Jami wurde gefunden
+Möchten Sie jetzt updaten?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
         <source>Save recordings to</source>
-        <translation type="unfinished"/>
+        <translation>Aufzeichnungen speichern unter</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>Save screenshots to</source>
-        <translation type="unfinished"/>
+        <translation>Screenshots speichern unter</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="589"/>
@@ -1315,12 +1316,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Screenshot-Grafik erstellen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Screenshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation> Screenshot in %1 gespeichert</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
@@ -1529,7 +1530,7 @@ Der Standort anderer Teilnehmer kann weiterhin empfangen werden.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="355"/>
         <source>Deleted message</source>
-        <translation type="unfinished"/>
+        <translation>Gelöschte Nachricht</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
@@ -1832,12 +1833,12 @@ Bitte versuchen Sie es später erneut.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="460"/>
         <source>Banned</source>
-        <translation>gesperrt</translation>
+        <translation>Blockiert</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="462"/>
         <source>Banned contacts</source>
-        <translation>Gesperrte Kontakte</translation>
+        <translation>Blockiert Kontakte</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="469"/>
@@ -2682,12 +2683,12 @@ Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="459"/>
         <source>Display banned contacts</source>
-        <translation>Gesperrte Kontakte anzeigen</translation>
+        <translation>Blockierte Kontakte anzeigen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="461"/>
         <source>Hide banned contacts</source>
-        <translation>Gesperrte Kontakte ausblenden</translation>
+        <translation>Blockierte Kontakte ausblenden</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="465"/>
@@ -3446,12 +3447,12 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="203"/>
         <source>Mouse middle click</source>
-        <translation type="unfinished"/>
+        <translation>Maus-Mittelklick</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="204"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Screenshot-Grafik erstellen</translation>
     </message>
 </context>
 <context>

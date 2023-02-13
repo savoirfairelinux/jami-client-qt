@@ -34,7 +34,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="1152"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano kopija</translation>
     </message>
 </context>
 <context>
@@ -185,17 +185,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
         <source>Display QR code</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti QR kodą</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="62"/>
         <source>Open settings</source>
-        <translation type="unfinished"/>
+        <translation>Atverti nustatymus</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="63"/>
         <source>Close settings</source>
-        <translation type="unfinished"/>
+        <translation>Užverti nustatymus</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="64"/>
@@ -235,7 +235,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
         <source>JAMS server</source>
-        <translation type="unfinished"/>
+        <translation>JAMS serveris</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="76"/>
@@ -315,17 +315,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
         <source>Certificate File (*.crt)</source>
-        <translation type="unfinished"/>
+        <translation>Liudijimo failas (*.crt)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
         <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation type="unfinished"/>
+        <translation>Garso failas (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
         <source>Chat Settings</source>
-        <translation type="unfinished"/>
+        <translation>Pokalbio nustatymai</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="98"/>
@@ -445,7 +445,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="126"/>
         <source>Key File (*.key)</source>
-        <translation type="unfinished"/>
+        <translation>Rakto failas (*.key)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
@@ -515,7 +515,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="144"/>
         <source>Public address</source>
-        <translation type="unfinished"/>
+        <translation>Viešasis adresas</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="145"/>
@@ -646,7 +646,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="180"/>
         <source>Audio and Video Settings</source>
-        <translation type="unfinished"/>
+        <translation>Garso ir vaizdo nustatymai</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="181"/>
@@ -691,7 +691,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="191"/>
         <source>Audio manager</source>
-        <translation type="unfinished"/>
+        <translation>Garso tvarkytuvė</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="194"/>
@@ -741,7 +741,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="203"/>
         <source>Screen Sharing</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano bendrinimas</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="204"/>
@@ -882,7 +882,8 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
         <location filename="../src/app/constant/JamiStrings.qml" line="523"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation type="unfinished"/>
+        <translation>Prieinama nauja Jami versija
+Ar norėtumėte atnaujinti dabar?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
@@ -1149,12 +1150,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
         <source>Pause call</source>
-        <translation type="unfinished"/>
+        <translation>Pristabdyti skambutį</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
         <source>Resume call</source>
-        <translation type="unfinished"/>
+        <translation>Pratęsti skambutį</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="238"/>
@@ -1189,7 +1190,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
         <source>More options</source>
-        <translation type="unfinished"/>
+        <translation>Daugiau parinkčių</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
@@ -1340,7 +1341,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="278"/>
         <source>Contact details</source>
-        <translation type="unfinished"/>
+        <translation>Išsamiau apie adresatą</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
@@ -1415,7 +1416,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="295"/>
         <source>Advanced information</source>
-        <translation type="unfinished"/>
+        <translation>Išplėstinė informacija</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
@@ -1435,7 +1436,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
         <source>Layout settings</source>
-        <translation type="unfinished"/>
+        <translation>Išdėstymo nustatymai</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
@@ -1445,7 +1446,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Screenshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano kopija įrašyta į %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
@@ -1475,12 +1476,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
         <source>Video codec</source>
-        <translation type="unfinished"/>
+        <translation>Vaizdo kodekas</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="311"/>
         <source>Hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Aparatinės įrangos spartinimas</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
@@ -1490,7 +1491,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source>Audio codec</source>
-        <translation type="unfinished"/>
+        <translation>Garso kodekas</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="314"/>
@@ -1592,12 +1593,12 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
         <source>Unpin</source>
-        <translation type="unfinished"/>
+        <translation>Atsegti</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
         <source>Pin</source>
-        <translation type="unfinished"/>
+        <translation>Prisegti</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="342"/>
@@ -1642,7 +1643,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
         <source>The account is disabled</source>
-        <translation type="unfinished"/>
+        <translation>Paskyra yra išjungta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="354"/>
@@ -1662,22 +1663,22 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="359"/>
         <source>{} is typing…</source>
-        <translation type="unfinished"/>
+        <translation>{} rašo…</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="360"/>
         <source>{} are typing…</source>
-        <translation type="unfinished"/>
+        <translation>{} rašo…</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="361"/>
         <source>Several people are typing…</source>
-        <translation type="unfinished"/>
+        <translation>Keli žmonės rašo…</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
         <source> and </source>
-        <translation type="unfinished"/>
+        <translation> ir </translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="365"/>
@@ -1707,7 +1708,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
         <source>Creating account…</source>
-        <translation type="unfinished"/>
+        <translation>Kuriama paskyra…</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="371"/>
@@ -1744,7 +1745,7 @@ Other participants&apos; location can still be received.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="431"/>
         <source>Encrypt account with password</source>
-        <translation type="unfinished"/>
+        <translation>Šifruoti paskyrą slaptažodžiu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="380"/>
@@ -1894,12 +1895,12 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
         <source>Display advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti išplėstinius nustatymus</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="428"/>
         <source>Hide advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>Slėpti išplėstinius nustatymus</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="429"/>
@@ -1909,7 +1910,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="430"/>
         <source>Advanced account settings</source>
-        <translation type="unfinished"/>
+        <translation>Išplėstiniai paskyros nustatymai</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="432"/>
@@ -2187,7 +2188,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
         <source>SSL error</source>
-        <translation type="unfinished"/>
+        <translation>SSL klaida</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
@@ -2318,7 +2319,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="565"/>
         <source>Media settings</source>
-        <translation type="unfinished"/>
+        <translation>Medijos nustatymai</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
@@ -2812,7 +2813,7 @@ Nukopijuokite ir dalinkitės juo su draugais!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="700"/>
         <source>Advanced features</source>
-        <translation type="unfinished"/>
+        <translation>Išplėstinės ypatybės</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="701"/>
@@ -2827,7 +2828,7 @@ Nukopijuokite ir dalinkitės juo su draugais!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="703"/>
         <source>Connect to a JAMS server</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungti prie JAMS serverio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="704"/>
@@ -3371,7 +3372,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="144"/>
         <source>Media settings</source>
-        <translation type="unfinished"/>
+        <translation>Medijos nustatymai</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="149"/>

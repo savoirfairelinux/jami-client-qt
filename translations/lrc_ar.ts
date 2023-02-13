@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="556"/>
         <source>Me</source>
-        <translation type="unfinished"/>
+        <translation>أنا</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="608"/>
@@ -2147,7 +2147,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="514"/>
         <source>Me</source>
-        <translation type="unfinished"/>
+        <translation>أنا</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="517"/>

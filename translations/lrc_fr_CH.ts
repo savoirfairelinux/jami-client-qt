@@ -34,7 +34,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="1152"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Capture d&apos;écran</translation>
     </message>
 </context>
 <context>
@@ -889,17 +889,18 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
         <location filename="../src/app/constant/JamiStrings.qml" line="523"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation type="unfinished"/>
+        <translation>Une nouvelle version de Jami est disponible.
+Souhaitez-vous mettre à jour Jami maintenant.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
         <source>Save recordings to</source>
-        <translation type="unfinished"/>
+        <translation>Sauvegarder l&apos;enregistrement sur </translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>Save screenshots to</source>
-        <translation type="unfinished"/>
+        <translation>Sauvegarder les captures d&apos;écran dans</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
@@ -1447,12 +1448,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Prendre une capture d&apos;écran de la tuile</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Screenshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Capture d&apos;écran sauvegardée dans %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
@@ -1502,7 +1503,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="314"/>
         <source>Renderer id</source>
-        <translation type="unfinished"/>
+        <translation>Identifiant du rendu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
@@ -1587,12 +1588,12 @@ Veuillez vérifier votre connection Internet.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
         <source>Extend</source>
-        <translation type="unfinished"/>
+        <translation>Étendu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="337"/>
         <source>Drag</source>
-        <translation type="unfinished"/>
+        <translation>Glisser</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
@@ -1662,7 +1663,7 @@ Veuillez vérifier votre connection Internet.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="355"/>
         <source>Deleted message</source>
-        <translation type="unfinished"/>
+        <translation>Message supprimé</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
@@ -3438,12 +3439,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="203"/>
         <source>Mouse middle click</source>
-        <translation type="unfinished"/>
+        <translation>Clic central de la souris</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="204"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Prendre une capture d&apos;écran de la tuile</translation>
     </message>
 </context>
 <context>
@@ -3497,7 +3498,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="68"/>
         <source>%1m%2sec</source>
-        <translation type="unfinished"/>
+        <translation>%1m%2sec</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="70"/>

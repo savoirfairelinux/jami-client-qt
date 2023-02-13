@@ -34,7 +34,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="1152"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Schermata</translation>
     </message>
 </context>
 <context>
@@ -888,17 +888,18 @@ Il profilo può essere modificato in qualsiasi momento nelle impostazioni dell&a
         <location filename="../src/app/constant/JamiStrings.qml" line="523"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation type="unfinished"/>
+        <translation>È stata trovata una nuova versione di Jami.
+Vuoi aggiornare ora?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
         <source>Save recordings to</source>
-        <translation type="unfinished"/>
+        <translation>Salva le registrazioni in</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>Save screenshots to</source>
-        <translation type="unfinished"/>
+        <translation>Salva le schermate in</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
@@ -1446,12 +1447,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Acquisisci una schermata</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Screenshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Schermata salvata in %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
@@ -1660,7 +1661,7 @@ Nelle impostazioni del dispositivo, attivare &quot;Servizi di localizzazione&quo
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="355"/>
         <source>Deleted message</source>
-        <translation type="unfinished"/>
+        <translation>Messaggio cancellato</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
@@ -3438,12 +3439,12 @@ si connetta per sincronizzare la conversazione.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="203"/>
         <source>Mouse middle click</source>
-        <translation type="unfinished"/>
+        <translation>Clic centrale del mouse</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="204"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Acquisisci una schermata</translation>
     </message>
 </context>
 <context>

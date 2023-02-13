@@ -34,7 +34,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="1152"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Captură de ecran</translation>
     </message>
 </context>
 <context>
@@ -943,17 +943,18 @@ Dacă da, acestui cont îi va fi atribuit doar un identificator de 40 de caracte
         <location filename="../src/app/constant/JamiStrings.qml" line="523"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation type="unfinished"/>
+        <translation>Jami are o versiune nouă.
+ Vrei să actualizezi acum?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
         <source>Save recordings to</source>
-        <translation type="unfinished"/>
+        <translation>Salvează înregistrările în</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>Save screenshots to</source>
-        <translation type="unfinished"/>
+        <translation>Salvează capturile de ecran în</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="589"/>
@@ -1315,12 +1316,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Fă o captură de ecran</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Screenshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Captură de ecran salvată în %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
@@ -1529,7 +1530,7 @@ Poziția celorlalți participanți poate fi primită în continuare.</translatio
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="355"/>
         <source>Deleted message</source>
-        <translation type="unfinished"/>
+        <translation>Mesaj șters</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
@@ -3445,12 +3446,12 @@ Copiază-l și distribuie-l prietenilor!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="203"/>
         <source>Mouse middle click</source>
-        <translation type="unfinished"/>
+        <translation>Clic-mijloc pe maus</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="204"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Fă o captură de ecran</translation>
     </message>
 </context>
 <context>
