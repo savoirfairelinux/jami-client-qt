@@ -57,12 +57,12 @@ Item {
                                           hoveredOverlaySinkId,
                                           hoveredOverVideoMuted)
     {
-        callViewContextMenu.x = x
-        callViewContextMenu.y = y
+        callViewContextMenu.x = root.width - x >= callViewContextMenu.width ? x : root.width - callViewContextMenu.width
+        callViewContextMenu.y = root.height - y >= callViewContextMenu.height ? y : root.height - callViewContextMenu.height
         callViewContextMenu.hoveredOverlayUri = hoveredOverlayUri
         callViewContextMenu.hoveredOverlaySinkId = hoveredOverlaySinkId
         callViewContextMenu.hoveredOverVideoMuted = hoveredOverVideoMuted
-        callViewContextMenu.openMenu()
+        callViewContextMenu.open()
     }
 
     DropArea {
@@ -180,18 +180,14 @@ Item {
     CallViewContextMenu {
         id: callViewContextMenu
 
-        onTransferCallButtonClicked: openContactPicker(ContactList.TRANSFER)
-        onPluginItemClicked: openPluginsMenu()
         onScreenshotTaken: {
             toastManager.instantiateToast();
-        }
-        onRecordCallClicked: CallAdapter.recordThisCallToggle()
-        onOpenSelectionWindow: {
-            SelectScreenWindowCreation.presentSelectScreenWindow(
-                        appWindow, windowSelection)
         }
         onScreenshotButtonHoveredChanged: {
             participantsLayer.screenshotButtonHovered = screenshotButtonHovered
         }
+    }
+    onVisibleChanged: {
+        callViewContextMenu.close()
     }
 }
