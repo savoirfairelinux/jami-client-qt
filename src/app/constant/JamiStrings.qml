@@ -361,7 +361,7 @@ Item {
     property string search: qsTr("Search")
 
     // Chatview footer
-    property string jumpToLatest: qsTr("Jump to latest")
+    property string scrollToEnd: qsTr("Scroll to end of conversation")
     property string typeIndicatorSingle: qsTr("{} is typing…")
     property string typeIndicatorPlural: qsTr("{} are typing…")
     property string typeIndicatorMax: qsTr("Several people are typing…")
@@ -787,6 +787,8 @@ Item {
     property string remove: qsTr("Remove")
     property string replyTo: qsTr("Reply to")
     property string inReplyTo: qsTr("In reply to")
+    property string repliedTo: qsTr(" replied to")
+    property string inReplyToMe: qsTr("Me")
     property string reply: qsTr("Reply")
     property string writeTo: qsTr("Write to %1")
     property string edit: qsTr("Edit")
@@ -848,6 +850,7 @@ Item {
 
     //message options
     property string deleteMessage: qsTr("Delete message")
+    property string deleteReplyMessage: qsTr("*(Deleted Message)*")
     property string editMessage: qsTr("Edit message")
 
 }
