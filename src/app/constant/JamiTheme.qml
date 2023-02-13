@@ -436,6 +436,8 @@ Item {
 
     // SBSMessageBase
     property int sbsMessageBasePreferredPadding: 12
+    property int sbsMessageBaseMinimumReplyWidth: 150
+
 
     // MessageBar
     property int messageBarMarginSize: 10

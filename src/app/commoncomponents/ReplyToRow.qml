@@ -23,31 +23,65 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 Item {
+    property real bubbleWidth
+    /*property real replyRowWidth: body.width + replyTo.width + JamiTheme.avatarReadReceiptSize +
+                                 JamiTheme.preferredMarginSize + JamiTheme.preferredMarginSize + 10*/
+
+    property real replyRowWidth: replyToBodyMetrics.width + replyTo.width + JamiTheme.avatarReadReceiptSize +
+                                     JamiTheme.preferredMarginSize + JamiTheme.preferredMarginSize + 10
+
+
+
+
     id: root
     anchors.right: isOutgoing ? parent.right : undefined
-
     visible: ReplyTo !== ""
-    width: visible ? replyToRow.width : 0
+    width: visible ? bubbleWidth : 0
     height: replyToRow.height + replyToRow.anchors.topMargin
 
-    Component.onCompleted: {
+
+    /*Component.onCompleted: {
         // Make sure we show the original post
         // In the future, we may just want to load the previous interaction of the thread
         // and not show it, but for now we can simplify.
         if (ReplyTo !== "")
             MessagesAdapter.loadConversationUntil(ReplyTo)
+        console.warn("replyRowWidth :" + replyRowWidth +" rowlayou width " + replyToRow.width)
+
+    }*/
+
+    Rectangle {
+        id: ls
+        z:-2
+        color: "green"
+        anchors.fill: parent
+        visible: true
     }
+
+
 
     MouseArea {
 
         z: 2
         anchors.fill: parent
+
+
         RowLayout {
+            property bool isSelf: ReplyToAuthor === CurrentAccount.uri || ReplyToAuthor === ""
+
             id: replyToRow
             anchors.top: parent.top
             anchors.topMargin: JamiTheme.preferredMarginSize / 2
+            anchors.right: isOutgoing ? parent.right : undefined
 
-            property bool isSelf: ReplyToAuthor === CurrentAccount.uri || ReplyToAuthor === ""
+            Component.onCompleted: {
+
+                console.warn("replyRowWidth :" + replyRowWidth +" rowlayou width " + replyToRow.width)
+
+            }
+
+
+
 
             Label {
                 id: replyTo
@@ -61,6 +95,21 @@ Item {
                 font.kerning: true
                 font.bold: true
                 Layout.leftMargin: JamiTheme.preferredMarginSize
+
+
+
+                Rectangle {
+                    id: bg
+                    z:-1
+                    color: "red"
+                    anchors.fill: parent
+                    visible: true
+                }
+
+
+
+
+
             }
 
             Avatar {
@@ -80,19 +129,41 @@ Item {
             }
 
             Text {
+
                 id: body
-                Layout.maximumWidth: JamiTheme.preferredFieldWidth - JamiTheme.preferredMarginSize
+                //Layout.maximumWidth: bubbleWidth -  replyTo.width - JamiTheme.avatarReadReceiptSize - 42
                 Layout.rightMargin: JamiTheme.preferredMarginSize
 
                 TextMetrics {
                     id: metrics
                     elide: Text.ElideRight
-                    elideWidth: JamiTheme.preferredFieldWidth - JamiTheme.preferredMarginSize
+                    elideWidth: {
+                        if(bubbleWidth !== JamiTheme.sbsMessageBaseMinimumReplyWidth)
+                            bubbleWidth - replyTo.width - JamiTheme.avatarReadReceiptSize
+                        else
+                            bubbleWidth - replyTo.width - JamiTheme.avatarReadReceiptSize - 25
+
+                    }
+
                     text: ReplyToBody === "" && ReplyToAuthor !== "" ? "*(Deleted Message)*" : ReplyToBody
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+                    font.bold: true
+
+                }
+
+                TextMetrics {
+                    id: replyToBodyMetrics
+                    text: ReplyToBody === "" && ReplyToAuthor !== "" ? "*(Deleted Message)*" : ReplyToBody
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+                    font.bold: true
+
                 }
 
                 textFormat: Text.MarkdownText
                 text: metrics.elidedText
+                //text: ReplyToBody === "" && ReplyToAuthor !== "" ? "*(Deleted Message)*" : ReplyToBody
 
                 color:  UtilsAdapter.luma(bubble.color) ?
                     JamiTheme.chatviewTextColorLight :
@@ -100,11 +171,25 @@ Item {
                 font.pointSize: JamiTheme.textFontSize
                 font.kerning: true
                 font.bold: true
+
+                Component.onCompleted: {
+
+                    //console.warn("elideWidth :" + metrics.elideWidth + " bubble width :" + bubbleWidth)
+                    //console.warn("Width :" + body.width + " height :" + body.height + " " + ReplyToBody )
+
+
+                }
+
+
             }
+
+
         }
 
         onClicked: function(mouse) {
             CurrentConversation.scrollToMsg(ReplyTo)
         }
     }
+
+
 }

@@ -31,6 +31,7 @@ import "../../commoncomponents"
 JamiListView {
     id: root
 
+
     function getDistanceToBottom() {
         const scrollDiff = ScrollBar.vertical.position -
                          (1.0 - ScrollBar.vertical.size)
@@ -202,7 +203,6 @@ JamiListView {
 
         DelegateChoice {
             id: delegateChoice
-
             roleValue: Interaction.Type.TEXT
 
             TextMessageDelegate {

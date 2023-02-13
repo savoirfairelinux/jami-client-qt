@@ -58,6 +58,9 @@ Control {
     width: ListView.view ? ListView.view.width : 0
     height: mainColumnLayout.implicitHeight
 
+    property real textEditedWidth
+    property real textEditedHeight
+
     rightPadding: hPadding
     leftPadding: hPadding
 
@@ -121,7 +124,10 @@ Control {
                 }
             }
 
+
+
             Item {
+                property bool isReply:  ReplyTo !== ""
                 id: itemRowMessage
 
                 Layout.fillHeight: true
@@ -146,8 +152,17 @@ Control {
                     width: parent.width
                     visible: true
 
+
                     // place actual content here
-                    ReplyToRow {}
+                    ReplyToRow {
+                        id: replyToRow
+                        bubbleWidth: bubble.width
+
+
+
+                    }
+
+
                 }
 
                 Item {
@@ -305,8 +320,8 @@ Control {
                 }
 
                 MessageBubble {
+                    property bool isReply:  ReplyTo !== ""
                     id: bubble
-
                     visible: !IsEmojiOnly
                     z:-1
                     out: isOutgoing
@@ -325,14 +340,34 @@ Control {
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
-                    width: innerContent.childrenRect.width
+
+                    width: {
+                        if(!isReply)
+                            root.textEditedWidth
+                        else
+                            if(root.textEditedWidth > JamiTheme.sbsMessageBaseMinimumReplyWidth)
+                                root.textEditedWidth
+                            else
+                                if(Math.max(root.textEditedWidth,replyToRow.replyRowWidth) > JamiTheme.sbsMessageBaseMinimumReplyWidth)
+                                    JamiTheme.sbsMessageBaseMinimumReplyWidth
+                                else
+                                    Math.max(root.textEditedWidth,replyToRow.replyRowWidth)
+                    }
+
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
+
+                    Component.onCompleted: {
+
+                        console.warn("root.textEditedWidth :" + root.textEditedWidth)
+
+                    }
                 }
+
 
                 Rectangle {
                     id: bg
 
-                    color: bubble.getBaseColor()
+                    //color: bubble.getBaseColor()
                     anchors.fill: parent
                     visible: false
                 }
