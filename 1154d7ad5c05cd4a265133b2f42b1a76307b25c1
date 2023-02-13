@@ -85,6 +85,47 @@
       },
       "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8c31221_d97cee35",
+        "filename": "src/app/mainview/components/CallOverlay.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-13T13:18:44Z",
+      "side": 1,
+      "message": "OK, it happens because, somehow, i have myself in my contacts list.\nThe crash does not happen on other accounts.",
+      "parentUuid": "c027a67a_371e0c6b",
+      "range": {
+        "startLine": 120,
+        "startChar": 4,
+        "endLine": 122,
+        "endChar": 5
+      },
+      "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f775c7e_4942b90b",
+        "filename": "src/app/mainview/components/InitialCallPage.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-13T13:18:44Z",
+      "side": 1,
+      "message": "cannot accept call:\n```\nqrc:/mainview/components/InitialCallPage.qml:0: ReferenceError: responsibleAccountId is not defined\nqrc:/mainview/components/InitialCallPage.qml:0: ReferenceError: responsibleAccountId is not defined\nqrc:/mainview/components/InitialCallPage.qml:0: ReferenceError: responsibleAccountId is not defined\n```",
+      "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
