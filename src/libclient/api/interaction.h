@@ -290,6 +290,7 @@ public:
 /**
  * @var authorUri
  * @var body
+ * @var rawBody
  * @var timestamp
  * @var duration
  * @var type
@@ -303,6 +304,7 @@ struct Info
 {
     QString authorUri;
     QString body;
+    QString rawBody;
     QString parentId = "";
     QString confId;
     std::time_t timestamp = 0;
@@ -321,6 +323,7 @@ struct Info
 
     Info(QString authorUri,
          QString body,
+         // QString rawBody,
          std::time_t timestamp,
          std::time_t duration,
          Type type,
@@ -329,6 +332,7 @@ struct Info
     {
         this->authorUri = authorUri;
         this->body = body;
+        // this->rawBody = rawBody;
         this->timestamp = timestamp;
         this->duration = duration;
         this->type = type;

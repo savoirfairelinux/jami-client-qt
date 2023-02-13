@@ -34,6 +34,7 @@ struct Info;
     X(Id) \
     X(Author) \
     X(Body) \
+    X(RawBody) \
     X(ParentId) \
     X(Timestamp) \
     X(Duration) \
@@ -121,6 +122,7 @@ public:
     QVariant dataForItem(item_t item, int indexRow, int role = Qt::DisplayRole) const;
     bool contains(const QString& msgId);
     int getIndexOfMessage(const QString& messageId) const;
+    //interaction::Type getMessageType(const QString& messageId) const;
     void addHyperlinkInfo(const QString& messageId, const QVariantMap& info);
     void linkifyMessage(const QString& messageId, const QString& linkified);
 
