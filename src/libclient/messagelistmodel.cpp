@@ -485,8 +485,8 @@ MessageListModel::dataForItem(item_t item, int, int role) const
             return QVariant("");
         auto linkified = data(repliedMsg, Role::Linkified).toString();
         if (!linkified.isEmpty())
-            return QVariant(linkified.replace("\n", " "));
-        return QVariant(data(repliedMsg, Role::Body).toString().replace("\n", " "));
+            return QVariant(linkified);
+        return QVariant(data(repliedMsg, Role::Body).toString());
     }
     case Role::TotalSize:
         return QVariant(item.second.commit["totalSize"].toInt());
