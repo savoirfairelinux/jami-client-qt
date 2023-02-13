@@ -61,11 +61,11 @@ SBSMessageBase {
         if (ConfId === "" && Duration === 0) {
             // If missed, we can add a darker pattern
             return isOutgoing ?
-                        Qt.darker(JamiTheme.messageOutBgColor, 1.5) :
+                        Qt.darker(CurrentConversation.color, 1.5) :
                         Qt.darker(JamiTheme.messageInBgColor, 1.5)
         }
         return isOutgoing ?
-                    JamiTheme.messageOutBgColor :
+                    CurrentConversation.color :
                     CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
     }
 

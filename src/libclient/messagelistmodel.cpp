@@ -474,10 +474,18 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(replyId);
     case Role::ReplyToAuthor:
         return repliedMsg == -1 ? QVariant("") : QVariant(data(repliedMsg, Role::Author));
-    case Role::ReplyToBody:
-        return repliedMsg == -1
-                   ? QVariant("")
-                   : QVariant(data(repliedMsg, Role::Body).toString().replace("\n", " "));
+    case Role::ReplyToBody: {
+        if (repliedMsg == -1) {
+            return QVariant("");
+        } else {
+            auto msg = data(repliedMsg, Role::Body).toString().replace("\n", " ");
+            msg.truncate(100);
+            if (msg.size() == 100) {
+                msg += "…";
+            }
+            return QVariant(msg);
+        }
+    }
     case Role::TotalSize:
         return QVariant(item.second.commit["totalSize"].toInt());
     case Role::TransferName:
