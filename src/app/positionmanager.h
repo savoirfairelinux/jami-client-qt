@@ -54,7 +54,7 @@ Q_SIGNALS:
     void unPinMapSignal(const QString& key);
     void localPositionReceived(const QString& accountId, const QString& peerId, const QString& body);
     void makeVisibleSharingButton(const QString& accountId);
-    void sendCountdownUpdate(const QString& accountId, const int remainingTime);
+    void sendCountdownUpdate(const QString key, const int remainingTime);
 
 protected:
     void safeInit() override;
@@ -69,7 +69,7 @@ protected:
     void removePositionFromMemory(PositionKey key, QVariantMap positionReceived);
     void positionWatchDog();
     void startPositionTimers(int timeSharing);
-    void stopPositionTimers(QString accountId = {});
+    void stopPositionTimers(PositionKey key = {});
     bool isNewMessageTriggersMap(bool endSharing, const QString& uri, const QString& accountId);
     void countdownUpdate();
     void sendStopMessage(QString accountId = "", const QString convId = "");
@@ -107,7 +107,7 @@ private Q_SLOTS:
 private:
     SystemTray* systemTray_;
     std::unique_ptr<Positioning> localPositioning_;
-    QMap<QString, int> mapTimerCountDown_;
+    QMap<PositionKey, int> mapTimerCountDown_;
     QTimer* countdownTimer_ = nullptr;
     // map of all shared position by peers
     QMap<PositionKey, PositionObject*> objectListSharingUris_;
