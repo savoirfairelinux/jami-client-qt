@@ -75,13 +75,13 @@ Q_SIGNALS:
     void newFilePasted(QString filePath);
     void newTextPasted();
     void previewInformationToQML(QString messageId, QStringList previewInformation);
-    void moreMessagesLoaded();
+    void moreMessagesLoaded(qint32 loadingRequestId);
     void timestampUpdated();
 
 protected:
     Q_INVOKABLE bool isDocument(const interaction::Type& type);
     Q_INVOKABLE void loadMoreMessages();
-    Q_INVOKABLE void loadConversationUntil(const QString& to);
+    Q_INVOKABLE qint32 loadConversationUntil(const QString& to);
     Q_INVOKABLE void connectConversationModel();
     Q_INVOKABLE void sendConversationRequest();
     Q_INVOKABLE void removeConversation(const QString& convUid);
