@@ -31,6 +31,7 @@ import "../../commoncomponents"
 JamiListView {
     id: root
 
+
     function getDistanceToBottom() {
         const scrollDiff = ScrollBar.vertical.position -
                          (1.0 - ScrollBar.vertical.size)
@@ -107,7 +108,7 @@ JamiListView {
         function isFirst() {
             if (!nItem) return true
             else {
-                if (item.showTime) {
+                if (item.showTime || item.isReply  ) {
                     return true
                 } else if (nItem.author !== item.author) {
                     return true
@@ -119,7 +120,7 @@ JamiListView {
         function isLast() {
             if (!pItem) return true
             else {
-                if (pItem.showTime) {
+                if (pItem.showTime || pItem.isReply) {
                     return true
                 } else if (pItem.author !== item.author) {
                     return true
@@ -202,12 +203,10 @@ JamiListView {
     model: MessagesAdapter.messageListModel
     delegate: DelegateChooser {
         id: delegateChooser
-
         role: "Type"
 
         DelegateChoice {
             id: delegateChoice
-
             roleValue: Interaction.Type.TEXT
 
             TextMessageDelegate {
@@ -257,7 +256,9 @@ JamiListView {
                 }
             }
         }
+
     }
+
 
     onAtYBeginningChanged: loadMoreMsgsIfNeeded()
 
@@ -286,8 +287,8 @@ JamiListView {
         anchors.horizontalCenter: root.horizontalCenter
 
         activeStateTrigger: Math.abs(root.contentY) > root.height * 2
-        onClicked: root.ScrollBar.vertical.position =
-                   1.0 - root.ScrollBar.vertical.size
+        onClicked: root.ScrollBar.vertical.position = 1.0 - root.ScrollBar.vertical.size
+
     }
 
     header: Control {

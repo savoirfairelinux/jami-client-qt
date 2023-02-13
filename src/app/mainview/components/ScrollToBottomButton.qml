@@ -21,6 +21,8 @@ import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 
 import net.jami.Constants 1.1
+import net.jami.Adapters 1.1
+
 
 import "../../commoncomponents"
 
@@ -28,6 +30,7 @@ Control {
     id: root
 
     property alias activeStateTrigger: activeState.when
+
 
     signal clicked
 
@@ -76,38 +79,41 @@ Control {
             Text {
                 id: jumpToLatestText
 
-                anchors.left: parent.left
+                anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
 
-                font.weight: Font.DemiBold
+                font.weight: Font.Bold
                 font.pointSize: JamiTheme.textFontSize + 2
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
 
                 text: JamiStrings.jumpToLatest
-                color: JamiTheme.whiteColor
+                color: UtilsAdapter.luma(CurrentConversation.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+
+
             }
 
             ResponsiveImage {
                 id: arrowDropDown
 
-                anchors.left: jumpToLatestText.right
-                anchors.leftMargin: 3
+                anchors.right: jumpToLatestText.left
+                anchors.rightMargin: 3
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.verticalCenterOffset: 2
+                anchors.verticalCenterOffset: 0
 
-                containerWidth: 12
-                containerHeight: 12
+                containerWidth: jumpToLatestText.contentHeight
+                containerHeight: jumpToLatestText.contentHeight
+                rotation: -90
 
-                color: JamiTheme.whiteColor
-                source: JamiResources.down_triangle_arrow_black_24dp_svg
+                color: UtilsAdapter.luma(CurrentConversation.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+                source: JamiResources.back_24dp_svg
             }
         }
     }
 
     background: Rectangle {
         radius: 20
-        color: JamiTheme.jamiDarkBlue
+        color: CurrentConversation.color
 
         MouseArea {
             anchors.fill: parent

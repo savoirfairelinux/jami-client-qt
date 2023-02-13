@@ -26,9 +26,10 @@ Rectangle {
     id: root
     property bool out: true
     property int type: MsgSeq.single
+    property bool isReply: false
     Rectangle {
         id: mask
-        visible: type !== MsgSeq.single
+        visible: type !== MsgSeq.single && !isReply
         z: -1
         radius: 5
         color: root.color
@@ -38,6 +39,36 @@ Rectangle {
             rightMargin: out ? 0 : root.width/2
             topMargin: type === MsgSeq.first ? root.height /2 : 0
             bottomMargin: type === MsgSeq.last ? root.height /2 : 0
+        }
+    }
+
+    Rectangle {
+        id: maskReply
+        visible: isReply
+        z: -1
+        radius: 5
+        color: root.color
+        anchors {
+            fill: parent
+            leftMargin: out ? 0 : root.width/2
+            rightMargin: !out ? 0 : root.width/2
+            topMargin: 0
+            bottomMargin: root.height /2
+        }
+    }
+
+    Rectangle {
+        id: maskReplyFirst
+        visible: isReply && type === MsgSeq.first
+        z: -2
+        radius: 5
+        color: root.color
+        anchors {
+            fill: parent
+            leftMargin: out ? root.width/2 : 0
+            rightMargin: out ? 0 : root.width/2
+            topMargin: root.width/4
+            bottomMargin: 0
         }
     }
 }
