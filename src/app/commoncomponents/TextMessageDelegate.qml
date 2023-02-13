@@ -45,6 +45,11 @@ SBSMessageBase {
     formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
     textHovered: textHoverhandler.hovered
+    textContentWidth: textEditId.width
+    textContentHeight: textEditId.height
+
+
+
 
     innerContent.children: [
         TextEdit {
