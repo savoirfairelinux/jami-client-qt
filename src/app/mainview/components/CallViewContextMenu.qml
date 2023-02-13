@@ -19,6 +19,8 @@
  */
 
 import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -28,206 +30,119 @@ import "../../commoncomponents"
 import "../../commoncomponents/contextmenu"
 import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 
-ContextMenuAutoLoader {
+Popup {
     id: root
 
-    property bool windowSelection: false
-
-    signal pluginItemClicked
-    signal transferCallButtonClicked
-    signal recordCallClicked
-    signal openSelectionWindow
     signal screenshotTaken
-    property bool screenshotButtonHovered: screenShot.itemHovered
+    property bool screenshotButtonHovered: false
 
     property string hoveredOverlayUri: ""
     property string hoveredOverlaySinkId: ""
     property bool hoveredOverVideoMuted: true
 
-    property list<GeneralMenuItem> menuItems: [
-        GeneralMenuItem {
-            id: resumePauseCall
+    property var listModel: ListModel {
+        id: actionsModel
+    }
 
-            canTrigger: CurrentCall.isSIP
-            itemName: CurrentCall.isPaused ?
-                          JamiStrings.resumeCall :
-                          JamiStrings.pauseCall
-            iconSource: CurrentCall.isPaused ?
-                            JamiResources.play_circle_outline_24dp_svg :
-                            JamiResources.pause_circle_outline_24dp_svg
-            onClicked: {
-                CallAdapter.holdThisCallToggle()
-            }
-        },
-        GeneralMenuItem {
-            id: inputPanelSIP
+    onAboutToShow: {
+        actionsModel.clear()
+        actionsModel.append({"Top": true})
+        actionsModel.append({"Name": JamiStrings.advancedInformation,
+                            "IconSource": JamiResources.informations_black_24dp_svg})
+        if (hoveredOverlayUri !== "" && hoveredOverVideoMuted === false)
+            actionsModel.append({"Name": JamiStrings.tileScreenshot,
+                                "IconSource" : JamiResources.screenshot_black_24dp_svg})
+        actionsModel.append({"Bottom": true})
+        itemListView.implicitHeight = 20 + 45 * (actionsModel.count - 2)
+    }
 
-            canTrigger: CurrentCall.isSIP
-            itemName: JamiStrings.sipInputPanel
-            iconSource: JamiResources.ic_keypad_svg
-            onClicked: {
-                sipInputPanel.open()
-            }
-        },
-        GeneralMenuItem {
-            id: callTransfer
+    onAboutToHide: {
+        screenshotButtonHovered = false
+        hoveredOverlayUri = ""
+        hoveredOverlaySinkId = ""
+        hoveredOverVideoMuted = true
+        actionsModel.clear()
+    }
 
-            canTrigger: CurrentCall.isSIP
-            itemName: JamiStrings.transferCall
-            iconSource: JamiResources.phone_forwarded_24dp_svg
-            addMenuSeparatorAfter: CurrentCall.isSIP
-            onClicked: {
-                root.transferCallButtonClicked()
-            }
-        },
-        GeneralMenuItem {
-            id: localRecord
+    background: Rectangle {
+        color: "transparent"
+    }
 
-            itemName: CurrentCall.isRecordingLocally ?
-                          JamiStrings.stopRec :
-                          JamiStrings.startRec
-            iconSource: JamiResources.fiber_manual_record_24dp_svg
-            iconColor: JamiTheme.recordIconColor
-            onClicked: {
-                root.recordCallClicked()
-            }
-        },
-        GeneralMenuItem {
-            id: fullScreen
+    contentItem: Rectangle {
+        id: container
+        width: childrenRect.width
+        height: childrenRect.height
+        color: "#c4272727"
+        radius: 4
 
-            itemName: layoutManager.isCallFullscreen ?
-                          JamiStrings.exitFullScreen :
-                          JamiStrings.viewFullScreen
-            iconSource: layoutManager.isCallFullscreen ?
-                            JamiResources.close_fullscreen_24dp_svg :
-                            JamiResources.open_in_full_24dp_svg
-            onClicked: {
-                callStackView.toggleFullScreen()
-            }
-        },
-        GeneralMenuItem {
-            id: stopSharing
+        ColumnLayout {
+            anchors.topMargin: 8
+            anchors.bottomMargin: 8
+            ListView {
+                id: itemListView
 
-            canTrigger: CurrentCall.isSharing
-                        && !CurrentCall.isSIP
-                        && !CurrentCall.isVideoMuted
-            itemName: JamiStrings.stopSharing
-            iconSource: JamiResources.share_stop_black_24dp_svg
-            iconColor: JamiTheme.redColor
-            onClicked: AvAdapter.stopSharing(CurrentCall.sharingSource)
-        },
-        GeneralMenuItem {
-            id: shareScreen
+                orientation: ListView.Vertical
+                implicitWidth: 200
+                implicitHeight: 100
+                interactive: false
 
-            canTrigger: CurrentAccount.videoEnabled_Video
-                        && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
-                        && !CurrentCall.isSIP
-            itemName: JamiStrings.shareScreen
-            iconSource: JamiResources.laptop_black_24dp_svg
-            onClicked: {
-                if (Qt.application.screens.length === 1) {
-                    AvAdapter.shareEntireScreen(0)
-                } else {
-                    windowSelection = false
-                    openSelectionWindow()
-                }
-            }
-        },
-        GeneralMenuItem {
-            id: shareWindow
+                model: actionsModel
+                delegate: ItemDelegate {
+                    id: menuItem
 
-            canTrigger: CurrentAccount.videoEnabled_Video
-                        && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
-                        && !CurrentCall.isSIP
-            itemName: JamiStrings.shareWindow
-            iconSource: JamiResources.window_black_24dp_svg
-            onClicked: {
-                AvAdapter.getListWindows()
-                if (AvAdapter.windowsNames.length >= 1) {
-                    windowSelection = true
-                    openSelectionWindow()
-                }
-            }
-        },
-        GeneralMenuItem {
-            id: shareScreenArea
+                    width: 200
+                    height: Top || Bottom ? 10 : 45
 
-            canTrigger: CurrentAccount.videoEnabled_Video
-                        && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
-                        && !CurrentCall.isSIP
-                        && Qt.platform.os.toString() !== "windows" // temporarily disable for windows
-            itemName: JamiStrings.shareScreenArea
-            iconSource: JamiResources.share_area_black_24dp_svg
-            onClicked: {
-                if (Qt.platform.os !== "windows") {
-                    AvAdapter.shareScreenArea(0, 0, 0, 0)
-                } else {
-                    ScreenRubberBandCreation.createScreenRubberBandWindowObject()
-                    ScreenRubberBandCreation.showScreenRubberBandWindow()
-                }
-            }
-        },
-        GeneralMenuItem {
-            id: shareFile
+                    background: Rectangle {
+                        visible: !Top && !Bottom
+                        anchors.fill: parent
+                        color: menuItem.down ? "#c4aaaaaa" : menuItem.hovered ? "#c4777777" : "transparent"
+                    }
 
-            canTrigger: CurrentAccount.videoEnabled_Video
-                        && !CurrentCall.isSIP
-            itemName: JamiStrings.shareFile
-            iconSource: JamiResources.file_black_24dp_svg
-            onClicked: {
-                jamiFileDialog.open()
-            }
-        },
-        GeneralMenuItem {
-            id: viewPlugin
+                    RowLayout {
+                        anchors.fill: parent
+                        visible: !Top && !Bottom
+                        ResponsiveImage {
+                            Layout.leftMargin: JamiTheme.preferredMarginSize
+                            source: IconSource
+                            color: "white"
+                            width: 20
+                            height: 20
+                        }
+                        Text {
+                            Layout.fillWidth: true
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                            text: Name
+                            elide: Text.ElideRight
+                            font.pointSize: JamiTheme.participantFontSize
+                            color: "white"
+                        }
+                    }
 
-            canTrigger: PluginAdapter.isEnabled &&
-                        PluginAdapter.callMediaHandlersListCount
-            itemName: JamiStrings.viewPlugin
-            iconSource: JamiResources.extension_24dp_svg
-            onClicked: {
-                root.pluginItemClicked()
-            }
-        },
-        GeneralMenuItem {
-            id: advancedInformation
+                    onClicked: {
+                        switch(Name) {
+                            case JamiStrings.advancedInformation:
+                                CallAdapter.startTimerInformation()
+                                callInformationOverlay.open()
+                                break
+                            case JamiStrings.tileScreenshot:
+                                if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId),
+                                                            UtilsAdapter.getDirScreenshot())) {
+                                    screenshotTaken()
+                                }
+                                break
+                        }
+                        root.close()
+                    }
 
-            canTrigger: true
-            itemName: JamiStrings.advancedInformation
-            iconSource: JamiResources.settings_24dp_svg
-
-            onClicked: {
-                CallAdapter.startTimerInformation();
-                callInformationOverlay.open()
-            }
-        },
-        GeneralMenuItem {
-            id: screenShot
-
-            canTrigger: hoveredOverlayUri !== "" && hoveredOverVideoMuted === false
-            itemName: JamiStrings.tileScreenshot
-            iconSource: JamiResources.baseline_camera_alt_24dp_svg
-
-            MaterialToolTip {
-                id: tooltip
-
-                parent: screenShot
-                visible: screenShot.itemHovered
-                delay: Qt.styleHints.mousePressAndHoldInterval
-                property bool isMe: CurrentAccount.uri === hoveredOverlayUri
-                text: isMe ? JamiStrings.me
-                           : UtilsAdapter.getBestNameForUri(CurrentAccount.id, hoveredOverlayUri)
-            }
-
-            onClicked: {
-                if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId),
-                                               UtilsAdapter.getDirScreenshot())) {
-                    screenshotTaken()
+                    onHoveredChanged: {
+                        if (Name === JamiStrings.tileScreenshot) {
+                            screenshotButtonHovered = hovered
+                        }
+                    }
                 }
             }
         }
-    ]
-
-
-    Component.onCompleted: menuItemsToLoad = menuItems
+    }
 }
