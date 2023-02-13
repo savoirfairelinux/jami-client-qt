@@ -106,7 +106,7 @@ MessagesAdapter::loadMoreMessages()
     }
 }
 
-void
+int
 MessagesAdapter::loadConversationUntil(const QString& to)
 {
     try {
@@ -118,13 +118,14 @@ MessagesAdapter::loadConversationUntil(const QString& to)
                 const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
                 if (convInfo.isSwarm()) {
                     auto* convModel = lrcInstance_->getCurrentConversationModel();
-                    convModel->loadConversationUntil(convId, to);
+                    return convModel->loadConversationUntil(convId, to);
                 }
             }
         }
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
+    return 0;
 }
 
 void
@@ -550,11 +551,11 @@ MessagesAdapter::onPreviewInfoReady(QString messageId, QVariantMap info)
 }
 
 void
-MessagesAdapter::onConversationMessagesLoaded(uint32_t, const QString& convId)
+MessagesAdapter::onConversationMessagesLoaded(uint32_t loadingRequestId, const QString& convId)
 {
     if (convId != lrcInstance_->get_selectedConvUid())
         return;
-    Q_EMIT moreMessagesLoaded();
+    Q_EMIT moreMessagesLoaded(loadingRequestId);
 }
 
 void
