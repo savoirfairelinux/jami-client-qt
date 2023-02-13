@@ -31,6 +31,7 @@ import "../../commoncomponents"
 JamiListView {
     id: root
 
+
     function getDistanceToBottom() {
         const scrollDiff = ScrollBar.vertical.position -
                          (1.0 - ScrollBar.vertical.size)
@@ -80,10 +81,15 @@ JamiListView {
         }
         // index 0 insertion = new message
         if (itemIndex === 0) {
-            if (!nItem && !CurrentConversation.allMessagesLoaded)
-                Qt.callLater(computeChatview, item, itemIndex)
-            else
-                computeSequencing( null, item, root.itemAtIndex(itemIndex + 1))
+            Qt.callLater(computeChatview, item, itemIndex)
+            //case of new message
+            if (nItem) {
+                computeSequencing( null, item, root.itemAtIndex(1))
+            }
+            //case load messages
+            else {
+                computeSequencing( null, item, null)
+            }
         }
         // top element
         if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
@@ -99,7 +105,7 @@ JamiListView {
         function isFirst() {
             if (!nItem) return true
             else {
-                if (item.showTime) {
+                if (item.showTime || item.isReply  ) {
                     return true
                 } else if (nItem.author !== item.author) {
                     return true
@@ -111,7 +117,7 @@ JamiListView {
         function isLast() {
             if (!pItem) return true
             else {
-                if (pItem.showTime) {
+                if (pItem.showTime || pItem.isReply) {
                     return true
                 } else if (pItem.author !== item.author) {
                     return true
@@ -197,12 +203,10 @@ JamiListView {
     model: MessagesAdapter.messageListModel
     delegate: DelegateChooser {
         id: delegateChooser
-
         role: "Type"
 
         DelegateChoice {
             id: delegateChoice
-
             roleValue: Interaction.Type.TEXT
 
             TextMessageDelegate {
@@ -252,7 +256,9 @@ JamiListView {
                 }
             }
         }
+
     }
+
 
     onAtYBeginningChanged: loadMoreMsgsIfNeeded()
 
