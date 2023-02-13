@@ -201,6 +201,7 @@ Item {
     property real chatviewFontSize: calcSize(15)
     property real chatviewEmojiSize: calcSize(60)
     property color timestampColor: darkTheme ? "#bbb" : "#777"
+    property color messageReplyColor: darkTheme ? "#bbb" : "#777"
     property color messageOutTxtColor: "#000000"
     property color messageInBgColor: darkTheme ? "#28b1ed" : "#e5e5e5"
     property color messageOutBgColor: darkTheme? "#616161" : "#005699"
@@ -441,6 +442,11 @@ Item {
 
     // SBSMessageBase
     property int sbsMessageBasePreferredPadding: 12
+    property int sbsMessageBaseMinimumReplyWidth: 150
+    property int sbsMessageBaseReplyBottomMargin:  calcSize(10)
+    property int sbsMessageBaseReplyMargin: 45
+    property int sbsMessageBaseReplyTopMargin: 6
+
 
     // MessageBar
     property int messageBarMarginSize: 10
