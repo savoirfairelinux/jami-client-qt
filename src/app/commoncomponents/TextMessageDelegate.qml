@@ -36,6 +36,7 @@ SBSMessageBase {
     property string colorUrl: UtilsAdapter.luma(bubble.color) ?
                                   JamiTheme.chatviewLinkColorLight :
                                   JamiTheme.chatviewLinkColorDark
+    //property alias messageToSend: TextEdit.text
 
     isOutgoing: Author === CurrentAccount.uri
     author: Author
@@ -45,6 +46,11 @@ SBSMessageBase {
     formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
     textHovered: textHoverhandler.hovered
+    textEditedWidth: textEditId.width
+    textEditedHeight: textEditId.height
+
+
+
 
     innerContent.children: [
         TextEdit {
