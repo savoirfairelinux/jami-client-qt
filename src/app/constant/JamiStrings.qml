@@ -778,6 +778,7 @@ Item {
     property string remove: qsTr("Remove")
     property string replyTo: qsTr("Reply to")
     property string inReplyTo: qsTr("In reply to")
+    property string inReplyToMe: qsTr("In reply to Me")
     property string reply: qsTr("Reply")
     property string writeTo: qsTr("Write to %1")
     property string edit: qsTr("Edit")

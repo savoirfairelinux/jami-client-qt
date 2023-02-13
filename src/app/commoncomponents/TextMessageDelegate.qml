@@ -45,6 +45,9 @@ SBSMessageBase {
     formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
     textHovered: textHoverhandler.hovered
+    textContentWidth: textEditId.width
+    textContentHeight: textEditId.height
+
 
     innerContent.children: [
         TextEdit {
@@ -62,12 +65,12 @@ SBSMessageBase {
             width: {
                 if (extraContent.active)
                     Math.max(extraContent.width,
-                             Math.min(implicitWidth - avatarBlockWidth,
+                             Math.min((2/3)*root.maxMsgWidth,implicitWidth - avatarBlockWidth,
                                       extraContent.minSize) - senderMargin )
                 else if (isEmojiOnly)
-                    Math.min(implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2))
+                    Math.min((2/3)*root.maxMsgWidth,implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2))
                 else
-                    Math.min(implicitWidth, innerContent.width - senderMargin)
+                    Math.min((2/3)*root.maxMsgWidth,implicitWidth, innerContent.width - senderMargin)
             }
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
