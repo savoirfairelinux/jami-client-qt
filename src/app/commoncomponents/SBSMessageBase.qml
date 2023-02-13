@@ -58,6 +58,11 @@ Control {
     width: ListView.view ? ListView.view.width : 0
     height: mainColumnLayout.implicitHeight
 
+    property real textEditedWidth
+    property real textEditedHeight
+    property bool isReply:  ReplyTo !== ""
+
+
     rightPadding: hPadding
     leftPadding: hPadding
 
@@ -97,12 +102,86 @@ Control {
             }
         }
 
+        /////////////////////////////////
+        /////////////////////////////////
+        Item {
+            id: replyItem
+            property bool isSelf: ReplyToAuthor === CurrentAccount.uri || ReplyToAuthor === ""
+
+            visible: root.isReply
+
+            width: parent.width
+            height: childrenRect.height
+
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.topMargin: JamiTheme.sbsMessageBaseReplyTopMargin
+            Layout.leftMargin: isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
+            Layout.rightMargin: !isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
+
+            transform: Translate { y: JamiTheme.sbsMessageBaseReplyBottomMargin }
+
+
+            ColumnLayout {
+                width: parent.width
+                spacing: 2
+
+
+                Label {
+                    id: replyTo
+                    property var replyUserName: UtilsAdapter.getBestNameForUri(CurrentAccount.id, ReplyToAuthor)
+                    text: replyItem.isSelf ? JamiStrings.inReplyToMe : (JamiStrings.inReplyTo + " " + replyUserName)
+
+                    Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
+
+
+                    color: "grey"
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+                    font.bold: true
+
+                }
+
+                Rectangle {
+                    id: replyBubble
+
+                    z:-2
+
+
+                    color: replyItem.isSelf ? Qt.lighter(JamiTheme.messageOutBgColor, 1.5) : JamiTheme.messageInBgColor
+                    radius: msgRadius
+
+                    Layout.preferredWidth: replyToRow.width + 2*JamiTheme.preferredMarginSize
+                    Layout.preferredHeight: replyToRow.height + 2*JamiTheme.preferredMarginSize
+                    Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
+
+
+                    // place actual content here
+                    ReplyToRow {
+                        id: replyToRow
+
+                        anchors.centerIn: parent
+                    }
+
+                    MouseArea {
+                        z: 2
+                        anchors.fill: parent
+                        onClicked: function(mouse) {
+                            CurrentConversation.scrollToMsg(ReplyTo)
+                        }
+                    }
+
+                }
+
+            }
+
+        }
 
         RowLayout {
             id: msgRowlayout
 
             Layout.preferredHeight: innerContent.height + root.extraHeight
-            Layout.topMargin: (seq === MsgSeq.first || seq === MsgSeq.single) ? 6 : 0
+            Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply) ? 6 : 0
 
             Item {
                 id: avatarBlock
@@ -120,6 +199,8 @@ Control {
                     mode: Avatar.Mode.Contact
                 }
             }
+
+
 
             Item {
                 id: itemRowMessage
@@ -140,14 +221,17 @@ Control {
                     property bool bubbleHovered: containsMouse || textHovered
                 }
 
+                /////////////////////////////////
+                /////////////////////////////////
+                /////////////////////////////////
+                /////////////////////////////////
+                /////////////////////////////////
                 Column {
                     id: innerContent
 
                     width: parent.width
                     visible: true
 
-                    // place actual content here
-                    ReplyToRow {}
                 }
 
                 Item {
@@ -305,12 +389,13 @@ Control {
                 }
 
                 MessageBubble {
-                    id: bubble
 
+                    id: bubble
                     visible: !IsEmojiOnly
                     z:-1
                     out: isOutgoing
                     type: seq
+                    isReply: root.isReply
                     function getBaseColor() {
                         var baseColor = isOutgoing ? JamiTheme.messageOutBgColor
                                                    : CurrentConversation.isCoreDialog ?
@@ -325,14 +410,18 @@ Control {
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
-                    width: innerContent.childrenRect.width
+
+
+                    width: root.textEditedWidth
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
+
                 }
+
 
                 Rectangle {
                     id: bg
 
-                    color: bubble.getBaseColor()
+                    color: "red"
                     anchors.fill: parent
                     visible: false
                 }
