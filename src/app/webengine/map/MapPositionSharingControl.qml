@@ -39,11 +39,7 @@ ColumnLayout {
             Layout.preferredWidth: textTimer.width + 15
             Layout.preferredHeight: textTimer.height + 15
             color: JamiTheme.mapButtonsOverlayColor
-            visible: textTimer.remainingTimeMs === 0
-                     ? false
-                     : isUnpin
-                       ? isSharing
-                       : isSharingToCurrentConversation
+            visible: textTimer.remainingTimeMs !== 0 && !isUnpin && webView.isLoaded && isSharingToCurrentConversation
 
             Text {
                 id: textTimer
@@ -76,8 +72,8 @@ ColumnLayout {
                 property int remainingTimeMs: 0
                 Connections {
                     target: PositionManager
-                    function onSendCountdownUpdate(accountId, remainingTime) {
-                        if (accountId === attachedAccountId) {
+                    function onSendCountdownUpdate(key, remainingTime) {
+                        if (key === attachedAccountId + "_" + currentConvId) {
                             textTimer.remainingTimeMs = remainingTime
                         }
                     }
