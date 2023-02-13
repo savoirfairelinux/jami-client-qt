@@ -35,9 +35,6 @@ ItemDelegate {
     width: ListView.view.width
     height: JamiTheme.smartListItemHeight
 
-    property string accountId: ""
-    property string convId: ""
-
     highlighted: ListView.isCurrentItem
     property bool interactive: true
     property string lastInteractionDate: LastInteractionTimeStamp === undefined
@@ -49,7 +46,7 @@ ItemDelegate {
     onVisibleChanged: {
         if (visible)
             return
-        UtilsAdapter.clearInteractionsCache(root.accountId, root.convId)
+        UtilsAdapter.clearInteractionsCache(CurrentAccount.id, UID)
     }
 
     Connections {
@@ -59,14 +56,8 @@ ItemDelegate {
         }
     }
 
-    Component.onCompleted: {
-        // Store to avoid undefined at the end
-        root.accountId = CurrentAccount.id
-        root.convId = UID
-    }
-
     Component.onDestruction: {
-        UtilsAdapter.clearInteractionsCache(root.accountId, root.convId)
+        UtilsAdapter.clearInteractionsCache(CurrentAccount.id, UID)
     }
 
     RowLayout {
@@ -80,8 +71,8 @@ ItemDelegate {
 
             imageId: UID
             showPresenceIndicator: Presence !== undefined ? Presence : false
-            showSharePositionIndicator: PositionManager.isPositionSharedToConv(accountId, UID)
-            showSharedPositionIndicator: PositionManager.isConvSharingPosition(accountId, UID)
+            showSharePositionIndicator: PositionManager.isPositionSharedToConv(CurrentAccount.id, UID)
+            showSharedPositionIndicator: PositionManager.isConvSharingPosition(CurrentAccount.id, UID)
 
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
@@ -89,10 +80,11 @@ ItemDelegate {
             Connections {
                 target: PositionManager
                 function onPositionShareConvIdsCountChanged () {
-                    avatar.showSharePositionIndicator = PositionManager.isPositionSharedToConv(accountId, UID)
+                    console.warn("changement")
+                    avatar.showSharePositionIndicator = PositionManager.isPositionSharedToConv(CurrentAccount.id, UID)
                 }
                 function onSharingUrisCountChanged () {
-                    avatar.showSharedPositionIndicator = PositionManager.isConvSharingPosition(accountId, UID)
+                    avatar.showSharedPositionIndicator = PositionManager.isConvSharingPosition(CurrentAccount.id, UID)
                 }
             }
 
