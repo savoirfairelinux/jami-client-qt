@@ -61,12 +61,10 @@ SBSMessageBase {
         if (ConfId === "" && Duration === 0) {
             // If missed, we can add a darker pattern
             return isOutgoing ?
-                        Qt.darker(JamiTheme.messageOutBgColor, 1.5) :
+                        Qt.lighter(CurrentConversation.color, 1.5) :
                         Qt.darker(JamiTheme.messageInBgColor, 1.5)
         }
-        return isOutgoing ?
-                    JamiTheme.messageOutBgColor :
-                    CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+        return isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor
     }
 
     innerContent.children: [
@@ -88,8 +86,13 @@ SBSMessageBase {
                     return Body
                 }
                 horizontalAlignment: Qt.AlignHCenter
-                font.pointSize: JamiTheme.contactEventPointSize
+
+                font.pixelSize: JamiTheme.emojiBubbleSize
+                font.hintingPreference: Font.PreferNoHinting
                 font.bold: true
+                renderType: Text.NativeRendering
+                textFormat: Text.MarkdownText
+
                 color: UtilsAdapter.luma(bubble.color) ?
                        JamiTheme.chatviewTextColorLight :
                        JamiTheme.chatviewTextColorDark
