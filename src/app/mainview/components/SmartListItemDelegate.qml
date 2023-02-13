@@ -80,8 +80,8 @@ ItemDelegate {
 
             imageId: UID
             showPresenceIndicator: Presence !== undefined ? Presence : false
-            showSharePositionIndicator: PositionManager.isPositionSharedToConv(accountId, UID)
-            showSharedPositionIndicator: PositionManager.isConvSharingPosition(accountId, UID)
+            showSharePositionIndicator: PositionManager.isPositionSharedToConv(CurrentAccount.id, UID)
+            showSharedPositionIndicator: PositionManager.isConvSharingPosition(CurrentAccount.id, UID)
 
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
@@ -89,10 +89,10 @@ ItemDelegate {
             Connections {
                 target: PositionManager
                 function onPositionShareConvIdsCountChanged () {
-                    avatar.showSharePositionIndicator = PositionManager.isPositionSharedToConv(accountId, UID)
+                    avatar.showSharePositionIndicator = PositionManager.isPositionSharedToConv(CurrentAccount.id, UID)
                 }
                 function onSharingUrisCountChanged () {
-                    avatar.showSharedPositionIndicator = PositionManager.isConvSharingPosition(accountId, UID)
+                    avatar.showSharedPositionIndicator = PositionManager.isConvSharingPosition(CurrentAccount.id, UID)
                 }
             }
 

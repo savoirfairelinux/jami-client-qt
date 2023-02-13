@@ -199,6 +199,7 @@ void
 PositionManager::stopSharingPosition(QString accountId, const QString convId)
 {
     QString stopMsg;
+    PositionKey key = qMakePair(accountId, convId);
     stopMsg = "{\"type\":\"Stop\"}";
     if (accountId == "") {
         sendPosition(stopMsg, false);
@@ -206,15 +207,17 @@ PositionManager::stopSharingPosition(QString accountId, const QString convId)
         positionShareConvIds_.clear();
     } else {
         if (convId == "") {
-            stopPositionTimers(accountId);
             for (auto it = positionShareConvIds_.begin(); it != positionShareConvIds_.end();) {
                 if (it->first == accountId) {
+                    key = qMakePair(accountId, it->second);
+                    stopPositionTimers(key);
                     sendStopMessage(accountId, it->second);
                     it = positionShareConvIds_.erase(it);
                 } else
                     ++it;
             }
         } else {
+            stopPositionTimers(key);
             sendStopMessage(accountId, convId);
             auto iter = std::find(positionShareConvIds_.begin(),
                                   positionShareConvIds_.end(),
@@ -356,19 +359,22 @@ PositionManager::parseJsonPosition(const QString& accountId,
 void
 PositionManager::startPositionTimers(int timeSharing)
 {
-    mapTimerCountDown_[lrcInstance_->get_currentAccountId()] = timeSharing;
+    PositionKey key;
+    key.first = lrcInstance_->get_currentAccountId();
+    key.second = lrcInstance_->get_selectedConvUid();
+    mapTimerCountDown_[key] = timeSharing;
     countdownUpdate();
     countdownTimer_->start(1000);
 }
 
 void
-PositionManager::stopPositionTimers(QString accountId)
+PositionManager::stopPositionTimers(PositionKey key)
 {
     // reset all timers
-    if (accountId == nullptr) {
+    if (key == PositionKey()) {
         mapTimerCountDown_.clear();
     } else {
-        auto it = mapTimerCountDown_.find(accountId);
+        auto it = mapTimerCountDown_.find(key);
         if (it != mapTimerCountDown_.end()) {
             mapTimerCountDown_.erase(it);
         }
@@ -457,13 +463,13 @@ PositionManager::countdownUpdate()
                             mapTimerCountDown_.end(),
                             [](const auto& end) { return end == 0; });
     if (end != mapTimerCountDown_.end()) {
-        Q_EMIT sendCountdownUpdate(end.key(), end.value());
-        stopSharingPosition(end.key());
+        Q_EMIT sendCountdownUpdate(end.key().first + "_" + end.key().second, end.value());
+        stopSharingPosition(end.key().first, end.key().second);
     }
     // When removals are done, countdown can be updated
     for (auto it = mapTimerCountDown_.begin(); it != mapTimerCountDown_.end(); it++) {
         if (it.value() != 0) {
-            Q_EMIT sendCountdownUpdate(it.key(), it.value());
+            Q_EMIT sendCountdownUpdate(it.key().first + "_" + it.key().second, it.value());
             it.value() -= 1000;
         }
     }
