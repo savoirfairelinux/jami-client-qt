@@ -126,6 +126,52 @@
       "message": "cannot accept call:\n```\nqrc:/mainview/components/InitialCallPage.qml:0: ReferenceError: responsibleAccountId is not defined\nqrc:/mainview/components/InitialCallPage.qml:0: ReferenceError: responsibleAccountId is not defined\nqrc:/mainview/components/InitialCallPage.qml:0: ReferenceError: responsibleAccountId is not defined\n```",
       "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "271b7ece_60007e8d",
+        "filename": "src/app/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-13T14:04:58Z",
+      "side": 1,
+      "message": "could be removed",
+      "range": {
+        "startLine": 36,
+        "startChar": 17,
+        "endLine": 36,
+        "endChar": 32
+      },
+      "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e544acf_89b0e1df",
+        "filename": "src/app/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-13T14:04:58Z",
+      "side": 1,
+      "message": "connect target CurrentAccount and check idchanged?",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
