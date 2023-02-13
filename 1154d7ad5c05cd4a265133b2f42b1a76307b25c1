@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "685a9ab9_25c628f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-13T18:39:23Z",
+      "side": 1,
+      "message": "It\u0027s a bit better in the latest, and additionally, I\u0027ll have a patch ready to fix up https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/979 soon.",
+      "parentUuid": "e10075f6_85799da4",
+      "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93c8e05d_7d7a772d",
