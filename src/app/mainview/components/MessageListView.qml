@@ -56,6 +56,17 @@ JamiListView {
         return false
     }
 
+    function computeFirstItem(item) {
+        var nItem = root.itemAtIndex(1)
+
+        //case of new message
+        if (nItem) {
+            computeTimestampVisibility(item, 0, nItem, 1)
+            computeSequencing( null, item, root.itemAtIndex(1))
+            computeSequencing(item, nItem, root.itemAtIndex(2))
+        }
+    }
+
     function computeChatview(item, itemIndex) {
         if (!root) return
         var rootItem = root.itemAtIndex(0)
@@ -63,6 +74,7 @@ JamiListView {
         var pItemIndex = itemIndex - 1
         var nItem = root.itemAtIndex(itemIndex + 1)
         var nItemIndex = itemIndex + 1
+
         // middle insertion
         if (pItem && nItem) {
             computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)
@@ -80,10 +92,9 @@ JamiListView {
         }
         // index 0 insertion = new message
         if (itemIndex === 0) {
-            if (!nItem && !CurrentConversation.allMessagesLoaded)
-                Qt.callLater(computeChatview, item, itemIndex)
-            else
-                computeSequencing( null, item, root.itemAtIndex(itemIndex + 1))
+            computeSequencing( null, item, null)
+            Qt.callLater(computeFirstItem, item)
+
         }
         // top element
         if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
