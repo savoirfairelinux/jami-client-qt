@@ -225,8 +225,8 @@ Item {
     //mapPosition
     property color mapButtonsOverlayColor: darkTheme ? "#000000" : "#f0f0f0"
     property color mapButtonColor: darkTheme ?  "#f0f0f0" : "#000000"
-    property color sharePositionIndicatorColor: red_
-    property color sharedPositionIndicatorColor: urgentOrange_
+    property color sharePositionIndicatorColor: "#015698"
+    property color sharedPositionIndicatorColor: blackColor
 
     //EmojiReact
     property real emojiBubbleSize: calcSize(17)
