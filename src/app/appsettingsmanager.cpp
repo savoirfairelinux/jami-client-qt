@@ -44,6 +44,11 @@ AppSettingsManager::getValue(const Settings::Key key)
 {
     auto value = settings_->value(Settings::toString(key), Settings::defaultValue(key));
 
+    if (key == Settings::Key::LANG) {
+        auto pref = value.toString();
+        value = pref == "SYSTEM" ? QLocale::system().name() : pref;
+    }
+
     if (QString(value.typeName()) == "QString"
         && (value.toString() == "false" || value.toString() == "true"))
         return value.toBool();
