@@ -46,6 +46,19 @@ ItemDelegate {
 
     property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionDate)
 
+    property bool showSharePositionIndicator: PositionManager.isPositionSharedToConv(accountId, UID)
+    property bool showSharedPositionIndicator: PositionManager.isConvSharingPosition(accountId, UID)
+
+    Connections {
+        target: PositionManager
+        function onPositionShareConvIdsCountChanged () {
+            root.showSharePositionIndicator = PositionManager.isPositionSharedToConv(accountId, UID)
+        }
+        function onSharingUrisCountChanged () {
+            root.showSharedPositionIndicator = PositionManager.isConvSharingPosition(accountId, UID)
+        }
+    }
+
     onVisibleChanged: {
         if (visible)
             return
@@ -80,21 +93,9 @@ ItemDelegate {
 
             imageId: UID
             showPresenceIndicator: Presence !== undefined ? Presence : false
-            showSharePositionIndicator: PositionManager.isPositionSharedToConv(accountId, UID)
-            showSharedPositionIndicator: PositionManager.isConvSharingPosition(accountId, UID)
 
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
-
-            Connections {
-                target: PositionManager
-                function onPositionShareConvIdsCountChanged () {
-                    avatar.showSharePositionIndicator = PositionManager.isPositionSharedToConv(accountId, UID)
-                }
-                function onSharingUrisCountChanged () {
-                    avatar.showSharedPositionIndicator = PositionManager.isConvSharingPosition(accountId, UID)
-                }
-            }
 
             Rectangle {
                 id: overlayHighlighted
@@ -200,6 +201,37 @@ ItemDelegate {
             visible: ActiveCallsCount && !root.highlighted
             source: JamiResources.videocam_24dp_svg
             color: JamiTheme.primaryForegroundColor
+        }
+
+        ResponsiveImage {
+            visible: showSharePositionIndicator
+            source: JamiResources.localisation_sharing_send_pin_svg
+            color: JamiTheme.sharePositionIndicatorColor
+            ResponsiveImage {
+                id: arrowSharePosition
+
+                visible: locationIconTimer.showIconArrow
+                source: JamiResources.localisation_sharing_send_arrow_svg
+                color: JamiTheme.sharePositionIndicatorColor
+            }
+        }
+
+        ResponsiveImage {
+            visible: showSharedPositionIndicator
+            source: JamiResources.localisation_sharing_send_pin_svg
+            color: JamiTheme.sharedPositionIndicatorColor
+            ResponsiveImage {
+                id: arrowSharedPosition
+
+                visible: locationIconTimer.showIconArrow
+                source: JamiResources.localisation_sharing_send_arrow_svg
+                color: JamiTheme.sharedPositionIndicatorColor
+                mirrorHorizontally: true
+                mirrorVertically: true
+                anchors.fill: parent
+                anchors.bottomMargin: 4
+                anchors.leftMargin: 3
+            }
         }
 
         ColumnLayout {
