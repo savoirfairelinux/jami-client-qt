@@ -35,6 +35,8 @@ Item {
     property alias status: image.status
     property string color: "transparent"
     property bool hovered: false
+    property bool mirrorHorizontally: false
+    property bool mirrorVertically: false
 
     property bool isSvg: {
         var match = /[^.]+$/.exec(source)
@@ -66,6 +68,8 @@ Item {
         antialiasing: true
         asynchronous: true
         visible: false
+        mirror: root.mirrorHorizontally
+        mirrorVertically: root.mirrorVertically
 
         function setSourceSize() {
             sourceSize = undefined
