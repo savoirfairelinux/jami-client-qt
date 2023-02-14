@@ -28,8 +28,6 @@ Item {
 
     property alias imageId: avatar.imageId
     property alias showPresenceIndicator: avatar.showPresenceIndicator
-    property alias showSharePositionIndicator: avatar.showSharePositionIndicator
-    property alias showSharedPositionIndicator: avatar.showSharedPositionIndicator
     property alias animationMode: animation.mode
 
     SpinningAnimation {

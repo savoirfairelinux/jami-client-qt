@@ -409,6 +409,17 @@ Rectangle {
                 }
             }
             currentIndex: model.currentFilteredRow
+
+            Timer {
+                id: locationIconTimer
+
+                property bool showIconArrow: true
+
+                interval: 750
+                running: showSharePositionIndicator || showSharedPositionIndicator
+                repeat: true
+                onTriggered: {showIconArrow = !showIconArrow}
+            }
         }
     }
 }
