@@ -53,6 +53,19 @@ ItemDelegate {
         }
     }
 
+    property bool showSharePositionIndicator: PositionManager.isPositionSharedToConv(accountId, UID)
+    property bool showSharedPositionIndicator: PositionManager.isConvSharingPosition(accountId, UID)
+
+    Connections {
+        target: PositionManager
+        function onPositionShareConvIdsCountChanged () {
+            root.showSharePositionIndicator = PositionManager.isPositionSharedToConv(accountId, UID)
+        }
+        function onSharingUrisCountChanged () {
+            root.showSharedPositionIndicator = PositionManager.isConvSharingPosition(accountId, UID)
+        }
+    }
+
     onVisibleChanged: {
         if (visible)
             return
@@ -87,21 +100,9 @@ ItemDelegate {
 
             imageId: UID
             showPresenceIndicator: Presence !== undefined ? Presence : false
-            showSharePositionIndicator: PositionManager.isPositionSharedToConv(CurrentAccount.id, UID)
-            showSharedPositionIndicator: PositionManager.isConvSharingPosition(CurrentAccount.id, UID)
 
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
-
-            Connections {
-                target: PositionManager
-                function onPositionShareConvIdsCountChanged () {
-                    avatar.showSharePositionIndicator = PositionManager.isPositionSharedToConv(CurrentAccount.id, UID)
-                }
-                function onSharingUrisCountChanged () {
-                    avatar.showSharedPositionIndicator = PositionManager.isConvSharingPosition(CurrentAccount.id, UID)
-                }
-            }
 
             Rectangle {
                 id: overlayHighlighted
@@ -207,6 +208,20 @@ ItemDelegate {
             visible: ActiveCallsCount && !root.highlighted
             source: JamiResources.videocam_24dp_svg
             color: JamiTheme.primaryForegroundColor
+        }
+
+        BlinkingLocationIcon {
+            isSharing: true
+            visible: showSharePositionIndicator
+            arrowTimerVisibility: locationIconTimer.showIconArrow
+            color: JamiTheme.sharePositionIndicatorColor
+        }
+
+        BlinkingLocationIcon {
+            isSharing: false
+            visible: showSharedPositionIndicator
+            arrowTimerVisibility: locationIconTimer.showIconArrow
+            color: JamiTheme.sharedPositionIndicatorColor
         }
 
         ColumnLayout {
