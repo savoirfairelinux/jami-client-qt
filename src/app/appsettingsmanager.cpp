@@ -44,6 +44,11 @@ AppSettingsManager::getValue(const Settings::Key key)
 {
     auto value = settings_->value(Settings::toString(key), Settings::defaultValue(key));
 
+    if (key == Settings::Key::LANG) {
+        auto pref = value.toString();
+        value = pref == "SYSTEM" ? QLocale::system().name() : pref;
+    }
+
     if (QString(value.typeName()) == "QString"
         && (value.toString() == "false" || value.toString() == "true"))
         return value.toBool();
@@ -75,9 +80,8 @@ AppSettingsManager::loadTranslations()
         qApp->removeTranslator(tr);
     installedTr_.clear();
 
-    auto pref = getValue(Settings::Key::LANG).toString();
+    auto locale_name = getValue(Settings::Key::LANG).toString();
 
-    QString locale_name = pref == "SYSTEM" ? QLocale::system().name() : pref;
     qDebug() << QString("Using locale: %1").arg(locale_name);
     QString locale_lang = locale_name.split('_')[0];
 
