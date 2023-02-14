@@ -409,6 +409,30 @@ Rectangle {
                 }
             }
             currentIndex: model.currentFilteredRow
+
+            Connections {
+                target: PositionManager
+                function onPositionShareConvIdsCountChanged () {
+                    locationIconTimer.isSharingPosition = PositionManager.isSharingPosition()
+                }
+                function onSharingUrisCountChanged () {
+                     locationIconTimer.isReceivingPosition = PositionManager.isReceivingPosition()
+                }
+            }
+
+
+            Timer {
+                id: locationIconTimer
+
+                property bool showIconArrow: true
+                property bool isSharingPosition: false
+                property bool isReceivingPosition: false
+
+                interval: 750
+                running: isSharingPosition || isReceivingPosition
+                repeat: true
+                onTriggered: {showIconArrow = !showIconArrow}
+            }
         }
     }
 }

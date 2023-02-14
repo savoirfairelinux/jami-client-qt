@@ -83,6 +83,18 @@ PositionManager::stopPositioning()
 }
 
 bool
+PositionManager::isSharingPosition()
+{
+    return !positionShareConvIds_.isEmpty();
+}
+
+bool
+PositionManager::isReceivingPosition()
+{
+    return !objectListSharingUris_.isEmpty();
+}
+
+bool
 PositionManager::isConvSharingPosition(const QString& accountId, const QString& convUri)
 {
     const auto& convParticipants = lrcInstance_->getConversationFromConvUid(convUri)

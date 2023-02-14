@@ -85,6 +85,9 @@ protected:
     Q_INVOKABLE void startPositioning();
     Q_INVOKABLE void stopPositioning();
 
+    Q_INVOKABLE bool isSharingPosition();
+    Q_INVOKABLE bool isReceivingPosition();
+
     Q_INVOKABLE bool isPositionSharedToConv(const QString& accountId, const QString& convUid);
     Q_INVOKABLE bool isConvSharingPosition(const QString& accountId, const QString& convUri);
 
