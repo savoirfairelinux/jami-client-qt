@@ -22,6 +22,30 @@
       },
       "revId": "6ead60daca541e9ddca5f0ed0a3ce3c61bb9df92",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0d05a41_f60c936a",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-14T15:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ead2852_0217f520",
+      "range": {
+        "startLine": 590,
+        "startChar": 23,
+        "endLine": 590,
+        "endChar": 87
+      },
+      "revId": "6ead60daca541e9ddca5f0ed0a3ce3c61bb9df92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
