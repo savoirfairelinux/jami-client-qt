@@ -688,14 +688,11 @@ MessagesAdapter::getFormattedTime(const quint64 timestamp)
     auto interval = qFloor(seconds / 60);
 
     if (interval > 1) {
-        auto curLang = settingsManager_->getValue(Settings::Key::LANG);
-        auto curLocal(QLocale(curLang.toString()));
+        auto curLang = settingsManager_->getLanguage();
+        auto curLocal = QLocale(curLang);
         auto curTime = QDateTime::fromSecsSinceEpoch(timestamp).time();
         QString timeLocale;
-        if (curLang == "SYSTEM")
-            timeLocale = QLocale::system().toString(curTime, QLocale::system().ShortFormat);
-        else
-            timeLocale = curLocal.toString(curTime, curLocal.ShortFormat);
+        timeLocale = curLocal.toString(curTime, curLocal.ShortFormat);
 
         return timeLocale;
     }
@@ -722,14 +719,11 @@ MessagesAdapter::getFormattedDay(const quint64 timestamp)
     if (timestampDate.daysTo(currentDate) == 1)
         return QObject::tr("Yesterday");
 
-    auto curLang = settingsManager_->getValue(Settings::Key::LANG);
-    auto curLocal(QLocale(curLang.toString()));
+    auto curLang = settingsManager_->getLanguage();
+    auto curLocal = QLocale(curLang);
     auto curDate = QDateTime::fromSecsSinceEpoch(timestamp).date();
     QString dateLocale;
-    if (curLang == "SYSTEM")
-        dateLocale = QLocale::system().toString(curDate, QLocale::system().ShortFormat);
-    else
-        dateLocale = curLocal.toString(curDate, curLocal.ShortFormat);
+    dateLocale = curLocal.toString(curDate, curLocal.ShortFormat);
 
     return dateLocale;
 }
