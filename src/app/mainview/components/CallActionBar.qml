@@ -357,7 +357,7 @@ Control {
                       JamiStrings.stopSharing :
                       JamiStrings.shareScreen
             property real size: 34
-            property var menuAction: shareMenuAction
+            property var menuAction: CurrentCall.isSharing ? undefined : shareMenuAction
         },
         Action {
             id: raiseHandAction
