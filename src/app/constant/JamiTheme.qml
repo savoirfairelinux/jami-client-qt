@@ -102,7 +102,7 @@ Item {
     property color invertedNormalButtonColor: Qt.rgba(0, 0, 0, 0.75)
 
     property color editLineColor: "#03b9e9"
-    property color buttonTintedBlue: "#005699"
+    property color buttonTintedBlue: darkTheme ? "#03B9E9" : "#005699"
     property color buttonTintedBlueHovered: "#0071c9"
     property color buttonTintedBlueInternalHover: Qt.rgba(0, 86, 153, 0.2)
     property color buttonTintedBluePressed: "#0071c9"
@@ -227,8 +227,8 @@ Item {
     //mapPosition
     property color mapButtonsOverlayColor: darkTheme ? "#000000" : "#f0f0f0"
     property color mapButtonColor: darkTheme ?  "#f0f0f0" : "#000000"
-    property color sharePositionIndicatorColor: red_
-    property color sharedPositionIndicatorColor: urgentOrange_
+    property color sharePositionIndicatorColor: buttonTintedBlue
+    property color sharedPositionIndicatorColor: darkTheme ? whiteColor : blackColor
 
     //EmojiReact
     property real emojiBubbleSize: calcSize(17)
