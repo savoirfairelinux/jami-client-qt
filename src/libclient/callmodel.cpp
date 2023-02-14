@@ -565,9 +565,13 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
     for (auto& media : proposedList) {
         auto replace = media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO;
         // In a 1:1 we replace the first video, in a conference we replace only if it's a muted
-        // video as we show multiple previews
-        if (isConf)
+        // video or if a new sharing is requested
+        if (isConf) {
             replace &= media[MediaAttributeKey::MUTED] == TRUE_STR;
+            replace |= (media[MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::FILE)
+                          || media[MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::DISPLAY))
+                      && (type == MediaRequestType::FILESHARING || type == MediaRequestType::SCREENSHARING);
+        }
         if (replace) {
             mediaAttribute[MediaAttributeKey::LABEL] = media[MediaAttributeKey::LABEL];
             media = mediaAttribute;
