@@ -46,6 +46,30 @@
       },
       "revId": "a9a2f931a30eda9342081052ce267d9992906d23",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2718e8e6_1dc5eda8",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-14T21:19:06Z",
+      "side": 1,
+      "message": "race-condition maybe? But I let anybody do the review. I don\u0027t see any problem with this code. So if it works it\u0027s great.",
+      "parentUuid": "2c51330c_d0ef8170",
+      "range": {
+        "startLine": 95,
+        "startChar": 12,
+        "endLine": 95,
+        "endChar": 29
+      },
+      "revId": "a9a2f931a30eda9342081052ce267d9992906d23",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
