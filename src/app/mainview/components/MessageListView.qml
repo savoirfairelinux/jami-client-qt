@@ -63,6 +63,7 @@ JamiListView {
         var pItemIndex = itemIndex - 1
         var nItem = root.itemAtIndex(itemIndex + 1)
         var nItemIndex = itemIndex + 1
+
         // middle insertion
         if (pItem && nItem) {
             computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)
@@ -80,10 +81,17 @@ JamiListView {
         }
         // index 0 insertion = new message
         if (itemIndex === 0) {
-            if (!nItem && !CurrentConversation.allMessagesLoaded)
-                Qt.callLater(computeChatview, item, itemIndex)
-            else
-                computeSequencing( null, item, root.itemAtIndex(itemIndex + 1))
+            // Compute the timestamp visibility when a new message is received/sent.
+            // This needs to be done in a delayed fashion because the new message is inserted
+            // at the top of the list and the list is not yet updated.
+            Qt.callLater(() => {
+                var fItem = root.itemAtIndex(1)
+                if (fItem) {
+                    computeTimestampVisibility(item, 0, fItem, 1)
+                    computeSequencing(null, item, fItem)
+                    computeSequencing(item, fItem, root.itemAtIndex(2))
+                }
+            })
         }
         // top element
         if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
