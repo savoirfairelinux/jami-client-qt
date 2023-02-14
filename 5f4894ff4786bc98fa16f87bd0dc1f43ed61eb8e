@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f02d02a_7c0a978b",
+        "filename": "src/app/commoncomponents/MessageOptionsPopup.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-14T14:42:36Z",
+      "side": 1,
+      "message": "qrc:/commoncomponents/DataTransferMessageDelegate.qml:341:25: QML Image: Error decoding: file://home/amarok/.local/share/jami/d36f599390696996/conversation_data/3fdcf5eca878767a2d7b3651c5cbcce3b694c8ec/42f54f57868851f24937cbf81b542455c6734fa1_1234589239198623.jpg: Unsupported image format\nqrc:/commoncomponents/MessageOptionsPopup.qml:103: TypeError: Cannot read property \u0027verticalScrollBar\u0027 of null\nqrc:/commoncomponents/MessageOptionsPopup.qml:101: TypeError: Cannot read property \u0027height\u0027 of null\nqrc:/commoncomponents/MessageOptionsPopup.qml:64: TypeError: Cannot read property \u0027height\u0027 of null\nqrc:/commoncomponents/MessageOptionsPopup.qml:52: TypeError: Cannot read property \u0027width\u0027 of null",
+      "range": {
+        "startLine": 51,
+        "startChar": 19,
+        "endLine": 51,
+        "endChar": 24
+      },
+      "revId": "5f4894ff4786bc98fa16f87bd0dc1f43ed61eb8e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
