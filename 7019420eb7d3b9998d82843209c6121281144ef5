@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae6f0b55_17054622",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-14T20:40:23Z",
+      "side": 1,
+      "message": "actually I think the menu should be shown, a new shared media should replace the current share",
+      "range": {
+        "startLine": 360,
+        "startChar": 38,
+        "endLine": 360,
+        "endChar": 59
+      },
+      "revId": "7019420eb7d3b9998d82843209c6121281144ef5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
