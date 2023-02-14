@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+ * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,33 +16,30 @@
  */
 
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Layouts
+import net.jami.Constants 1.1
 
-import net.jami.Adapters 1.1
 
 import "../../commoncomponents"
 
-Item {
+ResponsiveImage {
     id: root
 
-    property alias imageId: avatar.imageId
-    property alias showPresenceIndicator: avatar.showPresenceIndicator
-    property alias animationMode: animation.mode
+    property bool isSharing: false
+    property bool arrowTimerVisibility
+    source: JamiResources.localisation_sharing_send_pin_svg
 
-    SpinningAnimation {
-        id: animation
+    ResponsiveImage {
+        id: arrowSharePosition
 
-        anchors.fill: root
-    }
-
-    Avatar {
-        id: avatar
-
-        anchors.fill: root
-        anchors.margins: animation.mode === SpinningAnimation.Mode.Disabled ?
-                             0 :
-                             animation.spinningAnimationWidth
-
-        mode: Avatar.Mode.Conversation
+        visible: arrowTimerVisibility
+        source: JamiResources.localisation_sharing_send_arrow_svg
+        color: root.color
+        mirrorHorizontally: isSharing ? false : true
+        mirrorVertically: isSharing ? false : true
+        anchors.fill: parent
+        anchors.bottomMargin: isSharing ? 0 : 4
+        anchors.leftMargin: isSharing ? 0 : 3
     }
 }
+
