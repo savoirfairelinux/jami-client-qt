@@ -80,10 +80,18 @@ JamiListView {
         }
         // index 0 insertion = new message
         if (itemIndex === 0) {
-            if (!nItem && !CurrentConversation.allMessagesLoaded)
-                Qt.callLater(computeChatview, item, itemIndex)
-            else
-                computeSequencing( null, item, root.itemAtIndex(itemIndex + 1))
+            Qt.callLater(computeChatview, item, itemIndex)
+
+            //case of new message
+            if (nItem) {
+                computeSequencing( null, item, root.itemAtIndex(1))
+            }
+            //case load messages
+            else {
+                computeSequencing( null, item, null)
+            }
+
+
         }
         // top element
         if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
