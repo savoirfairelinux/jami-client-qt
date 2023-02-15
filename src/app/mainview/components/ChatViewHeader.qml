@@ -153,6 +153,37 @@ Rectangle {
             Layout.rightMargin: 8
             spacing: 16
 
+            Rectangle {
+                id: locationSharingDetais
+
+                property real buttonSize: 50
+
+                visible: PositionManager.positionShareConvIdsCount !== 0
+                Layout.preferredWidth: buttonSize
+                Layout.preferredHeight: buttonSize
+                radius: width * 0.5
+                color: JamiTheme.detailsShareLocationButtonBackgroundColor
+                border.width: 3
+                border.color: JamiTheme.detailsShareLocationButtonBorderColor
+
+                MouseArea {
+                    id: detailButtonArea
+
+                    hoverEnabled: true
+                    anchors.fill: parent
+                    onClicked: {
+                        chatView.detailLocationButtonClick()
+                    }
+                }
+
+                BlinkingLocationIcon {
+                    isSharing: true
+                    arrowTimerVisibility: locationIconTimer.showIconArrow
+                    anchors.centerIn: parent
+                    color: JamiTheme.chatviewBgColor
+                }
+            }
+
             PushButton {
                 id: startAAudioCallButton
 
@@ -223,8 +254,8 @@ Rectangle {
                 imageColor: JamiTheme.chatviewButtonColor
 
                 onClicked: CurrentConversation.isBanned ?
-                                MessagesAdapter.unbanConversation(CurrentConversation.id)
-                                : MessagesAdapter.sendConversationRequest()
+                               MessagesAdapter.unbanConversation(CurrentConversation.id)
+                             : MessagesAdapter.sendConversationRequest()
             }
 
             PushButton {
