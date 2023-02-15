@@ -26,6 +26,7 @@ Rectangle {
     id: root
     property bool out: true
     property int type: MsgSeq.single
+    property bool isReply: false
     Rectangle {
         id: mask
         visible: type !== MsgSeq.single

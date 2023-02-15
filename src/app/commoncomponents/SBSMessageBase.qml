@@ -100,12 +100,65 @@ Control {
             }
         }
 
+        /////////////////////////////////
+        /////////////////////////////////
+        Item {
+            property bool isReply:  ReplyTo !== ""
+
+            width: parent.width
+            height: childrenRect.height
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            visible: isReply
+            Layout.topMargin: 6
+
+
+
+            // place actual content here
+            ReplyToRow {
+                id: replyToRow
+                anchors.left: !isOutgoing ? parent.left : undefined
+                anchors.right: isOutgoing ? parent.right : undefined
+                anchors.leftMargin: isOutgoing ? undefined : 45
+                anchors.rightMargin: !isOutgoing ? undefined : 45
+
+                MouseArea {
+
+                    z: 2
+                    anchors.fill: parent
+                    onClicked: function(mouse) {
+                        CurrentConversation.scrollToMsg(ReplyTo)
+                    }
+                }
+
+
+
+                MessageBubble {
+                    property bool isSelf: ReplyToAuthor === CurrentAccount.uri || ReplyToAuthor === ""
+                    id: replyBubble
+                    z:-2
+                    out: isOutgoing
+                    type: MsgSeq.single
+                    isReply: isReply
+                    color: isSelf ? JamiTheme.messageOutBgColor : JamiTheme.messageInBgColor
+                    radius: msgRadius
+                    anchors.fill: parent
+                    transform: Translate { y: 4 }
+                    height: replyToRow.childrenRect.height
+                }
+
+            }
+
+
+        }
+
 
         RowLayout {
             id: msgRowlayout
+            property bool isReply:  ReplyTo !== ""
 
             Layout.preferredHeight: innerContent.height + root.extraHeight
-            Layout.topMargin: (seq === MsgSeq.first || seq === MsgSeq.single) ? 6 : 0
+            Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !isReply) ? 6 : 0
 
             Item {
                 id: avatarBlock
@@ -127,7 +180,6 @@ Control {
 
 
             Item {
-                property bool isReply:  ReplyTo !== ""
                 id: itemRowMessage
 
                 Layout.fillHeight: true
@@ -146,22 +198,16 @@ Control {
                     property bool bubbleHovered: containsMouse || textHovered
                 }
 
+                /////////////////////////////////
+                /////////////////////////////////
+                /////////////////////////////////
+                /////////////////////////////////
+                /////////////////////////////////
                 Column {
                     id: innerContent
 
                     width: parent.width
                     visible: true
-
-
-                    // place actual content here
-                    ReplyToRow {
-                        id: replyToRow
-                        bubbleWidth: bubble.width
-
-
-
-                    }
-
 
                 }
 
@@ -341,33 +387,17 @@ Control {
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
 
-                    width: {
-                        if(!isReply)
-                            root.textEditedWidth
-                        else
-                            if(root.textEditedWidth > JamiTheme.sbsMessageBaseMinimumReplyWidth)
-                                root.textEditedWidth
-                            else
-                                if(Math.max(root.textEditedWidth,replyToRow.replyRowWidth) > JamiTheme.sbsMessageBaseMinimumReplyWidth)
-                                    JamiTheme.sbsMessageBaseMinimumReplyWidth
-                                else
-                                    Math.max(root.textEditedWidth,replyToRow.replyRowWidth)
-                    }
 
+                    width: root.textEditedWidth
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
 
-                    Component.onCompleted: {
-
-                        console.warn("root.textEditedWidth :" + root.textEditedWidth)
-
-                    }
                 }
 
 
                 Rectangle {
                     id: bg
 
-                    //color: bubble.getBaseColor()
+                    color: "red"
                     anchors.fill: parent
                     visible: false
                 }

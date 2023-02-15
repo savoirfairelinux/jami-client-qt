@@ -81,10 +81,15 @@ JamiListView {
         }
         // index 0 insertion = new message
         if (itemIndex === 0) {
-            if (!nItem && !CurrentConversation.allMessagesLoaded)
-                Qt.callLater(computeChatview, item, itemIndex)
-            else
-                computeSequencing( null, item, root.itemAtIndex(itemIndex + 1))
+            Qt.callLater(computeChatview, item, itemIndex)
+            //case of new message
+            if (nItem) {
+                computeSequencing( null, item, root.itemAtIndex(1))
+            }
+            //case load messages
+            else {
+                computeSequencing( null, item, null)
+            }
         }
         // top element
         if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
@@ -196,63 +201,12 @@ JamiListView {
     }
 
     model: MessagesAdapter.messageListModel
-    delegate: DelegateChooser {
-        id: delegateChooser
-
-        role: "Type"
-
-        DelegateChoice {
-            id: delegateChoice
-            roleValue: Interaction.Type.TEXT
-
-            TextMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
-            }
-        }
-
-        DelegateChoice {
-            roleValue: Interaction.Type.CALL
-
-            CallMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
-            }
-        }
-
-        DelegateChoice {
-            roleValue: Interaction.Type.CONTACT
-
-            ContactMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
-            }
-        }
-
-        DelegateChoice {
-            roleValue: Interaction.Type.INITIAL
-
-            GeneratedMessageDelegate {
-                font.bold: true
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
-            }
-        }
-
-        DelegateChoice {
-            roleValue: Interaction.Type.DATA_TRANSFER
-
-            DataTransferMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
-            }
+    delegate: TextMessageDelegate {
+        Component.onCompleted:  {
+            computeChatview(this, index)
         }
     }
+
 
     onAtYBeginningChanged: loadMoreMsgsIfNeeded()
 
