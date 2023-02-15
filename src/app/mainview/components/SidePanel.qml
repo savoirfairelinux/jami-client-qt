@@ -408,20 +408,7 @@ Rectangle {
                     root.clearContactSearchBar()
                 }
             }
-            currentIndex: model.currentFilteredRow
-
-            Timer {
-                id: locationIconTimer
-
-                property bool showIconArrow: true
-                property bool isSharingPosition: PositionManager.positionShareConvIdsCount !== 0
-                property bool isReceivingPosition: PositionManager.sharingUrisCount !== 0
-
-                interval: 750
-                running: isSharingPosition || isReceivingPosition
-                repeat: true
-                onTriggered: {showIconArrow = !showIconArrow}
-            }
+            currentIndex: model.currentFilteredRow           
         }
     }
 }
