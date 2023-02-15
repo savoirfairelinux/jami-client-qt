@@ -70,6 +70,30 @@
       },
       "revId": "a9a2f931a30eda9342081052ce267d9992906d23",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f082003_c4baf56b",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-15T16:06:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2718e8e6_1dc5eda8",
+      "range": {
+        "startLine": 95,
+        "startChar": 12,
+        "endLine": 95,
+        "endChar": 29
+      },
+      "revId": "a9a2f931a30eda9342081052ce267d9992906d23",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
