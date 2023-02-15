@@ -409,12 +409,25 @@ Rectangle {
         onSettingsBackArrowClicked: sidePanelViewStack.pop(StackView.Immediate)
     }
 
+    Timer {
+        id: locationIconTimer
+
+        property bool showIconArrow: true
+        property bool isSharingPosition: PositionManager.positionShareConvIdsCount !== 0
+        property bool isReceivingPosition: PositionManager.sharingUrisCount !== 0
+
+        interval: 750
+        running: isSharingPosition || isReceivingPosition
+        repeat: true
+        onTriggered: {showIconArrow = !showIconArrow}
+    }
+
     ChatView {
         id: chatView
 
         objectName: "chatView"
         visible: false
-        inCallView: false
+        inCallView: false        
         Component.onCompleted: {
             MessagesAdapter.setQmlObject(this)
             PositionManager.setQmlObject(this)
