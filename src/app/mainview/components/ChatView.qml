@@ -44,6 +44,7 @@ Rectangle {
     signal needToHideConversationInCall
     signal messagesCleared
     signal messagesLoaded
+    signal detailLocationButtonClick
 
     onInCallViewChanged: {
         notificationArea.visible = CurrentConversation.activeCalls.length > 0 && !root.inCallView
@@ -183,6 +184,11 @@ Rectangle {
             }
         }
 
+        LocationArea {
+            Layout.preferredHeight: 50
+            Layout.fillWidth: true
+        }
+
         Connections {
             target: CurrentConversation
             enabled: true
@@ -242,7 +248,6 @@ Rectangle {
             id: chatViewMainRow
             Layout.fillWidth: true
             Layout.fillHeight: true
-
             handle: Rectangle {
                 implicitWidth: JamiTheme.splitViewHandlePreferredWidth
                 implicitHeight: splitView.height
@@ -256,12 +261,13 @@ Rectangle {
 
             ColumnLayout {
                 id: chatContents
+
                 SplitView.maximumWidth: splitView.width
                 SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
 
                 SplitView.preferredWidth: chatViewHeader.width -
                                           (swarmDetailsPanel.visible ? swarmDetailsPanel.width :
-                                            ( addMemberPanel.visible ? addMemberPanel.width : 0))
+                                            (addMemberPanel.visible ? addMemberPanel.width : 0))
 
                 StackLayout {
                     id: chatViewStack
