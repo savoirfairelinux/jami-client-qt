@@ -10,6 +10,7 @@ ResponsiveImage {
 
     property bool isSharing: false
     property bool arrowTimerVisibility
+
     source: JamiResources.localisation_sharing_send_pin_svg
 
     ResponsiveImage {
