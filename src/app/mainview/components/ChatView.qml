@@ -40,13 +40,38 @@ Rectangle {
     property int lastContentsSplitSize: JamiTheme.detailsPageMinWidth
     property int lastDetailsSplitSize: JamiTheme.detailsPageMinWidth
     property int previousWidth: width
+    property bool isSharing: PositionManager.positionShareConvIdsCount !== 0
+    property var locationAreaObject
 
     signal needToHideConversationInCall
     signal messagesCleared
     signal messagesLoaded
+    signal detailLocationButtonClick
 
     onInCallViewChanged: {
         notificationArea.visible = CurrentConversation.activeCalls.length > 0 && !root.inCallView
+    }
+
+    onDetailLocationButtonClick: {
+        openLocationArea()
+    }
+
+    onIsSharingChanged: {
+        if (!isSharing)
+            closeLocationArea()
+    }
+
+    function openLocationArea() {
+        if (!locationAreaObject) {
+            var component = Qt.createComponent("LocationArea.qml");
+            locationAreaObject = component.createObject(locationAreaContainer);
+        }
+    }
+
+    function closeLocationArea() {
+        if (locationAreaObject) {
+            locationAreaObject.destroy()
+        }
     }
 
     onVisibleChanged: {
@@ -67,7 +92,7 @@ Rectangle {
     function instanceMapObject() {
         if (WITH_WEBENGINE) {
             var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
-            var sprite = component.createObject(root, {maxWidth: root.width, maxHeight: root.height});
+            var sprite = component.createObject(chatContents, {maxWidth: root.width, maxHeight: root.height});
 
             if (sprite === null) {
                 // Error Handling
@@ -92,6 +117,8 @@ Rectangle {
     }
 
     ColumnLayout {
+        id: mainLayout
+
         anchors.fill: root
 
         spacing: 0
@@ -183,6 +210,13 @@ Rectangle {
             }
         }
 
+        Item {
+            id: locationAreaContainer
+
+            Layout.preferredHeight: childrenRect.height
+            Layout.fillWidth: true
+        }
+
         Connections {
             target: CurrentConversation
             enabled: true
@@ -242,7 +276,6 @@ Rectangle {
             id: chatViewMainRow
             Layout.fillWidth: true
             Layout.fillHeight: true
-
             handle: Rectangle {
                 implicitWidth: JamiTheme.splitViewHandlePreferredWidth
                 implicitHeight: splitView.height
@@ -256,12 +289,13 @@ Rectangle {
 
             ColumnLayout {
                 id: chatContents
+
                 SplitView.maximumWidth: splitView.width
                 SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
 
                 SplitView.preferredWidth: chatViewHeader.width -
                                           (swarmDetailsPanel.visible ? swarmDetailsPanel.width :
-                                            ( addMemberPanel.visible ? addMemberPanel.width : 0))
+                                            (addMemberPanel.visible ? addMemberPanel.width : 0))
 
                 StackLayout {
                     id: chatViewStack
