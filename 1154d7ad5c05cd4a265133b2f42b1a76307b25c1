@@ -59,6 +59,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe982096_e0123d6c",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-15T22:16:16Z",
+      "side": 1,
+      "message": "BackupTipBox.qml:138 (`pwdDlg.done.connect(function () { root.ignore() })`)\n\nI think it\u0027s bad to have a PasswordDialog with this much responsibility. This component could have `purpose` factored out.",
+      "parentUuid": "93c8e05d_7d7a772d",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 42
+      },
+      "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73c7f157_19eb62d5",
@@ -72,6 +96,30 @@
       "writtenOn": "2023-02-13T12:50:59Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 30
+      },
+      "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65a56c6e_40e6bdf1",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-15T22:16:16Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "73c7f157_19eb62d5",
       "range": {
         "startLine": 77,
         "startChar": 8,
@@ -146,6 +194,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1067227_47316c08",
+        "filename": "src/app/mainview/components/InitialCallPage.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-15T22:16:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f775c7e_4942b90b",
+      "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "271b7ece_60007e8d",
@@ -169,6 +235,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b274502_97eecf59",
+        "filename": "src/app/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-15T22:16:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "271b7ece_60007e8d",
+      "range": {
+        "startLine": 36,
+        "startChar": 17,
+        "endLine": 36,
+        "endChar": 32
+      },
+      "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e544acf_89b0e1df",
@@ -182,6 +272,30 @@
       "writtenOn": "2023-02-13T14:04:58Z",
       "side": 1,
       "message": "connect target CurrentAccount and check idchanged?",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "1154d7ad5c05cd4a265133b2f42b1a76307b25c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e6bdfc3_77612657",
+        "filename": "src/app/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-15T22:16:16Z",
+      "side": 1,
+      "message": "assuming you mean currentconversation?? if so, done",
+      "parentUuid": "2e544acf_89b0e1df",
       "range": {
         "startLine": 52,
         "startChar": 4,
