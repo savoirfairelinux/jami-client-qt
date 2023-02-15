@@ -227,6 +227,9 @@ Item {
     property color sharePositionIndicatorColor: "#015698"
     property color sharedPositionIndicatorColor: blackColor
 
+    property color detailsShareLocationButtonBorderColor: "#a4c4dc"
+    property color detailsShareLocationButtonBackgroundColor: "#005699"
+
     //EmojiReact
     property real emojiBubbleSize: calcSize(17)
     property real emojiBubbleSizeBig: calcSize(21)
@@ -276,7 +279,6 @@ Item {
     property int overlayFadeDelay: 4000
     property int overlayFadeDuration: 250
     property int smartListTransitionDuration: 120
-
 
     // Sizes
     property real qrCodeImageSize: 256

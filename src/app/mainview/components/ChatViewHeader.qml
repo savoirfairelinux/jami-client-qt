@@ -153,6 +153,35 @@ Rectangle {
             Layout.rightMargin: 8
             spacing: 16
 
+            Rectangle {
+                id: locationSharingDetais
+
+                property real buttonSize: 50
+
+                visible: PositionManager.positionShareConvIdsCount !== 0
+                Layout.preferredWidth: buttonSize
+                Layout.preferredHeight: buttonSize
+                radius: width * 0.5
+                color: JamiTheme.detailsShareLocationButtonBackgroundColor
+                border.width: 3
+                border.color: JamiTheme.detailsShareLocationButtonBorderColor
+
+                ResponsiveImage {
+                    anchors.centerIn: parent
+                    visible: true
+                    source: JamiResources.localisation_sharing_send_pin_svg
+                    color: JamiTheme.chatviewBgColor
+
+                    ResponsiveImage {
+                        anchors.centerIn: parent
+                        visible: true
+                        source: JamiResources.localisation_sharing_send_arrow_svg
+                        color: JamiTheme.chatviewBgColor
+                    }
+                }
+
+            }
+
             PushButton {
                 id: startAAudioCallButton
 
