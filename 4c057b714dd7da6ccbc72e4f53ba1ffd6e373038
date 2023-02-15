@@ -22,6 +22,30 @@
       },
       "revId": "4c057b714dd7da6ccbc72e4f53ba1ffd6e373038",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24fee719_13f2b916",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2023-02-15T16:45:17Z",
+      "side": 1,
+      "message": "better not to change that in this patch, you\u0027re right",
+      "parentUuid": "18b8ce85_9ad6c67d",
+      "range": {
+        "startLine": 49,
+        "startChar": 9,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "4c057b714dd7da6ccbc72e4f53ba1ffd6e373038",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
