@@ -347,6 +347,7 @@ Item {
     property string hideChat: qsTr("Hide chat")
     property string placeAudioCall: qsTr("Place audio call")
     property string placeVideoCall: qsTr("Place video call")
+    property string locationSharingDetails: qsTr("location sharing details")
     property string showPlugins: qsTr("Show available plugins")
     property string addToConversations: qsTr("Add to conversations")
     property string backendError: qsTr("This is the error from the backend: %0")
