@@ -153,6 +153,46 @@ Rectangle {
             Layout.rightMargin: 8
             spacing: 16
 
+            Item {
+                Layout.preferredWidth: locationSharingDetais.buttonSize
+                Layout.preferredHeight: locationSharingDetais.buttonSize
+
+                Rectangle {
+                    id: locationSharingDetais
+
+                    property real buttonSize: 52
+
+                    anchors.centerIn: parent
+                    visible: PositionManager.positionShareConvIdsCount !== 0
+                    width: (locationIconTimer.showIconArrow || detailButtonArea.containsMouse)
+                            ? buttonSize
+                            : buttonSize - 2
+                    height: width
+                    radius: width * 0.5
+                    color: JamiTheme.detailsShareLocationButtonBackgroundColor
+                    border.width: (locationIconTimer.showIconArrow || detailButtonArea.containsMouse) ? 4 : 3
+                    border.color: JamiTheme.detailsShareLocationButtonBorderColor
+
+                    MouseArea {
+                        id: detailButtonArea
+
+                        hoverEnabled: true
+                        anchors.fill: parent
+
+                        onClicked: {
+                            chatView.detailLocationButtonClick()
+                        }
+                    }
+
+                    BlinkingLocationIcon {
+                        isSharing: true
+                        arrowTimerVisibility: true
+                        anchors.centerIn: parent
+                        color: JamiTheme.chatviewBgColor
+                    }
+                }
+
+            }
             PushButton {
                 id: startAAudioCallButton
 
@@ -223,8 +263,8 @@ Rectangle {
                 imageColor: JamiTheme.chatviewButtonColor
 
                 onClicked: CurrentConversation.isBanned ?
-                                MessagesAdapter.unbanConversation(CurrentConversation.id)
-                                : MessagesAdapter.sendConversationRequest()
+                               MessagesAdapter.unbanConversation(CurrentConversation.id)
+                             : MessagesAdapter.sendConversationRequest()
             }
 
             PushButton {
