@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67c803b5_8b5e49ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-15T21:23:45Z",
+      "side": 1,
+      "message": "no issue linked",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "c64352ed18b40f9591a50879649184ba3b3479c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7c2e1ad_2521e275",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-15T21:23:45Z",
+      "side": 1,
+      "message": "what should be the design in dark mode or when the user is selected (actually black on black for incoming in dark theme, blue on blue for outgoing selected)",
+      "range": {
+        "startLine": 229,
+        "startChar": 16,
+        "endLine": 229,
+        "endChar": 34
+      },
+      "revId": "c64352ed18b40f9591a50879649184ba3b3479c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
