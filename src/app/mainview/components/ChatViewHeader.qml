@@ -166,6 +166,16 @@ Rectangle {
                 border.width: 3
                 border.color: JamiTheme.detailsShareLocationButtonBorderColor
 
+                MouseArea {
+                    id: detailButtonArea
+
+                    hoverEnabled: true
+                    anchors.fill: parent
+                    onClicked: {
+                        chatView.detailLocationButtonClick()
+                    }
+                }
+
                 ResponsiveImage {
                     anchors.centerIn: parent
                     visible: true
@@ -174,12 +184,11 @@ Rectangle {
 
                     ResponsiveImage {
                         anchors.centerIn: parent
-                        visible: true
+                        visible: locationIconTimer.showIconArrow
                         source: JamiResources.localisation_sharing_send_arrow_svg
                         color: JamiTheme.chatviewBgColor
                     }
                 }
-
             }
 
             PushButton {
@@ -252,8 +261,8 @@ Rectangle {
                 imageColor: JamiTheme.chatviewButtonColor
 
                 onClicked: CurrentConversation.isBanned ?
-                                MessagesAdapter.unbanConversation(CurrentConversation.id)
-                                : MessagesAdapter.sendConversationRequest()
+                               MessagesAdapter.unbanConversation(CurrentConversation.id)
+                             : MessagesAdapter.sendConversationRequest()
             }
 
             PushButton {

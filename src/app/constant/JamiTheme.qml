@@ -229,6 +229,7 @@ Item {
 
     property color detailsShareLocationButtonBorderColor: "#a4c4dc"
     property color detailsShareLocationButtonBackgroundColor: "#005699"
+    property color locationAreaColor: "#e8ecf4"
 
     //EmojiReact
     property real emojiBubbleSize: calcSize(17)
@@ -283,6 +284,7 @@ Item {
     // Sizes
     property real qrCodeImageSize: 256
     property real splitViewHandlePreferredWidth: 4
+    property real responsiveImageContainerSize: 30
     property real indicatorFontSize: calcSize(6)
     property real tinyFontSize: calcSize(7 + fontSizeOffset)
     property real textFontSize: calcSize(9 + fontSizeOffset)
