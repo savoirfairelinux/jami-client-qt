@@ -105,7 +105,7 @@ JamiListView {
         function isFirst() {
             if (!nItem) return true
             else {
-                if (item.showTime) {
+                if (item.showTime || item.isReply  ) {
                     return true
                 } else if (nItem.author !== item.author) {
                     return true
@@ -117,7 +117,7 @@ JamiListView {
         function isLast() {
             if (!pItem) return true
             else {
-                if (pItem.showTime) {
+                if (pItem.showTime || pItem.isReply) {
                     return true
                 } else if (pItem.author !== item.author) {
                     return true
@@ -201,10 +201,62 @@ JamiListView {
     }
 
     model: MessagesAdapter.messageListModel
-    delegate: TextMessageDelegate {
-        Component.onCompleted:  {
-            computeChatview(this, index)
+    delegate: DelegateChooser {
+        id: delegateChooser
+        role: "Type"
+
+        DelegateChoice {
+            id: delegateChoice
+            roleValue: Interaction.Type.TEXT
+
+            TextMessageDelegate {
+                Component.onCompleted:  {
+                    computeChatview(this, index)
+                }
+            }
         }
+
+        DelegateChoice {
+            roleValue: Interaction.Type.CALL
+
+            CallMessageDelegate {
+                Component.onCompleted:  {
+                    computeChatview(this, index)
+                }
+            }
+        }
+
+        DelegateChoice {
+            roleValue: Interaction.Type.CONTACT
+
+            ContactMessageDelegate {
+                Component.onCompleted:  {
+                    computeChatview(this, index)
+                }
+            }
+        }
+
+        DelegateChoice {
+            roleValue: Interaction.Type.INITIAL
+
+            GeneratedMessageDelegate {
+                font.bold: true
+                Component.onCompleted:  {
+                    computeChatview(this, index)
+                }
+            }
+        }
+
+        DelegateChoice {
+            roleValue: Interaction.Type.DATA_TRANSFER
+
+            DataTransferMessageDelegate {
+                Component.onCompleted:  {
+                    computeChatview(this, index)
+                }
+            }
+        }
+
     }
 
 

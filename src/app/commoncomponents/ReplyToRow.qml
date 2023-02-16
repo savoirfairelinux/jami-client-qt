@@ -25,79 +25,41 @@ import net.jami.Constants 1.1
 Item {
     id: root
 
-    visible: ReplyTo !== ""
-    width: replyToRow.width
-    height: replyToRow.height + JamiTheme.preferredMarginSize +8
+    width: body.width
+    height: body.height
 
 
+    TextEdit {
+        id: body
+        text: ReplyToBody === "" && ReplyToAuthor !== "" ? "*(Deleted Message)*" : ReplyToBody
+        width: Math.min(300, implicitWidth)
+
+        horizontalAlignment: Text.AlignLeft
+
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        selectByMouse: true
+        font.pixelSize: IsEmojiOnly? JamiTheme.chatviewEmojiSize : JamiTheme.emojiBubbleSize
+        font.hintingPreference: Font.PreferNoHinting
+        renderType: Text.NativeRendering
+        textFormat: Text.MarkdownText
+        readOnly: true
+        color: getBaseColor()
 
 
-    RowLayout {
-        id: replyToRow
-
-        property bool isSelf: ReplyToAuthor === CurrentAccount.uri || ReplyToAuthor === ""
-
-        anchors.top: parent.top
-        anchors.topMargin: JamiTheme.preferredMarginSize
-        anchors.right: isOutgoing ? parent.right : undefined
-
-        Label {
-            id: replyTo
-
-            text: JamiStrings.inReplyTo
-
-            color: UtilsAdapter.luma(replyBubble.color) ?
-                JamiTheme.chatviewTextColorLight :
-                JamiTheme.chatviewTextColorDark
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-            font.bold: true
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-        }
-
-        Avatar {
-            id: avatarReply
-
-            Layout.preferredWidth: JamiTheme.avatarReadReceiptSize
-            Layout.preferredHeight: JamiTheme.avatarReadReceiptSize
-
-            showPresenceIndicator: false
-
-            imageId: {
-                if (replyToRow.isSelf)
-                    return CurrentAccount.id
-                return ReplyToAuthor
+        function getBaseColor() {
+            var baseColor
+            if (IsEmojiOnly) {
+                if (JamiTheme.darkTheme)
+                    baseColor = JamiTheme.chatviewTextColorLight
+                else
+                    baseColor = JamiTheme.chatviewTextColorDark
+            } else {
+                if (UtilsAdapter.luma(replyBubble.color))
+                    baseColor = JamiTheme.chatviewTextColorLight
+                else
+                    baseColor = JamiTheme.chatviewTextColorDark
             }
-            mode: replyToRow.isSelf ? Avatar.Mode.Account : Avatar.Mode.Contact
-        }
-
-        Text {
-            id: body
-            text: ReplyToBody === "" && ReplyToAuthor !== "" ? "*(Deleted Message)*" : ReplyToBody
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-            elide: Text.ElideRight
-            maximumLineCount: 3
-            Layout.preferredWidth: Math.min(250, implicitWidth)
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            color: getBaseColor()
-
-            function getBaseColor() {
-                var baseColor
-                if (isEmojiOnly) {
-                    if (JamiTheme.darkTheme)
-                        baseColor = JamiTheme.chatviewTextColorLight
-                    else
-                        baseColor = JamiTheme.chatviewTextColorDark
-                } else {
-                    if (UtilsAdapter.luma(replyBubble.color))
-                        baseColor = JamiTheme.chatviewTextColorLight
-                    else
-                        baseColor = JamiTheme.chatviewTextColorDark
-                }
-                return baseColor
-            }
+            return baseColor
         }
     }
-
-
 }
