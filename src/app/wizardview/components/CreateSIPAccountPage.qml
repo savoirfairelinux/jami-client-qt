@@ -35,10 +35,10 @@ Rectangle {
     signal showThisPage
 
     function clearAllTextFields() {
-        sipUsernameEdit.clear()
-        sipPasswordEdit.clear()
         sipServernameEdit.clear()
         sipProxyEdit.clear()
+        sipUsernameEdit.clear()
+        sipPasswordEdit.clear()
         displayNameLineEdit.clear()
         UtilsAdapter.setTempCreationImageFromString()
     }
@@ -114,17 +114,16 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-                    focus: visible
                     selectByMouse: true
                     placeholderText: JamiStrings.server
                     font.pointSize: JamiTheme.textFontSize
                     font.kerning: true
 
-                    KeyNavigation.tab: sipProxyEdit
                     KeyNavigation.up: backButton
+                    KeyNavigation.tab: sipProxyEdit
                     KeyNavigation.down: sipProxyEdit
 
-                    onEditingFinished: sipProxyEdit.forceActiveFocus()
+                    onAccepted: sipProxyEdit.forceActiveFocus()
                 }
 
                 EditableLineEdit {
@@ -135,17 +134,16 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-                    focus: visible
                     selectByMouse: true
                     placeholderText: JamiStrings.proxy
                     font.pointSize: JamiTheme.textFontSize
                     font.kerning: true
 
-                    KeyNavigation.tab: sipUsernameEdit
                     KeyNavigation.up: sipServernameEdit
+                    KeyNavigation.tab: sipUsernameEdit
                     KeyNavigation.down: sipUsernameEdit
 
-                    onEditingFinished: sipUsernameEdit.forceActiveFocus()
+                    onAccepted: sipUsernameEdit.forceActiveFocus()
                 }
 
                 EditableLineEdit {
@@ -161,11 +159,11 @@ Rectangle {
                     font.pointSize: JamiTheme.textFontSize
                     font.kerning: true
 
-                    KeyNavigation.tab: sipPasswordEdit
                     KeyNavigation.up: sipProxyEdit
+                    KeyNavigation.tab: sipPasswordEdit
                     KeyNavigation.down: sipPasswordEdit
 
-                    onEditingFinished: sipPasswordEdit.forceActiveFocus()
+                    onAccepted: sipPasswordEdit.forceActiveFocus()
                 }
 
                 EditableLineEdit {
@@ -183,14 +181,13 @@ Rectangle {
                     font.pointSize: JamiTheme.textFontSize
                     font.kerning: true
 
-                    KeyNavigation.tab: createAccountButton
                     KeyNavigation.up: sipUsernameEdit
+                    KeyNavigation.tab: createAccountButton
                     KeyNavigation.down: createAccountButton
 
                     secondIco: JamiResources.eye_cross_svg
 
-
-                    onEditingFinished: createAccountButton.forceActiveFocus()
+                    onAccepted: createAccountButton.forceActiveFocus()
 
                     onSecondIcoClicked: { toggleEchoMode() }
                 }
@@ -235,8 +232,8 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins*2
 
-                    KeyNavigation.tab: backButton
                     KeyNavigation.up: createAccountButton
+                    KeyNavigation.tab: backButton
                     KeyNavigation.down: backButton
 
                     onClicked: createAccountStack.currentIndex += 1

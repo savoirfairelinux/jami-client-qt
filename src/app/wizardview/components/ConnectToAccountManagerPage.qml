@@ -114,12 +114,11 @@ Rectangle {
 
             fontSize: 15
             Layout.topMargin: 5
-            focus: visible
 
             secondIco: JamiResources.outline_info_24dp_svg
 
             selectByMouse: true
-            placeholderText: JamiStrings.jamiManagementServerURL  //problem with resize
+            placeholderText: JamiStrings.jamiManagementServerURL
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
 
@@ -175,6 +174,8 @@ Rectangle {
             KeyNavigation.down: passwordManagerEdit
 
             onTextChanged: errorText = ""
+            onAccepted: passwordManagerEdit.forceActiveFocus()
+
 
         }
 
@@ -205,6 +206,8 @@ Rectangle {
             KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
 
             onTextChanged: errorText = ""
+            onAccepted: connectBtn.forceActiveFocus()
+
             onSecondIcoClicked: { toggleEchoMode() }
 
         }

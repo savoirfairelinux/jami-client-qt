@@ -187,7 +187,7 @@ Item {
             onAccepted: {
                 root.accepted()
                 root.editingFinished()
-                editable = !editable
+                editable = false
                 focus = false
             }
         }

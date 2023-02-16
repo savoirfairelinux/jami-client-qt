@@ -115,7 +115,7 @@ Rectangle {
                 Text {
 
                     text: root.isRendezVous ? JamiStrings.chooseUsernameForRV :
-                                         JamiStrings.chooseUsernameForAccount
+                                              JamiStrings.chooseUsernameForAccount
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: 15
                     Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
@@ -137,7 +137,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
                     placeholderText: root.isRendezVous ? JamiStrings.chooseAName :
-                                    JamiStrings.chooseYourUserName
+                                                         JamiStrings.chooseYourUserName
 
                     focus: visible
                     fontSize: 18
@@ -169,10 +169,10 @@ Rectangle {
                             return " "
                         case UsernameLineEdit.NameRegistrationState.INVALID:
                             return root.isRendezVous ? JamiStrings.invalidName :
-                                                  JamiStrings.invalidUsername
+                                                       JamiStrings.invalidUsername
                         case UsernameLineEdit.NameRegistrationState.TAKEN:
                             return root.isRendezVous ? JamiStrings.nameAlreadyTaken :
-                                                  JamiStrings.usernameAlreadyTaken
+                                                       JamiStrings.usernameAlreadyTaken
                         }
                     }
                     font.pointSize: JamiTheme.textFontSize
@@ -192,9 +192,9 @@ Rectangle {
                     font.capitalization: Font.AllUppercase
                     color: enabled? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGrey
                     text: !enabled ? JamiStrings.creatingAccount :
-                                root.isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
+                                     root.isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
                     enabled: usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE
-                            || usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK
+                             || usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK
 
 
                     KeyNavigation.tab: showAdvancedButton
