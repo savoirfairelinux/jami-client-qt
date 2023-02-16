@@ -3567,7 +3567,8 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
     if (conv_it->isSwarm())
         return;
     auto uid = conv_it->uid;
-    auto uriString = incoming ? storage::prepareUri(from, linked.owner.profileInfo.type) : "";
+    auto uriString = incoming ? storage::prepareUri(from, linked.owner.profileInfo.type)
+                              : linked.owner.profileInfo.uri;
     auto msg = interaction::Info {uriString,
                                   {},
                                   std::time(nullptr),
