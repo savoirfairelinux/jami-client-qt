@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f989003_38fdbcea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 40
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-16T14:24:53Z",
+      "side": 1,
+      "message": "I see one regression:\n\n+ Open an invite\n+ Reject the invite\n\u003d\u003e Smartlist is OK, but invitation is still visible.",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "ac3720e748fad07bd81fd3fd5c53005b62e5d2eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
