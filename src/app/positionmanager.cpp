@@ -154,7 +154,7 @@ PositionManager::sendPosition(const QString& body, bool triggersLocalPosition)
             Q_FOREACH (const QString& uri, convInfo.participantsUris()) {
                 if (uri != accountUri) {
                     lrcInstance_->getAccountInfo(key.first)
-                        .contactModel->sendDhtMessage(uri, body, APPLICATION_GEO);
+                        .contactModel->sendDhtMessage(uri, body, APPLICATION_GEO, 1);
                 }
             }
         }
@@ -244,7 +244,8 @@ PositionManager::sendStopMessage(QString accountId, const QString convId)
             if (lrcInstance_->getCurrentAccountInfo().profileInfo.uri != uri) {
                 lrcInstance_->getCurrentAccountInfo().contactModel->sendDhtMessage(uri,
                                                                                    stopMsg,
-                                                                                   APPLICATION_GEO);
+                                                                                   APPLICATION_GEO,
+                                                                                   1);
             }
         }
     }

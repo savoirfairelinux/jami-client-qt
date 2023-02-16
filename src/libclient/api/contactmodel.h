@@ -110,7 +110,8 @@ public:
      */
     uint64_t sendDhtMessage(const QString& uri,
                             const QString& body,
-                            const QString& mimeType = {}) const;
+                            const QString& mimeType = {},
+                            int flag = 0) const;
     /**
      * Get best id for contact
      * @param contactUri

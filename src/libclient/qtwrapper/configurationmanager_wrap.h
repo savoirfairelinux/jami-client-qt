@@ -793,11 +793,13 @@ public Q_SLOTS: // METHODS
 
     uint64_t sendTextMessage(const QString& accountId,
                              const QString& to,
-                             const QMap<QString, QString>& payloads)
+                             const QMap<QString, QString>& payloads,
+                             int flag)
     {
         return libjami::sendAccountTextMessage(accountId.toStdString(),
                                                to.toStdString(),
-                                               convertMap(payloads));
+                                               convertMap(payloads),
+                                               flag);
     }
 
     QVector<Message> getLastMessages(const QString& accountID, const uint64_t& base_timestamp)

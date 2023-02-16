@@ -491,7 +491,8 @@ ContactModelPimpl::searchSipContact(const URI& query)
 uint64_t
 ContactModel::sendDhtMessage(const QString& contactUri,
                              const QString& body,
-                             const QString& mimeType) const
+                             const QString& mimeType,
+                             int flag) const
 {
     // Send interaction
     QMap<QString, QString> payloads;
@@ -501,7 +502,8 @@ ContactModel::sendDhtMessage(const QString& contactUri,
         payloads[mimeType] = body;
     auto msgId = ConfigurationManager::instance().sendTextMessage(QString(owner.id),
                                                                   QString(contactUri),
-                                                                  payloads);
+                                                                  payloads,
+                                                                  flag);
     // NOTE: ConversationModel should store the interaction into the database
     return msgId;
 }
