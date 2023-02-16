@@ -25,7 +25,7 @@ install/
 *.vcxproj.filters
 *qmlcache.qrc
 .deploy.stamp
-
+*.orig
 *.log
 *.pid
 
