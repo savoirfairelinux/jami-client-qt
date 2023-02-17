@@ -122,12 +122,12 @@ ColumnLayout {
 
             enabled: checkBoxTurnEnable.checked
 
-            textField: CurrentAccount.server_TURN
+            staticText: CurrentAccount.server_TURN
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnAdress
 
-            onEditFinished: CurrentAccount.server_TURN = textField
+            onEditFinished: CurrentAccount.server_TURN = dynamicText
         }
 
         SettingsMaterialLineEdit {
@@ -138,12 +138,12 @@ ColumnLayout {
 
             enabled: checkBoxTurnEnable.checked
 
-            textField: CurrentAccount.username_TURN
+            staticText: CurrentAccount.username_TURN
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnUsername
 
-            onEditFinished: CurrentAccount.username_TURN = textField
+            onEditFinished: CurrentAccount.username_TURN = dynamicText
         }
 
         SettingsMaterialLineEdit {
@@ -154,12 +154,12 @@ ColumnLayout {
 
             enabled: checkBoxTurnEnable.checked
 
-            textField: CurrentAccount.password_TURN
+            staticText: CurrentAccount.password_TURN
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnPassword
 
-            onEditFinished: CurrentAccount.password_TURN = textField
+            onEditFinished: CurrentAccount.password_TURN = dynamicText
         }
 
         SettingsMaterialLineEdit {
@@ -170,12 +170,12 @@ ColumnLayout {
 
             enabled: checkBoxTurnEnable.checked
 
-            textField: CurrentAccount.realm_TURN
+            staticText: CurrentAccount.realm_TURN
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnRealm
 
-            onEditFinished: CurrentAccount.realm_TURN = textField
+            onEditFinished: CurrentAccount.realm_TURN = dynamicText
         }
 
         ToggleSwitch {
@@ -201,12 +201,12 @@ ColumnLayout {
             enabled: checkBoxSTUNEnable.checked
             visible: isSIP
 
-            textField: CurrentAccount.server_STUN
+            staticText: CurrentAccount.server_STUN
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.stunAdress
 
-            onEditFinished: CurrentAccount.server_STUN = textField
+            onEditFinished: CurrentAccount.server_STUN = dynamicText
         }
     }
 }

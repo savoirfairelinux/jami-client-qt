@@ -127,6 +127,7 @@ ColumnLayout {
             text: CurrentAccount.registeredName
             readOnly: CurrentAccount.registeredName !== ""
             font.bold: CurrentAccount.registeredName !== ""
+
             loseFocusWhenEnterPressed: btnRegisterName.visible
 
             onEditingFinished: {

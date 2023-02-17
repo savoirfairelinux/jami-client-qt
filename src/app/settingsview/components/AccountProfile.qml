@@ -26,6 +26,8 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 ColumnLayout {
+
+    spacing: 8
     id: root
 
     Connections {
