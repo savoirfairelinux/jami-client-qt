@@ -50,8 +50,8 @@ ColumnLayout {
         itemWidth: root.itemWidth
         titleField: JamiStrings.voiceMailDialCode
 
-        textField: CurrentAccount.mailbox
+        staticText: CurrentAccount.mailbox
 
-        onEditFinished: CurrentAccount.mailbox = textField
+        onEditFinished: CurrentAccount.mailbox = dynamicText
     }
 }
