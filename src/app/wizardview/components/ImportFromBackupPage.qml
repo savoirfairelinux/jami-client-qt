@@ -41,7 +41,6 @@ Rectangle {
 
     function clearAllTextFields() {
         connectBtn.spinnerTriggered = false
-        passwordFromBackupEdit.clear()
         filePath = ""
         errorText = ""
         fileImportBtnText = JamiStrings.selectArchiveFile
@@ -113,6 +112,7 @@ Rectangle {
             secondary: true
             color: JamiTheme.secAndTertiTextColor
             secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
+            focus: visible
 
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 35
@@ -122,9 +122,9 @@ Rectangle {
             text: fileImportBtnText
             toolTipText: JamiStrings.importAccountArchive
 
-            KeyNavigation.tab: passwordFromBackupEdit
             KeyNavigation.up: backButton
             KeyNavigation.down: passwordFromBackupEdit
+            KeyNavigation.tab: KeyNavigation.down
 
             onClicked: {
                 errorText = ""
@@ -143,6 +143,7 @@ Rectangle {
                     filePath = file
                     if (file.length !== "") {
                         fileImportBtnText = UtilsAdapter.toFileInfoName(file)
+                        passwordFromBackupEdit.forceActiveFocus()
                     } else {
                         fileImportBtnText = JamiStrings.archive
                     }
@@ -153,7 +154,7 @@ Rectangle {
             }
         }
 
-        EditableLineEdit {
+        PasswordTextEdit {
             id: passwordFromBackupEdit
 
             objectName: "passwordFromBackupEdit"
@@ -162,25 +163,13 @@ Rectangle {
             Layout.topMargin: 20
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-            focus: visible
+            placeholderText: JamiStrings.enterPassword
 
-            selectByMouse: true
-            placeholderText: JamiStrings.password
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-
-            secondIco: JamiResources.eye_cross_svg
-
-            echoMode: TextInput.Password
-
-            KeyNavigation.tab: connectBtn.enabled ? connectBtn : backButton
             KeyNavigation.up: fileImportBtn
             KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
+            KeyNavigation.tab: KeyNavigation.down
 
-            onTextChanged: errorText = ""
-
-            onSecondIcoClicked: { toggleEchoMode() }
-
+            onAccepted: connectBtn.forceActiveFocus()
         }
 
         SpinnerButton {
@@ -207,9 +196,9 @@ Rectangle {
                 return false
             }
 
-            KeyNavigation.tab: backButton
             KeyNavigation.up: passwordFromBackupEdit
             KeyNavigation.down: backButton
+            KeyNavigation.tab: KeyNavigation.down
 
             onClicked: {
                 if (connectBtn.focus)
@@ -219,7 +208,7 @@ Rectangle {
                 WizardViewStepModel.accountCreationInfo =
                         JamiQmlUtils.setUpAccountCreationInputPara(
                             {archivePath : UtilsAdapter.getAbsPath(filePath),
-                                password : passwordFromBackupEdit.text})
+                                password : passwordFromBackupEdit.dynamicText})
                 WizardViewStepModel.nextStep()
             }
         }

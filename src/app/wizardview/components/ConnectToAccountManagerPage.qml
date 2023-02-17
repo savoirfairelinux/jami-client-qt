@@ -36,9 +36,6 @@ Rectangle {
 
     function clearAllTextFields() {
         connectBtn.spinnerTriggered = false
-        usernameManagerEdit.clear()
-        passwordManagerEdit.clear()
-        accountManagerEdit.clear()
         errorText = ""
     }
 
@@ -104,7 +101,7 @@ Rectangle {
             wrapMode : Text.WordWrap
         }
 
-        EditableLineEdit {
+        ModalTextEdit {
             id: accountManagerEdit
 
             objectName: "accountManagerEdit"
@@ -112,22 +109,15 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-            fontSize: 15
             Layout.topMargin: 5
             focus: visible
 
-            secondIco: JamiResources.outline_info_24dp_svg
+            placeholderText: JamiStrings.jamiManagementServerURL
 
-            selectByMouse: true
-            placeholderText: JamiStrings.jamiManagementServerURL  //problem with resize
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-
-            KeyNavigation.tab: usernameManagerEdit
             KeyNavigation.up: backButton
             KeyNavigation.down: usernameManagerEdit
+            KeyNavigation.tab: KeyNavigation.down
 
-            onTextChanged: errorText = ""
             onAccepted: usernameManagerEdit.forceActiveFocus()
         }
 
@@ -152,7 +142,7 @@ Rectangle {
                                credentialsLabel.font, credentialsLabel.text).height
         }
 
-        EditableLineEdit {
+        ModalTextEdit {
 
             id: usernameManagerEdit
 
@@ -161,24 +151,16 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-            fontSize: 15
-
-            secondIco: JamiResources.outline_info_24dp_svg
-
-            selectByMouse: true
             placeholderText: JamiStrings.username
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
 
-            KeyNavigation.tab: passwordManagerEdit
             KeyNavigation.up: accountManagerEdit
             KeyNavigation.down: passwordManagerEdit
+            KeyNavigation.tab: KeyNavigation.down
 
-            onTextChanged: errorText = ""
-
+            onAccepted: passwordManagerEdit.forceActiveFocus()
         }
 
-        EditableLineEdit {
+        PasswordTextEdit {
 
             id: passwordManagerEdit
 
@@ -187,25 +169,15 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-            selectByMouse: true
             placeholderText: JamiStrings.password
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
             Layout.topMargin: 10
 
-            secondIco: JamiResources.eye_cross_svg
-            thirdIco: JamiResources.outline_info_24dp_svg
 
-            fontSize: 15
-
-            echoMode: TextInput.Password
-
-            KeyNavigation.tab: connectBtn.enabled ? connectBtn : backButton
             KeyNavigation.up: usernameManagerEdit
             KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
+            KeyNavigation.tab: KeyNavigation.down
 
-            onTextChanged: errorText = ""
-            onSecondIcoClicked: { toggleEchoMode() }
+            onAccepted: connectBtn.forceActiveFocus()
 
         }
 
@@ -223,16 +195,17 @@ Rectangle {
             spinnerTriggeredtext: JamiStrings.creatingAccount
             normalText: JamiStrings.connect
 
-            enabled: accountManagerEdit.text.length !== 0
-                     && usernameManagerEdit.text.length !== 0
-                     && passwordManagerEdit.text.length !== 0
+            enabled: accountManagerEdit.dynamicText.length !== 0
+                     && usernameManagerEdit.dynamicText.length !== 0
+                     && passwordManagerEdit.dynamicText.length !== 0
                      && !spinnerTriggered
 
             color: JamiTheme.tintedBlue
 
-            KeyNavigation.tab: backButton
             KeyNavigation.up: passwordManagerEdit
             KeyNavigation.down: backButton
+            KeyNavigation.tab: KeyNavigation.down
+
 
             onClicked: {
                 if (connectBtn.focus)
@@ -275,13 +248,14 @@ Rectangle {
 
         preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
-        KeyNavigation.tab: accountManagerEdit
+
         KeyNavigation.up: {
             if (connectBtn.enabled)
                 return connectBtn
             return passwordManagerEdit
         }
-        KeyNavigation.down: KeyNavigation.tab
+        KeyNavigation.down: accountManagerEdit
+        KeyNavigation.tab: KeyNavigation.down
 
         onClicked: WizardViewStepModel.previousStep()
     }

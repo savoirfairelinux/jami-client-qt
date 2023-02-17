@@ -609,7 +609,7 @@ Item {
                                    "Use the \"Link Another Device\" feature to obtain a PIN.")
     property string connectFromAnotherDevice: qsTr("Link device")
     property string importButton: qsTr("Import")
-    property string pin: qsTr("PIN")
+    property string pin: qsTr("Enter the NIP code")
     property string importFromDeviceDescription: qsTr("A PIN is required to use an existing Jami account on this device.")
     property string importStep1: qsTr("Step 1")
     property string importStep2: qsTr("Step 2")
