@@ -85,15 +85,15 @@ BaseModalDialog {
         function validatePassword() {
             switch (purpose) {
             case PasswordDialog.ExportAccount:
-                btnConfirm.enabled = currentPasswordEdit.length > 0
+                btnConfirm.enabled = currentPasswordEdit.dynamicText.length > 0
                 break
             case PasswordDialog.SetPassword:
                 btnConfirm.enabled = passwordEdit.length > 0 &&
-                        passwordEdit.text === confirmPasswordEdit.text
+                        passwordEdit.dynamicText === confirmPasswordEdit.dynamicText
                 break
             default:
-                btnConfirm.enabled = currentPasswordEdit.length > 0 &&
-                        passwordEdit.text === confirmPasswordEdit.text
+                btnConfirm.enabled = currentPasswordEdit.dynamicText.length > 0 &&
+                        passwordEdit.dynamicText === confirmPasswordEdit.dynamicText
             }
         }
 
@@ -103,7 +103,7 @@ BaseModalDialog {
                 success = AccountAdapter.exportToFile(
                             LRCInstance.currentAccountId,
                             path,
-                            currentPasswordEdit.text)
+                            currentPasswordEdit.dynamicText)
             }
             reportStatus(success)
 
@@ -113,8 +113,8 @@ BaseModalDialog {
         function savePasswordQML() {
             var success = AccountAdapter.savePassword(
                         LRCInstance.currentAccountId,
-                        currentPasswordEdit.text,
-                        passwordEdit.text)
+                        currentPasswordEdit.dynamicText,
+                        passwordEdit.dynamicText)
             reportStatus(success)
             close()
         }
@@ -136,7 +136,7 @@ BaseModalDialog {
             }
         }
 
-        MaterialLineEdit {
+        PasswordTextEdit {
             id: currentPasswordEdit
 
             Layout.alignment: Qt.AlignHCenter
@@ -145,15 +145,13 @@ BaseModalDialog {
 
             visible: purpose === PasswordDialog.ChangePassword ||
                      purpose === PasswordDialog.ExportAccount
-            echoMode: TextInput.Password
             placeholderText: JamiStrings.enterCurrentPassword
 
-            onVisibleChanged: clear()
+            onDynamicTextChanged: popupContentColumnLayout.validatePassword()
 
-            onTextChanged: popupContentColumnLayout.validatePassword()
         }
 
-        MaterialLineEdit {
+        PasswordTextEdit {
             id: passwordEdit
 
             Layout.alignment: Qt.AlignHCenter
@@ -162,15 +160,13 @@ BaseModalDialog {
 
             visible: purpose === PasswordDialog.ChangePassword ||
                      purpose === PasswordDialog.SetPassword
-            echoMode: TextInput.Password
+
             placeholderText: JamiStrings.enterNewPassword
 
-            onVisibleChanged: clear()
-
-            onTextChanged: popupContentColumnLayout.validatePassword()
+            onDynamicTextChanged: popupContentColumnLayout.validatePassword()
         }
 
-        MaterialLineEdit {
+        PasswordTextEdit {
             id: confirmPasswordEdit
 
             Layout.alignment: Qt.AlignHCenter
@@ -179,12 +175,10 @@ BaseModalDialog {
 
             visible: purpose === PasswordDialog.ChangePassword ||
                      purpose === PasswordDialog.SetPassword
-            echoMode: TextInput.Password
+
             placeholderText: JamiStrings.confirmNewPassword
 
-            onVisibleChanged: clear()
-
-            onTextChanged: popupContentColumnLayout.validatePassword()
+            onDynamicTextChanged: popupContentColumnLayout.validatePassword()
         }
 
         RowLayout {

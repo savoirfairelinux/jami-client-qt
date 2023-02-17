@@ -55,8 +55,8 @@ ColumnLayout {
         itemWidth: root.itemWidth
         titleField: JamiStrings.address
 
-        textField: CurrentAccount.uri_RingNS
+        staticText: CurrentAccount.uri_RingNS
 
-        onEditFinished: CurrentAccount.uri_RingNS = textField
+        onEditFinished: CurrentAccount.uri_RingNS = dynamicText
     }
 }
