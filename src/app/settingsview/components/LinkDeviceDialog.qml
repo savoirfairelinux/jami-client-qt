@@ -100,7 +100,6 @@ BaseModalDialog {
         onVisibleChanged: {
             if (visible) {
                 infoLabel.text = JamiStrings.pinTimerInfos
-                passwordEdit.clear()
 
                 if(CurrentAccount.hasArchivePassword) {
                     stackedWidget.currentIndex = enterPasswordPage.pageIndex
@@ -133,21 +132,17 @@ BaseModalDialog {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                MaterialLineEdit {
+                PasswordTextEdit {
                     id: passwordEdit
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: JamiTheme.preferredFieldWidth
                     Layout.preferredHeight: 48
 
-                    echoMode: TextInput.Password
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-
                     placeholderText: JamiStrings.enterCurrentPassword
 
-                    onTextChanged: {
-                        btnConfirm.enabled = text.length > 0
+                    onDynamicTextChanged: {
+                        btnConfirm.enabled = dynamicText.length > 0
                     }
 
                     onAccepted: btnConfirm.clicked()

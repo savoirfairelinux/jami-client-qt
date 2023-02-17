@@ -131,9 +131,9 @@ ColumnLayout {
             itemWidth: root.itemWidth
             titleField: JamiStrings.privateKeyPassword
 
-            textField: CurrentAccount.password_TLS
+            staticText: CurrentAccount.password_TLS
 
-            onEditFinished: CurrentAccount.password_TLS = textField
+            onEditFinished: CurrentAccount.password_TLS = dynamicText
         }
     }
 }
