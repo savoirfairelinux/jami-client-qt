@@ -58,21 +58,17 @@ BaseModalDialog {
             verticalAlignment: Text.AlignVCenter
         }
 
-        MaterialLineEdit {
+        PasswordTextEdit {
             id: passwordEdit
 
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: JamiTheme.preferredFieldWidth
             Layout.preferredHeight: visible ? 48 : 0
 
-            echoMode: TextInput.Password
             placeholderText: JamiStrings.enterCurrentPassword
 
-            onVisibleChanged: passwordEdit.clear()
+            onDynamicTextChanged: btnRemove.enabled = dynamicText.length > 0
 
-            onTextChanged: {
-                btnRemove.enabled = text.length > 0
-            }
         }
 
         RowLayout {

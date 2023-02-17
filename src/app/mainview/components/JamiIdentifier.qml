@@ -149,6 +149,9 @@ Item {
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
             fontPointSize: JamiTheme.textFontSize + 1
+            staticText: hasRegisteredName ? registeredName : infohash
+            editMode: false
+            isPersistent: false
 
             onAccepted: {
                 if (dynamicText === '') {

@@ -29,12 +29,12 @@ RowLayout {
     id: root
 
     property alias titleField: title.text
-    property alias textField: materialLineEdit.text
-    property alias enabled: materialLineEdit.enabled
+    property alias staticText: modalTextEdit.staticText
+    property alias placeholderText: modalTextEdit.placeholderText
+    property alias enabled: modalTextEdit.enabled
+    property alias dynamicText: modalTextEdit.dynamicText
 
     property int itemWidth
-    property int wrapMode: Text.NoWrap
-    property int echoMode: TextInput.Normal
 
     signal editFinished
 
@@ -54,24 +54,17 @@ RowLayout {
         elide: Text.ElideRight
     }
 
-    MaterialLineEdit {
-        id: materialLineEdit
-
+    ModalTextEdit {
+        id: modalTextEdit
         Layout.alignment: Qt.AlignCenter
         Layout.preferredWidth: itemWidth
-        Layout.preferredHeight: root.height
+        Layout.maximumHeight: 40
+        staticText: staticText
+        placeholderText: ""
 
-        font.pointSize: JamiTheme.settingsFontSize
-        font.kerning: true
+        onAccepted: {
+            editFinished()
+        }
 
-        padding: 8
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-
-        loseFocusWhenEnterPressed: true
-        wrapMode: root.wrapMode
-        echoMode: root.echoMode
-
-        onEditingFinished: editFinished()
     }
 }
