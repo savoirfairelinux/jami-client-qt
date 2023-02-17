@@ -57,12 +57,10 @@ ModalTextEdit {
 
     infoTipText: JamiStrings.usernameToolTip
     placeholderText: JamiStrings.chooseAUsername
-    staticText: hasRegisteredName ? registeredName : infohash
 
     enum NameRegistrationState { BLANK, INVALID, TAKEN, FREE, SEARCHING }
     property int nameRegistrationState: UsernameLineEdit.NameRegistrationState.BLANK
 
-    validator: RegularExpressionValidator { regularExpression: /[A-z0-9_]{0,32}/ }
     inputIsValid: dynamicText.length === 0
                   || nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE
 
