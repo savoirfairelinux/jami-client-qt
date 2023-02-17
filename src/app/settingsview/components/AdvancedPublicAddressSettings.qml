@@ -83,9 +83,9 @@ ColumnLayout {
             itemWidth: root.itemWidth
             titleField: JamiStrings.address
 
-            textField: CurrentAccount.publishedAddress
+            staticText: CurrentAccount.publishedAddress
 
-            onEditFinished: CurrentAccount.publishedAddress = textField
+            onEditFinished: CurrentAccount.publishedAddress = dynamicText
         }
 
         SettingSpinBox {

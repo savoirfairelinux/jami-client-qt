@@ -43,9 +43,9 @@ Rectangle {
     function clear() {
         openedPassword = false
         openedNickname = false
-        displayNameLineEdit.text = ""
-        passwordEdit.text = ""
-        passwordConfirmEdit.text = ""
+        //displayNameLineEdit.text = ""
+        passwordEdit.dynamicText = ""
+        passwordConfirmEdit.dynamicText = ""
         UtilsAdapter.setTempCreationImageFromString()
     }
 
@@ -190,40 +190,38 @@ Rectangle {
                                 font.pixelSize: JamiTheme.headerFontSize
                             }
 
-                            EditableLineEdit {
+                            PasswordTextEdit {
 
                                 id: passwordEdit
 
                                 visible: openedPassword
+                                focus: openedPassword
+                                firstEntry: true
+                                placeholderText: JamiStrings.password
+                                Layout.topMargin: 10
                                 Layout.alignment: Qt.AlignCenter
                                 Layout.preferredWidth: 325
 
-
-                                echoMode: TextInput.Password
-
-                                placeholderText: JamiStrings.password
-                                secondIco: JamiResources.eye_cross_svg
-                                onSecondIcoClicked: { toggleEchoMode() }
+                                KeyNavigation.tab: passwordConfirmEdit
+                                KeyNavigation.down: passwordConfirmEdit
                             }
 
-                            EditableLineEdit {
+                            PasswordTextEdit {
 
                                 id: passwordConfirmEdit
                                 visible: openedPassword
-
+                                placeholderText: JamiStrings.confirmPassword
                                 Layout.alignment: Qt.AlignCenter
                                 Layout.preferredWidth: 325
 
-
-                                echoMode: TextInput.Password
-
-                                placeholderText: JamiStrings.confirmPassword
-                                secondIco: JamiResources.eye_cross_svg
-                                onSecondIcoClicked: { toggleEchoMode() }
-
+                                KeyNavigation.tab: passwordEdit
+                                KeyNavigation.up: passwordEdit
+                                KeyNavigation.down: setButton
                             }
 
                             MaterialButton {
+
+                                id: setButton
 
                                 visible: openedPassword
 
@@ -237,20 +235,20 @@ Rectangle {
                                 pressedColor: checkEnable() ? JamiTheme.buttonTintedBluePressed : JamiTheme.buttonTintedGreyInactive
 
                                 color: checkEnable() ? JamiTheme.buttonTintedBlue :
-                                                    JamiTheme.buttonTintedGreyInactive
+                                                  JamiTheme.buttonTintedGreyInactive
 
-                                enabled: checkEnable()
+                                                                enabled: checkEnable()
 
-                                function checkEnable() {
-                                    text = JamiStrings.setPassword
-                                    return (passwordEdit.text === passwordConfirmEdit.text
-                                            && passwordEdit.text.length !== 0)
-                                }
+                                                                function checkEnable() {
+                                                                    text = JamiStrings.setPassword
+                                                                    return (passwordEdit.dynamicText === passwordConfirmEdit.dynamicText
+                                                                            && passwordEdit.dynamicText.length !== 0)
+                                                                }
 
-                                onClicked: {
-                                    root.validatedPassword = passwordConfirmEdit.text
-                                    text = JamiStrings.setPasswordSuccess
-                                }
+                                                                onClicked: {
+                                                                    root.validatedPassword = passwordConfirmEdit.dynamicText
+                                                                    text = JamiStrings.setPasswordSuccess
+                                                                }
 
                             }
 
@@ -339,14 +337,6 @@ Rectangle {
                 Item {
                     Layout.alignment: Qt.AlignRight | Qt.AlignTop
 
-                    Behavior on Layout.preferredWidth {
-                        NumberAnimation { duration: 100 }
-                    }
-
-                    Behavior on Layout.preferredHeight {
-                        NumberAnimation { duration: 100 }
-                    }
-
                     Layout.preferredWidth: {
                         if (openedNickname)
                             return Math.min(settings.width, JamiTheme.customNicknameOpenedBoxWidth)
@@ -359,6 +349,14 @@ Rectangle {
                         if (openedNickname)
                             return customColumnLayout.implicitHeight
                         return Math.max(cornerIcon2.height, labelCustomize.height)
+                    }
+
+                    Behavior on Layout.preferredWidth {
+                        NumberAnimation { duration: 100 }
+                    }
+
+                    Behavior on Layout.preferredHeight {
+                        NumberAnimation { duration: 100 }
                     }
 
                     DropShadow {
@@ -444,18 +442,17 @@ Rectangle {
 
                             }
 
-                            EditableLineEdit {
+                            ModalTextEdit {
 
                                 id: displayNameLineEdit
-
                                 visible: openedNickname
-
+                                focus: openedNickname
                                 Layout.alignment: Qt.AlignCenter
                                 Layout.preferredWidth: 280
 
                                 placeholderText: JamiStrings.enterNickname
 
-                                onEditingFinished: root.alias = text
+                                onAccepted: root.alias = displayNameLineEdit.dynamicText
 
                             }
 
@@ -550,7 +547,8 @@ Rectangle {
                     preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
                     text: JamiStrings.optionSave
 
-                    onClicked: root.saveButtonClicked()
+                    onClicked: { root.saveButtonClicked()
+                        root.alias = displayNameLineEdit.dynamicText}
                 }
             }
 

@@ -138,6 +138,7 @@ Rectangle {
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
+
         }
 
         MaterialButton {

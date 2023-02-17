@@ -48,9 +48,10 @@ Rectangle {
     function clearAllTextFields() {
         chooseUsernameButton.enabled = true
         showAdvancedButton.enabled = true
-        usernameEdit.clear()
+        usernameEdit.dynamicText = ""
         advancedAccountSettingsPage.clear()
     }
+
 
     color: JamiTheme.secondaryBackgroundColor
 
@@ -115,7 +116,7 @@ Rectangle {
                 Text {
 
                     text: root.isRendezVous ? JamiStrings.chooseUsernameForRV :
-                                         JamiStrings.chooseUsernameForAccount
+                                              JamiStrings.chooseUsernameForAccount
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: 15
                     Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
@@ -124,23 +125,22 @@ Rectangle {
                     color: JamiTheme.textColor
 
                     font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-                    wrapMode:Text.WordWrap
+                    wrapMode: Text.WordWrap
                 }
 
-                UsernameLineEdit {
+                UsernameTextEdit {
                     id: usernameEdit
 
                     objectName: "usernameEdit"
-                    accountId: "" // During creation
 
                     Layout.topMargin: 15
                     Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
                     placeholderText: root.isRendezVous ? JamiStrings.chooseAName :
-                                    JamiStrings.chooseYourUserName
-
+                                                         JamiStrings.chooseYourUserName
+                    staticText: ""
+                    editMode: true
                     focus: visible
-                    fontSize: 18
 
                     KeyNavigation.tab: chooseUsernameButton
                     KeyNavigation.up: backButton
@@ -154,10 +154,12 @@ Rectangle {
                     }
                 }
 
-                Label {
-                    Layout.alignment: Qt.AlignHCenter
 
+                Label {
+
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                     visible: text.length !==0 || usernameEdit.selected
+                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
                     text: {
                         switch(usernameEdit.nameRegistrationState){
@@ -169,14 +171,14 @@ Rectangle {
                             return " "
                         case UsernameLineEdit.NameRegistrationState.INVALID:
                             return root.isRendezVous ? JamiStrings.invalidName :
-                                                  JamiStrings.invalidUsername
+                                                       JamiStrings.invalidUsername
                         case UsernameLineEdit.NameRegistrationState.TAKEN:
                             return root.isRendezVous ? JamiStrings.nameAlreadyTaken :
-                                                  JamiStrings.usernameAlreadyTaken
+                                                       JamiStrings.usernameAlreadyTaken
                         }
                     }
                     font.pointSize: JamiTheme.textFontSize
-                    color: JamiTheme.redColor
+                    color: "#CC0022"
                 }
 
                 MaterialButton {
@@ -192,9 +194,9 @@ Rectangle {
                     font.capitalization: Font.AllUppercase
                     color: enabled? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGrey
                     text: !enabled ? JamiStrings.creatingAccount :
-                                root.isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
+                                     root.isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
                     enabled: usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE
-                            || usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK
+                             || usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK
 
 
                     KeyNavigation.tab: showAdvancedButton
@@ -205,7 +207,7 @@ Rectangle {
                         WizardViewStepModel.accountCreationInfo =
                                 JamiQmlUtils.setUpAccountCreationInputPara(
                                     {
-                                        registeredName : usernameEdit.text,
+                                        registeredName : usernameEdit.dynamicText,
                                         alias: advancedAccountSettingsPage.alias,
                                         password: advancedAccountSettingsPage.validatedPassword,
                                         avatar: UtilsAdapter.tempCreationImage(),
@@ -289,6 +291,7 @@ Rectangle {
         KeyNavigation.down: usernameEdit
 
         onClicked: {
+
             if (createAccountStack.currentIndex > 0) {
                 createAccountStack.currentIndex--
             } else {
