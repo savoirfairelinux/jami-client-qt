@@ -23,23 +23,28 @@ import net.jami.Constants 1.1
 Loader {
     id: root
 
-    property string prefixIconSrc
-    property color prefixIconColor
+    property string prefixIconSrc: JamiResources.round_edit_24dp_svg
+    property color prefixIconColor: JamiTheme.editLineColor
     property string suffixIconSrc
-    property color suffixIconColor
+    property color suffixIconColor: JamiTheme.buttonTintedBlue
+    property string suffixBisIconSrc
+    property color suffixBisIconColor: JamiTheme.buttonTintedBlue
 
     required property string placeholderText
-    required property string staticText
+    property string staticText: ""
     property string dynamicText
     property bool inputIsValid: true
     property string infoTipText
 
     property variant validator
+    property bool isPersistent: true
 
     property real fontPointSize: JamiTheme.materialLineEditPointSize
 
+    property int echoMode: TextInput.Normal
+
     // Always start with the static text component displayed first.
-    property bool editMode: false
+    property bool editMode: true
 
     // Emitted when the editor has been accepted.
     signal accepted
@@ -49,7 +54,7 @@ Loader {
 
     // This is used when the user is not editing the text.
     Component {
-        id: usernameDisplayComp
+        id: displayComp
         MaterialTextField {
             font.pointSize: root.fontPointSize
             readOnly: true
@@ -60,29 +65,39 @@ Loader {
 
     // This is used when the user is editing the text.
     Component {
-        id: usernameEditComp
+        id: editComp
         MaterialTextField {
+            id: editCompField
+
             focus: true
             infoTipText: root.infoTipText
             prefixIconSrc: root.prefixIconSrc
             prefixIconColor: root.prefixIconColor
             suffixIconSrc: root.suffixIconSrc
             suffixIconColor: root.suffixIconColor
+            suffixBisIconSrc: root.suffixBisIconSrc
+            suffixBisIconColor: root.suffixBisIconColor
             font.pointSize: root.fontPointSize
+            echoMode: root.echoMode
             placeholderText: root.placeholderText
             validator: root.validator
             onAccepted: root.accepted()
             onTextChanged: dynamicText = text
+            onVisibleChanged: text = dynamicText
             inputIsValid: root.inputIsValid
-            onFocusChanged: if (!focus) root.editMode = false
+            onFocusChanged: {
+                if (!focus){ root.editMode = false }
+
+            }
         }
     }
 
     // We use a loader to switch between the two components depending on the
     // editMode property.
     sourceComponent: {
-        editMode
-                ? usernameEditComp
-                : usernameDisplayComp
+        editMode || isPersistent
+                ? editComp
+                : displayComp
     }
+
 }

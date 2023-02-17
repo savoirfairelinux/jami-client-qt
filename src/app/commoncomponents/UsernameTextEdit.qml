@@ -57,7 +57,7 @@ ModalTextEdit {
 
     infoTipText: JamiStrings.usernameToolTip
     placeholderText: JamiStrings.chooseAUsername
-    staticText: hasRegisteredName ? registeredName : infohash
+    //staticText: hasRegisteredName ? registeredName : infohash
 
     enum NameRegistrationState { BLANK, INVALID, TAKEN, FREE, SEARCHING }
     property int nameRegistrationState: UsernameLineEdit.NameRegistrationState.BLANK

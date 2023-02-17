@@ -26,6 +26,8 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 ColumnLayout {
+
+    spacing: 8
     id: root
 
     Connections {
@@ -68,24 +70,17 @@ ColumnLayout {
         buttonSize: JamiTheme.smartListAvatarSize
     }
 
-    MaterialLineEdit {
+    ModalTextEdit {
         id: displayNameLineEdit
 
         Layout.alignment: Qt.AlignCenter
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.preferredWidth: JamiTheme.preferredFieldWidth
+        Layout.topMargin: 25
 
-        font.pointSize: JamiTheme.textFontSize
-        font.kerning: true
-        text: CurrentAccount.alias
+        staticText: CurrentAccount.alias
         placeholderText: JamiStrings.enterNickname
-
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        padding: 8
-
-        loseFocusWhenEnterPressed: true
-
-        onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
+        isPersistent: false
+        onAccepted: AccountAdapter.setCurrAccDisplayName(dynamicText)
     }
 }

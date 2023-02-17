@@ -41,7 +41,7 @@ Rectangle {
 
     function clearAllTextFields() {
         connectBtn.spinnerTriggered = false
-        passwordFromBackupEdit.clear()
+        //passwordFromBackupEdit.clear()
         filePath = ""
         errorText = ""
         fileImportBtnText = JamiStrings.selectArchiveFile
@@ -153,7 +153,7 @@ Rectangle {
             }
         }
 
-        EditableLineEdit {
+        PasswordTextEdit {
             id: passwordFromBackupEdit
 
             objectName: "passwordFromBackupEdit"
@@ -164,22 +164,11 @@ Rectangle {
 
             focus: visible
 
-            selectByMouse: true
-            placeholderText: JamiStrings.password
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-
-            secondIco: JamiResources.eye_cross_svg
-
-            echoMode: TextInput.Password
+            placeholderText: JamiStrings.enterPassword
 
             KeyNavigation.tab: connectBtn.enabled ? connectBtn : backButton
             KeyNavigation.up: fileImportBtn
             KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
-
-            onTextChanged: errorText = ""
-
-            onSecondIcoClicked: { toggleEchoMode() }
 
         }
 

@@ -36,10 +36,10 @@ Rectangle {
 
     function clearAllTextFields() {
         connectBtn.spinnerTriggered = false
-        usernameManagerEdit.clear()
-        passwordManagerEdit.clear()
-        accountManagerEdit.clear()
-        errorText = ""
+        //usernameManagerEdit.clear()
+        //passwordManagerEdit.clear()
+        //accountManagerEdit.clear()
+        //errorText = ""
     }
 
     function errorOccured(errorMessage) {
@@ -104,7 +104,7 @@ Rectangle {
             wrapMode : Text.WordWrap
         }
 
-        EditableLineEdit {
+        ModalTextEdit {
             id: accountManagerEdit
 
             objectName: "accountManagerEdit"
@@ -112,23 +112,15 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-            fontSize: 15
             Layout.topMargin: 5
             focus: visible
 
-            secondIco: JamiResources.outline_info_24dp_svg
-
-            selectByMouse: true
-            placeholderText: JamiStrings.jamiManagementServerURL  //problem with resize
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-
+            placeholderText: JamiStrings.jamiManagementServerURL
             KeyNavigation.tab: usernameManagerEdit
             KeyNavigation.up: backButton
             KeyNavigation.down: usernameManagerEdit
 
-            onTextChanged: errorText = ""
-            onAccepted: usernameManagerEdit.forceActiveFocus()
+            //onAccepted: usernameManagerEdit.forceActiveFocus()
         }
 
         Label {
@@ -152,7 +144,7 @@ Rectangle {
                                credentialsLabel.font, credentialsLabel.text).height
         }
 
-        EditableLineEdit {
+        ModalTextEdit {
 
             id: usernameManagerEdit
 
@@ -161,24 +153,16 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-            fontSize: 15
-
-            secondIco: JamiResources.outline_info_24dp_svg
-
-            selectByMouse: true
             placeholderText: JamiStrings.username
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
 
             KeyNavigation.tab: passwordManagerEdit
             KeyNavigation.up: accountManagerEdit
             KeyNavigation.down: passwordManagerEdit
 
-            onTextChanged: errorText = ""
 
         }
 
-        EditableLineEdit {
+        PasswordTextEdit {
 
             id: passwordManagerEdit
 
@@ -187,25 +171,13 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-            selectByMouse: true
             placeholderText: JamiStrings.password
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
             Layout.topMargin: 10
-
-            secondIco: JamiResources.eye_cross_svg
-            thirdIco: JamiResources.outline_info_24dp_svg
-
-            fontSize: 15
-
-            echoMode: TextInput.Password
 
             KeyNavigation.tab: connectBtn.enabled ? connectBtn : backButton
             KeyNavigation.up: usernameManagerEdit
             KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
 
-            onTextChanged: errorText = ""
-            onSecondIcoClicked: { toggleEchoMode() }
 
         }
 
