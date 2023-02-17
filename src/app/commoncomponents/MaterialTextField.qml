@@ -26,7 +26,7 @@ TextField {
 
     // We need to remove focus when another widget takes activeFocus,
     // except the context menu.
-    property bool isActive: activeFocus || contextMenu.active
+    property bool isActive: activeFocus || contextMenu.active || root.text.toString() !== ''
     onActiveFocusChanged: {
         if (!activeFocus && !contextMenu.active) {
             root.focus = false
@@ -39,7 +39,10 @@ TextField {
     property alias prefixIconColor: prefixIcon.color
     property string suffixIconSrc
     property alias suffixIconColor: suffixIcon.color
-    property color accent: isActive
+    property string suffixBisIconSrc
+    property alias suffixBisIconColor: suffixBisIcon.color
+
+    property color accent: isActive || hovered
                            ? prefixIconColor
                            : JamiTheme.buttonTintedBlue
     property color baseColor: JamiTheme.primaryForegroundColor
@@ -50,15 +53,26 @@ TextField {
 
     property alias infoTipText: infoTip.text
 
-    wrapMode: Text.Wrap
+    wrapMode: "NoWrap"
+
     font.pointSize: JamiTheme.materialLineEditPointSize
     font.kerning: true
     selectByMouse: true
     mouseSelectionMode: TextInput.SelectCharacters
 
-    height: implicitHeight
     leftPadding: readOnly || prefixIconSrc === '' ? 0 : 32
-    rightPadding: readOnly || suffixIconSrc === '' ? 0 : 32
+    rightPadding: {
+        var total = 2
+        if (!readOnly) {
+
+            if (suffixIconSrc !== "")
+                total =+ 30
+            if (suffixBisIconSrc !== "")
+                total =+ 30
+        }
+        return total
+    }
+
     bottomPadding: 20
     topPadding: 2
 
@@ -116,7 +130,7 @@ TextField {
         visible: opacity
         HoverHandler { cursorShape: Qt.ArrowCursor }
         Behavior on opacity {
-            NumberAnimation { duration: JamiTheme.longFadeDuration }
+            NumberAnimation { duration: JamiTheme.longFadeDuration/2 }
         }
     }
 
@@ -142,7 +156,8 @@ TextField {
     TextFieldIcon {
         id: suffixIcon
         size: 20
-        anchors.right: parent.right
+        anchors.right: suffixBisIcon.left
+        anchors.rightMargin: suffixBisIconSrc !=='' ? 5 : 0
         color: suffixIconColor
         source: suffixIconSrc
 
@@ -152,6 +167,20 @@ TextField {
             backGroundColor: JamiTheme.whiteColor
             visible: parent.hovered && infoTipText.toString() !== ''
             delay: Qt.styleHints.mousePressAndHoldInterval
+        }
+    }
+
+    TextFieldIcon {
+        id: suffixBisIcon
+        size: 20
+        anchors.right: parent.right
+        color: suffixBisIconColor
+        source: suffixBisIconSrc
+
+        TapHandler { cursorShape: Qt.ArrowCursor
+            onTapped: {
+                modalTextEditRoot.icoClicked()
+            }
         }
     }
 

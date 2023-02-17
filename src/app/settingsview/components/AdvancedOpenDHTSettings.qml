@@ -82,12 +82,12 @@ ColumnLayout {
 
             enabled: checkBoxEnableProxy.checked
 
-            textField: CurrentAccount.proxyServer
+            staticText: CurrentAccount.proxyServer
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.proxyAddress
 
-            onEditFinished: CurrentAccount.proxyServer = textField
+            onEditFinished: CurrentAccount.proxyServer = dynamicText
         }
 
         SettingsMaterialLineEdit {
@@ -96,12 +96,12 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-            textField: CurrentAccount.hostname
+            staticText: CurrentAccount.hostname
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.bootstrap
 
-            onEditFinished: CurrentAccount.hostname = textField
+            onEditFinished: CurrentAccount.hostname = dynamicText
         }
     }
 }
