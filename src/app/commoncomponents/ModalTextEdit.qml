@@ -27,6 +27,8 @@ Loader {
     property color prefixIconColor
     property string suffixIconSrc
     property color suffixIconColor
+    property string suffixBisIconSrc
+    property color suffixBisIconColor
 
     required property string placeholderText
     required property string staticText
@@ -35,11 +37,14 @@ Loader {
     property string infoTipText
 
     property variant validator
+    property bool isPersistent
 
     property real fontPointSize: JamiTheme.materialLineEditPointSize
 
+    property int echoMode: TextInput.Normal
+
     // Always start with the static text component displayed first.
-    property bool editMode: false
+    property bool editMode: true
 
     // Emitted when the editor has been accepted.
     signal accepted
@@ -49,7 +54,7 @@ Loader {
 
     // This is used when the user is not editing the text.
     Component {
-        id: usernameDisplayComp
+        id: displayComp
         MaterialTextField {
             font.pointSize: root.fontPointSize
             readOnly: true
@@ -60,29 +65,38 @@ Loader {
 
     // This is used when the user is editing the text.
     Component {
-        id: usernameEditComp
+        id: editComp
         MaterialTextField {
+            id: editCompField
+
             focus: true
             infoTipText: root.infoTipText
             prefixIconSrc: root.prefixIconSrc
             prefixIconColor: root.prefixIconColor
             suffixIconSrc: root.suffixIconSrc
             suffixIconColor: root.suffixIconColor
+            suffixBisIconSrc: root.suffixBisIconSrc
+            suffixBisIconColor: root.suffixBisIconColor
             font.pointSize: root.fontPointSize
+            echoMode: root.echoMode
             placeholderText: root.placeholderText
             validator: root.validator
             onAccepted: root.accepted()
             onTextChanged: dynamicText = text
             inputIsValid: root.inputIsValid
-            onFocusChanged: if (!focus) root.editMode = false
+            onFocusChanged: if (!focus && !isPersistent) root.editMode = false
         }
     }
 
     // We use a loader to switch between the two components depending on the
     // editMode property.
     sourceComponent: {
-        editMode
-                ? usernameEditComp
-                : usernameDisplayComp
+        console.warn("sourceComp")
+        console.warn(editMode)
+        console.warn(isPersistent)
+
+        editMode || isPersistent
+                ? editComp
+                : displayComp
     }
 }

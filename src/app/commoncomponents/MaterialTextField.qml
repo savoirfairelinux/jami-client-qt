@@ -28,8 +28,12 @@ TextField {
     // except the context menu.
     property bool isActive: activeFocus || contextMenu.active
     onActiveFocusChanged: {
+        console.warn("FocusChanged")
+        console.warn(activeFocus)
+        console.warn(contextMenu.active)
+
         if (!activeFocus && !contextMenu.active) {
-            root.focus = false
+            //root.focus = false
         }
     }
 
@@ -39,6 +43,9 @@ TextField {
     property alias prefixIconColor: prefixIcon.color
     property string suffixIconSrc
     property alias suffixIconColor: suffixIcon.color
+    property string suffixBisIconSrc
+    property alias suffixBisIconColor: suffixBisIcon.color
+
     property color accent: isActive
                            ? prefixIconColor
                            : JamiTheme.buttonTintedBlue
@@ -115,6 +122,7 @@ TextField {
         opacity: root.isActive && !readOnly && source.toString() !== ''
         visible: opacity
         HoverHandler { cursorShape: Qt.ArrowCursor }
+
         Behavior on opacity {
             NumberAnimation { duration: JamiTheme.longFadeDuration }
         }
@@ -142,7 +150,8 @@ TextField {
     TextFieldIcon {
         id: suffixIcon
         size: 20
-        anchors.right: parent.right
+        anchors.right: suffixBisIcon.left
+        anchors.rightMargin: suffixBisIconSrc !=='' ? 5 : 0
         color: suffixIconColor
         source: suffixIconSrc
 
@@ -152,6 +161,20 @@ TextField {
             backGroundColor: JamiTheme.whiteColor
             visible: parent.hovered && infoTipText.toString() !== ''
             delay: Qt.styleHints.mousePressAndHoldInterval
+        }
+    }
+
+    TextFieldIcon {
+        id: suffixBisIcon
+        size: 20
+        anchors.right: parent.right
+        color: suffixBisIconColor
+        source: suffixBisIconSrc
+
+        TapHandler { cursorShape: Qt.ArrowCursor
+            onTapped: {
+                modalTextEditRoot.icoClicked()
+            }
         }
     }
 
