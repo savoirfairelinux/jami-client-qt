@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a150abc1_7fce66ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 45
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-17T20:33:44Z",
+      "side": 1,
+      "message": "Scenario:\n\nCreate conversation with self, right click \u003d crash",
+      "revId": "14ae000686596f5b00d989d497efe3103fcd0827",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
