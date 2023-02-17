@@ -36,7 +36,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        textField: CurrentAccount.username
+        staticText: CurrentAccount.username
 
         titleField: JamiStrings.username
         itemWidth: root.itemWidth
@@ -50,7 +50,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        textField: CurrentAccount.hostname
+        staticText: CurrentAccount.hostname
 
         titleField: JamiStrings.server
         itemWidth: root.itemWidth
@@ -64,7 +64,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        textField: CurrentAccount.routeset
+        staticText: CurrentAccount.routeset
 
         titleField: JamiStrings.proxy
         itemWidth: root.itemWidth
@@ -75,7 +75,7 @@ ColumnLayout {
     SettingsMaterialLineEdit {
         id: passSIPlineEdit
 
-        textField: CurrentAccount.password
+        staticText: CurrentAccount.password
 
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
@@ -83,8 +83,7 @@ ColumnLayout {
         titleField: JamiStrings.password
 
         itemWidth: root.itemWidth
-        echoMode: TextInput.Password
 
-        onEditFinished: CurrentAccount.password = textField
+        onEditFinished: CurrentAccount.password = dynamicText
     }
 }

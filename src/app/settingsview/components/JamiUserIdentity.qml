@@ -109,27 +109,25 @@ ColumnLayout {
             verticalAlignment: Text.AlignVCenter
         }
 
-        UsernameLineEdit {
+        UsernameTextEdit {
             id: currentRegisteredID
 
             anchors.verticalCenter: parent.verticalCenter
 
-            height: JamiTheme.preferredFieldHeight
             width: JamiTheme.preferredFieldWidth
 
-            padding: 8
-            horizontalAlignment: CurrentAccount.registeredName === "" ? Text.AlignLeft :
+            Layout.alignment: CurrentAccount.registeredName === "" ? Text.AlignLeft :
                                                                         Text.AlignRight
-            verticalAlignment: Text.AlignVCenter
-            wrapMode: Text.NoWrap
             placeholderText: CurrentAccount.registeredName === "" ?
-                                 JamiStrings.registerAUsername : ""
-            text: CurrentAccount.registeredName
-            readOnly: CurrentAccount.registeredName !== ""
-            font.bold: CurrentAccount.registeredName !== ""
-            loseFocusWhenEnterPressed: btnRegisterName.visible
+                                 JamiStrings.registerAUsername : CurrentAccount.registeredName
+            staticText: CurrentAccount.registeredName === "" ?
+                            JamiStrings.registerAUsername : CurrentAccount.registeredName
+            // loseFocusWhenEnterPressed: btnRegisterName.visible
 
-            onEditingFinished: {
+            editMode: CurrentAccount.registeredName === ""
+            isPersistent: CurrentAccount.registeredName === ""
+
+            onAccepted: {
                 if (btnRegisterName.visible)
                     btnRegisterName.clicked()
             }
@@ -156,13 +154,13 @@ ColumnLayout {
         pressedColor: JamiTheme.buttonTintedGreyPressed
 
         onClicked: {
-            if (currentRegisteredID.text === '') {
+            if (currentRegisteredID.dynamicText === '') {
                 return
             }
             var dlg = viewCoordinator.presentDialog(
                         appWindow,
                         "settingsview/components/NameRegistrationDialog.qml",
-                        { registeredName: currentRegisteredID.text })
+                        { registeredName: currentRegisteredID.dynamicText })
             dlg.accepted.connect(function() {
                 currentRegisteredID.nameRegistrationState =
                         UsernameLineEdit.NameRegistrationState.BLANK

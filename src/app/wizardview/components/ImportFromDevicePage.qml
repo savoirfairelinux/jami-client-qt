@@ -40,8 +40,8 @@ Rectangle {
 
     function clearAllTextFields() {
         connectBtn.spinnerTriggered = false
-        pinFromDevice.clear()
-        passwordFromDevice.clear()
+        //pinFromDevice.clear()
+        //passwordFromDevice.clear()
     }
 
     function errorOccured(errorMessage) {
@@ -139,9 +139,8 @@ Rectangle {
 
         }
 
-        EditableLineEdit {
+        ModalTextEdit {
             id: pinFromDevice
-
 
             objectName: "pinFromDevice"
 
@@ -151,10 +150,8 @@ Rectangle {
 
             focus: visible
 
-            selectByMouse: true
             placeholderText: JamiStrings.pin
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
+            staticText: ""
 
             KeyNavigation.tab: {
                 if (connectBtn.enabled)
@@ -163,38 +160,26 @@ Rectangle {
                     return passwordFromDevice
                 return backButton
             }
+
             KeyNavigation.up: passwordFromDevice
             KeyNavigation.down: KeyNavigation.tab
 
-            onTextChanged: errorText = ""
-
         }
 
-        EditableLineEdit {
+        PasswordTextEdit {
             id: passwordFromDevice
 
             objectName: "passwordFromDevice"
-            underlined: true
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-            secondIco: JamiResources.eye_cross_svg
-
-            selectByMouse: true
-            placeholderText: JamiStrings.password
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-
-            echoMode: TextInput.Password
+            placeholderText: JamiStrings.enterPassword
 
             KeyNavigation.tab: connectBtn.enabled ? connectBtn : backButton
             KeyNavigation.up: pinFromDevice
             KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
 
-            onTextChanged: errorText = ""
-            onEditingFinished: pinFromDevice.forceActiveFocus()
-
-            onSecondIcoClicked: { toggleEchoMode() }
+            //onEditingFinished: pinFromDevice.forceActiveFocus()
         }
 
         SpinnerButton {
@@ -212,7 +197,7 @@ Rectangle {
             spinnerTriggeredtext: JamiStrings.generatingAccount
             normalText: JamiStrings.connectFromAnotherDevice
 
-            enabled: pinFromDevice.text.length !== 0 && !spinnerTriggered
+            //enabled: pinFromDevice.text.length !== 0 && !spinnerTriggered
 
             KeyNavigation.tab: backButton
             KeyNavigation.up: passwordFromDevice

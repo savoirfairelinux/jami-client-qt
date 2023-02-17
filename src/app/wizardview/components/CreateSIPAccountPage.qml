@@ -33,13 +33,12 @@ Rectangle {
     property int preferredHeight: createSIPAccountPageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
     signal showThisPage
-
     function clearAllTextFields() {
-        sipUsernameEdit.clear()
-        sipPasswordEdit.clear()
-        sipServernameEdit.clear()
-        sipProxyEdit.clear()
-        displayNameLineEdit.clear()
+        //sipUsernameEdit.clear()
+        //sipPasswordEdit.clear()
+        //sipServernameEdit.clear()
+        //sipProxyEdit.clear()
+        //displayNameLineEdit.clear()
         UtilsAdapter.setTempCreationImageFromString()
     }
 
@@ -106,7 +105,7 @@ Rectangle {
                     color: JamiTheme.textColor
                 }
 
-                EditableLineEdit {
+                ModalTextEdit {
                     id: sipServernameEdit
 
                     objectName: "sipServernameEdit"
@@ -115,19 +114,17 @@ Rectangle {
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
                     focus: visible
-                    selectByMouse: true
                     placeholderText: JamiStrings.server
-                    font.pointSize: JamiTheme.textFontSize
-                    font.kerning: true
 
-                    KeyNavigation.tab: sipProxyEdit
                     KeyNavigation.up: backButton
+                    KeyNavigation.tab: sipProxyEdit
                     KeyNavigation.down: sipProxyEdit
 
-                    onEditingFinished: sipProxyEdit.forceActiveFocus()
+                    onAccepted: sipProxyEdit.focus = true
+
                 }
 
-                EditableLineEdit {
+                ModalTextEdit {
                     id: sipProxyEdit
 
                     objectName: "sipProxyEdit"
@@ -135,20 +132,17 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-                    focus: visible
-                    selectByMouse: true
                     placeholderText: JamiStrings.proxy
-                    font.pointSize: JamiTheme.textFontSize
-                    font.kerning: true
 
-                    KeyNavigation.tab: sipUsernameEdit
                     KeyNavigation.up: sipServernameEdit
+                    KeyNavigation.tab: sipUsernameEdit
                     KeyNavigation.down: sipUsernameEdit
 
-                    onEditingFinished: sipUsernameEdit.forceActiveFocus()
+                    onAccepted: sipUsernameEdit.forceActiveFocus()
+
                 }
 
-                EditableLineEdit {
+                ModalTextEdit {
                     id: sipUsernameEdit
 
                     objectName: "sipUsernameEdit"
@@ -156,19 +150,16 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-                    selectByMouse: true
                     placeholderText: JamiStrings.username
-                    font.pointSize: JamiTheme.textFontSize
-                    font.kerning: true
 
-                    KeyNavigation.tab: sipPasswordEdit
                     KeyNavigation.up: sipProxyEdit
+                    KeyNavigation.tab: sipPasswordEdit
                     KeyNavigation.down: sipPasswordEdit
 
-                    onEditingFinished: sipPasswordEdit.forceActiveFocus()
+                    onAccepted: sipPasswordEdit.forceActiveFocus()
                 }
 
-                EditableLineEdit {
+                PasswordTextEdit {
                     id: sipPasswordEdit
 
                     objectName: "sipPasswordEdit"
@@ -176,23 +167,14 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-                    selectByMouse: true
-                    echoMode: TextInput.Password
-
                     placeholderText: JamiStrings.password
-                    font.pointSize: JamiTheme.textFontSize
-                    font.kerning: true
 
-                    KeyNavigation.tab: createAccountButton
                     KeyNavigation.up: sipUsernameEdit
+                    KeyNavigation.tab: createAccountButton
                     KeyNavigation.down: createAccountButton
 
-                    secondIco: JamiResources.eye_cross_svg
+                    onAccepted: createAccountButton.forceActiveFocus()
 
-
-                    onEditingFinished: createAccountButton.forceActiveFocus()
-
-                    onSecondIcoClicked: { toggleEchoMode() }
                 }
 
                 MaterialButton {
@@ -235,8 +217,8 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins*2
 
-                    KeyNavigation.tab: backButton
                     KeyNavigation.up: createAccountButton
+                    KeyNavigation.tab: backButton
                     KeyNavigation.down: backButton
 
                     onClicked: createAccountStack.currentIndex += 1
@@ -286,20 +268,14 @@ Rectangle {
                     buttonSize: JamiTheme.smartListAvatarSize
                 }
 
-                EditableLineEdit {
+                ModalTextEdit {
 
                     id: displayNameLineEdit
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: 30
-                    verticalAlignment: Text.AlignVCenter
-
-                    font.pointSize: JamiTheme.textFontSize
-
                     placeholderText: JamiStrings.enterNickname
-
-                    color: JamiTheme.textColor
                 }
 
                 Text {

@@ -189,9 +189,9 @@ ColumnLayout {
             itemWidth: root.itemWidth
             titleField: JamiStrings.privateKeyPassword
 
-            textField: CurrentAccount.password_TLS
+            staticText: CurrentAccount.password_TLS
 
-            onEditFinished: CurrentAccount.password_TLS = textField
+            onEditFinished: CurrentAccount.password_TLS = staticText
         }
 
         ToggleSwitch {
@@ -270,9 +270,9 @@ ColumnLayout {
             itemWidth: root.itemWidth
             titleField: JamiStrings.tlsServerName
 
-            textField: CurrentAccount.serverName_TLS
+            staticText: CurrentAccount.serverName_TLS
 
-            onEditFinished: CurrentAccount.serverName_TLS = textField
+            onEditFinished: CurrentAccount.serverName_TLS = staticText
         }
 
         SettingSpinBox {
