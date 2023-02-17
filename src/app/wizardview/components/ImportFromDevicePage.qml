@@ -40,8 +40,6 @@ Rectangle {
 
     function clearAllTextFields() {
         connectBtn.spinnerTriggered = false
-        pinFromDevice.clear()
-        passwordFromDevice.clear()
     }
 
     function errorOccured(errorMessage) {
@@ -139,9 +137,8 @@ Rectangle {
 
         }
 
-        EditableLineEdit {
+        ModalTextEdit {
             id: pinFromDevice
-
 
             objectName: "pinFromDevice"
 
@@ -151,50 +148,38 @@ Rectangle {
 
             focus: visible
 
-            selectByMouse: true
             placeholderText: JamiStrings.pin
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
+            staticText: ""
 
-            KeyNavigation.tab: {
+            KeyNavigation.up: backButton
+            KeyNavigation.down: passwordFromDevice
+            KeyNavigation.tab: KeyNavigation.down
+
+            onAccepted: passwordFromDevice.forceActiveFocus()
+
+        }
+
+        PasswordTextEdit {
+            id: passwordFromDevice
+
+            objectName: "passwordFromDevice"
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+
+            placeholderText: JamiStrings.enterPassword
+
+            KeyNavigation.up: pinFromDevice
+            KeyNavigation.down: {
                 if (connectBtn.enabled)
                     return connectBtn
                 else if (connectBtn.spinnerTriggered)
                     return passwordFromDevice
                 return backButton
             }
-            KeyNavigation.up: passwordFromDevice
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.tab: KeyNavigation.down
 
-            onTextChanged: errorText = ""
+            onAccepted: pinFromDevice.forceActiveFocus()
 
-        }
-
-        EditableLineEdit {
-            id: passwordFromDevice
-
-            objectName: "passwordFromDevice"
-            underlined: true
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
-
-            secondIco: JamiResources.eye_cross_svg
-
-            selectByMouse: true
-            placeholderText: JamiStrings.password
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-
-            echoMode: TextInput.Password
-
-            KeyNavigation.tab: connectBtn.enabled ? connectBtn : backButton
-            KeyNavigation.up: pinFromDevice
-            KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
-
-            onTextChanged: errorText = ""
-            onEditingFinished: pinFromDevice.forceActiveFocus()
-
-            onSecondIcoClicked: { toggleEchoMode() }
         }
 
         SpinnerButton {
@@ -212,7 +197,7 @@ Rectangle {
             spinnerTriggeredtext: JamiStrings.generatingAccount
             normalText: JamiStrings.connectFromAnotherDevice
 
-            enabled: pinFromDevice.text.length !== 0 && !spinnerTriggered
+            enabled: pinFromDevice.dynamicText.length !== 0 && !spinnerTriggered
 
             KeyNavigation.tab: backButton
             KeyNavigation.up: passwordFromDevice
@@ -223,8 +208,8 @@ Rectangle {
 
                 WizardViewStepModel.accountCreationInfo =
                         JamiQmlUtils.setUpAccountCreationInputPara(
-                            {archivePin : pinFromDevice.text,
-                                password : passwordFromDevice.text})
+                            {archivePin : pinFromDevice.dynamicText,
+                                password : passwordFromDevice.dynamicText})
                 WizardViewStepModel.nextStep()
             }
         }
