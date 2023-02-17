@@ -44,8 +44,8 @@ Rectangle {
         openedPassword = false
         openedNickname = false
         displayNameLineEdit.text = ""
-        passwordEdit.text = ""
-        passwordConfirmEdit.text = ""
+        //passwordEdit.text = ""
+        //passwordConfirmEdit.text = ""
         UtilsAdapter.setTempCreationImageFromString()
     }
 
@@ -190,7 +190,7 @@ Rectangle {
                                 font.pixelSize: JamiTheme.headerFontSize
                             }
 
-                            EditableLineEdit {
+                            PasswordTextEdit {
 
                                 id: passwordEdit
 
@@ -199,14 +199,14 @@ Rectangle {
                                 Layout.preferredWidth: 325
 
 
-                                echoMode: TextInput.Password
+                                //echoMode: TextInput.Password
 
-                                placeholderText: JamiStrings.password
-                                secondIco: JamiResources.eye_cross_svg
-                                onSecondIcoClicked: { toggleEchoMode() }
+                                //placeholderText: JamiStrings.password
+                                //secondIco: JamiResources.eye_cross_svg
+                                //onSecondIcoClicked: { toggleEchoMode() }
                             }
 
-                            EditableLineEdit {
+                            PasswordTextEdit {
 
                                 id: passwordConfirmEdit
                                 visible: openedPassword
@@ -215,11 +215,11 @@ Rectangle {
                                 Layout.preferredWidth: 325
 
 
-                                echoMode: TextInput.Password
+                                //echoMode: TextInput.Password
 
-                                placeholderText: JamiStrings.confirmPassword
-                                secondIco: JamiResources.eye_cross_svg
-                                onSecondIcoClicked: { toggleEchoMode() }
+                                //placeholderText: JamiStrings.confirmPassword
+                                //secondIco: JamiResources.eye_cross_svg
+                                //onSecondIcoClicked: { toggleEchoMode() }
 
                             }
 
@@ -233,24 +233,24 @@ Rectangle {
                                 text: JamiStrings.setPassword
                                 primary: true
 
-                                hoveredColor: checkEnable() ? JamiTheme.buttonTintedBlueHovered : JamiTheme.buttonTintedGreyInactive
-                                pressedColor: checkEnable() ? JamiTheme.buttonTintedBluePressed : JamiTheme.buttonTintedGreyInactive
+                                //hoveredColor: checkEnable() ? JamiTheme.buttonTintedBlueHovered : JamiTheme.buttonTintedGreyInactive
+                                //pressedColor: checkEnable() ? JamiTheme.buttonTintedBluePressed : JamiTheme.buttonTintedGreyInactive
 
-                                color: checkEnable() ? JamiTheme.buttonTintedBlue :
-                                                    JamiTheme.buttonTintedGreyInactive
+                                //color: checkEnable() ? JamiTheme.buttonTintedBlue :
+                                  //                  JamiTheme.buttonTintedGreyInactive
 
-                                enabled: checkEnable()
+//                                enabled: checkEnable()
 
-                                function checkEnable() {
-                                    text = JamiStrings.setPassword
-                                    return (passwordEdit.text === passwordConfirmEdit.text
-                                            && passwordEdit.text.length !== 0)
-                                }
+//                                function checkEnable() {
+//                                    text = JamiStrings.setPassword
+//                                    return (passwordEdit.text === passwordConfirmEdit.text
+//                                            && passwordEdit.text.length !== 0)
+//                                }
 
-                                onClicked: {
-                                    root.validatedPassword = passwordConfirmEdit.text
-                                    text = JamiStrings.setPasswordSuccess
-                                }
+//                                onClicked: {
+//                                    root.validatedPassword = passwordConfirmEdit.text
+//                                    text = JamiStrings.setPasswordSuccess
+//                                }
 
                             }
 
