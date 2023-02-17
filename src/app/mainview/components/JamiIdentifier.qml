@@ -147,6 +147,7 @@ Item {
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
             fontPointSize: JamiTheme.textFontSize + 1
+            editMode: false
 
             onAccepted: {
                 if (dynamicText === '') {

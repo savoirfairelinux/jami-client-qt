@@ -24,6 +24,8 @@ import net.jami.Models 1.1
 ModalTextEdit {
     id: root
 
+    isPersistent: false
+
     prefixIconSrc: {
         switch(nameRegistrationState){
         case UsernameLineEdit.NameRegistrationState.FREE:
