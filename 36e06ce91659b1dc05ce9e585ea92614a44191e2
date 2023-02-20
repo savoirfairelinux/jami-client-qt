@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "516b9079_1e7279af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-20T15:53:52Z",
+      "side": 1,
+      "message": "Add explaination, because this patch causes a lot of changes",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "36e06ce91659b1dc05ce9e585ea92614a44191e2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c876798b_254abda8",
+        "filename": "src/app/commoncomponents/MessageBubble.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-20T15:53:52Z",
+      "side": 1,
+      "message": "lot of color problems (luma) + margin problems\n\nAlso replying to a transfer message should show the display name (cf ConversationsAdapter::onNewUnreadInteraction)",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "36e06ce91659b1dc05ce9e585ea92614a44191e2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d371d5_35592277",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-20T15:53:52Z",
+      "side": 1,
+      "message": "weird format, I think the clang-format hook wasn\u0027t executed correctly. It should be \"if (repliedMsg \u003d\u003d -1) {\"",
+      "range": {
+        "startLine": 478,
+        "startChar": 8,
+        "endLine": 478,
+        "endChar": 29
+      },
+      "revId": "36e06ce91659b1dc05ce9e585ea92614a44191e2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00a4911d_c396a816",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-20T15:53:52Z",
+      "side": 1,
+      "message": "why it\u0027s not done in the QML part?",
+      "range": {
+        "startLine": 481,
+        "startChar": 23,
+        "endLine": 486,
+        "endChar": 29
+      },
+      "revId": "36e06ce91659b1dc05ce9e585ea92614a44191e2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
