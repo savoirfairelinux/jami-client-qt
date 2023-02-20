@@ -16,6 +16,24 @@
       "message": "Will this commit resolve https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/959 ?\n\nIf so, should issue 959 be added to the commit message.\n\nThank you",
       "revId": "1b1432f40b9ca59bd508edeb07caf505832bf656",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3793183_131361a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-20T14:51:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da13a438_fe41ba48",
+      "revId": "1b1432f40b9ca59bd508edeb07caf505832bf656",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
