@@ -43,8 +43,8 @@ public:
     explicit VideoProvider(AVModel& avModel, QObject* parent = nullptr);
     ~VideoProvider() = default;
 
-    Q_INVOKABLE void registerSink(const QString& id, QVideoSink* obj);
-    Q_INVOKABLE void unregisterSink(QVideoSink* obj);
+    Q_INVOKABLE void subscribe(QObject* obj, const QString& id = {});
+    Q_INVOKABLE void unsubscribe(QObject* obj);
     Q_INVOKABLE QString captureVideoFrame(const QString& id);
     Q_INVOKABLE QImage captureRawVideoFrame(const QString& id);
 
@@ -53,9 +53,9 @@ private Q_SLOTS:
     void onFrameBufferRequested(const QString& id, AVFrame* avframe);
     void onFrameUpdated(const QString& id);
     void onRendererStopped(const QString& id);
-    QVideoFrame* frame(const QString& id);
 
 private:
+    QVideoFrame* frame(const QString& id);
     void copyUnaligned(QVideoFrame* dst, const video::Frame& src);
     AVModel& avModel_;
 
