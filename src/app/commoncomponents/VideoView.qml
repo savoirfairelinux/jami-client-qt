@@ -71,8 +71,6 @@ Item {
 
         Behavior on opacity { NumberAnimation { duration: 150 } }
 
-        Component.onDestruction: videoProvider.unregisterSink(videoSink)
-
         layer.enabled: opacity
         layer.effect: FastBlur {
             source: videoOutput
