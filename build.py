@@ -303,26 +303,11 @@ def run_dependencies(args):
 
 
 def run_init():
-    # Extract modules path from '.gitmodules' file
-    module_names = []
-    with open('.gitmodules') as fd:
-        for line in fd.readlines():
-            if line.startswith('[submodule "'):
-                module_names.append(line[line.find('"')+1:line.rfind('"')])
-
-    subprocess.run(["git", "submodule", "update", "--init"], check=True)
-    subprocess.run(["git", "submodule", "foreach",
-                    "git checkout master && git pull"], check=True)
-
-    for name in module_names:
-        hooks_dir = f'.git/modules/{name}/hooks'
+    hooks_directories = ['.git/hooks/', f'.git/modules/daemon/hooks']
+    for hooks_dir in hooks_directories:
         if not os.path.exists(hooks_dir):
             os.makedirs(hooks_dir)
-        copy_file("./extras/scripts/commit-msg", f'{hooks_dir}/commit-msg')
-
-    module_names_to_format = ['daemon']
-    for name in module_names_to_format:
-        hooks_dir = f'.git/modules/{name}/hooks'
+        copy_file("./extras/scripts/commit-msg", hooks_dir + "/commit-msg")
         execute_script(['./extras/scripts/format.sh --install %(path)s'],
                        {"path": hooks_dir})
 
