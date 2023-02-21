@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "679770fc_4c7b02e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-21T20:53:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d32fb6c_ed57cd88",
+      "range": {
+        "startLine": 9,
+        "startChar": 22,
+        "endLine": 9,
+        "endChar": 25
+      },
+      "revId": "06f4b2f4d3c5ecd929fefec0964c836afbe8ec2a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4f471f8_3c099b94",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-02-21T14:35:23Z",
       "side": 1,
       "message": "incorrect placement of some bubbles (cf screenshot I sent)",
+      "range": {
+        "startLine": 11,
+        "startChar": 86,
+        "endLine": 11,
+        "endChar": 93
+      },
+      "revId": "06f4b2f4d3c5ecd929fefec0964c836afbe8ec2a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee2683eb_6cf13e37",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-21T20:53:31Z",
+      "side": 1,
+      "message": "The current design is not the good one, I\u0027m going to change it",
+      "parentUuid": "f4f471f8_3c099b94",
       "range": {
         "startLine": 11,
         "startChar": 86,
