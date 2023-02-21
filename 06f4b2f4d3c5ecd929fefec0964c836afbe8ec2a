@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d32fb6c_ed57cd88",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-21T14:35:23Z",
+      "side": 1,
+      "message": "in dark theme, charlotte said the color at the left should not be blue",
+      "range": {
+        "startLine": 9,
+        "startChar": 22,
+        "endLine": 9,
+        "endChar": 25
+      },
+      "revId": "06f4b2f4d3c5ecd929fefec0964c836afbe8ec2a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4f471f8_3c099b94",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-21T14:35:23Z",
+      "side": 1,
+      "message": "If answering to a \"Missed incoming call\" the result is strange (because the original bubble is already darker), check with charlotte what we need to do in this case.",
+      "range": {
+        "startLine": 11,
+        "startChar": 86,
+        "endLine": 11,
+        "endChar": 93
+      },
+      "revId": "06f4b2f4d3c5ecd929fefec0964c836afbe8ec2a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01af3e72_0b293eee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-21T14:35:23Z",
+      "side": 1,
+      "message": "incorrect placement of some bubbles (cf screenshot I sent)",
+      "range": {
+        "startLine": 11,
+        "startChar": 86,
+        "endLine": 11,
+        "endChar": 93
+      },
+      "revId": "06f4b2f4d3c5ecd929fefec0964c836afbe8ec2a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

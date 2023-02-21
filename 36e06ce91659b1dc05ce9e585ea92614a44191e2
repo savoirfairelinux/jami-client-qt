@@ -187,6 +187,30 @@
       },
       "revId": "36e06ce91659b1dc05ce9e585ea92614a44191e2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "641d9035_7140c395",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-21T14:35:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f068f312_a8322705",
+      "range": {
+        "startLine": 481,
+        "startChar": 23,
+        "endLine": 486,
+        "endChar": 29
+      },
+      "revId": "36e06ce91659b1dc05ce9e585ea92614a44191e2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
