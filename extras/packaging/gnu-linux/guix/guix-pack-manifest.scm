@@ -18,9 +18,9 @@
 ;;; This GNU Guix manifest is used along the Makefile to build the
 ;;; latest Jami as a Guix pack.
 
-(use-modules (gnu packages certs)
+(use-modules (gnu packages)
+             (gnu packages certs)
              (gnu packages jami)
-             (gnu packages python)
              (guix base32)
              (guix gexp)
              (guix packages)
@@ -34,8 +34,8 @@
 ;;; --with-source=libjami=$(RELEASE_TARBALL_FILENAME) \
 ;;; --with-source=jami=$(RELEASE_TARBALL_FILENAME) in the Makefile.
 ;;;
-;;; The above doesn't currently rewrite the dependency graph
-;;; recursively, hence why it is not sufficient.
+;;; Sadly the above doesn't seem to work along with the --manifest
+;;; option (see: https://issues.guix.gnu.org/61676).
 
 (define %release-version (getenv "RELEASE_VERSION"))
 
@@ -63,12 +63,30 @@
     (uri %release-file-name)
     (sha256 %release-file-hash)))
 
+;;; 'with-source' cannot currently be combined with 'with-patch' (see:
+;;; https://issues.guix.gnu.org/61684).
 (define (with-latest-sources name)
   (options->transformation
    `((with-source . ,(format #f "~a@~a=~a" name
-                             %release-version %release-file-name)))))
+                             %release-version %release-file-name))
+     ;; XXX: This is not effective, due to the above bug.
+     ,@(if (string=? name "libjami")
+           `((with-patch . ,(string-append
+                             name "="
+                             (search-patch
+                              "jami-disable-integration-tests.patch"))))
+           '()))))
 
-(define libjami/latest ((with-latest-sources "libjami") libjami))
+(define libjami/latest
+  ((with-latest-sources "libjami")
+   (package
+     (inherit libjami)
+     ;; FIXME: Disable test suite until #61684 above is fixed or the
+     ;; 'jami-disable-integration-tests.patch' merged (also see:
+     ;; https://git.jami.net/savoirfairelinux/jami-daemon/-/issues/824).
+     (arguments (substitute-keyword-arguments (package-arguments libjami)
+                  ((#:tests? _ #t)
+                   #f))))))
 
 (define with-libjami/latest
   (package-input-rewriting `((,libjami . ,libjami/latest))))
@@ -82,6 +100,13 @@
               (append nss-certs)))
     (arguments
      (substitute-keyword-arguments (package-arguments jami)
+       ;; This is necessary due to the missing
+       ;; jami-libjami-headers-search.patch patch.
+       ((#:configure-flags flags '())
+        #~(cons (string-append "-DLIBJAMI_INCLUDE_DIR="
+                               #$(this-package-input "libjami")
+                               "/include/jami")
+                #$flags))
        ((#:phases phases '%standard-phases)
         #~(modify-phases #$phases
             (add-after 'qt-wrap 'wrap-ssl-cert-dir
@@ -93,6 +118,6 @@
                            exec-line)))))))))))
 
 (define jami-with-certs/latest
-  ((with-latest-sources "jami") jami-with-certs))
+  (with-libjami/latest ((with-latest-sources "jami") jami-with-certs)))
 
 (packages->manifest (list jami-with-certs/latest))
