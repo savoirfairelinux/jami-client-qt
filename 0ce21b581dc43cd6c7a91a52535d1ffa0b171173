@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e73a79ad_33864d96",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-02-21T17:01:35Z",
+      "side": 1,
+      "message": "what will happen when the runtime requirements are not met?",
+      "range": {
+        "startLine": 702,
+        "startChar": 8,
+        "endLine": 702,
+        "endChar": 32
+      },
+      "revId": "0ce21b581dc43cd6c7a91a52535d1ffa0b171173",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
