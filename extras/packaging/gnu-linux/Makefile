@@ -57,8 +57,8 @@ QT_JAMI_PREFIX := /usr/lib/libqt-jami
 ## Other variables ##
 #####################
 TMPDIR := $(shell mktemp -d)
-CURRENT_UID:=$(shell id -u)
-CURRENT_GID:=$(shell id -g)
+CURRENT_UID := $(shell id -u)
+CURRENT_GID := $(shell id -g)
 
 #############################
 ## Release tarball targets ##
