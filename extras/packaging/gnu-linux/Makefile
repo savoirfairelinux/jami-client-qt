@@ -81,7 +81,6 @@ purge-release-tarballs:
 	rm -f jami-*.tar.* tarballs.manifest
 
 release-tarball:
-	rm -f "$(RELEASE_TARBALL_FILENAME)" tarballs.manifest
 	$(MAKE) -f extras/packaging/gnu-linux/Makefile "$(RELEASE_TARBALL_FILENAME)"
 
 # Predicate to check if the 'guix' command is available.
