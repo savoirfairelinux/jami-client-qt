@@ -149,18 +149,16 @@ make -f ${PACKAGING_DIR}/Makefile portable-release-tarball .tarball-version
                                 " ${params.CHANNEL}",
                             returnStdout: true
                         ).trim()
-                        sh """
-                        git tag  -am \"Jami new ${params.CHANNEL} version\" ${wantedTag}
-                        """
+                        sh "git tag -am \"Jami new ${params.CHANNEL} version\"" +
+                            " ${wantedTag}"
+                        sh "git push origin --tags"
                         if (params.CHANNEL == 'stable') {
-                            // Only stables releases get tarballs and a tag.
-                            sh "git push origin --tags"
+                            // Only stable releases get a source
+                            // tarball.
                             echo "Publishing release tarball..."
                             sh 'rsync --verbose jami*.tar.gz ' +
                                 "${REMOTE_HOST}:${REMOTE_BASE_DIR}" +
                                 "/release/tarballs/"
-                        } else {
-                            sh "git push origin --tags"
                         }
                     }
                 }
