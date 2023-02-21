@@ -98,9 +98,9 @@ guix-share-tarball-arg = $${TARBALLS:+"--share=$$TARBALLS"}
 portable-release-tarball: has-guix-p
 	guix shell --container --network \
           --preserve=TARBALLS $(guix-share-tarball-arg) \
-          --expose=/usr/bin/env \
-          --expose=$$SSL_CERT_DIR=/etc/ssl/certs \
-          --manifest=$(CURDIR)/extras/packaging/gnu-linux/guix/minimal-manifest.scm \
+          --symlink=/usr/bin/env=bin/env \
+          --symlink=/etc/ssl/certs=etc/ssl/certs \
+          --manifest=extras/packaging/gnu-linux/guix/minimal-manifest.scm \
           -- $(MAKE) -f extras/packaging/gnu-linux/Makefile release-tarball
 
 daemon/contrib/native/Makefile:
