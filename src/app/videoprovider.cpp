@@ -59,10 +59,16 @@ VideoProvider::VideoProvider(AVModel& avModel, QObject* parent)
 void
 VideoProvider::registerSink(const QString& id, QVideoSink* obj)
 {
+    disconnect(obj);
+    connect(obj, &QVideoSink::destroyed, this, [this, id, obj] {
+            qWarning() << "DESTROYED" << id  << obj;
+            unregisterSink(obj);
+        }, Qt::DirectConnection);
     QMutexLocker lk(&framesObjsMutex_);
     auto it = framesObjects_.find(id);
     if (it == framesObjects_.end()) {
         auto fo = std::make_unique<FrameObject>();
+        QMutexLocker subsLk(&fo->mutex);
         fo->subscribers.insert(obj);
         qDebug() << "Creating new FrameObject for id:" << id;
         auto emplaced = framesObjects_.emplace(id, std::move(fo));
@@ -75,6 +81,7 @@ VideoProvider::registerSink(const QString& id, QVideoSink* obj)
     qDebug().noquote() << QString("Adding sink: 0x%1 to subscribers for id: %2")
                               .arg((quintptr) obj, QT_POINTER_SIZE * 2, 16, QChar('0'))
                               .arg(id);
+    QMutexLocker subsLk(&it->second->mutex);
     it->second->subscribers.insert(obj);
 }
 
@@ -83,6 +90,7 @@ VideoProvider::unregisterSink(QVideoSink* obj)
 {
     QMutexLocker lk(&framesObjsMutex_);
     for (auto& frameObjIt : qAsConst(framesObjects_)) {
+        QMutexLocker subsLk(&frameObjIt.second->mutex);
         auto& subs = frameObjIt.second->subscribers;
         auto it = subs.constFind(obj);
         if (it != subs.cend()) {
@@ -103,10 +111,10 @@ VideoProvider::frame(const QString& id)
     if (it == framesObjects_.end()) {
         return {};
     }
+    QMutexLocker lk(&it->second->mutex);
     if (it->second->subscribers.empty()) {
         return {};
     }
-    QMutexLocker lk(&it->second->mutex);
     auto videoFrame = it->second->videoFrame.get();
     if (!mapVideoFrame(videoFrame)) {
         qWarning() << "QVideoFrame can't be mapped" << id;
@@ -191,10 +199,10 @@ VideoProvider::onFrameUpdated(const QString& id)
     if (it == framesObjects_.end()) {
         return;
     }
+    QMutexLocker lk(&it->second->mutex);
     if (it->second->subscribers.empty()) {
         return;
     }
-    QMutexLocker lk(&it->second->mutex);
     auto videoFrame = it->second->videoFrame.get();
     if (videoFrame == nullptr) {
         qWarning() << "QVideoFrame has not been initialized.";
@@ -213,7 +221,10 @@ VideoProvider::onFrameUpdated(const QString& id)
     }
     if (videoFrame->isMapped()) {
         videoFrame->unmap();
+        // qWarning() << "&&&&&&&&&&&& n-subs" << id << it->second->subscribers.size() << framesObjects_.size();
         for (const auto& sink : qAsConst(it->second->subscribers)) {
+            if (!qobject_cast<QVideoSink*>(sink)) continue;
+            qWarning() << "&&&&&&&&&&&&" << id << sink << (qobject_cast<QVideoSink*>(sink) != nullptr ? "TRUE" : "FALSE");
             sink->setVideoFrame(*videoFrame);
             Q_EMIT sink->videoFrameChanged(*videoFrame);
         }
@@ -234,7 +245,7 @@ VideoProvider::onRendererStopped(const QString& id)
 
     QMutexLocker lk(&it->second->mutex);
     if (it->second->subscribers.empty()) {
-        lk.unlock();
+        //lk.unlock();
         framesObjects_.erase(it);
         return;
     }
