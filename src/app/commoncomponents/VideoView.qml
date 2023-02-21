@@ -39,12 +39,7 @@ Item {
     property real xScale: contentRect.width / videoOutput.sourceRect.width
     property real yScale: contentRect.height / videoOutput.sourceRect.height
 
-    onRendererIdChanged: {
-        videoProvider.unregisterSink(videoSink)
-        if (rendererId.length !== 0) {
-            videoProvider.registerSink(rendererId, videoSink)
-        }
-    }
+    onRendererIdChanged: videoProvider.subscribe(videoSink, rendererId)
 
     Rectangle {
         id: bgRect
@@ -70,8 +65,6 @@ Item {
                       VideoOutput.PreserveAspectFit
 
         Behavior on opacity { NumberAnimation { duration: 150 } }
-
-        Component.onDestruction: videoProvider.unregisterSink(videoSink)
 
         layer.enabled: opacity
         layer.effect: FastBlur {
