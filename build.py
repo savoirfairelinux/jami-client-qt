@@ -404,11 +404,9 @@ def run_install(args):
             print('info: consider setting the TARBALLS environment variable '
                   'to a stable writable location to avoid loosing '
                   'cached tarballs')
-        # Note: we must expose /gnu/store because /etc/ssl/certs
-        # contains certs that are symlinks to store items.
         command = ['guix', 'shell', '--manifest=guix/manifest.scm',
-                   '--expose=/gnu/store', '--expose=/etc/ssl/certs',
-                   '--expose=/usr/bin/env',
+                   '--symlink=/usr/bin/env=bin/env',
+                   '--symlink=/etc/ssl/certs=etc/ssl/certs',
                    '--container', '--network'] + share_tarballs_args \
             + ['--'] + command
 
