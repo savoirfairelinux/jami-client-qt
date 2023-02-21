@@ -287,7 +287,7 @@ JamiListView {
         anchors.horizontalCenter: root.horizontalCenter
 
         activeStateTrigger: Math.abs(root.contentY) > root.height * 2
-        onClicked: root.ScrollBar.vertical.position = 1.0 - root.ScrollBar.vertical.size
+        onClicked: root.contentY = 0
 
     }
 

@@ -31,7 +31,6 @@ Control {
 
     property alias activeStateTrigger: activeState.when
 
-
     signal clicked
 
     height: jumpToLatestText.contentHeight + 15
