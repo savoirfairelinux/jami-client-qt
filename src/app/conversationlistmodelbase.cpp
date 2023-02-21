@@ -169,27 +169,28 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         if (peerUriList.isEmpty())
             return {};
         auto peerUri = peerUriList.at(0);
-        if (peerUri == lrcInstance_->getCurrentAccountInfo().profileInfo.uri) {
+        auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+        if (peerUri == accInfo.profileInfo.uri) {
             // Conversation alone with self
             switch (role) {
             case Role::BestId:
-                return QVariant(lrcInstance_->accountModel().bestIdForAccount(peerUri));
+                return QVariant(lrcInstance_->accountModel().bestIdForAccount(accInfo.id));
             case Role::Alias:
-                return QVariant(lrcInstance_->getCurrentAccountInfo().profileInfo.alias);
+                return QVariant(accInfo.profileInfo.alias);
             case Role::RegisteredName:
-                return QVariant(lrcInstance_->getCurrentAccountInfo().registeredName);
+                return QVariant(accInfo.registeredName);
             case Role::URI:
                 return QVariant(peerUri);
             case Role::IsBanned:
                 return QVariant(false);
             case Role::ContactType:
                 return QVariant(
-                    static_cast<int>(lrcInstance_->getCurrentAccountInfo().profileInfo.type));
+                    static_cast<int>(accInfo.profileInfo.type));
             }
         }
         ContactModel* contactModel;
         contact::Info contact {};
-        contactModel = lrcInstance_->getCurrentAccountInfo().contactModel.get();
+        contactModel = accInfo.contactModel.get();
         try {
             contact = contactModel->getContact(peerUri);
         } catch (const std::exception&) {
