@@ -16,6 +16,24 @@
       "message": "Successful build: https://jenkins.jami.net/blue/organizations/jenkins/packaging-gnu-linux/detail/packaging-gnu-linux/2137/pipeline, completed in 12m 54s on build machine 4.\n\n",
       "revId": "a46c82185f30586399d7360f280deef669d7e95c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac08ed6a_a73a4598",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2023-02-22T03:51:12Z",
+      "side": 1,
+      "message": "Deploy also works: https://jenkins.jami.net/blue/organizations/jenkins/packaging-gnu-linux/detail/packaging-gnu-linux/2141/\n\nSee internal apt repo: https://dl.jami.net/internal/guix-deb-pack/pool/main/j/jami/jami_20230221.0_amd64.deb",
+      "parentUuid": "d33403b1_ac4ef912",
+      "revId": "a46c82185f30586399d7360f280deef669d7e95c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
