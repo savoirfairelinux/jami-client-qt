@@ -1023,7 +1023,7 @@ ConversationModel::getConversationPreferences(const QString& conversationId)
     return ret;
 }
 
-void
+QString
 ConversationModel::createConversation(const VectorString& participants, const MapStringString& infos)
 {
     auto convUid = ConfigurationManager::instance().startConversation(owner.id);
@@ -1036,6 +1036,7 @@ ConversationModel::createConversation(const VectorString& participants, const Ma
     Q_EMIT newConversation(convUid);
     pimpl_->invalidateModel();
     Q_EMIT modelChanged();
+    return convUid;
 }
 
 void

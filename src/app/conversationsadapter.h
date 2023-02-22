@@ -45,7 +45,7 @@ public:
 public:
     void connectConversationModel();
 
-    Q_INVOKABLE void createSwarm(const QString& title,
+    Q_INVOKABLE QString createSwarm(const QString& title,
                                  const QString& description,
                                  const QString& avatar,
                                  const VectorString& participants);

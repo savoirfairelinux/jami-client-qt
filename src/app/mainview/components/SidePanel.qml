@@ -81,8 +81,10 @@ BaseView {
                         uris.push(uri)
                     }
                 }
-                ConversationsAdapter.createSwarm(title, description, avatar, uris)
+                let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris)
                 viewCoordinator.dismiss("NewSwarmPage")
+                LRCInstance.selectConversation(convuid)
+
             })
         } else {
             viewCoordinator.dismiss("NewSwarmPage")

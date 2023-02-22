@@ -374,8 +374,9 @@ public:
      * create a new swarm conversation
      * @param participants  conversation's participants
      * @param infos conversation's infos
+     * @return new conversation id
      */
-    void createConversation(const VectorString& participants, const MapStringString& infos = {});
+    QString createConversation(const VectorString& participants, const MapStringString& infos = {});
     /**
      * update conversation info
      * @param conversationId conversation's id

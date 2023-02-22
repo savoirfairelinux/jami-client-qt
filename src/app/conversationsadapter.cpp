@@ -655,15 +655,15 @@ ConversationsAdapter::connectConversationModel()
     updateConversationFilterData();
 }
 
-void
+QString
 ConversationsAdapter::createSwarm(const QString& title,
                                   const QString& description,
                                   const QString& avatar,
                                   const VectorString& participants)
 {
     auto convModel = lrcInstance_->getCurrentConversationModel();
-    convModel->createConversation(participants,
-                                  {{"title", title},
-                                   {"description", description},
-                                   {"avatar", avatar}});
+    return convModel->createConversation(participants,
+                                         {{"title", title},
+                                         {"description", description},
+                                         {"avatar", avatar}});
 }
