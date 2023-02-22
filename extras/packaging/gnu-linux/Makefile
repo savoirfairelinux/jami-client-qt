@@ -239,36 +239,39 @@ $(foreach target,$(DISTRIBUTIONS),\
 # Guix-generated Debian packages (deb packs) targets.
 #
 SUPPORTED_GNU_ARCHS = x86_64
-DEB_PACK_TARGETS =
+GUIX_PACK_FORMATS = deb rpm
 
+# TODO: Add a postin script for the RPM pack.
+# Arg1: the 'guix pack' format to use, e.g. 'deb' or 'rpm'.
 define guix-pack-command
-guix pack -C xz -f deb -m $(CURDIR)/extras/packaging/gnu-linux/guix/guix-pack-manifest.scm -v3 \
+guix pack -C xz -f $(1) -m $(CURDIR)/extras/packaging/gnu-linux/guix/guix-pack-manifest.scm -v3 \
   -S /usr/bin/jami=bin/jami \
   -S /usr/share/applications/jami.desktop=share/applications/jami.desktop \
   -S /usr/share/icons/hicolor/scalable/apps/jami.svg=share/icons/hicolor/scalable/apps/jami.svg \
   -S /usr/share/icons/hicolor/48x48/apps/jami.png=share/icons/hicolor/48x48/apps/jami.png \
   -S /usr/share/metainfo/jami.appdata.xml=share/metainfo/jami.appdata.xml \
-  --postinst-file=$(CURDIR)/extras/packaging/gnu-linux/guix/guix-pack-deb.postinst
+  $(and $(findstring deb,$(1)), \
+    --postinst-file=$(CURDIR)/extras/packaging/gnu-linux/guix/guix-pack-deb.postinst)
 endef
 
-# Arg1: the GNU architecture type (e.g., x86_64, i686, powerpcle, etc.)
-define define-deb-pack-rule
-deb-file-name := extras/packaging/gnu-linux/packages/guix-deb-pack/jami-$(RELEASE_VERSION)-$(1).deb
-DEB_PACK_TARGETS += deb-pack-$(subst _,-,$(1))
-.PHONY: deb-pack-$(subst _,-,$(1))
-deb-pack-$(subst _,-,$(1)): $$(deb-file-name)
-$$(deb-file-name): has-guix-p $(RELEASE_TARBALL_FILENAME)
-	output=$$$$($(guix-pack-command) --system=$(1)-linux $$(GUIX_PACK_ARGS)) && \
+# Arg1: the 'guix pack' format to use, e.g. 'deb' or 'rpm'.
+# Arg2: the GNU architecture type (e.g., x86_64, i686, powerpcle, etc.)
+define define-guix-pack-rule
+$(1)-file-name := extras/packaging/gnu-linux/packages/guix-$(1)-pack/jami-$(RELEASE_VERSION)-$(2).$(1)
+PACKAGE-TARGETS += $(1)-pack-$(subst _,-,$(2))
+.PHONY: $(1)-pack-$(subst _,-,$(2))
+$(1)-pack-$(subst _,-,$(2)): $$($(1)-file-name)
+$$($(1)-file-name): has-guix-p $(RELEASE_TARBALL_FILENAME)
+	output=$$$$($(call guix-pack-command,$(1)) --system=$(2)-linux $$(GUIX_PACK_ARGS)) && \
 	mkdir -p "$$$$(dirname "$$@")" && \
 	cp --reflink=auto "$$$$output" "$$@" && \
 	guix gc --delete "$$$$output"
 	chmod +w "$$@"
 endef
 
-$(foreach arch,$(SUPPORTED_GNU_ARCHS),\
-	$(eval $(call define-deb-pack-rule,$(arch))))
-
-PACKAGE-TARGETS += $(DEB_PACK_TARGETS)
+$(foreach format,$(GUIX_PACK_FORMATS),\
+  $(foreach arch,$(SUPPORTED_GNU_ARCHS),\
+    $(eval $(call define-guix-pack-rule,$(format),$(arch)))))
 
 package-all: $(PACKAGE-TARGETS)
 
