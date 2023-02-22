@@ -77,8 +77,10 @@ pipeline {
         string(name: 'PACKAGING_TARGETS',
                defaultValue: '',
                description: 'A whitespace-separated list of packaging ' +
-               'targets, e.g. "debian_10 snap". ' +
-               'When left unspecified, all the packaging targets are built.')
+               'targets, e.g. "debian_10 deb-pack-x86-64 rpm-pack-x86-64 snap". ' +
+               'When left unspecified, all the packaging targets are built. ' +
+               'To see the available targets, run: ' +
+               'make -f extras/packaging/gnu-linux/Makefile list-package-targets')
     }
 
     environment {
