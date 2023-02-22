@@ -22,6 +22,30 @@
       },
       "revId": "0ce21b581dc43cd6c7a91a52535d1ffa0b171173",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eac44709_d7b02dd2",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-22T14:00:20Z",
+      "side": 1,
+      "message": "https://support.microsoft.com/en-us/topic/windows-10-update-history-93345c32-4ae1-6d1c-f885-6c0b718adf3b\n\nthe first windows 10 release is the 10240, So if that requirement is not met, it means the person is using windows older than 10 which we already do not support per qt 6 (https://www.qt.io/blog/qt6-development-hosts-and-targets).\n\n\nFor more reference: jami currently requires sdk 18362 and the minimum we would need to build jami with system theme is 17134 https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/get-started#set-project-properties.\nIf sdk is older, the theme system will not be available on built app as the `__has_include` will prevent it.",
+      "parentUuid": "e73a79ad_33864d96",
+      "range": {
+        "startLine": 702,
+        "startChar": 8,
+        "endLine": 702,
+        "endChar": 32
+      },
+      "revId": "0ce21b581dc43cd6c7a91a52535d1ffa0b171173",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
