@@ -70,9 +70,6 @@ pipeline {
         booleanParam(name: 'BUILD_ARM',
                      defaultValue: false,
                      description: 'Whether to build ARM packages.')
-        booleanParam(name: 'BUILD_DEB_PACK',
-                     defaultValue: false,
-                     description: 'Whether to build DEB PACK packages.')
         string(name: 'PACKAGING_TARGETS',
                defaultValue: '',
                description: 'A whitespace-separated list of packaging ' +
@@ -177,9 +174,6 @@ make -f extras/packaging/gnu-linux/Makefile portable-release-tarball .tarball-ve
                     TARGETS = targetsText.split(/\s/)
                     if (!params.BUILD_ARM) {
                         TARGETS = TARGETS.findAll { !(it =~ /_(armhf|arm64)$/) }
-                    }
-                    if (!params.BUILD_DEB_PACK) {
-                        TARGETS = TARGETS.findAll { !(it =~ /_(deb-pack)$/) }
                     }
 
                     def stages = [:]
