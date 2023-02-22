@@ -40,7 +40,7 @@ static constexpr char betaMsiSubUrl[] = "/beta/jami.beta.x64.msi";
 
 struct UpdateManager::Impl : public QObject
 {
-    Impl(const QString& url, ConnectivityMonitor* cm, LRCInstance* instance, UpdateManager& parent)
+    Impl(const QString& url, LRCInstance* instance, UpdateManager& parent)
         : QObject(nullptr)
         , parent_(parent)
         , lrcInstance_(instance)
@@ -119,13 +119,16 @@ struct UpdateManager::Impl : public QObject
         parent_.get(
             downloadUrl,
             [this, downloadUrl](const QString&) {
-                lrcInstance_->finish();
-                Q_EMIT lrcInstance_->quitEngineRequested();
-                auto args = QString(" /passive /norestart WIXNONUILAUNCH=1");
+                QString pathToMsi = tempPath_ + "/" + downloadUrl.fileName();
+                QString pathToLogFile = tempPath_ + "/jami_x64_install.log";
+                QString program = "msiexec.exe";
                 QProcess process;
-                process.start("powershell ",
-                              QStringList() << tempPath_ + "\\" + downloadUrl.fileName() << "/L*V"
-                                            << tempPath_ + "\\jami_x64_install.log" + args);
+                process.start(program,
+                              QStringList()
+                                  << "/package" << QDir::toNativeSeparators(pathToMsi) << "/passive"
+                                  << "/norestart"
+                                  << "WIXNONUILAUNCH=1"
+                                  << "/l*v" << pathToLogFile);
                 process.waitForFinished();
             },
             tempPath_);
@@ -177,7 +180,7 @@ UpdateManager::UpdateManager(const QString& url,
                              LRCInstance* instance,
                              QObject* parent)
     : NetWorkManager(cm, parent)
-    , pimpl_(std::make_unique<Impl>(url, cm, instance, *this))
+    , pimpl_(std::make_unique<Impl>(url, instance, *this))
 {}
 
 UpdateManager::~UpdateManager() {}
