@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c6f4a2f_36ea758c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2023-02-22T04:10:50Z",
+      "side": 1,
+      "message": "Successful build: https://jenkins.jami.net/view/packaging/job/packaging-gnu-linux/2142/",
+      "revId": "5fa1ae760eb7a4a233b32b432d37a9cc7d9f8689",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
