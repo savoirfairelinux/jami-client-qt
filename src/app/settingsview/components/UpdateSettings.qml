@@ -169,7 +169,7 @@ ColumnLayout {
             if (!found) {
                 presentInfoDialog(JamiStrings.updateNotFound)
             } else {
-                presentConfirmInstallDialog(JamiStrings.confirmUpdate, false)
+                presentConfirmInstallDialog(JamiStrings.updateFound, false)
             }
         }
 

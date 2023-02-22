@@ -57,6 +57,7 @@ BaseModalDialog {
 
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: JamiTheme.preferredDialogWidth - JamiTheme.preferredMarginSize
+            Layout.preferredHeight: implicitHeight
 
             text: infoText
             font.pointSize: JamiTheme.menuFontSize - 2
@@ -71,7 +72,7 @@ BaseModalDialog {
 
             Layout.topMargin: JamiTheme.preferredMarginSize / 2
             Layout.fillWidth: true
-            Layout.fillHeight: true
+            Layout.preferredHeight: childrenRect.height
 
             data: innerContentData
         }
@@ -80,6 +81,7 @@ BaseModalDialog {
             spacing: JamiTheme.preferredMarginSize
 
             Layout.fillWidth: true
+            Layout.preferredHeight: contentHeight
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
             Layout.bottomMargin: JamiTheme.preferredMarginSize
 
