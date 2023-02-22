@@ -78,7 +78,7 @@ struct UpdateManager::Impl : public QObject
             auto currentVersion = QString(VERSION_STRING).toULongLong();
             auto latestVersion = latestVersionString.toULongLong();
             qDebug() << "latest: " << latestVersion << " current: " << currentVersion;
-            if (latestVersion > currentVersion) {
+            if (true) { // latestVersion > currentVersion) {
                 qDebug() << "New version found";
                 Q_EMIT parent_.updateCheckReplyReceived(true, true);
             } else {
@@ -119,13 +119,15 @@ struct UpdateManager::Impl : public QObject
         parent_.get(
             downloadUrl,
             [this, downloadUrl](const QString&) {
-                lrcInstance_->finish();
-                Q_EMIT lrcInstance_->quitEngineRequested();
-                auto args = QString(" /passive /norestart WIXNONUILAUNCH=1");
+                QString pathToMsi = tempPath_ + "/" + downloadUrl.fileName();
+                QString pathToLogFile = tempPath_ + "/jami_x64_install.log";
+                QString program = "msiexec.exe";
                 QProcess process;
-                process.start("powershell ",
-                              QStringList() << tempPath_ + "\\" + downloadUrl.fileName() << "/L*V"
-                                            << tempPath_ + "\\jami_x64_install.log" + args);
+                process.start("msiexec.exe",
+                              QStringList() << "/package" << pathToMsi << "/passive"
+                                            << "/norestart"
+                                            << "WIXNONUILAUNCH=1"
+                                            << "/l*v" << pathToLogFile);
                 process.waitForFinished();
             },
             tempPath_);
