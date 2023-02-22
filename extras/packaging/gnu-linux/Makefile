@@ -274,7 +274,7 @@ package-all: $(PACKAGE-TARGETS)
 
 .PHONY: list-package-targets
 list-package-targets:
-	@$(foreach p,$(PACKAGE-TARGETS),\
+	@$(foreach p,$(sort $(PACKAGE-TARGETS)),\
 		echo $(p);)
 
 ###################
