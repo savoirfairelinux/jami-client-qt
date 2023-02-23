@@ -118,7 +118,7 @@ RowLayout {
                 margins: 1
             }
 
-            color: spinbox.up.pressed || spinbox.up.hovered ? JamiTheme.spinboxBorderColor : JamiTheme.transparentColor
+            color: JamiTheme.transparentColor
 
             ResponsiveImage {
 
@@ -126,7 +126,7 @@ RowLayout {
                 containerWidth: 10
                 width: 20
                 height: 20
-                color: JamiTheme.primaryForegroundColor
+                color: JamiTheme.tintedBlue
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: JamiResources.chevron_right_black_24dp_svg
@@ -144,7 +144,7 @@ RowLayout {
                 margins: 1
             }
 
-            color: spinbox.down.pressed || spinbox.down.hovered ? JamiTheme.spinboxBorderColor : JamiTheme.transparentColor
+            color: JamiTheme.transparentColor
 
             ResponsiveImage {
 
@@ -152,7 +152,7 @@ RowLayout {
                 containerWidth: 10
                 width: 20
                 height: 20
-                color: JamiTheme.primaryForegroundColor
+                color: JamiTheme.tintedBlue
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: JamiResources.chevron_left_black_24dp_svg

@@ -41,6 +41,7 @@ TextField {
     property alias suffixIconColor: suffixIcon.color
     property string suffixBisIconSrc
     property alias suffixBisIconColor: suffixBisIcon.color
+    property alias icon: container.data
 
     property color accent: isActive || hovered
                            ? prefixIconColor
@@ -50,13 +51,12 @@ TextField {
     placeholderTextColor: !isActive
                           ? JamiTheme.transparentColor
                           : JamiTheme.placeholderTextColor
-    property string initialPlaceholderText
 
     property alias infoTipText: infoTip.text
 
     wrapMode: "NoWrap"
 
-    font.pointSize: JamiTheme.materialLineEditPointSize
+    font.pixelSize: JamiTheme.materialLineEditPixelSize
     font.kerning: true
     selectByMouse: true
     mouseSelectionMode: TextInput.SelectCharacters
@@ -103,10 +103,10 @@ TextField {
     // The centered placeholder that appears in the design specs.
     Label {
         id: overBaseLineLabel
-        font.pointSize: root.font.pointSize
+        font.pixelSize: root.font.pixelSize
         anchors.baseline: root.baseline
         anchors.horizontalCenter: root.horizontalCenter
-        text: root.initialPlaceholderText
+        text: root.placeholderText
         color: root.baseColor
         visible: !root.isActive && !readOnly && root.text.toString() === ""
     }
@@ -116,7 +116,7 @@ TextField {
         width: parent.width
         height: 1
         anchors.top: root.baseline
-        anchors.topMargin: root.font.pointSize
+        anchors.topMargin: root.font.pixelSize
         color: root.accent
         visible: !readOnly
     }
@@ -125,8 +125,6 @@ TextField {
         property real size: 18
         width: visible ? size : 0
         height: size
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: -root.bottomPadding / 2
         opacity: root.isActive && !readOnly && source.toString() !== ''
         visible: opacity
         HoverHandler { cursorShape: Qt.ArrowCursor }
@@ -138,36 +136,47 @@ TextField {
     TextFieldIcon {
         id: prefixIcon
         anchors.left: parent.left
+        anchors.verticalCenter: root.verticalCenter
+        anchors.verticalCenterOffset: -root.bottomPadding / 2
         color: prefixIconColor
         source: prefixIconSrc
     }
 
     Label {
         id: underBaseLineLabel
-        font.pointSize: root.font.pointSize - 3
+        font.pixelSize: JamiTheme.materialLineEditSelectedPixelSize
         anchors.top: baselineLine.bottom
         anchors.topMargin: 2
-        text: root.initialPlaceholderText
+        text: root.placeholderText
         color: root.baseColor
 
         // Show the alternate placeholder while the user types.
-        visible: root.isActive && !readOnly
+        visible: root.isActive && !readOnly && root.text.toString() !== ""
     }
 
-    TextFieldIcon {
-        id: suffixIcon
-        size: 20
+    Item {
+        id: container
+        width: suffixIcon.width
+        height: suffixIcon.height
         anchors.right: suffixBisIcon.left
         anchors.rightMargin: suffixBisIconSrc !== '' ? 5 : 0
-        color: suffixIconColor
-        source: suffixIconSrc
+        anchors.verticalCenter: root.verticalCenter
+        anchors.verticalCenterOffset: -root.bottomPadding / 2
+        visible: !readOnly
 
-        MaterialToolTip {
-            id: infoTip
-            textColor: JamiTheme.blackColor
-            backGroundColor: JamiTheme.whiteColor
-            visible: parent.hovered && infoTipText.toString() !== ''
-            delay: Qt.styleHints.mousePressAndHoldInterval
+        TextFieldIcon {
+            id: suffixIcon
+            size: 20
+            color: suffixIconColor
+            source: suffixIconSrc
+
+            MaterialToolTip {
+                id: infoTip
+                textColor: JamiTheme.blackColor
+                backGroundColor: JamiTheme.whiteColor
+                visible: parent.hovered && infoTipText.toString() !== ''
+                delay: Qt.styleHints.mousePressAndHoldInterval
+            }
         }
     }
 
@@ -175,6 +184,8 @@ TextField {
         id: suffixBisIcon
         size: 20
         anchors.right: parent.right
+        anchors.verticalCenter: root.verticalCenter
+        anchors.verticalCenterOffset: -root.bottomPadding / 2
         color: suffixBisIconColor
         source: suffixBisIconSrc
 

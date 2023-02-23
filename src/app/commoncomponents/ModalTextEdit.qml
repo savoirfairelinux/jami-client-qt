@@ -36,11 +36,18 @@ Loader {
     property string infoTipText
     property bool isPersistent: true
 
-    property real fontPointSize: JamiTheme.materialLineEditPointSize
+    property real fontPixelSize: JamiTheme.materialLineEditPixelSize
     property bool fontBold: false
 
     property int echoMode: TextInput.Normal
     property QtObject textValidator: RegularExpressionValidator { id: defaultValidator }
+
+    property var icon
+
+    onStatusChanged: {
+        if(status == Loader.Ready && icon)
+            root.item.icon = icon
+    }
 
     // Always start with the static text component displayed first.
     property bool editMode: true
@@ -66,7 +73,7 @@ Loader {
 
         MaterialTextField {
             id: displayCompField
-            font.pointSize: root.fontPointSize
+            font.pixelSize: root.fontPixelSize
             readOnly: true
             text: staticText
             horizontalAlignment: TextEdit.AlignHCenter
@@ -89,10 +96,10 @@ Loader {
             suffixIconColor: root.suffixIconColor
             suffixBisIconSrc: root.suffixBisIconSrc
             suffixBisIconColor: root.suffixBisIconColor
-            font.pointSize: root.fontPointSize
+            font.pixelSize: root.fontPixelSize
             font.bold: root.fontBold
             echoMode: root.echoMode
-            initialPlaceholderText: root.placeholderText
+            placeholderText: root.placeholderText
             onAccepted: root.accepted()
             onTextChanged: dynamicText = text
             text: staticText

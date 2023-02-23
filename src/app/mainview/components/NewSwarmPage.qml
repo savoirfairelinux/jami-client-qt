@@ -204,16 +204,21 @@ BaseView {
         MaterialButton {
             id: btnCreateSwarm
 
+            TextMetrics{
+                id: textSize
+                font.weight: Font.Bold
+                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                font.capitalization: Font.AllUppercase
+                text: btnCreateSwarm.text
+            }
+
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
             autoAccelerator: true
 
-            preferredWidth: JamiTheme.aboutButtonPreferredWidth
+            preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
 
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
-
+            primary: true
             text: JamiStrings.createTheSwarm
 
             onClicked: createSwarmClicked(title.text,

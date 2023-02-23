@@ -64,8 +64,7 @@ ComboBox {
         }
 
         background: Rectangle {
-            color: hovered ? JamiTheme.tintedBlue : JamiTheme.transparentColor
-            opacity: 0.1
+            color: hovered ? JamiTheme.comboboxBackgroundColorHovered : JamiTheme.transparentColor
         }
 
     }
@@ -82,6 +81,8 @@ ComboBox {
 
         source: popup.visible ? JamiResources.expand_less_24dp_svg
                               : JamiResources.expand_more_24dp_svg
+
+        color: JamiTheme.tintedBlue
     }
 
     contentItem: Text {
