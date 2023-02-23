@@ -84,24 +84,34 @@ Popup {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: JamiTheme.popuptextSize
-                font.weight: Font.Medium
+                lineHeight: JamiTheme.wizardViewTextLineHeight
                 wrapMode: Text.WordWrap
                 color: JamiTheme.textColor
                 text: JamiStrings.joinJamiNoPassword
             }
 
             RowLayout{
-                Layout.margins: JamiTheme.popupButtonsMargin
+                Layout.topMargin: JamiTheme.popupButtonsMargin
+                Layout.bottomMargin: JamiTheme.popupButtonsMargin
+
                 Layout.alignment: Qt.AlignCenter
+                spacing: JamiTheme.popupButtonsMargin
 
                 MaterialButton {
+
+                    TextMetrics{
+                        id: joinJamiSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        text: JamiStrings.joinJami
+                    }
+
+                    Layout.leftMargin: JamiTheme.popupButtonsMargin
                     objectName: "joinButton"
-                    preferredWidth: text.contentWidth
-                    textLeftPadding: JamiTheme.buttontextPadding
-                    textRightPadding: JamiTheme.buttontextPadding
+                    preferredWidth: joinJamiSize.width + 2*(JamiTheme.buttontextWizzardPadding + 1)
+                    textLeftPadding: JamiTheme.buttontextWizzardPadding
+                    textRightPadding: JamiTheme.buttontextWizzardPadding
                     secondary: true
-                    color: JamiTheme.secAndTertiTextColor
-                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
                     text: JamiStrings.joinJami
                     onClicked: {
                         root.joinClicked()
@@ -111,12 +121,18 @@ Popup {
                 }
 
                 MaterialButton {
-                    preferredWidth: text.contentWidth
-                    textLeftPadding: JamiTheme.buttontextPadding
-                    textRightPadding: JamiTheme.buttontextPadding
-                    Layout.leftMargin: 20
-                    primary:true
-                    text:  JamiStrings.chooseAUsername
+
+                    TextMetrics{
+                        id: chooseAUsernameSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        text: JamiStrings.chooseAUsername
+                    }
+
+                    Layout.rightMargin: JamiTheme.popupButtonsMargin
+                    preferredWidth: chooseAUsernameSize.width + 2*JamiTheme.buttontextWizzardPadding
+                    primary: true
+                    text: JamiStrings.chooseAUsername
                     onClicked: root.close()
                 }
             }

@@ -42,6 +42,13 @@ Loader {
     property int echoMode: TextInput.Normal
     property QtObject textValidator: RegularExpressionValidator { id: defaultValidator }
 
+    property var icon
+
+    onStatusChanged: {
+        if(status == Loader.Ready && icon)
+            root.item.icon = icon
+    }
+
     // Always start with the static text component displayed first.
     property bool editMode: true
 
