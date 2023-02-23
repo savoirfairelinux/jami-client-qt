@@ -59,8 +59,8 @@ Item {
         id: rect
         anchors.fill: parent
 
-        color: JamiTheme.secondaryBackgroundColor
-        border.color: opened || hovered ? "transparent" : Qt.rgba(0, 0.34,0.6,0.16)
+        color: opened || hovered ? JamiTheme.tipBoxBackgroundColor : "transparent"
+        border.color: JamiTheme.tipBoxBorderColor
         radius: 20
 
         Column {

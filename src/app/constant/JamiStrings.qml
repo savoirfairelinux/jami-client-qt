@@ -603,6 +603,8 @@ Item {
     property string importFromArchiveBackup: qsTr("Import from archive backup")
     property string importFromArchiveBackupDescription: qsTr("Import Jami account from local archive file.")
     property string selectArchiveFile: qsTr("Select archive file")
+    property string passwordArchive: qsTr("If the account is encrypted with a password, please fill the following field.")
+
 
     // ImportFromDevicePage
     property string mainAccountPassword: qsTr("Enter Jami account password")
@@ -610,16 +612,17 @@ Item {
                                    "Use the \"Link Another Device\" feature to obtain a PIN.")
     property string connectFromAnotherDevice: qsTr("Link device")
     property string importButton: qsTr("Import")
-    property string pin: qsTr("Enter the NIP code")
-    property string importFromDeviceDescription: qsTr("A PIN is required to use an existing Jami account on this device.")
-    property string importStep1: qsTr("Step 1")
-    property string importStep2: qsTr("Step 2")
-    property string importStep3: qsTr("Step 3")
-    property string importStep4: qsTr("Step 4")
-    property string importStep1Desc: qsTr("Go to the Account Settings of a previous device")
+    property string pin: qsTr("Enter the PIN code")
+    property string importFromDeviceDescription: qsTr("To use an existing Jami model on this device, you need to obtain a PIN (define PIN) code.")
+    property string importStep1: qsTr("Step 01")
+    property string importStep2: qsTr("Step 02")
+    property string importStep3: qsTr("Step 03")
+    property string importStep4: qsTr("Step 04")
+    property string importStep1Desc: qsTr("Go to the account management settings of a previous device")
     property string importStep2Desc: qsTr("Choose the account to link")
     property string importStep3Desc: qsTr("Select \"Link another device\"")
-    property string importStep4Desc: qsTr("The PIN code will be valid for 10 minutes.")
+    property string importStep4Desc: qsTr("The PIN code will be available for 10 minutes")
+    property string importPasswordDesc: qsTr("Fill if the account is password-encrypted.")
 
 
     // LinkDevicesDialog
