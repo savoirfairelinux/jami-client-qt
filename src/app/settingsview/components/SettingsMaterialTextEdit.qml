@@ -38,6 +38,7 @@ RowLayout {
     property int itemWidth
 
     signal editFinished
+    signal accepted
 
     Text {
         id: title
@@ -71,6 +72,18 @@ RowLayout {
             editFinished()
         }
 
+        Timer {
+            id: debounceTimer
+            interval: 500
+            onTriggered: {
+                root.dynamicText = modalTextEdit.dynamicText
+                editFinished()
+            }
+        }
+
+        onKeyPressed: {
+            debounceTimer.restart()
+        }
     }
 
     PasswordTextEdit {

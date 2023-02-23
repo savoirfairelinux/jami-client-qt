@@ -62,8 +62,7 @@ Switch {
 
             color: root.checked ? JamiTheme.switchHandleCheckedColor :
                                   JamiTheme.switchHandleColor
-            border.color: root.checked ? JamiTheme.switchHandleCheckedBorderColor :
-                                         JamiTheme.switchHandleBorderColor
+            border.color: JamiTheme.switchHandleBorderColor
         }
     }
 
