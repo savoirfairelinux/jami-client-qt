@@ -61,9 +61,8 @@ BaseView {
                     color: JamiTheme.rectColor
                     anchors.topMargin: 25
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: identifier.width + 2 * JamiTheme.preferredMarginSize
-                           + (welcomeLogo.visible ?  welcomeLogo.width : 0)
-                    height: childrenRect.height
+                    width: identifier.width + 2 * JamiTheme.mainViewMargin + (welcomeLogo.visible ?  welcomeLogo.width : 0)
+                    height: childrenRect.height + 10
                     opacity:1
 
                     Behavior on width {
@@ -76,8 +75,8 @@ BaseView {
 
                         anchors.top: parent.top
                         anchors.left: parent.left
-                        anchors.topMargin: JamiTheme.preferredMarginSize
-                        anchors.leftMargin: JamiTheme.preferredMarginSize
+                        anchors.topMargin: JamiTheme.mainViewMargin
+                        anchors.leftMargin: JamiTheme.mainViewMargin
                         width: 300
 
                         font.pixelSize: JamiTheme.bigFontSize
@@ -97,7 +96,7 @@ BaseView {
                         anchors.top: welcome.bottom
                         anchors.left: parent.left
                         anchors.topMargin: JamiTheme.preferredMarginSize * 2
-                        anchors.leftMargin: JamiTheme.preferredMarginSize
+                        anchors.leftMargin: JamiTheme.mainViewMargin
                         width: 300
 
                         font.pixelSize: JamiTheme.headerFontSize
@@ -115,14 +114,15 @@ BaseView {
                         anchors.top: welcome.bottom
                         anchors.left: parent.left
                         anchors.topMargin: JamiTheme.preferredMarginSize
-                        anchors.leftMargin: JamiTheme.preferredMarginSize
-                        width: 300
+                        anchors.leftMargin: JamiTheme.mainViewMargin
+                        width: 330
 
                         font.pixelSize: JamiTheme.headerFontSize
 
                         wrapMode: Text.WordWrap
 
                         text: JamiStrings.hereIsIdentifier
+                        lineHeight: 1.25
                         color: JamiTheme.textColor
                     }
 
@@ -132,7 +132,9 @@ BaseView {
                         visible: CurrentAccount.type !== Profile.Type.SIP
                         anchors.top: identifierDescription.bottom
                         anchors.left: parent.left
-                        anchors.margins: JamiTheme.preferredMarginSize
+                        anchors.topMargin: JamiTheme.preferredMarginSize
+                        anchors.rightMargin: JamiTheme.preferredMarginSize
+                        anchors.leftMargin: JamiTheme.mainViewMargin
                     }
 
                     Image {
@@ -142,7 +144,7 @@ BaseView {
                         width: 212
                         height: 244
                         anchors.top: parent.top
-                        anchors.left: identifier.right
+                        anchors.right: parent.right
                         anchors.margins: JamiTheme.preferredMarginSize
                         anchors.topMargin: -20
                         opacity: visible
@@ -161,7 +163,7 @@ BaseView {
                     anchors.top: welcomeInfo.bottom
                     anchors.topMargin: JamiTheme.preferredMarginSize * 2
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: welcomeInfo.width + JamiTheme.preferredMarginSize * 2
+                    width: welcomeInfo.width
                     height: flow.height + JamiTheme.preferredMarginSize * 2
 
                     clip: true
@@ -211,7 +213,7 @@ BaseView {
                     tertiary: true
 
                     anchors.horizontalCenter: parent.horizontalCenter
-                    preferredWidth: JamiTheme.aboutButtonPreferredWidthth
+                    preferredWidth: JamiTheme.aboutButtonPreferredWidth
                     text: JamiStrings.aboutJami
 
                     onClicked: viewCoordinator.presentDialog(
