@@ -36,6 +36,8 @@ Rectangle {
     property bool openedNickname: false
     property string validatedPassword: ""
     property string alias: ""
+    property bool icon1Hovered: false
+    property bool icon2Hovered: false
 
     color: JamiTheme.secondaryBackgroundColor
     opacity: 0.93
@@ -58,23 +60,24 @@ Rectangle {
             onClicked: {
                 openedPassword = false
                 openedNickname = false
+                adviceBox.checked = false
             }
         }
 
         property ScrollBar vScrollBar: ScrollBar.vertical
 
         anchors.fill: parent
-
-        contentHeight: settings.implicitHeight + 2 * JamiTheme.preferredMarginSize
+        anchors.topMargin: -100
 
         ColumnLayout {
             id: settings
             width: Math.min(500, root.width - 2 * JamiTheme.preferredMarginSize)
             anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
 
             Label {
                 Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                Layout.margins: 50
+                Layout.margins: JamiTheme.wizardViewBlocMarginSize
                 text: JamiStrings.advancedAccountSettings
                 color: JamiTheme.textColor
                 font.pixelSize: JamiTheme.bigFontSize
@@ -101,7 +104,7 @@ Rectangle {
                     Layout.preferredHeight: {
                         if (root.openedPassword)
                             return passwordColumnLayout.implicitHeight
-                        return Math.max(cornerIcon1.height, labelEncrypt.height)
+                        return Math.max(cornerIcon1.height, labelEncrypt.height + 2*JamiTheme.advancedAccountSettingsHeightMargin)
                     }
 
 
@@ -112,25 +115,12 @@ Rectangle {
                         NumberAnimation { duration: 100 }
                     }
 
-                    DropShadow {
-                        z: -1
-                        visible: openedPassword
-                        width: parent.width
-                        height: parent.height
-                        horizontalOffset: 3.0
-                        verticalOffset: 3.0
-                        radius: 16
-                        color: Qt.rgba(0, 0.34,0.6,0.16)
-                        source: bg
-                        transparentBorder: true
-                    }
-
                     Rectangle {
                         id: bg
                         radius: JamiTheme.formsRadius
                         border.color: openedPassword? JamiTheme.transparentColor : JamiTheme.lightBlue_
                         layer.enabled: true
-                        color: JamiTheme.secondaryBackgroundColor
+                        color: root.icon1Hovered ? JamiTheme.buttonTintedBlue : JamiTheme.secAndTertiHoveredBackgroundColor
                         anchors.fill: parent
 
                         Rectangle {
@@ -141,17 +131,16 @@ Rectangle {
                             anchors.bottom: parent.bottom
                             anchors.left: parent.left
                             border.color: openedPassword? JamiTheme.transparentColor : JamiTheme.lightBlue_
-                            color: JamiTheme.secondaryBackgroundColor
+                            color: root.icon1Hovered ? JamiTheme.buttonTintedBlue : JamiTheme.secAndTertiHoveredBackgroundColor
 
                             Rectangle {
 
-                                height:  parent.height +1
-                                width: parent.width +1
+                                height:  parent.height
+                                width: parent.width
                                 anchors.bottom: parent.bottom
                                 anchors.left: parent.left
                                 anchors.margins: 1
-                                border.color: openedPassword? JamiTheme.transparentColor : JamiTheme.secondaryBackgroundColor
-                                color: JamiTheme.secondaryBackgroundColor
+                                color: root.icon1Hovered ? JamiTheme.buttonTintedBlue : JamiTheme.secAndTertiHoveredBackgroundColor
 
                             }
                         }
@@ -164,29 +153,32 @@ Rectangle {
                                 visible: openedPassword
                                 elide: Text.ElideRight
 
+                                Layout.fillWidth: true
+                                Layout.leftMargin: JamiTheme.cornerIconSize
+                                Layout.rightMargin: JamiTheme.cornerIconSize
+                                Layout.topMargin: 25
+
+                                color: JamiTheme.textColor
                                 text: JamiStrings.encryptAccount
                                 font.pixelSize: JamiTheme.creditsTextSize
                                 font.weight: Font.Medium
-                                Layout.fillWidth: true
-                                Layout.leftMargin: 35
-                                Layout.topMargin: 25
-                                color: JamiTheme.textColor
-
                             }
 
                             Text {
 
                                 visible: openedPassword
-                                Layout.topMargin: 12
-                                Layout.leftMargin: 35
 
-                                Layout.preferredWidth: 360
+                                Layout.topMargin: 12
+                                Layout.leftMargin: JamiTheme.cornerIconSize
+                                Layout.rightMargin: JamiTheme.cornerIconSize
+                                Layout.fillWidth: true
                                 Layout.alignment: Qt.AlignLeft
+
                                 color: JamiTheme.textColor
                                 wrapMode: Text.WordWrap
-
                                 text: JamiStrings.encryptDescription
                                 font.pixelSize: JamiTheme.headerFontSize
+                                lineHeight: JamiTheme.wizardViewTextLineHeight
                             }
 
                             PasswordTextEdit {
@@ -197,9 +189,12 @@ Rectangle {
                                 focus: openedPassword
                                 firstEntry: true
                                 placeholderText: JamiStrings.password
+
                                 Layout.topMargin: 10
-                                Layout.alignment: Qt.AlignCenter
-                                Layout.preferredWidth: 325
+                                Layout.leftMargin: JamiTheme.cornerIconSize
+                                Layout.rightMargin: JamiTheme.cornerIconSize
+                                Layout.alignment: Qt.AlignLeft
+                                Layout.fillWidth: true
 
                                 KeyNavigation.tab: passwordConfirmEdit
                                 KeyNavigation.down: passwordConfirmEdit
@@ -210,12 +205,32 @@ Rectangle {
                                 id: passwordConfirmEdit
                                 visible: openedPassword
                                 placeholderText: JamiStrings.confirmPassword
-                                Layout.alignment: Qt.AlignCenter
-                                Layout.preferredWidth: 325
+
+                                Layout.leftMargin: JamiTheme.cornerIconSize
+                                Layout.rightMargin: JamiTheme.cornerIconSize
+                                Layout.alignment: Qt.AlignLeft
+                                Layout.fillWidth: true
 
                                 KeyNavigation.tab: passwordEdit
                                 KeyNavigation.up: passwordEdit
                                 KeyNavigation.down: setButton
+                            }
+
+                            Text {
+
+                                visible: openedPassword
+
+                                Layout.topMargin: 15
+                                Layout.leftMargin: JamiTheme.cornerIconSize
+                                Layout.rightMargin: JamiTheme.cornerIconSize
+                                Layout.fillWidth: true
+                                Layout.alignment: Qt.AlignLeft
+
+                                color: JamiTheme.textColor
+                                wrapMode: Text.WordWrap
+                                text: JamiStrings.encryptWarning
+                                font.pixelSize: JamiTheme.headerFontSize
+                                lineHeight: JamiTheme.wizardViewTextLineHeight
                             }
 
                             MaterialButton {
@@ -248,23 +263,6 @@ Rectangle {
                                     root.validatedPassword = passwordConfirmEdit.dynamicText
                                     text = JamiStrings.setPasswordSuccess
                                 }
-
-                            }
-
-                            Text {
-
-                                visible: openedPassword
-
-                                Layout.topMargin: 15
-                                Layout.leftMargin: 35
-
-                                Layout.preferredWidth: 360
-                                Layout.alignment: Qt.AlignCenter
-                                color: JamiTheme.textColor
-                                wrapMode: Text.WordWrap
-
-                                text: JamiStrings.encryptWarning
-                                font.pixelSize: JamiTheme.headerFontSize
                             }
 
                             RowLayout {
@@ -278,10 +276,12 @@ Rectangle {
                                     layer.enabled: true
 
                                     radius: JamiTheme.formsRadius
+
                                     height: JamiTheme.cornerIconSize
                                     width: JamiTheme.cornerIconSize
 
-                                    color: openedPassword  ? JamiTheme.lightBlue_ : JamiTheme.transparentColor
+
+                                    color: openedPassword  ? JamiTheme.buttonTintedBlue : JamiTheme.transparentColor
                                     Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
                                     Layout.leftMargin:  openedPassword ? 2 : openedNickname ? 0 : 20
                                     Layout.bottomMargin: openedPassword ? 2 : 0
@@ -294,7 +294,7 @@ Rectangle {
                                         width: cornerIcon1.width/2
                                         anchors.left: cornerIcon1.left
                                         anchors.bottom: cornerIcon1.bottom
-                                        color: JamiTheme.lightBlue_
+                                        color: JamiTheme.buttonTintedBlue
 
                                     }
 
@@ -303,7 +303,8 @@ Rectangle {
                                         width: 18
                                         height: 18
                                         source: JamiResources.lock_svg
-                                        color: JamiTheme.tintedBlue
+                                        color: root.icon1Hovered ? JamiTheme.primaryTextColor
+                                                                                            : openedPassword ? JamiTheme.primaryTextColor : JamiTheme.buttonTintedBlue
                                         anchors.centerIn: cornerIcon1
                                     }
                                 }
@@ -315,7 +316,7 @@ Rectangle {
 
                                     text: JamiStrings.encryptAccount
                                     elide: Text.ElideRight
-                                    color: JamiTheme.textColor
+                                    color: root.icon1Hovered ? JamiTheme.primaryTextColor : JamiTheme.textColor
                                     font.pixelSize: JamiTheme.creditsTextSize
 
                                 }
@@ -329,8 +330,18 @@ Rectangle {
                                 openedPassword = true
                             }
                         }
+
+                        HoverHandler {
+                            target: passwordColumnLayout
+                            enabled: !openedPassword
+                            onHoveredChanged: {
+                                root.icon1Hovered = hovered
+                            }
+                        }
                     }
                 }
+
+
 
                 Item {
                     Layout.alignment: Qt.AlignRight | Qt.AlignTop
@@ -354,20 +365,7 @@ Rectangle {
                     Layout.preferredHeight: {
                         if (openedNickname)
                             return customColumnLayout.implicitHeight
-                        return Math.max(cornerIcon2.height, labelCustomize.height)
-                    }
-
-                    DropShadow {
-                        z: -1
-                        visible: openedNickname
-                        width: parent.width
-                        height: parent.height
-                        horizontalOffset: 3.0
-                        verticalOffset: 3.0
-                        radius: 16
-                        color: Qt.rgba(0, 0.34,0.6,0.16)
-                        source: bg2
-                        transparentBorder: true
+                        return Math.max(cornerIcon2.height, labelCustomize.height + 2*JamiTheme.advancedAccountSettingsHeightMargin)
                     }
 
                     Rectangle {
@@ -376,7 +374,7 @@ Rectangle {
                         radius: JamiTheme.formsRadius
                         border.color: openedNickname ? JamiTheme.transparentColor : JamiTheme.lightBlue_
                         layer.enabled: true
-                        color: JamiTheme.secondaryBackgroundColor
+                        color: root.icon2Hovered ? JamiTheme.buttonTintedBlue : JamiTheme.secAndTertiHoveredBackgroundColor
                         anchors.fill: parent
 
                         Rectangle {
@@ -386,19 +384,18 @@ Rectangle {
                             anchors.bottom: parent.bottom
                             anchors.right: parent.right
                             border.color: openedNickname ? JamiTheme.transparentColor : JamiTheme.lightBlue_
-                            color: JamiTheme.secondaryBackgroundColor
+                            color: root.icon2Hovered ? JamiTheme.buttonTintedBlue : JamiTheme.secAndTertiHoveredBackgroundColor
                             layer.enabled: true
 
                             Rectangle {
 
-                                height: parent.height +1
-                                width: parent.width +1
+                                height: parent.height
+                                width: parent.width
                                 opacity: 1
                                 anchors.bottom: parent.bottom
                                 anchors.right: parent.right
                                 anchors.margins: 1
-                                border.color: openedNickname ? JamiTheme.transparentColor : JamiTheme.secondaryBackgroundColor
-                                color: JamiTheme.secondaryBackgroundColor
+                                color: root.icon2Hovered ? JamiTheme.buttonTintedBlue : JamiTheme.secAndTertiHoveredBackgroundColor
 
                             }
 
@@ -409,6 +406,7 @@ Rectangle {
                             id: customColumnLayout
                             anchors.fill: parent
 
+
                             Text {
 
                                 visible: openedNickname
@@ -416,63 +414,74 @@ Rectangle {
                                 elide: Text.ElideRight
                                 font.weight: Font.Medium
                                 Layout.topMargin: 25
-                                Layout.leftMargin: 35
+                                Layout.leftMargin: JamiTheme.cornerIconSize
+                                Layout.fillWidth: true
+
                                 font.pixelSize: JamiTheme.creditsTextSize
                                 color: JamiTheme.textColor
-                                Layout.fillWidth: true
                             }
 
-                            PhotoboothView {
-
-                                id: currentAccountAvatar
-                                width: avatarSize
-                                height: avatarSize
-                                darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
+                            RowLayout {
                                 visible: openedNickname
 
-                                Layout.alignment: Qt.AlignCenter
-                                Layout.topMargin: 10
+                                PhotoboothView {
+                                    id: currentAccountAvatar
 
-                                newItem: true
-                                imageId: visible? "temp" : ""
-                                avatarSize: 80
-                                buttonSize: JamiTheme.smartListAvatarSize
+                                    width: avatarSize
+                                    height: avatarSize
+                                    darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
 
+
+                                    Layout.alignment: Qt.AlignLeft
+                                    Layout.topMargin: 10
+                                    Layout.preferredWidth: avatarSize
+                                    Layout.leftMargin: JamiTheme.cornerIconSize
+
+                                    newItem: true
+                                    imageId: visible? "temp" : ""
+                                    avatarSize: 80
+                                    buttonSize: JamiTheme.smartListAvatarSize
+                                }
+
+                                ModalTextEdit {
+                                    id: displayNameLineEdit
+
+                                    focus: openedNickname
+
+                                    Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
+                                    Layout.fillWidth: true
+                                    Layout.rightMargin: JamiTheme.cornerIconSize
+                                    Layout.leftMargin: 10
+
+                                    placeholderText: JamiStrings.enterNickname
+                                    onAccepted: root.alias = displayNameLineEdit.dynamicText
+                                }
                             }
 
-                            ModalTextEdit {
 
-                                id: displayNameLineEdit
-                                visible: openedNickname
-                                focus: openedNickname
-                                Layout.alignment: Qt.AlignCenter
-                                Layout.preferredWidth: 280
-
-                                placeholderText: JamiStrings.enterNickname
-
-                                onAccepted: root.alias = displayNameLineEdit.dynamicText
-
-                            }
 
                             Text {
 
                                 visible: openedNickname
 
                                 Layout.topMargin: 20
+                                Layout.leftMargin: JamiTheme.cornerIconSize
+                                Layout.rightMargin: JamiTheme.cornerIconSize
+                                Layout.fillWidth: true
+                                Layout.alignment: Qt.AlignLeft
 
-                                Layout.preferredWidth: 360
-                                Layout.alignment: Qt.AlignCenter
                                 wrapMode: Text.WordWrap
                                 color: JamiTheme.textColor
-
                                 text: JamiStrings.customizeProfileDescription
                                 font.pixelSize: JamiTheme.headerFontSize
+                                lineHeight: JamiTheme.wizardViewTextLineHeight
                             }
 
                             RowLayout{
 
                                 Layout.alignment: openedNickname ? Qt.AlignRight : Qt.AlignLeft
-                                Layout.fillWidth: true
+                                Layout.preferredWidth: parent.width
+
 
                                 Rectangle {
 
@@ -480,13 +489,14 @@ Rectangle {
                                     layer.enabled: true
 
                                     radius: JamiTheme.formsRadius
+
                                     height: JamiTheme.cornerIconSize
                                     width: JamiTheme.cornerIconSize
 
-                                    color: openedNickname  ? JamiTheme.lightBlue_ : JamiTheme.transparentColor
+                                    color: openedNickname  ? JamiTheme.buttonTintedBlue : JamiTheme.transparentColor
                                     Layout.alignment: Qt.AlignBottom | Qt.AlignRight
                                     Layout.leftMargin: openedPassword ? 0 : 20
-                                    Layout.rightMargin:  openedNickname? 2 : 0
+                                    Layout.rightMargin:  openedNickname ? 2 : 0
                                     Layout.bottomMargin: openedNickname ? 2 : 0
 
                                     Rectangle {
@@ -496,15 +506,15 @@ Rectangle {
                                         width: cornerIcon2.width/2
                                         anchors.right: cornerIcon2.right
                                         anchors.bottom: cornerIcon2.bottom
-                                        color: JamiTheme.lightBlue_
+                                        color: JamiTheme.buttonTintedBlue
                                     }
 
                                     ResponsiveImage  {
-
                                         width: 18
                                         height: 18
                                         source: JamiResources.noun_paint_svg
-                                        color: JamiTheme.tintedBlue
+                                        color: root.icon2Hovered ? JamiTheme.primaryTextColor
+                                                                : openedNickname ? JamiTheme.primaryTextColor : JamiTheme.buttonTintedBlue
                                         anchors.centerIn: cornerIcon2
                                     }
                                 }
@@ -513,7 +523,7 @@ Rectangle {
                                     id: labelCustomize
                                     visible: !openedNickname && !openedPassword
 
-                                    color: JamiTheme.textColor
+                                    color: root.icon2Hovered ? JamiTheme.primaryTextColor : JamiTheme.textColor
                                     text: JamiStrings.customizeProfile
                                     font.pixelSize: JamiTheme.creditsTextSize
                                     Layout.fillWidth: true
@@ -530,19 +540,33 @@ Rectangle {
                                 openedPassword = false
                             }
                         }
+
+                        HoverHandler {
+                            target: customColumnLayout
+                            enabled: !openedNickname
+                            onHoveredChanged: {
+                                root.icon2Hovered = hovered
+                            }
+                        }
                     }
                 }
 
                 MaterialButton {
                     id: showAdvancedButton
 
-                    tertiary: true
-                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
+                    TextMetrics{
+                        id: textSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                        text: showAdvancedButton.text
+                    }
 
+                    primary: true
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
                     Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
+                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
-                    preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+                    preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding + 1
                     text: JamiStrings.optionSave
 
                     onClicked: {
