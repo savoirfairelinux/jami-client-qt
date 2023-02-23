@@ -24,8 +24,9 @@ import net.jami.Constants 1.1
 PushButton {
     id: root
 
-    normalColor: JamiTheme.backgroundColor
-    imageColor: JamiTheme.primaryForegroundColor
+    normalColor: "transparent"
+    imageColor: JamiTheme.buttonTintedBlue
+    radius: 5
 
     source: JamiResources.ic_arrow_back_24dp_svg
     toolTipText: JamiStrings.back
