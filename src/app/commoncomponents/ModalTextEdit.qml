@@ -36,17 +36,26 @@ Loader {
     property string infoTipText
     property bool isPersistent: true
 
-    property real fontPointSize: JamiTheme.materialLineEditPointSize
+    property real fontPixelSize: JamiTheme.materialLineEditPixelSize
     property bool fontBold: false
 
     property int echoMode: TextInput.Normal
     property QtObject textValidator: RegularExpressionValidator { id: defaultValidator }
+
+    property var icon
+    property bool isSettings
+
+    onStatusChanged: {
+        if(status == Loader.Ready && icon)
+            root.item.icon = icon
+    }
 
     // Always start with the static text component displayed first.
     property bool editMode: true
 
     // Emitted when the editor has been accepted.
     signal accepted
+    signal keyPressed
 
     signal activeChanged(bool active)
 
@@ -66,7 +75,7 @@ Loader {
 
         MaterialTextField {
             id: displayCompField
-            font.pointSize: root.fontPointSize
+            font.pixelSize: root.fontPixelSize
             readOnly: true
             text: staticText
             horizontalAlignment: TextEdit.AlignHCenter
@@ -89,23 +98,24 @@ Loader {
             suffixIconColor: root.suffixIconColor
             suffixBisIconSrc: root.suffixBisIconSrc
             suffixBisIconColor: root.suffixBisIconColor
-            font.pointSize: root.fontPointSize
+            font.pixelSize: root.fontPixelSize
             font.bold: root.fontBold
             echoMode: root.echoMode
             placeholderText: root.placeholderText
             onAccepted: root.accepted()
+            onKeyPressed: root.keyPressed()
             onTextChanged: dynamicText = text
             text: staticText
             inputIsValid: root.inputIsValid
             onFocusChanged: {
                 if (!focus && root.editMode) {
                     root.editMode = isPersistent
-                    root.accepted()
                 }
                 activeChanged(root.editMode)
             }
             onIsActiveChanged: activeChanged(isActive)
             validator: root.textValidator
+            isSettings: root.isSettings
         }
     }
 
