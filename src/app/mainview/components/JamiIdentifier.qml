@@ -134,7 +134,9 @@ Item {
                 id: btnShare
                 source: JamiResources.share_24dp_svg
                 toolTipText: JamiStrings.share
-                onClicked: qrDialog.open()
+                onClicked: viewCoordinator.presentDialog(
+                               appWindow,
+                               "mainview/components/WelcomePageQrDialog.qml")
             }
         }
 
