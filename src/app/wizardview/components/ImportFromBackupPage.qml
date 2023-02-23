@@ -72,8 +72,7 @@ Rectangle {
         spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
+        anchors.verticalCenter: parent.verticalCenter
 
         width: Math.max(508, root.width - 100)
 
@@ -81,7 +80,7 @@ Rectangle {
 
             text: JamiStrings.importFromArchiveBackup
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 15
+            Layout.topMargin: JamiTheme.preferredMarginSize
             Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -95,29 +94,37 @@ Rectangle {
 
             text: JamiStrings.importFromArchiveBackupDescription
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 15
-            Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: JamiTheme.wizardViewDescriptionMarginSize
+            Layout.preferredWidth: Math.min(400, root.width - JamiTheme.preferredMarginSize * 2)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             color: JamiTheme.textColor
 
             font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
             wrapMode : Text.WordWrap
+            lineHeight: JamiTheme.wizardViewTextLineHeight
         }
 
         MaterialButton {
             id: fileImportBtn
 
+            TextMetrics{
+                id: textSizeFileImportBtn
+                font.weight: Font.Bold
+                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                text: fileImportBtn.text
+            }
+
+
             objectName: "fileImportBtn"
             secondary: true
-            color: JamiTheme.secAndTertiTextColor
-            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
+
             focus: visible
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 35
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
-            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            preferredWidth: textSizeFileImportBtn.width + 2*JamiTheme.buttontextWizzardPadding
 
             text: fileImportBtnText
             toolTipText: JamiStrings.importAccountArchive
@@ -154,13 +161,27 @@ Rectangle {
             }
         }
 
+        Text {
+            text: JamiStrings.passwordArchive
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
+            Layout.preferredWidth: Math.min(350, root.width - JamiTheme.preferredMarginSize * 2)
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            color: JamiTheme.textColor
+
+            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+            wrapMode : Text.WordWrap
+            lineHeight: JamiTheme.wizardViewTextLineHeight
+        }
+
         PasswordTextEdit {
             id: passwordFromBackupEdit
 
             objectName: "passwordFromBackupEdit"
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 20
+            Layout.topMargin: JamiTheme.wizardViewMarginSize
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
             placeholderText: JamiStrings.enterPassword
@@ -175,18 +196,24 @@ Rectangle {
         SpinnerButton {
             id: connectBtn
 
+            TextMetrics{
+                id: textSizeConnectBtn
+                font.weight: Font.Bold
+                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                text: connectBtn.normalText
+            }
+
             objectName: "importFromBackupPageConnectBtn"
 
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
-            Layout.topMargin: 30
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
-            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            preferredWidth: textSizeConnectBtn.width + 2*JamiTheme.buttontextWizzardPadding + 1
+            primary: true
 
             spinnerTriggeredtext: JamiStrings.generatingAccount
-            normalText: JamiStrings.connectFromBackup
-
-            color: JamiTheme.tintedBlue
+            normalText: JamiStrings.importButton
 
             enabled: {
                 if (spinnerTriggered)
@@ -224,7 +251,7 @@ Rectangle {
             visible: errorText.length !== 0
 
             text: errorText
-            font.pointSize: JamiTheme.textFontSize
+            font.pixelSize: JamiTheme.textEditError
             color: JamiTheme.redColor
         }
     }
