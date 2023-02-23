@@ -63,11 +63,8 @@ Rectangle {
         id: connectToAccountManagerPageColumnLayout
 
         spacing: JamiTheme.wizardViewPageLayoutSpacing
-
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
-
+        anchors.verticalCenter: parent.verticalCenter
         width: Math.max(508, root.width - 100)
 
         Text {
@@ -184,13 +181,20 @@ Rectangle {
         SpinnerButton {
             id: connectBtn
 
+            TextMetrics{
+                id: textSize
+                font.weight: Font.Bold
+                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                text: connectBtn.normalText
+            }
+
             objectName: "connectToAccountManagerPageConnectBtn"
 
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 40
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
 
             spinnerTriggeredtext: JamiStrings.creatingAccount
             normalText: JamiStrings.connect
@@ -200,7 +204,7 @@ Rectangle {
                      && passwordManagerEdit.dynamicText.length !== 0
                      && !spinnerTriggered
 
-            color: JamiTheme.tintedBlue
+            primary: true
 
             KeyNavigation.up: passwordManagerEdit
             KeyNavigation.down: backButton

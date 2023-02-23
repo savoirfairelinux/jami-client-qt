@@ -30,7 +30,7 @@ MaterialButton {
                              ""
     text: spinnerTriggered ? spinnerTriggeredtext : normalText
     color: !enabled ? JamiTheme.buttonTintedGreyInactive :
-                      JamiTheme.wizardBlueButtons
+                      JamiTheme.buttonTintedBlue
 
     hoveredColor: JamiTheme.buttonTintedBlueHovered
     pressedColor: JamiTheme.buttonTintedBluePressed
