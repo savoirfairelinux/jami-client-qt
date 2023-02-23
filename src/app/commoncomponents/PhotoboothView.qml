@@ -118,11 +118,11 @@ Item {
 
             preferredSize: doubleEditAvatar ? avatar.width / 3 : avatar.width / 6
 
+            normalColor: JamiTheme.secondaryBackgroundColor
+            imageColor: JamiTheme.buttonTintedBlue
+            hoveredColor: JamiTheme.hoveredButtonColorWizard
             border.color: JamiTheme.buttonTintedBlue
-            normalColor: "white"
-            imageColor:  JamiTheme.buttonTintedBlue
-            hoveredColor: "#e5eef5"
-            pressedColor: "#e5eef5"
+
             enabled: avatar.visible && !root.readOnly
             visible: enabled
 

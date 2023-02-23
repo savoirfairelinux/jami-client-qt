@@ -58,7 +58,7 @@ Item {
                 containerWidth: Layout.preferredWidth
 
                 source: JamiResources.noun_paint_svg
-                color: "#005699"
+                color: JamiTheme.buttonTintedBlue
             }
 
             Label {

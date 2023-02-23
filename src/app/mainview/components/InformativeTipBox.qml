@@ -50,7 +50,7 @@ ColumnLayout {
             containerWidth: Layout.preferredWidth
 
             source: JamiResources.glasses_tips_svg
-            color: "#005699"
+            color: JamiTheme.buttonTintedBlue
         }
 
         Label {

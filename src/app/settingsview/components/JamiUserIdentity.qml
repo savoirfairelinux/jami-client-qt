@@ -117,7 +117,7 @@ ColumnLayout {
 
             anchors.margins: 8
 
-            fontPointSize: JamiTheme.textFontSize + 1
+            fontPixelSize: JamiTheme.jamiIdFontSize
             staticText: CurrentAccount.registeredName
             placeholderText: JamiStrings.chooseUsername
             editMode: !CurrentAccount.registeredName
