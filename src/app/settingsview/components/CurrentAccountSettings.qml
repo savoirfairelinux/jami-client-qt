@@ -184,6 +184,7 @@ Rectangle {
 
         MaterialButton {
             Layout.alignment: Qt.AlignHCenter
+            Layout.topMargin: CurrentAccount.type === Profile.Type.SIP ? JamiTheme.preferredMarginSize  : 0
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
 

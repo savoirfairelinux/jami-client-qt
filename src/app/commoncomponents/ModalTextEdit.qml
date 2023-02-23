@@ -77,6 +77,7 @@ Loader {
     Component {
         id: editComp
 
+
         MaterialTextField {
             id: editCompField
 
@@ -97,7 +98,7 @@ Loader {
             text: staticText
             inputIsValid: root.inputIsValid
             onFocusChanged: {
-                if (!focus) {
+                if (!focus && root.editMode) {
                     root.editMode = false
                     root.accepted()
                 }

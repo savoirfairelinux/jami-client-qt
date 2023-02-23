@@ -47,6 +47,7 @@ Rectangle {
                     WizardViewStepModel.AccountCreationOption.CreateSipAccount) {
                 clearAllTextFields()
                 root.showThisPage()
+                sipServernameEdit.focus = true
             }
         }
     }
@@ -109,33 +110,13 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-                    focus: visible
                     placeholderText: JamiStrings.server
 
+                    KeyNavigation.tab: KeyNavigation.down
                     KeyNavigation.up: backButton
-                    KeyNavigation.down: sipProxyEdit
-                    KeyNavigation.tab: KeyNavigation.down
-
-                    onAccepted: sipProxyEdit.forceActiveFocus()
-
-                }
-
-                ModalTextEdit {
-                    id: sipProxyEdit
-
-                    objectName: "sipProxyEdit"
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
-
-                    placeholderText: JamiStrings.proxy
-
-                    KeyNavigation.up: sipServernameEdit
                     KeyNavigation.down: sipUsernameEdit
-                    KeyNavigation.tab: KeyNavigation.down
 
                     onAccepted: sipUsernameEdit.forceActiveFocus()
-
                 }
 
                 ModalTextEdit {
@@ -148,9 +129,9 @@ Rectangle {
 
                     placeholderText: JamiStrings.username
 
-                    KeyNavigation.up: sipProxyEdit
-                    KeyNavigation.down: sipPasswordEdit
                     KeyNavigation.tab: KeyNavigation.down
+                    KeyNavigation.up: sipServernameEdit
+                    KeyNavigation.down: sipPasswordEdit
 
                     onAccepted: sipPasswordEdit.forceActiveFocus()
                 }
@@ -165,12 +146,45 @@ Rectangle {
 
                     placeholderText: JamiStrings.password
 
-                    KeyNavigation.up: sipUsernameEdit
-                    KeyNavigation.down: createAccountButton
                     KeyNavigation.tab: KeyNavigation.down
+                    KeyNavigation.up: sipUsernameEdit
+                    KeyNavigation.down: tlsRadioButton
 
-                    onAccepted: createAccountButton.forceActiveFocus()
+                    onAccepted: tlsRadioButton.forceActiveFocus()
+                }
 
+                ButtonGroup { id: optionsB }
+
+                RowLayout{
+
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+
+                    MaterialRadioButton {
+                        id: tlsRadioButton
+                        Layout.alignment: Qt.AlignHCenter
+                        text: JamiStrings.tls
+                        ButtonGroup.group: optionsB
+                        checked: true
+
+                        KeyNavigation.up: sipPasswordEdit
+                        KeyNavigation.down: udpRadioButton
+                        KeyNavigation.tab: KeyNavigation.down
+
+                    }
+
+                    MaterialRadioButton {
+                        id: udpRadioButton
+                        Layout.alignment: Qt.AlignHCenter
+                        text: JamiStrings.udp
+                        ButtonGroup.group: optionsB
+                        color: JamiTheme.textColor
+
+                        KeyNavigation.up: tlsRadioButton
+                        KeyNavigation.down: createAccountButton
+                        KeyNavigation.tab: KeyNavigation.down
+
+                    }
                 }
 
                 MaterialButton {
@@ -185,7 +199,7 @@ Rectangle {
 
                     text: JamiStrings.addSip
 
-                    KeyNavigation.up: sipPasswordEdit
+                    KeyNavigation.up: udpRadioButton
                     KeyNavigation.down: personalizeAccount
                     KeyNavigation.tab: KeyNavigation.down
 
@@ -196,7 +210,7 @@ Rectangle {
                                         alias: displayNameLineEdit.dynamicText,
                                         username : sipUsernameEdit.dynamicText,
                                         password : sipPasswordEdit.dynamicText,
-                                        proxy : sipProxyEdit.dynamicText,
+                                        tls: tlsRadioButton.checked,
                                         avatar: UtilsAdapter.tempCreationImage()})
                         WizardViewStepModel.nextStep()
                     }

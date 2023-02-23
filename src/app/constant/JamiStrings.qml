@@ -415,6 +415,10 @@ Item {
     property string configureExistingSIP: qsTr("Configure an existing SIP account")
     property string personalizeAccount: qsTr("Personalize account")
     property string addSip: qsTr("Add SIP account")
+    property string tls: qsTr("TLS")
+    property string udp: qsTr("UDP")
+    property string displayName: qsTr("Display Name")
+
 
     // CurrentAccountSettings && AdvancedSettings
     property string backupSuccessful: qsTr("Backup successful")

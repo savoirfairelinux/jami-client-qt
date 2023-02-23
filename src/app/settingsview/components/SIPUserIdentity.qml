@@ -59,6 +59,19 @@ ColumnLayout {
     }
 
     SettingsMaterialTextEdit {
+        id: passSIPlineEdit
+
+        Layout.fillWidth: true
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+
+        staticText: CurrentAccount.password
+
+        titleField: JamiStrings.password
+        itemWidth: root.itemWidth
+        isPassword: true
+    }
+
+    SettingsMaterialTextEdit {
         id: proxySIP
 
         Layout.fillWidth: true
@@ -72,18 +85,4 @@ ColumnLayout {
         onEditFinished: CurrentAccount.routeset = dynamicText
     }
 
-    SettingsMaterialTextEdit {
-        id: passSIPlineEdit
-
-        Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-        staticText: CurrentAccount.password
-
-        titleField: JamiStrings.password
-        itemWidth: root.itemWidth
-        isPassword: true
-
-        onEditFinished: CurrentAccount.password = dynamicText
-    }
 }
