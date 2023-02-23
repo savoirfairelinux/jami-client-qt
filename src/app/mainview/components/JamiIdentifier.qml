@@ -148,7 +148,7 @@ Item {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
-            fontPointSize: JamiTheme.textFontSize + 1
+            fontPixelSize: JamiTheme.jamiIdFontSize
             editMode: false
             isPersistent: false
 
