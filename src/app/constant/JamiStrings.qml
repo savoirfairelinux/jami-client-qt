@@ -392,7 +392,7 @@ Item {
     property string invalidUsername: qsTr("Invalid username")
     property string nameAlreadyTaken: qsTr("Name already taken")
     property string usernameAlreadyTaken: qsTr("Username already taken")
-    property string joinJamiNoPassword: qsTr("Are you sure you would like to join Jami without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
+    property string joinJamiNoPassword: qsTr("Are you sure that you want to join Jami without having chosen a username?\nIf yes, a randomly generated word of 40 characters will be given to you.")
     property string usernameToolTip: qsTr("- 32 characters maximum\n- Alphabetical characters (A to Z and a to z)\n- Numeric characters (0 to 9)\n- Special characters allowed: dash (-)")
 
     // Good to know
@@ -437,9 +437,9 @@ Item {
     property string advancedAccountSettings: qsTr("Advanced account settings")
     property string encryptAccount: qsTr("Encrypt account with password")
     property string customizeProfile: qsTr("Customize profile")
-    property string customizeProfileDescription: qsTr("This profile is only shared with this account's contacts.\nThe profile can be changed at all times from the account's settings.")
+    property string customizeProfileDescription: qsTr("Your profile is only shared with your contacts.\nYour picture and your nickname can be changed at all time in the settings of your account.")
     property string encryptTitle: qsTr("Encrypt your account with a password")
-    property string encryptDescription: qsTr("A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.")
+    property string encryptDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.")
     property string encryptWarning: qsTr("Please note that if you lose your password, it CANNOT be recovered!")
     property string enterNickname: qsTr("Enter a nickname, surname...")
 
@@ -602,7 +602,9 @@ Item {
     property string importFromBackup: qsTr("Import from backup")
     property string importFromArchiveBackup: qsTr("Import from archive backup")
     property string importFromArchiveBackupDescription: qsTr("Import Jami account from local archive file.")
-    property string selectArchiveFile: qsTr("Select archive file")
+    property string selectArchiveFile: qsTr("Select an archive file")
+    property string passwordArchive: qsTr("If the account is encrypted with a password, please fill the following field.")
+
 
     // ImportFromDevicePage
     property string mainAccountPassword: qsTr("Enter Jami account password")
@@ -610,16 +612,17 @@ Item {
                                    "Use the \"Link Another Device\" feature to obtain a PIN.")
     property string connectFromAnotherDevice: qsTr("Link device")
     property string importButton: qsTr("Import")
-    property string pin: qsTr("Enter the NIP code")
-    property string importFromDeviceDescription: qsTr("A PIN is required to use an existing Jami account on this device.")
-    property string importStep1: qsTr("Step 1")
-    property string importStep2: qsTr("Step 2")
-    property string importStep3: qsTr("Step 3")
-    property string importStep4: qsTr("Step 4")
-    property string importStep1Desc: qsTr("Go to the Account Settings of a previous device")
-    property string importStep2Desc: qsTr("Choose the account to link")
-    property string importStep3Desc: qsTr("Select \"Link another device\"")
-    property string importStep4Desc: qsTr("The PIN code will be valid for 10 minutes.")
+    property string pin: qsTr("Enter the PIN code")
+    property string importFromDeviceDescription: qsTr("To use an existing Jami model on this device, you need to obtain a PIN (define PIN) code.")
+    property string importStep1: qsTr("Step 01")
+    property string importStep2: qsTr("Step 02")
+    property string importStep3: qsTr("Step 03")
+    property string importStep4: qsTr("Step 04")
+    property string importStep1Desc: qsTr("Go to the account management settings of a previous device")
+    property string importStep2Desc: qsTr("Choose the Jami account to use")
+    property string importStep3Desc: qsTr("Select \"Use this account to an other device\"")
+    property string importStep4Desc: qsTr("The PIN code will be avalable for 10 minutes")
+    property string importPasswordDesc: qsTr("Fill if the account is password-encrypted.")
 
 
     // LinkDevicesDialog

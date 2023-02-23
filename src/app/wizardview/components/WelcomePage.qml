@@ -20,6 +20,7 @@
 
 import QtQuick
 import QtQuick.Layouts
+import QtMultimedia
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -40,7 +41,6 @@ Rectangle {
     signal showThisPage
 
     color: JamiTheme.secondaryBackgroundColor
-    opacity: 0.93
 
     Connections {
         target: WizardViewStepModel
@@ -67,20 +67,32 @@ Rectangle {
         spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
+        anchors.verticalCenter: parent.verticalCenter
         width: Math.max(508, root.width - 100)
 
-        ResponsiveImage {
-            id: welcomeLogo
+        Rectangle {
 
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
-
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
             Layout.preferredHeight: JamiTheme.welcomeLogoHeight
 
-            source: JamiResources.jami_svg
+            MediaPlayer {
+                id: mediaPlayer
+                source: JamiTheme.darkTheme ? JamiResources.logo_dark_webm : JamiResources.logo_light_webm
+                videoOutput: videoOutput
+                loops: MediaPlayer.Infinite
+            }
+
+            VideoOutput {
+                id: videoOutput
+                anchors.fill: parent
+            }
+
+            Component.onCompleted: {
+                mediaPlayer.play()
+            }
         }
+
 
         Text {
             id: introduction
@@ -94,6 +106,7 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             wrapMode : Text.WordWrap
+            lineHeight: JamiTheme.wizardViewTextLineHeight
 
             font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
             font.kerning: true
@@ -103,7 +116,7 @@ Rectangle {
             id: description
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
+            Layout.topMargin: JamiTheme.wizardViewDescriptionMarginSize
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
             text: JamiStrings.description
@@ -111,7 +124,7 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             wrapMode : Text.WordWrap
-            lineHeight: 1.4
+            lineHeight: JamiTheme.wizardViewTextLineHeight
 
             font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
             font.kerning: true
@@ -124,7 +137,7 @@ Rectangle {
             primary: true
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 21
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
             preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
             text: JamiStrings.joinJami
@@ -333,11 +346,14 @@ Rectangle {
 
             Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
             Layout.bottomMargin: JamiTheme.preferredMarginSize
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
             preferredWidth: JamiTheme.aboutButtonPreferredWidth
 
             secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
             tertiary: true
+
+            fontSize: JamiTheme.wizardViewAboutJamiFontPixelSize
 
             KeyNavigation.tab: backButton.visible ? backButton : newAccountButton
             KeyNavigation.up: connectAccountManagerButton
@@ -367,8 +383,6 @@ Rectangle {
                 backButton.visible = UtilsAdapter.getAccountListSize()
             }
         }
-
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
         visible: UtilsAdapter.getAccountListSize()
 
