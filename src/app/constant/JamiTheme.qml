@@ -48,6 +48,10 @@ Item {
         return Math.min(Math.max(5, baseZoom * size), 30)
     }
 
+    function pixelToPoint(size) {
+        return size * 0.75
+    }
+
     property real baseZoom: UtilsAdapter.getAppValue(Settings.BaseZoom)
     property real fontSizeOffset: (Qt.platform.os.toString() === "osx" ? 3 : 0)
     property real fontSizeOffsetSmall: (Qt.platform.os.toString() === "osx" ? 1 : 0)
@@ -93,6 +97,7 @@ Item {
     // General buttons
     property color pressedButtonColor: darkTheme ? pressColor : "#a0a0a0"
     property color hoveredButtonColor: darkTheme ? hoverColor : "#c7c7c7"
+    property color hoveredButtonColorWizard: darkTheme ? "#123F4A" : "#e3eef6"
     property color normalButtonColor: darkTheme ? backgroundColor : "#e0e0e0"
 
     property color invertedPressedButtonColor: Qt.rgba(0, 0, 0, 0.5)
@@ -100,8 +105,8 @@ Item {
     property color invertedNormalButtonColor: Qt.rgba(0, 0, 0, 0.75)
 
     property color editLineColor: "#03b9e9"
-    property color buttonTintedBlue: "#005699"
-    property color buttonTintedBlueHovered: "#0071c9"
+    property color buttonTintedBlue: darkTheme ? "#03B9E9" : "#005699"
+    property color buttonTintedBlueHovered: darkTheme ? "#039CC4" : "#0071c9"
     property color buttonTintedBlueInternalHover: Qt.rgba(0, 86, 153, 0.2)
     property color buttonTintedBluePressed: "#0071c9"
     property color buttonTintedGrey: darkTheme ? "#555" : "#999"
@@ -122,10 +127,11 @@ Item {
     property color whiteColorTransparent: rgba256(255, 255, 255, 50)
     property color raiseHandColor: rgba256(0, 184, 255, 77)
 
+    property color primaryTextColor: darkTheme ? "black" : "white"
     property color secAndTertiTextColor: darkTheme ? buttonTintedBlueHovered : buttonTintedBlue
-    property color secondaryButtonBorderColor: Qt.rgba(0,0.34,0.6,0.36)
-    property color secAndTertiHoveredBackgroundColor: Qt.rgba(0,0.34,0.6,0.1)
-
+    property color secondaryButtonBorderColor: darkTheme ? "#123F4A" : "#e3eef6"
+    property color secondaryButtonHoveredBorderColor: darkTheme ? "#03B9E9" : "#0071c9"
+    property color secAndTertiHoveredBackgroundColor: darkTheme ? "#123F4A" : "#e3eef6"
     property color closeButtonLighterBlack: "#4c4c4c"
 
     // Jami switch
@@ -291,7 +297,7 @@ Item {
     property real materialButtonPreferredHeight: calcSize(36)
     property real participantFontSize: calcSize(10 + fontSizeOffset)
     property real menuFontSize: calcSize(12 + fontSizeOffset)
-    property real headerFontSize: calcSize(13 + fontSizeOffset)
+    property real headerFontSize: calcSize(14.25 + fontSizeOffset)
     property real titleFontSize: calcSize(16 + fontSizeOffset)
     property real title2FontSize: calcSize(15 + fontSizeOffset)
     property real tinyCreditsTextSize: calcSize(13 + fontSizeOffset)
@@ -463,6 +469,7 @@ Item {
     property real jamiIdMargins: 36
     property real jamiIdLogoWidth: 70
     property real jamiIdLogoHeight: 24
+    property real jamiIdFontSize: calcSize(13)
 
     // MainView
     property color welcomeViewBackgroundColor: darkTheme ? lightGrey_ : secondaryBackgroundColor
@@ -476,19 +483,28 @@ Item {
     // WizardView
     property real wizardViewPageLayoutSpacing: 12
     property real wizardViewPageBackButtonMargins: 20
-    property real wizardViewPageBackButtonSize: 35
+    property real wizardViewPageBackButtonSize: 30
+    property real wizardViewPageBackButtonWidth: 51
+    property real wizardViewPageBackButtonHeight: 30
     property real wizardViewTitleFontPixelSize: calcSize(26)
     property real wizardViewDescriptionFontPixelSize: calcSize(15)
+    property real wizardViewButtonFontPixelSize: calcSize(15)
+    property real wizardViewAboutJamiFontPixelSize: calcSize(12)
     property real wizardViewLayoutTopMargin: 38
+    property real wizardViewTextLineHeight: 1.4
+    property real wizardViewMarginSize: pixelToPoint(10)
+    property real wizardViewBlocMarginSize: pixelToPoint(40)
+    property real wizardViewDescriptionMarginSize: pixelToPoint(20)
 
     // WizardView Welcome Page
     property real welcomeLabelPointSize: 30
-    property real welcomeLogoWidth: 75
-    property real welcomeLogoHeight: 70
+    property real welcomeLogoWidth: 105
+    property real welcomeLogoHeight: 100
     property real wizardButtonWidth: 400
+    property real wizardButtonHeightMargin: 13
 
     // WizardView Advanced Account Settings
-    property color lightBlue_: "#e5eef5"
+    property color lightBlue_: darkTheme ? "#03B9E9" : "#e5eef5"
     property color shadowColorBlue: Qt.rgba(0, 0.34,0.6,0.16)
     property real passwordEditOpenedBoxWidth: 425
     property real passwordEditClosedBoxWidth: 330
@@ -498,6 +514,7 @@ Item {
     property real customNicknameClosedBoxWidth: 230
     property real customNicknameOpenedBoxHeight: 320
     property real customNicknameClosedBoxHeight: 65
+    property real advancedAccountSettingsHeightMargin: 16.5
 
     property real cornerIconSize: 40
 
@@ -520,10 +537,14 @@ Item {
 
     // MaterialLineEdit
     property real materialLineEditPointSize: calcSize(10 + fontSizeOffset)
+    property real materialLineEditPixelSize: calcSize(15)
+    property real materialLineEditSelectedPixelSize: calcSize(12)
     property real materialLineEditPadding: 16
+    property real textEditError: calcSize(15)
 
     //MaterialButton
     property real buttontextPadding: 10
+    property real buttontextWizzardPadding: 30
 
     // UsernameTextEdit
     property real usernameTextEditPointSize:calcSize(9 + fontSizeOffset)
@@ -546,6 +567,8 @@ Item {
 
     property real mainViewPreferredWidth: 730
     property real mainViewPreferredHeight: 600
+
+    property real mainViewMargin: 30
 
     // Details page
     property real detailsPageMinWidth: 300
