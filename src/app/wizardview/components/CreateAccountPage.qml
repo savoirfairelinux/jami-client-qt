@@ -68,6 +68,15 @@ Rectangle {
         }
     }
 
+    MouseArea {
+        anchors.fill: parent
+
+        onClicked: {
+            infoBox.checked = false
+            adviceBox.checked = false
+        }
+    }
+
     StackLayout {
         id: createAccountStack
 
@@ -92,9 +101,7 @@ Rectangle {
                 spacing: JamiTheme.wizardViewPageLayoutSpacing
 
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
-
+                anchors.verticalCenter: parent.verticalCenter
                 width: Math.max(508, root.width - 100)
 
                 Text {
@@ -129,6 +136,87 @@ Rectangle {
 
                 UsernameTextEdit {
                     id: usernameEdit
+
+                    icon: PushButton {
+
+                        id: infoBox
+                        z:1
+
+                        normalColor: infoBox.hovered ? JamiTheme.hoveredButtonColor : "transparent"
+                        imageColor: infoBox.checked ? "white" : JamiTheme.buttonTintedBlue
+                        source: JamiResources.i_informations_black_24dp_svg
+                        pressedColor: JamiTheme.switchHandleCheckedBorderColor
+                        border.color: {
+                            if(infoBox.checked){
+                                return "transparent"
+                            }
+                            return JamiTheme.switchHandleCheckedBorderColor
+                        }
+                        checkable: true
+                        onCheckedChanged: {
+                            textBoxinfo.visible = !textBoxinfo.visible
+
+                        }
+                        preferredSize: 20
+
+                        Item {
+                            id: textBoxinfo
+                            anchors.top: parent.bottom
+                            anchors.right: parent.right
+                            anchors.topMargin: 5
+                            anchors.rightMargin: -40
+
+                            width: textInfo.width + 2 * JamiTheme.preferredMarginSize
+                            height: textInfo.height + 2 * JamiTheme.preferredMarginSize
+
+                            visible: false
+
+                            Behavior on width {
+                                NumberAnimation { duration: JamiTheme.shortFadeDuration }
+                            }
+
+                            Behavior on height {
+                                NumberAnimation { duration: JamiTheme.shortFadeDuration}
+                            }
+
+                            DropShadow {
+                                z: -1
+                                anchors.fill: boxInfo
+                                horizontalOffset: 1.0
+                                verticalOffset: 1.0
+                                radius: boxInfo.radius
+                                color: JamiTheme.shadowColor
+                                source: boxInfo
+                                transparentBorder: true
+                            }
+
+                            Rectangle {
+
+                                id: boxInfo
+
+                                z: 1
+                                anchors.fill: parent
+                                radius: 30
+                                color: JamiTheme.secondaryBackgroundColor
+
+                                Text {
+                                    id: textInfo
+
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.margins: JamiTheme.preferredMarginSize
+
+                                    text: JamiStrings.usernameToolTip
+                                    color: JamiTheme.textColor
+
+                                    font.kerning: true
+                                    font.pointSize: JamiTheme.popuptextSize
+                                    lineHeight: 1.5
+                                }
+
+                            }
+                        }
+                    }
 
                     objectName: "usernameEdit"
 
@@ -175,13 +263,21 @@ Rectangle {
 
                 MaterialButton {
                     id: chooseUsernameButton
+                    z:-1
+
+                    TextMetrics{
+                        id: textSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                        font.capitalization: Font.AllUppercase
+                        text: chooseUsernameButton.text
+                    }
 
                     objectName: "chooseUsernameButton"
 
                     Layout.alignment: Qt.AlignCenter
                     primary: true
-
-                    preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+                    preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
 
                     font.capitalization: Font.AllUppercase
                     color: enabled? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGrey
@@ -224,6 +320,7 @@ Rectangle {
                     secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
                     Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: 91
                     preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
                     text: JamiStrings.advancedAccountSettings
@@ -295,37 +392,58 @@ Rectangle {
 
     PushButton {
 
-        id: infoBox
+        id: adviceBox
         z:1
 
         preferredSize: JamiTheme.wizardViewPageBackButtonSize
-
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        normalColor: JamiTheme.backgroundColor
-        imageColor: JamiTheme.primaryForegroundColor
+        normalColor: adviceBox.hovered ? JamiTheme.hoveredButtonColor : "transparent"
+        imageColor: adviceBox.checked ? "white" : JamiTheme.buttonTintedBlue
+        source: goodToKnowLogo.visible ? "" : JamiResources._black_24dp_svg
+        pressedColor: JamiTheme.switchHandleCheckedBorderColor
+        border.color: {
+            if(adviceBox.checked){
+                return "transparent"
+            }
+            return JamiTheme.switchHandleCheckedBorderColor
+        }
+        checkable: true
 
-        source: JamiResources.outline_info_24dp_svg
+        //Have to wait for new design
+        AnimatedImage {
+            id: goodToKnowLogo
 
-        onHoveredChanged: {
+            z: 2
+            visible: false//adviceBox.hovered && !adviceBox.checked
+            anchors.fill: parent
+            source: JamiResources.good_to_know_gif
+            layer.enabled: true
+            playing: true
 
+            fillMode: Image.PreserveAspectFit
+            mipmap: true
+        }
+
+        onCheckedChanged: {
             goodToKnow.visible = !goodToKnow.visible
             helpOpened = !helpOpened
 
             advancedAccountSettingsPage.openedPassword = false
             advancedAccountSettingsPage.openedNickname = false
-
         }
     }
+
+
 
     Item {
         id: goodToKnow
         anchors.top: parent.top
         anchors.right: parent.right
 
-        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins + infoBox.preferredSize*2/5
+        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins + adviceBox.preferredWidth*2/5
 
         width: helpOpened ? Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 452) : 0
         height: {
@@ -348,18 +466,18 @@ Rectangle {
 
         DropShadow {
             z: -1
-            anchors.fill: boxInfo
-            horizontalOffset: 3.0
-            verticalOffset: 3.0
-            radius: boxInfo.radius * 4
+            anchors.fill: boxAdvice
+            horizontalOffset: 2.0
+            verticalOffset: 2.0
+            radius: boxAdvice.radius
             color: JamiTheme.shadowColor
-            source: boxInfo
+            source: boxAdvice
             transparentBorder: true
         }
 
         Rectangle {
 
-            id: boxInfo
+            id: boxAdvice
 
             z: 0
             anchors.fill: parent
@@ -368,7 +486,7 @@ Rectangle {
 
             ColumnLayout {
 
-                id: infoContainer
+                id: adviceContainer
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
@@ -399,7 +517,8 @@ Rectangle {
                     id: flow
                     spacing: 25
                     Layout.alignment: Qt.AlignTop
-                    Layout.leftMargin: JamiTheme.preferredMarginSize * 2
+                    Layout.leftMargin: JamiTheme.preferredMarginSize * 4
+                    Layout.topMargin: JamiTheme.preferredMarginSize
                     Layout.preferredWidth: helpOpened ? Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 452) : 0
                     Layout.fillWidth: true
 
