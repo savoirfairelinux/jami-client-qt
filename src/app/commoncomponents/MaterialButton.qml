@@ -39,11 +39,12 @@ AbstractButton {
     property real iconSize: 18
     property var color: JamiTheme.buttonTintedBlue
     property var hoveredColor: JamiTheme.buttonTintedBlueHovered
-    property var secHoveredColor: JamiTheme.transparentColor
+    property var secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
     property var pressedColor: JamiTheme.buttonTintedBluePressed
     property var keysNavigationFocusColor: Qt.darker(hoveredColor, 2)
     property bool hasIcon: animatedIconSource.length !== 0 ||
                            iconSource.length !== 0
+    property bool canBeHovered: true
 
     property var preferredWidth
     property real textLeftPadding
@@ -62,7 +63,7 @@ AbstractButton {
         value: width
     }
 
-    property real preferredHeight: JamiTheme.pushButtonMargin*2 + textButton.height
+    property real preferredHeight: JamiTheme.wizardButtonHeightMargin*2 + textButton.height
     height: preferredHeight
     Layout.preferredHeight: height
 
@@ -83,8 +84,8 @@ AbstractButton {
     property string contentColorProvider: {
 
         if (root.primary)
-            return "white"
-        if (root.tertiary)
+            return JamiTheme.primaryTextColor
+        if (root.tertiary || root.secondary)
             return JamiTheme.secAndTertiTextColor
         if (root.down)
             return root.pressedColor
@@ -176,10 +177,10 @@ AbstractButton {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
 
-                leftPadding: textLeftPadding
-                rightPadding: textRightPadding
+                leftPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textLeftPadding
+                rightPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textRightPadding
                 text: root.text
-                font.weight: Font.Medium
+                font.weight: root.hovered || boldFont ? Font.Bold : Font.Medium
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -194,7 +195,7 @@ AbstractButton {
         color: {
             var baseColor = root.focus ? root.keysNavigationFocusColor : root.color
             if(root.primary) {
-                if (root.hovered)
+                if (root.hovered && root.canBeHovered)
                     return root.hoveredColor
                 return baseColor
             }
@@ -219,7 +220,10 @@ AbstractButton {
                 return JamiTheme.transparentColor
 
             if (root.secondary && root.hovered)
-                return root.hoveredColor
+                return JamiTheme.secondaryButtonHoveredBorderColor
+
+            if(root.secondary)
+                return JamiTheme.secondaryButtonBorderColor
 
             if (root.down)
                 return root.pressedColor
