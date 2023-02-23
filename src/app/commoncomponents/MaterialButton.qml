@@ -39,7 +39,7 @@ AbstractButton {
     property real iconSize: 18
     property var color: JamiTheme.buttonTintedBlue
     property var hoveredColor: JamiTheme.buttonTintedBlueHovered
-    property var secHoveredColor: JamiTheme.transparentColor
+    property var secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
     property var pressedColor: JamiTheme.buttonTintedBluePressed
     property var keysNavigationFocusColor: Qt.darker(hoveredColor, 2)
     property bool hasIcon: animatedIconSource.length !== 0 ||
@@ -83,8 +83,8 @@ AbstractButton {
     property string contentColorProvider: {
 
         if (root.primary)
-            return "white"
-        if (root.tertiary)
+            return JamiTheme.primaryTextColor
+        if (root.tertiary || root.secondary)
             return JamiTheme.secAndTertiTextColor
         if (root.down)
             return root.pressedColor
@@ -179,7 +179,7 @@ AbstractButton {
                 leftPadding: textLeftPadding
                 rightPadding: textRightPadding
                 text: root.text
-                font.weight: Font.Medium
+                font.weight: root.hovered || boldFont ? Font.Bold : Font.Medium
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -219,7 +219,10 @@ AbstractButton {
                 return JamiTheme.transparentColor
 
             if (root.secondary && root.hovered)
-                return root.hoveredColor
+                return JamiTheme.secondaryButtonHoveredBorderColor
+
+            if(root.secondary)
+                return JamiTheme.secondaryButtonBorderColor
 
             if (root.down)
                 return root.pressedColor
