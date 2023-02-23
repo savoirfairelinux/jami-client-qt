@@ -211,7 +211,7 @@ BaseView {
                     tertiary: true
 
                     anchors.horizontalCenter: parent.horizontalCenter
-                    preferredWidth: JamiTheme.aboutButtonPreferredWidthth
+                    preferredWidth: JamiTheme.aboutButtonPreferredWidth
                     text: JamiStrings.aboutJami
 
                     onClicked: viewCoordinator.presentDialog(

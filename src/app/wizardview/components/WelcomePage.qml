@@ -67,19 +67,20 @@ Rectangle {
         spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
+        anchors.verticalCenter: parent.verticalCenter
         width: Math.max(508, root.width - 100)
 
-        ResponsiveImage {
+        AnimatedImage {
             id: welcomeLogo
 
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
-
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
             Layout.preferredHeight: JamiTheme.welcomeLogoHeight
 
-            source: JamiResources.jami_svg
+            source: JamiResources.jami_motion_logo_loop_8s_2_gif
+
+            fillMode: Image.PreserveAspectFit
+            mipmap: true
         }
 
         Text {
@@ -339,6 +340,8 @@ Rectangle {
             secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
             tertiary: true
 
+            fontSize: JamiTheme.wizardViewAboutJamiFontPixelSize
+
             KeyNavigation.tab: backButton.visible ? backButton : newAccountButton
             KeyNavigation.up: connectAccountManagerButton
             KeyNavigation.down: KeyNavigation.tab
@@ -367,8 +370,6 @@ Rectangle {
                 backButton.visible = UtilsAdapter.getAccountListSize()
             }
         }
-
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
         visible: UtilsAdapter.getAccountListSize()
 
