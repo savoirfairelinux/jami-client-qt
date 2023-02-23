@@ -63,18 +63,15 @@ Rectangle {
         id: connectToAccountManagerPageColumnLayout
 
         spacing: JamiTheme.wizardViewPageLayoutSpacing
-
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
-
+        anchors.verticalCenter: parent.verticalCenter
         width: Math.max(508, root.width - 100)
 
         Text {
 
             text: JamiStrings.connectJAMSServer
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 15
+            Layout.topMargin: JamiTheme.preferredMarginSize
             Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -89,7 +86,7 @@ Rectangle {
 
             text: JamiStrings.enterJAMSURL
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 30
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
             font.weight: Font.Medium
 
             Layout.preferredWidth: Math.min(400, root.width - JamiTheme.preferredMarginSize * 2)
@@ -109,7 +106,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-            Layout.topMargin: 5
+            Layout.topMargin: JamiTheme.wizardViewMarginSize
             focus: visible
 
             placeholderText: JamiStrings.jamiManagementServerURL
@@ -130,16 +127,13 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
-            Layout.topMargin: 35
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
             font.weight: Font.Medium
             font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
 
             color: JamiTheme.textColor
             wrapMode: Text.Wrap
 
-            onTextChanged: Layout.preferredHeight =
-                           JamiQmlUtils.getTextBoundingRect(
-                               credentialsLabel.font, credentialsLabel.text).height
         }
 
         ModalTextEdit {
@@ -149,6 +143,7 @@ Rectangle {
             objectName: "usernameManagerEdit"
 
             Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: JamiTheme.wizardViewMarginSize
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
             placeholderText: JamiStrings.username
@@ -168,10 +163,9 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: JamiTheme.wizardViewMarginSize
 
             placeholderText: JamiStrings.password
-            Layout.topMargin: 10
-
 
             KeyNavigation.up: usernameManagerEdit
             KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
@@ -184,13 +178,20 @@ Rectangle {
         SpinnerButton {
             id: connectBtn
 
+            TextMetrics{
+                id: textSize
+                font.weight: Font.Bold
+                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                text: connectBtn.normalText
+            }
+
             objectName: "connectToAccountManagerPageConnectBtn"
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 40
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
 
             spinnerTriggeredtext: JamiStrings.creatingAccount
             normalText: JamiStrings.connect
@@ -200,7 +201,7 @@ Rectangle {
                      && passwordManagerEdit.dynamicText.length !== 0
                      && !spinnerTriggered
 
-            color: JamiTheme.tintedBlue
+            primary: true
 
             KeyNavigation.up: passwordManagerEdit
             KeyNavigation.down: backButton
@@ -230,7 +231,7 @@ Rectangle {
             visible: errorText.length !== 0
             text: errorText
 
-            font.pointSize: JamiTheme.textFontSize
+            font.pixelSize: JamiTheme.textEditError
             color: JamiTheme.redColor
         }
     }
