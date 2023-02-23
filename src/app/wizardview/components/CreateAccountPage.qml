@@ -92,9 +92,7 @@ Rectangle {
                 spacing: JamiTheme.wizardViewPageLayoutSpacing
 
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
-
+                anchors.verticalCenter: parent.verticalCenter
                 width: Math.max(508, root.width - 100)
 
                 Text {
@@ -183,12 +181,19 @@ Rectangle {
                 MaterialButton {
                     id: chooseUsernameButton
 
+                    TextMetrics{
+                        id: textSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                        font.capitalization: Font.AllUppercase
+                        text: chooseUsernameButton.text
+                    }
+
                     objectName: "chooseUsernameButton"
 
                     Layout.alignment: Qt.AlignCenter
                     primary: true
-
-                    preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+                    preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
 
                     font.capitalization: Font.AllUppercase
                     color: enabled? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGrey
@@ -232,6 +237,7 @@ Rectangle {
                     secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
                     Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: 91
                     preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
                     text: JamiStrings.advancedAccountSettings
@@ -307,33 +313,54 @@ Rectangle {
         z:1
 
         preferredSize: JamiTheme.wizardViewPageBackButtonSize
-
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        normalColor: JamiTheme.backgroundColor
-        imageColor: JamiTheme.primaryForegroundColor
+        normalColor: infoBox.hovered ? JamiTheme.hoveredButtonColor : "transparent"
+        imageColor: infoBox.checked ? "white" : JamiTheme.buttonTintedBlue
+        source: goodToKnowLogo.visible ? "" : JamiResources._black_24dp_svg
+        pressedColor: JamiTheme.switchHandleCheckedBorderColor
+        border.color: {
+            if(infoBox.checked){
+                return "transparent"
+            }
+            return JamiTheme.switchHandleCheckedBorderColor
+        }
+        checkable: true
 
-        source: JamiResources.outline_info_24dp_svg
+        //Have to wait for new design
+        AnimatedImage {
+            id: goodToKnowLogo
 
-        onHoveredChanged: {
+            z: 2
+            visible: false//infoBox.hovered && !infoBox.checked
+            anchors.fill: parent
+            source: JamiResources.good_to_know_gif
+            layer.enabled: true
+            playing: true
 
+            fillMode: Image.PreserveAspectFit
+            mipmap: true
+        }
+
+        onCheckedChanged: {
             goodToKnow.visible = !goodToKnow.visible
             helpOpened = !helpOpened
 
             advancedAccountSettingsPage.openedPassword = false
             advancedAccountSettingsPage.openedNickname = false
-
         }
     }
+
+
 
     Item {
         id: goodToKnow
         anchors.top: parent.top
         anchors.right: parent.right
 
-        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins + infoBox.preferredSize*2/5
+        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins + infoBox.preferredWidth*2/5
 
         width: helpOpened ? Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 452) : 0
         height: {

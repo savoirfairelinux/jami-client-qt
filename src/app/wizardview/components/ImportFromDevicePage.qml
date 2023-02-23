@@ -65,12 +65,9 @@ Rectangle {
     ColumnLayout {
         id: importFromDevicePageColumnLayout
 
-
         spacing: JamiTheme.wizardViewPageLayoutSpacing
-
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
+        anchors.verticalCenter: parent.verticalCenter
 
         width: Math.max(508, root.width - 100)
 
@@ -95,23 +92,28 @@ Rectangle {
             Layout.topMargin: 15
             Layout.alignment: Qt.AlignCenter
             font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+            font.weight: Font.Medium
             color: JamiTheme.textColor
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
+            lineHeight: 1.5
         }
+
+
 
         Flow {
             spacing: 30
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: 40
-            Layout.preferredWidth: Math.min(step1.width * 2 + 2 * spacing, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.preferredWidth: Math.min(step1.width * 2 + spacing, root.width - JamiTheme.preferredMarginSize * 2)
 
             InfoBox {
                 id: step1
                 icoSource: JamiResources.settings_24dp_svg
                 title: JamiStrings.importStep1
                 description: JamiStrings.importStep1Desc
+                icoColor: JamiTheme.buttonTintedBlue
             }
 
             InfoBox {
@@ -119,6 +121,7 @@ Rectangle {
                 icoSource: JamiResources.person_24dp_svg
                 title: JamiStrings.importStep2
                 description: JamiStrings.importStep2Desc
+                icoColor: JamiTheme.buttonTintedBlue
             }
 
             InfoBox {
@@ -126,6 +129,7 @@ Rectangle {
                 icoSource: JamiResources.finger_select_svg
                 title: JamiStrings.importStep3
                 description: JamiStrings.importStep3Desc
+                icoColor: JamiTheme.buttonTintedBlue
             }
 
             InfoBox {
@@ -133,6 +137,7 @@ Rectangle {
                 icoSource: JamiResources.time_clock_svg
                 title: JamiStrings.importStep4
                 description: JamiStrings.importStep4Desc
+                icoColor: JamiTheme.buttonTintedBlue
             }
 
         }
@@ -159,6 +164,22 @@ Rectangle {
 
         }
 
+        Text {
+
+
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 22
+
+            color: JamiTheme.textColor
+            wrapMode: Text.WordWrap
+            text: JamiStrings.importPasswordDesc
+            font.pixelSize: JamiTheme.headerFontSize
+            font.weight: Font.Medium
+            lineHeight: 1.25
+        }
+
+
+
         PasswordTextEdit {
             id: passwordFromDevice
 
@@ -184,6 +205,13 @@ Rectangle {
 
         SpinnerButton {
             id: connectBtn
+
+            TextMetrics{
+                id: textSize
+                font.weight: Font.Bold
+                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                text: connectBtn.normalText
+            }
             color: JamiTheme.tintedBlue
 
             objectName: "importFromDevicePageConnectBtn"
@@ -192,10 +220,10 @@ Rectangle {
             Layout.topMargin: 22
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
 
             spinnerTriggeredtext: JamiStrings.generatingAccount
-            normalText: JamiStrings.connectFromAnotherDevice
+            normalText: JamiStrings.importButton
 
             enabled: pinFromDevice.dynamicText.length !== 0 && !spinnerTriggered
 
@@ -236,15 +264,13 @@ Rectangle {
 
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.margins: 10
+        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
         visible: !connectBtn.spinnerTriggered
 
         KeyNavigation.tab: pinFromDevice
         KeyNavigation.up: connectBtn.enabled ? connectBtn : passwordFromDevice
         KeyNavigation.down: pinFromDevice
-
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
         onClicked: WizardViewStepModel.previousStep()
     }
