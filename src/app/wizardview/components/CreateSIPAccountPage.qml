@@ -70,11 +70,8 @@ Rectangle {
                 id: createSIPAccountPageColumnLayout
 
                 spacing: JamiTheme.wizardViewPageLayoutSpacing
-
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
-
+                anchors.verticalCenter: parent.verticalCenter
                 width: Math.max(508, root.width - 100)
 
                 Label {
@@ -82,7 +79,7 @@ Rectangle {
                     text: JamiStrings.sipAccount
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
-                    Layout.topMargin: 15
+                    Layout.topMargin: JamiTheme.preferredMarginSize
                     font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -92,7 +89,7 @@ Rectangle {
                 Label {
                     text: JamiStrings.configureExistingSIP
                     Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
-                    Layout.topMargin: 15
+                    Layout.topMargin: JamiTheme.wizardViewDescriptionMarginSize
                     Layout.alignment: Qt.AlignCenter
                     font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
                     font.weight: Font.Medium
@@ -109,6 +106,7 @@ Rectangle {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
                     placeholderText: JamiStrings.server
 
@@ -126,6 +124,7 @@ Rectangle {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.topMargin: JamiTheme.wizardViewMarginSize
 
                     placeholderText: JamiStrings.username
 
@@ -143,6 +142,7 @@ Rectangle {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.topMargin: JamiTheme.wizardViewMarginSize
 
                     placeholderText: JamiStrings.password
 
@@ -159,6 +159,7 @@ Rectangle {
 
                     Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
                     MaterialRadioButton {
                         id: tlsRadioButton
@@ -190,12 +191,20 @@ Rectangle {
                 MaterialButton {
                     id: createAccountButton
 
+                    TextMetrics{
+                        id: textSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                        text: createAccountButton.text
+                    }
+
                     objectName: "createSIPAccountButton"
 
                     Layout.alignment: Qt.AlignCenter
-                    Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
+                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
-                    preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+                    preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
+                    primary: true
 
                     text: JamiStrings.addSip
 
@@ -219,13 +228,23 @@ Rectangle {
                 MaterialButton {
 
                     id: personalizeAccount
+
+                    TextMetrics{
+                        id: personalizeAccountTextSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                        text: personalizeAccount.text
+                    }
+
+
                     text: JamiStrings.personalizeAccount
                     tertiary: true
                     secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
-                    preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+                    preferredWidth: personalizeAccountTextSize.width + 2*JamiTheme.buttontextWizzardPadding + 1
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins*2
+                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
                     KeyNavigation.up: createAccountButton
                     KeyNavigation.down: backButton
@@ -256,7 +275,7 @@ Rectangle {
                     text: JamiStrings.personalizeAccount
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
-                    Layout.topMargin: 15
+                    Layout.topMargin: JamiTheme.preferredMarginSize
                     font.pixelSize: 26
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -289,7 +308,7 @@ Rectangle {
 
                 Text {
 
-                    Layout.topMargin: 15
+                    Layout.topMargin: JamiTheme.preferredMarginSize
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(320, root.width - JamiTheme.preferredMarginSize * 2)
                     horizontalAlignment: Text.AlignHCenter
@@ -297,6 +316,7 @@ Rectangle {
                     wrapMode: Text.WordWrap
 
                     text: JamiStrings.customizeProfileDescription
+                    lineHeight: JamiTheme.wizardViewTextLineHeight
                     font.pixelSize: JamiTheme.headerFontSize
                     color: JamiTheme.textColor
                 }
