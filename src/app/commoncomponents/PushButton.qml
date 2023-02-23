@@ -121,6 +121,8 @@ AbstractButton {
             else
                 return JamiTheme.transparentColor
         }
+
+
     }
 
     Text {

@@ -70,11 +70,8 @@ Rectangle {
                 id: createSIPAccountPageColumnLayout
 
                 spacing: JamiTheme.wizardViewPageLayoutSpacing
-
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
-
+                anchors.verticalCenter: parent.verticalCenter
                 width: Math.max(508, root.width - 100)
 
                 Label {
@@ -190,12 +187,20 @@ Rectangle {
                 MaterialButton {
                     id: createAccountButton
 
+                    TextMetrics{
+                        id: textSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                        text: createAccountButton.text
+                    }
+
                     objectName: "createSIPAccountButton"
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
 
-                    preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+                    preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
+                    primary: true
 
                     text: JamiStrings.addSip
 
