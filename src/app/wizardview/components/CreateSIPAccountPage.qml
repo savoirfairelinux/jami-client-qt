@@ -38,7 +38,6 @@ Rectangle {
         sipUsernameEdit.clear()
         sipPasswordEdit.clear()
         sipServernameEdit.clear()
-        sipProxyEdit.clear()
         displayNameLineEdit.clear()
         UtilsAdapter.setTempCreationImageFromString()
     }
@@ -120,29 +119,8 @@ Rectangle {
                     font.pointSize: JamiTheme.textFontSize
                     font.kerning: true
 
-                    KeyNavigation.tab: sipProxyEdit
-                    KeyNavigation.up: backButton
-                    KeyNavigation.down: sipProxyEdit
-
-                    onEditingFinished: sipProxyEdit.forceActiveFocus()
-                }
-
-                EditableLineEdit {
-                    id: sipProxyEdit
-
-                    objectName: "sipProxyEdit"
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
-
-                    focus: visible
-                    selectByMouse: true
-                    placeholderText: JamiStrings.proxy
-                    font.pointSize: JamiTheme.textFontSize
-                    font.kerning: true
-
                     KeyNavigation.tab: sipUsernameEdit
-                    KeyNavigation.up: sipServernameEdit
+                    KeyNavigation.up: backButton
                     KeyNavigation.down: sipUsernameEdit
 
                     onEditingFinished: sipUsernameEdit.forceActiveFocus()
@@ -162,7 +140,7 @@ Rectangle {
                     font.kerning: true
 
                     KeyNavigation.tab: sipPasswordEdit
-                    KeyNavigation.up: sipProxyEdit
+                    KeyNavigation.up: sipServernameEdit
                     KeyNavigation.down: sipPasswordEdit
 
                     onEditingFinished: sipPasswordEdit.forceActiveFocus()
@@ -183,16 +161,48 @@ Rectangle {
                     font.pointSize: JamiTheme.textFontSize
                     font.kerning: true
 
-                    KeyNavigation.tab: createAccountButton
+                    KeyNavigation.tab: tlsRadioButton
                     KeyNavigation.up: sipUsernameEdit
-                    KeyNavigation.down: createAccountButton
+                    KeyNavigation.down: tlsRadioButton
 
                     secondIco: JamiResources.eye_cross_svg
 
 
-                    onEditingFinished: createAccountButton.forceActiveFocus()
+                    onEditingFinished: tlsRadioButton.forceActiveFocus()
 
                     onSecondIcoClicked: { toggleEchoMode() }
+                }
+
+                ButtonGroup { id: optionsB }
+
+                RowLayout{
+
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+
+                    MaterialRadioButton {
+                        id: tlsRadioButton
+                        Layout.alignment: Qt.AlignHCenter
+                        text: JamiStrings.tls
+                        ButtonGroup.group: optionsB
+                        checked: true
+                        KeyNavigation.tab: udpRadioButton
+                        KeyNavigation.up: sipUsernameEdit
+                        KeyNavigation.down: udpRadioButton
+
+                    }
+
+                    MaterialRadioButton {
+                        id: udpRadioButton
+                        Layout.alignment: Qt.AlignHCenter
+                        text: JamiStrings.udp
+                        ButtonGroup.group: optionsB
+                        KeyNavigation.tab: createAccountButton
+                        KeyNavigation.up: tlsRadioButton
+                        KeyNavigation.down: createAccountButton
+
+
+                    }
                 }
 
                 MaterialButton {
@@ -215,10 +225,10 @@ Rectangle {
                         WizardViewStepModel.accountCreationInfo =
                                 JamiQmlUtils.setUpAccountCreationInputPara(
                                     {hostname : sipServernameEdit.text,
-                                        alias: displayNameLineEdit.text,
+                                        //alias: displayNameLineEdit.text,
                                         username : sipUsernameEdit.text,
                                         password : sipPasswordEdit.text,
-                                        proxy : sipProxyEdit.text,
+                                        tls: tlsRadioButton.checked,
                                         avatar: UtilsAdapter.tempCreationImage()})
                         WizardViewStepModel.nextStep()
                     }

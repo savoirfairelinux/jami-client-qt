@@ -183,7 +183,8 @@ AccountAdapter::createSIPAccount(const QVariantMap& settings)
             confProps.hostname = settings["hostname"].toString();
             confProps.username = settings["username"].toString();
             confProps.password = settings["password"].toString();
-            confProps.routeset = settings["proxy"].toString();
+            confProps.TLS.enable = settings["tls"].toBool();
+
 #ifdef Q_OS_WIN
             confProps.Ringtone.ringtonePath = Utils::GetRingtonePath();
 #endif

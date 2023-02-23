@@ -59,20 +59,6 @@ ColumnLayout {
     }
 
     SettingsMaterialLineEdit {
-        id: proxySIP
-
-        Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-        textField: CurrentAccount.routeset
-
-        titleField: JamiStrings.proxy
-        itemWidth: root.itemWidth
-
-        onEditFinished: CurrentAccount.routeset = textField
-    }
-
-    SettingsMaterialLineEdit {
         id: passSIPlineEdit
 
         textField: CurrentAccount.password
@@ -87,4 +73,19 @@ ColumnLayout {
 
         onEditFinished: CurrentAccount.password = textField
     }
+
+    SettingsMaterialLineEdit {
+        id: proxySIP
+
+        Layout.fillWidth: true
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+
+        textField: CurrentAccount.routeset
+
+        titleField: JamiStrings.proxy
+        itemWidth: root.itemWidth
+
+        onEditFinished: CurrentAccount.routeset = textField
+    }
+
 }
