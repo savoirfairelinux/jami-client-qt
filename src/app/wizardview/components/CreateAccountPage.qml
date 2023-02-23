@@ -92,9 +92,7 @@ Rectangle {
                 spacing: JamiTheme.wizardViewPageLayoutSpacing
 
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
-
+                anchors.verticalCenter: parent.verticalCenter
                 width: Math.max(508, root.width - 100)
 
                 Text {
@@ -187,8 +185,6 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     primary: true
 
-                    preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
-
                     font.capitalization: Font.AllUppercase
                     color: enabled? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGrey
                     text: !enabled ? JamiStrings.creatingAccount :
@@ -231,6 +227,7 @@ Rectangle {
                     secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
                     Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: 91
                     preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
                     text: JamiStrings.advancedAccountSettings
@@ -310,7 +307,12 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        normalColor: JamiTheme.backgroundColor
+        normalColor: "transparent"
+        imageColor: JamiTheme.buttonTintedBlue
+
+        checkable: true
+
+        /*normalColor: JamiTheme.backgroundColor
         imageColor: JamiTheme.primaryForegroundColor
 
         source: JamiResources.outline_info_24dp_svg
@@ -323,8 +325,42 @@ Rectangle {
             advancedAccountSettingsPage.openedPassword = false
             advancedAccountSettingsPage.openedNickname = false
 
+        }*/
+
+        AnimatedImage {
+            id: goodToKnowLogo
+
+            anchors.fill: parent
+            source: JamiResources.good_to_know_gif
+            layer.enabled: true
+            layer.effect: ColorOverlay {
+                color: "#ff0000"
+            }
+            playing: false
+
+            fillMode: Image.PreserveAspectFit
+            mipmap: true
+
+
+        }
+        onCheckedChanged: {
+
+            goodToKnow.visible = !goodToKnow.visible
+            helpOpened = !helpOpened
+
+            advancedAccountSettingsPage.openedPassword = false
+            advancedAccountSettingsPage.openedNickname = false
+
+
+        }
+
+        onHoveredChanged: {
+            goodToKnowLogo.playing = !goodToKnowLogo.playing
+            goodToKnowLogo.currentFrame = 0
         }
     }
+
+
 
     Item {
         id: goodToKnow

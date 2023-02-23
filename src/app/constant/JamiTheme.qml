@@ -92,7 +92,7 @@ Item {
 
     // General buttons
     property color pressedButtonColor: darkTheme ? pressColor : "#a0a0a0"
-    property color hoveredButtonColor: darkTheme ? hoverColor : "#c7c7c7"
+    property color hoveredButtonColor: darkTheme ? "#123F4A" : "#e3eef6"
     property color normalButtonColor: darkTheme ? backgroundColor : "#e0e0e0"
 
     property color invertedPressedButtonColor: Qt.rgba(0, 0, 0, 0.5)
@@ -100,8 +100,8 @@ Item {
     property color invertedNormalButtonColor: Qt.rgba(0, 0, 0, 0.75)
 
     property color editLineColor: "#03b9e9"
-    property color buttonTintedBlue: "#005699"
-    property color buttonTintedBlueHovered: "#0071c9"
+    property color buttonTintedBlue: darkTheme ? "#03B9E9" : "#005699"
+    property color buttonTintedBlueHovered: darkTheme ? "#039CC4" : "#0071c9"
     property color buttonTintedBlueInternalHover: Qt.rgba(0, 86, 153, 0.2)
     property color buttonTintedBluePressed: "#0071c9"
     property color buttonTintedGrey: darkTheme ? "#555" : "#999"
@@ -122,10 +122,11 @@ Item {
     property color whiteColorTransparent: rgba256(255, 255, 255, 50)
     property color raiseHandColor: rgba256(0, 184, 255, 77)
 
+    property color primaryTextColor: darkTheme ? "black" : "white"
     property color secAndTertiTextColor: darkTheme ? buttonTintedBlueHovered : buttonTintedBlue
-    property color secondaryButtonBorderColor: Qt.rgba(0,0.34,0.6,0.36)
-    property color secAndTertiHoveredBackgroundColor: Qt.rgba(0,0.34,0.6,0.1)
-
+    property color secondaryButtonBorderColor: darkTheme ? "#123F4A" : "#e3eef6"
+    property color secondaryButtonHoveredBorderColor: darkTheme ? "#03B9E9" : "#0071c9"
+    property color secAndTertiHoveredBackgroundColor: darkTheme ? "#123F4A" : "transparent"
     property color closeButtonLighterBlack: "#4c4c4c"
 
     // Jami switch
@@ -469,9 +470,12 @@ Item {
     // WizardView
     property real wizardViewPageLayoutSpacing: 12
     property real wizardViewPageBackButtonMargins: 20
-    property real wizardViewPageBackButtonSize: 35
+    property real wizardViewPageBackButtonSize: 30
+    property real wizardViewPageBackButtonWidth: 51
+    property real wizardViewPageBackButtonHeight: 30
     property real wizardViewTitleFontPixelSize: calcSize(26)
     property real wizardViewDescriptionFontPixelSize: calcSize(15)
+    property real wizardViewAboutJamiFontPixelSize: calcSize(12)
     property real wizardViewLayoutTopMargin: 38
 
     // WizardView Welcome Page
@@ -517,6 +521,7 @@ Item {
 
     //MaterialButton
     property real buttontextPadding: 10
+    property real buttontextWizzardPadding: 30
 
     // UsernameLineEdit
     property real usernameLineEditPointSize:calcSize(9 + fontSizeOffset)
