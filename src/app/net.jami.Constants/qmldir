@@ -1,0 +1,5 @@
+singleton JamiStrings 1.1 JamiStrings.qml
+singleton JamiQmlUtils 1.1 JamiQmlUtils.qml
+singleton JamiTheme 1.1 JamiTheme.qml
+singleton JamiResources 1.1 JamiResources.qml
+singleton MsgSeq 1.1 MsgSeq.qml

@@ -62,7 +62,8 @@ def gen_qml_qrc(with_webengine):
                 continue
             filtered = [k for k in files if k.endswith('.qml') or
                         k.endswith('.js') or k.endswith('.html') or
-                        k.endswith('.css') or k.endswith('.conf')]
+                        k.endswith('.css') or k.endswith('.conf') or
+                        k == 'qmldir']
             # if there are no files of interest in this directory, skip it
             if not filtered:
                 continue
