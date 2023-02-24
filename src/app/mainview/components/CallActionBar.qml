@@ -55,6 +55,7 @@ Control {
     signal pluginsClicked
     signal recordCallClicked
     signal fullScreenClicked
+    signal swarmDetailsClicked
 
     Component {
         id: buttonDelegate
@@ -407,6 +408,22 @@ Control {
             text: JamiStrings.viewPlugin
             enabled: PluginAdapter.isEnabled
                      && PluginAdapter.callMediaHandlersListCount
+        },
+        Action {
+            id: swarmDetailsAction
+            onTriggered: root.swarmDetailsClicked()
+            icon.source: JamiResources.swarm_details_panel_svg
+            icon.color: "white"
+            text: JamiStrings.details
+            enabled: {
+                if (LRCInstance.currentAccountType === Profile.Type.SIP)
+                    return true
+                if (!CurrentConversation.isTemporary && !CurrentConversation.isSwarm)
+                    return false
+                if (CurrentConversation.isRequest || CurrentConversation.needsSyncing)
+                    return false
+                return true
+            }
         }
     ]
 
@@ -460,6 +477,8 @@ Control {
         CallOverlayModel.addSecondaryControl(recordAction)
         if (pluginsAction.enabled)
             CallOverlayModel.addSecondaryControl(pluginsAction)
+        if (swarmDetailsAction.enabled)
+            CallOverlayModel.addSecondaryControl(swarmDetailsAction)
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount()
     }
 

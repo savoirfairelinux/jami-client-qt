@@ -40,6 +40,7 @@ Item {
     signal chatButtonClicked
     signal fullScreenClicked
     signal closeClicked
+    signal swarmDetailsClicked
 
     function closeContextMenuAndRelatedWindows() {
         sipInputPanel.close()
@@ -172,6 +173,7 @@ Item {
             function onShareFileClicked() { openShareFileDialog() }
             function onPluginsClicked() { openPluginsMenu() }
             function onFullScreenClicked() { root.fullScreenClicked() }
+            function onSwarmDetailsClicked() { root.swarmDetailsClicked() }
         }
     }
 
