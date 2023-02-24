@@ -74,7 +74,7 @@ ColumnLayout {
             onSwitchToggled: CurrentAccount.proxyEnabled = checked
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditProxy
 
             Layout.fillWidth: true
@@ -90,7 +90,7 @@ ColumnLayout {
             onEditFinished: CurrentAccount.proxyServer = dynamicText
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditBootstrap
 
             Layout.fillWidth: true

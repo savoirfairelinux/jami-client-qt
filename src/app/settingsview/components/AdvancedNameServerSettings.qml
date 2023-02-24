@@ -45,7 +45,7 @@ ColumnLayout {
         elide: Text.ElideRight
     }
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: lineEditNameServer
 
         Layout.fillWidth: true

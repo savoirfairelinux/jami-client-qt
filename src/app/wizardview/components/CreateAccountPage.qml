@@ -136,7 +136,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
                     placeholderText: root.isRendezVous ? JamiStrings.chooseAName :
-                                                         JamiStrings.chooseYourUserName
+                                                         JamiStrings.chooseUsername
                     staticText: ""
                     editMode: true
                     focus: visible
@@ -162,16 +162,16 @@ Rectangle {
 
                     text: {
                         switch(usernameEdit.nameRegistrationState){
-                        case UsernameLineEdit.NameRegistrationState.BLANK:
+                        case UsernameTextEdit.NameRegistrationState.BLANK:
                             return " "
-                        case UsernameLineEdit.NameRegistrationState.SEARCHING:
+                        case UsernameTextEdit.NameRegistrationState.SEARCHING:
                             return " "
-                        case UsernameLineEdit.NameRegistrationState.FREE:
+                        case UsernameTextEdit.NameRegistrationState.FREE:
                             return " "
-                        case UsernameLineEdit.NameRegistrationState.INVALID:
+                        case UsernameTextEdit.NameRegistrationState.INVALID:
                             return root.isRendezVous ? JamiStrings.invalidName :
                                                        JamiStrings.invalidUsername
-                        case UsernameLineEdit.NameRegistrationState.TAKEN:
+                        case UsernameTextEdit.NameRegistrationState.TAKEN:
                             return root.isRendezVous ? JamiStrings.nameAlreadyTaken :
                                                        JamiStrings.usernameAlreadyTaken
                         }
@@ -194,8 +194,8 @@ Rectangle {
                     color: enabled? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGrey
                     text: !enabled ? JamiStrings.creatingAccount :
                                      root.isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
-                    enabled: usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE
-                             || usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK
+                    enabled: usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE
+                             || usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.BLANK
 
 
                     KeyNavigation.tab: showAdvancedButton
@@ -212,13 +212,13 @@ Rectangle {
                                         avatar: UtilsAdapter.tempCreationImage(),
                                         isRendezVous: root.isRendezVous
                                     })
-                        if (usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE) {
+                        if (usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE) {
                             enabled = false
                             showAdvancedButton.enabled = false
                             WizardViewStepModel.nextStep()
                         }
 
-                        if(usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK)
+                        if(usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.BLANK)
                             popup.visible = true
 
                     }
