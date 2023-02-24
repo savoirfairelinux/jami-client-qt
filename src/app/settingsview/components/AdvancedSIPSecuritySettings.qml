@@ -178,7 +178,7 @@ ColumnLayout {
         }
 
         // Private key password
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditSIPCertPassword
 
             Layout.fillWidth: true
@@ -190,6 +190,7 @@ ColumnLayout {
             titleField: JamiStrings.privateKeyPassword
 
             staticText: CurrentAccount.password_TLS
+            placeholderText: CurrentAccount.password_TLS
 
             onEditFinished: CurrentAccount.password_TLS = dynamicText
         }
@@ -262,7 +263,7 @@ ColumnLayout {
                          parseInt(comboModel.get(modelIndex).secondArg)
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: outgoingTLSServerNameLineEdit
 
             Layout.fillWidth: true
@@ -271,6 +272,7 @@ ColumnLayout {
             titleField: JamiStrings.tlsServerName
 
             staticText: CurrentAccount.serverName_TLS
+            placeholderText: CurrentAccount.serverName_TLS
 
             onEditFinished: CurrentAccount.serverName_TLS = dynamicText
         }

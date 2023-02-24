@@ -30,13 +30,13 @@ ColumnLayout {
 
     property int itemWidth
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: usernameSIP
 
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        staticText: CurrentAccount.username
+        placeholderText: CurrentAccount.username ? CurrentAccount.username : JamiStrings.username
 
         titleField: JamiStrings.username
         itemWidth: root.itemWidth
@@ -44,13 +44,13 @@ ColumnLayout {
         onEditFinished: CurrentAccount.username = dynamicText
     }
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: hostnameSIP
 
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        staticText: CurrentAccount.hostname
+        placeholderText: CurrentAccount.hostname ? CurrentAccount.hostname : JamiStrings.server
 
         titleField: JamiStrings.server
         itemWidth: root.itemWidth
@@ -58,13 +58,13 @@ ColumnLayout {
         onEditFinished: CurrentAccount.hostname = dynamicText
     }
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: proxySIP
 
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        staticText: CurrentAccount.routeset
+        placeholderText: CurrentAccount.routeset ? CurrentAccount.routeset : JamiStrings.proxy
 
         titleField: JamiStrings.proxy
         itemWidth: root.itemWidth
@@ -72,17 +72,17 @@ ColumnLayout {
         onEditFinished: CurrentAccount.routeset = dynamicText
     }
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: passSIPlineEdit
-
-        staticText: CurrentAccount.password
 
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        titleField: JamiStrings.password
+        placeholderText: CurrentAccount.password ? "***" : JamiStrings.password
 
+        titleField: JamiStrings.password
         itemWidth: root.itemWidth
+        isPassword: true
 
         onEditFinished: CurrentAccount.password = dynamicText
     }

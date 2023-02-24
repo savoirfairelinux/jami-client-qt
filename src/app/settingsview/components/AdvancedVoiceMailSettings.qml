@@ -40,7 +40,7 @@ ColumnLayout {
         maxWidth: width
     }
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: lineEditVoiceMailDialCode
 
         Layout.fillWidth: true
@@ -51,6 +51,7 @@ ColumnLayout {
         titleField: JamiStrings.voiceMailDialCode
 
         staticText: CurrentAccount.mailbox
+        placeholderText: CurrentAccount.mailbox
 
         onEditFinished: CurrentAccount.mailbox = dynamicText
     }
