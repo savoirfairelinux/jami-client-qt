@@ -78,6 +78,8 @@ BaseView {
                     if (!CurrentConversation.hasCall) {
                         resetPanels()
                         Qt.callLater(focusChatView)
+                    } else {
+                        dismiss()
                     }
                 }
 
