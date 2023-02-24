@@ -1281,7 +1281,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
 
             // Add interaction to database
             interaction::Info
-                msg {{}, body, std::time(nullptr), 0, interaction::Type::TEXT, status, true};
+                msg {owner.profileInfo.uri, body, std::time(nullptr), 0, interaction::Type::TEXT, status, true};
             auto msgId = storage::addMessageToConversation(pimpl_->db, convId, msg);
 
             // Update conversation
