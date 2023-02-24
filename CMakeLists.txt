@@ -147,6 +147,7 @@ execute_process(
   ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_qml_qrc.py ${GEN_QML_QRC_ARGS}
   WORKING_DIRECTORY ${APP_SRC_DIR})
 set(QML_RESOURCES_QML ${APP_SRC_DIR}/qml.qrc)
+
 # Image and misc. resources
 # check files in the resources directory and force a reconfigure if it
 # changes
@@ -157,6 +158,11 @@ execute_process(
   COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py
   WORKING_DIRECTORY ${APP_SRC_DIR})
 set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
+
+# Find modules (QtCreator) under the root source dir.
+list(APPEND QML_DIRS ${APP_SRC_DIR})
+set(QML_IMPORT_PATH ${QML_DIRS}
+  CACHE STRING "Qt Creator extra qml import paths" FORCE)
 
 if (APPLE)
   include(FetchContent)

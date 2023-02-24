@@ -159,7 +159,7 @@ registerTypes(QQmlEngine* engine,
     // This occurs when we register from within MainApplication
     QML_REGISTERNAMESPACE(NS_MODELS, dummy::staticMetaObject, "");
     QML_REGISTERNAMESPACE(NS_ADAPTERS, dummy::staticMetaObject, "");
-    QML_REGISTERNAMESPACE(NS_CONSTANTS, dummy::staticMetaObject, "");
+    //QML_REGISTERNAMESPACE(NS_CONSTANTS, dummy::staticMetaObject, "");
     QML_REGISTERNAMESPACE(NS_HELPERS, dummy::staticMetaObject, "");
     QML_REGISTERNAMESPACE(NS_ENUMS, dummy::staticMetaObject, "");
 
@@ -185,12 +185,12 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_MODELS, FilesToSend::staticMetaObject, "FilesToSend");
     QML_REGISTERNAMESPACE(NS_MODELS, MessageList::staticMetaObject, "MessageList");
 
-    // Qml singleton components
-    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/JamiTheme.qml", JamiTheme);
-    QML_REGISTERSINGLETONTYPE_URL(NS_MODELS, "qrc:/constant/JamiQmlUtils.qml", JamiQmlUtils);
-    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/JamiStrings.qml", JamiStrings);
-    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/JamiResources.qml", JamiResources);
-    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/MsgSeq.qml", MsgSeq);
+//    // Qml singleton components
+//    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/JamiTheme.qml", JamiTheme);
+//    QML_REGISTERSINGLETONTYPE_URL(NS_MODELS, "qrc:/constant/JamiQmlUtils.qml", JamiQmlUtils);
+//    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/JamiStrings.qml", JamiStrings);
+//    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/JamiResources.qml", JamiResources);
+//    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/MsgSeq.qml", MsgSeq);
 
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, parent, "MainApplication")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, screenInfo, "CurrentScreenInfo")
