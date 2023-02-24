@@ -1,0 +1,4 @@
+# auto-gen files
+src/app/resources.qrc
+src/app/qml.qrc
+src/app/constant/JamiResources.qml
