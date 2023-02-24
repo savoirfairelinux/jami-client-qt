@@ -345,6 +345,9 @@ MainApplication::initQmlLayer()
     auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
     engine_->rootContext()->setContextProperty("videoProvider", videoProvider);
 
+    // Find modules (runtime) under the root source dir.
+    engine_->addImportPath("qrc:/");
+
     engine_->load(QUrl(QStringLiteral("qrc:/MainApplicationWindow.qml")));
     qWarning().noquote() << "Main window loaded using" << getRenderInterfaceString();
 }
