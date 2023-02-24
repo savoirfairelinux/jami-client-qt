@@ -336,6 +336,7 @@ Rectangle {
                 }
 
                 onChatButtonClicked: {
+                    chatViewContainer.showDetails = false
                     chatViewContainer.visible ?
                                 closeInCallConversation() :
                                 openInCallConversation()
@@ -343,6 +344,13 @@ Rectangle {
 
                 onFullScreenClicked: {
                     callStackView.toggleFullScreen()
+                }
+
+                onSwarmDetailsClicked: {
+                    chatViewContainer.showDetails = true
+                    chatViewContainer.visible ?
+                                closeInCallConversation() :
+                                openInCallConversation()
                 }
             }
 
@@ -399,6 +407,7 @@ Rectangle {
             SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
             visible: false
             clip: true
+            property bool showDetails: false
 
             onVisibleChanged: {
                 if (visible && root.width < JamiTheme.chatViewHeaderMinimumWidth * 2) {

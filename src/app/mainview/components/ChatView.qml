@@ -50,9 +50,11 @@ Rectangle {
     }
 
     function resetPanels() {
+        chatViewHeader.showSearch = true
         swarmDetailsPanel.visible = false
         addMemberPanel.visible = false
         chatContents.visible = true
+        messagesResearchPanel.visible = false
     }
 
     function instanceMapObject() {
@@ -78,6 +80,21 @@ Rectangle {
         target: CurrentConversation
         function onIdChanged() {
             MessagesAdapter.loadMoreMessages()
+        }
+    }
+
+    onVisibleChanged: {
+        if (visible){
+            chatViewHeader.showSearch = !root.parent.showDetails
+            addMemberPanel.visible = false
+            messagesResearchPanel.visible = false
+            if (root.parent.showDetails) {
+                chatContents.visible = false
+                swarmDetailsPanel.visible = true
+            } else {
+                chatContents.visible = true
+                swarmDetailsPanel.visible = false
+            }
         }
     }
 
