@@ -32,7 +32,7 @@ import re
 # script as set in the project CMakeLists, which should in turn be
 # where the resources.qrc will be located (currently 'src/app').
 resdir = os.path.join('..', '..', 'resources')
-qmlfile = os.path.join('constant', 'JamiResources.qml')
+qmlfile = os.path.join('net/jami/Constants', 'JamiResources.qml')
 resfile = os.path.join('resources.qrc')
 
 print("Generating resource.qrc file ...")
