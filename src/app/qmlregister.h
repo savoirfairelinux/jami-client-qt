@@ -38,13 +38,6 @@ class ScreenInfo;
 class MainApplication;
 class ConnectivityMonitor;
 
-// Hack for QtCreator autocomplete (part 1)
-// https://bugreports.qt.io/browse/QTCREATORBUG-20569
-namespace dummy {
-Q_NAMESPACE
-Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
-} // namespace dummy
-
 // clang-format off
 #define QML_REGISTERSINGLETON_TYPE(NS, T) \
     qmlRegisterSingletonType<T>(NS, MODULE_VER_MAJ, MODULE_VER_MIN, #T, T::create);
