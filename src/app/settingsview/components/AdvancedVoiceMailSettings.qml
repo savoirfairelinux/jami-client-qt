@@ -40,7 +40,7 @@ ColumnLayout {
         maxWidth: width
     }
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: lineEditVoiceMailDialCode
 
         Layout.fillWidth: true

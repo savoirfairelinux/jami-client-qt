@@ -71,7 +71,7 @@ ColumnLayout {
             onSwitchToggled: CurrentAccount.publishedSameAsLocal = checked
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditSIPCustomAddress
 
             Layout.fillWidth: true

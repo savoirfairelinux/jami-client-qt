@@ -390,7 +390,6 @@ Item {
     property string chooseUsernameForAccount: qsTr("You can choose a username to help others more easily find and reach you on Jami.")
     property string chooseUsernameForRV: qsTr("Choose a name for your rendezvous point")
     property string chooseAName: qsTr("Choose a name")
-    property string chooseYourUserName: qsTr("Choose username")
     property string invalidName: qsTr("Invalid name")
     property string invalidUsername: qsTr("Invalid username")
     property string nameAlreadyTaken: qsTr("Name already taken")
