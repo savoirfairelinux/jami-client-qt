@@ -16,6 +16,24 @@
       "message": "cf screenshot I sent",
       "revId": "63b67177df873ee02278bbe5e5db87b21bbec818",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3de65a36_049fc37d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-24T18:53:36Z",
+      "side": 1,
+      "message": "done on https://review.jami.net/c/jami-client-qt/+/24001",
+      "parentUuid": "16af33a6_8764d245",
+      "revId": "63b67177df873ee02278bbe5e5db87b21bbec818",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
