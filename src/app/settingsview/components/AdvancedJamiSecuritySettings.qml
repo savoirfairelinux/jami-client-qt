@@ -122,7 +122,7 @@ ColumnLayout {
                                     })
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditCertPassword
 
             Layout.fillWidth: true

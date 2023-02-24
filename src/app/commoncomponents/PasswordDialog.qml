@@ -88,7 +88,7 @@ BaseModalDialog {
                 btnConfirm.enabled = currentPasswordEdit.dynamicText.length > 0
                 break
             case PasswordDialog.SetPassword:
-                btnConfirm.enabled = passwordEdit.length > 0 &&
+                btnConfirm.enabled = passwordEdit.dynamicText.length > 0 &&
                         passwordEdit.dynamicText === confirmPasswordEdit.dynamicText
                 break
             default:

@@ -30,7 +30,7 @@ ColumnLayout {
 
     property int itemWidth
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: usernameSIP
 
         Layout.fillWidth: true
@@ -44,7 +44,7 @@ ColumnLayout {
         onEditFinished: CurrentAccount.username = dynamicText
     }
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: hostnameSIP
 
         Layout.fillWidth: true
@@ -58,7 +58,7 @@ ColumnLayout {
         onEditFinished: CurrentAccount.hostname = dynamicText
     }
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: proxySIP
 
         Layout.fillWidth: true
@@ -72,17 +72,17 @@ ColumnLayout {
         onEditFinished: CurrentAccount.routeset = dynamicText
     }
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: passSIPlineEdit
-
-        staticText: CurrentAccount.password
 
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        titleField: JamiStrings.password
+        staticText: CurrentAccount.password
 
+        titleField: JamiStrings.password
         itemWidth: root.itemWidth
+        isPassword: true
 
         onEditFinished: CurrentAccount.password = dynamicText
     }
