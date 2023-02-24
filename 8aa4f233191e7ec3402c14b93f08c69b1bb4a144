@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db1563f7_7c0a43c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-24T18:36:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39836951_07c38768",
+      "range": {
+        "startLine": 12,
+        "startChar": 13,
+        "endLine": 12,
+        "endChar": 25
+      },
+      "revId": "8aa4f233191e7ec3402c14b93f08c69b1bb4a144",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91ca9690_0d2b5fb8",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-24T16:38:24Z",
       "side": 1,
       "message": "hmm it was the case before, but \"Deleted Message\" must be translatable and in JamiStrings.",
+      "range": {
+        "startLine": 65,
+        "startChar": 66,
+        "endLine": 65,
+        "endChar": 81
+      },
+      "revId": "8aa4f233191e7ec3402c14b93f08c69b1bb4a144",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b0491d1_c62f3a5a",
+        "filename": "src/app/commoncomponents/ReplyToRow.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-24T18:36:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91ca9690_0d2b5fb8",
       "range": {
         "startLine": 65,
         "startChar": 66,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "decaf34e_a45ec1e1",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-24T18:36:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fff81aba_9b736cf7",
+      "range": {
+        "startLine": 63,
+        "startChar": 23,
+        "endLine": 63,
+        "endChar": 29
+      },
+      "revId": "8aa4f233191e7ec3402c14b93f08c69b1bb4a144",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0eca6e0e_21185629",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-02-24T16:38:24Z",
       "side": 1,
       "message": "Is this the case at some point? For which messages?",
+      "range": {
+        "startLine": 107,
+        "startChar": 78,
+        "endLine": 107,
+        "endChar": 94
+      },
+      "revId": "8aa4f233191e7ec3402c14b93f08c69b1bb4a144",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "115d1568_60c0a63d",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-24T18:36:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0eca6e0e_21185629",
       "range": {
         "startLine": 107,
         "startChar": 78,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5471ae2d_21e81b3d",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-24T18:36:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "911405cf_4944c17d",
+      "range": {
+        "startLine": 146,
+        "startChar": 20,
+        "endLine": 146,
+        "endChar": 24
+      },
+      "revId": "8aa4f233191e7ec3402c14b93f08c69b1bb4a144",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "639be309_18fa377c",
@@ -139,6 +259,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2c059ee_2f86e58a",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-24T18:36:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "639be309_18fa377c",
+      "range": {
+        "startLine": 420,
+        "startChar": 18,
+        "endLine": 420,
+        "endChar": 32
+      },
+      "revId": "8aa4f233191e7ec3402c14b93f08c69b1bb4a144",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2fc03b4_32d906f9",
@@ -152,6 +296,24 @@
       "writtenOn": "2023-02-24T16:38:24Z",
       "side": 1,
       "message": "avoid random new lines (there is some)",
+      "revId": "8aa4f233191e7ec3402c14b93f08c69b1bb4a144",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58b87816_6e77816f",
+        "filename": "src/app/mainview/components/ScrollToBottomButton.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-24T18:36:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2fc03b4_32d906f9",
       "revId": "8aa4f233191e7ec3402c14b93f08c69b1bb4a144",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
