@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9adda6bd_117c314a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-02-24T19:53:56Z",
+      "side": 1,
+      "message": "Should `to` be added to string, i.e. should the string be:\n`Scroll to end of conversation`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dScroll%20to%20end%20of%20conversation\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 9,
+        "startChar": 16,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "46d82e7f0a97937c711eb0b4bcf0c55a63a4614e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcae43e8_88660142",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-02-24T19:53:56Z",
+      "side": 1,
+      "message": "If the string value is changed, should the string name be changed too?\n\nThank you",
+      "range": {
+        "startLine": 364,
+        "startChar": 20,
+        "endLine": 364,
+        "endChar": 32
+      },
+      "revId": "46d82e7f0a97937c711eb0b4bcf0c55a63a4614e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "432aa6a1_132d99cf",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-02-24T19:53:56Z",
+      "side": 1,
+      "message": "Should this string be `Scroll to end of conversation`?\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dScroll%20to%20end%20of%20conversation\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 364,
+        "startChar": 40,
+        "endLine": 364,
+        "endChar": 54
+      },
+      "revId": "46d82e7f0a97937c711eb0b4bcf0c55a63a4614e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
