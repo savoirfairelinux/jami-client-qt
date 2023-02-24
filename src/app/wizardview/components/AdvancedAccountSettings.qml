@@ -545,8 +545,10 @@ Rectangle {
                     preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
                     text: JamiStrings.optionSave
 
-                    onClicked: { root.saveButtonClicked()
-                        root.alias = displayNameLineEdit.dynamicText}
+                    onClicked: {
+                        root.saveButtonClicked()
+                        root.alias = displayNameLineEdit.dynamicText
+                    }
                 }
             }
 
