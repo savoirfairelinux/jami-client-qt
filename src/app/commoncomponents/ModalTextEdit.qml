@@ -40,12 +40,15 @@ Loader {
     property bool fontBold: false
 
     property int echoMode: TextInput.Normal
+    property QtObject textValidator: RegularExpressionValidator { id: defaultValidator }
 
     // Always start with the static text component displayed first.
     property bool editMode: true
 
     // Emitted when the editor has been accepted.
     signal accepted
+
+    signal activeChanged(bool active)
 
     // Always give up focus when accepted.
     onAccepted: focus = false
@@ -59,10 +62,10 @@ Loader {
 
     // This is used when the user is not editing the text.
     Component {
-
         id: displayComp
-        MaterialTextField {
 
+        MaterialTextField {
+            id: displayCompField
             font.pointSize: root.fontPointSize
             readOnly: true
             text: staticText
@@ -75,7 +78,6 @@ Loader {
         id: editComp
 
         MaterialTextField {
-
             id: editCompField
 
             focus: true
@@ -92,19 +94,24 @@ Loader {
             placeholderText: root.placeholderText
             onAccepted: root.accepted()
             onTextChanged: dynamicText = text
-            onVisibleChanged: text = dynamicText
+            text: staticText
             inputIsValid: root.inputIsValid
-            onFocusChanged: if (!focus) root.editMode = false
+            onFocusChanged: {
+                if (!focus) {
+                    root.editMode = false
+                }
+                activeChanged(root.editMode)
+            }
+            onIsActiveChanged: activeChanged(isActive)
+            validator: root.textValidator
         }
     }
 
     // We use a loader to switch between the two components depending on the
     // editMode property.
     sourceComponent: {
-
         editMode || isPersistent
                 ? editComp
                 : displayComp
     }
-
 }

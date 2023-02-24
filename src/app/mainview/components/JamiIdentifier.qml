@@ -101,12 +101,12 @@ Item {
                     if (!usernameTextEdit.editMode)
                         return true
                     switch(usernameTextEdit.nameRegistrationState) {
-                    case UsernameLineEdit.NameRegistrationState.BLANK:
-                    case UsernameLineEdit.NameRegistrationState.FREE:
+                    case UsernameTextEdit.NameRegistrationState.BLANK:
+                    case UsernameTextEdit.NameRegistrationState.FREE:
                         return true
-                    case UsernameLineEdit.NameRegistrationState.SEARCHING:
-                    case UsernameLineEdit.NameRegistrationState.INVALID:
-                    case UsernameLineEdit.NameRegistrationState.TAKEN:
+                    case UsernameTextEdit.NameRegistrationState.SEARCHING:
+                    case UsernameTextEdit.NameRegistrationState.INVALID:
+                    case UsernameTextEdit.NameRegistrationState.TAKEN:
                         return false
                     }
                 }
@@ -149,7 +149,6 @@ Item {
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
             fontPointSize: JamiTheme.textFontSize + 1
-            staticText: hasRegisteredName ? registeredName : infohash
             editMode: false
             isPersistent: false
 
@@ -162,8 +161,8 @@ Item {
                             "settingsview/components/NameRegistrationDialog.qml",
                             { registeredName: dynamicText })
                 dlg.accepted.connect(function() {
-                    currentRegisteredID.nameRegistrationState =
-                            UsernameLineEdit.NameRegistrationState.BLANK
+                    usernameTextEdit.nameRegistrationState =
+                            UsernameTextEdit.NameRegistrationState.BLANK
                 })
             }
         }
