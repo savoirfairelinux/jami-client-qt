@@ -3480,7 +3480,15 @@ ConversationModelPimpl::slotCallStatusChanged(const QString& callId, int code)
                 if (peers.size() != 1) {
                     continue;
                 }
-                if (peers.front() == call.peerUri) {
+                if (peers.front() == call.peerUri.remove("ring:")) {
+                    if (!conversation.callId.isEmpty()) {
+                        // If outgoing and incoming happen at the same time, choose the current one.
+                        auto call = linked.owner.callModel->getCall(conversation.callId);
+                        qWarning() << "Double call detected" << call::to_string(call.status) << " - " << conversation.callId;
+                        // Ignore new call in favor of existing one
+                        if (call.status == call::Status::IN_PROGRESS)
+                            return;
+                    }
                     conversation.callId = callId;
                     // Update interaction status
                     invalidateModel();
@@ -3565,7 +3573,8 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
         }
         try {
             auto& conv = getConversationForPeerUri(from).get();
-            conv.callId = callId;
+            if (conv.callId.isEmpty())
+                conv.callId = callId;
         } catch (...) {
             return;
         }
