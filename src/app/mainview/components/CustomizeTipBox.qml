@@ -95,8 +95,7 @@ ColumnLayout {
 
     }
 
-    EditableLineEdit {
-
+    ModalTextEdit {
         id: displayNameLineEdit
 
         visible: opened
@@ -105,16 +104,15 @@ ColumnLayout {
         Layout.preferredWidth: root.width - 32
         Layout.topMargin: -10
 
-        text: CurrentAccount.alias
+        staticText: CurrentAccount.alias
         placeholderText: JamiStrings.enterNickname
-        color: JamiTheme.textColor
 
-        fontSize: JamiTheme.tipBoxContentFontSize
-
-        onEditingFinished: {
-            AccountAdapter.setCurrAccDisplayName(text)
+        onAccepted: {
+            if (dynamicText === '') {
+                return
+            }
+            AccountAdapter.setCurrAccDisplayName(dynamicText)
         }
-
     }
 
     Text {

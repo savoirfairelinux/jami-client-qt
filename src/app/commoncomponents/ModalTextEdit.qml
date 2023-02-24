@@ -47,6 +47,8 @@ Loader {
     // Emitted when the editor has been accepted.
     signal accepted
 
+    signal activeChanged(bool active)
+
     // Always give up focus when accepted.
     onAccepted: focus = false
 
@@ -92,19 +94,23 @@ Loader {
             placeholderText: root.placeholderText
             onAccepted: root.accepted()
             onTextChanged: dynamicText = text
-            onVisibleChanged: text = dynamicText
+            text: staticText
             inputIsValid: root.inputIsValid
-            onFocusChanged: if (!focus) root.editMode = false
+            onFocusChanged: {
+                if (!focus) {
+                    root.editMode = false
+                }
+                activeChanged(root.editMode)
+            }
+            onIsActiveChanged: activeChanged(isActive)
         }
     }
 
     // We use a loader to switch between the two components depending on the
     // editMode property.
     sourceComponent: {
-
         editMode || isPersistent
                 ? editComp
                 : displayComp
     }
-
 }

@@ -178,7 +178,7 @@ ColumnLayout {
         }
 
         // Private key password
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditSIPCertPassword
 
             Layout.fillWidth: true
@@ -262,7 +262,7 @@ ColumnLayout {
                          parseInt(comboModel.get(modelIndex).secondArg)
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: outgoingTLSServerNameLineEdit
 
             Layout.fillWidth: true

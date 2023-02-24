@@ -26,24 +26,24 @@ ModalTextEdit {
 
     prefixIconSrc: {
         switch(nameRegistrationState){
-        case UsernameLineEdit.NameRegistrationState.FREE:
+        case UsernameTextEdit.NameRegistrationState.FREE:
             return JamiResources.circled_green_check_svg
-        case UsernameLineEdit.NameRegistrationState.INVALID:
-        case UsernameLineEdit.NameRegistrationState.TAKEN:
+        case UsernameTextEdit.NameRegistrationState.INVALID:
+        case UsernameTextEdit.NameRegistrationState.TAKEN:
             return JamiResources.circled_red_cross_svg
-        case UsernameLineEdit.NameRegistrationState.BLANK:
+        case UsernameTextEdit.NameRegistrationState.BLANK:
         default:
             return JamiResources.person_24dp_svg
         }
     }
     prefixIconColor: {
         switch(nameRegistrationState){
-        case UsernameLineEdit.NameRegistrationState.FREE:
+        case UsernameTextEdit.NameRegistrationState.FREE:
             return "#009980"
-        case UsernameLineEdit.NameRegistrationState.INVALID:
-        case UsernameLineEdit.NameRegistrationState.TAKEN:
+        case UsernameTextEdit.NameRegistrationState.INVALID:
+        case UsernameTextEdit.NameRegistrationState.TAKEN:
             return "#CC0022"
-        case UsernameLineEdit.NameRegistrationState.BLANK:
+        case UsernameTextEdit.NameRegistrationState.BLANK:
         default:
             return JamiTheme.editLineColor
         }
@@ -51,18 +51,23 @@ ModalTextEdit {
     suffixIconSrc: JamiResources.outline_info_24dp_svg
     suffixIconColor: JamiTheme.buttonTintedBlue
 
+    property bool isActive: false
     property string infohash: CurrentAccount.uri
     property string registeredName: CurrentAccount.registeredName
-    property bool hasRegisteredName: registeredName !== ''
+    staticText: root.isActive ? registeredName : (registeredName ? registeredName : infohash)
 
     infoTipText: JamiStrings.usernameToolTip
     placeholderText: JamiStrings.chooseAUsername
 
     enum NameRegistrationState { BLANK, INVALID, TAKEN, FREE, SEARCHING }
-    property int nameRegistrationState: UsernameLineEdit.NameRegistrationState.BLANK
+    property int nameRegistrationState: UsernameTextEdit.NameRegistrationState.BLANK
 
     inputIsValid: dynamicText.length === 0
-                  || nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE
+                  || nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE
+
+    onActiveChanged: function(active) {
+        root.isActive = active
+    }
 
     Connections {
         target: CurrentAccount
@@ -82,15 +87,15 @@ ModalTextEdit {
             if (dynamicText === name) {
                 switch(status) {
                 case NameDirectory.LookupStatus.NOT_FOUND:
-                    nameRegistrationState = UsernameLineEdit.NameRegistrationState.FREE
+                    nameRegistrationState = UsernameTextEdit.NameRegistrationState.FREE
                     break
                 case NameDirectory.LookupStatus.ERROR:
                 case NameDirectory.LookupStatus.INVALID_NAME:
                 case NameDirectory.LookupStatus.INVALID:
-                    nameRegistrationState = UsernameLineEdit.NameRegistrationState.INVALID
+                    nameRegistrationState = UsernameTextEdit.NameRegistrationState.INVALID
                     break
                 case NameDirectory.LookupStatus.SUCCESS:
-                    nameRegistrationState = UsernameLineEdit.NameRegistrationState.TAKEN
+                    nameRegistrationState = UsernameTextEdit.NameRegistrationState.TAKEN
                     break
                 }
             }
@@ -101,24 +106,25 @@ ModalTextEdit {
         id: lookupTimer
 
         repeat: false
-        interval: JamiTheme.usernameLineEditlookupInterval
+        interval: JamiTheme.usernameTextEditlookupInterval
 
         onTriggered: {
             if (dynamicText.length !== 0) {
-                nameRegistrationState = UsernameLineEdit.NameRegistrationState.SEARCHING
+                nameRegistrationState = UsernameTextEdit.NameRegistrationState.SEARCHING
                 NameDirectory.lookupName(CurrentAccount.id, dynamicText)
             } else {
-                nameRegistrationState = UsernameLineEdit.NameRegistrationState.BLANK
+                nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK
             }
         }
     }
+
     onDynamicTextChanged: lookupTimer.restart()
 
     function startEditing() {
-        if (!hasRegisteredName) {
+        if (!registeredName) {
             root.editMode = true
             forceActiveFocus()
-            nameRegistrationState = UsernameLineEdit.NameRegistrationState.BLANK
+            nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK
         }
     }
 }

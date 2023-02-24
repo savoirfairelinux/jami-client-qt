@@ -518,9 +518,9 @@ Item {
     //MaterialButton
     property real buttontextPadding: 10
 
-    // UsernameLineEdit
-    property real usernameLineEditPointSize:calcSize(9 + fontSizeOffset)
-    property real usernameLineEditlookupInterval: 200
+    // UsernameTextEdit
+    property real usernameTextEditPointSize:calcSize(9 + fontSizeOffset)
+    property real usernameTextEditlookupInterval: 200
 
     // JamiScrollBar
     property int scrollBarHandleSize: 6
