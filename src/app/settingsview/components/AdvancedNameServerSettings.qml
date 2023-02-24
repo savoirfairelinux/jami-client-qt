@@ -45,7 +45,7 @@ ColumnLayout {
         elide: Text.ElideRight
     }
 
-    SettingsMaterialLineEdit {
+    SettingsMaterialTextEdit {
         id: lineEditNameServer
 
         Layout.fillWidth: true
@@ -56,6 +56,7 @@ ColumnLayout {
         titleField: JamiStrings.address
 
         staticText: CurrentAccount.uri_RingNS
+        placeholderText: CurrentAccount.uri_RingNS
 
         onEditFinished: CurrentAccount.uri_RingNS = dynamicText
     }

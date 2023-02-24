@@ -71,7 +71,7 @@ ColumnLayout {
             onSwitchToggled: CurrentAccount.publishedSameAsLocal = checked
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditSIPCustomAddress
 
             Layout.fillWidth: true
@@ -84,6 +84,7 @@ ColumnLayout {
             titleField: JamiStrings.address
 
             staticText: CurrentAccount.publishedAddress
+            placeholderText: CurrentAccount.publishedAddress
 
             onEditFinished: CurrentAccount.publishedAddress = dynamicText
         }

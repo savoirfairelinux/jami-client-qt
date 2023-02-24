@@ -50,7 +50,6 @@ Loader {
     // Always give up focus when accepted.
     onAccepted: focus = false
 
-
     onFocusChanged: {
         if (root.focus && root.isPersistent) {
             item.forceActiveFocus()
@@ -90,7 +89,10 @@ Loader {
             font.bold: root.fontBold
             echoMode: root.echoMode
             placeholderText: root.placeholderText
-            onAccepted: root.accepted()
+            onAccepted: {
+                root.accepted()
+                text = ""
+            }
             onTextChanged: dynamicText = text
             onVisibleChanged: text = dynamicText
             inputIsValid: root.inputIsValid
@@ -101,10 +103,8 @@ Loader {
     // We use a loader to switch between the two components depending on the
     // editMode property.
     sourceComponent: {
-
         editMode || isPersistent
                 ? editComp
                 : displayComp
     }
-
 }
