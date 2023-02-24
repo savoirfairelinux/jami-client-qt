@@ -114,7 +114,7 @@ ColumnLayout {
             onSwitchToggled: CurrentAccount.enable_TURN = checked
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditTurnAddress
 
             Layout.fillWidth: true
@@ -130,7 +130,7 @@ ColumnLayout {
             onEditFinished: CurrentAccount.server_TURN = dynamicText
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditTurnUsername
 
             Layout.fillWidth: true
@@ -146,7 +146,7 @@ ColumnLayout {
             onEditFinished: CurrentAccount.username_TURN = dynamicText
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditTurnPassword
 
             Layout.fillWidth: true
@@ -162,7 +162,7 @@ ColumnLayout {
             onEditFinished: CurrentAccount.password_TURN = dynamicText
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditTurnRealmSIP
 
             Layout.fillWidth: true
@@ -192,7 +192,7 @@ ColumnLayout {
             onSwitchToggled: CurrentAccount.enable_STUN = checked
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditSTUNAddress
 
             Layout.fillWidth: true

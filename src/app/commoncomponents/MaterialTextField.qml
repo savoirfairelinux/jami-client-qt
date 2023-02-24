@@ -26,7 +26,7 @@ TextField {
 
     // We need to remove focus when another widget takes activeFocus,
     // except the context menu.
-    property bool isActive: activeFocus || contextMenu.active || root.text.toString() !== ''
+    property bool isActive: activeFocus || contextMenu.active
     onActiveFocusChanged: {
         if (!activeFocus && !contextMenu.active) {
             root.focus = false
@@ -76,7 +76,6 @@ TextField {
     bottomPadding: 20
     topPadding: 2
 
-    onIsActiveChanged: if (!isActive && !readOnly) text = ''
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Enter
                 || event.key === Qt.Key_Return) {
@@ -94,6 +93,7 @@ TextField {
         lineEditObj: root
         selectOnly: readOnly
     }
+
     onReleased: function (event) {
         if (event.button === Qt.RightButton)
             contextMenu.openMenuAt(event)
@@ -107,7 +107,7 @@ TextField {
         anchors.horizontalCenter: root.horizontalCenter
         text: root.placeholderText
         color: root.baseColor
-        visible: !root.isActive && !readOnly
+        visible: !root.isActive && !readOnly && root.text.toString() === ""
     }
 
     Rectangle {
@@ -150,7 +150,7 @@ TextField {
         color: root.baseColor
 
         // Show the alternate placeholder while the user types.
-        visible: root.text.toString() !== '' && !readOnly
+        visible: root.isActive && !readOnly
     }
 
     TextFieldIcon {

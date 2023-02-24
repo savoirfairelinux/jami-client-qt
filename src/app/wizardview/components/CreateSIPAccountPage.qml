@@ -265,7 +265,6 @@ Rectangle {
                 }
 
                 ModalTextEdit {
-
                     id: displayNameLineEdit
 
                     Layout.alignment: Qt.AlignCenter

@@ -704,7 +704,7 @@ WizardView {
 
             // With username
             usernameEdit.nameRegistrationState =
-                    UsernameLineEdit.NameRegistrationState.FREE
+                    UsernameTextEdit.NameRegistrationState.FREE
 
             keyClick(Qt.Key_Tab)
             compare(chooseUsernameButton.focus, true)
