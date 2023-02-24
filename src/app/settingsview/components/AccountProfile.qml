@@ -70,24 +70,16 @@ ColumnLayout {
         buttonSize: JamiTheme.smartListAvatarSize
     }
 
-    MaterialLineEdit {
+    ModalTextEdit {
         id: displayNameLineEdit
 
         Layout.alignment: Qt.AlignCenter
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight + 8
         Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
-        font.pointSize: JamiTheme.textFontSize
-        font.kerning: true
-        text: CurrentAccount.alias
+        staticText: CurrentAccount.alias
         placeholderText: JamiStrings.enterNickname
 
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        padding: 8
-
-        loseFocusWhenEnterPressed: true
-
-        onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
+        onAccepted: AccountAdapter.setCurrAccDisplayName(dynamicText)
     }
 }
