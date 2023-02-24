@@ -109,65 +109,33 @@ ColumnLayout {
             verticalAlignment: Text.AlignVCenter
         }
 
-        UsernameLineEdit {
+        UsernameTextEdit {
             id: currentRegisteredID
 
-            anchors.verticalCenter: parent.verticalCenter
-
-            height: JamiTheme.preferredFieldHeight
             width: JamiTheme.preferredFieldWidth
+            height: JamiTheme.preferredFieldHeight + 16
 
-            padding: 8
-            horizontalAlignment: CurrentAccount.registeredName === "" ? Text.AlignLeft :
-                                                                        Text.AlignRight
-            verticalAlignment: Text.AlignVCenter
-            wrapMode: Text.NoWrap
-            placeholderText: CurrentAccount.registeredName === "" ?
-                                 JamiStrings.registerAUsername : ""
-            text: CurrentAccount.registeredName
-            readOnly: CurrentAccount.registeredName !== ""
-            font.bold: CurrentAccount.registeredName !== ""
+            anchors.margins: 8
 
-            loseFocusWhenEnterPressed: btnRegisterName.visible
+            fontPointSize: JamiTheme.textFontSize + 1
+            staticText: CurrentAccount.registeredName
+            placeholderText: JamiStrings.chooseUsername
+            editMode: !CurrentAccount.registeredName
+            isPersistent: !CurrentAccount.registeredName
 
-            onEditingFinished: {
-                if (btnRegisterName.visible)
-                    btnRegisterName.clicked()
+            onAccepted: {
+                if (dynamicText === '') {
+                    return
+                }
+                var dlg = viewCoordinator.presentDialog(
+                            appWindow,
+                            "settingsview/components/NameRegistrationDialog.qml",
+                            { registeredName: dynamicText })
+                dlg.accepted.connect(function() {
+                    currentRegisteredID.nameRegistrationState =
+                            UsernameTextEdit.NameRegistrationState.BLANK
+                })
             }
-        }
-    }
-
-    MaterialButton {
-        id: btnRegisterName
-
-        Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-        Layout.rightMargin: currentRegisteredID.width / 2 - width / 2
-
-        preferredWidth: 120
-        preferredHeight: 30
-
-        visible: CurrentAccount.registeredName === "" &&
-                 currentRegisteredID.nameRegistrationState ===
-                 UsernameLineEdit.NameRegistrationState.FREE
-
-        text: JamiStrings.register
-        toolTipText: JamiStrings.registerUsername
-        color: JamiTheme.buttonTintedGrey
-        hoveredColor: JamiTheme.buttonTintedGreyHovered
-        pressedColor: JamiTheme.buttonTintedGreyPressed
-
-        onClicked: {
-            if (currentRegisteredID.text === '') {
-                return
-            }
-            var dlg = viewCoordinator.presentDialog(
-                        appWindow,
-                        "settingsview/components/NameRegistrationDialog.qml",
-                        { registeredName: currentRegisteredID.text })
-            dlg.accepted.connect(function() {
-                currentRegisteredID.nameRegistrationState =
-                        UsernameLineEdit.NameRegistrationState.BLANK
-            })
         }
     }
 }

@@ -178,11 +178,10 @@ ColumnLayout {
         }
 
         // Private key password
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditSIPCertPassword
 
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             enabled: CurrentAccount.enable_TLS
 
@@ -262,7 +261,7 @@ ColumnLayout {
                          parseInt(comboModel.get(modelIndex).secondArg)
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: outgoingTLSServerNameLineEdit
 
             Layout.fillWidth: true

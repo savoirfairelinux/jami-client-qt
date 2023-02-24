@@ -29,10 +29,11 @@ RowLayout {
     id: root
 
     property alias titleField: title.text
-    property alias staticText: modalTextEdit.staticText
-    property alias placeholderText: modalTextEdit.placeholderText
-    property alias enabled: modalTextEdit.enabled
-    property alias dynamicText: modalTextEdit.dynamicText
+    property string staticText
+    property string placeholderText
+    property string dynamicText
+
+    property bool isPassword: false
 
     property int itemWidth
 
@@ -56,13 +57,35 @@ RowLayout {
 
     ModalTextEdit {
         id: modalTextEdit
+
+        visible: !root.isPassword
+
         Layout.alignment: Qt.AlignCenter
         Layout.preferredWidth: itemWidth
         Layout.maximumHeight: 40
-        staticText: staticText
-        placeholderText: ""
+        staticText: root.staticText
+        placeholderText: root.placeholderText ? root.placeholderText : root.titleField
 
         onAccepted: {
+            root.dynamicText = dynamicText
+            editFinished()
+        }
+
+    }
+
+    PasswordTextEdit {
+        id: passwordTextEdit
+
+        visible: root.isPassword
+
+        Layout.alignment: Qt.AlignCenter
+        Layout.preferredWidth: itemWidth
+        Layout.maximumHeight: 40
+        staticText: root.staticText
+        placeholderText: root.placeholderText ? root.placeholderText : root.titleField
+
+        onAccepted: {
+            root.dynamicText = dynamicText
             editFinished()
         }
 
