@@ -114,7 +114,7 @@ ColumnLayout {
             onSwitchToggled: CurrentAccount.enable_TURN = checked
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditTurnAddress
 
             Layout.fillWidth: true
@@ -123,6 +123,7 @@ ColumnLayout {
             enabled: checkBoxTurnEnable.checked
 
             staticText: CurrentAccount.server_TURN
+            placeholderText: CurrentAccount.server_TURN
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnAdress
@@ -130,7 +131,7 @@ ColumnLayout {
             onEditFinished: CurrentAccount.server_TURN = dynamicText
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditTurnUsername
 
             Layout.fillWidth: true
@@ -139,6 +140,7 @@ ColumnLayout {
             enabled: checkBoxTurnEnable.checked
 
             staticText: CurrentAccount.username_TURN
+            placeholderText: CurrentAccount.username_TURN
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnUsername
@@ -146,7 +148,7 @@ ColumnLayout {
             onEditFinished: CurrentAccount.username_TURN = dynamicText
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditTurnPassword
 
             Layout.fillWidth: true
@@ -155,6 +157,7 @@ ColumnLayout {
             enabled: checkBoxTurnEnable.checked
 
             staticText: CurrentAccount.password_TURN
+            placeholderText: CurrentAccount.password_TURN
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnPassword
@@ -162,7 +165,7 @@ ColumnLayout {
             onEditFinished: CurrentAccount.password_TURN = dynamicText
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditTurnRealmSIP
 
             Layout.fillWidth: true
@@ -171,6 +174,7 @@ ColumnLayout {
             enabled: checkBoxTurnEnable.checked
 
             staticText: CurrentAccount.realm_TURN
+            placeholderText: CurrentAccount.realm_TURN
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnRealm
@@ -192,7 +196,7 @@ ColumnLayout {
             onSwitchToggled: CurrentAccount.enable_STUN = checked
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditSTUNAddress
 
             Layout.fillWidth: true
@@ -202,6 +206,7 @@ ColumnLayout {
             visible: isSIP
 
             staticText: CurrentAccount.server_STUN
+            placeholderText: CurrentAccount.server_STUN
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.stunAdress

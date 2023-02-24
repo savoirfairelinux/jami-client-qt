@@ -30,6 +30,7 @@ Loader {
     property color suffixBisIconColor: JamiTheme.buttonTintedBlue
 
     required property string placeholderText
+    property string initialPlaceHolder
     property string staticText: ""
     property string dynamicText
     property bool inputIsValid: true
@@ -49,7 +50,6 @@ Loader {
 
     // Always give up focus when accepted.
     onAccepted: focus = false
-
 
     onFocusChanged: {
         if (root.focus && root.isPersistent) {
@@ -90,7 +90,11 @@ Loader {
             font.bold: root.fontBold
             echoMode: root.echoMode
             placeholderText: root.placeholderText
-            onAccepted: root.accepted()
+            initialPlaceHolder: root.initialPlaceHolder
+            onAccepted: {
+                root.accepted()
+                text = ""
+            }
             onTextChanged: dynamicText = text
             onVisibleChanged: text = dynamicText
             inputIsValid: root.inputIsValid
@@ -101,10 +105,8 @@ Loader {
     // We use a loader to switch between the two components depending on the
     // editMode property.
     sourceComponent: {
-
         editMode || isPersistent
                 ? editComp
                 : displayComp
     }
-
 }

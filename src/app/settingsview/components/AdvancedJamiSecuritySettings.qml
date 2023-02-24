@@ -122,7 +122,7 @@ ColumnLayout {
                                     })
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditCertPassword
 
             Layout.fillWidth: true
@@ -132,6 +132,7 @@ ColumnLayout {
             titleField: JamiStrings.privateKeyPassword
 
             staticText: CurrentAccount.password_TLS
+            placeholderText: CurrentAccount.password_TLS
 
             onEditFinished: CurrentAccount.password_TLS = dynamicText
         }

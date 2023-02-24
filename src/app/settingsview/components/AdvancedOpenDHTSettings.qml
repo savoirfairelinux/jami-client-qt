@@ -74,7 +74,7 @@ ColumnLayout {
             onSwitchToggled: CurrentAccount.proxyEnabled = checked
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditProxy
 
             Layout.fillWidth: true
@@ -83,6 +83,7 @@ ColumnLayout {
             enabled: checkBoxEnableProxy.checked
 
             staticText: CurrentAccount.proxyServer
+            placeholderText: CurrentAccount.proxyServer
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.proxyAddress
@@ -90,13 +91,14 @@ ColumnLayout {
             onEditFinished: CurrentAccount.proxyServer = dynamicText
         }
 
-        SettingsMaterialLineEdit {
+        SettingsMaterialTextEdit {
             id: lineEditBootstrap
 
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             staticText: CurrentAccount.hostname
+            placeholderText: CurrentAccount.hostname
 
             itemWidth: root.itemWidth
             titleField: JamiStrings.bootstrap

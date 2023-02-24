@@ -41,6 +41,7 @@ TextField {
     property alias suffixIconColor: suffixIcon.color
     property string suffixBisIconSrc
     property alias suffixBisIconColor: suffixBisIcon.color
+    property string initialPlaceHolder
 
     property color accent: isActive || hovered
                            ? prefixIconColor
@@ -146,11 +147,11 @@ TextField {
         font.pointSize: root.font.pointSize - 3
         anchors.top: baselineLine.bottom
         anchors.topMargin: 2
-        text: root.placeholderText
+        text: root.initialPlaceHolder ? root.initialPlaceHolder : root.placeholderText
         color: root.baseColor
 
         // Show the alternate placeholder while the user types.
-        visible: root.text.toString() !== '' && !readOnly
+        visible: root.text !== text && !readOnly && root.isActive
     }
 
     TextFieldIcon {
