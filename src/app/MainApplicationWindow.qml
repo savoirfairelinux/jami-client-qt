@@ -51,6 +51,7 @@ ApplicationWindow {
     property LayoutManager layoutManager: LayoutManager {
         appContainer: appContainer
     }
+    property ViewManager viewManager: ViewManager {}
     property ViewCoordinator viewCoordinator: ViewCoordinator {
         resources: {
             "WelcomePage": "mainview/components/WelcomePage.qml",
@@ -60,6 +61,7 @@ ApplicationWindow {
             "WizardView": "wizardview/WizardView.qml",
             "SettingsView": "settingsview/SettingsView.qml",
         }
+        viewManager: root.viewManager
     }
 
     property bool windowSettingsLoaded: false
