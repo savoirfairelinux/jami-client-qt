@@ -65,6 +65,7 @@ Rectangle {
 
     function openInCallConversation() {
         mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally)
+        chatViewContainer.visible = false
         chatViewContainer.visible = true
     }
 
@@ -336,13 +337,22 @@ Rectangle {
                 }
 
                 onChatButtonClicked: {
-                    chatViewContainer.visible ?
-                                closeInCallConversation() :
-                                openInCallConversation()
+                    var detailsVisible = chatViewContainer.showDetails
+                    chatViewContainer.showDetails = false
+                    !chatViewContainer.visible || detailsVisible ?
+                                openInCallConversation() :
+                                closeInCallConversation()
                 }
 
                 onFullScreenClicked: {
                     callStackView.toggleFullScreen()
+                }
+
+                onSwarmDetailsClicked: {
+                    chatViewContainer.showDetails = !chatViewContainer.showDetails
+                    chatViewContainer.showDetails ?
+                                openInCallConversation() :
+                                closeInCallConversation()
                 }
             }
 
@@ -399,6 +409,7 @@ Rectangle {
             SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
             visible: false
             clip: true
+            property bool showDetails: false
 
             onVisibleChanged: {
                 if (visible && root.width < JamiTheme.chatViewHeaderMinimumWidth * 2) {
