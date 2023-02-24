@@ -117,6 +117,14 @@ Rectangle {
         previewRenderer.state = "geoChanging"
     }
 
+    onWidthChanged: {
+        if (chatViewContainer.visible && root.width < JamiTheme.chatViewHeaderMinimumWidth * 2) {
+            callPageMainRect.visible = false
+        } else {
+            callPageMainRect.visible = true
+        }
+    }
+
     SplitView {
         id: mainColumnLayout
 
@@ -137,10 +145,8 @@ Rectangle {
             id: callPageMainRect
 
             SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : (root.height / 3) * 2
-            SplitView.preferredWidth: mainColumnLayout.isHorizontal ? (root.width / 3) * 2 : root.width
-            SplitView.minimumHeight: root.height / 2 + 20
-            SplitView.minimumWidth: root.width / 2 + 20
-            SplitView.fillWidth: !mainColumnLayout.isHorizontal
+            SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
+            SplitView.fillWidth: true
 
             TapHandler {
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
@@ -388,10 +394,19 @@ Rectangle {
                                            root.height :
                                            root.height / 3
             SplitView.preferredWidth: mainColumnLayout.isHorizontal ?
-                                          root.width / 3 :
+                                          JamiTheme.chatViewHeaderMinimumWidth :
                                           root.width
+            SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
             visible: false
             clip: true
+
+            onVisibleChanged: {
+                if (visible && root.width < JamiTheme.chatViewHeaderMinimumWidth * 2) {
+                    callPageMainRect.visible = false
+                } else {
+                    callPageMainRect.visible = true
+                }
+            }
         }
     }
 }
