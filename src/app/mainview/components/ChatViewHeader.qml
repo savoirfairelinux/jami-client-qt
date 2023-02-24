@@ -31,6 +31,8 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
+    property bool showSearch: true
+
     signal backClicked
     signal addToConversationClicked
     signal pluginSelector
@@ -156,7 +158,7 @@ Rectangle {
 
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 spacing: headerButtons.spacing
-                visible: CurrentConversation.isSwarm
+                visible: root.showSearch && CurrentConversation.isSwarm
             }
 
             PushButton {
@@ -197,7 +199,7 @@ Rectangle {
                 normalColor: JamiTheme.chatviewBgColor
                 imageColor: JamiTheme.chatviewButtonColor
 
-                visible: CurrentConversationMembers.count < 8 && addMemberVisibility
+                visible: interactionButtonsVisibility && CurrentConversationMembers.count < 8 && addMemberVisibility
 
                 onClicked: addToConversationClicked()
             }
@@ -236,7 +238,7 @@ Rectangle {
             PushButton {
                 id: detailsButton
 
-                visible: swarmDetailsVisibility
+                visible: interactionButtonsVisibility && swarmDetailsVisibility
 
                 source: JamiResources.swarm_details_panel_svg
                 toolTipText: JamiStrings.details
