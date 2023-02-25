@@ -53,14 +53,6 @@ ApplicationWindow {
     }
     property ViewManager viewManager: ViewManager {}
     property ViewCoordinator viewCoordinator: ViewCoordinator {
-        resources: {
-            "WelcomePage": "mainview/components/WelcomePage.qml",
-            "SidePanel": "mainview/components/SidePanel.qml",
-            "ConversationView": "mainview/ConversationView.qml",
-            "NewSwarmPage": "mainview/components/NewSwarmPage.qml",
-            "WizardView": "wizardview/WizardView.qml",
-            "SettingsView": "settingsview/SettingsView.qml",
-        }
         viewManager: root.viewManager
     }
 
