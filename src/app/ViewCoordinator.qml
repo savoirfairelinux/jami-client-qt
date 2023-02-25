@@ -173,6 +173,13 @@ QtObject {
         return -1
     }
 
+    // Load a view without presenting it.
+    function preload(viewName) {
+        if (!viewManager.createView(resources[viewName], null)) {
+            console.log("Failed to load view: " + viewName)
+        }
+    }
+
     // This function presents the view with the given viewName in the
     // specified StackView. Return the view if successful.
     function present(viewName, sv=activeStackView) {
@@ -292,6 +299,8 @@ QtObject {
 
     // Dismiss by view name.
     function dismiss(viewName) {
+        if (!rootView) return
+
         const depth = activeStackView.depth
         for (var i = (depth - 1); i >= 0; i--) {
             const view = activeStackView.get(i, StackView.DontLoad)
