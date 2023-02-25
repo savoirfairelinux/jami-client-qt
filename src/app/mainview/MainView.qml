@@ -42,7 +42,6 @@ Rectangle {
     // To calculate tab bar bottom border hidden rect left margin.
     property int tabBarLeftMargin: 8
     property int tabButtonShrinkSize: 8
-    property bool inSettingsView: viewCoordinator.inSettings
 
     signal loaderSourceChangeRequested(int sourceToLoad)
 
