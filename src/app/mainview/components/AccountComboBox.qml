@@ -33,8 +33,6 @@ Label {
     signal settingBtnClicked
     property alias popup: comboBoxPopup
 
-    property bool inSettingsView: viewCoordinator.inSettings
-
     // TODO: remove these refresh hacks use QAbstractItemModels correctly
     Connections {
         target: AccountAdapter
@@ -205,13 +203,13 @@ Label {
                 id: settingsButton
 
                 anchors.verticalCenter: parent.verticalCenter
-                source: !inSettingsView ?
+                source: !viewCoordinator.inSettings ?
                             JamiResources.settings_24dp_svg :
                             JamiResources.round_close_24dp_svg
 
                 normalColor: JamiTheme.backgroundColor
                 imageColor: JamiTheme.textColor
-                toolTipText: !inSettingsView ?
+                toolTipText: !viewCoordinator.inSettings ?
                                  JamiStrings.openSettings :
                                  JamiStrings.closeSettings
 

@@ -34,12 +34,21 @@ QtObject {
     signal requestAppWindowWizardView
 
     // A map of view names to file paths for QML files that define each view.
-    required property variant resources
+    property variant resources: {
+        "WelcomePage": "mainview/components/WelcomePage.qml",
+        "SidePanel": "mainview/components/SidePanel.qml",
+        "ConversationView": "mainview/ConversationView.qml",
+        "NewSwarmPage": "mainview/components/NewSwarmPage.qml",
+        "WizardView": "wizardview/WizardView.qml",
+        "SettingsView": "settingsview/SettingsView.qml",
+    }
 
     // Maybe this state needs to be toggled because the SidePanel content is replaced.
     // This makes it so the state can't be inferred from loaded views in single pane mode.
     property bool inSettings: viewManager.hasView("SettingsView")
+    property bool inWizard: viewManager.hasView("WizardView")
     property bool inNewSwarm: viewManager.hasView("NewSwarmPage")
+    property bool inhibitConversationView: inSettings || inWizard || inNewSwarm
 
     property bool busy: false
 
@@ -168,6 +177,10 @@ QtObject {
     // specified StackView. Return the view if successful.
     function present(viewName, sv=activeStackView) {
         if (!rootView) return
+
+        if (viewName === "ConversationView" && inhibitConversationView) {
+            return
+        }
 
         // If the view already exists in the StackView, the function will attempt
         // to navigate to its StackView position by dismissing elevated views.
