@@ -184,7 +184,7 @@ BaseView {
             width: parent.width
             height: JamiTheme.accountListItemHeight
             onSettingBtnClicked: {
-                !inSettingsView ?
+                !viewCoordinator.inSettings ?
                             viewCoordinator.present("SettingsView") :
                             viewCoordinator.dismiss("SettingsView")}
         }
