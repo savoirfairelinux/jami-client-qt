@@ -16,6 +16,24 @@
       "message": "can reproduce two behaviours:\n1. both sides appears like calling\n2. after accepting a call, the other side still has a `call to busy peer` ringing",
       "revId": "0a4993603b11bbd11b3173cb69b95fe0e7f0b6f5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55f55ef0_07ecb722",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-27T13:54:21Z",
+      "side": 1,
+      "message": "Do you have: https://review.jami.net/c/jami-daemon/+/23753 for the daemon?",
+      "parentUuid": "02eee555_50239298",
+      "revId": "0a4993603b11bbd11b3173cb69b95fe0e7f0b6f5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
