@@ -40,9 +40,9 @@ AppSettingsManager::AppSettingsManager(QObject* parent)
 }
 
 QVariant
-AppSettingsManager::getValue(const Settings::Key key)
+AppSettingsManager::getValue(const QString& key, const QVariant& defaultValue)
 {
-    auto value = settings_->value(Settings::toString(key), Settings::defaultValue(key));
+    auto value = settings_->value(key, defaultValue);
 
     if (QString(value.typeName()) == "QString"
         && (value.toString() == "false" || value.toString() == "true"))
@@ -52,9 +52,21 @@ AppSettingsManager::getValue(const Settings::Key key)
 }
 
 void
+AppSettingsManager::setValue(const QString& key, const QVariant& value)
+{
+    settings_->setValue(key, value);
+}
+
+QVariant
+AppSettingsManager::getValue(const Settings::Key key)
+{
+    return getValue(Settings::toString(key), Settings::defaultValue(key));
+}
+
+void
 AppSettingsManager::setValue(const Settings::Key key, const QVariant& value)
 {
-    settings_->setValue(Settings::toString(key), value);
+    setValue(Settings::toString(key), value);
 }
 
 QString
