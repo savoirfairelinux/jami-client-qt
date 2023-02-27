@@ -22,103 +22,54 @@ import QtQuick.Layouts
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
-// This object should be implemented as a QML singleton, or be instantiated
-// once in the main application window component. The top-level application window
-// contains a loader[mainview, wizardview] and "rootView" MUST parent a horizontal
-// SplitView with a StackView in each pane.
+import "commoncomponents"
+
 QtObject {
     id: root
 
     required property QtObject viewManager
 
+    signal initialized
     signal requestAppWindowWizardView
 
     // A map of view names to file paths for QML files that define each view.
     property variant resources: {
-        "WelcomePage": "mainview/components/WelcomePage.qml",
         "SidePanel": "mainview/components/SidePanel.qml",
+        "WelcomePage": "mainview/components/WelcomePage.qml",
         "ConversationView": "mainview/ConversationView.qml",
         "NewSwarmPage": "mainview/components/NewSwarmPage.qml",
         "WizardView": "wizardview/WizardView.qml",
         "SettingsView": "settingsview/SettingsView.qml",
+        "SettingsSidePanel": "settingsview/SettingsSidePanel.qml",
     }
-
-    // Maybe this state needs to be toggled because the SidePanel content is replaced.
-    // This makes it so the state can't be inferred from loaded views in single pane mode.
-    property bool inSettings: viewManager.hasView("SettingsView")
-    property bool inWizard: viewManager.hasView("WizardView")
-    property bool inNewSwarm: viewManager.hasView("NewSwarmPage")
-    property bool inhibitConversationView: inSettings || inWizard || inNewSwarm
-
-    property bool busy: false
 
     // The `main` view of the application window.
-    property Item rootView: null
+    property StackView rootView
 
-    // HACKS.
-    property real mainViewWidth: rootView ? rootView.width : 0
-    property real previousWidth: mainViewWidth
-    property real mainViewSidePanelRectWidth: sv1 ? sv1.width : 0
-    property real lastSideBarSplitSize: mainViewSidePanelRectWidth
-    onMainViewWidthChanged: resolvePanes()
+    property var currentViewName: rootView && rootView.currentItem &&
+                                  rootView.currentItem.objectName || null
 
-    function resolvePanes(force=false) {
-        if (forceSinglePane) return
-        const isExpanding = previousWidth < mainViewWidth
-        if (mainViewWidth < JamiTheme.chatViewHeaderMinimumWidth + mainViewSidePanelRectWidth
-                && sv2.visible && (!isExpanding || force)) {
-            lastSideBarSplitSize = mainViewSidePanelRectWidth
-            singlePane = true
-        } else if (mainViewWidth >= lastSideBarSplitSize + JamiTheme.chatViewHeaderMinimumWidth
-                   && !sv2.visible && (isExpanding || force) && !layoutManager.isFullScreen) {
-            singlePane = false
+    function init(mainStackView) {
+        rootView = Qt.createQmlObject(`import QtQuick; import QtQuick.Controls
+                                      StackView { anchors.fill: parent }`,
+                                      mainStackView)
+        initialized()
+    }
+
+    function deinit() {
+        viewManager.destroyAllViews()
+        if (rootView) rootView.destroy()
+    }
+
+    // Finds a view and gets its index within the StackView it's in.
+    function getStackIndex(viewName) {
+        for (const [key, value] of Object.entries(viewManager.views)) {
+            if (value.objectName === viewName) {
+                return value.StackView.index
+            }
         }
-        previousWidth = mainViewWidth
+        return -1
     }
-
-    // Must be the child of `rootView`.
-    property Item splitView: null
-
-    // StackView objects, which are children of `splitView`.
-    property StackView sv1: null
-    property StackView sv2: null
-
-    // The StackView object that is currently active, determined by the value
-    // of singlePane.
-    readonly property StackView activeStackView: singlePane ? sv1 : sv2
-
-    readonly property string currentViewName: {
-        if (activeStackView == null || activeStackView.depth === 0) return ''
-        return activeStackView.currentItem.objectName
-    }
-
-    readonly property var currentView: {
-        return activeStackView ? activeStackView.currentItem : null
-    }
-
-    // Handle single/dual pane mode.
-    property bool forceSinglePane: false
-    property bool singlePane
-    onForceSinglePaneChanged: {
-        if (forceSinglePane) singlePane = true
-        else resolvePanes(true)
-    }
-
-    onSinglePaneChanged: {
-        // Hiding sv2 before moving items from, and after moving
-        // items to, reduces stack item visibility change events.
-        if (singlePane) {
-            sv2.visible = false
-            if (forceSinglePane) Qt.callLater(move, sv2, sv1)
-            else move(sv2, sv1)
-        } else {
-            move(sv1, sv2)
-            sv2.visible = true
-        }
-    }
-
-    // Emitted once at the end of setRootView.
-    signal initialized()
 
     // Create, present, and return a dialog object.
     function presentDialog(parent, path, props={}) {
@@ -135,120 +86,42 @@ QtObject {
         }, props)
     }
 
-    // Dismiss all views.
-    function dismissAll() {
-        for (var path in viewManager.views) {
-            viewManager.destroyView(path)
-        }
-    }
+    // Present a view by name.
+    function present(viewName, props) {
+        const path = resources[viewName]
 
-    // Get a view regardless of whether it is currently active.
-    function getView(viewName) {
-        if (!viewManager.hasView(viewName)) {
-            return null
-        }
-        return viewManager.views[viewManager.viewPaths[viewName]]
-    }
-
-    // Sets object references, onInitialized is a good time to present views.
-    function setRootView(obj) {
-        rootView = obj
-        splitView = rootView.splitView
-        sv1 = rootView.sv1
-        sv1.parent = Qt.binding(() => singlePane ? rootView : splitView)
-        sv1.anchors.fill = Qt.binding(() => singlePane ? rootView : undefined)
-        sv2 = rootView.sv2
-
-        initialized()
-        resolvePanes()
-    }
-
-    // Finds a view and gets its index within the StackView it's in.
-    function getStackIndex(viewName) {
-        for (const [key, value] of Object.entries(viewManager.views)) {
-            if (value.objectName === viewName) {
-                return value.StackView.index
-            }
-        }
-        return -1
-    }
-
-    // Load a view without presenting it.
-    function preload(viewName) {
-        if (!viewManager.createView(resources[viewName], null)) {
-            console.log("Failed to load view: " + viewName)
-        }
-    }
-
-    // This function presents the view with the given viewName in the
-    // specified StackView. Return the view if successful.
-    function present(viewName, sv=activeStackView) {
-        if (!rootView) return
-
-        if (viewName === "ConversationView" && inhibitConversationView) {
+        // Check if the current view should inhibit the presentation of this view.
+        if (rootView.currentItem && rootView.currentItem.inhibits.includes(viewName)) {
+            print("inhibiting view:", viewName)
             return
         }
 
         // If the view already exists in the StackView, the function will attempt
         // to navigate to its StackView position by dismissing elevated views.
-        if (sv.find(function(item) {
+        if (rootView.find(function(item) {
             return item.objectName === viewName;
-        })) {
+        }, StackView.DontLoad)) {
             const viewIndex = getStackIndex(viewName)
-            if (viewIndex >= 0) {
-                for (var i = (sv.depth - 1); i > viewIndex; i--) {
-                    dismissObj(sv.get(i, StackView.DontLoad))
-                }
-                return true
+            for (var i = (rootView.depth - 1); i > viewIndex; i--) {
+                dismissObj(rootView.get(i, StackView.DontLoad))
             }
-            return false
+            return
         }
 
-        // If we are in single-pane mode and the view was previously forced into
-        // sv2, we can move it back to the top of sv1.
-        if (singlePane && sv === sv1) {
-            // See if the item is at the top of sv2
-            if (sv2.currentItem && sv2.currentItem.objectName === viewName) {
-                // Move it to the top of sv1
-                const view = sv2.pop(StackView.Immediate)
-                sv1.push(view, StackView.Immediate)
-                view.presented()
-                return view
+        if (!viewManager.createView(path, rootView, function(view) {
+            // push the view onto the stack if it's not already there
+            if (rootView.currentItem !== view) {
+                rootView.push(view, StackView.Immediate)
             }
-        }
-
-        const obj = viewManager.createView(resources[viewName], appWindow)
-        if (!obj) {
+            if (!view.managed) view.presented()
+        }, props)) {
             print("could not create view:", viewName)
-            return null
         }
-        if (obj === currentView) {
-            print("view is current:", viewName)
-            return null
-        }
-
-        // If we are in single-pane mode and the view should start hidden
-        // (requiresIndex), we can push it into sv2.
-        if (singlePane && sv === sv1 && obj.requiresIndex) {
-            sv = sv2
-        } else {
-            forceSinglePane = obj.singlePaneOnly
-        }
-
-        const view = sv.push(obj, StackView.Immediate)
-        if (!view) {
-            return null
-        }
-        if (view.objectName === '') {
-            view.objectName = viewName
-        }
-        view.presented()
-        return view
     }
 
     // Dismiss by object.
-    function dismissObj(obj, sv=activeStackView) {
-        if (obj.StackView.view !== sv) {
+    function dismissObj(obj) {
+        if (obj.StackView.view !== rootView) {
             print("view not in the stack:", obj)
             return
         }
@@ -256,27 +129,28 @@ QtObject {
         // If we are dismissing a view that is not at the top of the stack,
         // we need to store each of the views on top into a temporary stack
         // and then restore them after the view is dismissed.
-        // So we get the index of the view we are dismissing.
         const viewIndex = obj.StackView.index
         var tempStack = []
-        for (var i = (sv.depth - 1); i > viewIndex; i--) {
-            var item = sv.pop(StackView.Immediate)
+        for (var i = (rootView.depth - 1); i > viewIndex; i--) {
+            var item = rootView.pop(StackView.Immediate)
             tempStack.push(item)
         }
         // And we define a function to restore and resolve the views.
         var resolveStack = () => {
             for (var i = 0; i < tempStack.length; i++) {
-                sv.push(tempStack[i], StackView.Immediate)
+                rootView.push(tempStack[i], StackView.Immediate)
             }
-
-            forceSinglePane = sv.currentItem.singlePaneOnly
-            sv.currentItem.presented()
+            if (rootView.depth > 0) rootView.currentItem.presented()
         }
 
         // Now we can dismiss the view at the top of the stack.
-        const depth = sv.depth
-        if (obj === sv.get(depth - 1, StackView.DontLoad)) {
-            var view = sv.pop(StackView.Immediate)
+        const depth = rootView.depth
+        if (obj === rootView.get(depth - 1, StackView.DontLoad)) {
+            var view
+            if (rootView.depth === 1) {
+                view = rootView.currentItem
+                rootView.clear()
+            } else view = rootView.pop(StackView.Immediate)
             if (!view) {
                 print("could not pop view:", obj.objectName)
                 resolveStack()
@@ -290,51 +164,37 @@ QtObject {
                 if (!viewManager.destroyView(resources[objectName])) {
                     print("could not destroy view:", objectName)
                 }
-            } else {
-                view.dismissed()
-            }
+            } else view.dismissed()
         }
         resolveStack()
     }
 
-    // Dismiss by view name.
-    function dismiss(viewName) {
-        if (!rootView) return
-
-        const depth = activeStackView.depth
-        for (var i = (depth - 1); i >= 0; i--) {
-            const view = activeStackView.get(i, StackView.DontLoad)
-            if (view.objectName === viewName) {
-                dismissObj(view)
-                return
+    // Dismiss a view by name or the top view if unspecified.
+    function dismiss(viewName=undefined) {
+        if (!rootView || rootView.depth === 0) return
+        if (viewName !== undefined) {
+            const depth = rootView.depth
+            for (var i = (depth - 1); i >= 0; i--) {
+                const view = rootView.get(i, StackView.DontLoad)
+                if (view.objectName === viewName) {
+                    dismissObj(view)
+                    return
+                }
             }
-        }
-
-        // Check if the view is hidden on the top of sv2 (if in single-pane mode),
-        // and dismiss it in that case.
-        if (singlePane && sv2.currentItem && sv2.currentItem.objectName === viewName) {
-            dismissObj(sv2.currentItem, sv2)
+            return
+        } else {
+            dismissObj(rootView.currentItem)
         }
     }
 
-    // Move items from one stack to another. We avoid the recursive technique to
-    // avoid  visibility change events.
-    function move(from, to, depth=1) {
-        busy = true
-        var tempStack = []
-        while (from.depth > depth) {
-            var item = from.pop(StackView.Immediate)
-            tempStack.push(item)
-        }
-        while (tempStack.length) {
-            to.push(tempStack.pop(), StackView.Immediate)
-        }
-        busy = false
+    function getView(viewName) {
+        return viewManager.getView(viewName)
     }
 
-    // Effectively hide the current view by moving it to the other StackView.
-    // This function only works when in single-pane mode.
-    function hideCurrentView() {
-        if (singlePane) move(sv1, sv2)
-    }
+   // Load a view without presenting it.
+   function preload(viewName) {
+       if (!viewManager.createView(resources[viewName], null)) {
+           console.log("Failed to load view: " + viewName)
+       }
+   }
 }
