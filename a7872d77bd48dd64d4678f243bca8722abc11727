@@ -16,6 +16,24 @@
       "message": "Just some issues with the username",
       "revId": "a7872d77bd48dd64d4678f243bca8722abc11727",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0e32187_69b02ece",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-27T17:33:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6551297_047352ae",
+      "revId": "a7872d77bd48dd64d4678f243bca8722abc11727",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
