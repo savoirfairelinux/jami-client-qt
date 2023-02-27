@@ -64,12 +64,11 @@ PositionManager::startPositioning()
             this,
             &PositionManager::onPositionErrorReceived,
             Qt::UniqueConnection);
-    connect(
-        localPositioning_.get(),
-        &Positioning::newPosition,
-        this,
-        [this](const QString& body) { sendPosition(body, true); },
-        Qt::UniqueConnection);
+    connect(localPositioning_.get(),
+            &Positioning::newPosition,
+            this,
+            &PositionManager::onNewPosition,
+            Qt::UniqueConnection);
 }
 void
 PositionManager::stopPositioning()
@@ -387,6 +386,12 @@ void
 PositionManager::onPositionErrorReceived(const QString error)
 {
     Q_EMIT positioningError(error);
+}
+
+void
+PositionManager::onNewPosition(const QString& body)
+{
+    sendPosition(body, true);
 }
 
 void

@@ -91,6 +91,7 @@ protected:
 
 private Q_SLOTS:
     void onPositionErrorReceived(const QString error);
+    void onNewPosition(const QString& body);
     void onPositionReceived(const QString& accountId,
                             const QString& peerId,
                             const QString& body,
