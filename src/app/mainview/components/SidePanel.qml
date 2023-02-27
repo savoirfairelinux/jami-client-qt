@@ -29,7 +29,7 @@ import net.jami.Models 1.1
 import "../../commoncomponents"
 import "../../settingsview/components"
 
-BaseView {
+SidePanelBase {
     id: root
     objectName: "SidePanel"
 
@@ -180,14 +180,7 @@ BaseView {
             color: JamiTheme.backgroundColor
         }
 
-        header: AccountComboBox {
-            width: parent.width
-            height: JamiTheme.accountListItemHeight
-            onSettingBtnClicked: {
-                !viewCoordinator.inSettings ?
-                            viewCoordinator.present("SettingsView") :
-                            viewCoordinator.dismiss("SettingsView")}
-        }
+        header: AccountComboBox {}
 
         StackLayout {
             anchors.fill: parent
@@ -268,7 +261,6 @@ BaseView {
                         Layout.fillWidth: true
 
                         onContactSearchBarTextChanged: function (text) {
-                            print(text)
                             // not calling positionViewAtBeginning will cause
                             // sort animation visual bugs
                             conversationListView.positionViewAtBeginning()
