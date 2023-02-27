@@ -37,7 +37,7 @@ RowLayout {
         Layout.preferredWidth: JamiTheme.preferredFieldHeight
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        visible: viewCoordinator.singlePane
+        visible: viewNode.isSinglePane
 
         onClicked: backArrowClicked()
     }
