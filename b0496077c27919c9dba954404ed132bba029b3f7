@@ -203,6 +203,30 @@
       },
       "revId": "b0496077c27919c9dba954404ed132bba029b3f7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11f6df57_87a92317",
+        "filename": "extras/scripts/mac_dependencies_build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-27T18:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0b9a84e_ff0434df",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 26
+      },
+      "revId": "b0496077c27919c9dba954404ed132bba029b3f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
