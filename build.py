@@ -367,6 +367,8 @@ def run_install(args):
         install_args.append('-W')
     if args.no_webengine:
         install_args.append('-w')
+    if args.arch:
+        install_args += ('-a', args.arch)
 
     if args.distribution == OSX_DISTRIBUTION_NAME:
         # The `universal_newlines` parameter has been renamed to `text` in
@@ -597,6 +599,7 @@ def parse_args():
     ap.add_argument('--no-webengine', dest='no_webengine',
                     default=False, action='store_true',
                     help='Do not use Qt WebEngine.')
+    ap.add_argument('--arch')
 
     dist = choose_distribution()
 
