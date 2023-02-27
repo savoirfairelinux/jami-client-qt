@@ -83,7 +83,7 @@ Rectangle {
 
         selectByMouse: true
 
-        placeholderText: JamiStrings.contactSearchConversation
+        placeholderText: JamiStrings.search
         placeholderTextColor: JamiTheme.placeholderTextColor
 
         background: Rectangle {

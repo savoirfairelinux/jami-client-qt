@@ -35,7 +35,6 @@ Item {
     property string endCall: qsTr("End call")
     property string incomingAudioCallFrom: qsTr("Incoming audio call from {}")
     property string incomingVideoCallFrom: qsTr("Incoming video call from {}")
-    property string contactSearchConversation: qsTr("Find users and conversations")
     property string startSwarm: qsTr("Start swarm")
     property string createSwarm: qsTr("Create swarm")
     property string showInvitations: qsTr("Show invitations")
