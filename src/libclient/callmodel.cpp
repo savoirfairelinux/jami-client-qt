@@ -400,7 +400,7 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
     }
 #ifdef ENABLE_LIBWRAP
     auto callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
-#else // dbus
+#else  // dbus
     // do not use auto here (QDBusPendingReply<QString>)
     QString callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
 #endif // ENABLE_LIBWRAP
@@ -568,9 +568,12 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
         // video or if a new sharing is requested
         if (isConf) {
             replace &= media[MediaAttributeKey::MUTED] == TRUE_STR;
-            replace |= (media[MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::FILE)
-                          || media[MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::DISPLAY))
-                      && (type == MediaRequestType::FILESHARING || type == MediaRequestType::SCREENSHARING);
+            replace |= (media[MediaAttributeKey::SOURCE].startsWith(
+                            libjami::Media::VideoProtocolPrefix::FILE)
+                        || media[MediaAttributeKey::SOURCE].startsWith(
+                            libjami::Media::VideoProtocolPrefix::DISPLAY))
+                       && (type == MediaRequestType::FILESHARING
+                           || type == MediaRequestType::SCREENSHARING);
         }
         if (replace) {
             mediaAttribute[MediaAttributeKey::LABEL] = media[MediaAttributeKey::LABEL];
@@ -967,9 +970,9 @@ CallModel::getDisplay(const QString& windowProcessId, const QString& windowId)
 #endif
 #ifdef WIN32
     ret = QString("%1%2:+0,0 window-id:hwnd=%3")
-        .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
-        .arg(sep)
-        .arg(windowProcessId);
+              .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
+              .arg(sep)
+              .arg(windowProcessId);
 #endif
     return ret;
 }
@@ -1702,6 +1705,7 @@ CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& c
 
     calls[confId] = callInfo;
 
+    QString currentCallId = currentCall_;
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, confId);
         // Remove call from pendingConferences_
@@ -1713,7 +1717,11 @@ CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& c
                 break;
             }
         }
+        if (call == currentCall_)
+            currentCall_ = confId;
     }
+    if (currentCallId != currentCall_)
+        Q_EMIT linked.currentCallChanged(confId);
 }
 
 void
@@ -1725,9 +1733,14 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId,
         return;
     // Detect if conference is created for this account
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    QString currentCallId = currentCall_;
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, confId);
+        if (call == currentCall_)
+            currentCall_ = confId;
     }
+    if (currentCallId != currentCall_)
+        Q_EMIT linked.currentCallChanged(confId);
 }
 
 void
