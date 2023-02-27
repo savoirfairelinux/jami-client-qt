@@ -22,6 +22,30 @@
       },
       "revId": "d620645dc1604cc16381e2fdea9f236713c3b58b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42eeac37_54aa48cc",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-27T15:50:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8ad0ac1f_b0abbff6",
+      "range": {
+        "startLine": 106,
+        "startChar": 48,
+        "endLine": 106,
+        "endChar": 59
+      },
+      "revId": "d620645dc1604cc16381e2fdea9f236713c3b58b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
