@@ -139,6 +139,8 @@ public:
     Q_INVOKABLE bool useApplicationTheme();
     Q_INVOKABLE bool hasNativeDarkTheme() const;
 
+    Q_INVOKABLE QString getOnelined(const QString& input);
+
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
     void changeFontSize();

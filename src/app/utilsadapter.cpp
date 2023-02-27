@@ -735,3 +735,10 @@ UtilsAdapter::hasNativeDarkTheme() const
 #endif
 #endif
 }
+
+QString
+UtilsAdapter::getOnelined(const QString& input)
+{
+    auto output = input;
+    return output.replace("\n", " ");
+}
