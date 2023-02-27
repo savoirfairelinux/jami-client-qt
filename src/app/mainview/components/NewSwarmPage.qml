@@ -26,10 +26,9 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-BaseView {
-    id: root
-
-    color: JamiTheme.chatviewBgColor
+DualPaneView {
+    id: viewNode
+    objectName: "NewSwarmPage"
 
     signal createSwarmClicked(string title, string description, string avatar)
     signal removeMember(string convId, string member)
@@ -42,183 +41,194 @@ BaseView {
 
     property var members: []
 
-    RowLayout {
-        id: labelsMember
-        Layout.topMargin: 16
-        Layout.preferredWidth: root.width
-        Layout.preferredHeight: childrenRect.height
-        spacing: 16
-        visible: root.members.length
+    splitViewStateKey: "Main"
+    inhibits: ["ConversationView"]
 
-        Label {
-            text: JamiStrings.to
-            font.bold: true
-            color: JamiTheme.textColor
-            Layout.leftMargin: 16
-        }
+    leftPaneItem: viewCoordinator.getView("SidePanel")
+    rightPaneItem: Rectangle {
+        id: root
+        color: JamiTheme.chatviewBgColor
 
-        Flow {
+        anchors.fill: parent
+
+        RowLayout {
+            id: labelsMember
             Layout.topMargin: 16
-            Layout.preferredWidth: root.width - 80
-            Layout.preferredHeight: childrenRect.height + 16
-            spacing: 8
+            Layout.preferredWidth: root.width
+            Layout.preferredHeight: childrenRect.height
+            spacing: 16
+            visible: viewNode.members.length
 
-            Repeater {
-                id: repeater
+            Label {
+                text: JamiStrings.to
+                font.bold: true
+                color: JamiTheme.textColor
+                Layout.leftMargin: 16
+            }
 
-                delegate: Rectangle {
-                    id: delegate
-                    radius: (delegate.height + 12) / 2
-                    width: label.width + 36
-                    height: label.height + 12
+            Flow {
+                Layout.topMargin: 16
+                Layout.preferredWidth: root.width - 80
+                Layout.preferredHeight: childrenRect.height + 16
+                spacing: 8
 
-                    RowLayout {
-                        anchors.centerIn: parent
+                Repeater {
+                    id: repeater
 
-                        Label {
-                            id: label
-                            text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri)
-                            color: JamiTheme.textColor
-                            Layout.leftMargin: 8
+                    delegate: Rectangle {
+                        id: delegate
+                        radius: (delegate.height + 12) / 2
+                        width: label.width + 36
+                        height: label.height + 12
+
+                        RowLayout {
+                            anchors.centerIn: parent
+
+                            Label {
+                                id: label
+                                text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri)
+                                color: JamiTheme.textColor
+                                Layout.leftMargin: 8
+                            }
+
+                            PushButton {
+                                id: removeUserBtn
+
+                                preferredSize: 24
+
+                                source: JamiResources.round_close_24dp_svg
+                                toolTipText: JamiStrings.removeMember
+
+                                normalColor: "transparent"
+                                imageColor: "transparent"
+
+                                onClicked: root.removeMember(modelData.convId, modelData.uri)
+                            }
                         }
 
-                        PushButton {
-                            id: removeUserBtn
+                        color: JamiTheme.selectedColor
+                    }
+                    model: viewNode.members
+                }
+            }
+        }
 
-                            preferredSize: 24
+        Rectangle {
+            anchors.top: labelsMember.bottom
+            visible: labelsMember.visible
+            height: 1
+            width: root.width
+            color: "transparent"
+            border.width: 1
+            border.color: JamiTheme.selectedColor
+        }
 
-                            source: JamiResources.round_close_24dp_svg
-                            toolTipText: JamiStrings.removeMember
+        ColumnLayout {
+            id: mainLayout
+            objectName: "mainLayout"
+            anchors.centerIn: root
 
-                            normalColor: "transparent"
-                            imageColor: "transparent"
+            PhotoboothView {
+                id: currentAccountAvatar
 
-                            onClicked: root.removeMember(modelData.convId, modelData.uri)
+                Layout.alignment: Qt.AlignCenter
+                darkTheme: UtilsAdapter.luma(root.color)
+                width: avatarSize
+                height: avatarSize
+
+                newItem: true
+                imageId: root.visible ? "temp" : ""
+                avatarSize: 180
+                buttonSize: JamiTheme.smartListAvatarSize
+            }
+
+            EditableLineEdit {
+                id: title
+                objectName: "titleLineEdit"
+                Layout.alignment: Qt.AlignCenter
+                Layout.topMargin: JamiTheme.preferredMarginSize
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
+
+                font.pointSize: JamiTheme.titleFontSize
+
+                verticalAlignment: Text.AlignVCenter
+
+                placeholderText: JamiStrings.swarmName
+                tooltipText: JamiStrings.swarmName
+                backgroundColor: root.color
+                color: UtilsAdapter.luma(backgroundColor) ?
+                        JamiTheme.chatviewTextColorLight :
+                        JamiTheme.chatviewTextColorDark
+                placeholderTextColor: {
+                    if (editable) {
+                        if (UtilsAdapter.luma(root.color)) {
+                            return JamiTheme.placeholderTextColorWhite
+                        } else {
+                            return JamiTheme.placeholderTextColor
+                        }
+                    } else {
+                        if (UtilsAdapter.luma(root.color)) {
+                            return JamiTheme.chatviewTextColorLight
+                        } else {
+                            return JamiTheme.chatviewTextColorDark
                         }
                     }
-
-                    color: JamiTheme.selectedColor
                 }
-                model: root.members
             }
-        }
-    }
 
-    Rectangle {
-        anchors.top: labelsMember.bottom
-        visible: labelsMember.visible
-        height: 1
-        width: root.width
-        color: "transparent"
-        border.width: 1
-        border.color: JamiTheme.selectedColor
-    }
+            EditableLineEdit {
+                id: description
+                objectName: "descriptionLineEdit"
+                Layout.alignment: Qt.AlignCenter
+                Layout.topMargin: JamiTheme.preferredMarginSize
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
-    ColumnLayout {
-        id: mainLayout
-        objectName: "mainLayout"
-        anchors.centerIn: root
+                font.pointSize: JamiTheme.menuFontSize
 
-        PhotoboothView {
-            id: currentAccountAvatar
+                verticalAlignment: Text.AlignVCenter
 
-            Layout.alignment: Qt.AlignCenter
-            darkTheme: UtilsAdapter.luma(root.color)
-            width: avatarSize
-            height: avatarSize
-
-            newItem: true
-            imageId: root.visible ? "temp" : ""
-            avatarSize: 180
-            buttonSize: JamiTheme.smartListAvatarSize
-        }
-
-        EditableLineEdit {
-            id: title
-            objectName: "titleLineEdit"
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize
-            Layout.preferredWidth: JamiTheme.preferredFieldWidth
-
-            font.pointSize: JamiTheme.titleFontSize
-
-            verticalAlignment: Text.AlignVCenter
-
-            placeholderText: JamiStrings.swarmName
-            tooltipText: JamiStrings.swarmName
-            backgroundColor: root.color
-            color: UtilsAdapter.luma(backgroundColor) ?
-                    JamiTheme.chatviewTextColorLight :
-                    JamiTheme.chatviewTextColorDark
-            placeholderTextColor: {
-                if (editable) {
-                    if (UtilsAdapter.luma(root.color)) {
-                        return JamiTheme.placeholderTextColorWhite
+                placeholderText: JamiStrings.addADescription
+                tooltipText: JamiStrings.addADescription
+                backgroundColor: root.color
+                color: UtilsAdapter.luma(backgroundColor) ?
+                        JamiTheme.chatviewTextColorLight :
+                        JamiTheme.chatviewTextColorDark
+                placeholderTextColor: {
+                    if (editable) {
+                        if (UtilsAdapter.luma(root.color)) {
+                            return JamiTheme.placeholderTextColorWhite
+                        } else {
+                            return JamiTheme.placeholderTextColor
+                        }
                     } else {
-                        return JamiTheme.placeholderTextColor
-                    }
-                } else {
-                    if (UtilsAdapter.luma(root.color)) {
-                        return JamiTheme.chatviewTextColorLight
-                    } else {
-                        return JamiTheme.chatviewTextColorDark
+                        if (UtilsAdapter.luma(root.color)) {
+                            return JamiTheme.chatviewTextColorLight
+                        } else {
+                            return JamiTheme.chatviewTextColorDark
+                        }
                     }
                 }
             }
-        }
 
-        EditableLineEdit {
-            id: description
-            objectName: "descriptionLineEdit"
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize
-            Layout.preferredWidth: JamiTheme.preferredFieldWidth
+            MaterialButton {
+                id: btnCreateSwarm
 
-            font.pointSize: JamiTheme.menuFontSize
+                Layout.alignment: Qt.AlignCenter
+                Layout.topMargin: JamiTheme.preferredMarginSize
+                autoAccelerator: true
 
-            verticalAlignment: Text.AlignVCenter
+                preferredWidth: JamiTheme.aboutButtonPreferredWidth
 
-            placeholderText: JamiStrings.addADescription
-            tooltipText: JamiStrings.addADescription
-            backgroundColor: root.color
-            color: UtilsAdapter.luma(backgroundColor) ?
-                    JamiTheme.chatviewTextColorLight :
-                    JamiTheme.chatviewTextColorDark
-            placeholderTextColor: {
-                if (editable) {
-                    if (UtilsAdapter.luma(root.color)) {
-                        return JamiTheme.placeholderTextColorWhite
-                    } else {
-                        return JamiTheme.placeholderTextColor
-                    }
-                } else {
-                    if (UtilsAdapter.luma(root.color)) {
-                        return JamiTheme.chatviewTextColorLight
-                    } else {
-                        return JamiTheme.chatviewTextColorDark
-                    }
-                }
+                color: JamiTheme.buttonTintedBlue
+                hoveredColor: JamiTheme.buttonTintedBlueHovered
+                pressedColor: JamiTheme.buttonTintedBluePressed
+
+                text: JamiStrings.createTheSwarm
+
+                onClicked: createSwarmClicked(title.text,
+                                              description.text,
+                                              UtilsAdapter.tempCreationImage())
             }
-        }
-
-        MaterialButton {
-            id: btnCreateSwarm
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize
-            autoAccelerator: true
-
-            preferredWidth: JamiTheme.aboutButtonPreferredWidth
-
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
-
-            text: JamiStrings.createTheSwarm
-
-            onClicked: createSwarmClicked(title.text,
-                                          description.text,
-                                          UtilsAdapter.tempCreationImage())
         }
     }
 }

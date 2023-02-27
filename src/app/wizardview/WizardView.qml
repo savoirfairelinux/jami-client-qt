@@ -33,7 +33,8 @@ import "components"
 BaseView {
     id: root
     objectName: "WizardView"
-    singlePaneOnly: true
+
+    inhibits: ["ConversationView"]
 
     // signal to redirect the page to main view
     signal loaderSourceChangeRequested(int sourceToLoad)
