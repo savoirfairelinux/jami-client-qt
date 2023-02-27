@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffff78bc_38f300a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-27T17:55:48Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 9,
+        "startChar": 37,
+        "endLine": 9,
+        "endChar": 44
+      },
+      "revId": "b0496077c27919c9dba954404ed132bba029b3f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f78e7895_8c8646cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-27T17:55:48Z",
+      "side": 1,
+      "message": "just some few typos, but I guess it\u0027s ok",
+      "revId": "b0496077c27919c9dba954404ed132bba029b3f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fabffed2_aa7def33",
+        "filename": "extras/scripts/mac_dependencies_build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-27T17:55:48Z",
+      "side": 1,
+      "message": "maybe there is a way to just use cmake now. (but it would need more work)",
+      "range": {
+        "startLine": 3,
+        "startChar": 7,
+        "endLine": 3,
+        "endChar": 8
+      },
+      "revId": "b0496077c27919c9dba954404ed132bba029b3f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ab27549_456ad773",
+        "filename": "extras/scripts/mac_dependencies_build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-27T17:55:48Z",
+      "side": 1,
+      "message": "note you can write ${ARCH}, may be clearer some times (like here)",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 42,
+        "endChar": 33
+      },
+      "revId": "b0496077c27919c9dba954404ed132bba029b3f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8971be23_e2a72e97",
+        "filename": "extras/scripts/mac_dependencies_build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-27T17:55:48Z",
+      "side": 1,
+      "message": "trailing space",
+      "range": {
+        "startLine": 55,
+        "startChar": 29,
+        "endLine": 55,
+        "endChar": 32
+      },
+      "revId": "b0496077c27919c9dba954404ed132bba029b3f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0b9a84e_ff0434df",
+        "filename": "extras/scripts/mac_dependencies_build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-27T17:55:48Z",
+      "side": 1,
+      "message": "//?",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 26
+      },
+      "revId": "b0496077c27919c9dba954404ed132bba029b3f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
