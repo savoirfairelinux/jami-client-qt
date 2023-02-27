@@ -39,6 +39,8 @@ else()
     set(LIBJAMI_INCLUDE_DIRS ${RING_BUILD_DIR}/jami)
   elseif(EXISTS ${CMAKE_INSTALL_PREFIX}/include/jami/jami.h)
     set(LIBJAMI_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/include/jami)
+  elseif(EXISTS ${CMAKE_INSTALL_PREFIX}/daemon/include/jami/jami.h)
+    set(LIBJAMI_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/daemon/include/jami)
   else()
     message(STATUS "Jami daemon headers not found!
 Set -DLIBJAMI_BUILD_DIR or -DCMAKE_INSTALL_PREFIX")
@@ -55,6 +57,7 @@ if(WITH_DAEMON_SUBMODULE)
   find_library(LIBJAMI_LIB NAMES jami ring
     PATHS ${DAEMON_DIR}/src/.libs
     PATHS ${CMAKE_INSTALL_PREFIX}/lib
+    PATHS ${CMAKE_INSTALL_PREFIX}/daemon/lib
     PATHS ${CMAKE_INSTALL_PREFIX}/libexec
     PATHS ${CMAKE_INSTALL_PREFIX}/bin
     NO_DEFAULT_PATH)
@@ -64,6 +67,7 @@ else()
     PATHS ${LIBJAMI_BUILD_DIR}/.libs
     PATHS ${RING_BUILD_DIR}/.libs
     PATHS ${CMAKE_INSTALL_PREFIX}/lib
+    PATHS ${CMAKE_INSTALL_PREFIX}/daemon/lib
     PATHS ${CMAKE_INSTALL_PREFIX}/libexec
     PATHS ${CMAKE_INSTALL_PREFIX}/bin
     NO_DEFAULT_PATH)
@@ -83,6 +87,7 @@ if(NOT LIBJAMI_LIB)
       PATHS ${DAEMON_DIR}/src/.libs
       PATHS ${CMAKE_INSTALL_PREFIX}
       PATHS ${CMAKE_INSTALL_PREFIX}/lib
+      PATHS ${CMAKE_INSTALL_PREFIX}/daemon/lib
       PATHS ${CMAKE_INSTALL_PREFIX}/libexec
       NO_DEFAULT_PATH)
   else()
@@ -92,6 +97,7 @@ if(NOT LIBJAMI_LIB)
       PATHS ${RING_BUILD_DIR}/.libs
       PATHS ${CMAKE_INSTALL_PREFIX}
       PATHS ${CMAKE_INSTALL_PREFIX}/lib
+      PATHS ${CMAKE_INSTALL_PREFIX}/daemon/lib
       PATHS ${CMAKE_INSTALL_PREFIX}/libexec
       NO_DEFAULT_PATH)
 
