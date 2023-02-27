@@ -735,3 +735,13 @@ UtilsAdapter::hasNativeDarkTheme() const
 #endif
 #endif
 }
+
+QString
+UtilsAdapter::getOneline(const QString& input)
+{
+    auto output = input;
+    auto index = output.indexOf("\n");
+    if (index > 0)
+        output.truncate(index);
+    return output;
+}

@@ -116,7 +116,8 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
             Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
-            Layout.preferredHeight: 36
+            Layout.minimumHeight: 36
+            Layout.preferredHeight: 36 * JamiTheme.baseZoom
             visible: MessagesAdapter.replyToId !== ""
         }
 
@@ -126,7 +127,8 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
             Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
-            Layout.preferredHeight: 36
+            Layout.minimumHeight: 36
+            Layout.preferredHeight: 36 * JamiTheme.baseZoom
             visible: MessagesAdapter.editId !== ""
         }
 
