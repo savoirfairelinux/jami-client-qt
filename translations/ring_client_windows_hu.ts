@@ -1535,7 +1535,7 @@ A többi résztvevő tartózkodási helye továbbra is megkapható.</translation
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
         <source>Jump to</source>
-        <translation type="unfinished"/>
+        <translation>Ugrás</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="359"/>
@@ -1545,12 +1545,12 @@ A többi résztvevő tartózkodási helye továbbra is megkapható.</translation
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="360"/>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>Fájlok</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="361"/>
         <source>Search</source>
-        <translation type="unfinished"/>
+        <translation>Keresés</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="364"/>
@@ -2208,7 +2208,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="831"/>
         <source>Reinstate member</source>
-        <translation type="unfinished"/>
+        <translation>Tag visszaállítása</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
@@ -3519,27 +3519,27 @@ Másolja ki, és ossza meg barátaival!</translation>
 <context>
     <name>MapPositionSharingControl</name>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="62"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="58"/>
         <source>%1h%2min</source>
         <translation>%1 óra %2 perc</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="60"/>
         <source>%1h</source>
         <translation>%1 óra</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="68"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
         <source>%1m%2sec</source>
         <translation>%1 perc %2 másodperc</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="70"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="66"/>
         <source>%1m</source>
         <translation>%1 perc</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="73"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="69"/>
         <source>%1sec</source>
         <translation>%1 másodperc</translation>
     </message>
@@ -3547,12 +3547,12 @@ Másolja ki, és ossza meg barátaival!</translation>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="398"/>
+        <location filename="../src/app/positionmanager.cpp" line="404"/>
         <source>%1 is sharing it&apos;s location</source>
         <translation>%1 megosztja a tartózkodási helyét</translation>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="403"/>
+        <location filename="../src/app/positionmanager.cpp" line="409"/>
         <source>Location sharing</source>
         <translation>Helymegosztás</translation>
     </message>

@@ -625,7 +625,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
         <source>Account Settings</source>
-        <translation type="unfinished"/>
+        <translation>खाता सेटिंग</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="177"/>
@@ -1138,7 +1138,7 @@ Would you like to update now?</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
         <source>Mute</source>
-        <translation type="unfinished"/>
+        <translation>आवाज़ बंद करना</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
@@ -1510,7 +1510,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
         <source>Stop sharing</source>
-        <translation type="unfinished"/>
+        <translation>साझा करना बंद</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
@@ -1572,7 +1572,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
         <source>Reduce</source>
-        <translation type="unfinished"/>
+        <translation>कम करना</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
@@ -3002,7 +3002,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>बड़ा करें</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
@@ -3497,27 +3497,27 @@ connects to synchronize the conversation.</source>
 <context>
     <name>MapPositionSharingControl</name>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="62"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="58"/>
         <source>%1h%2min</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="60"/>
         <source>%1h</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="68"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
         <source>%1m%2sec</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="70"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="66"/>
         <source>%1m</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="73"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="69"/>
         <source>%1sec</source>
         <translation type="unfinished"/>
     </message>
@@ -3525,12 +3525,12 @@ connects to synchronize the conversation.</source>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="398"/>
+        <location filename="../src/app/positionmanager.cpp" line="404"/>
         <source>%1 is sharing it&apos;s location</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="403"/>
+        <location filename="../src/app/positionmanager.cpp" line="409"/>
         <source>Location sharing</source>
         <translation type="unfinished"/>
     </message>

@@ -1666,7 +1666,7 @@ Mundet ende të merret vendndodhja e pjesëmarrësve të tjerë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
         <source>Jump to</source>
-        <translation type="unfinished"/>
+        <translation>Kalo te</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="359"/>
@@ -1676,12 +1676,12 @@ Mundet ende të merret vendndodhja e pjesëmarrësve të tjerë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="360"/>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>Kartela</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="361"/>
         <source>Search</source>
-        <translation type="unfinished"/>
+        <translation>Kërkim</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="364"/>
@@ -3511,27 +3511,27 @@ të lidhet, për njëkohësim të bisedës.</translation>
 <context>
     <name>MapPositionSharingControl</name>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="62"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="58"/>
         <source>%1h%2min</source>
         <translation>%1h%2min</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="60"/>
         <source>%1h</source>
         <translation>%1h</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="68"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
         <source>%1m%2sec</source>
         <translation>%1m%2s</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="70"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="66"/>
         <source>%1m</source>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="73"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="69"/>
         <source>%1sec</source>
         <translation>%1s</translation>
     </message>
@@ -3539,12 +3539,12 @@ të lidhet, për njëkohësim të bisedës.</translation>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="398"/>
+        <location filename="../src/app/positionmanager.cpp" line="404"/>
         <source>%1 is sharing it&apos;s location</source>
         <translation>%1 po e tregon vendndodhjen e vet</translation>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="403"/>
+        <location filename="../src/app/positionmanager.cpp" line="409"/>
         <source>Location sharing</source>
         <translation>Tregim vendndodhjeje</translation>
     </message>

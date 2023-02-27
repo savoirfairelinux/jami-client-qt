@@ -3507,27 +3507,27 @@ Copy and share it with your friends!</source>
 <context>
     <name>MapPositionSharingControl</name>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="62"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="58"/>
         <source>%1h%2min</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="60"/>
         <source>%1h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="68"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
         <source>%1m%2sec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="70"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="66"/>
         <source>%1m</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="73"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="69"/>
         <source>%1sec</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3535,12 +3535,12 @@ Copy and share it with your friends!</source>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="398"/>
+        <location filename="../src/app/positionmanager.cpp" line="404"/>
         <source>%1 is sharing it&apos;s location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="403"/>
+        <location filename="../src/app/positionmanager.cpp" line="409"/>
         <source>Location sharing</source>
         <translation type="unfinished"></translation>
     </message>

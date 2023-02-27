@@ -1535,7 +1535,7 @@ Der Standort anderer Teilnehmer kann weiterhin empfangen werden.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
         <source>Jump to</source>
-        <translation type="unfinished"/>
+        <translation>Sprung zu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="359"/>
@@ -1545,7 +1545,7 @@ Der Standort anderer Teilnehmer kann weiterhin empfangen werden.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="360"/>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>Dateien</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="361"/>
@@ -2208,7 +2208,7 @@ Bitte versuchen Sie es später erneut.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="831"/>
         <source>Reinstate member</source>
-        <translation type="unfinished"/>
+        <translation>Mitglied wieder aufnehmen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
@@ -3519,27 +3519,27 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
 <context>
     <name>MapPositionSharingControl</name>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="62"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="58"/>
         <source>%1h%2min</source>
         <translation>%1h%2min</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="60"/>
         <source>%1h</source>
         <translation>%1h</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="68"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
         <source>%1m%2sec</source>
         <translation>%1m%2sec</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="70"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="66"/>
         <source>%1m</source>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="73"/>
+        <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="69"/>
         <source>%1sec</source>
         <translation>%1sec</translation>
     </message>
@@ -3547,12 +3547,12 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="398"/>
+        <location filename="../src/app/positionmanager.cpp" line="404"/>
         <source>%1 is sharing it&apos;s location</source>
         <translation>%1 teilt seinen Standort</translation>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="403"/>
+        <location filename="../src/app/positionmanager.cpp" line="409"/>
         <source>Location sharing</source>
         <translation>Standortfreigabe</translation>
     </message>
