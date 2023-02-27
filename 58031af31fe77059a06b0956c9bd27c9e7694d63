@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7757b6a2_0e9c1690",
+        "filename": "src/app/commoncomponents/ReplyToRow.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-27T18:08:54Z",
+      "side": 0,
+      "message": "i liked to have the contact avatar",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 13
+      },
+      "revId": "58031af31fe77059a06b0956c9bd27c9e7694d63",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
