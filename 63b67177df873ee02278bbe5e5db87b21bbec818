@@ -113,6 +113,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ec5cbd8_61192eed",
+        "filename": "src/app/commoncomponents/MaterialTextField.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-27T15:50:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89893365_3a14dd23",
+      "range": {
+        "startLine": 160,
+        "startChar": 35,
+        "endLine": 160,
+        "endChar": 59
+      },
+      "revId": "63b67177df873ee02278bbe5e5db87b21bbec818",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82bfc08f_1feab8d1",
@@ -136,6 +160,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a191b737_549f2afd",
+        "filename": "src/app/commoncomponents/MaterialTextField.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-27T15:50:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82bfc08f_1feab8d1",
+      "range": {
+        "startLine": 180,
+        "startChar": 18,
+        "endLine": 183,
+        "endChar": 13
+      },
+      "revId": "63b67177df873ee02278bbe5e5db87b21bbec818",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "870f7b0c_e0814078",
@@ -149,6 +197,30 @@
       "writtenOn": "2023-02-27T14:49:51Z",
       "side": 1,
       "message": "maybe we should add a note on this, it\u0027s mostly due to the loader/component architecture",
+      "range": {
+        "startLine": 54,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 5
+      },
+      "revId": "63b67177df873ee02278bbe5e5db87b21bbec818",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73cf1a57_df01da9a",
+        "filename": "src/app/commoncomponents/ModalTextEdit.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-27T15:50:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "870f7b0c_e0814078",
       "range": {
         "startLine": 54,
         "startChar": 6,
