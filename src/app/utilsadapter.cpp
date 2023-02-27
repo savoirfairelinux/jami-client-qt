@@ -50,6 +50,46 @@ UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
     }
 }
 
+QVariant
+UtilsAdapter::getAppValue(const QString& key, const QVariant& defaultValue)
+{
+    return settingsManager_->getValue(key, defaultValue);
+}
+
+void
+UtilsAdapter::setAppValue(const QString& key, const QVariant& value)
+{
+    settingsManager_->setValue(key, value);
+}
+
+QVariant
+UtilsAdapter::getAppValue(const Settings::Key key)
+{
+    return settingsManager_->getValue(key);
+}
+
+void
+UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
+{
+    if (key == Settings::Key::BaseZoom) {
+        if (value.toDouble() < 0.1 || value.toDouble() > 2.0)
+            return;
+    }
+    settingsManager_->setValue(key, value);
+    // If we change the lang preference, reload the translations
+    if (key == Settings::Key::LANG) {
+        settingsManager_->loadTranslations();
+        Q_EMIT changeLanguage();
+    } else if (key == Settings::Key::BaseZoom)
+        Q_EMIT changeFontSize();
+    else if (key == Settings::Key::EnableExperimentalSwarm)
+        Q_EMIT showExperimentalCallSwarm();
+    else if (key == Settings::Key::ShowChatviewHorizontally)
+        Q_EMIT chatviewPositionChanged();
+    else if (key == Settings::Key::AppTheme)
+        Q_EMIT appThemeChanged();
+}
+
 const QString
 UtilsAdapter::getProjectCredits()
 {
@@ -350,34 +390,6 @@ void
 UtilsAdapter::setSystemTrayIconVisible(bool visible)
 {
     systemTray_->setVisible(visible);
-}
-
-QVariant
-UtilsAdapter::getAppValue(const Settings::Key key)
-{
-    return settingsManager_->getValue(key);
-}
-
-void
-UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
-{
-    if (key == Settings::Key::BaseZoom) {
-        if (value.toDouble() < 0.1 || value.toDouble() > 2.0)
-            return;
-    }
-    settingsManager_->setValue(key, value);
-    // If we change the lang preference, reload the translations
-    if (key == Settings::Key::LANG) {
-        settingsManager_->loadTranslations();
-        Q_EMIT changeLanguage();
-    } else if (key == Settings::Key::BaseZoom)
-        Q_EMIT changeFontSize();
-    else if (key == Settings::Key::EnableExperimentalSwarm)
-        Q_EMIT showExperimentalCallSwarm();
-    else if (key == Settings::Key::ShowChatviewHorizontally)
-        Q_EMIT chatviewPositionChanged();
-    else if (key == Settings::Key::AppTheme)
-        Q_EMIT appThemeChanged();
 }
 
 QString
