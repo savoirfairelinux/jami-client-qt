@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db33e5a8_16475208",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-27T20:30:03Z",
+      "side": 1,
+      "message": "This is not a good approach and cause the exact same problem as replies.\n\nBecause we support markdown, deleting \\n can break format.\n\nEg, editing\n\n```\n# Test\n\ndsadasdsa\n```\n\nWill show \"Test dsadsa\" as a big title.\n\nI think we should just cut the message and keep a line. \n\nAlso another problem I see: With text zoom as it\u0027s maximum, the replyrow is too small.",
+      "range": {
+        "startLine": 740,
+        "startChar": 14,
+        "endLine": 740,
+        "endChar": 25
+      },
+      "revId": "96d36d116fdce41cf6f4deecbb001936348309e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
