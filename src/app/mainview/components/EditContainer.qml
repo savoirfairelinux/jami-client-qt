@@ -66,7 +66,7 @@ Rectangle {
                     id: metrics
                     elide: Text.ElideRight
                     elideWidth: root.width - 100
-                    text: root.body
+                    text: UtilsAdapter.getOnelined(root.body)
                 }
 
                 text: metrics.elidedText
