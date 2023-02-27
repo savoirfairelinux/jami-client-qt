@@ -109,8 +109,12 @@ public:
     explicit AppSettingsManager(QObject* parent = nullptr);
     ~AppSettingsManager() = default;
 
+    Q_INVOKABLE QVariant getValue(const QString& key, const QVariant& defaultValue = {});
+    Q_INVOKABLE void setValue(const QString& key, const QVariant& value = {});
+
     Q_INVOKABLE QVariant getValue(const Settings::Key key);
-    Q_INVOKABLE void setValue(const Settings::Key key, const QVariant& value);
+    Q_INVOKABLE void setValue(const Settings::Key key, const QVariant& value = {});
+
     QString getLanguage();
 
     void loadTranslations();

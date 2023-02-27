@@ -59,48 +59,6 @@ Rectangle {
     onWidthChanged: Qt.callLater(JamiQmlUtils.updateMessageBarButtonsPoints)
     onHeightChanged: Qt.callLater(JamiQmlUtils.updateMessageBarButtonsPoints)
 
-    // Needed by ViewCoordinator.
-    property alias splitView: splitView
-    property alias sv1: sv1
-    property alias sv2: sv2
-
-    StackView {
-        id: mainStackView
-        anchors.fill: parent
-
-        initialItem: SplitView {
-            id: splitView
-
-            handle: Rectangle {
-                implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-                implicitHeight: splitView.height
-                color: JamiTheme.primaryBackgroundColor
-                Rectangle {
-                    implicitWidth: 1
-                    implicitHeight: splitView.height
-                    color: JamiTheme.tabbarBorderColor
-                }
-            }
-
-            StackView {
-                id: sv1
-                objectName: "sv1"
-                SplitView.minimumWidth: 300
-                SplitView.preferredWidth: 300
-                SplitView.fillHeight: true
-                clip: true
-                initialItem: SidePanel {}
-            }
-
-            StackView {
-                id: sv2
-                objectName: "sv2"
-                SplitView.fillHeight: true
-                clip: true
-            }
-        }
-    }
-
     Component.onCompleted: {
         JamiQmlUtils.mainViewRectObj = mainView
     }

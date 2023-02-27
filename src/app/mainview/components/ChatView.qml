@@ -110,7 +110,7 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
             Layout.maximumHeight: JamiTheme.chatViewHeaderPreferredHeight
-            Layout.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
+            Layout.minimumWidth: JamiTheme.mainViewPaneMinWidth
 
             DropArea {
                 anchors.fill: parent
@@ -125,7 +125,7 @@ Rectangle {
                 if (!swarmDetailsPanel.visible && !messagesResearchPanel.visible) {
                     chatContents.visible = true
                 } else {
-                    if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.chatViewHeaderMinimumWidth)
+                    if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.mainViewPaneMinWidth)
                         chatContents.visible = false
                 }
             }
@@ -157,7 +157,7 @@ Rectangle {
 
                 if (!swarmDetailsPanel.visible && !addMemberPanel.visible && !messagesResearchPanel.visible)
                     return
-                if (chatViewHeader.width < JamiTheme.detailsPageMinWidth + JamiTheme.chatViewHeaderMinimumWidth
+                if (chatViewHeader.width < JamiTheme.detailsPageMinWidth + JamiTheme.mainViewPaneMinWidth
                         && !isExpanding && chatContents.visible) {
                     lastContentsSplitSize = chatContents.width
                     lastDetailsSplitSize = Math.min(JamiTheme.detailsPageMinWidth, (swarmDetailsPanel.visible
@@ -166,7 +166,7 @@ Rectangle {
                                                                                     ? addMemberPanel.width
                                                                                     : messagesResearchPanel.width))
                     chatContents.visible = false
-                } else if (chatViewHeader.width >= JamiTheme.chatViewHeaderMinimumWidth + lastDetailsSplitSize
+                } else if (chatViewHeader.width >= JamiTheme.mainViewPaneMinWidth + lastDetailsSplitSize
                            && isExpanding && !layoutManager.isFullScreen && !chatContents.visible) {
                     chatContents.visible = true
                 }
@@ -199,7 +199,7 @@ Rectangle {
                 if (addMemberPanel.visible) {
                     chatContents.visible = true
                 } else {
-                    if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.chatViewHeaderMinimumWidth)
+                    if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.mainViewPaneMinWidth)
                         chatContents.visible = false
                 }
                 addMemberPanel.visible = !addMemberPanel.visible
@@ -277,19 +277,19 @@ Rectangle {
 
             handle: Rectangle {
                 implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-                implicitHeight: viewCoordinator.splitView.height
+                implicitHeight: root.height
                 color: JamiTheme.primaryBackgroundColor
                 Rectangle {
                     implicitWidth: 1
-                    implicitHeight: viewCoordinator.splitView.height
+                    implicitHeight: root.height
                     color: JamiTheme.tabbarBorderColor
                 }
             }
 
             ColumnLayout {
                 id: chatContents
-                SplitView.maximumWidth: viewCoordinator.splitView.width
-                SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
+                SplitView.maximumWidth: root.width
+                SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
                 SplitView.fillWidth: true
 
                 StackLayout {
@@ -362,7 +362,7 @@ Rectangle {
                 id: messagesResearchPanel
 
                 visible: false
-                SplitView.maximumWidth: viewCoordinator.splitView.width
+                SplitView.maximumWidth: root.width
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
                 SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
             }
@@ -371,7 +371,7 @@ Rectangle {
                 id: swarmDetailsPanel
                 visible: false
 
-                SplitView.maximumWidth: viewCoordinator.splitView.width
+                SplitView.maximumWidth: root.width
                 SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
             }
@@ -380,7 +380,7 @@ Rectangle {
                 id: addMemberPanel
                 visible: false
 
-                SplitView.maximumWidth: viewCoordinator.splitView.width
+                SplitView.maximumWidth: root.width
                 SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
             }
