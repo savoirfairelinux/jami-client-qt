@@ -34,6 +34,41 @@
       "parentUuid": "02eee555_50239298",
       "revId": "0a4993603b11bbd11b3173cb69b95fe0e7f0b6f5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2330615c_b7143253",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-27T14:19:57Z",
+      "side": 1,
+      "message": "wait for daemon patch ",
+      "revId": "0a4993603b11bbd11b3173cb69b95fe0e7f0b6f5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6835f395_24315e44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-27T14:19:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "55f55ef0_07ecb722",
+      "revId": "0a4993603b11bbd11b3173cb69b95fe0e7f0b6f5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
