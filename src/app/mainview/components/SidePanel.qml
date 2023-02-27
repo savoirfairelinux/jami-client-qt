@@ -29,7 +29,7 @@ import net.jami.Models 1.1
 import "../../commoncomponents"
 import "../../settingsview/components"
 
-BaseView {
+SidePanelBase {
     id: root
     objectName: "SidePanel"
 
@@ -268,7 +268,6 @@ BaseView {
                         Layout.fillWidth: true
 
                         onContactSearchBarTextChanged: function (text) {
-                            print(text)
                             // not calling positionViewAtBeginning will cause
                             // sort animation visual bugs
                             conversationListView.positionViewAtBeginning()
