@@ -22,6 +22,30 @@
       },
       "revId": "58031af31fe77059a06b0956c9bd27c9e7694d63",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de67729c_d481e44b",
+        "filename": "src/app/commoncomponents/ReplyToRow.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-27T18:26:42Z",
+      "side": 0,
+      "message": "me too, we can ping back Charlotte for this",
+      "parentUuid": "7757b6a2_0e9c1690",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 13
+      },
+      "revId": "58031af31fe77059a06b0956c9bd27c9e7694d63",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
