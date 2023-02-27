@@ -27,15 +27,19 @@ import net.jami.Constants 1.1
 import "../commoncomponents"
 import "components"
 
-BaseView {
-    id: root
+ListSelectionView {
+    id: viewNode
     objectName: "ConversationView"
     managed: false
 
-    onPresented: {
-        if (!visible && viewCoordinator.singlePane &&
-                CurrentConversation.id !== '') {
-            viewCoordinator.present(objectName)
+    splitViewStateKey: "Main"
+    hasValidSelection: CurrentConversation.id !== ''
+
+    Connections {
+        target: CurrentConversation
+        function onReloadInteractions() {
+            UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id)
+            MessagesAdapter.loadMoreMessages()
         }
     }
 
@@ -54,13 +58,15 @@ BaseView {
 
     color: JamiTheme.transparentColor
 
-    StackLayout {
+    leftPaneItem: viewCoordinator.getView("SidePanel")
+
+    rightPaneItem: StackLayout {
         currentIndex: !CurrentConversation.hasCall ? 0 : 1
-        onCurrentIndexChanged: chatView.parent = currentIndex == 1 ?
+        onCurrentIndexChanged: chatView.parent = currentIndex === 1 ?
                                    callStackView.chatViewContainer :
                                    chatViewContainer
 
-        anchors.fill: root
+        anchors.fill: parent
 
         Item {
             id: chatViewContainer
@@ -86,7 +92,7 @@ BaseView {
 
                 onDismiss: {
                     if (parent == chatViewContainer) {
-                        root.dismiss()
+                        viewNode.dismiss()
                     } else {
                         callStackView.chatViewContainer.visible = false
                         callStackView.contentView.forceActiveFocus()
