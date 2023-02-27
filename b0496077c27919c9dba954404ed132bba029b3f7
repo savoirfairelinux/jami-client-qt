@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4613e460_5ebccc48",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2023-02-27T18:28:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffff78bc_38f300a3",
+      "range": {
+        "startLine": 9,
+        "startChar": 37,
+        "endLine": 9,
+        "endChar": 44
+      },
+      "revId": "b0496077c27919c9dba954404ed132bba029b3f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f78e7895_8c8646cb",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -87,6 +111,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdb903d6_70ff9812",
+        "filename": "extras/scripts/mac_dependencies_build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2023-02-27T18:28:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ab27549_456ad773",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 42,
+        "endChar": 33
+      },
+      "revId": "b0496077c27919c9dba954404ed132bba029b3f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8971be23_e2a72e97",
@@ -100,6 +148,30 @@
       "writtenOn": "2023-02-27T17:55:48Z",
       "side": 1,
       "message": "trailing space",
+      "range": {
+        "startLine": 55,
+        "startChar": 29,
+        "endLine": 55,
+        "endChar": 32
+      },
+      "revId": "b0496077c27919c9dba954404ed132bba029b3f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0cf147e_3b7b8783",
+        "filename": "extras/scripts/mac_dependencies_build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2023-02-27T18:28:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8971be23_e2a72e97",
       "range": {
         "startLine": 55,
         "startChar": 29,
