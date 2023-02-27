@@ -31,16 +31,16 @@ Rectangle {
     color: JamiTheme.backgroundColor
 
     // The following bindings provide the settings menu selection persistence behavior.
-    property bool singlePane: viewCoordinator.singlePane
-    onSinglePaneChanged: {
-        if (!viewCoordinator.singlePane && viewCoordinator.inSettings) {
-            const idx = viewCoordinator.currentView.selectedMenu
-            buttonGroup.checkedButton = buttonGroup.buttons[idx]
-        }
-    }
-    onVisibleChanged: buttonGroup.checkedButton = visible && !viewCoordinator.singlePane ?
-                        buttonGroup.buttons[0] :
-                        null
+//    property bool singlePane: viewCoordinator.singlePane
+//    onSinglePaneChanged: {
+//        if (!viewCoordinator.singlePane && viewCoordinator.inSettings) {
+//            const idx = viewCoordinator.currentView.selectedMenu
+//            buttonGroup.checkedButton = buttonGroup.buttons[idx]
+//        }
+//    }
+//    onVisibleChanged: buttonGroup.checkedButton = visible && !viewCoordinator.singlePane ?
+//                        buttonGroup.buttons[0] :
+//                        null
 
     // Bind to requests for a settings page to be selected via shorcut.
     Connections {
@@ -59,7 +59,7 @@ Rectangle {
         onCheckedButtonChanged: {
             for (var i = 0; i < buttons.length; i++)
                 if (buttons[i] === checkedButton) {
-                    if (viewCoordinator.singlePane) {
+                    if (viewNode) {
                         viewCoordinator.present("SettingsView").selectedMenu = i
                     } else if (!viewCoordinator.busy) {
                         var settingsView = viewCoordinator.getView("SettingsView")
