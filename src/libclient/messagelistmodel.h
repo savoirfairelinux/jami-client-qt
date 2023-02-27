@@ -46,6 +46,7 @@ struct Info;
     X(DeviceId) \
     X(LinkPreviewInfo) \
     X(Linkified) \
+    X(LinkifiedBody) \
     X(PreviousBodies) \
     X(Reactions) \
     X(ReplyTo) \
