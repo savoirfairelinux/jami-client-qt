@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ad0ac1f_b0abbff6",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-27T14:57:50Z",
+      "side": 1,
+      "message": "the only thing I dislike is the name of this variable but I don\u0027t have a better name yet",
+      "range": {
+        "startLine": 106,
+        "startChar": 48,
+        "endLine": 106,
+        "endChar": 59
+      },
+      "revId": "d620645dc1604cc16381e2fdea9f236713c3b58b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
