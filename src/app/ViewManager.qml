@@ -27,6 +27,13 @@ QtObject {
     // The number of views.
     property int nViews: 0
 
+    // Destroy all views.
+    function destroyAllViews() {
+        for (var path in views) {
+            destroyView(path)
+        }
+    }
+
     function createView(path, parent=null, cb=null, props={}) {
         if (views[path] !== undefined) {
             // an instance of <path> already exists
@@ -83,5 +90,12 @@ QtObject {
 
     function hasView(viewName) {
         return nViews && viewPaths[viewName] !== undefined
+    }
+
+    function getView(viewName) {
+        if (hasView(viewName)) {
+            return views[viewPaths[viewName]]
+        }
+        return null
     }
 }

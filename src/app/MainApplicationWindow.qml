@@ -89,7 +89,7 @@ ApplicationWindow {
                 !UtilsAdapter.getAccountListSize()) {
             // Save the window geometry and state before quitting.
             layoutManager.saveWindowSettings()
-            viewCoordinator.dismissAll()
+            viewCoordinator.deinit()
             Qt.quit()
         } else {
             layoutManager.closeToTray()
@@ -160,11 +160,12 @@ ApplicationWindow {
 
                 // Present the welcome view once the viewCoordinator is setup.
                 viewCoordinator.initialized.connect(function() {
+                    viewCoordinator.preload("SidePanel")
                     viewCoordinator.present("WelcomePage")
-                    viewCoordinator.preload("ConversationView")
+                    //viewCoordinator.preload("ConversationView")
                 })
                 // Set the viewCoordinator's root item.
-                viewCoordinator.setRootView(item)
+                viewCoordinator.init(item)
             }
             if (Qt.platform.os.toString() === "osx") {
                 MainApplication.setEventFilter()
