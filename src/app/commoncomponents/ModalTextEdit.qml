@@ -17,6 +17,7 @@
 
 import QtQuick
 
+import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 // This component is used to display and edit a value.
@@ -32,6 +33,7 @@ Loader {
     required property string placeholderText
     property string staticText: ""
     property string dynamicText
+
     property bool inputIsValid: true
     property string infoTipText
     property bool isPersistent: true

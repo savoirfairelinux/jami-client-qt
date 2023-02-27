@@ -30,8 +30,12 @@ import "../../commoncomponents"
 Label {
     id: root
 
-    signal settingBtnClicked
     property alias popup: comboBoxPopup
+
+    width: parent ? parent.width : o
+    height: JamiTheme.accountListItemHeight
+
+    property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
 
     // TODO: remove these refresh hacks use QAbstractItemModels correctly
     Connections {
@@ -86,6 +90,7 @@ Label {
 
     MouseArea {
         id: mouseArea
+        enabled: visible
         anchors.fill: parent
         hoverEnabled: true
         onClicked: togglePopup()
@@ -203,18 +208,20 @@ Label {
                 id: settingsButton
 
                 anchors.verticalCenter: parent.verticalCenter
-                source: !viewCoordinator.inSettings ?
+                source: !inSettings ?
                             JamiResources.settings_24dp_svg :
                             JamiResources.round_close_24dp_svg
 
                 normalColor: JamiTheme.backgroundColor
                 imageColor: JamiTheme.textColor
-                toolTipText: !viewCoordinator.inSettings ?
+                toolTipText: !inSettings ?
                                  JamiStrings.openSettings :
                                  JamiStrings.closeSettings
 
                 onClicked: {
-                    settingBtnClicked()
+                    !inSettings ?
+                                viewCoordinator.present("SettingsView") :
+                                viewCoordinator.dismiss("SettingsView")
                     background.state = "normal"
                 }
             }
