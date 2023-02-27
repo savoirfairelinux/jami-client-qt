@@ -36,8 +36,7 @@
 #if defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
 #include <winrt/Windows.Foundation.h>
 
-#define WATCHSYSTEMTHEME \
-    __has_include(<winrt/Windows.UI.ViewManagement.h>)
+#define WATCHSYSTEMTHEME __has_include(<winrt/Windows.UI.ViewManagement.h>)
 
 #if WATCHSYSTEMTHEME
 #include <winrt/Windows.UI.ViewManagement.h>
@@ -73,6 +72,11 @@ public:
                           LRCInstance* instance,
                           QObject* parent = nullptr);
     ~UtilsAdapter() = default;
+
+    Q_INVOKABLE QVariant getAppValue(const QString& key, const QVariant& defaultValue = {});
+    Q_INVOKABLE void setAppValue(const QString& key, const QVariant& value);
+    Q_INVOKABLE QVariant getAppValue(const Settings::Key key);
+    Q_INVOKABLE void setAppValue(const Settings::Key key, const QVariant& value);
 
     Q_INVOKABLE const QString getProjectCredits();
     Q_INVOKABLE const QString getVersionStr();
@@ -110,8 +114,6 @@ public:
     Q_INVOKABLE bool isImage(const QString& fileExt);
     Q_INVOKABLE QString humanFileSize(qint64 fileSize);
     Q_INVOKABLE void setSystemTrayIconVisible(bool visible);
-    Q_INVOKABLE QVariant getAppValue(const Settings::Key key);
-    Q_INVOKABLE void setAppValue(const Settings::Key key, const QVariant& value);
     Q_INVOKABLE QString getDirDocument();
     Q_INVOKABLE QString getDirScreenshot();
     Q_INVOKABLE QString getDirDownload();
