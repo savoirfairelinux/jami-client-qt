@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f22998a_9e840fd2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-27T18:13:40Z",
+      "side": 1,
+      "message": "not really done.\nthe color dialog do not display what is listed in the ticket",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "f00198a52f8631ab311fc22bde4d2fd89e290cd1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
