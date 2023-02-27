@@ -33,7 +33,6 @@ import "components"
 BaseView {
     id: root
     objectName: "WizardView"
-    singlePaneOnly: true
 
     // signal to redirect the page to main view
     signal loaderSourceChangeRequested(int sourceToLoad)

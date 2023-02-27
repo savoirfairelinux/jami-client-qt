@@ -30,8 +30,10 @@ import "../../commoncomponents"
 Label {
     id: root
 
-    signal settingBtnClicked
     property alias popup: comboBoxPopup
+
+    width: parent ? parent.width : o
+    height: JamiTheme.accountListItemHeight
 
     // TODO: remove these refresh hacks use QAbstractItemModels correctly
     Connections {
@@ -86,6 +88,7 @@ Label {
 
     MouseArea {
         id: mouseArea
+        enabled: visible
         anchors.fill: parent
         hoverEnabled: true
         onClicked: togglePopup()
@@ -214,7 +217,9 @@ Label {
                                  JamiStrings.closeSettings
 
                 onClicked: {
-                    settingBtnClicked()
+                    !viewCoordinator.inSettings ?
+                                viewCoordinator.present("SettingsView") :
+                                viewCoordinator.dismiss("SettingsView")
                     background.state = "normal"
                 }
             }
