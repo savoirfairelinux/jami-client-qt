@@ -69,6 +69,7 @@ public:
     CurrentConversationMembers* uris() const;
 
 Q_SIGNALS:
+    void reloadInteractions();
     void scrollTo(const QString& msgId);
     void showDetails();
 
