@@ -282,6 +282,8 @@ Item {
 
 
     // Sizes
+    property real mainViewLeftPaneMinWidth: 300
+    property real mainViewPaneMinWidth: 430
     property real qrCodeImageSize: 256
     property real splitViewHandlePreferredWidth: 4
     property real indicatorFontSize: calcSize(6)
@@ -413,7 +415,6 @@ Item {
     property real chatViewHairLineSize: 1
     property real chatViewMaximumWidth: 900
     property real chatViewHeaderPreferredHeight: 64
-    property real chatViewHeaderMinimumWidth: 430
     property real chatViewFooterPreferredHeight: 50
     property real chatViewFooterMaximumHeight: 280
     property real chatViewFooterRowSpacing: 1

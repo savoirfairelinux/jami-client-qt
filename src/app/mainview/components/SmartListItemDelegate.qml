@@ -53,12 +53,6 @@ ItemDelegate {
         }
     }
 
-    onVisibleChanged: {
-        if (visible)
-            return
-        UtilsAdapter.clearInteractionsCache(root.accountId, root.convId)
-    }
-
     Connections {
         target: MessagesAdapter
         function onTimestampUpdated() {
