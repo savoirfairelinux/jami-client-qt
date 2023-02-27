@@ -72,14 +72,29 @@ ApplicationWindow {
 
     function startClient() {
         if (UtilsAdapter.getAccountListSize() !== 0) {
-            mainApplicationLoader.setSource(JamiQmlUtils.mainViewLoadPath)
+            setMainLoaderSource(JamiQmlUtils.mainViewLoadPath)
         } else {
-            mainApplicationLoader.setSource(JamiQmlUtils.wizardViewLoadPath)
+            setMainLoaderSource(JamiQmlUtils.wizardViewLoadPath)
         }
     }
 
     function startAccountMigration() {
-        mainApplicationLoader.setSource(JamiQmlUtils.accountMigrationViewLoadPath)
+        setMainLoaderSource(JamiQmlUtils.accountMigrationViewLoadPath)
+    }
+
+    function setMainLoaderSource(source) {
+        if (checkLoadedSource() === MainApplicationWindow.LoadedSource.MainView) {
+            cleanupMainView()
+        }
+        mainApplicationLoader.setSource(source)
+    }
+
+    function cleanupMainView() {
+        // Save the main view window size if loading anything else.
+        layoutManager.saveWindowSettings()
+
+        // Unload any created views used by the main view.
+        viewCoordinator.deinit()
     }
 
     function close(force = false) {
@@ -87,9 +102,9 @@ ApplicationWindow {
         // is set, then we can quit
         if (force || !UtilsAdapter.getAppValue(Settings.MinimizeOnClose) ||
                 !UtilsAdapter.getAccountListSize()) {
-            // Save the window geometry and state before quitting.
-            layoutManager.saveWindowSettings()
-            viewCoordinator.dismissAll()
+            if (checkLoadedSource() === MainApplicationWindow.LoadedSource.MainView) {
+                cleanupMainView()
+            }
             Qt.quit()
         } else {
             layoutManager.closeToTray()
@@ -123,7 +138,7 @@ ApplicationWindow {
             target: viewCoordinator
 
             function onRequestAppWindowWizardView() {
-                mainApplicationLoader.setSource(JamiQmlUtils.wizardViewLoadPath)
+                setMainLoaderSource(JamiQmlUtils.wizardViewLoadPath)
             }
         }
 
@@ -132,9 +147,9 @@ ApplicationWindow {
 
             function onLoaderSourceChangeRequested(sourceToLoad) {
                 if (sourceToLoad === MainApplicationWindow.LoadedSource.WizardView)
-                    mainApplicationLoader.setSource(JamiQmlUtils.wizardViewLoadPath)
+                    setMainLoaderSource(JamiQmlUtils.wizardViewLoadPath)
                 else
-                    mainApplicationLoader.setSource(JamiQmlUtils.mainViewLoadPath)
+                    setMainLoaderSource(JamiQmlUtils.mainViewLoadPath)
             }
         }
 
@@ -144,9 +159,7 @@ ApplicationWindow {
         onLoaded: {
             if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView) {
                 // Onboarding wizard window, these settings are fixed.
-                // - window screen should default to the primary
-                // - position should default to being centered based on the
-                //   following dimensions
+                // - window screen will default to the primary
                 // - the window will showNormal once windowSettingsLoaded is
                 //   set to true(then forcing visible to true)
                 appWindow.width = JamiTheme.wizardViewMinWidth
@@ -160,11 +173,13 @@ ApplicationWindow {
 
                 // Present the welcome view once the viewCoordinator is setup.
                 viewCoordinator.initialized.connect(function() {
+                    viewCoordinator.preload("SidePanel")
+                    viewCoordinator.preload("SettingsSidePanel")
                     viewCoordinator.present("WelcomePage")
                     viewCoordinator.preload("ConversationView")
                 })
                 // Set the viewCoordinator's root item.
-                viewCoordinator.setRootView(item)
+                viewCoordinator.init(item)
             }
             if (Qt.platform.os.toString() === "osx") {
                 MainApplication.setEventFilter()

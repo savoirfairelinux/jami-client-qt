@@ -37,7 +37,6 @@ Rectangle {
     property int preferredColumnWidth : Math.min(root.width / 2 - 50, 350)
 
     signal navigateToMainView
-    signal navigateToNewWizardView
     signal advancedSettingsToggled(bool settingsVisible)
 
     function updateAccountInfoDisplayed() {
@@ -183,6 +182,8 @@ Rectangle {
         }
 
         MaterialButton {
+            id: btnDeleteAccount
+
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: CurrentAccount.type === Profile.Type.SIP ? JamiTheme.preferredMarginSize  : 0
             Layout.leftMargin: JamiTheme.preferredMarginSize

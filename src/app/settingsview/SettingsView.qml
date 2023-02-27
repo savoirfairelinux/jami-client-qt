@@ -29,19 +29,9 @@ import "components"
 import "../commoncomponents"
 import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
-BaseView {
-    id: root
+ListSelectionView {
+    id: viewNode
     objectName: "SettingsView"
-    requiresIndex: true
-
-    onDismissed: {
-        settingsViewRect.stopBooth()
-        if (UtilsAdapter.getAccountListSize() === 0) {
-            viewCoordinator.requestAppWindowWizardView()
-        } else {
-            AccountAdapter.changeAccount(0)
-        }
-    }
 
     enum SettingsMenu {
         Account,
@@ -50,9 +40,25 @@ BaseView {
         Plugin
     }
 
-    onVisibleChanged: if(visible) setSelected(selectedMenu, true)
+    splitViewStateKey: "Main"
+    inhibits: ["ConversationView"]
 
-    property int selectedMenu: SettingsView.Account
+    leftPaneItem: viewCoordinator.getView("SettingsSidePanel")
+
+    onDismissed: {
+        // Trigger an update to messages if needed.
+        // Currently needed when changing the show link preview setting.
+        CurrentConversation.reloadInteractions()
+        settingsViewRect.stopBooth()
+        if (UtilsAdapter.getAccountListSize() === 0) {
+            viewCoordinator.requestAppWindowWizardView()
+        } else {
+            AccountAdapter.changeAccount(0)
+        }
+    }
+
+    selectionFallback: true
+    property int selectedMenu: index
     onSelectedMenuChanged: {
         if (selectedMenu === SettingsView.Account) {
             pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
@@ -61,15 +67,10 @@ BaseView {
         }
     }
 
-    function setSelected(idx, recovery = false) {
-        if (selectedMenu === idx && !recovery) return
-        selectedMenu = idx
-    }
-
-    Rectangle {
+    rightPaneItem: Rectangle {
         id: settingsViewRect
 
-        anchors.fill: root
+        anchors.fill: parent
         color: JamiTheme.secondaryBackgroundColor
 
         signal stopBooth
@@ -98,6 +99,7 @@ BaseView {
 
             title: {
                 switch(selectedMenu){
+                    default:
                     case SettingsView.Account:
                         return JamiStrings.accountSettingsTitle
                     case SettingsView.General:
@@ -109,7 +111,7 @@ BaseView {
                 }
             }
 
-            onBackArrowClicked: viewCoordinator.hideCurrentView()
+            onBackArrowClicked: viewNode.dismiss()
         }
 
         JamiFlickable {
@@ -137,6 +139,7 @@ BaseView {
 
                 currentIndex: {
                     switch(selectedMenu){
+                        default:
                         case SettingsView.Account:
                             return pageIdCurrentAccountSettingsPage
                         case SettingsView.General:
@@ -166,7 +169,16 @@ BaseView {
                     isSIP: settingsViewRect.isSIP
 
                     onNavigateToMainView: dismiss()
-                    onNavigateToNewWizardView: dismiss()
+
+                    Connections {
+                        target: LRCInstance
+
+                        function onAccountListChanged() {
+                            if (!UtilsAdapter.getAccountListSize()) {
+                                viewCoordinator.requestAppWindowWizardView()
+                            }
+                        }
+                    }
 
                     onAdvancedSettingsToggled: function (settingsVisible) {
                         if (settingsVisible)
