@@ -312,7 +312,7 @@ struct Info
     bool isRead = false;
     MapStringString commit;
     QVariantMap linkPreviewInfo = {};
-    bool linkified = false;
+    QString linkified;
     QVariantMap reactions;
     QString react_to;
     QVector<Body> previousBodies;

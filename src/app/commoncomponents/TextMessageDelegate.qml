@@ -52,7 +52,12 @@ SBSMessageBase {
 
             padding: isEmojiOnly ? 0 : JamiTheme.preferredMarginSize
             anchors.right: isOutgoing ? parent.right : undefined
-            text: Body === "" ? "*("+ JamiStrings.deletedMessage +")*" : Body
+            text: {
+                if (LinkifiedBody !== "" && Linkified.length === 0) {
+                    MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl)
+                }
+                return (LinkifiedBody !== "") ? LinkifiedBody :  "*("+ JamiStrings.deletedMessage +")*"
+            }
             horizontalAlignment: Text.AlignLeft
 
             HoverHandler {
@@ -268,7 +273,7 @@ SBSMessageBase {
     opacity: 0
     Behavior on opacity { NumberAnimation { duration: 100 } }
     Component.onCompleted: {
-        if (!Linkified) {
+        if (Linkified.length === 0) {
             MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl)
         }
         opacity = 1

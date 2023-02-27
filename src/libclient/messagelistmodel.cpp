@@ -455,6 +455,12 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(item.second.linkPreviewInfo);
     case Role::Linkified:
         return QVariant(item.second.linkified);
+    case Role::LinkifiedBody: {
+        if (!item.second.linkified.isEmpty()) {
+            return QVariant(item.second.linkified);
+        }
+        return QVariant(item.second.body);
+    }
     case Role::ActionUri:
         return QVariant(item.second.commit["uri"]);
     case Role::ConfId:
@@ -474,10 +480,14 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(replyId);
     case Role::ReplyToAuthor:
         return repliedMsg == -1 ? QVariant("") : QVariant(data(repliedMsg, Role::Author));
-    case Role::ReplyToBody:
-        return repliedMsg == -1
-                   ? QVariant("")
-                   : QVariant(data(repliedMsg, Role::Body).toString().replace("\n", " "));
+    case Role::ReplyToBody: {
+        if (repliedMsg == -1)
+            return QVariant("");
+        auto linkified = data(repliedMsg, Role::Linkified).toString();
+        if (!linkified.isEmpty())
+            return QVariant(linkified.replace("\n", " "));
+        return QVariant(data(repliedMsg, Role::Body).toString().replace("\n", " "));
+    }
     case Role::TotalSize:
         return QVariant(item.second.commit["totalSize"].toInt());
     case Role::TransferName:
@@ -545,9 +555,8 @@ MessageListModel::linkifyMessage(const QString& messageId, const QString& linkif
         return;
     }
     QModelIndex modelIndex = QAbstractListModel::index(index, 0);
-    interactions_[index].second.body = linkified;
-    interactions_[index].second.linkified = true;
-    Q_EMIT dataChanged(modelIndex, modelIndex, {Role::Body, Role::Linkified});
+    interactions_[index].second.linkified = linkified;
+    Q_EMIT dataChanged(modelIndex, modelIndex, {Role::Linkified, Role::LinkifiedBody});
 }
 
 void
@@ -700,9 +709,12 @@ MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
             }
         }
         info.body = it->rbegin()->body;
+        info.linkified.clear();
         editedBodies_.erase(it);
         emitDataChanged(msgId,
                         {MessageList::Role::Body,
+                         MessageList::Role::Linkified,
+                         MessageList::Role::LinkifiedBody,
                          MessageList::Role::PreviousBodies,
                          MessageList::Role::IsEmojiOnly});
 
