@@ -29,10 +29,21 @@ import "components"
 import "../commoncomponents"
 import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
-BaseView {
-    id: root
+ListSelectionView {
+    id: viewNode
     objectName: "SettingsView"
-    requiresIndex: true
+
+    enum SettingsMenu {
+        Account,
+        General,
+        Media,
+        Plugin
+    }
+
+    splitViewStateKey: "Main"
+    inhibits: ["ConversationView"]
+
+    leftPaneItem: viewCoordinator.getView("SettingsSidePanel")
 
     onDismissed: {
         settingsViewRect.stopBooth()
@@ -43,16 +54,8 @@ BaseView {
         }
     }
 
-    enum SettingsMenu {
-        Account,
-        General,
-        Media,
-        Plugin
-    }
-
-    onVisibleChanged: if(visible) setSelected(selectedMenu, true)
-
-    property int selectedMenu: SettingsView.Account
+    selectionFallback: true
+    property int selectedMenu: index
     onSelectedMenuChanged: {
         if (selectedMenu === SettingsView.Account) {
             pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
@@ -61,15 +64,10 @@ BaseView {
         }
     }
 
-    function setSelected(idx, recovery = false) {
-        if (selectedMenu === idx && !recovery) return
-        selectedMenu = idx
-    }
-
-    Rectangle {
+    rightPaneItem: Rectangle {
         id: settingsViewRect
 
-        anchors.fill: root
+        anchors.fill: parent
         color: JamiTheme.secondaryBackgroundColor
 
         signal stopBooth
@@ -98,6 +96,7 @@ BaseView {
 
             title: {
                 switch(selectedMenu){
+                    default:
                     case SettingsView.Account:
                         return JamiStrings.accountSettingsTitle
                     case SettingsView.General:
@@ -109,7 +108,7 @@ BaseView {
                 }
             }
 
-            onBackArrowClicked: viewCoordinator.hideCurrentView()
+            onBackArrowClicked: viewNode.dismiss()
         }
 
         JamiFlickable {
@@ -137,6 +136,7 @@ BaseView {
 
                 currentIndex: {
                     switch(selectedMenu){
+                        default:
                         case SettingsView.Account:
                             return pageIdCurrentAccountSettingsPage
                         case SettingsView.General:
