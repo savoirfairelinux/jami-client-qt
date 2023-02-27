@@ -27,17 +27,17 @@ import net.jami.Constants 1.1
 import "../commoncomponents"
 import "components"
 
-BaseView {
+DualPaneView {
     id: root
     objectName: "ConversationView"
     managed: false
 
-    onPresented: {
-        if (!visible && viewCoordinator.singlePane &&
-                CurrentConversation.id !== '') {
-            viewCoordinator.present(objectName)
-        }
-    }
+//    onPresented: {
+//        if (!visible && viewCoordinator.singlePane &&
+//                CurrentConversation.id !== '') {
+//            viewCoordinator.present(objectName)
+//        }
+//    }
 
     onDismissed: {
         callStackView.needToCloseInCallConversationAndPotentialWindow()
@@ -54,13 +54,15 @@ BaseView {
 
     color: JamiTheme.transparentColor
 
-    StackLayout {
+    leftPaneItem: viewCoordinator.getView("SidePanel")
+
+    rightPaneItem: StackLayout {
         currentIndex: !CurrentConversation.hasCall ? 0 : 1
-        onCurrentIndexChanged: chatView.parent = currentIndex == 1 ?
+        onCurrentIndexChanged: chatView.parent = currentIndex === 1 ?
                                    callStackView.chatViewContainer :
                                    chatViewContainer
 
-        anchors.fill: root
+        anchors.fill: parent
 
         Item {
             id: chatViewContainer

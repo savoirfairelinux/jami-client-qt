@@ -29,10 +29,12 @@ import "components"
 import "../commoncomponents"
 import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
-BaseView {
+DualPaneView {
     id: root
     objectName: "SettingsView"
     requiresIndex: true
+
+    leftPaneItem: viewCoordinator.getView("SidePanel")
 
     onDismissed: {
         settingsViewRect.stopBooth()
@@ -66,10 +68,10 @@ BaseView {
         selectedMenu = idx
     }
 
-    Rectangle {
+    rightPaneItem: Rectangle {
         id: settingsViewRect
 
-        anchors.fill: root
+        anchors.fill: parent
         color: JamiTheme.secondaryBackgroundColor
 
         signal stopBooth

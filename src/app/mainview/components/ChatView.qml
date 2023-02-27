@@ -258,18 +258,18 @@ Rectangle {
 
             handle: Rectangle {
                 implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-                implicitHeight: viewCoordinator.splitView.height
+                implicitHeight: root.height
                 color: JamiTheme.primaryBackgroundColor
                 Rectangle {
                     implicitWidth: 1
-                    implicitHeight: viewCoordinator.splitView.height
+                    implicitHeight: root.height
                     color: JamiTheme.tabbarBorderColor
                 }
             }
 
             ColumnLayout {
                 id: chatContents
-                SplitView.maximumWidth: viewCoordinator.splitView.width
+                SplitView.maximumWidth: root.width
                 SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
                 SplitView.fillWidth: true
 
@@ -343,7 +343,7 @@ Rectangle {
                 id: messagesResearchPanel
 
                 visible: false
-                SplitView.maximumWidth: viewCoordinator.splitView.width
+                SplitView.maximumWidth: root.width
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
                 SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
             }
@@ -352,7 +352,7 @@ Rectangle {
                 id: swarmDetailsPanel
                 visible: false
 
-                SplitView.maximumWidth: viewCoordinator.splitView.width
+                SplitView.maximumWidth: root.width
                 SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
             }
@@ -361,7 +361,7 @@ Rectangle {
                 id: addMemberPanel
                 visible: false
 
-                SplitView.maximumWidth: viewCoordinator.splitView.width
+                SplitView.maximumWidth: root.width
                 SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
             }

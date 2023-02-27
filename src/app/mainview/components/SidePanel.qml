@@ -29,11 +29,11 @@ import net.jami.Models 1.1
 import "../../commoncomponents"
 import "../../settingsview/components"
 
-BaseView {
+SidePanelBase {
     id: root
     objectName: "SidePanel"
 
-    color: JamiTheme.backgroundColor
+    //color: JamiTheme.backgroundColor
 
     Connections {
         target: LRCInstance

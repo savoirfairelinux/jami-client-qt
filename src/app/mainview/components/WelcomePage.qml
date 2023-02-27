@@ -27,20 +27,22 @@ import net.jami.Models 1.1
 import "../../commoncomponents"
 import "../js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
-BaseView {
-    id: root
+DualPaneView {
+    id: viewNode
+    objectName: "WelcomePage"
 
     color: JamiTheme.secondaryBackgroundColor
 
-    JamiFlickable {
-        id: welcomeView
+    leftPaneItem: viewCoordinator.getView("SidePanel")
+    rightPaneItem: JamiFlickable {
+        id: root
         MouseArea {
             anchors.fill: parent
             enabled: visible
-            onClicked: welcomeView.forceActiveFocus()
+            onClicked: root.forceActiveFocus()
         }
 
-        anchors.fill: root
+        anchors.fill: parent
 
         contentHeight: Math.max(root.height, welcomePageLayout.implicitHeight)
         contentWidth: Math.max(300, root.width)
