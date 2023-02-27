@@ -25,12 +25,8 @@ Rectangle {
     // only be destroyed when its parent is destroyed.
     property bool managed: true
 
-    // True if this view functions in a single-pane context only.
-    property bool singlePaneOnly: false
-
-    // True if this view requires and initial selection from
-    // a group of menu options when in single-pane mode (e.g. settings).
-    property bool requiresIndex: false
+    // A list of view names that this view inhibits the presentation of.
+    property var inhibits: []
 
     function dismiss() { viewCoordinator.dismiss(objectName) }
 
