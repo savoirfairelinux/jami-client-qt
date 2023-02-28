@@ -99,6 +99,7 @@ Loader {
             onFocusChanged: {
                 if (!focus) {
                     root.editMode = false
+                    root.accepted()
                 }
                 activeChanged(root.editMode)
             }
