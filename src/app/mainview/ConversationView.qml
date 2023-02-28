@@ -80,6 +80,7 @@ BaseView {
                         Qt.callLater(focusChatView)
                     } else {
                         dismiss()
+                        callStackView.contentView.forceActiveFocus()
                     }
                 }
 
@@ -88,6 +89,17 @@ BaseView {
                         root.dismiss()
                     } else {
                         callStackView.chatViewContainer.visible = false
+                        callStackView.contentView.forceActiveFocus()
+                    }
+                }
+
+                onVisibleChanged: {
+                    if (!inCallView)
+                        return
+                    if (visible && !parent.showDetails) {
+                        focusChatView()
+                    } else {
+                        callStackView.contentView.forceActiveFocus()
                     }
                 }
             }
@@ -97,6 +109,13 @@ BaseView {
             id: callStackView
             Layout.fillWidth: true
             Layout.fillHeight: true
+
+            onVisibleChanged: {
+                if (visible)
+                    contentView.forceActiveFocus()
+                else
+                    chatView.focusChatView()
+            }
         }
     }
 }
