@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ebe5196_4cf7610d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-28T19:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ac0ff61_7cad3af6",
+      "range": {
+        "startLine": 420,
+        "startChar": 25,
+        "endLine": 421,
+        "endChar": 36
+      },
+      "revId": "61e67e0eabb0df9a788da0d0f8dd7d1b4394147a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8681d372_f056edf6",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-24T19:02:58Z",
       "side": 1,
       "message": "clicking on this element is focusing the next one",
+      "range": {
+        "startLine": 109,
+        "startChar": 24,
+        "endLine": 109,
+        "endChar": 41
+      },
+      "revId": "61e67e0eabb0df9a788da0d0f8dd7d1b4394147a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a292760_a49eb2ff",
+        "filename": "src/app/wizardview/components/CreateSIPAccountPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-28T19:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8681d372_f056edf6",
       "range": {
         "startLine": 109,
         "startChar": 24,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fd3c35d_3a3eb854",
+        "filename": "src/app/wizardview/components/CreateSIPAccountPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-28T19:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9bf55d8_9754decd",
+      "range": {
+        "startLine": 191,
+        "startChar": 37,
+        "endLine": 191,
+        "endChar": 38
+      },
+      "revId": "61e67e0eabb0df9a788da0d0f8dd7d1b4394147a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b22bf94_52c99aaf",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-02-24T19:02:58Z",
       "side": 1,
       "message": "you can add a 4th lineedit with the displayname",
+      "range": {
+        "startLine": 228,
+        "startChar": 49,
+        "endLine": 228,
+        "endChar": 68
+      },
+      "revId": "61e67e0eabb0df9a788da0d0f8dd7d1b4394147a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "112d683b_4f3b5994",
+        "filename": "src/app/wizardview/components/CreateSIPAccountPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-02-28T19:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b22bf94_52c99aaf",
       "range": {
         "startLine": 228,
         "startChar": 49,
