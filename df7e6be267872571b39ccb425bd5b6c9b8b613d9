@@ -22,6 +22,30 @@
       },
       "revId": "df7e6be267872571b39ccb425bd5b6c9b8b613d9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51cb7f79_e49671ba",
+        "filename": "src/app/commoncomponents/UsernameTextEdit.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-28T12:40:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efba661d_59618dc6",
+      "range": {
+        "startLine": 62,
+        "startChar": 43,
+        "endLine": 62,
+        "endChar": 86
+      },
+      "revId": "df7e6be267872571b39ccb425bd5b6c9b8b613d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
