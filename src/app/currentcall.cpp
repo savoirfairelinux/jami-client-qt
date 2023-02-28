@@ -60,8 +60,10 @@ CurrentCall::updateId(QString callId)
         return;
     }
 
-    // Set the current id_ if there is a call.
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+    if (accInfo.profileInfo.type != lrc::api::profile::Type::SIP)
+        accInfo.callModel->setCurrentCall(callId);
+    // Set the current id_ if there is a call.
     set_id((accInfo.callModel->hasCall(callId) ? callId : QString()));
 }
 
