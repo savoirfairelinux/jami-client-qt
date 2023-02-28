@@ -214,9 +214,9 @@ Rectangle {
 
                 WizardViewStepModel.accountCreationInfo =
                         JamiQmlUtils.setUpAccountCreationInputPara(
-                            {username : usernameManagerEdit.text,
-                                password : passwordManagerEdit.text,
-                                manager : accountManagerEdit.text})
+                            {username : usernameManagerEdit.dynamicText,
+                                password : passwordManagerEdit.dynamicText,
+                                manager : accountManagerEdit.dynamicText})
                 WizardViewStepModel.nextStep()
             }
         }
