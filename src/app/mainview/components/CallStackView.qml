@@ -30,6 +30,7 @@ Item {
     id: root
 
     property alias chatViewContainer: ongoingCallPage.chatViewContainer
+    property alias contentView: callStackMainView
 
     property var sipKeys: [
         "1", "2", "3", "A",
