@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa68f279_ac1808ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-28T21:42:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f10fb5ae_be4a0c26",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "7766c2a1bdc482cb65cafa70645d8d4c4d48ae1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b46cb8d_99e0c762",
@@ -41,6 +65,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37192e1a_ce0a735f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-28T21:42:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b46cb8d_99e0c762",
+      "revId": "7766c2a1bdc482cb65cafa70645d8d4c4d48ae1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccf32015_6b9a335a",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-02-28T19:48:32Z",
       "side": 1,
       "message": "random lines added",
+      "revId": "7766c2a1bdc482cb65cafa70645d8d4c4d48ae1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fecf552_f1dcb2e1",
+        "filename": "src/app/commoncomponents/PushButton.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-28T21:42:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccf32015_6b9a335a",
       "revId": "7766c2a1bdc482cb65cafa70645d8d4c4d48ae1d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

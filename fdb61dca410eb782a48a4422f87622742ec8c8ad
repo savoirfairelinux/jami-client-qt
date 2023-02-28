@@ -16,6 +16,24 @@
       "message": "Not used",
       "revId": "fdb61dca410eb782a48a4422f87622742ec8c8ad",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37e8278c_6f4a23a0",
+        "filename": "resources/images/good_to_know.gif",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-02-28T21:42:25Z",
+      "side": 1,
+      "message": "wait for new design",
+      "parentUuid": "bed723fa_aadb74ee",
+      "revId": "fdb61dca410eb782a48a4422f87622742ec8c8ad",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
