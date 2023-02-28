@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad027e78_a43f47ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-02-28T14:54:01Z",
+      "side": 1,
+      "message": "for note:\nalice + bob in a swarm\nalice does audio call, call is ok\nalice shuts the first call and starts a second one\nThere is no participant in the second.",
+      "revId": "53ad90b84cabede43647954bb375275bd7efd1b1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
