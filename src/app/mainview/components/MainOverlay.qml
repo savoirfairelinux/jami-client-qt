@@ -51,7 +51,7 @@ Item {
     property alias callActionBar: __callActionBar
 
     property bool frozen: callActionBar.overflowOpen ||
-                          callActionBar.hovered ||
+                          callActionBar.barHovered ||
                           callActionBar.subMenuOpen ||
                           participantCallInStatusView.visible
 
@@ -274,6 +274,7 @@ Item {
         width: parent.width
         height: 55
         parentHeight: root.height - 81
+        visible: root.opacity
     }
 
     Behavior on opacity {

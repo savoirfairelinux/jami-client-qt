@@ -39,6 +39,7 @@ Control {
     property alias overflowOpen: overflowButton.popup.visible
     property bool subMenuOpen: false
     property real parentHeight
+    property bool barHovered: false
 
     property real itemSpacing: 2
 
@@ -65,6 +66,7 @@ Control {
             height: width
             barWidth: root.width
             onSubMenuVisibleChanged: subMenuOpen = subMenuVisible
+            onHoveredChanged: root.barHovered = hovered
         }
     }
 
