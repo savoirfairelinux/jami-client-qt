@@ -66,7 +66,7 @@ RadioButton {
 
     contentItem: Text {
         text: root.text
-        color: "white"
+        color: root.color
         leftPadding: root.indicator.width + root.spacing
         verticalAlignment: Text.AlignVCenter
     }
