@@ -51,7 +51,6 @@ void
 CurrentConversation::updateData()
 {
     auto convId = lrcInstance_->get_selectedConvUid();
-    set_id(convId);
     if (convId.isEmpty())
         return;
     try {
@@ -133,6 +132,7 @@ CurrentConversation::updateData()
     } catch (...) {
         qWarning() << "Can't update current conversation data for" << convId;
     }
+    set_id(convId);
     updateErrors(convId);
 }
 
