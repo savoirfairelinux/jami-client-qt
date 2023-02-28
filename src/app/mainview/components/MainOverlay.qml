@@ -274,6 +274,7 @@ Item {
         width: parent.width
         height: 55
         parentHeight: root.height - 81
+        visible: root.opacity
     }
 
     Behavior on opacity {
