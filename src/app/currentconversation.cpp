@@ -51,89 +51,90 @@ void
 CurrentConversation::updateData()
 {
     auto convId = lrcInstance_->get_selectedConvUid();
-    if (convId.isEmpty())
-        return;
+
+    auto cleanup = qScopeGuard([&] {
+        set_id(convId);
+        updateErrors(convId);
+    });
+
     try {
         auto accountId = lrcInstance_->get_currentAccountId();
         const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
-        if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
-            auto& convInfo = optConv->get();
-            set_lastSelfMessageId(convInfo.lastSelfMessageId);
-            QStringList uris, bannedUris;
-            auto isAdmin = false;
-            for (const auto& p : convInfo.participants) {
-                if (p.uri == accInfo.profileInfo.uri) {
-                    isAdmin = p.role == member::Role::ADMIN;
-                }
-                if (p.role == member::Role::BANNED) {
-                    bannedUris.push_back(p.uri);
-                } else {
-                    uris.push_back(p.uri);
-                }
+        auto optConv = accInfo.conversationModel->getConversationForUid(convId);
+        if (!optConv)
+            return;
+        auto& convInfo = optConv->get();
+        set_lastSelfMessageId(convInfo.lastSelfMessageId);
+        QStringList uris, bannedUris;
+        auto isAdmin = false;
+        for (const auto& p : convInfo.participants) {
+            if (p.uri == accInfo.profileInfo.uri) {
+                isAdmin = p.role == member::Role::ADMIN;
             }
-            if (isAdmin) {
-                for (const auto& banned : bannedUris)
-                    uris.push_back(banned);
-            }
-            uris_->setMembers(accountId, convId, uris);
-            set_isSwarm(convInfo.isSwarm());
-            set_isLegacy(convInfo.isLegacy());
-            set_isCoreDialog(convInfo.isCoreDialog());
-            set_isRequest(convInfo.isRequest);
-            set_needsSyncing(convInfo.needsSyncing);
-            updateConversationPreferences(convId);
-            set_isSip(accInfo.profileInfo.type == profile::Type::SIP);
-            set_callId(convInfo.getCallId());
-            set_allMessagesLoaded(convInfo.allMessagesLoaded);
-            if (accInfo.callModel->hasCall(callId_)) {
-                auto call = accInfo.callModel->getCall(callId_);
-                set_callState(call.status);
-                set_hasCall(callState_ != call::Status::ENDED);
+            if (p.role == member::Role::BANNED) {
+                bannedUris.push_back(p.uri);
             } else {
-                set_callState(call::Status::INVALID);
-                set_hasCall(false);
+                uris.push_back(p.uri);
             }
-            set_inCall(callState_ == call::Status::CONNECTED
-                       || callState_ == call::Status::IN_PROGRESS
-                       || callState_ == call::Status::PAUSED);
-
-            // The temporary status is only for dialogs.
-            // It can be used to display add contact/conversation UI and
-            // is consistently determined by the peer's uri being equal to
-            // the conversation id.
-            auto members = accInfo.conversationModel->peersForConversation(convId);
-            set_isTemporary(isCoreDialog_ ? (convId == members.at(0) || convId == "SEARCHSIP")
-                                          : false);
-
-            auto isContact {false};
-            if (isCoreDialog_)
-                try {
-                    auto& contact = accInfo.contactModel->getContact(members.at(0));
-                    set_isBanned(contact.isBanned);
-                    isContact = contact.profileInfo.type != profile::Type::TEMPORARY;
-                } catch (const std::exception& e) {
-                    qInfo() << "Contact not found: " << e.what();
-                }
-            set_isContact(isContact);
-
-            if (convInfo.mode == conversation::Mode::ONE_TO_ONE) {
-                set_modeString(tr("Private"));
-            } else if (convInfo.mode == conversation::Mode::ADMIN_INVITES_ONLY) {
-                set_modeString(tr("Private group (restricted invites)"));
-            } else if (convInfo.mode == conversation::Mode::INVITES_ONLY) {
-                set_modeString(tr("Private group"));
-            } else if (convInfo.mode == conversation::Mode::PUBLIC) {
-                set_modeString(tr("Public group"));
-            }
-
-            onProfileUpdated(convId);
-            updateActiveCalls(accountId, convId);
         }
+        if (isAdmin) {
+            for (const auto& banned : bannedUris)
+                uris.push_back(banned);
+        }
+        uris_->setMembers(accountId, convId, uris);
+        set_isSwarm(convInfo.isSwarm());
+        set_isLegacy(convInfo.isLegacy());
+        set_isCoreDialog(convInfo.isCoreDialog());
+        set_isRequest(convInfo.isRequest);
+        set_needsSyncing(convInfo.needsSyncing);
+        updateConversationPreferences(convId);
+        set_isSip(accInfo.profileInfo.type == profile::Type::SIP);
+        set_callId(convInfo.getCallId());
+        set_allMessagesLoaded(convInfo.allMessagesLoaded);
+        if (accInfo.callModel->hasCall(callId_)) {
+            auto call = accInfo.callModel->getCall(callId_);
+            set_callState(call.status);
+            set_hasCall(callState_ != call::Status::ENDED);
+        } else {
+            set_callState(call::Status::INVALID);
+            set_hasCall(false);
+        }
+        set_inCall(callState_ == call::Status::CONNECTED || callState_ == call::Status::IN_PROGRESS
+                   || callState_ == call::Status::PAUSED);
+
+        // The temporary status is only for dialogs.
+        // It can be used to display add contact/conversation UI and
+        // is consistently determined by the peer's uri being equal to
+        // the conversation id.
+        auto members = accInfo.conversationModel->peersForConversation(convId);
+        set_isTemporary(isCoreDialog_ ? (convId == members.at(0) || convId == "SEARCHSIP") : false);
+
+        auto isContact {false};
+        if (isCoreDialog_)
+            try {
+                auto& contact = accInfo.contactModel->getContact(members.at(0));
+                set_isBanned(contact.isBanned);
+                isContact = contact.profileInfo.type != profile::Type::TEMPORARY;
+            } catch (const std::exception& e) {
+                qInfo() << "Contact not found: " << e.what();
+            }
+        set_isContact(isContact);
+
+        if (convInfo.mode == conversation::Mode::ONE_TO_ONE) {
+            set_modeString(tr("Private"));
+        } else if (convInfo.mode == conversation::Mode::ADMIN_INVITES_ONLY) {
+            set_modeString(tr("Private group (restricted invites)"));
+        } else if (convInfo.mode == conversation::Mode::INVITES_ONLY) {
+            set_modeString(tr("Private group"));
+        } else if (convInfo.mode == conversation::Mode::PUBLIC) {
+            set_modeString(tr("Public group"));
+        }
+
+        onProfileUpdated(convId);
+        updateActiveCalls(accountId, convId);
     } catch (...) {
         qWarning() << "Can't update current conversation data for" << convId;
     }
-    set_id(convId);
-    updateErrors(convId);
 }
 
 void
@@ -304,7 +305,7 @@ CurrentConversation::showSwarmDetails()
 void
 CurrentConversation::updateErrors(const QString& convId)
 {
-    if (convId != id_)
+    if (convId != id_ || convId.isEmpty())
         return;
     try {
         QStringList newErrors;
