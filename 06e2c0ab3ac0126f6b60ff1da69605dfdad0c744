@@ -22,6 +22,30 @@
       },
       "revId": "06e2c0ab3ac0126f6b60ff1da69605dfdad0c744",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81b8ee6a_8b68ec52",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-03-01T11:17:21Z",
+      "side": 1,
+      "message": "Per charlotte, the button should be on the last position, so no change to be made",
+      "parentUuid": "73c5998e_a8b8ff08",
+      "range": {
+        "startLine": 413,
+        "startChar": 16,
+        "endLine": 413,
+        "endChar": 34
+      },
+      "revId": "06e2c0ab3ac0126f6b60ff1da69605dfdad0c744",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
