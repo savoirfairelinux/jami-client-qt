@@ -105,12 +105,12 @@ DeviceModel::setCurrentDeviceName(const QString& newName)
     config.deviceName = newName;
     owner.accountModel->setAccountConfig(owner.id, config);
     // Update model
-    std::lock_guard<std::mutex> lock(pimpl_->devicesMtx_);
+    std::unique_lock<std::mutex> lock(pimpl_->devicesMtx_);
     for (auto& device : pimpl_->devices_) {
         if (device.id == config.deviceId) {
             device.name = newName;
+            lock.unlock();
             Q_EMIT deviceUpdated(device.id);
-
             return;
         }
     }
