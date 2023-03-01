@@ -43,8 +43,8 @@ PushButton {
             top: parent.bottom
             topMargin: isBarLayout? 6 : 2
         }
-        color : isBarLayout? JamiTheme.darkGreyColorOpacity
-                           : "transparent"
+        color : isBarLayout ? JamiTheme.darkGreyColorOpacity
+                            : "transparent"
         visible: hover.hovered && !isSmall
         radius: 2
 
@@ -56,9 +56,15 @@ PushButton {
             font.pointSize: JamiTheme.tinyFontSize
         }
     }
+
     Item {
         anchors.fill: parent
 
-        HoverHandler { id: hover }
+        HoverHandler {
+            id: hover
+            onHoveredChanged: {
+                root.forceHovered = hover.hovered
+            }
+        }
     }
 }

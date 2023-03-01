@@ -403,7 +403,6 @@ Item {
                 }
             }
 
-
             Rectangle {
                 id: alertMessage
 

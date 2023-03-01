@@ -83,6 +83,8 @@ AbstractButton {
     hoverEnabled: true
     focusPolicy: Qt.TabFocus
 
+    property bool forceHovered:  false
+
     Accessible.role: Accessible.Button
     Accessible.name: buttonText
     Accessible.description: toolTipText
@@ -161,6 +163,10 @@ AbstractButton {
             },
             State {
                 name: "hovered"; when: hovered || root.focus
+                PropertyChanges { target: background; color: hoveredColor }
+            },
+            State {
+                name: "forceHovered"; when: forceHovered || root.focus
                 PropertyChanges { target: background; color: hoveredColor }
             },
             State {
