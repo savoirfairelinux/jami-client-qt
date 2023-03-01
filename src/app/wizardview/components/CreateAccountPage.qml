@@ -144,13 +144,6 @@ Rectangle {
                     KeyNavigation.tab: chooseUsernameButton
                     KeyNavigation.up: backButton
                     KeyNavigation.down: chooseUsernameButton
-
-                    onAccepted: {
-                        if (chooseUsernameButton.enabled)
-                            chooseUsernameButton.clicked()
-                        else
-                            skipButton.clicked()
-                    }
                 }
 
 
@@ -220,7 +213,6 @@ Rectangle {
 
                         if(usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.BLANK)
                             popup.visible = true
-
                     }
                 }
 
