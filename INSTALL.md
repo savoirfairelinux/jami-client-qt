@@ -85,10 +85,10 @@ specify its path using the `--qt` flag, e.g.
 `./build.py --install --qt=/home/<username>/Qt/6.2.1/gcc_64`.
 
 Now you will have the daemon in `daemon/bin/jamid` and the client in
-`build/bin/jami`.  You can now run Jami using
+`build/jami`.  You can now run Jami using:
 
 ```bash
-./build.py --run
+./build/jami
 ```
 
 Notes:
