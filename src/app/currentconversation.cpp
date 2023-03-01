@@ -52,10 +52,23 @@ CurrentConversation::updateData()
 {
     auto convId = lrcInstance_->get_selectedConvUid();
 
-    auto cleanup = qScopeGuard([&] {
-        set_id(convId);
+    // If the conversation is empty, clear the id and return.
+    if (convId.isEmpty()) {
+        set_id();
+        return;
+    }
+
+    // We need to emit the id changed signal after other properties have been updated.
+    // We also need to set the id_ member variable before updating the other properties.
+    auto cleanup = qScopeGuard([&, previousId = id_] {
+        // Only emit the id changed signal if the id has changed.
+        if (id_ != previousId)
+            Q_EMIT idChanged();
+
         updateErrors(convId);
     });
+    // Now we can change the id without emitting the signal.
+    id_ = convId;
 
     try {
         auto accountId = lrcInstance_->get_currentAccountId();
@@ -87,7 +100,6 @@ CurrentConversation::updateData()
         set_isCoreDialog(convInfo.isCoreDialog());
         set_isRequest(convInfo.isRequest);
         set_needsSyncing(convInfo.needsSyncing);
-        updateConversationPreferences(convId);
         set_isSip(accInfo.profileInfo.type == profile::Type::SIP);
         set_callId(convInfo.getCallId());
         set_allMessagesLoaded(convInfo.allMessagesLoaded);
@@ -130,7 +142,8 @@ CurrentConversation::updateData()
             set_modeString(tr("Public group"));
         }
 
-        onProfileUpdated(convId);
+        updateConversationPreferences(convId);
+        updateProfile(convId);
         updateActiveCalls(accountId, convId);
     } catch (...) {
         qWarning() << "Can't update current conversation data for" << convId;
@@ -140,7 +153,7 @@ CurrentConversation::updateData()
 void
 CurrentConversation::onNeedsHost(const QString& convId)
 {
-    if (id_ != convId)
+    if (convId != id_)
         return;
     Q_EMIT needsHost();
 }
@@ -197,17 +210,15 @@ CurrentConversation::uris() const
 void
 CurrentConversation::onConversationUpdated(const QString& convId)
 {
-    // filter for our currently set id
-    if (id_ != convId)
+    if (convId != id_)
         return;
     updateData();
 }
 
 void
-CurrentConversation::onProfileUpdated(const QString& convId)
+CurrentConversation::updateProfile(const QString& convId)
 {
-    // filter for our currently set id
-    if (id_ != convId)
+    if (convId != id_)
         return;
     const auto& convModel = lrcInstance_->getCurrentConversationModel();
     set_title(convModel->title(convId));
@@ -235,7 +246,7 @@ CurrentConversation::onProfileUpdated(const QString& convId)
 void
 CurrentConversation::updateConversationPreferences(const QString& convId)
 {
-    if (convId != lrcInstance_->get_selectedConvUid())
+    if (convId != id_)
         return;
     auto accountId = lrcInstance_->get_currentAccountId();
     const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
@@ -267,7 +278,7 @@ CurrentConversation::connectModel()
     connect(lrcInstance_->getCurrentConversationModel(),
             &ConversationModel::profileUpdated,
             this,
-            &CurrentConversation::onProfileUpdated,
+            &CurrentConversation::updateProfile,
             Qt::UniqueConnection);
     connect(lrcInstance_->getCurrentConversationModel(),
             &ConversationModel::onConversationErrorsUpdated,
@@ -305,7 +316,7 @@ CurrentConversation::showSwarmDetails()
 void
 CurrentConversation::updateErrors(const QString& convId)
 {
-    if (convId != id_ || convId.isEmpty())
+    if (convId != id_)
         return;
     try {
         QStringList newErrors;
