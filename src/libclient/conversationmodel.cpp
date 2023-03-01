@@ -655,6 +655,10 @@ ConversationModel::getFilteredConversations(const profile::Type& profileType,
 OptRef<conversation::Info>
 ConversationModel::getConversationForUid(const QString& uid) const
 {
+    if (!pimpl_) {
+        qWarning() << "Invalid pimpl_";
+        return std::nullopt;
+    }
     try {
         return std::make_optional(pimpl_->getConversationForUid(uid, true));
     } catch (const std::out_of_range&) {
