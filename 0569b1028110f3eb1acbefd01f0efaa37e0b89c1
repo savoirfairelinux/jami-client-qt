@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b00b5b68_e61938e2",
+        "filename": "src/app/mainview/components/MainOverlay.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-01T14:47:34Z",
+      "side": 1,
+      "message": "I think we should instead not hide the action bar, as button are clickable while opacity is 0. (Like if you stay a few seconds on end call before clicking, the button will disappears but you can activate the button)",
+      "range": {
+        "startLine": 277,
+        "startChar": 12,
+        "endLine": 277,
+        "endChar": 25
+      },
+      "revId": "0569b1028110f3eb1acbefd01f0efaa37e0b89c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
