@@ -22,6 +22,30 @@
       },
       "revId": "0569b1028110f3eb1acbefd01f0efaa37e0b89c1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "389b83ba_a1fb7840",
+        "filename": "src/app/mainview/components/MainOverlay.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-03-01T17:22:00Z",
+      "side": 1,
+      "message": "with visible set to false, we should not be able to use the button. but we could still freeze the bar and not allow it to fadeout",
+      "parentUuid": "b00b5b68_e61938e2",
+      "range": {
+        "startLine": 277,
+        "startChar": 12,
+        "endLine": 277,
+        "endChar": 25
+      },
+      "revId": "0569b1028110f3eb1acbefd01f0efaa37e0b89c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
