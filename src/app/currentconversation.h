@@ -76,7 +76,7 @@ private Q_SLOTS:
     void updateData();
     void onNeedsHost(const QString& convId);
     void onConversationUpdated(const QString& convId);
-    void onProfileUpdated(const QString& convId);
+    void updateProfile(const QString& convId);
     void updateErrors(const QString& convId);
     void updateConversationPreferences(const QString& convId);
     void updateActiveCalls(const QString&, const QString& convId);
