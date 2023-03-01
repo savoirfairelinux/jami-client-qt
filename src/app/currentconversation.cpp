@@ -87,7 +87,6 @@ CurrentConversation::updateData()
         set_isCoreDialog(convInfo.isCoreDialog());
         set_isRequest(convInfo.isRequest);
         set_needsSyncing(convInfo.needsSyncing);
-        updateConversationPreferences(convId);
         set_isSip(accInfo.profileInfo.type == profile::Type::SIP);
         set_callId(convInfo.getCallId());
         set_allMessagesLoaded(convInfo.allMessagesLoaded);
@@ -130,7 +129,8 @@ CurrentConversation::updateData()
             set_modeString(tr("Public group"));
         }
 
-        onProfileUpdated(convId);
+        updateConversationPreferences(convId);
+        updateProfile(convId);
         updateActiveCalls(accountId, convId);
     } catch (...) {
         qWarning() << "Can't update current conversation data for" << convId;
@@ -140,7 +140,7 @@ CurrentConversation::updateData()
 void
 CurrentConversation::onNeedsHost(const QString& convId)
 {
-    if (id_ != convId)
+    if (convId != lrcInstance_->get_selectedConvUid())
         return;
     Q_EMIT needsHost();
 }
@@ -197,17 +197,15 @@ CurrentConversation::uris() const
 void
 CurrentConversation::onConversationUpdated(const QString& convId)
 {
-    // filter for our currently set id
-    if (id_ != convId)
+    if (convId != lrcInstance_->get_selectedConvUid())
         return;
     updateData();
 }
 
 void
-CurrentConversation::onProfileUpdated(const QString& convId)
+CurrentConversation::updateProfile(const QString& convId)
 {
-    // filter for our currently set id
-    if (id_ != convId)
+    if (convId != lrcInstance_->get_selectedConvUid())
         return;
     const auto& convModel = lrcInstance_->getCurrentConversationModel();
     set_title(convModel->title(convId));
@@ -267,7 +265,7 @@ CurrentConversation::connectModel()
     connect(lrcInstance_->getCurrentConversationModel(),
             &ConversationModel::profileUpdated,
             this,
-            &CurrentConversation::onProfileUpdated,
+            &CurrentConversation::updateProfile,
             Qt::UniqueConnection);
     connect(lrcInstance_->getCurrentConversationModel(),
             &ConversationModel::onConversationErrorsUpdated,
@@ -305,7 +303,7 @@ CurrentConversation::showSwarmDetails()
 void
 CurrentConversation::updateErrors(const QString& convId)
 {
-    if (convId != id_ || convId.isEmpty())
+    if (convId != lrcInstance_->get_selectedConvUid())
         return;
     try {
         QStringList newErrors;
@@ -338,7 +336,7 @@ CurrentConversation::updateErrors(const QString& convId)
 void
 CurrentConversation::updateActiveCalls(const QString&, const QString& convId)
 {
-    if (convId != id_)
+    if (convId != lrcInstance_->get_selectedConvUid())
         return;
     const auto& convModel = lrcInstance_->getCurrentConversationModel();
     if (auto optConv = convModel->getConversationForUid(convId)) {
