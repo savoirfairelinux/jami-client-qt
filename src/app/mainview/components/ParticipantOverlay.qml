@@ -70,15 +70,6 @@ Item {
     property bool participantHovered: hoverIndicator.hovered
     property bool isScreenshotButtonHovered: false
 
-    function takeScreenshot() {
-        if (!hoveredOverVideoMuted) {
-            if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId),
-                                           UtilsAdapter.getDirScreenshot())) {
-                toastManager.instantiateToast();
-            }
-        }
-    }
-
     onMuteAlertActiveChanged: {
         if (muteAlertActive) {
             alertTimer.restart()
@@ -152,22 +143,6 @@ Item {
             height: participantIsActive ? mediaDistRender.contentRect.height - 2 : undefined
             anchors.centerIn: participantIsActive ? parent : undefined
             anchors.fill: participantIsActive ? undefined : parent
-
-            TapHandler {
-                acceptedButtons: Qt.MiddleButton
-                acceptedModifiers: Qt.ControlModifier
-                onTapped: {
-                    takeScreenshot()
-                }
-            }
-
-            MultiPointTouchArea {
-                anchors.fill: parent
-                minimumTouchPoints: 3
-                onPressed: {
-                    takeScreenshot()
-                }
-            }
 
             HoverHandler {
                 id: hoverIndicator
