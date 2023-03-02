@@ -99,7 +99,7 @@ Loader {
             inputIsValid: root.inputIsValid
             onFocusChanged: {
                 if (!focus && root.editMode) {
-                    root.editMode = false
+                    root.editMode = isPersistent
                     root.accepted()
                 }
                 activeChanged(root.editMode)
