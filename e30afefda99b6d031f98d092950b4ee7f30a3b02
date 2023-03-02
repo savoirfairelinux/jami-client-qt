@@ -16,6 +16,24 @@
       "message": "update daemon submodule",
       "revId": "e30afefda99b6d031f98d092950b4ee7f30a3b02",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "055783f8_29083370",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-02T14:13:46Z",
+      "side": 1,
+      "message": "yeah I think I\u0027ll wait for https://review.jami.net/c/jami-daemon/+/24050 so that I can do the bump for both this and the nightly in one patch",
+      "parentUuid": "972337f3_4a2d27b5",
+      "revId": "e30afefda99b6d031f98d092950b4ee7f30a3b02",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
