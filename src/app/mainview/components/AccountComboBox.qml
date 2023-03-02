@@ -88,7 +88,10 @@ Label {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: togglePopup()
+        onClicked: {
+            forceActiveFocus()
+            togglePopup()
+        }
     }
 
     AccountComboBoxPopup {
