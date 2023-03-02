@@ -438,14 +438,18 @@ void
 UtilsAdapter::setDownloadPath(QString dir)
 {
     setAppValue(Settings::Key::DownloadPath, dir);
-    lrcInstance_->accountModel().downloadDirectory = dir + "/";
+    if (!dir.endsWith(QDir::separator()))
+        dir += QDir::separator();
+    lrcInstance_->accountModel().downloadDirectory = dir;
 }
 
 void
 UtilsAdapter::setScreenshotPath(QString dir)
 {
     setAppValue(Settings::Key::ScreenshotPath, dir);
-    lrcInstance_->accountModel().screenshotDirectory = dir + QDir::separator();
+    if (!dir.endsWith(QDir::separator()))
+        dir += QDir::separator();
+    lrcInstance_->accountModel().screenshotDirectory = dir;
 }
 
 void
