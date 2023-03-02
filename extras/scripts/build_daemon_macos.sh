@@ -130,9 +130,10 @@ mkdir -p "${FAT_INSTALL_DIR}"
 
 if ((${#ARCHS[@]} == "2")); then
   echo "Creating daemon fat lib"
+  mkdir -p "$FAT_INSTALL_DIR"/lib
   lipo -create "${INSTALL}/daemon/${ARCHS[0]}/lib/libjami.a" \
     "${INSTALL}/daemon/${ARCHS[1]}/lib/libjami.a" \
-    -output "${FAT_INSTALL_DIR_LIB}/libjami.a"
+    -output "${FAT_INSTALL_DIR}"/lib/libjami.a
 else
   echo "No need for daemon fat lib"
   rsync -ar --delete "${INSTALL}/daemon/${ARCHS[0]}/lib/libjami.a" "${FAT_INSTALL_DIR}"/lib/
