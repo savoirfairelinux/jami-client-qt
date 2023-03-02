@@ -38,6 +38,16 @@ ColumnLayout {
         AUDIOMANAGER
     }
 
+    Connections {
+        target: UtilsAdapter
+
+        function onChangeLanguage() {
+            inputAudioModel.reset()
+            outputAudioModel.reset()
+            ringtoneAudioModel.reset()
+        }
+    }
+
     function populateAudioSettings() {
         inputComboBoxSetting.modelIndex = inputComboBoxSetting.comboModel.getCurrentIndex()
         outputComboBoxSetting.modelIndex = outputComboBoxSetting.comboModel.getCurrentIndex()
@@ -68,6 +78,7 @@ ColumnLayout {
         labelText: JamiStrings.microphone
         fontPointSize: JamiTheme.settingsFontSize
         comboModel: AudioDeviceModel {
+            id: inputAudioModel
             lrcInstance: LRCInstance
             type: AudioDeviceModel.Type.Record
         }
@@ -105,6 +116,7 @@ ColumnLayout {
         labelText: JamiStrings.outputDevice
         fontPointSize: JamiTheme.settingsFontSize
         comboModel: AudioDeviceModel {
+            id: outputAudioModel
             lrcInstance: LRCInstance
             type: AudioDeviceModel.Type.Playback
         }
@@ -129,6 +141,7 @@ ColumnLayout {
         labelText: JamiStrings.ringtoneDevice
         fontPointSize: JamiTheme.settingsFontSize
         comboModel: AudioDeviceModel {
+            id: ringtoneAudioModel
             lrcInstance: LRCInstance
             type: AudioDeviceModel.Type.Ringtone
         }
