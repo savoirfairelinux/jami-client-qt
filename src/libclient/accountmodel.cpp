@@ -270,11 +270,12 @@ AccountModel::setAccountConfig(const QString& accountId,
             finalCred.append(credMap);
         }
 
-        VectorMapStringString oldCredentials = ConfigurationManager::instance().getCredentials(accountId);
-        if (oldCredentials.empty() || finalCred.empty() ||
-            oldCredentials[0][ConfProperties::PASSWORD] != finalCred[0][ConfProperties::PASSWORD] ||
-            oldCredentials[0][ConfProperties::REALM] != finalCred[0][ConfProperties::REALM] ||
-            oldCredentials[0][ConfProperties::USERNAME] != finalCred[0][ConfProperties::USERNAME])
+        VectorMapStringString oldCredentials = ConfigurationManager::instance().getCredentials(
+            accountId);
+        if (oldCredentials.empty() || finalCred.empty()
+            || oldCredentials[0][ConfProperties::PASSWORD] != finalCred[0][ConfProperties::PASSWORD]
+            || oldCredentials[0][ConfProperties::REALM] != finalCred[0][ConfProperties::REALM]
+            || oldCredentials[0][ConfProperties::USERNAME] != finalCred[0][ConfProperties::USERNAME])
             ConfigurationManager::instance().setCredentials(accountId, finalCred);
         details[ConfProperties::USERNAME] = confProperties.username;
         accountInfo.confProperties.credentials.swap(credentialsVec);
@@ -297,8 +298,6 @@ AccountModel::setAlias(const QString& accountId, const QString& alias)
     accountInfo.profileInfo.alias = alias;
 
     authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
-
-    Q_EMIT profileUpdated(accountId);
 }
 
 void
@@ -823,7 +822,7 @@ account::Info::fromDetails(const MapStringString& details)
     profileInfo.alias = details[ConfProperties::DISPLAYNAME];
     enabled = toBool(details[ConfProperties::ENABLED]);
     status = lrc::api::account::to_status(
-                volatileDetails[libjami::Account::ConfProperties::Registration::STATUS]);
+        volatileDetails[libjami::Account::ConfProperties::Registration::STATUS]);
     confProperties.mailbox = details[ConfProperties::MAILBOX];
     confProperties.dtmfType = details[ConfProperties::DTMF_TYPE];
     confProperties.autoAnswer = toBool(details[ConfProperties::AUTOANSWER]);
