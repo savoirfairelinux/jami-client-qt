@@ -22,6 +22,30 @@
       },
       "revId": "1358f44dd84b5511bab19eed1ee58d7702ead22a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f4242a3_c449129f",
+        "filename": "src/app/mainview/components/AccountComboBox.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-02T17:13:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3835aee_9c890fd1",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 28
+      },
+      "revId": "1358f44dd84b5511bab19eed1ee58d7702ead22a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
