@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3835aee_9c890fd1",
+        "filename": "src/app/mainview/components/AccountComboBox.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-03-02T15:22:51Z",
+      "side": 1,
+      "message": "cool. maybe root.forceActiveFocus() ?? in case we want widget to be keyboard reactive one day",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 28
+      },
+      "revId": "1358f44dd84b5511bab19eed1ee58d7702ead22a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
