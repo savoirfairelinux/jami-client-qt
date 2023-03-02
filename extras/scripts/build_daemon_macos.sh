@@ -125,21 +125,17 @@ for ARCH in "${ARCHS[@]}"; do
 done
 
 # make fat lib for daemon
-FAT_INSTALL_DIR="${INSTALL}/daemon/"
-FAT_INSTALL_DIR_LIB="${FAT_INSTALL_DIR}/lib/"
-mkdir -p "${FAT_INSTALL_DIR_LIB}"
+FAT_INSTALL_DIR="${INSTALL}"/daemon/
+mkdir -p "${FAT_INSTALL_DIR}"
 
-if
-  ((${#ARCHS[@]} == "2"))
+if ((${#ARCHS[@]} == "2")); then
   echo "Creating daemon fat lib"
-then
-  #daemon
   lipo -create "${INSTALL}/daemon/${ARCHS[0]}/lib/libjami.a" \
     "${INSTALL}/daemon/${ARCHS[1]}/lib/libjami.a" \
     -output "${FAT_INSTALL_DIR_LIB}/libjami.a"
 else
   echo "No need for daemon fat lib"
-  rsync -ar --delete "${INSTALL}/daemon/${ARCHS[0]}/lib/libjami.a" "${FAT_INSTALL_DIR_LIB}"
+  rsync -ar --delete "${INSTALL}/daemon/${ARCHS[0]}/lib/libjami.a" "${FAT_INSTALL_DIR}"/lib/
 fi
 
-rsync -ar --delete "${INSTALL}/daemon/${ARCHS[0]}/include/"* "$FAT_INSTALL_DIR/include"
+rsync -ar --delete "${INSTALL}/daemon/${ARCHS[0]}/include/"* "$FAT_INSTALL_DIR"/include
