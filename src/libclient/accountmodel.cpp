@@ -297,8 +297,6 @@ AccountModel::setAlias(const QString& accountId, const QString& alias)
     accountInfo.profileInfo.alias = alias;
 
     authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
-
-    Q_EMIT profileUpdated(accountId);
 }
 
 void
