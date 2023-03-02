@@ -544,7 +544,7 @@ Item {
     property real wizardViewMinWidth: 500
     property real wizardViewMinHeight: 600
 
-    property real mainViewPreferredWidth: 725
+    property real mainViewPreferredWidth: 730
     property real mainViewPreferredHeight: 600
 
     // Details page
