@@ -202,6 +202,7 @@ ColumnLayout {
         tipText: JamiStrings.language
         fontPointSize: JamiTheme.settingsFontSize
         comboModel: ListModel {
+            id: langModel
             Component.onCompleted: {
                 var supported = UtilsAdapter.supportedLang();
                 var keys = Object.keys(supported);
@@ -236,6 +237,15 @@ ColumnLayout {
             themeModel.append({ textDisplay: JamiStrings.light })
             themeModel.append({ textDisplay: JamiStrings.dark })
             themeComboBoxSettings.modelIndex = idx
+
+            var langIdx = langComboBoxSetting.modelIndex
+            langModel.clear()
+            var supported = UtilsAdapter.supportedLang();
+            var keys = Object.keys(supported);
+            for (var i = 0 ; i < keys.length ; ++i) {
+                langModel.append({ textDisplay: supported[keys[i]], id: keys[i] })
+            }
+            langComboBoxSetting.modelIndex = langIdx
         }
     }
 
