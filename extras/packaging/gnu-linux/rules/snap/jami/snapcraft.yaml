@@ -312,6 +312,7 @@ parts:
     - libdbus-c++-dev
     - libpulse-dev # pulse
     - libudev-dev
+    - libopus-dev # Avoid to build opus from contrib
     - libglu1-mesa-dev # Qt 6
     - zlib1g-dev
     - libgl-dev
