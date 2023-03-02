@@ -438,7 +438,9 @@ void
 UtilsAdapter::setDownloadPath(QString dir)
 {
     setAppValue(Settings::Key::DownloadPath, dir);
-    lrcInstance_->accountModel().downloadDirectory = dir + "/";
+    if (!dir.endsWith("/"))
+        dir += "/";
+    lrcInstance_->accountModel().downloadDirectory = dir;
 }
 
 void
