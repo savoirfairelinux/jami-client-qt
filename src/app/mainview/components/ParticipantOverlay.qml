@@ -161,14 +161,6 @@ Item {
                 }
             }
 
-            MultiPointTouchArea {
-                anchors.fill: parent
-                minimumTouchPoints: 3
-                onPressed: {
-                    takeScreenshot()
-                }
-            }
-
             HoverHandler {
                 id: hoverIndicator
 
