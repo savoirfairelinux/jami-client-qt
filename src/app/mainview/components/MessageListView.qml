@@ -179,27 +179,6 @@ JamiListView {
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
 
-    // This connection to dataChanged resolves the styling for
-    // messages before and after an erased message.
-    Connections {
-        target: MessagesAdapter.messageListModel
-        function onDataChanged(tl, br, roles) {
-            if (!(roles.includes(MessageList.Body) &&
-                  roles.includes(MessageList.PreviousBodies))) {
-                return
-            }
-            const staleIndex = tl.row
-            var pItem = root.itemAtIndex(staleIndex - 1)
-            var nItem = root.itemAtIndex(staleIndex + 1)
-            var ppItem = root.itemAtIndex(staleIndex + 2)
-            var nnItem = root.itemAtIndex(staleIndex + 2)
-            computeTimestampVisibility(ppItem, staleIndex - 2, pItem, staleIndex - 1)
-            computeSequencing(ppItem, pItem, nItem)
-            computeTimestampVisibility(nItem, staleIndex + 1, nnItem, staleIndex + 2)
-            computeSequencing(pItem, nItem, nnItem)
-        }
-    }
-
     model: MessagesAdapter.messageListModel
     delegate: DelegateChooser {
         id: delegateChooser
