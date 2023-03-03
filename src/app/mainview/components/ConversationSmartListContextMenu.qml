@@ -38,6 +38,8 @@ ContextMenuAutoLoader {
     property int contactType: Profile.Type.INVALID
     property bool hasCall: false
     property bool readOnly: false
+    property bool imSharing: false
+    property bool imMultipleSharing: false
 
     // For UserProfile dialog.
     property string aliasText
@@ -70,6 +72,29 @@ ContextMenuAutoLoader {
                 CallAdapter.placeAudioOnlyCall()
             }
         },
+
+        GeneralMenuItem {
+            id: stopSharingLocation
+
+            canTrigger: !hasCall && !readOnly && imSharing && PositionManager.isPositionSharedToConv(responsibleAccountId, responsibleConvUid)
+            itemName: JamiStrings.stopSharingLoc
+            iconSource: JamiResources.stop_location_sharing_svg
+            onClicked: {
+                PositionManager.stopSharingPosition(responsibleAccountId, responsibleConvUid)
+            }
+        },
+
+        GeneralMenuItem {
+            id: stopSharingAllLocation
+
+            canTrigger: !hasCall && !readOnly && imMultipleSharing && PositionManager.isPositionSharedToConv(responsibleAccountId, responsibleConvUid)
+            itemName: JamiStrings.stopSharingAllLocation
+            iconSource: JamiResources.stop_all_sharing_locations_svg
+            onClicked: {
+                PositionManager.stopSharingPosition()
+            }
+        },
+
         GeneralMenuItem {
             id: clearConversation
 

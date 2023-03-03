@@ -33,7 +33,19 @@ Rectangle {
     radius: 10
     width: lay.width + 10
     height: lay.height + 10
-    color: JamiTheme.mapButtonsOverlayColor
+    color: CurrentConversation.color
+
+    function getBaseColor() {
+        var baseColor
+        if (UtilsAdapter.luma(root.color))
+            baseColor = JamiTheme.chatviewTextColorLight
+        else
+            baseColor = JamiTheme.chatviewTextColorDark
+
+        return baseColor
+    }
+
+    property var buttonColor: getBaseColor()
 
     RowLayout {
         id: lay
@@ -44,7 +56,7 @@ Rectangle {
             id: btnUnpin
 
             toolTipText: !isUnpin ? JamiStrings.unpin : JamiStrings.pinWindow
-            imageColor: JamiTheme.mapButtonColor
+            imageColor: buttonColor
             normalColor: JamiTheme.transparentColor
             source: JamiResources.unpin_svg
             onClicked: {
@@ -60,7 +72,7 @@ Rectangle {
             id: btnCenter
 
             toolTipText: JamiStrings.centerMapTooltip
-            imageColor: JamiTheme.mapButtonColor
+            imageColor: buttonColor
             normalColor: JamiTheme.transparentColor
             source: JamiResources.share_location_svg
             onClicked: {
@@ -72,7 +84,7 @@ Rectangle {
             id: btnMove
 
             toolTipText: JamiStrings.dragMapTooltip
-            imageColor: JamiTheme.mapButtonColor
+            imageColor: buttonColor
             normalColor: JamiTheme.transparentColor
             source: JamiResources.move_svg
             visible: !isUnpin
@@ -81,29 +93,9 @@ Rectangle {
                 anchors.fill: parent
                 drag.target: mapObject
                 drag.minimumX: 0
-                drag.maximumX: maxWidth - mapObject.maxWidth
+                drag.maximumX: maxWidth - mapObject.width
                 drag.minimumY: 0
-                drag.maximumY: maxHeight - mapObject.maxHeight
-            }
-        }
-
-        PushButton {
-            id: btnMaximise
-
-            visible: !isUnpin
-            toolTipText: mapObject.isFullScreen
-                         ? JamiStrings.reduceMapTooltip
-                         : JamiStrings.maximizeMapTooltip
-            imageColor: JamiTheme.mapButtonColor
-            normalColor: JamiTheme.transparentColor
-            source: mapObject.isFullScreen? JamiResources.close_fullscreen_24dp_svg : JamiResources.open_in_full_24dp_svg
-            onClicked: {
-                if (!mapObject.isFullScreen) {
-                    mapObject.x = mapObject.xPos
-                    mapObject.y = mapObject.yPos
-                }
-
-                mapObject.isFullScreen = !mapObject.isFullScreen
+                drag.maximumY: maxHeight - mapObject.height
             }
         }
 
@@ -111,7 +103,7 @@ Rectangle {
             id: btnClose
 
             toolTipText: JamiStrings.closeMapTooltip
-            imageColor: JamiTheme.mapButtonColor
+            imageColor: buttonColor
             normalColor: JamiTheme.transparentColor
             source: JamiResources.round_close_24dp_svg
             visible: !isUnpin
