@@ -54,7 +54,8 @@ public:
     void sendFile(const QString& account_id,
                   const QString& conversationId,
                   const QString& file_path,
-                  const QString& display_name);
+                  const QString& display_name,
+                  const QString& parent);
 
     void fileTransferInfo(const QString& accountId,
                           const QString& conversationId,

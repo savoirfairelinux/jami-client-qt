@@ -134,13 +134,14 @@ void
 DataTransferModel::sendFile(const QString& accountId,
                             const QString& conversationId,
                             const QString& filePath,
-                            const QString& displayName)
+                            const QString& displayName,
+                            const QString& parent)
 {
     ConfigurationManager::instance().sendFile(accountId,
                                               conversationId,
                                               filePath,
                                               displayName,
-                                              {} /* TODO parent */);
+                                              parent);
 }
 
 void
