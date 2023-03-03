@@ -39,6 +39,11 @@ Rectangle {
     signal showDetailsClicked
     signal searchBarOpened
     signal searchBarClosed
+    signal detailLocationButtonClicked
+    signal detailLocationButtonClicked2
+
+    property bool imSharing: false
+    property bool areSharing: false
 
     Connections {
         target: CurrentConversation
@@ -152,6 +157,113 @@ Rectangle {
             Layout.rightMargin: 8
             spacing: 16
             Layout.fillWidth: true
+
+            Item {
+                Layout.preferredWidth: locationSharedDetails.buttonSize
+                Layout.preferredHeight: locationSharedDetails.buttonSize
+
+                Rectangle {
+                    id: locationSharedDetails
+
+                    property real buttonSize: 52
+                    anchors.centerIn: parent
+
+                    visible: areSharing
+                    width: (locationIconTimer.showIconArrow || detailButtonArea2.containsMouse)
+                            ? buttonSize
+                            : buttonSize - 2
+                    height: width
+                    radius: width * 0.5
+
+                    color: JamiTheme.messageInBgColor
+                    border.width: (locationIconTimer.showIconArrow || detailButtonArea2.containsMouse) ? 4 : 3
+                    border.color: Qt.darker(JamiTheme.messageInBgColor, 1.15)
+
+                    MouseArea {
+                        id: detailButtonArea2
+
+                        hoverEnabled: true
+                        anchors.fill: parent
+
+                        onClicked: {
+                            detailLocationButtonClicked2()
+                        }
+                    }
+
+                    BlinkingLocationIcon {
+                        isSharing: false
+                        arrowTimerVisibility: true
+                        anchors.centerIn: parent
+                        color: getBaseColor()
+
+                        function getBaseColor() {
+                            var baseColor
+                            if (UtilsAdapter.luma(locationSharedDetails.color))
+                                baseColor = JamiTheme.chatviewTextColorLight
+                            else
+                                baseColor = JamiTheme.chatviewTextColorDark
+
+                            return baseColor
+                        }
+
+
+                    }
+                }
+            }
+
+
+            Item {
+                Layout.preferredWidth: locationSharingDetails.buttonSize
+                Layout.preferredHeight: locationSharingDetails.buttonSize
+
+                Rectangle {
+                    id: locationSharingDetails
+
+                    property real buttonSize: 52
+                    anchors.centerIn: parent
+
+                    visible: imSharing
+                    width: (locationIconTimer.showIconArrow || detailButtonArea.containsMouse)
+                            ? buttonSize
+                            : buttonSize - 2
+                    height: width
+                    radius: width * 0.5
+
+                    color: CurrentConversation.color
+                    border.width: (locationIconTimer.showIconArrow || detailButtonArea.containsMouse) ? 4 : 3
+                    border.color: Qt.lighter(CurrentConversation.color, 1.15)
+
+                    MouseArea {
+                        id: detailButtonArea
+
+                        hoverEnabled: true
+                        anchors.fill: parent
+
+                        onClicked: {
+                            detailLocationButtonClicked()
+                        }
+                    }
+
+                    BlinkingLocationIcon {
+                        isSharing: true
+                        arrowTimerVisibility: true
+                        anchors.centerIn: parent
+                        color: getBaseColor()
+
+                        function getBaseColor() {
+                            var baseColor
+                            if (UtilsAdapter.luma(locationSharingDetails.color))
+                                baseColor = JamiTheme.chatviewTextColorLight
+                            else
+                                baseColor = JamiTheme.chatviewTextColorDark
+
+                            return baseColor
+                        }
+
+
+                    }
+                }
+            }
 
             Searchbar {
                 id: rowSearchBar

@@ -262,9 +262,9 @@ ItemDelegate {
     background: Rectangle {
         color: {
             if (root.pressed || root.highlighted)
-                return JamiTheme.smartListSelectedColor
+                return Qt.darker(JamiTheme.selectedColor, 1.1) //JamiTheme.hoveredButtonColor//
             else if (root.hovered)
-                return JamiTheme.smartListHoveredColor
+                return Qt.darker(JamiTheme.selectedColor, 1.05) //JamiTheme.secondaryBackgroundColor//
             else
                 return "transparent"
         }

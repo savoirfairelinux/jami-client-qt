@@ -25,8 +25,8 @@ import net.jami.Helpers 1.1
 Item {
     id: root
 
-    property real containerWidth: 30
-    property real containerHeight: 30
+    property real containerWidth: JamiTheme.responsiveImageContainerSize
+    property real containerHeight: JamiTheme.responsiveImageContainerSize
 
     property int padding: 0
     property point offset: Qt.point(0, 0)
