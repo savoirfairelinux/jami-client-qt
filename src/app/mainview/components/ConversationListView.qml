@@ -127,6 +127,8 @@ JamiListView {
                     (model.dataForRow(index, ConversationList.ContactType) !==
                                                    Profile.Type.TEMPORARY) &&
                     CurrentAccount.type !== Profile.Type.SIP
+            hasCall = UtilsAdapter.getCallId(responsibleAccountId,
+                                          responsibleConvUid) !== ""
 
             // For UserProfile dialog.
             if (isCoreDialog) {
