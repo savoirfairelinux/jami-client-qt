@@ -230,6 +230,11 @@ Item {
     property color sharePositionIndicatorColor: darkTheme ? "#03B9E9" : "#005699"
     property color sharedPositionIndicatorColor: darkTheme ? whiteColor : blackColor
 
+    property color detailsShareLocationButtonBorderColor: "#a4c4dc"
+    property color detailsShareLocationButtonBackgroundColor: "#005699"
+    property color locationAreaColor: "#e8ecf4"
+    property real locationAreaTextFontSize: calcSize(15)
+
     //EmojiReact
     property real emojiBubbleSize: calcSize(17)
     property real emojiBubbleSizeBig: calcSize(21)
@@ -282,6 +287,7 @@ Item {
 
 
     // Sizes
+    property real responsiveImageContainerSize: 30
     property real qrCodeImageSize: 256
     property real splitViewHandlePreferredWidth: 4
     property real indicatorFontSize: calcSize(6)
