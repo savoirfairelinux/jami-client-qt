@@ -1285,8 +1285,13 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
             }
 
             // Add interaction to database
-            interaction::Info
-                msg {owner.profileInfo.uri, body, std::time(nullptr), 0, interaction::Type::TEXT, status, true};
+            interaction::Info msg {owner.profileInfo.uri,
+                                   body,
+                                   std::time(nullptr),
+                                   0,
+                                   interaction::Type::TEXT,
+                                   status,
+                                   true};
             auto msgId = storage::addMessageToConversation(pimpl_->db, convId, msg);
 
             // Update conversation
@@ -1559,59 +1564,6 @@ ConversationModel::clearInteractionsCache(const QString& convId)
     } catch (const std::out_of_range& e) {
         qDebug() << "can't find interaction from conversation: " << e.what();
         return;
-    }
-}
-
-void
-ConversationModel::retryInteraction(const QString& convId, const QString& interactionId)
-{
-    auto conversationIdx = pimpl_->indexOf(convId);
-    if (conversationIdx == -1)
-        return;
-
-    auto interactionType = interaction::Type::INVALID;
-    QString body = {};
-    {
-        std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[convId]);
-        try {
-            auto& conversation = pimpl_->conversations.at(conversationIdx);
-            if (conversation.isSwarm()) {
-                // WARNING: retry interaction is not implemented for swarm
-                return;
-            }
-
-            auto& interactions = conversation.interactions;
-            auto it = interactions->find(interactionId);
-            if (it == interactions->end())
-                return;
-
-            if (!interaction::isOutgoing(it->second))
-                return; // Do not retry non outgoing info
-
-            if (it->second.type == interaction::Type::TEXT
-                || (it->second.type == interaction::Type::DATA_TRANSFER
-                    && interaction::isOutgoing(it->second))) {
-                body = it->second.body;
-                interactionType = it->second.type;
-            } else
-                return;
-
-            storage::clearInteractionFromConversation(pimpl_->db, convId, interactionId);
-            conversation.interactions->erase(interactionId);
-        } catch (const std::out_of_range& e) {
-            qDebug() << "can't find interaction from conversation: " << e.what();
-            return;
-        }
-    }
-    Q_EMIT interactionRemoved(convId, interactionId);
-
-    // Send a new interaction like the previous one
-    if (interactionType == interaction::Type::TEXT) {
-        sendMessage(convId, body);
-    } else {
-        // send file
-        QFileInfo f(body);
-        sendFile(convId, body, f.fileName());
     }
 }
 
@@ -3488,7 +3440,8 @@ ConversationModelPimpl::slotCallStatusChanged(const QString& callId, int code)
                     if (!conversation.callId.isEmpty()) {
                         // If outgoing and incoming happen at the same time, choose the current one.
                         auto call = linked.owner.callModel->getCall(conversation.callId);
-                        qWarning() << "Double call detected" << call::to_string(call.status) << " - " << conversation.callId;
+                        qWarning() << "Double call detected" << call::to_string(call.status)
+                                   << " - " << conversation.callId;
                         // Ignore new call in favor of existing one
                         if (call.status == call::Status::IN_PROGRESS)
                             return;
@@ -3950,12 +3903,15 @@ ConversationModel::setIsComposing(const QString& convUid, bool isComposing)
 }
 
 void
-ConversationModel::sendFile(const QString& convUid, const QString& path, const QString& filename)
+ConversationModel::sendFile(const QString& convUid,
+                            const QString& path,
+                            const QString& filename,
+                            const QString& parent)
 {
     try {
         auto& conversation = pimpl_->getConversationForUid(convUid, true).get();
         if (conversation.isSwarm()) {
-            owner.dataTransferModel->sendFile(owner.id, convUid, path, filename);
+            owner.dataTransferModel->sendFile(owner.id, convUid, path, filename, parent);
             return;
         }
         auto peers = pimpl_->peersForConversation(conversation);
@@ -3979,7 +3935,7 @@ ConversationModel::sendFile(const QString& convUid, const QString& path, const Q
 
         pimpl_->sendContactRequest(peerId);
 
-        auto cb = ([this, peerId, path, filename](QString conversationId) {
+        auto cb = ([this, peerId, path, filename, parent](QString conversationId) {
             try {
                 auto conversationOpt = getConversationForUid(conversationId);
                 if (!conversationOpt.has_value()) {
@@ -3991,7 +3947,7 @@ ConversationModel::sendFile(const QString& convUid, const QString& path, const Q
                     qDebug() << "ContactModel::sendFile: denied, contact is banned";
                     return;
                 }
-                owner.dataTransferModel->sendFile(owner.id, conversationId, path, filename);
+                owner.dataTransferModel->sendFile(owner.id, conversationId, path, filename, parent);
             } catch (...) {
             }
         });

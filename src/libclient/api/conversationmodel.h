@@ -285,12 +285,6 @@ public:
      */
     void clearInteractionsCache(const QString& convId);
     /**
-     * Retry to send a message. In fact, will delete the previous interaction and resend a new one.
-     * @param convId
-     * @param interactionId
-     */
-    void retryInteraction(const QString& convId, const QString& interactionId);
-    /**
      * @param convId
      * @param interactionId
      * @param participant uri
@@ -305,7 +299,10 @@ public:
      */
     void deleteObsoleteHistory(int date);
 
-    void sendFile(const QString& convUid, const QString& path, const QString& filename);
+    void sendFile(const QString& convUid,
+                  const QString& path,
+                  const QString& filename,
+                  const QString& parent);
 
     void acceptTransfer(const QString& convUid, const QString& interactionId);
 
