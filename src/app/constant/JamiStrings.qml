@@ -493,7 +493,7 @@ Item {
     property string runStartup: qsTr("Launch at startup")
     property string downloadFolder: qsTr("Download directory")
     property string tipChooseDownloadFolder: qsTr("Choose download directory")
-    property string recordCall: qsTr("Record call")
+    property string includeLocalVideo: qsTr("Include local video in recording")
     property string textZoom: qsTr("Text zoom")
     property string changeTextSize: qsTr("Change text size (%)")
 
