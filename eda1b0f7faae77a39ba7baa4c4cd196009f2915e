@@ -22,6 +22,29 @@
       },
       "revId": "eda1b0f7faae77a39ba7baa4c4cd196009f2915e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9da9144_629e68ef",
+        "filename": "src/app/mainview/components/BlinkingLocationIcon.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-03T21:29:42Z",
+      "side": 1,
+      "message": "TODO check color in dark theme when conversation is selected",
+      "range": {
+        "startLine": 12,
+        "startChar": 18,
+        "endLine": 12,
+        "endChar": 38
+      },
+      "revId": "eda1b0f7faae77a39ba7baa4c4cd196009f2915e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
