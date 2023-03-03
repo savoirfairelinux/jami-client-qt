@@ -231,7 +231,6 @@ Item {
     property string isCallingYou: qsTr("is calling you")
     property string mute: qsTr("Mute")
     property string unmute: qsTr("Unmute")
-    property string hangup: qsTr("End call")
     property string pauseCall: qsTr("Pause call")
     property string resumeCall: qsTr("Resume call")
     property string muteCamera: qsTr("Mute camera")

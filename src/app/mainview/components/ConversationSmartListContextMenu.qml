@@ -36,13 +36,8 @@ ContextMenuAutoLoader {
     property var isCoreDialog: undefined
     property var mode: undefined
     property int contactType: Profile.Type.INVALID
-    property bool hasCall: {
-        if (responsibleAccountId && responsibleConvUid)
-            return UtilsAdapter.getCallId(responsibleAccountId,
-                                          responsibleConvUid) !== ""
-        return false
-    }
-    property bool readOnly
+    property bool hasCall: false
+    property bool readOnly: false
 
     // For UserProfile dialog.
     property string aliasText
@@ -117,7 +112,7 @@ ContextMenuAutoLoader {
             id: hangup
 
             canTrigger: hasCall
-            itemName: JamiStrings.hangup
+            itemName: JamiStrings.endCall
             iconSource: JamiResources.ic_call_end_white_24dp_svg
             addMenuSeparatorAfter: contactType !== Profile.Type.SIP
                                    && (contactType === Profile.Type.PENDING

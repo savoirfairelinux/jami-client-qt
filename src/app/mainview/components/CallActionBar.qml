@@ -276,7 +276,7 @@ Control {
             onTriggered: CallAdapter.hangUpThisCall()
             icon.source: JamiResources.ic_call_end_white_24dp_svg
             icon.color: "white"
-            text: JamiStrings.hangup
+            text: JamiStrings.endCall
             property bool hasBg: true
         },
         Action {
