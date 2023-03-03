@@ -43,6 +43,7 @@ Rectangle {
         root.isRendezVous = isRdv
         createAccountStack.currentIndex = 0
         clearAllTextFields()
+        usernameEdit.forceActiveFocus()
     }
 
     function clearAllTextFields() {
@@ -139,7 +140,6 @@ Rectangle {
                                                          JamiStrings.chooseUsername
                     staticText: ""
                     editMode: true
-                    focus: visible
 
                     KeyNavigation.tab: chooseUsernameButton
                     KeyNavigation.up: backButton
