@@ -255,9 +255,9 @@ ItemDelegate {
     background: Rectangle {
         color: {
             if (root.pressed || root.highlighted)
-                return Qt.darker(JamiTheme.selectedColor, 1.1)
+                return Qt.darker(JamiTheme.selectedColor, 1.1) //JamiTheme.hoveredButtonColor//
             else if (root.hovered)
-                return Qt.darker(JamiTheme.selectedColor, 1.05)
+                return Qt.darker(JamiTheme.selectedColor, 1.05) //JamiTheme.secondaryBackgroundColor//
             else
                 return "transparent"
         }

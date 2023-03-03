@@ -101,8 +101,8 @@ Item {
         Rectangle {
             id: mapObject
 
-            x: xPos
-            y: yPos
+            x: 0
+            y: 0
             width: root.isUnpin
                    ? windowUnpin.width
                    : isFullScreen ? root.maxWidth : windowSize
@@ -117,16 +117,14 @@ Item {
             property real windowPreferedSize: root.maxWidth > root.maxHeight
                                               ? root.maxHeight / 3
                                               : root.maxWidth / 3
-            property real xPos: 0
-            property real yPos: root.isUnpin ? 0 : JamiTheme.chatViewHeaderPreferredHeight
 
             states: [ State {
                     name: "unpin"
-                    ParentChange { target: mapObject; parent: parentUnPin; x:0; y:0 }
+                    ParentChange { target: mapObject; parent: parentUnPin; x: 0; y: 0 }
                 },
                 State {
                     name: "pin"
-                    ParentChange { target: mapObject; parent: parentPin; x:xPos; y:JamiTheme.chatViewHeaderPreferredHeight }
+                    ParentChange { target: mapObject; parent: parentPin; x: 0; y: 0 }
                 }
             ]
             property alias webView: webView

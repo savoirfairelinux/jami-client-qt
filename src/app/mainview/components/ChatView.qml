@@ -60,7 +60,7 @@ Rectangle {
     function instanceMapObject() {
         if (WITH_WEBENGINE) {
             var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
-            var sprite = component.createObject(root, {maxWidth: root.width, maxHeight: root.height});
+            var sprite = component.createObject(chatContents, {maxWidth: root.width, maxHeight: root.height});
 
             if (sprite === null) {
                 // Error Handling
@@ -98,6 +98,19 @@ Rectangle {
         }
     }
 
+    Timer {
+        id: locationIconTimer
+
+        property bool showIconArrow: true
+        property bool isSharingPosition: PositionManager.positionShareConvIdsCount !== 0
+        property bool isReceivingPosition: PositionManager.sharingUrisCount !== 0
+
+        interval: 750
+        running: isSharingPosition || isReceivingPosition
+        repeat: true
+        onTriggered: {showIconArrow = !showIconArrow}
+    }
+
     ColumnLayout {
         anchors.fill: root
 
@@ -105,6 +118,9 @@ Rectangle {
 
         ChatViewHeader {
             id: chatViewHeader
+
+            property bool isSharing: PositionManager.positionShareConvIdsCount !== 0
+            property var locationAreaObject
 
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
@@ -128,6 +144,18 @@ Rectangle {
                     if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.chatViewHeaderMinimumWidth)
                         chatContents.visible = false
                 }
+            }
+
+            onDetailLocationButtonClicked: {
+                if (!locationAreaObject) {
+                    var component = Qt.createComponent("LocationArea.qml");
+                    locationAreaObject = component.createObject(locationAreaContainer);
+                }
+            }
+
+            onIsSharingChanged: {
+                if (!isSharing && locationAreaObject)
+                    locationAreaObject.destroy()
             }
 
             onShowDetailsClicked: {
@@ -291,6 +319,13 @@ Rectangle {
                 SplitView.maximumWidth: viewCoordinator.splitView.width
                 SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
                 SplitView.fillWidth: true
+
+                Item {
+                    id: locationAreaContainer
+
+                    Layout.preferredHeight: childrenRect.height
+                    Layout.fillWidth: true
+                }
 
                 StackLayout {
                     id: chatViewStack
