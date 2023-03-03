@@ -99,10 +99,10 @@ ColumnLayout {
             text: JamiStrings.shareLocation
             color: isError
                    ? JamiTheme.buttonTintedGreyInactive
-                   : JamiTheme.buttonTintedBlue
+                   : CurrentConversation.color//JamiTheme.buttonTintedBlue
             hoveredColor: isError
                           ? JamiTheme.buttonTintedGreyInactive
-                          : JamiTheme.buttonTintedBlueHovered
+                          : Qt.darker(CurrentConversation.color, 1.15)//JamiTheme.buttonTintedBlueHovered
             pressedColor: isError
                           ? JamiTheme.buttonTintedGreyInactive
                           : JamiTheme.buttonTintedBluePressed

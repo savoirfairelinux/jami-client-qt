@@ -36,11 +36,13 @@ Rectangle {
     color: JamiTheme.chatviewBgColor
 
     property var mapPositions: PositionManager.mapStatus
-
     property int lastContentsSplitSize: JamiTheme.detailsPageMinWidth
     property int lastDetailsSplitSize: JamiTheme.detailsPageMinWidth
     property int previousWidth: width
     required property bool inCallView
+
+    property string accountId: ""
+
 
     signal dismiss
 
@@ -60,7 +62,7 @@ Rectangle {
     function instanceMapObject() {
         if (WITH_WEBENGINE) {
             var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
-            var sprite = component.createObject(root, {maxWidth: root.width, maxHeight: root.height});
+            var sprite = component.createObject(chatContents, {maxWidth: root.width, maxHeight: root.height});
 
             if (sprite === null) {
                 // Error Handling
@@ -98,6 +100,87 @@ Rectangle {
         }
     }
 
+    Timer {
+        id: locationIconTimer
+
+        property bool showIconArrow: true
+        property bool isSharingPosition: PositionManager.positionShareConvIdsCount !== 0
+        property bool isReceivingPosition: PositionManager.sharingUrisCount !== 0
+
+        interval: 750
+        running: isSharingPosition || isReceivingPosition
+        repeat: true
+        onTriggered: {showIconArrow = !showIconArrow}
+    }
+
+    Connections {
+        target: CurrentConversation
+        enabled: true
+        function onIdChanged()
+        {
+            listUriShared.updateList()
+            locationAreaContainer2.visible = false
+            locationAreaContainer.visible = false
+        }
+    }
+
+
+    Connections {
+        target: PositionManager
+
+        function onSharingLocationUrisCountChanged () {
+            listUriShared.updateList()
+        }
+
+        function onPositionShareConvIdsCountChanged () {
+            listUriShared.updateList()
+        }
+    }
+
+    Component.onCompleted: {
+        // Store to avoid undefined at the end
+        root.accountId = Qt.binding(() => CurrentAccount.id)
+    }
+
+    ListModel {
+        id: listUriShared
+
+        property var uriList: []
+        property var index
+        property bool localSharing: false
+        property bool sharing: false
+
+        function updateList(){
+            listUriShared.clear();
+            listUriShare.clear();
+            localSharing = false
+            sharing = false
+
+
+            if(PositionManager.isPositionSharedToConv(accountId, CurrentConversation.id)){
+                listUriShare.append({"uri":CurrentAccount.uri});
+                localSharing = true
+            }
+
+            if(PositionManager.isConvSharingPosition(accountId, CurrentConversation.id)){
+                sharing = true
+            }
+
+            var length = PositionManager.getListSharingUris().length;
+            uriList = PositionManager.getListSharingUris();
+
+            for (var i = 0; i < length ; i++){
+                listUriShared.append({"uri":uriList[i]});
+            }
+
+        }
+
+    }
+
+    ListModel {
+        id: listUriShare
+    }
+
     ColumnLayout {
         anchors.fill: root
 
@@ -105,6 +188,8 @@ Rectangle {
 
         ChatViewHeader {
             id: chatViewHeader
+
+            property var locationAreaObject
 
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
@@ -128,6 +213,19 @@ Rectangle {
                     if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.chatViewHeaderMinimumWidth)
                         chatContents.visible = false
                 }
+            }
+
+            onDetailLocationButtonClicked: {
+                if (locationAreaContainer2.visible)
+                    locationAreaContainer2.visible = false
+                locationAreaContainer.visible = true
+
+            }
+
+            onDetailLocationButtonClicked2: {
+                if (locationAreaContainer.visible)
+                    locationAreaContainer.visible = false
+                locationAreaContainer2.visible = true
             }
 
             onShowDetailsClicked: {
@@ -270,6 +368,9 @@ Rectangle {
             visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
         }
 
+
+
+
         SplitView {
             id: chatViewMainRow
             Layout.fillWidth: true
@@ -291,6 +392,25 @@ Rectangle {
                 SplitView.maximumWidth: viewCoordinator.splitView.width
                 SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
                 SplitView.fillWidth: true
+
+                ListView {
+                    id: locationAreaContainer2
+                    visible: false
+                    Layout.preferredHeight: Math.min(childrenRect.height,200)
+                    Layout.fillWidth: true
+                    model: listUriShared
+                    delegate: LocationArea {imSharing: false}
+                }
+
+                ListView {
+                    id: locationAreaContainer
+                    visible: false
+                    Layout.preferredHeight: Math.min(childrenRect.height,200)
+                    Layout.fillWidth: true
+                    model: listUriShare
+                    delegate: LocationArea {imSharing: true}
+                }
+
 
                 StackLayout {
                     id: chatViewStack

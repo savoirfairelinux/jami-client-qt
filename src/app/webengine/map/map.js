@@ -154,6 +154,10 @@ function zoomTolayersExtent() {
                              padding: [80 ,80 ,80 ,80]})
 }
 
+function zoomToLocation(coordos) {
+    map.getView().setCenter(ol.proj.fromLonLat(coordos))
+}
+
 function removePosition (authorUri) {
     var layerArray = map.getLayers().getArray();
     for (var i = 0; i < layerArray.length; i++ ){

@@ -129,6 +129,8 @@ JamiListView {
                     CurrentAccount.type !== Profile.Type.SIP
             hasCall = UtilsAdapter.getCallId(responsibleAccountId,
                                           responsibleConvUid) !== ""
+            imSharing = PositionManager.positionShareConvIdsCount > 0
+            imMultipleSharing = PositionManager.positionShareConvIdsCount > 1
 
             // For UserProfile dialog.
             if (isCoreDialog) {

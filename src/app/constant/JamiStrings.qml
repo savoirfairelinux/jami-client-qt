@@ -273,6 +273,8 @@ Item {
     property string blockSwarm: qsTr("Block swarm")
     property string convDetails: qsTr("Conversation details")
     property string contactDetails: qsTr("Contact details")
+    property string stopSharingLoc: qsTr("Stop sharing location")
+    property string stopSharingAllLocation: qsTr("Stop all sharing locations")
 
     // CallViewContextMenu
     property string hold: qsTr("Hold")
@@ -339,11 +341,15 @@ Item {
     property string positionShareDuration: qsTr("Position share duration");
     property string positionShareLimit: qsTr("Limit the duration of location sharing");
     property string locationSharingLabel: qsTr("Location sharing");
+    property string youreSharingLocation: qsTr("You're sharing your location");
+    property string areSharingLocation: qsTr(" is sharing its location");
+    property string showLocation: qsTr("Show location");
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
     property string placeAudioCall: qsTr("Place audio call")
     property string placeVideoCall: qsTr("Place video call")
+    property string locationSharingDetails: qsTr("location sharing details")
     property string showPlugins: qsTr("Show available plugins")
     property string addToConversations: qsTr("Add to conversations")
     property string backendError: qsTr("This is the error from the backend: %0")
