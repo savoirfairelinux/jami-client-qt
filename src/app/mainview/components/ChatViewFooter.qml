@@ -200,16 +200,6 @@ Rectangle {
             }
 
             onSendMessageButtonClicked: {
-                // Send text message
-                if (messageBar.text) {
-                    if (MessagesAdapter.editId !== "") {
-                        MessagesAdapter.editMessage(CurrentConversation.id, messageBar.text)
-                    } else {
-                        MessagesAdapter.sendMessage(messageBar.text)
-                    }
-                }
-                messageBar.textAreaObj.clearText()
-
                 // Send file messages
                 var fileCounts = dataTransferSendContainer.filesToSendListModel.rowCount()
                 for (var i = 0; i < fileCounts; i++) {
@@ -219,6 +209,16 @@ Rectangle {
                     MessagesAdapter.sendFile(filePath)
                 }
                 dataTransferSendContainer.filesToSendListModel.flush()
+                // Send text message
+                if (messageBar.text) {
+                    if (MessagesAdapter.editId !== "") {
+                        MessagesAdapter.editMessage(CurrentConversation.id, messageBar.text)
+                    } else {
+                        MessagesAdapter.sendMessage(messageBar.text)
+                    }
+                }
+                messageBar.textAreaObj.clearText()
+                MessagesAdapter.replyToId = ""
             }
             onVideoRecordMessageButtonClicked: {
                 JamiQmlUtils.updateMessageBarButtonsPoints()
