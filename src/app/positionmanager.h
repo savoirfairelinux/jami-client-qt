@@ -36,6 +36,7 @@ class PositionManager : public QmlAdapterBase
     QML_PROPERTY(bool, mapAutoOpening)
     QML_PROPERTY(int, positionShareConvIdsCount)
     QML_PROPERTY(int, sharingUrisCount)
+    QML_PROPERTY(int, sharingLocationUrisCount)
 public:
     explicit PositionManager(AppSettingsManager* settingsManager,
                              SystemTray* systemTray,
@@ -55,6 +56,7 @@ Q_SIGNALS:
     void localPositionReceived(const QString& accountId, const QString& peerId, const QString& body);
     void makeVisibleSharingButton(const QString& accountId);
     void sendCountdownUpdate(const QString key, const int remainingTime);
+    void showLoc(const QVariantMap& posInfo);
 
 protected:
     QString getAvatar(const QString& accountId, const QString& peerId);
@@ -89,6 +91,9 @@ protected:
     Q_INVOKABLE void loadPreviousLocations(QString& accountId);
     Q_INVOKABLE QString getmapTitle(QString& accountId, QString convId = "");
 
+    Q_INVOKABLE QList<QString> getListSharingUris();
+    Q_INVOKABLE void showLocation(const QString& accountId, const QString& uri);
+
 private Q_SLOTS:
     void onPositionErrorReceived(const QString error);
     void onNewPosition(const QString& body);
@@ -108,10 +113,16 @@ private:
     std::unique_ptr<Positioning> localPositioning_;
     QMap<PositionKey, int> mapTimerCountDown_;
     QTimer* countdownTimer_ = nullptr;
-    // map of all shared position by peers
+
+    // map of all shared position by peers (and self)
     QMap<PositionKey, PositionObject*> objectListSharingUris_;
-    // list of all the peers the user is sharing position to
+
+    // list of all the conversations the user is sharing position to
     QList<PositionKey> positionShareConvIds_;
+
+    // list of all shared position by peers
+    QList<PositionKey> ListSharingUris_;
+
     QMutex mapStatusMutex_;
     AppSettingsManager* settingsManager_;
 };

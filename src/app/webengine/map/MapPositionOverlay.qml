@@ -56,7 +56,7 @@ Rectangle {
             }
         }
 
-        PushButton {
+        /*PushButton {
             id: btnCenter
 
             toolTipText: JamiStrings.centerMapTooltip
@@ -66,9 +66,9 @@ Rectangle {
             onClicked: {
                 webView.runJavaScript("zoomTolayersExtent()" );
             }
-        }
+        }*/
 
-        PushButton {
+        /*PushButton {
             id: btnMove
 
             toolTipText: JamiStrings.dragMapTooltip
@@ -85,9 +85,9 @@ Rectangle {
                 drag.minimumY: 0
                 drag.maximumY: maxHeight - mapObject.maxHeight
             }
-        }
+        }*/
 
-        PushButton {
+        /*PushButton {
             id: btnMaximise
 
             visible: !isUnpin
@@ -105,7 +105,7 @@ Rectangle {
 
                 mapObject.isFullScreen = !mapObject.isFullScreen
             }
-        }
+        }*/
 
         PushButton {
             id: btnClose
