@@ -173,7 +173,6 @@ MessagesAdapter::sendMessage(const QString& message)
     try {
         const auto convUid = lrcInstance_->get_selectedConvUid();
         lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
-        set_replyToId("");
     } catch (...) {
         qDebug() << "Exception during sendMessage:" << message;
     }
@@ -229,17 +228,13 @@ MessagesAdapter::sendFile(const QString& message)
     QString fileName = fi.fileName();
     try {
         auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendFile(convUid, message, fileName);
+        lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
+                                                              message,
+                                                              fileName,
+                                                              replyToId_);
     } catch (...) {
         qDebug() << "Exception during sendFile";
     }
-}
-
-void
-MessagesAdapter::retryInteraction(const QString& interactionId)
-{
-    lrcInstance_->getCurrentConversationModel()
-        ->retryInteraction(lrcInstance_->get_selectedConvUid(), interactionId);
 }
 
 void

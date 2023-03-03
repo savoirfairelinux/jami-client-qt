@@ -113,6 +113,7 @@ Popup {
     function sendRecord() {
         if (pathRecorder !== "") {
             MessagesAdapter.sendFile(pathRecorder)
+            MessagesAdapter.replyToId = ""
         }
     }
 
