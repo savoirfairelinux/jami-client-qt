@@ -68,7 +68,8 @@ CurrentCall::updateId(QString callId)
             if (callInfo.status == call::Status::IN_PROGRESS
                 || callInfo.status == call::Status::PAUSED)
                 accInfo.callModel->setCurrentCall(callId);
-        } catch (...) {}
+        } catch (...) {
+        }
     }
     // Set the current id_ if there is a call.
     set_id((accInfo.callModel->hasCall(callId) ? callId : QString()));

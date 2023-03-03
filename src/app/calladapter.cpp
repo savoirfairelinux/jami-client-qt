@@ -521,7 +521,8 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
                 if (call->status == call::Status::IN_PROGRESS
                     || call->status == call::Status::PAUSED)
                     accInfo.callModel->setCurrentCall(call->id);
-            } catch (...) {}
+            } catch (...) {
+            }
         }
     }
 

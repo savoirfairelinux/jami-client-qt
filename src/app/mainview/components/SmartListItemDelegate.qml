@@ -46,6 +46,13 @@ ItemDelegate {
 
     property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionDate)
 
+    Connections {
+        target: UtilsAdapter
+        function onChangeLanguage() {
+            UtilsAdapter.clearInteractionsCache(root.accountId, root.convId)
+        }
+    }
+
     onVisibleChanged: {
         if (visible)
             return
