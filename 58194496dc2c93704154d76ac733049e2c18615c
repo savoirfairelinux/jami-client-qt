@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d2c4b81_f48bd224",
+        "filename": "src/app/mainview/components/ParticipantOverlay.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-03T18:39:58Z",
+      "side": 0,
+      "message": "Ctrl+Middle click doesn\u0027t work anymore",
+      "range": {
+        "startLine": 156,
+        "startChar": 15,
+        "endLine": 162,
+        "endChar": 13
+      },
+      "revId": "58194496dc2c93704154d76ac733049e2c18615c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
