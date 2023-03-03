@@ -96,7 +96,8 @@ RUN dnf install -y \
         libxshmfence-devel \
         ninja-build \
         clang \
-        cmake
+        cmake \
+        fmt-devel
 
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 
