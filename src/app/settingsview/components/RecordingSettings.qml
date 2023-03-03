@@ -114,7 +114,7 @@ ColumnLayout {
 
         checked: AVModel.getRecordPreview()
 
-        labelText: JamiStrings.recordCall
+        labelText: JamiStrings.includeLocalVideo
         fontPointSize: JamiTheme.settingsFontSize
 
         onSwitchToggled: AVModel.setRecordPreview(checked)
