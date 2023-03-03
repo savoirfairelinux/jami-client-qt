@@ -61,8 +61,15 @@ CurrentCall::updateId(QString callId)
     }
 
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-    if (accInfo.profileInfo.type != lrc::api::profile::Type::SIP)
-        accInfo.callModel->setCurrentCall(callId);
+    if (accInfo.profileInfo.type != lrc::api::profile::Type::SIP) {
+        // Only setCurrentCall if call is actually answered
+        try {
+            auto callInfo = accInfo.callModel->getCall(callId);
+            if (callInfo.status == call::Status::IN_PROGRESS
+                || callInfo.status == call::Status::PAUSED)
+                accInfo.callModel->setCurrentCall(callId);
+        } catch (...) {}
+    }
     // Set the current id_ if there is a call.
     set_id((accInfo.callModel->hasCall(callId) ? callId : QString()));
 }

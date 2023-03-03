@@ -416,8 +416,6 @@ CallAdapter::acceptACall(const QString& accountId, const QString& convUid)
         return;
 
     lrcInstance_->getAccountInfo(accountId).callModel->accept(convInfo.callId);
-    auto& accInfo = lrcInstance_->getAccountInfo(convInfo.accountId);
-    accInfo.callModel->setCurrentCall(convInfo.callId);
 }
 
 void
@@ -518,7 +516,12 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
     if (convInfo.uid == lrcInstance_->get_selectedConvUid()) {
         auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
         if (accInfo.profileInfo.type != lrc::api::profile::Type::SIP) {
-            accInfo.callModel->setCurrentCall(call->id);
+            // Only setCurrentCall if call is actually answered
+            try {
+                if (call->status == call::Status::IN_PROGRESS
+                    || call->status == call::Status::PAUSED)
+                    accInfo.callModel->setCurrentCall(call->id);
+            } catch (...) {}
         }
     }
 
