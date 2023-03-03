@@ -233,10 +233,15 @@ Item {
     property color chatviewUsernameColor : "#A7A7A7"
 
     //mapPosition
-    property color mapButtonsOverlayColor: darkTheme ? "#000000" : "#f0f0f0"
+    property color mapButtonsOverlayColor: tintedBlue
     property color mapButtonColor: darkTheme ?  "#f0f0f0" : "#000000"
     property color sharePositionIndicatorColor: darkTheme ? "#03B9E9" : "#005699"
     property color sharedPositionIndicatorColor: darkTheme ? whiteColor : blackColor
+
+    property color detailsShareLocationButtonBorderColor: "#a4c4dc"
+    property color detailsShareLocationButtonBackgroundColor: "#005699"
+    property color locationAreaColor: "#e8ecf4"
+    property real locationAreaTextFontSize: calcSize(15)
 
     //EmojiReact
     property real emojiBubbleSize: calcSize(17)
@@ -292,6 +297,7 @@ Item {
     // Sizes
     property real mainViewLeftPaneMinWidth: 300
     property real mainViewPaneMinWidth: 430
+    property real responsiveImageContainerSize: 30
     property real qrCodeImageSize: 256
     property real splitViewHandlePreferredWidth: 4
     property real indicatorFontSize: calcSize(6)

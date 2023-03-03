@@ -310,6 +310,41 @@ PositionManager::setMapActive(QString key)
     }
 }
 
+QList<QString>
+PositionManager::getListSharingUris()
+{
+    QList<QString> list;
+    bool autoShare = false;
+
+    for (auto it = ListSharingUris_.begin(); it != ListSharingUris_.end(); it++) {
+        list.append(it->second);
+    }
+    return list;
+}
+
+void
+PositionManager::showLocation(const QString& accountId, const QString& uri)
+{
+    PositionKey key;
+    key.first = accountId;
+    key.second = uri;
+    QVariantMap position;
+
+    auto it = objectListSharingUris_.find(key);
+    if (it != objectListSharingUris_.end()) {
+        if (it.value()) {
+            position["lat"] = it.value()->getLatitude();
+            position["long"] = it.value()->getLongitude();
+
+            Q_EMIT showLoc(position);
+        }
+    }
+
+    else {
+        qWarning() << "Error: A position intented to be shown while not in objectListSharingUris_ ";
+    }
+}
+
 QString
 PositionManager::getAvatar(const QString& accountId, const QString& uri)
 {
@@ -511,7 +546,11 @@ PositionManager::addPositionToMemory(PositionKey key, QVariantMap positionReceiv
     auto obj = new PositionObject(positionReceived["lat"], positionReceived["long"], this);
     objectListSharingUris_.insert(key, obj);
 
+    if (key.second != lrcInstance_->getCurrentAccountInfo().profileInfo.uri)
+        ListSharingUris_.append(key);
+
     // information for qml
+    set_sharingLocationUrisCount(ListSharingUris_.size());
     set_sharingUrisCount(objectListSharingUris_.size());
 
     // watchdog
@@ -564,6 +603,12 @@ void
 PositionManager::removePositionFromMemory(PositionKey key, QVariantMap positionReceived)
 {
     // Remove
+
+    auto iter = std::find(ListSharingUris_.begin(), ListSharingUris_.end(), key);
+    if (iter != ListSharingUris_.end()) {
+        ListSharingUris_.remove(std::distance(ListSharingUris_.begin(), iter));
+    }
+
     auto it = objectListSharingUris_.find(key);
     if (it != objectListSharingUris_.end()) {
         // free memory
@@ -572,6 +617,7 @@ PositionManager::removePositionFromMemory(PositionKey key, QVariantMap positionR
         objectListSharingUris_.erase(it);
         // update list count for qml
         set_sharingUrisCount(objectListSharingUris_.size());
+        set_sharingLocationUrisCount(ListSharingUris_.size());
     } else {
         qWarning()
             << "Error: A position intented to be removed while not in objectListSharingUris_ ";

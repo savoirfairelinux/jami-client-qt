@@ -31,6 +31,16 @@ ColumnLayout {
     anchors.margins: 10
     anchors.bottom: mapObject.bottom
 
+    function getBaseColor(color) {
+        var baseColor
+        if (UtilsAdapter.luma(color))
+            baseColor = JamiTheme.chatviewTextColorLight
+        else
+            baseColor = JamiTheme.chatviewTextColorDark
+
+        return baseColor
+    }
+
     RowLayout {
         Layout.alignment: Qt.AlignHCenter
 
@@ -38,14 +48,14 @@ ColumnLayout {
             radius: 10
             Layout.preferredWidth: textTimer.width + 15
             Layout.preferredHeight: textTimer.height + 15
-            color: JamiTheme.mapButtonsOverlayColor
+            color: CurrentConversation.color
             visible: textTimer.remainingTimeMs !== 0 && !isUnpin && webView.isLoaded && isSharingToCurrentConversation
 
             Text {
                 id: textTimer
 
                 anchors.centerIn: parent
-                color: JamiTheme.mapButtonColor
+                color: getBaseColor(CurrentConversation.color)
                 text: standartCountdown(Math.floor(remainingTimeMs / 1000))
 
                 function standartCountdown(seconds) {
@@ -97,12 +107,13 @@ ColumnLayout {
             visible: !isSharingToCurrentConversation && !isUnpin && webView.isLoaded
 
             text: JamiStrings.shareLocation
+            textColor: getBaseColor(sharePositionButton.color)
             color: isError
                    ? JamiTheme.buttonTintedGreyInactive
-                   : JamiTheme.buttonTintedBlue
+                   : CurrentConversation.color
             hoveredColor: isError
                           ? JamiTheme.buttonTintedGreyInactive
-                          : JamiTheme.buttonTintedBlueHovered
+                          : Qt.darker(CurrentConversation.color, 1.15)
             pressedColor: isError
                           ? JamiTheme.buttonTintedGreyInactive
                           : JamiTheme.buttonTintedBluePressed
