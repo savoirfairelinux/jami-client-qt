@@ -61,20 +61,7 @@ ColumnLayout {
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         ToggleSwitch {
-            id: encryptMediaStreamsToggle
-
-            labelText: JamiStrings.encryptMediaStream
-            fontPointSize: JamiTheme.settingsFontSize
-
-            checked: CurrentAccount.enable_SRTP
-
-            onSwitchToggled: CurrentAccount.enable_SRTP = checked
-        }
-
-        ToggleSwitch {
             id: enableSDESToggle
-
-            enabled: CurrentAccount.enable_SRTP
 
             labelText: JamiStrings.enableSDES
             fontPointSize: JamiTheme.settingsFontSize
@@ -86,8 +73,6 @@ ColumnLayout {
 
         ToggleSwitch {
             id: fallbackRTPToggle
-
-            enabled: CurrentAccount.enable_SRTP
 
             labelText: JamiStrings.fallbackRTP
             fontPointSize: JamiTheme.settingsFontSize
