@@ -16,6 +16,24 @@
       "message": "after replying with media, the bar \"reply to\" is still visible",
       "revId": "1b1570dd06ca151f619eddc2cdd5b011a652921f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68ee7b29_421cdde4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-06T15:29:21Z",
+      "side": 1,
+      "message": "hmm can\u0027t reproduce.\n\nMessagesAdapter.replyToId \u003d \"\" (line 221 is called, removing the reply line)",
+      "parentUuid": "d04d9e5e_5a79aa5b",
+      "revId": "1b1570dd06ca151f619eddc2cdd5b011a652921f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
