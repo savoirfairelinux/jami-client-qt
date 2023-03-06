@@ -103,7 +103,6 @@ Item {
 
     // AdvancedSIPSecuritySettings && AdvancedJamiSecuritySettings
     property string security: qsTr("Security")
-    property string encryptMediaStream: qsTr("Encrypt media streams (SRTP)")
     property string enableSDES: qsTr("Enable SDES key exchange")
     property string fallbackRTP: qsTr("Allow fallback on RTP")
     property string encryptNegotiation: qsTr("Encrypt negotiation (TLS)")
