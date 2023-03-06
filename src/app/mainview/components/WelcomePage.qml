@@ -27,12 +27,12 @@ import net.jami.Models 1.1
 import "../../commoncomponents"
 import "../js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
-ListSelectionView {
+DualPaneView {
     id: viewNode
     objectName: "WelcomePage"
 
     splitViewStateKey: "Main"
-    hideRightPaneInSinglePaneMode: true
+    collapseToLeft: true
 
     color: JamiTheme.secondaryBackgroundColor
 

@@ -51,10 +51,10 @@ Rectangle {
 
     function resetPanels() {
         chatViewHeader.showSearch = true
-        swarmDetailsPanel.visible = false
-        addMemberPanel.visible = false
+//        swarmDetailsPanel.visible = false
+//        addMemberPanel.visible = false
+//        messagesResearchPanel.visible = false
         chatContents.visible = true
-        messagesResearchPanel.visible = false
     }
 
     function instanceMapObject() {
@@ -86,15 +86,15 @@ Rectangle {
     onVisibleChanged: {
         if (visible){
             chatViewHeader.showSearch = !root.parent.showDetails
-            addMemberPanel.visible = false
-            messagesResearchPanel.visible = false
-            if (root.parent.showDetails) {
-                chatContents.visible = false
-                swarmDetailsPanel.visible = true
-            } else {
-                chatContents.visible = true
-                swarmDetailsPanel.visible = false
-            }
+            //addMemberPanel.visible = false
+            //messagesResearchPanel.visible = false
+//            if (root.parent.showDetails) {
+//                chatContents.visible = false
+//                swarmDetailsPanel.visible = true
+//            } else {
+//                chatContents.visible = true
+//                swarmDetailsPanel.visible = false
+//            }
         }
     }
 
@@ -131,17 +131,23 @@ Rectangle {
             }
 
             onShowDetailsClicked: {
-                addMemberPanel.visible = false
-                messagesResearchPanel.visible = false
-                swarmDetailsPanel.visible = !swarmDetailsPanel.visible
-                panelsVisibilityChange()
+                detailsLayout.currentIndex = 0
+                detailsLayout.visible = !detailsLayout.visible
+
+//                addMemberPanel.visible = false
+//                messagesResearchPanel.visible = false
+//                swarmDetailsPanel.visible = !swarmDetailsPanel.visible
+//                panelsVisibilityChange()
             }
 
             onSearchBarOpened: {
-                addMemberPanel.visible = false
-                swarmDetailsPanel.visible = false
-                messagesResearchPanel.visible = true
-                panelsVisibilityChange()
+                detailsLayout.currentIndex = 2
+                detailsLayout.visible = !detailsLayout.visible
+
+//                addMemberPanel.visible = false
+//                swarmDetailsPanel.visible = false
+//                messagesResearchPanel.visible = true
+//                panelsVisibilityChange()
             }
 
             onSearchBarClosed: {
@@ -195,14 +201,17 @@ Rectangle {
             }
 
             onAddToConversationClicked: {
-                swarmDetailsPanel.visible = false
-                if (addMemberPanel.visible) {
-                    chatContents.visible = true
-                } else {
-                    if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.chatViewHeaderMinimumWidth)
-                        chatContents.visible = false
-                }
-                addMemberPanel.visible = !addMemberPanel.visible
+//                swarmDetailsPanel.visible = false
+//                if (addMemberPanel.visible) {
+//                    chatContents.visible = true
+//                } else {
+//                    if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.chatViewHeaderMinimumWidth)
+//                        chatContents.visible = false
+//                }
+//                addMemberPanel.visible = !addMemberPanel.visible
+
+                detailsLayout.currentIndex = 1
+                detailsLayout.visible = !detailsLayout.visible
             }
 
             onPluginSelector: {
@@ -270,27 +279,21 @@ Rectangle {
             visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
         }
 
-        SplitView {
+        DualPaneView {
             id: chatViewMainRow
+            objectName: "ChatPage"
+
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            handle: Rectangle {
-                implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-                implicitHeight: root.height
-                color: JamiTheme.primaryBackgroundColor
-                Rectangle {
-                    implicitWidth: 1
-                    implicitHeight: root.height
-                    color: JamiTheme.tabbarBorderColor
-                }
-            }
+            managed: false
+            visibilityManaged: true
+            isCollapsed: true
 
-            ColumnLayout {
+            leftPaneItem: ColumnLayout {
                 id: chatContents
-                SplitView.maximumWidth: root.width
-                SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
-                SplitView.fillWidth: true
+
+                anchors.fill: parent
 
                 StackLayout {
                     id: chatViewStack
@@ -358,31 +361,20 @@ Rectangle {
                 }
             }
 
-            MessagesResearchPanel {
-                id: messagesResearchPanel
+            rightPaneItem: StackLayout {
+                id: detailsLayout
 
-                visible: false
-                SplitView.maximumWidth: root.width
-                SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
-                SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
-            }
+                anchors.fill: parent
 
-            SwarmDetailsPanel {
-                id: swarmDetailsPanel
-                visible: false
+//                SplitView.maximumWidth: root.width
+//                SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
+//                SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
 
-                SplitView.maximumWidth: root.width
-                SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
-                SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
-            }
+                currentIndex: -1
 
-            AddMemberPanel {
-                id: addMemberPanel
-                visible: false
-
-                SplitView.maximumWidth: root.width
-                SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
-                SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
+                SwarmDetailsPanel { id: swarmDetailsPanel }
+                AddMemberPanel { id: addMemberPanel }
+                MessagesResearchPanel { id: messagesResearchPanel }
             }
         }
     }

@@ -36,7 +36,7 @@ ListSelectionView {
     hasValidSelection: CurrentConversation.id !== ''
 
     onPresented: {
-        if (!visible && viewNode.isSinglePane &&
+        if (!visible && viewNode.isCollapsed &&
                 CurrentConversation.id !== '') {
             viewCoordinator.present(objectName)
         }
