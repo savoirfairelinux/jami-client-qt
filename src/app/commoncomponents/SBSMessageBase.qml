@@ -176,7 +176,7 @@ Control {
                     id: replyBubble
 
                     z: -2
-                    color: replyItem.isSelf ? Qt.lighter(CurrentConversation.color, 1.15) : Qt.lighter(JamiTheme.messageInBgColor, 1.05)
+                    color: replyItem.isSelf ? CurrentConversation.color : JamiTheme.messageInBgColor
                     radius: msgRadius
 
                     Layout.preferredWidth: replyToRow.width + 2*JamiTheme.preferredMarginSize
@@ -351,7 +351,6 @@ Control {
 
                     width: Type === Interaction.Type.TEXT && !isEdited ? root.textContentWidth : innerContent.childrenRect.width
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
-
                 }
 
 
