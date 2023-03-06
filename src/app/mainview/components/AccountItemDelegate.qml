@@ -35,9 +35,9 @@ ItemDelegate {
     background: Rectangle {
         color: {
             if (root.pressed)
-                return Qt.darker(JamiTheme.selectedColor, 1.1)
+                return JamiTheme.smartListSelectedColor
             else if (root.hovered)
-                return Qt.darker(JamiTheme.selectedColor, 1.05)
+                return JamiTheme.smartListHoveredColor
             else
                 return JamiTheme.backgroundColor
         }

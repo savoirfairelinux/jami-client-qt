@@ -33,7 +33,7 @@ Rectangle {
         target: parent
         enabled: parent.visible
         onHoveredChanged: {
-            parent.color = hovered ? Qt.darker(JamiTheme.selectedColor, 1.05) : "transparent"
+            parent.color = hovered ? JamiTheme.smartListHoveredColor : "transparent"
         }
     }
 }
