@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b07e4f21_a20ddc5e",
+        "filename": "src/app/mainview/components/BlinkingLocationIcon.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-06T19:54:03Z",
+      "side": 1,
+      "message": "you\u0027re not Ming",
+      "range": {
+        "startLine": 3,
+        "startChar": 6,
+        "endLine": 3,
+        "endChar": 30
+      },
+      "revId": "76cb82d7294cbf6a96e6886aa51a03e707048af9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "741c7524_18971582",
+        "filename": "src/app/mainview/components/BlinkingLocationIcon.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-06T19:54:03Z",
+      "side": 1,
+      "message": "trailing space",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 1
+      },
+      "revId": "76cb82d7294cbf6a96e6886aa51a03e707048af9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4efe984b_b51e4f46",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-06T19:54:03Z",
+      "side": 1,
+      "message": "I don\u0027t see the icon while sharing",
+      "range": {
+        "startLine": 214,
+        "startChar": 12,
+        "endLine": 214,
+        "endChar": 21
+      },
+      "revId": "76cb82d7294cbf6a96e6886aa51a03e707048af9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
