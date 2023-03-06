@@ -303,6 +303,9 @@ def run_dependencies(args):
 
 
 def run_init():
+    subprocess.run(["git", "submodule", "update", "--init"],
+                   check=True)
+
     hooks_directories = ['.git/hooks/', f'.git/modules/daemon/hooks']
     for hooks_dir in hooks_directories:
         if not os.path.exists(hooks_dir):
@@ -310,9 +313,6 @@ def run_init():
         copy_file("./extras/scripts/commit-msg", hooks_dir + "/commit-msg")
         execute_script(['./extras/scripts/format.sh --install %(path)s'],
                        {"path": hooks_dir})
-
-    subprocess.run(["git", "submodule", "update", "--recursive", "--init"],
-                   check=True)
 
 
 def copy_file(src, dest):
