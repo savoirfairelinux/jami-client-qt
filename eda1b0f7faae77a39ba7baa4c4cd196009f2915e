@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffd3d405_e46de0f0",
+        "filename": "src/app/mainview/components/BlinkingLocationIcon.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-03-06T17:18:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a29e793b_31c49213",
+      "range": {
+        "startLine": 1,
+        "startChar": 6,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "eda1b0f7faae77a39ba7baa4c4cd196009f2915e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9da9144_629e68ef",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-03T21:29:42Z",
       "side": 1,
       "message": "TODO check color in dark theme when conversation is selected",
+      "range": {
+        "startLine": 12,
+        "startChar": 18,
+        "endLine": 12,
+        "endChar": 38
+      },
+      "revId": "eda1b0f7faae77a39ba7baa4c4cd196009f2915e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d20169a9_3669fce7",
+        "filename": "src/app/mainview/components/BlinkingLocationIcon.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-03-06T17:18:47Z",
+      "side": 1,
+      "message": "resolved with https://review.jami.net/c/jami-client-qt/+/24134",
+      "parentUuid": "a9da9144_629e68ef",
       "range": {
         "startLine": 12,
         "startChar": 18,
