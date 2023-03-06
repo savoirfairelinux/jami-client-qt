@@ -20,18 +20,15 @@ import QtQuick
 DualPaneView {
     id: viewNode
 
-    property bool hideRightPaneInSinglePaneMode : false
-
     Component.onCompleted: {
-        if (hideRightPaneInSinglePaneMode) return
         onIndexChanged.connect(function() {
             if (hasValidSelection) {
-                if (selectionFallback && isSinglePane) {
+                if (selectionFallback && isCollapsed) {
                     rightPaneItem.parent = sv1
                 } else return
             }
             if (hasValidSelection) return
-            if (!isSinglePane) dismiss()
+            if (!isCollapsed) dismiss()
             else handlePanes()
         })
     }
@@ -49,9 +46,9 @@ DualPaneView {
     onHasValidSelectionChanged: handlePanes()
 
     function dismiss() {
-        if (isSinglePane) {
+        if (isCollapsed) {
             if (!selectionFallback) viewCoordinator.dismiss(objectName)
-            else if (isSinglePane && sv1.children.length > 1) {
+            else if (isCollapsed && sv1.children.length > 1) {
                 rightPaneItem.parent = null
                 leftPaneItem.deselect()
             }
@@ -66,10 +63,13 @@ DualPaneView {
     }
 
     function handlePanes() {
-        if (hideRightPaneInSinglePaneMode) return
+        if (collapseToLeft) {
+            rightPaneItem.visible = !isCollapsed
+            return
+        }
         // When transitioning from split to single pane, we need to move
         // the right pane item to left stack view if it has a valid index.
-        if (isSinglePane) {
+        if (isCollapsed) {
             if (hasValidSelection) {
                 rightPaneItem.parent = sv1
             }
@@ -83,5 +83,5 @@ DualPaneView {
     onLeftPaneItemChanged: {
         if (leftPaneItem) leftPaneItem.indexSelected.connect(selectIndex)
     }
-    isSinglePaneChangedHandler: handlePanes
+    isCollapsedChangedHandler: handlePanes
 }

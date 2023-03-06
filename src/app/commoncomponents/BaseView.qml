@@ -25,6 +25,8 @@ Rectangle {
     // only be destroyed when its parent is destroyed.
     property bool managed: true
 
+    property bool visibilityManaged: false
+
     // A list of view names that this view inhibits the presentation of.
     property var inhibits: []
 
@@ -33,6 +35,12 @@ Rectangle {
     signal presented
     signal dismissed
 
-    Component.onCompleted: { if (managed) presented() }
-    Component.onDestruction: { if (managed) dismissed() }
+    onVisibleChanged: {
+        if (managed || !visibilityManaged) return
+        if (visible) presented()
+        else if (!visible) dismissed()
+    }
+
+    Component.onCompleted: { if (managed || visibilityManaged) presented() }
+    Component.onDestruction: { if (managed || visibilityManaged) dismissed() }
 }
