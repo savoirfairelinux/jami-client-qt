@@ -27,6 +27,17 @@ Rectangle {
     property bool out: true
     property int type: MsgSeq.single
     property bool isReply: false
+
+    Rectangle {
+        id: maskReplyBorder
+        anchors.fill: parent
+        anchors.margins: -1
+        radius: 5
+        color: "transparent"
+        border.color: JamiTheme.chatviewBgColor
+        border.width: isReply ? 2 : 0
+    }
+
     Rectangle {
         id: mask
         visible: type !== MsgSeq.single && !isReply
