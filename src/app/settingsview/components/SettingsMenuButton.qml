@@ -44,8 +44,8 @@ PushButton {
     imageContainerWidth: 40
 
     pressedColor: Qt.lighter(JamiTheme.pressedButtonColor, 1.25)
-    checkedColor: JamiTheme.selectedColor
-    hoveredColor: JamiTheme.hoverColor
+    checkedColor: JamiTheme.smartListSelectedColor
+    hoveredColor: JamiTheme.smartListHoveredColor
 
     duration: 0
     checkable: true

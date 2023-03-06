@@ -616,7 +616,7 @@ Rectangle {
                         anchors.fill: parent
                         color: {
                             if (member.hovered || nameTextEditHover.hovered)
-                                return Qt.darker(JamiTheme.selectedColor, 1.05)
+                                return JamiTheme.smartListHoveredColor
                             else
                                 return "transparent"
                         }

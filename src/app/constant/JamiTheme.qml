@@ -72,6 +72,8 @@ Item {
     property color hoverColor: darkTheme ? "#515151" : "#c7c7c7"
     property color pressColor: darkTheme ? "#777" : "#c0c0c0"
     property color selectedColor: darkTheme ? "#0e81c5" : "#e0e0e0"
+    property color smartListHoveredColor: darkTheme ? "#444444" : "#dedede"
+    property color smartListSelectedColor: darkTheme ? "#515151" : "#d1d1d1"
     property color editBackgroundColor: darkTheme ? "#373737" : lightGrey_
     property color textColor: primaryForegroundColor
     property color textColorHovered: darkTheme? "#cccccc" : "#333333"
