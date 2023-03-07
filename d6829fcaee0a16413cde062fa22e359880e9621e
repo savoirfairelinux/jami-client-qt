@@ -70,6 +70,30 @@
       },
       "revId": "d6829fcaee0a16413cde062fa22e359880e9621e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81451415_86cf3cfc",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1157,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-03-07T16:53:48Z",
+      "side": 0,
+      "message": "\":\" is forbidden.\nFilename can\u0027t contain any of the following characters: \\/:*?\"\u003c\u003e|",
+      "parentUuid": "4ec11045_be2a840f",
+      "range": {
+        "startLine": 1157,
+        "startChar": 68,
+        "endLine": 1157,
+        "endChar": 70
+      },
+      "revId": "d6829fcaee0a16413cde062fa22e359880e9621e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
