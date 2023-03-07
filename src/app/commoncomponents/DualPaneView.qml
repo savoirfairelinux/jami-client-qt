@@ -27,8 +27,8 @@ BaseView {
     required property Item leftPaneItem
     required property Item rightPaneItem
 
-    property alias leftPane: splitView.leftPane
-    property alias rightPane: splitView.rightPane
+    property alias leftPane: leftPane
+    property alias rightPane: rightPane
 
     property alias splitViewStateKey: splitView.splitViewStateKey
 
@@ -77,9 +77,18 @@ BaseView {
         visible: !isSinglePane
         splitViewStateKey: viewNode.objectName
 
-        leftPaneMinWidth: viewNode.leftPaneMinWidth
-        leftPaneMaxWidth: isSinglePane ?
-                              undefined :
-                              viewNode.width - rightPaneMinWidth
+        Item {
+            id: leftPane
+            SplitView.minimumWidth: viewNode.leftPaneMinWidth
+            SplitView.maximumWidth: isSinglePane ?
+                                        undefined :
+                                        viewNode.width - rightPaneMinWidth
+            SplitView.preferredWidth: viewNode.leftPaneMinWidth
+            clip: true
+        }
+        Item {
+            id: rightPane
+            clip: true
+        }
     }
 }

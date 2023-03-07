@@ -41,7 +41,9 @@ ListView  {
         property var messageListModel: MessagesAdapter.mediaMessageListModel
         readonly property int textType: Interaction.Type.TEXT
 
-        onMessageListModelChanged: sourceModel = root.visible ? messageListModel : null
+        onMessageListModelChanged: sourceModel = root.visible && messageListModel ?
+                                       messageListModel :
+                                       null
 
         filters: ExpressionFilter {
             expression: Type === proxyModel.textType
