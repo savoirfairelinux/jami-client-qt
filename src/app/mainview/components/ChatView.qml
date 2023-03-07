@@ -1,8 +1,5 @@
 ﻿/*
- * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
- * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+ * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,11 +18,11 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
 
 import "../../commoncomponents"
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
@@ -33,13 +30,17 @@ import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 Rectangle {
     id: root
 
+    // An enum to make the details panels more readable.
+    enum Panel {
+        MessagesResearchPanel,
+        SwarmDetailsPanel,
+        AddMemberPanel
+    }
+
     color: JamiTheme.chatviewBgColor
 
     property var mapPositions: PositionManager.mapStatus
 
-    property int lastContentsSplitSize: JamiTheme.detailsPageMinWidth
-    property int lastDetailsSplitSize: JamiTheme.detailsPageMinWidth
-    property int previousWidth: width
     required property bool inCallView
 
     signal dismiss
@@ -51,10 +52,6 @@ Rectangle {
 
     function resetPanels() {
         chatViewHeader.showSearch = true
-        swarmDetailsPanel.visible = false
-        addMemberPanel.visible = false
-        chatContents.visible = true
-        messagesResearchPanel.visible = false
     }
 
     function instanceMapObject() {
@@ -79,22 +76,38 @@ Rectangle {
     Connections {
         target: CurrentConversation
         function onIdChanged() {
+            saveLayout()
             MessagesAdapter.loadMoreMessages()
         }
     }
 
+    Component.onCompleted: restoreLayout()
+
+    function restoreLayout() {
+        const detailsIndex = UtilsAdapter.getAppValue(Settings.DetailsIndex)
+        print("RESET", detailsIndex)
+        if (detailsIndex === -1)
+            detailsPanel.closePanel()
+        else
+            detailsPanel.switchToPanel(detailsIndex, false)
+    }
+
+    function saveLayout() {
+        print("SAVE", detailsPanel.currentIndex)
+        UtilsAdapter.setAppValue(Settings.DetailsIndex, detailsPanel.currentIndex)
+    }
+
     onVisibleChanged: {
-        if (visible){
+        if (visible) {
+            chatViewSplitView.resolvePanes()
             chatViewHeader.showSearch = !root.parent.showDetails
-            addMemberPanel.visible = false
-            messagesResearchPanel.visible = false
             if (root.parent.showDetails) {
-                chatContents.visible = false
-                swarmDetailsPanel.visible = true
+                detailsPanel.switchToPanel(ChatView.SwarmDetailsPanel)
             } else {
-                chatContents.visible = true
-                swarmDetailsPanel.visible = false
+                detailsPanel.closePanel()
             }
+        } else {
+            saveLayout()
         }
     }
 
@@ -118,60 +131,9 @@ Rectangle {
             }
 
             onBackClicked: root.dismiss()
-
-            signal panelsVisibilityChange()
-
-            onPanelsVisibilityChange: {
-                if (!swarmDetailsPanel.visible && !messagesResearchPanel.visible) {
-                    chatContents.visible = true
-                } else {
-                    if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.mainViewPaneMinWidth)
-                        chatContents.visible = false
-                }
-            }
-
-            onShowDetailsClicked: {
-                addMemberPanel.visible = false
-                messagesResearchPanel.visible = false
-                swarmDetailsPanel.visible = !swarmDetailsPanel.visible
-                panelsVisibilityChange()
-            }
-
-            onSearchBarOpened: {
-                addMemberPanel.visible = false
-                swarmDetailsPanel.visible = false
-                messagesResearchPanel.visible = true
-                panelsVisibilityChange()
-            }
-
-            onSearchBarClosed: {
-                chatContents.visible = true
-                messagesResearchPanel.visible = false
-                panelsVisibilityChange()
-            }
-
-            onWidthChanged: {
-                if (inCallView)
-                    return
-                const isExpanding = previousWidth < width
-
-                if (!swarmDetailsPanel.visible && !addMemberPanel.visible && !messagesResearchPanel.visible)
-                    return
-                if (chatViewHeader.width < JamiTheme.detailsPageMinWidth + JamiTheme.mainViewPaneMinWidth
-                        && !isExpanding && chatContents.visible) {
-                    lastContentsSplitSize = chatContents.width
-                    lastDetailsSplitSize = Math.min(JamiTheme.detailsPageMinWidth, (swarmDetailsPanel.visible
-                                                                                    ? swarmDetailsPanel.width
-                                                                                    : addMemberPanel.visible
-                                                                                    ? addMemberPanel.width
-                                                                                    : messagesResearchPanel.width))
-                    chatContents.visible = false
-                } else if (chatViewHeader.width >= JamiTheme.mainViewPaneMinWidth + lastDetailsSplitSize
-                           && isExpanding && !layoutManager.isFullScreen && !chatContents.visible) {
-                    chatContents.visible = true
-                }
-                previousWidth = width
-            }
+            onShowDetailsClicked: detailsPanel.switchToPanel(ChatView.SwarmDetailsPanel)
+            onSearchClicked: detailsPanel.switchToPanel(ChatView.MessagesResearchPanel)
+            onAddToConversationClicked: detailsPanel.switchToPanel(ChatView.AddMemberPanel)
 
             Connections {
                 target: CurrentConversation
@@ -181,28 +143,6 @@ Rectangle {
                                 appWindow,
                                 "mainview/components/HostPopup.qml")
                 }
-            }
-
-            Connections {
-                target: CurrentConversationMembers
-
-                function onCountChanged() {
-                    if (CurrentConversationMembers.count >= 8 && addMemberPanel.visible) {
-                        swarmDetailsPanel.visible = false
-                        addMemberPanel.visible = !addMemberPanel.visible
-                    }
-                }
-            }
-
-            onAddToConversationClicked: {
-                swarmDetailsPanel.visible = false
-                if (addMemberPanel.visible) {
-                    chatContents.visible = true
-                } else {
-                    if (chatViewHeader.width - JamiTheme.detailsPageMinWidth < JamiTheme.mainViewPaneMinWidth)
-                        chatContents.visible = false
-                }
-                addMemberPanel.visible = !addMemberPanel.visible
             }
 
             onPluginSelector: {
@@ -270,20 +210,40 @@ Rectangle {
             visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
         }
 
-        SplitView {
-            id: chatViewMainRow
+        JamiSplitView {
+            id: chatViewSplitView
+            objectName: "ChatViewSplitView"
+
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            handle: Rectangle {
-                implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-                implicitHeight: root.height
-                color: JamiTheme.primaryBackgroundColor
-                Rectangle {
-                    implicitWidth: 1
-                    implicitHeight: root.height
-                    color: JamiTheme.tabbarBorderColor
+            splitViewStateKey: "Chat"
+
+            property int lastContentsSplitSize: JamiTheme.detailsPageMinWidth
+            property int lastDetailsSplitSize: JamiTheme.detailsPageMinWidth
+            property int previousWidth: width
+
+            Connections {
+                target: viewNode
+                function onPresented() { chatViewSplitView.restoreSplitViewState() }
+                function onDismissed() { chatViewSplitView.saveSplitViewState() }
+            }
+
+            onWidthChanged: resolvePanes()
+            function resolvePanes() {
+                if (inCallView || !detailsPanel.visible)
+                    return
+                const isExpanding = previousWidth < width
+                if (chatViewHeader.width < JamiTheme.detailsPageMinWidth + JamiTheme.mainViewPaneMinWidth
+                        && !isExpanding && chatContents.visible) {
+                    lastContentsSplitSize = chatContents.width
+                    lastDetailsSplitSize = Math.min(JamiTheme.detailsPageMinWidth, detailsPanel.width)
+                    chatContents.visible = false
+                } else if (chatViewHeader.width >= JamiTheme.mainViewPaneMinWidth + lastDetailsSplitSize
+                           && isExpanding && !layoutManager.isFullScreen && !chatContents.visible) {
+                    chatContents.visible = true
                 }
+                previousWidth = width
             }
 
             ColumnLayout {
@@ -358,31 +318,19 @@ Rectangle {
                 }
             }
 
-            MessagesResearchPanel {
-                id: messagesResearchPanel
+            ConversationDetailsPanel {
+                id: detailsPanel
 
-                visible: false
                 SplitView.maximumWidth: root.width
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
                 SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
-            }
-
-            SwarmDetailsPanel {
-                id: swarmDetailsPanel
+                currentIndex: -1
                 visible: false
 
-                SplitView.maximumWidth: root.width
-                SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
-                SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
-            }
-
-            AddMemberPanel {
-                id: addMemberPanel
-                visible: false
-
-                SplitView.maximumWidth: root.width
-                SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
-                SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
+                onVisibleChanged: {
+                    if (visible) chatViewSplitView.resolvePanes()
+                    else chatContents.visible = true
+                }
             }
         }
     }
