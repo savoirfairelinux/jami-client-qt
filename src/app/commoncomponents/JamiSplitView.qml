@@ -24,14 +24,8 @@ import net.jami.Constants 1.1
 SplitView {
     id: root
 
-    property alias leftPane: leftPane
-    property alias rightPane: rightPane
-
     property string splitViewStateKey: objectName
     property bool autoManageState: !(parent instanceof BaseView)
-
-    required property var leftPaneMinWidth
-    required property var leftPaneMaxWidth
 
     function saveSplitViewState() {
         UtilsAdapter.setAppValue("sv_" + splitViewStateKey, root.saveState())
@@ -56,17 +50,5 @@ SplitView {
             implicitHeight: root.height
             color: JamiTheme.tabbarBorderColor
         }
-    }
-
-    Item {
-        id: leftPane
-        SplitView.minimumWidth: leftPaneMinWidth
-        SplitView.maximumWidth: leftPaneMaxWidth
-        SplitView.preferredWidth: leftPaneMinWidth
-        clip: true
-    }
-    Item {
-        id: rightPane
-        clip: true
     }
 }
