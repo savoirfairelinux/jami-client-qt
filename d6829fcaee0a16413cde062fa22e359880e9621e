@@ -22,6 +22,30 @@
       },
       "revId": "d6829fcaee0a16413cde062fa22e359880e9621e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22aac21c_321f9e14",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1157,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-03-07T16:35:03Z",
+      "side": 0,
+      "message": "With the patch the results are like `Screenshot 2023-03-07 094036.png` and there is no saved file at all without the patch.",
+      "parentUuid": "3b792b86_3af767f8",
+      "range": {
+        "startLine": 1157,
+        "startChar": 68,
+        "endLine": 1157,
+        "endChar": 70
+      },
+      "revId": "d6829fcaee0a16413cde062fa22e359880e9621e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
