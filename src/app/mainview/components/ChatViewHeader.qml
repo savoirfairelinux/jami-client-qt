@@ -45,7 +45,7 @@ Rectangle {
         enabled: true
         function onTitleChanged() { title.eText = CurrentConversation.title }
         function onDescriptionChanged() { description.eText = CurrentConversation.description }
-        function onShowDetails() { root.showDetailsClicked() }
+        function onShowSwarmDetails() { root.showDetailsClicked() }
     }
 
     property bool interactionButtonsVisibility: {

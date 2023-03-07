@@ -61,7 +61,6 @@ public:
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentConversation() = default;
     Q_INVOKABLE void scrollToMsg(const QString& msgId);
-    Q_INVOKABLE void showSwarmDetails();
     Q_INVOKABLE void setPreference(const QString& key, const QString& value);
     Q_INVOKABLE QString getPreference(const QString& key) const;
     Q_INVOKABLE MapStringString getPreferences() const;
@@ -70,7 +69,7 @@ public:
 
 Q_SIGNALS:
     void scrollTo(const QString& msgId);
-    void showDetails();
+    void showSwarmDetails();
 
 private Q_SLOTS:
     void updateData();
