@@ -45,7 +45,7 @@ enable_libwrap=true
 enable_webengine=true
 arch=''
 
-while getopts gsc:dQ:P:p:uWw:a: OPT; do
+while getopts gsc:dQ:P:p:uWwa: OPT; do
   case "$OPT" in
     g)
       global='true'
