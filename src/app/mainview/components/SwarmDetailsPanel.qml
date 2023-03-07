@@ -32,6 +32,9 @@ import "../../settingsview/components"
 Rectangle {
     id: root
 
+    property alias tabBarIndex: tabBar.currentIndex
+    property int tabBarItemsLength: tabBar.contentChildren.length
+
     color: CurrentConversation.color
     property var isAdmin: !CurrentConversation.isCoreDialog &&
         UtilsAdapter.getParticipantRole(CurrentAccount.id,
@@ -193,74 +196,71 @@ Rectangle {
 
                 currentIndex: 0
 
-                onVisibleChanged: {
-                    tabBar.currentIndex = 0
-                }
-
                 Layout.preferredWidth: root.width
                 Layout.preferredHeight: settingsTabButton.height
 
-                FilterTabButton {
-                    id: settingsTabButton
+                property string currentItemName: itemAt(currentIndex).objectName
+
+                component DetailsTabButton: FilterTabButton {
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
                     borderWidth: 4
                     bottomMargin: JamiTheme.settingsMarginSize
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
-
-                    textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
+                    textColorHovered: UtilsAdapter.luma(root.color) ?
+                                          JamiTheme.placeholderTextColorWhite :
+                                          JamiTheme.placeholderTextColor
                     textColor: UtilsAdapter.luma(root.color) ?
                                    JamiTheme.chatviewTextColorLight :
                                    JamiTheme.chatviewTextColorDark
-
-                    down: tabBar.currentIndex === 0
-                    labelText: JamiStrings.settings
                     Layout.fillWidth: true
+                    down: tabBar.currentIndex === TabBar.index
                 }
 
-                FilterTabButton {
-                    id: membersTabButton
-                    visible: !CurrentConversation.isCoreDialog
-                    Layout.fillWidth: true
-                    width: visible ? tabBar.width/3 : 0
-                    backgroundColor: CurrentConversation.color
-                    hoverColor: CurrentConversation.color
-                    borderWidth: 4
-                    bottomMargin: JamiTheme.settingsMarginSize
-                    fontSize: JamiTheme.menuFontSize
-                    underlineContentOnly: true
-
-                    textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
-                    textColor: UtilsAdapter.luma(root.color) ?
-                                   JamiTheme.chatviewTextColorLight :
-                                   JamiTheme.chatviewTextColorDark
-
-                    down: tabBar.currentIndex === 1
-                    labelText: {
-                        var membersNb = CurrentConversationMembers.count;
-                        if (membersNb > 1)
-                            return JamiStrings.members.arg(membersNb)
-                        return JamiStrings.member
+                function addRemoveButtons() {
+                    if (CurrentConversation.isCoreDialog) {
+                        if (tabBar.contentChildren.length === 3)
+                            tabBar.removeItem(tabBar.itemAt(1))
+                    } else {
+                        if (tabBar.contentChildren.length === 2) {
+                            const obj = membersTabButtonComp.createObject(tabBar)
+                            tabBar.insertItem(1, obj)
+                        }
                     }
                 }
 
-                FilterTabButton {
+                Component.onCompleted: addRemoveButtons()
+
+                Connections {
+                    target: CurrentConversation
+                    function onIsCoreDialogChanged() { tabBar.addRemoveButtons() }
+                }
+
+                Component {
+                    id: membersTabButtonComp
+                    DetailsTabButton {
+                        id: membersTabButton
+                        objectName: "members"
+                        visible: !CurrentConversation.isCoreDialog
+                        labelText: {
+                            var membersNb = CurrentConversationMembers.count;
+                            if (membersNb > 1)
+                                return JamiStrings.members.arg(membersNb)
+                            return JamiStrings.member
+                        }
+                    }
+                }
+
+                DetailsTabButton {
+                    id: settingsTabButton
+                    objectName: "settings"
+                    labelText: JamiStrings.settings
+                }
+
+                DetailsTabButton {
                     id: documentsTabButton
-                    backgroundColor: CurrentConversation.color
-                    hoverColor: CurrentConversation.color
-                    borderWidth: 4
-                    bottomMargin: JamiTheme.settingsMarginSize
-                    fontSize: JamiTheme.menuFontSize
-                    underlineContentOnly: true
-
-                    Layout.fillWidth: true
-                    textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
-                    textColor: UtilsAdapter.luma(root.color) ?
-                                   JamiTheme.chatviewTextColorLight :
-                                   JamiTheme.chatviewTextColorDark
-
-                    down: tabBar.currentIndex === 2
+                    objectName: "documents"
                     labelText: JamiStrings.documents
                 }
             }
@@ -298,7 +298,7 @@ Rectangle {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.rightMargin: JamiTheme.settingsMarginSize
-                    visible: tabBar.currentIndex === 0
+                    visible: tabBar.currentItemName === "settings"
                     Layout.alignment: Qt.AlignTop
 
                     SwarmDetailsItem {
@@ -589,7 +589,7 @@ Rectangle {
                 anchors.bottomMargin: JamiTheme.preferredMarginSize
                 anchors.fill: parent
 
-                visible: tabBar.currentIndex === 1
+                visible: tabBar.currentItemName === "members"
 
                 SwarmParticipantContextMenu {
                     id: contextMenu
@@ -708,7 +708,7 @@ Rectangle {
                 id: documents
 
                 clip: true
-                visible: tabBar.currentIndex === 2
+                visible: tabBar.currentItemName === "documents"
                 anchors.fill: parent
             }
         }

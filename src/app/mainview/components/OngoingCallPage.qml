@@ -399,6 +399,7 @@ Rectangle {
 
         Item {
             id: chatViewContainer
+            objectName: "CallViewChatViewContainer"
 
             SplitView.preferredHeight: mainColumnLayout.isHorizontal ?
                                            root.height :
