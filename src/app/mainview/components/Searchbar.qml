@@ -28,48 +28,10 @@ import "../../commoncomponents"
 RowLayout {
     id: root
 
-    property real messagesResearchPanel: JamiTheme.detailsPageMinWidth
-
-    //TO DO: find a design to set dynamically the size of the searchbar
-    property real searchBarWidth: JamiTheme.searchbarSize
-
     property string currentConversationId: CurrentConversation.id
-    property bool isOpened: false
 
-    function openSearchBar() {
-        if (isOpened) {
-            textArea.forceActiveFocus()
-            return
-        }
-        searchBarOpened()
-        rectTextArea.isSearch = true
-        anim.start()
-        textArea.forceActiveFocus()
-        isOpened = true
-    }
-
-    function closeSearchbar() {
-        if (!isOpened)
-            return
-        searchBarClosed()
-        rectTextArea.isSearch = false
-        anim.start()
-        isOpened = false
-    }
-
-    Connections {
-        target: chatViewHeader
-        function onShowDetailsClicked() {
-            if (rectTextArea.isSearch)
-                closeSearchbar()
-        }
-    }
-
-    onCurrentConversationIdChanged: {
-        if (isOpened)
-            closeSearchbar()
-    }
-
+    property bool isOpen: detailsLayout.isOpen(ChatView.MessagesResearchPanel)
+    onIsOpenChanged: if (isOpen) textArea.forceActiveFocus()
 
     PushButton {
         id: startSearchMessages
@@ -78,66 +40,26 @@ RowLayout {
         normalColor: JamiTheme.chatviewBgColor
         imageColor: JamiTheme.chatviewButtonColor
 
-        onClicked: {
-            if (rectTextArea.isSearch)
-                closeSearchbar()
-            else
-                openSearchBar()
-        }
+        onClicked: chatViewHeader.searchClicked()
     }
 
-
-    SequentialAnimation {
-        id: anim
-
-        PropertyAnimation {
-            target: rectTextArea; properties: "visible"
-            to: true
-            duration: 0
-        }
-
-        ParallelAnimation {
-
-            NumberAnimation {
-                target: rectTextArea; properties: "opacity"
-                from: rectTextArea.isSearch ? 0 : 1
-                to: rectTextArea.isSearch ? 1 : 0
-                duration: 150
-            }
-
-            NumberAnimation {
-                target: rectTextArea; properties: "Layout.preferredWidth"
-                from: rectTextArea.isSearch ? 0 : root.searchBarWidth
-                to: rectTextArea.isSearch ? root.searchBarWidth : 0
-                duration: 150
-            }
-        }
-
-        PropertyAnimation {
-            target: rectTextArea; properties: "visible"
-            to: rectTextArea.isSearch
-            duration: 0
-        }
-
-    }
     Rectangle {
         id: rectTextArea
 
-        visible: false
         Layout.preferredHeight: startSearchMessages.height
         Layout.alignment: Qt.AlignVCenter
+
         color: "transparent"
         border.color: JamiTheme.chatviewTextColor
         radius: 10
         border.width: 2
 
-        property bool isSearch: false
-        property int textAreaWidth: 200
-        property alias searchBarWidth: root.searchBarWidth
+        opacity: isOpen
+        visible: opacity
+        Behavior on opacity { NumberAnimation { duration: 150 } }
 
-        onSearchBarWidthChanged: {
-            Layout.preferredWidth = root.searchBarWidth
-        }
+        Layout.preferredWidth: isOpen ? JamiTheme.searchbarSize : 0
+        Behavior on Layout.preferredWidth { NumberAnimation { duration: 150 } }
 
         TextField {
             id: textArea
