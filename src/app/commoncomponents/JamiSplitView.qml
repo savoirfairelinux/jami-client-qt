@@ -28,15 +28,18 @@ SplitView {
     property bool autoManageState: !(parent instanceof BaseView)
 
     function saveSplitViewState() {
+        print("Saving split:", "sv_" + splitViewStateKey, this)
         UtilsAdapter.setAppValue("sv_" + splitViewStateKey, root.saveState())
     }
 
     function restoreSplitViewState() {
+        print("Restoring split:", "sv_" + splitViewStateKey, this)
         root.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey))
     }
 
     onResizingChanged: if (!resizing) saveSplitViewState()
     onVisibleChanged: {
+        print("VIS split:", objectName, "sv_" + splitViewStateKey, this, autoManageState)
         if (!autoManageState) return
         visible ? restoreSplitViewState() : saveSplitViewState()
     }
