@@ -208,7 +208,7 @@ ItemDelegate {
             radius: 4
         }
 
-        onActivated: menuAction.accept(index)
+        onActivated: index => menuAction.accept(index)
         model: visible ? menuAction.listModel : null
         delegate: ItemDelegate {
             id: menuItem
