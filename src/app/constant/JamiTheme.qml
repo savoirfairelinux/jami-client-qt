@@ -577,8 +577,8 @@ Item {
 
     property real mainViewMargin: 30
 
-    // Details page
-    property real detailsPageMinWidth: 300
+    // Extras panel
+    property real extrasPanelMinWidth: 300
     property int aboutBtnSize: 24
 
     // Messages point size
