@@ -308,12 +308,6 @@ CurrentConversation::connectModel()
 }
 
 void
-CurrentConversation::showSwarmDetails()
-{
-    Q_EMIT showDetails();
-}
-
-void
 CurrentConversation::updateErrors(const QString& convId)
 {
     if (convId != id_)
