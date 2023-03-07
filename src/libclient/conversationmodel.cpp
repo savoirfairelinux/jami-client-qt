@@ -1545,6 +1545,7 @@ ConversationModel::clearInteractionFromConversation(const QString& convId,
 void
 ConversationModel::clearInteractionsCache(const QString& convId)
 {
+    qWarning() << Q_FUNC_INFO;
     auto conversationIdx = pimpl_->indexOf(convId);
     if (conversationIdx == -1)
         return;
