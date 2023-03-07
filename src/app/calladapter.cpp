@@ -1154,7 +1154,7 @@ CallAdapter::takeScreenshot(const QImage& image, const QString& path)
 {
     QString name = QString("%1 %2")
                        .arg(tr("Screenshot"))
-                       .arg(QDateTime::currentDateTime().toString(Qt::ISODate));
+                       .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd HHmmss"));
 
     bool fileAlreadyExists = true;
     int nb = 0;
