@@ -290,6 +290,9 @@ Window {
             width: 96
             height: JamiTheme.keyboardShortcutTabBarSize
             contentHeight: JamiTheme.keyboardShortcutTabBarSize
+            background: Rectangle {
+                color: windowRect.color
+            }
 
             Repeater {
                 model: ["1", "2", "3", "4"]
