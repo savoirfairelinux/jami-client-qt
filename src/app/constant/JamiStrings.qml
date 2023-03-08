@@ -81,7 +81,7 @@ Item {
     property string alias: qsTr("Alias")
 
     // AdvancedCallSettings
-    property string callSettings: qsTr("Call Settings")
+    property string callSettings: qsTr("Call settings")
     property string allowCallsUnknownContacs: qsTr("Allow incoming calls from unknown contacts")
     property string rendezVous: qsTr("Convert your account into a rendezvous point")
     property string autoAnswerCalls: qsTr("Automatically answer calls")
@@ -93,7 +93,7 @@ Item {
     property string audioFile: qsTr("Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)")
 
     // AdvancedChatSettings
-    property string chatSettings: qsTr("Chat Settings")
+    property string chatSettings: qsTr("Chat settings")
     property string enableReadReceipts: qsTr("Enable read receipts")
     property string enableReadReceiptsTooltip: qsTr("Send and receive receipts indicating that a message have been displayed")
 
@@ -147,11 +147,11 @@ Item {
     // AdvancedMediaSettings
     property string media: qsTr("Media")
     property string enableVideo: qsTr("Enable video")
-    property string videoCodecs: qsTr("Video Codecs")
-    property string audioCodecs: qsTr("Audio Codecs")
+    property string videoCodecs: qsTr("Video codecs")
+    property string audioCodecs: qsTr("Audio codecs")
 
     // AdvancedNameServerSettings
-    property string nameServer: qsTr("Name Server")
+    property string nameServer: qsTr("Name server")
 
     // AdvancedSDPSettings
     property string sdpSettingsTitle: qsTr("SDP Session Negotiation (ICE Fallback)")
@@ -164,7 +164,7 @@ Item {
     // AdvancedOpenDHTSettings
     property string enablePeerDiscovery: qsTr("Enable local peer discovery")
     property string tooltipPeerDiscovery: qsTr("Connect to other DHT nodes advertising on your local network.")
-    property string openDHTConfig: qsTr("OpenDHT Configuration")
+    property string openDHTConfig: qsTr("OpenDHT configuration")
     property string enableProxy: qsTr("Enable proxy")
     property string proxyAddress: qsTr("Proxy address")
     property string bootstrap: qsTr("Bootstrap")
@@ -551,7 +551,7 @@ Item {
     property string quality: qsTr("Quality")
     property string saveRecordingsTo: qsTr("Save recordings to")
     property string saveScreenshotsTo: qsTr("Save screenshots to")
-    property string callRecording: qsTr("Call Recording")
+    property string callRecording: qsTr("Call recording")
     property string alwaysRecordCalls: qsTr("Always record calls")
 
     // KeyboardShortCutTable
