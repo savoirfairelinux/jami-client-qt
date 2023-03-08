@@ -69,6 +69,8 @@ ColumnLayout {
         titleField: JamiStrings.password
         itemWidth: root.itemWidth
         isPassword: true
+
+        onEditFinished: CurrentAccount.password = dynamicText
     }
 
     SettingsMaterialTextEdit {
