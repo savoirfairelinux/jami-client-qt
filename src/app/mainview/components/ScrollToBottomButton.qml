@@ -29,21 +29,16 @@ import "../../commoncomponents"
 Control {
     id: root
 
-    property alias activeStateTrigger: activeState.when
     signal clicked
 
     height: jumpToLatestText.contentHeight + 15
     width: jumpToLatestText.contentWidth + arrowDropDown.width + 50
-    opacity: 0
 
     states: State {
         id: activeState
 
         name: "active"
-        PropertyChanges {
-            target: root
-            opacity: 1
-        }
+        when: root.visible
     }
 
     transitions: [
@@ -53,6 +48,8 @@ Control {
                 target: root
                 duration: JamiTheme.shortFadeDuration
                 property: "opacity"
+                from: 0.0
+                to: 1.0
             }
         },
         Transition {
@@ -61,6 +58,7 @@ Control {
                 target: root
                 duration: JamiTheme.shortFadeDuration
                 property: "opacity"
+                from: 1.0
                 to: 0.0
             }
         }

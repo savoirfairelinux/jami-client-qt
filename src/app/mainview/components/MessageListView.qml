@@ -31,7 +31,6 @@ import "../../commoncomponents"
 JamiListView {
     id: root
 
-
     function getDistanceToBottom() {
         const scrollDiff = ScrollBar.vertical.position -
                          (1.0 - ScrollBar.vertical.size)
@@ -169,11 +168,7 @@ JamiListView {
 
     topMargin: 12
     spacing: 2
-    // this offscreen caching is pretty huge
-    // displayMarginEnd may be removed
 
-    displayMarginBeginning: 2048
-    displayMarginEnd: 2048
     maximumFlickVelocity: 2048
     verticalLayoutDirection: ListView.BottomToTop
     boundsBehavior: Flickable.StopAtBounds
@@ -238,7 +233,6 @@ JamiListView {
 
     }
 
-
     onAtYBeginningChanged: loadMoreMsgsIfNeeded()
 
     Connections {
@@ -264,9 +258,9 @@ JamiListView {
         anchors.bottom: root.bottom
         anchors.bottomMargin: JamiTheme.chatViewScrollToBottomButtonBottomMargin
         anchors.horizontalCenter: root.horizontalCenter
+        visible:  1 - verticalScrollBar.position >= verticalScrollBar.size * 2
 
-        activeStateTrigger: Math.abs(root.contentY) > root.height * 2
-        onClicked: root.contentY = 0
+        onClicked: verticalScrollBar.position = 1 - verticalScrollBar.size
     }
 
     header: Control {
