@@ -34,6 +34,24 @@
       "parentUuid": "329101cf_18a29c8a",
       "revId": "d7b2775f6688f7bc58fba28e77e372125d244957",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f952fe58_f33fb677",
+        "filename": "resources/images/jami-motion-logo-loop-8s-2.gif",
+        "patchSetId": 36
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-03-08T15:42:04Z",
+      "side": 1,
+      "message": "New gif smaller",
+      "parentUuid": "2ca4a21b_98b59482",
+      "revId": "d7b2775f6688f7bc58fba28e77e372125d244957",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
