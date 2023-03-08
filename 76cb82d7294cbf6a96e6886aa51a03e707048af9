@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "442b9712_ac246df5",
+        "filename": "src/app/mainview/components/BlinkingLocationIcon.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-03-08T16:18:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b07e4f21_a20ddc5e",
+      "range": {
+        "startLine": 3,
+        "startChar": 6,
+        "endLine": 3,
+        "endChar": 30
+      },
+      "revId": "76cb82d7294cbf6a96e6886aa51a03e707048af9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "741c7524_18971582",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39ad0e2c_9ab706a7",
+        "filename": "src/app/mainview/components/BlinkingLocationIcon.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-03-08T16:18:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "741c7524_18971582",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 1
+      },
+      "revId": "76cb82d7294cbf6a96e6886aa51a03e707048af9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4efe984b_b51e4f46",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-03-06T19:54:03Z",
       "side": 1,
       "message": "I don\u0027t see the icon while sharing",
+      "range": {
+        "startLine": 214,
+        "startChar": 12,
+        "endLine": 214,
+        "endChar": 21
+      },
+      "revId": "76cb82d7294cbf6a96e6886aa51a03e707048af9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "084ed05c_97857c89",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-03-08T16:18:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4efe984b_b51e4f46",
       "range": {
         "startLine": 214,
         "startChar": 12,
