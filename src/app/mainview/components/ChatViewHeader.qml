@@ -159,6 +159,15 @@ Rectangle {
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 spacing: headerButtons.spacing
                 visible: root.showSearch && CurrentConversation.isSwarm
+
+                Shortcut {
+                    sequence: "Ctrl+Shift+F"
+                    context: Qt.ApplicationShortcut
+                    enabled: rowSearchBar.visible
+                    onActivated: {
+                        rowSearchBar.openSearchBar()
+                    }
+                }
             }
 
             PushButton {
