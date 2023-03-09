@@ -46,6 +46,7 @@ Rectangle {
 
         Text {
             id: errorLabel
+            Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
             Layout.margins: 0
             text: JamiStrings.wantToJoin
@@ -54,57 +55,51 @@ Rectangle {
             elide: Text.ElideRight
         }
 
-        RowLayout {
-            id: controls
+        PushButton {
+            id: joinCallInAudio
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+            Layout.rightMargin: JamiTheme.preferredMarginSize
+
+            source: JamiResources.place_audiocall_24dp_svg
+            toolTipText: JamiStrings.joinCall
+
+            imageColor: root.textColor
+            normalColor: "transparent"
+            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+            border.width: 1
+            border.color: root.textColor
+
+            onClicked: MessagesAdapter.joinCall(uri, device, id, true)
+        }
+
+        PushButton {
+            id: joinCallInVideo
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+            Layout.rightMargin: JamiTheme.preferredMarginSize
+
+            source: JamiResources.videocam_24dp_svg
+            toolTipText: JamiStrings.joinCall
+
+            imageColor: root.textColor
+            normalColor: "transparent"
+            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+            border.width: 1
+            border.color: root.textColor
+            visible: CurrentAccount.videoEnabled_Video
+
+            onClicked: MessagesAdapter.joinCall(uri, device, id)
+        }
+
+        PushButton {
+            id: btnClose
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 
-            PushButton {
-                id: joinCallInAudio
-                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                Layout.rightMargin: JamiTheme.preferredMarginSize
+            imageColor: root.textColor
+            normalColor: JamiTheme.transparentColor
 
-                source: JamiResources.place_audiocall_24dp_svg
-                toolTipText: JamiStrings.joinCall
+            source: JamiResources.round_close_24dp_svg
 
-                imageColor: root.textColor
-                normalColor: "transparent"
-                hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-                border.width: 1
-                border.color: root.textColor
-
-                onClicked: MessagesAdapter.joinCall(uri, device, id, true)
-            }
-
-
-            PushButton {
-                id: joinCallInVideo
-                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                Layout.rightMargin: JamiTheme.preferredMarginSize
-
-                source: JamiResources.videocam_24dp_svg
-                toolTipText: JamiStrings.joinCall
-
-                imageColor: root.textColor
-                normalColor: "transparent"
-                hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-                border.width: 1
-                border.color: root.textColor
-                visible: CurrentAccount.videoEnabled_Video
-
-                onClicked: MessagesAdapter.joinCall(uri, device, id)
-            }
-
-            PushButton {
-                id: btnClose
-                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-
-                imageColor: root.textColor
-                normalColor: JamiTheme.transparentColor
-
-                source: JamiResources.round_close_24dp_svg
-
-                onClicked: ConversationsAdapter.ignoreActiveCall(CurrentConversation.id, id, uri, device)
-            }
+            onClicked: ConversationsAdapter.ignoreActiveCall(CurrentConversation.id, id, uri, device)
         }
     }
 
