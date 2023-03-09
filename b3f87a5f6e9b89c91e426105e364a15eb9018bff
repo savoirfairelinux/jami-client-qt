@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b00bd05_cde45854",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-03-09T19:19:41Z",
+      "side": 0,
+      "message": "Homogenize?\n\n`Ctrl + Shift`",
+      "range": {
+        "startLine": 122,
+        "startChar": 23,
+        "endLine": 122,
+        "endChar": 35
+      },
+      "revId": "b3f87a5f6e9b89c91e426105e364a15eb9018bff",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
