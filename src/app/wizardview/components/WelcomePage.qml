@@ -71,7 +71,7 @@ Rectangle {
         anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
         width: Math.max(508, root.width - 100)
 
-        ResponsiveImage {
+        AnimatedImage {
             id: welcomeLogo
 
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
@@ -79,7 +79,7 @@ Rectangle {
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
             Layout.preferredHeight: JamiTheme.welcomeLogoHeight
 
-            source: JamiResources.jami_svg
+            source: JamiResources.jami_gif
         }
 
         Text {

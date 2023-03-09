@@ -485,8 +485,8 @@ Item {
 
     // WizardView Welcome Page
     property real welcomeLabelPointSize: 30
-    property real welcomeLogoWidth: 75
-    property real welcomeLogoHeight: 70
+    property real welcomeLogoWidth: 100
+    property real welcomeLogoHeight: 100
     property real wizardButtonWidth: 400
 
     // WizardView Advanced Account Settings
