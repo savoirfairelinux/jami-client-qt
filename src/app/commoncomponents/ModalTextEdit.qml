@@ -92,7 +92,7 @@ Loader {
             font.pointSize: root.fontPointSize
             font.bold: root.fontBold
             echoMode: root.echoMode
-            initialPlaceholderText: root.placeholderText
+            placeholderText: root.placeholderText
             onAccepted: root.accepted()
             onTextChanged: dynamicText = text
             text: staticText
