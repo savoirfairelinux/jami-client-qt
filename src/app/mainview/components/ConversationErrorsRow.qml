@@ -51,6 +51,7 @@ Rectangle {
 
         Text {
             id: errorLabel
+            Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
             text: CurrentConversation.errors.count > 0 ? CurrentConversation.errors[0][0] : ""
             color: JamiTheme.filterBadgeTextColor
