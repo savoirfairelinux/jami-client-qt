@@ -50,7 +50,6 @@ TextField {
     placeholderTextColor: !isActive
                           ? JamiTheme.transparentColor
                           : JamiTheme.placeholderTextColor
-    property string initialPlaceholderText
 
     property alias infoTipText: infoTip.text
 
@@ -106,7 +105,7 @@ TextField {
         font.pointSize: root.font.pointSize
         anchors.baseline: root.baseline
         anchors.horizontalCenter: root.horizontalCenter
-        text: root.initialPlaceholderText
+        text: root.placeholderText
         color: root.baseColor
         visible: !root.isActive && !readOnly && root.text.toString() === ""
     }
@@ -147,11 +146,11 @@ TextField {
         font.pointSize: root.font.pointSize - 3
         anchors.top: baselineLine.bottom
         anchors.topMargin: 2
-        text: root.initialPlaceholderText
+        text: root.placeholderText
         color: root.baseColor
 
         // Show the alternate placeholder while the user types.
-        visible: root.isActive && !readOnly
+        visible: root.isActive && !readOnly && root.text.toString() !== ""
     }
 
     TextFieldIcon {
