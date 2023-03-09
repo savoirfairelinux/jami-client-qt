@@ -85,8 +85,7 @@ ComboBox {
     }
 
     contentItem: Text {
-        leftPadding: 10
-        rightPadding: root.indicator.width + leftPadding
+        leftPadding: root.indicator.width
 
         text: root.displayText
         color: JamiTheme.textColor
