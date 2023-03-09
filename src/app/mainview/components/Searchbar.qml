@@ -37,6 +37,8 @@ RowLayout {
     property bool isOpened: false
 
     function openSearchBar() {
+        if (isOpened)
+            return
         searchBarOpened()
         rectTextArea.isSearch = true
         anim.start()
@@ -45,6 +47,8 @@ RowLayout {
     }
 
     function closeSearchbar() {
+        if (!isOpened)
+            return
         searchBarClosed()
         rectTextArea.isSearch = false
         anim.start()
