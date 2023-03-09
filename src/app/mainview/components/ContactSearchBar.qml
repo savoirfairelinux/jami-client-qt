@@ -35,14 +35,16 @@ Rectangle {
 
     function clearText() {
         contactSearchBar.clear()
-        fakeFocus.forceActiveFocus()
+        contactSearchBar.forceActiveFocus()
     }
 
     radius: JamiTheme.primaryRadius
     color: JamiTheme.secondaryBackgroundColor
 
-    FocusScope {
-        id: fakeFocus
+    onFocusChanged: {
+        if (focus) {
+            contactSearchBar.forceActiveFocus()
+        }
     }
 
     LineEditContextMenu {
@@ -122,14 +124,6 @@ Rectangle {
 
         Behavior on opacity {
             NumberAnimation { duration: 500; easing.type: Easing.OutCubic }
-        }
-    }
-
-    Shortcut {
-        sequence: "Ctrl+F"
-        context: Qt.ApplicationShortcut
-        onActivated: {
-            contactSearchBar.forceActiveFocus()
         }
     }
 

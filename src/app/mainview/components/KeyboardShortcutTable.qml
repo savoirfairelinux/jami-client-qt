@@ -109,6 +109,11 @@ Window {
             description: qsTr("Clear history")
         }
         ListElement {
+            shortcut: "Ctrl + Shift + F"
+            shortcut2: ""
+            description: qsTr("Search messages/files")
+        }
+        ListElement {
             shortcut: "Ctrl + Shift + B"
             shortcut2: ""
             description: qsTr("Block contact")
@@ -119,7 +124,7 @@ Window {
             description: qsTr("Remove conversation")
         }
         ListElement {
-            shortcut: "Shift + Ctrl + A"
+            shortcut: "Ctrl + Shift + A"
             shortcut2: ""
             description: qsTr("Accept contact request")
         }

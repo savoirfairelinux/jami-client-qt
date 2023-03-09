@@ -261,6 +261,14 @@ BaseView {
                     anchors.right: parent.right
                     anchors.rightMargin: 15
 
+                    Shortcut {
+                        sequence: "Ctrl+F"
+                        context: Qt.ApplicationShortcut
+                        onActivated: {
+                            contactSearchBar.forceActiveFocus()
+                        }
+                    }
+
                     ContactSearchBar {
                         id: contactSearchBar
 
