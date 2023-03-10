@@ -27,8 +27,8 @@ BaseView {
     required property Item leftPaneItem
     required property Item rightPaneItem
 
-    property alias leftPane: splitView.leftPane
-    property alias rightPane: splitView.rightPane
+    property alias leftPane: leftPane
+    property alias rightPane: rightPane
 
     property alias splitViewStateKey: splitView.splitViewStateKey
 
@@ -48,7 +48,6 @@ BaseView {
     onDismissed: splitView.saveSplitViewState()
 
     Component.onCompleted: {
-        leftPane.parent = Qt.binding(() => isSinglePane ? singlePane : splitView)
         // Avoid double triggering this handler during instantiation.
         onIsSinglePaneChanged.connect(isSinglePaneChangedHandler)
     }
@@ -56,8 +55,7 @@ BaseView {
     property real previousLeftPaneWidth: leftPane.width
     onWidthChanged: resolvePanes()
     function resolvePanes() {
-        if (!isSinglePane) previousLeftPaneWidth = leftPane.width
-        isSinglePane = splitView.width < rightPaneMinWidth + previousLeftPaneWidth
+        isSinglePane = width < rightPaneMinWidth + previousLeftPaneWidth
     }
 
     // Override this if needed.
@@ -65,21 +63,26 @@ BaseView {
         rightPaneItem.parent = isSinglePane ? leftPane : rightPane
     }
 
-    Item {
-        id: singlePane
-        anchors.fill: parent
-        visible: isSinglePane
-    }
-
     JamiSplitView {
         id: splitView
         anchors.fill: parent
-        visible: !isSinglePane
         splitViewStateKey: viewNode.objectName
 
-        leftPaneMinWidth: viewNode.leftPaneMinWidth
-        leftPaneMaxWidth: isSinglePane ?
-                              undefined :
-                              viewNode.width - rightPaneMinWidth
+        Item {
+            id: leftPane
+            onWidthChanged: if (!isSinglePane) previousLeftPaneWidth = width
+            SplitView.minimumWidth: isSinglePane ?
+                                        viewNode.width :
+                                        viewNode.leftPaneMinWidth
+            SplitView.maximumWidth: isSinglePane ?
+                                        viewNode.width :
+                                        viewNode.width - rightPaneMinWidth
+            SplitView.preferredWidth: viewNode.leftPaneMinWidth
+            clip: true
+        }
+        Item {
+            id: rightPane
+            clip: true
+        }
     }
 }
