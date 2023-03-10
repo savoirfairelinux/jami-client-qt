@@ -33,18 +33,176 @@ Rectangle {
 
     // The following bindings provide the settings menu selection persistence behavior.
     property bool singlePane: viewCoordinator.singlePane
-    onSinglePaneChanged: {
-        if (!viewCoordinator.singlePane && viewCoordinator.inSettings) {
-            const idx = viewCoordinator.currentView.selectedMenu
-            buttonGroup.checkedButton = buttonGroup.buttons[idx]
+    /////onSinglePaneChanged: {
+    /////    if (!viewCoordinator.singlePane && viewCoordinator.inSettings) {
+    /////        const idx = viewCoordinator.currentView.selectedMenu
+    /////        buttonGroup.checkedButton = buttonGroup.buttons[idx]
+    /////    }
+    /////}
+    /////onVisibleChanged: buttonGroup.checkedButton = visible && !viewCoordinator.singlePane ?
+    /////                      buttonGroup.buttons[0] :
+    /////                      null
+
+
+    function selectMenu(i) {
+        // TODO: change this (rebase on andreas patch)
+        if (viewCoordinator.singlePane) {
+            viewCoordinator.present("SettingsView").selectedMenu = i
+        } else if (!viewCoordinator.busy) {
+            var settingsView = viewCoordinator.getView("SettingsView")
+            settingsView.selectedMenu = i
         }
     }
-    onVisibleChanged: buttonGroup.checkedButton = visible && !viewCoordinator.singlePane ?
-                          buttonGroup.buttons[0] :
-                          null
+
+    Flickable {
+        id: flick
+        width: root.width
+        height: childrenRect.height
+        clip: true
+        contentHeight: col.implicitHeight
+        property var headers: [
+            {
+                "title": "Account", // TODO jamistrings + traduction
+                "icon": JamiResources.account_24dp_svg,
+                "children": [
+                    {
+                        "id": 0,
+                        "title": "Manage account"
+                    },
+                    {
+                        "id": 1,
+                        "title": "Customize profile"
+                    },
+                    {
+                        "id": 2,
+                        "title": "Linked devices"
+                    },
+                    {
+                        "id": 3,
+                        "title": "Advanced settings"
+                    }
+                ]
+            },
+            {
+                "title": "General", // TODO jamistrings + traduction
+                "icon": JamiResources.account_24dp_svg,
+                "children": [
+                    {
+                        "id": 4,
+                        "title": "System"
+                    },
+                    {
+                        "id": 5,
+                        "title": "Call settings"
+                    },
+                    {
+                        "id": 6,
+                        "title": "Appearence"
+                    },
+                    {
+                        "id": 7,
+                        "title": "Location sharing"
+                    },
+                    {
+                        "id": 8,
+                        "title": "File transfer"
+                    },
+                    {
+                        "id": 9,
+                        "title": "Call recording"
+                    },
+                    {
+                        "id": 10,
+                        "title": "Troubleshoot"
+                    },
+                    {
+                        "id": 11,
+                        "title": "Updates"
+                    }
+                ]
+            },{
+                "title": "Audio and Video", // TODO jamistrings + traduction
+                "icon": JamiResources.account_24dp_svg,
+                "children": [
+                    {
+                        "id": 12,
+                        "title": "Audio"
+                    },
+                    {
+                        "id": 12,
+                        "title": "Video"
+                    },
+                    {
+                        "id": 14,
+                        "title": "Screen sharing"
+                    }
+                ]
+            },{
+                "title": "Plugins", // TODO jamistrings + traduction
+                "icon": JamiResources.account_24dp_svg,
+                "children": [
+                    {
+                        "id": 15,
+                        "title": "Plugins"
+                    }
+                ]
+            }
+        ]
+
+        Column {
+            id: col
+            anchors.left: parent.left
+            anchors.right: parent.right
+
+            Component.onCompleted: clv.createObject(this, {"objmodel":flick.headers});
+        }
+
+        Component {
+            id: clv
+            Repeater {
+                id: repeater
+                property var base: ({})
+                property var selected: null
+                model: Object.keys(base)
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    spacing: 0
+                    Layout.fillWidth: true
+
+                    Button {
+                        property var sprite: null
+                        text: {
+                            return base[modelData]["title"]
+                        }
+
+                        height: 64
+                        Layout.fillWidth: true
+
+                        onClicked: {
+                            var ob = base[modelData]
+                            if(sprite === null) {
+                                if (repeater.selected)
+                                    repeater.selected.destroy()
+                                var c = ob["children"]
+                                if (c !== undefined) {
+                                    sprite = clv.createObject(parent, {"base" : c});
+                                    repeater.selected = sprite
+                                    root.selectMenu(c[0]["id"])
+                                } else {
+                                    root.selectMenu(ob["id"])
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     // Bind to requests for a settings page to be selected via shorcut.
-    Connections {
+    /*Connections {
         target: JamiQmlUtils
         function onSettingsPageRequested(index) {
             buttonGroup.checkedButton = buttonGroup.buttons[index]
@@ -77,6 +235,9 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         height: childrenRect.height
+
+
+
 
         component SMB: SettingsMenuButton {
             normalColor: root.color
@@ -127,6 +288,6 @@ Rectangle {
         }
 
 
-    }
+    }*/
 }
 
