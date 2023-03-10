@@ -57,25 +57,33 @@ SBSMessageBase {
             anchors.right: isOutgoing ? parent.right : undefined
             text: {
                 if (LinkifiedBody !== "" && Linkified.length === 0) {
-                    MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl)
+                    MessagesAdapter.parseMessageUrls(Id,
+                                                     Body,
+                                                     UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews),
+                                                     root.colorUrl)
                 }
-                return (LinkifiedBody !== "") ? LinkifiedBody :  "*("+ JamiStrings.deletedMessage +")*"
+                return (LinkifiedBody !== "") ?
+                            LinkifiedBody.replace(/\r?\n/g, "\n  ") :
+                            "*("+ JamiStrings.deletedMessage +")*"
             }
             horizontalAlignment: Text.AlignLeft
 
-            HoverHandler {
-                id: textHoverhandler
-            }
+            HoverHandler { id: textHoverhandler }
 
             width: {
                 if (extraContent.active)
                     Math.max(extraContent.width,
-                             Math.min((2/3)*root.maxMsgWidth,implicitWidth - avatarBlockWidth,
+                             Math.min((2/3) * root.maxMsgWidth,
+                                      implicitWidth - avatarBlockWidth,
                                       extraContent.minSize) - senderMargin )
                 else if (isEmojiOnly)
-                    Math.min((2/3)*root.maxMsgWidth,implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2))
+                    Math.min((2/3) * root.maxMsgWidth,
+                             implicitWidth,
+                             innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2))
                 else
-                    Math.min((2/3)*root.maxMsgWidth,implicitWidth, innerContent.width - senderMargin)
+                    Math.min((2/3) * root.maxMsgWidth,
+                             implicitWidth,
+                             innerContent.width - senderMargin)
             }
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
