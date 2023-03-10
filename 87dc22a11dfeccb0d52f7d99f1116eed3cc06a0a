@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cd5ce40_e89509cf",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 44
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-10T18:52:54Z",
+      "side": 1,
+      "message": "incorrect?",
+      "range": {
+        "startLine": 623,
+        "startChar": 55,
+        "endLine": 623,
+        "endChar": 84
+      },
+      "revId": "87dc22a11dfeccb0d52f7d99f1116eed3cc06a0a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3822ce4b_e8bce8c3",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 44
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-10T18:52:54Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 624,
+        "startChar": 64,
+        "endLine": 624,
+        "endChar": 72
+      },
+      "revId": "87dc22a11dfeccb0d52f7d99f1116eed3cc06a0a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
