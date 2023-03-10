@@ -343,11 +343,12 @@ Item {
     property int menuItemsCommonBorderWidth: 1
     property int menuBorderPreferredHeight: 8
 
-    property real maximumWidthSettingsView: 600
+    property real maximumWidthSettingsView: 515
     property real settingsHeaderpreferredHeight: 64
     property real preferredFieldWidth: 256
     property real preferredFieldHeight: 32
     property real preferredMarginSize: 16
+    property real preferredSettingsMarginSize: 40
     property real settingsMarginSize: 8
     property real preferredDialogWidth: 400
     property real preferredDialogHeight: 300

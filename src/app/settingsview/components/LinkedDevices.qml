@@ -34,12 +34,13 @@ ColumnLayout {
 
     function removeDeviceSlot(index){
         var deviceId = settingsListView.model.data(settingsListView.model.index(index,0),
-                                                     DeviceItemListModel.DeviceID)
+                                                   DeviceItemListModel.DeviceID)
         if(CurrentAccount.hasArchivePassword){
             viewCoordinator.presentDialog(
                         appWindow,
                         "settingsview/components/RevokeDevicePasswordDialog.qml",
                         { deviceId: deviceId })
+
         } else {
             viewCoordinator.presentDialog(
                         appWindow,
@@ -49,7 +50,7 @@ ColumnLayout {
                             infoText: JamiStrings.sureToRemoveDevice,
                             buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel],
                             buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                                           SimpleMessageDialog.ButtonStyle.TintedBlack],
+                                SimpleMessageDialog.ButtonStyle.TintedBlack],
                             buttonCallBacks: [
                                 function() { DeviceItemListModel.revokeDevice(deviceId, "") }
                             ]
@@ -57,15 +58,16 @@ ColumnLayout {
         }
     }
 
-    Label {
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+    //    Label {
+    //        Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        text: JamiStrings.linkedDevices
-        color: JamiTheme.textColor
+    //        text: JamiStrings.linkedDevices
+    //        color: JamiTheme.textColor
 
-        font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
-    }
+    //        font.pointSize: JamiTheme.headerFontSize
+    //        font.kerning: true
+    //    }
+
 
     JamiListView {
         id: settingsListView
@@ -76,11 +78,7 @@ ColumnLayout {
         model: SortFilterProxyModel {
             sourceModel: DeviceItemListModel
             sorters: [
-                RoleSorter { roleName: "IsCurrent"; sortOrder: Qt.DescendingOrder },
-                StringSorter {
-                    roleName: "DeviceName"
-                    caseSensitivity: Qt.CaseInsensitive
-                }
+                RoleSorter { roleName: "DeviceName"; sortOrder: Qt.DescendingOrder}
             ]
         }
 
@@ -90,13 +88,32 @@ ColumnLayout {
             implicitWidth: settingsListView.width
             width: settingsListView.width
             height: 70
-
             deviceName: DeviceName
             deviceId: DeviceID
             isCurrent: IsCurrent
-
+            visible: !IsCurrent
             onBtnRemoveDeviceClicked: removeDeviceSlot(index)
         }
+
+        spacing: 10
+    }
+
+    Text {
+        id: linkedDevicesDescription
+
+        Layout.alignment: Qt.AlignLeft
+        Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
+        Layout.preferredWidth: Math.min(350, root.width - JamiTheme.preferredMarginSize * 2)
+
+        text: JamiStrings.linkedAccountDescription
+        color: JamiTheme.textColor
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+
+        font.weight: Font.Medium
+        font.pixelSize: 15
+        font.kerning: true
     }
 
     MaterialButton {
@@ -119,7 +136,8 @@ ColumnLayout {
         text: JamiStrings.linkAnotherDevice
 
         onClicked: viewCoordinator.presentDialog(
-                                   appWindow,
-                                   "settingsview/components/LinkDeviceDialog.qml")
+                       appWindow,
+                       "settingsview/components/LinkDeviceDialog.qml",
+                       { deviceId: deviceId })
     }
 }

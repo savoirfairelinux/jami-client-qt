@@ -32,10 +32,10 @@ SidePanelBase {
     id: root
     objectName: "SettingsSidePanel"
 
-    property var select: function(index) {
-        buttonGroup.checkedButton = buttonGroup.buttons[index]
-    }
-    property var deselect: function() { buttonGroup.checkedButton = null }
+    //    property var select: function(index) {
+    //        buttonGroup.checkedButton = buttonGroup.buttons[index]
+    //    }
+    //    property var deselect: function() { buttonGroup.checkedButton = null }
 
     color: JamiTheme.backgroundColor
 
@@ -59,72 +59,184 @@ SidePanelBase {
             }
         }
 
-        ButtonGroup {
-            id: buttonGroup
-            buttons: settingsButtons.children
+        //        ButtonGroup {
+        //            id: buttonGroup
+        //            buttons: settingsButtons.children
 
-            onCheckedButtonChanged: {
-                for (var i = 0; i < buttons.length; i++)
-                    if (buttons[i] === checkedButton) {
-                        indexSelected(i)
-                        return
-                    }
-                indexSelected(-1)
-            }
-        }
+        //            onCheckedButtonChanged: {
+        //                for (var i = 0; i < buttons.length; i++)
+        //                    if (buttons[i] === checkedButton) {
+        //                        indexSelected(i)
+        //                        return
+        //                    }
+        //                indexSelected(-1)
+        //            }
+        //        }
 
-        Column {
-            id: settingsButtons
 
-            spacing: 0
-            anchors.left: parent.left
-            anchors.right: parent.right
+        Flickable {
+            id: flick
+            width: root.width
             height: childrenRect.height
+            clip: true
+            contentHeight: col.implicitHeight
+            property var headers: [
+                {
+                    "title": "Account", // TODO jamistrings + traduction
+                    "icon": JamiResources.account_24dp_svg,
+                    "children": [
+                        {
+                            "id": 0,
+                            "title": "Manage account"
+                        },
+                        {
+                            "id": 1,
+                            "title": "Customize profile"
+                        },
+                        {
+                            "id": 2,
+                            "title": "Linked devices"
+                        },
+                        {
+                            "id": 3,
+                            "title": "Advanced settings"
+                        }
+                    ]
+                },
+                {
+                    "title": "General", // TODO jamistrings + traduction
+                    "icon": JamiResources.account_24dp_svg,
+                    "children": [
+                        {
+                            "id": 4,
+                            "title": "System"
+                        },
+                        {
+                            "id": 5,
+                            "title": "Call settings"
+                        },
+                        {
+                            "id": 6,
+                            "title": "Appearence"
+                        },
+                        {
+                            "id": 7,
+                            "title": "Location sharing"
+                        },
+                        {
+                            "id": 8,
+                            "title": "File transfer"
+                        },
+                        {
+                            "id": 9,
+                            "title": "Call recording"
+                        },
+                        {
+                            "id": 10,
+                            "title": "Troubleshoot"
+                        },
+                        {
+                            "id": 11,
+                            "title": "Updates"
+                        }
+                    ]
+                },{
+                    "title": "Audio and Video", // TODO jamistrings + traduction
+                    "icon": JamiResources.account_24dp_svg,
+                    "children": [
+                        {
+                            "id": 12,
+                            "title": "Audio"
+                        },
+                        {
+                            "id": 12,
+                            "title": "Video"
+                        },
+                        {
+                            "id": 14,
+                            "title": "Screen sharing"
+                        }
+                    ]
+                },{
+                    "title": "Plugins", // TODO jamistrings + traduction
+                    "icon": JamiResources.account_24dp_svg,
+                    "children": [
+                        {
+                            "id": 15,
+                            "title": "Plugins"
+                        }
+                    ]
+                }
+            ]
 
-            component SMB: PushButton {
-                normalColor: root.color
-
-                preferredHeight: 64
-                preferredMargin: 24
-
+            Column {
+                id: col
                 anchors.left: parent.left
                 anchors.right: parent.right
-
-                buttonTextFont.pointSize: JamiTheme.textFontSize + 2
-                textHAlign: Text.AlignLeft
-
-                imageColor: JamiTheme.textColor
-                imageContainerHeight: 40
-                imageContainerWidth: 40
-
-                pressedColor: Qt.lighter(JamiTheme.pressedButtonColor, 1.25)
-                checkedColor: JamiTheme.smartListSelectedColor
-                hoveredColor: JamiTheme.smartListHoveredColor
-
-                duration: 0
-                checkable: true
-                radius: 0
+                Component.onCompleted: clv.createObject(this, {"base":flick.headers});
             }
+            Component {
+                id: clv
+                Repeater {
+                    id: repeater
+                    property var base: ({})
+                    property var selected: null
+                    model: Object.keys(base)
+                    Layout.fillWidth: true
+                    ColumnLayout {
+                        spacing: 0
+                        Layout.fillWidth: true
+                        PushButton {
 
-            SMB {
-                buttonText: JamiStrings.accountSettingsMenuTitle
-                source: JamiResources.account_24dp_svg
-            }
+                            property var sprite: null
+                            property var isChildren: {
 
-            SMB {
-                buttonText: JamiStrings.generalSettingsTitle
-                source: JamiResources.gear_black_24dp_svg
-            }
+                                var ob = base[modelData]
+                                var c = ob["children"]
+                                return c === undefined
+                            }
 
-            SMB {
-                buttonText: JamiStrings.avSettingsMenuTitle
-                source: JamiResources.media_black_24dp_svg
-            }
 
-            SMB {
-                buttonText: JamiStrings.pluginSettingsTitle
-                source: JamiResources.plugin_settings_black_24dp_svg
+                            alignement: Text.AlignLeft
+                            circled: false
+                            radius: 0
+
+                            Layout.fillWidth: true
+                            buttonText: {
+                                return base[modelData]["title"]
+                            }
+                            hoveredColor: "transparent"
+                            preferredWidth: root.width
+                            source: {
+
+                                if (!isChildren)
+                                    return base[modelData]["icon"]
+                                else return ""
+                            }
+
+                            Layout.leftMargin: isChildren ? 40 : 0
+                            height: 64
+
+                            onClicked: {
+                                var ob = base[modelData]
+                                if(sprite === null) {
+                                    if (repeater.selected)
+                                        repeater.selected.destroy()
+                                    var c = ob["children"]
+                                    if (c !== undefined) {
+                                        sprite = clv.createObject(parent, {"base" : c});
+                                        repeater.selected = sprite
+                                        indexSelected(c[0]["id"])
+                                    } else {
+                                        indexSelected(ob["id"])
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
+
     }
 }

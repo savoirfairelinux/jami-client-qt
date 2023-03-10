@@ -47,17 +47,8 @@ ColumnLayout {
         }
     }
 
-    ElidedTextLabel {
-        Layout.fillWidth: true
-
-        eText: JamiStrings.callSettings
-        fontSize: JamiTheme.headerFontSize
-        maxWidth: width
-    }
-
     ColumnLayout {
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         ToggleSwitch {
             id: checkBoxUntrusted
@@ -80,6 +71,16 @@ ColumnLayout {
             checked: CurrentAccount.autoAnswer
 
             onSwitchToggled: CurrentAccount.autoAnswer = checked
+        }
+
+        Rectangle {
+
+            height: 1
+            opacity: 0.3
+            color: "black"
+            Layout.preferredWidth: Math.min(515, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
+
         }
 
         ToggleSwitch {
@@ -128,6 +129,17 @@ ColumnLayout {
             }
         }
 
+
+        Rectangle {
+
+            height: 1
+            opacity: 0.3
+            color: "black"
+            Layout.preferredWidth: Math.min(515, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
+
+        }
+
         ToggleSwitch {
             id: checkBoxRdv
 
@@ -139,6 +151,16 @@ ColumnLayout {
             checked: CurrentAccount.isRendezVous
 
             onSwitchToggled: CurrentAccount.isRendezVous = checked
+        }
+
+        Rectangle {
+
+            height: 1
+            opacity: 0.3
+            color: "black"
+            Layout.preferredWidth: Math.min(515, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
+
         }
 
         ToggleSwitch {
