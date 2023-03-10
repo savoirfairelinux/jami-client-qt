@@ -47,7 +47,24 @@ BaseView {
         Account,
         General,
         Media,
-        Plugin
+        Plugin,
+        ManageAccount,
+        CustomizeProfile,
+        LinkedDevices,
+        AdvancedSettings,
+        System,
+        CallSettings,
+        Appearence,
+        LocationSharing,
+        FileTransfer,
+        CallRecording,
+        Troubleshoot,
+        Update,
+        Audio,
+        Video,
+        Screensharing,
+        PluginSettings
+
     }
 
     onVisibleChanged: if(visible) setSelected(selectedMenu, true)
@@ -70,16 +87,19 @@ BaseView {
         id: settingsViewRect
 
         anchors.fill: root
+        anchors.leftMargin: JamiTheme.preferredMarginSize * 2
+
+
         color: JamiTheme.secondaryBackgroundColor
 
         signal stopBooth
 
         property bool isSIP: {
             switch (CurrentAccount.type) {
-                case Profile.Type.SIP:
-                    return true;
-                default:
-                    return false;
+            case Profile.Type.SIP:
+                return true;
+            default:
+                return false;
             }
         }
 
@@ -87,25 +107,74 @@ BaseView {
             id: settingsHeader
 
             anchors.top: settingsViewRect.top
+
             anchors.left: settingsViewRect.left
-            anchors.leftMargin: {
-                var pageWidth = rightSettingsStackLayout.itemAt(
-                            rightSettingsStackLayout.currentIndex).contentWidth
-                return (settingsViewRect.width - pageWidth) / 2 + JamiTheme.preferredMarginSize
-            }
+
 
             height: JamiTheme.settingsHeaderpreferredHeight
 
             title: {
                 switch(selectedMenu){
-                    case SettingsView.Account:
-                        return JamiStrings.accountSettingsTitle
-                    case SettingsView.General:
-                        return JamiStrings.generalSettingsTitle
-                    case SettingsView.Media:
-                        return JamiStrings.avSettingsTitle
-                    case SettingsView.Plugin:
-                        return JamiStrings.pluginSettingsTitle
+                case SettingsView.Account:
+                    return JamiStrings.accountSettingsTitle
+
+                case SettingsView.General:
+                    return JamiStrings.generalSettingsTitle
+
+                case SettingsView.Media:
+                    return JamiStrings.avSettingsTitle
+
+                case SettingsView.Plugin:
+                    return JamiStrings.pluginSettingsTitle
+
+                case SettingsView.CustomizeProfile:
+                    return JamiStrings.customizeProfileSettingsTitle
+
+                case SettingsView.ManageAccount:
+                    return JamiStrings.manageAccountSettingsTitle
+
+                case SettingsView.LinkedDevices:
+                    return JamiStrings.linkedDevicesSettingsTitle
+
+                case SettingsView.AdvancedSettings:
+                    return JamiStrings.advancedSettingsTitle
+
+                case SettingsView.System:
+                    return JamiStrings.system
+
+                case SettingsView.CallSettings:
+                    return JamiStrings.callSettingsTitle
+
+                case SettingsView.Appearence:
+                    return JamiStrings.appearence
+
+                case SettingsView.LocationSharing:
+                    return JamiStrings.locationSharingLabel
+
+                case SettingsView.FileTransfer:
+                    return JamiStrings.fileTransfer
+
+                case SettingsView.CallRecording:
+                    return JamiStrings.callRecording
+
+                case SettingsView.Troubleshoot:
+                    return JamiStrings.troubleshootTitle
+
+                case SettingsView.Update:
+                    return JamiStrings.updatesTitle
+
+                case SettingsView.Audio:
+                    return JamiStrings.audio
+
+                case SettingsView.Video:
+                    return JamiStrings.video
+
+                case SettingsView.Screensharing:
+                    return  JamiStrings.screenSharing
+
+                case SettingsView.PluginSettings:
+                    return  JamiStrings.pluginSettingsTitle
+
                 }
             }
 
@@ -118,7 +187,7 @@ BaseView {
             anchors.top: settingsHeader.bottom
             anchors.horizontalCenter: settingsViewRect.horizontalCenter
 
-            height: settingsViewRect.height - settingsHeader.height
+            height: settingsViewRect.height - settingsHeader.height*1.5
             width: settingsViewRect.width
 
             contentHeight: rightSettingsStackLayout.height
@@ -128,75 +197,191 @@ BaseView {
 
                 anchors.centerIn: parent
 
+
                 width: settingsViewScrollView.width
 
                 property int pageIdCurrentAccountSettingsPage: 0
                 property int pageIdGeneralSettingsPage: 1
                 property int pageIdAvSettingPage: 2
                 property int pageIdPluginSettingsPage: 3
+                property int pageIdManageAccountPage: 4
+                property int pageIdCustomizeProfilePage: 5
+                property int pageIdLinkedDevicesPage: 6
+                property int pageIdAdvancedSettingsPage: 7
+                property int pageIdSystemSettingsPage:8
+                property int pageIdCallSettingsPage: 9
+                property int pageIdAppearencePage:10
+                property int pageIdLocationSharingPage:11
+                property int pageIdFileTransferPage:12
+                property int pageIdCallRecordingPage:13
+                property int pageIdTroubleshootPage:14
+                property int pageIdUpdatePage:15
+                property int pageIdAudioPage:16
+                property int pageIdVideoPage:17
+                property int pageIdScreensharingPage:18
+                //property int pageIdPluginSettingsPage:19
+
+
 
                 currentIndex: {
                     switch(selectedMenu){
-                        case SettingsView.Account:
-                            return pageIdCurrentAccountSettingsPage
-                        case SettingsView.General:
-                            return pageIdGeneralSettingsPage
-                        case SettingsView.Media:
-                            return pageIdAvSettingPage
-                        case SettingsView.Plugin:
-                            return pageIdPluginSettingsPage
+                    case SettingsView.Account:
+                        return pageIdCurrentAccountSettingsPage
+
+                    case SettingsView.General:
+                        return pageIdGeneralSettingsPage
+
+                    case SettingsView.Media:
+                        return pageIdAvSettingPage
+
+                    case SettingsView.Plugin:
+                        return pageIdPluginSettingsPage
+
+                    case SettingsView.CustomizeProfile:
+                        return pageIdCustomizeProfilePage
+
+                    case SettingsView.ManageAccount:
+                        return pageIdManageAccountPage
+
+                    case SettingsView.LinkedDevices:
+                        return pageIdLinkedDevicesPage
+
+                    case SettingsView.AdvancedSettings:
+                        return pageIdAdvancedSettingsPage
+
+                    case SettingsView.System:
+                        return pageIdSystemSettingsPage
+
+                    case SettingsView.CallSettings:
+                        return pageIdCallSettingsPage
+
+                    case SettingsView.Appearence:
+                        return pageIdAppearencePage
+
+                    case SettingsView.LocationSharing:
+                        return pageIdFileTransferPage
+
+                    case SettingsView.FileTransfer:
+                        return pageIdFileTransferPage
+
+                    case SettingsView.CallRecording:
+                        return pageIdCallRecordingPage
+
+                    case SettingsView.Troubleshoot:
+                        return pageIdTroubleshootPage
+
+                    case SettingsView.Update:
+                        return pageIdUpdatePage
+
+                    case SettingsView.Audio:
+                        return pageIdAudioPage
+
+                    case SettingsView.Video:
+                        return pageIdVideoPage
+
+                    case SettingsView.Screensharing:
+                        return  pageIdScreensharingPage
+
+                    case SettingsView.PluginSettings:
+                        return  pageIdPluginSettingsPage
+
                     }
-                }
 
-                Component.onCompleted: {
-                    // avoid binding loop
-                    height = Qt.binding(function (){
-                        return Math.max(
-                                    rightSettingsStackLayout.itemAt(currentIndex).preferredHeight,
-                                    settingsViewScrollView.height)
-                    })
-                }
-
-                // current account setting scroll page, index 0
-                CurrentAccountSettings {
-                    id: pageIdCurrentAccountSettings
-
-                    Layout.alignment: Qt.AlignCenter
-
-                    isSIP: settingsViewRect.isSIP
-
-                    onNavigateToMainView: dismiss()
-                    onNavigateToNewWizardView: dismiss()
-
-                    onAdvancedSettingsToggled: function (settingsVisible) {
-                        if (settingsVisible)
-                            settingsViewScrollView.contentY = getAdvancedSettingsScrollPosition()
-                        else
-                            settingsViewScrollView.contentY = 0
-                    }
-                }
-
-                // general setting page, index 1
-                GeneralSettingsPage {
-                    id: generalSettings
-
-                    Layout.alignment: Qt.AlignCenter
-                }
-
-                // av setting page, index 2
-                AvSettingPage {
-                    id: avSettings
-
-                    Layout.alignment: Qt.AlignCenter
-                }
-
-                // plugin setting page, index 3
-                PluginSettingsPage {
-                    id: pluginSettings
-
-                    Layout.alignment: Qt.AlignCenter
                 }
             }
+
+            Component.onCompleted: {
+                // avoid binding loop
+                height = Qt.binding(function (){
+                    return Math.max(
+                                rightSettingsStackLayout.itemAt(currentIndex).preferredHeight,
+                                settingsViewScrollView.height)
+                })
+            }
+
+            //current account setting scroll page, index 0
+
+            CurrentAccountSettings {
+                id: pageIdCurrentAccountSettings
+
+                Layout.alignment: Qt.AlignCenter
+
+                isSIP: settingsViewRect.isSIP
+
+                onNavigateToMainView: dismiss()
+                onNavigateToNewWizardView: dismiss()
+
+                onAdvancedSettingsToggled: function (settingsVisible) {
+                    if (settingsVisible)
+                        settingsViewScrollView.contentY = getAdvancedSettingsScrollPosition()
+                    else
+                        settingsViewScrollView.contentY = 0
+                }
+            }
+
+            // general setting page, index 1
+            GeneralSettingsPage {
+                id: generalSettings
+
+                Layout.alignment: Qt.AlignCenter
+            }
+
+            // av setting page, index 2
+            AvSettingPage {
+                id: avSettings
+
+                Layout.alignment: Qt.AlignCenter
+            }
+
+            // plugin setting page, index 3
+            PluginSettingsPage {
+                id: pluginSettings
+
+                Layout.alignment: Qt.AlignCenter
+            }
+
+            ManageAccountPage {
+                id: manageAccount
+                Layout.alignment: Qt.AlignCenter
+                isSIP: settingsViewRect.isSIP
+                onNavigateToMainView: dismiss()
+                onNavigateToNewWizardView: dismiss()
+            }
+
+            CustomizeProfilePage {
+                id: customizeAccount
+                Layout.alignment: Qt.AlignCenter
+
+            }
+
+            LinkedDevicesPage {
+                id: linkedDevices
+                Layout.alignment: Qt.AlignCenter
+
+            }
+
+            AdvancedSettingsPage {
+                id: advancedSettings
+                Layout.alignment: Qt.AlignCenter
+
+            }
+
+            SystemSettingsPage {
+                id: systemSettings
+                Layout.alignment: Qt.AlignCenter
+            }
+            CallSettingsPage {
+                id: callSettings
+                Layout.alignment: Qt.AlignCenter
+
+            }
+
+            ChatSettingsPage {
+                id: chatSettings
+                Layout.alignment: Qt.AlignCenter
+
+            }
         }
+
     }
 }
