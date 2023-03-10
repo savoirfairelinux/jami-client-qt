@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d55ad0e_2ca6c569",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-10T19:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7a2eeaf_0710caeb",
+      "range": {
+        "startLine": 163,
+        "startChar": 47,
+        "endLine": 166,
+        "endChar": 51
+      },
+      "revId": "45898f0dde13726143860a2f9aa35d22665cb8ef",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a65dd6d1_66fb698c",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-10T18:29:01Z",
       "side": 1,
       "message": "Scenario broken:\nGo to newSwarmPage, add a member\nthen try to remove it with the little close button after the name of the contact (top) \u003d\u003e TypeError",
+      "range": {
+        "startLine": 45,
+        "startChar": 16,
+        "endLine": 45,
+        "endChar": 32
+      },
+      "revId": "45898f0dde13726143860a2f9aa35d22665cb8ef",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4993391_4c7a06e7",
+        "filename": "src/app/mainview/components/NewSwarmPage.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-10T19:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a65dd6d1_66fb698c",
       "range": {
         "startLine": 45,
         "startChar": 16,
