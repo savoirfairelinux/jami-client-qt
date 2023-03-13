@@ -30,18 +30,24 @@ ColumnLayout {
 
     property int itemWidth
 
-    ElidedTextLabel {
-        Layout.preferredWidth: textWidth
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+    Text {
 
-        eText: JamiStrings.sdpSettingsTitle
-        fontSize: JamiTheme.headerFontSize
-        maxWidth: root.width
+        Layout.alignment: Qt.AlignLeft
+        Layout.preferredWidth: Math.min(350, root.width - JamiTheme.preferredMarginSize * 2)
+
+        text: JamiStrings.sdpSettingsTitle
+        color: JamiTheme.textColor
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        font.kerning: true
+
     }
 
     ColumnLayout {
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         ElidedTextLabel {
             Layout.preferredWidth: textWidth

@@ -69,6 +69,12 @@ AppSettingsManager::setValue(const Settings::Key key, const QVariant& value)
     setValue(Settings::toString(key), value);
 }
 
+QVariant
+AppSettingsManager::getDefault(const Settings::Key key)
+{
+    return Settings::defaultValue(key);
+}
+
 QString
 AppSettingsManager::getLanguage()
 {
