@@ -116,6 +116,8 @@ public:
     Q_INVOKABLE QVariant getValue(const Settings::Key key);
     Q_INVOKABLE void setValue(const Settings::Key key, const QVariant& value = {});
 
+    Q_INVOKABLE QVariant getDefault(const Settings::Key key);
+
     QString getLanguage();
 
     void loadTranslations();

@@ -121,7 +121,6 @@ Window {
 
                     checked: false
                     labelText: JamiStrings.logsViewDisplay
-                    fontPointSize: JamiTheme.settingsFontSize
 
                     onSwitchToggled: {
                         logging = !logging
