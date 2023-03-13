@@ -70,7 +70,7 @@ BaseModalDialog {
                 text: root.confirmLabel
 
                 preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                preferredHeight: JamiTheme.preferredFieldHeight
+                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
                 color: JamiTheme.buttonTintedRed
                 hoveredColor: JamiTheme.buttonTintedRedHovered
@@ -90,7 +90,7 @@ BaseModalDialog {
                 Layout.alignment: Qt.AlignHCenter
 
                 preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                preferredHeight: JamiTheme.preferredFieldHeight
+                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
                 color: JamiTheme.buttonTintedBlack
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
