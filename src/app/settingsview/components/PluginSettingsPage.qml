@@ -26,54 +26,58 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-Rectangle {
+SettingsPageBase {
     id: root
 
-    property int contentWidth: pluginSettingsColumnLayout.width
-    property int preferredHeight: pluginSettingsColumnLayout.implicitHeight
+    title: JamiStrings.pluginSettingsTitle
 
-    color: JamiTheme.secondaryBackgroundColor
 
-    ColumnLayout {
+    flickableContent: ColumnLayout {
         id: pluginSettingsColumnLayout
 
-        anchors.horizontalCenter: root.horizontalCenter
+        width: contentFlickableWidth
+        spacing: JamiTheme.settingsBlockSpacing
+        anchors.left: parent.left
+        anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
-        width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
 
-        ToggleSwitch {
-            id: enabledplugin
+        ColumnLayout {
+            id: generalSettings
 
-            checked: PluginAdapter.isEnabled
+            width: parent.width
+            spacing: JamiTheme.settingsCategorySpacing
+            Layout.topMargin: JamiTheme.preferredSettingsContentMarginSize
+            Layout.bottomMargin: JamiTheme.preferredSettingsContentMarginSize
 
-            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.topMargin: JamiTheme.preferredMarginSize
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
+            ToggleSwitch {
+                id: enabledplugin
 
-            labelText: JamiStrings.enable
-            fontPointSize: JamiTheme.headerFontSize
+                checked: PluginAdapter.isEnabled
 
-            onSwitchToggled: {
-                PluginModel.setPluginsEnabled(checked)
-                PluginAdapter.isEnabled = checked
+                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+                Layout.fillWidth: true
+                Layout.topMargin: JamiTheme.preferredSettingsContentMarginSize
+
+                labelText: JamiStrings.enable
+                fontPointSize: JamiTheme.headerFontSize
+
+                onSwitchToggled: {
+                    PluginModel.setPluginsEnabled(checked)
+                    PluginAdapter.isEnabled = checked
+                }
             }
-        }
 
-        PluginListView {
-            id: pluginListView
+            PluginListView {
+                id: pluginListView
 
-            visible: PluginAdapter.isEnabled
+                visible: PluginAdapter.isEnabled
 
-            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-
-            Layout.topMargin: JamiTheme.preferredMarginSize
-            Layout.minimumHeight: 0
-            Layout.preferredHeight: childrenRect.height
+                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+                //Layout.fillWidth: true
+                Layout.preferredWidth: parent.width
+                Layout.minimumHeight: 0
+                Layout.preferredHeight: childrenRect.height
+            }
         }
     }
 }
