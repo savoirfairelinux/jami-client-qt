@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2019-2023 Savoir-faire Linux Inc.
  * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+ * 
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,29 +39,27 @@ ItemDelegate {
 
     signal btnRemoveDeviceClicked
 
-    highlighted: ListView.isCurrentItem
 
     background: Rectangle {
-        color: highlighted? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
+        color: JamiTheme.editBackgroundColor
+        height: root.height
+        radius: 5
     }
 
     RowLayout {
+        id: rowLayout
         anchors.fill: root
 
-        Image {
+        ResponsiveImage {
             id: deviceImage
+
+            color: JamiTheme.tintedBlue
 
             Layout.alignment: Qt.AlignVCenter
             Layout.preferredWidth: 24
             Layout.preferredHeight: 24
             Layout.leftMargin: JamiTheme.preferredMarginSize
 
-            layer {
-                enabled: true
-                effect: ColorOverlay {
-                    color: JamiTheme.textColor
-                }
-            }
             source: JamiResources.baseline_desktop_windows_24dp_svg
         }
 
@@ -69,12 +68,13 @@ ItemDelegate {
 
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.leftMargin: JamiTheme.preferredMarginSize
+            Layout.leftMargin: JamiTheme.preferredMarginSize / 2
+            Layout.alignment: Qt.AlignVCenter
 
             MaterialLineEdit {
                 id: editDeviceName
 
-                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
                 Layout.preferredHeight: 30
 
@@ -115,14 +115,16 @@ ItemDelegate {
             Text {
                 id: labelDeviceId
 
-                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
                 Layout.leftMargin: editDeviceName.leftPadding
+                Layout.bottomMargin: 10
 
                 elide: Text.ElideRight
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.textColor
                 text: deviceId === "" ? JamiStrings.deviceId : deviceId
+                
             }
         }
 
@@ -130,11 +132,11 @@ ItemDelegate {
             id: btnEditDevice
 
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.rightMargin: 16
+            Layout.rightMargin: 13
             Layout.preferredWidth: JamiTheme.preferredFieldHeight
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-            imageColor: JamiTheme.textColor
+            imageColor: JamiTheme.tintedBlue
             normalColor: highlighted ?
                              JamiTheme.selectedColor :
                              JamiTheme.editBackgroundColor
@@ -143,7 +145,7 @@ ItemDelegate {
                         (editable ?
                              JamiResources.round_save_alt_24dp_svg :
                              JamiResources.round_edit_24dp_svg) :
-                        JamiResources.round_remove_circle_24dp_svg
+                        JamiResources.delete_24dp_svg
 
             toolTipText: isCurrent ?
                              (editable ?
@@ -162,14 +164,5 @@ ItemDelegate {
                 }
             }
         }
-    }
-
-    CustomBorder {
-        commonBorder: false
-        lBorderwidth: 0
-        rBorderwidth: 0
-        tBorderwidth: 0
-        bBorderwidth: 2
-        borderColor: JamiTheme.selectedColor
     }
 }
