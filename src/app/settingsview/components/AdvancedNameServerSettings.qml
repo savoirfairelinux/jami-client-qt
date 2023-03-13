@@ -31,25 +31,23 @@ ColumnLayout {
     property int itemWidth
 
     Text {
-        Layout.fillWidth: true
-        Layout.rightMargin: JamiTheme.preferredMarginSize / 2
 
-        font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
-
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-
+        Layout.alignment: Qt.AlignLeft
+        Layout.preferredWidth: parent.width
         text: JamiStrings.nameServer
         color: JamiTheme.textColor
-        elide: Text.ElideRight
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+
+        font.pixelSize: 22
+        font.kerning: true
     }
 
     SettingsMaterialTextEdit {
         id: lineEditNameServer
 
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
         itemWidth: root.itemWidth

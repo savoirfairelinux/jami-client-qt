@@ -121,6 +121,7 @@ Item {
     property string selectPrivateKey: qsTr("Select a private key")
     property string selectUserCert: qsTr("Select a user certificate")
     property string selectCACert: qsTr("Select a CA certificate")
+    property string selectCACertDefault: qsTr("Select")
     property string keyFile: qsTr("Key File (*.key)")
 
     // AdvancedConnectivitySettings
@@ -174,9 +175,16 @@ Item {
     property string accountSettingsTitle: qsTr("Account Settings")
     property string accountSettingsMenuTitle: qsTr("Account")
     property string generalSettingsTitle: qsTr("General")
-    property string pluginSettingsTitle: qsTr("Plugin")
+    property string pluginSettingsTitle: qsTr("Plugins")
     property string avSettingsTitle: qsTr("Audio and Video Settings")
     property string avSettingsMenuTitle: qsTr("Audio/Video")
+    property string enableAccountSettingsTitle: qsTr("Enable account")
+    property string customizeProfileSettingsTitle: qsTr("Customize profile")
+    property string manageAccountSettingsTitle: qsTr("Manage account")
+    property string linkedDevicesSettingsTitle: qsTr("Linked devices")
+    property string callSettingsTitle: qsTr("Call settings")
+    property string chatSettingsTitle: qsTr("Chat settings")
+    property string advancedSettingsTitle: qsTr("Advanced settings")
 
     // AudioSettings
     property string audio: qsTr("Audio")
@@ -185,8 +193,10 @@ Item {
     property string outputDevice: qsTr("Output device")
     property string selectAudioOutputDevice: qsTr("Select audio output device")
     property string ringtoneDevice: qsTr("Ringtone device")
+    property string ringtoneDefaultDevice: qsTr("Default.opus")
     property string selectRingtoneOutputDevice: qsTr("Select ringtone output device")
     property string audioManager: qsTr("Audio manager")
+    property string soundTest: qsTr("Sound test")
 
     // VideoSettings
     property string video: qsTr("Video")
@@ -339,6 +349,8 @@ Item {
     property string positionShareDuration: qsTr("Position share duration");
     property string positionShareLimit: qsTr("Limit the duration of location sharing");
     property string locationSharingLabel: qsTr("Location sharing");
+    property string maxLocationDuration: qsTr("Unlimited");
+    property string minLocationDuration: qsTr("1 min");
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
@@ -405,7 +417,6 @@ Item {
     property string passwordOptional: qsTr("Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.")
     property string customizeOptional: qsTr("Setting a profile picture and nickname is optional, and can also be changed later in the settings.")
 
-
     // CreateSIPAccountPage
     property string sipAccount: qsTr("SIP account")
     property string proxy: qsTr("Proxy")
@@ -419,6 +430,20 @@ Item {
     property string displayName: qsTr("Display Name")
 
 
+    // accountSettingsPages
+    property string enableAccount: qsTr("Enable account")
+    property string customizeAccountDescription:qsTr("Your profile is only shared with your contacts.\nYour picture and your nickname can be changed at all time in the settings of your account.")
+    property string usernameAccountDescription: qsTr("Your username help you to be easily found and reach on Jami.\nIf you don’t choose one, the serial identifier (a randomly generated word of 40 characters) of your account will be your username. It’s more difficult to be found and reach with this number.")
+    property string ecryptAccountDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.")
+    property string saveAccountTitle: qsTr("Backup account")
+    property string saveAccountDescription: qsTr("Your Jami account exists only on this device.\nIf you lose your device or uninstall the application, your account will be lost. We recommend to back up it.")
+    property string deleteAccountTitle: qsTr("Delete your account")
+    property string deleteAccountDescription: qsTr("If your account has not been backed up or added to another device, your account and registered name will be irrevocably lost.")
+    property string linkedAccountList: qsTr("List of the devices that are linked to this account:")
+    property string linkedThisDevice: qsTr("This device")
+    property string linkedOtherDevices: qsTr("Other linked devices")
+    property string linkedAccountDescription: qsTr("You can link your account to an other device to be able to use it on the other device.")
+
     // CurrentAccountSettings && AdvancedSettings
     property string backupSuccessful: qsTr("Backup successful")
     property string backupFailed: qsTr("Backup failed")
@@ -427,18 +452,17 @@ Item {
     property string setPasswordSuccess: qsTr("Password set successfully")
     property string setPasswordFailed: qsTr("Password set failed")
     property string changePassword: qsTr("Change password")
-    property string setPassword: qsTr("Set password")
+    property string setPassword: qsTr("Encrypt account")
     property string setAPassword: qsTr("Set a password")
     property string changeCurrentPassword: qsTr("Change current password")
     property string tipBackupAccount: qsTr("Back up account to a .gz file")
     property string tipAdvancedSettingsDisplay: qsTr("Display advanced settings")
     property string tipAdvancedSettingsHide: qsTr("Hide advanced settings")
-    property string enableAccount: qsTr("Enable account")
     property string advancedAccountSettings: qsTr("Advanced account settings")
     property string encryptAccount: qsTr("Encrypt account with password")
     property string customizeProfile: qsTr("Customize profile")
     property string customizeProfileDescription: qsTr("This profile is only shared with this account's contacts.\nThe profile can be changed at all times from the account's settings.")
-    property string encryptTitle: qsTr("Encrypt your account with a password")
+    property string encryptTitle: qsTr("Encrypt account with a password")
     property string encryptDescription: qsTr("A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.")
     property string encryptWarning: qsTr("Please note that if you lose your password, it CANNOT be recovered!")
     property string enterNickname: qsTr("Enter a nickname, surname...")
@@ -454,7 +478,7 @@ Item {
 
     // LinkedDevices
     property string tipLinkNewDevice: qsTr("Link a new device to this account")
-    property string linkAnotherDevice: qsTr("Link another device")
+    property string linkAnotherDevice: qsTr("Link a new device")
     property string linkNewDevice: qsTr("Exporting account…")
     property string removeDevice: qsTr("Remove Device")
     property string sureToRemoveDevice: qsTr("Are you sure you wish to remove this device?")
@@ -489,11 +513,12 @@ Item {
     property string keepMinimized: qsTr("Minimize on close")
     property string tipRunStartup: qsTr("Run at system startup")
     property string runStartup: qsTr("Launch at startup")
-    property string downloadFolder: qsTr("Download directory")
+    property string downloadFolder: qsTr("Choose download directory")
     property string tipChooseDownloadFolder: qsTr("Choose download directory")
     property string includeLocalVideo: qsTr("Include local video in recording")
     property string textZoom: qsTr("Text zoom")
     property string changeTextSize: qsTr("Change text size (%)")
+    property string defaultSettings: qsTr("Default settings")
 
     // ChatviewSettings
     property string enableTypingIndicator: qsTr("Typing indicators")
@@ -543,7 +568,7 @@ Item {
     property string troubleshootButton: qsTr("Open logs")
     property string troubleshootText: qsTr("Get logs")
 
-    property string experimentalCallSwarm: qsTr("(Experimental) Enable call support for swarm")
+    property string experimentalCallSwarm: qsTr("Enable small swarm groups support for Swarm")
     property string experimentalCallSwarmTooltip: qsTr("This feature will enable call buttons in swarms with multiple participants.")
 
     // Recording Settings
@@ -725,8 +750,9 @@ Item {
     property string alreadyHaveAccount: qsTr("I already have an account")
     property string useExistingAccount: qsTr("Use existing Jami account")
     property string welcomeToJami: qsTr("Welcome to Jami")
-    property string identifierDescription: qsTr("Share this Jami identifier to be contacted on this account!")
-    property string hereIsIdentifier: qsTr("Here is your Jami identifier, don't hesitate to share it in order to be contacted more easily!")
+
+
+
 
     // SmartList
     property string clearText: qsTr("Clear Text")
@@ -767,6 +793,7 @@ Item {
     property string enableLocalModerators: qsTr("Enable local moderators")
     property string enableAllModerators: qsTr("Make all participants moderators")
     property string addDefaultModerator: qsTr("Add default moderator")
+    property string addModerator: qsTr("Add")
     property string removeDefaultModerator: qsTr("Remove default moderator")
 
     // Daemon reconnection
@@ -853,5 +880,36 @@ Item {
     property string deleteMessage: qsTr("Delete message")
     property string deleteReplyMessage: qsTr("*(Deleted Message)*")
     property string editMessage: qsTr("Edit message")
+
+    //Jami identifier
+    property string identifierDescription: qsTr("Share this Jami identifier to be contacted on this account!")
+    property string hereIsIdentifier: qsTr("Here is your Jami identifier, don't hesitate to share it in order to be contacted more easily!")
+    property string jamiIdentity: qsTr("Jami identity")
+
+    //New settings
+    //ManageAccount
+    property string enableAccountDescription: qsTr("Enabling your account allows you to be contacted on Jami")
+
+    //General
+    property string appearence: qsTr("Appearence")
+
+    //system
+    property string experimental: qsTr("Experimental")
+
+    //ringtone
+    property string ringtone: qsTr("Ringtone")
+
+    //rdv
+    property string rendezVousPoint: qsTr("Rendezvous point")
+
+    //moderation
+    property string moderation: qsTr("Moderation")
+
+    //Appearence
+    property string theme: qsTr("Theme")
+    property string zoomLevel: qsTr("Text zoom level")
+
+    //audio and video
+    property string audioVideoSettingsTitle: qsTr("Audio and Video")
 
 }

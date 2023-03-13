@@ -29,22 +29,23 @@ import "../../commoncomponents"
 ColumnLayout {
     id: root
 
-    Label {
-        Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+    Text {
+
+        Layout.alignment: Qt.AlignLeft
+        Layout.preferredWidth: Math.min(350, root.width - JamiTheme.preferredMarginSize * 2)
 
         text: JamiStrings.media
         color: JamiTheme.textColor
-        font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
-
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+
+        font.pixelSize: 22
+        font.kerning: true
     }
 
     ColumnLayout {
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         ToggleSwitch {
             id: videoCheckBox

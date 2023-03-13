@@ -60,9 +60,7 @@ RowLayout {
         preferredWidth: root.itemWidth
 
         iconSource: root.source
-        color: JamiTheme.buttonTintedGrey
-        hoveredColor: JamiTheme.buttonTintedGreyHovered
-        pressedColor: JamiTheme.buttonTintedGreyPressed
+        secondary: true
 
         onClicked: click()
     }
