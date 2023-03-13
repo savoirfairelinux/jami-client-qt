@@ -31,18 +31,23 @@ ColumnLayout {
     property int itemWidth
     property bool isSIP
 
-    ElidedTextLabel {
-        Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+    Text {
+        id: enableAccountTitle
 
-        eText: JamiStrings.connectivity
-        fontSize: JamiTheme.headerFontSize
-        maxWidth: width
+        Layout.alignment: Qt.AlignLeft
+
+        text: JamiStrings.connectivity
+        color: JamiTheme.textColor
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        font.kerning: true
     }
 
     ColumnLayout {
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         ToggleSwitch {
             id: autoRegistrationAfterExpired
@@ -51,7 +56,6 @@ ColumnLayout {
 
             visible: isSIP
             labelText: JamiStrings.autoRegistration
-            fontPointSize: JamiTheme.settingsFontSize
 
             checked: CurrentAccount.keepAliveEnabled
 
@@ -94,7 +98,6 @@ ColumnLayout {
             Layout.fillWidth: true
 
             labelText: JamiStrings.useUPnP
-            fontPointSize: JamiTheme.settingsFontSize
 
             checked: CurrentAccount.upnpEnabled
 
@@ -107,7 +110,6 @@ ColumnLayout {
             Layout.fillWidth: true
 
             labelText: JamiStrings.useTURN
-            fontPointSize: JamiTheme.settingsFontSize
 
             checked: CurrentAccount.enable_TURN
 
@@ -184,7 +186,6 @@ ColumnLayout {
             Layout.fillWidth: true
 
             labelText: JamiStrings.useSTUN
-            fontPointSize: JamiTheme.settingsFontSize
 
             visible: isSIP
             checked: CurrentAccount.enable_STUN

@@ -33,7 +33,7 @@ ColumnLayout {
     Text {
         Layout.fillWidth: true
 
-        font.pointSize: JamiTheme.headerFontSize
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
         font.kerning: true
 
         horizontalAlignment: Text.AlignLeft
@@ -52,7 +52,6 @@ ColumnLayout {
             id: checkBoxAllowIPAutoRewrite
 
             labelText: JamiStrings.allowIPAutoRewrite
-            fontPointSize: JamiTheme.settingsFontSize
 
             checked: CurrentAccount.allowIPAutoRewrite
 
@@ -63,7 +62,6 @@ ColumnLayout {
             id: checkBoxCustomAddressPort
 
             labelText: JamiStrings.useCustomAddress
-            fontPointSize: JamiTheme.settingsFontSize
 
             visible: !checkBoxAllowIPAutoRewrite.checked
             checked: CurrentAccount.publishedSameAsLocal
