@@ -102,75 +102,75 @@ INSTALL_DIR="${TOP}/install"    # local install directory
 if [ "${global}" = "true" ]; then
     BUILD_DIR="build-global"
 else
-    BUILD_DIR="build"
+    BUILD_DIR="build-test"
 fi
 
 # jamid
-DAEMON="${TOP}/daemon"
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    sh "${TOP}"/extras/scripts/build_daemon_macos.sh -a "$arch" -d "$debug"
-else
-    cd "$DAEMON"
-
-    # Build the contribs.
-    mkdir -p contrib/native
-    (
-        cd contrib/native
-        ../bootstrap ${prefix:+"--prefix=$prefix"}
-        make -j"${proc}"
-    )
-
-    if [[ "${enable_libwrap}" != "true" ]]; then
-      # Disable shared if requested
-      if [[ "$OSTYPE" != "darwin"* ]]; then
-        CONFIGURE_FLAGS+=" --disable-shared"
-      fi
-    fi
-
-    BUILD_TYPE="Release"
-    if [ "${debug}" = "true" ]; then
-      BUILD_TYPE="Debug"
-      CONFIGURE_FLAGS+=" --enable-debug"
-    fi
-
-    # Build the daemon itself.
-    test -f configure || ./autogen.sh
-
-    if [ "${global}" = "true" ]; then
-        ./configure ${CONFIGURE_FLAGS} ${prefix:+"--prefix=$prefix"}
-    else
-        ./configure ${CONFIGURE_FLAGS} --prefix="${INSTALL_DIR}"
-    fi
-    make -j"${proc}" V=1
-    make_install "${global}" "${priv_install}"
-
-    # Verify system's version if no path provided.
-    if [ -z "$qtpath" ]; then
-        sys_qtver=""
-        if command -v qmake6 &> /dev/null; then
-            sys_qtver=$(qmake6 -v)
-        elif command -v qmake-qt6 &> /dev/null; then
-            sys_qtver=$(qmake-qt6 -v) # Fedora
-        elif command -v qmake &> /dev/null; then
-            sys_qtver=$(qmake -v)
-        else
-            echo "No valid Qt found"; exit 1;
-        fi
-
-        sys_qtver=${sys_qtver#*Qt version}
-        sys_qtver=${sys_qtver%\ in\ *}
-
-        installed_qtver=$(echo "$sys_qtver" | cut -d'.' -f 2)
-        required_qtver=$(echo $QT_MIN_VER | cut -d'.' -f 2)
-
-        if [[ $installed_qtver -ge $required_qtver ]] ; then
-            # Set qtpath to empty in order to use system's Qt.
-            qtpath=""
-        else
-            echo "No valid Qt found"; exit 1;
-        fi
-    fi
-fi
+####DAEMON="${TOP}/daemon"
+####if [[ "$OSTYPE" == "darwin"* ]]; then
+####    sh "${TOP}"/extras/scripts/build_daemon_macos.sh -a "$arch" -d "$debug"
+####else
+####    cd "$DAEMON"
+####
+####    # Build the contribs.
+####    mkdir -p contrib/native
+####    (
+####        cd contrib/native
+####        ../bootstrap ${prefix:+"--prefix=$prefix"}
+####        make -j"${proc}"
+####    )
+####
+####    if [[ "${enable_libwrap}" != "true" ]]; then
+####      # Disable shared if requested
+####      if [[ "$OSTYPE" != "darwin"* ]]; then
+####        CONFIGURE_FLAGS+=" --disable-shared"
+####      fi
+####    fi
+####
+####    BUILD_TYPE="Release"
+####    if [ "${debug}" = "true" ]; then
+####      BUILD_TYPE="Debug"
+####      CONFIGURE_FLAGS+=" --enable-debug"
+####    fi
+####
+####    # Build the daemon itself.
+####    test -f configure || ./autogen.sh
+####
+####    if [ "${global}" = "true" ]; then
+####        ./configure ${CONFIGURE_FLAGS} ${prefix:+"--prefix=$prefix"}
+####    else
+####        ./configure ${CONFIGURE_FLAGS} --prefix="${INSTALL_DIR}"
+####    fi
+####    make -j"${proc}" V=1
+####    make_install "${global}" "${priv_install}"
+####
+####    # Verify system's version if no path provided.
+####    if [ -z "$qtpath" ]; then
+####        sys_qtver=""
+####        if command -v qmake6 &> /dev/null; then
+####            sys_qtver=$(qmake6 -v)
+####        elif command -v qmake-qt6 &> /dev/null; then
+####            sys_qtver=$(qmake-qt6 -v) # Fedora
+####        elif command -v qmake &> /dev/null; then
+####            sys_qtver=$(qmake -v)
+####        else
+####            echo "No valid Qt found"; exit 1;
+####        fi
+####
+####        sys_qtver=${sys_qtver#*Qt version}
+####        sys_qtver=${sys_qtver%\ in\ *}
+####
+####        installed_qtver=$(echo "$sys_qtver" | cut -d'.' -f 2)
+####        required_qtver=$(echo $QT_MIN_VER | cut -d'.' -f 2)
+####
+####        if [[ $installed_qtver -ge $required_qtver ]] ; then
+####            # Set qtpath to empty in order to use system's Qt.
+####            qtpath=""
+####        else
+####            echo "No valid Qt found"; exit 1;
+####        fi
+####    fi
+####fi
 
 # client
 cd "${TOP}"

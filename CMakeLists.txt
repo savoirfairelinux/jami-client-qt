@@ -40,15 +40,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Main project directories:
 
-# jami-daemon
-if(NOT DEFINED WITH_DAEMON_SUBMODULE)
-  set(WITH_DAEMON_SUBMODULE false)
-  # daemon
-  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/../daemon)
-else()
-  # daemon
-  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/daemon)
-endif()
 # src
 set(LIBCLIENT_SRC_DIR ${PROJECT_SOURCE_DIR}/src/libclient)
 set(APP_SRC_DIR ${PROJECT_SOURCE_DIR}/src/app)
@@ -112,20 +103,8 @@ endif()
 set(CMAKE_CXX_FLAGS
   ${CMAKE_CXX_FLAGS} ${Qt6Widgets_EXECUTABLE_COMPILE_FLAGS})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
-
-if (WITH_DAEMON_SUBMODULE AND NOT EXISTS ${DAEMON_DIR}/src)
-  message(FATAL_ERROR
-    "Jami Daemon sources not found in ${DAEMON_DIR}/src.  If you \
-cloned this repository via git, perhaps you did not initialize its \
-submodules afterwards.  You can do so by running \"git submodule \
-update --init\" in the repository.")
-endif()
 set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH} "${EXTRAS_DIR}/build/cmake/modules")
-find_package(LibJami REQUIRED)
-if(LIBJAMI_FOUND)
-  include_directories(${LIBJAMI_INCLUDE_DIRS})
-endif()
 
 include(FindPython3)
 find_package(Python3 3.6 REQUIRED COMPONENTS Interpreter)
@@ -284,12 +263,12 @@ else()
 endif()
 
 # For libavutil/avframe.
-set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
+set(JAMI_DAEMON_CONTRIB_DIR "src/libclient/daemon/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
-  ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
-  ${LIBJAMI_CONTRIB_DIR}/apple-darwin/include/
-  ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
+  ${JAMI_DAEMON_CONTRIB_DIR}/native/ffmpeg
+  ${JAMI_DAEMON_CONTRIB_DIR}/apple-darwin/include/
+  ${JAMI_DAEMON_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 
 find_package(Vulkan)
@@ -342,9 +321,9 @@ if(MSVC)
     ${QRENCODE_DIR}/vc8/qrcodelib/x64/Release-Lib/qrcodelib.lib)
 
   # daemon
-  set(JAMID_SRC_PATH ${DAEMON_DIR}/contrib/msvc/include)
-  set(JAMID_LIB ${DAEMON_DIR}/build/x64/ReleaseLib_win32/bin/jami.lib)
-  set(GNUTLS_LIB ${DAEMON_DIR}/contrib/msvc/lib/x64/libgnutls.lib)
+  set(JAMID_SRC_PATH src/libclient/daemon/contrib/msvc/include)
+  set(JAMID_LIB src/libclient/daemon/build/x64/ReleaseLib_win32/bin/jami.lib)
+  set(GNUTLS_LIB src/libclient/daemon/contrib/msvc/lib/x64/libgnutls.lib)
 
   # Beta config
   if(BETA)
@@ -397,10 +376,10 @@ elseif (NOT APPLE)
   endif()
 
   list(PREPEND CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
+    ${JAMI_DAEMON_CONTRIB_DIR}/native/ffmpeg/libavutil)
   pkg_check_modules(LIBAVUTIL libavutil>=55.75.100)
   list(REMOVE_ITEM CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
+    ${JAMI_DAEMON_CONTRIB_DIR}/native/ffmpeg/libavutil)
 
   include_directories(
     ${LIBCLIENT_SRC_DIR}
@@ -554,7 +533,7 @@ if(MSVC)
     WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
     COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
     -DCOPY_TO_PATH=$<TARGET_FILE_DIR:${PROJECT_NAME}>
-    -DDRING_PATH=${DAEMON_DIR}
+    -DDRING_PATH=src/libclient/daemon
     -DPROJECT_ROOT_DIR=${PROJECT_SOURCE_DIR}
     -DPACKAGING_DIR=${PACKAGING_DIR}
     -P ${EXTRAS_DIR}/build/cmake/windows_daemon_deploy.cmake)
@@ -715,7 +694,7 @@ else()
   endif(ENABLE_SPARKLE)
   target_sources(${PROJECT_NAME} PRIVATE ${resources})
   target_link_libraries(${PROJECT_NAME} PRIVATE ${libs})
-  FILE(GLOB CONTRIB ${LIBJAMI_CONTRIB_DIR}/apple-darwin/lib/*.a)
+  FILE(GLOB CONTRIB ${JAMI_DAEMON_CONTRIB_DIR}/apple-darwin/lib/*.a)
 
   target_link_libraries(${PROJECT_NAME} PRIVATE ${CONTRIB})
   find_package(Iconv REQUIRED)

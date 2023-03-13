@@ -54,15 +54,26 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
-# libjami (daemon)
-if(NOT DEFINED EXTRAS_DIR)
-  set(EXTRAS_DIR ${PROJECT_SOURCE_DIR}/../../extras)
+# jami-daemon
+if(NOT DEFINED WITH_DAEMON_SUBMODULE)
+  set(WITH_DAEMON_SUBMODULE false)
+  # daemon
+  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/../daemon)
+else()
+  # daemon
+  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/daemon)
 endif()
-set(CMAKE_MODULE_PATH
-  ${CMAKE_MODULE_PATH} "${EXTRAS_DIR}/build/cmake/modules")
-find_package(LibJami REQUIRED)
-if(LIBJAMI_FOUND)
-  include_directories(${LIBJAMI_INCLUDE_DIRS})
+
+if (WITH_DAEMON_SUBMODULE AND NOT EXISTS ${DAEMON_DIR}/src)
+  message(FATAL_ERROR
+    "Jami Daemon sources not found in ${DAEMON_DIR}/src.  If you \
+cloned this repository via git, perhaps you did not initialize its \
+submodules afterwards.  You can do so by running \"git submodule \
+update --init\" in the repository.")
+endif()
+
+if (WITH_DAEMON_SUBMODULE)
+  add_subdirectory(${DAEMON_DIR})
 endif()
 
 string(SUBSTRING ${CMAKE_GENERATOR} 0 14 CMAKE_GENERATOR_SHORT)
@@ -216,12 +227,6 @@ else()
 endif()
 
 if(ENABLE_LIBWRAP)
-  # The daemon is only required for when using direct linking
-  if(NOT LIBJAMI_LIB)
-    message(FATAL_ERROR "Jami daemon library is required when \
-building with ENABLE_LIBWRAP")
-  endif()
-
   # Use native calls (no DBus)
   add_definitions(-DENABLE_LIBWRAP=true)
   if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "MSVC"))
@@ -328,13 +333,13 @@ set(LIBCLIENT_HEADERS_API
   api/video.h)
 
 # For libavutil/avframe.
-set(LIBJAMI_CONTRIB_DIR
+set(JAMI_DAEMON_CONTRIB_DIR
   "${DAEMON_DIR}/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
-  ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
-  ${LIBJAMI_CONTRIB_DIR}/apple-darwin/include/
-  ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
+  ${JAMI_DAEMON_CONTRIB_DIR}/native/ffmpeg
+  ${JAMI_DAEMON_CONTRIB_DIR}/apple-darwin/include/
+  ${JAMI_DAEMON_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
   execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpmachine
@@ -343,10 +348,11 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 else()
   set(CC_MACHINE "")
 endif()
+message(STATUS "@@@@@ => ${JAMI_DAEMON_CONTRIB_DIR}/native-${CC_MACHINE}/lib")
 find_library(AVUTIL_LIBRARY avutil
   HINTS
-  ${LIBJAMI_CONTRIB_DIR}/${CC_MACHINE}/lib
-  ${LIBJAMI_CONTRIB_DIR}/apple-darwin/lib)
+  ${JAMI_DAEMON_CONTRIB_DIR}/${CC_MACHINE}/lib
+  ${JAMI_DAEMON_CONTRIB_DIR}/apple-darwin/lib)
 
 if(ENABLE_LIBWRAP)
   list(APPEND LIBCLIENT_HEADERS directrenderer.h)
@@ -358,8 +364,8 @@ else()
   # Build DBus API
   if(DEFINED RING_XML_INTERFACES_DIR)
     set(dbus_xml_introspecs_path ${RING_XML_INTERFACES_DIR})
-  elseif(DEFINED LIBJAMI_XML_INTERFACES_DIR)
-    set(dbus_xml_introspecs_path ${LIBJAMI_XML_INTERFACES_DIR})
+  elseif(DEFINED JAMI_DAEMON_XML_INTERFACES_DIR)
+    set(dbus_xml_introspecs_path ${JAMI_DAEMON_XML_INTERFACES_DIR})
   elseif(EXISTS "${DAEMON_DIR}/bin/dbus")
     set(dbus_xml_introspecs_path ${DAEMON_DIR}/bin/dbus)
   else()
@@ -482,13 +488,14 @@ foreach(QT_LIB ${QT_LIBS})
   target_link_libraries(${LIBCLIENT_NAME} ${QT_LIB})
 endforeach()
 
+target_link_libraries(${LIBCLIENT_NAME} jami-daemon)
 if(NOT(APPLE OR MSVC))
   pkg_check_modules(XCB xcb IMPORTED_TARGET)
   target_link_libraries(${LIBCLIENT_NAME} PkgConfig::XCB)
 endif()
 
 if(ENABLE_LIBWRAP)
-  target_link_libraries(${LIBCLIENT_NAME} qtwrapper ${LIBJAMI_LIB})
+  target_link_libraries(${LIBCLIENT_NAME} qtwrapper ${JAMI_DAEMON_LIB})
   if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "MSVC"))
     target_link_libraries(${LIBCLIENT_NAME} ${AVUTIL_LIBRARY})
   endif()

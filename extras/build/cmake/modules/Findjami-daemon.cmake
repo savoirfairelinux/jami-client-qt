@@ -20,31 +20,33 @@
 
 # Once done, this find module will set:
 #
-#   LIBJAMI_INCLUDE_DIRS - libjami include directories
-#   LIBJAMI_FOUND - whether it was able to find the include directories
-#   LIBJAMI_LIB - path to libjami or libring library
+#   JAMI_DAEMON_INCLUDE_DIRS - JAMI_DAEMON include directories
+#   JAMI_DAEMON_FOUND - whether it was able to find the include directories
+#   JAMI_DAEMON_LIB - path to JAMI_DAEMON or libring library
 
-set(LIBJAMI_FOUND true)
+set(JAMI_DAEMON_FOUND true)
+
+message("@@@@@@@@@@@@@@@@@@@@")
 
 if(WITH_DAEMON_SUBMODULE)
-  set(LIBJAMI_INCLUDE_DIRS ${DAEMON_DIR}/src/jami)
+  set(JAMI_DAEMON_INCLUDE_DIRS ${DAEMON_DIR}/src/jami)
 else()
-  if(EXISTS ${LIBJAMI_INCLUDE_DIR}/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${LIBJAMI_INCLUDE_DIR})
-  elseif(EXISTS ${LIBJAMI_BUILD_DIR}/jami/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${LIBJAMI_BUILD_DIR}/jami)
+  if(EXISTS ${JAMI_DAEMON_INCLUDE_DIR}/jami.h)
+    set(JAMI_DAEMON_INCLUDE_DIRS ${JAMI_DAEMON_INCLUDE_DIR})
+  elseif(EXISTS ${JAMI_DAEMON_BUILD_DIR}/jami/jami.h)
+    set(JAMI_DAEMON_INCLUDE_DIRS ${JAMI_DAEMON_BUILD_DIR}/jami)
   elseif(EXISTS ${RING_INCLUDE_DIR}/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${RING_INCLUDE_DIR})
+    set(JAMI_DAEMON_INCLUDE_DIRS ${RING_INCLUDE_DIR})
   elseif(EXISTS ${RING_BUILD_DIR}/jami/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${RING_BUILD_DIR}/jami)
+    set(JAMI_DAEMON_INCLUDE_DIRS ${RING_BUILD_DIR}/jami)
   elseif(EXISTS ${CMAKE_INSTALL_PREFIX}/include/jami/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/include/jami)
+    set(JAMI_DAEMON_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/include/jami)
   elseif(EXISTS ${CMAKE_INSTALL_PREFIX}/daemon/include/jami/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/daemon/include/jami)
+    set(JAMI_DAEMON_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/daemon/include/jami)
   else()
     message(STATUS "Jami daemon headers not found!
-Set -DLIBJAMI_BUILD_DIR or -DCMAKE_INSTALL_PREFIX")
-    set(LIBJAMI_FOUND false)
+Set -DJAMI_DAEMON_BUILD_DIR or -DCMAKE_INSTALL_PREFIX")
+    set(JAMI_DAEMON_FOUND false)
   endif()
 endif()
 
@@ -54,7 +56,7 @@ set(CMAKE_FIND_LIBRARY_SUFFIXES_orig ${CMAKE_FIND_LIBRARY_SUFFIXES})
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".dylib;.so;.dll")
 
 if(WITH_DAEMON_SUBMODULE)
-  find_library(LIBJAMI_LIB NAMES jami ring
+  find_library(JAMI_DAEMON_LIB NAMES jami jami-daemon ring
     PATHS ${DAEMON_DIR}/src/.libs
     PATHS ${CMAKE_INSTALL_PREFIX}/lib
     PATHS ${CMAKE_INSTALL_PREFIX}/daemon/lib
@@ -63,8 +65,8 @@ if(WITH_DAEMON_SUBMODULE)
     NO_DEFAULT_PATH)
 else()
   # Search only in these given PATHS.
-  find_library(LIBJAMI_LIB NAMES jami ring
-    PATHS ${LIBJAMI_BUILD_DIR}/.libs
+  find_library(JAMI_DAEMON_LIB NAMES jami jami-daemon ring
+    PATHS ${JAMI_DAEMON_BUILD_DIR}/.libs
     PATHS ${RING_BUILD_DIR}/.libs
     PATHS ${CMAKE_INSTALL_PREFIX}/lib
     PATHS ${CMAKE_INSTALL_PREFIX}/daemon/lib
@@ -73,17 +75,17 @@ else()
     NO_DEFAULT_PATH)
 
   # Search elsewhere as well (e.g. system-wide).
-  if(NOT LIBJAMI_LIB)
-    find_library(LIBJAMI_LIB NAMES jami ring)
+  if(NOT JAMI_DAEMON_LIB)
+    find_library(JAMI_DAEMON_LIB NAMES jami jami-daemon ring)
   endif()
 endif()
 
 # Try for a static version also.
-if(NOT LIBJAMI_LIB)
+if(NOT JAMI_DAEMON_LIB)
   set(CMAKE_FIND_LIBRARY_SUFFIXES ".a;.lib")
 
   if(WITH_DAEMON_SUBMODULE)
-    find_library(LIBJAMI_LIB NAMES jami ring
+    find_library(JAMI_DAEMON_LIB NAMES jami jami-daemon ring
       PATHS ${DAEMON_DIR}/src/.libs
       PATHS ${CMAKE_INSTALL_PREFIX}
       PATHS ${CMAKE_INSTALL_PREFIX}/lib
@@ -92,8 +94,8 @@ if(NOT LIBJAMI_LIB)
       NO_DEFAULT_PATH)
   else()
     # Search only in these given PATHS.
-    find_library(LIBJAMI_LIB NAMES jami ring
-      PATHS ${LIBJAMI_BUILD_DIR}/.libs
+    find_library(JAMI_DAEMON_LIB NAMES jami jami-daemon ring
+      PATHS ${JAMI_DAEMON_BUILD_DIR}/.libs
       PATHS ${RING_BUILD_DIR}/.libs
       PATHS ${CMAKE_INSTALL_PREFIX}
       PATHS ${CMAKE_INSTALL_PREFIX}/lib
@@ -102,8 +104,8 @@ if(NOT LIBJAMI_LIB)
       NO_DEFAULT_PATH)
 
     # Search elsewhere as well (e.g. system-wide).
-    if(NOT LIBJAMI_LIB)
-      find_library(LIBJAMI_LIB NAMES jami ring)
+    if(NOT JAMI_DAEMON_LIB)
+      find_library(JAMI_DAEMON_LIB NAMES jami jami-daemon ring)
     endif()
 
     if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -115,5 +117,5 @@ endif()
 # Restore the original value of CMAKE_FIND_LIBRARY_SUFFIXES.
 set(CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_FIND_LIBRARY_SUFFIXES_orig})
 
-message(STATUS "Jami daemon headers are in " ${LIBJAMI_INCLUDE_DIRS})
-message(STATUS "Jami daemon library is at " ${LIBJAMI_LIB})
+message(STATUS "Jami daemon headers are in " ${JAMI_DAEMON_INCLUDE_DIRS})
+message(STATUS "Jami daemon library is at " ${JAMI_DAEMON_LIB})
