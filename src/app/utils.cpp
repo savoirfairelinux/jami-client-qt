@@ -359,10 +359,14 @@ Utils::accountPhoto(LRCInstance* instance, const QString& accountId, const QSize
     try {
         auto& accInfo = instance->accountModel().getAccountInfo(
             accountId.isEmpty() ? instance->get_currentAccountId() : accountId);
+        auto bestName = instance->accountModel().bestNameForAccount(accInfo.id);
         if (!accInfo.profileInfo.avatar.isEmpty()) {
             photo = imageFromBase64String(accInfo.profileInfo.avatar);
-        } else {
-            auto bestName = instance->accountModel().bestNameForAccount(accInfo.id);
+            if (photo.isNull()) {
+                qWarning() << "Invalid image for account " << bestName;
+            }
+        }
+        if (photo.isNull()) {
             QString name = bestName == accInfo.profileInfo.uri ? QString() : bestName;
             QString prefix = accInfo.profileInfo.type == profile::Type::JAMI ? "jami:" : "sip:";
             photo = fallbackAvatar(prefix + accInfo.profileInfo.uri, name, size);
@@ -424,8 +428,14 @@ Utils::conversationAvatar(LRCInstance* instance,
             accountId.isEmpty() ? instance->get_currentAccountId() : accountId);
         auto* convModel = accInfo.conversationModel.get();
         auto avatarb64 = convModel->avatar(convId);
-        if (!avatarb64.isEmpty())
-            return scaleAndFrame(imageFromBase64String(avatarb64, true), size);
+        if (!avatarb64.isEmpty()) {
+            auto photo = imageFromBase64String(avatarb64, true);
+            if (photo.isNull()) {
+                qWarning() << "Invalid image for conversation " << convId;
+                return photo;
+            }
+            return scaleAndFrame(photo, size);
+        }
         // Else, generate an avatar
         auto members = convModel->peersForConversation(convId);
         if (members.size() < 1)
@@ -479,8 +489,6 @@ Utils::imageFromBase64Data(const QByteArray& data, bool circleCrop)
         }
         return img;
     }
-
-    qWarning() << Q_FUNC_INFO << "Image loading failed";
     return {};
 }
 
