@@ -30,6 +30,7 @@ ColumnLayout {
     id: root
 
     property int itemWidth
+    spacing: JamiTheme.settingsCategorySpacing
 
     function openFileDialog(title, oldPath, fileType, onAcceptedCb) {
         var openPath = oldPath === "" ?
@@ -47,27 +48,30 @@ ColumnLayout {
         dlg.fileAccepted.connect(onAcceptedCb)
     }
 
-    ElidedTextLabel {
-        Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+    Text {
 
-        eText: JamiStrings.security
-        fontSize: JamiTheme.headerFontSize
-        maxWidth: width
+        Layout.alignment: Qt.AlignLeft
+        Layout.preferredWidth: Math.min(350, root.width - JamiTheme.preferredMarginSize * 2)
+
+        text: JamiStrings.security
+        color: JamiTheme.textColor
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+        
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        font.kerning: true
     }
 
     ColumnLayout {
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
+        spacing: 5
 
         ToggleSwitch {
             id: enableSDESToggle
 
             labelText: JamiStrings.enableSDES
-            fontPointSize: JamiTheme.settingsFontSize
-
             checked: CurrentAccount.keyExchange_SRTP
-
             onSwitchToggled: CurrentAccount.keyExchange_SRTP = Number(checked)
         }
 
@@ -75,10 +79,7 @@ ColumnLayout {
             id: fallbackRTPToggle
 
             labelText: JamiStrings.fallbackRTP
-            fontPointSize: JamiTheme.settingsFontSize
-
             checked: CurrentAccount.rtpFallback_SRTP
-
             onSwitchToggled: CurrentAccount.rtpFallback_SRTP = checked
         }
 
@@ -86,10 +87,7 @@ ColumnLayout {
             id: encryptNegotitationToggle
 
             labelText: JamiStrings.encryptNegotiation
-            fontPointSize: JamiTheme.settingsFontSize
-
             checked: CurrentAccount.enable_TLS
-
             onSwitchToggled: CurrentAccount.enable_TLS = checked
         }
 
@@ -97,15 +95,11 @@ ColumnLayout {
             id: btnSIPCACert
 
             Layout.fillWidth: true
-            Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
             enabled: CurrentAccount.enable_TLS
-
             titleField: JamiStrings.caCertificate
-            source: JamiResources.round_folder_24dp_svg
+            textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateListFile_TLS) !== "" ? UtilsAdapter.toFileInfoName(CurrentAccount.certificateListFile_TLS) : JamiStrings.selectCACertDefault
             itemWidth: root.itemWidth
-
-            textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateListFile_TLS)
 
             onClick: openFileDialog(JamiStrings.selectCACert,
                                     CurrentAccount.certificateListFile_TLS,
@@ -120,15 +114,11 @@ ColumnLayout {
             id: btnSIPUserCert
 
             Layout.fillWidth: true
-            Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
             enabled: CurrentAccount.enable_TLS
-
             titleField: JamiStrings.userCertificate
-            source: JamiResources.round_folder_24dp_svg
             itemWidth: root.itemWidth
-
-            textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateFile_TLS)
+            textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateFile_TLS) !== "" ? UtilsAdapter.toFileInfoName(CurrentAccount.certificateFile_TLS) : JamiStrings.selectCACertDefault
 
             onClick: openFileDialog(JamiStrings.selectUserCert,
                                     CurrentAccount.certificateFile_TLS,
@@ -143,15 +133,11 @@ ColumnLayout {
             id: btnSIPPrivateKey
 
             Layout.fillWidth: true
-            Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
             enabled: CurrentAccount.enable_TLS
-
             titleField: JamiStrings.privateKey
-            source: JamiResources.round_folder_24dp_svg
             itemWidth: root.itemWidth
-
-            textField: UtilsAdapter.toFileInfoName(CurrentAccount.privateKeyFile_TLS)
+            textField: UtilsAdapter.toFileInfoName(CurrentAccount.privateKeyFile_TLS) !== "" ? UtilsAdapter.toFileInfoName(CurrentAccount.privateKeyFile_TLS) : JamiStrings.selectCACertDefault
 
             onClick: openFileDialog(JamiStrings.selectPrivateKey,
                                     CurrentAccount.privateKeyFile_TLS,
@@ -182,10 +168,7 @@ ColumnLayout {
             id: verifyIncomingCertificatesServerToggle
 
             labelText: JamiStrings.verifyCertificatesServer
-            fontPointSize: JamiTheme.settingsFontSize
-
             checked: CurrentAccount.verifyServer_TLS
-
             onSwitchToggled: CurrentAccount.verifyServer_TLS = checked
         }
 
@@ -193,10 +176,7 @@ ColumnLayout {
             id: verifyIncomingCertificatesClientToggle
 
             labelText: JamiStrings.verifyCertificatesClient
-            fontPointSize: JamiTheme.settingsFontSize
-
             checked: CurrentAccount.verifyClient_TLS
-
             onSwitchToggled: CurrentAccount.verifyClient_TLS = checked
         }
 
@@ -204,10 +184,7 @@ ColumnLayout {
             id: requireCeritificateForTLSIncomingToggle
 
             labelText: JamiStrings.tlsRequireConnections
-            fontPointSize: JamiTheme.settingsFontSize
-
             checked: CurrentAccount.requireClientCertificate_TLS
-
             onSwitchToggled: CurrentAccount.requireClientCertificate_TLS = checked
         }
 
@@ -215,10 +192,7 @@ ColumnLayout {
             id: disableSecureDlgCheckToggle
 
             labelText: JamiStrings.disableSecureDlgCheck
-            fontPointSize: JamiTheme.settingsFontSize
-
             checked: CurrentAccount.disableSecureDlgCheck_TLS
-
             onSwitchToggled: CurrentAccount.disableSecureDlgCheck_TLS = checked
         }
 
@@ -226,10 +200,8 @@ ColumnLayout {
             id: tlsProtocolComboBox
 
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             labelText: JamiStrings.tlsProtocol
-            fontPointSize: JamiTheme.settingsFontSize
             comboModel: ListModel {
                 ListElement{textDisplay: "Default"; firstArg: "Default"; secondArg: 0}
                 ListElement{textDisplay: "TLSv1"; firstArg: "TLSv1"; secondArg: 1}
@@ -250,7 +222,6 @@ ColumnLayout {
             id: outgoingTLSServerNameLineEdit
 
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
             itemWidth: root.itemWidth
             titleField: JamiStrings.tlsServerName
 

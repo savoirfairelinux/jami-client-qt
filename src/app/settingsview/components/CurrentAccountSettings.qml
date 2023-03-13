@@ -31,7 +31,6 @@ Rectangle {
     id: root
 
     property bool isSIP
-
     property int contentWidth: currentAccountSettingsColumnLayout.width
     property int preferredHeight: currentAccountSettingsColumnLayout.implicitHeight
     property int preferredColumnWidth : Math.min(root.width / 2 - 50, 350)
@@ -56,30 +55,6 @@ Rectangle {
 
         width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
 
-        ToggleSwitch {
-            id: accountEnableCheckBox
-
-            Layout.topMargin: JamiTheme.preferredMarginSize
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-
-            labelText: JamiStrings.enableAccount
-            fontPointSize: JamiTheme.headerFontSize
-
-            checked: CurrentAccount.enabled
-
-            onSwitchToggled: CurrentAccount.enableAccount(checked)
-        }
-
-        AccountProfile {
-            id: accountProfile
-
-            Layout.fillWidth: true
-            Layout.topMargin: JamiTheme.preferredMarginSize
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-        }
-
         UserIdentity {
             id: userIdentity
             isSIP: root.isSIP
@@ -100,7 +75,7 @@ Rectangle {
             Layout.topMargin: JamiTheme.preferredMarginSize
 
             preferredWidth: JamiTheme.preferredFieldWidth
-            preferredHeight: JamiTheme.preferredFieldHeight
+            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
@@ -131,7 +106,7 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
 
             preferredWidth: JamiTheme.preferredFieldWidth
-            preferredHeight: JamiTheme.preferredFieldHeight
+            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
@@ -188,7 +163,7 @@ Rectangle {
             Layout.rightMargin: JamiTheme.preferredMarginSize
 
             preferredWidth: JamiTheme.preferredFieldWidth
-            preferredHeight: JamiTheme.preferredFieldHeight
+            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
             color: JamiTheme.buttonTintedRed
             hoveredColor: JamiTheme.buttonTintedRedHovered
