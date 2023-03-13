@@ -63,6 +63,7 @@ Item {
     property color darkGreyColor: "#272727"
     property color darkGreyColorOpacity: "#be272727" // 77%
     property color tintedBlue: darkTheme ? "#03B9E9" : "#005699"
+    property color sysColor: "#F0EFEF"
 
     property color transparentColor: "transparent"
     property color primaryForegroundColor: darkTheme ? whiteColor : blackColor
@@ -351,11 +352,14 @@ Item {
     property int menuItemsCommonBorderWidth: 1
     property int menuBorderPreferredHeight: 8
 
-    property real maximumWidthSettingsView: 600
+    property real maximumWidthSettingsView: 516
     property real settingsHeaderpreferredHeight: 64
     property real preferredFieldWidth: 256
-    property real preferredFieldHeight: 32
+    property real preferredFieldHeight: 36
+    property real preferredButtonSettingsHeight: 46
     property real preferredMarginSize: 16
+    property real preferredSettingsMarginSize: 40
+    property real preferredSettingsContentMarginSize: 30
     property real settingsMarginSize: 8
     property real preferredDialogWidth: 400
     property real preferredDialogHeight: 300
@@ -475,6 +479,7 @@ Item {
     property real jamiIdLogoWidth: 70
     property real jamiIdLogoHeight: 24
     property real jamiIdFontSize: calcSize(13)
+    property color jamiIdColor: darkTheme ? blackColor : sysColor
 
     // MainView
     property color welcomeViewBackgroundColor: darkTheme ? lightGrey_ : secondaryBackgroundColor
@@ -584,6 +589,17 @@ Item {
     // Messages point size
     property real contactEventPointSize: calcSize(10 + fontSizeOffset)
     property int contactMessageAvatarSize: 24
+
+    // Settings
+    property int settingMenuPixelSize: calcSize(13)
+    property int settingsTitlePixelSize: calcSize(22)
+    property int settingsHeaderPixelSize: calcSize(26)
+    property int settingsDescriptionPixelSize: calcSize(15)
+    property int settingsCategorySpacing: 15
+    property real settingsBoxRadius: 10
+    property real settingsMenuChildrenButtonHeight: 30
+    property real settingsMenuHeaderButtonHeight: 50
+
 
 
     function setTheme(dark) {
