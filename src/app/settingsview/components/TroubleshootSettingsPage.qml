@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
+ * Author: Fadi Shehadeh   <fadi.shehadeh@savoirfairelinux.com>
  * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -33,20 +34,7 @@ ColumnLayout {
 
     property int itemWidth
 
-    Label {
-        Layout.fillWidth: true
-
-        text: JamiStrings.troubleshootTitle
-        font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
-        color: JamiTheme.textColor
-
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-    }
-
     RowLayout {
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         Text {
             Layout.fillWidth: true
@@ -86,16 +74,4 @@ ColumnLayout {
         }
     }
 
-    ToggleSwitch {
-        id: checkboxCallSwarm
-        Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
-        checked: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
-        labelText: JamiStrings.experimentalCallSwarm
-        fontPointSize: JamiTheme.settingsFontSize
-        tooltipText: JamiStrings.experimentalCallSwarmTooltip
-        onSwitchToggled: {
-            UtilsAdapter.setAppValue(Settings.Key.EnableExperimentalSwarm, checked)
-        }
-    }
 }
