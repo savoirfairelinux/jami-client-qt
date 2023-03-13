@@ -26,20 +26,19 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-Rectangle {
+SettingsPageBase {
     id: root
 
-    property int contentWidth: pluginSettingsColumnLayout.width
-    property int preferredHeight: pluginSettingsColumnLayout.implicitHeight
+    title: JamiStrings.pluginSettingsTitle
 
-    color: JamiTheme.secondaryBackgroundColor
 
-    ColumnLayout {
+    flickableContent: ColumnLayout {
         id: pluginSettingsColumnLayout
 
-        anchors.horizontalCenter: root.horizontalCenter
-
-        width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
+        width: contentFlickableWidth
+        spacing: JamiTheme.wizardViewPageBackButtonMargins *2
+        anchors.left: parent.left
+        anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
         ToggleSwitch {
             id: enabledplugin
@@ -48,9 +47,7 @@ Rectangle {
 
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             Layout.fillWidth: true
-            Layout.topMargin: JamiTheme.preferredMarginSize
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
+            Layout.topMargin: JamiTheme.preferredSettingsContentMarginSize
 
             labelText: JamiStrings.enable
             fontPointSize: JamiTheme.headerFontSize
@@ -68,10 +65,6 @@ Rectangle {
 
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             Layout.fillWidth: true
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-
-            Layout.topMargin: JamiTheme.preferredMarginSize
             Layout.minimumHeight: 0
             Layout.preferredHeight: childrenRect.height
         }

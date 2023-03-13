@@ -38,7 +38,7 @@ ItemDelegate {
 
     highlighted: ListView.isCurrentItem
     background: Rectangle {
-        color: highlighted? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
+        color: highlighted? JamiTheme.smartListSelectedColor : JamiTheme.editBackgroundColor
     }
 
     RowLayout {
@@ -61,7 +61,7 @@ ItemDelegate {
                 layer {
                     enabled: true
                     effect: ColorOverlay {
-                        color: JamiTheme.textColor
+                        color: JamiTheme.tintedBlue
                     }
                     mipmap: false
                     smooth: true

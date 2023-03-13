@@ -42,21 +42,6 @@ ColumnLayout {
         currentAccountAvatar.stopBooth()
     }
 
-    Text {
-        Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-        text: JamiStrings.profile
-        elide: Text.ElideRight
-
-        font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
-        color: JamiTheme.textColor
-
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-    }
-
     PhotoboothView {
         id: currentAccountAvatar
         darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
