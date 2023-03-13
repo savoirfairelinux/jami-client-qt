@@ -38,14 +38,15 @@ ItemDelegate {
 
     signal btnRemoveDeviceClicked
 
-    highlighted: ListView.isCurrentItem
-
     background: Rectangle {
-        color: highlighted? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
+        color:JamiTheme.selectedColor
+        height: 70
     }
 
     RowLayout {
+        id: rowLayout
         anchors.fill: root
+        anchors.topMargin: 5
 
         Image {
             id: deviceImage
