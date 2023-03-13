@@ -161,7 +161,7 @@ ItemDelegate {
             visible: preferenceType === PreferenceItemListModel.PATH
 
             preferredWidth: root.width / 2 - 8
-            preferredHeight: 30
+            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: 4

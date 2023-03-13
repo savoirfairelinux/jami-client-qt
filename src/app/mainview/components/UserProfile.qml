@@ -203,7 +203,7 @@ BaseModalDialog {
                 Layout.alignment: Qt.AlignHCenter
 
                 preferredWidth: JamiTheme.preferredFieldWidth / 2
-                preferredHeight: JamiTheme.preferredFieldHeight
+                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
                 color: JamiTheme.buttonTintedBlack
                 hoveredColor: JamiTheme.buttonTintedBlackHovered

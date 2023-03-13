@@ -28,6 +28,7 @@ ComboBox {
     property string placeholderText
     property string currentSelectionText: currentText
     property string comboBoxBackgroundColor: JamiTheme.editBackgroundColor
+    property bool selection: currentIndex < 0 && !count
 
     MaterialToolTip {
         id: toolTip
@@ -61,6 +62,7 @@ ComboBox {
             color: hovered ? JamiTheme.comboboxTextColorHovered : JamiTheme.textColor
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
+            font.pointSize: JamiTheme.settingsFontSize
         }
 
         background: Rectangle {
@@ -82,17 +84,17 @@ ComboBox {
         source: popup.visible ? JamiResources.expand_less_24dp_svg
                               : JamiResources.expand_more_24dp_svg
 
-        color: JamiTheme.tintedBlue
+        color: JamiTheme.comboboxIconColor
     }
 
     contentItem: Text {
         leftPadding: root.indicator.width
-
+        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
         text: root.displayText
-        color: JamiTheme.textColor
-
+        color: JamiTheme.comboboxTextColor
+        font.weight: Font.Medium
         verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
+        horizontalAlignment: Text.AlignLeft
         elide: Text.ElideRight
     }
 
@@ -100,9 +102,8 @@ ComboBox {
         id: selectOption
         color: JamiTheme.transparentColor
         implicitWidth: 120
-        implicitHeight: 43
-        border.color: popup.visible ? JamiTheme.comboboxBorderColorActive
-                                    : JamiTheme.comboboxBorderColor
+        implicitHeight: contentItem.implicitHeight + JamiTheme.buttontextHeightMargin
+        border.color: popup.visible ? JamiTheme.comboboxBorderColorActive : JamiTheme.comboboxBorderColor
         border.width: root.visualFocus ? 2 : 1
         radius: 5
     }

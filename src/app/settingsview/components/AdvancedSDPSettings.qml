@@ -29,27 +29,36 @@ ColumnLayout {
     id: root
 
     property int itemWidth
+    spacing: JamiTheme.settingsCategorySpacing
 
-    ElidedTextLabel {
-        Layout.preferredWidth: textWidth
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+    Text {
 
-        eText: JamiStrings.sdpSettingsTitle
-        fontSize: JamiTheme.headerFontSize
-        maxWidth: root.width
+        Layout.alignment: Qt.AlignLeft
+        Layout.preferredWidth:Math.min(JamiTheme.maximumWidthSettingsView,
+                                                   root.width - 2 * JamiTheme.preferredSettingsMarginSize)
+
+        text: JamiStrings.sdpSettingsTitle
+        color: JamiTheme.textColor
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        font.kerning: true
+
     }
 
     ColumnLayout {
+        id: mainLayout
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
-        ElidedTextLabel {
-            Layout.preferredWidth: textWidth
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-            eText: JamiStrings.sdpSettingsSubtitle
-            fontSize: JamiTheme.settingsFontSize
-            maxWidth: parent.width - JamiTheme.preferredMarginSize
+        Text {
+            Layout.fillWidth: true
+            text: JamiStrings.sdpSettingsSubtitle
+            font.pointSize: JamiTheme.settingsFontSize
+            font.kerning: true
+            wrapMode: Text.WordWrap
+            color: JamiTheme.textColor
         }
 
         SettingSpinBox {

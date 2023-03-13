@@ -269,7 +269,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
 
             preferredWidth: JamiTheme.preferredFieldWidth
-            preferredHeight: JamiTheme.preferredFieldHeight
+            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered

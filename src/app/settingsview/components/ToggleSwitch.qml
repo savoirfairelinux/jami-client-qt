@@ -27,10 +27,9 @@ import "../../commoncomponents"
 RowLayout {
     id: root
     property string labelText: ""
+    property string descText: ""
     property int widthOfSwitch: 50
     property int heightOfSwitch: 10
-    property int heightOfLayout: 30
-    property int fontPointSize: JamiTheme.headerFontSize
 
     property string tooltipText: ""
 
@@ -39,19 +38,40 @@ RowLayout {
 
     signal switchToggled
 
-    Text {
-        Layout.fillWidth: true
-        Layout.preferredHeight: heightOfLayout
-        Layout.rightMargin: JamiTheme.preferredMarginSize
+    ColumnLayout {
+        id: toggleLayout
+        Layout.alignment: Qt.AlignVCenter
+        spacing: 5
 
-        text: root.labelText
-        font.pointSize: fontPointSize
-        font.kerning: true
-        elide: Text.ElideRight
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
+        Text {
+            id: title
+            Layout.fillWidth: true
+            Layout.rightMargin: JamiTheme.preferredMarginSize
+            visible: labelText !== ""
+            text: root.labelText
+            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+            font.kerning: true
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
 
-        color: JamiTheme.textColor
+            color: JamiTheme.textColor
+        }
+
+        Text {
+            id: description
+            Layout.fillWidth: true
+            Layout.rightMargin: JamiTheme.preferredMarginSize
+            visible: descText !== ""
+            text: root.descText
+            font.pixelSize: JamiTheme.settingToggleDescrpitonPixelSize
+            font.kerning: true
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+
+            color: JamiTheme.textColor
+        }
     }
 
     JamiSwitch {
@@ -59,7 +79,6 @@ RowLayout {
         Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 
         Layout.preferredWidth: widthOfSwitch
-        Layout.preferredHeight: heightOfSwitch
 
         hoverEnabled: true
         toolTipText: tooltipText
@@ -80,4 +99,5 @@ RowLayout {
             switchToggled()
         }
     }
+
 }

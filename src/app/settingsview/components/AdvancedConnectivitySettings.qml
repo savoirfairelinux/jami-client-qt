@@ -30,19 +30,25 @@ ColumnLayout {
 
     property int itemWidth
     property bool isSIP
+    spacing: JamiTheme.settingsCategorySpacing
 
-    ElidedTextLabel {
-        Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+    Text {
+        id: enableAccountTitle
 
-        eText: JamiStrings.connectivity
-        fontSize: JamiTheme.headerFontSize
-        maxWidth: width
+        Layout.alignment: Qt.AlignLeft
+
+        text: JamiStrings.connectivity
+        color: JamiTheme.textColor
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        font.kerning: true
     }
 
     ColumnLayout {
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         ToggleSwitch {
             id: autoRegistrationAfterExpired
@@ -51,10 +57,7 @@ ColumnLayout {
 
             visible: isSIP
             labelText: JamiStrings.autoRegistration
-            fontPointSize: JamiTheme.settingsFontSize
-
             checked: CurrentAccount.keepAliveEnabled
-
             onSwitchToggled: CurrentAccount.keepAliveEnabled = checked
         }
 
@@ -69,7 +72,6 @@ ColumnLayout {
             topValue: 7*24*3600
 
             valueField: CurrentAccount.registrationExpire
-
             onNewValue: CurrentAccount.registrationExpire = valueField
         }
 
@@ -84,7 +86,6 @@ ColumnLayout {
             topValue: 65535
 
             valueField: CurrentAccount.localPort
-
             onNewValue: CurrentAccount.localPort = valueField
         }
 
@@ -94,10 +95,7 @@ ColumnLayout {
             Layout.fillWidth: true
 
             labelText: JamiStrings.useUPnP
-            fontPointSize: JamiTheme.settingsFontSize
-
             checked: CurrentAccount.upnpEnabled
-
             onSwitchToggled: CurrentAccount.upnpEnabled = checked
         }
 
@@ -107,10 +105,7 @@ ColumnLayout {
             Layout.fillWidth: true
 
             labelText: JamiStrings.useTURN
-            fontPointSize: JamiTheme.settingsFontSize
-
             checked: CurrentAccount.enable_TURN
-
             onSwitchToggled: CurrentAccount.enable_TURN = checked
         }
 
@@ -118,12 +113,9 @@ ColumnLayout {
             id: lineEditTurnAddress
 
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             enabled: checkBoxTurnEnable.checked
-
             staticText: CurrentAccount.server_TURN
-
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnAdress
 
@@ -134,12 +126,9 @@ ColumnLayout {
             id: lineEditTurnUsername
 
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             enabled: checkBoxTurnEnable.checked
-
             staticText: CurrentAccount.username_TURN
-
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnUsername
 
@@ -150,12 +139,9 @@ ColumnLayout {
             id: lineEditTurnPassword
 
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             enabled: checkBoxTurnEnable.checked
-
             staticText: CurrentAccount.password_TURN
-
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnPassword
 
@@ -166,12 +152,9 @@ ColumnLayout {
             id: lineEditTurnRealmSIP
 
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             enabled: checkBoxTurnEnable.checked
-
             staticText: CurrentAccount.realm_TURN
-
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnRealm
 
@@ -184,8 +167,6 @@ ColumnLayout {
             Layout.fillWidth: true
 
             labelText: JamiStrings.useSTUN
-            fontPointSize: JamiTheme.settingsFontSize
-
             visible: isSIP
             checked: CurrentAccount.enable_STUN
 
@@ -200,9 +181,7 @@ ColumnLayout {
 
             enabled: checkBoxSTUNEnable.checked
             visible: isSIP
-
             staticText: CurrentAccount.server_STUN
-
             itemWidth: root.itemWidth
             titleField: JamiStrings.stunAdress
 

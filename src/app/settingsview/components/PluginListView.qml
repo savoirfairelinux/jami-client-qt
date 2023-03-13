@@ -60,7 +60,7 @@ Rectangle {
             Layout.topMargin: JamiTheme.preferredMarginSize / 2
 
             preferredWidth: JamiTheme.preferredFieldWidth
-            preferredHeight: JamiTheme.preferredFieldHeight
+            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered

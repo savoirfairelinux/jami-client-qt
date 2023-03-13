@@ -132,7 +132,7 @@ TextField {
         width: parent.width
         height: visible ? 1 : 0
         anchors.top: root.baseline
-        anchors.topMargin: root.font.pixelSize / 1.5
+        anchors.topMargin: 10
         color: isSwarmDetail ? textColor : root.accent
         visible: {
             if (!readOnly) {

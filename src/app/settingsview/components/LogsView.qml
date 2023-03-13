@@ -121,7 +121,6 @@ Window {
 
                     checked: false
                     labelText: JamiStrings.logsViewDisplay
-                    fontPointSize: JamiTheme.settingsFontSize
 
                     onSwitchToggled: {
                         logging = !logging
@@ -145,7 +144,7 @@ Window {
                     Layout.bottomMargin: JamiTheme.preferredMarginSize
 
                     preferredWidth: itemWidth / widthDivisor
-                    preferredHeight: JamiTheme.preferredFieldHeight
+                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
                     secondary: true
                     color: JamiTheme.buttonTintedBlack
@@ -170,7 +169,7 @@ Window {
                     Layout.alignment: Qt.AlignHCenter
 
                     preferredWidth: itemWidth / widthDivisor
-                    preferredHeight: JamiTheme.preferredFieldHeight
+                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
                     color: JamiTheme.buttonTintedBlack
                     hoveredColor: JamiTheme.buttonTintedBlackHovered
@@ -210,7 +209,7 @@ Window {
                     Layout.rightMargin: JamiTheme.preferredMarginSize
 
                     preferredWidth: itemWidth / widthDivisor
-                    preferredHeight: JamiTheme.preferredFieldHeight
+                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
                     color: JamiTheme.buttonTintedBlack
                     hoveredColor: JamiTheme.buttonTintedBlackHovered

@@ -91,7 +91,7 @@ BaseModalDialog {
                     Layout.alignment: Qt.AlignVCenter
 
                     preferredWidth: JamiTheme.preferredFieldWidth / 2
-                    preferredHeight: JamiTheme.preferredFieldHeight
+                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
                     color: {
                         switch(buttonStyles[modelData]) {
