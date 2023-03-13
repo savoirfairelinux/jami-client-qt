@@ -24,15 +24,13 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
-import "../../commoncomponents"
-import "../../settingsview/components"
-
 Item {
     id: root
 
+    property alias backgroundColor: outerRect.color
+
     width: childrenRect.width
-    height: controlsLayout.height + usernameTextEdit.height
-            + 2 * JamiTheme.preferredMarginSize
+    height: controlsLayout.height + usernameTextEdit.height + 2 * JamiTheme.preferredMarginSize
 
     // Background rounded rectangle.
     Rectangle {
@@ -44,7 +42,8 @@ Item {
     // Logo masked by outerRect.
     Item {
         anchors.fill: outerRect
-        layer.enabled: true; layer.effect: OpacityMask { maskSource: outerRect }
+        layer.enabled: true
+        layer.effect: OpacityMask { maskSource: outerRect }
 
         Rectangle {
             id: logoRect
@@ -77,15 +76,16 @@ Item {
         RowLayout {
             id: controlsLayout
 
-            Layout.alignment: Qt.AlignTop | Qt.AlignRight
-            Layout.topMargin: JamiTheme.pushButtonMargin
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            Layout.topMargin: JamiTheme.pushButtonMargin / 2
             Layout.rightMargin: JamiTheme.pushButtonMargin
             Layout.preferredHeight: childrenRect.height
 
             component JamiIdControlButton: PushButton {
+                property bool clicked: true
                 preferredSize : 30
                 normalColor: JamiTheme.transparentColor
-                hoveredColor: JamiTheme.transparentColor
+                hoveredColor: JamiTheme.hoveredButtonColorWizard
                 imageContainerWidth: JamiTheme.pushButtonSize
                 imageContainerHeight: JamiTheme.pushButtonSize
                 border.color: JamiTheme.tintedBlue
@@ -127,7 +127,7 @@ Item {
                 id: btnCopy
                 source: JamiResources.content_copy_24dp_svg
                 toolTipText: JamiStrings.copy
-                onClicked: UtilsAdapter.setClipboardText(CurrentAccount.bestId)
+                onClicked: UtilsAdapter.setClipboardText(usernameTextEdit.staticText)
             }
 
             JamiIdControlButton {
@@ -137,6 +137,21 @@ Item {
                 onClicked: viewCoordinator.presentDialog(
                                appWindow,
                                "mainview/components/WelcomePageQrDialog.qml")
+            }
+
+            JamiIdControlButton {
+                id: btnId
+                source: JamiResources.ic_keypad_svg
+                visible: CurrentAccount.registeredName !== ""
+                onClicked: {
+                    if (clicked){
+                        usernameTextEdit.staticText = CurrentAccount.uri
+                    } else {
+                        usernameTextEdit.staticText = CurrentAccount.registeredName
+                    }
+
+                    clicked = !clicked
+                }
             }
         }
 

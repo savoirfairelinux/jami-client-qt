@@ -45,15 +45,13 @@ RowLayout {
 
         Layout.fillWidth: true
         Layout.rightMargin: JamiTheme.preferredMarginSize / 2
-
         font.pointSize: JamiTheme.settingsFontSize
         font.kerning: true
-
+        wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
 
         color: JamiTheme.textColor
-        elide: Text.ElideRight
     }
 
     ModalTextEdit {

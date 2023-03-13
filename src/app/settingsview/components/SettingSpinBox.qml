@@ -51,7 +51,7 @@ RowLayout {
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
         color: JamiTheme.textColor
-        elide: Text.ElideRight
+        wrapMode: Text.WordWrap
         font.pointSize: JamiTheme.settingsFontSize
         font.kerning: true
         verticalAlignment: Text.AlignVCenter
@@ -66,7 +66,7 @@ RowLayout {
         Layout.preferredWidth: root.itemWidth
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.alignment: Qt.AlignCenter
-        font.pointSize: JamiTheme.buttonFontSize
+        font.pointSize: JamiTheme.settingsFontSize
         font.kerning: true
 
         onValueChanged: newValue()
@@ -90,6 +90,7 @@ RowLayout {
             verticalAlignment: Qt.AlignVCenter
             inputMethodHints : Qt.ImhDigitsOnly
             validator: spinbox.validator
+            font.pointSize: JamiTheme.settingsFontSize
         }
 
         background: Rectangle {
