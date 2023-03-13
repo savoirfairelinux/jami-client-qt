@@ -47,18 +47,23 @@ ColumnLayout {
         dlg.fileAccepted.connect(onAcceptedCb)
     }
 
-    ElidedTextLabel {
-        Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+    Text {
 
-        eText: JamiStrings.security
-        fontSize: JamiTheme.headerFontSize
-        maxWidth: width
+        Layout.alignment: Qt.AlignLeft
+        Layout.preferredWidth: Math.min(350, root.width - JamiTheme.preferredMarginSize * 2)
+
+        text: JamiStrings.security
+        color: JamiTheme.textColor
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+        
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        font.kerning: true
     }
 
     ColumnLayout {
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         ToggleSwitch {
             id: enableSDESToggle
@@ -100,12 +105,9 @@ ColumnLayout {
             Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
             enabled: CurrentAccount.enable_TLS
-
             titleField: JamiStrings.caCertificate
-            source: JamiResources.round_folder_24dp_svg
+            textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateListFile_TLS) !== "" ? UtilsAdapter.toFileInfoName(CurrentAccount.certificateListFile_TLS) : JamiStrings.selectCACertDefault
             itemWidth: root.itemWidth
-
-            textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateListFile_TLS)
 
             onClick: openFileDialog(JamiStrings.selectCACert,
                                     CurrentAccount.certificateListFile_TLS,
@@ -123,12 +125,9 @@ ColumnLayout {
             Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
             enabled: CurrentAccount.enable_TLS
-
             titleField: JamiStrings.userCertificate
-            source: JamiResources.round_folder_24dp_svg
             itemWidth: root.itemWidth
-
-            textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateFile_TLS)
+            textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateFile_TLS) !== "" ? UtilsAdapter.toFileInfoName(CurrentAccount.certificateFile_TLS) : JamiStrings.selectCACertDefault
 
             onClick: openFileDialog(JamiStrings.selectUserCert,
                                     CurrentAccount.certificateFile_TLS,
@@ -146,12 +145,9 @@ ColumnLayout {
             Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
             enabled: CurrentAccount.enable_TLS
-
             titleField: JamiStrings.privateKey
-            source: JamiResources.round_folder_24dp_svg
             itemWidth: root.itemWidth
-
-            textField: UtilsAdapter.toFileInfoName(CurrentAccount.privateKeyFile_TLS)
+            textField: UtilsAdapter.toFileInfoName(CurrentAccount.privateKeyFile_TLS) !== "" ? UtilsAdapter.toFileInfoName(CurrentAccount.privateKeyFile_TLS) : JamiStrings.selectCACertDefault
 
             onClick: openFileDialog(JamiStrings.selectPrivateKey,
                                     CurrentAccount.privateKeyFile_TLS,
