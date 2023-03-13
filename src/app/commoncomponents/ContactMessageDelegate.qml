@@ -32,6 +32,8 @@ Column {
     property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     property int seq: MsgSeq.single//a changer par textlabel
+    property alias  messageToSend : textLabel.text
+
     width: ListView.view ? ListView.view.width : 0
     spacing: 2
     topPadding: 12
