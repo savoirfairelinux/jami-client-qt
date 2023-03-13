@@ -25,11 +25,14 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
+
+
 RowLayout {
     id: root
 
-    property string title: ""
+    required property string title
     signal backArrowClicked
+    spacing: 10
 
     BackButton {
         id: backToSettingsMenuButton
@@ -44,11 +47,11 @@ RowLayout {
 
     Label {
         Layout.fillWidth: true
-
         text: root.title
-        font.pointSize: JamiTheme.titleFontSize
+        font.pixelSize: JamiTheme.settingsHeaderPixelSize
         font.kerning: true
         color: JamiTheme.textColor
+        Layout.leftMargin: backToSettingsMenuButton.visible ? 0 : JamiTheme.preferredSettingsMarginSize
 
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
