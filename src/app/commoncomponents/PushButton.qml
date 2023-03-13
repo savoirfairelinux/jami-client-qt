@@ -52,6 +52,7 @@ AbstractButton {
     property alias buttonTextColor: textContent.color
     property alias textHAlign: textContent.horizontalAlignment
     property bool buttonTextEnableElide: false
+    property alias alignement: textContent.horizontalAlignment
 
     property alias toolTipText: toolTip.text
 
@@ -128,8 +129,7 @@ AbstractButton {
     Text {
         id: textContent
 
-        anchors.centerIn: image.status !== Image.Null ? undefined : root
-        anchors.left: image.status !== Image.Null ? image.right : undefined
+        anchors.left: image.status !== Image.Null ? image.right : root.left
         anchors.leftMargin: preferredMargin
         anchors.verticalCenter: root.verticalCenter
 
@@ -143,7 +143,7 @@ AbstractButton {
 
         color: JamiTheme.primaryForegroundColor
         font.kerning: true
-        font.pointSize: 9
+        font.pixelSize: 12
         elide: Qt.ElideRight
     }
 
@@ -155,11 +155,11 @@ AbstractButton {
         states: [
             State {
                 name: "checked"; when: checked
-                PropertyChanges { target: background; color: checkedColor }
+                PropertyChanges { target: background; color:  checkedColor}
             },
             State {
                 name: "pressed"; when: pressed
-                PropertyChanges { target: background; color: pressedColor }
+                PropertyChanges { target: background; color: pressedColor}
             },
             State {
                 name: "hovered"; when: hovered || root.focus
@@ -190,5 +190,13 @@ AbstractButton {
             }
         ]
 
+    }
+
+    Keys.onPressed: function (keyEvent) {
+        if (keyEvent.key === Qt.Key_Enter ||
+                keyEvent.key === Qt.Key_Return) {
+            clicked()
+            keyEvent.accepted = true
+        }
     }
 }
