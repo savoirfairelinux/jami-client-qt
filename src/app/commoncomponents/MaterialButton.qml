@@ -48,8 +48,12 @@ AbstractButton {
     property var preferredWidth
     property real textLeftPadding
     property real textRightPadding
-    property real fontSize: JamiTheme.wizardViewButtonFontPixelSize
+    property real fontSize: JamiTheme.buttontextFontPixelSize
     property real textAlignment: Text.AlignHCenter
+
+    property real buttontextHeightMargin: JamiTheme.wizardButtonHeightMargin
+    height: buttontextHeightMargin + textButton.height
+    Layout.preferredHeight: height
 
     Binding on width {
         when: root.preferredWidth !== undefined ||
@@ -63,9 +67,10 @@ AbstractButton {
         value: width
     }
 
-    property real preferredHeight: JamiTheme.wizardButtonHeightMargin*2 + textButton.height
-    height: preferredHeight
-    Layout.preferredHeight: height
+    Binding on Layout.minimumHeight {
+        when: root.preferredHeight !== undefined
+        value: height
+    }
 
     hoverEnabled: true
     focusPolicy: Qt.TabFocus
