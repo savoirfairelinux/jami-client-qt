@@ -26,7 +26,7 @@ import "../../commoncomponents"
 RowLayout {
     id: root
 
-    property alias labelText: label.eText
+    property alias labelText: title.text
     property alias comboModel: comboBoxOfLayout.model
     property alias tipText: comboBoxOfLayout.tooltipText
     property alias role: comboBoxOfLayout.textRole
@@ -42,15 +42,18 @@ RowLayout {
 
     signal activated
 
-    ElidedTextLabel {
-        id: label
+    Text {
+        id: title
 
         Layout.fillWidth: true
-        Layout.preferredHeight: heightOfLayout
-        Layout.rightMargin: JamiTheme.preferredMarginSize / 2
-
-        fontSize: JamiTheme.settingsFontSize
-        maxWidth: widthOfComboBox
+        Layout.rightMargin: JamiTheme.preferredMarginSize
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+        font.pointSize: JamiTheme.settingsFontSize
+        font.kerning: true
+        color: JamiTheme.textColor
+        wrapMode: Text.WordWrap
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
     }
 
     SettingParaCombobox {
