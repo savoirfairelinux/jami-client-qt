@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53b1ed2b_33700ee8",
+        "filename": "src/app/settingsview/components/AudioSettings.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-13T13:05:00Z",
+      "side": 1,
+      "message": "need rebase",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 45,
+        "endChar": 37
+      },
+      "revId": "55fdb036dce1c5b156daba50314ed8f3ef071c9e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
