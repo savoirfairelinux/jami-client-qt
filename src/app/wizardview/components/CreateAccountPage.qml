@@ -238,9 +238,7 @@ Rectangle {
                     KeyNavigation.up: backButton
                     KeyNavigation.down: infoBox
 
-
                 }
-
 
                 Label {
                     id: invalidLabel
