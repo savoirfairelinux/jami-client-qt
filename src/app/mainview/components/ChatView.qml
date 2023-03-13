@@ -82,10 +82,11 @@ Rectangle {
     }
 
     Component.onCompleted: restoreLayout()
+    Component.onDestruction: saveLayout()
 
     function restoreLayout() {
         const detailsIndex = UtilsAdapter.getAppValue(Settings.DetailsIndex)
-        print("RESET", detailsIndex)
+        print("RESTORING idx", detailsIndex)
         if (detailsIndex === -1)
             detailsPanel.closePanel()
         else
@@ -93,13 +94,13 @@ Rectangle {
     }
 
     function saveLayout() {
-        print("SAVE", detailsPanel.currentIndex)
+        print("SAVING idx", detailsPanel.currentIndex)
         UtilsAdapter.setAppValue(Settings.DetailsIndex, detailsPanel.currentIndex)
     }
 
     onVisibleChanged: {
         if (visible) {
-            chatViewSplitView.resolvePanes()
+            resolvePanes(true)
             chatViewHeader.showSearch = !root.parent.showDetails
             if (root.parent.showDetails) {
                 detailsPanel.switchToPanel(ChatView.SwarmDetailsPanel)
@@ -109,6 +110,24 @@ Rectangle {
         } else {
             saveLayout()
         }
+    }
+
+    property int previousWidth: width
+    onWidthChanged: resolvePanes()
+    function resolvePanes(force=false) {
+        if (inCallView || !detailsPanel.visible)
+            return
+        const isExpanding = previousWidth < width
+        print("&*&*&*&*&*&*&*&*", width, detailsPanel.width + JamiTheme.mainViewPaneMinWidth, isExpanding)
+        if (width < detailsPanel.width + JamiTheme.mainViewPaneMinWidth
+                && (!isExpanding || force) && chatContents.visible) {
+            detailsPanel.previousWidth = detailsPanel.width
+            chatContents.visible = false
+        } else if (width >= JamiTheme.mainViewPaneMinWidth + detailsPanel.previousWidth
+                   && (isExpanding || force) && !chatContents.visible) {
+            chatContents.visible = true
+        }
+        previousWidth = width
     }
 
     ColumnLayout {
@@ -219,31 +238,10 @@ Rectangle {
 
             splitViewStateKey: "Chat"
 
-            property int lastContentsSplitSize: JamiTheme.detailsPageMinWidth
-            property int lastDetailsSplitSize: JamiTheme.detailsPageMinWidth
-            property int previousWidth: width
-
             Connections {
                 target: viewNode
                 function onPresented() { chatViewSplitView.restoreSplitViewState() }
                 function onDismissed() { chatViewSplitView.saveSplitViewState() }
-            }
-
-            onWidthChanged: resolvePanes()
-            function resolvePanes() {
-                if (inCallView || !detailsPanel.visible)
-                    return
-                const isExpanding = previousWidth < width
-                if (chatViewHeader.width < JamiTheme.detailsPageMinWidth + JamiTheme.mainViewPaneMinWidth
-                        && !isExpanding && chatContents.visible) {
-                    lastContentsSplitSize = chatContents.width
-                    lastDetailsSplitSize = Math.min(JamiTheme.detailsPageMinWidth, detailsPanel.width)
-                    chatContents.visible = false
-                } else if (chatViewHeader.width >= JamiTheme.mainViewPaneMinWidth + lastDetailsSplitSize
-                           && isExpanding && !layoutManager.isFullScreen && !chatContents.visible) {
-                    chatContents.visible = true
-                }
-                previousWidth = width
             }
 
             ColumnLayout {
@@ -321,6 +319,8 @@ Rectangle {
             ConversationDetailsPanel {
                 id: detailsPanel
 
+                property int previousWidth: JamiTheme.detailsPageMinWidth
+
                 SplitView.maximumWidth: root.width
                 SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
                 SplitView.preferredWidth: JamiTheme.detailsPageMinWidth
@@ -328,7 +328,7 @@ Rectangle {
                 visible: false
 
                 onVisibleChanged: {
-                    if (visible) chatViewSplitView.resolvePanes()
+                    if (visible) resolvePanes(true)
                     else chatContents.visible = true
                 }
             }
