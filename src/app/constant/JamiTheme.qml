@@ -63,6 +63,7 @@ Item {
     property color darkGreyColor: "#272727"
     property color darkGreyColorOpacity: "#be272727" // 77%
     property color tintedBlue: darkTheme ? "#03B9E9" : "#005699"
+    property color sysColor: "#F0EFEF"
 
     property color transparentColor: "transparent"
     property color primaryForegroundColor: darkTheme ? whiteColor : blackColor
@@ -146,11 +147,12 @@ Item {
 
     //Combobox
     property color comboBoxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
-    property color comboboxBorderColorActive: tintedBlue
+    property color comboboxBorderColorActive: darkTheme ? "#03B9E9" : "#005699"
     property color comboboxBorderColor: darkTheme ? "#1D5F70" : "#A3C2DA"
-    property color comboboxTextColorHovered: tintedBlue
+    property color comboboxIconColor: darkTheme ? "#03B9E9" : "#005699"
     property color comboboxBackgroundColorHovered: darkTheme ? "#123F4A" : "#E5EEF5"
-
+    property color comboboxTextColor: darkTheme ? "#03B9E9" : "#005699"
+    property color comboboxTextColorHovered: tintedBlue
 
     //Spinbox
     property color spinboxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
@@ -352,11 +354,15 @@ Item {
     property int menuItemsCommonBorderWidth: 1
     property int menuBorderPreferredHeight: 8
 
-    property real maximumWidthSettingsView: 600
+    property real maximumWidthSettingsView: 516
     property real settingsHeaderpreferredHeight: 64
     property real preferredFieldWidth: 256
-    property real preferredFieldHeight: 32
+    property real preferredFieldHeight: 36
+    property real preferredButtonSettingsHeight: 46
     property real preferredMarginSize: 16
+    property real preferredSettingsMarginSize: 40
+    property real preferredSettingsContentMarginSize: 30
+    property real preferredSettingsBottomMarginSize: 30
     property real settingsMarginSize: 8
     property real preferredDialogWidth: 400
     property real preferredDialogHeight: 300
@@ -479,6 +485,7 @@ Item {
     property real jamiIdLogoWidth: 70
     property real jamiIdLogoHeight: 24
     property real jamiIdFontSize: calcSize(13)
+    property color jamiIdColor: darkTheme ? blackColor : sysColor
 
     // MainView
     property color welcomeViewBackgroundColor: darkTheme ? lightGrey_ : secondaryBackgroundColor
@@ -510,7 +517,7 @@ Item {
     property real welcomeLogoWidth: 100
     property real welcomeLogoHeight: 100
     property real wizardButtonWidth: 400
-    property real wizardButtonHeightMargin: 13
+    property real wizardButtonHeightMargin: 31
 
     // WizardView Advanced Account Settings
     property color lightBlue_: darkTheme ? "#03B9E9" : "#e5eef5"
@@ -557,6 +564,8 @@ Item {
     //MaterialButton
     property real buttontextPadding: 10
     property real buttontextWizzardPadding: 30
+    property real buttontextHeightMargin: 21
+    property real buttontextFontPixelSize: calcSize(15)
 
     // UsernameTextEdit
     property real usernameTextEditPointSize:calcSize(9 + fontSizeOffset)
@@ -589,6 +598,20 @@ Item {
     // Messages point size
     property real contactEventPointSize: calcSize(10 + fontSizeOffset)
     property int contactMessageAvatarSize: 24
+
+    // Settings
+    property int settingMenuPixelSize: calcSize(13)
+    property int settingToggleDescrpitonPixelSize: calcSize(13)
+    property int settingsTitlePixelSize: calcSize(22)
+    property int settingsHeaderPixelSize: calcSize(26)
+    property int settingsDescriptionPixelSize: calcSize(15)
+    property int settingsCategorySpacing: 15
+    property int settingsCategoryAudioVideoSpacing: 6
+    property real settingsBoxRadius: 10
+    property int settingsBlockSpacing: 40
+    property real settingsMenuChildrenButtonHeight: 30
+    property real settingsMenuHeaderButtonHeight: 50
+
 
 
     function setTheme(dark) {
