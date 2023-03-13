@@ -81,4 +81,5 @@ protected:
 
     // Convenience pointer to be pulled from lrcinstance
     ConversationModel* model_;
+    QString accountId_;
 };

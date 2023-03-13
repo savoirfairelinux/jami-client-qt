@@ -24,6 +24,8 @@ ConversationListModelBase::ConversationListModelBase(LRCInstance* instance, QObj
 {
     lrcInstance_ = instance;
     model_ = lrcInstance_->getCurrentConversationModel();
+    auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+    accountId_ = accInfo.id;
 }
 
 int
@@ -47,12 +49,12 @@ ConversationListModelBase::roleNames() const
 QVariant
 ConversationListModelBase::dataForItem(item_t item, int role) const
 {
+    auto& accInfo = lrcInstance_->getAccountInfo(accountId_);
     switch (role) {
     case Role::InCall: {
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty()) {
-            auto* callModel = lrcInstance_->getCurrentCallModel();
-            return QVariant(callModel->hasCall(convInfo.callId));
+            return QVariant(accInfo.callModel->hasCall(convInfo.callId));
         }
         return QVariant(false);
     }
@@ -69,9 +71,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     case Role::CallStackViewShouldShow: {
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty() && !convInfo.callId.isEmpty()) {
-            auto* callModel = lrcInstance_->getCurrentCallModel();
-            const auto& call = callModel->getCall(convInfo.callId);
-            return QVariant(callModel->hasCall(convInfo.callId)
+            const auto& call = accInfo.callModel->getCall(convInfo.callId);
+            return QVariant(accInfo.callModel->hasCall(convInfo.callId)
                             && ((!call.isOutgoing
                                  && (call.status == call::Status::IN_PROGRESS
                                      || call.status == call::Status::PAUSED
@@ -141,7 +142,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         QStringList ret;
         Q_FOREACH (const auto& peerUri, model_->peersForConversation(item.uid))
             try {
-                auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+                auto& accInfo = lrcInstance_->getAccountInfo(accountId_);
                 auto contact = accInfo.contactModel->getContact(peerUri);
                 ret << contact.profileInfo.alias << contact.registeredName;
             } catch (const std::exception&) {
@@ -152,7 +153,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         // The conversation can show a green dot if at least one peer is present
         Q_FOREACH (const auto& peerUri, model_->peersForConversation(item.uid))
             try {
-                auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+                auto& accInfo = lrcInstance_->getAccountInfo(accountId_);
                 auto contact = accInfo.contactModel->getContact(peerUri);
                 if (contact.isPresent)
                     return true;
@@ -169,7 +170,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         if (peerUriList.isEmpty())
             return {};
         auto peerUri = peerUriList.at(0);
-        auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+        auto& accInfo = lrcInstance_->getAccountInfo(accountId_);
         if (peerUri == accInfo.profileInfo.uri) {
             // Conversation alone with self
             switch (role) {
@@ -184,8 +185,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             case Role::IsBanned:
                 return QVariant(false);
             case Role::ContactType:
-                return QVariant(
-                    static_cast<int>(accInfo.profileInfo.type));
+                return QVariant(static_cast<int>(accInfo.profileInfo.type));
             }
         }
         ContactModel* contactModel;
@@ -194,8 +194,9 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         try {
             contact = contactModel->getContact(peerUri);
         } catch (const std::exception&) {
-            qWarning() << Q_FUNC_INFO << "Can't find contact" << peerUri
-                       << " this is a bug, please report";
+            qWarning() << Q_FUNC_INFO << "Can't find contact" << peerUri << " for account "
+                       << lrcInstance_->accountModel().bestNameForAccount(accInfo.id)
+                       << " - Conv: " << item.uid;
         }
 
         switch (role) {
