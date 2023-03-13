@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
+ * Author: Fadi Shehadeh   <fadi.shehadeh@savoirfairelinux.com>
  * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -32,21 +33,9 @@ ColumnLayout {
     id: root
 
     property int itemWidth
-
-    Label {
-        Layout.fillWidth: true
-
-        text: JamiStrings.troubleshootTitle
-        font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
-        color: JamiTheme.textColor
-
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-    }
+    width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
 
     RowLayout {
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         Text {
             Layout.fillWidth: true
@@ -66,15 +55,20 @@ ColumnLayout {
         MaterialButton {
             id: enableTroubleshootingButton
 
+            TextMetrics{
+                id: enableTroubleshootingButtonTextSize
+                font.weight: Font.Bold
+                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                font.capitalization: Font.AllUppercase
+                text: enableTroubleshootingButton.text
+            }
+
             Layout.alignment: Qt.AlignRight
 
-            preferredWidth: itemWidth / 1.5
+            preferredWidth: enableTroubleshootingButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding
             preferredHeight: JamiTheme.preferredFieldHeight
 
-            color: JamiTheme.buttonTintedBlack
-            hoveredColor: JamiTheme.buttonTintedBlackHovered
-            pressedColor: JamiTheme.buttonTintedBlackPressed
-            secondary: true
+            primary: true
 
             text: JamiStrings.troubleshootButton
             toolTipText: JamiStrings.troubleshootButton
@@ -86,16 +80,4 @@ ColumnLayout {
         }
     }
 
-    ToggleSwitch {
-        id: checkboxCallSwarm
-        Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
-        checked: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
-        labelText: JamiStrings.experimentalCallSwarm
-        fontPointSize: JamiTheme.settingsFontSize
-        tooltipText: JamiStrings.experimentalCallSwarmTooltip
-        onSwitchToggled: {
-            UtilsAdapter.setAppValue(Settings.Key.EnableExperimentalSwarm, checked)
-        }
-    }
 }
