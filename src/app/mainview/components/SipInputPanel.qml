@@ -64,7 +64,8 @@ Popup {
                     Layout.preferredWidth: 30
                     Layout.preferredHeight: 30
 
-                    preferredMargin: 8
+                    preferredLeftMargin: 8
+                    preferredRightMargin: 8
                     buttonText: modelData
                     buttonTextColor: "white"
                     checkable: false

@@ -31,10 +31,8 @@ PushButton {
     property int menuType: 0
 
     preferredHeight: 64
-    preferredMargin: 24
-
-    anchors.left: parent.left
-    anchors.right: parent.right
+    preferredLeftMargin: 24
+    preferredRightMargin: 24
 
     buttonTextFont.pointSize: JamiTheme.textFontSize + 2
     textHAlign: Text.AlignLeft
