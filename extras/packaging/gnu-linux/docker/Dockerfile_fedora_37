@@ -1,6 +1,7 @@
 FROM fedora:37
 
 RUN dnf clean all
+RUN dnf update -y
 
 RUN dnf install -y dnf-command\(builddep\) rpmdevtools && \
     dnf install -y mock
