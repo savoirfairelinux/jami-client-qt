@@ -33,7 +33,7 @@ ColumnLayout {
     Text {
         Layout.fillWidth: true
 
-        font.pointSize: JamiTheme.headerFontSize
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
         font.kerning: true
 
         horizontalAlignment: Text.AlignLeft
