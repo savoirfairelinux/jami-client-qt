@@ -69,8 +69,6 @@ Rectangle {
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-
             Layout.topMargin: JamiTheme.preferredMarginSize
             Layout.minimumHeight: 0
             Layout.preferredHeight: childrenRect.height

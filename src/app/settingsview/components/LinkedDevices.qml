@@ -34,12 +34,13 @@ ColumnLayout {
 
     function removeDeviceSlot(index){
         var deviceId = settingsListView.model.data(settingsListView.model.index(index,0),
-                                                     DeviceItemListModel.DeviceID)
+                                                   DeviceItemListModel.DeviceID)
         if(CurrentAccount.hasArchivePassword){
             viewCoordinator.presentDialog(
                         appWindow,
                         "settingsview/components/RevokeDevicePasswordDialog.qml",
                         { deviceId: deviceId })
+
         } else {
             viewCoordinator.presentDialog(
                         appWindow,
@@ -49,7 +50,7 @@ ColumnLayout {
                             infoText: JamiStrings.sureToRemoveDevice,
                             buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel],
                             buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                                           SimpleMessageDialog.ButtonStyle.TintedBlack],
+                                SimpleMessageDialog.ButtonStyle.TintedBlack],
                             buttonCallBacks: [
                                 function() { DeviceItemListModel.revokeDevice(deviceId, "") }
                             ]
@@ -57,69 +58,79 @@ ColumnLayout {
         }
     }
 
-    Label {
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-        text: JamiStrings.linkedDevices
-        color: JamiTheme.textColor
-
-        font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
-    }
-
     JamiListView {
         id: settingsListView
 
         Layout.fillWidth: true
         Layout.preferredHeight: 160
+        spacing: 10
+
 
         model: SortFilterProxyModel {
             sourceModel: DeviceItemListModel
             sorters: [
-                RoleSorter { roleName: "IsCurrent"; sortOrder: Qt.DescendingOrder },
-                StringSorter {
-                    roleName: "DeviceName"
-                    caseSensitivity: Qt.CaseInsensitive
-                }
+                RoleSorter { roleName: "DeviceName"; sortOrder: Qt.DescendingOrder}
             ]
         }
 
         delegate: DeviceItemDelegate {
             id: settingsListDelegate
 
+            Layout.fillWidth: true
             implicitWidth: settingsListView.width
-            width: settingsListView.width
-            height: 70
+            width: Math.min(350, root.width - JamiTheme.preferredMarginSize * 2)
 
             deviceName: DeviceName
             deviceId: DeviceID
             isCurrent: IsCurrent
-
+            visible: !IsCurrent
             onBtnRemoveDeviceClicked: removeDeviceSlot(index)
         }
+
+    }
+
+    Text {
+        id: linkedDevicesDescription
+
+        Layout.alignment: Qt.AlignLeft
+        Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins * 2
+        Layout.preferredWidth: Math.min(350, root.width - JamiTheme.preferredMarginSize * 2)
+
+        text: JamiStrings.linkedAccountDescription
+        color: JamiTheme.textColor
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+
+        font.pixelSize: 15
+        font.kerning: true
     }
 
     MaterialButton {
         id: linkDevPushButton
 
-        Layout.alignment: Qt.AlignCenter
+        TextMetrics{
+            id: linkDevPushButtonTextSize
+            font.weight: Font.Bold
+            font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+            font.capitalization: Font.AllUppercase
+            text: linkDevPushButton.text
+        }
 
-        preferredWidth: JamiTheme.preferredFieldWidth
+        Layout.alignment: Qt.AlignLeft
+        Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins * 2
+        preferredWidth: linkDevPushButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+        preferredHeight: JamiTheme.preferredButtonSettingsHeight
 
         visible: CurrentAccount.managerUri === "" && CurrentAccount.enabled
 
-        color: JamiTheme.buttonTintedBlack
-        hoveredColor: JamiTheme.buttonTintedBlackHovered
-        pressedColor: JamiTheme.buttonTintedBlackPressed
-        secondary: true
+        primary: true
         toolTipText: JamiStrings.tipLinkNewDevice
-
-        iconSource: JamiResources.round_add_24dp_svg
-
         text: JamiStrings.linkAnotherDevice
 
         onClicked: viewCoordinator.presentDialog(
-                                   appWindow,
-                                   "settingsview/components/LinkDeviceDialog.qml")
+                       appWindow,
+                       "settingsview/components/LinkDeviceDialog.qml",
+                       { deviceId: deviceId })
     }
 }
