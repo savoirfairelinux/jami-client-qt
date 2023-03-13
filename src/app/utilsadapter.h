@@ -77,6 +77,8 @@ public:
     Q_INVOKABLE void setAppValue(const QString& key, const QVariant& value);
     Q_INVOKABLE QVariant getAppValue(const Settings::Key key);
     Q_INVOKABLE void setAppValue(const Settings::Key key, const QVariant& value);
+    Q_INVOKABLE QVariant getDefault(const Settings::Key key);
+    Q_INVOKABLE void setToDefault(const Settings::Key key);
 
     Q_INVOKABLE const QString getProjectCredits();
     Q_INVOKABLE const QString getVersionStr();

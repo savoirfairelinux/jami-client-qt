@@ -45,24 +45,21 @@ RowLayout {
 
         font.pointSize: JamiTheme.settingsFontSize
         font.kerning: true
-
+        wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
 
         color: JamiTheme.textColor
-        elide: Text.ElideRight
     }
 
     MaterialButton {
         id: button
 
-        Layout.fillHeight: true
         preferredWidth: root.itemWidth
+        buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
         iconSource: root.source
-        color: JamiTheme.buttonTintedGrey
-        hoveredColor: JamiTheme.buttonTintedGreyHovered
-        pressedColor: JamiTheme.buttonTintedGreyPressed
+        secondary: true
 
         onClicked: click()
     }

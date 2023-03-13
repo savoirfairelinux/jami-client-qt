@@ -167,6 +167,7 @@ Rectangle {
                         text: JamiStrings.tls
                         ButtonGroup.group: optionsB
                         checked: true
+                        bgColor: JamiTheme.secondaryBackgroundColor
 
                         KeyNavigation.up: sipPasswordEdit
                         KeyNavigation.down: udpRadioButton
@@ -180,6 +181,7 @@ Rectangle {
                         text: JamiStrings.udp
                         ButtonGroup.group: optionsB
                         color: JamiTheme.textColor
+                        bgColor: JamiTheme.secondaryBackgroundColor
 
                         KeyNavigation.up: tlsRadioButton
                         KeyNavigation.down: createAccountButton
