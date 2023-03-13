@@ -52,6 +52,7 @@ AbstractButton {
     property alias buttonTextColor: textContent.color
     property alias textHAlign: textContent.horizontalAlignment
     property bool buttonTextEnableElide: false
+    property alias alignement: textContent.horizontalAlignment
 
     property alias toolTipText: toolTip.text
 
