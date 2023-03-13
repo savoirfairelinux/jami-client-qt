@@ -1,7 +1,5 @@
 /*
  * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
- * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -168,6 +166,10 @@ JamiListView {
 
     topMargin: 12
     spacing: 2
+
+    // The cache buffer is set to a reasonable value to avoid flickering
+    // when scrolling up and down in a list with items of different heights.
+    cacheBuffer: 2048
 
     maximumFlickVelocity: 2048
     verticalLayoutDirection: ListView.BottomToTop
