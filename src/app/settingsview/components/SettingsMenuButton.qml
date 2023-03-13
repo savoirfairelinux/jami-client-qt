@@ -33,8 +33,8 @@ PushButton {
     preferredHeight: 64
     preferredMargin: 24
 
-    anchors.left: parent.left
-    anchors.right: parent.right
+//    anchors.left: parent.left
+//    anchors.right: parent.right
 
     buttonTextFont.pointSize: JamiTheme.textFontSize + 2
     textHAlign: Text.AlignLeft
