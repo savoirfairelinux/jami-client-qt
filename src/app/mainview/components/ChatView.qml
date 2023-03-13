@@ -43,7 +43,6 @@ Rectangle {
 
     property string accountId: ""
 
-
     signal dismiss
 
     function focusChatView() {
@@ -61,12 +60,15 @@ Rectangle {
 
     function instanceMapObject() {
         if (WITH_WEBENGINE) {
-            var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
-            var sprite = component.createObject(chatContents, {maxWidth: root.width, maxHeight: root.height});
+            var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml")
+            var object = component.createObject(realChatContent, {
+                                                   boundingItem: chatContents
+                                               })
 
-            if (sprite === null) {
+            if (object === null) {
                 // Error Handling
-                console.log("Error creating object");
+                console.log("Error creating object")
+                return
             }
         }
     }
@@ -388,95 +390,109 @@ Rectangle {
             }
 
             ColumnLayout {
-                id: chatContents
-                SplitView.maximumWidth: root.width
-                SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
-                SplitView.fillWidth: true
+                    id: realChatContent
+                    spacing: 0
 
-                ListView {
-                    id: locationAreaContainer2
-                    visible: false
-                    Layout.preferredHeight: Math.min(childrenRect.height,200)
-                    Layout.fillWidth: true
-                    model: listUriShared
-                    delegate: LocationArea {imSharing: false}
-                }
+                    SplitView.maximumWidth: root.width
+                    SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
+                    SplitView.fillWidth: true
 
-                ListView {
-                    id: locationAreaContainer
-                    visible: false
-                    Layout.preferredHeight: Math.min(childrenRect.height,200)
-                    Layout.fillWidth: true
-                    model: listUriShare
-                    delegate: LocationArea {imSharing: true}
-                }
+                    ListView {
+                        id: locationAreaContainer2
+                        visible: false
+                        Layout.preferredHeight: Math.min(contentHeight,200)
+                        Layout.fillWidth: true
+                        model: listUriShared
+                        delegate: LocationArea {imSharing: false}
+
+                    }
+
+                    ListView {
+                        id: locationAreaContainer
+                        visible: false
+                        Layout.preferredHeight: Math.min(contentHeight,200)
+                        Layout.fillWidth: true
+                        model: listUriShare
+                        delegate: LocationArea {imSharing: true}
+
+                    }
 
 
-                StackLayout {
-                    id: chatViewStack
 
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Layout.topMargin: JamiTheme.chatViewHairLineSize
-                    Layout.bottomMargin: JamiTheme.chatViewHairLineSize
-                    Layout.leftMargin: JamiTheme.chatviewMargin
-                    Layout.rightMargin: JamiTheme.chatviewMargin
+                    ColumnLayout {
+                        id: chatContents
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
 
-                    currentIndex: CurrentConversation.isRequest ||
-                                  CurrentConversation.needsSyncing
+                        StackLayout {
+                            id: chatViewStack
 
-                    Loader {
-                        active: CurrentConversation.id !== ""
-                        sourceComponent: MessageListView {
+                            Layout.alignment: Qt.AlignHCenter
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            Layout.topMargin: JamiTheme.chatViewHairLineSize
+                            Layout.bottomMargin: JamiTheme.chatViewHairLineSize
+                            Layout.leftMargin: JamiTheme.chatviewMargin
+                            Layout.rightMargin: JamiTheme.chatviewMargin
+
+                            currentIndex: CurrentConversation.isRequest ||
+                                          CurrentConversation.needsSyncing
+
+                            Loader {
+                                active: CurrentConversation.id !== ""
+                                sourceComponent: MessageListView {
+                                    DropArea {
+                                        anchors.fill: parent
+                                        onDropped: function(drop) {
+                                            chatViewFooter.setFilePathsToSend(drop.urls)
+                                        }
+                                    }
+                                }
+                            }
+
+                            InvitationView {
+                                id: invitationView
+
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                            }
+                        }
+
+                        UpdateToSwarm {
+                            visible: !CurrentConversation.isSwarm && !CurrentConversation.isTemporary && CurrentAccount.type  === Profile.Type.JAMI
+                            Layout.fillWidth: true
+                        }
+
+                        ChatViewFooter {
+                            id: chatViewFooter
+
+                            visible: {
+                                if (CurrentAccount.type  === Profile.Type.SIP)
+                                    return true
+                                if (CurrentConversation.isBanned)
+                                    return false
+                                else if (CurrentConversation.needsSyncing)
+                                    return false
+                                else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
+                                    return false
+                                return CurrentConversation.isSwarm || CurrentConversation.isTemporary
+                            }
+
+                            Layout.alignment: Qt.AlignHCenter
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: implicitHeight
+                            Layout.maximumHeight: JamiTheme.chatViewFooterMaximumHeight
+
                             DropArea {
                                 anchors.fill: parent
-                                onDropped: function(drop) {
-                                    chatViewFooter.setFilePathsToSend(drop.urls)
-                                }
+                                onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
                             }
                         }
                     }
 
-                    InvitationView {
-                        id: invitationView
-
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                    }
                 }
 
-                UpdateToSwarm {
-                    visible: !CurrentConversation.isSwarm && !CurrentConversation.isTemporary && CurrentAccount.type  === Profile.Type.JAMI
-                    Layout.fillWidth: true
-                }
 
-                ChatViewFooter {
-                    id: chatViewFooter
-
-                    visible: {
-                        if (CurrentAccount.type  === Profile.Type.SIP)
-                            return true
-                        if (CurrentConversation.isBanned)
-                            return false
-                        else if (CurrentConversation.needsSyncing)
-                            return false
-                        else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
-                            return false
-                        return CurrentConversation.isSwarm || CurrentConversation.isTemporary
-                    }
-
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: implicitHeight
-                    Layout.maximumHeight: JamiTheme.chatViewFooterMaximumHeight
-
-                    DropArea {
-                        anchors.fill: parent
-                        onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
-                    }
-                }
-            }
 
             MessagesResearchPanel {
                 id: messagesResearchPanel

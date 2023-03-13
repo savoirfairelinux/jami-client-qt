@@ -32,14 +32,18 @@ import "../../commoncomponents"
 Item {
     id: root
 
+    required property Item boundingItem
+
     property bool isUnpin: false
-    property real maxWidth
-    property real maxHeight
     property string attachedAccountId
     property string currentAccountId: CurrentAccount.id
     property string currentConvId: CurrentConversation.id
     property bool isSharing: (PositionManager.positionShareConvIdsCount !== 0)
     property bool isSharingToCurrentConversation
+
+    property real maxWidth: parent.width
+    property real maxHeight: parent.height
+    property real notifsAreaYOffset: maxHeight - boundingItem.height
 
     function closeMapPosition() {
         root.destroy()
@@ -100,6 +104,10 @@ Item {
 
         Rectangle {
             id: mapObject
+
+            transform: Translate {
+                y: mapObject.y < notifsAreaYOffset ? notifsAreaYOffset : 0
+            }
 
             x: 0
             y: 0

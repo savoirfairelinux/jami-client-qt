@@ -187,7 +187,9 @@ Rectangle {
                     imageColor: locationColor
                     normalColor: JamiTheme.transparentColor
                     source: JamiResources.round_close_24dp_svg
-                    onClicked: root.ListView.view.visible = false
+                    onClicked: {
+                        root.ListView.view.visible = false
+                    }
                 }
             }
         }
