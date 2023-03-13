@@ -40,15 +40,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Main project directories:
 
-# jami-daemon
-if(NOT DEFINED WITH_DAEMON_SUBMODULE)
-  set(WITH_DAEMON_SUBMODULE false)
-  # daemon
-  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/../daemon)
-else()
-  # daemon
-  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/daemon)
-endif()
 # src
 set(LIBCLIENT_SRC_DIR ${PROJECT_SOURCE_DIR}/src/libclient)
 set(APP_SRC_DIR ${PROJECT_SOURCE_DIR}/src/app)
@@ -112,14 +103,6 @@ endif()
 set(CMAKE_CXX_FLAGS
   ${CMAKE_CXX_FLAGS} ${Qt6Widgets_EXECUTABLE_COMPILE_FLAGS})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
-
-if (WITH_DAEMON_SUBMODULE AND NOT EXISTS ${DAEMON_DIR}/src)
-  message(FATAL_ERROR
-    "Jami Daemon sources not found in ${DAEMON_DIR}/src.  If you \
-cloned this repository via git, perhaps you did not initialize its \
-submodules afterwards.  You can do so by running \"git submodule \
-update --init\" in the repository.")
-endif()
 set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH} "${EXTRAS_DIR}/build/cmake/modules")
 find_package(LibJami REQUIRED)

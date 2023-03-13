@@ -12,7 +12,7 @@
 	branch = qt-6
 	ignore = dirty
 [submodule "daemon"]
-	path = daemon
+	path = src/libclient/daemon
 	url = https://review.jami.net/jami-daemon
 # Sparkle is updater for macOS
 [submodule "extras/packaging/update/sparkle/Sparkle"]
