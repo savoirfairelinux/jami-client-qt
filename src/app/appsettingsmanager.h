@@ -58,7 +58,7 @@ extern const QString defaultDownloadPath;
     X(LANG, "SYSTEM") \
     X(PositionShareDuration, 15) \
     X(PositionShareLimit, true) \
-    X(FlipSelf, false)
+    X(FlipSelf, true)
 
 /*
  * A class to expose settings keys in both c++ and QML.
@@ -115,6 +115,8 @@ public:
 
     Q_INVOKABLE QVariant getValue(const Settings::Key key);
     Q_INVOKABLE void setValue(const Settings::Key key, const QVariant& value = {});
+
+    Q_INVOKABLE QVariant getDefault(const Settings::Key key);
 
     QString getLanguage();
 

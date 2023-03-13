@@ -29,11 +29,12 @@ ColumnLayout {
     id: root
 
     property int itemWidth
+    spacing: JamiTheme.settingsCategorySpacing
 
     Text {
         Layout.fillWidth: true
 
-        font.pointSize: JamiTheme.headerFontSize
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
         font.kerning: true
 
         horizontalAlignment: Text.AlignLeft
@@ -46,13 +47,11 @@ ColumnLayout {
 
     ColumnLayout {
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         ToggleSwitch {
             id: checkBoxAllowIPAutoRewrite
 
             labelText: JamiStrings.allowIPAutoRewrite
-            fontPointSize: JamiTheme.settingsFontSize
 
             checked: CurrentAccount.allowIPAutoRewrite
 
@@ -63,7 +62,6 @@ ColumnLayout {
             id: checkBoxCustomAddressPort
 
             labelText: JamiStrings.useCustomAddress
-            fontPointSize: JamiTheme.settingsFontSize
 
             visible: !checkBoxAllowIPAutoRewrite.checked
             checked: CurrentAccount.publishedSameAsLocal
@@ -75,7 +73,6 @@ ColumnLayout {
             id: lineEditSIPCustomAddress
 
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             visible: !checkBoxAllowIPAutoRewrite.checked
             enabled: checkBoxCustomAddressPort.checked
