@@ -43,9 +43,9 @@ RowLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: heightOfLayout
         Layout.rightMargin: JamiTheme.preferredMarginSize
-
+        visible: labelText !== ""
         text: root.labelText
-        font.pointSize: fontPointSize
+        font.pixelSize: 15
         font.kerning: true
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignLeft

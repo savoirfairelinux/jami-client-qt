@@ -31,22 +31,23 @@ ColumnLayout {
     property int itemWidth
 
     Text {
-        Layout.fillWidth: true
-        Layout.rightMargin: JamiTheme.preferredMarginSize / 2
 
-        font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
-
+        Layout.alignment: Qt.AlignLeft
+        Layout.preferredWidth: preferredWidth
+        text: JamiStrings.openDHTConfig
+        color: JamiTheme.textColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        color: JamiTheme.textColor
-        text: JamiStrings.openDHTConfig
-        elide: Text.ElideRight
+        wrapMode : Text.WordWrap
+
+        font.pixelSize: 22
+        font.kerning: true
+
     }
+
 
     ColumnLayout {
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         ToggleSwitch {
             id: checkAutoConnectOnLocalNetwork
