@@ -16,6 +16,29 @@
       "message": "Do we need to wait for daemon\u0027s patch? (else we also need to bump)",
       "revId": "7714d4a09123aada158009b1ff53f9b97ac4c433",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62f256bb_b5e867ef",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-03-14T20:10:31Z",
+      "side": 1,
+      "message": "1. Should `Flip` be changed to `Mirror`?\n\n`Mirror` is only in horizontal direction, where as `Flip` can be in both the horizontal and vertical directions.\n\n`enableMirror`\n\n2. Should `Local` be added to the variable?\n\n`enableLocalMirror`\n\nPlease ignore if the variable name would be too long.\n\nThank you",
+      "range": {
+        "startLine": 200,
+        "startChar": 20,
+        "endLine": 200,
+        "endChar": 30
+      },
+      "revId": "7714d4a09123aada158009b1ff53f9b97ac4c433",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
