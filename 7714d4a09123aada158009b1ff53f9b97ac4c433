@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17b9e5dc_bdc41331",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-14T18:39:12Z",
+      "side": 1,
+      "message": "Do we need to wait for daemon\u0027s patch? (else we also need to bump)",
+      "revId": "7714d4a09123aada158009b1ff53f9b97ac4c433",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
