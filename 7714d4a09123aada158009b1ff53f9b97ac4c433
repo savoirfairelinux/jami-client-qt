@@ -39,6 +39,30 @@
       },
       "revId": "7714d4a09123aada158009b1ff53f9b97ac4c433",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02445629_9926c5f2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-03-14T20:14:46Z",
+      "side": 1,
+      "message": "Or perhaps `mirrorSelf` or `selfMirror` could the be variable name.",
+      "parentUuid": "62f256bb_b5e867ef",
+      "range": {
+        "startLine": 200,
+        "startChar": 20,
+        "endLine": 200,
+        "endChar": 30
+      },
+      "revId": "7714d4a09123aada158009b1ff53f9b97ac4c433",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
