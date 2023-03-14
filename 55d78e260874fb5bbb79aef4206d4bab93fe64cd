@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a48ef349_44937683",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-14T16:47:56Z",
+      "side": 1,
+      "message": "double string for the same value, one is enough",
+      "range": {
+        "startLine": 257,
+        "startChar": 18,
+        "endLine": 257,
+        "endChar": 56
+      },
+      "revId": "55d78e260874fb5bbb79aef4206d4bab93fe64cd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
