@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea27ff57_54e5b7b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-03-15T12:23:17Z",
+      "side": 1,
+      "message": "open details, close it\nend jami and restart\nopen conversation, it will show the details\nimho it should not\n\ntbh, imho the details panel should be always hidden once restarting jami. the state should only be kept during the lifetime of the process.",
+      "revId": "f9c4e5e04db4215243f0caab3ab7b95e30c87781",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6b25f5f_91378013",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-03-15T12:23:17Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 44
+      },
+      "revId": "f9c4e5e04db4215243f0caab3ab7b95e30c87781",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a25802a8_87a4f6e2",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-03-15T12:23:17Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 54
+      },
+      "revId": "f9c4e5e04db4215243f0caab3ab7b95e30c87781",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
