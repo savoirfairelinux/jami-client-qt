@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2dc34a77_f4b7f415",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-03-15T12:26:50Z",
+      "side": 1,
+      "message": "Also: sometimes, after restarting jami, the details panel can be visible but empty",
+      "revId": "f9c4e5e04db4215243f0caab3ab7b95e30c87781",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6b25f5f_91378013",
         "filename": "src/app/mainview/components/ChatView.qml",
         "patchSetId": 13
