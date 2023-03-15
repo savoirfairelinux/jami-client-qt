@@ -3256,6 +3256,16 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
         }
     }
     if (details["syncing"] == "true") {
+        MapStringString messageMap = {
+            {"type", "initial"},
+            {"author", otherMember},
+            {"timestamp", details["created"]},
+            {"linearizedParent", ""},
+        };
+        auto msg = interaction::Info(messageMap, linked.owner.profileInfo.uri);
+
+        insertSwarmInteraction(convId, msg, conversation, true);
+        conversation.lastMessageUid = convId;
         conversation.needsSyncing = true;
         Q_EMIT linked.conversationUpdated(conversation.uid);
         Q_EMIT linked.dataChanged(indexOf(conversation.uid));
