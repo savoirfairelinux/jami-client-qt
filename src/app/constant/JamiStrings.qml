@@ -197,6 +197,7 @@ Item {
     property string fps: qsTr("Frames per second")
     property string selectFPS: qsTr("Select video frame rate (frames per second)")
     property string enableHWAccel: qsTr("Enable hardware acceleration")
+    property string mirrorLocalVideo: qsTr("Mirror local video")
     property string previewUnavailable: qsTr("Preview unavailable")
     property string screenSharing: qsTr("Screen Sharing")
     property string selectScreenSharingFPS: qsTr("Select screen sharing frame rate (frames per second)")

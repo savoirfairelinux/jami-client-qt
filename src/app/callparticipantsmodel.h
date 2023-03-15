@@ -48,7 +48,8 @@
     X(IsContact) \
     X(VoiceActivity) \
     X(IsRecording) \
-    X(HandRaised)
+    X(HandRaised) \
+    X(IsSharing)
 
 namespace CallParticipant {
 Q_NAMESPACE

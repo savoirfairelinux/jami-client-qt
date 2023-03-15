@@ -31,6 +31,7 @@ Item {
                                    / videoOutput.sourceRect.width) ||
                                   0.5625 // 16:9 default
     property bool crop: false
+    property bool flip: false
 
     // This rect describes the actual rendered content rectangle
     // as the VideoOutput component may use PreserveAspectFit
@@ -71,6 +72,11 @@ Item {
             source: videoOutput
             anchors.fill: root
             radius: (1. - opacity) * 100
+        }
+
+        transform:  Scale {
+            origin.x: videoOutput.width / 2
+            xScale: root.flip ? -1 : 1
         }
     }
 
