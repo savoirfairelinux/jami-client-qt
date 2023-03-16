@@ -158,12 +158,12 @@ BaseModalDialog {
                 textFormat: TextEdit.RichText
                 selectByMouse: true
                 readOnly: true
-                onLinkActivated: Qt.openUrlExternally(new Url(link))
+                onLinkActivated: Qt.openUrlExternally(link)
 
                 TextMetrics {
                     id: textMetricsjamiDeclarationHyperText
                     font: jamiDeclarationHyperText.font
-                    text: '<html><style type="text/css"></style><a href="https://jami.net">jami.net</a></html>'
+                    text: '<a href="https://jami.net" style="color: ' + JamiTheme.blueLinkColor + '">jami.net</a>'
                 }
 
                 MouseArea {
@@ -192,13 +192,13 @@ BaseModalDialog {
                 textFormat: TextEdit.RichText
                 selectByMouse: true
                 readOnly: true
-                onLinkActivated: Qt.openUrlExternally(new Url(link))
+                onLinkActivated: Qt.openUrlExternally(link)
 
                 TextMetrics {
                     id: textMetricsjamiNoneWarrantyHyperText
                     font: jamiDeclarationHyperText.font
-                    text: JamiStrings.declarationYear + " " + '<html><style type="text/css"></style><a href="https://savoirfairelinux.com">Savoir-faire Linux Inc.<br></a></html>'
-                          + '<html><style type="text/css"></style>This program comes with absolutely no warranty. See the <a href="http://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License</a>, version 3 or later for details.</html>'
+                    text: JamiStrings.declarationYear + " " + '<a href="https://savoirfairelinux.com" style="color: ' + JamiTheme.blueLinkColor + '">Savoir-faire Linux Inc.</a><br>'
+                          + 'This program comes with absolutely no warranty. See the <a href="http://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.blueLinkColor + '">GNU General Public License</a>, version 3 or later for details.'
                 }
 
                 MouseArea {
