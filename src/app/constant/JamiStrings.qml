@@ -614,7 +614,7 @@ Item {
     property string connectFromAnotherDevice: qsTr("Link device")
     property string importButton: qsTr("Import")
     property string pin: qsTr("Enter the PIN code")
-    property string importFromDeviceDescription: qsTr("To use an existing Jami model on this device, you need to obtain a PIN (define PIN) code.")
+    property string importFromDeviceDescription: qsTr("A PIN is required to use an existing Jami account on this device.")
     property string importStep1: qsTr("Step 01")
     property string importStep2: qsTr("Step 02")
     property string importStep3: qsTr("Step 03")
