@@ -56,15 +56,16 @@ BaseModalDialog {
             rowSpacing: 16
             columnSpacing: 24
 
-            ConversationAvatar {
+            Avatar {
                 id: contactImage
 
                 Layout.alignment: Qt.AlignRight
                 Layout.preferredWidth: preferredImgSize
                 Layout.preferredHeight: preferredImgSize
 
-                imageId: convId
+                imageId: convId !== "" ? convId : idText
                 showPresenceIndicator: false
+                mode: convId !== "" ? Avatar.Mode.Conversation : Avatar.Mode.Contact
             }
 
             // Visible when user alias is not empty and not equal to id.
@@ -193,7 +194,7 @@ BaseModalDialog {
 
                 source: convId !== "" ?
                             "image://qrImage/contact_" + convId :
-                            ""
+                            "image://qrImage/contact_" + idText
             }
 
             MaterialButton {

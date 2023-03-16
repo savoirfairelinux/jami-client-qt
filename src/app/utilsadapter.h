@@ -90,6 +90,8 @@ public:
     Q_INVOKABLE void setConversationFilter(const QString& filter);
     Q_INVOKABLE const QString getBestName(const QString& accountId, const QString& uid);
     Q_INVOKABLE QString getBestNameForUri(const QString& accountId, const QString& uri);
+    Q_INVOKABLE QString getBestIdForUri(const QString& accountId, const QString& uri);
+    Q_INVOKABLE QString getConvIdForUri(const QString& accountId, const QString& uri);
     Q_INVOKABLE const QString getPeerUri(const QString& accountId, const QString& uid);
     Q_INVOKABLE QString getBestId(const QString& accountId);
     Q_INVOKABLE const QString getBestId(const QString& accountId, const QString& uid);

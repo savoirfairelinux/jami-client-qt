@@ -182,6 +182,27 @@ UtilsAdapter::getBestNameForUri(const QString& accountId, const QString& uri)
     return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(uri);
 }
 
+QString
+UtilsAdapter::getBestIdForUri(const QString& accountId, const QString& uri)
+{
+    return lrcInstance_->getAccountInfo(accountId).contactModel->bestIdForContact(uri);
+}
+
+QString
+UtilsAdapter::getConvIdForUri(const QString& accountId, const QString& uri)
+{
+    try {
+        auto* convModel = lrcInstance_->getAccountInfo(accountId).conversationModel.get();
+        auto convInfo = convModel->getConversationForPeerUri(uri);
+        if (!convInfo)
+            return {};
+        return convInfo->get().uid;
+    } catch (const std::out_of_range& e) {
+        qDebug() << e.what();
+        return "";
+    }
+}
+
 const QString
 UtilsAdapter::getPeerUri(const QString& accountId, const QString& uid)
 {

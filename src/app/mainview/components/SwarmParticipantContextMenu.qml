@@ -86,6 +86,23 @@ ContextMenuAutoLoader {
                     MessagesAdapter.removeConversationMember(conversationId, participantUri)
                 }
             }
+        },
+        GeneralMenuItem {
+            id: contactDetails
+
+            itemName: JamiStrings.contactDetails
+            iconSource: JamiResources.person_24dp_svg
+            onClicked: {
+                viewCoordinator.presentDialog(
+                            appWindow,
+                            "mainview/components/UserProfile.qml",
+                            {
+                                aliasText: UtilsAdapter.getBestNameForUri(CurrentAccount.id, participantUri),
+                                registeredNameText: UtilsAdapter.getBestIdForUri(CurrentAccount.id, participantUri),
+                                idText: participantUri,
+                                convId: UtilsAdapter.getConvIdForUri(CurrentAccount.id, participantUri)
+                            })
+            }
         }
     ]
 
