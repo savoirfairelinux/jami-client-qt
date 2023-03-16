@@ -85,7 +85,7 @@ BaseModalDialog {
 
             onTriggered: {
                 AccountAdapter.model.exportOnRing(LRCInstance.currentAccountId,
-                                                  passwordEdit.text)
+                                                  passwordEdit.dynamicText)
             }
         }
 
