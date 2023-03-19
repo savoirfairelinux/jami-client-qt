@@ -246,7 +246,8 @@ Rectangle {
             PushButton {
                 id: detailsButton
 
-                visible: interactionButtonsVisibility && swarmDetailsVisibility
+                visible: interactionButtonsVisibility
+                            && (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP) // TODO if SIP not a request
 
                 source: JamiResources.swarm_details_panel_svg
                 toolTipText: JamiStrings.details
