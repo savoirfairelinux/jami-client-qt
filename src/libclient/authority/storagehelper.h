@@ -89,10 +89,13 @@ QString profileToVcard(const api::profile::Info& profileInfo, bool compressImage
  * @param accountId
  * @param profileInfo
  * @param isPeer
+ * @param override  If from daemon override must be false, if the client want to override the vcard
+ * should be true
  */
 void setProfile(const QString& accountId,
                 const api::profile::Info& profileInfo,
-                const bool isPeer = false);
+                bool isPeer = false,
+                bool override = false);
 
 } // namespace vcard
 
@@ -121,10 +124,12 @@ VectorString getPeerParticipantsForConversation(Database& db, const QString& con
  * @param  accountId
  * @param  profileInfo the contact info containing peer profile information
  * @param  isPeer indicates that a the profileInfo is that of a peer
+ * @param  override if the client is storing a new vcard
  */
 void createOrUpdateProfile(const QString& accountId,
                            const api::profile::Info& profileInfo,
-                           const bool isPeer = false);
+                           bool isPeer = false,
+                           bool override = false);
 
 /**
  * Remove a profile vCard

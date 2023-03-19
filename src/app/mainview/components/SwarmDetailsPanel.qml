@@ -33,10 +33,11 @@ Rectangle {
     id: root
 
     color: CurrentConversation.color
-    property var isAdmin: !CurrentConversation.isCoreDialog &&
+    property var isAdmin: (!CurrentConversation.isCoreDialog &&
         UtilsAdapter.getParticipantRole(CurrentAccount.id,
                                         CurrentConversation.id,
-                                        CurrentAccount.uri) === Member.Role.ADMIN
+                                        CurrentAccount.uri) === Member.Role.ADMIN)
+                        || CurrentAccount.type === Profile.Type.SIP
 
     ColumnLayout {
         id: swarmProfileDetails
@@ -155,7 +156,7 @@ Rectangle {
                 wrapMode: Text.NoWrap
 
                 text: formattedDescription.elidedText
-                readOnly: !root.isAdmin
+                readOnly: CurrentAccount.type === Profile.Type.SIP || !root.isAdmin
                 visible: root.isAdmin || text.length > 0
                 placeholderText: JamiStrings.addADescription
                 placeholderTextColor: {
@@ -364,6 +365,7 @@ Rectangle {
                     SwarmDetailsItem {
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        visible: CurrentAccount.type !== Profile.Type.SIP // TODO for SIP save in VCard
 
                         RowLayout {
                             anchors.fill: parent
@@ -410,6 +412,7 @@ Rectangle {
                         id: settingsSwarmItem
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        visible: CurrentAccount.type !== Profile.Type.SIP
 
                         RowLayout {
                             anchors.fill: parent
@@ -519,6 +522,7 @@ Rectangle {
                     RowLayout {
                         Layout.leftMargin: JamiTheme.preferredMarginSize
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        visible: CurrentAccount.type !== Profile.Type.SIP
 
                         Text {
                             Layout.fillWidth: true

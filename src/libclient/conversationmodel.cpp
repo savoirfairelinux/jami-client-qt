@@ -1047,6 +1047,18 @@ void
 ConversationModel::updateConversationInfos(const QString& conversationId,
                                            const MapStringString infos)
 {
+    if (owner.profileInfo.type == profile::Type::SIP) {
+        auto conversationOpt = getConversationForUid(conversationId);
+        if (!conversationOpt.has_value()) {
+            return;
+        }
+        auto& conversation = conversationOpt->get();
+        auto peer = pimpl_->peersForConversation(conversation);
+        if (!peer.isEmpty()) {
+            owner.contactModel->updateContact(peer.at(0), infos);
+        }
+        return;
+    }
     MapStringString newInfos = infos;
     // Compress avatar as it will be sent in the conversation's request over the DHT
     if (infos.contains("avatar"))

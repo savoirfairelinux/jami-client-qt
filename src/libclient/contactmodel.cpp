@@ -376,6 +376,25 @@ ContactModel::getContact(const QString& contactUri) const
     throw std::out_of_range("Contact out of range");
 }
 
+void
+ContactModel::updateContact(const QString& uri, const MapStringString& infos)
+{
+    std::unique_lock<std::mutex> lk(pimpl_->contactsMtx_);
+    auto ci = pimpl_->contacts.find(uri);
+    if (ci != pimpl_->contacts.end()) {
+        if (infos.contains("avatar"))
+            ci->profileInfo.avatar = storage::vcard::compressedAvatar(infos["avatar"]);
+        if (infos.contains("title"))
+            ci->profileInfo.alias = infos["title"];
+        storage::createOrUpdateProfile(owner.id,
+                                       ci->profileInfo,
+                                       true); // TODO 1:1 - Avatar override
+        lk.unlock();
+        Q_EMIT profileUpdated(uri);
+        Q_EMIT modelUpdated(uri);
+    }
+}
+
 const QList<QString>&
 ContactModel::getBannedContacts() const
 {
