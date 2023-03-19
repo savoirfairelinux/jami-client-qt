@@ -33,10 +33,10 @@ Rectangle {
     id: root
 
     color: CurrentConversation.color
-    property var isAdmin: !CurrentConversation.isCoreDialog &&
-        UtilsAdapter.getParticipantRole(CurrentAccount.id,
+    property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id,
                                         CurrentConversation.id,
                                         CurrentAccount.uri) === Member.Role.ADMIN
+                          || CurrentConversation.isCoreDialog
 
     ColumnLayout {
         id: swarmProfileDetails
@@ -155,7 +155,7 @@ Rectangle {
                 wrapMode: Text.NoWrap
 
                 text: formattedDescription.elidedText
-                readOnly: !root.isAdmin
+                readOnly: !root.isAdmin || CurrentConversation.isCoreDialog
                 visible: root.isAdmin || text.length > 0
                 placeholderText: JamiStrings.addADescription
                 placeholderTextColor: {
@@ -364,6 +364,7 @@ Rectangle {
                     SwarmDetailsItem {
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        visible: CurrentAccount.type !== Profile.Type.SIP // TODO for SIP save in VCard
 
                         RowLayout {
                             anchors.fill: parent
@@ -410,6 +411,7 @@ Rectangle {
                         id: settingsSwarmItem
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        visible: !CurrentConversation.isCoreDialog
 
                         RowLayout {
                             anchors.fill: parent
@@ -519,6 +521,7 @@ Rectangle {
                     RowLayout {
                         Layout.leftMargin: JamiTheme.preferredMarginSize
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        visible: CurrentAccount.type !== Profile.Type.SIP
 
                         Text {
                             Layout.fillWidth: true
