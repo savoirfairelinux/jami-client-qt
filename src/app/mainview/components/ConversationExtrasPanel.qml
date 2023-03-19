@@ -34,7 +34,7 @@ StackLayout {
 
     function restoreState() {
         // Only applies to Jami accounts, and we musn't be in a call.
-        if (detailsShouldOpen && !inCallView && !CurrentConversation.isSip) {
+        if (detailsShouldOpen && !inCallView) {
             switchToPanel(ChatView.SwarmDetailsPanel, false)
         } else {
             closePanel()
@@ -68,7 +68,7 @@ StackLayout {
     function closePanel() {
         // We need to close the panel, but not save it when appropriate.
         currentIndex = -1
-        if (!inCallView && !CurrentConversation.isSip)
+        if (!inCallView)
             detailsShouldOpen = false
     }
 

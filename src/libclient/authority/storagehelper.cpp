@@ -65,14 +65,14 @@ getPath()
 }
 
 static QString
-profileVcardPath(const QString& accountId, const QString& uri)
+profileVcardPath(const QString& accountId, const QString& uri, bool ov = false)
 {
     auto accountLocalPath = getPath() + accountId + QDir::separator();
     if (uri.isEmpty())
         return accountLocalPath + "profile.vcf";
 
     auto fileName = QString(uri.toUtf8().toBase64());
-    return accountLocalPath + "profiles" + QDir::separator() + fileName + ".vcf";
+    return accountLocalPath + "profiles" + QDir::separator() + fileName + (ov ? "_o.vcf" : ".vcf");
 }
 
 static QString
@@ -295,10 +295,10 @@ profileToVcard(const api::profile::Info& profileInfo, bool compressImage)
 }
 
 void
-setProfile(const QString& accountId, const api::profile::Info& profileInfo, const bool isPeer)
+setProfile(const QString& accountId, const api::profile::Info& profileInfo, bool isPeer, bool ov)
 {
     auto vcard = vcard::profileToVcard(profileInfo);
-    auto path = profileVcardPath(accountId, isPeer ? profileInfo.uri : "");
+    auto path = profileVcardPath(accountId, isPeer ? profileInfo.uri : "", ov);
     QLockFile lf(path + ".lock");
     QFile file(path);
     QFileInfo fileInfo(path);
@@ -347,7 +347,8 @@ getPeerParticipantsForConversation(Database& db, const QString& conversationId)
 void
 createOrUpdateProfile(const QString& accountId,
                       const api::profile::Info& profileInfo,
-                      const bool isPeer)
+                      bool isPeer,
+                      bool ov)
 {
     if (isPeer) {
         auto contact = storage::buildContactFromProfile(accountId,
@@ -357,19 +358,20 @@ createOrUpdateProfile(const QString& accountId,
             contact.profileInfo.alias = profileInfo.alias;
         if (!profileInfo.avatar.isEmpty())
             contact.profileInfo.avatar = profileInfo.avatar;
-        vcard::setProfile(accountId, contact.profileInfo, isPeer);
+        vcard::setProfile(accountId, contact.profileInfo, isPeer, ov);
         return;
     }
-    vcard::setProfile(accountId, profileInfo, isPeer);
+    vcard::setProfile(accountId, profileInfo, isPeer, ov);
 }
 
 void
 removeProfile(const QString& accountId, const QString& peerUri)
 {
     auto path = profileVcardPath(accountId, peerUri);
-    if (!QFile::remove(path)) {
+    if (!QFile::remove(path))
         qWarning() << "Couldn't remove vcard for" << peerUri << "at" << path;
-    }
+    auto opath = profileVcardPath(accountId, peerUri, true);
+    QFile::remove(opath);
 }
 
 QString
@@ -388,21 +390,38 @@ getAccountAvatar(const QString& accountId)
     return photo;
 }
 
+static QPair<QString, QString>
+getOverridenInfos(const QString& accountId, const QString& peerUri)
+{
+    QString b64filePathOverride = profileVcardPath(accountId, peerUri, true);
+    QFile fileOverride(b64filePathOverride);
+
+    QHash<QByteArray, QByteArray> overridenVCard;
+    QString overridenAlias, overridenAvatar;
+    if (fileOverride.open(QIODevice::ReadOnly)) {
+        overridenVCard = lrc::vCard::utils::toHashMap(fileOverride.readAll());
+        overridenAlias = overridenVCard[vCard::Property::FORMATTED_NAME];
+        for (const auto& key : overridenVCard.keys())
+            if (key.contains("PHOTO"))
+                overridenAvatar = overridenVCard[key];
+    }
+    return {overridenAlias, overridenAvatar};
+}
+
 api::contact::Info
 buildContactFromProfile(const QString& accountId,
-                        const QString& peer_uri,
+                        const QString& peerUri,
                         const api::profile::Type& type)
 {
     lrc::api::profile::Info profileInfo;
-    profileInfo.uri = peer_uri;
+    profileInfo.uri = peerUri;
     profileInfo.type = type;
     auto accountLocalPath = getPath() + accountId + "/";
-    QString b64filePath;
-    b64filePath = profileVcardPath(accountId, peer_uri);
+    QString b64filePath = profileVcardPath(accountId, peerUri);
     QFile file(b64filePath);
     if (!file.open(QIODevice::ReadOnly)) {
         // try non-base64 path
-        QString filePath = accountLocalPath + "profiles/" + peer_uri + ".vcf";
+        QString filePath = accountLocalPath + "profiles/" + peerUri + ".vcf";
         file.setFileName(filePath);
         if (!file.open(QIODevice::ReadOnly)) {
             return {profileInfo, "", true, false};
@@ -416,30 +435,40 @@ buildContactFromProfile(const QString& accountId,
             return {profileInfo, "", true, false};
         }
     }
+
+    auto [overridenAlias, overridenAvatar] = getOverridenInfos(accountId, peerUri);
+
     const auto vCard = lrc::vCard::utils::toHashMap(file.readAll());
     const auto alias = vCard[vCard::Property::FORMATTED_NAME];
     if (lrc::api::Lrc::cacheAvatars.load()) {
-        for (const auto& key : vCard.keys()) {
-            if (key.contains("PHOTO"))
-                profileInfo.avatar = vCard[key];
+        if (overridenAvatar.isEmpty()) {
+            for (const auto& key : vCard.keys()) {
+                if (key.contains("PHOTO"))
+                    profileInfo.avatar = vCard[key];
+            }
+        } else {
+            profileInfo.avatar = overridenAvatar;
         }
     }
-    profileInfo.alias = alias;
+    profileInfo.alias = overridenAlias.isEmpty() ? alias : overridenAlias;
     return {profileInfo, "", type == api::profile::Type::JAMI, false};
 }
 
 QString
-avatar(const QString& accountId, const QString& contactId)
+avatar(const QString& accountId, const QString& peerUri)
 {
-    if (contactId.isEmpty())
+    if (peerUri.isEmpty())
         return getAccountAvatar(accountId);
-    auto accountLocalPath = getPath() + accountId + "/";
+
+    auto [_overridenAlias, overridenAvatar] = getOverridenInfos(accountId, peerUri);
+    if (!overridenAvatar.isEmpty())
+        return overridenAvatar;
+
     QString b64filePath;
-    b64filePath = profileVcardPath(accountId, contactId);
+    b64filePath = profileVcardPath(accountId, peerUri);
     QFile file(b64filePath);
-    if (!file.open(QIODevice::ReadOnly)) {
+    if (!file.open(QIODevice::ReadOnly))
         return {};
-    }
     const auto vCard = lrc::vCard::utils::toHashMap(file.readAll());
     for (const auto& key : vCard.keys()) {
         if (key.contains("PHOTO"))
