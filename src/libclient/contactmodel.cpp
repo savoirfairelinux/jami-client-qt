@@ -376,6 +376,13 @@ ContactModel::getContact(const QString& contactUri) const
     throw std::out_of_range("Contact out of range");
 }
 
+void
+ContactModel::updateContact(const contact::Info& info)
+{
+    storage::createOrUpdateProfile(owner.id, info.profileInfo, true); // TODO store override? 1:1
+    // TODO update profile
+}
+
 const QList<QString>&
 ContactModel::getBannedContacts() const
 {

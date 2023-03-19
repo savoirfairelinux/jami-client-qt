@@ -87,6 +87,8 @@ public:
     const contact::Info getContact(const QString& contactUri) const;
     ContactInfoMap getSearchResults() const;
 
+    void updateContact(const contact::Info& info);
+
     /**
      * Retrieve when a contact is added
      */
