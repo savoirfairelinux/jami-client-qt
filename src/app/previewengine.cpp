@@ -1,7 +1,5 @@
 /*
  * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
- * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,101 +17,103 @@
 
 #include "previewengine.h"
 
-#include "utils.h"
+#include <QRegularExpression>
 
-#include <QWebEngineScript>
-#include <QWebEngineProfile>
-#include <QWebEngineSettings>
-
-#include <QtWebChannel>
-#include <QWebEnginePage>
-
-struct PreviewEngine::Impl : public QWebEnginePage
+static QString
+getInnerHtml(const QString& tag)
 {
-public:
-    PreviewEngine& parent_;
-    QWebChannel* channel_;
-
-    Impl(PreviewEngine& parent)
-        : QWebEnginePage((QObject*) nullptr)
-        , parent_(parent)
-    {
-        QWebEngineProfile* profile = QWebEngineProfile::defaultProfile();
-
-        QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
-        dataDir.cdUp();
-        auto cachePath = dataDir.absolutePath() + "/jami";
-        profile->setCachePath(cachePath);
-        profile->setPersistentStoragePath(cachePath);
-        profile->setPersistentCookiesPolicy(QWebEngineProfile::NoPersistentCookies);
-        profile->setHttpCacheType(QWebEngineProfile::NoCache);
-
-        settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-        settings()->setAttribute(QWebEngineSettings::ScrollAnimatorEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::LinksIncludedInFocusChain, false);
-        settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::AllowRunningInsecureContent, true);
-        settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
-        settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
-
-        channel_ = new QWebChannel(this);
-        channel_->registerObject(QStringLiteral("jsbridge"), &parent_);
-
-        setWebChannel(channel_);
-        runJavaScript(Utils::QByteArrayFromFile(":webengine/linkify.js"),
-                      QWebEngineScript::MainWorld);
-        runJavaScript(Utils::QByteArrayFromFile(":webengine/linkify-string.js"),
-                      QWebEngineScript::MainWorld);
-        runJavaScript(Utils::QByteArrayFromFile(":webengine/qwebchannel.js"),
-                      QWebEngineScript::MainWorld);
-        runJavaScript(Utils::QByteArrayFromFile(":webengine/previewInfo.js"),
-                      QWebEngineScript::MainWorld);
-        runJavaScript(Utils::QByteArrayFromFile(":webengine/previewInterop.js"),
-                      QWebEngineScript::MainWorld);
-    }
-
-    void parseMessage(const QString& messageId, const QString& msg, bool showPreview, QColor color)
-    {
-        QString colorStr = "'" + color.name() + "'";
-        runJavaScript(QString("parseMessage(`%1`, `%2`, %3, %4)")
-                          .arg(messageId, msg, showPreview ? "true" : "false", colorStr));
-    }
+    static const QRegularExpression re(">([^<]+)<");
+    const auto match = re.match(tag);
+    return match.hasMatch() ? match.captured(1) : QString {};
 };
 
-PreviewEngine::PreviewEngine(QObject* parent)
-    : QObject(parent)
-    , pimpl_(std::make_unique<Impl>(*this))
-{}
+const QRegularExpression PreviewEngine::newlineRe("\\n");
 
-PreviewEngine::~PreviewEngine() {}
-
-void
-PreviewEngine::parseMessage(const QString& messageId,
-                            const QString& msg,
-                            bool showPreview,
-                            QColor color)
+PreviewEngine::PreviewEngine(ConnectivityMonitor* cm, QObject* parent)
+    : NetworkManager(cm, parent)
+    , htmlParser_(new HtmlParser(this))
 {
-    pimpl_->parseMessage(messageId, msg, showPreview, color);
+    // Connect on a queued connection to avoid blocking caller thread.
+    connect(this, &PreviewEngine::parseLink, this, &PreviewEngine::onParseLink, Qt::QueuedConnection);
+}
+
+QString
+PreviewEngine::getTagContent(QList<QString>& tags, const QString& value)
+{
+    Q_FOREACH (auto tag, tags) {
+        const QRegularExpression re("(property|name)=\"(og:|twitter:|)" + value
+                                    + "\".*?content=\"([^\"]+)\"");
+
+        const auto match = re.match(tag.remove(newlineRe));
+        if (match.hasMatch()) {
+            return match.captured(3);
+        }
+    }
+    return QString {};
+}
+
+QString
+PreviewEngine::getTitle(HtmlParser::TagInfoList& metaTags)
+{
+    // Try with opengraph/twitter props
+    QString title = getTagContent(metaTags[TidyTag_META], "title");
+    if (title.isEmpty()) { // Try with title tag
+        title = getInnerHtml(htmlParser_->getFirstTagValue(TidyTag_TITLE));
+    }
+    if (title.isEmpty()) { // Try with h1 tag
+        title = getInnerHtml(htmlParser_->getFirstTagValue(TidyTag_H1));
+    }
+    if (title.isEmpty()) { // Try with h2 tag
+        title = getInnerHtml(htmlParser_->getFirstTagValue(TidyTag_H2));
+    }
+    return title;
+}
+
+QString
+PreviewEngine::getDescription(HtmlParser::TagInfoList& metaTags)
+{
+    // Try with og/twitter props
+    QString d = getTagContent(metaTags[TidyTag_META], "description");
+    if (d.isEmpty()) { // Try with first paragraph
+        d = getInnerHtml(htmlParser_->getFirstTagValue(TidyTag_P));
+    }
+    return d;
+}
+
+QString
+PreviewEngine::getImage(HtmlParser::TagInfoList& metaTags)
+{
+    static const QRegularExpression newlineRe("\\n");
+    // Try with og/twitter props
+    QString image = getTagContent(metaTags[TidyTag_META], "image");
+    if (image.isEmpty()) { // Try with href of link tag (rel="image_src")
+        auto tags = htmlParser_->getTags({TidyTag_LINK});
+        Q_FOREACH (auto tag, tags[TidyTag_LINK]) {
+            static const QRegularExpression re("rel=\"image_src\".*?href=\"([^\"]+)\"");
+            const auto match = re.match(tag.remove(newlineRe));
+            if (match.hasMatch()) {
+                return match.captured(1);
+            }
+        }
+    }
+    return image;
 }
 
 void
-PreviewEngine::log(const QString& str)
+PreviewEngine::onParseLink(const QString& messageId, const QString& link)
 {
-    qDebug() << str;
-}
+    sendGetRequest(QUrl(link), [this, messageId, link](const QByteArray& html) {
+        htmlParser_->parseHtmlString(html);
+        auto metaTags = htmlParser_->getTags({TidyTag_META});
 
-void
-PreviewEngine::emitInfoReady(const QString& messageId, const QVariantMap& info)
-{
-    Q_EMIT infoReady(messageId, info);
-}
+        QVariantMap info = {{"title", getTitle(metaTags)},
+                            {"description", getDescription(metaTags)},
+                            {"image", getImage(metaTags)},
+                            {"url", link},
+                            {"domain", QUrl(link).host()}};
 
-void
-PreviewEngine::emitLinkified(const QString& messageId, const QString& linkifiedStr)
-{
-    Q_EMIT linkified(messageId, linkifiedStr);
+        qDebug() << "Parsed link" << link << info;
+
+        Q_EMIT infoReady(messageId, info);
+    });
 }

@@ -33,7 +33,7 @@ PreviewEngine::PreviewEngine(QObject* parent)
 PreviewEngine::~PreviewEngine() {}
 
 void
-PreviewEngine::parseMessage(const QString&, const QString&, bool, QColor)
+PreviewEngine::parseMessage(const QString&, const QString&)
 {}
 
 void
@@ -42,10 +42,6 @@ PreviewEngine::log(const QString&)
 
 void
 PreviewEngine::emitInfoReady(const QString&, const QVariantMap&)
-{}
-
-void
-PreviewEngine::emitLinkified(const QString&, const QString&)
 {}
 
 #include "moc_previewengine.cpp"
