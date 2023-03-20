@@ -25,6 +25,7 @@
 
 #include "appsettingsmanager.h"
 #include "qtutils.h"
+#include "messageparser.h"
 
 #include <api/datatransfermodel.h>
 
@@ -48,7 +49,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
-    , previewEngine_(previewEngine)
+    , messageParser_(new MessageParser(previewEngine, this))
     , filteredMsgListModel_(new FilteredMsgListModel(this))
     , mediaInteractions_(std::make_unique<MessageListModel>())
     , timestampTimer_(new QTimer(this))
@@ -71,8 +72,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
     });
 
-    connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
-    connect(previewEngine_, &PreviewEngine::linkified, this, &MessagesAdapter::onMessageLinkified);
+    connect(messageParser_, &MessageParser::messageParsed, this, &MessagesAdapter::onMessageParsed);
+    connect(messageParser_, &MessageParser::linkInfoReady, this, &MessagesAdapter::onLinkInfoReady);
 
     connect(timestampTimer_, &QTimer::timeout, this, &MessagesAdapter::timestampUpdated);
     timestampTimer_->start(timestampUpdateIntervalMs_);
@@ -446,6 +447,24 @@ MessagesAdapter::onNewInteraction(const QString& convUid,
 }
 
 void
+MessagesAdapter::onMessageParsed(const QString& messageId, const QString& parsed)
+{
+    const QString& convId = lrcInstance_->get_selectedConvUid();
+    const QString& accId = lrcInstance_->get_currentAccountId();
+    auto& conversation = lrcInstance_->getConversationFromConvUid(convId, accId);
+    conversation.interactions->setParsedMessage(messageId, parsed);
+}
+
+void
+MessagesAdapter::onLinkInfoReady(const QString& messageId, const QVariantMap& info)
+{
+    const QString& convId = lrcInstance_->get_selectedConvUid();
+    const QString& accId = lrcInstance_->get_currentAccountId();
+    auto& conversation = lrcInstance_->getConversationFromConvUid(convId, accId);
+    conversation.interactions->addHyperlinkInfo(messageId, info);
+}
+
+void
 MessagesAdapter::acceptInvitation(const QString& convId)
 {
     auto conversationId = convId.isEmpty() ? lrcInstance_->get_selectedConvUid() : convId;
@@ -541,15 +560,6 @@ MessagesAdapter::removeContact(const QString& convUid, bool banContact)
 }
 
 void
-MessagesAdapter::onPreviewInfoReady(QString messageId, QVariantMap info)
-{
-    const QString& convId = lrcInstance_->get_selectedConvUid();
-    const QString& accId = lrcInstance_->get_currentAccountId();
-    auto& conversation = lrcInstance_->getConversationFromConvUid(convId, accId);
-    conversation.interactions->addHyperlinkInfo(messageId, info);
-}
-
-void
 MessagesAdapter::onConversationMessagesLoaded(uint32_t loadingRequestId, const QString& convId)
 {
     if (convId != lrcInstance_->get_selectedConvUid())
@@ -558,21 +568,13 @@ MessagesAdapter::onConversationMessagesLoaded(uint32_t loadingRequestId, const Q
 }
 
 void
-MessagesAdapter::parseMessageUrls(const QString& messageId,
-                                  const QString& msg,
-                                  bool showPreview,
-                                  QColor color)
+MessagesAdapter::parseMessage(const QString& msgId,
+                              const QString& msg,
+                              bool showPreview,
+                              const QColor& linkColor,
+                              const QColor& backgroundColor)
 {
-    previewEngine_->parseMessage(messageId, msg, showPreview, color);
-}
-
-void
-MessagesAdapter::onMessageLinkified(const QString& messageId, const QString& linkified)
-{
-    const QString& convId = lrcInstance_->get_selectedConvUid();
-    const QString& accId = lrcInstance_->get_currentAccountId();
-    auto& conversation = lrcInstance_->getConversationFromConvUid(convId, accId);
-    conversation.interactions->linkifyMessage(messageId, linkified);
+    messageParser_->parseMessage(msgId, msg, showPreview, linkColor, backgroundColor);
 }
 
 void

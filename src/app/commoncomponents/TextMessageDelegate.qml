@@ -51,10 +51,11 @@ SBSMessageBase {
             padding: isEmojiOnly ? 0 : JamiTheme.preferredMarginSize
             anchors.right: isOutgoing ? parent.right : undefined
             text: {
-                if (LinkifiedBody !== "" && Linkified.length === 0) {
-                    MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl);
+                if (Body !== "" && ParsedBody.length === 0) {
+                    MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, CurrentConversation.color);
+                    return ""
                 }
-                return (LinkifiedBody !== "") ? LinkifiedBody : "*(" + JamiStrings.deletedMessage + ")*";
+                return (ParsedBody !== "") ? ParsedBody : "*(" + JamiStrings.deletedMessage + ")*";
             }
             horizontalAlignment: Text.AlignLeft
 
@@ -76,7 +77,8 @@ SBSMessageBase {
             font.pixelSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.emojiBubbleSize
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
-            textFormat: Text.MarkdownText
+            textFormat: Text.RichText
+            clip: true
             onLinkHovered: root.hoveredLink = hoveredLink
             onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
             readOnly: true
@@ -227,7 +229,7 @@ SBSMessageBase {
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
                         color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
-                        visible: LinkPreviewInfo.title !== null
+                        visible: LinkPreviewInfo.title.length > 0
                         text: LinkPreviewInfo.title
                     }
                     Label {
@@ -237,7 +239,7 @@ SBSMessageBase {
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
-                        visible: LinkPreviewInfo.description !== null
+                        visible: LinkPreviewInfo.description.length > 0
                         font.underline: root.hoveredLink
                         text: LinkPreviewInfo.description
                         color: root.colorUrl
@@ -263,10 +265,5 @@ SBSMessageBase {
             duration: 100
         }
     }
-    Component.onCompleted: {
-        if (Linkified.length === 0) {
-            MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl);
-        }
-        opacity = 1;
-    }
+    Component.onCompleted: opacity = 1;
 }
