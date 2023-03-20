@@ -326,9 +326,6 @@ parts:
     - libdouble-conversion3
     - libegl1
     - libgbm1
-    - libgstreamer-gl1.0-0
-    - libgstreamer-plugins-base1.0-0
-    - libgstreamer1.0-0
     - libgudev-1.0-0
     - libjsoncpp1
     - libllvm12
