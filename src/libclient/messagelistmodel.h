@@ -45,8 +45,7 @@ struct Info;
     X(ConfId) \
     X(DeviceId) \
     X(LinkPreviewInfo) \
-    X(Linkified) \
-    X(LinkifiedBody) \
+    X(ParsedBody) \
     X(PreviousBodies) \
     X(Reactions) \
     X(ReplyTo) \
@@ -124,7 +123,7 @@ public:
     bool contains(const QString& msgId);
     int getIndexOfMessage(const QString& messageId) const;
     void addHyperlinkInfo(const QString& messageId, const QVariantMap& info);
-    void linkifyMessage(const QString& messageId, const QString& linkified);
+    void setParsedMessage(const QString& messageId, const QString& parsed);
 
     void setRead(const QString& peer, const QString& messageId);
     QString getRead(const QString& peer);
