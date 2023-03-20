@@ -84,7 +84,7 @@ UpdateManager::UpdateManager(const QString& url,
                              ConnectivityMonitor* cm,
                              LRCInstance* instance,
                              QObject* parent)
-    : NetWorkManager(cm, parent)
+    : NetworkManager(cm, parent)
     , pimpl_(std::make_unique<Impl>())
 {}
 

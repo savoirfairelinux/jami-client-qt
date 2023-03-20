@@ -39,7 +39,7 @@ static constexpr char betaMsiSubUrl[] = "/beta/jami.beta.x64.msi";
 
 struct UpdateManager::Impl : public QObject
 {
-    Impl(const QString& url, ConnectivityMonitor* cm, LRCInstance* instance, UpdateManager& parent)
+    Impl(const QString& url, LRCInstance* instance, UpdateManager& parent)
         : QObject(nullptr)
         , parent_(parent)
         , lrcInstance_(instance)
@@ -60,14 +60,14 @@ struct UpdateManager::Impl : public QObject
         // Fail without UI if this is a programmatic check.
         if (!quiet)
             connect(&parent_,
-                    &NetWorkManager::errorOccured,
+                    &NetworkManager::errorOccured,
                     &parent_,
                     &UpdateManager::updateErrorOccurred);
 
         cleanUpdateFiles();
         QUrl versionUrl {isBeta ? QUrl::fromUserInput(baseUrlString_ + betaVersionSubUrl)
                                 : QUrl::fromUserInput(baseUrlString_ + versionSubUrl)};
-        parent_.get(versionUrl, [this, quiet](const QString& latestVersionString) {
+        parent_.sendGetRequest(versionUrl, [this, quiet](const QByteArray& latestVersionString) {
             if (latestVersionString.isEmpty()) {
                 qWarning() << "Error checking version";
                 if (!quiet)
@@ -92,16 +92,12 @@ struct UpdateManager::Impl : public QObject
     {
         parent_.disconnect();
         connect(&parent_,
-                &NetWorkManager::errorOccured,
+                &NetworkManager::errorOccured,
                 &parent_,
                 &UpdateManager::updateErrorOccurred);
-        connect(&parent_, &NetWorkManager::statusChanged, this, [this](GetStatus status) {
+        connect(&parent_, &UpdateManager::statusChanged, this, [this](GetStatus status) {
             switch (status) {
             case GetStatus::STARTED:
-                connect(&parent_,
-                        &NetWorkManager::downloadProgressChanged,
-                        &parent_,
-                        &UpdateManager::updateDownloadProgressChanged);
                 Q_EMIT parent_.updateDownloadStarted();
                 break;
             case GetStatus::FINISHED:
@@ -115,9 +111,11 @@ struct UpdateManager::Impl : public QObject
         QUrl downloadUrl {(beta || isBeta) ? QUrl::fromUserInput(baseUrlString_ + betaMsiSubUrl)
                                            : QUrl::fromUserInput(baseUrlString_ + msiSubUrl)};
 
-        parent_.get(
+        parent_.downloadFile(
             downloadUrl,
-            [this, downloadUrl](const QString&) {
+            [this, downloadUrl](bool success, const QString& errorMessage) {
+                Q_UNUSED(success)
+                Q_UNUSED(errorMessage)
                 lrcInstance_->finish();
                 Q_EMIT lrcInstance_->quitEngineRequested();
                 auto args = QString(" /passive /norestart WIXNONUILAUNCH=1");
@@ -132,7 +130,7 @@ struct UpdateManager::Impl : public QObject
 
     void cancelUpdate()
     {
-        parent_.cancelRequest();
+        parent_.cancelDownload();
     };
 
     void setAutoUpdateCheck(bool state)
@@ -175,11 +173,14 @@ UpdateManager::UpdateManager(const QString& url,
                              ConnectivityMonitor* cm,
                              LRCInstance* instance,
                              QObject* parent)
-    : NetWorkManager(cm, parent)
-    , pimpl_(std::make_unique<Impl>(url, cm, instance, *this))
+    : NetworkManager(cm, parent)
+    , pimpl_(std::make_unique<Impl>(url, instance, *this))
 {}
 
-UpdateManager::~UpdateManager() {}
+UpdateManager::~UpdateManager()
+{
+    cancelDownload();
+}
 
 void
 UpdateManager::checkForUpdates(bool quiet)
@@ -224,4 +225,113 @@ bool
 UpdateManager::isAutoUpdaterEnabled()
 {
     return false;
+}
+
+void
+UpdateManager::cancelDownload()
+{
+    if (downloadReply_) {
+        Q_EMIT errorOccured(GetError::CANCELED);
+        downloadReply_->abort();
+        resetDownload();
+    }
+}
+
+void
+UpdateManager::downloadFile(const QUrl& url,
+                            std::function<void(bool, const QString&)> onDoneCallback,
+                            const QString& filePath)
+{
+    // If there is already a download in progress, return.
+    if (downloadReply_ && downloadReply_->isRunning()) {
+        qWarning() << Q_FUNC_INFO << "Download already in progress";
+        return;
+    }
+
+    // Clean up any previous download.
+    resetDownload();
+
+    // If the url is invalid, return.
+    if (!url.isValid()) {
+        Q_EMIT errorOccured(GetError::NETWORK_ERROR, "Invalid url");
+        return;
+    }
+
+    // If the file path is empty, return.
+    if (filePath.isEmpty()) {
+        Q_EMIT errorOccured(GetError::NETWORK_ERROR, "Invalid file path");
+        return;
+    }
+
+    // Create the file. Return if it cannot be created.
+    QFileInfo fileInfo(url.path());
+    QString fileName = fileInfo.fileName();
+    file_.reset(new QFile(filePath + "/" + fileName));
+    if (!file_->open(QIODevice::WriteOnly)) {
+        Q_EMIT errorOccured(GetError::ACCESS_DENIED);
+        file_.reset();
+        qWarning() << Q_FUNC_INFO << "Could not open file for writing";
+        return;
+    }
+
+    // Start the download.
+    QNetworkRequest request(url);
+    downloadReply_ = manager_->get(request);
+
+    connect(downloadReply_, &QNetworkReply::readyRead, this, [=]() {
+        if (file_ && file_->isOpen()) {
+            file_->write(downloadReply_->readAll());
+        }
+    });
+
+    connect(downloadReply_,
+            &QNetworkReply::downloadProgress,
+            this,
+            [=](qint64 bytesReceived, qint64 bytesTotal) {
+                Q_EMIT downloadProgressChanged(bytesReceived, bytesTotal);
+            });
+
+    connect(downloadReply_,
+            QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::errorOccurred),
+            this,
+            [this](QNetworkReply::NetworkError error) {
+                downloadReply_->disconnect();
+                resetDownload();
+                qWarning() << Q_FUNC_INFO
+                           << QMetaEnum::fromType<QNetworkReply::NetworkError>().valueToKey(error);
+                Q_EMIT errorOccured(GetError::NETWORK_ERROR);
+            });
+
+    connect(downloadReply_, &QNetworkReply::finished, this, [this, onDoneCallback]() {
+        bool success = false;
+        QString errorMessage;
+        if (downloadReply_->error() == QNetworkReply::NoError) {
+            resetDownload();
+            success = true;
+        } else {
+            errorMessage = downloadReply_->errorString();
+            resetDownload();
+        }
+        onDoneCallback(success, errorMessage);
+        Q_EMIT statusChanged(GetStatus::FINISHED);
+    });
+
+    Q_EMIT statusChanged(GetStatus::STARTED);
+}
+
+void
+UpdateManager::resetDownload()
+{
+    if (downloadReply_) {
+        downloadReply_->deleteLater();
+        downloadReply_ = nullptr;
+    }
+    if (file_) {
+        if (file_->isOpen()) {
+            file_->flush();
+            file_->close();
+        }
+        file_->deleteLater();
+        file_.reset();
+    }
 }
