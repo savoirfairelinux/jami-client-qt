@@ -31,7 +31,7 @@ Rectangle {
     property var body: {
         if (MessagesAdapter.editId === "")
             return "";
-        return MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.LinkifiedBody);
+        return MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.ParsedBody);
     }
 
     RowLayout {
