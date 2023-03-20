@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a618f35e_ec586552",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2023-03-20T01:55:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21991ca9_d1084277",
+      "revId": "276e11f6b42e795e3e042d6bbedee96d2a72c556",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3adb039c_bed27b10",
@@ -35,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6040350_bad56529",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2023-03-20T01:55:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3adb039c_bed27b10",
+      "revId": "276e11f6b42e795e3e042d6bbedee96d2a72c556",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f9fc9de_033cd604",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-11-08T19:44:51Z",
       "side": 1,
       "message": "It seems it\u0027d be better to make this conditional to a local build, as for the usual packaging case computing the RPATH at build time means it doesn\u0027t need to relink twice:\n\nfrom info \"(cmake) BUILD_WITH_INSTALL_PATH\":\n\n‘BUILD_WITH_INSTALL_RPATH’ is a boolean specifying whether to link the\ntarget in the build tree with the *note INSTALL_RPATH: e5b.  This takes\nprecedence over *note SKIP_BUILD_RPATH: ea8. and avoids the need for\nrelinking before installation.",
+      "revId": "276e11f6b42e795e3e042d6bbedee96d2a72c556",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0cedafe_797329c9",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2023-03-20T01:55:25Z",
+      "side": 1,
+      "message": "This didn\u0027t end up being needed.",
+      "parentUuid": "3f9fc9de_033cd604",
       "revId": "276e11f6b42e795e3e042d6bbedee96d2a72c556",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
