@@ -489,6 +489,9 @@ set(BUILD_SFPM_PIC ON CACHE BOOL "enable -fPIC for SFPM" FORCE)
 add_subdirectory(3rdparty/SortFilterProxyModel)
 set(SFPM_OBJECTS $<TARGET_OBJECTS:SortFilterProxyModel>)
 
+add_subdirectory(3rdparty/md4c)
+set(MD4C_OBJECTS $<TARGET_OBJECTS:md4c>)
+
 # common executable sources
 qt_add_executable(
   ${PROJECT_NAME}
@@ -504,6 +507,20 @@ qt_add_executable(
 foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
 endforeach()
+
+#get_cmake_property(_variableNames VARIABLES)
+#list (SORT _variableNames)
+#foreach (_variableName ${_variableNames})
+#    message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()
+
+target_include_directories(
+    ${PROJECT_NAME} PRIVATE
+    ${MD4C_SOURCE_DIR}/src)
+target_link_directories(
+    ${PROJECT_NAME} PRIVATE
+    ${MD4C_BINARY_DIR}/src)
+target_link_libraries(${PROJECT_NAME} PRIVATE md4c-html)
 
 if(MSVC)
   # Makes it a GUI executable instead of a console application

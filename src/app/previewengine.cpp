@@ -113,3 +113,37 @@ PreviewEngine::emitLinkified(const QString& messageId, const QString& linkifiedS
 {
     Q_EMIT linkified(messageId, linkifiedStr);
 }
+
+void
+captureHtmlFragment(const MD_CHAR* data, MD_SIZE data_size, void* userData)
+{
+    QByteArray* array = static_cast<QByteArray*>(userData);
+    if (data_size > 0) {
+        array->append(data, int(data_size));
+    }
+}
+
+QString
+convertMarkdownToHtml(char* raw_data)
+{
+    size_t data_len = strlen(raw_data);
+
+    if (data_len <= 0) {
+        return QString();
+    } else {
+        QByteArray array;
+        int render_result = md_html(raw_data,
+                                    MD_SIZE(data_len),
+                                    &captureHtmlFragment,
+                                    &array,
+                                    MD_DIALECT_GITHUB | MD_FLAG_WIKILINKS | MD_FLAG_LATEXMATHSPANS
+                                        | MD_FLAG_PERMISSIVEATXHEADERS | MD_FLAG_UNDERLINE,
+                                    0);
+
+        if (render_result == 0) {
+            return QString::fromUtf8(array);
+        } else {
+            return QString();
+        }
+    }
+}
