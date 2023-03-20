@@ -48,6 +48,16 @@ SBSMessageBase {
     textContentWidth: textEditId.width
     textContentHeight: textEditId.height
 
+    readonly property string style: "<style>
+pre, code {
+  padding: 10px;
+  border-radius: 10px;
+  background: #eee;
+  border-color: #000;
+  border-style: solid;
+  border-width: thin;
+}
+</style>"
 
     innerContent.children: [
         TextEdit {
@@ -64,7 +74,8 @@ SBSMessageBase {
                 }
 
                 return (LinkifiedBody !== "") ?
-                            LinkifiedBody.replace(/\r?\n/g, "\n  ") :
+                            //LinkifiedBody.replace(/\r?\n/g, "\n  ") :
+                            style + LinkifiedBody :
                             "*("+ JamiStrings.deletedMessage +")*"
             }
             horizontalAlignment: Text.AlignLeft
@@ -92,7 +103,7 @@ SBSMessageBase {
             font.pixelSize: isEmojiOnly? JamiTheme.chatviewEmojiSize : JamiTheme.emojiBubbleSize
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
-            textFormat: Text.MarkdownText
+            textFormat: Text.RichText
             onLinkHovered: root.hoveredLink = hoveredLink
             onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
             readOnly: true

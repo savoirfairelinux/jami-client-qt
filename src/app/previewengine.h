@@ -31,7 +31,7 @@ public:
     ~PreviewEngine();
 
     void parseMessage(const QString& messageId,
-                      const QString& msg,
+                      QString& msg,
                       bool showPreview,
                       QColor color = "#0645AD");
 
