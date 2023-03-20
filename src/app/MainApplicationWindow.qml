@@ -329,15 +329,15 @@ ApplicationWindow {
         function onUpdateErrorOccurred(error) {
             presentUpdateInfoDialog((function () {
                         switch (error) {
-                        case NetWorkManager.ACCESS_DENIED:
+                        case NetworkManager.ACCESS_DENIED:
                             return JamiStrings.genericError;
-                        case NetWorkManager.DISCONNECTED:
+                        case NetworkManager.DISCONNECTED:
                             return JamiStrings.networkDisconnected;
-                        case NetWorkManager.NETWORK_ERROR:
+                        case NetworkManager.NETWORK_ERROR:
                             return JamiStrings.updateNetworkError;
-                        case NetWorkManager.SSL_ERROR:
+                        case NetworkManager.SSL_ERROR:
                             return JamiStrings.updateSSLError;
-                        case NetWorkManager.CANCELED:
+                        case NetworkManager.CANCELED:
                             return JamiStrings.updateDownloadCanceled;
                         default:
                             return {};

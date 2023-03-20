@@ -183,7 +183,7 @@ primaryConnectionChanged(NMClient* nm, GParamSpec*, ConnectivityMonitor* cm)
 {
     auto connection = nm_client_get_primary_connection(nm);
     logConnectionInfo(connection);
-    cm->connectivityChanged();
+    Q_EMIT cm->connectivityChanged();
 }
 
 static void
