@@ -29,6 +29,11 @@ else()
   project(jami)
 endif()
 
+# init some variables for includes, libs, etc.
+set(CLIENT_INCLUDE_DIRS, "")
+set(CLIENT_LINK_DIRS, "")
+set(CLIENT_LIBS, "")
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
@@ -232,7 +237,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/callparticipantsmodel.cpp
   ${APP_SRC_DIR}/tipsmodel.cpp
   ${APP_SRC_DIR}/positioning.cpp
-  ${APP_SRC_DIR}/currentcall.cpp)
+  ${APP_SRC_DIR}/currentcall.cpp
+  ${APP_SRC_DIR}/messageparser.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
@@ -293,7 +299,9 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/callparticipantsmodel.h
   ${APP_SRC_DIR}/tipsmodel.h
   ${APP_SRC_DIR}/positioning.h
-  ${APP_SRC_DIR}/currentcall.h)
+  ${APP_SRC_DIR}/currentcall.h
+  ${APP_SRC_DIR}/messageparser.h
+  ${APP_SRC_DIR}/htmlparser.h)
 
 if(WITH_WEBENGINE)
   list(APPEND COMMON_SOURCES
@@ -494,9 +502,25 @@ if(ENABLE_LIBWRAP)
     ${LIBCLIENT_SRC_DIR}/qtwrapper/instancemanager_wrap.h)
 endif()
 
+# SFPM
 set(BUILD_SFPM_PIC ON CACHE BOOL "enable -fPIC for SFPM" FORCE)
 add_subdirectory(3rdparty/SortFilterProxyModel)
 set(SFPM_OBJECTS $<TARGET_OBJECTS:SortFilterProxyModel>)
+
+# md4c
+add_subdirectory(3rdparty/md4c)
+set(MD4C_OBJECTS $<TARGET_OBJECTS:md4c>)
+list(APPEND CLIENT_LINK_DIRS ${MD4C_BINARY_DIR}/src)
+list(APPEND CLIENT_INCLUDE_DIRS ${MD4C_SOURCE_DIR}/src)
+list(APPEND CLIENT_LIBS md4c-html)
+
+# tidy-html5
+set(BUILD_SHARED_LIB OFF CACHE BOOL "Don't build shared tidy library" FORCE)
+set(SUPPORT_CONSOLE_APP OFF CACHE BOOL "Don't build tidy console app" FORCE)
+add_subdirectory(3rdparty/tidy-html5)
+list(APPEND CLIENT_LINK_DIRS ${tidy_BINARY_DIR}/Release)
+list(APPEND CLIENT_INCLUDE_DIRS ${tidy_SOURCE_DIR}/include)
+list(APPEND CLIENT_LIBS tidy-static)
 
 # common executable sources
 qt_add_executable(
@@ -520,9 +544,7 @@ if(MSVC)
     PROPERTIES
     WIN32_EXECUTABLE TRUE)
 
-  target_link_libraries(
-    ${PROJECT_NAME}
-    PRIVATE
+  list(APPEND CLIENT_LIBS
     ${JAMID_LIB}
     ${GNUTLS_LIB}
     ${LIBCLIENT_NAME}
@@ -559,9 +581,7 @@ if(MSVC)
   # executable name
   set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Jami")
 elseif (NOT APPLE)
-  target_link_libraries(
-    ${PROJECT_NAME}
-    PRIVATE
+  list(APPEND CLIENT_LIBS
     ${QT_LIBS}
     ${LIBCLIENT_NAME}
     ${qrencode}
@@ -693,13 +713,14 @@ else()
     set(libs ${libs} ${SPARKLE_FRAMEWORK})
   endif(ENABLE_SPARKLE)
   target_sources(${PROJECT_NAME} PRIVATE ${resources})
-  target_link_libraries(${PROJECT_NAME} PRIVATE ${libs})
-  FILE(GLOB CONTRIB ${LIBJAMI_CONTRIB_DIR}/apple-darwin/lib/*.a)
+  list(APPEND CLIENT_LIBS ${libs})
 
-  target_link_libraries(${PROJECT_NAME} PRIVATE ${CONTRIB})
+  file(GLOB CONTRIB ${LIBJAMI_CONTRIB_DIR}/apple-darwin/lib/*.a)
+  list(APPEND CLIENT_LIBS ${CONTRIB})
+
   find_package(Iconv REQUIRED)
-   target_link_libraries(${PROJECT_NAME} PRIVATE Iconv::Iconv)
-  target_link_libraries(${PROJECT_NAME} PRIVATE
+  list(APPEND CLIENT_LIBS Iconv::Iconv)
+  list(APPEND CLIENT_LIBS
     "-framework AVFoundation"
     "-framework CoreAudio -framework CoreMedia -framework CoreVideo"
     "-framework VideoToolbox -framework AudioUnit"
@@ -760,6 +781,10 @@ else()
                              -P ${EXTRAS_DIR}/build/cmake/macos_qt_deploy.cmake)
       endif()
 endif()
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${CLIENT_INCLUDE_DIRS})
+target_link_directories(${PROJECT_NAME} PRIVATE ${CLIENT_LINK_DIRS})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS})
 
 qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})

@@ -64,10 +64,6 @@ public:
         channel_->registerObject(QStringLiteral("jsbridge"), &parent_);
 
         setWebChannel(channel_);
-        runJavaScript(Utils::QByteArrayFromFile(":webengine/linkify.js"),
-                      QWebEngineScript::MainWorld);
-        runJavaScript(Utils::QByteArrayFromFile(":webengine/linkify-string.js"),
-                      QWebEngineScript::MainWorld);
         runJavaScript(Utils::QByteArrayFromFile(":webengine/qwebchannel.js"),
                       QWebEngineScript::MainWorld);
         runJavaScript(Utils::QByteArrayFromFile(":webengine/previewInfo.js"),
@@ -76,11 +72,9 @@ public:
                       QWebEngineScript::MainWorld);
     }
 
-    void parseMessage(const QString& messageId, const QString& msg, bool showPreview, QColor color)
+    void parseMessage(const QString& messageId, const QString& msg)
     {
-        QString colorStr = "'" + color.name() + "'";
-        runJavaScript(QString("parseMessage(`%1`, `%2`, %3, %4)")
-                          .arg(messageId, msg, showPreview ? "true" : "false", colorStr));
+        runJavaScript(QString("getPreviewInfo(`%1`, `%2`)").arg(messageId, msg));
     }
 };
 
@@ -92,12 +86,9 @@ PreviewEngine::PreviewEngine(QObject* parent)
 PreviewEngine::~PreviewEngine() {}
 
 void
-PreviewEngine::parseMessage(const QString& messageId,
-                            const QString& msg,
-                            bool showPreview,
-                            QColor color)
+PreviewEngine::parseMessage(const QString& messageId, const QString& msg)
 {
-    pimpl_->parseMessage(messageId, msg, showPreview, color);
+    pimpl_->parseMessage(messageId, msg);
 }
 
 void
@@ -110,10 +101,4 @@ void
 PreviewEngine::emitInfoReady(const QString& messageId, const QVariantMap& info)
 {
     Q_EMIT infoReady(messageId, info);
-}
-
-void
-PreviewEngine::emitLinkified(const QString& messageId, const QString& linkifiedStr)
-{
-    Q_EMIT linkified(messageId, linkifiedStr);
 }

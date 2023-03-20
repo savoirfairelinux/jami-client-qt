@@ -38,11 +38,17 @@ set(TEST_QML_RESOURCES
     ${CMAKE_SOURCE_DIR}/src/app/resources.qrc)
 
 # Common jami files
-add_library(test_common_obj OBJECT ${COMMON_SOURCES} ${COMMON_HEADERS})
+add_library(test_common_obj OBJECT
+    ${COMMON_SOURCES}
+    ${COMMON_HEADERS})
+
+target_include_directories(test_common_obj PRIVATE
+    ${CLIENT_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/src)
+target_link_directories(test_common_obj PRIVATE ${CLIENT_LINK_DIRS})
 target_link_libraries(test_common_obj ${QML_TEST_LIBS})
 target_compile_definitions(test_common_obj PRIVATE ENABLE_TESTS="ON")
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/src)
 
 set(COMMON_TESTS_SOURCES
     ${QML_RESOURCES}
@@ -77,28 +83,18 @@ set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/main_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/account_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/contact_unittest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/unittests/messageparser_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/globaltestenvironment.h
     ${COMMON_TESTS_SOURCES})
 
 set(ALL_TESTS_LIBS
     ${QML_TEST_LIBS}
     gtest
-    ${ringclient}
-    ${qrencode}
-    ${X11}
-    ${LIBNM_LIBRARIES}
-    ${LIBNOTIFY_LIBRARIES}
-    ${LIBGDKPIXBUF_LIBRARIES}
-    ${WINDOWS_LIBS})
+    ${CLIENT_LIBS})
 
 set(ALL_TESTS_INCLUDES
     ${TESTS_INCLUDES}
-    ${LRC}/include/libringclient
-    ${LRC}/include
-    ${LIBNM_INCLUDE_DIRS}
-    ${LIBNOTIFY_INCLUDE_DIRS}
-    ${LIBGDKPIXBUF_INCLUDE_DIRS}
-    ${WINDOWS_INCLUDES})
+    ${CLIENT_INCLUDE_DIRS})
 
 function(setup_test TEST_NAME TEST_SOURCES TEST_INPUT)
     string(TOLOWER ${TEST_NAME} TEST_BINARY_NAME)
