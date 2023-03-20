@@ -21,7 +21,8 @@
 #include "appsettingsmanager.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
-
+#include "previewengine.h"
+#include "messageparser.h"
 #include "accountadapter.h"
 
 #include <QTest>
@@ -55,6 +56,9 @@ public:
                                                 systemTray.get(),
                                                 lrcInstance.data(),
                                                 nullptr));
+
+        previewEngine.reset(new PreviewEngine(nullptr));
+        messageParser.reset(new MessageParser(previewEngine.data(), nullptr));
     }
 
     void TearDown()
@@ -75,6 +79,8 @@ public:
     QScopedPointer<ConnectivityMonitor> connectivityMonitor;
     QScopedPointer<AppSettingsManager> settingsManager;
     QScopedPointer<SystemTray> systemTray;
+    QScopedPointer<PreviewEngine> previewEngine;
+    QScopedPointer<MessageParser> messageParser;
 };
 
 extern TestEnvironment globalEnv;

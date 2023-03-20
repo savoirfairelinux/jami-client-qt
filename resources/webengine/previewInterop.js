@@ -29,8 +29,6 @@ function getPreviewInfo(messageId, url) {
 
         return new ReadableStream({
           start(controller) {
-            return pump();
-
             function pump() {
                 return reader.read().then(({ done, value }) => {
                     // When no more data needs to be consumed, close the stream
@@ -48,6 +46,7 @@ function getPreviewInfo(messageId, url) {
                     return pump();
                 });
             }
+            return pump();
           }
         })
       }, e => Promise.reject(e))
@@ -76,18 +75,4 @@ function getPreviewInfo(messageId, url) {
             'domain': domain,
         })
     })
-}
-
-function parseMessage(messageId, message, showPreview, color='#0645AD') {
-    var links = linkify.find(message)
-    if (links.length === 0) {
-        return
-    }
-    if (showPreview)
-        getPreviewInfo(messageId, links[0].href)
-    window.jsbridge.emitLinkified(messageId, linkifyStr(message, {
-        attributes: {
-          style: "color:" + color + ";"
-        }
-    }))
 }
