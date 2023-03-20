@@ -59,7 +59,7 @@ public Q_SLOTS:
         connectivityMonitor_.reset(new ConnectivityMonitor(this));
         settingsManager_.reset(new AppSettingsManager(this));
         systemTray_.reset(new SystemTray(settingsManager_.get(), this));
-        previewEngine_.reset(new PreviewEngine(this));
+        previewEngine_.reset(new PreviewEngine(connectivityMonitor_.get(), this));
 
         QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
 
