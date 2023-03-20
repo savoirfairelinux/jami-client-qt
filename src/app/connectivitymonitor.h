@@ -20,7 +20,6 @@
 
 #include <QObject>
 
-#ifdef Q_OS_WIN
 class ConnectivityMonitor final : public QObject
 {
     Q_OBJECT
@@ -34,6 +33,7 @@ Q_SIGNALS:
     void connectivityChanged();
 
 private:
+#ifdef Q_OS_WIN
     void destroy();
 
     struct INetworkListManager* pNetworkListManager_;
@@ -41,21 +41,5 @@ private:
     struct IConnectionPoint* pConnectPoint_;
     class NetworkEventHandler* netEventHandler_;
     unsigned long cookie_;
-};
-
-#else
-// TODO: platform implementations should be in the daemon.
-
-class ConnectivityMonitor final : public QObject
-{
-    Q_OBJECT
-public:
-    explicit ConnectivityMonitor(QObject* parent = nullptr);
-    ~ConnectivityMonitor();
-
-    bool isOnline();
-
-Q_SIGNALS:
-    void connectivityChanged();
-};
 #endif // Q_OS_WIN
+};

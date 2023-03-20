@@ -122,7 +122,7 @@ MainApplication::init()
     connectivityMonitor_.reset(new ConnectivityMonitor(this));
     settingsManager_.reset(new AppSettingsManager(this));
     systemTray_.reset(new SystemTray(settingsManager_.get(), this));
-    previewEngine_.reset(new PreviewEngine(this));
+    previewEngine_.reset(new PreviewEngine(connectivityMonitor_.get(), this));
 
     QObject::connect(settingsManager_.get(),
                      &AppSettingsManager::retranslate,

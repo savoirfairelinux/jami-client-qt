@@ -36,7 +36,7 @@ SimpleMessageDialog {
     Connections {
         target: UpdateManager
 
-        function onUpdateDownloadProgressChanged(bytesRead, totalBytes) {
+        function onDownloadProgressChanged(bytesRead, totalBytes) {
             downloadDialog.setDownloadProgress(bytesRead, totalBytes);
         }
 
@@ -98,10 +98,10 @@ SimpleMessageDialog {
     buttonTitles: [JamiStrings.optionCancel]
     buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
     buttonCallBacks: [function () {
-            UpdateManager.cancelUpdate();
+            UpdateManager.cancelDownload();
         }]
     onVisibleChanged: {
         if (!visible)
-            UpdateManager.cancelUpdate();
+            UpdateManager.cancelDownload();
     }
 }
