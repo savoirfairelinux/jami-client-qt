@@ -51,10 +51,10 @@ SBSMessageBase {
             padding: isEmojiOnly ? 0 : JamiTheme.preferredMarginSize
             anchors.right: isOutgoing ? parent.right : undefined
             text: {
-                if (LinkifiedBody !== "" && Linkified.length === 0) {
-                    MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl);
+                if (Body !== "" && ParsedBody.length === 0) {
+                    MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl);
                 }
-                return (LinkifiedBody !== "") ? LinkifiedBody : "*(" + JamiStrings.deletedMessage + ")*";
+                return (ParsedBody !== "") ? ParsedBody : "*(" + JamiStrings.deletedMessage + ")*";
             }
             horizontalAlignment: Text.AlignLeft
 
@@ -76,7 +76,7 @@ SBSMessageBase {
             font.pixelSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.emojiBubbleSize
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
-            textFormat: Text.MarkdownText
+            textFormat: Text.RichText
             onLinkHovered: root.hoveredLink = hoveredLink
             onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
             readOnly: true
@@ -264,8 +264,8 @@ SBSMessageBase {
         }
     }
     Component.onCompleted: {
-        if (Linkified.length === 0) {
-            MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl);
+        if (ParsedBody.length === 0) {
+            MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl);
         }
         opacity = 1;
     }
