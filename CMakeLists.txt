@@ -232,7 +232,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/callparticipantsmodel.cpp
   ${APP_SRC_DIR}/tipsmodel.cpp
   ${APP_SRC_DIR}/positioning.cpp
-  ${APP_SRC_DIR}/currentcall.cpp)
+  ${APP_SRC_DIR}/currentcall.cpp
+  ${APP_SRC_DIR}/messageparser.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
@@ -293,7 +294,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/callparticipantsmodel.h
   ${APP_SRC_DIR}/tipsmodel.h
   ${APP_SRC_DIR}/positioning.h
-  ${APP_SRC_DIR}/currentcall.h)
+  ${APP_SRC_DIR}/currentcall.h
+  ${APP_SRC_DIR}/messageparser.h)
 
 if(WITH_WEBENGINE)
   list(APPEND COMMON_SOURCES
@@ -512,6 +514,21 @@ qt_add_executable(
 foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
 endforeach()
+
+add_subdirectory(3rdparty/md4c)
+add_subdirectory(3rdparty/tidy-html5)
+
+target_include_directories(
+    ${PROJECT_NAME} PRIVATE
+    ${MD4C_SOURCE_DIR}/src
+    ${tidy_SOURCE_DIR}/include)
+target_link_directories(
+    ${PROJECT_NAME} PRIVATE
+    ${MD4C_BINARY_DIR}/src
+    ${tidy_BINARY_DIR}/Release)
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    md4c-html
+    tidy_static)
 
 if(MSVC)
   # Makes it a GUI executable instead of a console application
