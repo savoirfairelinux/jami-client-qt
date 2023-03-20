@@ -44,9 +44,5 @@ void
 PreviewEngine::emitInfoReady(const QString&, const QVariantMap&)
 {}
 
-void
-PreviewEngine::emitLinkified(const QString&, const QString&)
-{}
-
 #include "moc_previewengine.cpp"
 #include "previewengine.moc"
