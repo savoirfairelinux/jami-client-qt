@@ -98,7 +98,7 @@ SettingsPageBase {
             toolTipText: JamiStrings.checkForUpdates
             text: JamiStrings.checkForUpdates
 
-            onClicked: UpdateManager.checkForUpdates()
+            //onClicked: UpdateManager.checkForUpdates()
         }
 
         MaterialButton {
