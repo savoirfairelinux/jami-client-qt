@@ -156,7 +156,7 @@ main(int argc, char* argv[])
         // or wait for a future version
         QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
     } else {
-        QQuickWindow::setGraphicsApi(QSGRendererInterface::Unknown);
+        QQuickWindow::setGraphicsApi(QSGRendererInterface::Software);
     }
 #endif
 
