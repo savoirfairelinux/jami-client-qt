@@ -22,6 +22,11 @@
 #include <QColor>
 #include <QObject>
 
+#include "md4c-html.h"
+
+void captureHtmlFragment(const MD_CHAR* data, MD_SIZE data_size, void* userData);
+QString convertMarkdownToHtml(const char* raw_data);
+
 class PreviewEngine : public QObject
 {
     Q_OBJECT
