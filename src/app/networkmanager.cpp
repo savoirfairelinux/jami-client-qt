@@ -1,7 +1,5 @@
-/*!
+/*
  * Copyright (C) 2019-2023 Savoir-faire Linux Inc.
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,23 +18,22 @@
 #include "networkmanager.h"
 
 #include "connectivitymonitor.h"
-#include "utils.h"
 
 #include <QMetaEnum>
 #include <QtNetwork>
 
-NetWorkManager::NetWorkManager(ConnectivityMonitor* cm, QObject* parent)
+NetworkManager::NetworkManager(ConnectivityMonitor* cm, QObject* parent)
     : QObject(parent)
     , manager_(new QNetworkAccessManager(this))
     , reply_(nullptr)
     , connectivityMonitor_(cm)
     , lastConnectionState_(cm->isOnline())
 {
-    Q_EMIT statusChanged(GetStatus::IDLE);
-
-    connect(connectivityMonitor_, &ConnectivityMonitor::connectivityChanged, [this] {
+#if QT_CONFIG(ssl)
+    connect(manager_, &QNetworkAccessManager::sslErrors, this, &NetworkManager::onSslErrors);
+#endif
+    connect(connectivityMonitor_, &ConnectivityMonitor::connectivityChanged, this, [this] {
         cancelRequest();
-
         auto connected = connectivityMonitor_->isOnline();
         if (connected && !lastConnectionState_) {
             manager_->deleteLater();
@@ -48,25 +45,23 @@ NetWorkManager::NetWorkManager(ConnectivityMonitor* cm, QObject* parent)
 }
 
 void
-NetWorkManager::get(const QUrl& url, const DoneCallBack& doneCb, const QString& path)
+NetworkManager::get(const QUrl& url, const DoneCallBack& doneCb, const QString& path)
 {
-    if (!connectivityMonitor_->isOnline()) {
-        Q_EMIT errorOccured(GetError::DISCONNECTED);
-        return;
-    }
+    //    if (!connectivityMonitor_->isOnline()) {
+    //        Q_EMIT errorOccured(GetError::DISCONNECTED);
+    //        return;
+    //    }
 
-    if (reply_ && reply_->isRunning()) {
-        qWarning() << Q_FUNC_INFO << "currently downloading";
-        return;
-    } else if (url.isEmpty()) {
-        qWarning() << Q_FUNC_INFO << "missing url";
+    reset();
+
+    if (!url.isValid()) {
+        Q_EMIT errorOccured(GetError::NETWORK_ERROR, "Invalid url");
         return;
     }
 
     if (!path.isEmpty()) {
         QFileInfo fileInfo(url.path());
         QString fileName = fileInfo.fileName();
-
         file_.reset(new QFile(path + "/" + fileName));
         if (!file_->open(QIODevice::WriteOnly)) {
             Q_EMIT errorOccured(GetError::ACCESS_DENIED);
@@ -75,22 +70,21 @@ NetWorkManager::get(const QUrl& url, const DoneCallBack& doneCb, const QString& 
         }
     }
 
-    QNetworkRequest request(url);
-    reply_ = manager_->get(request);
-
-    Q_EMIT statusChanged(GetStatus::STARTED);
+    reply_ = manager_->get(QNetworkRequest(url));
 
     connect(reply_,
             QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::errorOccurred),
+            this,
             [this, doneCb, path](QNetworkReply::NetworkError error) {
                 reply_->disconnect();
                 reset(true);
-                qWarning() << Q_FUNC_INFO << "NetworkError: "
+                qWarning() << Q_FUNC_INFO
                            << QMetaEnum::fromType<QNetworkReply::NetworkError>().valueToKey(error);
                 Q_EMIT errorOccured(GetError::NETWORK_ERROR);
             });
 
-    connect(reply_, &QNetworkReply::finished, [this, doneCb, path]() {
+    connect(reply_, &QNetworkReply::finished, this, [this, doneCb, path]() {
+        qWarning() << Q_FUNC_INFO;
         reply_->disconnect();
         QString response = {};
         if (path.isEmpty())
@@ -104,54 +98,45 @@ NetWorkManager::get(const QUrl& url, const DoneCallBack& doneCb, const QString& 
     connect(reply_,
             &QNetworkReply::downloadProgress,
             this,
-            &NetWorkManager::downloadProgressChanged);
+            &NetworkManager::downloadProgressChanged);
 
-    connect(reply_, &QNetworkReply::readyRead, this, &NetWorkManager::onHttpReadyRead);
+    connect(reply_, &QNetworkReply::readyRead, this, &NetworkManager::onHttpReadyRead);
 
-#if QT_CONFIG(ssl)
-    connect(reply_,
-            SIGNAL(sslErrors(const QList<QSslError>&)),
-            this,
-            SLOT(onSslErrors(QList<QSslError>)),
-            Qt::UniqueConnection);
-#endif
+    Q_EMIT statusChanged(GetStatus::STARTED);
 }
 
 void
-NetWorkManager::reset(bool flush)
+NetworkManager::reset(bool flush)
 {
-    reply_->deleteLater();
-    reply_ = nullptr;
-    if (file_ && flush) {
-        file_->flush();
-        file_->close();
-        file_.reset(nullptr);
+    if (reply_) {
+        reply_->deleteLater();
+        reply_ = nullptr;
     }
-}
-
-void
-NetWorkManager::onSslErrors(const QList<QSslError>& sslErrors)
-{
-#if QT_CONFIG(ssl)
-    reply_->disconnect();
-    reset(true);
-
-    QString errorsString;
-    for (const QSslError& error : sslErrors) {
-        if (errorsString.length() > 0) {
-            errorsString += "\n";
+    if (file_) {
+        if (flush) {
+            file_->flush();
         }
-        errorsString += error.errorString();
+        file_->deleteLater();
+        file_.reset();
     }
-    Q_EMIT errorOccured(GetError::SSL_ERROR, errorsString);
-    return;
+}
+
+void
+NetworkManager::onSslErrors(QNetworkReply* reply, const QList<QSslError>& errors)
+{
+    Q_UNUSED(reply);
+#if QT_CONFIG(ssl)
+    Q_FOREACH (const QSslError& error, errors) {
+        qDebug() << "SSL error:" << error.errorString();
+        Q_EMIT errorOccured(GetError::SSL_ERROR, error.errorString());
+    }
 #else
     Q_UNUSED(sslErrors);
 #endif
 }
 
 void
-NetWorkManager::onHttpReadyRead()
+NetworkManager::onHttpReadyRead()
 {
     /*
      * This slot gets called every time the QNetworkReply has new data.
@@ -164,10 +149,11 @@ NetWorkManager::onHttpReadyRead()
 }
 
 void
-NetWorkManager::cancelRequest()
+NetworkManager::cancelRequest()
 {
     if (reply_) {
         reply_->abort();
+        reset();
         Q_EMIT errorOccured(GetError::CANCELED);
     }
 }
