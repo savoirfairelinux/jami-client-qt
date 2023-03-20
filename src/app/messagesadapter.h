@@ -28,6 +28,9 @@
 
 #include <QSortFilterProxyModel>
 
+class AppSettingsManager;
+class MessageParser;
+
 class FilteredMsgListModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
@@ -49,8 +52,6 @@ public:
         return left.row() > right.row();
     };
 };
-
-class AppSettingsManager;
 
 class MessagesAdapter final : public QmlAdapterBase
 {
@@ -122,10 +123,10 @@ protected:
     Q_INVOKABLE QString getFormattedDay(const quint64 timestamp);
     Q_INVOKABLE QString getFormattedTime(const quint64 timestamp);
     Q_INVOKABLE QString getBestFormattedDate(const quint64 timestamp);
-    Q_INVOKABLE void parseMessageUrls(const QString& messageId,
-                                      const QString& msg,
-                                      bool showPreview,
-                                      QColor color = "#0645AD");
+    Q_INVOKABLE void parseMessage(const QString& msgId,
+                                  const QString& msg,
+                                  bool previewLinks,
+                                  const QColor& linkColor = QColor(0x06, 0x45, 0xad));
     Q_INVOKABLE void onPaste();
     Q_INVOKABLE int getIndexOfMessage(const QString& messageId) const;
     Q_INVOKABLE QString getStatusString(int status);
@@ -146,9 +147,9 @@ private Q_SLOTS:
     void onNewInteraction(const QString& convUid,
                           const QString& interactionId,
                           const interaction::Info& interaction);
-    void onPreviewInfoReady(QString messageIndex, QVariantMap urlInMessage);
+    void onMessageParsed(const QString& messageId, const QString& parsed);
+    void onLinkInfoReady(const QString& messageIndex, const QVariantMap& info);
     void onConversationMessagesLoaded(uint32_t requestId, const QString& convId);
-    void onMessageLinkified(const QString& messageId, const QString& linkified);
     void onComposingStatusChanged(const QString& convId,
                                   const QString& contactUri,
                                   bool isComposing);
@@ -159,7 +160,8 @@ private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
 
     AppSettingsManager* settingsManager_;
-    PreviewEngine* previewEngine_;
+    MessageParser* messageParser_;
+
     FilteredMsgListModel* filteredMsgListModel_;
 
     static constexpr const int loadChunkSize_ {20};

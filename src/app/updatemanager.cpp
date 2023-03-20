@@ -60,7 +60,7 @@ struct UpdateManager::Impl : public QObject
         // Fail without UI if this is a programmatic check.
         if (!quiet)
             connect(&parent_,
-                    &NetWorkManager::errorOccured,
+                    &NetworkManager::errorOccured,
                     &parent_,
                     &UpdateManager::updateErrorOccurred);
 
@@ -92,14 +92,14 @@ struct UpdateManager::Impl : public QObject
     {
         parent_.disconnect();
         connect(&parent_,
-                &NetWorkManager::errorOccured,
+                &NetworkManager::errorOccured,
                 &parent_,
                 &UpdateManager::updateErrorOccurred);
-        connect(&parent_, &NetWorkManager::statusChanged, this, [this](GetStatus status) {
+        connect(&parent_, &NetworkManager::statusChanged, this, [this](GetStatus status) {
             switch (status) {
             case GetStatus::STARTED:
                 connect(&parent_,
-                        &NetWorkManager::downloadProgressChanged,
+                        &NetworkManager::downloadProgressChanged,
                         &parent_,
                         &UpdateManager::updateDownloadProgressChanged);
                 Q_EMIT parent_.updateDownloadStarted();
@@ -175,7 +175,7 @@ UpdateManager::UpdateManager(const QString& url,
                              ConnectivityMonitor* cm,
                              LRCInstance* instance,
                              QObject* parent)
-    : NetWorkManager(cm, parent)
+    : NetworkManager(cm, parent)
     , pimpl_(std::make_unique<Impl>(url, cm, instance, *this))
 {}
 
@@ -184,7 +184,7 @@ UpdateManager::~UpdateManager() {}
 void
 UpdateManager::checkForUpdates(bool quiet)
 {
-    pimpl_->checkForUpdates(quiet);
+    // pimpl_->checkForUpdates(quiet);
 }
 
 void

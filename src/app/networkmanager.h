@@ -1,7 +1,5 @@
-/*!
+/*
  * Copyright (C) 2019-2023 Savoir-faire Linux Inc.
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,32 +25,22 @@
 class QNetworkAccessManager;
 class ConnectivityMonitor;
 
-class NetWorkManager : public QObject
+class NetworkManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit NetWorkManager(ConnectivityMonitor* cm, QObject* parent = nullptr);
-    virtual ~NetWorkManager() = default;
+    explicit NetworkManager(ConnectivityMonitor* cm, QObject* parent = nullptr);
+    virtual ~NetworkManager() = default;
 
     enum GetStatus { IDLE, STARTED, FINISHED };
+    Q_ENUM(GetStatus)
 
     enum GetError { DISCONNECTED, NETWORK_ERROR, ACCESS_DENIED, SSL_ERROR, CANCELED };
     Q_ENUM(GetError)
 
     using DoneCallBack = std::function<void(const QString&)>;
-
-    /*!
-     * using qt get request to store the reply in file
-     * @param url - network address
-     * @param doneCb - done callback
-     * @param path - optional file saving path, if empty
-     * a string will be passed as the second paramter of doneCb
-     */
     void get(const QUrl& url, const DoneCallBack& doneCb = {}, const QString& path = {});
 
-    /*!
-     * manually abort the current request
-     */
     Q_INVOKABLE void cancelRequest();
 
 Q_SIGNALS:
@@ -61,7 +49,7 @@ Q_SIGNALS:
     void errorOccured(GetError error, const QString& msg = {});
 
 private Q_SLOTS:
-    void onSslErrors(const QList<QSslError>& sslErrors);
+    void onSslErrors(QNetworkReply* reply, const QList<QSslError>& errors);
     void onHttpReadyRead();
 
 private:
@@ -73,4 +61,4 @@ private:
     ConnectivityMonitor* connectivityMonitor_;
     bool lastConnectionState_;
 };
-Q_DECLARE_METATYPE(NetWorkManager*)
+Q_DECLARE_METATYPE(NetworkManager*)

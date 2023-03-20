@@ -297,7 +297,7 @@ public:
  * @var isRead
  * @var commit
  * @var linkPreviewInfo
- * @var linkified
+ * @var parsedBody
  */
 struct Info
 {
@@ -312,7 +312,7 @@ struct Info
     bool isRead = false;
     MapStringString commit;
     QVariantMap linkPreviewInfo = {};
-    QString linkified;
+    QString parsedBody = {};
     QVariantMap reactions;
     QString react_to;
     QVector<Body> previousBodies;

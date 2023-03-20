@@ -25,7 +25,7 @@
 class LRCInstance;
 class ConnectivityMonitor;
 
-class UpdateManager final : public NetWorkManager
+class UpdateManager final : public NetworkManager
 {
     Q_OBJECT
     Q_DISABLE_COPY(UpdateManager)
@@ -46,7 +46,7 @@ public:
 
 Q_SIGNALS:
     void updateCheckReplyReceived(bool ok, bool found = false);
-    void updateErrorOccurred(const NetWorkManager::GetError& error);
+    void updateErrorOccurred(const NetworkManager::GetError& error);
     void updateDownloadStarted();
     void updateDownloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
     void updateDownloadFinished();
