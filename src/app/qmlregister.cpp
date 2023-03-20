@@ -226,7 +226,7 @@ registerTypes(QQmlEngine* engine,
 
     // Enums
     QML_REGISTERUNCREATABLE(NS_ENUMS, Settings)
-    QML_REGISTERUNCREATABLE(NS_ENUMS, NetWorkManager)
+    QML_REGISTERUNCREATABLE(NS_ENUMS, NetworkManager)
     QML_REGISTERUNCREATABLE(NS_ENUMS, WizardViewStepModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, DeviceItemListModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoInputDeviceModel)
