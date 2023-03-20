@@ -30,18 +30,13 @@ public:
     PreviewEngine(QObject* parent = nullptr);
     ~PreviewEngine();
 
-    void parseMessage(const QString& messageId,
-                      const QString& msg,
-                      bool showPreview,
-                      QColor color = "#0645AD");
+    void parseMessage(const QString& messageId, const QString& msg);
 
     Q_INVOKABLE void log(const QString& str);
     Q_INVOKABLE void emitInfoReady(const QString& messageId, const QVariantMap& info);
-    Q_INVOKABLE void emitLinkified(const QString& messageId, const QString& linkifiedStr);
 
 Q_SIGNALS:
     void infoReady(const QString& messageId, const QVariantMap& info);
-    void linkified(const QString& messageId, const QString& linkifiedStr);
 
 private:
     struct Impl;
