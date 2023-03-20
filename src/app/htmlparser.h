@@ -1,0 +1,92 @@
+/*
+ * Copyright (C) 2023 Savoir-faire Linux Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+#include <QObject>
+#include <QVariantMap>
+
+#include "tidy.h"
+#include "tidybuffio.h"
+
+class HtmlParser : public QObject
+{
+    Q_OBJECT
+public:
+    HtmlParser(QObject* parent = nullptr)
+        : QObject(parent)
+    {
+        doc_ = tidyCreate();
+        tidyOptSetBool(doc_, TidyQuiet, yes);
+        tidyOptSetBool(doc_, TidyShowWarnings, no);
+        tidyOptSetBool(doc_, TidyShowErrors, no);
+    }
+
+    ~HtmlParser()
+    {
+        tidyRelease(doc_);
+    }
+
+    bool parseHtmlString(const QString& html)
+    {
+        return tidyParseString(doc_, html.toLocal8Bit().data()) >= 0;
+    }
+
+    // A function that traverses the DOM tree and fills a QVariantMap with a list
+    // of the tags and their values. The result is structured as follows:
+    // {"tagId1": ["tagValue1", "tagValue2", ...],
+    //  "tagId": ["tagValue1", "tagValue2", ...],
+    //  ... }
+    QVariantMap getTags(QList<TidyTagId> tags, int maxDepth = -1)
+    {
+        QVariantMap result;
+        traverseNode(
+            tidyGetRoot(doc_),
+            tags,
+            [&result](const QString& value, int tag) {
+                if (result.contains(QString::number(tag))) {
+                    result[QString::number(tag)].toList().append(value);
+                } else {
+                    result[QString::number(tag)] = QVariantList {value};
+                }
+            },
+            maxDepth);
+
+        return result;
+    }
+
+private:
+    void traverseNode(TidyNode node,
+                      QList<TidyTagId> tags,
+                      const std::function<void(const QString&, int)>& cb,
+                      int depth = -1)
+    {
+        TidyBuffer nodeValue = {};
+        for (auto tag : tags) {
+            if (tidyNodeGetId(node) == tag && tidyNodeGetText(doc_, node, &nodeValue) == yes && cb) {
+                cb(QString::fromLocal8Bit(nodeValue.bp), tag);
+                if (depth != -1 && --depth == 0) {
+                    return;
+                }
+            }
+        }
+
+        for (TidyNode child = tidyGetChild(node); child; child = tidyGetNext(child)) {
+            traverseNode(child, tags, cb, depth);
+        }
+    }
+
+    TidyDoc doc_;
+};
