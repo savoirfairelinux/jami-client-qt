@@ -25,7 +25,7 @@
 class LRCInstance;
 class ConnectivityMonitor;
 
-class UpdateManager final : public NetWorkManager
+class UpdateManager final : public NetworkManager
 {
     Q_OBJECT
     Q_DISABLE_COPY(UpdateManager)
@@ -36,6 +36,9 @@ public:
                            QObject* parent = nullptr);
     ~UpdateManager();
 
+    enum GetStatus { STARTED, FINISHED };
+    Q_ENUM(GetStatus)
+
     Q_INVOKABLE void checkForUpdates(bool quiet = false);
     Q_INVOKABLE void applyUpdates(bool beta = false);
     Q_INVOKABLE void cancelUpdate();
@@ -43,14 +46,27 @@ public:
     Q_INVOKABLE bool isCurrentVersionBeta();
     Q_INVOKABLE bool isUpdaterEnabled();
     Q_INVOKABLE bool isAutoUpdaterEnabled();
+    Q_INVOKABLE void cancelDownload();
+
+    void downloadFile(const QUrl& url,
+                      std::function<void(bool, const QString&)> onDoneCallback,
+                      const QString& filePath);
 
 Q_SIGNALS:
+    void statusChanged(GetStatus status);
+    void downloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
+
     void updateCheckReplyReceived(bool ok, bool found = false);
-    void updateErrorOccurred(const NetWorkManager::GetError& error);
+    void updateErrorOccurred(const NetworkManager::GetError& error);
     void updateDownloadStarted();
     void updateDownloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
     void updateDownloadFinished();
     void appCloseRequested();
+
+private:
+    void resetDownload();
+    QNetworkReply* downloadReply_ {nullptr};
+    QScopedPointer<QFile> file_;
 
 private:
     struct Impl;

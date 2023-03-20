@@ -34,6 +34,8 @@
 // Configuration globals.
 def SUBMODULES = ['daemon',
                   '3rdparty/SortFilterProxyModel',
+                  '3rdparty/md4c',
+                  '3rdparty/tidy-html5',
                   '3rdparty/qrencode-win32',
                   'extras/packaging/update/sparkle/Sparkle']
 def TARGETS = [:]
