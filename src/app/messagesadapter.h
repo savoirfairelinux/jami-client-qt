@@ -123,7 +123,7 @@ protected:
     Q_INVOKABLE QString getFormattedTime(const quint64 timestamp);
     Q_INVOKABLE QString getBestFormattedDate(const quint64 timestamp);
     Q_INVOKABLE void parseMessageUrls(const QString& messageId,
-                                      const QString& msg,
+                                      QString& msg,
                                       bool showPreview,
                                       QColor color = "#0645AD");
     Q_INVOKABLE void onPaste();

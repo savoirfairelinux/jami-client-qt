@@ -555,7 +555,7 @@ MessagesAdapter::onConversationMessagesLoaded(uint32_t loadingRequestId, const Q
 
 void
 MessagesAdapter::parseMessageUrls(const QString& messageId,
-                                  const QString& msg,
+                                  QString& msg,
                                   bool showPreview,
                                   QColor color)
 {

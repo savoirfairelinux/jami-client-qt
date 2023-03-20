@@ -19,3 +19,9 @@
 	path = extras/packaging/update/sparkle/Sparkle
 	url = https://github.com/sparkle-project/Sparkle.git
 	ignore = dirty
+[submodule "3rdparty/md4c"]
+	path = 3rdparty/md4c
+	url = https://github.com/mity/md4c.git
+[submodule "3rdparty/tidy-html5"]
+	path = 3rdparty/tidy-html5
+	url = https://github.com/htacg/tidy-html5.git
