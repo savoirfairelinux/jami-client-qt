@@ -81,7 +81,6 @@ SettingsPageBase {
 
             ToggleSwitch {
                 id: displayImagesCheckbox
-                visible: WITH_WEBENGINE
 
                 Layout.fillWidth: true
 
