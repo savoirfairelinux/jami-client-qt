@@ -212,6 +212,8 @@ UNINSTALL_DAEMON_SCRIPT = [
 ASSUME_YES_FLAG = ' -y'
 ASSUME_YES_FLAG_PACMAN = ' --noconfirm'
 
+GUIX_MANIFEST = 'extras/packaging/gnu-linux/guix/manifest.scm'
+
 
 def run_powershell_cmd(cmd):
     p = subprocess.Popen(["powershell.exe", cmd], stdout=sys.stdout)
@@ -293,8 +295,8 @@ def run_dependencies(args):
         print("The win32 version does not install dependencies with this script.\nPlease continue with the --install instruction.")
         sys.exit(1)
     elif args.distribution == 'guix':
-        print("Building the profile defined in 'guix/manifest.scm'...")
-        execute_script(['guix shell --manifest=guix/manifest.scm -- true'])
+        print(f"Building the profile defined in '{GUIX_MANIFEST}'...")
+        execute_script([f'guix shell --manifest={GUIX_MANIFEST} -- true'])
 
     else:
         print("Not yet implemented for current distribution (%s). Please continue with the --install instruction. Note: You may need to install some dependencies manually." %
@@ -406,7 +408,7 @@ def run_install(args):
             print('info: consider setting the TARBALLS environment variable '
                   'to a stable writable location to avoid loosing '
                   'cached tarballs')
-        command = ['guix', 'shell', '--manifest=guix/manifest.scm',
+        command = ['guix', 'shell', f'--manifest={GUIX_MANIFEST}',
                    '--symlink=/usr/bin/env=bin/env',
                    '--symlink=/etc/ssl/certs=etc/ssl/certs',
                    '--container', '--network'] + share_tarballs_args \
@@ -665,7 +667,7 @@ def main():
             guix_args = ['shell', '--pure',
                          # to allow pulseaudio to connect to an existing server
                          "-E", "XAUTHORITY", "-E", "XDG_RUNTIME_DIR",
-                         '--manifest=guix/manifest.scm', '--']
+                         f'--manifest={GUIX_MANIFEST}', '--']
             args = sys.argv + ['--distribution=guix']
             print('Running in a guix shell spawned with: guix {}'
                   .format(str.join(' ', guix_args + args)))
