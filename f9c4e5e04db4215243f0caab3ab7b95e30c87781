@@ -35,6 +35,42 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f79fe75b_0b402676",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-03-20T12:33:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dc34a77_f4b7f415",
+      "revId": "f9c4e5e04db4215243f0caab3ab7b95e30c87781",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "910346df_3818f2c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-03-20T12:33:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea27ff57_54e5b7b2",
+      "revId": "f9c4e5e04db4215243f0caab3ab7b95e30c87781",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6b25f5f_91378013",
@@ -58,6 +94,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18db775c_9f681133",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-03-20T12:33:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6b25f5f_91378013",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 44
+      },
+      "revId": "f9c4e5e04db4215243f0caab3ab7b95e30c87781",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a25802a8_87a4f6e2",
@@ -71,6 +131,30 @@
       "writtenOn": "2023-03-15T12:23:17Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 54
+      },
+      "revId": "f9c4e5e04db4215243f0caab3ab7b95e30c87781",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce7396e1_ce4f2192",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-03-20T12:33:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a25802a8_87a4f6e2",
       "range": {
         "startLine": 97,
         "startChar": 8,
