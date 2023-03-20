@@ -45,8 +45,7 @@ struct Info;
     X(ConfId) \
     X(DeviceId) \
     X(LinkPreviewInfo) \
-    X(Linkified) \
-    X(LinkifiedBody) \
+    X(ParsedBody) \
     X(PreviousBodies) \
     X(Reactions) \
     X(ReplyTo) \
