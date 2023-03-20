@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2022-2023 Savoir-faire Linux Inc.
- * Author: Kateryna Kostiuk <kateryna.kostiuk@savoirfairelinux.com>
+ * Copyright (C) 2023 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,33 +15,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "previewengine.h"
+#include "globaltestenvironment.h"
 
-struct PreviewEngine::Impl : public QObject
+class MessageParserFixture : public ::testing::Test
 {
-    Impl(PreviewEngine&)
-        : QObject(nullptr)
-    {}
+public:
+    // Prepare unit test context. Called at
+    // prior each unit test execution
+    void SetUp() override {}
+
+    // Close unit test context. Called
+    // after each unit test ending
+    void TearDown() override {}
 };
 
-PreviewEngine::PreviewEngine(QObject* parent)
-    : QObject(parent)
-    , pimpl_(std::make_unique<Impl>(*this))
-{}
-
-PreviewEngine::~PreviewEngine() {}
-
-void
-PreviewEngine::parseMessage(const QString&, const QString&, bool, QColor)
-{}
-
-void
-PreviewEngine::log(const QString&)
-{}
-
-void
-PreviewEngine::emitInfoReady(const QString&, const QVariantMap&)
-{}
-
-#include "moc_previewengine.cpp"
-#include "previewengine.moc"
+/*!
+ * WHEN  We parse a markdown text body.
+ * THEN  The HTML body should be returned correctly.
+ */
+TEST_F(MessageParserFixture, MarkdownTextIsParsedCorrectly)
+{
+    EXPECT_EQ("This is a <b>bold</b> text", "This is a <b>bold</b> text");
+}
