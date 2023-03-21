@@ -72,7 +72,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         width: Math.max(508, root.width - 100)
 
-        Rectangle {
+        Item {
 
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
@@ -92,14 +92,6 @@ Rectangle {
 
             Component.onCompleted: {
                 mediaPlayer.play()
-            }
-
-            Behavior on opacity { NumberAnimation { duration: 150 } }
-
-            layer.enabled: opacity
-            layer.effect: FastBlur {
-                source: videoOutput
-                radius: (1. - opacity) * 100
             }
         }
 
