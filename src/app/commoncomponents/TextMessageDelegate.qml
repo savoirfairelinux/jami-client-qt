@@ -275,10 +275,5 @@ SBSMessageBase {
 
     opacity: 0
     Behavior on opacity { NumberAnimation { duration: 100 } }
-    Component.onCompleted: {
-        if (Linkified.length === 0) {
-            MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl)
-        }
-        opacity = 1
-    }
+    Component.onCompleted: { opacity = 1 }
 }
