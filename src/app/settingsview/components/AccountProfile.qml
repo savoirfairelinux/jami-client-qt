@@ -30,18 +30,6 @@ ColumnLayout {
     spacing: 8
     id: root
 
-    Connections {
-        target: settingsViewRect
-
-        function onStopBooth() {
-            stopBooth()
-        }
-    }
-
-    function stopBooth() {
-        currentAccountAvatar.stopBooth()
-    }
-
     Text {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
@@ -59,7 +47,6 @@ ColumnLayout {
 
     PhotoboothView {
         id: currentAccountAvatar
-        darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
         width: avatarSize
         height: avatarSize
 
@@ -67,7 +54,6 @@ ColumnLayout {
 
         imageId: LRCInstance.currentAccountId
         avatarSize: 180
-        buttonSize: JamiTheme.smartListAvatarSize
     }
 
     ModalTextEdit {
