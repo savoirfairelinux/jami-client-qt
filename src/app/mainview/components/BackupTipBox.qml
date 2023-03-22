@@ -31,6 +31,10 @@ Item {
     width: parent.width
     height: backupLayout.height
 
+    property var iconSize: 26
+    property var margin: 5
+    property var prefWidth: 170
+
     signal ignore
 
     ColumnLayout {
@@ -50,9 +54,9 @@ Item {
                 visible: !opened
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.topMargin: 5
-                Layout.preferredWidth: 26
-                Layout.preferredHeight: 26
+                Layout.topMargin: root.margin
+                Layout.preferredWidth: root.iconSize
+                Layout.preferredHeight: root.iconSize
 
                 containerHeight: Layout.preferredHeight
                 containerWidth: Layout.preferredWidth
@@ -61,21 +65,22 @@ Item {
                 color: JamiTheme.buttonTintedBlue
             }
 
-            Label {
+            Text {
                 text: JamiStrings.backupAccountBtn
                 color: JamiTheme.textColor
                 font.weight: Font.Medium
-                Layout.topMargin: 5
+                Layout.topMargin: root.margin
                 visible: !opened
                 Layout.alignment: Qt.AlignLeft
-                Layout.leftMargin: 5
+                Layout.leftMargin: root.margin
+                Layout.preferredWidth: root.prefWidth - 2 * root.margin - root.iconSize
                 font.pixelSize: JamiTheme.tipBoxTitleFontSize
+                elide: Qt.ElideRight
             }
         }
 
         Text {
-
-            Layout.preferredWidth: 170
+            Layout.preferredWidth: root.prefWidth
             Layout.leftMargin: 20
             Layout.topMargin: 8
             Layout.bottomMargin: 15
