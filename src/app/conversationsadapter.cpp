@@ -664,6 +664,6 @@ ConversationsAdapter::createSwarm(const QString& title,
     auto convModel = lrcInstance_->getCurrentConversationModel();
     return convModel->createConversation(participants,
                                          {{"title", title},
-                                         {"description", description},
-                                         {"avatar", avatar}});
+                                          {"description", description},
+                                          {"avatar", avatar}});
 }
