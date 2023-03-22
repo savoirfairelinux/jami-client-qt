@@ -31,6 +31,7 @@ ListView {
     property var readers: []
     model: readers
     orientation: ListView.Horizontal
+    interactive: false
     Layout.alignment: Qt.AlignRight
     spacing: -(JamiTheme.avatarReadReceiptSize/3)
 
