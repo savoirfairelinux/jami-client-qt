@@ -73,6 +73,13 @@ RowLayout {
             editFinished()
         }
 
+        /*onActiveFocusChanged: {
+            if(!activeFocus){
+                root.dynamicText = dynamicText
+                editFinished()
+            }
+        }*/
+
         Timer {
             id: debounceTimer
             interval: 500

@@ -110,14 +110,6 @@ BaseView {
                 onShowThisPage: controlPanelStackView.setPage(this)
             }
 
-            ProfilePage {
-                id: profilePage
-
-                objectName: "profilePage"
-
-                onShowThisPage: controlPanelStackView.setPage(this)
-            }
-
             ImportFromDevicePage {
                 id: importFromDevicePage
 

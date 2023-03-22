@@ -36,10 +36,15 @@ Rectangle {
     property int tabBarItemsLength: tabBar.contentChildren.length
 
     color: CurrentConversation.color
+
     property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id,
                                         CurrentConversation.id,
                                         CurrentAccount.uri) === Member.Role.ADMIN
                           || CurrentConversation.isCoreDialog
+
+    property string textColor: UtilsAdapter.luma(root.color) ?
+                                 JamiTheme.chatviewTextColorLight :
+                                 JamiTheme.chatviewTextColorDark
 
     ColumnLayout {
         id: swarmProfileDetails
@@ -52,143 +57,73 @@ Rectangle {
             Layout.fillWidth: true
             spacing: JamiTheme.preferredMarginSize
 
-            PhotoboothView {
-                id: currentAccountAvatar
-                darkTheme: UtilsAdapter.luma(root.color)
-                readOnly: !root.isAdmin
-                width: avatarSize
-                height: avatarSize
+            RowLayout {
+                spacing: 15
+                Layout.leftMargin: 15
 
-                Layout.alignment: Qt.AlignHCenter
+                PhotoboothView {
+                    id: currentAccountAvatar
 
-                newItem: true
-                imageId: LRCInstance.selectedConvUid
-                avatarSize: JamiTheme.smartListAvatarSize * 3/2
-            }
+                    readOnly: !root.isAdmin
+                    width: avatarSize
+                    height: avatarSize
 
-            EditableLineEdit {
-                id: titleLine
+                    Layout.alignment: Qt.AlignHCenter
 
-                Layout.alignment: Qt.AlignHCenter
-                Layout.fillWidth: true
-                Layout.leftMargin: 16
-                Layout.rightMargin: 16
-                Layout.topMargin: 5
-
-                TextMetrics {
-                    id: formattedTitle
-
-                    font.pointSize: JamiTheme.titleFontSize
-                    elide: !titleLine.editable ? Text.ElideRight : Text.ElideNone
-                    elideWidth: titleLine.lineEdit.width - 25
-                    text: CurrentConversation.title
+                    newItem: true
+                    imageId: LRCInstance.selectedConvUid
+                    avatarSize: JamiTheme.smartListAvatarSize * 3/2
                 }
 
-                wrapMode: Text.NoWrap
-                font.pointSize: JamiTheme.titleFontSize
+                ColumnLayout {
 
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+                    signal accepted
 
-                firstIco:  JamiResources.round_edit_24dp_svg
-                secondIco: editable ? JamiResources.close_black_24dp_svg : ""
+                    ModalTextEdit {
+                        id: titleLineButton
 
-                fontSize: 20
-                borderColor: "transparent"
+                        isSwarmDetail: true
 
-                text: formattedTitle.elidedText
-                readOnly: !root.isAdmin
-                placeholderText: JamiStrings.swarmName
-                placeholderTextColor: {
-                    if (editable) {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.placeholderTextColorWhite
-                        } else {
-                            return JamiTheme.placeholderTextColor
+                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                        Layout.preferredWidth: 217
+
+                        staticText: CurrentConversation.title
+
+                        textColor: root.textColor
+                        prefixIconColor: root.textColor
+
+                        onAccepted: CurrentConversation.title = dynamicText
+
+                        onActiveFocusChanged: {
+                            if(!activeFocus){
+                                CurrentConversation.title = dynamicText
+                            }
                         }
-                    } else {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.chatviewTextColorLight
-                        } else {
-                            return JamiTheme.chatviewTextColorDark
+                    }
+
+                    ModalTextEdit {
+                        id: descriptionLineButton
+
+                        isSwarmDetail: true
+
+                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                        Layout.preferredWidth: 217
+
+                        staticText: CurrentConversation.description
+                        placeholderText: JamiStrings.addADescription
+
+                        textColor: root.textColor
+                        prefixIconColor: root.textColor
+
+                        onAccepted: CurrentConversation.description = dynamicText
+
+                        onActiveFocusChanged: {
+                            if(!activeFocus){
+                                CurrentConversation.description = dynamicText
+                            }
                         }
                     }
                 }
-                tooltipText: JamiStrings.swarmName
-                backgroundColor: root.color
-                color: UtilsAdapter.luma(backgroundColor) ?
-                           JamiTheme.chatviewTextColorLight :
-                           JamiTheme.chatviewTextColorDark
-
-                onEditingFinished: {
-                    if (text !== CurrentConversation.title)
-                        ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, text)
-                }
-                onSecondIcoClicked: {editable = !editable}
-            }
-
-            EditableLineEdit {
-                id: descriptionLine
-
-                Layout.alignment: Qt.AlignHCenter
-                Layout.fillWidth: true
-                Layout.leftMargin: 16
-                Layout.rightMargin: 16
-
-                font.pointSize: JamiTheme.menuFontSize
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
-                fontSize: 16
-
-                firstIco:  JamiResources.round_edit_24dp_svg
-                secondIco: editable ? JamiResources.close_black_24dp_svg : ""
-                borderColor: "transparent"
-
-                TextMetrics {
-                    id: formattedDescription
-
-                    font.pointSize: JamiTheme.titleFontSize
-                    elide: !descriptionLine.editable ? Text.ElideRight : Text.ElideNone
-                    elideWidth: descriptionLine.lineEdit.width - 25
-                    text: CurrentConversation.description
-                }
-
-                wrapMode: Text.NoWrap
-
-                text: formattedDescription.elidedText
-                readOnly: !root.isAdmin || CurrentConversation.isCoreDialog
-                visible: root.isAdmin || text.length > 0
-                placeholderText: JamiStrings.addADescription
-                placeholderTextColor: {
-                    if (editable) {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.placeholderTextColorWhite
-                        } else {
-                            return JamiTheme.placeholderTextColor
-                        }
-                    } else {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.chatviewTextColorLight
-                        } else {
-                            return JamiTheme.chatviewTextColorDark
-                        }
-                    }
-                }
-                tooltipText: JamiStrings.addADescription
-                backgroundColor: root.color
-                color: UtilsAdapter.luma(backgroundColor) ?
-                           JamiTheme.chatviewTextColorLight :
-                           JamiTheme.chatviewTextColorDark
-
-                onEditingFinished: {
-                    if (text !== CurrentConversation.description)
-                        ConversationsAdapter.updateConversationDescription(
-                                    LRCInstance.selectedConvUid, text)
-                }
-
-                onSecondIcoClicked: {editable = !editable}
             }
 
             TabBar {
