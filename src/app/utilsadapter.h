@@ -143,6 +143,8 @@ public:
 
     Q_INVOKABLE QString getOneline(const QString& input);
 
+    Q_INVOKABLE QVariantMap getVideoPlayer(const QString& resource, const QString& bgColor);
+
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
     void changeFontSize();
