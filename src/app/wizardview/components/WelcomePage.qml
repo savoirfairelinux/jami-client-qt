@@ -78,29 +78,55 @@ Rectangle {
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
             Layout.preferredHeight: JamiTheme.welcomeLogoHeight
 
-            MediaPlayer {
-                id: mediaPlayer
-                source: JamiTheme.darkTheme ? JamiResources.logo_dark_webm : JamiResources.logo_light_webm
-                videoOutput: videoOutput
-                loops: MediaPlayer.Infinite
-            }
+            Loader {
+                id: videoPlayer
 
-            VideoOutput {
-                id: videoOutput
+                property var mediaInfo: UtilsAdapter.getVideoPlayer(JamiTheme.darkTheme ? JamiResources.logo_dark_webm : JamiResources.logo_light_webm)
                 anchors.fill: parent
+                anchors.margins: 2
+                sourceComponent: WITH_WEBENGINE? avMediaComp : basicPlayer
+
+                Component {
+                    id: avMediaComp
+                    Loader {
+                        Component.onCompleted: {
+                            var qml = "qrc:/webengine/VideoPreview.qml"
+                            setSource( qml, { isVideo: mediaInfo.isVideo, html:mediaInfo.html } )
+                        }
+                    }
+                }
+
+                Component {
+                    id: basicPlayer
+
+                    Item {
+                        MediaPlayer {
+                            id: mediaPlayer
+                            source: JamiTheme.darkTheme ? JamiResources.logo_dark_webm : JamiResources.logo_light_webm
+                            videoOutput: videoOutput
+                            loops: MediaPlayer.Infinite
+                        }
+
+                        VideoOutput {
+                            id: videoOutput
+                            anchors.fill: parent
+                        }
+
+                        Component.onCompleted: {
+                            mediaPlayer.play()
+                        }
+                        Behavior on opacity { NumberAnimation { duration: 150 } }
+
+                        layer.enabled: opacity
+                        layer.effect: FastBlur {
+                            source: videoOutput
+                            radius: (1. - opacity) * 100
+                        }
+                    }
+
+                }
             }
 
-            Component.onCompleted: {
-                mediaPlayer.play()
-            }
-
-            Behavior on opacity { NumberAnimation { duration: 150 } }
-
-            layer.enabled: opacity
-            layer.effect: FastBlur {
-                source: videoOutput
-                radius: (1. - opacity) * 100
-            }
         }
 
 

@@ -759,3 +759,13 @@ UtilsAdapter::getOneline(const QString& input)
         output.truncate(index);
     return output;
 }
+
+QVariantMap
+UtilsAdapter::getVideoPlayer(const QString& resource)
+{
+    static const QString htmlVideo = "<body style='margin:0;padding:0;'>"
+        "<video autoplay muted loop style='width:100%;height:100%;outline:none;background-color:#f1f3f4;"
+        "object-fit:cover;' "
+        "src='%1' type='video/webm'/></body>";
+    return {{"isVideo", true},{"html", htmlVideo.arg(resource)},};
+}
