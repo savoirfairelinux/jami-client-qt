@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "856ff514_70462547",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-22T17:22:50Z",
+      "side": 1,
+      "message": "Note: this will be done in another patch: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1043",
+      "range": {
+        "startLine": 366,
+        "startChar": 114,
+        "endLine": 367,
+        "endChar": 103
+      },
+      "revId": "301f2a52899d39830419ceacdf33def0eefb786d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
