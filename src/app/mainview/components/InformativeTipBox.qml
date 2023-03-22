@@ -27,9 +27,12 @@ import "../../commoncomponents"
 
 
 ColumnLayout {
-
+    id: column
     width: parent.width
 
+    property var iconSize: 26
+    property var margin: 5
+    property var prefWidth: 170
 
     RowLayout {
 
@@ -42,9 +45,9 @@ ColumnLayout {
             visible: !opened
 
             Layout.alignment: Qt.AlignLeft
-            Layout.topMargin: 5
-            Layout.preferredWidth: 26
-            Layout.preferredHeight: 26
+            Layout.topMargin: column.margin
+            Layout.preferredWidth: column.iconSize
+            Layout.preferredHeight: column.iconSize
 
             containerHeight: Layout.preferredHeight
             containerWidth: Layout.preferredWidth
@@ -57,16 +60,17 @@ ColumnLayout {
             text: JamiStrings.tip
             color: JamiTheme.textColor
             font.weight: Font.Medium
-            Layout.topMargin: 5
+            Layout.topMargin: column.margin
             visible: !opened
             Layout.alignment: Qt.AlignLeft
             Layout.leftMargin: 8
+            Layout.preferredWidth: column.prefWidth - 2 * column.margin - column.iconSize
             font.pixelSize: JamiTheme.tipBoxTitleFontSize
+            elide: Qt.ElideRight
         }
     }
 
     Text {
-
         Layout.preferredWidth: opened ? 140 : 150
         Layout.leftMargin: 20
         Layout.topMargin: opened ? 0 : 8
