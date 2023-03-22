@@ -37,7 +37,6 @@ Rectangle {
     property int preferredColumnWidth : Math.min(root.width / 2 - 50, 350)
 
     signal navigateToMainView
-    signal navigateToNewWizardView
     signal advancedSettingsToggled(bool settingsVisible)
 
     function updateAccountInfoDisplayed() {

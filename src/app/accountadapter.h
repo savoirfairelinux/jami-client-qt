@@ -88,7 +88,6 @@ Q_SIGNALS:
     void reportFailure();
     void accountCreationFailed();
     void accountAdded(QString accountId, int index);
-    void accountRemoved();
     void accountConfigFinalized();
 
 private:

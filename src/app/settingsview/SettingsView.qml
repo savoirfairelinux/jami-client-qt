@@ -47,6 +47,7 @@ ListSelectionView {
 
     onDismissed: {
         // Trigger an update to messages if needed.
+        // Currently needed when changing the show link preview setting.
         CurrentConversation.reloadInteractions()
         settingsViewRect.stopBooth()
         if (UtilsAdapter.getAccountListSize() === 0) {
@@ -168,7 +169,15 @@ ListSelectionView {
                     isSIP: settingsViewRect.isSIP
 
                     onNavigateToMainView: dismiss()
-                    onNavigateToNewWizardView: dismiss()
+                    Connections {
+                        target: LRCInstance
+
+                        function onAccountListChanged() {
+                            if (!UtilsAdapter.getAccountListSize()) {
+                                viewCoordinator.requestAppWindowWizardView()
+                            }
+                        }
+                    }
 
                     onAdvancedSettingsToggled: function (settingsVisible) {
                         if (settingsVisible)
