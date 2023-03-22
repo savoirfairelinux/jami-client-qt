@@ -55,13 +55,15 @@ Item {
     function openCallViewContextMenuInPos(x, y,
                                           hoveredOverlayUri,
                                           hoveredOverlaySinkId,
-                                          hoveredOverVideoMuted)
+                                          hoveredOverVideoMuted,
+                                          isOnLocal)
     {
         callViewContextMenu.x = root.width - x >= callViewContextMenu.width ? x : root.width - callViewContextMenu.width
         callViewContextMenu.y = root.height - y >= callViewContextMenu.height ? y : root.height - callViewContextMenu.height
         callViewContextMenu.hoveredOverlayUri = hoveredOverlayUri
         callViewContextMenu.hoveredOverlaySinkId = hoveredOverlaySinkId
         callViewContextMenu.hoveredOverVideoMuted = hoveredOverVideoMuted
+        callViewContextMenu.isOnLocal = isOnLocal
         callViewContextMenu.open()
     }
 

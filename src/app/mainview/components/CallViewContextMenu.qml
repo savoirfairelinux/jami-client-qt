@@ -22,9 +22,10 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Models 1.1
+import net.jami.Enums 1.1
 
 import "../../commoncomponents"
 import "../../commoncomponents/contextmenu"
@@ -39,6 +40,7 @@ Popup {
     property string hoveredOverlayUri: ""
     property string hoveredOverlaySinkId: ""
     property bool hoveredOverVideoMuted: true
+    property bool isOnLocal: false
 
     property var listModel: ListModel {
         id: actionsModel
@@ -47,6 +49,9 @@ Popup {
     onAboutToShow: {
         actionsModel.clear()
         actionsModel.append({"Top": true})
+        if (root.isOnLocal)
+            actionsModel.append({"Name": JamiStrings.mirrorLocalVideo,
+                                "IconSource": JamiResources.flip_24dp_svg})
         if (hoveredOverlayUri !== "" && hoveredOverVideoMuted === false)
             actionsModel.append({"Name": JamiStrings.tileScreenshot,
                                 "IconSource" : JamiResources.screenshot_black_24dp_svg})
@@ -131,6 +136,10 @@ Popup {
                                                             UtilsAdapter.getDirScreenshot())) {
                                     screenshotTaken()
                                 }
+                                break
+                            case JamiStrings.mirrorLocalVideo:
+                                UtilsAdapter.setAppValue(Settings.FlipSelf, !UtilsAdapter.getAppValue(Settings.FlipSelf))
+                                CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf)
                                 break
                         }
                         root.close()
