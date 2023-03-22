@@ -28,10 +28,19 @@ TextField {
     // except the context menu.
     property bool isActive: activeFocus || contextMenu.active
     property bool isSettings: false
+    property bool isSwarmDetail: false
+
     onActiveFocusChanged: {
+        root.cursorPosition = 0
         if (!activeFocus && !contextMenu.active) {
             root.focus = false
         }
+        if (root.focus)
+            root.cursorPosition = root.text.length
+    }
+
+    Component.onCompleted: {
+        root.cursorPosition = 0
     }
 
     signal keyPressed
@@ -50,12 +59,14 @@ TextField {
                            ? prefixIconColor
                            : JamiTheme.buttonTintedBlue
     property color baseColor: JamiTheme.primaryForegroundColor
-    color: JamiTheme.textColor
+    property color textColor: JamiTheme.textColor
+    color: textColor
     placeholderTextColor: !isActive
                           ? JamiTheme.transparentColor
-                          : JamiTheme.placeholderTextColor
+                          : root.color
 
     property alias infoTipText: infoTip.text
+    property alias infoTipLineText: infoTipLine.text
 
     wrapMode: "NoWrap"
 
@@ -64,7 +75,7 @@ TextField {
     selectByMouse: true
     mouseSelectionMode: TextInput.SelectCharacters
 
-    leftPadding: readOnly || prefixIconSrc === '' ? 0 : 32
+    leftPadding: readOnly || prefixIconSrc === '' || (isSwarmDetail && !root.isActive) ? 0 : 32
     rightPadding: {
         var total = 2
         if (!readOnly) {
@@ -77,7 +88,6 @@ TextField {
         return total
     }
 
-    bottomPadding: 20
     topPadding: 2
 
     Keys.onPressed: function (event) {
@@ -111,20 +121,32 @@ TextField {
         id: overBaseLineLabel
         font.pixelSize: root.font.pixelSize
         anchors.baseline: root.baseline
-        anchors.horizontalCenter: root.horizontalCenter
+        anchors.horizontalCenter: !isSwarmDetail ? root.horizontalCenter : undefined
         text: root.placeholderText
-        color: root.baseColor
+        color: isSwarmDetail ? root.color : root.baseColor
         visible: !root.isActive && !readOnly && root.text.toString() === ""
     }
 
     Rectangle {
         id: baselineLine
         width: parent.width
-        height: 1
+        height: visible ? 1 : 0
         anchors.top: root.baseline
-        anchors.topMargin: root.font.pixelSize
-        color: root.accent
-        visible: !readOnly
+        anchors.topMargin: root.font.pixelSize / 1.5
+        color: isSwarmDetail ? textColor : root.accent
+        visible: {
+            if (!readOnly) {
+                if (isSwarmDetail && root.hovered
+                        || root.isActive ) {
+                    return true
+                }
+                if (isSwarmDetail) {
+                    return false
+                }
+                return true
+            }
+            return false
+        }
     }
 
     component TextFieldIcon: ResponsiveImage {
@@ -154,10 +176,10 @@ TextField {
         anchors.top: baselineLine.bottom
         anchors.topMargin: 2
         text: root.placeholderText
-        color: root.baseColor
+        color: root.textColor
 
         // Show the alternate placeholder while the user types.
-        visible: root.isActive && !readOnly && root.text.toString() !== "" && !root.isSettings
+        visible: root.isActive && !readOnly && root.text.toString() !== "" && !root.isSettings && !root.isSwarmDetail
     }
 
     Item {
@@ -180,7 +202,7 @@ TextField {
                 id: infoTip
                 textColor: JamiTheme.blackColor
                 backGroundColor: JamiTheme.whiteColor
-                visible: parent.hovered && infoTipText.toString() !== ''
+                visible: parent.hovered && infoTipText.toString() !== ""
                 delay: Qt.styleHints.mousePressAndHoldInterval
             }
         }
@@ -201,6 +223,14 @@ TextField {
                 modalTextEditRoot.icoClicked()
             }
         }
+    }
+
+    MaterialToolTip {
+        id: infoTipLine
+
+        visible: parent.hovered && infoTipLineText.toString() !== "" && !readOnly
+        delay: Qt.styleHints.mousePressAndHoldInterval
+        y: implicitHeight
     }
 
     background: null
