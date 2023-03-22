@@ -413,6 +413,7 @@ Item {
 
     // Modal Popup
     property real modalPopupRadius: 20
+    property real photoPopupRadius: 5
 
     //MessagesResearch
     property color blueLinkColor: darkTheme ? "#3366BB" : "#0645AD"
@@ -541,6 +542,7 @@ Item {
     //Popups
     property real popuptextSize: calcSize(15)
     property real popupButtonsMargin: 20
+    property real popupPhotoTextSize: calcSize(18)
 
     // MaterialLineEdit
     property real materialLineEditPointSize: calcSize(10 + fontSizeOffset)
