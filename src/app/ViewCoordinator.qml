@@ -46,18 +46,19 @@ QtObject {
     // The `main` view of the application window.
     property StackView rootView
 
-    property var currentViewName: rootView && rootView.currentItem.objectName || null
+    property var currentViewName: rootView && rootView.currentItem &&
+                                      rootView.currentItem.objectName || null
 
-    function init(appWindow) {
+    function init(mainStackView) {
         rootView = Qt.createQmlObject(`import QtQuick; import QtQuick.Controls
                                       StackView { anchors.fill: parent }`,
-                                      appWindow)
+                                      mainStackView)
         initialized()
     }
 
     function deinit() {
         viewManager.destroyAllViews()
-        rootView.destroy()
+        if (rootView) rootView.destroy()
     }
 
     // Finds a view and gets its index within the StackView it's in.
@@ -120,8 +121,8 @@ QtObject {
 
     // Dismiss by object.
     function dismissObj(obj) {
-        if (obj.StackView.view !== rootView) {
-            print("view not in the stack:", obj)
+        // Check if it makes sense to remove this view at all.
+        if (obj.StackView.view !== rootView || !viewManager.viewCount()) {
             return
         }
 

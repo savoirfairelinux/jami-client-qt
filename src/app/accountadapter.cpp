@@ -257,12 +257,10 @@ AccountAdapter::deleteCurrentAccount()
                           &lrc::api::AccountModel::accountRemoved,
                           [this](const QString& accountId) {
                               Q_UNUSED(accountId);
-                              // For testing purpose
-                              Q_EMIT accountRemoved();
+                              Q_EMIT lrcInstance_->accountListChanged();
                           });
 
     lrcInstance_->accountModel().removeAccount(lrcInstance_->get_currentAccountId());
-    Q_EMIT lrcInstance_->accountListChanged();
 }
 
 bool
