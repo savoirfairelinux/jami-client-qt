@@ -132,14 +132,12 @@ DualPaneView {
                 id: currentAccountAvatar
 
                 Layout.alignment: Qt.AlignCenter
-                darkTheme: UtilsAdapter.luma(root.color)
                 width: avatarSize
                 height: avatarSize
 
                 newItem: true
                 imageId: root.visible ? "temp" : ""
                 avatarSize: 180
-                buttonSize: JamiTheme.smartListAvatarSize
             }
 
             EditableLineEdit {

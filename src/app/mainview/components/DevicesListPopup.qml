@@ -182,7 +182,18 @@ BaseModalDialog {
                 MaterialButton {
                     id: chooseBtn
 
+                    TextMetrics{
+                        id: chooseBtnTextSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        font.capitalization: Font.AllUppercase
+                        text: chooseBtn.text
+                    }
+
                     Layout.alignment: Qt.AlignCenter
+                    Layout.fillWidth: true
+                    primary: true
+                    preferredWidth: chooseBtnTextSize.width + 2*JamiTheme.buttontextWizzardPadding
                     enabled: devicesListView.currentItem
 
                     text: JamiStrings.chooseThisDevice
@@ -198,7 +209,18 @@ BaseModalDialog {
                 MaterialButton {
                     id: rmDeviceBtn
 
+                    TextMetrics{
+                        id: rmDeviceBtnTextSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        font.capitalization: Font.AllUppercase
+                        text: rmDeviceBtn.text
+                    }
+
                     Layout.alignment: Qt.AlignCenter
+                    Layout.fillWidth: true
+                    primary: true
+                    preferredWidth: rmDeviceBtnTextSize.width + 2*JamiTheme.buttontextWizzardPadding
                     enabled: devicesListView.currentItem
 
                     text: JamiStrings.removeCurrentDevice
@@ -211,9 +233,6 @@ BaseModalDialog {
                     }
                 }
             }
-
-
-
         }
     }
 }

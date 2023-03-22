@@ -29,6 +29,7 @@ Loader {
     property color suffixIconColor: JamiTheme.buttonTintedBlue
     property string suffixBisIconSrc : ""
     property color suffixBisIconColor: JamiTheme.buttonTintedBlue
+    property color textColor: JamiTheme.textColor
 
     required property string placeholderText
     property string staticText: ""
@@ -46,6 +47,7 @@ Loader {
 
     property var icon
     property bool isSettings
+    property bool isSwarmDetail
 
     onStatusChanged: {
         if(status == Loader.Ready && icon)
@@ -100,6 +102,7 @@ Loader {
             suffixIconColor: root.suffixIconColor
             suffixBisIconSrc: root.suffixBisIconSrc
             suffixBisIconColor: root.suffixBisIconColor
+            textColor: root.textColor
             font.pixelSize: root.fontPixelSize
             font.bold: root.fontBold
             echoMode: root.echoMode
@@ -118,6 +121,7 @@ Loader {
             onIsActiveChanged: activeChanged(isActive)
             validator: root.textValidator
             isSettings: root.isSettings
+            isSwarmDetail: root.isSwarmDetail
         }
     }
 
