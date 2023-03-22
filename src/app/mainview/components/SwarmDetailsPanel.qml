@@ -36,10 +36,15 @@ Rectangle {
     property int tabBarItemsLength: tabBar.contentChildren.length
 
     color: CurrentConversation.color
+
     property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id,
                                         CurrentConversation.id,
                                         CurrentAccount.uri) === Member.Role.ADMIN
                           || CurrentConversation.isCoreDialog
+
+    property string textColor: UtilsAdapter.luma(root.color) ?
+                                 JamiTheme.chatviewTextColorLight :
+                                 JamiTheme.chatviewTextColorDark
 
     ColumnLayout {
         id: swarmProfileDetails
@@ -52,143 +57,82 @@ Rectangle {
             Layout.fillWidth: true
             spacing: JamiTheme.preferredMarginSize
 
-            PhotoboothView {
-                id: currentAccountAvatar
-                darkTheme: UtilsAdapter.luma(root.color)
-                readOnly: !root.isAdmin
-                width: avatarSize
-                height: avatarSize
+            RowLayout {
+                spacing: 15
+                Layout.leftMargin: 15
 
-                Layout.alignment: Qt.AlignHCenter
+                PhotoboothView {
+                    id: currentAccountAvatar
 
-                newItem: true
-                imageId: LRCInstance.selectedConvUid
-                avatarSize: JamiTheme.smartListAvatarSize * 3/2
-            }
+                    readOnly: !root.isAdmin
+                    width: avatarSize
+                    height: avatarSize
 
-            EditableLineEdit {
-                id: titleLine
+                    Layout.alignment: Qt.AlignHCenter
 
-                Layout.alignment: Qt.AlignHCenter
-                Layout.fillWidth: true
-                Layout.leftMargin: 16
-                Layout.rightMargin: 16
-                Layout.topMargin: 5
-
-                TextMetrics {
-                    id: formattedTitle
-
-                    font.pointSize: JamiTheme.titleFontSize
-                    elide: !titleLine.editable ? Text.ElideRight : Text.ElideNone
-                    elideWidth: titleLine.lineEdit.width - 25
-                    text: CurrentConversation.title
+                    newItem: true
+                    imageId: LRCInstance.selectedConvUid
+                    avatarSize: JamiTheme.smartListAvatarSize * 3/2
                 }
 
-                wrapMode: Text.NoWrap
-                font.pointSize: JamiTheme.titleFontSize
+                ColumnLayout {
 
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+                    signal accepted
 
-                firstIco:  JamiResources.round_edit_24dp_svg
-                secondIco: editable ? JamiResources.close_black_24dp_svg : ""
+                    ModalTextEdit {
+                        id: titleLineButton
 
-                fontSize: 20
-                borderColor: "transparent"
+                        isSwarmDetail: true
+                        readOnly: !isAdmin
 
-                text: formattedTitle.elidedText
-                readOnly: !root.isAdmin
-                placeholderText: JamiStrings.swarmName
-                placeholderTextColor: {
-                    if (editable) {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.placeholderTextColorWhite
-                        } else {
-                            return JamiTheme.placeholderTextColor
+                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                        Layout.preferredWidth: 217
+
+                        staticText: CurrentConversation.title
+
+                        textColor: root.textColor
+                        prefixIconColor: root.textColor
+
+                        onAccepted: ConversationsAdapter.updateConversationTitle(
+                                        LRCInstance.selectedConvUid, dynamicText)
+
+                        onActiveFocusChanged: {
+                            if(!activeFocus){
+                                ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText)
+                            }
                         }
-                    } else {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.chatviewTextColorLight
-                        } else {
-                            return JamiTheme.chatviewTextColorDark
+
+                        infoTipLineText: JamiStrings.swarmName
+                    }
+
+                    ModalTextEdit {
+                        id: descriptionLineButton
+
+                        isSwarmDetail: true
+                        readOnly: !isAdmin || CurrentConversation.isCoreDialog
+
+                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                        Layout.preferredWidth: 217
+
+                        staticText: CurrentConversation.description
+                        placeholderText: JamiStrings.addADescription
+
+                        textColor: root.textColor
+                        prefixIconColor: root.textColor
+
+                        onAccepted: ConversationsAdapter.updateConversationDescription(
+                                        LRCInstance.selectedConvUid, dynamicText)
+
+                        onActiveFocusChanged: {
+                            if(!activeFocus){
+                                ConversationsAdapter.updateConversationDescription(
+                                            LRCInstance.selectedConvUid, dynamicText)
+                            }
                         }
+
+                        infoTipLineText: JamiStrings.addADescription
                     }
                 }
-                tooltipText: JamiStrings.swarmName
-                backgroundColor: root.color
-                color: UtilsAdapter.luma(backgroundColor) ?
-                           JamiTheme.chatviewTextColorLight :
-                           JamiTheme.chatviewTextColorDark
-
-                onEditingFinished: {
-                    if (text !== CurrentConversation.title)
-                        ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, text)
-                }
-                onSecondIcoClicked: {editable = !editable}
-            }
-
-            EditableLineEdit {
-                id: descriptionLine
-
-                Layout.alignment: Qt.AlignHCenter
-                Layout.fillWidth: true
-                Layout.leftMargin: 16
-                Layout.rightMargin: 16
-
-                font.pointSize: JamiTheme.menuFontSize
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
-                fontSize: 16
-
-                firstIco:  JamiResources.round_edit_24dp_svg
-                secondIco: editable ? JamiResources.close_black_24dp_svg : ""
-                borderColor: "transparent"
-
-                TextMetrics {
-                    id: formattedDescription
-
-                    font.pointSize: JamiTheme.titleFontSize
-                    elide: !descriptionLine.editable ? Text.ElideRight : Text.ElideNone
-                    elideWidth: descriptionLine.lineEdit.width - 25
-                    text: CurrentConversation.description
-                }
-
-                wrapMode: Text.NoWrap
-
-                text: formattedDescription.elidedText
-                readOnly: !root.isAdmin || CurrentConversation.isCoreDialog
-                visible: root.isAdmin || text.length > 0
-                placeholderText: JamiStrings.addADescription
-                placeholderTextColor: {
-                    if (editable) {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.placeholderTextColorWhite
-                        } else {
-                            return JamiTheme.placeholderTextColor
-                        }
-                    } else {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.chatviewTextColorLight
-                        } else {
-                            return JamiTheme.chatviewTextColorDark
-                        }
-                    }
-                }
-                tooltipText: JamiStrings.addADescription
-                backgroundColor: root.color
-                color: UtilsAdapter.luma(backgroundColor) ?
-                           JamiTheme.chatviewTextColorLight :
-                           JamiTheme.chatviewTextColorDark
-
-                onEditingFinished: {
-                    if (text !== CurrentConversation.description)
-                        ConversationsAdapter.updateConversationDescription(
-                                    LRCInstance.selectedConvUid, text)
-                }
-
-                onSecondIcoClicked: {editable = !editable}
             }
 
             TabBar {
@@ -297,11 +241,12 @@ Rectangle {
                     id: aboutSwarm
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    anchors.rightMargin: JamiTheme.settingsMarginSize
                     visible: tabBar.currentItemName === "settings"
                     Layout.alignment: Qt.AlignTop
+                    spacing: 0
 
                     SwarmDetailsItem {
+                        id: firstParameter
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
@@ -310,6 +255,7 @@ Rectangle {
 
                             anchors.fill: parent
                             anchors.leftMargin: JamiTheme.preferredMarginSize
+                            anchors.rightMargin: JamiTheme.settingsMarginSize
 
                             checked: CurrentConversation.ignoreNotifications
 
@@ -333,7 +279,7 @@ Rectangle {
                             anchors.top: parent.top
                             anchors.margins: JamiTheme.preferredMarginSize
                             text: JamiStrings.leaveConversation
-                            font.pointSize: JamiTheme.settingsFontSize
+                            font.pixelSize: JamiTheme.participantSwarmDetailFontSize
                             font.kerning: true
                             elide: Text.ElideRight
                             horizontalAlignment: Text.AlignLeft
@@ -369,6 +315,7 @@ Rectangle {
                         RowLayout {
                             anchors.fill: parent
                             anchors.leftMargin: JamiTheme.preferredMarginSize
+                            anchors.rightMargin: JamiTheme.settingsMarginSize
 
                             Text {
                                 Layout.fillWidth: true
@@ -376,7 +323,7 @@ Rectangle {
                                 Layout.rightMargin: JamiTheme.preferredMarginSize
 
                                 text: JamiStrings.chooseAColor
-                                font.pointSize: JamiTheme.settingsFontSize
+                                font.pixelSize: JamiTheme.participantSwarmDetailFontSize
                                 font.kerning: true
                                 elide: Text.ElideRight
                                 horizontalAlignment: Text.AlignLeft
@@ -416,6 +363,7 @@ Rectangle {
                         RowLayout {
                             anchors.fill: parent
                             anchors.leftMargin: JamiTheme.preferredMarginSize
+                            anchors.rightMargin: JamiTheme.settingsMarginSize
 
                             Text {
                                 id: settingsSwarmText
@@ -425,7 +373,7 @@ Rectangle {
                                 Layout.maximumWidth: settingsSwarmItem.width / 2
 
                                 text: JamiStrings.defaultCallHost
-                                font.pointSize: JamiTheme.settingsFontSize
+                                font.pixelSize: JamiTheme.participantSwarmDetailFontSize
                                 font.kerning: true
                                 elide: Text.ElideRight
                                 horizontalAlignment: Text.AlignLeft
@@ -439,7 +387,7 @@ Rectangle {
                                 id: swarmRdvPref
                                 spacing: 10
                                 Layout.alignment: Qt.AlignRight
-                                Layout.maximumWidth: settingsSwarmItem.width / 2
+                                Layout.fillWidth: true
 
                                 Connections {
                                     target: CurrentConversation
@@ -467,6 +415,7 @@ Rectangle {
                                 ColumnLayout {
                                     spacing: 0
                                     Layout.alignment: Qt.AlignVCenter
+                                    Layout.fillWidth: true
 
                                     ElidedTextLabel {
                                         id: bestName
@@ -479,12 +428,14 @@ Rectangle {
                                             else
                                                 return UtilsAdapter.getBestNameForUri(CurrentAccount.id, CurrentConversation.rdvAccount)
                                         }
-                                        maxWidth: JamiTheme.preferredFieldWidth
+                                        maxWidth: settingsSwarmItem.width / 2 - JamiTheme.contactMessageAvatarSize
 
-                                        font.pointSize: JamiTheme.participantFontSize
+                                        font.pointSize: eText === JamiStrings.none ? JamiTheme.settingsFontSize : JamiTheme.smartlistItemInfoFontSize
+                                        font.weight: eText === JamiStrings.none ? Font.Medium : Font.Normal
                                         color: JamiTheme.primaryForegroundColor
                                         font.kerning: true
 
+                                        horizontalAlignment: Text.AlignRight
                                         verticalAlignment: Text.AlignVCenter
                                     }
 
@@ -493,9 +444,9 @@ Rectangle {
 
                                         eText: CurrentConversation.rdvDevice === "" ? JamiStrings.none : CurrentConversation.rdvDevice
                                         visible: CurrentConversation.rdvDevice !== ""
-                                        maxWidth: JamiTheme.preferredFieldWidth
+                                        maxWidth: settingsSwarmItem.width / 2 - JamiTheme.contactMessageAvatarSize
 
-                                        font.pointSize: JamiTheme.participantFontSize
+                                        font.pointSize: JamiTheme.settingsFontSize
                                         color: JamiTheme.textColorHovered
                                         font.kerning: true
 
@@ -529,7 +480,7 @@ Rectangle {
                             Layout.rightMargin: JamiTheme.preferredMarginSize
 
                             text: JamiStrings.typeOfSwarm
-                            font.pointSize: JamiTheme.settingsFontSize
+                            font.pixelSize: JamiTheme.participantSwarmDetailFontSize
                             font.kerning: true
                             elide: Text.ElideRight
                             horizontalAlignment: Text.AlignLeft
@@ -538,13 +489,15 @@ Rectangle {
                             color: JamiTheme.textColor
                         }
 
-                        Label {
+                        Text {
                             id: typeOfSwarmLabel
 
                             Layout.alignment: Qt.AlignRight
+                            Layout.rightMargin: JamiTheme.settingsMarginSize
 
                             color: JamiTheme.textColor
-
+                            font.pixelSize: JamiTheme.participantSwarmDetailFontSize
+                            font.weight: Font.Medium
                             text: CurrentConversation.modeString
                         }
                     }
@@ -562,7 +515,7 @@ Rectangle {
                             Layout.maximumWidth: parent.width / 2
 
                             text: JamiStrings.identifier
-                            font.pointSize: JamiTheme.settingsFontSize
+                            font.pixelSize: JamiTheme.participantSwarmDetailFontSize
                             font.kerning: true
                             elide: Text.ElideRight
                             horizontalAlignment: Text.AlignLeft
@@ -573,9 +526,12 @@ Rectangle {
 
                         Text {
                             Layout.alignment: Qt.AlignRight
+                            Layout.rightMargin: JamiTheme.settingsMarginSize
+
                             Layout.maximumWidth: parent.width / 2
 
                             color: JamiTheme.textColor
+                            font.pixelSize: JamiTheme.participantSwarmDetailFontSize
 
 
                             text: CurrentConversation.id
@@ -643,7 +599,6 @@ Rectangle {
                         anchors.rightMargin: JamiTheme.preferredMarginSize
 
                         Avatar {
-                            id: avatar
                             width: JamiTheme.smartListAvatarSize
                             height: JamiTheme.smartListAvatarSize
                             Layout.leftMargin: JamiTheme.preferredMarginSize
@@ -651,9 +606,9 @@ Rectangle {
                             z: -index
                             opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED)? 0.5 : 1
 
-                            imageId: CurrentAccount.uri == MemberUri ? CurrentAccount.id : MemberUri
+                            imageId: CurrentAccount.uri === MemberUri ? CurrentAccount.id : MemberUri
                             showPresenceIndicator: UtilsAdapter.getContactPresence(CurrentAccount.id, MemberUri)
-                            mode: CurrentAccount.uri == MemberUri ? Avatar.Mode.Account : Avatar.Mode.Contact
+                            mode: CurrentAccount.uri === MemberUri ? Avatar.Mode.Account : Avatar.Mode.Contact
                         }
 
                         ElidedTextLabel {
@@ -666,7 +621,7 @@ Rectangle {
                             eText: UtilsAdapter.getContactBestName(CurrentAccount.id, MemberUri)
                             maxWidth: width
 
-                            font.pointSize: JamiTheme.participantFontSize
+                            font.pointSize: JamiTheme.settingsFontSize
                             color: JamiTheme.primaryForegroundColor
                             opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED)? 0.5 : 1
                             font.kerning: true
@@ -695,7 +650,7 @@ Rectangle {
                             }
                             maxWidth: JamiTheme.preferredFieldWidth
 
-                            font.pointSize: JamiTheme.participantFontSize
+                            font.pointSize: JamiTheme.settingsFontSize
                             color: JamiTheme.textColorHovered
                             opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED)? 0.5 : 1
                             font.kerning: true
@@ -710,7 +665,6 @@ Rectangle {
             DocumentsScrollview {
                 id: documents
 
-                clip: true
                 visible: tabBar.currentItemName === "documents"
                 anchors.fill: parent
             }
