@@ -84,14 +84,11 @@ ColumnLayout {
         width: avatarSize + avatarSize / 2
         height: avatarSize + avatarSize / 2
         Layout.alignment: Qt.AlignHCenter
-        darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
         visible: opened
         enabled: true
-        buttonSize: 35
         imageId: CurrentAccount.id
         avatarSize: 53
         doubleEditAvatar: true
-        cancelButton: false
 
     }
 

@@ -32,7 +32,7 @@ MaterialButton {
     color: !enabled ? JamiTheme.buttonTintedGreyInactive :
                       JamiTheme.buttonTintedBlue
 
-    canBeHovered: enabled
+    hoverEnabled: enabled
     hoveredColor: JamiTheme.buttonTintedBlueHovered
     pressedColor: JamiTheme.buttonTintedBluePressed
 }

@@ -26,6 +26,7 @@
 #include "qtwrapper/conversions_wrap.hpp"
 
 #include <QAbstractListModel>
+#include <QFileInfo>
 
 namespace lrc {
 
@@ -492,6 +493,8 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(item.second.commit["totalSize"].toInt());
     case Role::TransferName:
         return QVariant(item.second.commit["displayName"]);
+    case Role::FileExtension:
+        return QVariant(QFileInfo(item.second.body).suffix());
     case Role::Readers:
         return QVariant(messageToReaders_[item.first]);
     case Role::IsEmojiOnly:

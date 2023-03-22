@@ -54,6 +54,7 @@ struct Info;
     X(ReplyToAuthor) \
     X(TotalSize) \
     X(TransferName) \
+    X(FileExtension) \
     X(Readers) \
     X(IsEmojiOnly)
 

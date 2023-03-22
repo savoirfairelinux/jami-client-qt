@@ -130,6 +130,7 @@ AbstractButton {
 
         anchors.centerIn: image.status !== Image.Null ? undefined : root
         anchors.left: image.status !== Image.Null ? image.right : undefined
+
         anchors.leftMargin: preferredMargin
         anchors.verticalCenter: root.verticalCenter
 

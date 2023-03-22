@@ -29,6 +29,7 @@ Loader {
     property color suffixIconColor: JamiTheme.buttonTintedBlue
     property string suffixBisIconSrc : ""
     property color suffixBisIconColor: JamiTheme.buttonTintedBlue
+    property color textColor: JamiTheme.textColor
 
     required property string placeholderText
     property string staticText: ""
@@ -36,6 +37,7 @@ Loader {
 
     property bool inputIsValid: true
     property string infoTipText
+    property string infoTipLineText
     property bool isPersistent: true
 
     property real fontPixelSize: JamiTheme.materialLineEditPixelSize
@@ -46,6 +48,10 @@ Loader {
 
     property var icon
     property bool isSettings
+    property bool isSwarmDetail
+
+    property bool readOnly: false
+    property bool isEditing: false
 
     onStatusChanged: {
         if(status == Loader.Ready && icon)
@@ -69,6 +75,7 @@ Loader {
         if (root.focus && root.isPersistent) {
             item.forceActiveFocus()
         }
+        isEditing = !isEditing
     }
 
     // This is used when the user is not editing the text.
@@ -94,12 +101,14 @@ Loader {
 
             focus: true
             infoTipText: root.infoTipText
+            infoTipLineText: root.infoTipLineText
             prefixIconSrc: root.prefixIconSrc
             prefixIconColor: root.prefixIconColor
             suffixIconSrc: root.suffixIconSrc
             suffixIconColor: root.suffixIconColor
             suffixBisIconSrc: root.suffixBisIconSrc
             suffixBisIconColor: root.suffixBisIconColor
+            textColor: root.textColor
             font.pixelSize: root.fontPixelSize
             font.bold: root.fontBold
             echoMode: root.echoMode
@@ -118,6 +127,8 @@ Loader {
             onIsActiveChanged: activeChanged(isActive)
             validator: root.textValidator
             isSettings: root.isSettings
+            isSwarmDetail: root.isSwarmDetail
+            readOnly: root.readOnly
         }
     }
 
