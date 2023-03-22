@@ -284,7 +284,6 @@ Rectangle {
 
                 PhotoboothView {
                     id: currentAccountAvatar
-                    darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
                     width: avatarSize
                     height: avatarSize
 
@@ -294,7 +293,6 @@ Rectangle {
                     newItem: true
                     imageId: visible ? "temp" : ""
                     avatarSize: 150
-                    buttonSize: JamiTheme.smartListAvatarSize
                 }
 
                 ModalTextEdit {

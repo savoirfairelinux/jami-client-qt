@@ -644,6 +644,7 @@ Item {
 
     // PhotoBoothView
     property string chooseAvatarImage: qsTr("Choose a picture as your avatar")
+    property string chooseAvatarPicture: qsTr("Choose a picture")
     property string importFromFile: qsTr("Import avatar from image file")
     property string stopTakingPhoto: qsTr("Stop taking photo")
     property string clearAvatar: qsTr("Clear avatar image")
