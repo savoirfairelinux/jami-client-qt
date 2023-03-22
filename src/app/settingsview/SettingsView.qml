@@ -49,7 +49,6 @@ ListSelectionView {
         // Trigger an update to messages if needed.
         // Currently needed when changing the show link preview setting.
         CurrentConversation.reloadInteractions()
-        settingsViewRect.stopBooth()
         if (UtilsAdapter.getAccountListSize() === 0) {
             viewCoordinator.requestAppWindowWizardView()
         } else {

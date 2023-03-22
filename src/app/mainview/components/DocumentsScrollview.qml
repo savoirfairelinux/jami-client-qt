@@ -21,6 +21,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
+import SortFilterProxyModel
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -29,63 +30,51 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 import "../../settingsview/components"
 
-Flickable {
+JamiListView {
     id: root
 
-    contentHeight: flow.implicitHeight
-    contentWidth: width
+    anchors.fill: parent
+    topMargin: JamiTheme.preferredMarginSize
+    bottomMargin: JamiTheme.preferredMarginSize
 
-    property int spacingFlow: JamiTheme.swarmDetailsPageDocumentsMargins
-    property real flickableWidth: width
-    property int numberElementsPerRow: {
-        var sizeW = flow.width
-        var breakSize = JamiTheme.swarmDetailsPageDocumentsMediaSize
-        return Math.floor(sizeW / breakSize)
-    }
-    property int spacingLength: spacingFlow * (numberElementsPerRow - 1)
+    spacing: 15
     property color themeColor: CurrentConversation.color
     property string textFilter: ""
+    property var convId: CurrentConversation.id
 
     onVisibleChanged: {
         if (visible) {
             MessagesAdapter.startSearch(textFilter,true)
         }
     }
+
+    onConvIdChanged: {
+        if (visible) {
+            MessagesAdapter.startSearch(textFilter,true)
+        }
+    }
+
     onTextFilterChanged: {
         MessagesAdapter.startSearch(textFilter,true)
     }
 
-    Flow {
-        id: flow
+    model: SortFilterProxyModel {
+        id: proxyModel
 
-        width: parent.width
-        spacing: spacingFlow
-        anchors.horizontalCenter: parent.horizontalCenter      
+        property var messageListModel: MessagesAdapter.mediaMessageListModel
 
-        Repeater {
-            model: root.visible ? MessagesAdapter.mediaMessageListModel : 0
+        onMessageListModelChanged: sourceModel = root.visible && messageListModel ?
+                                       messageListModel :
+                                       null
 
-            delegate: Loader {
-                id: loaderRoot
+        sorters: [
+            RoleSorter { roleName: "Timestamp"; sortOrder: Qt.DescendingOrder }
+        ]
+    }
 
-                sourceComponent: {
-                    if (MessagesAdapter.isDocument(Type)) {
-                        if(Status === Interaction.Status.TRANSFER_FINISHED || Status === Interaction.Status.SUCCESS ){
-                            if (Object.keys(MessagesAdapter.getMediaInfo(Body)).length !== 0 && WITH_WEBENGINE)
-                                return localMediaMsgComp
-
-                            return fileMsgComp
-                        }
-                    }
-                }
-
-                FilePreview {
-                    id: fileMsgComp
-                }
-                MediaPreview {
-                    id: localMediaMsgComp
-                }
-            }
-        }
+    delegate: DocumentPreview {
+        id: member
+        width: root.width
+        height: JamiTheme.swarmDetailsPageDocumentsHeight
     }
 }

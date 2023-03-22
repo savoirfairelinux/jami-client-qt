@@ -302,6 +302,7 @@ Item {
     property real buttonFontSize: calcSize(9)
     property real materialButtonPreferredHeight: calcSize(36)
     property real participantFontSize: calcSize(10 + fontSizeOffset)
+    property real participantSwarmDetailFontSize: calcSize(15 + fontSizeOffset)
     property real menuFontSize: calcSize(12 + fontSizeOffset)
     property real headerFontSize: calcSize(14.25 + fontSizeOffset)
     property real titleFontSize: calcSize(16 + fontSizeOffset)
@@ -390,6 +391,7 @@ Item {
     property real swarmDetailsPageDocumentsMediaRadius: 15
     property real swarmDetailsPageDocumentsPaperClipSize: 24
     property real swarmDetailsPageDocumentsMediaSize: 150
+    property real swarmDetailsPageDocumentsHeight: 40 * baseZoom
 
     //Call information
     property real textFontPointSize: calcSize(10)
@@ -413,6 +415,7 @@ Item {
 
     // Modal Popup
     property real modalPopupRadius: 20
+    property real photoPopupRadius: 5
 
     //MessagesResearch
     property color blueLinkColor: darkTheme ? "#3366BB" : "#0645AD"
@@ -541,6 +544,7 @@ Item {
     //Popups
     property real popuptextSize: calcSize(15)
     property real popupButtonsMargin: 20
+    property real popupPhotoTextSize: calcSize(18)
 
     // MaterialLineEdit
     property real materialLineEditPointSize: calcSize(10 + fontSizeOffset)
