@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Copyright (C) 2023 Savoir-faire Linux Inc.
+ * Author: Franck Laurent <franck.laurent@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,27 +29,61 @@ Item {
 
     id: root
 
-    property real margin: 5
+    property real margin: 3
     signal removeFileButtonClicked(int index)
+    property var mediaInfo: MessagesAdapter.getMediaInfo(Body)
+
+    visible: MessagesAdapter.isDocument(Type) && ( Status === Interaction.Status.TRANSFER_FINISHED || Status === Interaction.Status.SUCCESS )
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+        onEntered: {
+            cursorShape = Qt.PointingHandCursor
+        }
+
+        onClicked: function(mouse)  {
+            if (mouse.button === Qt.RightButton) {
+                ctxMenu.x = mouse.x
+                ctxMenu.y = mouse.y
+                ctxMenu.openMenu()
+            } else {
+                MessagesAdapter.openUrl(name.fileSource)
+            }
+        }
+    }
+
+    SBSContextMenu {
+        id: ctxMenu
+
+        msgId: Id
+        location: Body
+        transferId: Id
+        transferName: TransferName
+    }
 
     RowLayout {
 
         anchors.fill: root
+        anchors.rightMargin: JamiTheme.preferredMarginSize
+        anchors.leftMargin: JamiTheme.preferredMarginSize
         spacing : 2
 
         Rectangle {
             id: mainRect
 
             radius: JamiTheme.filesToSendDelegateRadius
-            Layout.preferredHeight: root.height - 4 * margin
-            Layout.preferredWidth: JamiTheme.layoutWidthFileTransfer
+            Layout.preferredHeight: root.height
+            Layout.preferredWidth: root.height
             color: JamiTheme.transparentColor
 
             Rectangle {
                 id: rect
 
                 anchors.fill: parent
-                color: CurrentConversation.color // "#E5E5E5"
+                color: CurrentConversation.color
                 layer.enabled: true
 
                 layer.effect: OpacityMask {
@@ -81,31 +115,31 @@ Item {
 
                     ResponsiveImage {
                         id: fileIcon
-                        visible : !IsImage
+                        visible : !mediaInfo.isImage && !mediaInfo.isAnimatedImage
                         anchors.fill: parent
                         anchors.margins: margin
                         source: JamiResources.file_black_24dp_svg
+                        cache: false
                     }
 
                     AnimatedImage {
                         id: name
 
+                        property string fileSource: ""
                         anchors.fill: parent
                         anchors.margins: margin
                         cache: false
 
                         asynchronous: true
                         fillMode: Image.PreserveAspectCrop
-                        source: {
-                            if (!IsImage)
-                                return ""
+                        mipmap: false
 
-                            // :/ -> resource url for test purposes
-                            var sourceUrl = FilePath
-                            if (!sourceUrl.startsWith(":/"))
-                                return JamiQmlUtils.qmlFilePrefix + sourceUrl
-                            else
-                                return "qrc" + sourceUrl
+                        source: {
+                            fileSource = "file://" + Body
+                            if (!mediaInfo.isImage && !mediaInfo.isAnimatedImage){
+                                return ""
+                            }
+                            return "file://" + Body
                         }
 
                         layer.enabled: true
@@ -119,35 +153,12 @@ Item {
                     }
                 }
             }
-
-            PushButton {
-                id: removeFileButton
-
-                anchors.right: mainRect.right
-                anchors.rightMargin: -margin
-                anchors.top: mainRect.top
-                anchors.topMargin: -margin
-
-                radius: 24
-
-                preferredSize: 30
-                imageContainerWidth: 52
-                imageContainerHeight: 52
-                toolTipText: JamiStrings.optionRemove
-
-                source: JamiResources.cross_black_24dp_svg
-
-                normalColor: JamiTheme.backgroundColor
-                imageColor: JamiTheme.textColor
-
-                onClicked: root.removeFileButtonClicked(index)
-            }
         }
 
         Rectangle {
             id: info
-            Layout.preferredHeight: root.height -margin
-            Layout.preferredWidth: JamiTheme.layoutWidthFileTransfer
+            Layout.preferredHeight: root.height
+            Layout.fillWidth: true
             color : JamiTheme.transparentColor
             Layout.alignment: Qt.AlignLeft
 
@@ -165,14 +176,14 @@ Item {
                     font.pointSize: JamiTheme.filesToSendDelegateFontPointSize
                     color: JamiTheme.chatviewTextColor
                     font.bold : true
-                    text: FileName
+                    text: TransferName
                     elide: Text.ElideRight
                 }
 
                 RowLayout {
 
                     Layout.alignment: Qt.AlignLeft
-                    spacing: FileExtension.length === 0 ? 0 : 1
+                    spacing: FileExtension.length === 0 ? 0 : 2
 
                     Text {
                         id: fileExtension
@@ -186,12 +197,14 @@ Item {
                     }
 
                     Text {
-                        id: fileSize
+                        id: fileProperty
                         font.pointSize: JamiTheme.filesToSendDelegateFontPointSize
                         color: JamiTheme.chatviewTextColor
                         Layout.alignment: Qt.AlignLeft
-                        text: FileSize
-                        elide: Text.ElideMiddle
+                        Layout.maximumWidth: info.width - fileExtension.width - test.spacing
+                        text: " " + UtilsAdapter.humanFileSize(TotalSize) + ", " + MessagesAdapter.getFormattedDay(Timestamp)
+                              + " - " + MessagesAdapter.getFormattedTime(Timestamp)
+                        elide: Text.ElideRight
                     }
                 }
             }

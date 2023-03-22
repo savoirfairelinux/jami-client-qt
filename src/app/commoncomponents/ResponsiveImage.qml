@@ -33,6 +33,7 @@ Item {
 
     property alias source: image.source
     property alias status: image.status
+    property alias cache: image.cache
     property string color: "transparent"
     property bool hovered: false
     property bool mirrorHorizontally: false

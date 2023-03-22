@@ -430,8 +430,6 @@ Rectangle {
 
                                     width: avatarSize
                                     height: avatarSize
-                                    darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
-
 
                                     Layout.alignment: Qt.AlignLeft
                                     Layout.topMargin: 10
@@ -441,7 +439,6 @@ Rectangle {
                                     newItem: true
                                     imageId: visible? "temp" : ""
                                     avatarSize: 80
-                                    buttonSize: JamiTheme.smartListAvatarSize
                                 }
 
                                 ModalTextEdit {
