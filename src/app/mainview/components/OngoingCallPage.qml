@@ -160,11 +160,14 @@ Rectangle {
 
                 onTapped: function (eventPoint, button) {
                     if (button === Qt.RightButton) {
+                        var isOnLocal = eventPoint.position.x >= previewRenderer.x && eventPoint.position.x <= previewRenderer.x + previewRenderer.width
+                        isOnLocal &= eventPoint.position.y >= previewRenderer.y && eventPoint.position.y <= previewRenderer.y + previewRenderer.height
                         callOverlay.openCallViewContextMenuInPos(eventPoint.position.x,
                                                                  eventPoint.position.y,
                                                                  participantsLayer.hoveredOverlayUri,
                                                                  participantsLayer.hoveredOverlaySinkId,
-                                                                 participantsLayer.hoveredOverVideoMuted)
+                                                                 participantsLayer.hoveredOverVideoMuted,
+                                                                 isOnLocal)
                     }
                 }
             }
