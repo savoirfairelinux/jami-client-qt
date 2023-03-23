@@ -395,6 +395,11 @@ def run_install(args):
 
     command = ['extras/scripts/install.sh'] + install_args
 
+    if 'TARBALLS' not in os.environ:
+        print('info: consider setting the TARBALLS environment variable '
+              'to a stable writable location to avoid loosing '
+              'cached tarballs')
+
     if args.distribution == 'guix':
         if args.global_install:
             print('error: global install is not supported when using Guix.')
@@ -404,10 +409,6 @@ def run_install(args):
         if 'TARBALLS' in os.environ:
             share_tarballs_args = ['--preserve=TARBALLS',
                                    f'--share={os.environ["TARBALLS"]}']
-        else:
-            print('info: consider setting the TARBALLS environment variable '
-                  'to a stable writable location to avoid loosing '
-                  'cached tarballs')
         command = ['guix', 'shell', f'--manifest={GUIX_MANIFEST}',
                    '--symlink=/usr/bin/env=bin/env',
                    '--symlink=/etc/ssl/certs=etc/ssl/certs',
