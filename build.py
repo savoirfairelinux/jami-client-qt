@@ -23,6 +23,7 @@ import multiprocessing
 import os
 import platform
 import shlex
+import signal
 import shutil
 import subprocess
 import sys
@@ -439,6 +440,13 @@ def run_clean():
 
 def run_run(args):
     run_env = os.environ
+
+    if args.debug:
+        # Ignore the interruption signal when using GDB, as it's
+        # common to use C-c when debugging and we do not want the
+        # Python script to abort the debugging session.
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+
     try:
         if args.no_libwrap:
             jamid_log = open("daemon.log", 'a')
@@ -455,10 +463,18 @@ def run_run(args):
         client_log = open('jami.log', 'a')
         client_log.write('=== Starting client (%s) ===' %
                          time.strftime("%d/%m/%Y %H:%M:%S"))
-        client_process = subprocess.Popen(["./install/bin/jami", "-d"],
-                                          stdout=client_log,
-                                          stderr=client_log,
-                                          env=run_env)
+        jami_cmdline = ['install/bin/jami', '-d']
+        if args.debug:
+            jami_cmdline = ['gdb', '-ex', 'run', '--args'] + jami_cmdline
+
+        print('Invoking jami with: {}'.format(str.join(' ', jami_cmdline)))
+        if args.debug:
+            print('Debugging with GDB; NOT redirecting output to log file')
+        client_process = subprocess.Popen(
+            jami_cmdline,
+            stdout=False if args.debug else client_log,
+            stderr=False if args.debug else client_log,
+            env=run_env)
 
         with open('jami.pid', 'w') as f:
             f.write(str(client_process.pid)+'\n')
@@ -475,7 +491,10 @@ def run_run(args):
         print("\nCaught KeyboardInterrupt...")
 
     finally:
-        if args.background == False:
+        if args.debug:
+            # Restore the default signal handler for SIGINT.
+            signal.signal(signal.SIGINT, signal.SIG_DFL)
+        if not args.background:
             try:
                 # Only kill the processes if they are running, as they
                 # could have been closed by the user.
