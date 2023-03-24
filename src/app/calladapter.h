@@ -24,7 +24,6 @@
 #include "qmladapterbase.h"
 #include "screensaver.h"
 #include "calloverlaymodel.h"
-#include "callparticipantsmodel.h"
 
 #include <QObject>
 #include <QString>
@@ -80,7 +79,6 @@ public:
     Q_INVOKABLE void muteAudioToggle();
     Q_INVOKABLE void muteCameraToggle();
     Q_INVOKABLE bool isRecordingThisCall();
-    Q_INVOKABLE QVariantList getConferencesInfos() const;
     Q_INVOKABLE void muteParticipant(const QString& accountUri,
                                      const QString& deviceId,
                                      const QString& sinkId,
@@ -95,7 +93,7 @@ public:
     Q_INVOKABLE void setCallInfo();
     Q_INVOKABLE void updateAdvancedInformation();
 
-    Q_INVOKABLE bool takeScreenshot(const QImage &image, const QString &path);
+    Q_INVOKABLE bool takeScreenshot(const QImage& image, const QString& path);
 
 Q_SIGNALS:
     void callStatusChanged(int index, const QString& accountId, const QString& convUid);
@@ -112,15 +110,11 @@ public Q_SLOTS:
     void onCallInfosChanged(const QString& accountId, const QString& callId);
     void onCallStatusChanged(const QString& callId, int code);
     void onCallAddedToConference(const QString& callId, const QString& confId);
-    void onParticipantAdded(const QString& callId, int index);
-    void onParticipantRemoved(const QString& callId, int index);
-    void onParticipantUpdated(const QString& callId, int index);
     void onCallStarted(const QString& callId);
     void onCallEnded(const QString& callId);
 
 private:
     void showNotification(const QString& accountId, const QString& convUid);
-    void fillParticipantData(QJsonObject& participant) const;
     void preventScreenSaver(bool state);
     void saveConferenceSubcalls();
 
@@ -129,7 +123,6 @@ private:
     ScreenSaver screenSaver;
     SystemTray* systemTray_;
     QScopedPointer<CallOverlayModel> overlayModel_;
-    QScopedPointer<CallParticipantsModel> participantsModel_;
     VectorString currentConfSubcalls_;
 
     std::unique_ptr<CallInformationListModel> callInformationListModel_;

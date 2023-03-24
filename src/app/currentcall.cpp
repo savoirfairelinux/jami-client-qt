@@ -16,13 +16,18 @@
  */
 
 #include "currentcall.h"
+#include "qmlregister.h"
 
 #include <api/callparticipantsmodel.h>
+#include <api/devicemodel.h>
 
 CurrentCall::CurrentCall(LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
     , lrcInstance_(lrcInstance)
 {
+    participantsModel_.reset(new CallParticipantsModel(lrcInstance_, this));
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, participantsModel_.get(), "CallParticipantsModel");
+
     connect(lrcInstance_,
             &LRCInstance::currentAccountIdChanged,
             this,
@@ -72,7 +77,17 @@ CurrentCall::updateId(QString callId)
         }
     }
     // Set the current id_ if there is a call.
-    set_id((accInfo.callModel->hasCall(callId) ? callId : QString()));
+    auto hasCall = accInfo.callModel->hasCall(callId);
+    set_id((hasCall ? callId : QString()));
+
+    if (hasCall) {
+        try {
+            auto callInfo = accInfo.callModel->getCall(callId);
+            participantsModel_->setParticipants(id_, getConferencesInfos());
+            participantsModel_->setConferenceLayout(static_cast<int>(callInfo.layout), id_);
+        } catch (...) {
+        }
+    }
 }
 
 void
@@ -103,6 +118,88 @@ CurrentCall::updateParticipants()
     }
     set_uris(uris);
     set_isConference(uris.size());
+}
+
+void
+CurrentCall::onParticipantAdded(const QString& callId, int index)
+{
+    if (callId != id_)
+        return;
+    auto infos = getConferencesInfos();
+    if (index < infos.size())
+        participantsModel_->addParticipant(index, infos[index]);
+}
+
+void
+CurrentCall::onParticipantRemoved(const QString& callId, int index)
+{
+    if (callId != id_)
+        return;
+    participantsModel_->removeParticipant(index);
+}
+
+void
+CurrentCall::onParticipantUpdated(const QString& callId, int index)
+{
+    if (callId != id_)
+        return;
+    auto infos = getConferencesInfos();
+    if (index < infos.size())
+        participantsModel_->updateParticipant(index, infos[index]);
+}
+
+void
+CurrentCall::fillParticipantData(QJsonObject& participant) const
+{
+    // TODO: getCurrentDeviceId should be part of CurrentAccount, and Current<thing>
+    //       should be read accessible through LRCInstance ??
+    auto getCurrentDeviceId = [](const account::Info& accInfo) -> QString {
+        const auto& deviceList = accInfo.deviceModel->getAllDevices();
+        auto devIt = std::find_if(std::cbegin(deviceList),
+                                  std::cend(deviceList),
+                                  [](const Device& dev) { return dev.isCurrent; });
+        return devIt != deviceList.cend() ? devIt->id : QString();
+    };
+
+    auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+    using namespace lrc::api::ParticipantsInfosStrings;
+
+    // If both the URI and the device Id match, we set the "is local" flag
+    // used to filter out the participant.
+    // TODO:
+    //  - This filter should always be applied, and any local streams should render
+    //    using local sinks. Local non-preview participants should have proxy participant
+    //    items replaced into this model using their local sink Ids.
+    //  - The app setting should remain and be used to control whether or not the preview
+    //    sink partipcant is rendered.
+    auto uri = participant[URI].toString();
+    participant[ISLOCAL] = false;
+    if (uri == accInfo.profileInfo.uri && participant[DEVICE] == getCurrentDeviceId(accInfo)) {
+        participant[BESTNAME] = tr("Me");
+        participant[ISLOCAL] = true;
+    } else {
+        try {
+            participant[BESTNAME] = accInfo.contactModel->bestNameForContact(uri);
+        } catch (...) {
+        }
+    }
+}
+
+QVariantList
+CurrentCall::getConferencesInfos() const
+{
+    QVariantList map;
+    try {
+        auto callModel = lrcInstance_->getCurrentCallModel();
+        auto& participantsModel = callModel->getParticipantsInfos(id_);
+        for (int index = 0; index < participantsModel.getParticipants().size(); index++) {
+            auto participant = participantsModel.toQJsonObject(index);
+            fillParticipantData(participant);
+            map.push_back(QVariant(participant));
+        }
+    } catch (...) {
+    }
+    return map;
 }
 
 void
@@ -229,6 +326,21 @@ CurrentCall::connectModel()
             &CallModel::recordingStateChanged,
             this,
             &CurrentCall::onRecordingStateChanged,
+            Qt::UniqueConnection);
+    connect(callModel,
+            &CallModel::participantAdded,
+            this,
+            &CurrentCall::onParticipantAdded,
+            Qt::UniqueConnection);
+    connect(callModel,
+            &CallModel::participantRemoved,
+            this,
+            &CurrentCall::onParticipantRemoved,
+            Qt::UniqueConnection);
+    connect(callModel,
+            &CallModel::participantUpdated,
+            this,
+            &CurrentCall::onParticipantUpdated,
             Qt::UniqueConnection);
 }
 
