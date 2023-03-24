@@ -32,7 +32,7 @@ WizardView {
 
     function clearSignalSpy() {
         spyAccountIsReady.clear()
-        spyAccountIsRemoved.clear()
+        spyAccountListChanged.clear()
         spyAccountConfigFinalized.clear()
         spyReportFailure.clear()
         spyCloseWizardView.clear()
@@ -48,10 +48,10 @@ WizardView {
     }
 
     SignalSpy {
-        id: spyAccountIsRemoved
+        id: spyAccountListChanged
 
         target: AccountAdapter
-        signalName: "accountRemoved"
+        signalName: "accountListChanged"
     }
 
     SignalSpy {
@@ -305,8 +305,8 @@ WizardView {
             AccountAdapter.deleteCurrentAccount()
 
             // Wait until the account removal is finished
-            spyAccountIsRemoved.wait()
-            compare(spyAccountIsRemoved.count, 1)
+            spyAccountListChanged.wait()
+            compare(spyAccountListChanged.count, 1)
         }
 
         function test_createRendezVousAccountUiFlow() {
@@ -399,8 +399,8 @@ WizardView {
             AccountAdapter.deleteCurrentAccount()
 
             // Wait until the account removal is finished
-            spyAccountIsRemoved.wait()
-            compare(spyAccountIsRemoved.count, 1)
+            spyAccountListChanged.wait()
+            compare(spyAccountListChanged.count, 1)
         }
     }
 
@@ -472,8 +472,8 @@ WizardView {
             AccountAdapter.deleteCurrentAccount()
 
             // Wait until the account removal is finished
-            spyAccountIsRemoved.wait()
-            compare(spyAccountIsRemoved.count, 1)
+            spyAccountListChanged.wait()
+            compare(spyAccountListChanged.count, 1)
         }
     }
 
@@ -540,8 +540,8 @@ WizardView {
             AccountAdapter.deleteCurrentAccount()
 
             // Wait until the account removal is finished
-            spyAccountIsRemoved.wait()
-            compare(spyAccountIsRemoved.count, 1)
+            spyAccountListChanged.wait()
+            compare(spyAccountListChanged.count, 1)
         }
     }
 
@@ -900,8 +900,8 @@ WizardView {
             AccountAdapter.deleteCurrentAccount()
 
             // Wait until the account removal is finished
-            spyAccountIsRemoved.wait()
-            compare(spyAccountIsRemoved.count, 1)
+            spyAccountListChanged.wait()
+            compare(spyAccountListChanged.count, 1)
         }
 
         function test_importFromDevicePageKeyNavigation() {
@@ -1278,8 +1278,8 @@ WizardView {
             AccountAdapter.deleteCurrentAccount()
 
             // Wait until the account removal is finished
-            spyAccountIsRemoved.wait()
-            compare(spyAccountIsRemoved.count, 1)
+            spyAccountListChanged.wait()
+            compare(spyAccountListChanged.count, 1)
 
             // Hide advanced options
             showAdvancedButton.clicked()
@@ -1535,8 +1535,8 @@ WizardView {
             AccountAdapter.deleteCurrentAccount()
 
             // Wait until the account removal is finished
-            spyAccountIsRemoved.wait()
-            compare(spyAccountIsRemoved.count, 1)
+            spyAccountListChanged.wait()
+            compare(spyAccountListChanged.count, 1)
         }
 
         function test_backupKeysPageNavigation() {
@@ -1582,8 +1582,8 @@ WizardView {
             AccountAdapter.deleteCurrentAccount()
 
             // Wait until the account removal is finished
-            spyAccountIsRemoved.wait()
-            compare(spyAccountIsRemoved.count, 1)
+            spyAccountListChanged.wait()
+            compare(spyAccountListChanged.count, 1)
         }
     }
 }
