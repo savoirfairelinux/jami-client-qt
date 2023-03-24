@@ -50,7 +50,7 @@ Item {
     // AboutPopUp
     property string version: qsTr("Version") + (UpdateManager.isCurrentVersionBeta() ? " (Beta)" : "")
     property string companyDeclarationYear: declarationYear + " " + companyName
-    property string declarationYear: "© 2015-2022"
+    property string declarationYear: "© 2015-2023"
     property string companyName: "Savoir-faire Linux Inc."
     property string slogan: "Világfa"
     property string declaration: qsTr("Jami is a free universal communication software that respects the freedom and privacy of its users.")
