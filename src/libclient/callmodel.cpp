@@ -1628,6 +1628,21 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId,
     if (it == calls.end() or not it->second)
         return;
 
+    // TODO: remove when the rendez-vous UI will be done
+    // For now, the rendez-vous account can see ongoing calls
+    // And must be notified when a new
+    QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    Q_FOREACH (const auto& call, callList) {
+        Q_EMIT linked.callAddedToConference(call, confId);
+        if (calls.find(call) == calls.end()) {
+            qWarning() << "Call not found";
+        } else {
+            calls[call]->videoMuted = it->second->videoMuted;
+            calls[call]->audioMuted = it->second->audioMuted;
+            Q_EMIT linked.callInfosChanged(linked.owner.id, call);
+        }
+    }
+
     auto participantIt = participantsModel.find(confId);
     if (participantIt == participantsModel.end())
         participantIt = participantsModel
@@ -1657,20 +1672,6 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId,
         }
     }
 
-    // TODO: remove when the rendez-vous UI will be done
-    // For now, the rendez-vous account can see ongoing calls
-    // And must be notified when a new
-    QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
-    Q_FOREACH (const auto& call, callList) {
-        Q_EMIT linked.callAddedToConference(call, confId);
-        if (calls.find(call) == calls.end()) {
-            qWarning() << "Call not found";
-        } else {
-            calls[call]->videoMuted = it->second->videoMuted;
-            calls[call]->audioMuted = it->second->audioMuted;
-            Q_EMIT linked.callInfosChanged(linked.owner.id, call);
-        }
-    }
     Q_EMIT linked.callInfosChanged(linked.owner.id, confId);
     Q_EMIT linked.participantsChanged(confId);
 }

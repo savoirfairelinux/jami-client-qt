@@ -19,6 +19,7 @@
 
 #include "lrcinstance.h"
 #include "qtutils.h"
+#include "callparticipantsmodel.h"
 
 #include <QObject>
 #include <QString>
@@ -56,6 +57,7 @@ class CurrentCall final : public QObject
 public:
     explicit CurrentCall(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentCall() = default;
+    Q_INVOKABLE QVariantList getConferencesInfos() const;
 
 private:
     void updateId(QString callId = {});
@@ -65,6 +67,7 @@ private:
     void updateRemoteRecorders(const QStringList& recorders);
     void updateRecordingState(bool state);
     void connectModel();
+    void fillParticipantData(QJsonObject& participant) const;
 
 private Q_SLOTS:
     void onCurrentConvIdChanged();
@@ -73,10 +76,14 @@ private Q_SLOTS:
     void onCallInfosChanged(const QString& accountId, const QString& callId);
     void onCurrentCallChanged(const QString& callId);
     void onParticipantsChanged(const QString& callId);
+    void onParticipantAdded(const QString& callId, int index);
+    void onParticipantRemoved(const QString& callId, int index);
+    void onParticipantUpdated(const QString& callId, int index);
     void onRemoteRecordersChanged(const QString& callId, const QStringList& recorders);
     void onRecordingStateChanged(const QString& callId, bool state);
     void onShowIncomingCallView(const QString& accountId, const QString& convUid);
 
 private:
     LRCInstance* lrcInstance_;
+    QScopedPointer<CallParticipantsModel> participantsModel_;
 };
