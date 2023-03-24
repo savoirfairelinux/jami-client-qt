@@ -97,6 +97,7 @@ ColumnLayout {
             preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
 
             toolTipText: JamiStrings.sendFile
+            visible: !CurrentConversation.isSip
 
             source: JamiResources.link_black_24dp_svg
 
@@ -117,6 +118,7 @@ ColumnLayout {
             preferredSize: JamiTheme.chatViewFooterButtonIconSize
 
             toolTipText: JamiStrings.leaveAudioMessage
+            visible: !CurrentConversation.isSip
 
             source: JamiResources.message_audio_black_24dp_svg
 
@@ -134,7 +136,7 @@ ColumnLayout {
             Layout.alignment: Qt.AlignVCenter
             Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
             Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-            visible: VideoDevices.listSize !== 0
+            visible: VideoDevices.listSize !== 0 && !CurrentConversation.isSip
 
             radius: JamiTheme.chatViewFooterButtonRadius
             preferredSize: JamiTheme.chatViewFooterButtonIconSize

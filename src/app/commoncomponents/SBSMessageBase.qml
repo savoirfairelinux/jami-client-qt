@@ -276,10 +276,13 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? optionButtonItem.right : undefined
                         anchors.left: !isOutgoing ? optionButtonItem.left : undefined
-                        visible: Body !== "" && (bubbleArea.bubbleHovered
-                                 || hovered
-                                 || reply.hovered
-                                 || bgHandler.hovered)
+                        visible: CurrentAccount.type !== Profile.Type.SIP && Body !== "" &&
+                                    (
+                                        bubbleArea.bubbleHovered
+                                        || hovered
+                                        || reply.hovered
+                                        || bgHandler.hovered
+                                    )
                         source: JamiResources.more_vert_24dp_svg
                         width: optionButtonItem.width / 2
                         height: optionButtonItem.height
@@ -312,10 +315,13 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? more.left : undefined
                         anchors.left: !isOutgoing ? more.right : undefined
-                        visible: Body !== "" && (bubbleArea.bubbleHovered
-                                 || hovered
-                                 || more.hovered
-                                 || bgHandler.hovered)
+                        visible: CurrentAccount.type !== Profile.Type.SIP && Body !== "" &&
+                                    (
+                                        bubbleArea.bubbleHovered
+                                        || hovered
+                                        || more.hovered
+                                        || bgHandler.hovered
+                                    )
 
                         onClicked: {
                             MessagesAdapter.editId = ""
