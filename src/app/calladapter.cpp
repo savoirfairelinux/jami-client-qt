@@ -32,8 +32,8 @@
 #include <QTimer>
 #include <QJsonObject>
 
+#include <api/callmodel.h>
 #include <api/callparticipantsmodel.h>
-#include <api/devicemodel.h>
 
 #include <media_const.h>
 
@@ -46,9 +46,6 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &CallAdapter::updateAdvancedInformation);
-
-    participantsModel_.reset(new CallParticipantsModel(lrcInstance_, this));
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, participantsModel_.get(), "CallParticipantsModel");
 
     overlayModel_.reset(new CallOverlayModel(lrcInstance_, this));
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, overlayModel_.get(), "CallOverlayModel");
@@ -162,69 +159,6 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
     Q_UNUSED(accountId)
     Q_UNUSED(callId)
 #endif
-}
-
-void
-CallAdapter::onParticipantAdded(const QString& callId, int index)
-{
-    auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
-    auto& callModel = accInfo.callModel;
-    try {
-        if (lrcInstance_->get_selectedConvUid().isEmpty())
-            return;
-
-        const auto& currentConvInfo = accInfo.conversationModel.get()->getConversationForUid(
-            lrcInstance_->get_selectedConvUid());
-        if (callId != currentConvInfo->get().callId && callId != currentConvInfo->get().confId) {
-            qDebug() << "trying to update not current conf";
-            return;
-        }
-        auto infos = getConferencesInfos();
-        if (index < infos.size())
-            participantsModel_->addParticipant(index, infos[index]);
-    } catch (...) {
-    }
-}
-
-void
-CallAdapter::onParticipantRemoved(const QString& callId, int index)
-{
-    auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
-    auto& callModel = accInfo.callModel;
-    try {
-        if (lrcInstance_->get_selectedConvUid().isEmpty())
-            return;
-
-        const auto& currentConvInfo = accInfo.conversationModel.get()->getConversationForUid(
-            lrcInstance_->get_selectedConvUid());
-        if (callId != currentConvInfo->get().callId && callId != currentConvInfo->get().confId) {
-            qDebug() << "trying to update not current conf";
-            return;
-        }
-        participantsModel_->removeParticipant(index);
-    } catch (...) {
-    }
-}
-
-void
-CallAdapter::onParticipantUpdated(const QString& callId, int index)
-{
-    auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
-    auto& callModel = accInfo.callModel;
-    try {
-        if (lrcInstance_->get_selectedConvUid().isEmpty())
-            return;
-        const auto& currentConvInfo = accInfo.conversationModel.get()->getConversationForUid(
-            lrcInstance_->get_selectedConvUid());
-        if (callId != currentConvInfo->get().callId && callId != currentConvInfo->get().confId) {
-            qDebug() << "trying to update not current conf";
-            return;
-        }
-        auto infos = getConferencesInfos();
-        if (index < infos.size())
-            participantsModel_->updateParticipant(index, infos[index]);
-    } catch (...) {
-    }
 }
 
 void
@@ -354,7 +288,6 @@ CallAdapter::onCallInfosChanged(const QString& accountId, const QString& callId)
                 return;
             }
             Q_EMIT callInfosChanged(call.isAudioOnly, accountId, convInfo.uid);
-            participantsModel_->setConferenceLayout(static_cast<int>(call.layout), callId);
         }
     } catch (...) {
     }
@@ -525,73 +458,6 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
             }
         }
     }
-
-    participantsModel_->setParticipants(call->id, getConferencesInfos());
-    participantsModel_->setConferenceLayout(static_cast<int>(call->layout), call->id);
-}
-
-void
-CallAdapter::fillParticipantData(QJsonObject& participant) const
-{
-    // TODO: getCurrentDeviceId should be part of CurrentAccount, and Current<thing>
-    //       should be read accessible through LRCInstance ??
-    auto getCurrentDeviceId = [](const account::Info& accInfo) -> QString {
-        const auto& deviceList = accInfo.deviceModel->getAllDevices();
-        auto devIt = std::find_if(std::cbegin(deviceList),
-                                  std::cend(deviceList),
-                                  [](const Device& dev) { return dev.isCurrent; });
-        return devIt != deviceList.cend() ? devIt->id : QString();
-    };
-
-    auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
-    using namespace lrc::api::ParticipantsInfosStrings;
-
-    // If both the URI and the device Id match, we set the "is local" flag
-    // used to filter out the participant.
-    // TODO:
-    //  - This filter should always be applied, and any local streams should render
-    //    using local sinks. Local non-preview participants should have proxy participant
-    //    items replaced into this model using their local sink Ids.
-    //  - The app setting should remain and be used to control whether or not the preview
-    //    sink partipcant is rendered.
-    auto uri = participant[URI].toString();
-    participant[ISLOCAL] = false;
-    if (uri == accInfo.profileInfo.uri && participant[DEVICE] == getCurrentDeviceId(accInfo)) {
-        participant[BESTNAME] = tr("Me");
-        participant[ISLOCAL] = true;
-    } else {
-        try {
-            participant[BESTNAME] = accInfo.contactModel->bestNameForContact(uri);
-        } catch (...) {
-        }
-    }
-}
-
-QVariantList
-CallAdapter::getConferencesInfos() const
-{
-    QVariantList map;
-    const auto& convInfo = lrcInstance_->getConversationFromConvUid(
-        lrcInstance_->get_selectedConvUid());
-    if (convInfo.uid.isEmpty())
-        return map;
-    auto callId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
-    if (!callId.isEmpty()) {
-        try {
-            auto& participantsModel = lrcInstance_->accountModel()
-                                          .getAccountInfo(accountId_)
-                                          .callModel.get()
-                                          ->getParticipantsInfos(callId);
-            for (int index = 0; index < participantsModel.getParticipants().size(); index++) {
-                auto participant = participantsModel.toQJsonObject(index);
-                fillParticipantData(participant);
-                map.push_back(QVariant(participant));
-            }
-            return map;
-        } catch (...) {
-        }
-    }
-    return map;
 }
 
 void
@@ -629,25 +495,6 @@ void
 CallAdapter::connectCallModel(const QString& accountId)
 {
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
-
-    connect(accInfo.callModel.get(),
-            &CallModel::participantAdded,
-            this,
-            &CallAdapter::onParticipantAdded,
-            Qt::UniqueConnection);
-
-    connect(accInfo.callModel.get(),
-            &CallModel::participantRemoved,
-            this,
-            &CallAdapter::onParticipantRemoved,
-            Qt::UniqueConnection);
-
-    connect(accInfo.callModel.get(),
-            &CallModel::participantUpdated,
-            this,
-            &CallAdapter::onParticipantUpdated,
-            Qt::UniqueConnection);
-
     connect(accInfo.callModel.get(),
             &CallModel::callStarted,
             this,
@@ -719,24 +566,19 @@ CallAdapter::setActiveStream(const QString& uri, const QString& deviceId, const 
         confId = convInfo.callId;
     try {
         const auto call = callModel->getCall(confId);
-        auto participants = getConferencesInfos();
-        std::vector<QJsonObject> activeParticipants = {};
+        auto& participantsModel = callModel->getParticipantsInfos(call.id);
+        auto participants = participantsModel.getParticipants();
+        decltype(participants) activeParticipants = {};
         bool removeActive = false;
         for (auto part : participants) {
-            auto participant = part.toJsonObject();
-
-            auto puri = participant[lrc::api::ParticipantsInfosStrings::URI].toString();
-            auto pdeviceId = participant[lrc::api::ParticipantsInfosStrings::DEVICE].toString();
-            auto pstreamId = participant[lrc::api::ParticipantsInfosStrings::STREAMID].toString();
-
-            auto isParticipant = puri == uri && pdeviceId == deviceId && pstreamId == streamId;
-            auto active = participant[lrc::api::ParticipantsInfosStrings::ACTIVE].toBool();
-            if (active && !isParticipant)
-                activeParticipants.push_back(participant);
+            auto isParticipant = part.uri == uri && part.device == deviceId
+                                 && part.sinkId == streamId;
+            if (part.active && !isParticipant)
+                activeParticipants.push_back(part);
 
             if (isParticipant) {
                 // Else, continue.
-                if (!active) {
+                if (!part.active) {
                     callModel->setActiveStream(confId, uri, deviceId, streamId, true);
                     callModel->setConferenceLayout(confId, lrc::api::call::Layout::ONE_WITH_SMALL);
                 } else if (call.layout == lrc::api::call::Layout::ONE_WITH_SMALL) {
@@ -747,12 +589,8 @@ CallAdapter::setActiveStream(const QString& uri, const QString& deviceId, const 
         }
         if (removeActive) {
             // If in Big, we can remove other actives
-            for (const auto& p : activeParticipants) {
-                auto puri = p[lrc::api::ParticipantsInfosStrings::URI].toString();
-                auto deviceId = p[lrc::api::ParticipantsInfosStrings::DEVICE].toString();
-                auto streamId = p[lrc::api::ParticipantsInfosStrings::STREAMID].toString();
-                callModel->setActiveStream(confId, puri, deviceId, streamId, false);
-            }
+            for (const auto& part : activeParticipants)
+                callModel->setActiveStream(confId, part.uri, part.device, part.sinkId, false);
         }
     } catch (...) {
     }
@@ -770,31 +608,24 @@ CallAdapter::minimizeParticipant(const QString& uri)
         confId = convInfo.callId;
     try {
         const auto call = callModel->getCall(confId);
-        auto participants = getConferencesInfos();
+        auto& participantsModel = callModel->getParticipantsInfos(call.id);
+        auto participants = participantsModel.getParticipants();
         auto activeParticipants = 0;
         for (auto& part : participants) {
-            auto participant = part.toJsonObject();
-            if (participant[lrc::api::ParticipantsInfosStrings::ACTIVE].toBool()) {
+            if (part.active) {
                 activeParticipants += 1;
-                if (participant[lrc::api::ParticipantsInfosStrings::URI].toString() == uri
-                    && call.layout == lrc::api::call::Layout::ONE_WITH_SMALL) {
-                    auto deviceId = participant[lrc::api::ParticipantsInfosStrings::DEVICE]
-                                        .toString();
-                    auto streamId = participant[lrc::api::ParticipantsInfosStrings::STREAMID]
-                                        .toString();
-                    callModel->setActiveStream(confId, uri, deviceId, streamId, false);
+                if (part.uri == uri && call.layout == lrc::api::call::Layout::ONE_WITH_SMALL) {
+                    callModel->setActiveStream(confId, part.uri, part.device, part.sinkId, false);
                 }
             }
         }
         if (activeParticipants == 1) {
             // only one active left, we can change the layout.
-            if (call.layout == lrc::api::call::Layout::ONE) {
+            if (call.layout == lrc::api::call::Layout::ONE)
                 callModel->setConferenceLayout(confId, lrc::api::call::Layout::ONE_WITH_SMALL);
-            } else {
+            else
                 callModel->setConferenceLayout(confId, lrc::api::call::Layout::GRID);
-            }
         }
-
     } catch (...) {
     }
 }
