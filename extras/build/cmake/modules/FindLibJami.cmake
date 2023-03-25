@@ -20,30 +20,19 @@
 
 # Once done, this find module will set:
 #
-#   LIBJAMI_INCLUDE_DIRS - libjami include directories
+#   LIBJAMI_INCLUDE_DIR - libjami include directory
 #   LIBJAMI_FOUND - whether it was able to find the include directories
 #   LIBJAMI_LIB - path to libjami or libring library
 
 set(LIBJAMI_FOUND true)
 
 if(WITH_DAEMON_SUBMODULE)
-  set(LIBJAMI_INCLUDE_DIRS ${DAEMON_DIR}/src/jami)
+  set(LIBJAMI_INCLUDE_DIR ${DAEMON_DIR}/src/jami)
 else()
-  if(EXISTS ${LIBJAMI_INCLUDE_DIR}/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${LIBJAMI_INCLUDE_DIR})
-  elseif(EXISTS ${LIBJAMI_BUILD_DIR}/jami/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${LIBJAMI_BUILD_DIR}/jami)
-  elseif(EXISTS ${RING_INCLUDE_DIR}/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${RING_INCLUDE_DIR})
-  elseif(EXISTS ${RING_BUILD_DIR}/jami/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${RING_BUILD_DIR}/jami)
-  elseif(EXISTS ${CMAKE_INSTALL_PREFIX}/include/jami/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/include/jami)
-  elseif(EXISTS ${CMAKE_INSTALL_PREFIX}/daemon/include/jami/jami.h)
-    set(LIBJAMI_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/daemon/include/jami)
-  else()
+  find_path(LIBJAMI_INCLUDE_DIR jami.h PATH_SUFFIXES jami)
+  if(NOT LIBJAMI_INCLUDE_DIR)
     message(STATUS "Jami daemon headers not found!
-Set -DLIBJAMI_BUILD_DIR or -DCMAKE_INSTALL_PREFIX")
+Set -DCMAKE_INSTALL_PREFIX or use -DWITH_DAEMON_SUBMODULE")
     set(LIBJAMI_FOUND false)
   endif()
 endif()
@@ -115,5 +104,5 @@ endif()
 # Restore the original value of CMAKE_FIND_LIBRARY_SUFFIXES.
 set(CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_FIND_LIBRARY_SUFFIXES_orig})
 
-message(STATUS "Jami daemon headers are in " ${LIBJAMI_INCLUDE_DIRS})
+message(STATUS "Jami daemon headers are in " ${LIBJAMI_INCLUDE_DIR})
 message(STATUS "Jami daemon library is at " ${LIBJAMI_LIB})
