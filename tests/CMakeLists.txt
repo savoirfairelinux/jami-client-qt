@@ -1,4 +1,18 @@
-find_package(Qt${QT_VERSION_MAJOR} CONFIG REQUIRED QuickTest Test Widgets)
+cmake_minimum_required(VERSION 3.16)
+
+enable_testing(true)
+
+set(QT_TESTING_MODULES
+    ${QT_MODULES}
+    QuickControls2
+    QuickTest
+    Test
+    Widgets
+)
+find_package(Qt${QT_VERSION_MAJOR} CONFIG REQUIRED ${QT_TESTING_MODULES})
+foreach(MODULE ${QT_TESTING_MODULES})
+    list(APPEND QT_TEST_LIBS "Qt::${MODULE}")
+endforeach()
 
 if(MSVC)
     # Download and unpack googletest for windows
@@ -14,8 +28,7 @@ else()
     find_package(GTest REQUIRED)
 endif()
 
-enable_testing(true)
-set(QML_TEST_LIBS ${QT_LIBS} ${LIBCLIENT_NAME} Qt::QuickTest Qt::Test Qt::Widgets)
+set(QML_TEST_LIBS ${QT_LIBS} ${LIBCLIENT_NAME} ${QT_TEST_LIBS})
 set(TESTS_INCLUDES
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/tests/qml
@@ -45,7 +58,8 @@ target_link_libraries(qml_tests
 target_compile_definitions(qml_tests PRIVATE ENABLE_TESTS="ON")
 
 # Unittests
-set(UNIT_TESTS_HEADER_FILES ${CMAKE_SOURCE_DIR}/tests/unittests/globaltestenvironment.h)
+set(UNIT_TESTS_HEADER_FILES
+    ${CMAKE_SOURCE_DIR}/tests/unittests/globaltestenvironment.h)
 
 set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/main_unittest.cpp
@@ -67,130 +81,73 @@ target_link_libraries(unittests
 target_compile_definitions(unittests PRIVATE ENABLE_TESTS="ON")
 
 if(MSVC)
-    include_directories(${LRC_SRC_PATH}
-                        ${DRING_SRC_PATH})
+    list(APPEND WINDOWS_LIBS
+        ${QTWRAPPER_LIB}
+        ${RINGCLIENT_STATIC_LIB}
+        ${QRENCODE_LIB}
+        ${GNUTLS_LIB}
+        ${DRING_LIB}
+        ${WINDOWS_SYS_LIBS})
 
-    # QML tests
-    target_link_libraries(qml_tests
-                          ${QTWRAPPER_LIB}
-                          ${RINGCLIENT_STATIC_LIB}
-                          ${QRENCODE_LIB}
-                          ${GNUTLS_LIB}
-                          ${DRING_LIB}
-                          ${WINDOWS_SYS_LIBS})
+    list(APPEND WINDOWS_INCLUDES
+        ${LRC_SRC_PATH}
+        ${DRING_SRC_PATH})
+endif()
 
-    target_include_directories(qml_tests PUBLIC
-                               ${TESTS_INCLUDES}
-                               ${LRC_SRC_PATH}
-                               ${DRING_SRC_PATH})
-
-    # output test executable files into test folder
-    set_target_properties(qml_tests
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/x64/test"
-    )
-
-    # POST_BUILD steps
-
-    # check time stamp
-    set(TIME_STAMP_FILE ".deploy.stamp")
-    add_custom_command(TARGET qml_tests POST_BUILD
-                       WORKING_DIRECTORY "$<TARGET_FILE_DIR:qml_tests>"
-                       COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-                               -P ${PROJECT_SOURCE_DIR}/cmake/time_stamp_check.cmake)
-
-    # daemon deploy
-    add_custom_command(TARGET qml_tests POST_BUILD
-                       WORKING_DIRECTORY "$<TARGET_FILE_DIR:qml_tests>"
-                       COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-                               -DCOPY_TO_PATH=$<TARGET_FILE_DIR:qml_tests>
-                               -DDRING_PATH=${DRING}
-                               -DPROJECT_ROOT_DIR=${PROJECT_SOURCE_DIR}
-                               -P ${PROJECT_SOURCE_DIR}/cmake/windows_daemon_deploy.cmake)
-
-    # Qt deploy for test qmls
-    add_custom_command(TARGET qml_tests POST_BUILD
-                       WORKING_DIRECTORY "$<TARGET_FILE_DIR:qml_tests>"
-                       COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-                               -DWIN_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
-                               -DQML_SRC_DIR=${CMAKE_SOURCE_DIR}/tests/qml
-                               -DEXE_NAME=$<TARGET_FILE:qml_tests>
-                               -DOFF_SCREEN_PLUGIN_REQUESTED=TRUE
-                               -DCOPY_TO_PATH=$<TARGET_FILE_DIR:qml_tests>/platforms
-                               -DOFF_SCREEN_PLUGIN_PATH=${CMAKE_PREFIX_PATH}/plugins/platforms
-                               -P ${PROJECT_SOURCE_DIR}/cmake/windows_qt_deploy.cmake)
-
-    # Qt deploy for src qmls
-    add_custom_command(TARGET qml_tests POST_BUILD
-                       WORKING_DIRECTORY "$<TARGET_FILE_DIR:qml_tests>"
-                       COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-                               -DWIN_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
-                               -DQML_SRC_DIR=${SRC_DIR}
-                               -DEXE_NAME=$<TARGET_FILE:qml_tests>
-                               -P ${PROJECT_SOURCE_DIR}/cmake/windows_qt_deploy.cmake)
-
-    # create time stamp
-    add_custom_command(TARGET qml_tests POST_BUILD
-                       WORKING_DIRECTORY "$<TARGET_FILE_DIR:qml_tests>"
-                       COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-                               -P ${PROJECT_SOURCE_DIR}/cmake/time_stamp_create.cmake)
-
-    # Unittests
-    target_link_libraries(unittests
-                          ${QTWRAPPER_LIB}
-                          ${RINGCLIENT_STATIC_LIB}
-                          ${QRENCODE_LIB}
-                          ${GNUTLS_LIB}
-                          ${DRING_LIB}
-                          ${WINDOWS_SYS_LIBS})
-
-    target_include_directories(unittests PUBLIC
-                               ${TESTS_INCLUDES}
-                               ${LRC_SRC_PATH}
-                               ${DRING_SRC_PATH})
-
-    # output test executable files into test folder
-    set_target_properties(unittests
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/x64/test"
-    )
-else()
-    include_directories(${LRC}/include/libringclient
+include_directories(${LRC}/include/libringclient
                         ${LRC}/include
                         ${LIBNM_INCLUDE_DIRS}
                         ${LIBNOTIFY_INCLUDE_DIRS}
-                        ${LIBGDKPIXBUF_INCLUDE_DIRS})
+                        ${LIBGDKPIXBUF_INCLUDE_DIRS}
+                        ${WINDOWS_INCLUDES})
 
-    # QML tests
-    target_link_libraries(qml_tests
-                          ${ringclient}
-                          ${qrencode}
-                          ${X11}
-                          ${LIBNM_LIBRARIES}
-                          ${LIBNOTIFY_LIBRARIES}
-                          ${LIBGDKPIXBUF_LIBRARIES})
+# QML tests
+target_link_libraries(qml_tests
+                        ${ringclient}
+                        ${qrencode}
+                        ${X11}
+                        ${LIBNM_LIBRARIES}
+                        ${LIBNOTIFY_LIBRARIES}
+                        ${LIBGDKPIXBUF_LIBRARIES}
+                        ${WINDOWS_LIBS})
 
-    target_include_directories(qml_tests PUBLIC
-                               ${TESTS_INCLUDES}
-                               ${LRC}/include/libringclient
-                               ${LRC}/include)
+target_include_directories(qml_tests PUBLIC
+                            ${TESTS_INCLUDES}
+                            ${LRC}/include/libringclient
+                            ${LRC}/include
+                            ${WINDOWS_INCLUDES})
 
-    add_test(NAME QmlTests COMMAND qml_tests -input ${PROJECT_SOURCE_DIR}/tests/qml/)
+add_test(NAME QmlTests COMMAND qml_tests -input ${PROJECT_SOURCE_DIR}/tests/qml/)
 
-    # Unittests
-    target_link_libraries(unittests
-                          ${ringclient}
-                          ${qrencode}
-                          pthread
-                          ${X11}
-                          ${LIBNM_LIBRARIES}
-                          ${LIBNOTIFY_LIBRARIES}
-                          ${LIBGDKPIXBUF_LIBRARIES})
+if(MSVC)
+    string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
+    set_target_properties(qml_tests PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY_${BUILD_TYPE} ${OUTPUT_DIRECTORY})
+else()
+    set(PTHREAD_LIB pthread)
+endif()
 
-    target_include_directories(unittests PUBLIC
-                               ${TESTS_INCLUDES}
-                               ${LRC}/include/libringclient
-                               ${LRC}/include)
+# Unittests
+target_link_libraries(unittests
+                        ${ringclient}
+                        ${qrencode}
+                        ${PTHREAD_LIB}
+                        ${X11}
+                        ${LIBNM_LIBRARIES}
+                        ${LIBNOTIFY_LIBRARIES}
+                        ${LIBGDKPIXBUF_LIBRARIES}
+                        ${WINDOWS_LIBS})
 
-    add_test(NAME UnitTests COMMAND unittests)
+target_include_directories(unittests PUBLIC
+                            ${TESTS_INCLUDES}
+                            ${LRC}/include/libringclient
+                            ${LRC}/include
+                            ${WINDOWS_INCLUDES})
+
+add_test(NAME UnitTests COMMAND unittests)
+
+if(MSVC)
+    string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
+    set_target_properties(unittests PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY_${BUILD_TYPE} ${OUTPUT_DIRECTORY})
 endif()
