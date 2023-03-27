@@ -77,6 +77,16 @@ if (${QT_VERSION_MAJOR} STRLESS 6)
   endif()
 endif()
 
+if(MSVC)
+  set(DEFAULT_BUILD_TYPE "Debug")
+  if(NOT CMAKE_BUILD_TYPE)
+    message(STATUS "Setting build type to '${DEFAULT_BUILD_TYPE}' as none was specified.")
+    set(CMAKE_BUILD_TYPE "${DEFAULT_BUILD_TYPE}" CACHE
+        STRING "Choose the type of build." FORCE)
+  endif()
+  set(OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/x64/${CMAKE_BUILD_TYPE}")
+endif()
+
 # libjamiclient
 add_subdirectory(${LIBCLIENT_SRC_DIR})
 

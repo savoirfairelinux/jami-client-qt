@@ -57,10 +57,6 @@ public:
 
         QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
 
-#if defined _MSC_VER && !COMPILE_ONLY
-        gnutls_global_init();
-#endif
-
         lrcInstance_.reset(
             new LRCInstance(nullptr, nullptr, "", connectivityMonitor_.get(), muteDring_));
         lrcInstance_->subscribeToDebugReceived();

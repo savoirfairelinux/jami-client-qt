@@ -12,25 +12,25 @@ Jami provides all its users a universal communication tool, autonomous, free, se
 
 For more information about the jami project, see the following:
 
-+ Main website: https://jami.net/
-+ Download: https://jami.net/download/
-+ Bug tracker: https://git.jami.net/
-+ Repositories: https://review.jami.net
+- Main website: https://jami.net/
+- Download: https://jami.net/download/
+- Bug tracker: https://git.jami.net/
+- Repositories: https://review.jami.net
 
 # Getting involved
 
-+ Browse our [current issues](https://git.jami.net/savoirfairelinux/jami-client-qt/issues), or file an issue.
-+ IRC: #jami on libera.chat
-+ ML: jami@gnu.org
-+ Documentation: https://docs.jami.net
-+ Localization happens on [Transifex](https://www.transifex.com/savoirfairelinux/jami/dashboard/)
-+ [Our contributions propositions](https://git.jami.net/groups/savoirfairelinux/-/epics/1) or [feature requests](https://git.jami.net/savoirfairelinux/ring-project/wikis/technical/4.3.-Features-requests) asked by the community
-+ Packaging: Feel free to contact us
+- Browse our [current issues](https://git.jami.net/savoirfairelinux/jami-client-qt/issues), or file an issue.
+- IRC: #jami on libera.chat
+- ML: jami@gnu.org
+- Documentation: https://docs.jami.net
+- Localization happens on [Transifex](https://www.transifex.com/savoirfairelinux/jami/dashboard/)
+- [Our contributions propositions](https://git.jami.net/groups/savoirfairelinux/-/epics/1) or [feature requests](https://docs.jami.net/developer/feature-requests.html) asked by the community
+- Packaging: Feel free to contact us
 
 ## Notes
 
-+ Coding style is managed by the clang-format, if you want to contribute, please use the pre-commit hook automatically installed with `./make-ring.py --init`
-+ We use gerrit for our review. Please read https://git.jami.net/savoirfairelinux/ring-project/wikis/tutorials/Working-with-gerrit if you want to submit patches.
+- Coding style is managed by the clang-format, if you want to contribute, please use the pre-commit hook automatically installed with `./build.py --init`
+- We use gerrit for our review. Please read about [working with Gerrit](https://docs.jami.net/developer/working-with-gerrit.html) if you want to submit patches.
 
 ## Build
 
