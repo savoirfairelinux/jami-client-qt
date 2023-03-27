@@ -45,10 +45,6 @@ public:
         settingsManager.reset(new AppSettingsManager(nullptr));
         systemTray.reset(new SystemTray(settingsManager.get(), nullptr));
 
-#if defined _MSC_VER
-        gnutls_global_init();
-#endif
-
         std::atomic_bool isMigrating(false);
         lrcInstance.reset(
             new LRCInstance(nullptr, nullptr, "", connectivityMonitor.get(), muteDring));

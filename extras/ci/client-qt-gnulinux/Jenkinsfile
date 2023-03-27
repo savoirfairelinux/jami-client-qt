@@ -118,9 +118,8 @@ pipeline {
                                 """)
                                 // Run tests
                                 exec_cmd("""
-                                    cd ${dockerTopDir}
-                                    cd tests/qml/src
-                                    HOME=/tmp ../../../build/tests/qml_tests
+                                    cd ${dockerTopDir}/build/tests
+                                    HOME=/tmp ctest -j${cpuCount} -V -C Release
                                 """)
                             }
                         }
