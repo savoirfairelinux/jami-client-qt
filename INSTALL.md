@@ -55,8 +55,8 @@ Then, you can build the project
 
 ### With build.py
 
-The build.py Jami installer uses **python3 (minimum v3.6)**.  If it's not installed,
-please install it.  Then run the following to initialize and update
+The build.py Jami installer uses **python3 (minimum v3.6)**. If it's not installed,
+please install it. Then run the following to initialize and update
 the submodules to set them at the top of their latest commit (ideal
 for getting the latest development versions; otherwise, you can use
 `git submodule update --init` then checkout specific commits for each
@@ -85,7 +85,7 @@ specify its path using the `--qt` flag, e.g.
 `./build.py --install --qt=/home/<username>/Qt/6.2.1/gcc_64`.
 
 Now you will have the daemon in `daemon/bin/jamid` and the client in
-`build/jami`.  You can now run Jami using:
+`build/jami`. You can now run Jami using:
 
 ```bash
 ./build/jami
@@ -163,11 +163,11 @@ Only 64-bit MSVC build can be compiled.
 
 - Download [Visual Studio](https://visualstudio.microsoft.com/) (versions 2019 or 2022). _See the SDK notes below._
 
-  |              | SDK          | Toolset                                              | MFC              |
-  | ------------ | ------------ | ---------------------------------------------------- | ---------------- |
-  | Requirement: | 10.0.18362.0 | V142 (VisualStudio 2019) / V143 (VisualStudio 2022)  | matching Toolset |
+  |              | SDK          | Toolset                                             | MFC              |
+  | ------------ | ------------ | --------------------------------------------------- | ---------------- |
+  | Requirement: | 10.0.18362.0 | V142 (VisualStudio 2019) / V143 (VisualStudio 2022) | matching Toolset |
 
-- Install Qt Vs Tools under extensions, and configure msvc2017_64 path under Qt Options. _See the Qt notes below._
+- Install Qt Vs Tools under extensions, and configure msvc2017*64 path under Qt Options. \_See the Qt notes below.*
 
   |                      | Qt Version |
   | -------------------- | ---------- |
@@ -212,8 +212,6 @@ Only 64-bit MSVC build can be compiled.
 
 ```bash
     python build.py --install
-    python extras\scripts\build-windows.py init
-    python extras\scripts\build-windows.py --qtver <your qt version>
 ```
 
 - Then you should be able to use the Visual Studio Solution file in client-qt folder **(Configuration = Release, Platform = x64)**
@@ -243,11 +241,11 @@ Only 64-bit MSVC build can be compiled.
 
 **Jami**
 
-- Make sure that daemon is built first.  Then,
+- Make sure that daemon is built first. Then,
 
-```bash
-    python extras\scripts\build-windows.py init
-    python extras\scripts\build-windows.py
+```
+    python extras\scripts\build-windows.py --init
+    python extras\scripts\build-windows.py --qtver <your qt version>
 ```
 
 Note: if your qt version is different than 6.2.3, you need to use `python extras\scripts\build-windows.py --qtver <your qt version>`.
@@ -298,7 +296,7 @@ Built client could be find in `build/Jami`
 - We currently use [GoogleTest](https://github.com/google/googletest) and [Qt Quick Test](https://doc.qt.io/qt-5/qtquicktest-index.html#introduction) in our product. To build and run tests, you could use the following command.
 
 ```
-    python extras\scripts\build-windows.py [runtests, pack]
+    python extras\scripts\build-windows.py --tests
 ```
 
 - Note that, for tests, the path of local storage files for jami will be changed based on following environment variables.
