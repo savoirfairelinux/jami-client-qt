@@ -1740,8 +1740,7 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId,
         if (call == currentCall_)
             currentCall_ = confId;
     }
-    if (currentCallId != currentCall_)
-        Q_EMIT linked.currentCallChanged(confId);
+    Q_EMIT linked.currentCallChanged(currentCall_);
 }
 
 void
