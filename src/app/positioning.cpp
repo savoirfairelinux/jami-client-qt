@@ -27,13 +27,23 @@ Positioning::Positioning(QObject* parent)
     source_ = QGeoPositionInfoSource::createDefaultSource(this);
     timer_ = new QTimer(this);
     connect(timer_, &QTimer::timeout, this, &Positioning::requestPosition);
-    connect(source_, &QGeoPositionInfoSource::errorOccurred, this, &Positioning::slotError);
-    connect(source_, &QGeoPositionInfoSource::positionUpdated, this, &Positioning::positionUpdated);
-    // if location services are activated, positioning will be activated automatically
-    connect(source_,
-            &QGeoPositionInfoSource::supportedPositioningMethodsChanged,
-            this,
-            &Positioning::locationServicesActivated);
+
+    // There are several reasons QGeoPositionInfoSource::createDefaultSource may return
+    // null. For example, if the device has no GPS, or if the device has no location
+    // services activated. This seems to be the case for our QML testing fixture. Ideally,
+    // we would like to listen to system signals to know when location services are activated.
+    if (source_) {
+        connect(source_, &QGeoPositionInfoSource::errorOccurred, this, &Positioning::slotError);
+        connect(source_,
+                &QGeoPositionInfoSource::positionUpdated,
+                this,
+                &Positioning::positionUpdated);
+        // If location services are activated, positioning will be activated automatically.
+        connect(source_,
+                &QGeoPositionInfoSource::supportedPositioningMethodsChanged,
+                this,
+                &Positioning::locationServicesActivated);
+    }
 }
 
 void
