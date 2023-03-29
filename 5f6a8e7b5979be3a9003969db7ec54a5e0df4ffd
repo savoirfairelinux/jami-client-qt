@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d5e8b48_5daf4f5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-29T20:48:42Z",
+      "side": 1,
+      "message": "\nFAIL!  : qml_test::Create Jami account ui flow (no registered name)::test_createEmptyJamiAccountUiFlow() \u0027wait for signal accountRemoved\u0027 returned FALSE. ()\n   Loc: [/foo/tests/qml/src/tst_WizardView.qml(139)]\nPASS   : qml_test::Create Jami account ui flow (no registered name)::cleanupTestCase()\nQWARN  : qml_test::UnknownTestFunc() QQmlEngine::setContextForObject(): Object already has a QQmlContext\nTotals: 13 passed, 2 failed, 0 skipped, 0 blacklisted, 14007ms",
+      "revId": "5f6a8e7b5979be3a9003969db7ec54a5e0df4ffd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
