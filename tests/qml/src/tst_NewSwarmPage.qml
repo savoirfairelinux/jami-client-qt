@@ -24,6 +24,7 @@ import QtTest
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
+import "../../../src/app/"
 import "../../../src/app/mainview/components"
 
 ColumnLayout {
@@ -36,6 +37,11 @@ ColumnLayout {
 
     NewSwarmPage {
         id: uut
+
+        property ViewManager viewManager: ViewManager {}
+        property ViewCoordinator viewCoordinator: ViewCoordinator {
+            viewManager: uut.viewManager
+        }
 
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredWidth: root.width

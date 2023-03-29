@@ -24,11 +24,17 @@ import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
+import "../../../src/app/"
 import "../../../src/app/wizardview"
 import "../../../src/app/commoncomponents"
 
 WizardView {
     id: uut
+
+    property ViewManager viewManager: ViewManager {}
+    property ViewCoordinator viewCoordinator: ViewCoordinator {
+        viewManager: uut.viewManager
+    }
 
     function clearSignalSpy() {
         spyAccountIsReady.clear()

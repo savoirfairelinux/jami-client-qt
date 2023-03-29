@@ -38,8 +38,8 @@ BaseView {
     property bool isSinglePane
 
     onPresented: {
-        leftPaneItem.parent = leftPane
-        rightPaneItem.parent = rightPane
+        if (leftPaneItem) leftPaneItem.parent = leftPane
+        if (rightPaneItem) rightPaneItem.parent = rightPane
 
         splitView.restoreSplitViewState()
 
