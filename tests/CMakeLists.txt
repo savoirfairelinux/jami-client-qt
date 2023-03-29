@@ -108,7 +108,7 @@ function(setup_test TEST_NAME TEST_SOURCES TEST_INPUT)
         set_target_properties(${TEST_BINARY_NAME} PROPERTIES
             RUNTIME_OUTPUT_DIRECTORY_${BUILD_TYPE} ${OUTPUT_DIRECTORY})
     endif()
-    add_test(NAME ${TEST_NAME} COMMAND ${TEST_BINARY_NAME} -input ${TEST_INPUT} -mutejamid)
+    add_test(NAME ${TEST_NAME} COMMAND ${TEST_BINARY_NAME} -input ${TEST_INPUT} --mutejamid)
 endfunction()
 
 # QML tests
