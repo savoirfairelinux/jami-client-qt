@@ -56,6 +56,12 @@ class LRCInstance;
 
 namespace Utils {
 
+// Helper used to remove app arguments.
+void remove_argument(char** argv,
+                     int& argc,
+                     const std::string& arg_to_remove,
+                     std::function<void()> callback);
+
 // Throws if Vulkan cannot be instantiated.
 void testVulkanSupport();
 
