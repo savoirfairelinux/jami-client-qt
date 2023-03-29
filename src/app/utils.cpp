@@ -51,6 +51,35 @@
 #include <windows.h>
 #endif
 
+// Removes the given argument from the command line arguments, and invokes the callback
+// function with the removed argument if it was found.
+// This is required for custom args as quick_test_main_with_setup() will
+// fail if given an invalid command-line argument.
+void
+Utils::remove_argument(char** argv,
+                int& argc,
+                const std::string& arg_to_remove,
+                std::function<void()> callback)
+{
+    // Remove "-mutejamid" from argv, as quick_test_main_with_setup() will
+    // fail if given an invalid command-line argument.
+    auto new_end = std::remove_if(argv + 1, argv + argc, [&](char* arg_ptr) {
+        if (strcmp(arg_ptr, arg_to_remove.c_str()) == 0) {
+            // Invoke the callback function with the removed argument.
+            callback();
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+    // If any occurrences were removed...
+    if (new_end != argv + argc) {
+        // Adjust the argument count.
+        argc = std::distance(argv, new_end);
+    }
+}
+
 void
 Utils::testVulkanSupport()
 {

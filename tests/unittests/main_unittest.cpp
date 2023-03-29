@@ -39,18 +39,11 @@ main(int argc, char* argv[])
     if (!envSet)
         return 1;
 
-    // Remove "-mutejamid" from argv, as quick_test_main_with_setup() will
-    // fail if given an invalid command-line argument.
-    auto end = std::remove_if(argv + 1, argv + argc, [](char* argv) {
-        return (strcmp(argv, "-mutejamid") == 0);
-    });
+    // We likely want to mute the daemon for log clarity.
+    Utils::remove_argument(argv, argc, "--mutejamid", [&]() { globalEnv.muteDring = true; });
 
-    if (end != argv + argc) {
-        globalEnv.muteDring = true;
-
-        // Adjust the argument count.
-        argc = std::distance(argv, end);
-    }
+    // Allow the user to enable fatal warnings for certain tests.
+    Utils::remove_argument(argv, argc, "--failonwarn", [&]() { qputenv("QT_FATAL_WARNINGS", "1"); });
 
     QApplication a(argc, argv);
     a.processEvents();
