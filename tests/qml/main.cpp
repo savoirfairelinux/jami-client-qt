@@ -1,7 +1,5 @@
 /*
  * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
- * Author: Albert Babí Oller <albert.babi@savoirfairelinux.com>
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,10 +30,12 @@
 #include <QQmlEngine>
 #include <QScopedPointer>
 #include <QtQuickTest/quicktest.h>
+
 #ifdef WITH_WEBENGINE
 #include <QtWebEngineCore>
 #include <QtWebEngineQuick>
 #endif
+
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
@@ -54,6 +54,7 @@ public:
         connectivityMonitor_.reset(new ConnectivityMonitor(this));
         settingsManager_.reset(new AppSettingsManager(this));
         systemTray_.reset(new SystemTray(settingsManager_.get(), this));
+        previewEngine_.reset(new PreviewEngine(this));
 
         QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
 
@@ -65,7 +66,7 @@ public:
         lrcInstance_->accountModel().downloadDirectory = downloadPath.toString() + "/";
     }
 
-    void qmlEngineRegistration(QQmlEngine* engine)
+    void registerQmlTypes(QQmlEngine* engine)
     {
         // Expose custom types to the QML engine.
         Utils::registerTypes(engine,
@@ -79,12 +80,15 @@ public:
 
 public Q_SLOTS:
 
-    /*!
+    /*
      * Called once before qmlEngineAvailable.
      */
-    void applicationAvailable() { init(); }
+    void applicationAvailable()
+    {
+        init();
+    }
 
-    /*!
+    /*
      * Called when the QML engine is available. Any import paths, plugin paths,
      * and extra file selectors will have been set on the engine by this point.
      * This function is called once for each QML test file, so any arguments are
@@ -96,6 +100,7 @@ public Q_SLOTS:
      */
     void qmlEngineAvailable(QQmlEngine* engine)
     {
+        registerQmlTypes(engine);
         auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
         engine->rootContext()->setContextProperty("videoProvider", videoProvider);
 #ifdef WITH_WEBENGINE
@@ -103,10 +108,9 @@ public Q_SLOTS:
 #else
         engine->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(false));
 #endif
-        qmlEngineRegistration(engine);
     }
 
-    /*!
+    /*
      * Called once right after the all test execution has finished. Use this
      * function to clean up before everything is destroyed.
      */
