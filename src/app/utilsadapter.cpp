@@ -219,16 +219,10 @@ UtilsAdapter::setConversationFilter(const QString& filter)
     lrcInstance_->getCurrentConversationModel()->setFilter(filter);
 }
 
-const QStringList
-UtilsAdapter::getCurrAccList()
-{
-    return lrcInstance_->accountModel().getAccountList();
-}
-
 int
 UtilsAdapter::getAccountListSize()
 {
-    return getCurrAccList().size();
+    return lrcInstance_->accountModel().getAccountList().size();
 }
 
 bool
