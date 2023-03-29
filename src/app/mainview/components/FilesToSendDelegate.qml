@@ -92,6 +92,7 @@ Item {
 
                         anchors.fill: parent
                         anchors.margins: margin
+                        cache: false
 
                         asynchronous: true
                         fillMode: Image.PreserveAspectCrop

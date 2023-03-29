@@ -111,6 +111,7 @@ Component {
                                 anchors.fill: parent
                                 fillMode: Image.PreserveAspectCrop
                                 source: "file://" + Body
+                                cache: false
                                 layer.enabled: true
                                 layer.effect: OpacityMask {
                                     maskSource: Item {
