@@ -256,7 +256,7 @@ AccountAdapter::deleteCurrentAccount()
     Utils::oneShotConnect(&lrcInstance_->accountModel(),
                           &lrc::api::AccountModel::accountRemoved,
                           [this](const QString& accountId) {
-                              Q_UNUSED(accountId);
+                              Q_EMIT accountRemoved(accountId);
                               Q_EMIT lrcInstance_->accountListChanged();
                           });
 
