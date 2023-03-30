@@ -309,6 +309,8 @@ ContactModel::addContact(contact::Info contactInfo)
     Q_EMIT profileUpdated(profile.uri);
     if (profile.type == profile::Type::SIP)
         Q_EMIT contactAdded(profile.uri);
+    else
+        ConfigurationManager::instance().lookupAddress(owner.id, "", profile.uri);
 }
 
 void
