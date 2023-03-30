@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81c38559_d32a22b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-30T19:06:01Z",
+      "side": 1,
+      "message": "Not really related but the darktheme when you send a file is not correct (it should be a similar design)",
+      "range": {
+        "startLine": 9,
+        "startChar": 9,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "d56e583086973816cefd95da2ad1fe011a24ce35",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee21fa9f_f4bd640f",
+        "filename": "src/app/mainview/components/DocumentPreview.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-03-30T19:06:01Z",
+      "side": 1,
+      "message": "add a minimal size for the icon (minimum zoom is ugly)",
+      "range": {
+        "startLine": 84,
+        "startChar": 23,
+        "endLine": 84,
+        "endChar": 31
+      },
+      "revId": "d56e583086973816cefd95da2ad1fe011a24ce35",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
