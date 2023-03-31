@@ -162,6 +162,7 @@ Rectangle {
                     if (button === Qt.RightButton) {
                         var isOnLocal = eventPoint.position.x >= previewRenderer.x && eventPoint.position.x <= previewRenderer.x + previewRenderer.width
                         isOnLocal &= eventPoint.position.y >= previewRenderer.y && eventPoint.position.y <= previewRenderer.y + previewRenderer.height
+                        isOnLocal |= participantsLayer.hoveredOverlaySinkId.indexOf("camera://") === 0
                         callOverlay.openCallViewContextMenuInPos(eventPoint.position.x,
                                                                  eventPoint.position.y,
                                                                  participantsLayer.hoveredOverlayUri,
