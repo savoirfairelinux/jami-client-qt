@@ -119,6 +119,9 @@ JamiFlickable {
                     root.sendMessagesRequired()
                     keyEvent.accepted = true
                 }
+            } else if (keyEvent.key === Qt.Key_Tab) {
+                nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
+                keyEvent.accepted = true
             }
         }
     }
