@@ -23,7 +23,15 @@
 
 BannedListModel::BannedListModel(QObject* parent)
     : AbstractListModelBase(parent)
-{}
+{
+    if (lrcInstance_->getCurrentContactModel()) {
+        connect(lrcInstance_->getCurrentContactModel(),
+                &ContactModel::bannedStatusChanged,
+                this,
+                &BannedListModel::updateList,
+                Qt::UniqueConnection);
+    }
+}
 
 BannedListModel::~BannedListModel() {}
 
@@ -115,4 +123,18 @@ BannedListModel::reset()
 {
     beginResetModel();
     endResetModel();
+}
+
+void
+BannedListModel::updateList()
+{
+    reset();
+
+    auto* contactModel = lrcInstance_->getCurrentAccountInfo().contactModel.get();
+
+    connect(contactModel,
+            &lrc::api::ContactModel::bannedStatusChanged,
+            this,
+            &BannedListModel::reset,
+            Qt::UniqueConnection);
 }

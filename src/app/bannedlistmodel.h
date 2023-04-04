@@ -49,4 +49,7 @@ public:
      * This function is to reset the model when there's new account added.
      */
     Q_INVOKABLE void reset();
+
+public Q_SLOTS:
+    void updateList();
 };

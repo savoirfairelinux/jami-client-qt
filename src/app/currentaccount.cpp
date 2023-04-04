@@ -105,6 +105,8 @@ CurrentAccount::updateData()
         set_bestId(lrcInstance_->accountModel().bestIdForAccount(id_));
         set_bestName(lrcInstance_->accountModel().bestNameForAccount(id_));
         set_hasAvatarSet(!accInfo.profileInfo.avatar.isEmpty());
+        set_hasBannedContacts(
+            lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts().size());
         set_status(accInfo.status);
         set_type(accInfo.profileInfo.type);
 
