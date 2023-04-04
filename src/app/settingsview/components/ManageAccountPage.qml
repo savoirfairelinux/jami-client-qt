@@ -31,11 +31,12 @@ import "../../commoncomponents"
 SettingsPageBase {
     id: root
 
-    property bool isSIP
+    property bool isSIP: CurrentAccount.type === Profile.Type.SIP
     property int itemWidth: 250
-
     signal navigateToMainView
-    signal navigateToNewWizardView
+
+    onNavigateToMainView: viewNode.dismiss()
+
     title: JamiStrings.manageAccountSettingsTitle
 
     flickableContent: ColumnLayout {

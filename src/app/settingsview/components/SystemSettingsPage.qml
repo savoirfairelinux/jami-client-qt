@@ -37,8 +37,6 @@ SettingsPageBase {
 
     property bool isSIP
 
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.system
 
 

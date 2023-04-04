@@ -36,9 +36,6 @@ SettingsPageBase {
 
     property int itemWidth: 188
 
-    signal navigateToMainView
-    signal navigateToNewWizardView
-
     title: JamiStrings.appearence
 
     flickableContent: ColumnLayout {

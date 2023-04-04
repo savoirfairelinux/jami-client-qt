@@ -37,9 +37,6 @@ SettingsPageBase {
 
     property bool isSIP
     property int itemWidth: 132
-
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.callSettingsTitle
 
     function updateAndShowModeratorsSlot() {
