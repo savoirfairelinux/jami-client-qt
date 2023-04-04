@@ -32,9 +32,16 @@ import "../../commoncomponents"
 ColumnLayout {
     id:root
 
+    width: parent.width
+    property bool inverted: false
+    property string title
+    property bool isCurrent: true
+
+    visible: settingsListView.model.count > 0
+
     function removeDeviceSlot(index){
         var deviceId = settingsListView.model.data(settingsListView.model.index(index,0),
-                                                     DeviceItemListModel.DeviceID)
+                                                   DeviceItemListModel.DeviceID)
         if(CurrentAccount.hasArchivePassword){
             viewCoordinator.presentDialog(
                         appWindow,
@@ -49,7 +56,7 @@ ColumnLayout {
                             infoText: JamiStrings.sureToRemoveDevice,
                             buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel],
                             buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                                           SimpleMessageDialog.ButtonStyle.TintedBlack],
+                                SimpleMessageDialog.ButtonStyle.TintedBlack],
                             buttonCallBacks: [
                                 function() { DeviceItemListModel.revokeDevice(deviceId, "") }
                             ]
@@ -57,13 +64,20 @@ ColumnLayout {
         }
     }
 
-    Label {
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+    Text {
+        id: title
 
-        text: JamiStrings.linkedDevices
+        Layout.alignment: Qt.AlignLeft
+        Layout.preferredWidth: parent.width
+
+        text: root.title
         color: JamiTheme.textColor
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
 
-        font.pointSize: JamiTheme.headerFontSize
+        font.weight: Font.Medium
+        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
         font.kerning: true
     }
 
@@ -71,55 +85,34 @@ ColumnLayout {
         id: settingsListView
 
         Layout.fillWidth: true
-        Layout.preferredHeight: 160
+        Layout.preferredHeight: model.count * (70 + spacing)
+        spacing: JamiTheme.settingsListViewsSpacing
+        interactive: false
 
         model: SortFilterProxyModel {
             sourceModel: DeviceItemListModel
             sorters: [
-                RoleSorter { roleName: "IsCurrent"; sortOrder: Qt.DescendingOrder },
-                StringSorter {
-                    roleName: "DeviceName"
-                    caseSensitivity: Qt.CaseInsensitive
-                }
+                RoleSorter { roleName: "DeviceName"; sortOrder: Qt.DescendingOrder}
             ]
+
+            filters: ValueFilter {
+                roleName: "DeviceID"
+                value: CurrentAccount.deviceId
+                inverted: root.inverted
+            }
         }
 
         delegate: DeviceItemDelegate {
             id: settingsListDelegate
 
-            implicitWidth: settingsListView.width
-            width: settingsListView.width
+            Layout.fillWidth: true
+            implicitWidth: root.width
             height: 70
-
-            deviceName: DeviceName
+            deviceName: root.isCurrent ? DeviceName : "Device name: " + DeviceName
             deviceId: DeviceID
-            isCurrent: IsCurrent
-
             onBtnRemoveDeviceClicked: removeDeviceSlot(index)
+            isCurrent: root.isCurrent
         }
-    }
 
-    MaterialButton {
-        id: linkDevPushButton
-
-        Layout.alignment: Qt.AlignCenter
-
-        preferredWidth: JamiTheme.preferredFieldWidth
-
-        visible: CurrentAccount.managerUri === "" && CurrentAccount.enabled
-
-        color: JamiTheme.buttonTintedBlack
-        hoveredColor: JamiTheme.buttonTintedBlackHovered
-        pressedColor: JamiTheme.buttonTintedBlackPressed
-        secondary: true
-        toolTipText: JamiStrings.tipLinkNewDevice
-
-        iconSource: JamiResources.round_add_24dp_svg
-
-        text: JamiStrings.linkAnotherDevice
-
-        onClicked: viewCoordinator.presentDialog(
-                                   appWindow,
-                                   "settingsview/components/LinkDeviceDialog.qml")
     }
 }
