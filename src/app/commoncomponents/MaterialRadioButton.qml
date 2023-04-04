@@ -27,19 +27,21 @@ RadioButton {
     id: root
 
     property string color: JamiTheme.textColor
-
-    font.pointSize: JamiTheme.textFontSize
+    property string bgColor: ""
 
     indicator: Rectangle {
         id: rect
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
+        color: root.bgColor
 
         border {
             id: border
             color: JamiTheme.buttonTintedBlue
-            width: 2
+            width: 1
         }
+
+
 
         implicitWidth: 20
         implicitHeight: 20
@@ -56,6 +58,13 @@ RadioButton {
             radius: 10
             visible : checked || hovered
 
+            Behavior on visible {
+                NumberAnimation {
+                    from: 0
+                    duration: JamiTheme.shortFadeDuration 
+                }
+            }
+
             color: JamiTheme.buttonTintedBlue
 
             HoverHandler {
@@ -69,20 +78,13 @@ RadioButton {
         color: root.color
         leftPadding: root.indicator.width + root.spacing
         verticalAlignment: Text.AlignVCenter
+        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
     }
 
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Enter
                 || event.key === Qt.Key_Return) {
             root.checked = true
-        }
-    }
-
-    onActiveFocusChanged: {
-        if (focus && !root.checked) {
-            border.width = 2.5
-        } else {
-            border.width = 2
         }
     }
 
