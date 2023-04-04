@@ -184,6 +184,7 @@ SidePanelBase {
 
                     function createChild() {
                         itemAt(0).children[0].createChild()
+                        root.currentIndex = 0
                     }
 
                     ColumnLayout {

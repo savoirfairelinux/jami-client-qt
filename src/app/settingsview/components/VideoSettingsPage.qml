@@ -36,9 +36,6 @@ SettingsPageBase {
 
     property int itemWidth: 266
     property real aspectRatio: 0.75
-
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.video
 
     flickableContent: ColumnLayout {

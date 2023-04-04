@@ -34,8 +34,6 @@ SettingsPageBase {
 
     property int itemWidth: 150
 
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.screenSharing
 
     flickableContent: ColumnLayout {
