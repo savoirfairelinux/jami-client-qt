@@ -32,9 +32,6 @@ SettingsPageBase {
     id: root
 
     property int itemWidth: 164
-
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.fileTransfer
 
 

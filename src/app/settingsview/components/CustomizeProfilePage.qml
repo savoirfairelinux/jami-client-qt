@@ -30,8 +30,6 @@ import "../../commoncomponents"
 SettingsPageBase {
     id: root
 
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.customizeProfile
 
     function stopBooth() {
@@ -53,7 +51,7 @@ SettingsPageBase {
             Layout.preferredWidth: parent.width
 
             Connections {
-                target: settingsViewRect
+                target: settingsView
 
                 function onStopBooth() {
                     stopBooth()

@@ -36,9 +36,6 @@ SettingsPageBase {
 
     property int itemWidth: 266
     property real aspectRatio: 0.75
-
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.video
 
     flickableContent: ColumnLayout {
@@ -61,17 +58,6 @@ SettingsPageBase {
                     return
                 }
                 previewWidget.startWithId(VideoDevices.getDefaultDevice(), force)
-            }
-
-            onVisibleChanged: {
-                flipControl.checked = UtilsAdapter.getAppValue(Settings.FlipSelf)
-                if (visible) {
-                    hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration()
-                    if (previewWidget.visible)
-                        generalSettings.startPreviewing(true)
-                } else {
-                    previewWidget.startWithId("")
-                }
             }
 
             Connections {
@@ -112,6 +98,17 @@ SettingsPageBase {
                     fpsComboBoxSetting.modelIndex = resultList.length > 0 ?
                                 resultList[0].row : deviceModel.rowCount() ? 0 : -1
                 }
+            }
+
+            Component.onCompleted: {
+                flipControl.checked = UtilsAdapter.getAppValue(Settings.FlipSelf)
+                hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration()
+                if (previewWidget.visible)
+                    startPreviewing(true)
+            }
+
+            Component.onDestruction: {
+                previewWidget.startWithId("")
             }
 
             // video Preview
