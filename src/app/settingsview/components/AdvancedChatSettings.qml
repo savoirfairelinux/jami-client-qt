@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
- * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
+ * Author: Franck Laurent <franck.laurent@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 import QtQuick
 import QtQuick.Layouts
 
+import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
@@ -28,29 +29,32 @@ ColumnLayout {
     id: root
 
     property int itemWidth
+    spacing: JamiTheme.settingsCategorySpacing
 
-    ElidedTextLabel {
-        Layout.fillWidth: true
+    Text {
 
-        eText: JamiStrings.chatSettings
-        fontSize: JamiTheme.headerFontSize
-        maxWidth: width
+        Layout.alignment: Qt.AlignLeft
+        Layout.preferredWidth: parent.width
+        text: JamiStrings.chatSettingsTitle
+        color: JamiTheme.textColor
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        wrapMode : Text.WordWrap
+
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        font.kerning: true
     }
 
-    ColumnLayout {
-        Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
+    ToggleSwitch {
+        id: checkBoxSendDisplayed
 
-        ToggleSwitch {
-            id: checkBoxSendDisplayed
+        tooltipText: JamiStrings.enableReadReceiptsTooltip
+        labelText: JamiStrings.enableReadReceipts
+        descText: JamiStrings.enableReadReceiptsTooltip
 
-            tooltipText: JamiStrings.enableReadReceiptsTooltip
-            labelText: JamiStrings.enableReadReceipts
-            fontPointSize: JamiTheme.settingsFontSize
+        checked: CurrentAccount.sendReadReceipt
 
-            checked: CurrentAccount.sendReadReceipt
-
-            onSwitchToggled: CurrentAccount.sendReadReceipt = checked
-        }
+        onSwitchToggled: CurrentAccount.sendReadReceipt = checked
     }
+
 }

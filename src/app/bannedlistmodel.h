@@ -24,6 +24,7 @@
 class BannedListModel : public AbstractListModelBase
 {
     Q_OBJECT
+    QML_RO_PROPERTY(int, count)
 public:
     enum Role { ContactName = Qt::UserRole + 1, ContactID };
     Q_ENUM(Role)
@@ -48,5 +49,8 @@ public:
     /*
      * This function is to reset the model when there's new account added.
      */
-    Q_INVOKABLE void reset();
+    void reset();
+
+private:
+    QList<QString> bannedlist_;
 };

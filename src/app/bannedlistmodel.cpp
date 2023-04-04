@@ -23,16 +23,46 @@
 
 BannedListModel::BannedListModel(QObject* parent)
     : AbstractListModelBase(parent)
-{}
+
+{
+    connect(this, &BannedListModel::lrcInstanceChanged, [this]() {
+        if (lrcInstance_ && lrcInstance_->getCurrentContactModel()) {
+            connect(
+                lrcInstance_->getCurrentContactModel(),
+                &ContactModel::bannedStatusChanged,
+                this,
+                [&](const QString& uri, bool banned) {
+                    if (banned) {
+                        beginInsertRows(QModelIndex(), rowCount(), rowCount());
+                        bannedlist_.append(uri);
+                        endInsertRows();
+                        set_count(rowCount());
+                    } else {
+                        auto it = std::find_if(bannedlist_.begin(),
+                                               bannedlist_.end(),
+                                               [&uri](const auto& c) { return uri == c; });
+                        if (it != bannedlist_.end()) {
+                            auto elementIndex = std::distance(bannedlist_.begin(), it);
+                            beginRemoveRows(QModelIndex(), elementIndex, elementIndex);
+                            bannedlist_.remove(elementIndex);
+                            endRemoveRows();
+                            set_count(rowCount());
+                        }
+                    }
+                },
+                Qt::UniqueConnection);
+        }
+        reset();
+    });
+}
 
 BannedListModel::~BannedListModel() {}
 
 int
 BannedListModel::rowCount(const QModelIndex& parent) const
 {
-    if (!parent.isValid() && lrcInstance_) {
-        return lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts().size();
-    }
+    if (!parent.isValid() && lrcInstance_)
+        return bannedlist_.size();
     return 0;
 }
 
@@ -50,7 +80,7 @@ QVariant
 BannedListModel::data(const QModelIndex& index, int role) const
 {
     try {
-        auto contactList = lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts();
+        auto contactList = bannedlist_;
         if (!index.isValid() || contactList.size() <= index.row()) {
             return QVariant();
         }
@@ -114,5 +144,7 @@ void
 BannedListModel::reset()
 {
     beginResetModel();
+    bannedlist_ = lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts();
     endResetModel();
+    set_count(rowCount());
 }

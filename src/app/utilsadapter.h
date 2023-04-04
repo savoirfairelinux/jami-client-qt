@@ -77,6 +77,8 @@ public:
     Q_INVOKABLE void setAppValue(const QString& key, const QVariant& value);
     Q_INVOKABLE QVariant getAppValue(const Settings::Key key);
     Q_INVOKABLE void setAppValue(const Settings::Key key, const QVariant& value);
+    Q_INVOKABLE QVariant getDefault(const Settings::Key key);
+    Q_INVOKABLE void setToDefault(const Settings::Key key);
 
     Q_INVOKABLE const QString getProjectCredits();
     Q_INVOKABLE const QString getVersionStr();
@@ -108,6 +110,7 @@ public:
     Q_INVOKABLE QString toFileInfoName(QString inputFileName);
     Q_INVOKABLE QString toFileAbsolutepath(QString inputFileName);
     Q_INVOKABLE QString getAbsPath(QString path);
+    Q_INVOKABLE QString dirName(const QString& path);
     Q_INVOKABLE QString fileName(const QString& path);
     Q_INVOKABLE QString getExt(const QString& path);
     Q_INVOKABLE bool isImage(const QString& fileExt);
