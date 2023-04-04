@@ -93,6 +93,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "350b2baa_b681ec72",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-04T21:57:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "549f690a_eff48ce1",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 32
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de1f5c4a_2b0816ab",
@@ -116,6 +140,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ea827b5_b961fdd2",
+        "filename": "src/app/commoncomponents/MaterialRadioButton.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-04T21:57:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de1f5c4a_2b0816ab",
+      "range": {
+        "startLine": 64,
+        "startChar": 56,
+        "endLine": 64,
+        "endChar": 58
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9dd2fe0e_32c9f2a2",
@@ -129,6 +177,30 @@
       "writtenOn": "2023-04-04T20:31:31Z",
       "side": 1,
       "message": "pretty sure some strings are duplicated",
+      "range": {
+        "startLine": 181,
+        "startChar": 55,
+        "endLine": 181,
+        "endChar": 63
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30e9e57c_776b6f65",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-04T21:57:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9dd2fe0e_32c9f2a2",
       "range": {
         "startLine": 181,
         "startChar": 55,
@@ -185,6 +257,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17489e7f_4b206250",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-04T21:57:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24070e22_7f18f461",
+      "range": {
+        "startLine": 196,
+        "startChar": 43,
+        "endLine": 196,
+        "endChar": 63
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f9ddf3e_e7f50681",
@@ -231,6 +327,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d80f4f9_8b56cf11",
+        "filename": "src/app/settingsview/components/AdvancedSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-04T21:57:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9922143e_242ae6cb",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 12
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "514e8780_a5e97e7c",
@@ -254,6 +374,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e36e22ca_bc5b95dc",
+        "filename": "src/app/settingsview/components/AppearenceSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-04T21:57:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "514e8780_a5e97e7c",
+      "range": {
+        "startLine": 265,
+        "startChar": 24,
+        "endLine": 265,
+        "endChar": 40
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "780d3da7_73f93992",
@@ -267,6 +411,30 @@
       "writtenOn": "2023-04-04T20:31:31Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 44,
+        "startChar": 38,
+        "endLine": 44,
+        "endChar": 75
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18f3922c_72f6a075",
+        "filename": "src/app/settingsview/components/AudioSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-04T21:57:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "780d3da7_73f93992",
       "range": {
         "startLine": 44,
         "startChar": 38,
