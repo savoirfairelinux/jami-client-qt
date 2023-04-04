@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12580003_70c8ea6e",
+        "filename": "resources/icons/Video file.svg",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-04T20:10:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2e40eba_448eda43",
+      "range": {
+        "startLine": 1,
+        "startChar": 248,
+        "endLine": 1,
+        "endChar": 249
+      },
+      "revId": "713792f95fd2a39fb4577ac91185831cd3db5748",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64bf9992_76ab30f6",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-04T18:33:43Z",
       "side": 1,
       "message": "We already have a method to device if we will show a video or audio player in the chatview supporting more extensions (not just ogg/webm), please use this method at least.",
+      "range": {
+        "startLine": 113,
+        "startChar": 37,
+        "endLine": 119,
+        "endChar": 39
+      },
+      "revId": "713792f95fd2a39fb4577ac91185831cd3db5748",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e1462a5_f3dace29",
+        "filename": "src/app/mainview/components/DocumentPreview.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-04T20:10:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64bf9992_76ab30f6",
       "range": {
         "startLine": 113,
         "startChar": 37,
