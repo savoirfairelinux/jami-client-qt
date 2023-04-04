@@ -38,9 +38,6 @@ SettingsPageBase {
     property string screenshotPathBestName: UtilsAdapter.dirName(UtilsAdapter.getDirScreenshot())
 
     property int itemWidth: 188
-
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.callRecording
 
     onRecordPathChanged: {
