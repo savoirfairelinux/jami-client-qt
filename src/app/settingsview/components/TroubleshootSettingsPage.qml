@@ -35,8 +35,6 @@ SettingsPageBase {
 
     property int itemWidth
 
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.troubleshootTitle
 
 

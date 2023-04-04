@@ -30,8 +30,6 @@ import "../../commoncomponents"
 SettingsPageBase {
     id: root
 
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.customizeProfileSettingsTitle
 
     function stopBooth() {
