@@ -265,7 +265,6 @@ Rectangle {
                             checked: CurrentConversation.ignoreNotifications
 
                             labelText: JamiStrings.muteConversation
-                            fontPointSize: JamiTheme.settingsFontSize
 
                             tooltipText: JamiStrings.ignoreNotificationsTooltip
 
