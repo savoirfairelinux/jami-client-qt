@@ -44,7 +44,12 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
         accountModel().setTopAccount(currentAccountId_);
         Q_EMIT accountListChanged();
 
-        auto profileInfo = getCurrentAccountInfo().profileInfo;
+        profile::Info profileInfo;
+        try {
+            profileInfo = getCurrentAccountInfo().profileInfo;
+        } catch (...) {
+            return;
+        }
 
         // update type
         set_currentAccountType(profileInfo.type);

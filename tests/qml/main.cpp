@@ -49,7 +49,12 @@ public:
         : muteDring_(muteDring)
     {}
 
-    void init()
+public Q_SLOTS:
+
+    /*
+     * Called once before qmlEngineAvailable.
+     */
+    void applicationAvailable()
     {
         connectivityMonitor_.reset(new ConnectivityMonitor(this));
         settingsManager_.reset(new AppSettingsManager(this));
@@ -66,28 +71,6 @@ public:
         lrcInstance_->accountModel().downloadDirectory = downloadPath.toString() + "/";
     }
 
-    void registerQmlTypes(QQmlEngine* engine)
-    {
-        // Expose custom types to the QML engine.
-        Utils::registerTypes(engine,
-                             systemTray_.get(),
-                             lrcInstance_.get(),
-                             settingsManager_.get(),
-                             previewEngine_.get(),
-                             &screenInfo_,
-                             this);
-    }
-
-public Q_SLOTS:
-
-    /*
-     * Called once before qmlEngineAvailable.
-     */
-    void applicationAvailable()
-    {
-        init();
-    }
-
     /*
      * Called when the QML engine is available. Any import paths, plugin paths,
      * and extra file selectors will have been set on the engine by this point.
@@ -100,7 +83,17 @@ public Q_SLOTS:
      */
     void qmlEngineAvailable(QQmlEngine* engine)
     {
-        registerQmlTypes(engine);
+        lrcInstance_->set_currentAccountId();
+
+        // Expose custom types to the QML engine.
+        Utils::registerTypes(engine,
+                             systemTray_.get(),
+                             lrcInstance_.get(),
+                             settingsManager_.get(),
+                             previewEngine_.get(),
+                             &screenInfo_,
+                             this);
+
         auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
         engine->rootContext()->setContextProperty("videoProvider", videoProvider);
 #ifdef WITH_WEBENGINE
@@ -133,9 +126,14 @@ main(int argc, char** argv)
 {
     QDir tempDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation));
 
-    auto jamiDataDir = tempDir.absolutePath() + "\\jami_test\\jami";
-    auto jamiConfigDir = tempDir.absolutePath() + "\\jami_test\\.config";
-    auto jamiCacheDir = tempDir.absolutePath() + "\\jami_test\\.cache";
+    auto jamiDataDir = tempDir.absolutePath() + "/jami_test/jami";
+    auto jamiConfigDir = tempDir.absolutePath() + "/jami_test/.config";
+    auto jamiCacheDir = tempDir.absolutePath() + "/jami_test/.cache";
+
+    // Clean up the temp directories.
+    QDir(jamiDataDir).removeRecursively();
+    QDir(jamiConfigDir).removeRecursively();
+    QDir(jamiCacheDir).removeRecursively();
 
     bool envSet = qputenv("JAMI_DATA_HOME", jamiDataDir.toLocal8Bit());
     envSet &= qputenv("JAMI_CONFIG_HOME", jamiConfigDir.toLocal8Bit());
