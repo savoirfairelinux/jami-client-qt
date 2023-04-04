@@ -33,9 +33,6 @@ SettingsPageBase {
     property int itemWidth
     signal showAdvancedSettingsRequest
 
-    signal navigateToMainView
-    signal navigateToNewWizardView
-
     title: JamiStrings.advancedSettingsTitle
 
     flickableContent: ColumnLayout {

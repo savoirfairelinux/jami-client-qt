@@ -62,5 +62,6 @@ Page {
         contentItem.children: [flickableContent]
         topMargin: JamiTheme.preferredSettingsBottomMarginSize
         bottomMargin: JamiTheme.preferredSettingsBottomMarginSize
+        ScrollBar.horizontal.visible: false
     }
 }

@@ -32,10 +32,7 @@ import "../../commoncomponents"
 SettingsPageBase {
     id: root
 
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.linkedDevicesSettingsTitle
-
 
     flickableContent: ColumnLayout {
         id: currentAccountEnableColumnLayout
