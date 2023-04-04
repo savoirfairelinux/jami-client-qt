@@ -115,8 +115,7 @@ if(WITH_WEBENGINE)
     WebEngineCore
     WebEngineQuick
     WebChannel
-    WebEngineWidgets
-    )
+    WebEngineWidgets)
 endif()
 
 set(CMAKE_CXX_FLAGS
@@ -159,14 +158,14 @@ set(PYTHON_EXEC ${Python3_EXECUTABLE})
 # changes.
 # Only include webengine resources if specified.
 if(WITH_WEBENGINE)
-  set(GEN_QML_QRC_ARGS "--with-webengine")
+  set(GEN_QRC_ARGS "--with-webengine")
 endif()
 file(GLOB_RECURSE
   QML_FILES CONFIGURE_DEPENDS
   ${APP_SRC_DIR}/*)
 execute_process(
   COMMAND
-  ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_qml_qrc.py ${GEN_QML_QRC_ARGS}
+  ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_qml_qrc.py ${GEN_QRC_ARGS}
   WORKING_DIRECTORY ${APP_SRC_DIR})
 set(QML_RESOURCES_QML ${APP_SRC_DIR}/qml.qrc)
 # Image and misc. resources
@@ -176,7 +175,7 @@ file(GLOB_RECURSE
   RES_FILES CONFIGURE_DEPENDS
   ${PROJECT_SOURCE_DIR}/resources/*)
 execute_process(
-  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py
+  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py ${GEN_QRC_ARGS}
   WORKING_DIRECTORY ${APP_SRC_DIR})
 set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
 
@@ -508,7 +507,6 @@ qt_add_executable(
   ${COMMON_SOURCES}
   ${QML_RESOURCES}
   ${QML_RESOURCES_QML}
-  ${LIBCLIENT_SRC_DIR}/webresource.qrc
   ${SFPM_OBJECTS})
 
 foreach(MODULE ${QT_MODULES})

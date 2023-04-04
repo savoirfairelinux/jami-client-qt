@@ -49,21 +49,33 @@ def format_qml_prop(prop):
                    ).lower()
 
 
-# Generate the the resources.qrc file and the JamiResources.qml file
-# that will be used to access the resources.
-with open(resfile, 'w', encoding='utf-8') as qrc, \
-        open(qmlfile, 'w', encoding='utf-8') as qml:
-    qrc.write('<RCC>\n')
-    qml.write('pragma Singleton\nimport QtQuick\nQtObject {\n')
-    for root, _, files in os.walk(resdir):
-        if len(files):
+def path_contains_dir(filepath, dir_str):
+    """ Return True if the given filepath contains the given directory. """
+    # Split the filepath into its components
+    path_components = os.path.normpath(filepath).split(os.sep)
+    # Return True if the given directory is in the path
+    return dir_str in path_components
+
+
+def gen_resources_qrc(with_webengine):
+    """ Generate the resources.qrc file. """
+    with open(resfile, 'w', encoding='utf-8') as qrc, \
+            open(qmlfile, 'w', encoding='utf-8') as qml:
+        qrc.write('<RCC>\n')
+        qml.write('pragma Singleton\nimport QtQuick\nQtObject {\n')
+        for root, _, files in os.walk(resdir):
+            # Skip the webengine directory if we can't use webengine
+            if not with_webengine and path_contains_dir(root, 'webengine'):
+                continue
             prefix = root.rsplit(os.sep, 1)[-1]
             # add a prefix to the resource file
             qrc.write(f'\t<qresource prefix="/{prefix}">\n')
             for filename in files:
                 # use posix separators in the resource path
-                filepath = os.path.join(root, filename).replace(os.sep, '/')
-                qrc.write(f'\t\t<file alias="{filename}">{filepath}</file>\n')
+                filepath = os.path.join(
+                    root, filename).replace(os.sep, '/')
+                qrc.write(
+                    f'\t\t<file alias="{filename}">{filepath}</file>\n')
                 # only record images/icons as properties
                 if re.match("icons|images", prefix):
                     resource = f'qrc:/{prefix}/{filename}'
@@ -73,5 +85,15 @@ with open(resfile, 'w', encoding='utf-8') as qrc, \
                         f' "{resource}"\n'
                     )
             qrc.write('\t</qresource>\n')
-    qml.write('}')
-    qrc.write('</RCC>')
+        qml.write('}')
+        qrc.write('</RCC>')
+
+
+if __name__ == '__main__':
+    # We can't use webengine if we're building for macOS app store
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--with-webengine', action='store_true',
+                        default=False, help='Include webengine resources')
+    args = parser.parse_args()
+    gen_resources_qrc(args.with_webengine)

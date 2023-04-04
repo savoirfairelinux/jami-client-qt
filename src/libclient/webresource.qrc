@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file alias="linkify.js">web-chatview/linkify.js</file>
-        <file alias="linkify-string.js">web-chatview/linkify-string.js</file>
-        <file alias="previewInfo.js">web-chatview/previewInfo.js</file>
-        <file alias="qwebchannel.js">web-chatview/qwebchannel.js</file>
-    </qresource>
-</RCC>
