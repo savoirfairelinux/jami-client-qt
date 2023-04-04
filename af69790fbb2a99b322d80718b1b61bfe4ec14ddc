@@ -16,6 +16,75 @@
       "message": "add https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/897 + description about the commit",
       "revId": "af69790fbb2a99b322d80718b1b61bfe4ec14ddc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59bb090d_2e6d8e87",
+        "filename": "src/app/settingsview/SettingsSidePanel.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-04-04T20:26:46Z",
+      "side": 1,
+      "message": "maybe a little comment will be good here (at least mention this in the commit description)",
+      "range": {
+        "startLine": 187,
+        "startChar": 24,
+        "endLine": 187,
+        "endChar": 45
+      },
+      "revId": "af69790fbb2a99b322d80718b1b61bfe4ec14ddc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d21b9ec_fb40a76e",
+        "filename": "src/app/settingsview/SettingsView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-04-04T20:26:46Z",
+      "side": 1,
+      "message": "- maybe rename this or remove the id, it\u0027s not a rect anymore\n- an objectName will be great for implementing tests ;)",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 28
+      },
+      "revId": "af69790fbb2a99b322d80718b1b61bfe4ec14ddc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9069037d_2b4d72d5",
+        "filename": "src/app/settingsview/SettingsView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-04-04T20:26:46Z",
+      "side": 1,
+      "message": "this shouldn\u0027t be needed",
+      "range": {
+        "startLine": 101,
+        "startChar": 20,
+        "endLine": 101,
+        "endChar": 36
+      },
+      "revId": "af69790fbb2a99b322d80718b1b61bfe4ec14ddc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
