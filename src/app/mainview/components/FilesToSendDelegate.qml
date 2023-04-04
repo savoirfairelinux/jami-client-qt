@@ -77,7 +77,15 @@ Item {
                         visible : !IsImage
                         anchors.fill: parent
                         anchors.margins: 14
-                        source: JamiResources.file_black_24dp_svg
+                        source: {
+                            if(mediaInfo.isVideo)
+                                return JamiResources.video_file_svg
+
+                            if(mediaInfo.isAudio)
+                                return JamiResources.audio_file_svg
+
+                            return JamiResources.attached_file_svg
+                        }
                         cache: false
                         color: JamiTheme.textColor
                     }

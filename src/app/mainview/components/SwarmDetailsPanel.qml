@@ -280,6 +280,7 @@ Rectangle {
 
                         Text {
                             anchors.left: parent.left
+                            anchors.right: parent.right
                             anchors.top: parent.top
                             anchors.margins: JamiTheme.preferredMarginSize
                             text: JamiStrings.leaveConversation
