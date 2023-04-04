@@ -38,7 +38,8 @@ AbstractButton {
     property int preferredSize: 30
     property int preferredHeight: 0
     property int preferredWidth: 0
-    property int preferredMargin: 16
+    property int preferredLeftMargin: 16
+    property int preferredRightMargin: 16
     // Note the radius will default to preferredSize
     property bool circled: true
     property alias radius: background.radius
@@ -52,6 +53,7 @@ AbstractButton {
     property alias buttonTextColor: textContent.color
     property alias textHAlign: textContent.horizontalAlignment
     property bool buttonTextEnableElide: false
+    property alias alignement: textContent.horizontalAlignment
 
     property alias toolTipText: toolTip.text
 
@@ -102,7 +104,7 @@ AbstractButton {
 
         anchors.centerIn: textContent.text ? undefined : root
         anchors.left: textContent.text ? root.left : undefined
-        anchors.leftMargin: textContent.text ? preferredMargin : 0
+        anchors.leftMargin: textContent.text ? preferredLeftMargin : 0
         anchors.verticalCenter: root.verticalCenter
 
         containerWidth: preferredWidth ? preferredWidth : preferredSize
@@ -128,14 +130,12 @@ AbstractButton {
     Text {
         id: textContent
 
-        anchors.centerIn: image.status !== Image.Null ? undefined : root
-        anchors.left: image.status !== Image.Null ? image.right : undefined
-
-        anchors.leftMargin: preferredMargin
+        anchors.left: image.status !== Image.Null ? image.right : root.left
+        anchors.leftMargin: preferredLeftMargin
         anchors.verticalCenter: root.verticalCenter
 
         anchors.right: buttonTextEnableElide ? root.right : undefined
-        anchors.rightMargin: preferredMargin
+        anchors.rightMargin: preferredRightMargin
 
         visible: text ? true : false
 
@@ -144,7 +144,7 @@ AbstractButton {
 
         color: JamiTheme.primaryForegroundColor
         font.kerning: true
-        font.pointSize: 9
+        font.pixelSize: 12
         elide: Qt.ElideRight
     }
 
@@ -152,15 +152,16 @@ AbstractButton {
         id: background
 
         radius: circled ? preferredSize : 5
+        color: normalColor
 
         states: [
             State {
                 name: "checked"; when: checked
-                PropertyChanges { target: background; color: checkedColor }
+                PropertyChanges { target: background; color:  checkedColor}
             },
             State {
                 name: "pressed"; when: pressed
-                PropertyChanges { target: background; color: pressedColor }
+                PropertyChanges { target: background; color: pressedColor}
             },
             State {
                 name: "hovered"; when: hovered || root.focus
@@ -191,5 +192,13 @@ AbstractButton {
             }
         ]
 
+    }
+
+    Keys.onPressed: function (keyEvent) {
+        if (keyEvent.key === Qt.Key_Enter ||
+                keyEvent.key === Qt.Key_Return) {
+            clicked()
+            keyEvent.accepted = true
+        }
     }
 }

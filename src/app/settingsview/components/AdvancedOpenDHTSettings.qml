@@ -29,24 +29,25 @@ ColumnLayout {
     id: root
 
     property int itemWidth
+    spacing: JamiTheme.settingsCategorySpacing
 
     Text {
-        Layout.fillWidth: true
-        Layout.rightMargin: JamiTheme.preferredMarginSize / 2
 
-        font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
-
+        Layout.alignment: Qt.AlignLeft
+        Layout.preferredWidth: parent.width
+        text: JamiStrings.openDHTConfig
+        color: JamiTheme.textColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        color: JamiTheme.textColor
-        text: JamiStrings.openDHTConfig
-        elide: Text.ElideRight
+        wrapMode : Text.WordWrap
+
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        font.kerning: true
+
     }
 
     ColumnLayout {
         Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
 
         ToggleSwitch {
             id: checkAutoConnectOnLocalNetwork
@@ -56,7 +57,6 @@ ColumnLayout {
 
             labelText: JamiStrings.enablePeerDiscovery
             tooltipText: JamiStrings.tooltipPeerDiscovery
-            fontPointSize: JamiTheme.settingsFontSize
 
             checked: CurrentAccount.peerDiscovery
 
@@ -67,7 +67,7 @@ ColumnLayout {
             id: checkBoxEnableProxy
 
             labelText: JamiStrings.enableProxy
-            fontPointSize: JamiTheme.settingsFontSize
+            Layout.fillWidth: true
 
             checked: CurrentAccount.proxyEnabled
 
@@ -78,7 +78,6 @@ ColumnLayout {
             id: lineEditProxy
 
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             enabled: checkBoxEnableProxy.checked
 
@@ -94,7 +93,6 @@ ColumnLayout {
             id: lineEditBootstrap
 
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             staticText: CurrentAccount.hostname
 
