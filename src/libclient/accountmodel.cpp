@@ -290,26 +290,28 @@ AccountModel::getAccountConfig(const QString& accountId) const
 }
 
 void
-AccountModel::setAlias(const QString& accountId, const QString& alias)
+AccountModel::setAlias(const QString& accountId, const QString& alias, bool save)
 {
     auto& accountInfo = pimpl_->getAccountInfo(accountId);
     if (accountInfo.profileInfo.alias == alias)
         return;
     accountInfo.profileInfo.alias = alias;
 
-    authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
+    if (save)
+        authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
+    Q_EMIT profileUpdated(accountId);
 }
 
 void
-AccountModel::setAvatar(const QString& accountId, const QString& avatar)
+AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool save)
 {
     auto& accountInfo = pimpl_->getAccountInfo(accountId);
     if (accountInfo.profileInfo.avatar == avatar)
         return;
     accountInfo.profileInfo.avatar = avatar;
 
-    authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
-
+    if (save)
+        authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
     Q_EMIT profileUpdated(accountId);
 }
 

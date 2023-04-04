@@ -140,14 +140,14 @@ public:
      * @param avatar
      * @throws out_of_range exception if account is not found
      */
-    void setAvatar(const QString& accountId, const QString& avatar);
+    void setAvatar(const QString& accountId, const QString& avatar, bool save = true);
     /**
      * Change the alias of an account
      * @param accountId
      * @param alias
      * @throws out_of_range exception if account is not found
      */
-    void setAlias(const QString& accountId, const QString& alias);
+    void setAlias(const QString& accountId, const QString& alias, bool save = true);
     /**
      * Try to register a name
      * @param accountId

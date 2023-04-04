@@ -1211,16 +1211,15 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
             profileInfo.alias = e.split(":")[1];
 
     if (peer == linked.owner.profileInfo.uri) {
-        if (!profileInfo.avatar.isEmpty()) {
-            auto dest = storage::getPath() + accountId + "/profile.vcf";
-            QFile oldvCard(dest);
-            if (oldvCard.exists())
-                oldvCard.remove();
-            vCardFile.rename(dest);
-            linked.owner.accountModel->setAlias(linked.owner.id, profileInfo.alias);
-            linked.owner.accountModel->setAvatar(linked.owner.id, profileInfo.avatar);
-            Q_EMIT linked.profileUpdated(peer);
-        }
+        auto avatarChanged = profileInfo.avatar != linked.owner.profileInfo.avatar;
+        auto aliasChanged = profileInfo.alias != linked.owner.profileInfo.alias;
+        if (profileInfo.avatar.isEmpty())
+            return; // In this case, probably a new device without avatar.
+        // Only save the new profile once
+        if (aliasChanged)
+            linked.owner.accountModel->setAlias(linked.owner.id, profileInfo.alias, !avatarChanged);
+        if (avatarChanged)
+            linked.owner.accountModel->setAvatar(linked.owner.id, profileInfo.avatar, true);
         return;
     }
     vCardFile.remove();
