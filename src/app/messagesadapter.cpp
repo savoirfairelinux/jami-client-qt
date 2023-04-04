@@ -665,6 +665,7 @@ MessagesAdapter::getMediaInfo(const QString& msg)
         if (!type.isEmpty()) {
             return {
                 {"isVideo", false},
+                {"isAudio", true},
                 {"html", html.arg("audio", "54px", filePath, mime.name())},
             };
         }
