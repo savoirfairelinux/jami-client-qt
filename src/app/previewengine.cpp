@@ -64,11 +64,15 @@ public:
         channel_->registerObject(QStringLiteral("jsbridge"), &parent_);
 
         setWebChannel(channel_);
-        runJavaScript(Utils::QByteArrayFromFile(":/linkify.js"), QWebEngineScript::MainWorld);
-        runJavaScript(Utils::QByteArrayFromFile(":/linkify-string.js"), QWebEngineScript::MainWorld);
-        runJavaScript(Utils::QByteArrayFromFile(":/qwebchannel.js"), QWebEngineScript::MainWorld);
-        runJavaScript(Utils::QByteArrayFromFile(":/previewInfo.js"), QWebEngineScript::MainWorld);
-        runJavaScript(Utils::QByteArrayFromFile(":/misc/previewInterop.js"),
+        runJavaScript(Utils::QByteArrayFromFile(":webengine/linkify.js"),
+                      QWebEngineScript::MainWorld);
+        runJavaScript(Utils::QByteArrayFromFile(":webengine/linkify-string.js"),
+                      QWebEngineScript::MainWorld);
+        runJavaScript(Utils::QByteArrayFromFile(":webengine/qwebchannel.js"),
+                      QWebEngineScript::MainWorld);
+        runJavaScript(Utils::QByteArrayFromFile(":webengine/previewInfo.js"),
+                      QWebEngineScript::MainWorld);
+        runJavaScript(Utils::QByteArrayFromFile(":webengine/previewInterop.js"),
                       QWebEngineScript::MainWorld);
     }
 
