@@ -235,14 +235,20 @@ Rectangle {
                             }
 
                             MaterialButton {
-
                                 id: setButton
+
+                                TextMetrics{
+                                    id: setButtonTextSize
+                                    font.weight: Font.Bold
+                                    font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                                    text: setButton.text
+                                }
 
                                 visible: openedPassword
 
                                 Layout.topMargin: 10
                                 Layout.alignment: Qt.AlignCenter
-                                preferredWidth: JamiTheme.wizardButtonWidth / 2
+                                preferredWidth: setButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding
                                 text: JamiStrings.setPassword
                                 primary: true
 
@@ -314,6 +320,7 @@ Rectangle {
                                     id: labelEncrypt
                                     visible: !openedPassword && !openedNickname
                                     Layout.fillWidth: true
+                                    Layout.rightMargin: 20
 
                                     text: JamiStrings.encryptAccount
                                     wrapMode: Text.WordWrap
@@ -525,6 +532,7 @@ Rectangle {
                                     text: JamiStrings.customizeProfile
                                     font.pixelSize: JamiTheme.creditsTextSize
                                     Layout.fillWidth: true
+                                    Layout.rightMargin: 20
                                     wrapMode: Text.WordWrap
                                 }
                             }
@@ -552,7 +560,7 @@ Rectangle {
                     id: showAdvancedButton
 
                     TextMetrics{
-                        id: textSize
+                        id: showAdvancedButtonTextSize
                         font.weight: Font.Bold
                         font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
                         text: showAdvancedButton.text
@@ -563,7 +571,7 @@ Rectangle {
                     Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
-                    preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding + 1
+                    preferredWidth: showAdvancedButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding + 1
                     text: JamiStrings.optionSave
 
                     onClicked: {
