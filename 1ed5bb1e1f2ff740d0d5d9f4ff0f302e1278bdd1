@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c7fe5b7_1acd3917",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 47
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 0,
+      "message": "linked to the patch\u0026",
+      "range": {
+        "startLine": 122,
+        "startChar": 24,
+        "endLine": 126,
+        "endChar": 7
+      },
+      "revId": "1ed5bb1e1f2ff740d0d5d9f4ff0f302e1278bdd1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

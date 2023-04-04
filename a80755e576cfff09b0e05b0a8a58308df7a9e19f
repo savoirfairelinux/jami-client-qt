@@ -1,0 +1,418 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3407f6d_145644d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 47
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "please add a correct commit message",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8cfa68e_45c12a8b",
+        "filename": "daemon",
+        "patchSetId": 47
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "linked to this commit?",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6022e852_6343dd3f",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 47
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "const method",
+      "range": {
+        "startLine": 119,
+        "startChar": 57,
+        "endLine": 119,
+        "endChar": 61
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "549f690a_eff48ce1",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "coding style, we defintely need a script to format",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 32
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de1f5c4a_2b0816ab",
+        "filename": "src/app/commoncomponents/MaterialRadioButton.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "remove trailing spaces",
+      "range": {
+        "startLine": 64,
+        "startChar": 56,
+        "endLine": 64,
+        "endChar": 58
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dd2fe0e_32c9f2a2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "pretty sure some strings are duplicated",
+      "range": {
+        "startLine": 181,
+        "startChar": 55,
+        "endLine": 181,
+        "endChar": 63
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83e3de73_70a850f7",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "Editing profile display name doesn\u0027t seem to work on loose focus)",
+      "range": {
+        "startLine": 182,
+        "startChar": 57,
+        "endLine": 182,
+        "endChar": 66
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24070e22_7f18f461",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "it should not be translated, it\u0027s a file, the filename should be retrieven",
+      "range": {
+        "startLine": 196,
+        "startChar": 43,
+        "endLine": 196,
+        "endChar": 63
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f9ddf3e_e7f50681",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "\"Your\" should be banned, we already updated some labels with charlotte, please recheck",
+      "range": {
+        "startLine": 436,
+        "startChar": 55,
+        "endLine": 436,
+        "endChar": 65
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9922143e_242ae6cb",
+        "filename": "src/app/settingsview/components/AdvancedSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "trailing",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 12
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "514e8780_a5e97e7c",
+        "filename": "src/app/settingsview/components/AppearenceSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "when size is minimized, we do not see this button. It should never be the case",
+      "range": {
+        "startLine": 265,
+        "startChar": 24,
+        "endLine": 265,
+        "endChar": 40
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "780d3da7_73f93992",
+        "filename": "src/app/settingsview/components/AudioSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 44,
+        "startChar": 38,
+        "endLine": 44,
+        "endChar": 75
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e99f47f_39d3d986",
+        "filename": "src/app/settingsview/components/AudioSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "When changing audio manager:\nlookup name NOT FOUND: \"\" \"62acf5a1656b2138\"\nqrc:/settingsview/components/AudioSettingsPage.qml:191: ReferenceError: populateAudioSettings is not defined",
+      "range": {
+        "startLine": 194,
+        "startChar": 16,
+        "endLine": 194,
+        "endChar": 37
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4c7d6bf_2c95932b",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "Note that missing todo should be explained in a ticket to not loose them",
+      "range": {
+        "startLine": 327,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 16
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8625fb92_5ec343b4",
+        "filename": "src/app/settingsview/components/DeviceItemDelegate.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "I let you fix other missing trailing",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 16
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f364e1f_862f48e1",
+        "filename": "src/app/settingsview/components/LinkedDevicesPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "editing current device name doesn\u0027t work",
+      "range": {
+        "startLine": 39,
+        "startChar": 22,
+        "endLine": 39,
+        "endChar": 34
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f9ce605_66beb058",
+        "filename": "src/app/settingsview/components/LinkedDevicesPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "link a new device doesn,t work",
+      "range": {
+        "startLine": 43,
+        "startChar": 17,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7e41ef4_881dd270",
+        "filename": "src/app/settingsview/components/VideoSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-04T20:31:31Z",
+      "side": 1,
+      "message": "VIdeo is not starting (at least with dynamic loading of settings)\n\nqrc:/settingsview/components/VideoSettingsPage.qml:269: ReferenceError: startPreviewing is not defined",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 35
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
