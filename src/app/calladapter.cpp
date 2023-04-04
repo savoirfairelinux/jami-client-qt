@@ -54,8 +54,7 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, overlayModel_.get(), "CallOverlayModel");
 
     accountId_ = lrcInstance_->get_currentAccountId();
-    if (!accountId_.isEmpty())
-        connectCallModel(accountId_);
+    connectCallModel(accountId_);
 
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::showIncomingCallView,
@@ -628,6 +627,9 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
 void
 CallAdapter::connectCallModel(const QString& accountId)
 {
+    if (accountId.isEmpty())
+        return;
+
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
 
     connect(accInfo.callModel.get(),
