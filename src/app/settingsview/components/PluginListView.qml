@@ -97,6 +97,7 @@ Rectangle {
             Layout.minimumHeight: 0
             Layout.bottomMargin: 10
             Layout.preferredHeight: childrenRect.height
+            spacing: 5
             clip: true
 
             model: PluginListModel {
@@ -127,6 +128,7 @@ Rectangle {
 
                 onSettingsClicked: {
                     root.activePlugin = root.activePlugin === pluginId ? "" : pluginId
+                    
                 }
             }
         }
