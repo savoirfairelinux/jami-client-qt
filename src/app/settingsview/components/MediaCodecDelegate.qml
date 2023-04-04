@@ -38,8 +38,10 @@ ItemDelegate {
 
     highlighted: ListView.isCurrentItem
     background: Rectangle {
-        color: highlighted? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
+        color: highlighted || hovered ? JamiTheme.smartListSelectedColor : JamiTheme.editBackgroundColor
     }
+    hoverEnabled: true
+
 
     RowLayout {
         anchors.fill: parent
@@ -61,7 +63,7 @@ ItemDelegate {
                 layer {
                     enabled: true
                     effect: ColorOverlay {
-                        color: JamiTheme.textColor
+                        color: JamiTheme.tintedBlue
                     }
                     mipmap: false
                     smooth: true

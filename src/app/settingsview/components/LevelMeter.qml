@@ -21,6 +21,7 @@ import QtQuick.Controls
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
+import net.jami.Constants 1.1
 
 ProgressBar {
     id: root
@@ -29,6 +30,17 @@ ProgressBar {
 
     value: {
         return clamp(rmsLevel * 300.0, 0.0, 100.0)
+    }
+
+    contentItem: Item {
+        implicitWidth: parent.width
+        implicitHeight: parent.height
+
+        Rectangle {
+            width: root.visualPosition * parent.width
+            height: parent.height
+            color: JamiTheme.tintedBlue
+        }
     }
 
     onVisibleChanged: {
