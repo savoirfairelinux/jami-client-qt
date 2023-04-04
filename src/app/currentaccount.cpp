@@ -35,6 +35,16 @@ CurrentAccount::CurrentAccount(LRCInstance* lrcInstance,
             this,
             &CurrentAccount::onAccountUpdated);
 
+
+    connect(lrcInstance_->getCurrentContactModel(),
+            &ContactModel::bannedStatusChanged,
+            this,
+            [&](const auto&, auto) {
+                set_hasBannedContacts(
+                    lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts().size());
+            },
+            Qt::UniqueConnection);
+
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this] { updateData(); });
 
     updateData();
@@ -105,6 +115,8 @@ CurrentAccount::updateData()
         set_bestId(lrcInstance_->accountModel().bestIdForAccount(id_));
         set_bestName(lrcInstance_->accountModel().bestNameForAccount(id_));
         set_hasAvatarSet(!accInfo.profileInfo.avatar.isEmpty());
+        set_hasBannedContacts(
+            lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts().size());
         set_status(accInfo.status);
         set_type(accInfo.profileInfo.type);
 

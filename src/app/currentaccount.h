@@ -108,6 +108,7 @@ class CurrentAccount final : public QObject
     QML_RO_PROPERTY(QString, bestName)
     QML_RO_PROPERTY(QString, managerUri)
     QML_RO_PROPERTY(bool, hasAvatarSet)
+    QML_RO_PROPERTY(bool, hasBannedContacts)
     QML_PROPERTY(bool, enabled)
     QML_RO_PROPERTY(lrc::api::account::Status, status)
     QML_RO_PROPERTY(lrc::api::profile::Type, type)

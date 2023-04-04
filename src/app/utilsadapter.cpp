@@ -90,6 +90,18 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         Q_EMIT appThemeChanged();
 }
 
+QVariant
+UtilsAdapter::getDefault(const Settings::Key key)
+{
+    return settingsManager_->getDefault(key);
+}
+
+void
+UtilsAdapter::setToDefault(const Settings::Key key)
+{
+    setAppValue(key, settingsManager_->getDefault(key));
+}
+
 const QString
 UtilsAdapter::getProjectCredits()
 {
@@ -359,6 +371,13 @@ UtilsAdapter::fileName(const QString& path)
 {
     QFileInfo fi(path);
     return fi.fileName();
+}
+
+QString
+UtilsAdapter::dirName(const QString& path)
+{
+    QDir dir(path);
+    return dir.dirName();
 }
 
 QString

@@ -23,16 +23,27 @@
 
 BannedListModel::BannedListModel(QObject* parent)
     : AbstractListModelBase(parent)
-{}
+
+{
+    connect(this, &BannedListModel::lrcInstanceChanged, [this]() {
+        if (lrcInstance_ && lrcInstance_->getCurrentContactModel()) {
+            connect(lrcInstance_->getCurrentContactModel(),
+                    &ContactModel::bannedStatusChanged,
+                    this,
+                    &BannedListModel::reset, // TODO use bannedStatus (beginInsertRows()/beginRemoveRows())
+                    Qt::UniqueConnection);
+        }
+        reset();
+    });
+}
 
 BannedListModel::~BannedListModel() {}
 
 int
 BannedListModel::rowCount(const QModelIndex& parent) const
 {
-    if (!parent.isValid() && lrcInstance_) {
+    if (!parent.isValid() && lrcInstance_)
         return lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts().size();
-    }
     return 0;
 }
 
@@ -115,4 +126,5 @@ BannedListModel::reset()
 {
     beginResetModel();
     endResetModel();
+    set_count(rowCount());
 }
