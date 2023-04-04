@@ -34,7 +34,6 @@ ColumnLayout {
         id: usernameSIP
 
         Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
         staticText: CurrentAccount.username
 
@@ -48,7 +47,6 @@ ColumnLayout {
         id: hostnameSIP
 
         Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
         staticText: CurrentAccount.hostname
 
@@ -62,7 +60,6 @@ ColumnLayout {
         id: passSIPlineEdit
 
         Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
         staticText: CurrentAccount.password
 
@@ -77,7 +74,6 @@ ColumnLayout {
         id: proxySIP
 
         Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
         staticText: CurrentAccount.routeset
 

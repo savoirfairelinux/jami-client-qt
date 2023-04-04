@@ -30,7 +30,7 @@ ModalTextEdit {
 
     prefixIconSrc: firstEntry ? JamiResources.lock_svg : JamiResources.round_edit_24dp_svg
 
-    suffixBisIconSrc: JamiResources.eye_cross_svg
+    suffixBisIconSrc: echoMode == TextInput.Password ? JamiResources.eye_cross_svg : JamiResources.noun_eye_svg
     suffixBisIconColor: JamiTheme.buttonTintedBlue
 
     placeholderText: JamiStrings.password
