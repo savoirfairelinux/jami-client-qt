@@ -239,7 +239,7 @@ Window {
                 text: {
                     switch (selectionBar.currentIndex) {
                     case 0:
-                        return JamiStrings.generalKeyboardShortcuts
+                        return JamiStrings.generalSettingsTitle
                     case 1:
                         return JamiStrings.conversationKeyboardShortcuts
                     case 2:

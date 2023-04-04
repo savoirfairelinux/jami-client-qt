@@ -185,7 +185,7 @@ void
 PositionManager::sharePosition(int maximumTime, QString accountId, QString convId)
 {
     try {
-        if (settingsManager_->getValue(Settings::Key::PositionShareLimit) == true)
+        if (settingsManager_->getValue(Settings::Key::PositionShareDuration) != 0)
             startPositionTimers(maximumTime);
         positionShareConvIds_.append(PositionKey {accountId, convId});
         set_positionShareConvIdsCount(positionShareConvIds_.size());
