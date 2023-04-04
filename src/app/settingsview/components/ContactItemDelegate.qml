@@ -36,9 +36,10 @@ ItemDelegate {
 
     signal btnContactClicked
 
-    highlighted: ListView.isCurrentItem
     background: Rectangle {
-        color: highlighted? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
+        color: JamiTheme.editBackgroundColor
+        height: root.height
+        radius: 5
     }
 
     RowLayout {
@@ -106,21 +107,29 @@ ItemDelegate {
             }
         }
 
-        PushButton {
+        MaterialButton {
             id: btnContact
 
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
             Layout.rightMargin: 16
-            Layout.preferredWidth: JamiTheme.preferredFieldHeight
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-            source: btnImgSource
-            imageColor: JamiTheme.textColor
-            normalColor: highlighted? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
+            TextMetrics{
+                id: textSize
+                font.weight: Font.Bold
+                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                font.capitalization: Font.AllUppercase
+                text: btnContact.text
+            }
+
+            secondary: true
+            buttontextHeightMargin: 14
+
+            text: btnImgSource
+            preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
 
             toolTipText: btnToolTip
 
             onClicked: btnContactClicked()
+
         }
     }
 }

@@ -28,88 +28,19 @@ import "../../commoncomponents"
 ColumnLayout {
     id: root
 
-    property bool isSIP
-
-    visible: {
-        if (bannedListWidget.model.rowCount() <= 0)
-            return false
-        return true && !isSIP && CurrentAccount.managerUri === ""
-    }
-
-    Connections {
-        target: ContactAdapter
-
-        function onBannedStatusChanged(uri, banned) {
-            if (banned) {
-                bannedListWidget.model.reset()
-                root.visible = true
-                bannedContactsBtn.visible = true
-                bannedListWidget.visible = false
-            } else {
-                updateAndShowBannedContactsSlot()
-            }
-        }
-    }
-
-    function toggleBannedContacts() {
-        var bannedContactsVisible = bannedListWidget.visible
-        bannedListWidget.visible = !bannedContactsVisible
-        updateAndShowBannedContactsSlot()
-    }
-
-    function updateAndShowBannedContactsSlot() {
-        bannedListWidget.model.reset()
-        root.visible = bannedListWidget.model.rowCount() > 0
-        if(bannedListWidget.model.rowCount() <= 0) {
-            bannedListWidget.visible = false
-            bannedContactsBtn.visible = false
-        } else {
-            bannedContactsBtn.visible = true
-        }
-    }
-
-    RowLayout {
-        id: bannedContactsBtn
-
-        Layout.fillWidth: true
-
-        ElidedTextLabel {
-            Layout.fillWidth: true
-
-            eText: JamiStrings.bannedContacts
-            fontSize: JamiTheme.headerFontSize
-            maxWidth: root.width - JamiTheme.preferredFieldHeight
-                        - JamiTheme.preferredMarginSize * 4
-        }
-
-        PushButton {
-            Layout.alignment: Qt.AlignRight
-            Layout.preferredWidth: JamiTheme.preferredFieldHeight
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-            toolTipText: bannedListWidget.visible?
-                                JamiStrings.tipBannedContactsHide :
-                                JamiStrings.tipBannedContactsDisplay
-            imageColor: JamiTheme.textColor
-
-            source: bannedListWidget.visible?
-                        JamiResources.expand_less_24dp_svg :
-                        JamiResources.expand_more_24dp_svg
-
-            onClicked: toggleBannedContacts()
-        }
-    }
-
     JamiListView {
         id: bannedListWidget
 
-        Layout.fillWidth: true
-        Layout.preferredHeight: 160
+        property int bannedContactsSize: 0
 
-        visible: false
+        Layout.fillWidth: true
+        Layout.preferredHeight: Math.min(bannedContactsSize, 5) * (74 + spacing)
+        spacing: JamiTheme.settingsListViewsSpacing
 
         model: BannedListModel {
             lrcInstance: LRCInstance
+
+            onCountChanged: bannedListWidget.bannedContactsSize = count
         }
 
         delegate: ContactItemDelegate {
@@ -121,7 +52,7 @@ ColumnLayout {
             contactName: ContactName
             contactID: ContactID
 
-            btnImgSource: JamiResources.round_remove_circle_24dp_svg
+            btnImgSource: JamiStrings.optionUnban
             btnToolTip: JamiStrings.reinstateContact
 
             onClicked: bannedListWidget.currentIndex = index

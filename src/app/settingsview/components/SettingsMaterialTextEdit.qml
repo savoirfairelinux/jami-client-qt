@@ -45,15 +45,13 @@ RowLayout {
 
         Layout.fillWidth: true
         Layout.rightMargin: JamiTheme.preferredMarginSize / 2
-
         font.pointSize: JamiTheme.settingsFontSize
         font.kerning: true
-
+        wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
 
         color: JamiTheme.textColor
-        elide: Text.ElideRight
     }
 
     ModalTextEdit {
@@ -64,7 +62,6 @@ RowLayout {
 
         Layout.alignment: Qt.AlignCenter
         Layout.preferredWidth: itemWidth
-        Layout.maximumHeight: 40
         staticText: root.staticText
         placeholderText: root.placeholderText ? root.placeholderText : root.titleField
 
@@ -91,16 +88,17 @@ RowLayout {
         id: passwordTextEdit
 
         visible: root.isPassword
+        isSettings: true
 
         Layout.alignment: Qt.AlignCenter
         Layout.preferredWidth: itemWidth
-        Layout.maximumHeight: 40
         staticText: root.staticText
         placeholderText: root.placeholderText ? root.placeholderText : root.titleField
 
         onAccepted: {
             root.dynamicText = dynamicText
             editFinished()
+            echoMode = TextInput.Password
         }
 
     }
