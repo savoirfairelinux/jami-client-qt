@@ -40,9 +40,20 @@ ItemDelegate {
 
     signal settingsClicked
 
+    property bool itemClicked: false
+
     onActiveIdChanged: pluginPreferencesView.visible = activeId != pluginId ?
                            false :
                            !pluginPreferencesView.visible
+
+    Rectangle {
+
+        id: outerRect
+        anchors.fill: parent
+        radius: JamiTheme.pluginItemRadius
+        color: JamiTheme.pluginItemBackgroundColor
+        border.color: itemClicked ? JamiTheme.tintedBlue : "transparent"
+    }
 
     ColumnLayout {
         width: parent.width
@@ -112,9 +123,9 @@ ItemDelegate {
                 Layout.topMargin: 8
                 Layout.rightMargin: 8
 
-                source: JamiResources.round_settings_24dp_svg
-                normalColor: JamiTheme.primaryBackgroundColor
-                imageColor: JamiTheme.textColor
+                source: JamiResources.gear_black_24dp_svg
+                normalColor: JamiTheme.pluginItemBackgroundColor
+                imageColor: JamiTheme.tintedBlue
                 toolTipText: JamiStrings.showHidePrefs
 
                 onClicked: settingsClicked()
@@ -130,4 +141,5 @@ ItemDelegate {
             Layout.preferredHeight: pluginPreferencesView.childrenRect.height
         }
     }
+
 }

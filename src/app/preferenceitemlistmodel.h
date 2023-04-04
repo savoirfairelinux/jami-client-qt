@@ -49,6 +49,8 @@ public:
         PATH,
         EDITTEXT,
         SWITCH,
+        SLIDER,
+        RADIOBUTTON,
         DEFAULT,
     } Type;
 

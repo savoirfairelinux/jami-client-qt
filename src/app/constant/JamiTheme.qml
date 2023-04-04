@@ -368,8 +368,6 @@ Item {
     property real preferredDialogHeight: 300
     property real minimumPreviewWidth: 120
     property real minimumMapWidth: 250
-    property real pluginHandlersPopupViewHeight: 200
-    property real pluginHandlersPopupViewDelegateHeight: 50
     property real secondaryDialogDimension: 500
 
     property real lineEditContextMenuItemsHeight: 15
@@ -612,6 +610,12 @@ Item {
     property int settingsMenuChildrenButtonHeight: 30
     property int settingsMenuHeaderButtonHeight: 50
     property int settingsListViewsSpacing: 10
+
+    // Plugins
+    property real pluginHandlersPopupViewHeight: 200
+    property real pluginHandlersPopupViewDelegateHeight: 50
+    property int pluginItemRadius: 10
+    property color pluginItemBackgroundColor: darkTheme ? "#000000" : "#F0EFEF"
 
 
 
