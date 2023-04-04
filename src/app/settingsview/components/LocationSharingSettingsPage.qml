@@ -36,9 +36,6 @@ SettingsPageBase {
     id: root
 
     property int itemWidth: 578
-
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.locationSharingLabel
 
 

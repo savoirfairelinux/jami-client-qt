@@ -36,23 +36,24 @@ ListSelectionView {
     id: viewNode
     objectName: "SettingsView"
 
-    enum SettingsMenu {
-        ManageAccount,
-        CustomizeProfile,
-        LinkedDevices,
-        AdvancedSettings,
-        System,
-        CallSettings,
-        Appearence,
-        LocationSharing,
-        FileTransfer,
-        CallRecording,
-        Troubleshoot,
-        Update,
-        Audio,
-        Video,
-        Screensharing,
-        Plugin
+    // A map of view names to file paths for QML files that define each view.
+    property variant resources: {
+        "ManageAccountPage": Qt.resolvedUrl("components/ManageAccountPage.qml"),
+        "CustomizeProfilePage": Qt.resolvedUrl("components/CustomizeProfilePage.qml"),
+        "LinkedDevicesPage": Qt.resolvedUrl("components/LinkedDevicesPage.qml"),
+        "AdvancedSettingsPage": Qt.resolvedUrl("components/AdvancedSettingsPage.qml"),
+        "SystemSettingsPage": Qt.resolvedUrl("components/SystemSettingsPage.qml"),
+        "CallSettingsPage": Qt.resolvedUrl("components/CallSettingsPage.qml"),
+        "AppearenceSettingsPage": Qt.resolvedUrl("components/AppearenceSettingsPage.qml"),
+        "LocationSharingSettingsPage": Qt.resolvedUrl("components/LocationSharingSettingsPage.qml"),
+        "FileTransferSettingsPage": Qt.resolvedUrl("components/FileTransferSettingsPage.qml"),
+        "CallRecordingSettingsPage": Qt.resolvedUrl("components/CallRecordingSettingsPage.qml"),
+        "TroubleshootSettingsPage": Qt.resolvedUrl("components/TroubleshootSettingsPage.qml"),
+        "UpdatesSettingsPage": Qt.resolvedUrl("components/UpdatesSettingsPage.qml"),
+        "AudioSettingsPage": Qt.resolvedUrl("components/AudioSettingsPage.qml"),
+        "VideoSettingsPage": Qt.resolvedUrl("components/VideoSettingsPage.qml"),
+        "ScreenSharingSettingsPage": Qt.resolvedUrl("components/ScreenSharingSettingsPage.qml"),
+        "PluginSettingsPage": Qt.resolvedUrl("components/PluginSettingsPage.qml"),
     }
 
     splitViewStateKey: "Main"
@@ -83,50 +84,69 @@ ListSelectionView {
         }
     }
 
-    rightPaneItem: StackLayout {
+    rightPaneItem: StackView {
         id: settingsViewRect
 
-        currentIndex: selectedMenu !== -1 ? selectedMenu : 0
+        property var currentIndex: selectedMenu !== -1 ? selectedMenu : 0
         anchors.fill: parent
 
         signal stopBooth
 
-        property bool isSIP: CurrentAccount.type === Profile.Type.SIP
+        initialItem: ManageAccountPage {onNavigateToMainView: dismiss()}
 
-        ManageAccountPage {
-            isSIP: settingsViewRect.isSIP
-            onNavigateToMainView: dismiss()
-            onNavigateToNewWizardView: dismiss()
+        onCurrentIndexChanged: {
+
+            switch(currentIndex) {
+                case 0:
+                    settingsViewRect.replace(currentItem, viewNode.resources["ManageAccountPage"], StackView.Immediate)
+                    break
+                case 1:
+                    settingsViewRect.replace(currentItem, viewNode.resources["CustomizeProfilePage"], StackView.Immediate)
+                    break
+                case 2:
+                    settingsViewRect.replace(currentItem, viewNode.resources["LinkedDevicesPage"], StackView.Immediate)
+                    break
+                case 3:
+                    settingsViewRect.replace(currentItem, viewNode.resources["AdvancedSettingsPage"], StackView.Immediate)
+                    break
+                case 4:
+                    settingsViewRect.replace(currentItem, viewNode.resources["SystemSettingsPage"], StackView.Immediate)
+                    break
+                case 5:
+                    settingsViewRect.replace(currentItem, viewNode.resources["CallSettingsPage"], StackView.Immediate)
+                    break
+                case 6:
+                    settingsViewRect.replace(currentItem, viewNode.resources["AppearenceSettingsPage"], StackView.Immediate)
+                    break
+                case 7:
+                    settingsViewRect.replace(currentItem, viewNode.resources["LocationSharingSettingsPage"], StackView.Immediate)
+                    break
+                case 8:
+                    settingsViewRect.replace(currentItem, viewNode.resources["FileTransferSettingsPage"], StackView.Immediate)
+                    break
+                case 9:
+                    settingsViewRect.replace(currentItem, viewNode.resources["CallRecordingSettingsPage"], StackView.Immediate)
+                    break
+                case 10:
+                    settingsViewRect.replace(currentItem, viewNode.resources["TroubleshootSettingsPage"], StackView.Immediate)
+                    break
+                case 11:
+                    settingsViewRect.replace(currentItem, viewNode.resources["UpdatesSettingsPage"], StackView.Immediate)
+                    break
+                case 12:
+                    settingsViewRect.replace(currentItem, viewNode.resources["AudioSettingsPage"], StackView.Immediate)
+                    break
+                case 13:
+                    settingsViewRect.replace(currentItem, viewNode.resources["VideoSettingsPage"], StackView.Immediate)
+                    break
+                case 14:
+                    settingsViewRect.replace(currentItem, viewNode.resources["ScreenSharingSettingsPage"], StackView.Immediate)
+                    break
+                case 15:
+                    settingsViewRect.replace(currentItem, viewNode.resources["PluginSettingsPage"], StackView.Immediate)
+                    break
+            }
+
         }
-
-        CustomizeProfilePage {}
-
-        LinkedDevicesPage {}
-
-        AdvancedSettingsPage {}
-
-        SystemSettingsPage {}
-
-        CallSettingsPage {}
-
-        AppearenceSettingsPage {}
-
-        LocationSharingSettingsPage {}
-
-        FileTransferSettingsPage{}
-
-        CallRecordingSettingsPage {}
-
-        TroubleshootSettingsPage {}
-
-        UpdatesSettingsPage {}
-
-        AudioSettingsPage {}
-
-        VideoSettingsPage {}
-
-        ScreenSharingSettingsPage {}
-
-        PluginSettingsPage {}
     }
 }

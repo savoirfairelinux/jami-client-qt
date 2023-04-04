@@ -34,8 +34,6 @@ import "../../commoncomponents"
 SettingsPageBase {
     id: root
 
-    signal navigateToMainView
-    signal navigateToNewWizardView
     title: JamiStrings.updatesTitle
 
     function presentInfoDialog(infoText) {
