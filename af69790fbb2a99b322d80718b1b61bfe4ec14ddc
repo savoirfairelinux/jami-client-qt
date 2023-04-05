@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "969969f2_f788fba7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T15:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e87c7b62_85a2a266",
+      "revId": "af69790fbb2a99b322d80718b1b61bfe4ec14ddc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59bb090d_2e6d8e87",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-04-04T20:26:46Z",
       "side": 1,
       "message": "maybe a little comment will be good here (at least mention this in the commit description)",
+      "range": {
+        "startLine": 187,
+        "startChar": 24,
+        "endLine": 187,
+        "endChar": 45
+      },
+      "revId": "af69790fbb2a99b322d80718b1b61bfe4ec14ddc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52767a17_7fcf406f",
+        "filename": "src/app/settingsview/SettingsSidePanel.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T15:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59bb090d_2e6d8e87",
       "range": {
         "startLine": 187,
         "startChar": 24,
@@ -64,6 +106,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fe52a70_9a864a12",
+        "filename": "src/app/settingsview/SettingsView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T15:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d21b9ec_fb40a76e",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 28
+      },
+      "revId": "af69790fbb2a99b322d80718b1b61bfe4ec14ddc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9069037d_2b4d72d5",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-04-04T20:26:46Z",
       "side": 1,
       "message": "this shouldn\u0027t be needed",
+      "range": {
+        "startLine": 101,
+        "startChar": 20,
+        "endLine": 101,
+        "endChar": 36
+      },
+      "revId": "af69790fbb2a99b322d80718b1b61bfe4ec14ddc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e547c1e2_e02fdf92",
+        "filename": "src/app/settingsview/SettingsView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T15:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9069037d_2b4d72d5",
       "range": {
         "startLine": 101,
         "startChar": 20,
