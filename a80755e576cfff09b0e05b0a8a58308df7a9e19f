@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "979b0bfd_f153e2f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 47
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3407f6d_145644d9",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8cfa68e_45c12a8b",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b90c0793_b328d22c",
+        "filename": "daemon",
+        "patchSetId": 47
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8cfa68e_45c12a8b",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6022e852_6343dd3f",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-04-04T20:31:31Z",
       "side": 1,
       "message": "const method",
+      "range": {
+        "startLine": 119,
+        "startChar": 57,
+        "endLine": 119,
+        "endChar": 61
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e77dd9c4_a10a01ee",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 47
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6022e852_6343dd3f",
       "range": {
         "startLine": 119,
         "startChar": 57,
@@ -234,6 +306,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d159a9e6_552a74a2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T16:53:40Z",
+      "side": 1,
+      "message": "yes, a new patch need to be done for MaterialTextEdit in the settingsView",
+      "parentUuid": "83e3de73_70a850f7",
+      "range": {
+        "startLine": 182,
+        "startChar": 57,
+        "endLine": 182,
+        "endChar": 66
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24070e22_7f18f461",
@@ -294,6 +390,30 @@
       "writtenOn": "2023-04-04T20:31:31Z",
       "side": 1,
       "message": "\"Your\" should be banned, we already updated some labels with charlotte, please recheck",
+      "range": {
+        "startLine": 436,
+        "startChar": 55,
+        "endLine": 436,
+        "endChar": 65
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f82bfca_4fcc3a89",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f9ddf3e_e7f50681",
       "range": {
         "startLine": 436,
         "startChar": 55,
@@ -468,6 +588,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49b30218_456c846a",
+        "filename": "src/app/settingsview/components/AudioSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e99f47f_39d3d986",
+      "range": {
+        "startLine": 194,
+        "startChar": 16,
+        "endLine": 194,
+        "endChar": 37
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4c7d6bf_2c95932b",
@@ -481,6 +625,30 @@
       "writtenOn": "2023-04-04T20:31:31Z",
       "side": 1,
       "message": "Note that missing todo should be explained in a ticket to not loose them",
+      "range": {
+        "startLine": 327,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 16
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad5ea219_a7da2b43",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4c7d6bf_2c95932b",
       "range": {
         "startLine": 327,
         "startChar": 0,
@@ -514,6 +682,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d37a5cf_73c5b577",
+        "filename": "src/app/settingsview/components/DeviceItemDelegate.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8625fb92_5ec343b4",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 16
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f364e1f_862f48e1",
@@ -527,6 +719,30 @@
       "writtenOn": "2023-04-04T20:31:31Z",
       "side": 1,
       "message": "editing current device name doesn\u0027t work",
+      "range": {
+        "startLine": 39,
+        "startChar": 22,
+        "endLine": 39,
+        "endChar": 34
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "588f05da_b08fda89",
+        "filename": "src/app/settingsview/components/LinkedDevicesPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f364e1f_862f48e1",
       "range": {
         "startLine": 39,
         "startChar": 22,
@@ -560,6 +776,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4213c08_b428df90",
+        "filename": "src/app/settingsview/components/LinkedDevicesPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f9ce605_66beb058",
+      "range": {
+        "startLine": 43,
+        "startChar": 17,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7e41ef4_881dd270",
@@ -573,6 +813,30 @@
       "writtenOn": "2023-04-04T20:31:31Z",
       "side": 1,
       "message": "VIdeo is not starting (at least with dynamic loading of settings)\n\nqrc:/settingsview/components/VideoSettingsPage.qml:269: ReferenceError: startPreviewing is not defined",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 35
+      },
+      "revId": "a80755e576cfff09b0e05b0a8a58308df7a9e19f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0a21f5e_ee9dada7",
+        "filename": "src/app/settingsview/components/VideoSettingsPage.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-05T16:53:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7e41ef4_881dd270",
       "range": {
         "startLine": 81,
         "startChar": 20,
