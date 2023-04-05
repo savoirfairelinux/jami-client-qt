@@ -187,7 +187,7 @@ TextField {
         width: suffixIcon.width
         height: suffixIcon.height
         anchors.right: suffixBisIcon.left
-        anchors.rightMargin: suffixBisIconSrc !== '' ? 5 : 0
+        anchors.rightMargin: suffixBisIconSrc !== '' ? 5 : root.isActive ? 0 : 20
         anchors.verticalCenter: root.verticalCenter
         anchors.verticalCenterOffset: -root.bottomPadding / 2
         visible: !readOnly
