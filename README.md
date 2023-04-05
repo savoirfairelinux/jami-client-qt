@@ -29,7 +29,7 @@ For more information about the jami project, see the following:
 
 ## Notes
 
-- Coding style is managed by the clang-format, if you want to contribute, please use the pre-commit hook automatically installed with `./build.py --init`
+- Coding style is managed by the clang-format and qmlformat, if you want to contribute, please use the pre-commit hook automatically installed with `./build.py --init --qt=<path/to/qt>`
 - We use gerrit for our review. Please read about [working with Gerrit](https://docs.jami.net/developer/working-with-gerrit.html) if you want to submit patches.
 
 ## Build

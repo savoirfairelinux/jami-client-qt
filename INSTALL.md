@@ -63,7 +63,7 @@ for getting the latest development versions; otherwise, you can use
 submodule).
 
 ```bash
-./build.py --init
+./build.py --init [--qt=<path/to/qt> (this is required for qmlformatting to work)]
 ```
 
 Then you will need to install dependencies:
