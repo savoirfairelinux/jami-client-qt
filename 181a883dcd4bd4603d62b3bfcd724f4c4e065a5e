@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49efe0a6_d9d2b88e",
+        "filename": "src/app/lrcinstance.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-05T17:55:20Z",
+      "side": 1,
+      "message": "probably return if getCurrentAccountInfo() throw there?",
+      "range": {
+        "startLine": 50,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 9
+      },
+      "revId": "181a883dcd4bd4603d62b3bfcd724f4c4e065a5e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
