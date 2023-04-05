@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d07b9c37_5b4543a1",
+        "filename": "src/app/settingsview/SettingsSidePanel.qml",
+        "patchSetId": 54
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-05T20:14:14Z",
+      "side": 1,
+      "message": "format",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 1
+      },
+      "revId": "681c5adac9ef2a9aa1c8b4a6ed7693fd345afc23",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
