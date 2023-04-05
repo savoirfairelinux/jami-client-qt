@@ -312,8 +312,9 @@ def run_init():
     for hooks_dir in hooks_directories:
         if not os.path.exists(hooks_dir):
             os.makedirs(hooks_dir)
-        copy_file("./extras/scripts/commit-msg", hooks_dir + "/commit-msg")
-        execute_script(['./extras/scripts/format.sh --install %(path)s'],
+        copy_file("./extras/scripts/commit-msg",
+                  os.path.join(hooks_dir, "commit-msg"))
+        execute_script(['./extras/scripts/format.py --install %(path)s'],
                        {"path": hooks_dir})
 
 
