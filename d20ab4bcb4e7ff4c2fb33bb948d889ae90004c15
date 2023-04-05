@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8f81a3c_6fe1b639",
+        "filename": "src/app/positioning.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-05T15:49:59Z",
+      "side": 1,
+      "message": "my desktop doesn\u0027t have a GPS but doesn\u0027t crash (geoclue2 is found) so not sure for this part of the comment",
+      "range": {
+        "startLine": 32,
+        "startChar": 26,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "d20ab4bcb4e7ff4c2fb33bb948d889ae90004c15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
