@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Clang format C/C++ source files with clang-format.
+Clang format C/C++ source files with clang-format (C/C++), and
+qmlformat (QML) if installed.
 Also optionally installs a pre-commit hook to run this script.
 
 Usage:
@@ -22,10 +23,37 @@ import shutil
 CFVERSION = "9"
 CLANGFORMAT = ""
 
+QMLFORMAT = ""
+
 
 def command_exists(cmd):
     """ Check if a command exists """
     return shutil.which(cmd) is not None
+
+
+def find_qmlformat():
+    """Find the path to the qmlformat binary."""
+    # Check if qmlformat is already in PATH
+    for path in os.environ["PATH"].split(os.pathsep):
+        qmlformat_path = os.path.join(path, "qmlformat")
+        if os.path.exists(qmlformat_path):
+            return qmlformat_path
+
+    # Check if qmlformat is in the same directory as this script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    qmlformat_path = os.path.join(script_dir, "qmlformat")
+    if os.path.exists(qmlformat_path):
+        return qmlformat_path
+
+    # Check if qmlformat is in a subdirectory called "bin"
+    for root, dirs, _ in os.walk(script_dir):
+        if "bin" in dirs:
+            qmlformat_path = os.path.join(root, "bin", "qmlformat")
+            if os.path.exists(qmlformat_path):
+                return qmlformat_path
+
+    # qmlformat binary not found
+    return None
 
 
 def clang_format_file(filename):
@@ -104,6 +132,15 @@ def main():
             CLANGFORMAT = "clang-format"
     else:
         CLANGFORMAT = "clang-format-" + CFVERSION
+
+    global QMLFORMAT  # pylint: disable=global-statement
+    QMLFORMAT = find_qmlformat()
+    if QMLFORMAT is not None:
+        print("Found qmlformat at " + QMLFORMAT)
+    else:
+        print("qmlformat not found")
+
+    sys.exit(0)
 
     if args.install:
         install_hook(args.install)
