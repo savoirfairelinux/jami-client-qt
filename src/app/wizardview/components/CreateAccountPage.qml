@@ -246,6 +246,7 @@ Rectangle {
                     id: invalidLabel
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                    Layout.topMargin: JamiTheme.wizardViewDescriptionMarginSize
                     visible: text.length !==0
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
