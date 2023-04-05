@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Clang format C/C++ source files with clang-format.
+Clang format C/C++ source files with clang-format (C/C++), and
+qmlformat (QML) if installed.
 Also optionally installs a pre-commit hook to run this script.
 
 Usage:
@@ -18,14 +19,33 @@ import sys
 import subprocess
 import argparse
 import shutil
+from platform import uname
 
 CFVERSION = "9"
 CLANGFORMAT = ""
+
+QMLFORMAT = ""
 
 
 def command_exists(cmd):
     """ Check if a command exists """
     return shutil.which(cmd) is not None
+
+
+def find_qmlformat(qt_path):
+    """Find the path to the qmlformat binary."""
+
+    # Correct the path if it's a Windows WSL path.
+    is_windows = os.name == "nt"
+    if 'Microsoft' in uname().release:
+        qt_path = qt_path.replace('C:', '/mnt/c')
+        is_windows = True
+
+    print("Looking for qmlformat in " + qt_path)
+    # Check if qmlformat is in a subdirectory called bin.
+    qmlformat_path = os.path.join(qt_path, "bin", "qmlformat")
+    qmlformat_path += ".exe" if is_windows else ""
+    return qmlformat_path if os.path.exists(qmlformat_path) else None
 
 
 def clang_format_file(filename):
@@ -47,7 +67,7 @@ def exit_if_no_files():
     sys.exit(0)
 
 
-def install_hook(hooks_path):
+def install_hook(hooks_path, qmlformat_path=None):
     """ Install a pre-commit hook to run this script """
     if not os.path.isdir(hooks_path):
         print(f"{hooks_path} path does not exist")
@@ -55,7 +75,8 @@ def install_hook(hooks_path):
     print(f"Installing pre-commit hook in {hooks_path}")
     with open(os.path.join(hooks_path, "pre-commit"),
               "w", encoding="utf-8") as file:
-        file.write(os.path.realpath(sys.argv[0]))
+        file.write(os.path.realpath(sys.argv[0])
+                   + f' --qt={qmlformat_path}' if qmlformat_path else '')
     os.chmod(os.path.join(hooks_path, "pre-commit"), 0o755)
 
 
@@ -86,7 +107,9 @@ def get_files(file_types, recursive=True, committed_only=False):
 
 
 def main():
-    """Check if clang-format is installed, and format files."""
+    """Check for formatter installations, install hooks, and format files."""
+    print("format.py - Clang format C/C++ source files with clang-format ")
+
     global CLANGFORMAT  # pylint: disable=global-statement
     parser = argparse.ArgumentParser(
         description="Format source filess with a clang-format")
@@ -94,6 +117,8 @@ def main():
                         help="format all files instead of only committed ones")
     parser.add_argument("-i", "--install", metavar="PATH",
                         help="install a pre-commit hook to run this script")
+    parser.add_argument("-q", "--qt", default=None,
+                        help="The Qt root path")
     args = parser.parse_args()
 
     if not command_exists("clang-format-" + CFVERSION):
@@ -105,8 +130,16 @@ def main():
     else:
         CLANGFORMAT = "clang-format-" + CFVERSION
 
+    if args.qt is not None:
+        global QMLFORMAT  # pylint: disable=global-statement
+        QMLFORMAT = find_qmlformat(args.qt)
+        if QMLFORMAT is not None:
+            print("Found qmlformat at " + QMLFORMAT)
+        else:
+            print("No qmlformat found, can't format QML files")
+
     if args.install:
-        install_hook(args.install)
+        install_hook(args.install, QMLFORMAT)
         sys.exit(0)
 
     if args.all:
