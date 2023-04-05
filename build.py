@@ -304,18 +304,37 @@ def run_dependencies(args):
         sys.exit(1)
 
 
-def run_init():
+def run_init(args):
+    """Initialize the git submodules and install the commit-msg hook."""
     subprocess.run(["git", "submodule", "update", "--init"],
                    check=True)
 
-    hooks_directories = ['.git/hooks/', f'.git/modules/daemon/hooks']
-    for hooks_dir in hooks_directories:
+    client_hooks_dir = '.git/hooks'
+    daemon_hooks_dir = '.git/modules/daemon/hooks'
+
+    print("Installing commit-msg hooks...")
+    # Copy the commit-msg hook to all modules in the same way.
+    for hooks_dir in [client_hooks_dir, daemon_hooks_dir]:
         if not os.path.exists(hooks_dir):
             os.makedirs(hooks_dir)
         copy_file("./extras/scripts/commit-msg",
                   os.path.join(hooks_dir, "commit-msg"))
-        execute_script(['./extras/scripts/format.py --install %(path)s'],
-                       {"path": hooks_dir})
+
+    print("Installing pre-commit hooks...")
+    format_script = "./extras/scripts/format.py"
+    # Prepend with the python executable if on Windows (not WSL).
+    if sys.platform == 'win32':
+        format_script = f'python {format_script}'
+    # The client submodule has QML files, so we need to run qmlformat on it,
+    # and thus need to supply the Qt path.
+    execute_script([f'{format_script} --install {client_hooks_dir}'
+                    f' --qt {args.qt}' if args.qt else ''],
+                   {"path": client_hooks_dir})
+
+    # The daemon submodule has no QML files, so we don't need to run
+    # qmlformat on it, and thus don't need to supply the Qt path.
+    execute_script([f'{format_script} --install {daemon_hooks_dir}'],
+                   {"path": daemon_hooks_dir})
 
 
 def copy_file(src, dest):
@@ -651,7 +670,8 @@ def main():
         run_dependencies(parsed_args)
 
     elif parsed_args.init:
-        run_init()
+        run_init(parsed_args)
+
     elif parsed_args.clean:
         run_clean()
 

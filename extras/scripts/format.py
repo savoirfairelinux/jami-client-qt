@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Clang format C/C++ source files with clang-format.
+Clang format C/C++ source files with clang-format (C/C++), and
+qmlformat (QML) if installed.
 Also optionally installs a pre-commit hook to run this script.
 
 Usage:
@@ -18,14 +19,32 @@ import sys
 import subprocess
 import argparse
 import shutil
+from platform import uname
 
 CFVERSION = "9"
 CLANGFORMAT = ""
+
+QMLFORMAT = ""
 
 
 def command_exists(cmd):
     """ Check if a command exists """
     return shutil.which(cmd) is not None
+
+
+def find_qmlformat(qt_path):
+    """Find the path to the qmlformat binary."""
+
+    # Correct the path if it's a Windows WSL path.
+    is_windows = os.name == "nt"
+    if 'Microsoft' in uname().release:
+        qt_path = qt_path.replace('C:', '/mnt/c')
+        is_windows = True
+
+    # Check if qmlformat is in a subdirectory called bin.
+    qmlformat_path = os.path.join(qt_path, "bin", "qmlformat")
+    qmlformat_path += ".exe" if is_windows else ""
+    return qmlformat_path if os.path.exists(qmlformat_path) else None
 
 
 def clang_format_file(filename):
@@ -41,13 +60,21 @@ def clang_format_files(files):
         clang_format_file(filename)
 
 
+def qml_format_files(files):
+    """ Format a file using qmlformat """
+    for filename in files:
+        if os.path.isfile(filename):
+            print(f"Formatting: {filename}", end='\r')
+            subprocess.call([QMLFORMAT, "-i", filename])
+
+
 def exit_if_no_files():
     """ Exit if no files to format """
     print("No files to format")
     sys.exit(0)
 
 
-def install_hook(hooks_path):
+def install_hook(hooks_path, qt_path=None):
     """ Install a pre-commit hook to run this script """
     if not os.path.isdir(hooks_path):
         print(f"{hooks_path} path does not exist")
@@ -55,7 +82,8 @@ def install_hook(hooks_path):
     print(f"Installing pre-commit hook in {hooks_path}")
     with open(os.path.join(hooks_path, "pre-commit"),
               "w", encoding="utf-8") as file:
-        file.write(os.path.realpath(sys.argv[0]))
+        file.write(os.path.realpath(sys.argv[0])
+                   + f' --qt={qt_path}' if qt_path else '')
     os.chmod(os.path.join(hooks_path, "pre-commit"), 0o755)
 
 
@@ -86,7 +114,7 @@ def get_files(file_types, recursive=True, committed_only=False):
 
 
 def main():
-    """Check if clang-format is installed, and format files."""
+    """Check for formatter installations, install hooks, and format files."""
     global CLANGFORMAT  # pylint: disable=global-statement
     parser = argparse.ArgumentParser(
         description="Format source filess with a clang-format")
@@ -94,6 +122,8 @@ def main():
                         help="format all files instead of only committed ones")
     parser.add_argument("-i", "--install", metavar="PATH",
                         help="install a pre-commit hook to run this script")
+    parser.add_argument("-q", "--qt", default=None,
+                        help="The Qt root path")
     args = parser.parse_args()
 
     if not command_exists("clang-format-" + CFVERSION):
@@ -104,23 +134,43 @@ def main():
             CLANGFORMAT = "clang-format"
     else:
         CLANGFORMAT = "clang-format-" + CFVERSION
+    print("Using source formatter: " + CLANGFORMAT)
+
+    if args.qt is not None:
+        global QMLFORMAT  # pylint: disable=global-statement
+        QMLFORMAT = find_qmlformat(args.qt)
+        if QMLFORMAT is not None:
+            print("Using qmlformatter: " + QMLFORMAT)
+        else:
+            print("No qmlformat found, can't format QML files")
 
     if args.install:
-        install_hook(args.install)
+        install_hook(args.install, args.qt)
         sys.exit(0)
 
     if args.all:
         print("Formatting all files...")
-        # Find all files in the recursively in the current directory.
+        # clang-format all files in the recursively in the current directory.
         clang_format_files(get_files((".cpp", ".cxx", ".cc", ".h", ".hpp"),
                                      committed_only=False))
+        # If QMLFORMAT is present, qml-format all QML files in the current dir.
+        if QMLFORMAT is not None:
+            qml_format_files(get_files((".qml"), committed_only=False))
     else:
-        files = get_files((".cpp", ".cxx", ".cc", ".h", ".hpp"),
-                          committed_only=True)
-        if not files:
+        src_files = get_files((".cpp", ".cxx", ".cc", ".h", ".hpp"),
+                              committed_only=True)
+        qml_files = []
+        if QMLFORMAT is not None:
+            qml_files = get_files((".qml"), committed_only=True)
+        if not src_files and not qml_files:
             exit_if_no_files()
-        print("Formatting committed source files...")
-        clang_format_files(files)
+        else:
+            if src_files:
+                print("Formatting committed source files...")
+                clang_format_files(src_files)
+            if qml_files:
+                print("Formatting committed QML files...")
+                qml_format_files(qml_files)
 
 
 if __name__ == "__main__":
