@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26f9aa29_d378e267",
+        "filename": "src/app/settingsview/components/SettingsPageBase.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-05T18:01:10Z",
+      "side": 1,
+      "message": "related to patch behind?",
+      "range": {
+        "startLine": 65,
+        "startChar": 11,
+        "endLine": 65,
+        "endChar": 43
+      },
+      "revId": "ae03bc00b326666c83fd422194cbeb5affdabb66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a44815e0_079a17b4",
+        "filename": "src/app/settingsview/components/VideoSettingsPage.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-05T18:01:10Z",
+      "side": 1,
+      "message": "not reloaded to dynamic loading?",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 13
+      },
+      "revId": "ae03bc00b326666c83fd422194cbeb5affdabb66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
