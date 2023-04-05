@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "814249f1_39469f8b",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-05T17:49:21Z",
+      "side": 1,
+      "message": "strncmp with arg_to_remove size will be safer\n\nOr even if (arg_to_remove \u003d\u003d arg_ptr) {",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 18
+      },
+      "revId": "7d22c457975e626a1b22620d0c83f2389cfc0da7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
