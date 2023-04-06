@@ -28,7 +28,6 @@ Item {
 
     readonly property string mainViewLoadPath: "qrc:/mainview/MainView.qml"
     readonly property string wizardViewLoadPath: "qrc:/wizardview/WizardView.qml"
-    readonly property string accountMigrationViewLoadPath: "qrc:/AccountMigrationView.qml"
     readonly property string base64StringTitle: "data:image/png;base64,"
 
     property var accountCreationInputParaObject: ({})
