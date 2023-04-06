@@ -40,28 +40,22 @@ CurrentAccountToMigrate::CurrentAccountToMigrate(LRCInstance* instance, QObject*
     }
 
     if (accountToMigrateList_.size()) {
-        migrationEndedConnection_ = connect(
-            &lrcInstance_->accountModel(),
-            &lrc::api::AccountModel::migrationEnded,
-            this,
-            [this](const QString& accountId, bool ok) {
-                if (ok && accountToMigrateList_.removeOne(accountId)) {
-                    updateData();
-                }
-
-                if (accountToMigrateList_.isEmpty()) {
-                    disconnect(migrationEndedConnection_);
-                    Q_EMIT allMigrationsFinished();
-
-                    return;
-                }
-
-                Q_EMIT migrationEnded(ok);
-            },
-            Qt::ConnectionType::QueuedConnection);
-
+        connectMigrationEnded();
         updateData();
     }
+
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::accountStatusChanged,
+            this,
+            &CurrentAccountToMigrate::slotAccountStatusChanged);
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::accountAdded,
+            this,
+            &CurrentAccountToMigrate::slotAccountStatusChanged);
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::accountRemoved,
+            this,
+            &CurrentAccountToMigrate::slotAccountRemoved);
 }
 
 CurrentAccountToMigrate::~CurrentAccountToMigrate() {}
@@ -69,19 +63,6 @@ CurrentAccountToMigrate::~CurrentAccountToMigrate() {}
 void
 CurrentAccountToMigrate::removeCurrentAccountToMigrate()
 {
-    if (accountToMigrateList_.removeOne(get_accountId())) {
-        updateData();
-    }
-
-    Utils::oneShotConnect(&lrcInstance_->accountModel(),
-                          &lrc::api::AccountModel::accountRemoved,
-                          [this] {
-                              if (accountToMigrateList_.isEmpty())
-                                  Q_EMIT allMigrationsFinished();
-                              else
-                                  Q_EMIT currentAccountToMigrateRemoved();
-                          });
-
     lrcInstance_->accountModel().removeAccount(get_accountId());
 }
 
@@ -101,4 +82,53 @@ CurrentAccountToMigrate::updateData()
     set_managerUri(avatarInfo.confProperties.managerUri);
     set_username(avatarInfo.confProperties.username);
     set_alias(lrcInstance_->accountModel().getAccountInfo(accountId).profileInfo.alias);
+}
+
+void
+CurrentAccountToMigrate::connectMigrationEnded()
+{
+    migrationEndedConnection_ = connect(
+        &lrcInstance_->accountModel(),
+        &lrc::api::AccountModel::migrationEnded,
+        this,
+        [this](const QString& accountId, bool ok) {
+            if (ok && accountToMigrateList_.removeOne(accountId)) {
+                updateData();
+            }
+
+            if (accountToMigrateList_.isEmpty()) {
+                disconnect(migrationEndedConnection_);
+                Q_EMIT allMigrationsFinished();
+                return;
+            }
+
+            Q_EMIT migrationEnded(ok);
+        },
+        Qt::ConnectionType::QueuedConnection);
+}
+
+void
+CurrentAccountToMigrate::slotAccountStatusChanged(const QString& accountId)
+{
+    try {
+        auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
+        if (accountInfo.status == lrc::api::account::Status::ERROR_NEED_MIGRATION) {
+            accountToMigrateList_.append(accountId);
+            updateData();
+            connectMigrationEnded();
+            Q_EMIT accountNeedsMigration(accountId);
+        }
+    } catch (...) {
+    }
+}
+
+void
+CurrentAccountToMigrate::slotAccountRemoved(const QString& accountId)
+{
+    if (accountToMigrateList_.removeOne(accountId))
+        updateData();
+    if (accountToMigrateList_.isEmpty())
+        Q_EMIT allMigrationsFinished();
+    else
+        Q_EMIT currentAccountToMigrateRemoved();
 }

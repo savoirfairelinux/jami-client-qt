@@ -78,10 +78,6 @@ ApplicationWindow {
         }
     }
 
-    function startAccountMigration() {
-        setMainLoaderSource(JamiQmlUtils.accountMigrationViewLoadPath)
-    }
-
     function setMainLoaderSource(source) {
         if (checkLoadedSource() === MainApplicationWindow.LoadedSource.MainView) {
             cleanupMainView()
@@ -143,11 +139,28 @@ ApplicationWindow {
         }
 
         Connections {
+            id: connectionMigrationEnded
+
+            target: CurrentAccountToMigrate
+
+            function onAccountNeedsMigration(accountId) {
+                viewCoordinator.present("AccountMigrationView")
+            }
+
+            function onAllMigrationsFinished() {
+                viewCoordinator.dismiss("AccountMigrationView")
+                startClient()
+            }
+        }
+
+        Connections {
             target: mainApplicationLoader.item
 
             function onLoaderSourceChangeRequested(sourceToLoad) {
                 if (sourceToLoad === MainApplicationWindow.LoadedSource.WizardView)
                     setMainLoaderSource(JamiQmlUtils.wizardViewLoadPath)
+                else if (sourceToLoad === MainApplicationWindow.LoadedSource.AccountMigrationView)
+                    setMainLoaderSource(JamiQmlUtils.accountMigrationViewLoadPath)
                 else
                     setMainLoaderSource(JamiQmlUtils.mainViewLoadPath)
             }
@@ -180,6 +193,8 @@ ApplicationWindow {
                 })
                 // Set the viewCoordinator's root item.
                 viewCoordinator.init(item)
+                if (CurrentAccountToMigrate.accountToMigrateListSize > 0)
+                    viewCoordinator.present("AccountMigrationView")
             }
             if (Qt.platform.os.toString() === "osx") {
                 MainApplication.setEventFilter()
@@ -248,11 +263,7 @@ ApplicationWindow {
     onClosing: root.close()
 
     Component.onCompleted: {
-        if (CurrentAccountToMigrate.accountToMigrateListSize <= 0)
-            startClient()
-        else
-            startAccountMigration()
-
+        startClient()
         if (Qt.platform.os.toString()  !== "windows" && Qt.platform.os.toString()  !== "osx")
             DBusErrorHandler.setActive(true)
     }

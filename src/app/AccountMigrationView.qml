@@ -94,15 +94,6 @@ Rectangle {
             stackedWidget.currentIndex =
                     AccountMigrationView.AccountMigrationStep.PasswordEnter
         }
-
-        function onAllMigrationsFinished() {
-            if (UtilsAdapter.getAccountListSize() === 0)
-                root.loaderSourceChangeRequested(
-                            MainApplicationWindow.LoadedSource.WizardView)
-            else
-                root.loaderSourceChangeRequested(
-                            MainApplicationWindow.LoadedSource.MainView)
-        }
     }
 
     ColumnLayout {
