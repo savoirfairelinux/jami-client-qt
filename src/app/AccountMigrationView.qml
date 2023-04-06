@@ -28,7 +28,7 @@ import net.jami.Constants 1.1
 import "commoncomponents"
 
 // Account Migration Dialog for migrating account
-Rectangle {
+BaseView {
     id: root
 
     enum AccountMigrationStep {
@@ -53,8 +53,6 @@ Rectangle {
 
         CurrentAccountToMigrate.removeCurrentAccountToMigrate()
     }
-
-    color: JamiTheme.backgroundColor
 
     Timer {
         id: timerFailureReturn
@@ -93,15 +91,6 @@ Rectangle {
 
             stackedWidget.currentIndex =
                     AccountMigrationView.AccountMigrationStep.PasswordEnter
-        }
-
-        function onAllMigrationsFinished() {
-            if (UtilsAdapter.getAccountListSize() === 0)
-                root.loaderSourceChangeRequested(
-                            MainApplicationWindow.LoadedSource.WizardView)
-            else
-                root.loaderSourceChangeRequested(
-                            MainApplicationWindow.LoadedSource.MainView)
         }
     }
 

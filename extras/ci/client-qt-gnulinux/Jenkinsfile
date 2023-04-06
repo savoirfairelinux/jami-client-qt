@@ -119,7 +119,7 @@ pipeline {
                                 // Run tests
                                 exec_cmd("""
                                     cd ${dockerTopDir}/build/tests
-                                    HOME=/tmp ctest -j${cpuCount} -V -C Release
+                                    HOME=/tmp ctest -V -C Release -j${cpuCount}
                                 """)
                             }
                         }
