@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd815713_28d922c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-04-06T22:18:34Z",
+      "side": 1,
+      "message": "otherwise LGTM",
+      "revId": "9fcfddd30763538bd32f3e3e943b59644ce1a853",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33fc354b_de33c104",
+        "filename": "src/app/AccountMigrationView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-04-06T22:18:34Z",
+      "side": 1,
+      "message": "BaseView since it\u0027s managed by viewcoordinator",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 10
+      },
+      "revId": "9fcfddd30763538bd32f3e3e943b59644ce1a853",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
