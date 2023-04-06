@@ -45,8 +45,14 @@ Q_SIGNALS:
     void migrationEnded(bool success);
     void allMigrationsFinished();
     void currentAccountToMigrateRemoved();
+    void accountNeedsMigration(const QString& accountId);
+
+private Q_SLOTS:
+    void slotAccountStatusChanged(const QString& accountId);
+    void slotAccountRemoved(const QString& accountId);
 
 private:
+    void connectMigrationEnded();
     void updateData();
 
     LRCInstance* lrcInstance_;

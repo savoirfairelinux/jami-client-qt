@@ -39,6 +39,7 @@ QtObject {
         "ConversationView": "mainview/ConversationView.qml",
         "NewSwarmPage": "mainview/components/NewSwarmPage.qml",
         "WizardView": "wizardview/WizardView.qml",
+        "AccountMigrationView": "AccountMigrationView.qml",
         "SettingsView": "settingsview/SettingsView.qml",
         "SettingsSidePanel": "settingsview/SettingsSidePanel.qml",
     }
