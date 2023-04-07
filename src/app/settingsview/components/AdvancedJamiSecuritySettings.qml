@@ -133,6 +133,7 @@ ColumnLayout {
             staticText: CurrentAccount.password_TLS
 
             onEditFinished: CurrentAccount.password_TLS = dynamicText
+            isPassword: true
         }
     }
 }

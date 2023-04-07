@@ -146,6 +146,7 @@ ColumnLayout {
             titleField: JamiStrings.turnPassword
 
             onEditFinished: CurrentAccount.password_TURN = dynamicText
+            isPassword: true
         }
 
         SettingsMaterialTextEdit {
