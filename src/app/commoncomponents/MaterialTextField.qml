@@ -24,6 +24,8 @@ import net.jami.Constants 1.1
 TextField {
     id: root
 
+    objectName: "textField"
+
     // We need to remove focus when another widget takes activeFocus,
     // except the context menu.
     property bool isActive: activeFocus || contextMenu.active
@@ -31,16 +33,9 @@ TextField {
     property bool isSwarmDetail: false
 
     onActiveFocusChanged: {
-        root.cursorPosition = 0
         if (!activeFocus && !contextMenu.active) {
             root.focus = false
         }
-        if (root.focus)
-            root.cursorPosition = root.text.length
-    }
-
-    Component.onCompleted: {
-        root.cursorPosition = 0
     }
 
     signal keyPressed
@@ -67,6 +62,10 @@ TextField {
 
     property alias infoTipText: infoTip.text
     property alias infoTipLineText: infoTipLine.text
+
+    //https://doc.qt.io/qt-6/qml-qtquick-textinput.html#maximumLength-prop
+    property int maxCharact
+    maximumLength: maxCharact ? maxCharact : 32767
 
     wrapMode: "NoWrap"
 
