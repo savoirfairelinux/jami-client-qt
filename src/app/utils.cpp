@@ -469,16 +469,19 @@ Utils::conversationAvatar(LRCInstance* instance,
         auto members = convModel->peersForConversation(convId);
         if (members.size() < 1)
             return avatar;
+        auto getPhoto = [&](const auto& uri) {
+            return uri == accInfo.profileInfo.uri ? accountPhoto(instance, accountId, size) : contactPhoto(instance, uri, size, "");
+        };
         if (members.size() == 1) {
             // Only member in the swarm or 1:1, draw only peer's avatar
-            auto peerAvatar = Utils::contactPhoto(instance, members[0], size, "");
+            auto peerAvatar = getPhoto(members[0]);
             painter.drawImage(avatar.rect(), peerAvatar);
             return avatar;
         }
         // Else, combine avatars
         auto idx = 0;
-        auto peerAAvatar = Utils::contactPhoto(instance, members[0], size, "");
-        auto peerBAvatar = Utils::contactPhoto(instance, members[1], size, "");
+        auto peerAAvatar = getPhoto(members[0]);
+        auto peerBAvatar = getPhoto(members[1]);
         peerAAvatar = Utils::halfCrop(peerAAvatar, true);
         peerBAvatar = Utils::halfCrop(peerBAvatar, false);
         painter.drawImage(avatar.rect(), peerAAvatar);
