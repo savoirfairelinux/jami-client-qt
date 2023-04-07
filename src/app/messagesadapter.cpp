@@ -254,12 +254,16 @@ void
 MessagesAdapter::copyToDownloads(const QString& interactionId, const QString& displayName)
 {
     auto downloadDir = lrcInstance_->accountModel().downloadDirectory;
-    if (auto accInfo = &lrcInstance_->getCurrentAccountInfo())
-        accInfo->dataTransferModel->copyTo(lrcInstance_->get_currentAccountId(),
-                                           lrcInstance_->get_selectedConvUid(),
-                                           interactionId,
-                                           downloadDir,
-                                           displayName);
+    if (auto accInfo = &lrcInstance_->getCurrentAccountInfo()) {
+        auto dest = accInfo->dataTransferModel->copyTo(lrcInstance_->get_currentAccountId(),
+                                                       lrcInstance_->get_selectedConvUid(),
+                                                       interactionId,
+                                                       downloadDir,
+                                                       displayName);
+        if (!dest.isEmpty()) {
+            Q_EMIT fileCopied(dest);
+        }
+    }
 }
 
 void

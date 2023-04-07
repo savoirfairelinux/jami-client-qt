@@ -77,6 +77,7 @@ Q_SIGNALS:
     void previewInformationToQML(QString messageId, QStringList previewInformation);
     void moreMessagesLoaded(qint32 loadingRequestId);
     void timestampUpdated();
+    void fileCopied(const QString& dest);
 
 protected:
     Q_INVOKABLE bool isDocument(const interaction::Type& type);

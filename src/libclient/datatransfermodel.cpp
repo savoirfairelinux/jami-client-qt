@@ -166,7 +166,7 @@ DataTransferModel::download(const QString& accountId,
     ConfigurationManager::instance().downloadFile(accountId, convId, interactionId, fileId, path);
 }
 
-void
+QString
 DataTransferModel::copyTo(const QString& accountId,
                           const QString& convId,
                           const QString& interactionId,
@@ -176,7 +176,7 @@ DataTransferModel::copyTo(const QString& accountId,
     auto fileId = getFileIdFromInteractionId(interactionId);
     if (fileId.isEmpty()) {
         qWarning() << "Cannot find any file for " << interactionId;
-        return;
+        return {};
     }
     QString path;
     qlonglong total, progress;
@@ -186,7 +186,7 @@ DataTransferModel::copyTo(const QString& accountId,
     auto src = QFile(path);
     auto srcfi = QFileInfo(path);
     if (!src.exists())
-        return;
+        return {};
 
     auto filename = displayName;
     if (displayName.isEmpty())
@@ -198,6 +198,7 @@ DataTransferModel::copyTo(const QString& accountId,
     if (!dir.exists())
         dir.mkpath(".");
     src.copy(dest);
+    return dest;
 }
 
 void
