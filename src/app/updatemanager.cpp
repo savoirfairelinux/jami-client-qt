@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +62,7 @@ struct UpdateManager::Impl : public QObject
             connect(&parent_,
                     &NetWorkManager::errorOccured,
                     &parent_,
-                    &UpdateManager::updateCheckErrorOccurred);
+                    &UpdateManager::updateErrorOccurred);
 
         cleanUpdateFiles();
         QUrl versionUrl {isBeta ? QUrl::fromUserInput(baseUrlString_ + betaVersionSubUrl)
@@ -95,7 +94,7 @@ struct UpdateManager::Impl : public QObject
         connect(&parent_,
                 &NetWorkManager::errorOccured,
                 &parent_,
-                &UpdateManager::updateDownloadErrorOccurred);
+                &UpdateManager::updateErrorOccurred);
         connect(&parent_, &NetWorkManager::statusChanged, this, [this](GetStatus status) {
             switch (status) {
             case GetStatus::STARTED:

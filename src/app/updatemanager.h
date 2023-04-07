@@ -46,10 +46,9 @@ public:
 
 Q_SIGNALS:
     void updateCheckReplyReceived(bool ok, bool found = false);
-    void updateCheckErrorOccurred(GetError error);
+    void updateErrorOccurred(const NetWorkManager::GetError& error);
     void updateDownloadStarted();
     void updateDownloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
-    void updateDownloadErrorOccurred(GetError error);
     void updateDownloadFinished();
     void appCloseRequested();
 

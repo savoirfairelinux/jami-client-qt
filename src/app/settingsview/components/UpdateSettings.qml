@@ -103,82 +103,18 @@ ColumnLayout {
         toolTipText: JamiStrings.betaInstall
         text: JamiStrings.betaInstall
 
-        onClicked: presentConfirmInstallDialog(JamiStrings.confirmBeta, true)
-    }
-
-    function presentInfoDialog(infoText) {
-        viewCoordinator.presentDialog(
-            appWindow,
-            "commoncomponents/SimpleMessageDialog.qml",
-            {
-                title: JamiStrings.updateDialogTitle,
-                infoText: infoText,
-                buttonTitles: [JamiStrings.optionOk],
-                buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                buttonCallBacks: []
-            })
-    }
-
-    function presentConfirmInstallDialog(infoText, beta) {
-        viewCoordinator.presentDialog(
-            appWindow,
-            "commoncomponents/SimpleMessageDialog.qml",
-            {
-                title: JamiStrings.updateDialogTitle,
-                infoText: infoText,
-                buttonTitles: [JamiStrings.optionUpgrade, JamiStrings.optionLater],
-                buttonStyles: [
-                    SimpleMessageDialog.ButtonStyle.TintedBlue,
-                    SimpleMessageDialog.ButtonStyle.TintedBlue
-                ],
-                buttonCallBacks: [function() {UpdateManager.applyUpdates(beta)}]
-            })
-    }
-
-    Connections {
-        target: UpdateManager
-
-        function errorToString(error) {
-            switch(error){
-            case NetWorkManager.ACCESS_DENIED:
-                return JamiStrings.genericError
-            case NetWorkManager.DISCONNECTED:
-                return JamiStrings.networkDisconnected
-            case NetWorkManager.NETWORK_ERROR:
-                return JamiStrings.updateNetworkError
-            case NetWorkManager.SSL_ERROR:
-                return JamiStrings.updateSSLError
-            case NetWorkManager.CANCELED:
-                return JamiStrings.updateDownloadCanceled
-            default: return {}
-            }
-        }
-
-        function onUpdateDownloadStarted() {
-            viewCoordinator.presentDialog(
-                appWindow,
-                "settingsview/components/UpdateDownloadDialog.qml",
-                {title: JamiStrings.updateDialogTitle})
-        }
-
-        function onUpdateCheckReplyReceived(ok, found) {
-            if (!ok) {
-                presentInfoDialog(JamiStrings.updateCheckError)
-                return
-            }
-            if (!found) {
-                presentInfoDialog(JamiStrings.updateNotFound)
-            } else {
-                presentConfirmInstallDialog(JamiStrings.updateFound, false)
-            }
-        }
-
-        function onUpdateDownloadErrorOccurred(error) {
-            presentInfoDialog(errorToString(error))
-        }
-
-        function onUpdateCheckErrorOccurred(error) {
-            presentInfoDialog(errorToString(error))
-        }
+        onClicked: viewCoordinator.presentDialog(
+                       appWindow,
+                       "commoncomponents/SimpleMessageDialog.qml",
+                       {
+                           title: JamiStrings.updateDialogTitle,
+                           infoText: JamiStrings.confirmBeta,
+                           buttonTitles: [JamiStrings.optionUpgrade, JamiStrings.optionLater],
+                           buttonStyles: [
+                               SimpleMessageDialog.ButtonStyle.TintedBlue,
+                               SimpleMessageDialog.ButtonStyle.TintedBlue
+                           ],
+                           buttonCallBacks: [function() {UpdateManager.applyUpdates(true)}]
+                       })
     }
 }
