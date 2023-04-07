@@ -286,7 +286,7 @@ def build(config_str, qtver, tests):
         "-DCMAKE_INSTALL_PREFIX=" + daemon_bin_dir,
         "-DLIBJAMI_INCLUDE_DIR=" + daemon_dir + "\\src\\jami",
         "-DCMAKE_SYSTEM_VERSION=" + WIN_SDK_VERSION,
-        "-DCMAKE_BUILD_TYPE=" + config_str,
+        "-DCMAKE_BUILD_TYPE=" + "Release",
         "-DENABLE_TESTS=" + str(tests).lower(),
         "-DBETA=" + str((0, 1)[config_str == "Beta"]),
     ]
@@ -299,7 +299,7 @@ def build(config_str, qtver, tests):
         print("Cmake generate error")
         sys.exit(1)
 
-    if not cmake_build(config_str, vs_env_vars, build_dir):
+    if not cmake_build("Release", vs_env_vars, build_dir):
         print("Cmake build error")
         sys.exit(1)
 
