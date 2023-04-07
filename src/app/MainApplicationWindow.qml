@@ -260,6 +260,72 @@ ApplicationWindow {
         }
     }
 
+    function presentUpdateInfoDialog(infoText) {
+        viewCoordinator.presentDialog(
+            appWindow,
+            "commoncomponents/SimpleMessageDialog.qml",
+            {
+                title: JamiStrings.updateDialogTitle,
+                infoText: infoText,
+                buttonTitles: [JamiStrings.optionOk],
+                buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                buttonCallBacks: []
+            })
+    }
+
+    Connections {
+        target: UpdateManager
+
+        function onUpdateDownloadStarted() {
+            viewCoordinator.presentDialog(
+                appWindow,
+                "settingsview/components/UpdateDownloadDialog.qml",
+                {title: JamiStrings.updateDialogTitle})
+        }
+
+        function onUpdateCheckReplyReceived(ok, found) {
+            if (!ok) {
+                presentUpdateInfoDialog(JamiStrings.updateCheckError)
+                return
+            }
+            if (!found) {
+                presentUpdateInfoDialog(JamiStrings.updateNotFound)
+            } else {
+                viewCoordinator.presentDialog(
+                    appWindow,
+                    "commoncomponents/SimpleMessageDialog.qml",
+                    {
+                        title: JamiStrings.updateDialogTitle,
+                        infoText: JamiStrings.updateFound,
+                        buttonTitles: [JamiStrings.optionUpgrade, JamiStrings.optionLater],
+                        buttonStyles: [
+                            SimpleMessageDialog.ButtonStyle.TintedBlue,
+                            SimpleMessageDialog.ButtonStyle.TintedBlue
+                        ],
+                        buttonCallBacks: [function() {UpdateManager.applyUpdates()}]
+                    })
+            }
+        }
+
+        function onUpdateErrorOccurred(error) {
+            presentUpdateInfoDialog((function () {
+                switch(error){
+                case NetWorkManager.ACCESS_DENIED:
+                    return JamiStrings.genericError
+                case NetWorkManager.DISCONNECTED:
+                    return JamiStrings.networkDisconnected
+                case NetWorkManager.NETWORK_ERROR:
+                    return JamiStrings.updateNetworkError
+                case NetWorkManager.SSL_ERROR:
+                    return JamiStrings.updateSSLError
+                case NetWorkManager.CANCELED:
+                    return JamiStrings.updateDownloadCanceled
+                default: return {}
+                }
+            })())
+        }
+    }
+
     onClosing: root.close()
 
     Component.onCompleted: {
