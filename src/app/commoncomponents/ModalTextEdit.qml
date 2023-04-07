@@ -40,6 +40,9 @@ Loader {
     property string infoTipLineText
     property bool isPersistent: true
 
+    property string elidedText: ""
+    property int maxCaract: 200
+
     property real fontPixelSize: JamiTheme.materialLineEditPixelSize
     property bool fontBold: false
 
@@ -85,9 +88,12 @@ Loader {
         MaterialTextField {
             id: displayCompField
             font.pixelSize: root.fontPixelSize
-            readOnly: true
-            text: staticText
-            horizontalAlignment: TextEdit.AlignHCenter
+            readOnly: root.readOnly
+            text: elidedText != "" ? elidedText : staticText
+            horizontalAlignment: elidedText != "" ? TextEdit.AlignLeft : TextEdit.AlignHCenter
+            isSwarmDetail: root.isSwarmDetail
+            isSettings: root.isSettings
+            textColor: root.textColor
         }
     }
 
@@ -129,6 +135,7 @@ Loader {
             isSettings: root.isSettings
             isSwarmDetail: root.isSwarmDetail
             readOnly: root.readOnly
+            maxCaract: root.maxCaract
         }
     }
 
