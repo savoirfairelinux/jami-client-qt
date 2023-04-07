@@ -72,14 +72,35 @@ SettingsPageBase {
             ModalTextEdit {
                 id: displayNameLineEdit
 
+                TextMetrics {
+                    id: displayNameLineEditTextSize
+                    text: CurrentAccount.alias
+                    elide: Text.ElideRight
+                    elideWidth: displayNameLineEdit.width
+                    font.pixelSize: JamiTheme.materialLineEditPixelSize
+                }
+
+                maxCharacters: JamiTheme.maximumCharacters
+
+                editMode: false
+                isPersistent: false
+
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight + 8
                 Layout.fillWidth: true
 
                 staticText: CurrentAccount.alias
                 placeholderText: JamiStrings.enterNickname
+                elidedText: displayNameLineEditTextSize.elidedText
 
                 onAccepted: AccountAdapter.setCurrAccDisplayName(dynamicText)
+
+                onActiveFocusChanged: {
+                    if (!activeFocus) {
+                        AccountAdapter.setCurrAccDisplayName(dynamicText)
+                    }
+                    displayNameLineEdit.editMode = activeFocus
+                }
             }
         }
 

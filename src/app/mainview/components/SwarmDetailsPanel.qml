@@ -83,13 +83,24 @@ Rectangle {
                     ModalTextEdit {
                         id: titleLine
 
+                        TextMetrics {
+                            id: titleLineTextSize
+                            text: CurrentConversation.title
+                            elide: Text.ElideRight
+                            elideWidth: titleLine.width
+                            font.pixelSize: JamiTheme.materialLineEditPixelSize
+                        }
+
+                        maxCharacters: JamiTheme.maximumCharacters
+
                         isSwarmDetail: true
                         readOnly: !isAdmin
 
-                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredWidth: Math.min(217,swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
 
                         staticText: CurrentConversation.title
+                        elidedText: titleLineTextSize.elidedText
 
                         textColor: root.textColor
                         prefixIconColor: root.textColor
@@ -99,10 +110,14 @@ Rectangle {
                                         LRCInstance.selectedConvUid, dynamicText)
                         }
 
+                        editMode: false
+                        isPersistent: false
+
                         onActiveFocusChanged: {
-                            if(!activeFocus){
+                            if (!activeFocus) {
                                 ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText)
                             }
+                            titleLine.editMode = activeFocus
                         }
 
                         infoTipLineText: JamiStrings.swarmName
@@ -111,15 +126,26 @@ Rectangle {
                     ModalTextEdit {
                         id: descriptionLineButton
 
+                        TextMetrics {
+                            id: descriptionLineButtonTextSize
+                            text: CurrentConversation.description
+                            elide: Text.ElideRight
+                            elideWidth: descriptionLineButton.width
+                            font.pixelSize: JamiTheme.materialLineEditPixelSize
+                        }
+
+                        maxCharacters: JamiTheme.maximumCharacters
+
                         isSwarmDetail: true
 
                         readOnly: !isAdmin || CurrentConversation.isCoreDialog
 
-                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredWidth: Math.min(217,swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
 
                         staticText: CurrentConversation.description
                         placeholderText: JamiStrings.addADescription
+                        elidedText: descriptionLineButtonTextSize.elidedText
 
                         textColor: root.textColor
                         prefixIconColor: root.textColor
@@ -127,11 +153,15 @@ Rectangle {
                         onAccepted: ConversationsAdapter.updateConversationDescription(
                                         LRCInstance.selectedConvUid, dynamicText)
 
+                        editMode: false
+                        isPersistent: false
+
                         onActiveFocusChanged: {
-                            if(!activeFocus){
+                            if (!activeFocus) {
                                 ConversationsAdapter.updateConversationDescription(
                                             LRCInstance.selectedConvUid, dynamicText)
                             }
+                            descriptionLineButton.editMode = activeFocus
                         }
 
                         infoTipLineText: JamiStrings.addADescription
