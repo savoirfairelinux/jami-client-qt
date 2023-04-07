@@ -560,6 +560,7 @@ Item {
     property real materialLineEditSelectedPixelSize: calcSize(12)
     property real materialLineEditPadding: 16
     property real textEditError: calcSize(15)
+    property real maximumCharacters: 50
 
     //MaterialButton
     property real buttontextPadding: 10
