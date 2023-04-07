@@ -27,6 +27,7 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 JamiListView {
+
     id: root
 
     function getDistanceToBottom() {
@@ -155,6 +156,15 @@ JamiListView {
             }
         }
     }
+    ToastManager {
+        id: toastManager
+
+        anchors.fill: parent
+
+        function instantiateToast(dest) {
+            instantiate(JamiStrings.fileSaved.arg(dest), 1000, 400)
+        }
+    }
 
     Connections {
         target: CurrentConversation
@@ -252,6 +262,10 @@ JamiListView {
             if (root.contentHeight < root.height || root.atYBeginning) {
                 root.loadMoreMsgsIfNeeded()
             }
+        }
+
+        function onFileCopied(dest) {
+            toastManager.instantiateToast(dest)
         }
     }
 
