@@ -153,6 +153,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         Q_FOREACH (const auto& peerUri, model_->peersForConversation(item.uid))
             try {
                 auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+                if (peerUri == accInfo.profileInfo.uri)
+                    return true; // Self account
                 auto contact = accInfo.contactModel->getContact(peerUri);
                 if (contact.isPresent)
                     return true;
