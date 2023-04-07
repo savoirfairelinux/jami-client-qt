@@ -57,6 +57,14 @@ RowLayout {
     ModalTextEdit {
         id: modalTextEdit
 
+        TextMetrics {
+            id: modalTextEditTextSize
+            text: root.staticText
+            elide: Text.ElideRight
+            elideWidth: itemWidth - 40
+            font.pixelSize: JamiTheme.materialLineEditPixelSize
+        }
+
         visible: !root.isPassword
         isSettings: true
 
@@ -64,23 +72,24 @@ RowLayout {
         Layout.preferredWidth: itemWidth
         staticText: root.staticText
         placeholderText: root.placeholderText ? root.placeholderText : root.titleField
+        elidedText: modalTextEditTextSize.elidedText
 
         onAccepted: {
             root.dynamicText = dynamicText
             editFinished()
         }
 
-        Timer {
-            id: debounceTimer
-            interval: 500
-            onTriggered: {
-                root.dynamicText = modalTextEdit.dynamicText
-                editFinished()
-            }
-        }
+        editMode: false
+        isPersistent: false
 
-        onKeyPressed: {
-            debounceTimer.restart()
+        onActiveFocusChanged: {
+            if(!activeFocus){
+                root.dynamicText = dynamicText
+                editFinished()
+                modalTextEdit.editMode = false
+            } else {
+                modalTextEdit.editMode = true
+            }
         }
     }
 

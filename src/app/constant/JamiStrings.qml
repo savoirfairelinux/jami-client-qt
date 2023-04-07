@@ -882,6 +882,8 @@ Item {
     property string identifierDescription: qsTr("Share this Jami identifier to be contacted on this account!")
     property string hereIsIdentifier: qsTr("Here is your Jami identifier, don't hesitate to share it in order to be contacted more easily!")
     property string jamiIdentity: qsTr("Jami identity")
+    property string identifierURI: qsTr("Show fingerprint")
+    property string identifierRegisterName: qsTr("Show registered name")
 
     //New settings
     //ManageAccount
