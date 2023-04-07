@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bdae31d_9916f301",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-07T18:54:39Z",
+      "side": 1,
+      "message": "keep same logic, first return should return isAudio\u003dfalse",
+      "range": {
+        "startLine": 658,
+        "startChar": 22,
+        "endLine": 669,
+        "endChar": 23
+      },
+      "revId": "7fab8525fcb2a8abf57872e6b376a9c37e35ee9d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
