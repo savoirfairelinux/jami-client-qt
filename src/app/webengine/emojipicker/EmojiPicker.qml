@@ -89,7 +89,7 @@ Popup {
         onLoadingChanged: function (loadingInfo) {
             if (loadingInfo.status === WebEngineView.LoadSucceededStatus) {
                 emojiPickerWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                     ":qwebchannel.js"))
+                                                     ":/webengine/qwebchannel.js"))
                 emojiPickerWebView.runJavaScript(
                             UtilsAdapter.qStringFromFile(
                                 ":/webengine/emojipicker/emoji.js"))
