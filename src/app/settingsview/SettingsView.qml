@@ -78,12 +78,6 @@ ListSelectionView {
 
     property int selectedMenu: index
 
-    onSelectedMenuChanged: {
-        if (selectedMenu === SettingsView.Media) {
-            avSettings.populateAVSettings()
-        }
-    }
-
     rightPaneItem: StackView {
         id: settingsView
         objectName: "settingsView"

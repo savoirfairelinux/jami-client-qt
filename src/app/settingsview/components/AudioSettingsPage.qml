@@ -182,6 +182,8 @@ SettingsPageBase {
             widthOfComboBox: itemWidth
             role: "ID_UTF8"
 
+            Component.onCompleted: currentAccountEnableColumnLayout.populateAudioSettings()
+
             onActivated: {
                 AvAdapter.stopAudioMeter()
                 var selectedAudioManager = comboModel.data(
@@ -193,4 +195,3 @@ SettingsPageBase {
         }
     }
 }
-
