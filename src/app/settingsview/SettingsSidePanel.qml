@@ -23,6 +23,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
+import net.jami.Helpers 1.1
 
 import "../mainview/components"
 import "../commoncomponents"
@@ -131,7 +132,7 @@ SidePanelBase {
                         {
                             "id": 11,
                             "title": JamiStrings.updatesTitle,
-                            "visible": "isWindows"
+                            "visible": "isUpdatable"
                         }
                     ]
                 },{
@@ -209,8 +210,8 @@ SidePanelBase {
                                 if (c === undefined)
                                     return true
                                 var res = false
-                                if (c === "isWindows") {
-                                    res = Qt.platform.os.toString() === "windows"
+                                if (c === "isUpdatable") {
+                                    res = UpdateManager.isUpdaterEnabled()
                                 } else if (c === "isJamiAccount") {
                                     res = CurrentAccount.type !== Profile.Type.SIP
                                 } else {
