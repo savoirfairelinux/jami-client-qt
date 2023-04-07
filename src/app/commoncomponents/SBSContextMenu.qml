@@ -37,9 +37,7 @@ ContextMenuAutoLoader {
 
             canTrigger: root.transferId !== ""
             itemName: JamiStrings.saveFile
-            onClicked: {
-                MessagesAdapter.copyToDownloads(root.transferId, root.transferName);
-            }
+            onClicked: MessagesAdapter.copyToDownloads(root.transferId, root.transferName)
         },
         GeneralMenuItem {
             id: openLocation
