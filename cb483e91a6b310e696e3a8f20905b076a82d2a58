@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a554ad1d_35c106f3",
+        "filename": "src/app/mainview/components/FilePreview.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-07T18:16:06Z",
+      "side": 0,
+      "message": "unused",
+      "range": {
+        "startLine": 2,
+        "startChar": 33,
+        "endLine": 2,
+        "endChar": 34
+      },
+      "revId": "cb483e91a6b310e696e3a8f20905b076a82d2a58",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
