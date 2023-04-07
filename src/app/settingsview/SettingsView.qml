@@ -49,7 +49,7 @@ ListSelectionView {
         "FileTransferSettingsPage": Qt.resolvedUrl("components/FileTransferSettingsPage.qml"),
         "CallRecordingSettingsPage": Qt.resolvedUrl("components/CallRecordingSettingsPage.qml"),
         "TroubleshootSettingsPage": Qt.resolvedUrl("components/TroubleshootSettingsPage.qml"),
-        "UpdatesSettingsPage": Qt.resolvedUrl("components/UpdatesSettingsPage.qml"),
+        "UpdateSettingsPage": Qt.resolvedUrl("components/UpdateSettingsPage.qml"),
         "AudioSettingsPage": Qt.resolvedUrl("components/AudioSettingsPage.qml"),
         "VideoSettingsPage": Qt.resolvedUrl("components/VideoSettingsPage.qml"),
         "ScreenSharingSettingsPage": Qt.resolvedUrl("components/ScreenSharingSettingsPage.qml"),
@@ -127,7 +127,7 @@ ListSelectionView {
                     replace(currentItem, viewNode.resources["TroubleshootSettingsPage"], StackView.Immediate)
                     break
                 case 11:
-                    replace(currentItem, viewNode.resources["UpdatesSettingsPage"], StackView.Immediate)
+                    replace(currentItem, viewNode.resources["UpdateSettingsPage"], StackView.Immediate)
                     break
                 case 12:
                     replace(currentItem, viewNode.resources["AudioSettingsPage"], StackView.Immediate)
