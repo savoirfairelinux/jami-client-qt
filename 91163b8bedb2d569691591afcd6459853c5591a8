@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "305d4c68_3f8ec220",
+        "filename": "extras/ci/client-qt-gnulinux/Jenkinsfile",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-07T13:45:49Z",
+      "side": 1,
+      "message": "cpucount got a carriage return, so move it to the end ;)",
+      "range": {
+        "startLine": 122,
+        "startChar": 70,
+        "endLine": 122,
+        "endChar": 78
+      },
+      "revId": "91163b8bedb2d569691591afcd6459853c5591a8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
