@@ -117,6 +117,7 @@ Item {
                 onClicked: {
                     if (!usernameTextEdit.editMode) {
                         usernameTextEdit.startEditing()
+                        usernameTextEdit.readOnly = false
                     } else {
                         usernameTextEdit.accepted()
                     }
@@ -143,11 +144,14 @@ Item {
                 id: btnId
                 source: JamiResources.key_black_24dp_svg
                 visible: CurrentAccount.registeredName !== ""
+                toolTipText: JamiStrings.identifierURI
                 onClicked: {
                     if (clicked) {
                         usernameTextEdit.staticText = CurrentAccount.uri
+                        btnId.toolTipText = JamiStrings.identifierRegisterName
                     } else {
                         usernameTextEdit.staticText = CurrentAccount.registeredName
+                        btnId.toolTipText = JamiStrings.identifierURI
                     }
 
                     clicked = !clicked
@@ -166,8 +170,10 @@ Item {
             fontPixelSize: JamiTheme.jamiIdFontSize
             editMode: false
             isPersistent: false
+            readOnly: true
 
             onAccepted: {
+                usernameTextEdit.readOnly = true
                 if (dynamicText === '') {
                     return
                 }
