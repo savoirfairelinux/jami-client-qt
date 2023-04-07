@@ -156,6 +156,16 @@ JamiListView {
         }
     }
 
+    ToastManager {
+        id: toastManager
+
+        anchors.fill: parent
+
+        function instantiateToast(dest) {
+            instantiate(JamiStrings.fileSaved.arg(dest), 1000, 400)
+        }
+    }
+
     Connections {
         target: CurrentConversation
         function onScrollTo(id) {
@@ -252,6 +262,10 @@ JamiListView {
             if (root.contentHeight < root.height || root.atYBeginning) {
                 root.loadMoreMsgsIfNeeded()
             }
+        }
+
+        function onFileCopied(dest) {
+            toastManager.instantiateToast(dest)
         }
     }
 
