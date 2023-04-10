@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cf61177_772228f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-10T21:31:53Z",
+      "side": 1,
+      "message": "Does this create each string twice on Transifex? Thank you",
+      "revId": "c8c5d94ea44981e83876e3d203b20a58ac5d857e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
