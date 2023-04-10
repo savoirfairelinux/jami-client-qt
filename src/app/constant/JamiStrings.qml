@@ -428,7 +428,7 @@ Item {
 
     // accountSettingsPages
     property string customizeAccountDescription:qsTr("Your profile is only shared with your contacts.\nYour picture and your nickname can be changed at all time in the settings of your account.")
-    property string usernameAccountDescription: qsTr("Your username help you to be easily found and reach on Jami.\nIf you don’t choose one, the serial identifier (a randomly generated word of 40 characters) of your account will be your username. It’s more difficult to be found and reach with this number.")
+    property string usernameAccountDescription: qsTr("A chosen username can help to be found more easily on Jami.\nIf a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.")
     property string ecryptAccountDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.")
     property string saveAccountTitle: qsTr("Backup account")
     property string saveAccountDescription: qsTr("Your Jami account exists only on this device.\nIf you lose your device or uninstall the application, your account will be lost. We recommend to back up it.")
@@ -518,7 +518,7 @@ Item {
     property string enableTypingIndicator: qsTr("Enable typing indicators")
     property string enableTypingIndicatorDescription: qsTr("Send and receive typing indicators showing that a message is being typed.")
     property string displayHyperlinkPreviews: qsTr("Show link preview in conversations")
-    property string displayHyperlinkPreviewsDescription: qsTr("Preview require to download content from this third-party servers.")
+    property string displayHyperlinkPreviewsDescription: qsTr("Preview requires downloading content from third-party servers.")
 
     property string layout: qsTr("Layout")
     property string language: qsTr("User interface language")
@@ -864,7 +864,7 @@ Item {
     property string removeMember: qsTr("Remove member")
     property string to: qsTr("To:")
 
-    //TipBox
+    // TipBox
     property string customize: qsTr("Customize")
     property string tip: qsTr("Tip")
     property string dismiss: qsTr("Dismiss")
@@ -873,41 +873,38 @@ Item {
     property string customizationDescription2: qsTr("Your profile is only shared with your contacts")
     property string whySaveAccount: qsTr("Why should I save my account?")
 
-    //message options
+    // Message options
     property string deleteMessage: qsTr("Delete message")
     property string deleteReplyMessage: qsTr("*(Deleted Message)*")
     property string editMessage: qsTr("Edit message")
 
-    //Jami identifier
+    // Jami identifier
     property string identifierDescription: qsTr("Share this Jami identifier to be contacted on this account!")
     property string hereIsIdentifier: qsTr("Here is your Jami identifier, don't hesitate to share it in order to be contacted more easily!")
     property string jamiIdentity: qsTr("Jami identity")
     property string identifierURI: qsTr("Show fingerprint")
     property string identifierRegisterName: qsTr("Show registered name")
 
-    //New settings
-    //ManageAccount
+    // ManageAccount
     property string enableAccountDescription: qsTr("Enabling your account allows you to be contacted on Jami")
 
-    //General
-    property string appearence: qsTr("Appearence")
+    // General
+    property string appearence: qsTr("Appearance")
 
-    //system
+    // System
     property string experimental: qsTr("Experimental")
 
-    //ringtone
+    // Ringtone
     property string ringtone: qsTr("Ringtone")
 
-    //rdv
+    // Rdv
     property string rendezVousPoint: qsTr("Rendezvous point")
 
-    //moderation
+    // Moderation
     property string moderation: qsTr("Moderation")
 
-    //Appearence
+    // Appearence
     property string theme: qsTr("Theme")
     property string zoomLevel: qsTr("Text zoom level")
-
-
 
 }
