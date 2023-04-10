@@ -16,6 +16,52 @@
       "message": "Does this create each string twice on Transifex? Thank you",
       "revId": "c8c5d94ea44981e83876e3d203b20a58ac5d857e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b343a4d_e2683b2c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-10T21:38:24Z",
+      "side": 1,
+      "message": "Should there be a space ` `, i.e. `// General`?",
+      "range": {
+        "startLine": 890,
+        "startChar": 4,
+        "endLine": 890,
+        "endChar": 13
+      },
+      "revId": "c8c5d94ea44981e83876e3d203b20a58ac5d857e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e59bd044_4d77384c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 893,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-10T21:38:24Z",
+      "side": 1,
+      "message": "Should there be a space ` ` and a capital letter `S`, i.e. `// System`?",
+      "range": {
+        "startLine": 893,
+        "startChar": 4,
+        "endLine": 893,
+        "endChar": 12
+      },
+      "revId": "c8c5d94ea44981e83876e3d203b20a58ac5d857e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
