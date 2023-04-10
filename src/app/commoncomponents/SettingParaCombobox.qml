@@ -93,6 +93,8 @@ ComboBox {
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignLeft
         elide: Text.ElideRight
+        rightPadding: 25
+    
     }
 
     background: Rectangle {
