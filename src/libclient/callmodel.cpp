@@ -1519,14 +1519,6 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
             Q_EMIT linked.callStarted(callId);
             sendProfile(callId);
         }
-        // Add to calls if in pendingConferences_
-        for (int i = 0; i < pendingConferencees_.size(); ++i) {
-            if (pendingConferencees_.at(i).callId == callId) {
-                linked.joinCalls(pendingConferencees_.at(i).callIdToJoin,
-                                 pendingConferencees_.at(i).callId);
-                break;
-            }
-        }
     } else if (call->status == call::Status::PAUSED) {
         currentCall_ = "";
     }
@@ -1709,15 +1701,6 @@ CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& c
     QString currentCallId = currentCall_;
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, confId);
-        // Remove call from pendingConferences_
-        for (int i = 0; i < pendingConferencees_.size(); ++i) {
-            if (pendingConferencees_.at(i).callId == call) {
-                Q_EMIT linked.beginRemovePendingConferenceesRows(i);
-                pendingConferencees_.removeAt(i);
-                Q_EMIT linked.endRemovePendingConferenceesRows();
-                break;
-            }
-        }
         if (call == currentCall_)
             currentCall_ = confId;
     }
@@ -1735,9 +1718,17 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId,
     // Detect if conference is created for this account
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
     QString currentCallId = currentCall_;
-    Q_FOREACH (const auto& call, callList) {
-        Q_EMIT linked.callAddedToConference(call, confId);
-        if (call == currentCall_)
+    Q_FOREACH (const auto& callId, callList) {
+        Q_EMIT linked.callAddedToConference(callId, confId);
+        // Add to calls if in pendingConferences_
+        for (int i = 0; i < pendingConferencees_.size(); ++i) {
+            if (pendingConferencees_.at(i).callId == callId) {
+                linked.joinCalls(pendingConferencees_.at(i).callIdToJoin,
+                                 pendingConferencees_.at(i).callId);
+                break;
+            }
+        }
+        if (callId == currentCall_)
             currentCall_ = confId;
     }
     Q_EMIT linked.currentCallChanged(currentCall_);
