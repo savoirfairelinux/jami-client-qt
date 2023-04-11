@@ -116,6 +116,30 @@
       },
       "revId": "7bf7123cb2755610d0a355a1ff00e8ef8c529172",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17154ec5_a883b18e",
+        "filename": "src/app/commoncomponents/MaterialTextField.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-11T14:52:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4aefe80_79be782c",
+      "range": {
+        "startLine": 65,
+        "startChar": 17,
+        "endLine": 65,
+        "endChar": 27
+      },
+      "revId": "7bf7123cb2755610d0a355a1ff00e8ef8c529172",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
