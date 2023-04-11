@@ -349,7 +349,7 @@ def run_install(args):
                  f'-s {args.sdk} -b daemon'])
         build_windows = 'extras/scripts/build-windows.py'
         execute_script([f'python {build_windows} --init'])
-        execute_script([f'python {build_windows}'])
+        execute_script([f'python {build_windows} --qt={args.qt}'])
         return True
 
     # Unix-like platforms
