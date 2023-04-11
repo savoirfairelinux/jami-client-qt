@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d201bddf_44c0de57",
+        "filename": "extras/scripts/format.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-04-11T21:46:43Z",
+      "side": 1,
+      "message": "synced some bad vscode setting",
+      "parentUuid": "d5b00874_85ee6510",
+      "range": {
+        "startLine": 1,
+        "startChar": 3,
+        "endLine": 1,
+        "endChar": 6
+      },
+      "revId": "5292369378076a39d6821e0bf5d150a8108d4aaa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3cdba4d_7442f3a1",
