@@ -565,7 +565,7 @@ Item {
     property string troubleshootButton: qsTr("Open logs")
     property string troubleshootText: qsTr("Get logs")
 
-    property string experimentalCallSwarm: qsTr("Enable small swarm groups support for Swarm")
+    property string experimentalCallSwarm: qsTr("(Experimental) Enable call support for swarm")
     property string experimentalCallSwarmTooltip: qsTr("This feature will enable call buttons in swarms with multiple participants.")
 
     // Recording Settings
