@@ -1709,15 +1709,6 @@ CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& c
     QString currentCallId = currentCall_;
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, confId);
-        // Remove call from pendingConferences_
-        for (int i = 0; i < pendingConferencees_.size(); ++i) {
-            if (pendingConferencees_.at(i).callId == call) {
-                Q_EMIT linked.beginRemovePendingConferenceesRows(i);
-                pendingConferencees_.removeAt(i);
-                Q_EMIT linked.endRemovePendingConferenceesRows();
-                break;
-            }
-        }
         if (call == currentCall_)
             currentCall_ = confId;
     }
@@ -1737,6 +1728,15 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId,
     QString currentCallId = currentCall_;
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, confId);
+        // Remove call from pendingConferences_
+        for (int i = 0; i < pendingConferencees_.size(); ++i) {
+            if (pendingConferencees_.at(i).callId == call) {
+                Q_EMIT linked.beginRemovePendingConferenceesRows(i);
+                pendingConferencees_.removeAt(i);
+                Q_EMIT linked.endRemovePendingConferenceesRows();
+                break;
+            }
+        }
         if (call == currentCall_)
             currentCall_ = confId;
     }
