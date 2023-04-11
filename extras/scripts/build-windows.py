@@ -43,16 +43,6 @@ import argparse
 import multiprocessing
 
 
-# Qt information
-QT_VERSION = "6.2.3"
-if sys.platform == "win32":
-    QT_PATH = os.path.join("c:", os.sep, "Qt")
-    QT_KIT_PATH = "msvc2019_64"
-else:
-    QT_PATH = ""
-    QT_KIT_PATH = "clang_64"
-qt_root_path = os.getenv("QT_ROOT_DIRECTORY", QT_PATH)
-
 # Visual Studio helpers
 VS_WHERE_PATH = ""
 if sys.platform == "win32":
@@ -71,6 +61,22 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 # the repo root is two levels up from this script
 repo_root_dir = os.path.abspath(os.path.join(this_dir, os.pardir, os.pardir))
 build_dir = os.path.join(repo_root_dir, "build")
+
+
+def find_latest_qt_path():
+    """Find the latest Qt installation path."""
+    # Start with the default install path.
+    qt_base_path = os.path.join("c:", os.sep, "Qt")
+    # There should be folders named with SEMVER numbers under it.
+    # Find the highest version number with an alphabetical sort dirname.
+    qt_version_dirs = sorted(os.listdir(qt_base_path), reverse=True)
+    # Filter out any non-numeric version numbers.
+    qt_version_dirs = [d for d in qt_version_dirs if d[0].isnumeric()]
+    # If there are no version numbers, return None.
+    if len(qt_version_dirs) == 0:
+        return None
+    # The latest version should be the last item in the list.
+    return os.path.join(qt_base_path, qt_version_dirs[0], 'msvc2019_64')
 
 
 def execute_cmd(cmd, with_shell=False, env_vars=None, cmd_dir=repo_root_dir):
@@ -263,15 +269,12 @@ def cmake_build(config_str, env_vars, cmake_build_dir):
     return True
 
 
-def build(config_str, qtver, tests):
+def build(config_str, qt_dir, tests):
     """Use cmake to build the project."""
-    print("Building with Qt " + qtver)
+    print("Building with Qt at " + qt_dir)
 
     vs_env_vars = {}
     vs_env_vars.update(get_vs_env())
-
-    # Get the Qt bin directory.
-    qt_dir = os.path.join(qt_root_path, qtver, QT_KIT_PATH)
 
     # Get the daemon bin/include directories.
     daemon_dir = os.path.join(repo_root_dir, "daemon")
@@ -304,11 +307,10 @@ def build(config_str, qtver, tests):
         sys.exit(1)
 
 
-def run_tests(config_str):
+def run_tests(config_str, qt_dir):
     """Run tests."""
     print("Running client tests")
 
-    qt_dir = os.path.join(qt_root_path, QT_VERSION, QT_KIT_PATH)
     os.environ["PATH"] += os.pathsep + os.path.join(qt_dir, 'bin')
     os.environ["QT_QPA_PLATFORM"] = "offscreen"
     os.environ["QT_QUICK_BACKEND"] = "software"
@@ -385,6 +387,10 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Client build tool")
     subparsers = parser.add_subparsers(dest="subcommand")
 
+    # The Qt install path is not required and will be searched for if not
+    # specified. In that case, the latest version of Qt will be used.
+    parser.add_argument('--qt', default=None,
+                        help='Sets the Qt root path')
     parser.add_argument(
         "-a", "--arch", default="x64", help="Sets the build architecture")
     parser.add_argument(
@@ -395,9 +401,6 @@ def parse_args():
     parser.add_argument(
         '-b', '--beta', action='store_true',
         help='Build Qt Client in Beta Config')
-    parser.add_argument(
-        '-q', '--qtver', default=QT_VERSION,
-        help='Sets the version of Qmake')
     parser.add_argument(
         "-i", "--init", action="store_true", help="Initialize submodules")
     parser.add_argument(
@@ -435,6 +438,12 @@ def main():
 
     parsed_args = parse_args()
 
+    if not parsed_args.qt:
+        parsed_args.qt = find_latest_qt_path()
+        if not parsed_args.qt:
+            print("Qt not found. Please specify the path to Qt.")
+            sys.exit(1)
+
     if parsed_args.version:
         print(get_version())
         sys.exit(0)
@@ -449,17 +458,17 @@ def main():
 
     if parsed_args.subcommand == "pack":
         if not skip_build:
-            build(config_str, parsed_args.qtver, False)
+            build(config_str, parsed_args.qt, False)
         elif parsed_args.msi:
             generate_msi(get_version())
         elif parsed_args.zip:
             generate_zip(get_version())
     else:
         if not skip_build:
-            build(config_str, parsed_args.qtver,
+            build(config_str, parsed_args.qt,
                   parsed_args.tests)
         if parsed_args.tests:
-            run_tests(config_str)
+            run_tests(config_str, parsed_args.qt)
 
     print("Done")
 
