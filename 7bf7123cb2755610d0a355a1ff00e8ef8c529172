@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dc59d34_4a817cb0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-11T14:44:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6825bdf_cecaf889",
+      "range": {
+        "startLine": 9,
+        "startChar": 14,
+        "endLine": 9,
+        "endChar": 24
+      },
+      "revId": "7bf7123cb2755610d0a355a1ff00e8ef8c529172",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66083d28_753341a2",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-07T19:38:51Z",
       "side": 1,
       "message": "I\u0027d add a small test where you try to add a long text in a MaterialTextField!",
+      "range": {
+        "startLine": 65,
+        "startChar": 17,
+        "endLine": 65,
+        "endChar": 27
+      },
+      "revId": "7bf7123cb2755610d0a355a1ff00e8ef8c529172",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a26d144_44cc9197",
+        "filename": "src/app/commoncomponents/MaterialTextField.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-11T14:44:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66083d28_753341a2",
       "range": {
         "startLine": 65,
         "startChar": 17,
