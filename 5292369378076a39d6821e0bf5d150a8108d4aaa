@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5b00874_85ee6510",
+        "filename": "extras/scripts/format.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-11T20:17:45Z",
+      "side": 1,
+      "message": "doesn\u0027t work on GNU/Linux due to  \\r after python3\n\nDo only \\r\\n works on windows?",
+      "range": {
+        "startLine": 1,
+        "startChar": 3,
+        "endLine": 1,
+        "endChar": 6
+      },
+      "revId": "5292369378076a39d6821e0bf5d150a8108d4aaa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3cdba4d_7442f3a1",
+        "filename": "extras/scripts/format.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-11T20:17:45Z",
+      "side": 1,
+      "message": "I also changed the mode to 0755",
+      "range": {
+        "startLine": 4,
+        "startChar": 30,
+        "endLine": 4,
+        "endChar": 31
+      },
+      "revId": "5292369378076a39d6821e0bf5d150a8108d4aaa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
