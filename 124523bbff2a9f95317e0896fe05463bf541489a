@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d22f096_fd27dae9",
+        "filename": "tests/qml/src/tst_MaterialTextEdit.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-11T14:47:03Z",
+      "side": 1,
+      "message": "wrong comment",
+      "range": {
+        "startLine": 55,
+        "startChar": 18,
+        "endLine": 55,
+        "endChar": 42
+      },
+      "revId": "124523bbff2a9f95317e0896fe05463bf541489a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
