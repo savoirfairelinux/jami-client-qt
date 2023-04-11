@@ -197,24 +197,19 @@ Only 64-bit MSVC build can be compiled.
 - Using a new **Non-Elevated Command Prompt**
 
 ```bash
-    python build.py --install
+    python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.2.3/msvc2019_64)
 ```
 
 > **SDK** Note:
 > Jami can be build with more recent Windows SDK than the one specified in the table above. However, if your have another version than SDK 10.0.18362.0 installed, you need to identify it according to the example below. And you still need to have the required version in addition to the one you chose.
 
 ```bash
-    python build.py --install --sdk <your-sdk-version>
+    python build.py --install --qt <path-to-qt-bin-folder> --sdk <your-sdk-version>
 ```
 
-> **Qt** Note: If you have another version than qt 6.2.3 installed this step will build daemon correctly but will fail for the client.
-> When that happens you need to compile the client separately:
+> **Qt** Note: If you omit the `--qt` option, the build script will try to find Qt in the default installation folder, and will take the latest version found. If you have appropriate Qt and SDK versions installed, you won't need to specify any additional options.
 
-```bash
-    python build.py --install
-```
-
-- Then you should be able to use the Visual Studio Solution file in client-qt folder **(Configuration = Release, Platform = x64)**
+Once the build has finished, you should then be able to use the Visual Studio Solution file in client-qt **build** folder **(Configuration = Release, Platform = x64)**
 
 ### Build Module Individually
 
@@ -245,10 +240,8 @@ Only 64-bit MSVC build can be compiled.
 
 ```
     python extras\scripts\build-windows.py --init
-    python extras\scripts\build-windows.py --qtver <your qt version>
+    python extras\scripts\build-windows.py --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.2.3/msvc2019_64)
 ```
-
-Note: if your qt version is different than 6.2.3, you need to use `python extras\scripts\build-windows.py --qtver <your qt version>`.
 
 ## Building On MacOS
 
@@ -296,7 +289,7 @@ Built client could be find in `build/Jami`
 - We currently use [GoogleTest](https://github.com/google/googletest) and [Qt Quick Test](https://doc.qt.io/qt-5/qtquicktest-index.html#introduction) in our product. To build and run tests, you could use the following command.
 
 ```
-    python extras\scripts\build-windows.py --tests
+    python extras\scripts\build-windows.py --tests --qt <path-to-qt-bin-folder>
 ```
 
 - Note that, for tests, the path of local storage files for jami will be changed based on following environment variables.
