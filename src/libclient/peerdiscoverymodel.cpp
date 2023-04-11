@@ -92,8 +92,8 @@ PeerDiscoveryModelPimpl::slotPeerMapStatusChanged(const QString& accountID,
         return;
     }
     Q_EMIT linked_.modelChanged(contactUri,
-                              state == 0 ? PeerModelChanged::INSERT : PeerModelChanged::REMOVE,
-                              displayname);
+                                state == 0 ? PeerModelChanged::INSERT : PeerModelChanged::REMOVE,
+                                displayname);
 }
 
 std::vector<PeerContact>

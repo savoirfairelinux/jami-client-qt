@@ -85,7 +85,10 @@ public:
     {
     public:
         explicit QueryError(QSqlQuery&& query);
-        virtual QString details() { return {}; }
+        virtual QString details()
+        {
+            return {};
+        }
 
         const QSqlQuery query;
     };
