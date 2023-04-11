@@ -15,16 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
@@ -33,9 +30,8 @@ SettingsPageBase {
     title: JamiStrings.customizeProfile
 
     function stopBooth() {
-        currentAccountAvatar.stopBooth()
+        currentAccountAvatar.stopBooth();
     }
-
 
     flickableContent: ColumnLayout {
         id: currentAccountEnableColumnLayout
@@ -54,7 +50,7 @@ SettingsPageBase {
                 target: settingsView
 
                 function onStopBooth() {
-                    stopBooth()
+                    stopBooth();
                 }
             }
 
@@ -94,7 +90,7 @@ SettingsPageBase {
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
-            wrapMode : Text.WordWrap
+            wrapMode: Text.WordWrap
 
             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
             font.kerning: true

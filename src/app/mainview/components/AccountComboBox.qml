@@ -16,15 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Label {
@@ -42,7 +39,7 @@ Label {
         target: AccountAdapter
 
         function onAccountStatusChanged(accountId) {
-            AccountListModel.reset()
+            AccountListModel.reset();
         }
     }
 
@@ -50,16 +47,16 @@ Label {
         target: LRCInstance
 
         function onAccountListChanged() {
-            root.update()
-            AccountListModel.reset()
+            root.update();
+            AccountListModel.reset();
         }
     }
 
     function togglePopup() {
         if (root.popup.opened) {
-            root.popup.close()
+            root.popup.close();
         } else {
-            root.popup.open()
+            root.popup.open();
         }
     }
 
@@ -67,13 +64,11 @@ Label {
         id: background
         anchors.fill: parent
 
-        color: root.popup.opened ?
-                   Qt.lighter(JamiTheme.hoverColor, 1.0) :
-                   mouseArea.containsMouse ?
-                       Qt.lighter(JamiTheme.hoverColor, 1.05) :
-                       JamiTheme.backgroundColor
-        Behavior on color {
-            ColorAnimation { duration: JamiTheme.shortFadeDuration }
+        color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.05) : JamiTheme.backgroundColor
+        Behavior on color  {
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
         }
 
         // TODO: this can be removed when frameless window is implemented
@@ -94,8 +89,8 @@ Label {
         anchors.fill: parent
         hoverEnabled: true
         onClicked: {
-            root.forceActiveFocus()
-            togglePopup()
+            root.forceActiveFocus();
+            togglePopup();
         }
     }
 
@@ -154,7 +149,7 @@ Label {
 
                 visible: text.length && text !== bestNameText.text
 
-                text:  CurrentAccount.bestId
+                text: CurrentAccount.bestId
                 textFormat: TextEdit.PlainText
 
                 font.pointSize: JamiTheme.textFontSize
@@ -181,11 +176,8 @@ Label {
 
                 color: JamiTheme.textColor
 
-                source: !root.popup.opened ?
-                            JamiResources.expand_more_24dp_svg :
-                            JamiResources.expand_less_24dp_svg
+                source: !root.popup.opened ? JamiResources.expand_more_24dp_svg : JamiResources.expand_less_24dp_svg
             }
-
 
             PushButton {
                 id: shareButton
@@ -202,30 +194,22 @@ Label {
                 normalColor: JamiTheme.backgroundColor
                 imageColor: JamiTheme.textColor
 
-                onClicked: viewCoordinator.presentDialog(
-                               appWindow,
-                               "mainview/components/WelcomePageQrDialog.qml")
+                onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
 
             PushButton {
                 id: settingsButton
 
                 anchors.verticalCenter: parent.verticalCenter
-                source: !inSettings ?
-                            JamiResources.settings_24dp_svg :
-                            JamiResources.round_close_24dp_svg
+                source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
 
                 normalColor: JamiTheme.backgroundColor
                 imageColor: JamiTheme.textColor
-                toolTipText: !inSettings ?
-                                 JamiStrings.openSettings :
-                                 JamiStrings.closeSettings
+                toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
 
                 onClicked: {
-                    !inSettings ?
-                                viewCoordinator.present("SettingsView") :
-                                viewCoordinator.dismiss("SettingsView")
-                    background.state = "normal"
+                    !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
+                    background.state = "normal";
                 }
             }
         }

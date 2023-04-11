@@ -15,33 +15,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
 ItemDelegate {
     id: root
 
-    property string mediaCodecName : ""
-    property bool isEnabled : false
+    property string mediaCodecName: ""
+    property bool isEnabled: false
     property int mediaCodecId
     property string samplerRate: ""
     property int checkBoxWidth: 24
     property int mediaType
 
-    signal mediaCodecStateChange(string idToSet , bool isToBeEnabled)
+    signal mediaCodecStateChange(string idToSet, bool isToBeEnabled)
 
     highlighted: ListView.isCurrentItem
     background: Rectangle {
         color: highlighted || hovered ? JamiTheme.smartListSelectedColor : JamiTheme.editBackgroundColor
     }
     hoverEnabled: true
-
 
     RowLayout {
         anchors.fill: parent
@@ -70,25 +67,22 @@ ItemDelegate {
                 }
                 width: checkBoxWidth
                 height: checkBoxWidth
-                source: checkBoxIsEnabled.checked ?
-                            JamiResources.check_box_24dp_svg :
-                            JamiResources.check_box_outline_blank_24dp_svg
+                source: checkBoxIsEnabled.checked ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg
             }
 
-            nextCheckState: function() {
-                    var result
-                    var result_bool
-
-                    if (checkState === Qt.Checked) {
-                        result = Qt.Unchecked
-                        result_bool = false
-                    } else {
-                        result = Qt.Checked
-                        result_bool = true
-                    }
-                    mediaCodecStateChange(mediaCodecId, result_bool)
-                    return result
+            nextCheckState: function () {
+                var result;
+                var result_bool;
+                if (checkState === Qt.Checked) {
+                    result = Qt.Unchecked;
+                    result_bool = false;
+                } else {
+                    result = Qt.Checked;
+                    result_bool = true;
                 }
+                mediaCodecStateChange(mediaCodecId, result_bool);
+                return result;
+            }
         }
 
         Label {
@@ -101,9 +95,9 @@ ItemDelegate {
 
             text: {
                 if (mediaType == MediaSettings.VIDEO)
-                    return mediaCodecName
+                    return mediaCodecName;
                 else if (mediaType == MediaSettings.AUDIO)
-                    return mediaCodecName + " " + samplerRate + " Hz"
+                    return mediaCodecName + " " + samplerRate + " Hz";
             }
             color: JamiTheme.textColor
             elide: Text.ElideRight

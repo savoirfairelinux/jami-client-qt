@@ -14,9 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
@@ -25,9 +23,9 @@ Loader {
     id: root
     property string prefixIconSrc: JamiResources.round_edit_24dp_svg
     property color prefixIconColor: JamiTheme.editLineColor
-    property string suffixIconSrc : ""
+    property string suffixIconSrc: ""
     property color suffixIconColor: JamiTheme.buttonTintedBlue
-    property string suffixBisIconSrc : ""
+    property string suffixBisIconSrc: ""
     property color suffixBisIconColor: JamiTheme.buttonTintedBlue
     property color textColor: JamiTheme.textColor
 
@@ -44,7 +42,9 @@ Loader {
     property bool fontBold: false
 
     property int echoMode: TextInput.Normal
-    property QtObject textValidator: RegularExpressionValidator { id: defaultValidator }
+    property QtObject textValidator: RegularExpressionValidator {
+        id: defaultValidator
+    }
 
     property var icon
     property bool isSettings
@@ -54,8 +54,8 @@ Loader {
     property bool isEditing: false
 
     onStatusChanged: {
-        if(status == Loader.Ready && icon)
-            root.item.icon = icon
+        if (status == Loader.Ready && icon)
+            root.item.icon = icon;
     }
 
     // Always start with the static text component displayed first.
@@ -73,9 +73,9 @@ Loader {
     // Needed to give proper focus to loaded item
     onFocusChanged: {
         if (root.focus && root.isPersistent) {
-            item.forceActiveFocus()
+            item.forceActiveFocus();
         }
-        isEditing = !isEditing
+        isEditing = !isEditing;
     }
 
     // This is used when the user is not editing the text.
@@ -94,7 +94,6 @@ Loader {
     // This is used when the user is editing the text.
     Component {
         id: editComp
-
 
         MaterialTextField {
             id: editCompField
@@ -120,9 +119,9 @@ Loader {
             inputIsValid: root.inputIsValid
             onFocusChanged: {
                 if (!focus && root.editMode) {
-                    root.editMode = isPersistent
+                    root.editMode = isPersistent;
                 }
-                activeChanged(root.editMode)
+                activeChanged(root.editMode);
             }
             onIsActiveChanged: activeChanged(isActive)
             validator: root.textValidator
@@ -135,8 +134,6 @@ Loader {
     // We use a loader to switch between the two components depending on the
     // editMode property.
     sourceComponent: {
-        editMode || isPersistent
-                ? editComp
-                : displayComp
+        editMode || isPersistent ? editComp : displayComp;
     }
 }

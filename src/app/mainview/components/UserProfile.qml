@@ -16,12 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 BaseModalDialog {
@@ -107,7 +104,9 @@ BaseModalDialog {
                 color: JamiTheme.textColor
             }
 
-            Item { Layout.fillWidth: true }
+            Item {
+                Layout.fillWidth: true
+            }
 
             Text {
                 Layout.alignment: Qt.AlignRight
@@ -191,9 +190,7 @@ BaseModalDialog {
                 mipmap: false
                 smooth: false
 
-                source: convId !== "" ?
-                            "image://qrImage/contact_" + convId :
-                            ""
+                source: convId !== "" ? "image://qrImage/contact_" + convId : ""
             }
 
             MaterialButton {

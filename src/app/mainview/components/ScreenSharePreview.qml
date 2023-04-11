@@ -15,24 +15,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
 
     color: JamiTheme.secondaryBackgroundColor
-    border.color: selectedScreenNumber === elementIndex
-                  ? JamiTheme.screenSelectionBorderColor
-                  : JamiTheme.tabbarBorderColor
+    border.color: selectedScreenNumber === elementIndex ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
 
     width: elementWidth
     height: 3 * width / 4
@@ -64,11 +59,11 @@ Rectangle {
         width: parent.width - 50
 
         Component.onDestruction: {
-            VideoDevices.stopDevice(rendererId)
+            VideoDevices.stopDevice(rendererId);
         }
         Component.onCompleted: {
             if (root.rId !== "") {
-                rendererId = VideoDevices.startDevice(root.rId)
+                rendererId = VideoDevices.startDevice(root.rId);
             }
         }
     }
@@ -79,7 +74,7 @@ Rectangle {
 
         onClicked: {
             if (selectedScreenNumber !== root.elementIndex) {
-                selectedScreenNumber = root.elementIndex
+                selectedScreenNumber = root.elementIndex;
             }
         }
     }

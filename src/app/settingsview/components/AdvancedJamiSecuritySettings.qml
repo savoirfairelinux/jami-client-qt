@@ -15,14 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
@@ -31,19 +28,14 @@ ColumnLayout {
     property int itemWidth
 
     function openFileDialog(title, oldPath, fileType, onAcceptedCb) {
-        var openPath = oldPath === "" ?
-                    (UtilsAdapter.getCurrentPath() + "/ringtones/") :
-                    (UtilsAdapter.toFileAbsolutepath(oldPath))
-        var dlg = viewCoordinator.presentDialog(
-                    appWindow,
-                    "commoncomponents/JamiFileDialog.qml",
-                    {
-                        title: title,
-                        fileMode: JamiFileDialog.OpenFile,
-                        folder: openPath,
-                        nameFilters: [fileType, JamiStrings.allFiles]
-                    })
-        dlg.fileAccepted.connect(onAcceptedCb)
+        var openPath = oldPath === "" ? (UtilsAdapter.getCurrentPath() + "/ringtones/") : (UtilsAdapter.toFileAbsolutepath(oldPath));
+        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                "title": title,
+                "fileMode": JamiFileDialog.OpenFile,
+                "folder": openPath,
+                "nameFilters": [fileType, JamiStrings.allFiles]
+            });
+        dlg.fileAccepted.connect(onAcceptedCb);
     }
 
     Text {
@@ -55,7 +47,7 @@ ColumnLayout {
         color: JamiTheme.textColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        wrapMode : Text.WordWrap
+        wrapMode: Text.WordWrap
 
         font.pixelSize: JamiTheme.settingsTitlePixelSize
         font.kerning: true
@@ -74,13 +66,9 @@ ColumnLayout {
             titleField: JamiStrings.caCertificate
             itemWidth: root.itemWidth
 
-            onClick: openFileDialog(JamiStrings.selectCACert,
-                                    CurrentAccount.certificateListFile_TLS,
-                                    JamiStrings.certificateFile,
-                                    function (file) {
-                                        CurrentAccount.certificateListFile_TLS =
-                                                UtilsAdapter.getAbsPath(file.toString())
-                                    })
+            onClick: openFileDialog(JamiStrings.selectCACert, CurrentAccount.certificateListFile_TLS, JamiStrings.certificateFile, function (file) {
+                    CurrentAccount.certificateListFile_TLS = UtilsAdapter.getAbsPath(file.toString());
+                })
         }
 
         SettingMaterialButton {
@@ -93,13 +81,9 @@ ColumnLayout {
             titleField: JamiStrings.userCertificate
             itemWidth: root.itemWidth
 
-            onClick: openFileDialog(JamiStrings.selectUserCert,
-                                    CurrentAccount.certificateFile_TLS,
-                                    JamiStrings.certificateFile,
-                                    function (file) {
-                                        CurrentAccount.certificateFile_TLS =
-                                                UtilsAdapter.getAbsPath(file.toString())
-                                    })
+            onClick: openFileDialog(JamiStrings.selectUserCert, CurrentAccount.certificateFile_TLS, JamiStrings.certificateFile, function (file) {
+                    CurrentAccount.certificateFile_TLS = UtilsAdapter.getAbsPath(file.toString());
+                })
         }
 
         SettingMaterialButton {
@@ -112,13 +96,9 @@ ColumnLayout {
             titleField: JamiStrings.privateKey
             itemWidth: root.itemWidth
 
-            onClick: openFileDialog(JamiStrings.selectPrivateKey,
-                                    CurrentAccount.privateKeyFile_TLS,
-                                    JamiStrings.keyFile,
-                                    function (file) {
-                                        CurrentAccount.privateKeyFile_TLS =
-                                                UtilsAdapter.getAbsPath(file.toString())
-                                    })
+            onClick: openFileDialog(JamiStrings.selectPrivateKey, CurrentAccount.privateKeyFile_TLS, JamiStrings.keyFile, function (file) {
+                    CurrentAccount.privateKeyFile_TLS = UtilsAdapter.getAbsPath(file.toString());
+                })
         }
 
         SettingsMaterialTextEdit {

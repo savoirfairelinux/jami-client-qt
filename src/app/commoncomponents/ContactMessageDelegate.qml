@@ -18,7 +18,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -32,7 +31,7 @@ Column {
     property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     property int seq: MsgSeq.single//a changer par textlabel
-    property alias  messageToSend : textLabel.text
+    property alias messageToSend: textLabel.text
 
     width: ListView.view ? ListView.view.width : 0
     spacing: 2
@@ -44,7 +43,7 @@ Column {
         width: parent.width
 
         TimestampInfo {
-            id:timestampItem
+            id: timestampItem
 
             showDay: root.showDay
             showTime: root.showTime
@@ -93,6 +92,10 @@ Column {
         }
     }
     opacity: 0
-    Behavior on opacity { NumberAnimation { duration: 100 } }
+    Behavior on opacity  {
+        NumberAnimation {
+            duration: 100
+        }
+    }
     Component.onCompleted: opacity = 1
 }

@@ -14,12 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import net.jami.Constants 1.1
-
-
 import "../../commoncomponents"
 
 ResponsiveImage {
@@ -42,4 +39,3 @@ ResponsiveImage {
         anchors.leftMargin: isSharing ? 0 : 3
     }
 }
-

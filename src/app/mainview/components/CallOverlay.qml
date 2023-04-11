@@ -17,19 +17,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
-
 import "../js/contactpickercreation.js" as ContactPickerCreation
 import "../js/selectscreenwindowcreation.js" as SelectScreenWindowCreation
 import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
-
 import "../../commoncomponents"
 
 Item {
@@ -43,34 +39,29 @@ Item {
     signal swarmDetailsClicked
 
     function closeContextMenuAndRelatedWindows() {
-        sipInputPanel.close()
-        ScreenRubberBandCreation.destroyScreenRubberBandWindow()
-        PluginHandlerPickerCreation.closePluginHandlerPicker()
-        root.closeClicked()
-        callInformationOverlay.close()
+        sipInputPanel.close();
+        ScreenRubberBandCreation.destroyScreenRubberBandWindow();
+        PluginHandlerPickerCreation.closePluginHandlerPicker();
+        root.closeClicked();
+        callInformationOverlay.close();
     }
 
     // x, y position does not need to be translated
     // since they all fill the call page
-    function openCallViewContextMenuInPos(x, y,
-                                          hoveredOverlayUri,
-                                          hoveredOverlaySinkId,
-                                          hoveredOverVideoMuted,
-                                          isOnLocal)
-    {
-        callViewContextMenu.x = root.width - x >= callViewContextMenu.width ? x : root.width - callViewContextMenu.width
-        callViewContextMenu.y = root.height - y >= callViewContextMenu.height ? y : root.height - callViewContextMenu.height
-        callViewContextMenu.hoveredOverlayUri = hoveredOverlayUri
-        callViewContextMenu.hoveredOverlaySinkId = hoveredOverlaySinkId
-        callViewContextMenu.hoveredOverVideoMuted = hoveredOverVideoMuted
-        callViewContextMenu.isOnLocal = isOnLocal
-        callViewContextMenu.open()
+    function openCallViewContextMenuInPos(x, y, hoveredOverlayUri, hoveredOverlaySinkId, hoveredOverVideoMuted, isOnLocal) {
+        callViewContextMenu.x = root.width - x >= callViewContextMenu.width ? x : root.width - callViewContextMenu.width;
+        callViewContextMenu.y = root.height - y >= callViewContextMenu.height ? y : root.height - callViewContextMenu.height;
+        callViewContextMenu.hoveredOverlayUri = hoveredOverlayUri;
+        callViewContextMenu.hoveredOverlaySinkId = hoveredOverlaySinkId;
+        callViewContextMenu.hoveredOverVideoMuted = hoveredOverVideoMuted;
+        callViewContextMenu.isOnLocal = isOnLocal;
+        callViewContextMenu.open();
     }
 
     DropArea {
         anchors.fill: parent
-        onDropped: function(drop) {
-            AvAdapter.shareFile(drop.urls)
+        onDropped: function (drop) {
+            AvAdapter.shareFile(drop.urls);
         }
     }
 
@@ -94,16 +85,13 @@ Item {
     }
 
     function openShareFileDialog() {
-        var dlg = viewCoordinator.presentDialog(
-                    appWindow,
-                    "commoncomponents/JamiFileDialog.qml",
-                    {
-                        fileMode: JamiFileDialog.OpenFile,
-                        nameFilters: [JamiStrings.allFiles]
-                    })
-        dlg.fileAccepted.connect(function(file) {
-            AvAdapter.shareFile(file)
-        })
+        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                "fileMode": JamiFileDialog.OpenFile,
+                "nameFilters": [JamiStrings.allFiles]
+            });
+        dlg.fileAccepted.connect(function (file) {
+                AvAdapter.shareFile(file);
+            });
     }
 
     ResponsiveImage {
@@ -121,38 +109,36 @@ Item {
     }
 
     function openContactPicker(type) {
-        ContactPickerCreation.presentContactPickerPopup(type, root)
+        ContactPickerCreation.presentContactPickerPopup(type, root);
     }
 
     function openShareScreen() {
         if (Qt.application.screens.length === 1) {
-            AvAdapter.shareEntireScreen(0)
+            AvAdapter.shareEntireScreen(0);
         } else {
-            SelectScreenWindowCreation.presentSelectScreenWindow(
-                        appWindow, false)
+            SelectScreenWindowCreation.presentSelectScreenWindow(appWindow, false);
         }
     }
 
     function openShareWindow() {
-        AvAdapter.getListWindows()
+        AvAdapter.getListWindows();
         if (AvAdapter.windowsNames.length >= 1) {
-            SelectScreenWindowCreation.presentSelectScreenWindow(
-                        appWindow, true)
+            SelectScreenWindowCreation.presentSelectScreenWindow(appWindow, true);
         }
     }
 
     function openShareScreenArea() {
         if (Qt.platform.os !== "windows") {
-            AvAdapter.shareScreenArea(0, 0, 0, 0)
+            AvAdapter.shareScreenArea(0, 0, 0, 0);
         } else {
-            ScreenRubberBandCreation.createScreenRubberBandWindowObject()
-            ScreenRubberBandCreation.showScreenRubberBandWindow()
+            ScreenRubberBandCreation.createScreenRubberBandWindowObject();
+            ScreenRubberBandCreation.showScreenRubberBandWindow();
         }
     }
 
     function openPluginsMenu() {
-        PluginHandlerPickerCreation.createPluginHandlerPickerObjects(root, true)
-        PluginHandlerPickerCreation.openPluginHandlerPicker()
+        PluginHandlerPickerCreation.createPluginHandlerPickerObjects(root, true);
+        PluginHandlerPickerCreation.openPluginHandlerPicker();
     }
 
     MainOverlay {
@@ -162,20 +148,48 @@ Item {
 
         Connections {
             target: mainOverlay.callActionBar
-            function onChatClicked() { root.chatButtonClicked() }
-            function onAddToConferenceClicked() { openContactPicker(ContactList.CONFERENCE) }
-            function onTransferClicked() { openContactPicker(ContactList.TRANSFER) }
-            function onResumePauseCallClicked() { CallAdapter.holdThisCallToggle() }
-            function onShowInputPanelClicked() { sipInputPanel.open() }
-            function onShareScreenClicked() { openShareScreen() }
-            function onShareWindowClicked() { openShareWindow() }
-            function onStopSharingClicked() { AvAdapter.stopSharing(CurrentCall.sharingSource) }
-            function onShareScreenAreaClicked() { openShareScreenArea() }
-            function onRecordCallClicked() { CallAdapter.recordThisCallToggle() }
-            function onShareFileClicked() { openShareFileDialog() }
-            function onPluginsClicked() { openPluginsMenu() }
-            function onFullScreenClicked() { root.fullScreenClicked() }
-            function onSwarmDetailsClicked() { root.swarmDetailsClicked() }
+            function onChatClicked() {
+                root.chatButtonClicked();
+            }
+            function onAddToConferenceClicked() {
+                openContactPicker(ContactList.CONFERENCE);
+            }
+            function onTransferClicked() {
+                openContactPicker(ContactList.TRANSFER);
+            }
+            function onResumePauseCallClicked() {
+                CallAdapter.holdThisCallToggle();
+            }
+            function onShowInputPanelClicked() {
+                sipInputPanel.open();
+            }
+            function onShareScreenClicked() {
+                openShareScreen();
+            }
+            function onShareWindowClicked() {
+                openShareWindow();
+            }
+            function onStopSharingClicked() {
+                AvAdapter.stopSharing(CurrentCall.sharingSource);
+            }
+            function onShareScreenAreaClicked() {
+                openShareScreenArea();
+            }
+            function onRecordCallClicked() {
+                CallAdapter.recordThisCallToggle();
+            }
+            function onShareFileClicked() {
+                openShareFileDialog();
+            }
+            function onPluginsClicked() {
+                openPluginsMenu();
+            }
+            function onFullScreenClicked() {
+                root.fullScreenClicked();
+            }
+            function onSwarmDetailsClicked() {
+                root.swarmDetailsClicked();
+            }
         }
     }
 
@@ -186,10 +200,10 @@ Item {
             toastManager.instantiateToast();
         }
         onScreenshotButtonHoveredChanged: {
-            participantsLayer.screenshotButtonHovered = screenshotButtonHovered
+            participantsLayer.screenshotButtonHovered = screenshotButtonHovered;
         }
     }
     onVisibleChanged: {
-        callViewContextMenu.close()
+        callViewContextMenu.close();
     }
 }

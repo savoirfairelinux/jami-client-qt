@@ -16,13 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 TabButton {
@@ -51,9 +48,7 @@ TabButton {
 
         anchors.fill: root
 
-        color: root.hovered ?
-                   root.hoverColor :
-                   root.backgroundColor
+        color: root.hovered ? root.hoverColor : root.backgroundColor
 
         RowLayout {
             id: informations
@@ -69,8 +64,8 @@ TabButton {
                 font.pointSize: fontSize
                 color: {
                     if (!root.down && root.hovered)
-                        return root.textColorHovered
-                    return root.textColor
+                        return root.textColorHovered;
+                    return root.textColor;
                 }
                 opacity: root.down ? 1.0 : 0.5
             }
@@ -84,18 +79,16 @@ TabButton {
     }
 
     Rectangle {
-        width: underlineContentOnly ?
-                   informations.width + JamiTheme.menuBorderPreferredHeight :
-                   contentRect.width
+        width: underlineContentOnly ? informations.width + JamiTheme.menuBorderPreferredHeight : contentRect.width
         anchors.horizontalCenter: contentRect.horizontalCenter
         anchors.bottom: contentRect.bottom
         height: borderWidth
         color: {
             if (!root.down && root.hovered)
-                return root.textColorHovered
+                return root.textColorHovered;
             if (!root.down)
-                return "transparent"
-            return root.textColor
+                return "transparent";
+            return root.textColor;
         }
     }
 

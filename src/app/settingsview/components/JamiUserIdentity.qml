@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
@@ -57,8 +54,7 @@ ColumnLayout {
 
             anchors.verticalCenter: parent.verticalCenter
 
-            width: parent.width - idLabel.width
-                   - JamiTheme.preferredMarginSize
+            width: parent.width - idLabel.width - JamiTheme.preferredMarginSize
             height: JamiTheme.preferredFieldHeight
 
             font.pointSize: JamiTheme.textFontSize
@@ -81,8 +77,7 @@ ColumnLayout {
 
                 font: currentRingID.font
                 elide: Text.ElideRight
-                elideWidth: root.width - idLabel.width -
-                            JamiTheme.preferredMarginSize * 4
+                elideWidth: root.width - idLabel.width - JamiTheme.preferredMarginSize * 4
 
                 text: CurrentAccount.uri
             }
@@ -125,16 +120,14 @@ ColumnLayout {
 
             onAccepted: {
                 if (dynamicText === '') {
-                    return
+                    return;
                 }
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "settingsview/components/NameRegistrationDialog.qml",
-                            { registeredName: dynamicText })
-                dlg.accepted.connect(function() {
-                    currentRegisteredID.nameRegistrationState =
-                            UsernameTextEdit.NameRegistrationState.BLANK
-                })
+                var dlg = viewCoordinator.presentDialog(appWindow, "settingsview/components/NameRegistrationDialog.qml", {
+                        "registeredName": dynamicText
+                    });
+                dlg.accepted.connect(function () {
+                        currentRegisteredID.nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
+                    });
             }
         }
     }

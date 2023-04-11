@@ -15,11 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 
 Menu {
@@ -30,64 +28,53 @@ Menu {
     property int menuSeparatorPreferredHeight: 0
 
     property GeneralMenuSeparator menuTopBorder: GeneralMenuSeparator {
-        separatorPreferredWidth: menuPreferredWidth ?
-                                     menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
-        separatorPreferredHeight: menuSeparatorPreferredHeight ?
-                                      menuSeparatorPreferredHeight : JamiTheme.menuBorderPreferredHeight
+        separatorPreferredWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
+        separatorPreferredHeight: menuSeparatorPreferredHeight ? menuSeparatorPreferredHeight : JamiTheme.menuBorderPreferredHeight
         separatorColor: "transparent"
     }
 
     property GeneralMenuSeparator menuBottomBorder: GeneralMenuSeparator {
-        separatorPreferredWidth: menuPreferredWidth ?
-                                     menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
-        separatorPreferredHeight: menuSeparatorPreferredHeight ?
-                                      menuSeparatorPreferredHeight : JamiTheme.menuBorderPreferredHeight
+        separatorPreferredWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
+        separatorPreferredHeight: menuSeparatorPreferredHeight ? menuSeparatorPreferredHeight : JamiTheme.menuBorderPreferredHeight
         separatorColor: "transparent"
     }
 
     property var generalMenuSeparatorList: []
 
     function loadMenuItems(menuItems) {
-        root.addItem(menuTopBorder)
+        root.addItem(menuTopBorder);
 
         // use the maximum text width as the preferred width for menu
         for (var j = 0; j < menuItems.length; ++j) {
-            var currentItemWidth = menuItems[j].itemPreferredWidth
-            if (currentItemWidth !== JamiTheme.menuItemsPreferredWidth
-                    && currentItemWidth > menuPreferredWidth)
-                menuPreferredWidth = currentItemWidth
+            var currentItemWidth = menuItems[j].itemPreferredWidth;
+            if (currentItemWidth !== JamiTheme.menuItemsPreferredWidth && currentItemWidth > menuPreferredWidth)
+                menuPreferredWidth = currentItemWidth;
         }
-
         for (var i = 0; i < menuItems.length; ++i) {
             if (menuItems[i].canTrigger) {
-                menuItems[i].parentMenu = root
-                root.addItem(menuItems[i])
-
+                menuItems[i].parentMenu = root;
+                root.addItem(menuItems[i]);
                 if (menuPreferredWidth)
-                    menuItems[i].itemPreferredWidth = menuPreferredWidth
+                    menuItems[i].itemPreferredWidth = menuPreferredWidth;
                 if (menuItemsPreferredHeight)
-                    menuItems[i].itemPreferredHeight = menuItemsPreferredHeight
+                    menuItems[i].itemPreferredHeight = menuItemsPreferredHeight;
             }
             if (menuItems[i].addMenuSeparatorAfter) {
                 // If the QML file to be loaded is a local file,
                 // you could omit the finishCreation() function
-                var menuSeparatorComponent = Qt.createComponent(
-                            "GeneralMenuSeparator.qml",
-                            Component.PreferSynchronous, root)
-                var menuSeparatorComponentObj = menuSeparatorComponent.createObject()
-                generalMenuSeparatorList.push(menuSeparatorComponentObj)
-                root.addItem(menuSeparatorComponentObj)
+                var menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
+                var menuSeparatorComponentObj = menuSeparatorComponent.createObject();
+                generalMenuSeparatorList.push(menuSeparatorComponentObj);
+                root.addItem(menuSeparatorComponentObj);
             }
         }
-
-        root.addItem(menuBottomBorder)
-
-        root.open()
+        root.addItem(menuBottomBorder);
+        root.open();
     }
 
     onVisibleChanged: {
         if (!visible)
-            root.close()
+            root.close();
     }
 
     modal: true
@@ -118,7 +105,7 @@ Menu {
 
     Component.onDestruction: {
         for (var i = 0; i < generalMenuSeparatorList.length; ++i) {
-            generalMenuSeparatorList[i].destroy()
+            generalMenuSeparatorList[i].destroy();
         }
     }
 }

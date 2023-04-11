@@ -15,13 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 JamiFlickable {
@@ -37,15 +34,15 @@ JamiFlickable {
     signal sendMessagesRequired
 
     function insertText(text) {
-        textArea.insert(textArea.cursorPosition, text)
+        textArea.insert(textArea.cursorPosition, text);
     }
 
     function clearText() {
-        textArea.clear()
+        textArea.clear();
     }
 
     function pasteText() {
-        textArea.paste()
+        textArea.paste();
     }
 
     LineEditContextMenu {
@@ -56,7 +53,7 @@ JamiFlickable {
 
         onContextMenuRequirePaste: {
             // Intercept paste event to use C++ QMimeData
-            MessagesAdapter.onPaste()
+            MessagesAdapter.onPaste();
         }
     }
 
@@ -89,14 +86,14 @@ JamiFlickable {
 
         onReleased: function (event) {
             if (event.button === Qt.RightButton)
-                textAreaContextMenu.openMenuAt(event)
+                textAreaContextMenu.openMenuAt(event);
         }
 
         onTextChanged: {
             if (text)
-                MessagesAdapter.userIsComposing(true)
+                MessagesAdapter.userIsComposing(true);
             else
-                MessagesAdapter.userIsComposing(false)
+                MessagesAdapter.userIsComposing(false);
         }
 
         // Intercept paste event to use C++ QMimeData
@@ -105,23 +102,22 @@ JamiFlickable {
         //     Shift + Enter -> Next Line
         Keys.onPressed: function (keyEvent) {
             if (keyEvent.matches(StandardKey.Paste)) {
-                MessagesAdapter.onPaste()
-                keyEvent.accepted = true
+                MessagesAdapter.onPaste();
+                keyEvent.accepted = true;
             } else if (keyEvent.matches(StandardKey.MoveToPreviousLine)) {
                 if (root.text !== "")
-                    return
-                MessagesAdapter.replyToId = ""
-                MessagesAdapter.editId = CurrentConversation.lastSelfMessageId
+                    return;
+                MessagesAdapter.replyToId = "";
+                MessagesAdapter.editId = CurrentConversation.lastSelfMessageId;
                 keyEvent.accepted = true;
-            } else if (keyEvent.key === Qt.Key_Enter ||
-                       keyEvent.key === Qt.Key_Return) {
+            } else if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
                 if (!(keyEvent.modifiers & Qt.ShiftModifier)) {
-                    root.sendMessagesRequired()
-                    keyEvent.accepted = true
+                    root.sendMessagesRequired();
+                    keyEvent.accepted = true;
                 }
             } else if (keyEvent.key === Qt.Key_Tab) {
-                nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
-                keyEvent.accepted = true
+                nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason);
+                keyEvent.accepted = true;
             }
         }
     }

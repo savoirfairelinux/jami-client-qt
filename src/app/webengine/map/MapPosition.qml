@@ -15,18 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import QtWebEngine
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Item {
@@ -42,7 +39,7 @@ Item {
     property bool isSharingToCurrentConversation
 
     function closeMapPosition() {
-        root.destroy()
+        root.destroy();
     }
 
     Connections {
@@ -50,22 +47,22 @@ Item {
 
         function onPinMapSignal(key) {
             if (key === attachedAccountId) {
-                isUnpin = false
-                mapObject.state = "pin"
-                windowUnpin.close()
+                isUnpin = false;
+                mapObject.state = "pin";
+                windowUnpin.close();
             }
         }
 
         function onCloseMap(key) {
-            if (key === attachedAccountId )
-                closeMapPosition()
+            if (key === attachedAccountId)
+                closeMapPosition();
         }
 
         function onUnPinMapSignal(key) {
-            if (key === attachedAccountId ) {
-                isUnpin = true
-                mapObject.state = "unpin"
-                windowUnpin.show()
+            if (key === attachedAccountId) {
+                isUnpin = true;
+                mapObject.state = "unpin";
+                windowUnpin.show();
             }
         }
     }
@@ -87,7 +84,7 @@ Item {
 
         onClosing: {
             if (isUnpin) {
-                PositionManager.setMapInactive(attachedAccountId)
+                PositionManager.setMapInactive(attachedAccountId);
             }
         }
     }
@@ -103,30 +100,33 @@ Item {
 
             x: xPos
             y: yPos
-            width: root.isUnpin
-                   ? windowUnpin.width
-                   : isFullScreen ? root.maxWidth : windowSize
-            height: root.isUnpin
-                    ? windowUnpin.height
-                    : isFullScreen ? root.maxHeight - yPos : windowSize
+            width: root.isUnpin ? windowUnpin.width : isFullScreen ? root.maxWidth : windowSize
+            height: root.isUnpin ? windowUnpin.height : isFullScreen ? root.maxHeight - yPos : windowSize
 
             property bool isFullScreen: false
-            property real windowSize: windowPreferedSize > JamiTheme.minimumMapWidth
-                                      ? windowPreferedSize
-                                      : JamiTheme.minimumMapWidth
-            property real windowPreferedSize: root.maxWidth > root.maxHeight
-                                              ? root.maxHeight / 3
-                                              : root.maxWidth / 3
+            property real windowSize: windowPreferedSize > JamiTheme.minimumMapWidth ? windowPreferedSize : JamiTheme.minimumMapWidth
+            property real windowPreferedSize: root.maxWidth > root.maxHeight ? root.maxHeight / 3 : root.maxWidth / 3
             property real xPos: 0
             property real yPos: root.isUnpin ? 0 : JamiTheme.chatViewHeaderPreferredHeight
 
-            states: [ State {
+            states: [
+                State {
                     name: "unpin"
-                    ParentChange { target: mapObject; parent: parentUnPin; x:0; y:0 }
+                    ParentChange {
+                        target: mapObject
+                        parent: parentUnPin
+                        x: 0
+                        y: 0
+                    }
                 },
                 State {
                     name: "pin"
-                    ParentChange { target: mapObject; parent: parentPin; x:xPos; y:JamiTheme.chatViewHeaderPreferredHeight }
+                    ParentChange {
+                        target: mapObject
+                        parent: parentPin
+                        x: xPos
+                        y: JamiTheme.chatViewHeaderPreferredHeight
+                    }
                 }
             ]
             property alias webView: webView
@@ -136,11 +136,10 @@ Item {
 
                 layer.enabled: !isFullScreen
                 layer.effect: OpacityMask {
-                    maskSource:
-                        Rectangle {
-                            width: webView.width
-                            height: webView.height
-                            radius: 10
+                    maskSource: Rectangle {
+                        width: webView.width
+                        height: webView.height
+                        radius: 10
                     }
                 }
 
@@ -152,87 +151,84 @@ Item {
                 property string mapJs: "../../webengine/map/map.js"
                 property string olJs: "../../webengine/map/ol.js"
                 property bool isLoaded: false
-                property var positionList: PositionManager.positionList;
-                property var avatarPositionList: PositionManager.avatarPositionList;
+                property var positionList: PositionManager.positionList
+                property var avatarPositionList: PositionManager.avatarPositionList
 
-                function loadScripts () {
+                function loadScripts() {
                     var scriptMapJs = {
-                        sourceUrl: Qt.resolvedUrl(mapJs),
-                        injectionPoint: WebEngineScript.DocumentReady,
-                        worldId: WebEngineScript.MainWorld
-                    }
-
+                        "sourceUrl": Qt.resolvedUrl(mapJs),
+                        "injectionPoint": WebEngineScript.DocumentReady,
+                        "worldId": WebEngineScript.MainWorld
+                    };
                     var scriptOlJs = {
-                        sourceUrl: Qt.resolvedUrl(olJs),
-                        injectionPoint: WebEngineScript.DocumentReady,
-                        worldId: WebEngineScript.MainWorld
-                    }
-
-                    userScripts.collection = [ scriptOlJs, scriptMapJs ]
+                        "sourceUrl": Qt.resolvedUrl(olJs),
+                        "injectionPoint": WebEngineScript.DocumentReady,
+                        "worldId": WebEngineScript.MainWorld
+                    };
+                    userScripts.collection = [scriptOlJs, scriptMapJs];
                 }
                 Connections {
                     target: PositionManager
 
                     function onPositionShareAdded(shareInfo) {
-                        if(webView.isLoaded) {
+                        if (webView.isLoaded) {
                             if (shareInfo.account === attachedAccountId) {
-                                var curLong = shareInfo.long
-                                var curLat = shareInfo.lat
-                                webView.runJavaScript("newPosition([" + curLong + "," + curLat  + "], '" +
-                                                      shareInfo.author + "', '" + shareInfo.avatar + "', '" + shareInfo.authorName + "' )" );
-                                webView.runJavaScript("zoomTolayersExtent()" );
+                                var curLong = shareInfo.long;
+                                var curLat = shareInfo.lat;
+                                webView.runJavaScript("newPosition([" + curLong + "," + curLat + "], '" + shareInfo.author + "', '" + shareInfo.avatar + "', '" + shareInfo.authorName + "' )");
+                                webView.runJavaScript("zoomTolayersExtent()");
                             }
                         }
                     }
 
                     function onPositionShareUpdated(shareInfo) {
-                        if(webView.isLoaded) {
+                        if (webView.isLoaded) {
                             if (shareInfo.account === attachedAccountId) {
-                                var curLong = shareInfo.long
-                                var curLat = shareInfo.lat
-                                webView.runJavaScript("updatePosition([" + curLong + "," + curLat  + "], '" + shareInfo.author + "' )" );
+                                var curLong = shareInfo.long;
+                                var curLat = shareInfo.lat;
+                                webView.runJavaScript("updatePosition([" + curLong + "," + curLat + "], '" + shareInfo.author + "' )");
                             }
                         }
                     }
 
                     function onPositionShareRemoved(author, accountId) {
-                        if(webView.isLoaded) {
+                        if (webView.isLoaded) {
                             if (accountId === attachedAccountId) {
-                                webView.runJavaScript("removePosition( '" + author + "' )" );
-                                webView.runJavaScript("zoomTolayersExtent()" );
+                                webView.runJavaScript("removePosition( '" + author + "' )");
+                                webView.runJavaScript("zoomTolayersExtent()");
                             }
                         }
                     }
                 }
 
                 Component.onCompleted: {
-                    loadHtml(UtilsAdapter.qStringFromFile(mapHtml), mapHtml)
-                    loadScripts()
+                    loadHtml(UtilsAdapter.qStringFromFile(mapHtml), mapHtml);
+                    loadScripts();
                 }
 
                 onLoadingChanged: function (loadingInfo) {
                     if (loadingInfo.status === WebEngineView.LoadSucceededStatus) {
-                        attachedAccountId = CurrentAccount.id
-                        runJavaScript(UtilsAdapter.getStyleSheet("olcss",UtilsAdapter.qStringFromFile(olCss)))
-                        webView.isLoaded = true
-                        webView.runJavaScript("setMapView([" + 0 + ","+ 0  + "], " + 1 + " );" );
-                        PositionManager.startPositioning()
+                        attachedAccountId = CurrentAccount.id;
+                        runJavaScript(UtilsAdapter.getStyleSheet("olcss", UtilsAdapter.qStringFromFile(olCss)));
+                        webView.isLoaded = true;
+                        webView.runJavaScript("setMapView([" + 0 + "," + 0 + "], " + 1 + " );");
+                        PositionManager.startPositioning();
                         //load locations that were received before this conversation was opened
                         PositionManager.loadPreviousLocations(attachedAccountId);
-                        isSharingToCurrentConversation = PositionManager.isPositionSharedToConv(attachedAccountId, currentConvId)
+                        isSharingToCurrentConversation = PositionManager.isPositionSharedToConv(attachedAccountId, currentConvId);
                     }
                 }
             }
 
-            MapPositionSharingControl {}
+            MapPositionSharingControl {
+            }
 
-            MapPositionOverlay {}
+            MapPositionOverlay {
+            }
 
             StopSharingPositionPopup {
                 id: stopSharingPositionPopup
-
             }
         }
     }
 }
-

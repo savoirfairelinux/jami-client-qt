@@ -15,20 +15,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import SortFilterProxyModel 0.2
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
@@ -46,7 +42,6 @@ SettingsPageBase {
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
-
         ColumnLayout {
             id: generalSettings
 
@@ -55,60 +50,48 @@ SettingsPageBase {
 
             function startPreviewing(force = false) {
                 if (!visible) {
-                    return
+                    return;
                 }
-                previewWidget.startWithId(VideoDevices.getDefaultDevice(), force)
+                previewWidget.startWithId(VideoDevices.getDefaultDevice(), force);
             }
 
             Connections {
                 target: VideoDevices
 
                 function onDefaultResChanged() {
-                    generalSettings.startPreviewing(true)
+                    generalSettings.startPreviewing(true);
                 }
 
                 function onDefaultFpsChanged() {
-                    generalSettings.startPreviewing(true)
+                    generalSettings.startPreviewing(true);
                 }
 
                 function onDeviceAvailable() {
-                    generalSettings.startPreviewing()
+                    generalSettings.startPreviewing();
                 }
 
                 function onDeviceListChanged() {
-                    var deviceModel = deviceComboBoxSetting.comboModel
-                    var resModel = resolutionComboBoxSetting.comboModel
-                    var fpsModel = fpsComboBoxSetting.comboModel
-
-                    var resultList = deviceModel.match(deviceModel.index(0, 0),
-                                                    VideoInputDeviceModel.DeviceId,
-                                                    VideoDevices.defaultId)
-                    deviceComboBoxSetting.modelIndex = resultList.length > 0 ?
-                                resultList[0].row : deviceModel.rowCount() ? 0 : -1
-
-                    resultList = resModel.match(resModel.index(0, 0),
-                                                VideoFormatResolutionModel.Resolution,
-                                                VideoDevices.defaultRes)
-                    resolutionComboBoxSetting.modelIndex = resultList.length > 0 ?
-                                resultList[0].row : deviceModel.rowCount() ? 0 : -1
-
-                    resultList = fpsModel.match(fpsModel.index(0, 0),
-                                                VideoFormatFpsModel.FPS,
-                                                VideoDevices.defaultFps)
-                    fpsComboBoxSetting.modelIndex = resultList.length > 0 ?
-                                resultList[0].row : deviceModel.rowCount() ? 0 : -1
+                    var deviceModel = deviceComboBoxSetting.comboModel;
+                    var resModel = resolutionComboBoxSetting.comboModel;
+                    var fpsModel = fpsComboBoxSetting.comboModel;
+                    var resultList = deviceModel.match(deviceModel.index(0, 0), VideoInputDeviceModel.DeviceId, VideoDevices.defaultId);
+                    deviceComboBoxSetting.modelIndex = resultList.length > 0 ? resultList[0].row : deviceModel.rowCount() ? 0 : -1;
+                    resultList = resModel.match(resModel.index(0, 0), VideoFormatResolutionModel.Resolution, VideoDevices.defaultRes);
+                    resolutionComboBoxSetting.modelIndex = resultList.length > 0 ? resultList[0].row : deviceModel.rowCount() ? 0 : -1;
+                    resultList = fpsModel.match(fpsModel.index(0, 0), VideoFormatFpsModel.FPS, VideoDevices.defaultFps);
+                    fpsComboBoxSetting.modelIndex = resultList.length > 0 ? resultList[0].row : deviceModel.rowCount() ? 0 : -1;
                 }
             }
 
             Component.onCompleted: {
-                flipControl.checked = UtilsAdapter.getAppValue(Settings.FlipSelf)
-                hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration()
+                flipControl.checked = UtilsAdapter.getAppValue(Settings.FlipSelf);
+                hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration();
                 if (previewWidget.visible)
-                    startPreviewing(true)
+                    startPreviewing(true);
             }
 
             Component.onDestruction: {
-                previewWidget.startWithId("")
+                previewWidget.startWithId("");
             }
 
             // video Preview
@@ -148,8 +131,8 @@ SettingsPageBase {
                 labelText: JamiStrings.mirrorLocalVideo
 
                 onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.FlipSelf, checked)
-                    CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf)
+                    UtilsAdapter.setAppValue(Settings.FlipSelf, checked);
+                    CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
                 }
             }
 
@@ -185,10 +168,9 @@ SettingsPageBase {
 
                 onActivated: {
                     // TODO: start and stop preview logic in here should be in LRC
-                    previewWidget.startWithId("")
-                    VideoDevices.setDefaultDevice(
-                                filteredDevicesModel.mapToSource(modelIndex))
-                    generalSettings.startPreviewing()
+                    previewWidget.startWithId("");
+                    VideoDevices.setDefaultDevice(filteredDevicesModel.mapToSource(modelIndex));
+                    generalSettings.startPreviewing();
                 }
             }
 
@@ -221,8 +203,7 @@ SettingsPageBase {
                 }
                 role: "Resolution"
 
-                onActivated: VideoDevices.setDefaultDeviceRes(
-                                filteredResModel.mapToSource(modelIndex))
+                onActivated: VideoDevices.setDefaultDeviceRes(filteredResModel.mapToSource(modelIndex))
             }
 
             SettingsComboBox {
@@ -253,8 +234,7 @@ SettingsPageBase {
                 }
                 role: "FPS"
 
-                onActivated: VideoDevices.setDefaultDeviceFps(
-                                filteredFpsModel.mapToSource(modelIndex))
+                onActivated: VideoDevices.setDefaultDeviceFps(filteredFpsModel.mapToSource(modelIndex))
             }
 
             ToggleSwitch {
@@ -265,12 +245,10 @@ SettingsPageBase {
                 labelText: JamiStrings.enableHWAccel
 
                 onSwitchToggled: {
-                    AvAdapter.setHardwareAcceleration(checked)
-                    generalSettings.startPreviewing(true)
+                    AvAdapter.setHardwareAcceleration(checked);
+                    generalSettings.startPreviewing(true);
                 }
             }
-
-
 
             Text {
                 visible: VideoDevices.listSize === 0

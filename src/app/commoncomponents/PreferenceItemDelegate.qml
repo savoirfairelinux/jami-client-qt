@@ -15,17 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
-import "../commoncomponents"
+import "."
 import "../settingsview/components"
 
 ItemDelegate {
@@ -47,45 +44,41 @@ ItemDelegate {
 
     function getNewPreferenceValueSlot(index) {
         switch (preferenceType) {
-            case PreferenceItemListModel.LIST:
-                pluginListPreferenceModel.idx = index
-                preferenceNewValue = pluginListPreferenceModel.preferenceNewValue
-                btnPreferenceClicked()
-                break
-            case PreferenceItemListModel.PATH:
-                if (index === 0) {
-                    var dlg = viewCoordinator.presentDialog(
-                                appWindow,
-                                "commoncomponents/JamiFileDialog.qml",
-                                {
-                                    title: JamiStrings.selectAnImage.arg(preferenceName),
-                                    fileMode: JamiFileDialog.OpenFile,
-                                    folder: JamiQmlUtils.qmlFilePrefix + currentPath,
-                                    nameFilters: fileFilters
-                                })
-                    dlg.fileAccepted.connect(function (file) {
-                        var url = UtilsAdapter.getAbsPath(file.toString())
-                        preferenceNewValue = url
-                        btnPreferenceClicked()
-                    })
-                }
-                else
-                    btnPreferenceClicked()
-                break
-            case PreferenceItemListModel.EDITTEXT:
-                preferenceNewValue = editTextPreference.text
-                btnPreferenceClicked()
-                break
-            case PreferenceItemListModel.SWITCH:
-                preferenceNewValue = index ? "1" : "0"
-                btnPreferenceClicked()
-                break
-            default:
-                break
+        case PreferenceItemListModel.LIST:
+            pluginListPreferenceModel.idx = index;
+            preferenceNewValue = pluginListPreferenceModel.preferenceNewValue;
+            btnPreferenceClicked();
+            break;
+        case PreferenceItemListModel.PATH:
+            if (index === 0) {
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                        "title": JamiStrings.selectAnImage.arg(preferenceName),
+                        "fileMode": JamiFileDialog.OpenFile,
+                        "folder": JamiQmlUtils.qmlFilePrefix + currentPath,
+                        "nameFilters": fileFilters
+                    });
+                dlg.fileAccepted.connect(function (file) {
+                        var url = UtilsAdapter.getAbsPath(file.toString());
+                        preferenceNewValue = url;
+                        btnPreferenceClicked();
+                    });
+            } else
+                btnPreferenceClicked();
+            break;
+        case PreferenceItemListModel.EDITTEXT:
+            preferenceNewValue = editTextPreference.text;
+            btnPreferenceClicked();
+            break;
+        case PreferenceItemListModel.SWITCH:
+            preferenceNewValue = index ? "1" : "0";
+            btnPreferenceClicked();
+            break;
+        default:
+            break;
         }
     }
 
-    RowLayout{
+    RowLayout {
         anchors.fill: parent
 
         Text {

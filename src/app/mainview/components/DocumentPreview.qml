@@ -15,18 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
 
 Item {
-
     id: root
 
     property real margin: 2
@@ -39,16 +36,16 @@ Item {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
 
         onEntered: {
-            cursorShape = Qt.PointingHandCursor
+            cursorShape = Qt.PointingHandCursor;
         }
 
-        onClicked: function(mouse)  {
+        onClicked: function (mouse) {
             if (mouse.button === Qt.RightButton) {
-                ctxMenu.x = mouse.x
-                ctxMenu.y = mouse.y
-                ctxMenu.openMenu()
+                ctxMenu.x = mouse.x;
+                ctxMenu.y = mouse.y;
+                ctxMenu.openMenu();
             } else {
-                MessagesAdapter.openUrl(name.fileSource)
+                MessagesAdapter.openUrl(name.fileSource);
             }
         }
     }
@@ -67,7 +64,7 @@ Item {
         anchors.fill: root
         anchors.rightMargin: JamiTheme.preferredMarginSize
         anchors.leftMargin: JamiTheme.preferredMarginSize
-        spacing : 2
+        spacing: 2
 
         Rectangle {
             id: mainRect
@@ -90,8 +87,8 @@ Item {
                         height: rect.height
                         Rectangle {
                             anchors.centerIn: parent
-                            width:  rect.width
-                            height:  rect.height
+                            width: rect.width
+                            height: rect.height
                             radius: JamiTheme.chatViewFooterButtonRadius
                         }
                     }
@@ -106,7 +103,7 @@ Item {
 
                     ResponsiveImage {
                         id: fileIcon
-                        visible : !mediaInfo.isImage && !mediaInfo.isAnimatedImage
+                        visible: !mediaInfo.isImage && !mediaInfo.isAnimatedImage
                         anchors.fill: parent
                         anchors.margins: 8
                         source: JamiResources.file_black_24dp_svg
@@ -125,11 +122,11 @@ Item {
                         fillMode: Image.PreserveAspectCrop
 
                         source: {
-                            fileSource = "file://" + Body
-                            if (!mediaInfo.isImage && !mediaInfo.isAnimatedImage){
-                                return ""
+                            fileSource = "file://" + Body;
+                            if (!mediaInfo.isImage && !mediaInfo.isAnimatedImage) {
+                                return "";
                             }
-                            return "file://" + Body
+                            return "file://" + Body;
                         }
                     }
                 }
@@ -140,7 +137,7 @@ Item {
             id: info
             Layout.preferredHeight: root.height
             Layout.fillWidth: true
-            color : JamiTheme.transparentColor
+            color: JamiTheme.transparentColor
             Layout.alignment: Qt.AlignLeft
 
             ColumnLayout {
@@ -156,7 +153,7 @@ Item {
                     Layout.preferredWidth: info.width
                     font.pointSize: JamiTheme.filesToSendDelegateFontPointSize
                     color: JamiTheme.chatviewTextColor
-                    font.bold : true
+                    font.bold: true
                     text: TransferName
                     elide: Text.ElideRight
                 }
@@ -183,8 +180,7 @@ Item {
                         color: JamiTheme.chatviewTextColor
                         Layout.alignment: Qt.AlignLeft
                         Layout.maximumWidth: info.width - fileExtension.width - infoLayout.spacing
-                        text: " " + UtilsAdapter.humanFileSize(TotalSize) + ", " + MessagesAdapter.getFormattedDay(Timestamp)
-                              + " - " + MessagesAdapter.getFormattedTime(Timestamp)
+                        text: " " + UtilsAdapter.humanFileSize(TotalSize) + ", " + MessagesAdapter.getFormattedDay(Timestamp) + " - " + MessagesAdapter.getFormattedTime(Timestamp)
                         elide: Text.ElideRight
                     }
                 }

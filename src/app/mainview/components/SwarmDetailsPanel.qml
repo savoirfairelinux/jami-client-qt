@@ -15,17 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../settingsview/components"
 
@@ -37,15 +34,9 @@ Rectangle {
 
     color: CurrentConversation.color
 
-    property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id,
-                                        CurrentConversation.id,
-                                        CurrentAccount.uri) === Member.Role.ADMIN
-                          || CurrentConversation.isCoreDialog
+    property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN || CurrentConversation.isCoreDialog
 
-    property string textColor: UtilsAdapter.luma(root.color) ?
-                                 JamiTheme.chatviewTextColorLight :
-                                 JamiTheme.chatviewTextColorDark
-
+    property string textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
     ColumnLayout {
         id: swarmProfileDetails
@@ -73,7 +64,7 @@ Rectangle {
 
                     newItem: true
                     imageId: LRCInstance.selectedConvUid
-                    avatarSize: JamiTheme.smartListAvatarSize * 3/2
+                    avatarSize: JamiTheme.smartListAvatarSize * 3 / 2
                 }
 
                 ColumnLayout {
@@ -87,7 +78,7 @@ Rectangle {
                         readOnly: !isAdmin
 
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                        Layout.preferredWidth: Math.min(217,swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
+                        Layout.preferredWidth: Math.min(217, swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
 
                         staticText: CurrentConversation.title
 
@@ -95,13 +86,12 @@ Rectangle {
                         prefixIconColor: root.textColor
 
                         onAccepted: {
-                            ConversationsAdapter.updateConversationTitle(
-                                        LRCInstance.selectedConvUid, dynamicText)
+                            ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
                         }
 
                         onActiveFocusChanged: {
-                            if(!activeFocus){
-                                ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText)
+                            if (!activeFocus) {
+                                ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
                             }
                         }
 
@@ -116,7 +106,7 @@ Rectangle {
                         readOnly: !isAdmin || CurrentConversation.isCoreDialog
 
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                        Layout.preferredWidth: Math.min(217,swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
+                        Layout.preferredWidth: Math.min(217, swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
 
                         staticText: CurrentConversation.description
                         placeholderText: JamiStrings.addADescription
@@ -124,13 +114,11 @@ Rectangle {
                         textColor: root.textColor
                         prefixIconColor: root.textColor
 
-                        onAccepted: ConversationsAdapter.updateConversationDescription(
-                                        LRCInstance.selectedConvUid, dynamicText)
+                        onAccepted: ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, dynamicText)
 
                         onActiveFocusChanged: {
-                            if(!activeFocus){
-                                ConversationsAdapter.updateConversationDescription(
-                                            LRCInstance.selectedConvUid, dynamicText)
+                            if (!activeFocus) {
+                                ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, dynamicText);
                             }
                         }
 
@@ -149,31 +137,14 @@ Rectangle {
 
                 property string currentItemName: itemAt(currentIndex).objectName
 
-                component DetailsTabButton: FilterTabButton {
-                    backgroundColor: CurrentConversation.color
-                    hoverColor: CurrentConversation.color
-                    borderWidth: 4
-                    bottomMargin: JamiTheme.settingsMarginSize
-                    fontSize: JamiTheme.menuFontSize
-                    underlineContentOnly: true
-                    textColorHovered: UtilsAdapter.luma(root.color) ?
-                                          JamiTheme.placeholderTextColorWhite :
-                                          JamiTheme.placeholderTextColor
-                    textColor: UtilsAdapter.luma(root.color) ?
-                                   JamiTheme.chatviewTextColorLight :
-                                   JamiTheme.chatviewTextColorDark
-                    Layout.fillWidth: true
-                    down: tabBar.currentIndex === TabBar.index
-                }
-
                 function addRemoveButtons() {
                     if (CurrentConversation.isCoreDialog) {
                         if (tabBar.contentChildren.length === 3)
-                            tabBar.removeItem(tabBar.itemAt(1))
+                            tabBar.removeItem(tabBar.itemAt(1));
                     } else {
                         if (tabBar.contentChildren.length === 2) {
-                            const obj = membersTabButtonComp.createObject(tabBar)
-                            tabBar.insertItem(1, obj)
+                            const obj = membersTabButtonComp.createObject(tabBar);
+                            tabBar.insertItem(1, obj);
                         }
                     }
                 }
@@ -182,7 +153,9 @@ Rectangle {
 
                 Connections {
                     target: CurrentConversation
-                    function onIsCoreDialogChanged() { tabBar.addRemoveButtons() }
+                    function onIsCoreDialogChanged() {
+                        tabBar.addRemoveButtons();
+                    }
                 }
 
                 Component {
@@ -194,13 +167,11 @@ Rectangle {
                         labelText: {
                             var membersNb = CurrentConversationMembers.count;
                             if (membersNb > 1)
-                                return JamiStrings.members.arg(membersNb)
-                            return JamiStrings.member
+                                return JamiStrings.members.arg(membersNb);
+                            return JamiStrings.member;
                         }
                     }
                 }
-
-
 
                 DetailsTabButton {
                     id: documentsTabButton
@@ -222,8 +193,8 @@ Rectangle {
                 id: colorDialog
                 title: JamiStrings.chooseAColor
                 onAccepted: {
-                    CurrentConversation.setPreference("color", colorDialog.color)
-                    this.destroy()
+                    CurrentConversation.setPreference("color", colorDialog.color);
+                    this.destroy();
                 }
                 onRejected: this.destroy()
             }
@@ -232,7 +203,7 @@ Rectangle {
         Rectangle {
             id: details
             Layout.fillWidth: true
-            Layout.preferredHeight: root.height - header.height - 2*JamiTheme.preferredMarginSize
+            Layout.preferredHeight: root.height - header.height - 2 * JamiTheme.preferredMarginSize
             color: JamiTheme.secondaryBackgroundColor
 
             JamiFlickable {
@@ -269,7 +240,7 @@ Rectangle {
                             tooltipText: JamiStrings.ignoreNotificationsTooltip
 
                             onSwitchToggled: {
-                                CurrentConversation.setPreference("ignoreNotifications", checked ? "true" : "false")
+                                CurrentConversation.setPreference("ignoreNotifications", checked ? "true" : "false");
                             }
                         }
                     }
@@ -296,17 +267,14 @@ Rectangle {
                             target: parent
                             enabled: parent.visible
                             onTapped: function onTapped(eventPoint) {
-                                var dlg = viewCoordinator.presentDialog(
-                                            appWindow,
-                                            "commoncomponents/ConfirmDialog.qml",
-                                            {
-                                                title: JamiStrings.confirmAction,
-                                                textLabel: JamiStrings.confirmRmConversation,
-                                                confirmLabel: JamiStrings.optionRemove
-                                            })
-                                dlg.accepted.connect(function() {
-                                    MessagesAdapter.removeConversation(LRCInstance.selectedConvUid)
-                                })
+                                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                                        "title": JamiStrings.confirmAction,
+                                        "textLabel": JamiStrings.confirmRmConversation,
+                                        "confirmLabel": JamiStrings.optionRemove
+                                    });
+                                dlg.accepted.connect(function () {
+                                        MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
+                                    });
                             }
                         }
                     }
@@ -353,7 +321,7 @@ Rectangle {
                             target: parent
                             enabled: parent.visible
                             onTapped: function onTapped(eventPoint) {
-                                colorDialogComp.createObject(appWindow).open()
+                                colorDialogComp.createObject(appWindow).open();
                             }
                         }
                     }
@@ -386,7 +354,6 @@ Rectangle {
                                 color: JamiTheme.textColor
                             }
 
-
                             RowLayout {
                                 id: swarmRdvPref
                                 spacing: 10
@@ -398,8 +365,8 @@ Rectangle {
 
                                     function onRdvAccountChanged() {
                                         // This avoid incorrect avatar by always modifying the mode before the imageId
-                                        avatar.mode = CurrentConversation.rdvAccount === CurrentAccount.uri ? Avatar.Mode.Account : Avatar.Mode.Contact
-                                        avatar.imageId = CurrentConversation.rdvAccount === CurrentAccount.uri ? CurrentAccount.id : CurrentConversation.rdvAccount
+                                        avatar.mode = CurrentConversation.rdvAccount === CurrentAccount.uri ? Avatar.Mode.Account : Avatar.Mode.Contact;
+                                        avatar.imageId = CurrentConversation.rdvAccount === CurrentAccount.uri ? CurrentAccount.id : CurrentConversation.rdvAccount;
                                     }
                                 }
 
@@ -426,11 +393,11 @@ Rectangle {
 
                                         eText: {
                                             if (CurrentConversation.rdvAccount === "")
-                                                return JamiStrings.none
+                                                return JamiStrings.none;
                                             else if (CurrentConversation.rdvAccount === CurrentAccount.uri)
-                                                return CurrentAccount.bestName
+                                                return CurrentAccount.bestName;
                                             else
-                                                return UtilsAdapter.getBestNameForUri(CurrentAccount.id, CurrentConversation.rdvAccount)
+                                                return UtilsAdapter.getBestNameForUri(CurrentAccount.id, CurrentConversation.rdvAccount);
                                         }
                                         maxWidth: settingsSwarmItem.width / 2 - JamiTheme.contactMessageAvatarSize
 
@@ -466,9 +433,7 @@ Rectangle {
 
                             enabled: parent.visible && root.isAdmin
                             onTapped: function onTapped(eventPoint) {
-                                viewCoordinator.presentDialog(
-                                            appWindow,
-                                            "mainview/components/DevicesListPopup.qml")
+                                viewCoordinator.presentDialog(appWindow, "mainview/components/DevicesListPopup.qml");
                             }
                         }
                     }
@@ -537,10 +502,8 @@ Rectangle {
                             color: JamiTheme.textColor
                             font.pixelSize: JamiTheme.participantSwarmDetailFontSize
 
-
                             text: CurrentConversation.id
                             elide: Text.ElideRight
-
                         }
                     }
                 }
@@ -559,12 +522,11 @@ Rectangle {
                     role: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri)
 
                     function openMenuAt(x, y, participantUri) {
-                        contextMenu.x = x
-                        contextMenu.y = y
-                        contextMenu.conversationId = CurrentConversation.id
-                        contextMenu.participantUri = participantUri
-
-                        openMenu()
+                        contextMenu.x = x;
+                        contextMenu.y = y;
+                        contextMenu.conversationId = CurrentConversation.id;
+                        contextMenu.participantUri = participantUri;
+                        openMenu();
                     }
                 }
 
@@ -579,9 +541,9 @@ Rectangle {
                         anchors.fill: parent
                         color: {
                             if (member.hovered || nameTextEditHover.hovered)
-                                return JamiTheme.smartListHoveredColor
+                                return JamiTheme.smartListHoveredColor;
                             else
-                                return "transparent"
+                                return "transparent";
                         }
                     }
 
@@ -592,8 +554,8 @@ Rectangle {
                         enabled: MemberUri !== CurrentAccount.uri
                         acceptedButtons: Qt.RightButton
                         onClicked: function (mouse) {
-                            var position = mapToItem(members, mouse.x, mouse.y)
-                            contextMenu.openMenuAt(position.x, position.y, MemberUri)
+                            var position = mapToItem(members, mouse.x, mouse.y);
+                            contextMenu.openMenuAt(position.x, position.y, MemberUri);
                         }
                     }
 
@@ -608,7 +570,7 @@ Rectangle {
                             Layout.leftMargin: JamiTheme.preferredMarginSize
                             Layout.topMargin: JamiTheme.preferredMarginSize / 2
                             z: -index
-                            opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED)? 0.5 : 1
+                            opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED) ? 0.5 : 1
 
                             imageId: CurrentAccount.uri === MemberUri ? CurrentAccount.id : MemberUri
                             showPresenceIndicator: UtilsAdapter.getContactPresence(CurrentAccount.id, MemberUri)
@@ -627,7 +589,7 @@ Rectangle {
 
                             font.pointSize: JamiTheme.settingsFontSize
                             color: JamiTheme.primaryForegroundColor
-                            opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED)? 0.5 : 1
+                            opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED) ? 0.5 : 1
                             font.kerning: true
 
                             verticalAlignment: Text.AlignVCenter
@@ -645,18 +607,18 @@ Rectangle {
 
                             eText: {
                                 if (MemberRole === Member.Role.ADMIN)
-                                    return JamiStrings.administrator
+                                    return JamiStrings.administrator;
                                 if (MemberRole === Member.Role.INVITED)
-                                    return JamiStrings.invited
+                                    return JamiStrings.invited;
                                 if (MemberRole === Member.Role.BANNED)
-                                    return JamiStrings.banned
-                                return ""
+                                    return JamiStrings.banned;
+                                return "";
                             }
                             maxWidth: JamiTheme.preferredFieldWidth
 
                             font.pointSize: JamiTheme.settingsFontSize
                             color: JamiTheme.textColorHovered
-                            opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED)? 0.5 : 1
+                            opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED) ? 0.5 : 1
                             font.kerning: true
 
                             horizontalAlignment: Text.AlignRight
@@ -673,5 +635,18 @@ Rectangle {
                 anchors.fill: parent
             }
         }
+    }
+
+    component DetailsTabButton: FilterTabButton {
+        backgroundColor: CurrentConversation.color
+        hoverColor: CurrentConversation.color
+        borderWidth: 4
+        bottomMargin: JamiTheme.settingsMarginSize
+        fontSize: JamiTheme.menuFontSize
+        underlineContentOnly: true
+        textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
+        textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+        Layout.fillWidth: true
+        down: tabBar.currentIndex === TabBar.index
     }
 }

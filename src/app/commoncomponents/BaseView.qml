@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 
 Rectangle {
@@ -28,11 +27,19 @@ Rectangle {
     // A list of view names that this view inhibits the presentation of.
     property var inhibits: []
 
-    function dismiss() { viewCoordinator.dismiss(objectName) }
+    function dismiss() {
+        viewCoordinator.dismiss(objectName);
+    }
 
     signal presented
     signal dismissed
 
-    Component.onCompleted: { if (managed) presented() }
-    Component.onDestruction: { if (managed) dismissed() }
+    Component.onCompleted: {
+        if (managed)
+            presented();
+    }
+    Component.onDestruction: {
+        if (managed)
+            dismissed();
+    }
 }

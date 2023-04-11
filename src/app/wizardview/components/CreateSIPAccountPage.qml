@@ -16,15 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -35,19 +32,17 @@ Rectangle {
     signal showThisPage
 
     function clearAllTextFields() {
-        UtilsAdapter.setTempCreationImageFromString()
+        UtilsAdapter.setTempCreationImageFromString();
     }
 
     Connections {
         target: WizardViewStepModel
 
         function onMainStepChanged() {
-            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
-                    WizardViewStepModel.accountCreationOption ===
-                    WizardViewStepModel.AccountCreationOption.CreateSipAccount) {
-                clearAllTextFields()
-                root.showThisPage()
-                sipServernameEdit.focus = true
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation && WizardViewStepModel.accountCreationOption === WizardViewStepModel.AccountCreationOption.CreateSipAccount) {
+                clearAllTextFields();
+                root.showThisPage();
+                sipServernameEdit.focus = true;
             }
         }
     }
@@ -153,9 +148,11 @@ Rectangle {
                     onAccepted: tlsRadioButton.forceActiveFocus()
                 }
 
-                ButtonGroup { id: optionsB }
+                ButtonGroup {
+                    id: optionsB
+                }
 
-                RowLayout{
+                RowLayout {
 
                     Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
@@ -172,7 +169,6 @@ Rectangle {
                         KeyNavigation.up: sipPasswordEdit
                         KeyNavigation.down: udpRadioButton
                         KeyNavigation.tab: KeyNavigation.down
-
                     }
 
                     MaterialRadioButton {
@@ -186,14 +182,13 @@ Rectangle {
                         KeyNavigation.up: tlsRadioButton
                         KeyNavigation.down: createAccountButton
                         KeyNavigation.tab: KeyNavigation.down
-
                     }
                 }
 
                 MaterialButton {
                     id: createAccountButton
 
-                    TextMetrics{
+                    TextMetrics {
                         id: textSize
                         font.weight: Font.Bold
                         font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
@@ -205,7 +200,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
-                    preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
+                    preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
                     primary: true
 
                     text: JamiStrings.addSip
@@ -215,37 +210,35 @@ Rectangle {
                     KeyNavigation.tab: KeyNavigation.down
 
                     onClicked: {
-                        WizardViewStepModel.accountCreationInfo =
-                                JamiQmlUtils.setUpAccountCreationInputPara(
-                                    {hostname : sipServernameEdit.dynamicText,
-                                        alias: displayNameLineEdit.dynamicText,
-                                        username : sipUsernameEdit.dynamicText,
-                                        password : sipPasswordEdit.dynamicText,
-                                        tls: tlsRadioButton.checked,
-                                        avatar: UtilsAdapter.tempCreationImage()})
-                        WizardViewStepModel.nextStep()
+                        WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
+                                "hostname": sipServernameEdit.dynamicText,
+                                "alias": displayNameLineEdit.dynamicText,
+                                "username": sipUsernameEdit.dynamicText,
+                                "password": sipPasswordEdit.dynamicText,
+                                "tls": tlsRadioButton.checked,
+                                "avatar": UtilsAdapter.tempCreationImage()
+                            });
+                        WizardViewStepModel.nextStep();
                     }
                 }
 
                 MaterialButton {
-
                     id: personalizeAccount
 
-                    TextMetrics{
+                    TextMetrics {
                         id: personalizeAccountTextSize
                         font.weight: Font.Bold
                         font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
                         text: personalizeAccount.text
                     }
 
-
                     text: JamiStrings.personalizeAccount
                     tertiary: true
                     secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
-                    preferredWidth: personalizeAccountTextSize.width + 2*JamiTheme.buttontextWizzardPadding + 1
+                    preferredWidth: personalizeAccountTextSize.width + 2 * JamiTheme.buttontextWizzardPadding + 1
 
                     Layout.alignment: Qt.AlignCenter
-                    Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins*2
+                    Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins * 2
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
                     KeyNavigation.up: createAccountButton
@@ -341,9 +334,9 @@ Rectangle {
 
         onClicked: {
             if (createAccountStack.currentIndex !== 0) {
-                createAccountStack.currentIndex--
+                createAccountStack.currentIndex--;
             } else {
-                WizardViewStepModel.previousStep()
+                WizardViewStepModel.previousStep();
             }
         }
     }

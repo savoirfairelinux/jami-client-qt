@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (C) 2022-2023 Savoir-faire Linux Inc.
  * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
  *
@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 DualPaneView {
@@ -34,9 +31,9 @@ DualPaneView {
     signal removeMember(string convId, string member)
 
     onVisibleChanged: {
-        UtilsAdapter.setTempCreationImageFromString()
-        title.clear()
-        description.clear()
+        UtilsAdapter.setTempCreationImageFromString();
+        title.clear();
+        description.clear();
     }
 
     property var members: []
@@ -154,21 +151,19 @@ DualPaneView {
                 placeholderText: JamiStrings.swarmName
                 tooltipText: JamiStrings.swarmName
                 backgroundColor: root.color
-                color: UtilsAdapter.luma(backgroundColor) ?
-                        JamiTheme.chatviewTextColorLight :
-                        JamiTheme.chatviewTextColorDark
+                color: UtilsAdapter.luma(backgroundColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                 placeholderTextColor: {
                     if (editable) {
                         if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.placeholderTextColorWhite
+                            return JamiTheme.placeholderTextColorWhite;
                         } else {
-                            return JamiTheme.placeholderTextColor
+                            return JamiTheme.placeholderTextColor;
                         }
                     } else {
                         if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.chatviewTextColorLight
+                            return JamiTheme.chatviewTextColorLight;
                         } else {
-                            return JamiTheme.chatviewTextColorDark
+                            return JamiTheme.chatviewTextColorDark;
                         }
                     }
                 }
@@ -188,21 +183,19 @@ DualPaneView {
                 placeholderText: JamiStrings.addADescription
                 tooltipText: JamiStrings.addADescription
                 backgroundColor: root.color
-                color: UtilsAdapter.luma(backgroundColor) ?
-                        JamiTheme.chatviewTextColorLight :
-                        JamiTheme.chatviewTextColorDark
+                color: UtilsAdapter.luma(backgroundColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                 placeholderTextColor: {
                     if (editable) {
                         if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.placeholderTextColorWhite
+                            return JamiTheme.placeholderTextColorWhite;
                         } else {
-                            return JamiTheme.placeholderTextColor
+                            return JamiTheme.placeholderTextColor;
                         }
                     } else {
                         if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.chatviewTextColorLight
+                            return JamiTheme.chatviewTextColorLight;
                         } else {
-                            return JamiTheme.chatviewTextColorDark
+                            return JamiTheme.chatviewTextColorDark;
                         }
                     }
                 }
@@ -228,9 +221,7 @@ DualPaneView {
                 primary: true
                 text: JamiStrings.createTheSwarm
 
-                onClicked: createSwarmClicked(title.text,
-                                              description.text,
-                                              UtilsAdapter.tempCreationImage())
+                onClicked: createSwarmClicked(title.text, description.text, UtilsAdapter.tempCreationImage())
             }
         }
     }

@@ -15,16 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -73,20 +70,17 @@ Rectangle {
             text: JamiStrings.installPlugin
 
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "commoncomponents/JamiFileDialog.qml",
-                            {
-                                title: JamiStrings.selectPluginInstall,
-                                fileMode: JamiFileDialog.OpenFile,
-                                folder: StandardPaths.writableLocation(StandardPaths.DownloadLocation),
-                                nameFilters: [JamiStrings.pluginFiles, JamiStrings.allFiles]
-                            })
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                        "title": JamiStrings.selectPluginInstall,
+                        "fileMode": JamiFileDialog.OpenFile,
+                        "folder": StandardPaths.writableLocation(StandardPaths.DownloadLocation),
+                        "nameFilters": [JamiStrings.pluginFiles, JamiStrings.allFiles]
+                    });
                 dlg.fileAccepted.connect(function (file) {
-                    var url = UtilsAdapter.getAbsPath(file.toString())
-                    PluginModel.installPlugin(url, true)
-                    installedPluginsModel.addPlugin()
-                })
+                        var url = UtilsAdapter.getAbsPath(file.toString());
+                        PluginModel.installPlugin(url, true);
+                        installedPluginsModel.addPlugin();
+                    });
             }
         }
 
@@ -104,7 +98,7 @@ Rectangle {
 
                 lrcInstance: LRCInstance
                 onLrcInstanceChanged: {
-                    this.reset()
+                    this.reset();
                 }
             }
 
@@ -126,7 +120,7 @@ Rectangle {
                 }
 
                 onSettingsClicked: {
-                    root.activePlugin = root.activePlugin === pluginId ? "" : pluginId
+                    root.activePlugin = root.activePlugin === pluginId ? "" : pluginId;
                 }
             }
         }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -14,16 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
-
 import "../../commoncomponents"
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
@@ -46,19 +43,21 @@ Rectangle {
     signal dismiss
 
     function focusChatView() {
-        chatViewFooter.updateMessageDraft()
-        chatViewFooter.textInput.forceActiveFocus()
+        chatViewFooter.updateMessageDraft();
+        chatViewFooter.textInput.forceActiveFocus();
     }
 
     function resetPanels() {
-        chatViewHeader.showSearch = true
+        chatViewHeader.showSearch = true;
     }
 
     function instanceMapObject() {
         if (WITH_WEBENGINE) {
             var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
-            var sprite = component.createObject(root, {maxWidth: root.width, maxHeight: root.height});
-
+            var sprite = component.createObject(root, {
+                    "maxWidth": root.width,
+                    "maxHeight": root.height
+                });
             if (sprite === null) {
                 // Error Handling
                 console.log("Error creating object");
@@ -69,15 +68,15 @@ Rectangle {
     Connections {
         target: PositionManager
         function onOpenNewMap() {
-            instanceMapObject()
+            instanceMapObject();
         }
     }
 
     Connections {
         target: CurrentConversation
         function onIdChanged() {
-            extrasPanel.restoreState()
-            MessagesAdapter.loadMoreMessages()
+            extrasPanel.restoreState();
+            MessagesAdapter.loadMoreMessages();
         }
     }
 
@@ -85,14 +84,13 @@ Rectangle {
 
     onVisibleChanged: {
         if (visible) {
-            chatViewSplitView.resolvePanes(true)
-
+            chatViewSplitView.resolvePanes(true);
             if (root.parent.objectName === "CallViewChatViewContainer") {
-                chatViewHeader.showSearch = !root.parent.showDetails
+                chatViewHeader.showSearch = !root.parent.showDetails;
                 if (root.parent.showDetails) {
-                    extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel)
+                    extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel);
                 } else {
-                    extrasPanel.closePanel()
+                    extrasPanel.closePanel();
                 }
             }
         }
@@ -126,19 +124,15 @@ Rectangle {
                 target: CurrentConversation
 
                 function onNeedsHost() {
-                    viewCoordinator.presentDialog(
-                                appWindow,
-                                "mainview/components/HostPopup.qml")
+                    viewCoordinator.presentDialog(appWindow, "mainview/components/HostPopup.qml");
                 }
             }
 
             onPluginSelector: {
                 // Create plugin handler picker - PLUGINS
-                PluginHandlerPickerCreation.createPluginHandlerPickerObjects(
-                            root, false)
-                PluginHandlerPickerCreation.calculateCurrentGeo(root.width / 2,
-                                                                root.height / 2)
-                PluginHandlerPickerCreation.openPluginHandlerPicker()
+                PluginHandlerPickerCreation.createPluginHandlerPickerObjects(root, false);
+                PluginHandlerPickerCreation.calculateCurrentGeo(root.width / 2, root.height / 2);
+                PluginHandlerPickerCreation.openPluginHandlerPicker();
             }
         }
 
@@ -148,19 +142,19 @@ Rectangle {
 
             function onActiveCallsChanged() {
                 if (CurrentConversation.activeCalls.length > 0) {
-                    notificationArea.id = CurrentConversation.activeCalls[0]["id"]
-                    notificationArea.uri = CurrentConversation.activeCalls[0]["uri"]
-                    notificationArea.device = CurrentConversation.activeCalls[0]["device"]
+                    notificationArea.id = CurrentConversation.activeCalls[0]["id"];
+                    notificationArea.uri = CurrentConversation.activeCalls[0]["uri"];
+                    notificationArea.device = CurrentConversation.activeCalls[0]["device"];
                 }
-                notificationArea.visible = CurrentConversation.activeCalls.length > 0 && !root.inCallView
+                notificationArea.visible = CurrentConversation.activeCalls.length > 0 && !root.inCallView;
             }
 
             function onErrorsChanged() {
                 if (CurrentConversation.errors.length > 0) {
-                    errorRect.errorLabel.text = CurrentConversation.errors[0]
-                    errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0])
+                    errorRect.errorLabel.text = CurrentConversation.errors[0];
+                    errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0]);
                 }
-                errorRect.visible = CurrentConversation.errors.length > 0 // If too much noise: && LRCInstance.debugMode()
+                errorRect.visible = CurrentConversation.errors.length > 0; // If too much noise: && LRCInstance.debugMode()
             }
         }
 
@@ -170,10 +164,10 @@ Rectangle {
 
             function onErrorsChanged() {
                 if (CurrentConversation.errors.length > 0) {
-                    errorRect.errorLabel.text = CurrentConversation.errors[0]
-                    errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0])
+                    errorRect.errorLabel.text = CurrentConversation.errors[0];
+                    errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0]);
                 }
-                errorRect.visible = CurrentConversation.errors.length > 0
+                errorRect.visible = CurrentConversation.errors.length > 0;
             }
         }
 
@@ -214,33 +208,37 @@ Rectangle {
             // called when the width of the SplitView changes, when the SplitView is shown,
             // and when the details panel is shown. When called with force=true, it is being
             // called from a visibleChanged event, and we should not update the previous widths.
-            function resolvePanes(force=false) {
+            function resolvePanes(force = false) {
                 // If the details panel is not visible, then show the chatContents.
                 if (!extrasPanel.visible) {
-                    chatContents.visible = true
-                    return
+                    chatContents.visible = true;
+                    return;
                 }
 
                 // Next we compute whether the SplitView is expanding or shrinking.
-                const isExpanding = width > previousWidth
+                const isExpanding = width > previousWidth;
 
                 // If the SplitView is not wide enough to show both the chatContents
                 // and the details panel, then hide the chatContents.
-                if (width < JamiTheme.mainViewPaneMinWidth + extrasPanel.width
-                    && (!isExpanding || force) && chatContents.visible) {
-                    if (!force) previousDetailsWidth = extrasPanel.width
-                    chatContents.visible = false
-                } else if (width >= JamiTheme.mainViewPaneMinWidth + previousDetailsWidth
-                            && (isExpanding || force) && !chatContents.visible) {
-                    chatContents.visible = true
+                if (width < JamiTheme.mainViewPaneMinWidth + extrasPanel.width && (!isExpanding || force) && chatContents.visible) {
+                    if (!force)
+                        previousDetailsWidth = extrasPanel.width;
+                    chatContents.visible = false;
+                } else if (width >= JamiTheme.mainViewPaneMinWidth + previousDetailsWidth && (isExpanding || force) && !chatContents.visible) {
+                    chatContents.visible = true;
                 }
-                if (!force) previousWidth = width
+                if (!force)
+                    previousWidth = width;
             }
 
             Connections {
                 target: viewNode
-                function onPresented() { chatViewSplitView.restoreSplitViewState() }
-                function onDismissed() { chatViewSplitView.saveSplitViewState() }
+                function onPresented() {
+                    chatViewSplitView.restoreSplitViewState();
+                }
+                function onDismissed() {
+                    chatViewSplitView.saveSplitViewState();
+                }
             }
 
             ColumnLayout {
@@ -260,16 +258,15 @@ Rectangle {
                     Layout.leftMargin: JamiTheme.chatviewMargin
                     Layout.rightMargin: JamiTheme.chatviewMargin
 
-                    currentIndex: CurrentConversation.isRequest ||
-                                  CurrentConversation.needsSyncing
+                    currentIndex: CurrentConversation.isRequest || CurrentConversation.needsSyncing
 
                     Loader {
                         active: CurrentConversation.id !== ""
                         sourceComponent: MessageListView {
                             DropArea {
                                 anchors.fill: parent
-                                onDropped: function(drop) {
-                                    chatViewFooter.setFilePathsToSend(drop.urls)
+                                onDropped: function (drop) {
+                                    chatViewFooter.setFilePathsToSend(drop.urls);
                                 }
                             }
                         }
@@ -284,7 +281,7 @@ Rectangle {
                 }
 
                 UpdateToSwarm {
-                    visible: !CurrentConversation.isSwarm && !CurrentConversation.isTemporary && CurrentAccount.type  === Profile.Type.JAMI
+                    visible: !CurrentConversation.isSwarm && !CurrentConversation.isTemporary && CurrentAccount.type === Profile.Type.JAMI
                     Layout.fillWidth: true
                 }
 
@@ -292,15 +289,15 @@ Rectangle {
                     id: chatViewFooter
 
                     visible: {
-                        if (CurrentAccount.type  === Profile.Type.SIP)
-                            return true
+                        if (CurrentAccount.type === Profile.Type.SIP)
+                            return true;
                         if (CurrentConversation.isBanned)
-                            return false
+                            return false;
                         else if (CurrentConversation.needsSyncing)
-                            return false
+                            return false;
                         else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
-                            return false
-                        return CurrentConversation.isSwarm || CurrentConversation.isTemporary
+                            return false;
+                        return CurrentConversation.isSwarm || CurrentConversation.isTemporary;
                     }
 
                     Layout.alignment: Qt.AlignHCenter
@@ -315,7 +312,8 @@ Rectangle {
                 }
             }
 
-            onResizingChanged: if (chatContents.visible) extrasPanel.previousWidth = extrasPanel.width
+            onResizingChanged: if (chatContents.visible)
+                extrasPanel.previousWidth = extrasPanel.width
 
             ConversationExtrasPanel {
                 id: extrasPanel

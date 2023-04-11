@@ -16,14 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 BaseModalDialog {
@@ -45,8 +42,7 @@ BaseModalDialog {
             id: labelDeletion
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: revokeDeviceContentColumnLayout.width -
-                                   JamiTheme.preferredMarginSize * 2
+            Layout.preferredWidth: revokeDeviceContentColumnLayout.width - JamiTheme.preferredMarginSize * 2
 
             text: JamiStrings.confirmRemoval
             color: JamiTheme.textColor
@@ -68,7 +64,6 @@ BaseModalDialog {
             placeholderText: JamiStrings.enterCurrentPassword
 
             onDynamicTextChanged: btnRemove.enabled = dynamicText.length > 0
-
         }
 
         RowLayout {
@@ -85,7 +80,7 @@ BaseModalDialog {
                 preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
                 buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
-                color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
                 pressedColor: JamiTheme.buttonTintedBlackPressed
                 secondary: true
@@ -95,8 +90,8 @@ BaseModalDialog {
                 text: JamiStrings.optionRemove
 
                 onClicked: {
-                    DeviceItemListModel.revokeDevice(deviceId, passwordEdit.text)
-                    close()
+                    DeviceItemListModel.revokeDevice(deviceId, passwordEdit.text);
+                    close();
                 }
             }
 

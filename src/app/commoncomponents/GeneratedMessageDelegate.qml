@@ -17,11 +17,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
@@ -44,7 +42,7 @@ Column {
         width: parent.width
 
         TimestampInfo {
-            id:timestampItem
+            id: timestampItem
 
             showDay: root.showDay
             showTime: root.showTime
@@ -64,6 +62,10 @@ Column {
     }
 
     opacity: 0
-    Behavior on opacity { NumberAnimation { duration: 100 } }
+    Behavior on opacity  {
+        NumberAnimation {
+            duration: 100
+        }
+    }
     Component.onCompleted: opacity = 1
 }

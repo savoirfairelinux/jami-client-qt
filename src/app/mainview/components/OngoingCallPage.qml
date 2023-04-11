@@ -17,17 +17,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -43,7 +40,7 @@ Rectangle {
     property string callPreviewId
 
     onCallPreviewIdChanged: {
-        controlPreview.start()
+        controlPreview.start();
     }
 
     color: "black"
@@ -51,7 +48,8 @@ Rectangle {
     Connections {
         target: CurrentConversation
         function onIdChanged() {
-            if (CurrentConversation.id !== "") contactImage.imageId = CurrentConversation.id
+            if (CurrentConversation.id !== "")
+                contactImage.imageId = CurrentConversation.id;
         }
     }
 
@@ -59,70 +57,65 @@ Rectangle {
         target: UtilsAdapter
 
         function onChatviewPositionChanged() {
-            mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally)
+            mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally);
         }
     }
 
     function openInCallConversation() {
-        mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally)
-        chatViewContainer.visible = false
-        chatViewContainer.visible = true
+        mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally);
+        chatViewContainer.visible = false;
+        chatViewContainer.visible = true;
     }
 
     function closeInCallConversation() {
-        chatViewContainer.visible = false
+        chatViewContainer.visible = false;
     }
 
     function closeContextMenuAndRelatedWindows() {
-        callOverlay.closeContextMenuAndRelatedWindows()
+        callOverlay.closeContextMenuAndRelatedWindows();
     }
 
     function previewMagneticSnap() {
         // Calculate the position where the previewRenderer should attach to.
-        var previewRendererCenter = Qt.point(
-                    previewRenderer.x + previewRenderer.width / 2,
-                    previewRenderer.y + previewRenderer.height / 2)
-        var parentCenter = Qt.point(
-                    parent.x + parent.width / 2,
-                    parent.y + parent.height / 2)
-
+        var previewRendererCenter = Qt.point(previewRenderer.x + previewRenderer.width / 2, previewRenderer.y + previewRenderer.height / 2);
+        var parentCenter = Qt.point(parent.x + parent.width / 2, parent.y + parent.height / 2);
         if (previewRendererCenter.x >= parentCenter.x) {
             if (previewRendererCenter.y >= parentCenter.y) {
                 // Bottom right.
                 previewToX = Qt.binding(function () {
-                    return callPageMainRect.width - previewRenderer.width - previewMargin
-                })
+                        return callPageMainRect.width - previewRenderer.width - previewMargin;
+                    });
                 previewToY = Qt.binding(function () {
-                    return callPageMainRect.height - previewRenderer.height - previewMarginYBottom
-                })
+                        return callPageMainRect.height - previewRenderer.height - previewMarginYBottom;
+                    });
             } else {
                 // Top right.
                 previewToX = Qt.binding(function () {
-                    return callPageMainRect.width - previewRenderer.width - previewMargin
-                })
-                previewToY = previewMarginYTop
+                        return callPageMainRect.width - previewRenderer.width - previewMargin;
+                    });
+                previewToY = previewMarginYTop;
             }
         } else {
             if (previewRendererCenter.y >= parentCenter.y) {
                 // Bottom left.
-                previewToX = previewMargin
+                previewToX = previewMargin;
                 previewToY = Qt.binding(function () {
-                    return callPageMainRect.height - previewRenderer.height - previewMarginYBottom
-                })
+                        return callPageMainRect.height - previewRenderer.height - previewMarginYBottom;
+                    });
             } else {
                 // Top left.
-                previewToX = previewMargin
-                previewToY = previewMarginYTop
+                previewToX = previewMargin;
+                previewToY = previewMarginYTop;
             }
         }
-        previewRenderer.state = "geoChanging"
+        previewRenderer.state = "geoChanging";
     }
 
     onWidthChanged: {
         if (chatViewContainer.visible && root.width < JamiTheme.mainViewPaneMinWidth * 2) {
-            callPageMainRect.visible = false
+            callPageMainRect.visible = false;
         } else {
-            callPageMainRect.visible = true
+            callPageMainRect.visible = true;
         }
     }
 
@@ -137,9 +130,7 @@ Rectangle {
         handle: Rectangle {
             implicitWidth: isHorizontal ? JamiTheme.splitViewHandlePreferredWidth : root.width
             implicitHeight: isHorizontal ? root.height : JamiTheme.splitViewHandlePreferredWidth
-            color: SplitHandle.pressed ? JamiTheme.pressColor :
-                                         (SplitHandle.hovered ? JamiTheme.hoverColor :
-                                                                JamiTheme.tabbarBorderColor)
+            color: SplitHandle.pressed ? JamiTheme.pressColor : (SplitHandle.hovered ? JamiTheme.hoverColor : JamiTheme.tabbarBorderColor)
         }
 
         Rectangle {
@@ -154,21 +145,16 @@ Rectangle {
 
                 onDoubleTapped: function (eventPoint, button) {
                     if (button === Qt.LeftButton) {
-                        callStackView.toggleFullScreen()
+                        callStackView.toggleFullScreen();
                     }
                 }
 
                 onTapped: function (eventPoint, button) {
                     if (button === Qt.RightButton) {
-                        var isOnLocal = eventPoint.position.x >= previewRenderer.x && eventPoint.position.x <= previewRenderer.x + previewRenderer.width
-                        isOnLocal &= eventPoint.position.y >= previewRenderer.y && eventPoint.position.y <= previewRenderer.y + previewRenderer.height
-                        isOnLocal |= participantsLayer.hoveredOverlaySinkId.indexOf("camera://") === 0
-                        callOverlay.openCallViewContextMenuInPos(eventPoint.position.x,
-                                                                 eventPoint.position.y,
-                                                                 participantsLayer.hoveredOverlayUri,
-                                                                 participantsLayer.hoveredOverlaySinkId,
-                                                                 participantsLayer.hoveredOverVideoMuted,
-                                                                 isOnLocal)
+                        var isOnLocal = eventPoint.position.x >= previewRenderer.x && eventPoint.position.x <= previewRenderer.x + previewRenderer.width;
+                        isOnLocal &= eventPoint.position.y >= previewRenderer.y && eventPoint.position.y <= previewRenderer.y + previewRenderer.height;
+                        isOnLocal |= participantsLayer.hoveredOverlaySinkId.indexOf("camera://") === 0;
+                        callOverlay.openCallViewContextMenuInPos(eventPoint.position.x, eventPoint.position.y, participantsLayer.hoveredOverlayUri, participantsLayer.hoveredOverlaySinkId, participantsLayer.hoveredOverVideoMuted, isOnLocal);
                     }
                 }
             }
@@ -200,14 +186,13 @@ Rectangle {
                 anchors.fill: parent
 
                 function instantiateToast() {
-                    instantiate(JamiStrings.screenshotTaken.arg(UtilsAdapter.getDirScreenshot()),1000,400)
+                    instantiate(JamiStrings.screenshotTaken.arg(UtilsAdapter.getDirScreenshot()), 1000, 400);
                 }
             }
 
             LocalVideo {
                 id: previewRenderer
-                visible: (CurrentCall.isSharing || !CurrentCall.isVideoMuted)
-                         && !CurrentCall.isConference
+                visible: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) && !CurrentCall.isConference
 
                 height: width * invAspectRatio
                 width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
@@ -222,21 +207,21 @@ Rectangle {
                     property bool startVideo
                     interval: 1000
                     onTriggered: {
-                        var rendId = visible && startVideo ? root.callPreviewId : ""
-                        previewRenderer.startWithId(rendId)
+                        var rendId = visible && startVideo ? root.callPreviewId : "";
+                        previewRenderer.startWithId(rendId);
                     }
                 }
 
                 onVisibleChanged: {
-                    controlPreview.stop()
+                    controlPreview.stop();
                     if (visible) {
-                        controlPreview.startVideo = true
-                        controlPreview.interval = 1000
+                        controlPreview.startVideo = true;
+                        controlPreview.interval = 1000;
                     } else {
-                        controlPreview.startVideo = false
-                        controlPreview.interval = 0
+                        controlPreview.startVideo = false;
+                        controlPreview.interval = 0;
                     }
-                    controlPreview.start()
+                    controlPreview.start();
                 }
 
                 states: [
@@ -257,7 +242,7 @@ Rectangle {
                         duration: 250
 
                         onStopped: {
-                            previewRenderer.state = ""
+                            previewRenderer.state = "";
                         }
                     }
                 }
@@ -268,28 +253,25 @@ Rectangle {
                     anchors.fill: previewRenderer
 
                     onPressed: function (mouse) {
-                        clickPos = Qt.point(mouse.x, mouse.y)
+                        clickPos = Qt.point(mouse.x, mouse.y);
                     }
 
                     onReleased: {
-                        previewRenderer.state = ""
-                        previewMagneticSnap()
+                        previewRenderer.state = "";
+                        previewMagneticSnap();
                     }
 
                     onPositionChanged: function (mouse) {
                         // Calculate mouse position relative change.
-                        var delta = Qt.point(mouse.x - clickPos.x,
-                                             mouse.y - clickPos.y)
-                        var deltaW = previewRenderer.x + delta.x + previewRenderer.width
-                        var deltaH = previewRenderer.y + delta.y + previewRenderer.height
+                        var delta = Qt.point(mouse.x - clickPos.x, mouse.y - clickPos.y);
+                        var deltaW = previewRenderer.x + delta.x + previewRenderer.width;
+                        var deltaH = previewRenderer.y + delta.y + previewRenderer.height;
 
                         // Check if the previewRenderer exceeds the border of callPageMainRect.
-                        if (deltaW < callPageMainRect.width
-                                && previewRenderer.x + delta.x > 1)
-                            previewRenderer.x += delta.x
-                        if (deltaH < callPageMainRect.height
-                                && previewRenderer.y + delta.y > 1)
-                            previewRenderer.y += delta.y
+                        if (deltaW < callPageMainRect.width && previewRenderer.x + delta.x > 1)
+                            previewRenderer.x += delta.x;
+                        if (deltaH < callPageMainRect.height && previewRenderer.y + delta.y > 1)
+                            previewRenderer.y += delta.y;
                     }
                 }
 
@@ -310,16 +292,16 @@ Rectangle {
 
                 function toggleConversation() {
                     if (inCallMessageWebViewStack.visible)
-                        closeInCallConversation()
+                        closeInCallConversation();
                     else
-                        openInCallConversation()
+                        openInCallConversation();
                 }
 
                 Connections {
                     target: CurrentCall
 
                     function onPreviewIdChanged() {
-                        root.callPreviewId = CurrentCall.previewId
+                        root.callPreviewId = CurrentCall.previewId;
                     }
                 }
 
@@ -329,35 +311,30 @@ Rectangle {
 
                     function onNewInteraction(id, interactionType) {
                         // Ignore call notifications, as we are in the call.
-                        if (interactionType !== Interaction.Type.CALL &&
-                                !chatViewContainer.visible)
-                            openInCallConversation()
+                        if (interactionType !== Interaction.Type.CALL && !chatViewContainer.visible)
+                            openInCallConversation();
                     }
                 }
 
                 onCloseClicked: {
-                    participantsLayer.hoveredOverlayUri = ""
-                    participantsLayer.hoveredOverlaySinkId = ""
-                    participantsLayer.hoveredOverVideoMuted = true
+                    participantsLayer.hoveredOverlayUri = "";
+                    participantsLayer.hoveredOverlaySinkId = "";
+                    participantsLayer.hoveredOverVideoMuted = true;
                 }
 
                 onChatButtonClicked: {
-                    var detailsVisible = chatViewContainer.showDetails
-                    chatViewContainer.showDetails = false
-                    !chatViewContainer.visible || detailsVisible ?
-                                openInCallConversation() :
-                                closeInCallConversation()
+                    var detailsVisible = chatViewContainer.showDetails;
+                    chatViewContainer.showDetails = false;
+                    !chatViewContainer.visible || detailsVisible ? openInCallConversation() : closeInCallConversation();
                 }
 
                 onFullScreenClicked: {
-                    callStackView.toggleFullScreen()
+                    callStackView.toggleFullScreen();
                 }
 
                 onSwarmDetailsClicked: {
-                    chatViewContainer.showDetails = !chatViewContainer.showDetails
-                    chatViewContainer.showDetails ?
-                                openInCallConversation() :
-                                closeInCallConversation()
+                    chatViewContainer.showDetails = !chatViewContainer.showDetails;
+                    chatViewContainer.showDetails ? openInCallConversation() : closeInCallConversation();
                 }
             }
 
@@ -368,9 +345,7 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                visible: !CurrentCall.isPaused &&
-                         CurrentCall.isAudioOnly &&
-                         !CurrentCall.isConference
+                visible: !CurrentCall.isPaused && CurrentCall.isAudioOnly && !CurrentCall.isConference
 
                 ConversationAvatar {
                     id: contactImage
@@ -406,12 +381,8 @@ Rectangle {
             id: chatViewContainer
             objectName: "CallViewChatViewContainer"
 
-            SplitView.preferredHeight: mainColumnLayout.isHorizontal ?
-                                           root.height :
-                                           root.height / 3
-            SplitView.preferredWidth: mainColumnLayout.isHorizontal ?
-                                          JamiTheme.mainViewPaneMinWidth :
-                                          root.width
+            SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : root.height / 3
+            SplitView.preferredWidth: mainColumnLayout.isHorizontal ? JamiTheme.mainViewPaneMinWidth : root.width
             SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
             visible: false
             clip: true
@@ -419,9 +390,9 @@ Rectangle {
 
             onVisibleChanged: {
                 if (visible && root.width < JamiTheme.mainViewPaneMinWidth * 2) {
-                    callPageMainRect.visible = false
+                    callPageMainRect.visible = false;
                 } else {
-                    callPageMainRect.visible = true
+                    callPageMainRect.visible = true;
                 }
             }
         }

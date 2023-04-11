@@ -16,12 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
@@ -44,7 +42,7 @@ Item {
     property string selectedColor: "#03B9E9"
     property string validatedColor: "#009980"
     property string errorColor: "#CC0022"
-    property alias selectByMouse:lineEdit.selectByMouse
+    property alias selectByMouse: lineEdit.selectByMouse
     property alias loseFocusWhenEnterPressed: lineEdit.loseFocusWhenEnterPressed
     property alias validator: lineEdit.validator
     property alias text: lineEdit.text
@@ -79,17 +77,17 @@ Item {
     property int preferredWidth: JamiTheme.preferredFieldWidth
 
     function clear() {
-        lineEdit.clear()
-        lineEdit.focus = false
+        lineEdit.clear();
+        lineEdit.focus = false;
     }
 
-    function toggleEchoMode(){
+    function toggleEchoMode() {
         if (echoMode == TextInput.Normal) {
-            echoMode = TextInput.Password
-            secondIco = JamiResources.eye_cross_svg
+            echoMode = TextInput.Password;
+            secondIco = JamiResources.eye_cross_svg;
         } else {
-            echoMode = TextInput.Normal
-            secondIco = JamiResources.noun_eye_svg
+            echoMode = TextInput.Normal;
+            secondIco = JamiResources.noun_eye_svg;
         }
     }
 
@@ -97,7 +95,7 @@ Item {
     width: preferredWidth
 
     Layout.preferredHeight: 50
-    Layout.preferredWidth:  400
+    Layout.preferredWidth: 400
 
     MaterialToolTip {
         parent: lineEdit
@@ -110,7 +108,7 @@ Item {
         target: parent
         enabled: !root.readOnly
         onHoveredChanged: {
-            root.hovered = hovered
+            root.hovered = hovered;
         }
     }
 
@@ -123,33 +121,32 @@ Item {
     }
 
     Item {
-
         id: row
         anchors.fill: parent
 
         z: 1
 
-        ResponsiveImage  {
+        ResponsiveImage {
             id: firstIco_
             opacity: editable && !root.readOnly && firstIco !== ""
             visible: opacity
             anchors.left: row.left
             anchors.bottom: row.bottom
-            anchors.bottomMargin: row.height /5
+            anchors.bottomMargin: row.height / 5
 
-            width: visible? 18 : 0
+            width: visible ? 18 : 0
             height: 18
 
             layer {
                 enabled: true
                 effect: ColorOverlay {
-                    color:  firstIcoColor
+                    color: firstIcoColor
                 }
             }
 
             source: firstIco
 
-            Behavior on opacity {
+            Behavior on opacity  {
                 NumberAnimation {
                     from: 0
                     duration: JamiTheme.longFadeDuration
@@ -172,27 +169,27 @@ Item {
             wrapMode: readOnly ? TextEdit.WrapAnywhere : TextEdit.NoWrap
             horizontalAlignment: !readOnly || text !== "" ? Qt.AlignLeft : Qt.AlignHCenter
 
-            onFocusChanged: function(focus) {
+            onFocusChanged: function (focus) {
                 if (root.readOnly)
-                    return
+                    return;
                 if (!focus && editable) {
-                    editable = !editable
-                    root.editingFinished()
+                    editable = !editable;
+                    root.editingFinished();
                 } else if (focus && !editable) {
-                    editable = !editable
-                    lineEdit.forceActiveFocus()
+                    editable = !editable;
+                    lineEdit.forceActiveFocus();
                 }
             }
 
             onAccepted: {
-                root.accepted()
-                root.editingFinished()
-                editable = !editable
-                focus = false
+                root.accepted();
+                root.editingFinished();
+                editable = !editable;
+                focus = false;
             }
         }
 
-        ResponsiveImage  {
+        ResponsiveImage {
             id: thirdIco_
             anchors.right: secIco_.left
             anchors.rightMargin: 12
@@ -200,7 +197,7 @@ Item {
             anchors.bottomMargin: 12
 
             visible: thirdIco !== ""
-            width: visible? 18 : 0
+            width: visible ? 18 : 0
             height: 18
 
             layer {
@@ -212,7 +209,7 @@ Item {
 
             source: thirdIco
 
-            Behavior on opacity {
+            Behavior on opacity  {
                 NumberAnimation {
                     from: 0
                     duration: JamiTheme.longFadeDuration
@@ -220,15 +217,14 @@ Item {
             }
         }
 
-        ResponsiveImage  {
-
+        ResponsiveImage {
             id: secIco_
             visible: (editable && !root.readOnly) || secondIco !== ""
             source: secondIco
             anchors.right: row.right
             anchors.bottom: row.bottom
             anchors.bottomMargin: 12
-            width: visible? 18 : 0
+            width: visible ? 18 : 0
             height: 18
 
             MaterialToolTip {
@@ -237,7 +233,7 @@ Item {
                 text: informationToolTip
                 textColor: "black"
                 backGroundColor: "white"
-                visible: parent.hovered && informationToolTip!==""
+                visible: parent.hovered && informationToolTip !== ""
                 delay: Qt.styleHints.mousePressAndHoldInterval
             }
 
@@ -248,16 +244,15 @@ Item {
                 }
             }
 
-            TapHandler{
+            TapHandler {
                 target: parent
                 enabled: !root.readOnly
                 onTapped: {
-                    root.secondIcoClicked()
+                    root.secondIcoClicked();
                 }
-
             }
 
-            Behavior on opacity {
+            Behavior on opacity  {
                 NumberAnimation {
                     from: 0
                     duration: JamiTheme.longFadeDuration
@@ -266,7 +261,6 @@ Item {
         }
     }
 
-
     Rectangle {
         id: barColor
         anchors.fill: root
@@ -274,18 +268,17 @@ Item {
 
         visible: !readOnly
         color: {
-            if(root.error)
-                return errorColor
-            if(root.validated)
-                return validatedColor
-            if(root.hovered || root.editable)
-                return hoveredColor
-            if(root.inactive)
-                return inactiveColor
-            if(root.editable)
-                return selectedColor
-            return "black"
-
+            if (root.error)
+                return errorColor;
+            if (root.validated)
+                return validatedColor;
+            if (root.hovered || root.editable)
+                return hoveredColor;
+            if (root.inactive)
+                return inactiveColor;
+            if (root.editable)
+                return selectedColor;
+            return "black";
         }
 
         Rectangle {
@@ -301,10 +294,8 @@ Item {
         }
     }
 
-
-    onFocusChanged: function(focus) {
+    onFocusChanged: function (focus) {
         if (focus)
             lineEdit.forceActiveFocus();
     }
-
 }

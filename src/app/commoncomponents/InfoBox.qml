@@ -15,17 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
-
 Rectangle {
-
     id: root
 
     property string icoSource: ""
@@ -40,7 +36,7 @@ Rectangle {
 
     ColumnLayout {
         id: infos
-        anchors.fill:  parent
+        anchors.fill: parent
 
         RowLayout {
 
@@ -60,7 +56,6 @@ Rectangle {
 
                 source: icoSource
                 color: icoColor
-
             }
 
             Label {
@@ -71,7 +66,6 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 color: JamiTheme.textColor
                 font.pixelSize: JamiTheme.infoBoxTitleFontSize
-
             }
         }
 
@@ -85,8 +79,6 @@ Rectangle {
             color: JamiTheme.textColor
             wrapMode: Text.WordWrap
             text: description
-
         }
     }
-
 }

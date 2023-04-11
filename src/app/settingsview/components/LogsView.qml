@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Window {
@@ -43,7 +40,7 @@ Window {
     property var lineCounter: 0
 
     function monitor(continuous) {
-        UtilsAdapter.monitor(continuous)
+        UtilsAdapter.monitor(continuous);
     }
 
     title: JamiStrings.logsViewTitle
@@ -55,40 +52,38 @@ Window {
 
         function onDebugMessageReceived(message) {
             if (!root.visible) {
-                return
+                return;
             }
-            var initialPosition = scrollView.ScrollBar.vertical.position
-            lineCounter += 1
-            lineSize.push(message.length)
+            var initialPosition = scrollView.ScrollBar.vertical.position;
+            lineCounter += 1;
+            lineSize.push(message.length);
             if (!root.cancelPressed) {
-                logsText.append(message)
+                logsText.append(message);
             }
             if (lineCounter >= 10000) {
-                lineCounter -= 1
-                logsText.remove(0, lineSize[0])
-                lineSize.shift()
+                lineCounter -= 1;
+                logsText.remove(0, lineSize[0]);
+                lineSize.shift();
             }
-            scrollView.ScrollBar.vertical.position = initialPosition
-                    > (.8 * (1.0 - scrollView.ScrollBar.vertical.size)) ?
-                        1.0 - scrollView.ScrollBar.vertical.size : initialPosition
+            scrollView.ScrollBar.vertical.position = initialPosition > (.8 * (1.0 - scrollView.ScrollBar.vertical.size)) ? 1.0 - scrollView.ScrollBar.vertical.size : initialPosition;
         }
     }
 
     onVisibleChanged: {
         if (visible && startStopToggle.checked) {
             if (hasOpened && lineCounter == 0) {
-                var logList = UtilsAdapter.logList
-                logsText.append(logList.join('\n'))
-                lineCounter = logList.length
-                lineSize.push(lineCounter ? logList[0].length : 0)
+                var logList = UtilsAdapter.logList;
+                logsText.append(logList.join('\n'));
+                lineCounter = logList.length;
+                lineSize.push(lineCounter ? logList[0].length : 0);
             }
         } else {
-            logsText.clear()
-            copiedToolTip.close()
-            lineCounter = 0
-            lineSize = []
+            logsText.clear();
+            copiedToolTip.close();
+            lineCounter = 0;
+            lineSize = [];
         }
-        hasOpened = true
+        hasOpened = true;
     }
 
     ColumnLayout {
@@ -123,15 +118,15 @@ Window {
                     labelText: JamiStrings.logsViewDisplay
 
                     onSwitchToggled: {
-                        logging = !logging
+                        logging = !logging;
                         if (logging) {
-                            isStopped = false
-                            root.cancelPressed = false
-                            monitor(true)
+                            isStopped = false;
+                            root.cancelPressed = false;
+                            monitor(true);
                         } else {
-                            isStopped = true
-                            root.cancelPressed = true
-                            monitor(false)
+                            isStopped = true;
+                            root.cancelPressed = true;
+                            monitor(false);
                         }
                     }
                 }
@@ -154,12 +149,12 @@ Window {
                     autoAccelerator: true
 
                     onClicked: {
-                        logsText.clear()
-                        logging = false
-                        startStopToggle.checked = false
-                        root.cancelPressed = true
-                        UtilsAdapter.logList = []
-                        monitor(false)
+                        logsText.clear();
+                        logging = false;
+                        startStopToggle.checked = false;
+                        root.cancelPressed = true;
+                        UtilsAdapter.logList = [];
+                        monitor(false);
                     }
                 }
 
@@ -180,10 +175,10 @@ Window {
                     autoAccelerator: true
 
                     onClicked: {
-                        logsText.selectAll()
-                        logsText.copy()
-                        logsText.deselect()
-                        copiedToolTip.open()
+                        logsText.selectAll();
+                        logsText.copy();
+                        logsText.deselect();
+                        copiedToolTip.open();
                     }
 
                     ToolTip {
@@ -218,8 +213,7 @@ Window {
                     secondary: true
                     autoAccelerator: true
 
-                    onClicked: Qt.openUrlExternally(
-                                   "https://jami.net/bugs-and-improvements/")
+                    onClicked: Qt.openUrlExternally("https://jami.net/bugs-and-improvements/")
                 }
             }
         }
@@ -256,10 +250,10 @@ Window {
                     hoverEnabled: true
 
                     onClicked: {
-                        selectBeginning = logsText.selectionStart
-                        selectEnd = logsText.selectionEnd
-                        rightClickMenu.open()
-                        logsText.select(selectBeginning, selectEnd)
+                        selectBeginning = logsText.selectionStart;
+                        selectEnd = logsText.selectionEnd;
+                        rightClickMenu.open();
+                        logsText.select(selectBeginning, selectEnd);
                     }
 
                     Menu {
@@ -268,7 +262,7 @@ Window {
                         MenuItem {
                             text: JamiStrings.logsViewCopy
                             onTriggered: {
-                                logsText.copy()
+                                logsText.copy();
                             }
                         }
                     }

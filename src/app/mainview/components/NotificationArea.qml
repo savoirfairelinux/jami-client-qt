@@ -14,16 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -36,9 +33,7 @@ Rectangle {
     property string uri: ""
     property string device: ""
 
-    property string textColor: UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+    property string textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
     RowLayout {
         anchors.fill: parent
         anchors.margins: JamiTheme.preferredMarginSize
@@ -103,7 +98,7 @@ Rectangle {
         }
     }
 
-    Behavior on opacity {
+    Behavior on opacity  {
         NumberAnimation {
             from: 0
             duration: JamiTheme.shortFadeDuration

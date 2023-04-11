@@ -15,18 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import SortFilterProxyModel 0.2
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Popup {
@@ -36,10 +32,7 @@ Popup {
     implicitWidth: parent.width
     // limit the number of accounts shown at once
     implicitHeight: {
-        return visible ? Math.min(
-                             JamiTheme.accountListItemHeight * Math.min(
-                                 5, listView.model.count + 1),
-                             appWindow.height - parent.height) : 0
+        return visible ? Math.min(JamiTheme.accountListItemHeight * Math.min(5, listView.model.count + 1), appWindow.height - parent.height) : 0;
     }
     padding: 0
     modal: true
@@ -68,8 +61,8 @@ Popup {
                 height: JamiTheme.accountListItemHeight
                 width: root.width
                 onClicked: {
-                    root.close()
-                    LRCInstance.currentAccountId = ID
+                    root.close();
+                    LRCInstance.currentAccountId = ID;
                 }
             }
         }
@@ -86,9 +79,7 @@ Popup {
             Layout.preferredWidth: parent.width
 
             background: Rectangle {
-                color: footerItem.hovered?
-                           JamiTheme.hoverColor :
-                           JamiTheme.backgroundColor
+                color: footerItem.hovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
 
                 Text {
                     anchors.centerIn: parent
@@ -100,8 +91,8 @@ Popup {
             }
 
             onClicked: {
-                root.close()
-                viewCoordinator.present("WizardView")
+                root.close();
+                viewCoordinator.present("WizardView");
             }
         }
     }
@@ -110,8 +101,10 @@ Popup {
         color: JamiTheme.backgroundColor
         CustomBorder {
             commonBorder: false
-            tBorderwidth: 1; lBorderwidth: 2
-            bBorderwidth: 2; rBorderwidth: 1
+            tBorderwidth: 1
+            lBorderwidth: 2
+            bBorderwidth: 2
+            rBorderwidth: 1
             borderColor: JamiTheme.tabbarBorderColor
         }
 

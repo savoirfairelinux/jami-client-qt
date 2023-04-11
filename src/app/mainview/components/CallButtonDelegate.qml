@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ItemDelegate {
@@ -53,8 +50,7 @@ ItemDelegate {
 
     // TODO: remove this when output volume control is implemented
     MouseArea {
-        visible: ItemAction.openPopupWhenClicked !== undefined
-                 && ItemAction.openPopupWhenClicked && !menu.popup.visible
+        visible: ItemAction.openPopupWhenClicked !== undefined && ItemAction.openPopupWhenClicked && !menu.popup.visible
         anchors.fill: root
         onClicked: menu.popup.open()
     }
@@ -64,29 +60,25 @@ ItemDelegate {
         radius: type === HalfPill.None ? 0 : 5
         color: {
             if (supplimentaryBackground.visible)
-                return "#c4272727"
-            return root.down ?
-                        "#c4777777" :
-                        (root.hovered && !menu.hovered) ?
-                            "#c4444444" :
-                            "#c4272727"
+                return "#c4272727";
+            return root.down ? "#c4777777" : (root.hovered && !menu.hovered) ? "#c4444444" : "#c4272727";
         }
         type: {
             if (isVertical) {
                 if (isFirst)
-                    return HalfPill.Top
+                    return HalfPill.Top;
                 else if (isLast && hasLast)
-                    return HalfPill.Bottom
+                    return HalfPill.Bottom;
             } else {
                 if (isFirst)
-                    return HalfPill.Left
+                    return HalfPill.Left;
                 else if (isLast && hasLast)
-                    return HalfPill.Right
+                    return HalfPill.Right;
             }
-            return HalfPill.None
+            return HalfPill.None;
         }
 
-        Behavior on color {
+        Behavior on color  {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
@@ -98,15 +90,12 @@ ItemDelegate {
         id: supplimentaryBackground
 
         visible: ItemAction.hasBg !== undefined
-        color: root.down ? Qt.lighter(JamiTheme.refuseRed, 1.5) :
-                              root.hovered && !menu.hovered ?
-                                  JamiTheme.refuseRed :
-                                  JamiTheme.refuseRedTransparent
+        color: root.down ? Qt.lighter(JamiTheme.refuseRed, 1.5) : root.hovered && !menu.hovered ? JamiTheme.refuseRed : JamiTheme.refuseRedTransparent
         anchors.fill: parent
         radius: isLast ? 5 : width / 2
         type: isLast ? HalfPill.Right : HalfPill.None
 
-        Behavior on color {
+        Behavior on color  {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
@@ -123,17 +112,11 @@ ItemDelegate {
 
         anchors.centerIn: parent
         source: ItemAction ? ItemAction.icon.source : ""
-        color: ItemAction ?
-                   (ItemAction.enabled ?
-                       ItemAction.icon.color :
-                       Qt.lighter(ItemAction.icon.color)) :
-                   null
+        color: ItemAction ? (ItemAction.enabled ? ItemAction.icon.color : Qt.lighter(ItemAction.icon.color)) : null
 
-        SequentialAnimation on opacity {
+        SequentialAnimation on opacity  {
             loops: Animation.Infinite
-            running: ItemAction !== undefined
-                     && ItemAction.blinksWhenChecked !== undefined
-                     && ItemAction.blinksWhenChecked && checked
+            running: ItemAction !== undefined && ItemAction.blinksWhenChecked !== undefined && ItemAction.blinksWhenChecked && checked
             onStopped: icon.opacity = 1
             NumberAnimation {
                 from: 1
@@ -163,8 +146,7 @@ ItemDelegate {
             id: toolTip
             parent: parent
             visible: text.length > 0 && (root.hovered || menu.hovered)
-            text: menu.hovered ? menuAction.text : (ItemAction
-                                                    !== undefined ? ItemAction.text : null)
+            text: menu.hovered ? menuAction.text : (ItemAction !== undefined ? ItemAction.text : null)
             verticalPadding: 1
             font.pointSize: 9
         }
@@ -177,8 +159,7 @@ ItemDelegate {
 
         indicator: null
 
-        visible: ItemAction.enabled
-                 && menuAction !== undefined && !UrgentCount && menuAction.enabled
+        visible: ItemAction.enabled && menuAction !== undefined && !UrgentCount && menuAction.enabled
 
         y: isVertical ? 0 : -4
         x: isVertical ? -4 : 0
@@ -192,14 +173,12 @@ ItemDelegate {
             target: menuAction !== undefined ? menuAction : null
             function onTriggered() {
                 if (menuAction.popupMode !== CallActionBar.ActionPopupMode.ListElement)
-                    itemListView.currentIndex = menuAction.listModel.getCurrentIndex()
+                    itemListView.currentIndex = menuAction.listModel.getCurrentIndex();
             }
         }
 
         contentItem: ResponsiveImage {
-            source: isVertical ?
-                        JamiResources.chevron_left_black_24dp_svg :
-                        JamiResources.expand_less_24dp_svg
+            source: isVertical ? JamiResources.chevron_left_black_24dp_svg : JamiResources.expand_less_24dp_svg
             color: "white"
         }
 
@@ -208,18 +187,17 @@ ItemDelegate {
             radius: 4
         }
 
-        onActivated: index => menuAction.accept(index)
+        onActivated: index => menuAction.accept(index);
         model: visible ? menuAction.listModel : null
         delegate: ItemDelegate {
             id: menuItem
 
             width: itemListView.menuItemWidth
             height: {
-                if (menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption &&
-                    (!TopMargin || !BottomMargin)) {
-                    return 40
+                if (menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption && (!TopMargin || !BottomMargin)) {
+                    return 40;
                 }
-                return 45
+                return 45;
             }
             background: Rectangle {
                 anchors.fill: parent
@@ -234,25 +212,20 @@ ItemDelegate {
                     Layout.leftMargin: 20
                     Layout.fillHeight: true
                     Layout.alignment: {
-                        if (menuAction.popupMode !== CallActionBar.ActionPopupMode.LayoutOption ||
-                            TopMargin && BottomMargin) {
-                            return Qt.AlignLeft | Qt.AlignVCenter
+                        if (menuAction.popupMode !== CallActionBar.ActionPopupMode.LayoutOption || TopMargin && BottomMargin) {
+                            return Qt.AlignLeft | Qt.AlignVCenter;
                         }
                         if (TopMargin) {
-                            Layout.bottomMargin = 4
-                            return Qt.AlignBottom
+                            Layout.bottomMargin = 4;
+                            return Qt.AlignBottom;
                         }
-                        Layout.topMargin = 4
-                        return Qt.AlignTop
+                        Layout.topMargin = 4;
+                        return Qt.AlignTop;
                     }
 
                     spacing: 6
                     ResponsiveImage {
-                        source: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement ||
-                                menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ?
-                                    IconSource : (menuItem.ListView.isCurrentItem ?
-                                                    JamiResources.check_box_24dp_svg :
-                                                    JamiResources.check_box_outline_blank_24dp_svg)
+                        source: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement || menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? IconSource : (menuItem.ListView.isCurrentItem ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg)
                         color: "white"
                         width: 20
                         height: 20
@@ -262,9 +235,7 @@ ItemDelegate {
                         Layout.fillWidth: true
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
-                        text: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement ||
-                                menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ?
-                                Name : DeviceName
+                        text: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement || menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? Name : DeviceName
                         elide: Text.ElideRight
                         font.pointSize: JamiTheme.participantFontSize
                         color: "white"
@@ -274,8 +245,7 @@ ItemDelegate {
                         color: "white"
                         width: 20
                         height: 20
-                        visible: menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ?
-                                    ActiveSetting : false
+                        visible: menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? ActiveSetting : false
                     }
                 }
                 Rectangle {
@@ -284,7 +254,7 @@ ItemDelegate {
                     Layout.fillWidth: true
                     height: 1
                     opacity: 0.2
-                    border.width : 0
+                    border.width: 0
                     color: JamiTheme.separationLine
                     Layout.alignment: Qt.AlignBottom
                 }
@@ -297,11 +267,11 @@ ItemDelegate {
             y: isVertical ? -(implicitHeight - root.height) / 2 - 18 : -implicitHeight - 12
             x: {
                 if (isVertical)
-                    return -implicitWidth - 12
-                var xValue = -(implicitWidth - root.width) / 2 - 18
-                var mainPoint = mapToItem(viewCoordinator.rootView, xValue, y)
-                var diff = mainPoint.x + itemListView.implicitWidth - viewCoordinator.rootView.width
-                return diff > 0 ? xValue - diff - 24 : xValue
+                    return -implicitWidth - 12;
+                var xValue = -(implicitWidth - root.width) / 2 - 18;
+                var mainPoint = mapToItem(viewCoordinator.rootView, xValue, y);
+                var diff = mainPoint.x + itemListView.implicitWidth - viewCoordinator.rootView.width;
+                return diff > 0 ? xValue - diff - 24 : xValue;
             }
 
             implicitWidth: contentItem.implicitWidth
@@ -332,29 +302,26 @@ ItemDelegate {
 
                 // recalc list width based on max item width
                 onCountChanged: {
-                    var mPreferredWidth = 145
-
+                    var mPreferredWidth = 145;
                     if (count && menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption) {
-                        menuItemWidth = 290
-                        return
+                        menuItemWidth = 290;
+                        return;
                     }
-
                     for (var i = 0; i < count; ++i) {
                         if (menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement)
-                            itemTextMetrics.text = menuAction.listModel.get(i).Name
+                            itemTextMetrics.text = menuAction.listModel.get(i).Name;
                         else {
                             // Hack: use AudioDeviceModel.DeviceName role for video as well
-                            var idx = menuAction.listModel.index(i, 0)
-                            itemTextMetrics.text = menuAction.listModel.data(
-                                        idx, AudioDeviceModel.DeviceName)
+                            var idx = menuAction.listModel.index(i, 0);
+                            itemTextMetrics.text = menuAction.listModel.data(idx, AudioDeviceModel.DeviceName);
                         }
                         if (itemTextMetrics.boundingRect.width > mPreferredWidth)
-                            mPreferredWidth = itemTextMetrics.boundingRect.width
+                            mPreferredWidth = itemTextMetrics.boundingRect.width;
                     }
                     // 30(icon) + 5(layout spacing) + 12(margins) + 20 to avoid text elipsis
-                    mPreferredWidth = mPreferredWidth + 30 + 5 + 12 + 20
-                    mPreferredWidth = Math.min(root.barWidth, mPreferredWidth)
-                    menuItemWidth = mPreferredWidth
+                    mPreferredWidth = mPreferredWidth + 30 + 5 + 12 + 20;
+                    mPreferredWidth = Math.min(root.barWidth, mPreferredWidth);
+                    menuItemWidth = mPreferredWidth;
                 }
             }
 

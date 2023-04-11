@@ -14,11 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 
 TextField {
@@ -31,16 +29,16 @@ TextField {
     property bool isSwarmDetail: false
 
     onActiveFocusChanged: {
-        root.cursorPosition = 0
+        root.cursorPosition = 0;
         if (!activeFocus && !contextMenu.active) {
-            root.focus = false
+            root.focus = false;
         }
         if (root.focus)
-            root.cursorPosition = root.text.length
+            root.cursorPosition = root.text.length;
     }
 
     Component.onCompleted: {
-        root.cursorPosition = 0
+        root.cursorPosition = 0;
     }
 
     signal keyPressed
@@ -55,15 +53,11 @@ TextField {
     property alias suffixBisIconColor: suffixBisIcon.color
     property alias icon: container.data
 
-    property color accent: isActive || hovered
-                           ? prefixIconColor
-                           : JamiTheme.buttonTintedBlue
+    property color accent: isActive || hovered ? prefixIconColor : JamiTheme.buttonTintedBlue
     property color baseColor: JamiTheme.primaryForegroundColor
     property color textColor: JamiTheme.textColor
     color: textColor
-    placeholderTextColor: !isActive
-                          ? JamiTheme.transparentColor
-                          : root.color
+    placeholderTextColor: !isActive ? JamiTheme.transparentColor : root.color
 
     property alias infoTipText: infoTip.text
     property alias infoTipLineText: infoTipLine.text
@@ -77,29 +71,26 @@ TextField {
 
     leftPadding: readOnly || prefixIconSrc === '' || (isSwarmDetail && !root.isActive) ? 0 : 32
     rightPadding: {
-        var total = 2
+        var total = 2;
         if (!readOnly) {
-
             if (suffixIconSrc !== "")
-                total =+ 30
+                total = +30;
             if (suffixBisIconSrc !== "")
-                total =+ 30
+                total = +30;
         }
-        return total
+        return total;
     }
 
     topPadding: 2
 
     Keys.onPressed: function (event) {
-        if (event.key === Qt.Key_Enter
-                || event.key === Qt.Key_Return) {
+        if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
             if (inputIsValid && acceptableInput) {
-                root.accepted()
+                root.accepted();
             }
-            event.accepted = true
-        }
-        else {
-            root.keyPressed()
+            event.accepted = true;
+        } else {
+            root.keyPressed();
         }
     }
 
@@ -113,7 +104,7 @@ TextField {
 
     onReleased: function (event) {
         if (event.button === Qt.RightButton)
-            contextMenu.openMenuAt(event)
+            contextMenu.openMenuAt(event);
     }
 
     // The centered placeholder that appears in the design specs.
@@ -136,16 +127,15 @@ TextField {
         color: isSwarmDetail ? textColor : root.accent
         visible: {
             if (!readOnly) {
-                if (isSwarmDetail && root.hovered
-                        || root.isActive ) {
-                    return true
+                if (isSwarmDetail && root.hovered || root.isActive) {
+                    return true;
                 }
                 if (isSwarmDetail) {
-                    return false
+                    return false;
                 }
-                return true
+                return true;
             }
-            return false
+            return false;
         }
     }
 
@@ -155,9 +145,13 @@ TextField {
         height: size
         opacity: root.isActive && !readOnly && source.toString() !== ''
         visible: opacity
-        HoverHandler { cursorShape: Qt.ArrowCursor }
-        Behavior on opacity {
-            NumberAnimation { duration: JamiTheme.longFadeDuration/2 }
+        HoverHandler {
+            cursorShape: Qt.ArrowCursor
+        }
+        Behavior on opacity  {
+            NumberAnimation {
+                duration: JamiTheme.longFadeDuration / 2
+            }
         }
     }
 
@@ -220,7 +214,7 @@ TextField {
         TapHandler {
             cursorShape: Qt.ArrowCursor
             onTapped: {
-                modalTextEditRoot.icoClicked()
+                modalTextEditRoot.icoClicked();
             }
         }
     }
