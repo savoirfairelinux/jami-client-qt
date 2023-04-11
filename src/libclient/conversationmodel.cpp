@@ -2434,8 +2434,9 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                     msg.body = path;
                 }
                 msg.status = bytesProgress == 0 ? interaction::Status::TRANSFER_AWAITING_HOST
-                             : bytesProgress == totalSize ? interaction::Status::TRANSFER_FINISHED
-                                                          : interaction::Status::TRANSFER_ONGOING;
+                                                : bytesProgress == totalSize
+                                                      ? interaction::Status::TRANSFER_FINISHED
+                                                      : interaction::Status::TRANSFER_ONGOING;
                 linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
                 downloadFile = (bytesProgress == 0);
             } else if (msg.type == interaction::Type::CALL) {
@@ -2585,9 +2586,10 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             } else {
                 msg.body = path;
             }
-            msg.status = bytesProgress == 0           ? interaction::Status::TRANSFER_AWAITING_HOST
-                         : bytesProgress == totalSize ? interaction::Status::TRANSFER_FINISHED
-                                                      : interaction::Status::TRANSFER_ONGOING;
+            msg.status = bytesProgress == 0
+                             ? interaction::Status::TRANSFER_AWAITING_HOST
+                             : bytesProgress == totalSize ? interaction::Status::TRANSFER_FINISHED
+                                                          : interaction::Status::TRANSFER_ONGOING;
             linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
             if (msg.authorUri != linked.owner.profileInfo.uri) {
                 updateUnread = true;

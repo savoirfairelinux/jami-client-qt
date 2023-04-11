@@ -38,9 +38,7 @@ VideoManagerInterface::VideoManagerInterface()
            }),
            exportable_callback<VideoSignal::DecodingStopped>(
                [this](const std::string& id, const std::string& shmPath, bool isMixer) {
-                   Q_EMIT decodingStopped(QString(id.c_str()),
-                                          QString(shmPath.c_str()),
-                                          isMixer);
+                   Q_EMIT decodingStopped(QString(id.c_str()), QString(shmPath.c_str()), isMixer);
                })};
 #endif
 }
