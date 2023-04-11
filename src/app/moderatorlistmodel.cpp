@@ -52,7 +52,7 @@ ModeratorListModel::data(const QModelIndex& index, int role) const
 {
     try {
         QStringList list = lrcInstance_->accountModel().getDefaultModerators(
-                    lrcInstance_->get_currentAccountId());
+            lrcInstance_->get_currentAccountId());
         if (!index.isValid() || list.size() <= index.row()) {
             return QVariant();
         }
@@ -61,8 +61,8 @@ ModeratorListModel::data(const QModelIndex& index, int role) const
 
         switch (role) {
         case Role::ContactName: {
-            QString str = lrcInstance_->getCurrentAccountInfo().contactModel->
-                    bestNameForContact(list.at(index.row()));
+            QString str = lrcInstance_->getCurrentAccountInfo().contactModel->bestNameForContact(
+                list.at(index.row()));
             return QVariant(str);
         }
         case Role::ContactID:

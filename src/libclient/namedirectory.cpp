@@ -66,7 +66,8 @@ NameDirectoryPrivate::slotNameRegistrationEnded(const QString& accountId,
     qDebug() << "Name registration ended. Account:" << accountId << "status:" << status
              << "name:" << name;
 
-    Q_EMIT q_ptr->nameRegistrationEnded(static_cast<NameDirectory::RegisterNameStatus>(status), name);
+    Q_EMIT q_ptr->nameRegistrationEnded(static_cast<NameDirectory::RegisterNameStatus>(status),
+                                        name);
 }
 
 // Registered Name found
@@ -90,7 +91,9 @@ NameDirectoryPrivate::slotRegisteredNameFound(const QString& accountId,
         break;
     }
 
-    Q_EMIT q_ptr->registeredNameFound(static_cast<NameDirectory::LookupStatus>(status), address, name);
+    Q_EMIT q_ptr->registeredNameFound(static_cast<NameDirectory::LookupStatus>(status),
+                                      address,
+                                      name);
 }
 
 // Export account has ended with pin generated
@@ -105,14 +108,18 @@ NameDirectoryPrivate::slotExportOnRingEnded(const QString& accountId, int status
 
 // Lookup a name
 bool
-NameDirectory::lookupName(const QString& accountId, const QString& name, const QString& nameServiceURL) const
+NameDirectory::lookupName(const QString& accountId,
+                          const QString& name,
+                          const QString& nameServiceURL) const
 {
     return ConfigurationManager::instance().lookupName(accountId, nameServiceURL, name);
 }
 
 // Lookup an address
 bool
-NameDirectory::lookupAddress(const QString& accountId, const QString& address, const QString& nameServiceURL) const
+NameDirectory::lookupAddress(const QString& accountId,
+                             const QString& address,
+                             const QString& nameServiceURL) const
 {
     return ConfigurationManager::instance().lookupAddress(accountId, nameServiceURL, address);
 }

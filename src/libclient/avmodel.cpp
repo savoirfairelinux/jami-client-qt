@@ -734,7 +734,7 @@ AVModel::getListWindows() const
         auto finishedloop = true;
     } catch (...) {
     }
- #endif
+#endif
     return ret;
 }
 

@@ -124,8 +124,7 @@ MessageListModel::erase(const QString& msgId)
     return 0;
 }
 
-interaction::Info&
-MessageListModel::operator[](const QString& messageId)
+interaction::Info& MessageListModel::operator[](const QString& messageId)
 {
     for (auto it = interactions_.cbegin(); it != interactions_.cend(); ++it) {
         if (it->first == messageId) {

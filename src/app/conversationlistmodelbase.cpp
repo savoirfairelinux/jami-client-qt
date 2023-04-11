@@ -186,8 +186,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             case Role::IsBanned:
                 return QVariant(false);
             case Role::ContactType:
-                return QVariant(
-                    static_cast<int>(accInfo.profileInfo.type));
+                return QVariant(static_cast<int>(accInfo.profileInfo.type));
             }
         }
         ContactModel* contactModel;
