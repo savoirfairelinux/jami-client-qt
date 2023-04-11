@@ -14,9 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
@@ -25,27 +23,27 @@ ModalTextEdit {
     id: root
 
     prefixIconSrc: {
-        switch(nameRegistrationState){
+        switch (nameRegistrationState) {
         case UsernameTextEdit.NameRegistrationState.FREE:
-            return JamiResources.circled_green_check_svg
+            return JamiResources.circled_green_check_svg;
         case UsernameTextEdit.NameRegistrationState.INVALID:
         case UsernameTextEdit.NameRegistrationState.TAKEN:
-            return JamiResources.circled_red_cross_svg
+            return JamiResources.circled_red_cross_svg;
         case UsernameTextEdit.NameRegistrationState.BLANK:
         default:
-            return JamiResources.person_24dp_svg
+            return JamiResources.person_24dp_svg;
         }
     }
     prefixIconColor: {
-        switch(nameRegistrationState){
+        switch (nameRegistrationState) {
         case UsernameTextEdit.NameRegistrationState.FREE:
-            return "#009980"
+            return "#009980";
         case UsernameTextEdit.NameRegistrationState.INVALID:
         case UsernameTextEdit.NameRegistrationState.TAKEN:
-            return "#CC0022"
+            return "#CC0022";
         case UsernameTextEdit.NameRegistrationState.BLANK:
         default:
-            return JamiTheme.editLineColor
+            return JamiTheme.editLineColor;
         }
     }
     suffixIconSrc: JamiResources.outline_info_24dp_svg
@@ -59,23 +57,30 @@ ModalTextEdit {
     infoTipText: JamiStrings.usernameToolTip
     placeholderText: JamiStrings.chooseAUsername
 
-    textValidator: RegularExpressionValidator { regularExpression: /[A-Za-z0-9-]{0,32}/ }
+    textValidator: RegularExpressionValidator {
+        regularExpression: /[A-Za-z0-9-]{0,32}/
+    }
 
-    enum NameRegistrationState { BLANK, INVALID, TAKEN, FREE, SEARCHING }
+    enum NameRegistrationState {
+        BLANK,
+        INVALID,
+        TAKEN,
+        FREE,
+        SEARCHING
+    }
     property int nameRegistrationState: UsernameTextEdit.NameRegistrationState.BLANK
 
-    inputIsValid: dynamicText.length === 0
-                  || nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE
+    inputIsValid: dynamicText.length === 0 || nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE
 
-    onActiveChanged: function(active) {
-        root.isActive = active
+    onActiveChanged: function (active) {
+        root.isActive = active;
     }
 
     Connections {
         target: CurrentAccount
 
         function onRegisteredNameChanged() {
-            root.editMode = false
+            root.editMode = false;
         }
     }
 
@@ -87,18 +92,18 @@ ModalTextEdit {
 
         function onRegisteredNameFound(status, address, name) {
             if (dynamicText === name) {
-                switch(status) {
+                switch (status) {
                 case NameDirectory.LookupStatus.NOT_FOUND:
-                    nameRegistrationState = UsernameTextEdit.NameRegistrationState.FREE
-                    break
+                    nameRegistrationState = UsernameTextEdit.NameRegistrationState.FREE;
+                    break;
                 case NameDirectory.LookupStatus.ERROR:
                 case NameDirectory.LookupStatus.INVALID_NAME:
                 case NameDirectory.LookupStatus.INVALID:
-                    nameRegistrationState = UsernameTextEdit.NameRegistrationState.INVALID
-                    break
+                    nameRegistrationState = UsernameTextEdit.NameRegistrationState.INVALID;
+                    break;
                 case NameDirectory.LookupStatus.SUCCESS:
-                    nameRegistrationState = UsernameTextEdit.NameRegistrationState.TAKEN
-                    break
+                    nameRegistrationState = UsernameTextEdit.NameRegistrationState.TAKEN;
+                    break;
                 }
             }
         }
@@ -112,10 +117,10 @@ ModalTextEdit {
 
         onTriggered: {
             if (dynamicText.length !== 0) {
-                nameRegistrationState = UsernameTextEdit.NameRegistrationState.SEARCHING
-                NameDirectory.lookupName(CurrentAccount.id, dynamicText)
+                nameRegistrationState = UsernameTextEdit.NameRegistrationState.SEARCHING;
+                NameDirectory.lookupName(CurrentAccount.id, dynamicText);
             } else {
-                nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK
+                nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
             }
         }
     }
@@ -124,9 +129,9 @@ ModalTextEdit {
 
     function startEditing() {
         if (!registeredName) {
-            root.editMode = true
-            forceActiveFocus()
-            nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK
+            root.editMode = true;
+            forceActiveFocus();
+            nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
         }
     }
 }

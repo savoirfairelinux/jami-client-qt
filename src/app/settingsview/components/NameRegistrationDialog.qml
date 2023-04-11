@@ -16,21 +16,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 BaseModalDialog {
     id: root
 
-    property string registeredName : ""
+    property string registeredName: ""
 
     signal accepted
 
@@ -43,10 +40,9 @@ BaseModalDialog {
         id: stackedWidget
 
         function startRegistration() {
-            stackedWidget.currentIndex = nameRegisterSpinnerPage.pageIndex
-            spinnerMovie.visible = true
-
-            timerForStartRegistration.restart()
+            stackedWidget.currentIndex = nameRegisterSpinnerPage.pageIndex;
+            spinnerMovie.visible = true;
+            timerForStartRegistration.restart();
         }
 
         Timer {
@@ -56,44 +52,41 @@ BaseModalDialog {
             repeat: false
 
             onTriggered: {
-                AccountAdapter.model.registerName(LRCInstance.currentAccountId,
-                                                  passwordEdit.text, registeredName)
+                AccountAdapter.model.registerName(LRCInstance.currentAccountId, passwordEdit.text, registeredName);
             }
         }
 
-        Connections{
+        Connections {
             target: NameDirectory
 
             function onNameRegistrationEnded(status, name) {
-                switch(status) {
+                switch (status) {
                 case NameDirectory.RegisterNameStatus.SUCCESS:
-                    accepted()
-                    close()
-                    return
+                    accepted();
+                    close();
+                    return;
                 case NameDirectory.RegisterNameStatus.WRONG_PASSWORD:
-                    lblRegistrationError.text = JamiStrings.incorrectPassword
-                    break
+                    lblRegistrationError.text = JamiStrings.incorrectPassword;
+                    break;
                 case NameDirectory.RegisterNameStatus.NETWORK_ERROR:
-                    lblRegistrationError.text = JamiStrings.networkError
-                    break
+                    lblRegistrationError.text = JamiStrings.networkError;
+                    break;
                 default:
-                    break
+                    break;
                 }
-
-                stackedWidget.currentIndex = nameRegisterErrorPage.pageIndex
+                stackedWidget.currentIndex = nameRegisterErrorPage.pageIndex;
             }
         }
 
         onVisibleChanged: {
             if (visible) {
-                lblRegistrationError.text = JamiStrings.somethingWentWrong
-                passwordEdit.clear()
-
-                if (CurrentAccount.hasArchivePassword){
-                    stackedWidget.currentIndex = nameRegisterEnterPasswordPage.pageIndex
-                    passwordEdit.forceActiveFocus()
+                lblRegistrationError.text = JamiStrings.somethingWentWrong;
+                passwordEdit.clear();
+                if (CurrentAccount.hasArchivePassword) {
+                    stackedWidget.currentIndex = nameRegisterEnterPasswordPage.pageIndex;
+                    passwordEdit.forceActiveFocus();
                 } else {
-                    startRegistration()
+                    startRegistration();
                 }
             }
         }
@@ -148,7 +141,7 @@ BaseModalDialog {
                         preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
                         buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
-                        color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                        color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
                         pressedColor: JamiTheme.buttonTintedBlackPressed
                         secondary: true

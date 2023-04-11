@@ -16,16 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
-
 import "../"
 import "../commoncomponents"
 import "components"
@@ -41,17 +38,16 @@ BaseView {
 
     color: JamiTheme.backgroundColor
 
-    Connections{
+    Connections {
         target: AccountAdapter
 
         // reportFailure
         function onReportFailure() {
-            var errorMessage = JamiStrings.errorCreateAccount
-
+            var errorMessage = JamiStrings.errorCreateAccount;
             for (var i = 0; i < controlPanelStackView.children.length; i++) {
                 if (i === controlPanelStackView.currentIndex) {
-                    controlPanelStackView.children[i].errorOccured(errorMessage)
-                    return
+                    controlPanelStackView.children[i].errorOccured(errorMessage);
+                    return;
                 }
             }
         }
@@ -61,8 +57,8 @@ BaseView {
         target: WizardViewStepModel
 
         function onCloseWizardView() {
-            loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
-            root.dismiss()
+            loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView);
+            root.dismiss();
         }
     }
 
@@ -81,11 +77,11 @@ BaseView {
             objectName: "controlPanelStackView"
 
             function setPage(obj) {
-                wizardViewScrollView.vScrollBar.position = 0
+                wizardViewScrollView.vScrollBar.position = 0;
                 for (var i in this.children) {
                     if (this.children[i] === obj) {
-                        currentIndex = i
-                        return
+                        currentIndex = i;
+                        return;
                     }
                 }
             }
@@ -144,14 +140,10 @@ BaseView {
 
             Component.onCompleted: {
                 // avoid binding loop
-                height = Qt.binding(function (){
-                    var index = currentIndex
-                            === WizardViewStepModel.MainSteps.CreateRendezVous ?
-                                WizardViewStepModel.MainSteps.CreateJamiAccount : currentIndex
-                    return Math.max(
-                                controlPanelStackView.itemAt(index).preferredHeight,
-                                wizardViewScrollView.height)
-                })
+                height = Qt.binding(function () {
+                        var index = currentIndex === WizardViewStepModel.MainSteps.CreateRendezVous ? WizardViewStepModel.MainSteps.CreateJamiAccount : currentIndex;
+                        return Math.max(controlPanelStackView.itemAt(index).preferredHeight, wizardViewScrollView.height);
+                    });
             }
         }
     }

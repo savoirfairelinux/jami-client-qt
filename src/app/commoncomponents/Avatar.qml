@@ -16,12 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
@@ -29,7 +27,11 @@ import net.jami.Helpers 1.1
 Item {
     id: root
 
-    enum Mode { Account, Contact, Conversation }
+    enum Mode {
+        Account,
+        Contact,
+        Conversation
+    }
     property int mode: Avatar.Mode.Account
     property alias sourceSize: image.sourceSize
 
@@ -39,9 +41,12 @@ Item {
     readonly property string baseProviderPrefix: 'image://avatarImage'
     property string typePrefix: {
         switch (mode) {
-        case Avatar.Mode.Account: return 'account'
-        case Avatar.Mode.Contact: return 'contact'
-        case Avatar.Mode.Conversation: return 'conversation'
+        case Avatar.Mode.Account:
+            return 'account';
+        case Avatar.Mode.Contact:
+            return 'contact';
+        case Avatar.Mode.Conversation:
+            return 'conversation';
         }
     }
 
@@ -57,11 +62,11 @@ Item {
         function onAvatarUidChanged(id) {
             // filter this id only
             if (id !== root.imageId)
-                return
+                return;
 
             // get the updated uid forcing a new requestImage
             // call to the image provider
-            image.updateSource()
+            image.updateSource();
         }
     }
 
@@ -69,7 +74,7 @@ Item {
         target: CurrentScreenInfo
 
         function onDevicePixelRatioChanged() {
-            image.updateSource()
+            image.updateSource();
         }
     }
 
@@ -89,16 +94,14 @@ Item {
 
         function updateSource() {
             if (!imageId)
-                return
-            source = baseProviderPrefix + '/' +
-                    typePrefix + divider +
-                    imageId + divider + AvatarRegistry.getUid(imageId)
+                return;
+            source = baseProviderPrefix + '/' + typePrefix + divider + imageId + divider + AvatarRegistry.getUid(imageId);
         }
 
         opacity: status === Image.Ready
         scale: Math.min(image.opacity + 0.5, 1.0)
 
-        Behavior on opacity {
+        Behavior on opacity  {
             NumberAnimation {
                 from: 0
                 duration: JamiTheme.shortFadeDuration
@@ -117,5 +120,5 @@ Item {
         size: root.width * JamiTheme.avatarPresenceRatio
 
         visible: showPresenceIndicator
-    }       
+    }
 }

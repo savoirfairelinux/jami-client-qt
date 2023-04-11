@@ -15,37 +15,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import Qt5Compat.GraphicalEffects
-
 import "../../commoncomponents"
 
 Item {
-
     id: root
     property string title: ""
     property string description: ""
     property int tipId: 0
-    property string type : ""
+    property string type: ""
     property bool hovered: false
-    property bool clicked : false
+    property bool clicked: false
     property bool opened: false
 
-    property string customizeTip:"CustomizeTipBox {}"
+    property string customizeTip: "CustomizeTipBox {}"
 
-    property string backupTip: "BackupTipBox {" +
-        "    onIgnore: {" +
-        "        root.ignoreClicked()" +
-        "    }" +
-        "}"
+    property string backupTip: "BackupTipBox {" + "    onIgnore: {" + "        root.ignoreClicked()" + "    }" + "}"
 
     property string infoTip: "InformativeTipBox {}"
 
@@ -55,7 +46,6 @@ Item {
     signal ignoreClicked
 
     Rectangle {
-
         id: rect
         anchors.fill: parent
 
@@ -71,18 +61,18 @@ Item {
 
             Component.onCompleted: {
                 if (type === "customize") {
-                    Qt.createQmlObject(customizeTip, this, 'tip')
+                    Qt.createQmlObject(customizeTip, this, 'tip');
                 } else if (type === "backup") {
-                    Qt.createQmlObject(backupTip, this, 'tip')
+                    Qt.createQmlObject(backupTip, this, 'tip');
                 } else {
-                    Qt.createQmlObject(infoTip, this, 'tip')
+                    Qt.createQmlObject(infoTip, this, 'tip');
                 }
             }
         }
     }
 
     HoverHandler {
-        target : rect
+        target: rect
         onHoveredChanged: root.hovered = hovered
         cursorShape: Qt.PointingHandCursor
     }
@@ -100,7 +90,7 @@ Item {
         horizontalOffset: 3.0
         verticalOffset: 3.0
         radius: 16
-        color: Qt.rgba(0, 0.34,0.6,0.16)
+        color: Qt.rgba(0, 0.34, 0.6, 0.16)
         source: rect
         transparentBorder: true
     }
@@ -111,14 +101,14 @@ Item {
         width: 20
         height: 20
         imageContainerWidth: 20
-        imageContainerHeight : 20
+        imageContainerHeight: 20
         anchors.margins: 14
         anchors.top: parent.top
         anchors.right: parent.right
         visible: opened
         circled: true
 
-        imageColor: Qt.rgba(0, 86/255, 153/255, 1)
+        imageColor: Qt.rgba(0, 86 / 255, 153 / 255, 1)
         normalColor: "transparent"
         toolTipText: JamiStrings.dismiss
 

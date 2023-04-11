@@ -15,11 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Constants 1.1
-
 import "contextmenu"
 
 ContextMenuAutoLoader {
@@ -41,7 +38,7 @@ ContextMenuAutoLoader {
             canTrigger: lineEditObj.selectedText.length
             itemName: JamiStrings.copy
             onClicked: {
-                lineEditObj.copy()
+                lineEditObj.copy();
             }
         },
         GeneralMenuItem {
@@ -51,7 +48,7 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.cut
 
             onClicked: {
-                lineEditObj.cut()
+                lineEditObj.cut();
             }
         },
         GeneralMenuItem {
@@ -61,26 +58,22 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.paste
             onClicked: {
                 if (customizePaste)
-                    root.contextMenuRequirePaste()
+                    root.contextMenuRequirePaste();
                 else
-                    lineEditObj.paste()
+                    lineEditObj.paste();
             }
         }
     ]
 
     function openMenuAt(mouseEvent) {
         if (lineEditObj.selectedText.length === 0 && selectOnly)
-            return
-
-        x = mouseEvent.x
-        y = mouseEvent.y
-
-        selectionStart = lineEditObj.selectionStart
-        selectionEnd = lineEditObj.selectionEnd
-
-        root.openMenu()
-
-        lineEditObj.select(selectionStart, selectionEnd)
+            return;
+        x = mouseEvent.x;
+        y = mouseEvent.y;
+        selectionStart = lineEditObj.selectionStart;
+        selectionEnd = lineEditObj.selectionEnd;
+        root.openMenu();
+        lineEditObj.select(selectionStart, selectionEnd);
     }
 
     contextMenuItemPreferredHeight: JamiTheme.lineEditContextMenuItemsHeight
@@ -91,7 +84,7 @@ ContextMenuAutoLoader {
         target: root.item
         enabled: root.status === Loader.Ready
         function onOpened() {
-            lineEditObj.select(selectionStart, selectionEnd)
+            lineEditObj.select(selectionStart, selectionEnd);
         }
     }
 

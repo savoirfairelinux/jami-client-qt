@@ -18,14 +18,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Item {
@@ -38,29 +35,25 @@ Item {
         target: CurrentCall
 
         function onIsRecordingRemotelyChanged() {
-            var label = ""
+            var label = "";
             if (CurrentCall.isRecordingRemotely) {
-                label = CurrentCall.remoteRecorderNameList.join(", ") + " "
-                label += (CurrentCall.remoteRecorderNameList.length > 1) ?
-                            JamiStrings.areRecording : JamiStrings.isRecording
+                label = CurrentCall.remoteRecorderNameList.join(", ") + " ";
+                label += (CurrentCall.remoteRecorderNameList.length > 1) ? JamiStrings.areRecording : JamiStrings.isRecording;
             }
-            root.remoteRecordingLabel = label
+            root.remoteRecordingLabel = label;
         }
     }
 
     property alias callActionBar: __callActionBar
 
-    property bool frozen: callActionBar.overflowOpen ||
-                          callActionBar.barHovered ||
-                          callActionBar.subMenuOpen ||
-                          participantCallInStatusView.visible
+    property bool frozen: callActionBar.overflowOpen || callActionBar.barHovered || callActionBar.subMenuOpen || participantCallInStatusView.visible
 
     property string muteAlertMessage: ""
     property bool muteAlertActive: false
 
     onMuteAlertActiveChanged: {
         if (muteAlertActive) {
-            alertTimer.restart()
+            alertTimer.restart();
         }
     }
 
@@ -69,8 +62,7 @@ Item {
     // (un)subscribe to an app-wide mouse move event trap filtered
     // for the overlay's geometry
     onVisibleChanged: {
-        visible ? CallOverlayModel.registerFilter(appWindow, this) :
-                  CallOverlayModel.unregisterFilter(appWindow, this)
+        visible ? CallOverlayModel.registerFilter(appWindow, this) : CallOverlayModel.unregisterFilter(appWindow, this);
     }
 
     Connections {
@@ -78,8 +70,8 @@ Item {
 
         function onMouseMoved(item) {
             if (item === root) {
-                root.opacity = 1
-                fadeOutTimer.restart()
+                root.opacity = 1;
+                fadeOutTimer.restart();
             }
         }
     }
@@ -89,9 +81,9 @@ Item {
         enabled: root.visible
         context: Qt.ApplicationShortcut
         onActivated: {
-            CallAdapter.muteAudioToggle()
-            root.opacity = 1
-            fadeOutTimer.restart()
+            CallAdapter.muteAudioToggle();
+            root.opacity = 1;
+            fadeOutTimer.restart();
         }
     }
 
@@ -100,9 +92,9 @@ Item {
         enabled: root.visible
         context: Qt.ApplicationShortcut
         onActivated: {
-            CallAdapter.muteCameraToggle()
-            root.opacity = 1
-            fadeOutTimer.restart()
+            CallAdapter.muteCameraToggle();
+            root.opacity = 1;
+            fadeOutTimer.restart();
         }
     }
 
@@ -112,9 +104,9 @@ Item {
         interval: JamiTheme.overlayFadeDelay
         onTriggered: {
             if (frozen)
-                return
-            root.opacity = 0
-            resetLabelsTimer.restart()
+                return;
+            root.opacity = 0;
+            resetLabelsTimer.restart();
         }
     }
 
@@ -125,11 +117,9 @@ Item {
         running: root.visible
         repeat: true
         onTriggered: {
-            root.timeText = CallAdapter.getCallDurationTime(
-                        LRCInstance.currentAccountId,
-                        LRCInstance.selectedConvUid)
+            root.timeText = CallAdapter.getCallDurationTime(LRCInstance.currentAccountId, LRCInstance.selectedConvUid);
             if (!root.opacity && !CurrentCall.isRecordingRemotely)
-                root.remoteRecordingLabel = ""
+                root.remoteRecordingLabel = "";
         }
     }
 
@@ -162,12 +152,12 @@ Item {
                 text: {
                     if (!CurrentCall.isAudioOnly) {
                         if (root.remoteRecordingLabel === "") {
-                            return CurrentConversation.title
+                            return CurrentConversation.title;
                         } else {
-                            return root.remoteRecordingLabel
+                            return root.remoteRecordingLabel;
                         }
                     }
-                    return ""
+                    return "";
                 }
                 color: JamiTheme.whiteColor
                 elide: Qt.ElideRight
@@ -202,7 +192,7 @@ Item {
                 radius: height / 2
                 color: JamiTheme.recordIconColor
 
-                SequentialAnimation on color {
+                SequentialAnimation on color  {
                     loops: Animation.Infinite
                     running: recordingRect.visible
                     ColorAnimation {
@@ -258,7 +248,7 @@ Item {
             id: alertTimer
             interval: JamiTheme.overlayFadeDelay
             onTriggered: {
-                root.muteAlertActive = false
+                root.muteAlertActive = false;
             }
         }
     }
@@ -277,7 +267,7 @@ Item {
         visible: root.opacity
     }
 
-    Behavior on opacity {
+    Behavior on opacity  {
         NumberAnimation {
             duration: JamiTheme.overlayFadeDuration
         }

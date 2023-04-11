@@ -15,10 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
 
 RowLayout {
@@ -62,9 +60,7 @@ RowLayout {
 
             anchors.centerIn: parent
 
-            text: shortcut2 === "" ?
-                      shortcut :
-                      shortcut + " + " + shortcut2
+            text: shortcut2 === "" ? shortcut : shortcut + " + " + shortcut2
             font.pointSize: JamiTheme.textFontSize + 3
             font.weight: Font.DemiBold
             color: JamiTheme.textColor

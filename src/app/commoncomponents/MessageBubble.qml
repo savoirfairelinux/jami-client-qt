@@ -15,12 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
-
-
 
 Rectangle {
     id: root
@@ -46,10 +43,10 @@ Rectangle {
         color: root.color
         anchors {
             fill: parent
-            leftMargin: out ? root.width/2  : 0
-            rightMargin: out ? 0 : root.width/2
-            topMargin: type === MsgSeq.first ? root.height /2 : 0
-            bottomMargin: type === MsgSeq.last ? root.height /2 : 0
+            leftMargin: out ? root.width / 2 : 0
+            rightMargin: out ? 0 : root.width / 2
+            topMargin: type === MsgSeq.first ? root.height / 2 : 0
+            bottomMargin: type === MsgSeq.last ? root.height / 2 : 0
         }
     }
 
@@ -61,10 +58,10 @@ Rectangle {
         color: root.color
         anchors {
             fill: parent
-            leftMargin: out ? 0 : root.width/2
-            rightMargin: !out ? 0 : root.width/2
+            leftMargin: out ? 0 : root.width / 2
+            rightMargin: !out ? 0 : root.width / 2
             topMargin: 0
-            bottomMargin: root.height /2
+            bottomMargin: root.height / 2
         }
     }
 
@@ -76,9 +73,9 @@ Rectangle {
         color: root.color
         anchors {
             fill: parent
-            leftMargin: out ? root.width/2 : 0
-            rightMargin: out ? 0 : root.width/2
-            topMargin: root.width/5
+            leftMargin: out ? root.width / 2 : 0
+            rightMargin: out ? 0 : root.width / 2
+            topMargin: root.width / 5
             bottomMargin: 0
         }
     }

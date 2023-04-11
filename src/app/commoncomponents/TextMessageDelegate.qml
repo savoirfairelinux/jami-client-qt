@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
  * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -16,26 +16,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
 SBSMessageBase {
-    id : root
+    id: root
 
     property bool isRemoteImage
     property bool isEmojiOnly: IsEmojiOnly
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
-    property string colorUrl: UtilsAdapter.luma(bubble.color) ?
-                                  JamiTheme.chatviewLinkColorLight :
-                                  JamiTheme.chatviewLinkColorDark
+    property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
 
     isOutgoing: Author === CurrentAccount.uri
     author: Author
@@ -48,7 +44,6 @@ SBSMessageBase {
     textContentWidth: textEditId.width
     textContentHeight: textEditId.height
 
-
     innerContent.children: [
         TextEdit {
             id: textEditId
@@ -57,9 +52,9 @@ SBSMessageBase {
             anchors.right: isOutgoing ? parent.right : undefined
             text: {
                 if (LinkifiedBody !== "" && Linkified.length === 0) {
-                    MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl)
+                    MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl);
                 }
-                return (LinkifiedBody !== "") ? LinkifiedBody :  "*("+ JamiStrings.deletedMessage +")*"
+                return (LinkifiedBody !== "") ? LinkifiedBody : "*(" + JamiStrings.deletedMessage + ")*";
             }
             horizontalAlignment: Text.AlignLeft
 
@@ -69,18 +64,16 @@ SBSMessageBase {
 
             width: {
                 if (extraContent.active)
-                    Math.max(extraContent.width,
-                             Math.min((2/3)*root.maxMsgWidth,implicitWidth - avatarBlockWidth,
-                                      extraContent.minSize) - senderMargin )
+                    Math.max(extraContent.width, Math.min((2 / 3) * root.maxMsgWidth, implicitWidth - avatarBlockWidth, extraContent.minSize) - senderMargin);
                 else if (isEmojiOnly)
-                    Math.min((2/3)*root.maxMsgWidth,implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2))
+                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
                 else
-                    Math.min((2/3)*root.maxMsgWidth,implicitWidth, innerContent.width - senderMargin)
+                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin);
             }
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
-            font.pixelSize: isEmojiOnly? JamiTheme.chatviewEmojiSize : JamiTheme.emojiBubbleSize
+            font.pixelSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.emojiBubbleSize
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
             textFormat: Text.MarkdownText
@@ -90,26 +83,26 @@ SBSMessageBase {
             color: getBaseColor()
 
             function getBaseColor() {
-                var baseColor
+                var baseColor;
                 if (isEmojiOnly) {
                     if (JamiTheme.darkTheme)
-                        baseColor = JamiTheme.chatviewTextColorLight
+                        baseColor = JamiTheme.chatviewTextColorLight;
                     else
-                        baseColor = JamiTheme.chatviewTextColorDark
+                        baseColor = JamiTheme.chatviewTextColorDark;
                 } else {
                     if (UtilsAdapter.luma(bubble.color))
-                        baseColor = JamiTheme.chatviewTextColorLight
+                        baseColor = JamiTheme.chatviewTextColorLight;
                     else
-                        baseColor = JamiTheme.chatviewTextColorDark
+                        baseColor = JamiTheme.chatviewTextColorDark;
                 }
-                return baseColor
+                return baseColor;
             }
 
             TapHandler {
                 enabled: parent.selectedText.length > 0
                 acceptedButtons: Qt.RightButton
                 onTapped: function onTapped(eventPoint) {
-                    ctxMenu.openMenuAt(eventPoint.position)
+                    ctxMenu.openMenuAt(eventPoint.position);
                 }
             }
 
@@ -126,7 +119,7 @@ SBSMessageBase {
             anchors.right: isOutgoing ? parent.right : undefined
             visible: PreviousBodies.length !== 0
 
-            ResponsiveImage  {
+            ResponsiveImage {
                 id: editedImage
 
                 Layout.leftMargin: JamiTheme.preferredMarginSize
@@ -149,18 +142,15 @@ SBSMessageBase {
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
 
                 text: JamiStrings.edited
-                color: UtilsAdapter.luma(bubble.color) ?
-                        JamiTheme.chatviewTextColorLight :
-                        JamiTheme.chatviewTextColorDark
+                color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                 font.pointSize: JamiTheme.editedFontSize
 
                 TapHandler {
                     acceptedButtons: Qt.LeftButton
                     onTapped: {
-                        viewCoordinator.presentDialog(
-                                    appWindow,
-                                    "commoncomponents/EditedPopup.qml",
-                                    {previousBodies: PreviousBodies})
+                        viewCoordinator.presentDialog(appWindow, "commoncomponents/EditedPopup.qml", {
+                                "previousBodies": PreviousBodies
+                            });
                     }
                 }
             }
@@ -177,12 +167,12 @@ SBSMessageBase {
 
                 spacing: 12
                 Component.onCompleted: {
-                    isRemoteImage = MessagesAdapter.isRemoteImage(LinkPreviewInfo.url)
+                    isRemoteImage = MessagesAdapter.isRemoteImage(LinkPreviewInfo.url);
                 }
                 HoverHandler {
                     target: previewContent
                     onHoveredChanged: {
-                        root.hoveredLink = hovered ? LinkPreviewInfo.url : ""
+                        root.hoveredLink = hovered ? LinkPreviewInfo.url : "";
                     }
                     cursorShape: Qt.PointingHandCursor
                 }
@@ -190,9 +180,7 @@ SBSMessageBase {
                     id: img
 
                     cache: false
-                    source: isRemoteImage ?
-                                LinkPreviewInfo.url :
-                                (hasImage ? LinkPreviewInfo.image : "")
+                    source: isRemoteImage ? LinkPreviewInfo.url : (hasImage ? LinkPreviewInfo.image : "")
 
                     fillMode: Image.PreserveAspectCrop
                     mipmap: true
@@ -201,9 +189,7 @@ SBSMessageBase {
                     asynchronous: true
                     readonly property bool hasImage: LinkPreviewInfo.image !== null
                     property real aspectRatio: implicitWidth / implicitHeight
-                    property real adjustedWidth: Math.min(extraContent.maxSize,
-                                                          Math.max(extraContent.minSize,
-                                                                   maxMsgWidth))
+                    property real adjustedWidth: Math.min(extraContent.maxSize, Math.max(extraContent.minSize, maxMsgWidth))
                     Layout.preferredWidth: adjustedWidth
                     Layout.preferredHeight: Math.ceil(adjustedWidth / aspectRatio)
                     Rectangle {
@@ -214,7 +200,10 @@ SBSMessageBase {
                     layer.enabled: isRemoteImage
                     layer.effect: OpacityMask {
                         maskSource: MessageBubble {
-                            Rectangle { height: msgRadius; width: parent.width }
+                            Rectangle {
+                                height: msgRadius
+                                width: parent.width
+                            }
                             out: isOutgoing
                             type: seq
                             width: img.width
@@ -237,9 +226,7 @@ SBSMessageBase {
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
-                        color: UtilsAdapter.luma(bubble.color) ?
-                                JamiTheme.chatviewTextColorLight :
-                                JamiTheme.chatviewTextColorDark
+                        color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                         visible: LinkPreviewInfo.title !== null
                         text: LinkPreviewInfo.title
                     }
@@ -254,7 +241,6 @@ SBSMessageBase {
                         font.underline: root.hoveredLink
                         text: LinkPreviewInfo.description
                         color: root.colorUrl
-
                     }
                     Label {
                         width: parent.width
@@ -263,9 +249,7 @@ SBSMessageBase {
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
-                        color: UtilsAdapter.luma(bubble.color) ?
-                                JamiTheme.chatviewTextColorLight :
-                                JamiTheme.chatviewTextColorDark
+                        color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                         text: LinkPreviewInfo.domain
                     }
                 }
@@ -274,11 +258,15 @@ SBSMessageBase {
     ]
 
     opacity: 0
-    Behavior on opacity { NumberAnimation { duration: 100 } }
+    Behavior on opacity  {
+        NumberAnimation {
+            duration: 100
+        }
+    }
     Component.onCompleted: {
         if (Linkified.length === 0) {
-            MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl)
+            MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl);
         }
-        opacity = 1
+        opacity = 1;
     }
 }

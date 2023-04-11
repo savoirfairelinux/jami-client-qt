@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -35,8 +32,8 @@ Rectangle {
     implicitHeight: childrenRect.height
     onVisibleChanged: {
         if (visible) {
-            preferencesPerCategoryModel.reset()
-            generalPreferencesModel.reset()
+            preferencesPerCategoryModel.reset();
+            generalPreferencesModel.reset();
         }
     }
 
@@ -47,8 +44,8 @@ Rectangle {
 
         function onCurrentAccountIdChanged() {
             if (accountId) {
-                preferencesPerCategoryModel.reset()
-                generalPreferencesModel.reset()
+                preferencesPerCategoryModel.reset();
+                generalPreferencesModel.reset();
             }
         }
     }
@@ -59,9 +56,8 @@ Rectangle {
 
     visible: false
 
-    function setPreference(pluginId, preferenceKey, preferenceNewValue)
-    {
-        PluginModel.setPluginPreference(pluginId, accountId, preferenceKey, preferenceNewValue)
+    function setPreference(pluginId, preferenceKey, preferenceNewValue) {
+        PluginModel.setPluginPreference(pluginId, accountId, preferenceKey, preferenceNewValue);
     }
 
     ColumnLayout {
@@ -102,7 +98,7 @@ Rectangle {
                             text: modelData
                             flat: true
                             onClicked: {
-                                root.category = modelData
+                                root.category = modelData;
                             }
                             background: Rectangle {
                                 anchors.fill: parent
@@ -134,7 +130,7 @@ Rectangle {
                     highlighted: category === text
 
                     onClicked: {
-                        root.category = oddCategoryButton.text
+                        root.category = oddCategoryButton.text;
                     }
                     background: Rectangle {
                         anchors.fill: parent
@@ -167,7 +163,7 @@ Rectangle {
                         pluginId_: pluginId
 
                         onCategory_Changed: {
-                            this.reset()
+                            this.reset();
                         }
                     }
                     interactive: false
@@ -192,14 +188,14 @@ Rectangle {
                             id: pluginListPreferenceCategoryModel
 
                             lrcInstance: LRCInstance
-                            preferenceKey : PreferenceKey
+                            preferenceKey: PreferenceKey
                             accountId_: accountId
                             pluginId: PluginId
                         }
 
                         onBtnPreferenceClicked: {
-                            setPreference(pluginId, preferenceKey, preferenceNewValue)
-                            preferencesPerCategoryModel.reset()
+                            setPreference(pluginId, preferenceKey, preferenceNewValue);
+                            preferencesPerCategoryModel.reset();
                         }
 
                         background: Rectangle {
@@ -226,7 +222,7 @@ Rectangle {
                 pluginId_: pluginId
 
                 onCategory_Changed: {
-                    this.reset()
+                    this.reset();
                 }
             }
             interactive: false
@@ -251,14 +247,14 @@ Rectangle {
                     id: pluginListPreferenceModel
 
                     lrcInstance: LRCInstance
-                    preferenceKey : PreferenceKey
+                    preferenceKey: PreferenceKey
                     accountId_: accountId
                     pluginId: PluginId
                 }
 
                 onBtnPreferenceClicked: {
-                    setPreference(pluginId, preferenceKey, preferenceNewValue)
-                    generalPreferencesModel.reset()
+                    setPreference(pluginId, preferenceKey, preferenceNewValue);
+                    generalPreferencesModel.reset();
                 }
             }
         }
@@ -280,27 +276,23 @@ Rectangle {
 
             text: JamiStrings.reset
 
-            onClicked: viewCoordinator.presentDialog(
-                           appWindow,
-                           "commoncomponents/SimpleMessageDialog.qml",
-                           {
-                               title: JamiStrings.resetPreferences,
-                               infoText: JamiStrings.pluginResetConfirmation.arg(pluginName),
-                               buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel],
-                               buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                                              SimpleMessageDialog.ButtonStyle.TintedBlack],
-                               buttonCallBacks: [function () {
-                                   if (isLoaded) {
-                                       PluginModel.unloadPlugin(pluginId)
-                                       PluginModel.resetPluginPreferencesValues(pluginId, accountId)
-                                       PluginModel.loadPlugin(pluginId)
-                                   } else {
-                                       PluginModel.resetPluginPreferencesValues(pluginId, accountId)
-                                   }
-                                   preferencesPerCategoryModel.reset()
-                                   generalPreferencesModel.reset()
-                               }]
-                           })
+            onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                    "title": JamiStrings.resetPreferences,
+                    "infoText": JamiStrings.pluginResetConfirmation.arg(pluginName),
+                    "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
+                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
+                    "buttonCallBacks": [function () {
+                            if (isLoaded) {
+                                PluginModel.unloadPlugin(pluginId);
+                                PluginModel.resetPluginPreferencesValues(pluginId, accountId);
+                                PluginModel.loadPlugin(pluginId);
+                            } else {
+                                PluginModel.resetPluginPreferencesValues(pluginId, accountId);
+                            }
+                            preferencesPerCategoryModel.reset();
+                            generalPreferencesModel.reset();
+                        }]
+                })
         }
     }
 }

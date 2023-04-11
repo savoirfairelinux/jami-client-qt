@@ -14,17 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
-
 
 ColumnLayout {
     id: column
@@ -77,7 +73,7 @@ ColumnLayout {
         Layout.bottomMargin: 15
         font.pixelSize: JamiTheme.tipBoxContentFontSize
         wrapMode: Text.WordWrap
-        font.weight: opened ?  Font.Medium : Font.Normal
+        font.weight: opened ? Font.Medium : Font.Normal
         text: root.title
         color: JamiTheme.textColor
     }

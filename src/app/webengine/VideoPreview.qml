@@ -14,11 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtWebEngine
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 
 Rectangle {
@@ -34,21 +32,19 @@ Rectangle {
         anchors.fill: parent
         anchors.verticalCenter: root.verticalCenter
         backgroundColor: JamiTheme.secondaryBackgroundColor
-        anchors.topMargin: root.isVideo? 0 :  wev.implicitHeight / 2
+        anchors.topMargin: root.isVideo ? 0 : wev.implicitHeight / 2
         settings.fullScreenSupportEnabled: root.isVideo
         settings.javascriptCanOpenWindows: false
         Component.onCompleted: loadHtml(root.html, 'file://')
-        onFullScreenRequested: function(request) {
+        onFullScreenRequested: function (request) {
             if (request.toggleOn) {
-                layoutManager.pushFullScreenItem(
-                            this,
-                            root,
-                            null,
-                            function() { wev.fullScreenCancelled() })
+                layoutManager.pushFullScreenItem(this, root, null, function () {
+                        wev.fullScreenCancelled();
+                    });
             } else if (!request.toggleOn) {
-                layoutManager.removeFullScreenItem(this)
+                layoutManager.removeFullScreenItem(this);
             }
-            request.accept()
+            request.accept();
         }
     }
 
@@ -59,7 +55,7 @@ Rectangle {
             height: root.height
             Rectangle {
                 anchors.centerIn: parent
-                width:  root.width
+                width: root.width
                 height: root.height
                 radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
             }

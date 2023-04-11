@@ -16,16 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -42,29 +39,35 @@ Rectangle {
     Connections {
         target: CurrentConversation
         enabled: true
-        function onTitleChanged() { title.eText = CurrentConversation.title }
-        function onDescriptionChanged() { description.eText = CurrentConversation.description }
-        function onShowSwarmDetails() { root.showDetailsClicked() }
+        function onTitleChanged() {
+            title.eText = CurrentConversation.title;
+        }
+        function onDescriptionChanged() {
+            description.eText = CurrentConversation.description;
+        }
+        function onShowSwarmDetails() {
+            root.showDetailsClicked();
+        }
     }
 
     property bool interactionButtonsVisibility: {
         if (CurrentConversation.inCall)
-            return false
+            return false;
         if (LRCInstance.currentAccountType === Profile.Type.SIP)
-            return true
+            return true;
         if (!CurrentConversation.isTemporary && !CurrentConversation.isSwarm)
-            return false
+            return false;
         if (CurrentConversation.isRequest || CurrentConversation.needsSyncing)
-            return false
-        return true
+            return false;
+        return true;
     }
 
     property bool addMemberVisibility: {
-        return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.isRequest
+        return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.isRequest;
     }
 
     property bool swarmDetailsVisibility: {
-        return CurrentConversation.isSwarm && !CurrentConversation.isRequest
+        return CurrentConversation.isSwarm && !CurrentConversation.isRequest;
     }
 
     color: JamiTheme.chatviewBgColor
@@ -131,8 +134,7 @@ Rectangle {
 
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
-                    visible: text.length &&
-                             CurrentConversation.title !== CurrentConversation.description
+                    visible: text.length && CurrentConversation.title !== CurrentConversation.description
                     font.pointSize: JamiTheme.textFontSize
                     color: JamiTheme.faddedLastInteractionFontColor
 
@@ -164,7 +166,7 @@ Rectangle {
                     context: Qt.ApplicationShortcut
                     enabled: rowSearchBar.visible
                     onActivated: {
-                        rowSearchBar.openSearchBar()
+                        rowSearchBar.openSearchBar();
                     }
                 }
             }
@@ -194,7 +196,7 @@ Rectangle {
                 imageColor: JamiTheme.chatviewButtonColor
 
                 onClicked: {
-                    CallAdapter.placeCall()
+                    CallAdapter.placeCall();
                 }
             }
 
@@ -215,8 +217,7 @@ Rectangle {
             PushButton {
                 id: selectPluginButton
 
-                visible: PluginAdapter.isEnabled && PluginAdapter.chatHandlersListCount &&
-                            interactionButtonsVisibility
+                visible: PluginAdapter.isEnabled && PluginAdapter.chatHandlersListCount && interactionButtonsVisibility
 
                 source: JamiResources.plugins_24dp_svg
                 toolTipText: JamiStrings.showPlugins
@@ -238,16 +239,13 @@ Rectangle {
                 normalColor: JamiTheme.chatviewBgColor
                 imageColor: JamiTheme.chatviewButtonColor
 
-                onClicked: CurrentConversation.isBanned ?
-                                MessagesAdapter.unbanConversation(CurrentConversation.id)
-                                : MessagesAdapter.sendConversationRequest()
+                onClicked: CurrentConversation.isBanned ? MessagesAdapter.unbanConversation(CurrentConversation.id) : MessagesAdapter.sendConversationRequest()
             }
 
             PushButton {
                 id: detailsButton
 
-                visible: interactionButtonsVisibility
-                            && (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP) // TODO if SIP not a request
+                visible: interactionButtonsVisibility && (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP) // TODO if SIP not a request
 
                 source: JamiResources.swarm_details_panel_svg
                 toolTipText: JamiStrings.details

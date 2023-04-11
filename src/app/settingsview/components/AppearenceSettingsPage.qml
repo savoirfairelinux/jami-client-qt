@@ -15,21 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "../../commoncomponents"
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
-
 
 SettingsPageBase {
     id: root
@@ -62,11 +58,10 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
-
             }
 
             ToggleSwitch {
@@ -98,7 +93,7 @@ SettingsPageBase {
                 tooltipText: JamiStrings.displayHyperlinkPreviews
 
                 onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.DisplayHyperlinkPreviews, checked)
+                    UtilsAdapter.setAppValue(Settings.Key.DisplayHyperlinkPreviews, checked);
                 }
             }
 
@@ -113,8 +108,12 @@ SettingsPageBase {
                 comboModel: ListModel {
                     id: layoutModel
                     Component.onCompleted: {
-                        append({ textDisplay: JamiStrings.horizontalViewOpt })
-                        append({ textDisplay: JamiStrings.verticalViewOpt })
+                        append({
+                                "textDisplay": JamiStrings.horizontalViewOpt
+                            });
+                        append({
+                                "textDisplay": JamiStrings.verticalViewOpt
+                            });
                     }
                 }
                 widthOfComboBox: itemWidth
@@ -123,21 +122,22 @@ SettingsPageBase {
                 modelIndex: UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally) ? 1 : 0
 
                 onActivated: {
-                    UtilsAdapter.setAppValue(
-                                Settings.Key.ShowChatviewHorizontally,
-                                comboModel.get(modelIndex).textDisplay === JamiStrings.verticalViewOpt
-                                )
+                    UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, comboModel.get(modelIndex).textDisplay === JamiStrings.verticalViewOpt);
                 }
 
                 Connections {
                     target: UtilsAdapter
 
                     function onChangeLanguage() {
-                        var idx = outputComboBoxSetting.modelIndex
-                        layoutModel.clear()
-                        layoutModel.append({ textDisplay: JamiStrings.horizontalViewOpt })
-                        layoutModel.append({ textDisplay: JamiStrings.verticalViewOpt })
-                        outputComboBoxSetting.modelIndex = idx
+                        var idx = outputComboBoxSetting.modelIndex;
+                        layoutModel.clear();
+                        layoutModel.append({
+                                "textDisplay": JamiStrings.horizontalViewOpt
+                            });
+                        layoutModel.append({
+                                "textDisplay": JamiStrings.verticalViewOpt
+                            });
+                        outputComboBoxSetting.modelIndex = idx;
                     }
                 }
             }
@@ -152,13 +152,13 @@ SettingsPageBase {
             property var nativeDarkThemeShift: UtilsAdapter.hasNativeDarkTheme() ? 1 : 0
 
             function isComplete() {
-                var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme)
+                var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme);
                 if (themeSettings.nativeDarkThemeShift && theme === "System")
-                    sysThemeButton.checked = true
+                    sysThemeButton.checked = true;
                 if (theme === "Light") {
-                    lightThemeButton.checked = true
+                    lightThemeButton.checked = true;
                 } else if (theme === "Dark") {
-                    darkThemeButton.checked = true
+                    darkThemeButton.checked = true;
                 }
             }
 
@@ -173,13 +173,15 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
             }
 
-            ButtonGroup { id: optionsB }
+            ButtonGroup {
+                id: optionsB
+            }
 
             Flow {
 
@@ -211,7 +213,7 @@ SettingsPageBase {
 
                         onCheckedChanged: {
                             if (checked)
-                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light")
+                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light");
                         }
                     }
                 }
@@ -242,7 +244,7 @@ SettingsPageBase {
 
                         onCheckedChanged: {
                             if (checked)
-                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark")
+                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark");
                         }
                     }
                 }
@@ -270,7 +272,7 @@ SettingsPageBase {
 
                         onCheckedChanged: {
                             if (checked)
-                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System")
+                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System");
                         }
                     }
                 }
@@ -292,11 +294,10 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
-
             }
 
             Slider {
@@ -315,7 +316,7 @@ SettingsPageBase {
                 snapMode: Slider.SnapAlways
 
                 onMoved: {
-                    UtilsAdapter.setAppValue(Settings.BaseZoom, value / 100.0)
+                    UtilsAdapter.setAppValue(Settings.BaseZoom, value / 100.0);
                 }
 
                 background: Rectangle {
@@ -330,7 +331,6 @@ SettingsPageBase {
                 handle: ColumnLayout {
                     x: zoomSpinBox.visualPosition * zoomSpinBox.availableWidth - textSize.width / 2
 
-
                     Rectangle {
                         Layout.topMargin: -12
                         implicitWidth: 6
@@ -343,7 +343,7 @@ SettingsPageBase {
                     Text {
                         id: zoomSpinBoxValueLabel
 
-                        TextMetrics{
+                        TextMetrics {
                             id: textSize
                             font.pointSize: JamiTheme.settingsFontSize
                             font.kerning: true
@@ -366,7 +366,7 @@ SettingsPageBase {
                 target: UtilsAdapter
 
                 function onChangeFontSize() {
-                    zoomSpinBox.value = Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0)
+                    zoomSpinBox.value = Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0);
                 }
             }
         }
@@ -374,7 +374,7 @@ SettingsPageBase {
         MaterialButton {
             id: defaultSettings
 
-            TextMetrics{
+            TextMetrics {
                 id: defaultSettingsTextSize
                 font.weight: Font.Bold
                 font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -385,21 +385,18 @@ SettingsPageBase {
             secondary: true
 
             text: JamiStrings.defaultSettings
-            preferredWidth: defaultSettingsTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+            preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                enableTypingIndicatorCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.EnableTypingIndicator)
-                displayImagesCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.DisplayHyperlinkPreviews)
-                zoomSpinBox.value = Math.round(UtilsAdapter.getDefault(Settings.BaseZoom) * 100.0)
-
-                UtilsAdapter.setToDefault(Settings.Key.EnableTypingIndicator)
-                UtilsAdapter.setToDefault(Settings.Key.DisplayHyperlinkPreviews)
-                UtilsAdapter.setToDefault(Settings.Key.AppTheme)
-                UtilsAdapter.setToDefault(Settings.Key.BaseZoom)
-
-                themeSettings.isComplete()
+                enableTypingIndicatorCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.EnableTypingIndicator);
+                displayImagesCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.DisplayHyperlinkPreviews);
+                zoomSpinBox.value = Math.round(UtilsAdapter.getDefault(Settings.BaseZoom) * 100.0);
+                UtilsAdapter.setToDefault(Settings.Key.EnableTypingIndicator);
+                UtilsAdapter.setToDefault(Settings.Key.DisplayHyperlinkPreviews);
+                UtilsAdapter.setToDefault(Settings.Key.AppTheme);
+                UtilsAdapter.setToDefault(Settings.Key.BaseZoom);
+                themeSettings.isComplete();
             }
-
         }
     }
 }

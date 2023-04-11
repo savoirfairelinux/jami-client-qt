@@ -16,9 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Constants 1.1
 
 Rectangle {
@@ -50,30 +48,37 @@ Rectangle {
 
     onCountChanged: {
         if (count > lastCount && animate)
-            notifyAnim.start()
-        lastCount = count
+            notifyAnim.start();
+        lastCount = count;
         if (!populated)
-            populated = true
+            populated = true;
     }
     ParallelAnimation {
         id: notifyAnim
 
         ColorAnimation {
-            target: root; properties: "color"
+            target: root
+            properties: "color"
             from: JamiTheme.filterBadgeTextColor
             to: JamiTheme.filterBadgeColor
-            duration: 150; easing.type: Easing.InOutQuad
+            duration: 150
+            easing.type: Easing.InOutQuad
         }
         ColorAnimation {
-            target: countLabel; properties: "color"
+            target: countLabel
+            properties: "color"
             from: JamiTheme.filterBadgeColor
             to: JamiTheme.filterBadgeTextColor
-            duration: 150; easing.type: Easing.InOutQuad
+            duration: 150
+            easing.type: Easing.InOutQuad
         }
         NumberAnimation {
-            target: root; property: "y"
-            from: -3; to: 0
-            duration: 150; easing.type: Easing.InOutQuad
+            target: root
+            property: "y"
+            from: -3
+            to: 0
+            duration: 150
+            easing.type: Easing.InOutQuad
         }
     }
 }

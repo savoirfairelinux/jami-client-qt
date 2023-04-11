@@ -15,11 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 PushButton {
@@ -41,10 +38,9 @@ PushButton {
         anchors {
             horizontalCenter: parent.horizontalCenter
             top: parent.bottom
-            topMargin: isBarLayout? 6 : 2
+            topMargin: isBarLayout ? 6 : 2
         }
-        color : isBarLayout ? JamiTheme.darkGreyColorOpacity
-                            : "transparent"
+        color: isBarLayout ? JamiTheme.darkGreyColorOpacity : "transparent"
         visible: hover.hovered && !isSmall
         radius: 2
 
@@ -63,7 +59,7 @@ PushButton {
         HoverHandler {
             id: hover
             onHoveredChanged: {
-                root.forceHovered = hover.hovered
+                root.forceHovered = hover.hovered;
             }
         }
     }

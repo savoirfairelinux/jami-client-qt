@@ -14,16 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../commoncomponents"
 import "components"
 
@@ -38,22 +35,23 @@ ListSelectionView {
     Connections {
         target: CurrentConversation
         function onReloadInteractions() {
-            UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id)
-            MessagesAdapter.loadMoreMessages()
+            UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id);
+            MessagesAdapter.loadMoreMessages();
         }
     }
 
     onDismissed: {
-        callStackView.needToCloseInCallConversationAndPotentialWindow()
-        LRCInstance.deselectConversation()
+        callStackView.needToCloseInCallConversationAndPotentialWindow();
+        LRCInstance.deselectConversation();
     }
 
     property string currentAccountId: CurrentAccount.id
     onCurrentAccountIdChanged: dismiss()
 
     onVisibleChanged: {
-        if (visible) return
-        UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id)
+        if (visible)
+            return;
+        UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id);
     }
 
     color: JamiTheme.transparentColor
@@ -62,9 +60,7 @@ ListSelectionView {
 
     rightPaneItem: StackLayout {
         currentIndex: !CurrentConversation.hasCall ? 0 : 1
-        onCurrentIndexChanged: chatView.parent = currentIndex === 1 ?
-                                   callStackView.chatViewContainer :
-                                   chatViewContainer
+        onCurrentIndexChanged: chatView.parent = currentIndex === 1 ? callStackView.chatViewContainer : chatViewContainer
 
         anchors.fill: parent
 
@@ -82,30 +78,30 @@ ListSelectionView {
                 property string currentConvId: CurrentConversation.id
                 onCurrentConvIdChanged: {
                     if (!CurrentConversation.hasCall) {
-                        resetPanels()
-                        Qt.callLater(focusChatView)
+                        resetPanels();
+                        Qt.callLater(focusChatView);
                     } else {
-                        dismiss()
-                        callStackView.contentView.forceActiveFocus()
+                        dismiss();
+                        callStackView.contentView.forceActiveFocus();
                     }
                 }
 
                 onDismiss: {
                     if (parent == chatViewContainer) {
-                        viewNode.dismiss()
+                        viewNode.dismiss();
                     } else {
-                        callStackView.chatViewContainer.visible = false
-                        callStackView.contentView.forceActiveFocus()
+                        callStackView.chatViewContainer.visible = false;
+                        callStackView.contentView.forceActiveFocus();
                     }
                 }
 
                 onVisibleChanged: {
                     if (!inCallView)
-                        return
+                        return;
                     if (visible && !parent.showDetails) {
-                        focusChatView()
+                        focusChatView();
                     } else {
-                        callStackView.contentView.forceActiveFocus()
+                        callStackView.contentView.forceActiveFocus();
                     }
                 }
             }
@@ -118,9 +114,9 @@ ListSelectionView {
 
             onVisibleChanged: {
                 if (visible)
-                    contentView.forceActiveFocus()
+                    contentView.forceActiveFocus();
                 else
-                    chatView.focusChatView()
+                    chatView.focusChatView();
             }
         }
     }

@@ -17,20 +17,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtMultimedia
 import Qt5Compat.GraphicalEffects
-
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../mainview/components"
-
 
 Rectangle {
     id: root
@@ -49,14 +44,14 @@ Rectangle {
 
         function onMainStepChanged() {
             if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.Initial)
-                root.showThisPage()
+                root.showThisPage();
         }
     }
 
     // Make sure that welcomePage grab activeFocus initially (when there is no account)
     onVisibleChanged: {
         if (visible)
-            forceActiveFocus()
+            forceActiveFocus();
     }
 
     KeyNavigation.tab: newAccountButton
@@ -84,14 +79,17 @@ Rectangle {
                 property var mediaInfo: UtilsAdapter.getVideoPlayer(JamiTheme.darkTheme ? JamiResources.logo_dark_webm : JamiResources.logo_light_webm, JamiTheme.secondaryBackgroundColor)
                 anchors.fill: parent
                 anchors.margins: 2
-                sourceComponent: WITH_WEBENGINE? avMediaComp : basicPlayer
+                sourceComponent: WITH_WEBENGINE ? avMediaComp : basicPlayer
 
                 Component {
                     id: avMediaComp
                     Loader {
                         Component.onCompleted: {
-                            var qml = "qrc:/webengine/VideoPreview.qml"
-                            setSource( qml, { isVideo: mediaInfo.isVideo, html:mediaInfo.html } )
+                            var qml = "qrc:/webengine/VideoPreview.qml";
+                            setSource(qml, {
+                                    "isVideo": mediaInfo.isVideo,
+                                    "html": mediaInfo.html
+                                });
                         }
                     }
                 }
@@ -114,15 +112,12 @@ Rectangle {
                         }
 
                         Component.onCompleted: {
-                            mediaPlayer.play()
+                            mediaPlayer.play();
                         }
                     }
-
                 }
             }
-
         }
-
 
         Text {
             id: introduction
@@ -135,7 +130,7 @@ Rectangle {
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            wrapMode : Text.WordWrap
+            wrapMode: Text.WordWrap
             lineHeight: JamiTheme.wizardViewTextLineHeight
 
             font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
@@ -153,7 +148,7 @@ Rectangle {
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            wrapMode : Text.WordWrap
+            wrapMode: Text.WordWrap
             lineHeight: JamiTheme.wizardViewTextLineHeight
 
             font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
@@ -174,10 +169,7 @@ Rectangle {
             toolTipText: JamiStrings.createNewJamiAccount
 
             KeyNavigation.tab: alreadyHaveAccount
-            KeyNavigation.up: backButton.visible ? backButton :
-                                                   (showAdvancedButton.showAdvanced ?
-                                                        newSIPAccountButton :
-                                                        showAdvancedButton)
+            KeyNavigation.up: backButton.visible ? backButton : (showAdvancedButton.showAdvanced ? newSIPAccountButton : showAdvancedButton)
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
@@ -202,20 +194,18 @@ Rectangle {
 
             KeyNavigation.tab: showAlreadyHave ? fromDeviceButton : showAdvancedButton
 
-
             KeyNavigation.up: newAccountButton
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: {
-                boldFont = !boldFont
-                showAlreadyHave = !showAlreadyHave
-                showAdvanced = false
-                fromDeviceButton.visible = showAlreadyHave
-                fromBackupButton.visible = showAlreadyHave
-                newRdvButton.visible = showAdvanced
-                connectAccountManagerButton.visible = showAdvanced
-                newSIPAccountButton.visible = showAdvanced
-
+                boldFont = !boldFont;
+                showAlreadyHave = !showAlreadyHave;
+                showAdvanced = false;
+                fromDeviceButton.visible = showAlreadyHave;
+                fromBackupButton.visible = showAlreadyHave;
+                newRdvButton.visible = showAdvanced;
+                connectAccountManagerButton.visible = showAdvanced;
+                newSIPAccountButton.visible = showAdvanced;
             }
         }
 
@@ -274,28 +264,25 @@ Rectangle {
             secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: newSIPAccountButton.visible ?
-                                     0 : JamiTheme.wizardViewPageBackButtonMargins
+            Layout.bottomMargin: newSIPAccountButton.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
             preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
             text: JamiStrings.advancedFeatures
-            toolTipText: showAdvanced ? JamiStrings.hideAdvancedFeatures :
-                                        JamiStrings.showAdvancedFeatures
-
+            toolTipText: showAdvanced ? JamiStrings.hideAdvancedFeatures : JamiStrings.showAdvancedFeatures
 
             KeyNavigation.tab: showAdvanced ? newRdvButton : btnAboutPopUp
             KeyNavigation.up: showAlreadyHave ? fromBackupButton : alreadyHaveAccount
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: {
-                boldFont = !boldFont
-                showAdvanced = !showAdvanced
-                showAlreadyHave = false
-                newRdvButton.visible = showAdvanced
-                connectAccountManagerButton.visible = showAdvanced
-                newSIPAccountButton.visible = showAdvanced
-                fromDeviceButton.visible = showAlreadyHave
-                fromBackupButton.visible = showAlreadyHave
+                boldFont = !boldFont;
+                showAdvanced = !showAdvanced;
+                showAlreadyHave = false;
+                newRdvButton.visible = showAdvanced;
+                connectAccountManagerButton.visible = showAdvanced;
+                newSIPAccountButton.visible = showAdvanced;
+                fromDeviceButton.visible = showAlreadyHave;
+                fromBackupButton.visible = showAlreadyHave;
             }
         }
 
@@ -367,8 +354,7 @@ Rectangle {
             KeyNavigation.up: connectAccountManagerButton
             KeyNavigation.down: KeyNavigation.tab
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.CreateSipAccount)
+            onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.CreateSipAccount)
         }
 
         MaterialButton {
@@ -391,9 +377,7 @@ Rectangle {
 
             text: JamiStrings.aboutJami
 
-            onClicked: viewCoordinator.presentDialog(
-                           parent,
-                           "mainview/components/AboutPopUp.qml")
+            onClicked: viewCoordinator.presentDialog(parent, "mainview/components/AboutPopUp.qml")
         }
     }
 
@@ -410,7 +394,7 @@ Rectangle {
             target: LRCInstance
 
             function onAccountListChanged() {
-                backButton.visible = UtilsAdapter.getAccountListSize()
+                backButton.visible = UtilsAdapter.getAccountListSize();
             }
         }
 

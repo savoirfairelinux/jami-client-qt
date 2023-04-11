@@ -18,9 +18,7 @@
 
 // JamiTheme as a singleton is to provide global theme property entry.
 pragma Singleton
-
 import QtQuick
-
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 
@@ -31,25 +29,25 @@ Item {
         target: UtilsAdapter
 
         function onChangeFontSize() {
-            baseZoom = UtilsAdapter.getAppValue(Settings.BaseZoom)
+            baseZoom = UtilsAdapter.getAppValue(Settings.BaseZoom);
         }
 
         function onAppThemeChanged() {
-            darkTheme = UtilsAdapter.useApplicationTheme()
+            darkTheme = UtilsAdapter.useApplicationTheme();
         }
     }
 
     // Jami theme colors
     function rgba256(r, g, b, a) {
-        return Qt.rgba(r / 255, g / 255, b / 255, a / 100.)
+        return Qt.rgba(r / 255, g / 255, b / 255, a / 100.);
     }
 
     function calcSize(size) {
-        return Math.min(Math.max(5, baseZoom * size), 30)
+        return Math.min(Math.max(5, baseZoom * size), 30);
     }
 
     function pixelToPoint(size) {
-        return size * 0.75
+        return size * 0.75;
     }
 
     property real baseZoom: UtilsAdapter.getAppValue(Settings.BaseZoom)
@@ -68,11 +66,11 @@ Item {
     property color transparentColor: "transparent"
     property color primaryForegroundColor: darkTheme ? whiteColor : blackColor
     property color primaryBackgroundColor: darkTheme ? bgDarkMode_ : whiteColor
-    property color backgroundColor: darkTheme? bgSideBarDarkMode_ : lightGrey_
+    property color backgroundColor: darkTheme ? bgSideBarDarkMode_ : lightGrey_
     property color shadowColor: "#80000000"
     property color secondaryBackgroundColor: darkTheme ? bgDarkMode_ : whiteColor
     property color greyBorderColor: "#333"
-    property color selectionBlue: darkTheme? "#0061a5" : "#109ede"
+    property color selectionBlue: darkTheme ? "#0061a5" : "#109ede"
 
     property color hoverColor: darkTheme ? "#515151" : "#c7c7c7"
     property color pressColor: darkTheme ? "#777" : "#c0c0c0"
@@ -81,10 +79,9 @@ Item {
     property color smartListSelectedColor: darkTheme ? "#515151" : "#d1d1d1"
     property color editBackgroundColor: darkTheme ? "#373737" : lightGrey_
     property color textColor: primaryForegroundColor
-    property color textColorHovered: darkTheme? "#cccccc" : "#333333"
+    property color textColorHovered: darkTheme ? "#cccccc" : "#333333"
     property color tabbarBorderColor: darkTheme ? blackColor : "#e3e3e3"
-    property color popupOverlayColor: darkTheme ? Qt.rgba(255, 255, 255, 0.22) :
-                                                  Qt.rgba(0, 0, 0, 0.33)
+    property color popupOverlayColor: darkTheme ? Qt.rgba(255, 255, 255, 0.22) : Qt.rgba(0, 0, 0, 0.33)
     property real formsRadius: 30
 
     // Side panel
@@ -177,7 +174,7 @@ Item {
     property color sipInputButtonPressColor: "#5588bb"
 
     property string buttonConference: "transparent"
-    property string buttonConferenceHovered:"#110000"
+    property string buttonConferenceHovered: "#110000"
     property string buttonConferencePressed: "#110000"
 
     // Wizard / account manager
@@ -216,7 +213,7 @@ Item {
     property color messageReplyColor: darkTheme ? "#bbb" : "#A7A7A7"
     property color messageOutTxtColor: "#000000"
     property color messageInBgColor: "#e5e5e5"
-    property color messageOutBgColor: darkTheme? "#616161" : "#005699"
+    property color messageOutBgColor: darkTheme ? "#616161" : "#005699"
     property color messageInTxtColor: "#FFFFFF"
     property color fileOutTimestampColor: darkTheme ? "#eee" : "#555"
     property color fileInTimestampColor: darkTheme ? "#999" : "#555"
@@ -229,14 +226,14 @@ Item {
     property color bgTextInput: darkTheme ? "#060608" : whiteColor
     property color previewTextContainerColor: darkTheme ? "#959595" : "#ececec"
     property color previewImageBackgroundColor: whiteColor
-    property color previewCardContainerColor : darkTheme ? blackColor : whiteColor
-    property color previewUrlColor : darkTheme ? "#eeeeee" : "#333"
+    property color previewCardContainerColor: darkTheme ? blackColor : whiteColor
+    property color previewUrlColor: darkTheme ? "#eeeeee" : "#333"
     property color messageWebViewFooterButtonImageColor: darkTheme ? "#838383" : "#656565"
-    property color chatviewUsernameColor : "#A7A7A7"
+    property color chatviewUsernameColor: "#A7A7A7"
 
     //mapPosition
     property color mapButtonsOverlayColor: darkTheme ? "#000000" : "#f0f0f0"
-    property color mapButtonColor: darkTheme ?  "#f0f0f0" : "#000000"
+    property color mapButtonColor: darkTheme ? "#f0f0f0" : "#000000"
     property color sharePositionIndicatorColor: darkTheme ? "#03B9E9" : "#005699"
     property color sharedPositionIndicatorColor: darkTheme ? whiteColor : blackColor
 
@@ -267,8 +264,7 @@ Item {
     property color typingDotsEnlargeColor: darkTheme ? "white" : Qt.darker("lightgrey", 3.0)
 
     // Font.
-
-    property color faddedFontColor: darkTheme? "#c0c0c0" : "#a0a0a0"
+    property color faddedFontColor: darkTheme ? "#c0c0c0" : "#a0a0a0"
     property color faddedLastInteractionFontColor: darkTheme ? "#c0c0c0" : "#505050"
 
     property color darkGrey: rgba256(63, 63, 63, 100)
@@ -289,7 +285,6 @@ Item {
     property int overlayFadeDelay: 4000
     property int overlayFadeDuration: 250
     property int smartListTransitionDuration: 120
-
 
     // Sizes
     property real mainViewLeftPaneMinWidth: 300
@@ -408,7 +403,6 @@ Item {
     property int callInformationBlockSpacing: 25
     property int callInformationlayoutMargins: 10
 
-
     // Jami switch
     property real switchIndicatorRadius: 30
     property real switchPreferredHeight: 20
@@ -442,9 +436,9 @@ Item {
     property real chatViewFooterTextAreaMaximumHeight: 130
     property real chatViewScrollToBottomButtonBottomMargin: 8
 
-    property real usernameBlockFontSize : calcSize(12)
-    property real usernameBlockLineHeight : 14
-    property real usernameBlockPadding : contactMessageAvatarSize  + 8
+    property real usernameBlockFontSize: calcSize(12)
+    property real usernameBlockLineHeight: 14
+    property real usernameBlockPadding: contactMessageAvatarSize + 8
 
     // TypingDots
     property real typingDotsAnimationInterval: 500
@@ -468,7 +462,6 @@ Item {
     property int sbsMessageBaseReplyBottomMargin: baseZoom * 10
     property int sbsMessageBaseReplyMargin: 45
     property int sbsMessageBaseReplyTopMargin: 6
-
 
     // MessageBar
     property int messageBarMarginSize: 10
@@ -521,7 +514,7 @@ Item {
 
     // WizardView Advanced Account Settings
     property color lightBlue_: darkTheme ? "#03B9E9" : "#e5eef5"
-    property color shadowColorBlue: Qt.rgba(0, 0.34,0.6,0.16)
+    property color shadowColorBlue: Qt.rgba(0, 0.34, 0.6, 0.16)
     property real passwordEditOpenedBoxWidth: 425
     property real passwordEditClosedBoxWidth: 330
     property real passwordEditOpenedBoxHeight: 380
@@ -534,13 +527,11 @@ Item {
 
     property real cornerIconSize: 40
 
-
     //InfoBox
     property real infoBoxTitleFontSize: calcSize(13)
     property real infoBoxDescFontSize: calcSize(12)
 
     //Tipbox
-
     property real tipBoxTitleFontSize: calcSize(13)
     property real tipBoxContentFontSize: calcSize(12)
     property color tipBoxBackgroundColor: darkTheme ? blackColor : whiteColor
@@ -568,7 +559,7 @@ Item {
     property real buttontextFontPixelSize: calcSize(15)
 
     // UsernameTextEdit
-    property real usernameTextEditPointSize:calcSize(9 + fontSizeOffset)
+    property real usernameTextEditPointSize: calcSize(9 + fontSizeOffset)
     property real usernameTextEditlookupInterval: 200
 
     // JamiScrollBar
@@ -613,9 +604,7 @@ Item {
     property int settingsMenuHeaderButtonHeight: 50
     property int settingsListViewsSpacing: 10
 
-
-
     function setTheme(dark) {
-        darkTheme = dark
+        darkTheme = dark;
     }
 }

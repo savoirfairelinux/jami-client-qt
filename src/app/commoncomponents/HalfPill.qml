@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 
 Item {
@@ -38,10 +37,8 @@ Item {
     Rectangle {
         id: rect
 
-        property bool horizontal: type === HalfPill.Left ||
-                                  type === HalfPill.Right
-        property bool direction: type === HalfPill.Right ||
-                                 type === HalfPill.Bottom
+        property bool horizontal: type === HalfPill.Left || type === HalfPill.Right
+        property bool direction: type === HalfPill.Right || type === HalfPill.Bottom
 
         property bool bp: type === HalfPill.None
 

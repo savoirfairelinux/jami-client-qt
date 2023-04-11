@@ -15,23 +15,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
 import SortFilterProxyModel
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../settingsview/components"
 
-
-ListView  {
+ListView {
     id: root
 
     spacing: 10
@@ -41,9 +37,7 @@ ListView  {
         property var messageListModel: MessagesAdapter.mediaMessageListModel
         readonly property int textType: Interaction.Type.TEXT
 
-        onMessageListModelChanged: sourceModel = root.visible && messageListModel ?
-                                       messageListModel :
-                                       null
+        onMessageListModelChanged: sourceModel = root.visible && messageListModel ? messageListModel : null
 
         filters: ExpressionFilter {
             expression: Type === proxyModel.textType
@@ -53,13 +47,13 @@ ListView  {
     property var prompt: MessagesAdapter.searchbarPrompt
 
     onPromptChanged: {
-        MessagesAdapter.startSearch(prompt)
+        MessagesAdapter.startSearch(prompt);
     }
 
     Connections {
         target: researchTabBar
         function onFilterTabChange() {
-            MessagesAdapter.startSearch(prompt)
+            MessagesAdapter.startSearch(prompt);
         }
     }
 
@@ -106,9 +100,7 @@ ListView  {
                 ColumnLayout {
 
                     Text {
-                        text: contentRow.isMe
-                              ? CurrentAccount.bestName
-                              : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
+                        text: contentRow.isMe ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
                         Layout.preferredWidth: myText.width
                         Layout.rightMargin: 10
                         Layout.leftMargin: 10
@@ -126,8 +118,8 @@ ListView  {
                         elide: Text.ElideRight
                         Layout.rightMargin: 10
                         Layout.leftMargin: 10
-                        font.pixelSize: IsEmojiOnly? JamiTheme.chatviewEmojiSize : JamiTheme.chatviewFontSize
-                        Layout.alignment:Qt.AlignHCenter
+                        font.pixelSize: IsEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.chatviewFontSize
+                        Layout.alignment: Qt.AlignHCenter
                     }
                 }
             }
@@ -146,7 +138,7 @@ ListView  {
             background.visible: false
 
             onClicked: {
-                CurrentConversation.scrollToMsg(Id)
+                CurrentConversation.scrollToMsg(Id);
             }
 
             Text {
@@ -160,6 +152,4 @@ ListView  {
             }
         }
     }
-
 }
-

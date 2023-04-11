@@ -15,10 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 ToolTip {
@@ -29,7 +27,7 @@ ToolTip {
 
     onVisibleChanged: {
         if (visible)
-            animation.start()
+            animation.start();
     }
 
     contentItem: Text {
@@ -48,14 +46,18 @@ ToolTip {
     ParallelAnimation {
         id: animation
         NumberAnimation {
-             target: background; properties: "opacity"
-             from: 0; to: 1.0
-             duration: JamiTheme.shortFadeDuration
+            target: background
+            properties: "opacity"
+            from: 0
+            to: 1.0
+            duration: JamiTheme.shortFadeDuration
         }
         NumberAnimation {
-             target: background; properties: "scale"
-             from: 0.5; to: 1.0
-             duration: JamiTheme.shortFadeDuration * 0.5
+            target: background
+            properties: "scale"
+            from: 0.5
+            to: 1.0
+            duration: JamiTheme.shortFadeDuration * 0.5
         }
     }
 }
