@@ -108,7 +108,8 @@ Item {
 
             Layout.alignment: Qt.AlignCenter
 
-            preferredWidth: parent.width
+            preferredWidth: parent.width - 32
+            height: 32
             visible: opened
 
             text: JamiStrings.backupAccountBtn
