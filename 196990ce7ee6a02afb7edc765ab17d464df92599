@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f22a18c_d3924d58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-04-11T22:58:42Z",
+      "side": 1,
+      "message": "okay so that\u0027s lovely, semicolons in JS expressions 😞",
+      "revId": "196990ce7ee6a02afb7edc765ab17d464df92599",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
