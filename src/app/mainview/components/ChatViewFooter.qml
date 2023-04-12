@@ -15,257 +15,208 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
-    property alias textInput: messageBar.textAreaObj
-    property string previousConvId
     property string previousAccountId
+    property string previousConvId
+    property alias textInput: messageBar.textAreaObj
+
+    color: JamiTheme.primaryBackgroundColor
+    implicitHeight: footerColumnLayout.implicitHeight
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
-            var path = UtilsAdapter.getAbsPath(decodeURIComponent(filePaths[index]))
-            dataTransferSendContainer.filesToSendListModel.addToPending(path)
+            var path = UtilsAdapter.getAbsPath(decodeURIComponent(filePaths[index]));
+            dataTransferSendContainer.filesToSendListModel.addToPending(path);
         }
     }
-
-    implicitHeight: footerColumnLayout.implicitHeight
-
-    color: JamiTheme.primaryBackgroundColor
-
     function updateMessageDraft() {
-        LRCInstance.setContentDraft(previousConvId,
-                                    previousAccountId,
-                                    messageBar.text);
-
-        previousConvId = CurrentConversation.id
-        previousAccountId = CurrentAccount.id
+        LRCInstance.setContentDraft(previousConvId, previousAccountId, messageBar.text);
+        previousConvId = CurrentConversation.id;
+        previousAccountId = CurrentAccount.id;
 
         // turn off the button animations when switching convs
-        messageBar.animate = false
-        messageBar.textAreaObj.clearText()
-
-        var restoredContent = LRCInstance.getContentDraft(CurrentConversation.id,
-                                                          CurrentAccount.id);
+        messageBar.animate = false;
+        messageBar.textAreaObj.clearText();
+        var restoredContent = LRCInstance.getContentDraft(CurrentConversation.id, CurrentAccount.id);
         if (restoredContent) {
-            messageBar.textAreaObj.insertText(restoredContent)
+            messageBar.textAreaObj.insertText(restoredContent);
         }
     }
 
     Connections {
         target: CurrentConversation
 
-        function onIdChanged() { messageBar.animate = true }
+        function onIdChanged() {
+            messageBar.animate = true;
+        }
     }
-
     Connections {
         target: MessagesAdapter
 
-        function onNewFilePasted(filePath) {
-            dataTransferSendContainer.filesToSendListModel.addToPending(filePath)
-        }
-
-        function onNewTextPasted() {
-            messageBar.textAreaObj.pasteText()
-        }
-
         function onEditIdChanged() {
             if (MessagesAdapter.editId.length > 0) {
-                var editedMessageBody = MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.Body)
-                messageBar.textAreaObj.insertText(editedMessageBody)
-                messageBar.textAreaObj.forceActiveFocus()
-
+                var editedMessageBody = MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.Body);
+                messageBar.textAreaObj.insertText(editedMessageBody);
+                messageBar.textAreaObj.forceActiveFocus();
             }
         }
-
+        function onNewFilePasted(filePath) {
+            dataTransferSendContainer.filesToSendListModel.addToPending(filePath);
+        }
+        function onNewTextPasted() {
+            messageBar.textAreaObj.pasteText();
+        }
         function onReplyToIdChanged() {
             if (MessagesAdapter.replyToId.length > 0)
-                messageBar.textAreaObj.forceActiveFocus()
+                messageBar.textAreaObj.forceActiveFocus();
         }
     }
-
     RecordBox {
         id: recordBox
-
         visible: false
     }
-
     ColumnLayout {
         id: footerColumnLayout
-
         anchors.centerIn: root
-
-        width: root.width
-
         spacing: 0
+        width: root.width
 
         ReplyingContainer {
             id: replyingContainer
-
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: footerColumnLayout.width
             Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
             Layout.minimumHeight: 36
             Layout.preferredHeight: 36 * JamiTheme.baseZoom
+            Layout.preferredWidth: footerColumnLayout.width
             visible: MessagesAdapter.replyToId !== ""
         }
-
         EditContainer {
             id: editContainer
-
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: footerColumnLayout.width
             Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
             Layout.minimumHeight: 36
             Layout.preferredHeight: 36 * JamiTheme.baseZoom
+            Layout.preferredWidth: footerColumnLayout.width
             visible: MessagesAdapter.editId !== ""
         }
-
         MessageBar {
             id: messageBar
-
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: footerColumnLayout.width
-            Layout.preferredHeight: implicitHeight
             property var emojiPicker
 
-            Connections {
-                target: messageBar.emojiPicker ? messageBar.emojiPicker : null
-                function onEmojiIsPicked(content) {
-                    messageBar.textAreaObj.insertText(content)
-                }
-            }
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredHeight: implicitHeight
+            Layout.preferredWidth: footerColumnLayout.width
+            sendButtonVisibility: text || dataTransferSendContainer.filesToSendCount
 
             function openEmojiPicker() {
-                var component =  WITH_WEBENGINE
-                          ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml")
-                          : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml")
-                messageBar.emojiPicker =
-                        component.createObject(messageBar, {
-                                                   x: setXposition(),
-                                                   y: setYposition(),
-                                                   listView: null
-                                               });
+                var component = WITH_WEBENGINE ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml");
+                messageBar.emojiPicker = component.createObject(messageBar, {
+                        "x": setXposition(),
+                        "y": setYposition(),
+                        "listView": null
+                    });
                 if (messageBar.emojiPicker === null) {
                     console.log("Error creating emojiPicker in chatViewFooter");
                 }
             }
-            onWidthChanged: {
-                if (emojiPicker)
-                    emojiPicker.x = setXposition()
+            function setXposition() {
+                return messageBar.width - JamiTheme.emojiPickerWidth; //- JamiTheme.emojiMargins
             }
-
-            function setXposition(){
-                return messageBar.width - JamiTheme.emojiPickerWidth //- JamiTheme.emojiMargins
-            }
-
             function setYposition() {
-                return - JamiTheme.emojiPickerHeight //- JamiTheme.emojiMargins
+                return -JamiTheme.emojiPickerHeight; //- JamiTheme.emojiMargins
             }
 
-            sendButtonVisibility: text ||
-                                  dataTransferSendContainer.filesToSendCount
-
+            onAudioRecordMessageButtonClicked: {
+                JamiQmlUtils.updateMessageBarButtonsPoints();
+                recordBox.parent = JamiQmlUtils.mainViewRectObj;
+                recordBox.x = Qt.binding(function () {
+                        var buttonCenterX = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.x + JamiQmlUtils.audioRecordMessageButtonObj.width / 2;
+                        return buttonCenterX - recordBox.width / 2;
+                    });
+                recordBox.y = Qt.binding(function () {
+                        var buttonY = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.y;
+                        return buttonY - recordBox.height - recordBox.spikeHeight;
+                    });
+                recordBox.openRecorder(false);
+            }
             onEmojiButtonClicked: {
-                JamiQmlUtils.updateMessageBarButtonsPoints()
-                openEmojiPicker()
+                JamiQmlUtils.updateMessageBarButtonsPoints();
+                openEmojiPicker();
             }
-
-            onShowMapClicked: {
-                PositionManager.setMapActive(CurrentAccount.id)
-            }
-
             onSendFileButtonClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "commoncomponents/JamiFileDialog.qml",
-                            {
-                                fileMode: JamiFileDialog.OpenFiles,
-                                nameFilters: [JamiStrings.allFiles]
-                            })
-                dlg.filesAccepted.connect(function(files) {
-                    setFilePathsToSend(files)
-                })
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                        "fileMode": JamiFileDialog.OpenFiles,
+                        "nameFilters": [JamiStrings.allFiles]
+                    });
+                dlg.filesAccepted.connect(function (files) {
+                        setFilePathsToSend(files);
+                    });
             }
-
             onSendMessageButtonClicked: {
                 // Send file messages
-                var fileCounts = dataTransferSendContainer.filesToSendListModel.rowCount()
+                var fileCounts = dataTransferSendContainer.filesToSendListModel.rowCount();
                 for (var i = 0; i < fileCounts; i++) {
-                    var currentIndex = dataTransferSendContainer.filesToSendListModel.index(i, 0)
-                    var filePath = dataTransferSendContainer.filesToSendListModel.data(
-                                currentIndex, FilesToSend.FilePath)
-                    MessagesAdapter.sendFile(filePath)
+                    var currentIndex = dataTransferSendContainer.filesToSendListModel.index(i, 0);
+                    var filePath = dataTransferSendContainer.filesToSendListModel.data(currentIndex, FilesToSend.FilePath);
+                    MessagesAdapter.sendFile(filePath);
                 }
-                dataTransferSendContainer.filesToSendListModel.flush()
+                dataTransferSendContainer.filesToSendListModel.flush();
                 // Send text message
                 if (messageBar.text) {
                     if (MessagesAdapter.editId !== "") {
-                        MessagesAdapter.editMessage(CurrentConversation.id, messageBar.text)
+                        MessagesAdapter.editMessage(CurrentConversation.id, messageBar.text);
                     } else {
-                        MessagesAdapter.sendMessage(messageBar.text)
+                        MessagesAdapter.sendMessage(messageBar.text);
                     }
                 }
-                messageBar.textAreaObj.clearText()
-                MessagesAdapter.replyToId = ""
+                messageBar.textAreaObj.clearText();
+                MessagesAdapter.replyToId = "";
+            }
+            onShowMapClicked: {
+                PositionManager.setMapActive(CurrentAccount.id);
             }
             onVideoRecordMessageButtonClicked: {
-                JamiQmlUtils.updateMessageBarButtonsPoints()
-
-                recordBox.parent = JamiQmlUtils.mainViewRectObj
-
-                recordBox.x = Qt.binding(function() {
-                    var buttonCenterX = JamiQmlUtils.videoRecordMessageButtonInMainViewPoint.x +
-                            JamiQmlUtils.videoRecordMessageButtonObj.width / 2
-                    return buttonCenterX - recordBox.width / 2
-                })
-                recordBox.y = Qt.binding(function() {
-                    var buttonY = JamiQmlUtils.videoRecordMessageButtonInMainViewPoint.y
-                    return buttonY - recordBox.height - recordBox.spikeHeight
-                })
-
-                recordBox.openRecorder(true)
+                JamiQmlUtils.updateMessageBarButtonsPoints();
+                recordBox.parent = JamiQmlUtils.mainViewRectObj;
+                recordBox.x = Qt.binding(function () {
+                        var buttonCenterX = JamiQmlUtils.videoRecordMessageButtonInMainViewPoint.x + JamiQmlUtils.videoRecordMessageButtonObj.width / 2;
+                        return buttonCenterX - recordBox.width / 2;
+                    });
+                recordBox.y = Qt.binding(function () {
+                        var buttonY = JamiQmlUtils.videoRecordMessageButtonInMainViewPoint.y;
+                        return buttonY - recordBox.height - recordBox.spikeHeight;
+                    });
+                recordBox.openRecorder(true);
             }
-            onAudioRecordMessageButtonClicked: {
-                JamiQmlUtils.updateMessageBarButtonsPoints()
+            onWidthChanged: {
+                if (emojiPicker)
+                    emojiPicker.x = setXposition();
+            }
 
-                recordBox.parent = JamiQmlUtils.mainViewRectObj
+            Connections {
+                target: messageBar.emojiPicker ? messageBar.emojiPicker : null
 
-                recordBox.x = Qt.binding(function() {
-                    var buttonCenterX = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.x +
-                            JamiQmlUtils.audioRecordMessageButtonObj.width / 2
-                    return buttonCenterX - recordBox.width / 2
-                })
-                recordBox.y = Qt.binding(function() {
-                    var buttonY = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.y
-                    return buttonY - recordBox.height - recordBox.spikeHeight
-                })
-
-                recordBox.openRecorder(false)
+                function onEmojiIsPicked(content) {
+                    messageBar.textAreaObj.insertText(content);
+                }
             }
         }
-
         FilesToSendContainer {
             id: dataTransferSendContainer
-
-            objectName: "dataTransferSendContainer"
-
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: footerColumnLayout.width
             Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
-            Layout.preferredHeight: filesToSendCount ?
-                                        JamiTheme.filesToSendDelegateHeight : 0
+            Layout.preferredHeight: filesToSendCount ? JamiTheme.filesToSendDelegateHeight : 0
+            Layout.preferredWidth: footerColumnLayout.width
+            objectName: "dataTransferSendContainer"
         }
     }
 }

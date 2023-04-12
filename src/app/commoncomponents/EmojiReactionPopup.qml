@@ -15,161 +15,146 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import Qt5Compat.GraphicalEffects
 
-
 Popup {
     id: root
-
-    width: popupContent.width
-    height: popupContent.height
-    background.visible: false
-    parent: Overlay.overlay
-
     property var emojiReaction
     property string msgId
+
+    background.visible: false
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    height: popupContent.height
+    modal: true
+    padding: 0
+    parent: Overlay.overlay
+    visible: false
+    width: popupContent.width
 
     // center in parent
     x: Math.round((parent.width - width) / 2)
     y: Math.round((parent.height - height) / 2)
 
-    modal: true
-    padding: 0
-
-    visible: false
-    closePolicy:  Popup.CloseOnEscape | Popup.CloseOnPressOutside
-
     Rectangle {
         id: container
-
         anchors.fill: parent
-        radius: JamiTheme.modalPopupRadius
         color: JamiTheme.secondaryBackgroundColor
+        radius: JamiTheme.modalPopupRadius
 
         TextMetrics {
             id: textmetric
-            text: "😀"
             font.pointSize: JamiTheme.emojiPopupFontsize
+            text: "😀"
         }
-
         ColumnLayout {
-            id:  popupContent
-
+            id: popupContent
             Layout.alignment: Qt.AlignCenter
 
             PushButton {
                 id: btnClose
-
                 Layout.alignment: Qt.AlignRight
-                width: 30
-                height: 30
-                imageContainerWidth: 30
-                imageContainerHeight : 30
                 Layout.margins: 8
-                radius : 5
+                height: 30
                 imageColor: "grey"
+                imageContainerHeight: 30
+                imageContainerWidth: 30
                 normalColor: JamiTheme.transparentColor
+                radius: 5
                 source: JamiResources.round_close_24dp_svg
-                onClicked: { root.close() }
+                width: 30
+
+                onClicked: {
+                    root.close();
+                }
             }
-
-
             ListView {
                 id: listViewReaction
-
-                Layout.leftMargin: JamiTheme.popupButtonsMargin
-                Layout.rightMargin: JamiTheme.popupButtonsMargin
-                spacing: 15
-                Layout.preferredWidth: 400
-                Layout.preferredHeight: childrenRect.height + 30 < 700 ? childrenRect.height + 30 :  700
-                model: Object.entries(emojiReaction)
-                clip: true
                 property int modelCount: Object.entries(emojiReaction).length
 
+                Layout.leftMargin: JamiTheme.popupButtonsMargin
+                Layout.preferredHeight: childrenRect.height + 30 < 700 ? childrenRect.height + 30 : 700
+                Layout.preferredWidth: 400
+                Layout.rightMargin: JamiTheme.popupButtonsMargin
+                clip: true
+                model: Object.entries(emojiReaction)
+                spacing: 15
+
                 delegate: RowLayout {
-                    width: parent.width
                     property string authorUri: modelData[0]
                     property var emojiArray: modelData[1]
                     property bool isMe: authorUri === CurrentAccount.uri
 
+                    width: parent.width
+
                     Avatar {
                         id: avatar
-
-                        imageId: isMe ? CurrentAccount.id : authorUri
-                        showPresenceIndicator: false
-                        mode: isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
-                        Layout.preferredWidth: JamiTheme.avatarSize
-                        Layout.preferredHeight: JamiTheme.avatarSize
                         Layout.alignment: Qt.AlignLeft && Qt.AlignTop
+                        Layout.preferredHeight: JamiTheme.avatarSize
+                        Layout.preferredWidth: JamiTheme.avatarSize
                         Layout.topMargin: (textmetric.height - height) + (height - authorName.height) / 2
+                        imageId: isMe ? CurrentAccount.id : authorUri
+                        mode: isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
+                        showPresenceIndicator: false
                     }
-
-
                     Text {
                         id: authorName
-
+                        Layout.alignment: Qt.AlignLeft && Qt.AlignTop
                         Layout.fillWidth: true
                         Layout.rightMargin: 10
                         Layout.topMargin: (textmetric.height - height)
-                        Layout.alignment: Qt.AlignLeft && Qt.AlignTop
+                        color: JamiTheme.chatviewTextColor
                         elide: Text.ElideRight
                         font.pointSize: JamiTheme.namePopupFontsize
-                        color: JamiTheme.chatviewTextColor
-                        text: isMe
-                              ? " " + CurrentAccount.bestName
-                                + "   "
-                              : " " + UtilsAdapter.getBestNameForUri(CurrentAccount.id, authorUri)
-                                + "   "
+                        text: isMe ? " " + CurrentAccount.bestName + "   " : " " + UtilsAdapter.getBestNameForUri(CurrentAccount.id, authorUri) + "   "
                     }
-
                     GridLayout {
                         columns: 5
-                        visible: !isMe
                         layoutDirection: Qt.RightToLeft
+                        visible: !isMe
+
                         Repeater {
-                            model: emojiArray.length < 15 ?  emojiArray.length : 15
+                            model: emojiArray.length < 15 ? emojiArray.length : 15
+
                             delegate: Text {
-                                text: emojiArray[index]
-                                horizontalAlignment: Text.AlignRight
                                 font.pointSize: JamiTheme.emojiPopupFontsize
+                                horizontalAlignment: Text.AlignRight
+                                text: emojiArray[index]
                             }
                         }
                     }
-
                     GridLayout {
-                        visible: isMe
                         columns: 5
                         layoutDirection: Qt.RightToLeft
+                        visible: isMe
+
                         Repeater {
-                            model: emojiArray.length < 15 ?  emojiArray.length : 15
+                            model: emojiArray.length < 15 ? emojiArray.length : 15
+
                             delegate: Button {
                                 id: emojiButton
-
-                                text: emojiArray[index]
-                                font.pointSize: JamiTheme.emojiPopupFontsize
                                 background.visible: false
+                                font.pointSize: JamiTheme.emojiPopupFontsize
                                 padding: 0
-
-                                Text {
-                                    visible: emojiButton.hovered
-                                    anchors.centerIn: parent
-                                    text: emojiArray[index]
-                                    font.pointSize: JamiTheme.emojiPopupFontsizeBig
-                                    z: 1
-                                }
+                                text: emojiArray[index]
 
                                 onClicked: {
-                                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id,emojiButton.text,msgId)
+                                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id, emojiButton.text, msgId);
                                     if (emojiArray.length === 1)
-                                        close()
+                                        close();
+                                }
+
+                                Text {
+                                    anchors.centerIn: parent
+                                    font.pointSize: JamiTheme.emojiPopupFontsizeBig
+                                    text: emojiArray[index]
+                                    visible: emojiButton.hovered
+                                    z: 1
                                 }
                             }
                         }
@@ -178,39 +163,41 @@ Popup {
             }
         }
     }
+    DropShadow {
+        color: JamiTheme.shadowColor
+        height: root.height
+        horizontalOffset: 3.0
+        radius: container.radius * 4
+        source: container
+        transparentBorder: true
+        verticalOffset: 3.0
+        width: root.width
+        z: -1
+    }
 
     Overlay.modal: Rectangle {
         color: JamiTheme.transparentColor
+
         // Color animation for overlay when pop up is shown.
-        ColorAnimation on color {
-            to: JamiTheme.popupOverlayColor
+        ColorAnimation on color  {
             duration: 500
+            to: JamiTheme.popupOverlayColor
         }
     }
-
-    DropShadow {
-        z: -1
-        width: root.width
-        height: root.height
-        horizontalOffset: 3.0
-        verticalOffset: 3.0
-        radius: container.radius * 4
-        color: JamiTheme.shadowColor
-        source: container
-        transparentBorder: true
-    }
-
     enter: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 0.0; to: 1.0
             duration: JamiTheme.shortFadeDuration
+            from: 0.0
+            properties: "opacity"
+            to: 1.0
         }
     }
-
     exit: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 1.0; to: 0.0
             duration: JamiTheme.shortFadeDuration
+            from: 1.0
+            properties: "opacity"
+            to: 0.0
         }
     }
 }

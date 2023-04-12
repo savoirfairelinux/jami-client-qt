@@ -15,53 +15,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 RowLayout {
     id: root
-
-    property alias titleField: title.text
-    property alias textField: button.text
     property alias enabled: button.enabled
-
-    property string source
     property int itemWidth
+    property string source
+    property alias textField: button.text
+    property alias titleField: title.text
 
     signal click
 
     Text {
         id: title
-
         Layout.fillWidth: true
         Layout.rightMargin: JamiTheme.preferredMarginSize / 2
-
-        font.pointSize: JamiTheme.settingsFontSize
+        color: JamiTheme.textColor
         font.kerning: true
-        wrapMode: Text.WordWrap
+        font.pointSize: JamiTheme.settingsFontSize
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-
-        color: JamiTheme.textColor
+        wrapMode: Text.WordWrap
     }
-
     MaterialButton {
         id: button
-
-        preferredWidth: root.itemWidth
         buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-        textLeftPadding: JamiTheme.buttontextWizzardPadding /2
-        textRightPadding: JamiTheme.buttontextWizzardPadding /2
-
         iconSource: root.source
+        preferredWidth: root.itemWidth
         secondary: true
+        textLeftPadding: JamiTheme.buttontextWizzardPadding / 2
+        textRightPadding: JamiTheme.buttontextWizzardPadding / 2
 
         onClicked: click()
     }

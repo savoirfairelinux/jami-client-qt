@@ -15,23 +15,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../settingsview/components"
 
 Rectangle {
     id: root
-
     color: JamiTheme.chatviewBgColor
 
     ColumnLayout {
@@ -39,70 +35,62 @@ Rectangle {
 
         TabBar {
             id: researchTabBar
-
-            currentIndex: 0
             Layout.preferredHeight: contentHeight + 10
             Layout.preferredWidth: root.width
             background.visible: false
-            signal filterTabChange()
-            onCurrentIndexChanged: {
-                filterTabChange()
-            }
+            currentIndex: 0
 
+            signal filterTabChange
+
+            onCurrentIndexChanged: {
+                filterTabChange();
+            }
             onVisibleChanged: {
-                researchTabBar.currentIndex = 0
+                researchTabBar.currentIndex = 0;
             }
 
             FilterTabButton {
                 id: messagesResearchTabButton
-
+                Layout.fillWidth: true
                 backgroundColor: "transparent"
-                hoverColor: "transparent"
                 borderWidth: 4
                 bottomMargin: JamiTheme.settingsMarginSize
-                fontSize: JamiTheme.menuFontSize
-                underlineContentOnly: true
-
                 down: researchTabBar.currentIndex === 0
-                labelText: JamiStrings.messages
-                Layout.fillWidth: true
-            }
-
-            FilterTabButton {
-
-                id: fileResearchTabButton
-                backgroundColor: "transparent"
+                fontSize: JamiTheme.menuFontSize
                 hoverColor: "transparent"
+                labelText: JamiStrings.messages
+                underlineContentOnly: true
+            }
+            FilterTabButton {
+                id: fileResearchTabButton
+                Layout.fillWidth: true
+                backgroundColor: "transparent"
                 borderWidth: 4
                 bottomMargin: JamiTheme.settingsMarginSize
-                fontSize: JamiTheme.menuFontSize
-                underlineContentOnly: true
-
                 down: researchTabBar.currentIndex === 1
+                fontSize: JamiTheme.menuFontSize
+                hoverColor: "transparent"
                 labelText: JamiStrings.files
-                Layout.fillWidth: true
+                underlineContentOnly: true
             }
         }
-
         Rectangle {
             id: view
-
-            color: JamiTheme.chatviewBgColor
-            Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.fillWidth: true
+            color: JamiTheme.chatviewBgColor
 
             MessagesResearchView {
                 anchors.fill: parent
-                visible: researchTabBar.currentIndex === 0
                 clip: true
+                visible: researchTabBar.currentIndex === 0
             }
-
             DocumentsScrollview {
                 anchors.fill: parent
-                visible: researchTabBar.currentIndex === 1
                 clip: true
-                themeColor: JamiTheme.chatviewTextColor
                 textFilter: MessagesAdapter.searchbarPrompt
+                themeColor: JamiTheme.chatviewTextColor
+                visible: researchTabBar.currentIndex === 1
             }
         }
     }

@@ -15,180 +15,159 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../commoncomponents/contextmenu"
 
 ContextMenuAutoLoader {
     id: root
 
-    signal showSwarmDetails
-
-    property string responsibleAccountId: ""
-    property string responsibleConvUid: ""
-    property bool isBanned: false
-    property var isCoreDialog: undefined
-    property var mode: undefined
-    property int contactType: Profile.Type.INVALID
-    property bool hasCall: false
-    property bool readOnly: false
-
     // For UserProfile dialog.
     property string aliasText
-    property string registeredNameText
+    property int contactType: Profile.Type.INVALID
+    property bool hasCall: false
     property string idText
-
+    property bool isBanned: false
+    property var isCoreDialog: undefined
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: startVideoCallItem
-
             canTrigger: CurrentAccount.videoEnabled_Video && !hasCall && !readOnly
-            itemName: JamiStrings.startVideoCall
             iconSource: JamiResources.videocam_24dp_svg
+            itemName: JamiStrings.startVideoCall
+
             onClicked: {
-                LRCInstance.selectConversation(responsibleConvUid,
-                                               responsibleAccountId)
+                LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
                 if (CurrentAccount.videoEnabled_Video)
-                    CallAdapter.placeCall()
+                    CallAdapter.placeCall();
             }
         },
         GeneralMenuItem {
             id: startAudioCall
-
             canTrigger: !hasCall && !readOnly
-            itemName: JamiStrings.startAudioCall
             iconSource: JamiResources.place_audiocall_24dp_svg
+            itemName: JamiStrings.startAudioCall
+
             onClicked: {
-                LRCInstance.selectConversation(responsibleConvUid,
-                                               responsibleAccountId)
-                CallAdapter.placeAudioOnlyCall()
+                LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
+                CallAdapter.placeAudioOnlyCall();
             }
         },
         GeneralMenuItem {
             id: clearConversation
-
             canTrigger: mode === Conversation.Mode.NON_SWARM && !hasCall && !root.isBanned
-            itemName: JamiStrings.clearConversation
             iconSource: JamiResources.ic_clear_24dp_svg
-            onClicked: MessagesAdapter.clearConversationHistory(
-                           responsibleAccountId,
-                           responsibleConvUid)
+            itemName: JamiStrings.clearConversation
+
+            onClicked: MessagesAdapter.clearConversationHistory(responsibleAccountId, responsibleConvUid)
         },
         GeneralMenuItem {
             id: removeContact
-
             canTrigger: !hasCall && !root.isBanned
+            iconSource: JamiResources.ic_hangup_participant_24dp_svg
             itemName: {
                 if (mode !== Conversation.Mode.NON_SWARM)
-                    return JamiStrings.removeConversation
+                    return JamiStrings.removeConversation;
                 else
-                    return JamiStrings.removeContact
+                    return JamiStrings.removeContact;
             }
-            iconSource: JamiResources.ic_hangup_participant_24dp_svg
+
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "commoncomponents/ConfirmDialog.qml",
-                            {
-                                title: JamiStrings.confirmAction,
-                                textLabel: JamiStrings.confirmRmConversation,
-                                confirmLabel: JamiStrings.optionRemove
-                            })
-                dlg.accepted.connect(function() {
-                    if (!isCoreDialog)
-                        MessagesAdapter.removeConversation(responsibleConvUid)
-                    else
-                        MessagesAdapter.removeContact(responsibleConvUid)
-                })
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                        "title": JamiStrings.confirmAction,
+                        "textLabel": JamiStrings.confirmRmConversation,
+                        "confirmLabel": JamiStrings.optionRemove
+                    });
+                dlg.accepted.connect(function () {
+                        if (!isCoreDialog)
+                            MessagesAdapter.removeConversation(responsibleConvUid);
+                        else
+                            MessagesAdapter.removeContact(responsibleConvUid);
+                    });
             }
         },
         GeneralMenuItem {
             id: hangup
-
+            addMenuSeparatorAfter: contactType !== Profile.Type.SIP && (contactType === Profile.Type.PENDING || !hasCall)
             canTrigger: hasCall
-            itemName: JamiStrings.endCall
             iconSource: JamiResources.ic_call_end_white_24dp_svg
-            addMenuSeparatorAfter: contactType !== Profile.Type.SIP
-                                   && (contactType === Profile.Type.PENDING
-                                       || !hasCall)
-            onClicked: CallAdapter.hangUpACall(responsibleAccountId,
-                                               responsibleConvUid)
+            itemName: JamiStrings.endCall
+
+            onClicked: CallAdapter.hangUpACall(responsibleAccountId, responsibleConvUid)
         },
         GeneralMenuItem {
             id: acceptContactRequest
-
             canTrigger: contactType === Profile.Type.PENDING
-            itemName: JamiStrings.acceptContactRequest
             iconSource: JamiResources.add_people_24dp_svg
+            itemName: JamiStrings.acceptContactRequest
+
             onClicked: MessagesAdapter.acceptInvitation(responsibleConvUid)
         },
         GeneralMenuItem {
             id: declineContactRequest
-
             canTrigger: contactType === Profile.Type.PENDING
-            itemName: JamiStrings.declineContactRequest
             iconSource: JamiResources.round_close_24dp_svg
+            itemName: JamiStrings.declineContactRequest
+
             onClicked: MessagesAdapter.refuseInvitation(responsibleConvUid)
         },
         GeneralMenuItem {
             id: blockContact
-
-            canTrigger: !hasCall && contactType !== Profile.Type.SIP && !root.isBanned
-            itemName: !(mode && isCoreDialog) ? JamiStrings.blockContact : JamiStrings.blockSwarm
-            iconSource: JamiResources.block_black_24dp_svg
             addMenuSeparatorAfter: canTrigger
+            canTrigger: !hasCall && contactType !== Profile.Type.SIP && !root.isBanned
+            iconSource: JamiResources.block_black_24dp_svg
+            itemName: !(mode && isCoreDialog) ? JamiStrings.blockContact : JamiStrings.blockSwarm
+
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "commoncomponents/ConfirmDialog.qml",
-                            {
-                                title: JamiStrings.confirmAction,
-                                textLabel: JamiStrings.confirmBlockConversation,
-                                confirmLabel: JamiStrings.optionBlock
-                            })
-                dlg.accepted.connect(function() {
-                    MessagesAdapter.blockConversation(responsibleConvUid)
-                })
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                        "title": JamiStrings.confirmAction,
+                        "textLabel": JamiStrings.confirmBlockConversation,
+                        "confirmLabel": JamiStrings.optionBlock
+                    });
+                dlg.accepted.connect(function () {
+                        MessagesAdapter.blockConversation(responsibleConvUid);
+                    });
             }
         },
         GeneralMenuItem {
             id: unblockContact
-
-            canTrigger: root.isBanned
-            itemName: JamiStrings.reinstateContact
-            iconSource: JamiResources.round_remove_circle_24dp_svg
             addMenuSeparatorAfter: canTrigger
+            canTrigger: root.isBanned
+            iconSource: JamiResources.round_remove_circle_24dp_svg
+            itemName: JamiStrings.reinstateContact
+
             onClicked: MessagesAdapter.unbanConversation(responsibleConvUid)
         },
         GeneralMenuItem {
             id: contactDetails
-
             canTrigger: contactType !== Profile.Type.SIP
-            itemName: isCoreDialog ? JamiStrings.contactDetails : JamiStrings.convDetails
             iconSource: JamiResources.person_24dp_svg
+            itemName: isCoreDialog ? JamiStrings.contactDetails : JamiStrings.convDetails
+
             onClicked: {
                 if (isCoreDialog) {
-                    viewCoordinator.presentDialog(
-                                appWindow,
-                                "mainview/components/UserProfile.qml",
-                                {
-                                    aliasText: aliasText,
-                                    registeredNameText: registeredNameText,
-                                    idText: idText,
-                                    convId: responsibleConvUid
-                                })
+                    viewCoordinator.presentDialog(appWindow, "mainview/components/UserProfile.qml", {
+                            "aliasText": aliasText,
+                            "registeredNameText": registeredNameText,
+                            "idText": idText,
+                            "convId": responsibleConvUid
+                        });
                 } else {
-                    root.showSwarmDetails()
+                    root.showSwarmDetails();
                 }
             }
         }
     ]
+    property var mode: undefined
+    property bool readOnly: false
+    property string registeredNameText
+    property string responsibleAccountId: ""
+    property string responsibleConvUid: ""
+
+    signal showSwarmDetails
 
     Component.onCompleted: menuItemsToLoad = menuItems
 }

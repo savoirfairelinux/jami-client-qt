@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
@@ -31,55 +28,42 @@ ColumnLayout {
     spacing: JamiTheme.settingsCategorySpacing
 
     Text {
-
         Layout.alignment: Qt.AlignLeft
         Layout.preferredWidth: Math.min(350, root.width - JamiTheme.preferredMarginSize * 2)
-
-        text: JamiStrings.media
         color: JamiTheme.textColor
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-        wrapMode : Text.WordWrap
-
-        font.pixelSize: JamiTheme.settingsTitlePixelSize
         font.kerning: true
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        horizontalAlignment: Text.AlignLeft
+        text: JamiStrings.media
+        verticalAlignment: Text.AlignVCenter
+        wrapMode: Text.WordWrap
     }
-
     ColumnLayout {
         Layout.fillWidth: true
 
         ToggleSwitch {
             id: videoCheckBox
-
-            labelText: JamiStrings.enableVideo
-
             checked: CurrentAccount.videoEnabled_Video
+            labelText: JamiStrings.enableVideo
 
             onSwitchToggled: CurrentAccount.videoEnabled_Video = checked
         }
-
         RowLayout {
-            Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.fillWidth: true
 
             MediaSettings {
                 id: videoSettings
-
-                Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.fillWidth: true
                 enabled: CurrentAccount.videoEnabled_Video
-
-                opacity: enabled ? 1.0 : 0.5
-
                 mediaType: MediaSettings.VIDEO
+                opacity: enabled ? 1.0 : 0.5
             }
-
             MediaSettings {
                 id: audioSettings
-
-                Layout.fillWidth: true
                 Layout.fillHeight: true
-
+                Layout.fillWidth: true
                 mediaType: MediaSettings.AUDIO
             }
         }

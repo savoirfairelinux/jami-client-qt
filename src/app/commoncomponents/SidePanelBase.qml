@@ -2,13 +2,13 @@ import QtQuick
 
 Rectangle {
     id: root
+    property var deselect: function () {}
+
+    // Override these if needed.
+    property var select: function () {}
 
     anchors.fill: parent
 
-    // Override these if needed.
-    property var select: function() {}
-    property var deselect: function() {}
-
-    signal indexSelected(int index)
     signal deselected
+    signal indexSelected(int index)
 }

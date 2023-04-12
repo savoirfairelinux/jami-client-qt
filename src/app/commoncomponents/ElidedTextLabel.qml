@@ -15,42 +15,35 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 TextEdit {
     id: root
-
-    property string eText : ""
-    property int maxWidth: 100
+    property string eText: ""
     property int fontSize: JamiTheme.textFontSize
+    property int maxWidth: 100
     property int textWidth: 0
 
-    font.pointSize: fontSize
-    font.kerning: true
-
-    text: elided.elidedText
-
-    horizontalAlignment: Text.AlignLeft
-    verticalAlignment: Text.AlignVCenter
     color: JamiTheme.textColor
-
+    font.kerning: true
+    font.pointSize: fontSize
+    horizontalAlignment: Text.AlignLeft
     readOnly: true
     selectByMouse: true
+    text: elided.elidedText
+    verticalAlignment: Text.AlignVCenter
 
     TextMetrics {
         id: elided
-
-        font: root.font
         elide: Text.ElideRight
         elideWidth: maxWidth
+        font: root.font
         text: eText
 
         onTextChanged: {
-            textWidth = elided.boundingRect.width
+            textWidth = elided.boundingRect.width;
         }
     }
 }

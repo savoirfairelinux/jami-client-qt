@@ -15,73 +15,68 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
 import SortFilterProxyModel
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../settingsview/components"
 
 JamiListView {
     id: root
+    property var convId: CurrentConversation.id
+    property string textFilter: ""
+    property color themeColor: CurrentConversation.color
 
     anchors.fill: parent
-    topMargin: JamiTheme.preferredMarginSize
     bottomMargin: JamiTheme.preferredMarginSize
     spacing: JamiTheme.preferredMarginSize
-
-    property color themeColor: CurrentConversation.color
-    property string textFilter: ""
-    property var convId: CurrentConversation.id
-
-    onVisibleChanged: {
-        if (visible) {
-            MessagesAdapter.startSearch(textFilter,true)
-        }
-    }
+    topMargin: JamiTheme.preferredMarginSize
 
     onConvIdChanged: {
         if (visible) {
-            MessagesAdapter.startSearch(textFilter,true)
+            MessagesAdapter.startSearch(textFilter, true);
         }
     }
-
     onTextFilterChanged: {
-        MessagesAdapter.startSearch(textFilter,true)
+        MessagesAdapter.startSearch(textFilter, true);
     }
-
-    model: SortFilterProxyModel {
-        id: proxyModel
-
-        property var messageListModel: MessagesAdapter.mediaMessageListModel
-        readonly property int documentType: Interaction.Type.DATA_TRANSFER
-        readonly property int transferFinishedType: Interaction.Status.TRANSFER_FINISHED
-        readonly property int transferSuccesType: Interaction.Status.SUCCESS
-
-        onMessageListModelChanged: sourceModel = root.visible && messageListModel ?
-                                       messageListModel :
-                                       null
-
-        sorters: RoleSorter { roleName: "Timestamp"; sortOrder: Qt.DescendingOrder }
-
-        filters: [
-            ExpressionFilter { expression: Type === proxyModel.documentType },
-            ExpressionFilter { expression: Status === proxyModel.transferFinishedType || Status === proxyModel.transferSuccesType }
-        ]
-
+    onVisibleChanged: {
+        if (visible) {
+            MessagesAdapter.startSearch(textFilter, true);
+        }
     }
 
     delegate: DocumentPreview {
         id: member
+        height: Math.max(JamiTheme.swarmDetailsPageDocumentsHeight, JamiTheme.swarmDetailsPageDocumentsMinHeight)
         width: root.width
-        height: Math.max(JamiTheme.swarmDetailsPageDocumentsHeight,JamiTheme.swarmDetailsPageDocumentsMinHeight)
+    }
+    model: SortFilterProxyModel {
+        id: proxyModel
+        readonly property int documentType: Interaction.Type.DATA_TRANSFER
+        property var messageListModel: MessagesAdapter.mediaMessageListModel
+        readonly property int transferFinishedType: Interaction.Status.TRANSFER_FINISHED
+        readonly property int transferSuccesType: Interaction.Status.SUCCESS
+
+        onMessageListModelChanged: sourceModel = root.visible && messageListModel ? messageListModel : null
+
+        filters: [
+            ExpressionFilter {
+                expression: Type === proxyModel.documentType
+            },
+            ExpressionFilter {
+                expression: Status === proxyModel.transferFinishedType || Status === proxyModel.transferSuccesType
+            }
+        ]
+        sorters: RoleSorter {
+            roleName: "Timestamp"
+            sortOrder: Qt.DescendingOrder
+        }
     }
 }

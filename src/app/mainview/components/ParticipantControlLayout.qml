@@ -15,107 +15,92 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 RowLayout {
     id: root
-
-    property int visibleButtons: toggleModerator.visible
-                                 + toggleMute.visible
-                                 + maximizeParticipant.visible
-                                 + minimizeParticipant.visible
-                                 + hangupParticipant.visible
+    property int visibleButtons: toggleModerator.visible + toggleMute.visible + maximizeParticipant.visible + minimizeParticipant.visible + hangupParticipant.visible
 
     spacing: 8
 
     ParticipantOverlayButton {
         id: toggleModerator
-
-        visible: showSetModerator || showUnsetModerator
-        preferredSize: iconButtonPreferredSize
+        Layout.alignment: Qt.AlignVCenter
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
-        Layout.alignment: Qt.AlignVCenter
+        preferredSize: iconButtonPreferredSize
         source: JamiResources.moderator_svg
-        onClicked: CallAdapter.setModerator(uri, showSetModerator)
-        toolTipText: showSetModerator? JamiStrings.setModerator
-                                     : JamiStrings.unsetModerator
-    }
+        toolTipText: showSetModerator ? JamiStrings.setModerator : JamiStrings.unsetModerator
+        visible: showSetModerator || showUnsetModerator
 
+        onClicked: CallAdapter.setModerator(uri, showSetModerator)
+    }
     ParticipantOverlayButton {
         id: toggleMute
-
-        visible: showModeratorMute || showModeratorUnmute
-        preferredSize: iconButtonPreferredSize
+        Layout.alignment: Qt.AlignVCenter
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
-        Layout.alignment: Qt.AlignVCenter
-        source: showModeratorMute ?
-                    JamiResources.micro_black_24dp_svg :
-                    JamiResources.micro_off_black_24dp_svg
         checkable: meModerator
+        preferredSize: iconButtonPreferredSize
+        source: showModeratorMute ? JamiResources.micro_black_24dp_svg : JamiResources.micro_off_black_24dp_svg
+        toolTipText: {
+            if (!checkable && participantIsModeratorMuted)
+                return JamiStrings.mutedByModerator;
+            if (showModeratorMute)
+                return JamiStrings.muteParticipant;
+            else
+                return JamiStrings.unmuteParticipant;
+        }
+        visible: showModeratorMute || showModeratorUnmute
+
         onClicked: {
             if (participantIsModeratorMuted && isLocalMuted) {
                 if (isMe)
-                    muteAlertMessage = JamiStrings.mutedLocally
+                    muteAlertMessage = JamiStrings.mutedLocally;
                 else
-                    muteAlertMessage = JamiStrings.participantMicIsStillMuted
-                muteAlertActive = true
+                    muteAlertMessage = JamiStrings.participantMicIsStillMuted;
+                muteAlertActive = true;
             }
-            CallAdapter.muteParticipant(uri, deviceId, sinkId, showModeratorMute)
-        }
-        toolTipText: {
-            if (!checkable && participantIsModeratorMuted)
-                return JamiStrings.mutedByModerator
-            if (showModeratorMute)
-                return JamiStrings.muteParticipant
-            else
-                return JamiStrings.unmuteParticipant
+            CallAdapter.muteParticipant(uri, deviceId, sinkId, showModeratorMute);
         }
     }
-
     ParticipantOverlayButton {
         id: maximizeParticipant
-
-        visible: showMaximize
-        preferredSize: iconButtonPreferredSize
+        Layout.alignment: Qt.AlignVCenter
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
-        Layout.alignment: Qt.AlignVCenter
+        preferredSize: iconButtonPreferredSize
         source: JamiResources.open_in_full_24dp_svg
-        onClicked: CallAdapter.setActiveStream(uri, deviceId, sinkId)
         toolTipText: JamiStrings.maximizeParticipant
-    }
+        visible: showMaximize
 
+        onClicked: CallAdapter.setActiveStream(uri, deviceId, sinkId)
+    }
     ParticipantOverlayButton {
         id: minimizeParticipant
-
-        visible: showMinimize
-        preferredSize: iconButtonPreferredSize
+        Layout.alignment: Qt.AlignVCenter
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
-        Layout.alignment: Qt.AlignVCenter
+        preferredSize: iconButtonPreferredSize
         source: JamiResources.close_fullscreen_24dp_svg
-        onClicked: CallAdapter.minimizeParticipant(uri)
         toolTipText: JamiStrings.minimizeParticipant
-    }
+        visible: showMinimize
 
+        onClicked: CallAdapter.minimizeParticipant(uri)
+    }
     ParticipantOverlayButton {
         id: hangupParticipant
-
-        visible: showHangup
-        preferredSize: iconButtonPreferredSize
+        Layout.alignment: Qt.AlignVCenter
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
-        Layout.alignment: Qt.AlignVCenter
+        preferredSize: iconButtonPreferredSize
         source: JamiResources.ic_hangup_participant_24dp_svg
-        onClicked: CallAdapter.hangupParticipant(uri, deviceId)
         toolTipText: JamiStrings.hangupParticipant
+        visible: showHangup
+
+        onClicked: CallAdapter.hangupParticipant(uri, deviceId)
     }
 }

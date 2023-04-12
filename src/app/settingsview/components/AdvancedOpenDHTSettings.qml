@@ -15,88 +15,66 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
     id: root
-
     property int itemWidth
+
     spacing: JamiTheme.settingsCategorySpacing
 
     Text {
-
         Layout.alignment: Qt.AlignLeft
         Layout.preferredWidth: parent.width
-        text: JamiStrings.openDHTConfig
         color: JamiTheme.textColor
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-        wrapMode : Text.WordWrap
-
-        font.pixelSize: JamiTheme.settingsTitlePixelSize
         font.kerning: true
-
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        horizontalAlignment: Text.AlignLeft
+        text: JamiStrings.openDHTConfig
+        verticalAlignment: Text.AlignVCenter
+        wrapMode: Text.WordWrap
     }
-
     ColumnLayout {
         Layout.fillWidth: true
 
         ToggleSwitch {
             id: checkAutoConnectOnLocalNetwork
-            visible: !root.isSIP
-
             Layout.fillWidth: true
-
+            checked: CurrentAccount.peerDiscovery
             labelText: JamiStrings.enablePeerDiscovery
             tooltipText: JamiStrings.tooltipPeerDiscovery
-
-            checked: CurrentAccount.peerDiscovery
+            visible: !root.isSIP
 
             onSwitchToggled: CurrentAccount.peerDiscovery = checked
         }
-
         ToggleSwitch {
             id: checkBoxEnableProxy
-
-            labelText: JamiStrings.enableProxy
             Layout.fillWidth: true
-
             checked: CurrentAccount.proxyEnabled
+            labelText: JamiStrings.enableProxy
 
             onSwitchToggled: CurrentAccount.proxyEnabled = checked
         }
-
         SettingsMaterialTextEdit {
             id: lineEditProxy
-
             Layout.fillWidth: true
-
             enabled: checkBoxEnableProxy.checked
-
-            staticText: CurrentAccount.proxyServer
-
             itemWidth: root.itemWidth
+            staticText: CurrentAccount.proxyServer
             titleField: JamiStrings.proxyAddress
 
             onEditFinished: CurrentAccount.proxyServer = dynamicText
         }
-
         SettingsMaterialTextEdit {
             id: lineEditBootstrap
-
             Layout.fillWidth: true
-
-            staticText: CurrentAccount.hostname
-
             itemWidth: root.itemWidth
+            staticText: CurrentAccount.hostname
             titleField: JamiStrings.bootstrap
 
             onEditFinished: CurrentAccount.hostname = dynamicText

@@ -15,112 +15,101 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ItemDelegate {
     id: root
-
-    property string handlerName : ""
-    property string handlerId: ""
     property string handlerIcon: ""
+    property string handlerId: ""
+    property string handlerName: ""
     property bool isLoaded: false
     property string pluginId: ""
 
     signal btnLoadHandlerToggled
     signal openPreferences
 
-    RowLayout{
+    RowLayout {
         anchors.fill: parent
 
         Label {
-            Layout.leftMargin: 8
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
+            Layout.leftMargin: 8
             width: 30
 
-            background: Rectangle{
+            background: Rectangle {
                 color: "transparent"
+
                 Image {
                     anchors.centerIn: parent
-                    source: "file:" + handlerIcon
-                    width: 30
                     height: 30
                     mipmap: true
+                    source: "file:" + handlerIcon
+                    width: 30
                 }
             }
         }
-
         Label {
-            Layout.leftMargin: 8
-            Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
+            Layout.fillWidth: true
+            Layout.leftMargin: 8
             color: JamiTheme.textColor
-
-            font.pointSize: JamiTheme.settingsFontSize
             font.kerning: true
+            font.pointSize: JamiTheme.settingsFontSize
             text: handlerName === "" ? handlerId : handlerName
         }
-
         Switch {
             id: loadSwitch
             property bool isHovering: false
 
-            Layout.rightMargin: 8
             Layout.alignment: Qt.AlignVCenter
-
-            width: 30
-            height: 30
-
-            ToolTip.visible: hovered
+            Layout.rightMargin: 8
             ToolTip.text: {
-                return JamiStrings.onOff
+                return JamiStrings.onOff;
             }
-
+            ToolTip.visible: hovered
             checked: isLoaded
+            height: 30
+            width: 30
+
             onClicked: {
-                btnLoadHandlerToggled()
+                btnLoadHandlerToggled();
             }
 
             background: Rectangle {
                 id: switchBackground
-
                 color: "transparent"
+
                 MouseArea {
                     id: btnMouseArea
                     anchors.fill: parent
                     hoverEnabled: true
+
+                    onEntered: {
+                        loadSwitch.isHovering = true;
+                    }
+                    onExited: {
+                        loadSwitch.isHovering = false;
+                    }
                     onPressed: {
                     }
                     onReleased: {
-                        loadSwitch.clicked()
-                    }
-                    onEntered: {
-                        loadSwitch.isHovering = true
-                    }
-                    onExited: {
-                        loadSwitch.isHovering = false
+                        loadSwitch.clicked();
                     }
                 }
             }
         }
-
         PushButton {
             id: btnPreferencesPluginHandler
-
             Layout.alignment: Qt.AlingVCenter | Qt.AlignRight
             Layout.rightMargin: 8
-
-            source: JamiResources.round_settings_24dp_svg
-            normalColor: JamiTheme.primaryBackgroundColor
             imageColor: JamiTheme.textColor
+            normalColor: JamiTheme.primaryBackgroundColor
+            source: JamiResources.round_settings_24dp_svg
             toolTipText: root.pluginId
 
             onClicked: openPreferences()

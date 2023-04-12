@@ -18,53 +18,49 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 SBSMessageBase {
     id: root
-
-    component JoinCallButton: PushButton {
-        visible: root.isActive
-        toolTipText: JamiStrings.joinCall
-        preferredSize: 40
-        imageColor: callLabel.color
-        normalColor: "transparent"
-        hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-        border.width: 1
-        border.color: callLabel.color
-    }
-
+    property bool isActive: LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1
     property bool isRemoteImage
 
-    isOutgoing: Author === CurrentAccount.uri
     author: Author
-    readers: Readers
-    formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
-
-
-    Connections {
-        target: CurrentConversation
-        enabled: root.isActive
-
-        function onActiveCallsChanged() {
-            root.isActive = LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1
-        }
-    }
-
-    property bool isActive: LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1
-    visible: isActive || ConfId === "" || Duration > 0
-
     bubble.color: {
         if (ConfId === "" && Duration === 0) {
             // If missed, we can add a darker pattern
-            return isOutgoing ?
-                        Qt.lighter(CurrentConversation.color, 1.15) :
-                        Qt.darker(JamiTheme.messageInBgColor, 1.15)
+            return isOutgoing ? Qt.lighter(CurrentConversation.color, 1.15) : Qt.darker(JamiTheme.messageInBgColor, 1.15);
         }
-        return isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor
+        return isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor;
+    }
+    formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+    isOutgoing: Author === CurrentAccount.uri
+    opacity: 0
+    readers: Readers
+    visible: isActive || ConfId === "" || Duration > 0
+
+    Component.onCompleted: opacity = 1
+
+    Connections {
+        enabled: root.isActive
+        target: CurrentConversation
+
+        function onActiveCallsChanged() {
+            root.isActive = LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1;
+        }
+    }
+
+    component JoinCallButton: PushButton {
+        border.color: callLabel.color
+        border.width: 1
+        hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+        imageColor: callLabel.color
+        normalColor: "transparent"
+        preferredSize: 40
+        toolTipText: JamiStrings.joinCall
+        visible: root.isActive
     }
 
     innerContent.children: [
@@ -76,46 +72,40 @@ SBSMessageBase {
 
             Label {
                 id: callLabel
-                padding: 10
-                Layout.margins: 8
                 Layout.fillWidth: true
-
-                text:{
-                    if (root.isActive)
-                        return JamiStrings.joinCall
-                    return Body
-                }
-                horizontalAlignment: Qt.AlignHCenter
-
-                font.pixelSize: JamiTheme.emojiBubbleSize
-                font.hintingPreference: Font.PreferNoHinting
+                Layout.margins: 8
+                color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                 font.bold: true
+                font.hintingPreference: Font.PreferNoHinting
+                font.pixelSize: JamiTheme.emojiBubbleSize
+                horizontalAlignment: Qt.AlignHCenter
+                padding: 10
                 renderType: Text.NativeRendering
+                text: {
+                    if (root.isActive)
+                        return JamiStrings.joinCall;
+                    return Body;
+                }
                 textFormat: Text.MarkdownText
-
-                color: UtilsAdapter.luma(bubble.color) ?
-                       JamiTheme.chatviewTextColorLight :
-                       JamiTheme.chatviewTextColorDark
             }
-
             JoinCallButton {
                 id: joinCallInAudio
-
                 source: JamiResources.place_audiocall_24dp_svg
+
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, ConfId, true)
             }
-
             JoinCallButton {
                 id: joinCallInVideo
-
-                source: JamiResources.videocam_24dp_svg
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, ConfId)
                 Layout.rightMargin: parent.spacing
+                source: JamiResources.videocam_24dp_svg
+
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, ConfId)
             }
         }
     ]
-
-    opacity: 0
-    Behavior on opacity { NumberAnimation { duration: 100 } }
-    Component.onCompleted: opacity = 1
+    Behavior on opacity  {
+        NumberAnimation {
+            duration: 100
+        }
+    }
 }

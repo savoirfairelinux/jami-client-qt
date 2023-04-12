@@ -15,89 +15,82 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 
 Row {
     id: root
-
     property int currentRect: 0
 
     spacing: 5
 
     Timer {
+        interval: JamiTheme.typingDotsAnimationInterval
         repeat: true
         running: root.visible
-        interval: JamiTheme.typingDotsAnimationInterval
 
         onTriggered: {
             if (root.currentRect < 2)
-                root.currentRect ++
+                root.currentRect++;
             else
-                root.currentRect = 0
+                root.currentRect = 0;
         }
     }
-
     Repeater {
         model: 3
 
         Rectangle {
             id: circleRect
-
-            radius: JamiTheme.typingDotsRadius
-
-            width: JamiTheme.typingDotsSize
-            height: JamiTheme.typingDotsSize
             color: JamiTheme.typingDotsNormalColor
+            height: JamiTheme.typingDotsSize
+            radius: JamiTheme.typingDotsRadius
+            width: JamiTheme.typingDotsSize
 
             states: State {
                 id: enlargeState
-
                 name: "enlarge"
                 when: root.currentRect === index
             }
-
             transitions: [
                 Transition {
                     to: "enlarge"
+
                     ParallelAnimation {
                         NumberAnimation {
+                            duration: JamiTheme.typingDotsAnimationInterval
                             from: 1.0
-                            to: 1.3
-                            target: circleRect
-                            duration: JamiTheme.typingDotsAnimationInterval
                             property: "scale"
-                        }
-
-                        ColorAnimation {
-                            from: JamiTheme.typingDotsNormalColor
-                            to: JamiTheme.typingDotsEnlargeColor
                             target: circleRect
-                            property: "color"
+                            to: 1.3
+                        }
+                        ColorAnimation {
                             duration: JamiTheme.typingDotsAnimationInterval
+                            from: JamiTheme.typingDotsNormalColor
+                            property: "color"
+                            target: circleRect
+                            to: JamiTheme.typingDotsEnlargeColor
                         }
                     }
                 },
                 Transition {
                     from: "enlarge"
+
                     ParallelAnimation {
                         NumberAnimation {
-                            from: 1.3
-                            to: 1.0
-                            target: circleRect
                             duration: JamiTheme.typingDotsAnimationInterval
+                            from: 1.3
                             property: "scale"
+                            target: circleRect
+                            to: 1.0
                         }
                         ColorAnimation {
-                            from: JamiTheme.typingDotsEnlargeColor
-                            to: JamiTheme.typingDotsNormalColor
-                            target: circleRect
-                            property: "color"
                             duration: JamiTheme.typingDotsAnimationInterval
+                            from: JamiTheme.typingDotsEnlargeColor
+                            property: "color"
+                            target: circleRect
+                            to: JamiTheme.typingDotsNormalColor
                         }
                     }
                 }

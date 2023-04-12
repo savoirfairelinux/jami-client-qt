@@ -14,76 +14,65 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
 RadioButton {
     id: root
-
-    property string color: JamiTheme.textColor
     property string bgColor: ""
+    property string color: JamiTheme.textColor
 
+    Keys.onPressed: function (event) {
+        if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
+            root.checked = true;
+        }
+    }
+
+    contentItem: Text {
+        color: root.color
+        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+        leftPadding: root.indicator.width + root.spacing
+        text: root.text
+        verticalAlignment: Text.AlignVCenter
+    }
     indicator: Rectangle {
         id: rect
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
         color: root.bgColor
+        implicitHeight: 20
+        implicitWidth: 20
+        radius: 10
 
         border {
             id: border
             color: JamiTheme.buttonTintedBlue
             width: 1
         }
-
-        implicitWidth: 20
-        implicitHeight: 20
-        radius: 10
-
         Rectangle {
-
             id: innerRect
-
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            width: 10
+            color: JamiTheme.buttonTintedBlue
             height: 10
             radius: 10
-            visible : checked || hovered
-
-            Behavior on visible {
-                NumberAnimation {
-                    from: 0
-                    duration: JamiTheme.shortFadeDuration
-                }
-            }
-
-            color: JamiTheme.buttonTintedBlue
+            visible: checked || hovered
+            width: 10
 
             HoverHandler {
                 target: parent
             }
+
+            Behavior on visible  {
+                NumberAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                    from: 0
+                }
+            }
         }
     }
-
-    contentItem: Text {
-        text: root.text
-        color: root.color
-        leftPadding: root.indicator.width + root.spacing
-        verticalAlignment: Text.AlignVCenter
-        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
-    }
-
-    Keys.onPressed: function (event) {
-        if (event.key === Qt.Key_Enter
-                || event.key === Qt.Key_Return) {
-            root.checked = true
-        }
-    }
-
 }

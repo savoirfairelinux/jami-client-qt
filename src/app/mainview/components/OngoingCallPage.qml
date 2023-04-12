@@ -17,231 +17,228 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
+    property string callPreviewId
+    property alias chatViewContainer: chatViewContainer
     property point clickPos
     property int previewMargin: 15
-    property int previewMarginYTop: previewMargin + 42
     property int previewMarginYBottom: previewMargin + 84
+    property int previewMarginYTop: previewMargin + 42
     property int previewToX: 0
     property int previewToY: 0
-    property alias chatViewContainer: chatViewContainer
-    property string callPreviewId
-
-    onCallPreviewIdChanged: {
-        controlPreview.start()
-    }
 
     color: "black"
 
-    Connections {
-        target: CurrentConversation
-        function onIdChanged() {
-            if (CurrentConversation.id !== "") contactImage.imageId = CurrentConversation.id
-        }
-    }
-
-    Connections {
-        target: UtilsAdapter
-
-        function onChatviewPositionChanged() {
-            mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally)
-        }
-    }
-
-    function openInCallConversation() {
-        mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally)
-        chatViewContainer.visible = false
-        chatViewContainer.visible = true
-    }
-
-    function closeInCallConversation() {
-        chatViewContainer.visible = false
-    }
-
     function closeContextMenuAndRelatedWindows() {
-        callOverlay.closeContextMenuAndRelatedWindows()
+        callOverlay.closeContextMenuAndRelatedWindows();
     }
-
+    function closeInCallConversation() {
+        chatViewContainer.visible = false;
+    }
+    function openInCallConversation() {
+        mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally);
+        chatViewContainer.visible = false;
+        chatViewContainer.visible = true;
+    }
     function previewMagneticSnap() {
         // Calculate the position where the previewRenderer should attach to.
-        var previewRendererCenter = Qt.point(
-                    previewRenderer.x + previewRenderer.width / 2,
-                    previewRenderer.y + previewRenderer.height / 2)
-        var parentCenter = Qt.point(
-                    parent.x + parent.width / 2,
-                    parent.y + parent.height / 2)
-
+        var previewRendererCenter = Qt.point(previewRenderer.x + previewRenderer.width / 2, previewRenderer.y + previewRenderer.height / 2);
+        var parentCenter = Qt.point(parent.x + parent.width / 2, parent.y + parent.height / 2);
         if (previewRendererCenter.x >= parentCenter.x) {
             if (previewRendererCenter.y >= parentCenter.y) {
                 // Bottom right.
                 previewToX = Qt.binding(function () {
-                    return callPageMainRect.width - previewRenderer.width - previewMargin
-                })
+                        return callPageMainRect.width - previewRenderer.width - previewMargin;
+                    });
                 previewToY = Qt.binding(function () {
-                    return callPageMainRect.height - previewRenderer.height - previewMarginYBottom
-                })
+                        return callPageMainRect.height - previewRenderer.height - previewMarginYBottom;
+                    });
             } else {
                 // Top right.
                 previewToX = Qt.binding(function () {
-                    return callPageMainRect.width - previewRenderer.width - previewMargin
-                })
-                previewToY = previewMarginYTop
+                        return callPageMainRect.width - previewRenderer.width - previewMargin;
+                    });
+                previewToY = previewMarginYTop;
             }
         } else {
             if (previewRendererCenter.y >= parentCenter.y) {
                 // Bottom left.
-                previewToX = previewMargin
+                previewToX = previewMargin;
                 previewToY = Qt.binding(function () {
-                    return callPageMainRect.height - previewRenderer.height - previewMarginYBottom
-                })
+                        return callPageMainRect.height - previewRenderer.height - previewMarginYBottom;
+                    });
             } else {
                 // Top left.
-                previewToX = previewMargin
-                previewToY = previewMarginYTop
+                previewToX = previewMargin;
+                previewToY = previewMarginYTop;
             }
         }
-        previewRenderer.state = "geoChanging"
+        previewRenderer.state = "geoChanging";
     }
 
+    onCallPreviewIdChanged: {
+        controlPreview.start();
+    }
     onWidthChanged: {
         if (chatViewContainer.visible && root.width < JamiTheme.mainViewPaneMinWidth * 2) {
-            callPageMainRect.visible = false
+            callPageMainRect.visible = false;
         } else {
-            callPageMainRect.visible = true
+            callPageMainRect.visible = true;
         }
     }
 
+    Connections {
+        target: CurrentConversation
+
+        function onIdChanged() {
+            if (CurrentConversation.id !== "")
+                contactImage.imageId = CurrentConversation.id;
+        }
+    }
+    Connections {
+        target: UtilsAdapter
+
+        function onChatviewPositionChanged() {
+            mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally);
+        }
+    }
     SplitView {
         id: mainColumnLayout
+        property bool isHorizontal: false // Calculated when showing the stack view
 
         anchors.fill: parent
-
-        property bool isHorizontal: false // Calculated when showing the stack view
         orientation: isHorizontal ? Qt.Horizontal : Qt.Vertical
-
-        handle: Rectangle {
-            implicitWidth: isHorizontal ? JamiTheme.splitViewHandlePreferredWidth : root.width
-            implicitHeight: isHorizontal ? root.height : JamiTheme.splitViewHandlePreferredWidth
-            color: SplitHandle.pressed ? JamiTheme.pressColor :
-                                         (SplitHandle.hovered ? JamiTheme.hoverColor :
-                                                                JamiTheme.tabbarBorderColor)
-        }
 
         Rectangle {
             id: callPageMainRect
-
-            SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : (root.height / 3) * 2
-            SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
             SplitView.fillWidth: true
+            SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
+            SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : (root.height / 3) * 2
+            color: "transparent"
 
             TapHandler {
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
 
                 onDoubleTapped: function (eventPoint, button) {
                     if (button === Qt.LeftButton) {
-                        callStackView.toggleFullScreen()
+                        callStackView.toggleFullScreen();
                     }
                 }
-
                 onTapped: function (eventPoint, button) {
                     if (button === Qt.RightButton) {
-                        var isOnLocal = eventPoint.position.x >= previewRenderer.x && eventPoint.position.x <= previewRenderer.x + previewRenderer.width
-                        isOnLocal &= eventPoint.position.y >= previewRenderer.y && eventPoint.position.y <= previewRenderer.y + previewRenderer.height
-                        isOnLocal |= participantsLayer.hoveredOverlaySinkId.indexOf("camera://") === 0
-                        callOverlay.openCallViewContextMenuInPos(eventPoint.position.x,
-                                                                 eventPoint.position.y,
-                                                                 participantsLayer.hoveredOverlayUri,
-                                                                 participantsLayer.hoveredOverlaySinkId,
-                                                                 participantsLayer.hoveredOverVideoMuted,
-                                                                 isOnLocal)
+                        var isOnLocal = eventPoint.position.x >= previewRenderer.x && eventPoint.position.x <= previewRenderer.x + previewRenderer.width;
+                        isOnLocal &= eventPoint.position.y >= previewRenderer.y && eventPoint.position.y <= previewRenderer.y + previewRenderer.height;
+                        isOnLocal |= participantsLayer.hoveredOverlaySinkId.indexOf("camera://") === 0;
+                        callOverlay.openCallViewContextMenuInPos(eventPoint.position.x, eventPoint.position.y, participantsLayer.hoveredOverlayUri, participantsLayer.hoveredOverlaySinkId, participantsLayer.hoveredOverVideoMuted, isOnLocal);
                     }
                 }
             }
-
             VideoView {
                 id: distantRenderer
-
-                rendererId: CurrentCall.id
                 anchors.centerIn: parent
                 anchors.fill: parent
-                z: -1
-
+                rendererId: CurrentCall.id
                 visible: !CurrentCall.isConference && !CurrentCall.isAudioOnly
+                z: -1
             }
-
             ParticipantsLayer {
                 id: participantsLayer
-
-                anchors.fill: parent
                 anchors.centerIn: parent
+                anchors.fill: parent
                 anchors.margins: 1
-                visible: CurrentCall.isConference
                 participantsSide: callOverlay.participantsSide
+                visible: CurrentCall.isConference
             }
-
             ToastManager {
                 id: toastManager
-
                 anchors.fill: parent
 
                 function instantiateToast() {
-                    instantiate(JamiStrings.screenshotTaken.arg(UtilsAdapter.getDirScreenshot()),1000,400)
+                    instantiate(JamiStrings.screenshotTaken.arg(UtilsAdapter.getDirScreenshot()), 1000, 400);
                 }
             }
-
             LocalVideo {
                 id: previewRenderer
-                visible: (CurrentCall.isSharing || !CurrentCall.isVideoMuted)
-                         && !CurrentCall.isConference
-
+                flip: CurrentCall.flipSelf && !CurrentCall.isSharing
                 height: width * invAspectRatio
+                layer.enabled: true
+                visible: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) && !CurrentCall.isConference
                 width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                 x: callPageMainRect.width - previewRenderer.width - previewMargin
                 y: previewMarginYTop
-                flip: CurrentCall.flipSelf && !CurrentCall.isSharing
+
+                onVisibleChanged: {
+                    controlPreview.stop();
+                    if (visible) {
+                        controlPreview.startVideo = true;
+                        controlPreview.interval = 1000;
+                    } else {
+                        controlPreview.startVideo = false;
+                        controlPreview.interval = 0;
+                    }
+                    controlPreview.start();
+                }
 
                 // HACK: this is a workaround to the preview video starting
                 // and stopping a few times. The root cause should be investigated ASAP.
                 Timer {
                     id: controlPreview
                     property bool startVideo
+
                     interval: 1000
+
                     onTriggered: {
-                        var rendId = visible && startVideo ? root.callPreviewId : ""
-                        previewRenderer.startWithId(rendId)
+                        var rendId = visible && startVideo ? root.callPreviewId : "";
+                        previewRenderer.startWithId(rendId);
+                    }
+                }
+                MouseArea {
+                    id: dragMouseArea
+                    anchors.fill: previewRenderer
+
+                    onPositionChanged: function (mouse) {
+                        // Calculate mouse position relative change.
+                        var delta = Qt.point(mouse.x - clickPos.x, mouse.y - clickPos.y);
+                        var deltaW = previewRenderer.x + delta.x + previewRenderer.width;
+                        var deltaH = previewRenderer.y + delta.y + previewRenderer.height;
+
+                        // Check if the previewRenderer exceeds the border of callPageMainRect.
+                        if (deltaW < callPageMainRect.width && previewRenderer.x + delta.x > 1)
+                            previewRenderer.x += delta.x;
+                        if (deltaH < callPageMainRect.height && previewRenderer.y + delta.y > 1)
+                            previewRenderer.y += delta.y;
+                    }
+                    onPressed: function (mouse) {
+                        clickPos = Qt.point(mouse.x, mouse.y);
+                    }
+                    onReleased: {
+                        previewRenderer.state = "";
+                        previewMagneticSnap();
                     }
                 }
 
-                onVisibleChanged: {
-                    controlPreview.stop()
-                    if (visible) {
-                        controlPreview.startVideo = true
-                        controlPreview.interval = 1000
-                    } else {
-                        controlPreview.startVideo = false
-                        controlPreview.interval = 0
+                layer.effect: OpacityMask {
+                    maskSource: Rectangle {
+                        height: previewRenderer.height
+                        radius: JamiTheme.primaryRadius
+                        width: previewRenderer.width
                     }
-                    controlPreview.start()
                 }
-
                 states: [
                     State {
                         name: "geoChanging"
+
                         PropertyChanges {
                             target: previewRenderer
                             x: previewToX
@@ -249,181 +246,116 @@ Rectangle {
                         }
                     }
                 ]
-
                 transitions: Transition {
                     PropertyAnimation {
-                        properties: "x,y"
-                        easing.type: Easing.OutExpo
                         duration: 250
+                        easing.type: Easing.OutExpo
+                        properties: "x,y"
 
                         onStopped: {
-                            previewRenderer.state = ""
+                            previewRenderer.state = "";
                         }
                     }
                 }
-
-                MouseArea {
-                    id: dragMouseArea
-
-                    anchors.fill: previewRenderer
-
-                    onPressed: function (mouse) {
-                        clickPos = Qt.point(mouse.x, mouse.y)
-                    }
-
-                    onReleased: {
-                        previewRenderer.state = ""
-                        previewMagneticSnap()
-                    }
-
-                    onPositionChanged: function (mouse) {
-                        // Calculate mouse position relative change.
-                        var delta = Qt.point(mouse.x - clickPos.x,
-                                             mouse.y - clickPos.y)
-                        var deltaW = previewRenderer.x + delta.x + previewRenderer.width
-                        var deltaH = previewRenderer.y + delta.y + previewRenderer.height
-
-                        // Check if the previewRenderer exceeds the border of callPageMainRect.
-                        if (deltaW < callPageMainRect.width
-                                && previewRenderer.x + delta.x > 1)
-                            previewRenderer.x += delta.x
-                        if (deltaH < callPageMainRect.height
-                                && previewRenderer.y + delta.y > 1)
-                            previewRenderer.y += delta.y
-                    }
-                }
-
-                layer.enabled: true
-                layer.effect: OpacityMask {
-                    maskSource: Rectangle {
-                        width: previewRenderer.width
-                        height: previewRenderer.height
-                        radius: JamiTheme.primaryRadius
-                    }
-                }
             }
-
             CallOverlay {
                 id: callOverlay
-
                 anchors.fill: parent
 
                 function toggleConversation() {
                     if (inCallMessageWebViewStack.visible)
-                        closeInCallConversation()
+                        closeInCallConversation();
                     else
-                        openInCallConversation()
+                        openInCallConversation();
+                }
+
+                onChatButtonClicked: {
+                    var detailsVisible = chatViewContainer.showDetails;
+                    chatViewContainer.showDetails = false;
+                    !chatViewContainer.visible || detailsVisible ? openInCallConversation() : closeInCallConversation();
+                }
+                onCloseClicked: {
+                    participantsLayer.hoveredOverlayUri = "";
+                    participantsLayer.hoveredOverlaySinkId = "";
+                    participantsLayer.hoveredOverVideoMuted = true;
+                }
+                onFullScreenClicked: {
+                    callStackView.toggleFullScreen();
+                }
+                onSwarmDetailsClicked: {
+                    chatViewContainer.showDetails = !chatViewContainer.showDetails;
+                    chatViewContainer.showDetails ? openInCallConversation() : closeInCallConversation();
                 }
 
                 Connections {
                     target: CurrentCall
 
                     function onPreviewIdChanged() {
-                        root.callPreviewId = CurrentCall.previewId
+                        root.callPreviewId = CurrentCall.previewId;
                     }
                 }
-
                 Connections {
-                    target: MessagesAdapter
                     enabled: root.visible
+                    target: MessagesAdapter
 
                     function onNewInteraction(id, interactionType) {
                         // Ignore call notifications, as we are in the call.
-                        if (interactionType !== Interaction.Type.CALL &&
-                                !chatViewContainer.visible)
-                            openInCallConversation()
+                        if (interactionType !== Interaction.Type.CALL && !chatViewContainer.visible)
+                            openInCallConversation();
                     }
                 }
-
-                onCloseClicked: {
-                    participantsLayer.hoveredOverlayUri = ""
-                    participantsLayer.hoveredOverlaySinkId = ""
-                    participantsLayer.hoveredOverVideoMuted = true
-                }
-
-                onChatButtonClicked: {
-                    var detailsVisible = chatViewContainer.showDetails
-                    chatViewContainer.showDetails = false
-                    !chatViewContainer.visible || detailsVisible ?
-                                openInCallConversation() :
-                                closeInCallConversation()
-                }
-
-                onFullScreenClicked: {
-                    callStackView.toggleFullScreen()
-                }
-
-                onSwarmDetailsClicked: {
-                    chatViewContainer.showDetails = !chatViewContainer.showDetails
-                    chatViewContainer.showDetails ?
-                                openInCallConversation() :
-                                closeInCallConversation()
-                }
             }
-
             ColumnLayout {
                 id: audioCallPageRectCentralRect
-
                 anchors.centerIn: parent
                 anchors.left: parent.left
                 anchors.right: parent.right
-
-                visible: !CurrentCall.isPaused &&
-                         CurrentCall.isAudioOnly &&
-                         !CurrentCall.isConference
+                visible: !CurrentCall.isPaused && CurrentCall.isAudioOnly && !CurrentCall.isConference
 
                 ConversationAvatar {
                     id: contactImage
-
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: JamiTheme.avatarSizeInCall
                     Layout.preferredHeight: JamiTheme.avatarSizeInCall
-
+                    Layout.preferredWidth: JamiTheme.avatarSizeInCall
                     showPresenceIndicator: false
                 }
-
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.topMargin: JamiTheme.preferredMarginSize
-
                     Layout.preferredWidth: root.width
-
-                    font.pointSize: JamiTheme.titleFontSize
-
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    text: CurrentConversation.title
-                    elide: Text.ElideMiddle
+                    Layout.topMargin: JamiTheme.preferredMarginSize
                     color: "white"
+                    elide: Text.ElideMiddle
+                    font.pointSize: JamiTheme.titleFontSize
+                    horizontalAlignment: Text.AlignHCenter
+                    text: CurrentConversation.title
+                    verticalAlignment: Text.AlignVCenter
                 }
             }
-
-            color: "transparent"
         }
-
         Item {
             id: chatViewContainer
-            objectName: "CallViewChatViewContainer"
-
-            SplitView.preferredHeight: mainColumnLayout.isHorizontal ?
-                                           root.height :
-                                           root.height / 3
-            SplitView.preferredWidth: mainColumnLayout.isHorizontal ?
-                                          JamiTheme.mainViewPaneMinWidth :
-                                          root.width
-            SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
-            visible: false
-            clip: true
             property bool showDetails: false
+
+            SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
+            SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : root.height / 3
+            SplitView.preferredWidth: mainColumnLayout.isHorizontal ? JamiTheme.mainViewPaneMinWidth : root.width
+            clip: true
+            objectName: "CallViewChatViewContainer"
+            visible: false
 
             onVisibleChanged: {
                 if (visible && root.width < JamiTheme.mainViewPaneMinWidth * 2) {
-                    callPageMainRect.visible = false
+                    callPageMainRect.visible = false;
                 } else {
-                    callPageMainRect.visible = true
+                    callPageMainRect.visible = true;
                 }
             }
+        }
+
+        handle: Rectangle {
+            color: SplitHandle.pressed ? JamiTheme.pressColor : (SplitHandle.hovered ? JamiTheme.hoverColor : JamiTheme.tabbarBorderColor)
+            implicitHeight: isHorizontal ? root.height : JamiTheme.splitViewHandlePreferredWidth
+            implicitWidth: isHorizontal ? JamiTheme.splitViewHandlePreferredWidth : root.width
         }
     }
 }

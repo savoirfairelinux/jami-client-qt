@@ -15,42 +15,44 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Popup {
     id: root
-
+    property string handlerName: ""
     property bool isCall
     property string pluginId: ""
-    property string handlerName: ""
 
-    width: JamiTheme.preferredDialogWidth
     height: JamiTheme.pluginHandlersPopupViewHeight + JamiTheme.pluginHandlersPopupViewDelegateHeight
-
     modal: true
+    width: JamiTheme.preferredDialogWidth
 
-    contentItem: StackView {
-        id: stack
-        initialItem: pluginhandlerPreferenceStack
-        anchors.fill: parent
-    }
+    onAboutToHide: stack.pop(null, StackView.Immediate)
 
     Component {
         id: pluginhandlerPreferenceStack
-
         Rectangle {
+            anchors.fill: parent
             color: JamiTheme.backgroundColor
             radius: 10
-            anchors.fill: parent
+
+            function toggleHandlerSlot(handlerId, isLoaded) {
+                if (isCall) {
+                    PluginModel.toggleCallMediaHandler(handlerId, CurrentCall.id, !isLoaded);
+                    pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id);
+                } else {
+                    var accountId = LRCInstance.currentAccountId;
+                    var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0];
+                    PluginModel.toggleChatHandler(handlerId, accountId, peerId, !isLoaded);
+                    pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(accountId, peerId);
+                }
+            }
 
             Connections {
                 target: root
@@ -58,218 +60,183 @@ Popup {
                 function onAboutToShow(visible) {
                     // Reset the model on each show.
                     if (isCall) {
-                        pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
+                        pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id);
                     } else {
-                        var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0]
-                        pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId)
+                        var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0];
+                        pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId);
                     }
                 }
             }
-
-            function toggleHandlerSlot(handlerId, isLoaded) {
-                if (isCall) {
-                    PluginModel.toggleCallMediaHandler(handlerId, CurrentCall.id, !isLoaded)
-                    pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
-                } else {
-                    var accountId = LRCInstance.currentAccountId
-                    var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0]
-                    PluginModel.toggleChatHandler(handlerId, accountId, peerId, !isLoaded)
-                    pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
-                }
-            }
-
             ColumnLayout {
-                anchors.fill: parent
                 anchors.bottomMargin: 5
+                anchors.fill: parent
 
                 RowLayout {
                     height: JamiTheme.preferredFieldHeight
 
                     Text {
-                        Layout.topMargin: 10
-                        Layout.leftMargin: 5 + closeButton.width
                         Layout.alignment: Qt.AlignCenter
                         Layout.fillWidth: true
-
-                        font.pointSize: JamiTheme.textFontSize
-                        font.bold: true
-
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
+                        Layout.leftMargin: 5 + closeButton.width
+                        Layout.topMargin: 10
                         color: JamiTheme.textColor
-
+                        font.bold: true
+                        font.pointSize: JamiTheme.textFontSize
+                        horizontalAlignment: Text.AlignHCenter
                         text: JamiStrings.choosePlugin
+                        verticalAlignment: Text.AlignVCenter
                     }
-
                     PushButton {
                         id: closeButton
                         Layout.alignment: Qt.AlignRight
                         Layout.rightMargin: 5
                         Layout.topMargin: 5
-
-                        source: JamiResources.round_close_24dp_svg
                         imageColor: JamiTheme.textColor
+                        source: JamiResources.round_close_24dp_svg
 
                         onClicked: {
-                            root.close()
+                            root.close();
                         }
                     }
                 }
-
                 JamiListView {
                     id: pluginhandlerPickerListView
-
                     Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
                     Layout.fillHeight: true
-
+                    Layout.fillWidth: true
                     model: {
                         if (isCall) {
-                            return PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
+                            return PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id);
                         } else {
-                            var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0]
-                            return PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId)
+                            var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0];
+                            return PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId);
                         }
                     }
 
                     delegate: PluginHandlerItemDelegate {
                         id: pluginHandlerItemDelegate
-                        visible: PluginModel.getPluginsEnabled()
-                        width: pluginhandlerPickerListView.width
-                        height: JamiTheme.pluginHandlersPopupViewDelegateHeight
-
-                        handlerName : HandlerName
-                        handlerId: HandlerId
                         handlerIcon: HandlerIcon
+                        handlerId: HandlerId
+                        handlerName: HandlerName
+                        height: JamiTheme.pluginHandlersPopupViewDelegateHeight
                         isLoaded: IsLoaded
                         pluginId: PluginId
+                        visible: PluginModel.getPluginsEnabled()
+                        width: pluginhandlerPickerListView.width
 
                         onBtnLoadHandlerToggled: {
-                            toggleHandlerSlot(HandlerId, isLoaded)
+                            toggleHandlerSlot(HandlerId, isLoaded);
                         }
-
                         onOpenPreferences: {
-                            root.handlerName = handlerName
-                            root.pluginId = pluginId
-                            stack.push(pluginhandlerPreferenceStack2, StackView.Immediate)
+                            root.handlerName = handlerName;
+                            root.pluginId = pluginId;
+                            stack.push(pluginhandlerPreferenceStack2, StackView.Immediate);
                         }
                     }
                 }
             }
         }
     }
-
     Component {
         id: pluginhandlerPreferenceStack2
-
         Rectangle {
+            anchors.fill: parent
             color: JamiTheme.backgroundColor
             radius: 10
-            anchors.fill: parent
 
             ColumnLayout {
-                anchors.fill: parent
                 anchors.bottomMargin: 5
+                anchors.fill: parent
 
                 RowLayout {
                     height: JamiTheme.preferredFieldHeight
 
                     BackButton {
                         id: backButton
-
                         Layout.leftMargin: 5
                         Layout.topMargin: 5
-
                         toolTipText: JamiStrings.goBackToPluginsList
 
                         onClicked: {
-                            stack.pop(null, StackView.Immediate)
+                            stack.pop(null, StackView.Immediate);
                         }
                     }
-
                     Text {
-                        Layout.topMargin: 10
                         Layout.alignment: Qt.AlignCenter
                         Layout.fillWidth: true
-
-                        font.pointSize: JamiTheme.textFontSize
-                        font.bold: true
-
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-
+                        Layout.topMargin: 10
                         color: JamiTheme.textColor
+                        font.bold: true
+                        font.pointSize: JamiTheme.textFontSize
+                        horizontalAlignment: Text.AlignHCenter
                         text: JamiStrings.pluginPreferences
+                        verticalAlignment: Text.AlignVCenter
                     }
-
                     PushButton {
                         id: closeButton2
                         Layout.rightMargin: 5
                         Layout.topMargin: 5
-
-                        source: JamiResources.round_close_24dp_svg
                         imageColor: JamiTheme.textColor
+                        source: JamiResources.round_close_24dp_svg
 
                         onClicked: {
-                            root.close()
+                            root.close();
                         }
                     }
                 }
-
                 JamiListView {
                     id: pluginhandlerPreferencePickerListView
-
                     Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
                     Layout.fillHeight: true
-
-                    model: PreferenceItemListModel {
-                        id: handlerPickerPrefsModel
-                        lrcInstance: LRCInstance
-                        accountId_: LRCInstance.currentAccountId
-                        mediaHandlerName_: handlerName
-                        pluginId_: pluginId
-                    }
+                    Layout.fillWidth: true
 
                     delegate: PreferenceItemDelegate {
                         id: pluginHandlerPreferenceDelegate
-                        width: pluginhandlerPreferencePickerListView.width
+                        currentPath: CurrentPath
+                        enabled: Enabled
+                        fileFilters: FileFilters
                         height: JamiTheme.pluginHandlersPopupViewDelegateHeight
-
+                        isImage: IsImage
+                        pluginId: PluginId
+                        preferenceCurrentValue: PreferenceCurrentValue
+                        preferenceKey: PreferenceKey
                         preferenceName: PreferenceName
                         preferenceSummary: PreferenceSummary
                         preferenceType: PreferenceType
-                        preferenceCurrentValue: PreferenceCurrentValue
-                        pluginId: PluginId
-                        currentPath: CurrentPath
-                        preferenceKey : PreferenceKey
-                        fileFilters: FileFilters
-                        isImage: IsImage
-                        enabled: Enabled
-                        pluginListPreferenceModel: PluginListPreferenceModel {
-                            id: handlerPickerPreferenceModel
-
-                            lrcInstance: LRCInstance
-                            preferenceKey : PreferenceKey
-                            accountId_: LRCInstance.currentAccountId
-                            pluginId: PluginId
-                        }
-
-                        onClicked:  pluginhandlerPreferencePickerListView.currentIndex = index
+                        width: pluginhandlerPreferencePickerListView.width
 
                         onBtnPreferenceClicked: {
-                            PluginModel.setPluginPreference(pluginId, LRCInstance.currentAccountId, preferenceKey, preferenceNewValue)
-                            handlerPickerPrefsModel.reset()
+                            PluginModel.setPluginPreference(pluginId, LRCInstance.currentAccountId, preferenceKey, preferenceNewValue);
+                            handlerPickerPrefsModel.reset();
                         }
+                        onClicked: pluginhandlerPreferencePickerListView.currentIndex = index
+
+                        pluginListPreferenceModel: PluginListPreferenceModel {
+                            id: handlerPickerPreferenceModel
+                            accountId_: LRCInstance.currentAccountId
+                            lrcInstance: LRCInstance
+                            pluginId: PluginId
+                            preferenceKey: PreferenceKey
+                        }
+                    }
+                    model: PreferenceItemListModel {
+                        id: handlerPickerPrefsModel
+                        accountId_: LRCInstance.currentAccountId
+                        lrcInstance: LRCInstance
+                        mediaHandlerName_: handlerName
+                        pluginId_: pluginId
                     }
                 }
             }
         }
     }
 
-    onAboutToHide: stack.pop(null, StackView.Immediate)
-
     background: Rectangle {
         color: "transparent"
+    }
+    contentItem: StackView {
+        id: stack
+        anchors.fill: parent
+        initialItem: pluginhandlerPreferenceStack
     }
 }

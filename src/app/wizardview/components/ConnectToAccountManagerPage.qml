@@ -16,247 +16,182 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
-    property int preferredHeight: connectToAccountManagerPageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
     property string errorText: ""
+    property int preferredHeight: connectToAccountManagerPageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
-    signal showThisPage
+    color: JamiTheme.secondaryBackgroundColor
 
     function clearAllTextFields() {
-        connectBtn.spinnerTriggered = false
-        errorText = ""
+        connectBtn.spinnerTriggered = false;
+        errorText = "";
     }
-
     function errorOccured(errorMessage) {
-        connectBtn.spinnerTriggered = false
-        errorText = errorMessage
+        connectBtn.spinnerTriggered = false;
+        errorText = errorMessage;
     }
+    signal showThisPage
 
     Connections {
         target: WizardViewStepModel
 
         function onMainStepChanged() {
-            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
-                    WizardViewStepModel.accountCreationOption ===
-                    WizardViewStepModel.AccountCreationOption.ConnectToAccountManager) {
-                clearAllTextFields()
-                root.showThisPage()
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation && WizardViewStepModel.accountCreationOption === WizardViewStepModel.AccountCreationOption.ConnectToAccountManager) {
+                clearAllTextFields();
+                root.showThisPage();
             }
         }
     }
-
-    color: JamiTheme.secondaryBackgroundColor
-
     ColumnLayout {
         id: connectToAccountManagerPageColumnLayout
-
-        spacing: JamiTheme.wizardViewPageLayoutSpacing
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+        spacing: JamiTheme.wizardViewPageLayoutSpacing
         width: Math.max(508, root.width - 100)
 
         Text {
-
-            text: JamiStrings.connectJAMSServer
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize
             Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+            Layout.topMargin: JamiTheme.preferredMarginSize
             color: JamiTheme.textColor
-
             font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
-            wrapMode : Text.WordWrap
-
-        }
-
-        Text {
-
-            text: JamiStrings.enterJAMSURL
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-            font.weight: Font.Medium
-
-            Layout.preferredWidth: Math.min(400, root.width - JamiTheme.preferredMarginSize * 2)
             horizontalAlignment: Text.AlignHCenter
+            text: JamiStrings.connectJAMSServer
             verticalAlignment: Text.AlignVCenter
-            color: JamiTheme.textColor
-
-            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-            wrapMode : Text.WordWrap
+            wrapMode: Text.WordWrap
         }
-
+        Text {
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: Math.min(400, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
+            color: JamiTheme.textColor
+            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+            font.weight: Font.Medium
+            horizontalAlignment: Text.AlignHCenter
+            text: JamiStrings.enterJAMSURL
+            verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.WordWrap
+        }
         ModalTextEdit {
             id: accountManagerEdit
-
-            objectName: "accountManagerEdit"
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
-
-            Layout.topMargin: JamiTheme.wizardViewMarginSize
-            focus: visible
-
-            placeholderText: JamiStrings.jamiManagementServerURL
-
-            KeyNavigation.up: backButton
             KeyNavigation.down: usernameManagerEdit
             KeyNavigation.tab: KeyNavigation.down
+            KeyNavigation.up: backButton
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: JamiTheme.wizardViewMarginSize
+            focus: visible
+            objectName: "accountManagerEdit"
+            placeholderText: JamiStrings.jamiManagementServerURL
 
             onAccepted: usernameManagerEdit.forceActiveFocus()
         }
-
         Label {
             id: credentialsLabel
-
-            text: JamiStrings.jamsCredentials
-
             Layout.alignment: Qt.AlignCenter
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
             Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-            font.weight: Font.Medium
-            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-
             color: JamiTheme.textColor
+            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+            font.weight: Font.Medium
+            horizontalAlignment: Text.AlignHCenter
+            text: JamiStrings.jamsCredentials
+            verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
-
         }
-
         ModalTextEdit {
-
             id: usernameManagerEdit
-
-            objectName: "usernameManagerEdit"
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewMarginSize
-            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
-
-            placeholderText: JamiStrings.username
-
-            KeyNavigation.up: accountManagerEdit
             KeyNavigation.down: passwordManagerEdit
             KeyNavigation.tab: KeyNavigation.down
+            KeyNavigation.up: accountManagerEdit
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: JamiTheme.wizardViewMarginSize
+            objectName: "usernameManagerEdit"
+            placeholderText: JamiStrings.username
 
             onAccepted: passwordManagerEdit.forceActiveFocus()
         }
-
         PasswordTextEdit {
-
             id: passwordManagerEdit
-
-            objectName: "passwordManagerEdit"
-
+            KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
+            KeyNavigation.tab: KeyNavigation.down
+            KeyNavigation.up: usernameManagerEdit
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
             Layout.topMargin: JamiTheme.wizardViewMarginSize
-
+            objectName: "passwordManagerEdit"
             placeholderText: JamiStrings.password
 
-            KeyNavigation.up: usernameManagerEdit
-            KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
-            KeyNavigation.tab: KeyNavigation.down
-
             onAccepted: connectBtn.forceActiveFocus()
-
         }
-
         SpinnerButton {
             id: connectBtn
-
-            TextMetrics{
-                id: textSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-                text: connectBtn.normalText
-            }
-
-            objectName: "connectToAccountManagerPageConnectBtn"
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-            Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
-
-            preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
-
-            spinnerTriggeredtext: JamiStrings.creatingAccount
-            normalText: JamiStrings.connect
-
-            enabled: accountManagerEdit.dynamicText.length !== 0
-                     && usernameManagerEdit.dynamicText.length !== 0
-                     && passwordManagerEdit.dynamicText.length !== 0
-                     && !spinnerTriggered
-
-            primary: true
-
-            KeyNavigation.up: passwordManagerEdit
             KeyNavigation.down: backButton
             KeyNavigation.tab: KeyNavigation.down
-
+            KeyNavigation.up: passwordManagerEdit
+            Layout.alignment: Qt.AlignCenter
+            Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
+            enabled: accountManagerEdit.dynamicText.length !== 0 && usernameManagerEdit.dynamicText.length !== 0 && passwordManagerEdit.dynamicText.length !== 0 && !spinnerTriggered
+            normalText: JamiStrings.connect
+            objectName: "connectToAccountManagerPageConnectBtn"
+            preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
+            primary: true
+            spinnerTriggeredtext: JamiStrings.creatingAccount
 
             onClicked: {
                 if (connectBtn.focus)
-                    accountManagerEdit.forceActiveFocus()
-                spinnerTriggered = true
+                    accountManagerEdit.forceActiveFocus();
+                spinnerTriggered = true;
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
+                        "username": usernameManagerEdit.dynamicText,
+                        "password": passwordManagerEdit.dynamicText,
+                        "manager": accountManagerEdit.dynamicText
+                    });
+                WizardViewStepModel.nextStep();
+            }
 
-                WizardViewStepModel.accountCreationInfo =
-                        JamiQmlUtils.setUpAccountCreationInputPara(
-                            {username : usernameManagerEdit.dynamicText,
-                                password : passwordManagerEdit.dynamicText,
-                                manager : accountManagerEdit.dynamicText})
-                WizardViewStepModel.nextStep()
+            TextMetrics {
+                id: textSize
+                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                font.weight: Font.Bold
+                text: connectBtn.normalText
             }
         }
-
         Label {
             id: errorLabel
-
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
-
-            visible: errorText.length !== 0
-            text: errorText
-
-            font.pixelSize: JamiTheme.textEditError
             color: JamiTheme.redColor
+            font.pixelSize: JamiTheme.textEditError
+            text: errorText
+            visible: errorText.length !== 0
         }
     }
-
     BackButton {
         id: backButton
-
-        objectName: "connectToAccountManagerPageBackButton"
-
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: 20
-
-        visible: !connectBtn.spinnerTriggered
-
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
-
-
-        KeyNavigation.up: {
-            if (connectBtn.enabled)
-                return connectBtn
-            return passwordManagerEdit
-        }
         KeyNavigation.down: accountManagerEdit
         KeyNavigation.tab: KeyNavigation.down
+        KeyNavigation.up: {
+            if (connectBtn.enabled)
+                return connectBtn;
+            return passwordManagerEdit;
+        }
+        anchors.left: parent.left
+        anchors.margins: 20
+        anchors.top: parent.top
+        objectName: "connectToAccountManagerPageBackButton"
+        preferredSize: JamiTheme.wizardViewPageBackButtonSize
+        visible: !connectBtn.spinnerTriggered
 
         onClicked: WizardViewStepModel.previousStep()
     }

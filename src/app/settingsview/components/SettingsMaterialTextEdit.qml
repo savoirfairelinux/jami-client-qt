@@ -15,91 +15,76 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 RowLayout {
     id: root
-
-    property alias titleField: title.text
-    property string staticText
-    property string placeholderText
     property string dynamicText
-
     property bool isPassword: false
-
     property int itemWidth
+    property string placeholderText
+    property string staticText
+    property alias titleField: title.text
 
-    signal editFinished
     signal accepted
+    signal editFinished
 
     Text {
         id: title
-
         Layout.fillWidth: true
         Layout.rightMargin: JamiTheme.preferredMarginSize / 2
-        font.pointSize: JamiTheme.settingsFontSize
+        color: JamiTheme.textColor
         font.kerning: true
-        wrapMode: Text.WordWrap
+        font.pointSize: JamiTheme.settingsFontSize
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-
-        color: JamiTheme.textColor
+        wrapMode: Text.WordWrap
     }
-
     ModalTextEdit {
         id: modalTextEdit
-
-        visible: !root.isPassword
-        isSettings: true
-
         Layout.alignment: Qt.AlignCenter
         Layout.preferredWidth: itemWidth
-        staticText: root.staticText
+        isSettings: true
         placeholderText: root.placeholderText ? root.placeholderText : root.titleField
+        staticText: root.staticText
+        visible: !root.isPassword
 
         onAccepted: {
-            root.dynamicText = dynamicText
-            editFinished()
+            root.dynamicText = dynamicText;
+            editFinished();
+        }
+        onKeyPressed: {
+            debounceTimer.restart();
         }
 
         Timer {
             id: debounceTimer
             interval: 500
+
             onTriggered: {
-                root.dynamicText = modalTextEdit.dynamicText
-                editFinished()
+                root.dynamicText = modalTextEdit.dynamicText;
+                editFinished();
             }
         }
-
-        onKeyPressed: {
-            debounceTimer.restart()
-        }
     }
-
     PasswordTextEdit {
         id: passwordTextEdit
-
-        visible: root.isPassword
-        isSettings: true
-
         Layout.alignment: Qt.AlignCenter
         Layout.preferredWidth: itemWidth
-        staticText: root.staticText
+        isSettings: true
         placeholderText: root.placeholderText ? root.placeholderText : root.titleField
+        staticText: root.staticText
+        visible: root.isPassword
 
         onAccepted: {
-            root.dynamicText = dynamicText
-            editFinished()
-            echoMode = TextInput.Password
+            root.dynamicText = dynamicText;
+            editFinished();
+            echoMode = TextInput.Password;
         }
-
     }
 }

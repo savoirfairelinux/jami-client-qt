@@ -15,120 +15,90 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 SpinningAnimation {
     id: root
-
-    width: contentRect.width + spinningAnimationWidth
     height: JamiTheme.participantCallInStatusDelegateHeight
-
     mode: SpinningAnimation.Mode.BiRadial
     outerCutRadius: JamiTheme.participantCallInStatusDelegateRadius
     spinningAnimationDuration: 5000
+    width: contentRect.width + spinningAnimationWidth
 
     Rectangle {
         id: contentRect
-
         anchors.centerIn: root
-
-        width: JamiTheme.participantCallInStatusViewWidth + callStatus.Layout.preferredWidth
-               - JamiTheme.participantCallInStatusTextWidth - spinningAnimationWidth
-        height: JamiTheme.participantCallInStatusDelegateHeight - spinningAnimationWidth
-
         color: JamiTheme.darkGreyColor
+        height: JamiTheme.participantCallInStatusDelegateHeight - spinningAnimationWidth
         opacity: JamiTheme.participantCallInStatusOpacity
         radius: JamiTheme.participantCallInStatusDelegateRadius
+        width: JamiTheme.participantCallInStatusViewWidth + callStatus.Layout.preferredWidth - JamiTheme.participantCallInStatusTextWidth - spinningAnimationWidth
 
         Avatar {
             id: avatar
-
             anchors.left: contentRect.left
             anchors.leftMargin: 10
             anchors.verticalCenter: contentRect.verticalCenter
-
-            width: JamiTheme.participantCallInAvatarSize
             height: JamiTheme.participantCallInAvatarSize
-
-            showPresenceIndicator: false
-            mode: Avatar.Mode.Contact
             imageId: ContactUri
+            mode: Avatar.Mode.Contact
+            showPresenceIndicator: false
+            width: JamiTheme.participantCallInAvatarSize
         }
-
         ColumnLayout {
             id: infoColumnLayout
-
             anchors.left: avatar.right
             anchors.leftMargin: 5
             anchors.verticalCenter: contentRect.verticalCenter
-
             implicitHeight: 50
             implicitWidth: JamiTheme.participantCallInStatusTextWidth
-
             spacing: 5
 
             Text {
                 id: name
-
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                 Layout.preferredWidth: callStatus.Layout.preferredWidth
-
-                font.weight: Font.Bold
-                font.pointSize: JamiTheme.participantCallInNameFontSize
                 color: JamiTheme.participantCallInStatusTextColor
-                text: PrimaryName
                 elide: Text.ElideRight
+                font.pointSize: JamiTheme.participantCallInNameFontSize
+                font.weight: Font.Bold
+                text: PrimaryName
             }
-
             Text {
                 id: callStatus
-
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-                font.weight: Font.Normal
-                font.pointSize: JamiTheme.participantCallInStatusFontSize
                 color: JamiTheme.participantCallInStatusTextColor
-                text: CallStatus + "…"
                 elide: Text.ElideRight
+                font.pointSize: JamiTheme.participantCallInStatusFontSize
+                font.weight: Font.Normal
+                text: CallStatus + "…"
 
                 onWidthChanged: {
-                    if (width > JamiTheme.participantCallInStatusTextWidth
-                            && width < JamiTheme.participantCallInStatusTextWidthLimit)
-                        callStatus.Layout.preferredWidth = width
+                    if (width > JamiTheme.participantCallInStatusTextWidth && width < JamiTheme.participantCallInStatusTextWidthLimit)
+                        callStatus.Layout.preferredWidth = width;
                     else if (width >= JamiTheme.participantCallInStatusTextWidthLimit)
-                        callStatus.Layout.preferredWidth
-                                = JamiTheme.participantCallInStatusTextWidthLimit
+                        callStatus.Layout.preferredWidth = JamiTheme.participantCallInStatusTextWidthLimit;
                     else
-                        callStatus.Layout.preferredWidth
-                                = JamiTheme.participantCallInStatusTextWidth
+                        callStatus.Layout.preferredWidth = JamiTheme.participantCallInStatusTextWidth;
                 }
             }
         }
-
         PushButton {
             id: callCancelButton
-
             anchors.right: contentRect.right
             anchors.rightMargin: 10
             anchors.verticalCenter: contentRect.verticalCenter
-
-            preferredSize: 40
-
-            pressedColor: JamiTheme.refuseRed
             hoveredColor: JamiTheme.refuseRed
-            normalColor: JamiTheme.refuseRedTransparent
-
-            source: JamiResources.cross_black_24dp_svg
             imageColor: JamiTheme.whiteColor
-
+            normalColor: JamiTheme.refuseRedTransparent
+            preferredSize: 40
+            pressedColor: JamiTheme.refuseRed
+            source: JamiResources.cross_black_24dp_svg
             toolTipText: JamiStrings.optionCancel
 
             onClicked: CallAdapter.hangUpCall(PendingConferenceeCallId)

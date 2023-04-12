@@ -15,78 +15,60 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
-
 Rectangle {
-
     id: root
-
-    property string icoSource: ""
-    property string icoColor: JamiTheme.tintedBlue
-    property string title: ""
     property string description: ""
-
-    width: 190
-    height: infos.implicitHeight
+    property string icoColor: JamiTheme.tintedBlue
+    property string icoSource: ""
+    property string title: ""
 
     color: JamiTheme.transparentColor
+    height: infos.implicitHeight
+    width: 190
 
     ColumnLayout {
         id: infos
-        anchors.fill:  parent
+        anchors.fill: parent
 
         RowLayout {
-
             Layout.alignment: Qt.AlignLeft
             spacing: 24
 
             ResponsiveImage {
                 id: icon
-
                 Layout.alignment: Qt.AlignLeft
-                Layout.topMargin: 5
-                Layout.preferredWidth: 26
                 Layout.preferredHeight: 26
-
+                Layout.preferredWidth: 26
+                Layout.topMargin: 5
+                color: icoColor
                 containerHeight: Layout.preferredHeight
                 containerWidth: Layout.preferredWidth
-
                 source: icoSource
-                color: icoColor
-
             }
-
             Label {
-
-                text: title
-                font.weight: Font.Medium
-                Layout.topMargin: 5
                 Layout.alignment: Qt.AlignCenter
+                Layout.topMargin: 5
                 color: JamiTheme.textColor
                 font.pixelSize: JamiTheme.infoBoxTitleFontSize
-
+                font.weight: Font.Medium
+                text: title
             }
         }
-
         Text {
-
-            Layout.preferredWidth: 180
             Layout.alignment: Qt.AlignLeft
-            Layout.topMargin: 8
             Layout.bottomMargin: 15
-            font.pixelSize: JamiTheme.infoBoxDescFontSize
+            Layout.preferredWidth: 180
+            Layout.topMargin: 8
             color: JamiTheme.textColor
-            wrapMode: Text.WordWrap
+            font.pixelSize: JamiTheme.infoBoxDescFontSize
             text: description
-
+            wrapMode: Text.WordWrap
         }
     }
-
 }

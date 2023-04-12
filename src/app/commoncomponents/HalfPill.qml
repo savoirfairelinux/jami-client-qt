@@ -15,12 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 
 Item {
     id: root
-
     enum Type {
         None,
         Top,
@@ -29,29 +27,25 @@ Item {
         Right
     }
 
-    property int type: HalfPill.None
-    property int radius: 0
     property alias color: rect.color
+    property int radius: 0
+    property int type: HalfPill.None
 
     clip: true
 
     Rectangle {
         id: rect
-
-        property bool horizontal: type === HalfPill.Left ||
-                                  type === HalfPill.Right
-        property bool direction: type === HalfPill.Right ||
-                                 type === HalfPill.Bottom
-
         property bool bp: type === HalfPill.None
+        property bool direction: type === HalfPill.Right || type === HalfPill.Bottom
+        property bool horizontal: type === HalfPill.Left || type === HalfPill.Right
 
-        radius: root.radius
-        width: root.size + radius * !bp
-        height: root.size + radius * !bp
+        anchors.bottomMargin: !horizontal * !direction * -radius * !bp
         anchors.fill: root
         anchors.leftMargin: horizontal * direction * -radius * !bp
         anchors.rightMargin: horizontal * !direction * -radius * !bp
         anchors.topMargin: !horizontal * direction * -radius * !bp
-        anchors.bottomMargin: !horizontal * !direction * -radius * !bp
+        height: root.size + radius * !bp
+        radius: root.radius
+        width: root.size + radius * !bp
     }
 }

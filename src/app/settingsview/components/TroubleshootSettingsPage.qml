@@ -16,77 +16,62 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 import "../js/logviewwindowcreation.js" as LogViewWindowCreation
 
-
 SettingsPageBase {
     id: root
-
     property int itemWidth
 
     title: JamiStrings.troubleshootTitle
 
-
     flickableContent: ColumnLayout {
         id: troubleshootSettingsColumnLayout
-
-        width: contentFlickableWidth
-        spacing: JamiTheme.settingsBlockSpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
+        spacing: JamiTheme.settingsBlockSpacing
+        width: contentFlickableWidth
 
         RowLayout {
-
             Text {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 30
                 Layout.rightMargin: JamiTheme.preferredMarginSize
-
-                text: JamiStrings.troubleshootText
-                font.pointSize: JamiTheme.settingsFontSize
-                font.kerning: true
-                wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-
                 color: JamiTheme.textColor
+                font.kerning: true
+                font.pointSize: JamiTheme.settingsFontSize
+                horizontalAlignment: Text.AlignLeft
+                text: JamiStrings.troubleshootText
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
             }
-
             MaterialButton {
                 id: enableTroubleshootingButton
-
-                TextMetrics{
-                    id: enableTroubleshootingButtonTextSize
-                    font.weight: Font.Bold
-                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    font.capitalization: Font.AllUppercase
-                    text: enableTroubleshootingButton.text
-                }
-
                 Layout.alignment: Qt.AlignRight
-
-                preferredWidth: enableTroubleshootingButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding
                 buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
+                preferredWidth: enableTroubleshootingButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
                 primary: true
-
                 text: JamiStrings.troubleshootButton
                 toolTipText: JamiStrings.troubleshootButton
 
                 onClicked: {
-                    LogViewWindowCreation.createlogViewWindowObject()
-                    LogViewWindowCreation.showLogViewWindow()
+                    LogViewWindowCreation.createlogViewWindowObject();
+                    LogViewWindowCreation.showLogViewWindow();
+                }
+
+                TextMetrics {
+                    id: enableTroubleshootingButtonTextSize
+                    font.capitalization: Font.AllUppercase
+                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                    font.weight: Font.Bold
+                    text: enableTroubleshootingButton.text
                 }
             }
         }

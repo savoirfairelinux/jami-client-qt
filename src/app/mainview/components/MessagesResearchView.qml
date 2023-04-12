@@ -15,151 +15,126 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
 import SortFilterProxyModel
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../settingsview/components"
 
-
-ListView  {
+ListView {
     id: root
+    property var prompt: MessagesAdapter.searchbarPrompt
 
     spacing: 10
+
+    onPromptChanged: {
+        MessagesAdapter.startSearch(prompt);
+    }
+
+    Connections {
+        target: researchTabBar
+
+        function onFilterTabChange() {
+            MessagesAdapter.startSearch(prompt);
+        }
+    }
+
+    delegate: Item {
+        height: msgLayout.height
+        width: root.width
+
+        HoverHandler {
+            id: msgHover
+            target: parent
+        }
+        ColumnLayout {
+            id: msgLayout
+            width: root.width
+
+            TimestampInfo {
+                id: timestampItem
+                formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
+                formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+                showDay: true
+                showTime: true
+            }
+            RowLayout {
+                id: contentRow
+                property bool isMe: Author === CurrentAccount.uri
+
+                Avatar {
+                    id: avatar
+                    Layout.leftMargin: 10
+                    height: 30
+                    imageId: contentRow.isMe ? CurrentAccount.id : Author
+                    mode: contentRow.isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
+                    showPresenceIndicator: false
+                    width: 30
+                }
+                ColumnLayout {
+                    Text {
+                        Layout.leftMargin: 10
+                        Layout.preferredWidth: myText.width
+                        Layout.rightMargin: 10
+                        color: JamiTheme.chatviewUsernameColor
+                        font.bold: true
+                        font.pixelSize: 0
+                        text: contentRow.isMe ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
+                    }
+                    Text {
+                        id: myText
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.leftMargin: 10
+                        Layout.preferredWidth: msgLayout.width - avatar.width - 30 - 10
+                        Layout.rightMargin: 10
+                        color: JamiTheme.textColor
+                        elide: Text.ElideRight
+                        font.pixelSize: IsEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.chatviewFontSize
+                        text: Body
+                    }
+                }
+            }
+        }
+        Button {
+            id: buttonJumpTo
+            anchors.right: msgLayout.right
+            anchors.rightMargin: 20
+            anchors.top: msgLayout.top
+            anchors.topMargin: timestampItem.height - 20
+            background.visible: false
+            height: buttonJumpText.height + 10
+            visible: msgHover.hovered || hovered
+            width: buttonJumpText.width + 10
+
+            onClicked: {
+                CurrentConversation.scrollToMsg(Id);
+            }
+
+            Text {
+                id: buttonJumpText
+                anchors.centerIn: parent
+                color: buttonJumpTo.hovered ? JamiTheme.blueLinkColor : JamiTheme.chatviewUsernameColor
+                font.pointSize: JamiTheme.jumpToFontSize
+                font.underline: buttonJumpTo.hovered
+                text: JamiStrings.jumpTo
+            }
+        }
+    }
     model: SortFilterProxyModel {
         id: proxyModel
-
         property var messageListModel: MessagesAdapter.mediaMessageListModel
         readonly property int textType: Interaction.Type.TEXT
 
-        onMessageListModelChanged: sourceModel = root.visible && messageListModel ?
-                                       messageListModel :
-                                       null
+        onMessageListModelChanged: sourceModel = root.visible && messageListModel ? messageListModel : null
 
         filters: ExpressionFilter {
             expression: Type === proxyModel.textType
         }
     }
-
-    property var prompt: MessagesAdapter.searchbarPrompt
-
-    onPromptChanged: {
-        MessagesAdapter.startSearch(prompt)
-    }
-
-    Connections {
-        target: researchTabBar
-        function onFilterTabChange() {
-            MessagesAdapter.startSearch(prompt)
-        }
-    }
-
-    delegate: Item {
-        width: root.width
-        height: msgLayout.height
-
-        HoverHandler {
-            id: msgHover
-
-            target: parent
-        }
-
-        ColumnLayout {
-            id: msgLayout
-
-            width: root.width
-
-            TimestampInfo {
-                id: timestampItem
-
-                showDay: true
-                showTime: true
-                formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
-                formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
-            }
-
-            RowLayout {
-                id: contentRow
-
-                property bool isMe: Author === CurrentAccount.uri
-
-                Avatar {
-                    id: avatar
-
-                    width: 30
-                    height: 30
-                    imageId: contentRow.isMe ? CurrentAccount.id : Author
-                    showPresenceIndicator: false
-                    mode: contentRow.isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
-                    Layout.leftMargin: 10
-                }
-
-                ColumnLayout {
-
-                    Text {
-                        text: contentRow.isMe
-                              ? CurrentAccount.bestName
-                              : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
-                        Layout.preferredWidth: myText.width
-                        Layout.rightMargin: 10
-                        Layout.leftMargin: 10
-                        font.pixelSize: 0
-                        color: JamiTheme.chatviewUsernameColor
-                        font.bold: true
-                    }
-
-                    Text {
-                        id: myText
-
-                        text: Body
-                        color: JamiTheme.textColor
-                        Layout.preferredWidth: msgLayout.width - avatar.width - 30 - 10
-                        elide: Text.ElideRight
-                        Layout.rightMargin: 10
-                        Layout.leftMargin: 10
-                        font.pixelSize: IsEmojiOnly? JamiTheme.chatviewEmojiSize : JamiTheme.chatviewFontSize
-                        Layout.alignment:Qt.AlignHCenter
-                    }
-                }
-            }
-        }
-
-        Button {
-            id: buttonJumpTo
-
-            visible: msgHover.hovered || hovered
-            anchors.top: msgLayout.top
-            anchors.right: msgLayout.right
-            anchors.rightMargin: 20
-            anchors.topMargin: timestampItem.height - 20
-            width: buttonJumpText.width + 10
-            height: buttonJumpText.height + 10
-            background.visible: false
-
-            onClicked: {
-                CurrentConversation.scrollToMsg(Id)
-            }
-
-            Text {
-                id: buttonJumpText
-
-                text: JamiStrings.jumpTo
-                color: buttonJumpTo.hovered ? JamiTheme.blueLinkColor : JamiTheme.chatviewUsernameColor
-                font.underline: buttonJumpTo.hovered
-                anchors.centerIn: parent
-                font.pointSize: JamiTheme.jumpToFontSize
-            }
-        }
-    }
-
 }
-

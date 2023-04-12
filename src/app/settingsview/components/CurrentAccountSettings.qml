@@ -15,210 +15,157 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
-    property bool isSIP
     property int contentWidth: currentAccountSettingsColumnLayout.width
+    property bool isSIP
+    property int preferredColumnWidth: Math.min(root.width / 2 - 50, 350)
     property int preferredHeight: currentAccountSettingsColumnLayout.implicitHeight
-    property int preferredColumnWidth : Math.min(root.width / 2 - 50, 350)
-
-    signal navigateToMainView
-    signal advancedSettingsToggled(bool settingsVisible)
-
-    function updateAccountInfoDisplayed() {
-        bannedContacts.updateAndShowBannedContactsSlot()
-    }
-
-    function getAdvancedSettingsScrollPosition() {
-        return advancedSettings.y
-    }
 
     color: JamiTheme.secondaryBackgroundColor
 
+    signal advancedSettingsToggled(bool settingsVisible)
+    function getAdvancedSettingsScrollPosition() {
+        return advancedSettings.y;
+    }
+    signal navigateToMainView
+    function updateAccountInfoDisplayed() {
+        bannedContacts.updateAndShowBannedContactsSlot();
+    }
+
     ColumnLayout {
         id: currentAccountSettingsColumnLayout
-
         anchors.horizontalCenter: root.horizontalCenter
-
         width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
 
         UserIdentity {
             id: userIdentity
-            isSIP: root.isSIP
-
-            Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
+            Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
-
+            isSIP: root.isSIP
             itemWidth: preferredColumnWidth
         }
-
         MaterialButton {
             id: passwdPushButton
-
-            visible: !isSIP && CurrentAccount.managerUri === ""
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
-
-            preferredWidth: JamiTheme.preferredFieldWidth
             buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
+            iconSource: JamiResources.round_edit_24dp_svg
+            preferredWidth: JamiTheme.preferredFieldWidth
             pressedColor: JamiTheme.buttonTintedBlackPressed
             secondary: true
+            text: CurrentAccount.hasArchivePassword ? JamiStrings.changePassword : JamiStrings.setPassword
+            toolTipText: CurrentAccount.hasArchivePassword ? JamiStrings.changeCurrentPassword : JamiStrings.setAPassword
+            visible: !isSIP && CurrentAccount.managerUri === ""
 
-            toolTipText: CurrentAccount.hasArchivePassword ?
-                             JamiStrings.changeCurrentPassword :
-                             JamiStrings.setAPassword
-            text: CurrentAccount.hasArchivePassword ?
-                      JamiStrings.changePassword :
-                      JamiStrings.setPassword
-
-            iconSource: JamiResources.round_edit_24dp_svg
-
-            onClicked: viewCoordinator.presentDialog(
-                                   appWindow,
-                                   "commoncomponents/PasswordDialog.qml",
-                                   { purpose: CurrentAccount.hasArchivePassword ?
-                                                  PasswordDialog.ChangePassword :
-                                                  PasswordDialog.SetPassword })
+            onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                    "purpose": CurrentAccount.hasArchivePassword ? PasswordDialog.ChangePassword : PasswordDialog.SetPassword
+                })
         }
-
         MaterialButton {
             id: btnExportAccount
-
-            visible: !isSIP && CurrentAccount.managerUri === ""
             Layout.alignment: Qt.AlignHCenter
-
-            preferredWidth: JamiTheme.preferredFieldWidth
             buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
+            iconSource: JamiResources.round_save_alt_24dp_svg
+            preferredWidth: JamiTheme.preferredFieldWidth
             pressedColor: JamiTheme.buttonTintedBlackPressed
             secondary: true
-
-            toolTipText: JamiStrings.tipBackupAccount
             text: JamiStrings.backupAccountBtn
-
-            iconSource: JamiResources.round_save_alt_24dp_svg
+            toolTipText: JamiStrings.tipBackupAccount
+            visible: !isSIP && CurrentAccount.managerUri === ""
 
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "commoncomponents/JamiFileDialog.qml",
-                            {
-                                title: JamiStrings.backupAccountHere,
-                                fileMode: FileDialog.SaveFile,
-                                folder: StandardPaths.writableLocation(StandardPaths.DesktopLocation),
-                                nameFilters: [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
-                            })
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                        "title": JamiStrings.backupAccountHere,
+                        "fileMode": FileDialog.SaveFile,
+                        "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
+                        "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+                    });
                 dlg.fileAccepted.connect(function (file) {
-                    // is there password? If so, go to password dialog, else, go to following directly
-                    var exportPath = UtilsAdapter.getAbsPath(file.toString())
-                    if (CurrentAccount.hasArchivePassword) {
-                        viewCoordinator.presentDialog(
-                                    appWindow,
-                                    "commoncomponents/PasswordDialog.qml",
-                                    {
-                                        purpose: PasswordDialog.ExportAccount,
-                                        path: exportPath
-                                    })
-                        return
-                    } else if (exportPath.length > 0) {
-                        var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath)
-                        viewCoordinator.presentDialog(
-                                    appWindow,
-                                    "commoncomponents/SimpleMessageDialog.qml",
-                                    {
-                                        title: success ? JamiStrings.success : JamiStrings.error,
-                                        infoText: success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
-                                        buttonTitles: [JamiStrings.optionOk],
-                                        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
-                                    })
-                    }
-                })
+                        // is there password? If so, go to password dialog, else, go to following directly
+                        var exportPath = UtilsAdapter.getAbsPath(file.toString());
+                        if (CurrentAccount.hasArchivePassword) {
+                            viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                                    "purpose": PasswordDialog.ExportAccount,
+                                    "path": exportPath
+                                });
+                            return;
+                        } else if (exportPath.length > 0) {
+                            var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath);
+                            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                                    "title": success ? JamiStrings.success : JamiStrings.error,
+                                    "infoText": success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
+                                    "buttonTitles": [JamiStrings.optionOk],
+                                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue]
+                                });
+                        }
+                    });
             }
         }
-
         MaterialButton {
             Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: CurrentAccount.type === Profile.Type.SIP ? JamiTheme.preferredMarginSize  : 0
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
-
-            preferredWidth: JamiTheme.preferredFieldWidth
+            Layout.topMargin: CurrentAccount.type === Profile.Type.SIP ? JamiTheme.preferredMarginSize : 0
             buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
             color: JamiTheme.buttonTintedRed
             hoveredColor: JamiTheme.buttonTintedRedHovered
+            iconSource: JamiResources.delete_forever_24dp_svg
+            preferredWidth: JamiTheme.preferredFieldWidth
             pressedColor: JamiTheme.buttonTintedRedPressed
-
             text: JamiStrings.deleteAccount
 
-            iconSource: JamiResources.delete_forever_24dp_svg
-
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                        appWindow,
-                        "commoncomponents/DeleteAccountDialog.qml",
-                        {
-                            isSIP: CurrentAccount.type === Profile.Type.SIP,
-                            bestName: CurrentAccount.bestName,
-                            accountId: CurrentAccount.uri
-                        })
-                dlg.accepted.connect(navigateToMainView)
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/DeleteAccountDialog.qml", {
+                        "isSIP": CurrentAccount.type === Profile.Type.SIP,
+                        "bestName": CurrentAccount.bestName,
+                        "accountId": CurrentAccount.uri
+                    });
+                dlg.accepted.connect(navigateToMainView);
             }
         }
-
         LinkedDevices {
             id: linkedDevices
-            visible: !isSIP
-
-            Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
+            Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
+            visible: !isSIP
         }
-
         BannedContacts {
             id: bannedContacts
-            isSIP: root.isSIP
-
-            Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
+            Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
+            isSIP: root.isSIP
         }
-
         AdvancedSettings {
             id: advancedSettings
-
+            Layout.bottomMargin: 8
             Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
-            Layout.bottomMargin: 8
-
-            itemWidth: preferredColumnWidth
             isSIP: root.isSIP
+            itemWidth: preferredColumnWidth
 
             onShowAdvancedSettingsRequest: {
-                advancedSettingsToggled(settingsVisible)
+                advancedSettingsToggled(settingsVisible);
             }
         }
     }

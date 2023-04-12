@@ -16,256 +16,206 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
-    property bool showSearch: true
-
-    signal backClicked
-    signal addToConversationClicked
-    signal pluginSelector
-    signal showDetailsClicked
-    signal searchClicked
-
-    Connections {
-        target: CurrentConversation
-        enabled: true
-        function onTitleChanged() { title.eText = CurrentConversation.title }
-        function onDescriptionChanged() { description.eText = CurrentConversation.description }
-        function onShowSwarmDetails() { root.showDetailsClicked() }
+    property bool addMemberVisibility: {
+        return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.isRequest;
     }
-
     property bool interactionButtonsVisibility: {
         if (CurrentConversation.inCall)
-            return false
+            return false;
         if (LRCInstance.currentAccountType === Profile.Type.SIP)
-            return true
+            return true;
         if (!CurrentConversation.isTemporary && !CurrentConversation.isSwarm)
-            return false
+            return false;
         if (CurrentConversation.isRequest || CurrentConversation.needsSyncing)
-            return false
-        return true
+            return false;
+        return true;
     }
-
-    property bool addMemberVisibility: {
-        return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.isRequest
-    }
-
+    property bool showSearch: true
     property bool swarmDetailsVisibility: {
-        return CurrentConversation.isSwarm && !CurrentConversation.isRequest
+        return CurrentConversation.isSwarm && !CurrentConversation.isRequest;
     }
 
     color: JamiTheme.chatviewBgColor
 
+    signal addToConversationClicked
+    signal backClicked
+    signal pluginSelector
+    signal searchClicked
+    signal showDetailsClicked
+
+    Connections {
+        enabled: true
+        target: CurrentConversation
+
+        function onDescriptionChanged() {
+            description.eText = CurrentConversation.description;
+        }
+        function onShowSwarmDetails() {
+            root.showDetailsClicked();
+        }
+        function onTitleChanged() {
+            title.eText = CurrentConversation.title;
+        }
+    }
     RowLayout {
         id: messagingHeaderRectRowLayout
-
         anchors.fill: parent
 
         PushButton {
             id: backToWelcomeViewButton
-
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.leftMargin: 8
-
+            imageColor: JamiTheme.chatviewButtonColor
+            normalColor: JamiTheme.chatviewBgColor
             preferredSize: 24
-
             source: JamiResources.back_24dp_svg
             toolTipText: CurrentConversation.inCall ? JamiStrings.backCall : JamiStrings.hideChat
 
-            normalColor: JamiTheme.chatviewBgColor
-            imageColor: JamiTheme.chatviewButtonColor
-
             onClicked: root.backClicked()
         }
-
         Rectangle {
             id: userNameOrIdRect
-
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+            Layout.bottomMargin: 7
 
             // Width + margin.
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.topMargin: 7
-            Layout.bottomMargin: 7
             Layout.leftMargin: 8
-
+            Layout.topMargin: 7
             color: JamiTheme.transparentColor
 
             ColumnLayout {
                 id: userNameOrIdColumnLayout
-
                 anchors.fill: parent
-
                 spacing: 0
 
                 ElidedTextLabel {
                     id: title
-
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-
-                    font.pointSize: JamiTheme.textFontSize + 2
-
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-
                     eText: CurrentConversation.title
+                    font.pointSize: JamiTheme.textFontSize + 2
+                    horizontalAlignment: Text.AlignLeft
                     maxWidth: userNameOrIdRect.width
+                    verticalAlignment: Text.AlignVCenter
                 }
-
                 ElidedTextLabel {
                     id: description
-
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-
-                    visible: text.length &&
-                             CurrentConversation.title !== CurrentConversation.description
-                    font.pointSize: JamiTheme.textFontSize
                     color: JamiTheme.faddedLastInteractionFontColor
-
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
                     eText: CurrentConversation.description
+                    font.pointSize: JamiTheme.textFontSize
+                    horizontalAlignment: Text.AlignLeft
                     maxWidth: userNameOrIdRect.width
+                    verticalAlignment: Text.AlignVCenter
+                    visible: text.length && CurrentConversation.title !== CurrentConversation.description
                 }
             }
         }
-
         RowLayout {
             id: headerButtons
-
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+            Layout.fillWidth: true
             Layout.rightMargin: 8
             spacing: 16
-            Layout.fillWidth: true
 
             Searchbar {
                 id: rowSearchBar
-
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 spacing: headerButtons.spacing
                 visible: root.showSearch && CurrentConversation.isSwarm
 
                 Shortcut {
-                    sequence: "Ctrl+Shift+F"
                     context: Qt.ApplicationShortcut
                     enabled: rowSearchBar.visible
+                    sequence: "Ctrl+Shift+F"
+
                     onActivated: {
-                        rowSearchBar.openSearchBar()
+                        rowSearchBar.openSearchBar();
                     }
                 }
             }
-
             PushButton {
                 id: startAAudioCallButton
-
-                visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
-
+                imageColor: JamiTheme.chatviewButtonColor
+                normalColor: JamiTheme.chatviewBgColor
                 source: JamiResources.place_audiocall_24dp_svg
                 toolTipText: JamiStrings.placeAudioCall
-
-                normalColor: JamiTheme.chatviewBgColor
-                imageColor: JamiTheme.chatviewButtonColor
+                visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
 
                 onClicked: CallAdapter.placeAudioOnlyCall()
             }
-
             PushButton {
                 id: startAVideoCallButton
-
-                visible: CurrentAccount.videoEnabled_Video && interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+                imageColor: JamiTheme.chatviewButtonColor
+                normalColor: JamiTheme.chatviewBgColor
                 source: JamiResources.videocam_24dp_svg
                 toolTipText: JamiStrings.placeVideoCall
-
-                normalColor: JamiTheme.chatviewBgColor
-                imageColor: JamiTheme.chatviewButtonColor
+                visible: CurrentAccount.videoEnabled_Video && interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
 
                 onClicked: {
-                    CallAdapter.placeCall()
+                    CallAdapter.placeCall();
                 }
             }
-
             PushButton {
                 id: addParticipantsButton
-
+                imageColor: JamiTheme.chatviewButtonColor
+                normalColor: JamiTheme.chatviewBgColor
                 source: JamiResources.add_people_24dp_svg
                 toolTipText: JamiStrings.addParticipants
-
-                normalColor: JamiTheme.chatviewBgColor
-                imageColor: JamiTheme.chatviewButtonColor
-
                 visible: interactionButtonsVisibility && CurrentConversationMembers.count < 8 && addMemberVisibility
 
                 onClicked: addToConversationClicked()
             }
-
             PushButton {
                 id: selectPluginButton
-
-                visible: PluginAdapter.isEnabled && PluginAdapter.chatHandlersListCount &&
-                            interactionButtonsVisibility
-
+                imageColor: JamiTheme.chatviewButtonColor
+                normalColor: JamiTheme.chatviewBgColor
                 source: JamiResources.plugins_24dp_svg
                 toolTipText: JamiStrings.showPlugins
-
-                normalColor: JamiTheme.chatviewBgColor
-                imageColor: JamiTheme.chatviewButtonColor
+                visible: PluginAdapter.isEnabled && PluginAdapter.chatHandlersListCount && interactionButtonsVisibility
 
                 onClicked: pluginSelector()
             }
-
             PushButton {
                 id: sendContactRequestButton
-
-                visible: CurrentConversation.isTemporary || CurrentConversation.isBanned
-
+                imageColor: JamiTheme.chatviewButtonColor
+                normalColor: JamiTheme.chatviewBgColor
                 source: JamiResources.add_people_24dp_svg
                 toolTipText: JamiStrings.addToConversations
+                visible: CurrentConversation.isTemporary || CurrentConversation.isBanned
 
-                normalColor: JamiTheme.chatviewBgColor
-                imageColor: JamiTheme.chatviewButtonColor
-
-                onClicked: CurrentConversation.isBanned ?
-                                MessagesAdapter.unbanConversation(CurrentConversation.id)
-                                : MessagesAdapter.sendConversationRequest()
+                onClicked: CurrentConversation.isBanned ? MessagesAdapter.unbanConversation(CurrentConversation.id) : MessagesAdapter.sendConversationRequest()
             }
-
             PushButton {
                 id: detailsButton
-
-                visible: interactionButtonsVisibility
-                            && (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP) // TODO if SIP not a request
-
+                imageColor: JamiTheme.chatviewButtonColor
+                normalColor: JamiTheme.chatviewBgColor
                 source: JamiResources.swarm_details_panel_svg
                 toolTipText: JamiStrings.details
-
-                normalColor: JamiTheme.chatviewBgColor
-                imageColor: JamiTheme.chatviewButtonColor
+                visible: interactionButtonsVisibility && (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP) // TODO if SIP not a request
 
                 onClicked: showDetailsClicked()
             }
         }
     }
-
     CustomBorder {
+        bBorderwidth: JamiTheme.chatViewHairLineSize
+        borderColor: JamiTheme.tabbarBorderColor
         commonBorder: false
         lBorderwidth: 0
         rBorderwidth: 0
         tBorderwidth: 0
-        bBorderwidth: JamiTheme.chatViewHairLineSize
-        borderColor: JamiTheme.tabbarBorderColor
     }
 }

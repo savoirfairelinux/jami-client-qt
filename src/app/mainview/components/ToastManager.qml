@@ -15,14 +15,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 
 Item {
     id: root
-
     function instantiate(message, duration, fadingTime) {
         var component = Qt.createComponent("Toast.qml");
-        var sprite = component.createObject(root, {message: message, duration: duration, fadingTime: fadingTime});
+        var sprite = component.createObject(root, {
+                "message": message,
+                "duration": duration,
+                "fadingTime": fadingTime
+            });
     }
 }

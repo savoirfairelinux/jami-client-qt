@@ -16,14 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import SortFilterProxyModel 0.2
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -32,84 +28,80 @@ import "../../commoncomponents"
 
 Item {
     id: root
-
     property int count: 0
+    property bool enableHideSpectators: CallParticipantsModel.count > 1 && CurrentCall.hideSpectators
+    property bool hoveredOverVideoMuted: true
+    property string hoveredOverlaySinkId: ""
+    property string hoveredOverlayUri: ""
     property bool inLine: CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL
     property bool participantsSide
-    property bool enableHideSpectators: CallParticipantsModel.count > 1 && CurrentCall.hideSpectators
-    property string hoveredOverlayUri: ""
-    property string hoveredOverlaySinkId: ""
-    property bool hoveredOverVideoMuted: true
     property bool screenshotButtonHovered: false
 
     onVisibleChanged: {
-        CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
-        CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators)
-        CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf)
+        CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf);
+        CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators);
+        CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
     }
 
     Component {
         id: callVideoMedia
-
         ParticipantOverlay {
             id: overlay
-
             anchors.fill: parent
             anchors.leftMargin: leftMargin_
-            isScreenshotButtonHovered: screenshotButtonHovered && hoveredOverlaySinkId === sinkId_
-            opacity: screenshotButtonHovered
-                     ? hoveredOverlaySinkId !== sinkId ? 0.1 : 1
-                     : 1
-            sinkId: sinkId_
-            uri: uri_
-            deviceId: deviceId_
-            isMe: isLocal_
-            participantIsModerator: isModerator_
             bestName: {
                 if (bestName_ === uri_)
-                    NameDirectory.lookupAddress(CurrentAccount.id, uri_)
-                return bestName_
+                    NameDirectory.lookupAddress(CurrentAccount.id, uri_);
+                return bestName_;
             }
-            videoMuted: videoMuted_
-            participantIsActive: active_
+            deviceId: deviceId_
             isLocalMuted: audioLocalMuted_
-            voiceActive: voiceActive_
+            isMe: isLocal_
             isRecording: isRecording_
-            participantIsModeratorMuted: audioModeratorMuted_
-            participantHandIsRaised: isHandRaised_
+            isScreenshotButtonHovered: screenshotButtonHovered && hoveredOverlaySinkId === sinkId_
             isSharing: isSharing_
+            opacity: screenshotButtonHovered ? hoveredOverlaySinkId !== sinkId ? 0.1 : 1 : 1
+            participantHandIsRaised: isHandRaised_
+            participantIsActive: active_
+            participantIsModerator: isModerator_
+            participantIsModeratorMuted: audioModeratorMuted_
+            sinkId: sinkId_
+            uri: uri_
+            videoMuted: videoMuted_
+            voiceActive: voiceActive_
 
-            onParticipantHoveredChanged:  {
+            onParticipantHoveredChanged: {
                 if (participantHovered) {
-                    hoveredOverlayUri = overlay.uri
-                    hoveredOverlaySinkId = overlay.sinkId
-                    hoveredOverVideoMuted = videoMuted_
+                    hoveredOverlayUri = overlay.uri;
+                    hoveredOverlaySinkId = overlay.sinkId;
+                    hoveredOverVideoMuted = videoMuted_;
                 }
             }
 
             Connections {
                 id: registeredNameFoundConnection
-
-                target: NameDirectory
                 enabled: bestName_ === uri_
+                target: NameDirectory
 
                 function onRegisteredNameFound(status, address, name) {
                     if (address === uri_ && status === NameDirectory.LookupStatus.SUCCESS) {
-                        bestName_ = name
+                        bestName_ = name;
                     }
                 }
             }
         }
     }
-
     SortFilterProxyModel {
         id: genericParticipantsModel
         sourceModel: CallParticipantsModel
+
         filters: AllOf {
-            ValueFilter { roleName: "Active"; value: false }
             ValueFilter {
-                enabled: CallParticipantsModel.count > 1 &&
-                         CurrentCall.hideSelf
+                roleName: "Active"
+                value: false
+            }
+            ValueFilter {
+                enabled: CallParticipantsModel.count > 1 && CurrentCall.hideSelf
                 roleName: "IsLocal"
                 value: false
             }
@@ -120,24 +112,27 @@ Item {
             }
         }
     }
-
     SortFilterProxyModel {
         id: activeParticipantsModel
         sourceModel: CallParticipantsModel
-        filters: ValueFilter { roleName: "Active"; value: true }
-    }
 
+        filters: ValueFilter {
+            roleName: "Active"
+            value: true
+        }
+    }
     ParticipantsLayoutVertical {
         anchors.fill: parent
         participantComponent: callVideoMedia
         visible: !participantsSide
+
         onLayoutCountChanged: root.count = layoutCount
     }
-
     ParticipantsLayoutHorizontal {
         anchors.fill: parent
         participantComponent: callVideoMedia
         visible: participantsSide
+
         onLayoutCountChanged: root.count = layoutCount
     }
 }

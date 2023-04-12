@@ -15,119 +15,101 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-
-
 import "../../commoncomponents"
 
 Control {
     id: root
-
-    signal clicked
-
     height: jumpToLatestText.contentHeight + 15
     width: jumpToLatestText.contentWidth + arrowDropDown.width + 50
 
-    states: State {
-        id: activeState
+    signal clicked
 
-        name: "active"
-        when: root.visible
-    }
+    background: Rectangle {
+        color: CurrentConversation.color
+        radius: 20
 
-    transitions: [
-        Transition {
-            to: "active"
-            NumberAnimation {
-                target: root
-                duration: JamiTheme.shortFadeDuration
-                property: "opacity"
-                from: 0.0
-                to: 1.0
-            }
-        },
-        Transition {
-            from: "active"
-            NumberAnimation {
-                target: root
-                duration: JamiTheme.shortFadeDuration
-                property: "opacity"
-                from: 1.0
-                to: 0.0
+        MouseArea {
+            anchors.fill: parent
+            cursorShape: root.opacity ? Qt.PointingHandCursor : Qt.ArrowCursor
+
+            onClicked: root.clicked()
+        }
+        layer {
+            enabled: true
+
+            effect: DropShadow {
+                color: JamiTheme.shadowColor
+                horizontalOffset: 3.0
+                radius: 8.0
+                transparentBorder: true
+                verticalOffset: 3.0
+                z: -1
             }
         }
-    ]
-
+    }
     contentItem: Item {
         Item {
             anchors.centerIn: parent
-
             height: jumpToLatestText.contentHeight
             width: jumpToLatestText.contentWidth + arrowDropDown.width + 3
 
             Text {
                 id: jumpToLatestText
-
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
-
-                font.weight: Font.Bold
-                font.pointSize: JamiTheme.textFontSize + 2
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
-                text: JamiStrings.scrollToEnd
                 color: UtilsAdapter.luma(CurrentConversation.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
-
-
+                font.pointSize: JamiTheme.textFontSize + 2
+                font.weight: Font.Bold
+                horizontalAlignment: Text.AlignHCenter
+                text: JamiStrings.scrollToEnd
+                verticalAlignment: Text.AlignVCenter
             }
-
             ResponsiveImage {
                 id: arrowDropDown
-
                 anchors.right: jumpToLatestText.left
                 anchors.rightMargin: 3
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: 0
-
-                containerWidth: jumpToLatestText.contentHeight
-                containerHeight: jumpToLatestText.contentHeight
-                rotation: -90
-
                 color: UtilsAdapter.luma(CurrentConversation.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+                containerHeight: jumpToLatestText.contentHeight
+                containerWidth: jumpToLatestText.contentHeight
+                rotation: -90
                 source: JamiResources.back_24dp_svg
             }
         }
     }
+    states: State {
+        id: activeState
+        name: "active"
+        when: root.visible
+    }
+    transitions: [
+        Transition {
+            to: "active"
 
-    background: Rectangle {
-        radius: 20
-        color: CurrentConversation.color
+            NumberAnimation {
+                duration: JamiTheme.shortFadeDuration
+                from: 0.0
+                property: "opacity"
+                target: root
+                to: 1.0
+            }
+        },
+        Transition {
+            from: "active"
 
-        MouseArea {
-            anchors.fill: parent
-            cursorShape: root.opacity ? Qt.PointingHandCursor :
-                                        Qt.ArrowCursor
-
-            onClicked: root.clicked()
-        }
-
-        layer {
-            enabled: true
-            effect: DropShadow {
-                z: -1
-                horizontalOffset: 3.0
-                verticalOffset: 3.0
-                radius: 8.0
-                color: JamiTheme.shadowColor
-                transparentBorder: true
+            NumberAnimation {
+                duration: JamiTheme.shortFadeDuration
+                from: 1.0
+                property: "opacity"
+                target: root
+                to: 0.0
             }
         }
-    }
+    ]
 }

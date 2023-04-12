@@ -15,27 +15,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
-    color: JamiTheme.messageOutBgColor
-
     property var body: {
         if (MessagesAdapter.editId === "")
-            return ""
-        return MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.LinkifiedBody)
+            return "";
+        return MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.LinkifiedBody);
     }
+
+    color: JamiTheme.messageOutBgColor
 
     RowLayout {
         anchors.fill: parent
@@ -46,20 +42,21 @@ Rectangle {
 
             Label {
                 id: editLbl
-
-                text: JamiStrings.edit
-
-                color:  UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
-                font.bold: true
                 Layout.leftMargin: JamiTheme.preferredMarginSize
+                color: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+                font.bold: true
+                font.kerning: true
+                font.pointSize: JamiTheme.textFontSize
+                text: JamiStrings.edit
             }
-
             Label {
                 id: bodyLbl
+                color: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+                font.bold: true
+                font.kerning: true
+                font.pointSize: JamiTheme.textFontSize
+                text: metrics.elidedText
+                textFormat: Text.MarkdownText
 
                 TextMetrics {
                     id: metrics
@@ -67,31 +64,16 @@ Rectangle {
                     elideWidth: root.width - 100
                     text: UtilsAdapter.getOneline(root.body)
                 }
-
-                text: metrics.elidedText
-                textFormat: Text.MarkdownText
-                color:  UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
-                font.bold: true
             }
         }
-
-
         PushButton {
             id: closeReply
-
             Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
             Layout.rightMargin: JamiTheme.preferredMarginSize
-
-            preferredSize: 24
-
-            source: JamiResources.round_close_24dp_svg
-
-            normalColor: JamiTheme.chatviewBgColor
             imageColor: JamiTheme.chatviewButtonColor
+            normalColor: JamiTheme.chatviewBgColor
+            preferredSize: 24
+            source: JamiResources.round_close_24dp_svg
 
             onClicked: MessagesAdapter.editId = ""
         }

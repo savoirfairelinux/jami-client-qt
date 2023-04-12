@@ -14,54 +14,52 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtWebEngine
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 
 Rectangle {
     id: root
-    color: JamiTheme.secondaryBackgroundColor
-    anchors.fill: parent
-    property bool isVideo: false
     property string html: ""
+    property bool isVideo: false
+
+    anchors.fill: parent
+    color: JamiTheme.secondaryBackgroundColor
+    layer.enabled: true
 
     WebEngineView {
         id: wev
-
         anchors.fill: parent
+        anchors.topMargin: root.isVideo ? 0 : wev.implicitHeight / 2
         anchors.verticalCenter: root.verticalCenter
         backgroundColor: JamiTheme.secondaryBackgroundColor
-        anchors.topMargin: root.isVideo? 0 :  wev.implicitHeight / 2
         settings.fullScreenSupportEnabled: root.isVideo
         settings.javascriptCanOpenWindows: false
+
         Component.onCompleted: loadHtml(root.html, 'file://')
-        onFullScreenRequested: function(request) {
+        onFullScreenRequested: function (request) {
             if (request.toggleOn) {
-                layoutManager.pushFullScreenItem(
-                            this,
-                            root,
-                            null,
-                            function() { wev.fullScreenCancelled() })
+                layoutManager.pushFullScreenItem(this, root, null, function () {
+                        wev.fullScreenCancelled();
+                    });
             } else if (!request.toggleOn) {
-                layoutManager.removeFullScreenItem(this)
+                layoutManager.removeFullScreenItem(this);
             }
-            request.accept()
+            request.accept();
         }
     }
 
-    layer.enabled: true
     layer.effect: OpacityMask {
         maskSource: Item {
-            width: root.width
             height: root.height
+            width: root.width
+
             Rectangle {
                 anchors.centerIn: parent
-                width:  root.width
                 height: root.height
                 radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
+                width: root.width
             }
         }
     }

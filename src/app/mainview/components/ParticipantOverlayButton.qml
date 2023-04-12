@@ -15,55 +15,48 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 PushButton {
     id: root
-
     property alias toolTipText: toolTip.text
 
-    normalColor: JamiTheme.buttonConference
-    hoveredColor: JamiTheme.buttonConferenceHovered
-    pressedColor: JamiTheme.buttonConferencePressed
-
-    imageColor: JamiTheme.whiteColor
     hoverEnabled: false
+    hoveredColor: JamiTheme.buttonConferenceHovered
+    imageColor: JamiTheme.whiteColor
+    normalColor: JamiTheme.buttonConference
+    pressedColor: JamiTheme.buttonConferencePressed
 
     Rectangle {
         id: toolTipRect
+        color: isBarLayout ? JamiTheme.darkGreyColorOpacity : "transparent"
         height: 16
+        radius: 2
+        visible: hover.hovered && !isSmall
         width: toolTip.width + 8
+
         anchors {
             horizontalCenter: parent.horizontalCenter
             top: parent.bottom
-            topMargin: isBarLayout? 6 : 2
+            topMargin: isBarLayout ? 6 : 2
         }
-        color : isBarLayout ? JamiTheme.darkGreyColorOpacity
-                            : "transparent"
-        visible: hover.hovered && !isSmall
-        radius: 2
-
         Text {
             id: toolTip
             anchors.centerIn: parent
-            horizontalAlignment: Text.AlignHCenter
             color: JamiTheme.whiteColor
             font.pointSize: JamiTheme.tinyFontSize
+            horizontalAlignment: Text.AlignHCenter
         }
     }
-
     Item {
         anchors.fill: parent
 
         HoverHandler {
             id: hover
             onHoveredChanged: {
-                root.forceHovered = hover.hovered
+                root.forceHovered = hover.hovered;
             }
         }
     }

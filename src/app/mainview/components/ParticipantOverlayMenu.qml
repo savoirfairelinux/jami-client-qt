@@ -15,98 +15,89 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 // Overlay menu for conference moderation
 Item {
     id: root
-
-    property bool showSetModerator: false
-    property bool showUnsetModerator: false
-    property bool showModeratorMute: false
-    property bool showModeratorUnmute: false
-    property bool showMaximize: false
-    property bool showMinimize: false
-    property bool showHangup: false
-
-    property int shapeHeight: 30
-    property int shapeRadius: 10
-
+    property int buttonPreferredSize: 20
+    property alias hovered: hover.hovered
+    property int iconButtonPreferredSize: 16
     property bool isBarLayout: root.width > 220
     property int isSmall: !isBarLayout && (root.height < 100 || root.width < 160)
+    property int shapeHeight: 30
+    property int shapeRadius: 10
+    property bool showHangup: false
+    property bool showMaximize: false
+    property bool showMinimize: false
+    property bool showModeratorMute: false
+    property bool showModeratorUnmute: false
+    property bool showSetModerator: false
+    property bool showUnsetModerator: false
 
-    property int buttonPreferredSize: 20
-    property int iconButtonPreferredSize: 16
-
-    property alias hovered: hover.hovered
-
-    HoverHandler { id: hover }
-
-    Loader { sourceComponent: isBarLayout ? barComponent : rectComponent }
-
+    HoverHandler {
+        id: hover
+    }
+    Loader {
+        sourceComponent: isBarLayout ? barComponent : rectComponent
+    }
     Component {
         id: rectComponent
-
         Control {
-            width: root.width
             height: root.height
             hoverEnabled: false
-
-            background: Rectangle {
-                property int buttonsSize: buttonsRect.visibleButtons * 24 + 8 * 2
-                property bool isOverlayRect: buttonsSize + 32 > root.width
-
-                color: JamiTheme.darkGreyColorOpacity
-                radius: isOverlayRect ? 10 : 0
-
-                anchors.fill: isOverlayRect ? undefined : parent
-                anchors.centerIn: parent
-                width: isOverlayRect ? buttonsSize + 32 : parent.width
-                height: isOverlayRect ? 80 : parent.height
-            }
+            width: root.width
 
             ParticipantControlLayout {
                 id: buttonsRect
                 anchors.centerIn: parent
             }
+
+            background: Rectangle {
+                property int buttonsSize: buttonsRect.visibleButtons * 24 + 8 * 2
+                property bool isOverlayRect: buttonsSize + 32 > root.width
+
+                anchors.centerIn: parent
+                anchors.fill: isOverlayRect ? undefined : parent
+                color: JamiTheme.darkGreyColorOpacity
+                height: isOverlayRect ? 80 : parent.height
+                radius: isOverlayRect ? 10 : 0
+                width: isOverlayRect ? buttonsSize + 32 : parent.width
+            }
         }
     }
-
     Component {
         id: barComponent
-
         Control {
-            width: barButtons.implicitWidth + 16
             height: shapeHeight
             hoverEnabled: false
-
-            background: Item {
-                clip: true
-                Rectangle {
-                    color: JamiTheme.darkGreyColorOpacity
-                    radius: shapeRadius
-                    width: parent.width + 2 * radius
-                    height: parent.height + 2 * radius
-                    anchors.fill: parent
-                    anchors.leftMargin: -radius
-                    anchors.topMargin: -radius
-                }
-            }
+            width: barButtons.implicitWidth + 16
 
             ParticipantControlLayout {
                 id: barButtons
                 anchors.fill: parent
                 anchors.leftMargin: 8
                 anchors.rightMargin: 8
+            }
+
+            background: Item {
+                clip: true
+
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.leftMargin: -radius
+                    anchors.topMargin: -radius
+                    color: JamiTheme.darkGreyColorOpacity
+                    height: parent.height + 2 * radius
+                    radius: shapeRadius
+                    width: parent.width + 2 * radius
+                }
             }
         }
     }

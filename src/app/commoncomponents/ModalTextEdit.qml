@@ -14,58 +14,52 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 // This component is used to display and edit a value.
 Loader {
     id: root
-    property string prefixIconSrc: JamiResources.round_edit_24dp_svg
-    property color prefixIconColor: JamiTheme.editLineColor
-    property string suffixIconSrc : ""
-    property color suffixIconColor: JamiTheme.buttonTintedBlue
-    property string suffixBisIconSrc : ""
-    property color suffixBisIconColor: JamiTheme.buttonTintedBlue
-    property color textColor: JamiTheme.textColor
-
-    required property string placeholderText
-    property string staticText: ""
     property string dynamicText
-
-    property bool inputIsValid: true
-    property string infoTipText
-    property string infoTipLineText
-    property bool isPersistent: true
-
-    property real fontPixelSize: JamiTheme.materialLineEditPixelSize
-    property bool fontBold: false
-
     property int echoMode: TextInput.Normal
-    property QtObject textValidator: RegularExpressionValidator { id: defaultValidator }
-
-    property var icon
-    property bool isSettings
-    property bool isSwarmDetail
-
-    property bool readOnly: false
-    property bool isEditing: false
-
-    onStatusChanged: {
-        if(status == Loader.Ready && icon)
-            root.item.icon = icon
-    }
 
     // Always start with the static text component displayed first.
     property bool editMode: true
+    property bool fontBold: false
+    property real fontPixelSize: JamiTheme.materialLineEditPixelSize
+    property var icon
+    property string infoTipLineText
+    property string infoTipText
+    property bool inputIsValid: true
+    property bool isEditing: false
+    property bool isPersistent: true
+    property bool isSettings
+    property bool isSwarmDetail
+    required property string placeholderText
+    property color prefixIconColor: JamiTheme.editLineColor
+    property string prefixIconSrc: JamiResources.round_edit_24dp_svg
+    property bool readOnly: false
+    property string staticText: ""
+    property color suffixBisIconColor: JamiTheme.buttonTintedBlue
+    property string suffixBisIconSrc: ""
+    property color suffixIconColor: JamiTheme.buttonTintedBlue
+    property string suffixIconSrc: ""
+    property color textColor: JamiTheme.textColor
+    property QtObject textValidator: RegularExpressionValidator {
+        id: defaultValidator
+    }
+
+    // We use a loader to switch between the two components depending on the
+    // editMode property.
+    sourceComponent: {
+        editMode || isPersistent ? editComp : displayComp;
+    }
 
     // Emitted when the editor has been accepted.
     signal accepted
-    signal keyPressed
-
     signal activeChanged(bool active)
+    signal keyPressed
 
     // Always give up focus when accepted.
     onAccepted: focus = false
@@ -73,70 +67,63 @@ Loader {
     // Needed to give proper focus to loaded item
     onFocusChanged: {
         if (root.focus && root.isPersistent) {
-            item.forceActiveFocus()
+            item.forceActiveFocus();
         }
-        isEditing = !isEditing
+        isEditing = !isEditing;
+    }
+    onStatusChanged: {
+        if (status == Loader.Ready && icon)
+            root.item.icon = icon;
     }
 
     // This is used when the user is not editing the text.
     Component {
         id: displayComp
-
         MaterialTextField {
             id: displayCompField
             font.pixelSize: root.fontPixelSize
+            horizontalAlignment: TextEdit.AlignHCenter
             readOnly: true
             text: staticText
-            horizontalAlignment: TextEdit.AlignHCenter
         }
     }
 
     // This is used when the user is editing the text.
     Component {
         id: editComp
-
-
         MaterialTextField {
             id: editCompField
-
-            focus: true
-            infoTipText: root.infoTipText
-            infoTipLineText: root.infoTipLineText
-            prefixIconSrc: root.prefixIconSrc
-            prefixIconColor: root.prefixIconColor
-            suffixIconSrc: root.suffixIconSrc
-            suffixIconColor: root.suffixIconColor
-            suffixBisIconSrc: root.suffixBisIconSrc
-            suffixBisIconColor: root.suffixBisIconColor
-            textColor: root.textColor
-            font.pixelSize: root.fontPixelSize
-            font.bold: root.fontBold
             echoMode: root.echoMode
-            placeholderText: root.placeholderText
-            onAccepted: root.accepted()
-            onKeyPressed: root.keyPressed()
-            onTextChanged: dynamicText = text
-            text: staticText
+            focus: true
+            font.bold: root.fontBold
+            font.pixelSize: root.fontPixelSize
+            infoTipLineText: root.infoTipLineText
+            infoTipText: root.infoTipText
             inputIsValid: root.inputIsValid
-            onFocusChanged: {
-                if (!focus && root.editMode) {
-                    root.editMode = isPersistent
-                }
-                activeChanged(root.editMode)
-            }
-            onIsActiveChanged: activeChanged(isActive)
-            validator: root.textValidator
             isSettings: root.isSettings
             isSwarmDetail: root.isSwarmDetail
+            placeholderText: root.placeholderText
+            prefixIconColor: root.prefixIconColor
+            prefixIconSrc: root.prefixIconSrc
             readOnly: root.readOnly
-        }
-    }
+            suffixBisIconColor: root.suffixBisIconColor
+            suffixBisIconSrc: root.suffixBisIconSrc
+            suffixIconColor: root.suffixIconColor
+            suffixIconSrc: root.suffixIconSrc
+            text: staticText
+            textColor: root.textColor
+            validator: root.textValidator
 
-    // We use a loader to switch between the two components depending on the
-    // editMode property.
-    sourceComponent: {
-        editMode || isPersistent
-                ? editComp
-                : displayComp
+            onAccepted: root.accepted()
+            onFocusChanged: {
+                if (!focus && root.editMode) {
+                    root.editMode = isPersistent;
+                }
+                activeChanged(root.editMode);
+            }
+            onIsActiveChanged: activeChanged(isActive)
+            onKeyPressed: root.keyPressed()
+            onTextChanged: dynamicText = text
+        }
     }
 }

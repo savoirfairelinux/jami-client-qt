@@ -15,59 +15,45 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
 
 RowLayout {
     id: root
-
     Rectangle {
         id: descriptionTextRect
-
         Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+        Layout.leftMargin: 10
         Layout.preferredHeight: descriptionText.contentHeight + 10
         Layout.preferredWidth: descriptionText.contentWidth + 10
-        Layout.leftMargin: 10
-
         color: JamiTheme.transparentColor
 
         Text {
             id: descriptionText
-
             anchors.centerIn: parent
-
-            text: description
+            color: JamiTheme.textColor
             font.pointSize: JamiTheme.textFontSize
             font.weight: Font.Bold
-            color: JamiTheme.textColor
+            text: description
         }
     }
-
     Rectangle {
         id: shortcutTextRect
-
         Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
         Layout.preferredHeight: shortcutText.contentHeight + 10
         Layout.preferredWidth: shortcutText.contentWidth + 10
         Layout.rightMargin: 10
-
         color: JamiTheme.backgroundColor
         radius: JamiTheme.primaryRadius
 
         Text {
             id: shortcutText
-
             anchors.centerIn: parent
-
-            text: shortcut2 === "" ?
-                      shortcut :
-                      shortcut + " + " + shortcut2
+            color: JamiTheme.textColor
             font.pointSize: JamiTheme.textFontSize + 3
             font.weight: Font.DemiBold
-            color: JamiTheme.textColor
+            text: shortcut2 === "" ? shortcut : shortcut + " + " + shortcut2
         }
     }
 }

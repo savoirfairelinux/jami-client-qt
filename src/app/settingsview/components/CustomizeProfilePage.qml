@@ -15,90 +15,73 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
     id: root
-
     title: JamiStrings.customizeProfile
 
     function stopBooth() {
-        currentAccountAvatar.stopBooth()
+        currentAccountAvatar.stopBooth();
     }
-
 
     flickableContent: ColumnLayout {
         id: currentAccountEnableColumnLayout
-
-        width: contentFlickableWidth
-        spacing: JamiTheme.settingsBlockSpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
+        spacing: JamiTheme.settingsBlockSpacing
+        width: contentFlickableWidth
 
         RowLayout {
-
-            spacing: 40
             Layout.preferredWidth: parent.width
+            spacing: 40
 
             Connections {
                 target: settingsView
 
                 function onStopBooth() {
-                    stopBooth()
+                    stopBooth();
                 }
             }
-
             PhotoboothView {
                 id: currentAccountAvatar
-                width: avatarSize
-                height: avatarSize
-
                 Layout.alignment: Qt.AlignCenter
-
-                imageId: LRCInstance.currentAccountId
                 avatarSize: 150
+                height: avatarSize
+                imageId: LRCInstance.currentAccountId
+                width: avatarSize
             }
-
             ModalTextEdit {
                 id: displayNameLineEdit
-
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight + 8
                 Layout.fillWidth: true
-
-                staticText: CurrentAccount.alias
+                Layout.preferredHeight: JamiTheme.preferredFieldHeight + 8
                 placeholderText: JamiStrings.enterNickname
+                staticText: CurrentAccount.alias
 
                 onAccepted: AccountAdapter.setCurrAccDisplayName(dynamicText)
             }
         }
-
         Text {
             id: description
-
             Layout.alignment: Qt.AlignLeft
-            Layout.preferredWidth: parent.width
             Layout.bottomMargin: JamiTheme.preferredSettingsBottomMarginSize
-
-            text: JamiStrings.customizeAccountDescription
+            Layout.preferredWidth: parent.width
             color: JamiTheme.textColor
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-            wrapMode : Text.WordWrap
-
-            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
             font.kerning: true
+            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+            horizontalAlignment: Text.AlignLeft
             lineHeight: JamiTheme.wizardViewTextLineHeight
+            text: JamiStrings.customizeAccountDescription
+            verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.WordWrap
         }
     }
 }

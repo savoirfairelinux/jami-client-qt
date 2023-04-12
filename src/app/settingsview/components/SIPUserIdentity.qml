@@ -15,72 +15,52 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
     id: root
-
     property int itemWidth
 
     SettingsMaterialTextEdit {
         id: usernameSIP
-
         Layout.fillWidth: true
-
-        staticText: CurrentAccount.username
-
-        titleField: JamiStrings.username
         itemWidth: root.itemWidth
+        staticText: CurrentAccount.username
+        titleField: JamiStrings.username
 
         onEditFinished: CurrentAccount.username = dynamicText
     }
-
     SettingsMaterialTextEdit {
         id: hostnameSIP
-
         Layout.fillWidth: true
-
-        staticText: CurrentAccount.hostname
-
-        titleField: JamiStrings.server
         itemWidth: root.itemWidth
+        staticText: CurrentAccount.hostname
+        titleField: JamiStrings.server
 
         onEditFinished: CurrentAccount.hostname = dynamicText
     }
-
     SettingsMaterialTextEdit {
         id: passSIPlineEdit
-
         Layout.fillWidth: true
-
-        staticText: CurrentAccount.password
-
-        titleField: JamiStrings.password
-        itemWidth: root.itemWidth
         isPassword: true
+        itemWidth: root.itemWidth
+        staticText: CurrentAccount.password
+        titleField: JamiStrings.password
 
         onEditFinished: CurrentAccount.password = dynamicText
     }
-
     SettingsMaterialTextEdit {
         id: proxySIP
-
         Layout.fillWidth: true
-
-        staticText: CurrentAccount.routeset
-
-        titleField: JamiStrings.proxy
         itemWidth: root.itemWidth
+        staticText: CurrentAccount.routeset
+        titleField: JamiStrings.proxy
 
         onEditFinished: CurrentAccount.routeset = dynamicText
     }
-
 }

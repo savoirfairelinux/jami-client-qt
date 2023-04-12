@@ -14,54 +14,46 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 BaseView {
     id: viewNode
-
-    required property Item leftPaneItem
-    required property Item rightPaneItem
-
-    property alias leftPane: leftPane
-    property alias rightPane: rightPane
-
-    property alias splitViewStateKey: splitView.splitViewStateKey
-
-    property real leftPaneMinWidth: JamiTheme.mainViewLeftPaneMinWidth
-    property real rightPaneMinWidth: JamiTheme.mainViewPaneMinWidth
-
     property bool isSinglePane
 
-    onPresented: {
-        if (leftPaneItem) leftPaneItem.parent = leftPane
-        if (rightPaneItem) rightPaneItem.parent = rightPane
-
-        splitView.restoreSplitViewState()
-
-        resolvePanes()
+    // Override this if needed.
+    property var isSinglePaneChangedHandler: function () {
+        rightPaneItem.parent = isSinglePane ? leftPane : rightPane;
     }
-    onDismissed: splitView.saveSplitViewState()
+    property alias leftPane: leftPane
+    required property Item leftPaneItem
+    property real leftPaneMinWidth: JamiTheme.mainViewLeftPaneMinWidth
+    property real previousLeftPaneWidth: leftPane.width
+    property alias rightPane: rightPane
+    required property Item rightPaneItem
+    property real rightPaneMinWidth: JamiTheme.mainViewPaneMinWidth
+    property alias splitViewStateKey: splitView.splitViewStateKey
+
+    function resolvePanes() {
+        isSinglePane = width < rightPaneMinWidth + previousLeftPaneWidth;
+    }
 
     Component.onCompleted: {
         // Avoid double triggering this handler during instantiation.
-        onIsSinglePaneChanged.connect(isSinglePaneChangedHandler)
+        onIsSinglePaneChanged.connect(isSinglePaneChangedHandler);
     }
-
-    property real previousLeftPaneWidth: leftPane.width
+    onDismissed: splitView.saveSplitViewState()
+    onPresented: {
+        if (leftPaneItem)
+            leftPaneItem.parent = leftPane;
+        if (rightPaneItem)
+            rightPaneItem.parent = rightPane;
+        splitView.restoreSplitViewState();
+        resolvePanes();
+    }
     onWidthChanged: resolvePanes()
-    function resolvePanes() {
-        isSinglePane = width < rightPaneMinWidth + previousLeftPaneWidth
-    }
-
-    // Override this if needed.
-    property var isSinglePaneChangedHandler: function() {
-        rightPaneItem.parent = isSinglePane ? leftPane : rightPane
-    }
 
     JamiSplitView {
         id: splitView
@@ -70,15 +62,13 @@ BaseView {
 
         Item {
             id: leftPane
-            onWidthChanged: if (!isSinglePane) previousLeftPaneWidth = width
-            SplitView.minimumWidth: isSinglePane ?
-                                        viewNode.width :
-                                        viewNode.leftPaneMinWidth
-            SplitView.maximumWidth: isSinglePane ?
-                                        viewNode.width :
-                                        viewNode.width - rightPaneMinWidth
+            SplitView.maximumWidth: isSinglePane ? viewNode.width : viewNode.width - rightPaneMinWidth
+            SplitView.minimumWidth: isSinglePane ? viewNode.width : viewNode.leftPaneMinWidth
             SplitView.preferredWidth: viewNode.leftPaneMinWidth
             clip: true
+
+            onWidthChanged: if (!isSinglePane)
+                previousLeftPaneWidth = width
         }
         Item {
             id: rightPane

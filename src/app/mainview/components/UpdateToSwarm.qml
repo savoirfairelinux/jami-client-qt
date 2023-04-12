@@ -15,14 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Control {
@@ -34,46 +31,43 @@ Control {
 
         Rectangle {
             anchors.top: parent.top
+            color: JamiTheme.tabbarBorderColor
             height: JamiTheme.chatViewHairLineSize
             width: parent.width
-            color: JamiTheme.tabbarBorderColor
         }
     }
-
     contentItem: ColumnLayout {
         spacing: 12
+
         Text {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             Layout.fillWidth: true
-
-            text: JamiStrings.updateToSwarm
-            font.pointSize: JamiTheme.textFontSize + 2
             color: JamiTheme.textColor
-            wrapMode: Text.Wrap
+            font.pointSize: JamiTheme.textFontSize + 2
             horizontalAlignment: Text.AlignHCenter
+            text: JamiStrings.updateToSwarm
+            wrapMode: Text.Wrap
         }
-
         RowLayout {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             Layout.fillWidth: true
             spacing: 12
 
             MaterialButton {
+                autoAccelerator: true
+                font.pointSize: JamiTheme.textFontSize + 2
+                padding: 8
                 text: JamiStrings.removeContact
-                padding: 8
-                autoAccelerator: true
-                font.pointSize: JamiTheme.textFontSize + 2
-                onClicked: MessagesAdapter.removeContact(
-                               LRCInstance.selectedConvUid)
-            }
 
+                onClicked: MessagesAdapter.removeContact(LRCInstance.selectedConvUid)
+            }
             MaterialButton {
-                text: JamiStrings.migrateConversation
-                padding: 8
                 autoAccelerator: true
                 font.pointSize: JamiTheme.textFontSize + 2
-                onClicked: ConversationsAdapter.restartConversation(
-                               LRCInstance.selectedConvUid)
+                padding: 8
+                text: JamiStrings.migrateConversation
+
+                onClicked: ConversationsAdapter.restartConversation(LRCInstance.selectedConvUid)
             }
         }
     }

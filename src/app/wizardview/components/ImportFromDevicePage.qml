@@ -16,261 +16,202 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
     property string errorText: ""
     property int preferredHeight: importFromDevicePageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
-    signal showThisPage
-
-    function initializeOnShowUp() {
-        clearAllTextFields()
-    }
+    color: JamiTheme.secondaryBackgroundColor
 
     function clearAllTextFields() {
-        connectBtn.spinnerTriggered = false
+        connectBtn.spinnerTriggered = false;
     }
-
     function errorOccured(errorMessage) {
-        errorText = errorMessage
-        connectBtn.spinnerTriggered = false
+        errorText = errorMessage;
+        connectBtn.spinnerTriggered = false;
     }
+    function initializeOnShowUp() {
+        clearAllTextFields();
+    }
+    signal showThisPage
 
     Connections {
         target: WizardViewStepModel
 
         function onMainStepChanged() {
-            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
-                    WizardViewStepModel.accountCreationOption ===
-                    WizardViewStepModel.AccountCreationOption.ImportFromDevice) {
-                clearAllTextFields()
-                root.showThisPage()
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation && WizardViewStepModel.accountCreationOption === WizardViewStepModel.AccountCreationOption.ImportFromDevice) {
+                clearAllTextFields();
+                root.showThisPage();
             }
         }
     }
-
-    color: JamiTheme.secondaryBackgroundColor
-
     ColumnLayout {
         id: importFromDevicePageColumnLayout
-
-        spacing: JamiTheme.wizardViewPageLayoutSpacing
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-
+        spacing: JamiTheme.wizardViewPageLayoutSpacing
         width: Math.max(508, root.width - 100)
 
         Text {
-
-            text: JamiStrings.importAccountFromAnotherDevice
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize
             Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+            Layout.topMargin: JamiTheme.preferredMarginSize
             color: JamiTheme.textColor
-
             font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
-            wrapMode : Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+            text: JamiStrings.importAccountFromAnotherDevice
+            verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.WordWrap
         }
-
         Text {
-
-            text: JamiStrings.importFromDeviceDescription
+            Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
             Layout.topMargin: JamiTheme.wizardViewDescriptionMarginSize
-            Layout.alignment: Qt.AlignCenter
+            color: JamiTheme.textColor
             font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
             font.weight: Font.Medium
-            color: JamiTheme.textColor
-            wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
             lineHeight: JamiTheme.wizardViewTextLineHeight
+            text: JamiStrings.importFromDeviceDescription
+            verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.WordWrap
         }
-
-
-
         Flow {
-            spacing: 30
             Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
             Layout.preferredWidth: Math.min(step1.width * 2 + spacing, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
+            spacing: 30
 
             InfoBox {
                 id: step1
-                icoSource: JamiResources.settings_24dp_svg
-                title: JamiStrings.importStep1
                 description: JamiStrings.importStep1Desc
                 icoColor: JamiTheme.buttonTintedBlue
+                icoSource: JamiResources.settings_24dp_svg
+                title: JamiStrings.importStep1
             }
-
             InfoBox {
                 id: step2
-                icoSource: JamiResources.person_24dp_svg
-                title: JamiStrings.importStep2
                 description: JamiStrings.importStep2Desc
                 icoColor: JamiTheme.buttonTintedBlue
+                icoSource: JamiResources.person_24dp_svg
+                title: JamiStrings.importStep2
             }
-
             InfoBox {
                 id: step3
-                icoSource: JamiResources.finger_select_svg
-                title: JamiStrings.importStep3
                 description: JamiStrings.importStep3Desc
                 icoColor: JamiTheme.buttonTintedBlue
+                icoSource: JamiResources.finger_select_svg
+                title: JamiStrings.importStep3
             }
-
             InfoBox {
                 id: step4
-                icoSource: JamiResources.time_clock_svg
-                title: JamiStrings.importStep4
                 description: JamiStrings.importStep4Desc
                 icoColor: JamiTheme.buttonTintedBlue
+                icoSource: JamiResources.time_clock_svg
+                title: JamiStrings.importStep4
             }
-
         }
-
         ModalTextEdit {
             id: pinFromDevice
-
-            objectName: "pinFromDevice"
-
+            KeyNavigation.down: passwordFromDevice
+            KeyNavigation.tab: KeyNavigation.down
+            KeyNavigation.up: backButton
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(410, root.width - JamiTheme.preferredMarginSize * 2)
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-
             focus: visible
-
+            objectName: "pinFromDevice"
             placeholderText: JamiStrings.pin
             staticText: ""
 
-            KeyNavigation.up: backButton
-            KeyNavigation.down: passwordFromDevice
-            KeyNavigation.tab: KeyNavigation.down
-
             onAccepted: passwordFromDevice.forceActiveFocus()
-
         }
-
         Text {
-
-
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-
             color: JamiTheme.textColor
-            wrapMode: Text.WordWrap
-            text: JamiStrings.importPasswordDesc
             font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
             font.weight: Font.Medium
+            text: JamiStrings.importPasswordDesc
+            wrapMode: Text.WordWrap
         }
-
-
-
         PasswordTextEdit {
             id: passwordFromDevice
-
-            objectName: "passwordFromDevice"
+            KeyNavigation.down: {
+                if (connectBtn.enabled)
+                    return connectBtn;
+                else if (connectBtn.spinnerTriggered)
+                    return passwordFromDevice;
+                return backButton;
+            }
+            KeyNavigation.tab: KeyNavigation.down
+            KeyNavigation.up: pinFromDevice
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(410, root.width - JamiTheme.preferredMarginSize * 2)
             Layout.topMargin: JamiTheme.wizardViewMarginSize
-
+            objectName: "passwordFromDevice"
             placeholderText: JamiStrings.enterPassword
 
-            KeyNavigation.up: pinFromDevice
-            KeyNavigation.down: {
-                if (connectBtn.enabled)
-                    return connectBtn
-                else if (connectBtn.spinnerTriggered)
-                    return passwordFromDevice
-                return backButton
-            }
-            KeyNavigation.tab: KeyNavigation.down
-
             onAccepted: pinFromDevice.forceActiveFocus()
-
         }
-
         SpinnerButton {
             id: connectBtn
-
-            TextMetrics{
-                id: textSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                text: connectBtn.normalText
-            }
-
-            objectName: "importFromDevicePageConnectBtn"
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-            Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
-
-            preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding +1
-            primary: true
-
-            spinnerTriggeredtext: JamiStrings.generatingAccount
-            normalText: JamiStrings.importButton
-
-            enabled: pinFromDevice.dynamicText.length !== 0 && !spinnerTriggered
-
+            KeyNavigation.down: backButton
             KeyNavigation.tab: backButton
             KeyNavigation.up: passwordFromDevice
-            KeyNavigation.down: backButton
+            Layout.alignment: Qt.AlignCenter
+            Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
+            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
+            enabled: pinFromDevice.dynamicText.length !== 0 && !spinnerTriggered
+            normalText: JamiStrings.importButton
+            objectName: "importFromDevicePageConnectBtn"
+            preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding + 1
+            primary: true
+            spinnerTriggeredtext: JamiStrings.generatingAccount
 
             onClicked: {
-                spinnerTriggered = true
+                spinnerTriggered = true;
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
+                        "archivePin": pinFromDevice.dynamicText,
+                        "password": passwordFromDevice.dynamicText
+                    });
+                WizardViewStepModel.nextStep();
+            }
 
-                WizardViewStepModel.accountCreationInfo =
-                        JamiQmlUtils.setUpAccountCreationInputPara(
-                            {archivePin : pinFromDevice.dynamicText,
-                                password : passwordFromDevice.dynamicText})
-                WizardViewStepModel.nextStep()
+            TextMetrics {
+                id: textSize
+                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                font.weight: Font.Bold
+                text: connectBtn.normalText
             }
         }
-
         Label {
             id: errorLabel
-
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
-
-            visible: errorText.length !== 0
-
-            text: errorText
-
-            font.pixelSize: JamiTheme.textEditError
             color: JamiTheme.redColor
+            font.pixelSize: JamiTheme.textEditError
+            text: errorText
+            visible: errorText.length !== 0
         }
     }
-
     BackButton {
         id: backButton
-
-        objectName: "importFromDevicePageBackButton"
-
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
-
-        visible: !connectBtn.spinnerTriggered
-
+        KeyNavigation.down: pinFromDevice
         KeyNavigation.tab: pinFromDevice
         KeyNavigation.up: connectBtn.enabled ? connectBtn : passwordFromDevice
-        KeyNavigation.down: pinFromDevice
+        anchors.left: parent.left
+        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
+        anchors.top: parent.top
+        objectName: "importFromDevicePageBackButton"
+        visible: !connectBtn.spinnerTriggered
 
         onClicked: WizardViewStepModel.previousStep()
     }

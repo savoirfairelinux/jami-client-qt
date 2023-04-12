@@ -15,37 +15,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 Flickable {
     id: root
-
-
     property bool attachedFlickableMoving: root.moving
-    property alias verticalHandleColor: verticalScrollBar.handleColor
     property alias horizontalHandleColor: horizontalScrollBar.handleColor
+    property alias verticalHandleColor: verticalScrollBar.handleColor
 
-    maximumFlickVelocity: 1024
     clip: true
+    maximumFlickVelocity: 1024
 
-    ScrollBar.vertical: JamiScrollBar {
-        id: verticalScrollBar
-
-        attachedFlickableMoving: root.attachedFlickableMoving
-    }
-    ScrollBar.horizontal: JamiScrollBar {
-        id: horizontalScrollBar
-
-        attachedFlickableMoving: root.attachedFlickableMoving
-        orientation: Qt.Horizontal
-    }
-
+    Keys.onDownPressed: verticalScrollBar.increase()
     Keys.onLeftPressed: horizontalScrollBar.decrease()
     Keys.onRightPressed: horizontalScrollBar.increase()
     Keys.onUpPressed: verticalScrollBar.decrease()
-    Keys.onDownPressed: verticalScrollBar.increase()
+
+    ScrollBar.horizontal: JamiScrollBar {
+        id: horizontalScrollBar
+        attachedFlickableMoving: root.attachedFlickableMoving
+        orientation: Qt.Horizontal
+    }
+    ScrollBar.vertical: JamiScrollBar {
+        id: verticalScrollBar
+        attachedFlickableMoving: root.attachedFlickableMoving
+    }
 }

@@ -15,71 +15,68 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
 
-
-
 Rectangle {
     id: root
+    property bool isReply: false
     property bool out: true
     property int type: MsgSeq.single
-    property bool isReply: false
 
     Rectangle {
         id: maskReplyBorder
         anchors.fill: parent
         anchors.margins: -1
-        radius: 5
-        color: "transparent"
         border.color: JamiTheme.chatviewBgColor
         border.width: isReply ? 2 : 0
+        color: "transparent"
+        radius: 5
     }
-
     Rectangle {
         id: mask
+        color: root.color
+        radius: 5
         visible: type !== MsgSeq.single && !isReply
         z: -1
-        radius: 5
-        color: root.color
+
         anchors {
+            bottomMargin: type === MsgSeq.last ? root.height / 2 : 0
             fill: parent
-            leftMargin: out ? root.width/2  : 0
-            rightMargin: out ? 0 : root.width/2
-            topMargin: type === MsgSeq.first ? root.height /2 : 0
-            bottomMargin: type === MsgSeq.last ? root.height /2 : 0
+            leftMargin: out ? root.width / 2 : 0
+            rightMargin: out ? 0 : root.width / 2
+            topMargin: type === MsgSeq.first ? root.height / 2 : 0
         }
     }
-
     Rectangle {
         id: maskReply
+        color: root.color
+        radius: 5
         visible: isReply
         z: -1
-        radius: 5
-        color: root.color
+
         anchors {
+            bottomMargin: root.height / 2
             fill: parent
-            leftMargin: out ? 0 : root.width/2
-            rightMargin: !out ? 0 : root.width/2
+            leftMargin: out ? 0 : root.width / 2
+            rightMargin: !out ? 0 : root.width / 2
             topMargin: 0
-            bottomMargin: root.height /2
         }
     }
-
     Rectangle {
         id: maskReplyFirst
+        color: root.color
+        radius: 5
         visible: isReply && type === MsgSeq.first
         z: -2
-        radius: 5
-        color: root.color
+
         anchors {
-            fill: parent
-            leftMargin: out ? root.width/2 : 0
-            rightMargin: out ? 0 : root.width/2
-            topMargin: root.width/5
             bottomMargin: 0
+            fill: parent
+            leftMargin: out ? root.width / 2 : 0
+            rightMargin: out ? 0 : root.width / 2
+            topMargin: root.width / 5
         }
     }
 }

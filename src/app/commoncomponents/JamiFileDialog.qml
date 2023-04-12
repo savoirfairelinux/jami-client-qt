@@ -15,47 +15,48 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import Qt.labs.platform
-
 import net.jami.Constants 1.1
 
 FileDialog {
     id: root
+    enum Mode {
+        OpenFile,
+        OpenFiles,
+        SaveFile
+    }
 
     // Use enum to avoid importing Qt.labs.platform when using JamiFileDialog.
     property int mode: JamiFileDialog.Mode.OpenFile
+
+    title: JamiStrings.selectFile
 
     signal fileAccepted(string file)
     signal filesAccepted(var files)
 
     onAccepted: {
-        switch(fileMode) {
-        case FileDialog.OpenFile: fileAccepted(file); break
-        case FileDialog.OpenFiles: filesAccepted(files); break
-        default: fileAccepted(file)
+        switch (fileMode) {
+        case FileDialog.OpenFile:
+            fileAccepted(file);
+            break;
+        case FileDialog.OpenFiles:
+            filesAccepted(files);
+            break;
+        default:
+            fileAccepted(file);
         }
     }
-
-    enum Mode {
-        OpenFile = 0,
-        OpenFiles,
-        SaveFile
-    }
-
-    title: JamiStrings.selectFile
-
     onModeChanged: {
-        switch(mode) {
-          case JamiFileDialog.Mode.OpenFile:
-              root.fileMode = FileDialog.OpenFile
-              break
-          case JamiFileDialog.Mode.OpenFiles:
-              root.fileMode = FileDialog.OpenFiles
-              break
-          default:
-              root.fileMode = FileDialog.SaveFile
+        switch (mode) {
+        case JamiFileDialog.Mode.OpenFile:
+            root.fileMode = FileDialog.OpenFile;
+            break;
+        case JamiFileDialog.Mode.OpenFiles:
+            root.fileMode = FileDialog.OpenFiles;
+            break;
+        default:
+            root.fileMode = FileDialog.SaveFile;
         }
     }
 }

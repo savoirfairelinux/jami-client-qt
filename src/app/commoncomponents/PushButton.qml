@@ -16,189 +16,205 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
-//
 // PushButton contains the following configurable properties:
 // - colored states
 // - radius
 // - minimal support for text
 // - animation duration
 // TODO: allow transparent background tinted text/icon
-//
 AbstractButton {
     id: root
-
-    // Shape will default to a 15px circle
-    // but can be sized accordingly.
-    property int preferredSize: 30
-    property int preferredHeight: 0
-    property int preferredWidth: 0
-    property int preferredLeftMargin: 16
-    property int preferredRightMargin: 16
-    // Note the radius will default to preferredSize
-    property bool circled: true
-    property alias radius: background.radius
+    property alias alignement: textContent.horizontalAlignment
     property alias border: background.border
 
     // Text properties
     property alias buttonText: textContent.text
+    property alias buttonTextColor: textContent.color
+    property bool buttonTextEnableElide: false
+    property alias buttonTextFont: textContent.font
     property alias buttonTextHeight: textContent.height
     readonly property alias buttonTextWidth: textContent.width
-    property alias buttonTextFont: textContent.font
-    property alias buttonTextColor: textContent.color
-    property alias textHAlign: textContent.horizontalAlignment
-    property bool buttonTextEnableElide: false
-    property alias alignement: textContent.horizontalAlignment
-
-    property alias toolTipText: toolTip.text
-
-    // State colors
-    property string pressedColor: JamiTheme.pressedButtonColor
-    property string hoveredColor: JamiTheme.hoveredButtonColor
-    property string normalColor: JamiTheme.normalButtonColor
     property string checkedColor: pressedColor
+    property var checkedImageColor: null
+    property string checkedImageSource
+    // Note the radius will default to preferredSize
+    property bool circled: true
 
     // State transition duration
     property int duration: JamiTheme.shortFadeDuration
+    property bool forceHovered: false
+    property string hoveredColor: JamiTheme.hoveredButtonColor
+    property var imageColor: null
+    property alias imageContainerHeight: image.containerHeight
 
     // Image properties
     property alias imageContainerWidth: image.containerWidth
-    property alias imageContainerHeight: image.containerHeight
-    property alias source: image.source
-    property var imageColor: null
-    property string normalImageSource
-    property var checkedImageColor: null
-    property string checkedImageSource
-    property alias imagePadding: image.padding
     property alias imageOffset: image.offset
+    property alias imagePadding: image.padding
+    property string normalColor: JamiTheme.normalButtonColor
+    property string normalImageSource
+    property int preferredHeight: 0
+    property int preferredLeftMargin: 16
+    property int preferredRightMargin: 16
 
-    width: preferredWidth ? preferredWidth : preferredSize
-    height: preferredHeight ? preferredHeight : preferredSize
+    // Shape will default to a 15px circle
+    // but can be sized accordingly.
+    property int preferredSize: 30
+    property int preferredWidth: 0
 
+    // State colors
+    property string pressedColor: JamiTheme.pressedButtonColor
+    property alias radius: background.radius
+    property alias source: image.source
+    property alias textHAlign: textContent.horizontalAlignment
+    property alias toolTipText: toolTip.text
+
+    Accessible.description: toolTipText
+    Accessible.name: buttonText
+    Accessible.role: Accessible.Button
     checkable: false
     checked: false
-    hoverEnabled: true
     focusPolicy: Qt.TabFocus
+    height: preferredHeight ? preferredHeight : preferredSize
+    hoverEnabled: true
+    width: preferredWidth ? preferredWidth : preferredSize
 
-    property bool forceHovered:  false
-
-    Accessible.role: Accessible.Button
-    Accessible.name: buttonText
-    Accessible.description: toolTipText
+    Keys.onPressed: function (keyEvent) {
+        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+            clicked();
+            keyEvent.accepted = true;
+        }
+    }
 
     MaterialToolTip {
         id: toolTip
-
+        delay: Qt.styleHints.mousePressAndHoldInterval
         parent: root
         visible: hovered && (toolTipText.length > 0)
-        delay: Qt.styleHints.mousePressAndHoldInterval
     }
-
     ResponsiveImage {
         id: image
-
         anchors.centerIn: textContent.text ? undefined : root
         anchors.left: textContent.text ? root.left : undefined
         anchors.leftMargin: textContent.text ? preferredLeftMargin : 0
         anchors.verticalCenter: root.verticalCenter
-
-        containerWidth: preferredWidth ? preferredWidth : preferredSize
-        containerHeight: preferredHeight ? preferredHeight : preferredSize
-
-        source: {
-            if (checkable && checkedImageSource)
-                return checked ? checkedImageSource : normalImageSource
-            else
-                return normalImageSource
-        }
-
         color: {
             if (checked && checkedImageColor)
-                return checkedImageColor
+                return checkedImageColor;
             else if (imageColor)
-                return imageColor
+                return imageColor;
             else
-                return JamiTheme.transparentColor
+                return JamiTheme.transparentColor;
+        }
+        containerHeight: preferredHeight ? preferredHeight : preferredSize
+        containerWidth: preferredWidth ? preferredWidth : preferredSize
+        source: {
+            if (checkable && checkedImageSource)
+                return checked ? checkedImageSource : normalImageSource;
+            else
+                return normalImageSource;
         }
     }
-
     Text {
         id: textContent
-
         anchors.left: image.status !== Image.Null ? image.right : root.left
         anchors.leftMargin: preferredLeftMargin
-        anchors.verticalCenter: root.verticalCenter
-
         anchors.right: buttonTextEnableElide ? root.right : undefined
         anchors.rightMargin: preferredRightMargin
-
-        visible: text ? true : false
-
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-
+        anchors.verticalCenter: root.verticalCenter
         color: JamiTheme.primaryForegroundColor
+        elide: Qt.ElideRight
         font.kerning: true
         font.pixelSize: 12
-        elide: Qt.ElideRight
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        visible: text ? true : false
     }
 
     background: Rectangle {
         id: background
-
-        radius: circled ? preferredSize : 5
         color: normalColor
+        radius: circled ? preferredSize : 5
 
         states: [
             State {
-                name: "checked"; when: checked
-                PropertyChanges { target: background; color:  checkedColor}
+                name: "checked"
+                when: checked
+
+                PropertyChanges {
+                    color: checkedColor
+                    target: background
+                }
             },
             State {
-                name: "pressed"; when: pressed
-                PropertyChanges { target: background; color: pressedColor}
+                name: "pressed"
+                when: pressed
+
+                PropertyChanges {
+                    color: pressedColor
+                    target: background
+                }
             },
             State {
-                name: "hovered"; when: hovered || root.focus
-                PropertyChanges { target: background; color: hoveredColor }
+                name: "hovered"
+                when: hovered || root.focus
+
+                PropertyChanges {
+                    color: hoveredColor
+                    target: background
+                }
             },
             State {
-                name: "forceHovered"; when: forceHovered || root.focus
-                PropertyChanges { target: background; color: hoveredColor }
+                name: "forceHovered"
+                when: forceHovered || root.focus
+
+                PropertyChanges {
+                    color: hoveredColor
+                    target: background
+                }
             },
             State {
-                name: "normal"; when: !hovered && ! checked
-                PropertyChanges { target: background; color: normalColor }
+                name: "normal"
+                when: !hovered && !checked
+
+                PropertyChanges {
+                    color: normalColor
+                    target: background
+                }
             }
         ]
-
         transitions: [
             Transition {
-                to: "normal"; reversible: true; enabled: duration
-                ColorAnimation { duration: root.duration }
+                enabled: duration
+                reversible: true
+                to: "normal"
+
+                ColorAnimation {
+                    duration: root.duration
+                }
             },
             Transition {
-                to: "pressed"; reversible: true; enabled: duration
-                ColorAnimation { duration: root.duration * 0.5 }
+                enabled: duration
+                reversible: true
+                to: "pressed"
+
+                ColorAnimation {
+                    duration: root.duration * 0.5
+                }
             },
             Transition {
-                to: ""; reversible: true; enabled: duration
-                ColorAnimation { duration: root.duration }
+                enabled: duration
+                reversible: true
+                to: ""
+
+                ColorAnimation {
+                    duration: root.duration
+                }
             }
         ]
-
-    }
-
-    Keys.onPressed: function (keyEvent) {
-        if (keyEvent.key === Qt.Key_Enter ||
-                keyEvent.key === Qt.Key_Return) {
-            clicked()
-            keyEvent.accepted = true
-        }
     }
 }

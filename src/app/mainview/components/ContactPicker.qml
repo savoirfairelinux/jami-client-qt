@@ -15,125 +15,101 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Popup {
     id: contactPickerPopup
-
     property int type: ContactList.CONFERENCE
 
-    contentWidth: 250
     contentHeight: contactPickerPopupRectColumnLayout.height + 50
-
+    contentWidth: 250
+    modal: true
     padding: 0
 
-    modal: true
+    onAboutToShow: {
+        contactPickerListView.model = ContactAdapter.getContactSelectableModel(type);
+    }
 
+    background: Rectangle {
+        color: "transparent"
+    }
     contentItem: Rectangle {
         id: contactPickerPopupRect
+        color: JamiTheme.backgroundColor
+        radius: 10
         width: 250
 
         PushButton {
             id: closeButton
-
-            anchors.top: contactPickerPopupRect.top
-            anchors.topMargin: 5
             anchors.right: contactPickerPopupRect.right
             anchors.rightMargin: 5
+            anchors.top: contactPickerPopupRect.top
+            anchors.topMargin: 5
             imageColor: JamiTheme.textColor
-
             source: JamiResources.round_close_24dp_svg
 
             onClicked: {
-                contactPickerPopup.close()
+                contactPickerPopup.close();
             }
         }
-
         ColumnLayout {
             id: contactPickerPopupRectColumnLayout
-
             anchors.top: contactPickerPopupRect.top
             anchors.topMargin: 15
 
             Text {
                 id: contactPickerTitle
-
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: contactPickerPopupRect.width
                 Layout.preferredHeight: 30
-
-                font.pointSize: JamiTheme.textFontSize
-                font.bold: true
+                Layout.preferredWidth: contactPickerPopupRect.width
                 color: JamiTheme.textColor
-
+                font.bold: true
+                font.pointSize: JamiTheme.textFontSize
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
                 text: {
-                    switch(type) {
+                    switch (type) {
                     case ContactList.CONFERENCE:
-                        return JamiStrings.addToConference
+                        return JamiStrings.addToConference;
                     case ContactList.ADDCONVMEMBER:
-                        return JamiStrings.addToConversation
+                        return JamiStrings.addToConversation;
                     case ContactList.TRANSFER:
-                        return JamiStrings.transferThisCall
+                        return JamiStrings.transferThisCall;
                     default:
-                        return JamiStrings.addDefaultModerator
+                        return JamiStrings.addDefaultModerator;
                     }
                 }
+                verticalAlignment: Text.AlignVCenter
             }
-
             ContactSearchBar {
                 id: contactPickerContactSearchBar
-
                 Layout.alignment: Qt.AlignCenter
-                Layout.margins: 5
                 Layout.fillWidth: true
+                Layout.margins: 5
                 Layout.preferredHeight: 35
-
                 placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.addParticipant
 
                 onContactSearchBarTextChanged: {
-                    ContactAdapter.setSearchFilter(text)
+                    ContactAdapter.setSearchFilter(text);
                 }
             }
-
             JamiListView {
                 id: contactPickerListView
-
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: contactPickerPopupRect.width
                 Layout.preferredHeight: 200
-
+                Layout.preferredWidth: contactPickerPopupRect.width
                 model: ContactAdapter.getContactSelectableModel(type)
 
                 delegate: ContactPickerItemDelegate {
                     id: contactPickerItemDelegate
-
                     showPresenceIndicator: type !== ContactList.TRANSFER
                 }
             }
         }
-
-        radius: 10
-        color: JamiTheme.backgroundColor
-    }
-
-    onAboutToShow: {
-        contactPickerListView.model =
-                ContactAdapter.getContactSelectableModel(type)
-    }
-
-    background: Rectangle {
-        color: "transparent"
     }
 }

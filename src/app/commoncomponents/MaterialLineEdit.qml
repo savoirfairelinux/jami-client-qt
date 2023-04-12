@@ -16,76 +16,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 TextField {
     id: root
-
-    property int fontSize: JamiTheme.materialLineEditPointSize
-
     property var backgroundColor: JamiTheme.secondaryBackgroundColor
     property var borderColor: JamiTheme.greyBorderColor
-
+    property int fontSize: JamiTheme.materialLineEditPointSize
     property bool loseFocusWhenEnterPressed: false
     property bool underlined: false
 
-    padding: JamiTheme.materialLineEditPadding
+    color: JamiTheme.textColor
+    font.kerning: true
+    font.pointSize: fontSize
     horizontalAlignment: Text.AlignLeft
-    verticalAlignment: Text.AlignVCenter
-
-    wrapMode: Text.Wrap
+    mouseSelectionMode: TextInput.SelectCharacters
+    padding: JamiTheme.materialLineEditPadding
+    placeholderTextColor: JamiTheme.placeholderTextColor
     readOnly: false
     selectByMouse: true
-    mouseSelectionMode: TextInput.SelectCharacters
-
-    font.pointSize: fontSize
-    font.kerning: true
-    color: JamiTheme.textColor
-
-    placeholderTextColor: JamiTheme.placeholderTextColor
-
-    LineEditContextMenu {
-        id: lineEditContextMenu
-
-        lineEditObj: root
-        selectOnly: readOnly
-    }
-
-    background: Rectangle {
-
-        anchors.fill: root
-        radius: JamiTheme.primaryRadius
-
-        border.color: readOnly || underlined? "transparent" : borderColor
-        color: {
-            if (readOnly)
-                return "transparent"
-            if (underlined)
-                return borderColor
-            return backgroundColor
-        }
-
-        Rectangle {
-            visible: true
-            anchors {
-                fill: parent
-                topMargin: 0
-                rightMargin: -1
-                bottomMargin: 1
-                leftMargin: -1
-            }
-            color: root.backgroundColor
-        }
-    }
-
-    onReleased: function (event) {
-        if (event.button === Qt.RightButton)
-            lineEditContextMenu.openMenuAt(event)
-    }
+    verticalAlignment: Text.AlignVCenter
+    wrapMode: Text.Wrap
 
     // Enter/Return keys intervention
     // Now, both editingFinished and accepted
@@ -94,12 +47,47 @@ TextField {
     // (since losing focus will also emit editingFinished)
     // Use accepted when the info is not saved by focus lost
     Keys.onPressed: function (event) {
-        if (event.key === Qt.Key_Enter ||
-                event.key === Qt.Key_Return) {
+        if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
             if (loseFocusWhenEnterPressed)
-                root.focus = false
-            root.accepted()
-            event.accepted = true
+                root.focus = false;
+            root.accepted();
+            event.accepted = true;
+        }
+    }
+    onReleased: function (event) {
+        if (event.button === Qt.RightButton)
+            lineEditContextMenu.openMenuAt(event);
+    }
+
+    LineEditContextMenu {
+        id: lineEditContextMenu
+        lineEditObj: root
+        selectOnly: readOnly
+    }
+
+    background: Rectangle {
+        anchors.fill: root
+        border.color: readOnly || underlined ? "transparent" : borderColor
+        color: {
+            if (readOnly)
+                return "transparent";
+            if (underlined)
+                return borderColor;
+            return backgroundColor;
+        }
+        radius: JamiTheme.primaryRadius
+
+        Rectangle {
+            color: root.backgroundColor
+            visible: true
+
+            anchors {
+                bottomMargin: 1
+                fill: parent
+                leftMargin: -1
+                rightMargin: -1
+                topMargin: 0
+            }
         }
     }
 }

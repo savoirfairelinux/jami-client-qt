@@ -15,26 +15,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 RowLayout {
     id: root
-    property string labelText: ""
-    property string descText: ""
-    property int widthOfSwitch: 50
-    property int heightOfSwitch: 10
-
-    property string tooltipText: ""
-
-    property alias toggleSwitch: switchOfLayout
     property alias checked: switchOfLayout.checked
+    property string descText: ""
+    property int heightOfSwitch: 10
+    property string labelText: ""
+    property alias toggleSwitch: switchOfLayout
+    property string tooltipText: ""
+    property int widthOfSwitch: 50
 
     signal switchToggled
 
@@ -47,57 +42,49 @@ RowLayout {
             id: title
             Layout.fillWidth: true
             Layout.rightMargin: JamiTheme.preferredMarginSize
-            visible: labelText !== ""
-            text: root.labelText
-            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
-            font.kerning: true
-            wrapMode: Text.WordWrap
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-
             color: JamiTheme.textColor
+            font.kerning: true
+            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+            horizontalAlignment: Text.AlignLeft
+            text: root.labelText
+            verticalAlignment: Text.AlignVCenter
+            visible: labelText !== ""
+            wrapMode: Text.WordWrap
         }
-
         Text {
             id: description
             Layout.fillWidth: true
             Layout.rightMargin: JamiTheme.preferredMarginSize
-            visible: descText !== ""
-            text: root.descText
-            font.pixelSize: JamiTheme.settingToggleDescrpitonPixelSize
-            font.kerning: true
-            wrapMode: Text.WordWrap
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-
             color: JamiTheme.textColor
+            font.kerning: true
+            font.pixelSize: JamiTheme.settingToggleDescrpitonPixelSize
+            horizontalAlignment: Text.AlignLeft
+            text: root.descText
+            verticalAlignment: Text.AlignVCenter
+            visible: descText !== ""
+            wrapMode: Text.WordWrap
         }
     }
-
     JamiSwitch {
         id: switchOfLayout
+        Accessible.description: root.tooltipText
+        Accessible.name: root.labelText
+        Accessible.role: Accessible.Button
         Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-
         Layout.preferredWidth: widthOfSwitch
-
         hoverEnabled: true
         toolTipText: tooltipText
 
-        Accessible.role: Accessible.Button
-        Accessible.name: root.labelText
-        Accessible.description: root.tooltipText
-
         onToggled: switchToggled()
     }
-
     TapHandler {
-        target: parent
         enabled: parent.visible
+        target: parent
+
         onTapped: function onTapped(eventPoint) {
             // switchToggled should be emitted as onToggled is not called (because it's only called if the user click on the switch)
-            switchOfLayout.toggle()
-            switchToggled()
+            switchOfLayout.toggle();
+            switchToggled();
         }
     }
-
 }

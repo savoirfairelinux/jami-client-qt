@@ -15,110 +15,96 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
+    anchors.margins: 10
     anchors.right: webView.right
     anchors.top: webView.top
-    anchors.margins: 10
+    color: JamiTheme.mapButtonsOverlayColor
+    height: lay.height + 10
     radius: 10
     width: lay.width + 10
-    height: lay.height + 10
-    color: JamiTheme.mapButtonsOverlayColor
 
     RowLayout {
         id: lay
-
         anchors.centerIn: parent
 
         PushButton {
             id: btnUnpin
-
-            toolTipText: !isUnpin ? JamiStrings.unpin : JamiStrings.pinWindow
             imageColor: JamiTheme.mapButtonColor
             normalColor: JamiTheme.transparentColor
             source: JamiResources.unpin_svg
+            toolTipText: !isUnpin ? JamiStrings.unpin : JamiStrings.pinWindow
+
             onClicked: {
                 if (!isUnpin) {
-                    PositionManager.unPinMap(attachedAccountId)
+                    PositionManager.unPinMap(attachedAccountId);
                 } else {
-                    PositionManager.pinMap(attachedAccountId)
+                    PositionManager.pinMap(attachedAccountId);
                 }
             }
         }
-
         PushButton {
             id: btnCenter
-
-            toolTipText: JamiStrings.centerMapTooltip
             imageColor: JamiTheme.mapButtonColor
             normalColor: JamiTheme.transparentColor
             source: JamiResources.share_location_svg
+            toolTipText: JamiStrings.centerMapTooltip
+
             onClicked: {
-                webView.runJavaScript("zoomTolayersExtent()" );
+                webView.runJavaScript("zoomTolayersExtent()");
             }
         }
-
         PushButton {
             id: btnMove
-
-            toolTipText: JamiStrings.dragMapTooltip
             imageColor: JamiTheme.mapButtonColor
             normalColor: JamiTheme.transparentColor
             source: JamiResources.move_svg
+            toolTipText: JamiStrings.dragMapTooltip
             visible: !isUnpin
 
             MouseArea {
                 anchors.fill: parent
-                drag.target: mapObject
-                drag.minimumX: 0
                 drag.maximumX: maxWidth - mapObject.maxWidth
-                drag.minimumY: 0
                 drag.maximumY: maxHeight - mapObject.maxHeight
+                drag.minimumX: 0
+                drag.minimumY: 0
+                drag.target: mapObject
             }
         }
-
         PushButton {
             id: btnMaximise
-
-            visible: !isUnpin
-            toolTipText: mapObject.isFullScreen
-                         ? JamiStrings.reduceMapTooltip
-                         : JamiStrings.maximizeMapTooltip
             imageColor: JamiTheme.mapButtonColor
             normalColor: JamiTheme.transparentColor
-            source: mapObject.isFullScreen? JamiResources.close_fullscreen_24dp_svg : JamiResources.open_in_full_24dp_svg
+            source: mapObject.isFullScreen ? JamiResources.close_fullscreen_24dp_svg : JamiResources.open_in_full_24dp_svg
+            toolTipText: mapObject.isFullScreen ? JamiStrings.reduceMapTooltip : JamiStrings.maximizeMapTooltip
+            visible: !isUnpin
+
             onClicked: {
                 if (!mapObject.isFullScreen) {
-                    mapObject.x = mapObject.xPos
-                    mapObject.y = mapObject.yPos
+                    mapObject.x = mapObject.xPos;
+                    mapObject.y = mapObject.yPos;
                 }
-
-                mapObject.isFullScreen = !mapObject.isFullScreen
+                mapObject.isFullScreen = !mapObject.isFullScreen;
             }
         }
-
         PushButton {
             id: btnClose
-
-            toolTipText: JamiStrings.closeMapTooltip
             imageColor: JamiTheme.mapButtonColor
             normalColor: JamiTheme.transparentColor
             source: JamiResources.round_close_24dp_svg
+            toolTipText: JamiStrings.closeMapTooltip
             visible: !isUnpin
 
             onClicked: {
-                PositionManager.setMapInactive(attachedAccountId)
-                PositionManager.mapAutoOpening = false
+                PositionManager.setMapInactive(attachedAccountId);
+                PositionManager.mapAutoOpening = false;
             }
         }
     }

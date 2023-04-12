@@ -16,53 +16,43 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 BaseModalDialog {
     id: root
-
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
-
-    property string convId
     property string aliasText
-    property string registeredNameText
+    property string convId
     property string idText
-
     property int preferredImgSize: 80
+    property string registeredNameText
+
+    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
 
     popupContent: Rectangle {
         id: userProfileContentRect
-
+        anchors.fill: parent
         color: JamiTheme.backgroundColor
         radius: JamiTheme.modalPopupRadius
-        anchors.fill: parent
 
         GridLayout {
             id: userProfileDialogLayout
-
             anchors.centerIn: parent
             anchors.fill: parent
             anchors.margins: JamiTheme.preferredMarginSize
-
-            columns: 2
-            rows: 6
-            rowSpacing: 16
             columnSpacing: 24
+            columns: 2
+            rowSpacing: 16
+            rows: 6
 
             ConversationAvatar {
                 id: contactImage
-
                 Layout.alignment: Qt.AlignRight
-                Layout.preferredWidth: preferredImgSize
                 Layout.preferredHeight: preferredImgSize
-
+                Layout.preferredWidth: preferredImgSize
                 imageId: convId
                 showPresenceIndicator: false
             }
@@ -70,146 +60,115 @@ BaseModalDialog {
             // Visible when user alias is not empty and not equal to id.
             TextEdit {
                 id: contactAlias
-
                 Layout.alignment: Qt.AlignLeft
-
-                font.pointSize: JamiTheme.titleFontSize
-                font.kerning: true
                 color: JamiTheme.textColor
-                visible: aliasText ? (aliasText === idText ? false : true) : false
-
-                selectByMouse: true
-
-                wrapMode: Text.NoWrap
-                text: textMetricsContactAliasText.elidedText
-
+                font.kerning: true
+                font.pointSize: JamiTheme.titleFontSize
                 horizontalAlignment: Text.AlignLeft
+                selectByMouse: true
+                text: textMetricsContactAliasText.elidedText
                 verticalAlignment: Text.AlignVCenter
+                visible: aliasText ? (aliasText === idText ? false : true) : false
+                wrapMode: Text.NoWrap
 
                 TextMetrics {
                     id: textMetricsContactAliasText
+                    elide: Qt.ElideMiddle
+                    elideWidth: userProfileContentRect.width - 200
                     font: contactAlias.font
                     text: aliasText
-                    elideWidth: userProfileContentRect.width - 200
-                    elide: Qt.ElideMiddle
                 }
             }
-
             Item {
                 Layout.columnSpan: 2
                 height: 8
             }
-
             Text {
                 Layout.alignment: Qt.AlignRight
+                color: JamiTheme.textColor
                 font.pointSize: JamiTheme.menuFontSize
                 text: JamiStrings.information
-                color: JamiTheme.textColor
             }
-
-            Item { Layout.fillWidth: true }
-
+            Item {
+                Layout.fillWidth: true
+            }
             Text {
                 Layout.alignment: Qt.AlignRight
+                color: JamiTheme.faddedFontColor
                 font.pointSize: JamiTheme.textFontSize
                 text: JamiStrings.username
                 visible: contactDisplayName.visible
-                color: JamiTheme.faddedFontColor
             }
 
             // Visible when user name is not empty or equals to id.
             TextEdit {
                 id: contactDisplayName
-
                 Layout.alignment: Qt.AlignLeft
-
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
                 color: JamiTheme.textColor
-                visible: registeredNameText ? (registeredNameText === idText ? false : true) : false
-
+                font.kerning: true
+                font.pointSize: JamiTheme.textFontSize
+                horizontalAlignment: Text.AlignLeft
                 readOnly: true
                 selectByMouse: true
-
-                wrapMode: Text.NoWrap
                 text: textMetricsContactDisplayNameText.elidedText
-
-                horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
+                visible: registeredNameText ? (registeredNameText === idText ? false : true) : false
+                wrapMode: Text.NoWrap
 
                 TextMetrics {
                     id: textMetricsContactDisplayNameText
+                    elide: Qt.ElideMiddle
+                    elideWidth: userProfileContentRect.width - 200
                     font: contactDisplayName.font
                     text: registeredNameText
-                    elideWidth: userProfileContentRect.width - 200
-                    elide: Qt.ElideMiddle
                 }
             }
-
             Text {
                 Layout.alignment: Qt.AlignRight
+                color: JamiTheme.faddedFontColor
                 font.pointSize: JamiTheme.textFontSize
                 text: JamiStrings.identifier
-                color: JamiTheme.faddedFontColor
             }
-
             TextEdit {
                 id: contactId
-
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: userProfileContentRect.width - 200
-
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
                 color: JamiTheme.textColor
-
+                font.kerning: true
+                font.pointSize: JamiTheme.textFontSize
+                horizontalAlignment: Text.AlignLeft
                 readOnly: true
                 selectByMouse: true
-
-                wrapMode: TextEdit.WrapAnywhere
                 text: idText
-
-                horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
+                wrapMode: TextEdit.WrapAnywhere
             }
-
             Text {
                 Layout.alignment: Qt.AlignRight
+                color: JamiTheme.faddedFontColor
                 font.pointSize: JamiTheme.textFontSize
                 text: JamiStrings.qrCode
-                color: JamiTheme.faddedFontColor
             }
-
             Image {
                 id: contactQrImage
-
                 Layout.alignment: Qt.AlignLeft
-
                 fillMode: Image.PreserveAspectFit
-                sourceSize.width: preferredImgSize
-                sourceSize.height: preferredImgSize
                 mipmap: false
                 smooth: false
-
-                source: convId !== "" ?
-                            "image://qrImage/contact_" + convId :
-                            ""
+                source: convId !== "" ? "image://qrImage/contact_" + convId : ""
+                sourceSize.height: preferredImgSize
+                sourceSize.width: preferredImgSize
             }
-
             MaterialButton {
                 id: btnClose
-
-                Layout.columnSpan: 2
                 Layout.alignment: Qt.AlignHCenter
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2
+                Layout.columnSpan: 2
                 buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
                 color: JamiTheme.buttonTintedBlack
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
+                preferredWidth: JamiTheme.preferredFieldWidth / 2
                 pressedColor: JamiTheme.buttonTintedBlackPressed
                 secondary: true
-
                 text: JamiStrings.close
 
                 onClicked: close()

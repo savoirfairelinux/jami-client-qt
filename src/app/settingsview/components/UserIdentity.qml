@@ -15,46 +15,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
     id: root
-
-    property int itemWidth
     property bool isSIP
+    property int itemWidth
 
     ElidedTextLabel {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
         eText: JamiStrings.identity
-        maxWidth: root.width - 72
         fontSize: JamiTheme.headerFontSize
+        maxWidth: root.width - 72
     }
-
     JamiUserIdentity {
         id: jamiUserIdentity
-        visible: !root.isSIP
-        itemWidth: root.itemWidth
-
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize
+        itemWidth: root.itemWidth
+        visible: !root.isSIP
     }
-
     SIPUserIdentity {
         id: sipUserIdentity
-        visible: root.isSIP
-        itemWidth: root.itemWidth
-
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize
+        itemWidth: root.itemWidth
+        visible: root.isSIP
     }
 }

@@ -15,61 +15,77 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import SortFilterProxyModel 0.2
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Popup {
     id: root
-
-    y: parent.height
-    implicitWidth: parent.width
     // limit the number of accounts shown at once
     implicitHeight: {
-        return visible ? Math.min(
-                             JamiTheme.accountListItemHeight * Math.min(
-                                 5, listView.model.count + 1),
-                             appWindow.height - parent.height) : 0
+        return visible ? Math.min(JamiTheme.accountListItemHeight * Math.min(5, listView.model.count + 1), appWindow.height - parent.height) : 0;
     }
-    padding: 0
+    implicitWidth: parent.width
     modal: true
+    padding: 0
+    y: parent.height
+
     Overlay.modal: Rectangle {
         color: JamiTheme.transparentColor
     }
+    background: Rectangle {
+        color: JamiTheme.backgroundColor
 
+        CustomBorder {
+            bBorderwidth: 2
+            borderColor: JamiTheme.tabbarBorderColor
+            commonBorder: false
+            lBorderwidth: 2
+            rBorderwidth: 1
+            tBorderwidth: 1
+        }
+        layer {
+            enabled: true
+
+            effect: DropShadow {
+                color: JamiTheme.shadowColor
+                horizontalOffset: 3.0
+                radius: 16.0
+                transparentBorder: true
+                verticalOffset: 3.0
+            }
+        }
+    }
     contentItem: ColumnLayout {
         spacing: 0
 
         JamiListView {
             id: listView
-
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width
 
-            model: SortFilterProxyModel {
-                sourceModel: AccountListModel
-                filters: ValueFilter {
-                    roleName: "ID"
-                    value: LRCInstance.currentAccountId
-                    inverted: true
-                }
-            }
             delegate: AccountItemDelegate {
                 height: JamiTheme.accountListItemHeight
                 width: root.width
+
                 onClicked: {
-                    root.close()
-                    LRCInstance.currentAccountId = ID
+                    root.close();
+                    LRCInstance.currentAccountId = ID;
+                }
+            }
+            model: SortFilterProxyModel {
+                sourceModel: AccountListModel
+
+                filters: ValueFilter {
+                    inverted: true
+                    roleName: "ID"
+                    value: LRCInstance.currentAccountId
                 }
             }
         }
@@ -81,48 +97,24 @@ Popup {
         // as it causes other complexities in handling the drop shadow
         ItemDelegate {
             id: footerItem
-
             Layout.preferredHeight: JamiTheme.accountListItemHeight
             Layout.preferredWidth: parent.width
 
+            onClicked: {
+                root.close();
+                viewCoordinator.present("WizardView");
+            }
+
             background: Rectangle {
-                color: footerItem.hovered?
-                           JamiTheme.hoverColor :
-                           JamiTheme.backgroundColor
+                color: footerItem.hovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
 
                 Text {
                     anchors.centerIn: parent
-                    text: JamiStrings.addAccount + "+"
-                    textFormat: TextEdit.PlainText
                     color: JamiTheme.textColor
                     font.pointSize: JamiTheme.textFontSize
+                    text: JamiStrings.addAccount + "+"
+                    textFormat: TextEdit.PlainText
                 }
-            }
-
-            onClicked: {
-                root.close()
-                viewCoordinator.present("WizardView")
-            }
-        }
-    }
-
-    background: Rectangle {
-        color: JamiTheme.backgroundColor
-        CustomBorder {
-            commonBorder: false
-            tBorderwidth: 1; lBorderwidth: 2
-            bBorderwidth: 2; rBorderwidth: 1
-            borderColor: JamiTheme.tabbarBorderColor
-        }
-
-        layer {
-            enabled: true
-            effect: DropShadow {
-                horizontalOffset: 3.0
-                verticalOffset: 3.0
-                radius: 16.0
-                color: JamiTheme.shadowColor
-                transparentBorder: true
             }
         }
     }

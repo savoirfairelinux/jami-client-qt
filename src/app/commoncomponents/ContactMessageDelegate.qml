@@ -18,81 +18,80 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 Column {
     id: root
-
-    property bool showTime: false
-    property bool showDay: false
-    property int timestamp: Timestamp
-    property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
+    property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+    property alias messageToSend: textLabel.text
     property int seq: MsgSeq.single//a changer par textlabel
-    property alias  messageToSend : textLabel.text
+    property bool showDay: false
+    property bool showTime: false
+    property int timestamp: Timestamp
 
-    width: ListView.view ? ListView.view.width : 0
+    bottomPadding: 12
+    opacity: 0
     spacing: 2
     topPadding: 12
-    bottomPadding: 12
+    width: ListView.view ? ListView.view.width : 0
+
+    Component.onCompleted: opacity = 1
 
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width
 
         TimestampInfo {
-            id:timestampItem
-
+            id: timestampItem
+            Layout.alignment: Qt.AlignHCenter
+            formattedDay: root.formattedDay
+            formattedTime: root.formattedTime
             showDay: root.showDay
             showTime: root.showTime
-            formattedTime: root.formattedTime
-            formattedDay: root.formattedDay
-            Layout.alignment: Qt.AlignHCenter
         }
-
         Rectangle {
             id: msg
-
-            width: childrenRect.width
+            Layout.alignment: Qt.AlignCenter
+            border.color: CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : CurrentConversation.color
+            border.width: 1
+            color: "transparent"
             height: JamiTheme.contactMessageAvatarSize + 12
             radius: JamiTheme.contactMessageAvatarSize / 2 + 6
-            Layout.alignment: Qt.AlignCenter
-            color: "transparent"
-            border.width: 1
-            border.color: CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : CurrentConversation.color
+            width: childrenRect.width
 
             RowLayout {
                 anchors.verticalCenter: parent.verticalCenter
 
                 Avatar {
                     Layout.leftMargin: 6
-                    width: JamiTheme.contactMessageAvatarSize
                     height: JamiTheme.contactMessageAvatarSize
-                    visible: ActionUri !== ""
                     imageId: ActionUri !== CurrentAccount.uri ? ActionUri : CurrentAccount.id
-                    showPresenceIndicator: false
                     mode: ActionUri !== CurrentAccount.uri ? Avatar.Mode.Contact : Avatar.Mode.Account
+                    showPresenceIndicator: false
+                    visible: ActionUri !== ""
+                    width: JamiTheme.contactMessageAvatarSize
                 }
-
                 Label {
                     id: textLabel
-
                     Layout.rightMargin: 6
-                    width: parent.width
-                    text: Body
-                    horizontalAlignment: Qt.AlignHCenter
-                    font.pointSize: JamiTheme.contactEventPointSize
-                    font.bold: true
                     color: JamiTheme.chatviewTextColor
+                    font.bold: true
+                    font.pointSize: JamiTheme.contactEventPointSize
+                    horizontalAlignment: Qt.AlignHCenter
+                    text: Body
                     textFormat: TextEdit.PlainText
+                    width: parent.width
                 }
             }
         }
     }
-    opacity: 0
-    Behavior on opacity { NumberAnimation { duration: 100 } }
-    Component.onCompleted: opacity = 1
+
+    Behavior on opacity  {
+        NumberAnimation {
+            duration: 100
+        }
+    }
 }

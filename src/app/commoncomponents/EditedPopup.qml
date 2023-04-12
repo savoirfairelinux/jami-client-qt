@@ -14,60 +14,54 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 BaseModalDialog {
     id: root
-
-    width: 488
-    height: 256
-
     property var previousBodies: undefined
+
+    height: 256
+    width: 488
 
     popupContent: Item {
         id: rect
-
         width: root.width
 
         JamiListView {
             anchors.fill: parent
             anchors.margins: JamiTheme.preferredMarginSize
-
             model: root.previousBodies
 
             delegate: Rectangle {
-                width: root.width - 2 * JamiTheme.preferredMarginSize
-                height: Math.max(JamiTheme.menuItemsPreferredHeight, rowBody.implicitHeight)
                 color: index % 2 === 0 ? JamiTheme.backgroundColor : JamiTheme.secondaryBackgroundColor
+                height: Math.max(JamiTheme.menuItemsPreferredHeight, rowBody.implicitHeight)
+                width: root.width - 2 * JamiTheme.preferredMarginSize
 
                 RowLayout {
                     id: rowBody
+                    anchors.centerIn: parent
                     spacing: JamiTheme.preferredMarginSize
                     width: parent.width
-                    anchors.centerIn: parent
 
                     Text {
-                        Layout.maximumWidth: root.width / 2
                         Layout.leftMargin: JamiTheme.settingsMarginSize
-                        elide: Text.ElideRight
-
-                        text: MessagesAdapter.getFormattedDay(modelData.timestamp.toString())
-                              + " - " + MessagesAdapter.getFormattedTime(modelData.timestamp.toString())
+                        Layout.maximumWidth: root.width / 2
                         color: JamiTheme.textColor
+                        elide: Text.ElideRight
                         opacity: 0.5
+                        text: MessagesAdapter.getFormattedDay(modelData.timestamp.toString()) + " - " + MessagesAdapter.getFormattedTime(modelData.timestamp.toString())
                     }
-
                     Text {
                         Layout.alignment: Qt.AlignLeft
                         Layout.fillWidth: true
+                        color: JamiTheme.textColor
+                        text: metrics.elidedText
 
                         TextMetrics {
                             id: metrics
@@ -75,23 +69,20 @@ BaseModalDialog {
                             elideWidth: 3 * rowBody.width / 4 - 2 * JamiTheme.preferredMarginSize
                             text: modelData.body === "" ? JamiStrings.deletedMessage : modelData.body
                         }
-
-                        text: metrics.elidedText
-                        color: JamiTheme.textColor
                     }
                 }
             }
         }
-
         PushButton {
             id: btnCancel
-            imageColor: "grey"
-            normalColor: "transparent"
             anchors.right: parent.right
+            anchors.rightMargin: 10
             anchors.top: parent.top
             anchors.topMargin: 10
-            anchors.rightMargin: 10
+            imageColor: "grey"
+            normalColor: "transparent"
             source: JamiResources.round_close_24dp_svg
+
             onClicked: close()
         }
     }

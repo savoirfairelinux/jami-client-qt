@@ -16,28 +16,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
 ListView {
     id: root
-
     property alias verticalScrollBar: verticalScrollBar
 
-    layer.mipmap: false
     clip: true
+    layer.mipmap: false
     maximumFlickVelocity: 1024
+
+    Keys.onDownPressed: verticalScrollBar.increase()
+    Keys.onUpPressed: verticalScrollBar.decrease()
 
     ScrollBar.vertical: JamiScrollBar {
         id: verticalScrollBar
-
         attachedFlickableMoving: root.moving
     }
-
-    Keys.onUpPressed: verticalScrollBar.decrease()
-    Keys.onDownPressed: verticalScrollBar.increase()
 }

@@ -18,67 +18,49 @@
 
 // JamiQmlUtils as a singleton is to provide global property entry
 pragma Singleton
-
 import QtQuick
-
 import net.jami.Adapters 1.1
 
 Item {
-    property string qmlFilePrefix: "file:/"
-
-    readonly property string mainViewLoadPath: "qrc:/mainview/MainView.qml"
-    readonly property string wizardViewLoadPath: "qrc:/wizardview/WizardView.qml"
-    readonly property string base64StringTitle: "data:image/png;base64,"
-
     property var accountCreationInputParaObject: ({})
-
-    function setUpAccountCreationInputPara(inputPara) {
-        JamiQmlUtils.accountCreationInputParaObject = {}
-        Object.assign(JamiQmlUtils.accountCreationInputParaObject, inputPara)
-        return accountCreationInputParaObject
-    }
+    property point audioRecordMessageButtonInMainViewPoint
+    property var audioRecordMessageButtonObj
+    readonly property string base64StringTitle: "data:image/png;base64,"
+    property var emojiPickerButtonInMainViewPoint
+    property var emojiPickerButtonObj
+    readonly property string mainViewLoadPath: "qrc:/mainview/MainView.qml"
 
     // MessageBar buttons in mainview points
     property var mainViewRectObj
     property var messageBarButtonsRowObj
-    property var audioRecordMessageButtonObj
-    property var videoRecordMessageButtonObj
-    property var emojiPickerButtonObj
-    property point audioRecordMessageButtonInMainViewPoint
+    property string qmlFilePrefix: "file:/"
     property point videoRecordMessageButtonInMainViewPoint
-    property var emojiPickerButtonInMainViewPoint
+    property var videoRecordMessageButtonObj
+    readonly property string wizardViewLoadPath: "qrc:/wizardview/WizardView.qml"
 
+    function clamp(val, min, max) {
+        return Math.min(Math.max(val, min), max);
+    }
+    function getTextBoundingRect(font, text) {
+        globalTextMetrics.font = font;
+        globalTextMetrics.text = text;
+        return Qt.size(globalTextMetrics.contentWidth, globalTextMetrics.contentHeight);
+    }
+    function setUpAccountCreationInputPara(inputPara) {
+        JamiQmlUtils.accountCreationInputParaObject = {};
+        Object.assign(JamiQmlUtils.accountCreationInputParaObject, inputPara);
+        return accountCreationInputParaObject;
+    }
     signal settingsPageRequested(int index)
-
     function updateMessageBarButtonsPoints() {
         if (messageBarButtonsRowObj && audioRecordMessageButtonObj && videoRecordMessageButtonObj) {
-            audioRecordMessageButtonInMainViewPoint =
-                    messageBarButtonsRowObj.mapToItem(mainViewRectObj,
-                                                      audioRecordMessageButtonObj.x,
-                                                      audioRecordMessageButtonObj.y)
-            videoRecordMessageButtonInMainViewPoint =
-                    messageBarButtonsRowObj.mapToItem(mainViewRectObj,
-                                                      videoRecordMessageButtonObj.x,
-                                                      videoRecordMessageButtonObj.y)
-            emojiPickerButtonInMainViewPoint =
-                    messageBarButtonsRowObj.mapToItem(mainViewRectObj,
-                                                      emojiPickerButtonObj.x,
-                                                      emojiPickerButtonObj.y)
+            audioRecordMessageButtonInMainViewPoint = messageBarButtonsRowObj.mapToItem(mainViewRectObj, audioRecordMessageButtonObj.x, audioRecordMessageButtonObj.y);
+            videoRecordMessageButtonInMainViewPoint = messageBarButtonsRowObj.mapToItem(mainViewRectObj, videoRecordMessageButtonObj.x, videoRecordMessageButtonObj.y);
+            emojiPickerButtonInMainViewPoint = messageBarButtonsRowObj.mapToItem(mainViewRectObj, emojiPickerButtonObj.x, emojiPickerButtonObj.y);
         }
     }
 
     Text {
         id: globalTextMetrics
-    }
-
-    function getTextBoundingRect(font, text) {
-        globalTextMetrics.font = font
-        globalTextMetrics.text = text
-
-        return Qt.size(globalTextMetrics.contentWidth, globalTextMetrics.contentHeight)
-    }
-
-    function clamp(val, min, max) {
-        return Math.min(Math.max(val, min), max)
     }
 }

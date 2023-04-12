@@ -16,146 +16,122 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 RowLayout {
     id: root
-
-    property alias title: title.text
-    property alias enabled: spinbox.enabled
+    property string borderColor: JamiTheme.greyBorderColor
     property alias bottomValue: spinbox.from
+    property alias enabled: spinbox.enabled
+    property int itemWidth
+    property alias step: spinbox.stepSize
+    property alias title: title.text
+    property alias tooltipText: toolTip.text
     property alias topValue: spinbox.to
     property alias valueField: spinbox.value
-    property alias tooltipText: toolTip.text
-    property alias step: spinbox.stepSize
-
-    property string borderColor: JamiTheme.greyBorderColor
-    property int itemWidth
 
     signal newValue
 
     Text {
         id: title
-
         Layout.fillWidth: true
         Layout.rightMargin: JamiTheme.preferredMarginSize
-
         color: JamiTheme.textColor
-        wrapMode: Text.WordWrap
-        font.pointSize: JamiTheme.settingsFontSize
         font.kerning: true
+        font.pointSize: JamiTheme.settingsFontSize
         verticalAlignment: Text.AlignVCenter
+        wrapMode: Text.WordWrap
     }
-
     SpinBox {
         id: spinbox
-
-        wheelEnabled: true
-        hoverEnabled: true
-
-        Layout.preferredWidth: root.itemWidth
         Layout.alignment: Qt.AlignCenter
-        font.pointSize: JamiTheme.settingsFontSize
+        Layout.preferredWidth: root.itemWidth
         font.kerning: true
-
-        onValueChanged: newValue()
+        font.pointSize: JamiTheme.settingsFontSize
+        height: down.implicitIndicatorHeight
+        hoverEnabled: true
+        wheelEnabled: true
 
         Keys.onPressed: function (keyEvent) {
-
-            if (keyEvent.key === Qt.Key_Enter ||
-                    keyEvent.key === Qt.Key_Return) {
-                textInput.focus = false
-                spinbox.value = textInput.text
-                keyEvent.accepted = true
+            if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+                textInput.focus = false;
+                spinbox.value = textInput.text;
+                keyEvent.accepted = true;
             }
         }
+        onValueChanged: newValue()
 
-        contentItem: TextInput {
-            id: textInput
-
-            text: spinbox.textFromValue(spinbox.value, spinbox.locale)
-            color : JamiTheme.textColor
-            horizontalAlignment: Qt.AlignHCenter
-            verticalAlignment: Qt.AlignVCenter
-            inputMethodHints : Qt.ImhDigitsOnly
-            validator: spinbox.validator
-            font.pointSize: JamiTheme.settingsFontSize
+        MaterialToolTip {
+            id: toolTip
+            delay: Qt.styleHints.mousePressAndHoldInterval
+            parent: spinbox
+            visible: spinbox.hovered && (root.tooltipText.length > 0)
         }
 
         background: Rectangle {
             border.color: JamiTheme.spinboxBorderColor
-            implicitHeight: textInput.implicitHeight + JamiTheme.buttontextHeightMargin
             color: JamiTheme.transparentColor
+            implicitHeight: textInput.implicitHeight + JamiTheme.buttontextHeightMargin
             radius: JamiTheme.primaryRadius
         }
-
-        MaterialToolTip {
-            id: toolTip
-            parent: spinbox
-            visible: spinbox.hovered && (root.tooltipText.length > 0)
-            delay: Qt.styleHints.mousePressAndHoldInterval
+        contentItem: TextInput {
+            id: textInput
+            color: JamiTheme.textColor
+            font.pointSize: JamiTheme.settingsFontSize
+            horizontalAlignment: Qt.AlignHCenter
+            inputMethodHints: Qt.ImhDigitsOnly
+            text: spinbox.textFromValue(spinbox.value, spinbox.locale)
+            validator: spinbox.validator
+            verticalAlignment: Qt.AlignVCenter
         }
-
-        height: down.implicitIndicatorHeight
-
-        up.indicator: Rectangle {
-
-            width: parent.width / 8
-            radius : 4
-            anchors {
-                top : parent.top
-                bottom : parent.bottom
-                right: parent.right
-                margins: 1
-            }
-
-            color: JamiTheme.transparentColor
-
-            ResponsiveImage {
-
-                containerHeight: 6
-                containerWidth: 10
-                width: 20
-                height: 20
-                color: JamiTheme.tintedBlue
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                source: JamiResources.chevron_right_black_24dp_svg
-            }
-        }
-
         down.indicator: Rectangle {
-
+            color: JamiTheme.transparentColor
+            radius: 4
             width: parent.width / 8
-            radius : 4
+
             anchors {
-                top : parent.top
-                bottom : parent.bottom
+                bottom: parent.bottom
                 left: parent.left
                 margins: 1
+                top: parent.top
             }
-
-            color: JamiTheme.transparentColor
-
             ResponsiveImage {
-
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                color: JamiTheme.tintedBlue
                 containerHeight: 6
                 containerWidth: 10
-                width: 20
                 height: 20
-                color: JamiTheme.tintedBlue
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
                 source: JamiResources.chevron_left_black_24dp_svg
+                width: 20
+            }
+        }
+        up.indicator: Rectangle {
+            color: JamiTheme.transparentColor
+            radius: 4
+            width: parent.width / 8
+
+            anchors {
+                bottom: parent.bottom
+                margins: 1
+                right: parent.right
+                top: parent.top
+            }
+            ResponsiveImage {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                color: JamiTheme.tintedBlue
+                containerHeight: 6
+                containerWidth: 10
+                height: 20
+                source: JamiResources.chevron_right_black_24dp_svg
+                width: 20
             }
         }
     }

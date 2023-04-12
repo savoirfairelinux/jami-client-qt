@@ -15,37 +15,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 
 // Inspired by
 // https://stackoverflow.com/questions/16534489/qml-control-border-width-and-color-on-any-one-side-of-rectangle-element
 Rectangle {
-
+    property int bBorderwidth: 1
+    property string borderColor: "white"
     property bool commonBorder: true
-
+    property int commonBorderWidth: 1
     property int lBorderwidth: 1
     property int rBorderwidth: 1
     property int tBorderwidth: 1
-    property int bBorderwidth: 1
-
-    property int commonBorderWidth: 1
-
-    z: -1
-
-    property string borderColor: "white"
 
     color: borderColor
+    z: -1
 
     anchors {
-        left: parent.left
-        right: parent.right
-        top: parent.top
         bottom: parent.bottom
-
-        topMargin: commonBorder ? -commonBorderWidth : -tBorderwidth
         bottomMargin: commonBorder ? -commonBorderWidth : -bBorderwidth
+        left: parent.left
         leftMargin: commonBorder ? -commonBorderWidth : -lBorderwidth
+        right: parent.right
         rightMargin: commonBorder ? -commonBorderWidth : -rBorderwidth
+        top: parent.top
+        topMargin: commonBorder ? -commonBorderWidth : -tBorderwidth
     }
 }

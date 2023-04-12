@@ -15,53 +15,41 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
     color: "transparent"
-    width : 480
+    width: 480
+
     JamiFlickable {
         id: projectCreditsFlickable
-
         anchors.fill: parent
-
         contentHeight: projectCreditsTextArea.paintedHeight
 
         TextEdit {
             id: projectCreditsTextArea
-
-            horizontalAlignment: Text.AlignHCenter
-
-            width: projectCreditsFlickable.width
             color: JamiTheme.textColor
-            selectByMouse: false
-            readOnly: true
-            wrapMode: Text.WordWrap
-
             font.pointSize: JamiTheme.textFontSize
+            horizontalAlignment: Text.AlignHCenter
+            readOnly: true
+            selectByMouse: false
             text: UtilsAdapter.getProjectCredits()
             textFormat: TextEdit.RichText
+            width: projectCreditsFlickable.width
+            wrapMode: Text.WordWrap
 
             MouseArea {
-                anchors.fill: parent
-                propagateComposedEvents: true
-                cursorShape: Qt.ArrowCursor
                 acceptedButtons: Qt.NoButton
+                anchors.fill: parent
+                cursorShape: Qt.ArrowCursor
+                propagateComposedEvents: true
             }
-
         }
     }
-
-
-
-
 }

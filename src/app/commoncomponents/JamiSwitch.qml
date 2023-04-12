@@ -15,62 +15,49 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 Switch {
     id: root
-
     property alias toolTipText: toolTip.text
 
     hoverEnabled: true
 
+    Keys.onPressed: function (keyEvent) {
+        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+            checked = !checked;
+            keyEvent.accepted = true;
+        }
+    }
+
     MaterialToolTip {
         id: toolTip
-
+        delay: Qt.styleHints.mousePressAndHoldInterval
         parent: root
         visible: hovered && (toolTipText.length > 0)
-        delay: Qt.styleHints.mousePressAndHoldInterval
     }
 
     indicator: Rectangle {
         id: handleBackground
-
-        implicitWidth: JamiTheme.switchPreferredWidth
+        border.color: handleBackground.color
+        color: JamiTheme.switchBackgroundColor
         implicitHeight: JamiTheme.switchPreferredHeight
-
+        implicitWidth: JamiTheme.switchPreferredWidth
+        radius: JamiTheme.switchIndicatorRadius
         x: root.leftPadding
         y: parent.height / 2 - height / 2
 
-        radius: JamiTheme.switchIndicatorRadius
-        color: JamiTheme.switchBackgroundColor
-        border.color: handleBackground.color
-
         Rectangle {
             id: handle
-
+            border.color: JamiTheme.switchHandleBorderColor
+            color: root.checked ? JamiTheme.switchHandleCheckedColor : JamiTheme.switchHandleColor
+            height: JamiTheme.switchPreferredHeight
+            radius: JamiTheme.switchIndicatorRadius
+            width: JamiTheme.switchIndicatorPreferredWidth
             x: root.checked ? parent.width - width : 0
             y: parent.height / 2 - height / 2
-
-            width: JamiTheme.switchIndicatorPreferredWidth
-            height: JamiTheme.switchPreferredHeight
-
-            radius: JamiTheme.switchIndicatorRadius
-
-            color: root.checked ? JamiTheme.switchHandleCheckedColor :
-                                  JamiTheme.switchHandleColor
-            border.color: JamiTheme.switchHandleBorderColor
-        }
-    }
-
-    Keys.onPressed: function (keyEvent) {
-        if (keyEvent.key === Qt.Key_Enter ||
-                keyEvent.key === Qt.Key_Return) {
-            checked = !checked
-            keyEvent.accepted = true
         }
     }
 }

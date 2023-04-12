@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtMultimedia
 import Qt5Compat.GraphicalEffects
@@ -23,20 +22,17 @@ import Qt5Compat.GraphicalEffects
 Item {
     id: root
 
-    property string rendererId
-    property alias videoSink: videoOutput.videoSink
-    property alias underlayItems: rootUnderlayItem.children
-    property alias overlayItems: rootOverlayItem.children
-    property real invAspectRatio: (videoOutput.sourceRect.height
-                                   / videoOutput.sourceRect.width) ||
-                                  0.5625 // 16:9 default
-    property bool crop: false
-    property bool flip: false
-
     // This rect describes the actual rendered content rectangle
     // as the VideoOutput component may use PreserveAspectFit
     // (pillarbox/letterbox).
     property rect contentRect: videoOutput.contentRect
+    property bool crop: false
+    property bool flip: false
+    property real invAspectRatio: (videoOutput.sourceRect.height / videoOutput.sourceRect.width) || 0.5625 // 16:9 default
+    property alias overlayItems: rootOverlayItem.children
+    property string rendererId
+    property alias underlayItems: rootUnderlayItem.children
+    property alias videoSink: videoOutput.videoSink
     property real xScale: contentRect.width / videoOutput.sourceRect.width
     property real yScale: contentRect.height / videoOutput.sourceRect.height
 
@@ -47,39 +43,34 @@ Item {
         anchors.fill: parent
         color: "black"
     }
-
     Item {
         id: rootUnderlayItem
         anchors.fill: parent
     }
-
     VideoOutput {
         id: videoOutput
-
-        antialiasing: true
         anchors.fill: parent
+        antialiasing: true
+        fillMode: crop ? VideoOutput.PreserveAspectCrop : VideoOutput.PreserveAspectFit
+        layer.enabled: opacity
         opacity: videoProvider.activeRenderers[rendererId] !== undefined
         visible: opacity
 
-        fillMode: crop ?
-                      VideoOutput.PreserveAspectCrop :
-                      VideoOutput.PreserveAspectFit
-
-        Behavior on opacity { NumberAnimation { duration: 150 } }
-
-        layer.enabled: opacity
         layer.effect: FastBlur {
-            source: videoOutput
             anchors.fill: root
             radius: (1. - opacity) * 100
+            source: videoOutput
         }
-
-        transform:  Scale {
+        Behavior on opacity  {
+            NumberAnimation {
+                duration: 150
+            }
+        }
+        transform: Scale {
             origin.x: videoOutput.width / 2
             xScale: root.flip ? -1 : 1
         }
     }
-
     Item {
         id: rootOverlayItem
         anchors.fill: parent

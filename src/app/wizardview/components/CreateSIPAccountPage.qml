@@ -16,334 +16,270 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
     property int preferredHeight: createSIPAccountPageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
-    signal showThisPage
+    color: JamiTheme.secondaryBackgroundColor
 
     function clearAllTextFields() {
-        UtilsAdapter.setTempCreationImageFromString()
+        UtilsAdapter.setTempCreationImageFromString();
     }
+    signal showThisPage
 
     Connections {
         target: WizardViewStepModel
 
         function onMainStepChanged() {
-            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
-                    WizardViewStepModel.accountCreationOption ===
-                    WizardViewStepModel.AccountCreationOption.CreateSipAccount) {
-                clearAllTextFields()
-                root.showThisPage()
-                sipServernameEdit.focus = true
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation && WizardViewStepModel.accountCreationOption === WizardViewStepModel.AccountCreationOption.CreateSipAccount) {
+                clearAllTextFields();
+                root.showThisPage();
+                sipServernameEdit.focus = true;
             }
         }
     }
-
-    color: JamiTheme.secondaryBackgroundColor
-
     StackLayout {
         id: createAccountStack
-
-        objectName: "createAccountStack"
         anchors.fill: parent
+        objectName: "createAccountStack"
 
         Rectangle {
-
             Layout.fillHeight: true
             Layout.fillWidth: true
             color: JamiTheme.secondaryBackgroundColor
 
             ColumnLayout {
                 id: createSIPAccountPageColumnLayout
-
-                spacing: JamiTheme.wizardViewPageLayoutSpacing
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
+                spacing: JamiTheme.wizardViewPageLayoutSpacing
                 width: Math.max(508, root.width - 100)
 
                 Label {
-
-                    text: JamiStrings.sipAccount
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: JamiTheme.preferredMarginSize
+                    color: JamiTheme.textColor
                     font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
                     horizontalAlignment: Text.AlignHCenter
+                    text: JamiStrings.sipAccount
                     verticalAlignment: Text.AlignVCenter
-                    color: JamiTheme.textColor
                 }
-
                 Label {
-                    text: JamiStrings.configureExistingSIP
+                    Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: JamiTheme.wizardViewDescriptionMarginSize
-                    Layout.alignment: Qt.AlignCenter
+                    color: JamiTheme.textColor
                     font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
                     font.weight: Font.Medium
-                    wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignHCenter
+                    text: JamiStrings.configureExistingSIP
                     verticalAlignment: Text.AlignVCenter
-                    color: JamiTheme.textColor
+                    wrapMode: Text.WordWrap
                 }
-
                 ModalTextEdit {
                     id: sipServernameEdit
-
-                    objectName: "sipServernameEdit"
-
+                    KeyNavigation.down: sipUsernameEdit
+                    KeyNavigation.tab: KeyNavigation.down
+                    KeyNavigation.up: backButton
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-
+                    objectName: "sipServernameEdit"
                     placeholderText: JamiStrings.server
-
-                    KeyNavigation.tab: KeyNavigation.down
-                    KeyNavigation.up: backButton
-                    KeyNavigation.down: sipUsernameEdit
 
                     onAccepted: sipUsernameEdit.forceActiveFocus()
                 }
-
                 ModalTextEdit {
                     id: sipUsernameEdit
-
-                    objectName: "sipUsernameEdit"
-
+                    KeyNavigation.down: sipPasswordEdit
+                    KeyNavigation.tab: KeyNavigation.down
+                    KeyNavigation.up: sipServernameEdit
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: JamiTheme.wizardViewMarginSize
-
+                    objectName: "sipUsernameEdit"
                     placeholderText: JamiStrings.username
-
-                    KeyNavigation.tab: KeyNavigation.down
-                    KeyNavigation.up: sipServernameEdit
-                    KeyNavigation.down: sipPasswordEdit
 
                     onAccepted: sipPasswordEdit.forceActiveFocus()
                 }
-
                 PasswordTextEdit {
                     id: sipPasswordEdit
-
-                    objectName: "sipPasswordEdit"
-
+                    KeyNavigation.down: tlsRadioButton
+                    KeyNavigation.tab: KeyNavigation.down
+                    KeyNavigation.up: sipUsernameEdit
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: JamiTheme.wizardViewMarginSize
-
+                    objectName: "sipPasswordEdit"
                     placeholderText: JamiStrings.password
-
-                    KeyNavigation.tab: KeyNavigation.down
-                    KeyNavigation.up: sipUsernameEdit
-                    KeyNavigation.down: tlsRadioButton
 
                     onAccepted: tlsRadioButton.forceActiveFocus()
                 }
-
-                ButtonGroup { id: optionsB }
-
-                RowLayout{
-
+                ButtonGroup {
+                    id: optionsB
+                }
+                RowLayout {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
                     MaterialRadioButton {
                         id: tlsRadioButton
-                        Layout.alignment: Qt.AlignHCenter
-                        text: JamiStrings.tls
                         ButtonGroup.group: optionsB
-                        checked: true
-                        bgColor: JamiTheme.secondaryBackgroundColor
-
-                        KeyNavigation.up: sipPasswordEdit
                         KeyNavigation.down: udpRadioButton
                         KeyNavigation.tab: KeyNavigation.down
-
+                        KeyNavigation.up: sipPasswordEdit
+                        Layout.alignment: Qt.AlignHCenter
+                        bgColor: JamiTheme.secondaryBackgroundColor
+                        checked: true
+                        text: JamiStrings.tls
                     }
-
                     MaterialRadioButton {
                         id: udpRadioButton
-                        Layout.alignment: Qt.AlignHCenter
-                        text: JamiStrings.udp
                         ButtonGroup.group: optionsB
-                        color: JamiTheme.textColor
-                        bgColor: JamiTheme.secondaryBackgroundColor
-
-                        KeyNavigation.up: tlsRadioButton
                         KeyNavigation.down: createAccountButton
                         KeyNavigation.tab: KeyNavigation.down
-
+                        KeyNavigation.up: tlsRadioButton
+                        Layout.alignment: Qt.AlignHCenter
+                        bgColor: JamiTheme.secondaryBackgroundColor
+                        color: JamiTheme.textColor
+                        text: JamiStrings.udp
                     }
                 }
-
                 MaterialButton {
                     id: createAccountButton
-
-                    TextMetrics{
-                        id: textSize
-                        font.weight: Font.Bold
-                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-                        text: createAccountButton.text
-                    }
-
-                    objectName: "createSIPAccountButton"
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-
-                    preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
-                    primary: true
-
-                    text: JamiStrings.addSip
-
-                    KeyNavigation.up: udpRadioButton
                     KeyNavigation.down: personalizeAccount
                     KeyNavigation.tab: KeyNavigation.down
+                    KeyNavigation.up: udpRadioButton
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
+                    objectName: "createSIPAccountButton"
+                    preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
+                    primary: true
+                    text: JamiStrings.addSip
 
                     onClicked: {
-                        WizardViewStepModel.accountCreationInfo =
-                                JamiQmlUtils.setUpAccountCreationInputPara(
-                                    {hostname : sipServernameEdit.dynamicText,
-                                        alias: displayNameLineEdit.dynamicText,
-                                        username : sipUsernameEdit.dynamicText,
-                                        password : sipPasswordEdit.dynamicText,
-                                        tls: tlsRadioButton.checked,
-                                        avatar: UtilsAdapter.tempCreationImage()})
-                        WizardViewStepModel.nextStep()
+                        WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
+                                "hostname": sipServernameEdit.dynamicText,
+                                "alias": displayNameLineEdit.dynamicText,
+                                "username": sipUsernameEdit.dynamicText,
+                                "password": sipPasswordEdit.dynamicText,
+                                "tls": tlsRadioButton.checked,
+                                "avatar": UtilsAdapter.tempCreationImage()
+                            });
+                        WizardViewStepModel.nextStep();
+                    }
+
+                    TextMetrics {
+                        id: textSize
+                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                        font.weight: Font.Bold
+                        text: createAccountButton.text
                     }
                 }
-
                 MaterialButton {
-
                     id: personalizeAccount
-
-                    TextMetrics{
-                        id: personalizeAccountTextSize
-                        font.weight: Font.Bold
-                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-                        text: personalizeAccount.text
-                    }
-
-
-                    text: JamiStrings.personalizeAccount
-                    tertiary: true
-                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
-                    preferredWidth: personalizeAccountTextSize.width + 2*JamiTheme.buttontextWizzardPadding + 1
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins*2
-                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-
-                    KeyNavigation.up: createAccountButton
                     KeyNavigation.down: backButton
                     KeyNavigation.tab: KeyNavigation.down
+                    KeyNavigation.up: createAccountButton
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins * 2
+                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
+                    preferredWidth: personalizeAccountTextSize.width + 2 * JamiTheme.buttontextWizzardPadding + 1
+                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
+                    tertiary: true
+                    text: JamiStrings.personalizeAccount
 
                     onClicked: createAccountStack.currentIndex += 1
+
+                    TextMetrics {
+                        id: personalizeAccountTextSize
+                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                        font.weight: Font.Bold
+                        text: personalizeAccount.text
+                    }
                 }
             }
         }
-
         Rectangle {
-
             Layout.fillHeight: true
             Layout.fillWidth: true
             color: JamiTheme.secondaryBackgroundColor
 
             ColumnLayout {
-                spacing: JamiTheme.wizardViewPageLayoutSpacing
-
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
-
+                spacing: JamiTheme.wizardViewPageLayoutSpacing
                 width: Math.max(508, root.width - 100)
 
                 Label {
-
-                    text: JamiStrings.personalizeAccount
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: JamiTheme.preferredMarginSize
+                    color: JamiTheme.textColor
                     font.pixelSize: 26
                     horizontalAlignment: Text.AlignHCenter
+                    text: JamiStrings.personalizeAccount
                     verticalAlignment: Text.AlignVCenter
-                    color: JamiTheme.textColor
                 }
-
                 PhotoboothView {
                     id: currentAccountAvatar
-                    width: avatarSize
-                    height: avatarSize
-
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: 50
-
-                    newItem: true
-                    imageId: visible ? "temp" : ""
                     avatarSize: 150
+                    height: avatarSize
+                    imageId: visible ? "temp" : ""
+                    newItem: true
+                    width: avatarSize
                 }
-
                 ModalTextEdit {
                     id: displayNameLineEdit
-
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: 30
                     placeholderText: JamiStrings.enterNickname
                 }
-
                 Text {
-
-                    Layout.topMargin: JamiTheme.preferredMarginSize
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: Math.min(320, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.topMargin: JamiTheme.preferredMarginSize
+                    color: JamiTheme.textColor
+                    font.pixelSize: JamiTheme.headerFontSize
                     horizontalAlignment: Text.AlignHCenter
+                    lineHeight: JamiTheme.wizardViewTextLineHeight
+                    text: JamiStrings.customizeProfileDescription
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.WordWrap
-
-                    text: JamiStrings.customizeProfileDescription
-                    lineHeight: JamiTheme.wizardViewTextLineHeight
-                    font.pixelSize: JamiTheme.headerFontSize
-                    color: JamiTheme.textColor
                 }
             }
         }
     }
-
     BackButton {
         id: backButton
-
-        objectName: "createSIPAccountPageBackButton"
-
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: 20
-
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
-
-        KeyNavigation.up: personalizeAccount
         KeyNavigation.down: sipServernameEdit
         KeyNavigation.tab: KeyNavigation.down
+        KeyNavigation.up: personalizeAccount
+        anchors.left: parent.left
+        anchors.margins: 20
+        anchors.top: parent.top
+        objectName: "createSIPAccountPageBackButton"
+        preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
         onClicked: {
             if (createAccountStack.currentIndex !== 0) {
-                createAccountStack.currentIndex--
+                createAccountStack.currentIndex--;
             } else {
-                WizardViewStepModel.previousStep()
+                WizardViewStepModel.previousStep();
             }
         }
     }

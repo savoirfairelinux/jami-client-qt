@@ -15,32 +15,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 PushButton {
     id: root
-
-    normalColor: "transparent"
+    hoveredColor: JamiTheme.hoveredButtonColorWizard
     imageColor: JamiTheme.buttonTintedBlue
-    radius: 5
-
+    normalColor: "transparent"
+    preferredHeight: JamiTheme.wizardViewPageBackButtonHeight
     preferredSize: JamiTheme.wizardViewPageBackButtonSize
     preferredWidth: JamiTheme.wizardViewPageBackButtonWidth
-    preferredHeight: JamiTheme.wizardViewPageBackButtonHeight
-    hoveredColor: JamiTheme.hoveredButtonColorWizard
-
+    radius: 5
     source: JamiResources.ic_arrow_back_24dp_svg
     toolTipText: JamiStrings.back
 
     Keys.onPressed: function (keyEvent) {
-        if (keyEvent.key === Qt.Key_Enter ||
-                keyEvent.key === Qt.Key_Return) {
-            clicked()
-            keyEvent.accepted = true
+        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+            clicked();
+            keyEvent.accepted = true;
         }
     }
 }
