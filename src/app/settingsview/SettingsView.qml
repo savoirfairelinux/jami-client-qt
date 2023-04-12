@@ -40,7 +40,7 @@ ListSelectionView {
         "CallSettingsPage": Qt.resolvedUrl("components/CallSettingsPage.qml"),
         "AdvancedSettingsPage": Qt.resolvedUrl("components/AdvancedSettingsPage.qml"),
         "SystemSettingsPage": Qt.resolvedUrl("components/SystemSettingsPage.qml"),
-        "AppearenceSettingsPage": Qt.resolvedUrl("components/AppearenceSettingsPage.qml"),
+        "AppearanceSettingsPage": Qt.resolvedUrl("components/AppearanceSettingsPage.qml"),
         "LocationSharingSettingsPage": Qt.resolvedUrl("components/LocationSharingSettingsPage.qml"),
         "FileTransferSettingsPage": Qt.resolvedUrl("components/FileTransferSettingsPage.qml"),
         "CallRecordingSettingsPage": Qt.resolvedUrl("components/CallRecordingSettingsPage.qml"),
@@ -108,7 +108,7 @@ ListSelectionView {
                 replace(currentItem, viewNode.resources["SystemSettingsPage"], StackView.Immediate);
                 break;
             case 6:
-                replace(currentItem, viewNode.resources["AppearenceSettingsPage"], StackView.Immediate);
+                replace(currentItem, viewNode.resources["AppearanceSettingsPage"], StackView.Immediate);
                 break;
             case 7:
                 replace(currentItem, viewNode.resources["LocationSharingSettingsPage"], StackView.Immediate);

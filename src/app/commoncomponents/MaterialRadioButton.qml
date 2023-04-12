@@ -14,71 +14,123 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import Qt5Compat.GraphicalEffects
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
 RadioButton {
     id: root
+    property color backgroundColor: JamiTheme.radioBackgroundColor
+    property color borderColor: JamiTheme.radioBorderColor
+    property color borderOuterRectangle: "transparent"
+    property color checkedColor: JamiTheme.radioBorderColor
+    property string iconSource: ""
+    property color textColor: JamiTheme.textColor
 
-    property string color: JamiTheme.textColor
-    property string bgColor: ""
-
-    indicator: Rectangle {
-        id: rect
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        color: root.bgColor
-
-        border {
-            id: border
-            color: JamiTheme.buttonTintedBlue
-            width: 1
-        }
-
-        implicitWidth: 20
-        implicitHeight: 20
-        radius: 10
-
-        Rectangle {
-            id: innerRect
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            width: 10
-            height: 10
-            radius: 10
-            visible: checked || hovered
-
-            Behavior on visible  {
-                NumberAnimation {
-                    from: 0
-                    duration: JamiTheme.shortFadeDuration
-                }
-            }
-
-            color: JamiTheme.buttonTintedBlue
-
-            HoverHandler {
-                target: parent
-            }
-        }
-    }
-
-    contentItem: Text {
-        text: root.text
-        color: root.color
-        leftPadding: root.indicator.width + root.spacing
-        verticalAlignment: Text.AlignVCenter
-        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
-    }
+    height: implicitHeight
 
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
             root.checked = true;
+        }
+    }
+
+    Rectangle {
+        anchors.fill: parent
+        color: backgroundColor
+        radius: JamiTheme.settingsBoxRadius
+
+        border {
+            color: borderOuterRectangle
+            width: 1
+        }
+    }
+
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+        radius: JamiTheme.settingsBoxRadius
+        visible: checked || hovered
+
+        border {
+            color: borderColor
+            width: 1
+        }
+
+        Behavior on visible  {
+            enabled: hovered
+
+            NumberAnimation {
+                duration: JamiTheme.shortFadeDuration
+                from: 0
+            }
+        }
+    }
+
+    contentItem: RowLayout {
+        anchors.fill: parent
+        anchors.leftMargin: 55
+        anchors.rightMargin: 5
+        spacing: 10
+
+        ResponsiveImage {
+            color: borderColor
+            height: JamiTheme.radioImageSize
+            source: iconSource
+            visible: iconSource !== ""
+            width: JamiTheme.radioImageSize
+        }
+
+        Text {
+
+            color: textColor
+            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+            text: root.text
+            wrapMode: Text.WordWrap
+        }
+    }
+
+    indicator: Rectangle {
+        id: indicatorRectangle
+        anchors.left: parent.left
+        anchors.leftMargin: 18
+        anchors.verticalCenter: parent.verticalCenter
+        color: "transparent"
+        implicitHeight: 20
+        implicitWidth: 20
+        radius: JamiTheme.settingsBoxRadius
+        z: 1
+
+        border {
+            id: border
+            color: borderColor
+            width: 1
+        }
+        Rectangle {
+            id: innerRect
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            color: checkedColor
+            height: 12
+            radius: JamiTheme.settingsBoxRadius
+            visible: checked || hovered
+            width: 12
+
+            HoverHandler {
+                target: parent
+            }
+
+            Behavior on visible  {
+                enabled: hovered
+
+                NumberAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                    from: 0
+                }
+            }
         }
     }
 }
