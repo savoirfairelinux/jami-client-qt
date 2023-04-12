@@ -142,7 +142,7 @@ Item {
     property color switchHandleBorderColor: tintedBlue
     property color switchHandleCheckedBorderColor: darkTheme ? "#0071c9" : "#005699"
 
-    //Combobox
+    // Combobox
     property color comboBoxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
     property color comboboxBorderColorActive: darkTheme ? "#03B9E9" : "#005699"
     property color comboboxBorderColor: darkTheme ? "#1D5F70" : "#A3C2DA"
@@ -151,11 +151,11 @@ Item {
     property color comboboxTextColor: darkTheme ? "#03B9E9" : "#005699"
     property color comboboxTextColorHovered: tintedBlue
 
-    //Spinbox
+    // Spinbox
     property color spinboxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
     property color spinboxBorderColor: darkTheme ? "#1D5F70" : "#A3C2DA"
 
-    //Toast
+    // Toast
     property color toastColor: darkTheme ? "#f0f0f0" : "#000000"
     property color toastRectColor: !darkTheme ? "#f0f0f0" : "#000000"
     property real toastFontSize: calcSize(15)
@@ -231,13 +231,13 @@ Item {
     property color messageWebViewFooterButtonImageColor: darkTheme ? "#838383" : "#656565"
     property color chatviewUsernameColor: "#A7A7A7"
 
-    //mapPosition
+    // mapPosition
     property color mapButtonsOverlayColor: darkTheme ? "#000000" : "#f0f0f0"
     property color mapButtonColor: darkTheme ? "#f0f0f0" : "#000000"
     property color sharePositionIndicatorColor: darkTheme ? "#03B9E9" : "#005699"
     property color sharedPositionIndicatorColor: darkTheme ? whiteColor : blackColor
 
-    //EmojiReact
+    // EmojiReact
     property real emojiBubbleSize: calcSize(17)
     property real emojiBubbleSizeBig: calcSize(21)
     property real emojiReactSize: calcSize(12)
@@ -263,7 +263,7 @@ Item {
     property color typingDotsNormalColor: darkTheme ? "#686b72" : "lightgrey"
     property color typingDotsEnlargeColor: darkTheme ? "white" : Qt.darker("lightgrey", 3.0)
 
-    // Font.
+    // Font
     property color faddedFontColor: darkTheme ? "#c0c0c0" : "#a0a0a0"
     property color faddedLastInteractionFontColor: darkTheme ? "#c0c0c0" : "#505050"
 
@@ -375,7 +375,7 @@ Item {
     property real recordingBtnSize: 12
     property real recordingIndicatorSize: 24
 
-    //TimestampInfo
+    // TimestampInfo
     property int timestampLinePadding: 40
     property int dayTimestampTopMargin: 8
     property int dayTimestampBottomMargin: 8
@@ -386,7 +386,7 @@ Item {
     property real timestampFont: calcSize(12)
     property int timestampIntervalTime: 120
 
-    //swarmDetailsPage
+    // SwarmDetailsPage
     property real swarmDetailsPageTopMargin: 32
     property real swarmDetailsPageDocumentsMargins: 5
     property real swarmDetailsPageDocumentsMediaRadius: 15
@@ -395,7 +395,7 @@ Item {
     property real swarmDetailsPageDocumentsHeight: 40 * baseZoom
     property real swarmDetailsPageDocumentsMinHeight: 40
 
-    //Call information
+    // Call information
     property real textFontPointSize: calcSize(10)
     property real titleFontPointSize: calcSize(13)
     property color callInfoColor: whiteColor
@@ -527,20 +527,20 @@ Item {
 
     property real cornerIconSize: 40
 
-    //InfoBox
+    // InfoBox
     property real infoBoxTitleFontSize: calcSize(13)
     property real infoBoxDescFontSize: calcSize(12)
 
-    //Tipbox
+    // Tipbox
     property real tipBoxTitleFontSize: calcSize(13)
     property real tipBoxContentFontSize: calcSize(12)
     property color tipBoxBackgroundColor: darkTheme ? blackColor : whiteColor
     property color tipBoxBorderColor: darkTheme ? "#123F4A" : "#A3C2DA"
 
-    //sharePosition
+    // SharePosition
     property real timerButtonsFontSize: calcSize(11)
 
-    //Popups
+    // Popups
     property real popuptextSize: calcSize(15)
     property real popupButtonsMargin: 20
     property real popupPhotoTextSize: calcSize(18)
@@ -553,7 +553,7 @@ Item {
     property real textEditError: calcSize(15)
     property real maximumCharacters: 50
 
-    //MaterialButton
+    // MaterialButton
     property real buttontextPadding: 10
     property real buttontextWizzardPadding: 30
     property real buttontextHeightMargin: 21
@@ -566,7 +566,7 @@ Item {
     // JamiScrollBar
     property int scrollBarHandleSize: 6
 
-    //KeyboardShortcutTable
+    // KeyboardShortcutTable
     property int titleRectMargin: 25
     property int keyboardShortcutTabBarSize: 24
     property int keyboardShortcutDelegateSize: 50
@@ -604,6 +604,17 @@ Item {
     property int settingsMenuChildrenButtonHeight: 30
     property int settingsMenuHeaderButtonHeight: 50
     property int settingsListViewsSpacing: 10
+
+    // MaterialRadioButton
+    property int radioImageSize: 30
+    property color radioBackgroundColor: darkTheme ? "#515151" : "#F0EFEF"
+    property color radioBorderColor: darkTheme ? "#03B9E9" : "#005699"
+    property color lightThemeBackgroundColor: JamiTheme.whiteColor
+    property color lightThemeCheckedColor: "#005699"
+    property color lightThemeBorderColor: "#005699"
+    property color darkThemeBackgroundColor: JamiTheme.darkTheme ? JamiTheme.blackColor : JamiTheme.bgDarkMode_
+    property color darkThemeCheckedColor: "#03B9E9"
+    property color darkThemeBorderColor: "#03B9E9"
 
     function setTheme(dark) {
         darkTheme = dark;
