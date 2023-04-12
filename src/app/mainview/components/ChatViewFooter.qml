@@ -130,7 +130,6 @@ Rectangle {
 
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
-            Layout.preferredHeight: implicitHeight
             property var emojiPicker
 
             Connections {
@@ -157,17 +156,16 @@ Rectangle {
             }
 
             function setXposition() {
-                return messageBar.width - JamiTheme.emojiPickerWidth; //- JamiTheme.emojiMargins
+                return messageBar.width - JamiTheme.emojiPickerWidth;
             }
 
             function setYposition() {
-                return -JamiTheme.emojiPickerHeight; //- JamiTheme.emojiMargins
+                return -JamiTheme.emojiPickerHeight;
             }
 
             sendButtonVisibility: text || dataTransferSendContainer.filesToSendCount
 
             onEmojiButtonClicked: {
-                JamiQmlUtils.updateMessageBarButtonsPoints();
                 openEmojiPicker();
             }
 
@@ -183,6 +181,16 @@ Rectangle {
                 dlg.filesAccepted.connect(function (files) {
                         setFilePathsToSend(files);
                     });
+            }
+
+            onVideoRecordMessageButtonClicked: {
+                recordBox.y = -recordBox.height;
+                recordBox.openRecorder(true);
+            }
+
+            onAudioRecordMessageButtonClicked: {
+                recordBox.y = -recordBox.height;
+                recordBox.openRecorder(false);
             }
 
             onSendMessageButtonClicked: {
@@ -204,32 +212,6 @@ Rectangle {
                 }
                 messageBar.textAreaObj.clearText();
                 MessagesAdapter.replyToId = "";
-            }
-            onVideoRecordMessageButtonClicked: {
-                JamiQmlUtils.updateMessageBarButtonsPoints();
-                recordBox.parent = JamiQmlUtils.mainViewRectObj;
-                recordBox.x = Qt.binding(function () {
-                        var buttonCenterX = JamiQmlUtils.videoRecordMessageButtonInMainViewPoint.x + JamiQmlUtils.videoRecordMessageButtonObj.width / 2;
-                        return buttonCenterX - recordBox.width / 2;
-                    });
-                recordBox.y = Qt.binding(function () {
-                        var buttonY = JamiQmlUtils.videoRecordMessageButtonInMainViewPoint.y;
-                        return buttonY - recordBox.height - recordBox.spikeHeight;
-                    });
-                recordBox.openRecorder(true);
-            }
-            onAudioRecordMessageButtonClicked: {
-                JamiQmlUtils.updateMessageBarButtonsPoints();
-                recordBox.parent = JamiQmlUtils.mainViewRectObj;
-                recordBox.x = Qt.binding(function () {
-                        var buttonCenterX = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.x + JamiQmlUtils.audioRecordMessageButtonObj.width / 2;
-                        return buttonCenterX - recordBox.width / 2;
-                    });
-                recordBox.y = Qt.binding(function () {
-                        var buttonY = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.y;
-                        return buttonY - recordBox.height - recordBox.spikeHeight;
-                    });
-                recordBox.openRecorder(false);
             }
         }
 

@@ -55,7 +55,8 @@ SidePanelBase {
             target: JamiQmlUtils
             function onSettingsPageRequested(index) {
                 viewCoordinator.present("SettingsView");
-                buttonGroup.checkedButton = buttonGroup.buttons[index];
+                root.indexSelected(index);
+                root.currentIndex = index;
             }
         }
 

@@ -151,7 +151,7 @@ Window {
             description: qsTr("General settings")
         }
         ListElement {
-            shortcut: "Ctrl + I"
+            shortcut: "Ctrl + Alt + I"
             shortcut2: ""
             description: qsTr("Account settings")
         }
