@@ -30,11 +30,18 @@ JamiFlickable {
     property alias text: textArea.text
     property var textAreaObj: textArea
     property alias placeholderText: textArea.placeholderText
+    property alias selectedText: textArea.selectedText
+    property alias selectionStart: textArea.selectionStart
+    property alias selectionEnd: textArea.selectionEnd
 
     ScrollBar.vertical.visible: textArea.text
     ScrollBar.horizontal.visible: textArea.text
 
     signal sendMessagesRequired
+
+    function selectText(start,end){
+        textArea.select(start,end)
+    }
 
     function insertText(text) {
         textArea.insert(textArea.cursorPosition, text)
