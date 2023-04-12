@@ -15,10 +15,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import Qt5Compat.GraphicalEffects
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
@@ -26,24 +26,43 @@ import net.jami.Models 1.1
 RadioButton {
     id: root
 
-    property string color: JamiTheme.textColor
-    property string bgColor: ""
+    property string iconSource: ""
+    property color borderColor: JamiTheme.radioBorderColor
+    property color checkedColor: JamiTheme.radioBorderColor
+    property color backgroundColor: JamiTheme.radioBackgroundColor
+    property color textColor: JamiTheme.textColor
+    property color borderOuterRectangle: "transparent"
+
+    height: implicitHeight
+
+
+    Rectangle {
+        anchors.fill: parent
+        color: backgroundColor
+        radius: JamiTheme.settingsBoxRadius
+        border {
+            width: 1
+            color: borderOuterRectangle 
+        }
+    }
 
     indicator: Rectangle {
-        id: rect
+        id: indicatorRectangle
+        z: 1
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        color: root.bgColor
+        anchors.leftMargin: 18
+        color: "transparent"
 
         border {
             id: border
-            color: JamiTheme.buttonTintedBlue
+            color: borderColor
             width: 1
         }
 
         implicitWidth: 20
         implicitHeight: 20
-        radius: 10
+        radius: JamiTheme.settingsBoxRadius
 
         Rectangle {
 
@@ -51,19 +70,20 @@ RadioButton {
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            width: 10
-            height: 10
-            radius: 10
+            width: 12
+            height: 12
+            radius: JamiTheme.settingsBoxRadius
             visible : checked || hovered
 
             Behavior on visible {
+                enabled: hovered
                 NumberAnimation {
                     from: 0
                     duration: JamiTheme.shortFadeDuration
                 }
             }
 
-            color: JamiTheme.buttonTintedBlue
+            color: checkedColor
 
             HoverHandler {
                 target: parent
@@ -71,19 +91,55 @@ RadioButton {
         }
     }
 
-    contentItem: Text {
-        text: root.text
-        color: root.color
-        leftPadding: root.indicator.width + root.spacing
-        verticalAlignment: Text.AlignVCenter
-        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+    contentItem: RowLayout {
+
+        anchors.fill: parent
+        anchors.leftMargin: 55
+        anchors.rightMargin: 5
+        spacing: 10
+
+            ResponsiveImage  {
+                visible: iconSource !== ""
+                source: iconSource
+                width: JamiTheme.radioImageSize
+                height: JamiTheme.radioImageSize
+                color: borderColor
+
+            }
+
+            Text {
+                text: root.text
+                color: textColor
+                Layout.fillWidth: true
+                wrapMode: Text.WordWrap
+                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+            }
+        }
+
+            Keys.onPressed: function (event) {
+                if (event.key === Qt.Key_Enter
+                        || event.key === Qt.Key_Return) {
+                    root.checked = true
+                }
     }
 
-    Keys.onPressed: function (event) {
-        if (event.key === Qt.Key_Enter
-                || event.key === Qt.Key_Return) {
-            root.checked = true
+    Rectangle {
+        anchors.fill: parent
+        radius: JamiTheme.settingsBoxRadius
+        color: "transparent"
+        visible: checked || hovered
+
+        border {
+            width: 1
+            color: borderColor   
+            }
+
+        Behavior on visible {
+            enabled: hovered
+            NumberAnimation {
+                from: 0
+                duration: JamiTheme.shortFadeDuration
+            }
         }
     }
-
 }
