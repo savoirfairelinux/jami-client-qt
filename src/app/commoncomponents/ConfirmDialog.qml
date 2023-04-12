@@ -15,89 +15,69 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 BaseModalDialog {
     id: root
-
-    signal accepted
-
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize,
-                    JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize,
-                     JamiTheme.preferredDialogHeight)
-
     property string confirmLabel: ""
     property string textLabel: ""
 
+    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
+
+    signal accepted
+
     popupContent: ColumnLayout {
         id: column
-
         Label {
             id: labelAction
-
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: column.width -
-                                   JamiTheme.preferredMarginSize * 2
-
+            Layout.preferredWidth: column.width - JamiTheme.preferredMarginSize * 2
             color: JamiTheme.textColor
-            text: root.textLabel
-
-            font.pointSize: JamiTheme.textFontSize
             font.kerning: true
-
+            font.pointSize: JamiTheme.textFontSize
             horizontalAlignment: Text.AlignHCenter
+            text: root.textLabel
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
         }
-
         RowLayout {
-            spacing: 16
-            Layout.fillWidth: true
             Layout.alignment: Qt.AlignCenter
+            Layout.fillWidth: true
+            spacing: 16
 
             MaterialButton {
                 id: primaryBtn
-
                 Layout.alignment: Qt.AlignHCenter
-                text: root.confirmLabel
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                autoAccelerator: true
                 buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
                 color: JamiTheme.buttonTintedRed
                 hoveredColor: JamiTheme.buttonTintedRedHovered
+                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
                 pressedColor: JamiTheme.buttonTintedRedPressed
                 secondary: true
-                autoAccelerator: true
+                text: root.confirmLabel
 
                 onClicked: {
-                    close()
-                    accepted()
+                    close();
+                    accepted();
                 }
             }
-
             MaterialButton {
                 id: btnCancel
-
                 Layout.alignment: Qt.AlignHCenter
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                autoAccelerator: true
                 buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
                 color: JamiTheme.buttonTintedBlack
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
+                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
                 pressedColor: JamiTheme.buttonTintedBlackPressed
                 secondary: true
-                autoAccelerator: true
-
                 text: JamiStrings.optionCancel
 
                 onClicked: close()

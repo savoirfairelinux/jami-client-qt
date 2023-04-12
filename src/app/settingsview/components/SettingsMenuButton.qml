@@ -16,36 +16,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 PushButton {
     id: root
-
     property int menuType: 0
 
-    preferredHeight: 64
-    preferredLeftMargin: 24
-    preferredRightMargin: 24
-
     buttonTextFont.pointSize: JamiTheme.textFontSize + 2
-    textHAlign: Text.AlignLeft
-
+    checkable: true
+    checkedColor: JamiTheme.smartListSelectedColor
+    duration: 0
+    hoveredColor: JamiTheme.smartListHoveredColor
     imageColor: JamiTheme.textColor
     imageContainerHeight: 40
     imageContainerWidth: 40
-
+    preferredHeight: 64
+    preferredLeftMargin: 24
+    preferredRightMargin: 24
     pressedColor: Qt.lighter(JamiTheme.pressedButtonColor, 1.25)
-    checkedColor: JamiTheme.smartListSelectedColor
-    hoveredColor: JamiTheme.smartListHoveredColor
-
-    duration: 0
-    checkable: true
     radius: 0
+    textHAlign: Text.AlignLeft
 }

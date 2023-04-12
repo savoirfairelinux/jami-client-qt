@@ -16,99 +16,66 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Label {
     id: root
-
+    property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
     property alias popup: comboBoxPopup
 
-    width: parent ? parent.width : o
     height: JamiTheme.accountListItemHeight
+    width: parent ? parent.width : o
 
-    property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
+    function togglePopup() {
+        if (root.popup.opened) {
+            root.popup.close();
+        } else {
+            root.popup.open();
+        }
+    }
 
     // TODO: remove these refresh hacks use QAbstractItemModels correctly
     Connections {
         target: AccountAdapter
 
         function onAccountStatusChanged(accountId) {
-            AccountListModel.reset()
+            AccountListModel.reset();
         }
     }
-
     Connections {
         target: LRCInstance
 
         function onAccountListChanged() {
-            root.update()
-            AccountListModel.reset()
+            root.update();
+            AccountListModel.reset();
         }
     }
-
-    function togglePopup() {
-        if (root.popup.opened) {
-            root.popup.close()
-        } else {
-            root.popup.open()
-        }
-    }
-
-    background: Rectangle {
-        id: background
-        anchors.fill: parent
-
-        color: root.popup.opened ?
-                   Qt.lighter(JamiTheme.hoverColor, 1.0) :
-                   mouseArea.containsMouse ?
-                       Qt.lighter(JamiTheme.hoverColor, 1.05) :
-                       JamiTheme.backgroundColor
-        Behavior on color {
-            ColorAnimation { duration: JamiTheme.shortFadeDuration }
-        }
-
-        // TODO: this can be removed when frameless window is implemented
-        Rectangle {
-            height: 1
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
-            }
-            color: JamiTheme.tabbarBorderColor
-        }
-    }
-
     MouseArea {
         id: mouseArea
-        enabled: visible
         anchors.fill: parent
+        enabled: visible
         hoverEnabled: true
+
         onClicked: {
-            root.forceActiveFocus()
-            togglePopup()
+            root.forceActiveFocus();
+            togglePopup();
         }
     }
-
     AccountComboBoxPopup {
         id: comboBoxPopup
-
         Shortcut {
-            sequence: "Ctrl+J"
             context: Qt.ApplicationShortcut
+            sequence: "Ctrl+J"
+
             onActivated: togglePopup()
         }
     }
-
     RowLayout {
         anchors.fill: parent
         anchors.leftMargin: 15
@@ -117,123 +84,110 @@ Label {
 
         Avatar {
             id: avatar
-
-            Layout.preferredWidth: JamiTheme.accountListAvatarSize
-            Layout.preferredHeight: JamiTheme.accountListAvatarSize
             Layout.alignment: Qt.AlignVCenter
-
-            mode: Avatar.Mode.Account
+            Layout.preferredHeight: JamiTheme.accountListAvatarSize
+            Layout.preferredWidth: JamiTheme.accountListAvatarSize
             imageId: CurrentAccount.id
+            mode: Avatar.Mode.Account
             presenceStatus: CurrentAccount.status
         }
-
         ColumnLayout {
-            Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.fillWidth: true
             spacing: 2
 
             Text {
                 id: bestNameText
-
-                Layout.fillWidth: true
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-                text: CurrentAccount.bestName
-                textFormat: TextEdit.PlainText
-
-                font.pointSize: JamiTheme.textFontSize
+                Layout.fillWidth: true
                 color: JamiTheme.textColor
                 elide: Text.ElideRight
+                font.pointSize: JamiTheme.textFontSize
+                text: CurrentAccount.bestName
+                textFormat: TextEdit.PlainText
             }
-
             Text {
                 id: bestIdText
-
-                Layout.fillWidth: true
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-                visible: text.length && text !== bestNameText.text
-
-                text:  CurrentAccount.bestId
-                textFormat: TextEdit.PlainText
-
-                font.pointSize: JamiTheme.textFontSize
+                Layout.fillWidth: true
                 color: JamiTheme.faddedLastInteractionFontColor
                 elide: Text.ElideRight
+                font.pointSize: JamiTheme.textFontSize
+                text: CurrentAccount.bestId
+                textFormat: TextEdit.PlainText
+                visible: text.length && text !== bestNameText.text
             }
         }
-
         Row {
             id: controlRow
-
-            spacing: 10
-
-            Layout.preferredWidth: childrenRect.width
             Layout.preferredHeight: parent.height
+            Layout.preferredWidth: childrenRect.width
+            spacing: 10
 
             ResponsiveImage {
                 id: arrowDropDown
-
                 anchors.verticalCenter: parent.verticalCenter
-
-                width: 24
-                height: 24
-
                 color: JamiTheme.textColor
-
-                source: !root.popup.opened ?
-                            JamiResources.expand_more_24dp_svg :
-                            JamiResources.expand_less_24dp_svg
+                height: 24
+                source: !root.popup.opened ? JamiResources.expand_more_24dp_svg : JamiResources.expand_less_24dp_svg
+                width: 24
             }
-
-
             PushButton {
                 id: shareButton
-
-                width: visible ? preferredSize : 0
-                height: visible ? preferredSize : 0
                 anchors.verticalCenter: parent.verticalCenter
-
-                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
-                toolTipText: JamiStrings.displayQRCode
-
-                source: JamiResources.share_24dp_svg
-
-                normalColor: JamiTheme.backgroundColor
+                height: visible ? preferredSize : 0
                 imageColor: JamiTheme.textColor
+                normalColor: JamiTheme.backgroundColor
+                source: JamiResources.share_24dp_svg
+                toolTipText: JamiStrings.displayQRCode
+                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
+                width: visible ? preferredSize : 0
 
-                onClicked: viewCoordinator.presentDialog(
-                               appWindow,
-                               "mainview/components/WelcomePageQrDialog.qml")
+                onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
-
             PushButton {
                 id: settingsButton
-
                 anchors.verticalCenter: parent.verticalCenter
-                source: !inSettings ?
-                            JamiResources.settings_24dp_svg :
-                            JamiResources.round_close_24dp_svg
-
-                normalColor: JamiTheme.backgroundColor
                 imageColor: JamiTheme.textColor
-                toolTipText: !inSettings ?
-                                 JamiStrings.openSettings :
-                                 JamiStrings.closeSettings
+                normalColor: JamiTheme.backgroundColor
+                source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
+                toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
 
                 onClicked: {
-                    !inSettings ?
-                                viewCoordinator.present("SettingsView") :
-                                viewCoordinator.dismiss("SettingsView")
-                    background.state = "normal"
+                    !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
+                    background.state = "normal";
                 }
             }
         }
     }
-
     Shortcut {
-        sequence: "Ctrl+,"
         context: Qt.ApplicationShortcut
+        sequence: "Ctrl+,"
+
         onActivated: settingBtnClicked()
+    }
+
+    background: Rectangle {
+        id: background
+        anchors.fill: parent
+        color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.05) : JamiTheme.backgroundColor
+
+        // TODO: this can be removed when frameless window is implemented
+        Rectangle {
+            color: JamiTheme.tabbarBorderColor
+            height: 1
+
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: parent.top
+            }
+        }
+
+        Behavior on color  {
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
     }
 }

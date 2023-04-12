@@ -16,38 +16,40 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
 
 Item {
     id: root
-
-    enum Mode { Account, Contact, Conversation }
-    property int mode: Avatar.Mode.Account
-    property alias sourceSize: image.sourceSize
-
-    property string imageId
-
-    readonly property string divider: '_'
-    readonly property string baseProviderPrefix: 'image://avatarImage'
-    property string typePrefix: {
-        switch (mode) {
-        case Avatar.Mode.Account: return 'account'
-        case Avatar.Mode.Contact: return 'contact'
-        case Avatar.Mode.Conversation: return 'conversation'
-        }
+    enum Mode {
+        Account,
+        Contact,
+        Conversation
     }
 
+    readonly property string baseProviderPrefix: 'image://avatarImage'
+    readonly property string divider: '_'
+    property alias fillMode: image.fillMode
+    property string imageId
+    property int mode: Avatar.Mode.Account
     property alias presenceStatus: presenceIndicator.status
     property bool showPresenceIndicator: true
-    property alias fillMode: image.fillMode
+    property alias sourceSize: image.sourceSize
+    property string typePrefix: {
+        switch (mode) {
+        case Avatar.Mode.Account:
+            return 'account';
+        case Avatar.Mode.Contact:
+            return 'contact';
+        case Avatar.Mode.Conversation:
+            return 'conversation';
+        }
+    }
 
     onImageIdChanged: image.updateSource()
 
@@ -57,65 +59,52 @@ Item {
         function onAvatarUidChanged(id) {
             // filter this id only
             if (id !== root.imageId)
-                return
+                return;
 
             // get the updated uid forcing a new requestImage
             // call to the image provider
-            image.updateSource()
+            image.updateSource();
         }
     }
-
     Connections {
         target: CurrentScreenInfo
 
         function onDevicePixelRatioChanged() {
-            image.updateSource()
+            image.updateSource();
         }
     }
-
     Image {
         id: image
-
         anchors.fill: root
-
-        sourceSize.width: Math.max(24, width)
-        sourceSize.height: Math.max(24, height)
-
-        smooth: true
         antialiasing: true
         asynchronous: false
-
         fillMode: Image.PreserveAspectFit
+        opacity: status === Image.Ready
+        scale: Math.min(image.opacity + 0.5, 1.0)
+        smooth: true
+        sourceSize.height: Math.max(24, height)
+        sourceSize.width: Math.max(24, width)
 
         function updateSource() {
             if (!imageId)
-                return
-            source = baseProviderPrefix + '/' +
-                    typePrefix + divider +
-                    imageId + divider + AvatarRegistry.getUid(imageId)
+                return;
+            source = baseProviderPrefix + '/' + typePrefix + divider + imageId + divider + AvatarRegistry.getUid(imageId);
         }
 
-        opacity: status === Image.Ready
-        scale: Math.min(image.opacity + 0.5, 1.0)
-
-        Behavior on opacity {
+        Behavior on opacity  {
             NumberAnimation {
-                from: 0
                 duration: JamiTheme.shortFadeDuration
+                from: 0
             }
         }
     }
-
     PresenceIndicator {
         id: presenceIndicator
-
-        anchors.right: root.right
-        anchors.rightMargin: -1
         anchors.bottom: root.bottom
         anchors.bottomMargin: -1
-
+        anchors.right: root.right
+        anchors.rightMargin: -1
         size: root.width * JamiTheme.avatarPresenceRatio
-
         visible: showPresenceIndicator
-    }       
+    }
 }

@@ -15,126 +15,96 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
     id: root
-
     property int itemWidth
 
     // Identity
     Row {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
         spacing: width - idLabel.width - currentRingID.width
 
         Label {
             id: idLabel
-
             anchors.verticalCenter: parent.verticalCenter
-
-            text: JamiStrings.identifier
             color: JamiTheme.textColor
-            font.pointSize: JamiTheme.settingsFontSize
             font.kerning: true
-
+            font.pointSize: JamiTheme.settingsFontSize
             horizontalAlignment: Text.AlignLeft
+            text: JamiStrings.identifier
             verticalAlignment: Text.AlignVCenter
         }
-
         MaterialLineEdit {
             id: currentRingID
-
             anchors.verticalCenter: parent.verticalCenter
-
-            width: parent.width - idLabel.width
-                   - JamiTheme.preferredMarginSize
-            height: JamiTheme.preferredFieldHeight
-
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
+            color: JamiTheme.textColor
             font.bold: true
-
+            font.kerning: true
+            font.pointSize: JamiTheme.textFontSize
+            height: JamiTheme.preferredFieldHeight
+            horizontalAlignment: Text.AlignRight
             padding: 0
             readOnly: true
             selectByMouse: true
-
-            wrapMode: Text.NoWrap
             text: currentRingIDText.elidedText
-            color: JamiTheme.textColor
-
-            horizontalAlignment: Text.AlignRight
             verticalAlignment: Text.AlignVCenter
+            width: parent.width - idLabel.width - JamiTheme.preferredMarginSize
+            wrapMode: Text.NoWrap
 
             TextMetrics {
                 id: currentRingIDText
-
-                font: currentRingID.font
                 elide: Text.ElideRight
-                elideWidth: root.width - idLabel.width -
-                            JamiTheme.preferredMarginSize * 4
-
+                elideWidth: root.width - idLabel.width - JamiTheme.preferredMarginSize * 4
+                font: currentRingID.font
                 text: CurrentAccount.uri
             }
         }
     }
-
     Row {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
         spacing: width - lblRegisteredName.width - currentRegisteredID.width
 
         Label {
             id: lblRegisteredName
-
             anchors.verticalCenter: parent.verticalCenter
-
-            text: JamiStrings.username
             color: JamiTheme.textColor
-            font.pointSize: JamiTheme.settingsFontSize
             font.kerning: true
-
+            font.pointSize: JamiTheme.settingsFontSize
             horizontalAlignment: Text.AlignLeft
+            text: JamiStrings.username
             verticalAlignment: Text.AlignVCenter
         }
-
         UsernameTextEdit {
             id: currentRegisteredID
-
-            width: JamiTheme.preferredFieldWidth
-            height: JamiTheme.preferredFieldHeight + 16
-
             anchors.margins: 8
-
-            fontPixelSize: JamiTheme.jamiIdFontSize
-            staticText: CurrentAccount.registeredName
-            placeholderText: JamiStrings.chooseUsername
             editMode: !CurrentAccount.registeredName
+            fontPixelSize: JamiTheme.jamiIdFontSize
+            height: JamiTheme.preferredFieldHeight + 16
             isPersistent: !CurrentAccount.registeredName
+            placeholderText: JamiStrings.chooseUsername
+            staticText: CurrentAccount.registeredName
+            width: JamiTheme.preferredFieldWidth
 
             onAccepted: {
                 if (dynamicText === '') {
-                    return
+                    return;
                 }
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "settingsview/components/NameRegistrationDialog.qml",
-                            { registeredName: dynamicText })
-                dlg.accepted.connect(function() {
-                    currentRegisteredID.nameRegistrationState =
-                            UsernameTextEdit.NameRegistrationState.BLANK
-                })
+                var dlg = viewCoordinator.presentDialog(appWindow, "settingsview/components/NameRegistrationDialog.qml", {
+                        "registeredName": dynamicText
+                    });
+                dlg.accepted.connect(function () {
+                        currentRegisteredID.nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
+                    });
             }
         }
     }

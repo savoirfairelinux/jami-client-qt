@@ -14,41 +14,40 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 SplitView {
     id: root
-
-    property string splitViewStateKey: objectName
     property bool autoManageState: !(parent instanceof BaseView)
-
-    function saveSplitViewState() {
-        UtilsAdapter.setAppValue("sv_" + splitViewStateKey, root.saveState())
-    }
+    property string splitViewStateKey: objectName
 
     function restoreSplitViewState() {
-        root.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey))
+        root.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey));
+    }
+    function saveSplitViewState() {
+        UtilsAdapter.setAppValue("sv_" + splitViewStateKey, root.saveState());
     }
 
-    onResizingChanged: if (!resizing) saveSplitViewState()
+    onResizingChanged: if (!resizing)
+        saveSplitViewState()
     onVisibleChanged: {
-        if (!autoManageState) return
-        visible ? restoreSplitViewState() : saveSplitViewState()
+        if (!autoManageState)
+            return;
+        visible ? restoreSplitViewState() : saveSplitViewState();
     }
 
     handle: Rectangle {
-        implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-        implicitHeight: root.height
         color: JamiTheme.primaryBackgroundColor
+        implicitHeight: root.height
+        implicitWidth: JamiTheme.splitViewHandlePreferredWidth
+
         Rectangle {
-            implicitWidth: 1
-            implicitHeight: root.height
             color: JamiTheme.tabbarBorderColor
+            implicitHeight: root.height
+            implicitWidth: 1
         }
     }
 }

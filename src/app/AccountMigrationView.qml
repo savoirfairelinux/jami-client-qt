@@ -15,22 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "commoncomponents"
 
 // Account Migration Dialog for migrating account
 BaseView {
     id: root
-
     enum AccountMigrationStep {
         PasswordEnter,
         Synching
@@ -40,313 +36,241 @@ BaseView {
 
     // signal to redirect the page to main view
     signal loaderSourceChangeRequested(int sourceToLoad)
-
-    function slotMigrationButtonClicked() {
-        stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.Synching
-
-        AccountAdapter.setArchivePasswordAsync(
-                    CurrentAccountToMigrate.accountId, passwordInputLineEdit.text)
-    }
-
     function slotDeleteButtonClicked() {
-        stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.Synching
-
-        CurrentAccountToMigrate.removeCurrentAccountToMigrate()
+        stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.Synching;
+        CurrentAccountToMigrate.removeCurrentAccountToMigrate();
+    }
+    function slotMigrationButtonClicked() {
+        stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.Synching;
+        AccountAdapter.setArchivePasswordAsync(CurrentAccountToMigrate.accountId, passwordInputLineEdit.text);
     }
 
     Timer {
         id: timerFailureReturn
-
         interval: 1000
         repeat: false
 
         onTriggered: {
-            stackedWidget.currentIndex =
-                    AccountMigrationView.AccountMigrationStep.PasswordEnter
-            successState = true
+            stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.PasswordEnter;
+            successState = true;
         }
     }
-
     Connections {
         id: connectionMigrationEnded
-
         target: CurrentAccountToMigrate
 
+        function onCurrentAccountToMigrateRemoved() {
+            successState = true;
+            passwordInputLineEdit.clear();
+            stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.PasswordEnter;
+        }
         function onMigrationEnded(ok) {
-            successState = ok
-
+            successState = ok;
             if (ok) {
-                passwordInputLineEdit.clear()
-
-                stackedWidget.currentIndex =
-                        AccountMigrationView.AccountMigrationStep.PasswordEnter
+                passwordInputLineEdit.clear();
+                stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.PasswordEnter;
             } else {
-                timerFailureReturn.restart()
+                timerFailureReturn.restart();
             }
         }
-
-        function onCurrentAccountToMigrateRemoved() {
-            successState = true
-            passwordInputLineEdit.clear()
-
-            stackedWidget.currentIndex =
-                    AccountMigrationView.AccountMigrationStep.PasswordEnter
-        }
     }
-
     ColumnLayout {
-        anchors.fill: parent
         Layout.alignment: Qt.AlignHCenter
+        anchors.fill: parent
 
         StackLayout {
             id: stackedWidget
-
-            Layout.fillWidth: true
-            Layout.fillHeight: true
             Layout.alignment: Qt.AlignHCenter
+            Layout.fillHeight: true
+            Layout.fillWidth: true
 
             // Index = 0
             Rectangle {
                 id: accountMigrationPage
-
                 ColumnLayout {
-                    spacing: 8
-
                     anchors.fill: accountMigrationPage
+                    spacing: 8
 
                     Label {
                         id: accountMigrationLabel
-
                         Layout.alignment: Qt.AlignHCenter
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                        font.pointSize: JamiTheme.headerFontSize
                         font.kerning: true
-                        wrapMode:Text.Wrap
-
-                        text: JamiStrings.authenticationRequired
-
+                        font.pointSize: JamiTheme.headerFontSize
                         horizontalAlignment: Text.AlignLeft
+                        text: JamiStrings.authenticationRequired
                         verticalAlignment: Text.AlignVCenter
+                        wrapMode: Text.Wrap
                     }
-
                     Label {
                         id: migrationReasonLabel
-
                         Layout.alignment: Qt.AlignHCenter
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                        font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
-                        wrapMode:Text.Wrap
-
-                        text: JamiStrings.migrationReason
-
+                        font.pointSize: JamiTheme.textFontSize
                         horizontalAlignment: Text.AlignLeft
+                        text: JamiStrings.migrationReason
                         verticalAlignment: Text.AlignVCenter
+                        wrapMode: Text.Wrap
                     }
-
                     Avatar {
                         id: avatarLabel
-
-                        Layout.preferredWidth: 200
+                        Layout.alignment: Qt.AlignHCenter
                         Layout.preferredHeight: 200
-
-                        Layout.alignment: Qt.AlignHCenter
-
-                        showPresenceIndicator: false
-                        mode: Avatar.Mode.Account
+                        Layout.preferredWidth: 200
                         imageId: CurrentAccountToMigrate.accountId
+                        mode: Avatar.Mode.Account
+                        showPresenceIndicator: false
                     }
-
                     GridLayout {
-                        rows: 4
-                        columns: 2
-                        rowSpacing: 8
-                        columnSpacing: 8
-
-                        Layout.fillWidth: true
                         Layout.alignment: Qt.AlignHCenter
+                        Layout.fillWidth: true
                         Layout.leftMargin: JamiTheme.preferredMarginSize
                         Layout.rightMargin: JamiTheme.preferredMarginSize
+                        columnSpacing: 8
+                        columns: 2
+                        rowSpacing: 8
+                        rows: 4
 
                         // 1st Row
                         Label {
                             id: aliasLabel
-
-                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                            text: JamiStrings.alias
-                            font.pointSize: JamiTheme.textFontSize
+                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             font.kerning: true
-
+                            font.pointSize: JamiTheme.textFontSize
                             horizontalAlignment: Text.AlignLeft
+                            text: JamiStrings.alias
                             verticalAlignment: Text.AlignVCenter
                         }
-
                         Label {
                             id: aliasInputLabel
-
-                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
+                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                            font.kerning: true
+                            font.pointSize: JamiTheme.textFontSize
+                            horizontalAlignment: Text.AlignLeft
                             text: {
                                 if (CurrentAccountToMigrate.alias.length !== 0) {
-                                    return CurrentAccountToMigrate.alias
+                                    return CurrentAccountToMigrate.alias;
                                 } else {
-                                    return JamiStrings.notAvailable
+                                    return JamiStrings.notAvailable;
                                 }
                             }
-                            font.pointSize: JamiTheme.textFontSize
-                            font.kerning: true
-
-                            horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
                         }
 
                         // 2nd Row
                         Label {
                             id: usernameLabel
-
-                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                            text: JamiStrings.username
-                            font.pointSize: JamiTheme.textFontSize
+                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             font.kerning: true
-
+                            font.pointSize: JamiTheme.textFontSize
                             horizontalAlignment: Text.AlignLeft
+                            text: JamiStrings.username
                             verticalAlignment: Text.AlignVCenter
                         }
-
                         Label {
                             id: usernameInputLabel
-
-                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
+                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                            font.kerning: true
+                            font.pointSize: JamiTheme.textFontSize
+                            horizontalAlignment: Text.AlignLeft
                             text: {
                                 if (CurrentAccountToMigrate.username.length !== 0) {
-                                    return CurrentAccountToMigrate.username
+                                    return CurrentAccountToMigrate.username;
                                 } else if (CurrentAccountToMigrate.managerUsername.length !== 0) {
-                                    return CurrentAccountToMigrate.managerUsername
+                                    return CurrentAccountToMigrate.managerUsername;
                                 } else {
-                                    return JamiStrings.notAvailable
+                                    return JamiStrings.notAvailable;
                                 }
                             }
-                            font.pointSize: JamiTheme.textFontSize
-                            font.kerning: true
-
-                            horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
                         }
 
                         // 3rd Row
                         Label {
                             id: managerUriLabel
-
-                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                            text: JamiStrings.jamsServer
-                            font.pointSize: JamiTheme.textFontSize
+                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             font.kerning: true
-
+                            font.pointSize: JamiTheme.textFontSize
                             horizontalAlignment: Text.AlignLeft
+                            text: JamiStrings.jamsServer
                             verticalAlignment: Text.AlignVCenter
                         }
-
                         Label {
                             id: managerUriInputLabel
-
-                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
+                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                            font.kerning: true
+                            font.pointSize: JamiTheme.textFontSize
+                            horizontalAlignment: Text.AlignLeft
                             text: {
                                 if (CurrentAccountToMigrate.managerUri.length !== 0) {
-                                    return CurrentAccountToMigrate.managerUri
+                                    return CurrentAccountToMigrate.managerUri;
                                 } else {
-                                    return JamiStrings.notAvailable
+                                    return JamiStrings.notAvailable;
                                 }
                             }
-                            font.pointSize: JamiTheme.textFontSize
-                            font.kerning: true
-
-                            horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
                         }
 
                         // 4th Row
                         Label {
                             id: passwordLabel
-
-                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                            text: JamiStrings.password
-                            font.pointSize: JamiTheme.textFontSize
+                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             font.kerning: true
-
+                            font.pointSize: JamiTheme.textFontSize
                             horizontalAlignment: Text.AlignLeft
+                            text: JamiStrings.password
                             verticalAlignment: Text.AlignVCenter
                         }
-
                         MaterialLineEdit {
                             id: passwordInputLineEdit
-
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
-
                             Layout.alignment: Qt.AlignHCenter
-                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: 48
-
+                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             echoMode: TextInput.Password
+                            horizontalAlignment: Text.AlignLeft
                             placeholderText: JamiStrings.password
+                            verticalAlignment: Text.AlignVCenter
 
                             onAccepted: slotMigrationButtonClicked()
                         }
                     }
-
                     RowLayout {
-                        spacing: 80
-
-                        Layout.fillWidth: true
                         Layout.alignment: Qt.AlignHCenter
                         Layout.bottomMargin: JamiTheme.preferredMarginSize
+                        Layout.fillWidth: true
+                        spacing: 80
 
                         MaterialButton {
                             id: migrationPushButton
-
                             Layout.alignment: Qt.AlignLeft
-
-                            preferredWidth: JamiTheme.preferredFieldWidth / 2
-
-                            color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                            color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                            enabled: passwordInputLineEdit.text.length > 0
                             hoveredColor: JamiTheme.buttonTintedBlackHovered
+                            preferredWidth: JamiTheme.preferredFieldWidth / 2
                             pressedColor: JamiTheme.buttonTintedBlackPressed
                             secondary: true
-                            enabled: passwordInputLineEdit.text.length > 0
-
                             text: JamiStrings.authenticate
 
                             onClicked: slotMigrationButtonClicked()
                         }
-
                         MaterialButton {
                             id: deleteAccountPushButton
-
                             Layout.alignment: Qt.AlignRight
-
-                            preferredWidth: JamiTheme.preferredFieldWidth / 2
-
                             color: JamiTheme.buttonTintedRed
                             hoveredColor: JamiTheme.buttonTintedRedHovered
+                            preferredWidth: JamiTheme.preferredFieldWidth / 2
                             pressedColor: JamiTheme.buttonTintedRedPressed
                             secondary: true
-
                             text: JamiStrings.deleteAccount
+
                             onClicked: slotDeleteButtonClicked()
                         }
                     }
@@ -356,73 +280,54 @@ BaseView {
             // Index = 1
             Rectangle {
                 id: migrationWaitingPage
-
-                Layout.fillWidth: true
-                Layout.fillHeight: true
                 Layout.alignment: Qt.AlignHCenter
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
                 ColumnLayout {
-                    spacing: 8
-
-                    width: stackedWidget.width
-                    height: stackedWidget.height
                     Layout.alignment: Qt.AlignHCenter
+                    height: stackedWidget.height
+                    spacing: 8
+                    width: stackedWidget.width
 
-                    RowLayout{
-                        spacing: 8
-
+                    RowLayout {
                         Layout.alignment: Qt.AlignHCenter
                         Layout.fillWidth: true
+                        spacing: 8
 
                         ResponsiveImage {
                             id: errorLabel
-
                             Layout.alignment: Qt.AlignHCenter
-
-                            Layout.preferredWidth: 200
                             Layout.preferredHeight: 200
-
+                            Layout.preferredWidth: 200
+                            color: JamiTheme.redColor
                             containerHeight: Layout.preferredHeight
                             containerWidth: Layout.preferredWidth
-
-                            visible: !successState
-
                             source: JamiResources.round_remove_circle_24dp_svg
-                            color: JamiTheme.redColor
+                            visible: !successState
                         }
-
                         AnimatedImage {
                             id: spinnerLabel
-
                             Layout.alignment: Qt.AlignHCenter
-
-                            Layout.preferredWidth: 200
                             Layout.preferredHeight: 200
-
-                            visible: successState
-
-                            source: JamiResources.jami_eclipse_spinner_gif
-
-                            playing: successState
+                            Layout.preferredWidth: 200
                             fillMode: Image.PreserveAspectFit
                             mipmap: true
+                            playing: successState
+                            source: JamiResources.jami_eclipse_spinner_gif
+                            visible: successState
                         }
                     }
-
                     Label {
                         id: progressLabel
-
                         Layout.alignment: Qt.AlignHCenter
-                        Layout.fillWidth: true
                         Layout.bottomMargin: 80
-
+                        Layout.fillWidth: true
                         color: successState ? JamiTheme.textColor : JamiTheme.redColor
-                        text: successState ? JamiStrings.inProgress :
-                                             JamiStrings.authenticationFailed
-                        font.pointSize: JamiTheme.textFontSize + 5
                         font.kerning: true
-
+                        font.pointSize: JamiTheme.textFontSize + 5
                         horizontalAlignment: Text.AlignHCenter
+                        text: successState ? JamiStrings.inProgress : JamiStrings.authenticationFailed
                         verticalAlignment: Text.AlignVCenter
                         wrapMode: Label.WordWrap
                     }

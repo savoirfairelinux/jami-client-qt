@@ -15,88 +15,67 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
     id: root
-
     property int itemWidth
+
     spacing: JamiTheme.settingsCategorySpacing
 
     Text {
         Layout.fillWidth: true
-
-        font.pixelSize: JamiTheme.settingsTitlePixelSize
-        font.kerning: true
-
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-
-        text: JamiStrings.publicAddress
         color: JamiTheme.textColor
         elide: Text.ElideRight
+        font.kerning: true
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        horizontalAlignment: Text.AlignLeft
+        text: JamiStrings.publicAddress
+        verticalAlignment: Text.AlignVCenter
     }
-
     ColumnLayout {
         Layout.fillWidth: true
 
         ToggleSwitch {
             id: checkBoxAllowIPAutoRewrite
-
-            labelText: JamiStrings.allowIPAutoRewrite
-
             checked: CurrentAccount.allowIPAutoRewrite
+            labelText: JamiStrings.allowIPAutoRewrite
 
             onSwitchToggled: CurrentAccount.allowIPAutoRewrite = checked
         }
-
         ToggleSwitch {
             id: checkBoxCustomAddressPort
-
-            labelText: JamiStrings.useCustomAddress
-
-            visible: !checkBoxAllowIPAutoRewrite.checked
             checked: CurrentAccount.publishedSameAsLocal
+            labelText: JamiStrings.useCustomAddress
+            visible: !checkBoxAllowIPAutoRewrite.checked
 
             onSwitchToggled: CurrentAccount.publishedSameAsLocal = checked
         }
-
         SettingsMaterialTextEdit {
             id: lineEditSIPCustomAddress
-
             Layout.fillWidth: true
-
-            visible: !checkBoxAllowIPAutoRewrite.checked
             enabled: checkBoxCustomAddressPort.checked
-
             itemWidth: root.itemWidth
-            titleField: JamiStrings.address
-
             staticText: CurrentAccount.publishedAddress
+            titleField: JamiStrings.address
+            visible: !checkBoxAllowIPAutoRewrite.checked
 
             onEditFinished: CurrentAccount.publishedAddress = dynamicText
         }
-
         SettingSpinBox {
             id: customPortSIPSpinBox
-
-            title: JamiStrings.port
-            itemWidth: root.itemWidth
             bottomValue: 0
-            topValue: 65535
-
-            visible: !checkBoxAllowIPAutoRewrite.checked
             enabled: checkBoxCustomAddressPort.checked
-
+            itemWidth: root.itemWidth
+            title: JamiStrings.port
+            topValue: 65535
             valueField: CurrentAccount.publishedPort
+            visible: !checkBoxAllowIPAutoRewrite.checked
 
             onNewValue: CurrentAccount.publishedPort = valueField
         }

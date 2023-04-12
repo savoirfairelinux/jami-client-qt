@@ -14,142 +14,119 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Item {
     id: root
-    width: parent.width
-    height: backupLayout.height
-
     property var iconSize: 26
     property var margin: 5
     property var prefWidth: 170
+
+    height: backupLayout.height
+    width: parent.width
 
     signal ignore
 
     ColumnLayout {
         id: backupLayout
-
         anchors.top: parent.top
         width: parent.width
 
         RowLayout {
-
-            Layout.leftMargin: 15
             Layout.alignment: Qt.AlignLeft
+            Layout.leftMargin: 15
 
             ResponsiveImage {
                 id: icon
-
-                visible: !opened
-
                 Layout.alignment: Qt.AlignLeft
-                Layout.topMargin: root.margin
-                Layout.preferredWidth: root.iconSize
                 Layout.preferredHeight: root.iconSize
-
+                Layout.preferredWidth: root.iconSize
+                Layout.topMargin: root.margin
+                color: JamiTheme.buttonTintedBlue
                 containerHeight: Layout.preferredHeight
                 containerWidth: Layout.preferredWidth
-
                 source: JamiResources.noun_paint_svg
-                color: JamiTheme.buttonTintedBlue
-            }
-
-            Text {
-                text: JamiStrings.backupAccountBtn
-                color: JamiTheme.textColor
-                font.weight: Font.Medium
-                Layout.topMargin: root.margin
                 visible: !opened
+            }
+            Text {
                 Layout.alignment: Qt.AlignLeft
                 Layout.leftMargin: root.margin
                 Layout.preferredWidth: root.prefWidth - 2 * root.margin - root.iconSize
-                font.pixelSize: JamiTheme.tipBoxTitleFontSize
+                Layout.topMargin: root.margin
+                color: JamiTheme.textColor
                 elide: Qt.ElideRight
+                font.pixelSize: JamiTheme.tipBoxTitleFontSize
+                font.weight: Font.Medium
+                text: JamiStrings.backupAccountBtn
+                visible: !opened
             }
         }
-
         Text {
-            Layout.preferredWidth: root.prefWidth
-            Layout.leftMargin: 20
-            Layout.topMargin: 8
             Layout.bottomMargin: 15
+            Layout.leftMargin: 20
+            Layout.preferredWidth: root.prefWidth
+            Layout.topMargin: 8
+            color: JamiTheme.textColor
             font.pixelSize: JamiTheme.tipBoxContentFontSize
-            visible: !opened
-            wrapMode: Text.WordWrap
             font.weight: Font.Normal
             text: JamiStrings.whyBackupAccount
-            color: JamiTheme.textColor
+            visible: !opened
+            wrapMode: Text.WordWrap
         }
-
         Text {
-            Layout.preferredWidth: root.width - 32
             Layout.leftMargin: 20
+            Layout.preferredWidth: root.width - 32
             Layout.topMargin: 20
+            color: JamiTheme.textColor
             font.pixelSize: JamiTheme.tipBoxContentFontSize
+            text: JamiStrings.backupAccountInfos
             visible: opened
             wrapMode: Text.WordWrap
-            text: JamiStrings.backupAccountInfos
-            color: JamiTheme.textColor
         }
-
         MaterialButton {
             id: backupBtn
-
             Layout.alignment: Qt.AlignCenter
-
-            preferredWidth: parent.width
-            visible: opened
-
-            text: JamiStrings.backupAccountBtn
             autoAccelerator: true
             color: JamiTheme.buttonTintedGrey
             hoveredColor: JamiTheme.buttonTintedGreyHovered
+            preferredWidth: parent.width
             pressedColor: JamiTheme.buttonTintedGreyPressed
+            text: JamiStrings.backupAccountBtn
+            visible: opened
 
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "commoncomponents/JamiFileDialog.qml",
-                            {
-                                //objectName: "exportDialog",
-                                title: JamiStrings.backupAccountHere,
-                                fileMode: JamiFileDialog.SaveFile,
-                                folder: StandardPaths.writableLocation(
-                                            StandardPaths.HomeLocation) + "/Desktop",
-                                nameFilters: [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
-                            })
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                        "title": JamiStrings.backupAccountHere,
+                        "fileMode": JamiFileDialog.SaveFile,
+                        "folder": StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop",
+                        "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+                    });
                 dlg.fileAccepted.connect(function (file) {
-                    // Is there password? If so, go to password dialog, else, go to following directly
-                    if (CurrentAccount.hasArchivePassword) {
-                        var pwdDlg = viewCoordinator.presentDialog(
-                                    appWindow,
-                                    "commoncomponents/PasswordDialog.qml",
-                                    {
-                                        //objectName: "passwordDialog",
-                                        path: UtilsAdapter.getAbsPath(file),
-                                        purpose: PasswordDialog.ExportAccount
-                                    })
-                        pwdDlg.done.connect(function () { root.ignore() })
-                    } else {
-                        if (file.toString().length > 0) {
-                            root.ignore()
+                        // Is there password? If so, go to password dialog, else, go to following directly
+                        if (CurrentAccount.hasArchivePassword) {
+                            var pwdDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                                    "path": UtilsAdapter.getAbsPath(file),
+                                    "purpose": PasswordDialog.ExportAccount
+                                });
+                            pwdDlg.done.connect(function () {
+                                    root.ignore();
+                                });
+                        } else {
+                            if (file.toString().length > 0) {
+                                root.ignore();
+                            }
                         }
-                    }
-                })
+                    });
                 dlg.rejected.connect(function () {
-                    backupBtn.forceActiveFocus()
-                })
+                        backupBtn.forceActiveFocus();
+                    });
             }
         }
     }

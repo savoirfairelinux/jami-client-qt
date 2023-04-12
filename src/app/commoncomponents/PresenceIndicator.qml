@@ -15,9 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
@@ -25,24 +23,25 @@ import net.jami.Constants 1.1
 // TODO: this should be part of an avatar component at some point.
 Rectangle {
     id: root
+    property int size: 15
 
     // This is set to REGISTERED for contact presence
     // as status is not currently tracked for contact items.
     property int status: Account.Status.REGISTERED
-    property int size: 15
 
-    width: size
+    color: {
+        if (status === Account.Status.REGISTERED)
+            return JamiTheme.presenceGreen;
+        else if (status === Account.Status.TRYING)
+            return JamiTheme.unPresenceOrange;
+        return JamiTheme.notificationRed;
+    }
     height: size
     radius: size * 0.5
+    width: size
+
     border {
         color: JamiTheme.backgroundColor
         width: 2
-    }
-    color: {
-        if (status === Account.Status.REGISTERED)
-            return JamiTheme.presenceGreen
-        else if (status === Account.Status.TRYING)
-            return JamiTheme.unPresenceOrange
-        return JamiTheme.notificationRed
     }
 }

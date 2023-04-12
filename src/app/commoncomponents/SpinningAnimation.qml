@@ -16,13 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import Qt5Compat.GraphicalEffects
 
 Item {
     id: root
-
     enum Mode {
         Disabled,
         Radial,
@@ -30,79 +28,81 @@ Item {
     }
 
     property int mode: SpinningAnimation.Mode.Disabled
-    property int spinningAnimationWidth: 4
     property real outerCutRadius: root.height / 2
     property int spinningAnimationDuration: 1000
+    property int spinningAnimationWidth: 4
 
+    layer.enabled: mode !== SpinningAnimation.Mode.Disabled
     visible: mode !== SpinningAnimation.Mode.Disabled
 
     ConicalGradient {
         id: conicalGradientOne
-
         anchors.fill: parent
-
         angle: 0.0
-        gradient: Gradient {
-            GradientStop { position: 0.5; color: "transparent" }
-            GradientStop { position: 1.0; color: "white" }
-        }
+        layer.enabled: true
 
-        RotationAnimation on angle {
-            running: root.visible
-            loops: Animation.Infinite
+        RotationAnimation on angle  {
             duration: spinningAnimationDuration
             from: 0
+            loops: Animation.Infinite
+            running: root.visible
             to: 360
         }
-
-        layer.enabled: true
-        layer.effect: OpacityMask {
-            invert: true
-            maskSource: Item {
-                width: conicalGradientOne.width
-                height: conicalGradientOne.height
-
-                Rectangle {
-                    anchors.fill: parent
-                    anchors.margins: spinningAnimationWidth
-                    radius: outerCutRadius
-                }
-            }
-        }
-    }
-
-    ConicalGradient {
-        id: conicalGradientTwo
-
-        anchors.fill: parent
-
-        visible: mode === SpinningAnimation.Mode.BiRadial
-        angle: 180.0
         gradient: Gradient {
             GradientStop {
-                position: 0.75
                 color: "transparent"
+                position: 0.5
             }
             GradientStop {
-                position: 1.0
                 color: "white"
+                position: 1.0
             }
         }
-
-        RotationAnimation on angle {
-            running: root.visible
-            loops: Animation.Infinite
-            duration: spinningAnimationDuration
-            from: 180.0
-            to: 540.0
-        }
-
-        layer.enabled: true
         layer.effect: OpacityMask {
             invert: true
+
             maskSource: Item {
-                width: conicalGradientTwo.width
+                height: conicalGradientOne.height
+                width: conicalGradientOne.width
+
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.margins: spinningAnimationWidth
+                    radius: outerCutRadius
+                }
+            }
+        }
+    }
+    ConicalGradient {
+        id: conicalGradientTwo
+        anchors.fill: parent
+        angle: 180.0
+        layer.enabled: true
+        visible: mode === SpinningAnimation.Mode.BiRadial
+
+        RotationAnimation on angle  {
+            duration: spinningAnimationDuration
+            from: 180.0
+            loops: Animation.Infinite
+            running: root.visible
+            to: 540.0
+        }
+        gradient: Gradient {
+            GradientStop {
+                color: "transparent"
+                position: 0.75
+            }
+            GradientStop {
+                color: "white"
+                position: 1.0
+            }
+        }
+        layer.effect: OpacityMask {
+            invert: true
+
+            maskSource: Item {
                 height: conicalGradientTwo.height
+                width: conicalGradientTwo.width
 
                 Rectangle {
                     anchors.fill: parent
@@ -113,12 +113,11 @@ Item {
         }
     }
 
-    layer.enabled: mode !== SpinningAnimation.Mode.Disabled
     layer.effect: OpacityMask {
         maskSource: Rectangle {
-            width: root.width
             height: root.height
             radius: outerCutRadius
+            width: root.width
         }
     }
 }

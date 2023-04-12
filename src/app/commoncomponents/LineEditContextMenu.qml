@@ -15,85 +15,76 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Constants 1.1
-
 import "contextmenu"
 
 ContextMenuAutoLoader {
     id: root
+    property bool customizePaste: false
 
     // lineEdit (TextEdit) selection will be lost when menu is opened
     property var lineEditObj
-    property var selectionStart
-    property var selectionEnd
-    property bool customizePaste: false
-    property bool selectOnly: false
-
-    signal contextMenuRequirePaste
-
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: copy
-
             canTrigger: lineEditObj.selectedText.length
             itemName: JamiStrings.copy
+
             onClicked: {
-                lineEditObj.copy()
+                lineEditObj.copy();
             }
         },
         GeneralMenuItem {
             id: cut
-
             canTrigger: lineEditObj.selectedText.length && !selectOnly
             itemName: JamiStrings.cut
 
             onClicked: {
-                lineEditObj.cut()
+                lineEditObj.cut();
             }
         },
         GeneralMenuItem {
             id: paste
-
             canTrigger: !selectOnly
             itemName: JamiStrings.paste
+
             onClicked: {
                 if (customizePaste)
-                    root.contextMenuRequirePaste()
+                    root.contextMenuRequirePaste();
                 else
-                    lineEditObj.paste()
+                    lineEditObj.paste();
             }
         }
     ]
-
-    function openMenuAt(mouseEvent) {
-        if (lineEditObj.selectedText.length === 0 && selectOnly)
-            return
-
-        x = mouseEvent.x
-        y = mouseEvent.y
-
-        selectionStart = lineEditObj.selectionStart
-        selectionEnd = lineEditObj.selectionEnd
-
-        root.openMenu()
-
-        lineEditObj.select(selectionStart, selectionEnd)
-    }
+    property bool selectOnly: false
+    property var selectionEnd
+    property var selectionStart
 
     contextMenuItemPreferredHeight: JamiTheme.lineEditContextMenuItemsHeight
     contextMenuItemPreferredWidth: JamiTheme.lineEditContextMenuItemsWidth
     contextMenuSeparatorPreferredHeight: JamiTheme.lineEditContextMenuSeparatorsHeight
 
-    Connections {
-        target: root.item
-        enabled: root.status === Loader.Ready
-        function onOpened() {
-            lineEditObj.select(selectionStart, selectionEnd)
-        }
+    signal contextMenuRequirePaste
+    function openMenuAt(mouseEvent) {
+        if (lineEditObj.selectedText.length === 0 && selectOnly)
+            return;
+        x = mouseEvent.x;
+        y = mouseEvent.y;
+        selectionStart = lineEditObj.selectionStart;
+        selectionEnd = lineEditObj.selectionEnd;
+        root.openMenu();
+        lineEditObj.select(selectionStart, selectionEnd);
     }
 
     Component.onCompleted: menuItemsToLoad = menuItems
+
+    Connections {
+        enabled: root.status === Loader.Ready
+        target: root.item
+
+        function onOpened() {
+            lineEditObj.select(selectionStart, selectionEnd);
+        }
+    }
 }

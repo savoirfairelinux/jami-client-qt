@@ -16,105 +16,80 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 BaseModalDialog {
     id: root
-
     required property string deviceId
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
     height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
-
     title: JamiStrings.removeDevice
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
 
     popupContent: ColumnLayout {
         id: revokeDeviceContentColumnLayout
-
         spacing: 16
 
         Label {
             id: labelDeletion
-
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: revokeDeviceContentColumnLayout.width -
-                                   JamiTheme.preferredMarginSize * 2
-
-            text: JamiStrings.confirmRemoval
+            Layout.preferredWidth: revokeDeviceContentColumnLayout.width - JamiTheme.preferredMarginSize * 2
             color: JamiTheme.textColor
-            font.pointSize: JamiTheme.textFontSize
             font.kerning: true
-            wrapMode: Text.Wrap
-
+            font.pointSize: JamiTheme.textFontSize
             horizontalAlignment: Text.AlignHCenter
+            text: JamiStrings.confirmRemoval
             verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.Wrap
         }
-
         PasswordTextEdit {
             id: passwordEdit
-
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: JamiTheme.preferredFieldWidth
             Layout.preferredHeight: visible ? 48 : 0
-
+            Layout.preferredWidth: JamiTheme.preferredFieldWidth
             placeholderText: JamiStrings.enterCurrentPassword
 
             onDynamicTextChanged: btnRemove.enabled = dynamicText.length > 0
-
         }
-
         RowLayout {
-            spacing: 16
             Layout.alignment: Qt.AlignHCenter
-
             Layout.fillWidth: true
+            spacing: 16
 
             MaterialButton {
                 id: btnRemove
-
                 Layout.alignment: Qt.AlignHCenter
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                autoAccelerator: true
                 buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                enabled: false
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
+                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
                 pressedColor: JamiTheme.buttonTintedBlackPressed
                 secondary: true
-                autoAccelerator: true
-                enabled: false
-
                 text: JamiStrings.optionRemove
 
                 onClicked: {
-                    DeviceItemListModel.revokeDevice(deviceId, passwordEdit.text)
-                    close()
+                    DeviceItemListModel.revokeDevice(deviceId, passwordEdit.text);
+                    close();
                 }
             }
-
             MaterialButton {
                 id: btnCancel
-
                 Layout.alignment: Qt.AlignHCenter
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                autoAccelerator: true
                 buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
                 color: JamiTheme.buttonTintedBlack
+                enabled: true
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
+                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
                 pressedColor: JamiTheme.buttonTintedBlackPressed
                 secondary: true
-                autoAccelerator: true
-                enabled: true
-
                 text: JamiStrings.optionCancel
 
                 onClicked: close()

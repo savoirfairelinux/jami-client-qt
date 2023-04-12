@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright (C) 2023 Savoir-faire Linux Inc.
  * Author: Fadi Shehadeh   <fadi.shehadeh@savoirfairelinux.com>
@@ -17,60 +15,54 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
     id: root
-
     property int itemWidth: 150
 
     title: JamiStrings.screenSharing
 
     flickableContent: ColumnLayout {
         id: currentAccountEnableColumnLayout
-
-        width: contentFlickableWidth
-        spacing: JamiTheme.settingsBlockSpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
+        spacing: JamiTheme.settingsBlockSpacing
+        width: contentFlickableWidth
 
         SettingsComboBox {
             id: screenSharingFPSComboBoxSetting
-
-            visible: modelSize > 0
-
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-            widthOfComboBox: itemWidth
-            fontPointSize: JamiTheme.settingsFontSize
-
-            tipText: JamiStrings.selectScreenSharingFPS
-            labelText: JamiStrings.fps
             currentSelectionText: VideoDevices.screenSharingDefaultFps.toString()
+            fontPointSize: JamiTheme.settingsFontSize
+            labelText: JamiStrings.fps
             placeholderText: VideoDevices.screenSharingDefaultFps.toString()
-            comboModel: ListModel { id: screenSharingFpsModel }
             role: "FPS"
+            tipText: JamiStrings.selectScreenSharingFPS
+            visible: modelSize > 0
+            widthOfComboBox: itemWidth
+
             Component.onCompleted: {
-                var elements = VideoDevices.sharingFpsSourceModel
+                var elements = VideoDevices.sharingFpsSourceModel;
                 for (var item in elements) {
-                    screenSharingFpsModel.append({"FPS": elements[item]})
+                    screenSharingFpsModel.append({
+                            "FPS": elements[item]
+                        });
                 }
             }
-
             onActivated: VideoDevices.setDisplayFPS(screenSharingFpsModel.get(modelIndex).FPS)
+
+            comboModel: ListModel {
+                id: screenSharingFpsModel
+            }
         }
-
     }
-
 }

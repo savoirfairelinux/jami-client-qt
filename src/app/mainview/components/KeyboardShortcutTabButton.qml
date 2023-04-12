@@ -15,31 +15,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 TabButton {
     id: root
-
     property int currentIndex
 
-    contentItem: Text {
-        text: root.text
-        font.pointSize: JamiTheme.textFontSize
-        color: JamiTheme.textColor
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        elide: Text.ElideRight
-    }
-
     background: Rectangle {
-        color: root.hovered ? JamiTheme.hoveredButtonColor :
-                              (root.down || root.currentIndex === index) ?
-                                  JamiTheme.pressedButtonColor :
-                                  JamiTheme.normalButtonColor
+        color: root.hovered ? JamiTheme.hoveredButtonColor : (root.down || root.currentIndex === index) ? JamiTheme.pressedButtonColor : JamiTheme.normalButtonColor
         radius: JamiTheme.primaryRadius
+    }
+    contentItem: Text {
+        color: JamiTheme.textColor
+        elide: Text.ElideRight
+        font.pointSize: JamiTheme.textFontSize
+        horizontalAlignment: Text.AlignHCenter
+        text: root.text
+        verticalAlignment: Text.AlignVCenter
     }
 }

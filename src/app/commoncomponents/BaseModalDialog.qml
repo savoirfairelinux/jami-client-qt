@@ -15,12 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 
 Popup {
@@ -29,105 +27,94 @@ Popup {
     // convient access to closePolicy
     property bool autoClose: true
     property alias backgroundColor: container.color
-    property alias title: titleText.text
-    property var popupContentLoader: containerSubContentLoader
-    property alias popupContentLoadStatus: containerSubContentLoader.status
     property alias popupContent: containerSubContentLoader.sourceComponent
+    property alias popupContentLoadStatus: containerSubContentLoader.status
+    property var popupContentLoader: containerSubContentLoader
+    property int popupContentMargins: 0
     property int popupContentPreferredHeight: 0
     property int popupContentPreferredWidth: 0
-    property int popupContentMargins: 0
+    property alias title: titleText.text
 
+    closePolicy: autoClose ? (Popup.CloseOnEscape | Popup.CloseOnPressOutside) : Popup.NoAutoClose
+    modal: true
+    padding: 0
     parent: Overlay.overlay
+
+    // A popup is invisible until opened.
+    visible: false
 
     // center in parent
     x: Math.round((parent.width - width) / 2)
     y: Math.round((parent.height - height) / 2)
 
-    modal: true
-
-    padding: 0
-
-    // A popup is invisible until opened.
-    visible: false
-    closePolicy:  autoClose ?
-                      (Popup.CloseOnEscape | Popup.CloseOnPressOutside) :
-                      Popup.NoAutoClose
-
     Rectangle {
         id: container
-
         anchors.fill: parent
+        color: JamiTheme.secondaryBackgroundColor
+        radius: JamiTheme.modalPopupRadius
 
         ColumnLayout {
             anchors.fill: parent
-
             spacing: 0
 
             Text {
                 id: titleText
-
                 Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 Layout.margins: text.length === 0 ? 0 : 10
-
                 Layout.preferredHeight: text.length === 0 ? 0 : contentHeight
-
-                font.pointSize: 12
                 color: JamiTheme.textColor
+                font.pointSize: 12
             }
-
             Loader {
                 id: containerSubContentLoader
-
-                Layout.topMargin: popupContentMargins
-                Layout.bottomMargin: popupContentMargins
                 Layout.alignment: Qt.AlignCenter
-                Layout.fillWidth: popupContentPreferredWidth === 0
+                Layout.bottomMargin: popupContentMargins
                 Layout.fillHeight: popupContentPreferredHeight === 0
+                Layout.fillWidth: popupContentPreferredWidth === 0
                 Layout.preferredHeight: popupContentPreferredHeight
                 Layout.preferredWidth: popupContentPreferredWidth
+                Layout.topMargin: popupContentMargins
             }
         }
-
-        radius: JamiTheme.modalPopupRadius
-        color: JamiTheme.secondaryBackgroundColor
     }
-
-    background: Rectangle {
-        color: JamiTheme.transparentColor
+    DropShadow {
+        color: JamiTheme.shadowColor
+        height: root.height
+        horizontalOffset: 3.0
+        radius: container.radius * 4
+        source: container
+        transparentBorder: true
+        verticalOffset: 3.0
+        width: root.width
+        z: -1
     }
 
     Overlay.modal: Rectangle {
         color: JamiTheme.transparentColor
 
         // Color animation for overlay when pop up is shown.
-        ColorAnimation on color {
-            to: JamiTheme.popupOverlayColor
+        ColorAnimation on color  {
             duration: 500
+            to: JamiTheme.popupOverlayColor
         }
     }
-
-    DropShadow {
-        z: -1
-        width: root.width
-        height: root.height
-        horizontalOffset: 3.0
-        verticalOffset: 3.0
-        radius: container.radius * 4
-        color: JamiTheme.shadowColor
-        source: container
-        transparentBorder: true
+    background: Rectangle {
+        color: JamiTheme.transparentColor
     }
-
     enter: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 0.0; to: 1.0
             duration: JamiTheme.shortFadeDuration
+            from: 0.0
+            properties: "opacity"
+            to: 1.0
         }
     }
     exit: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 1.0; to: 0.0
             duration: JamiTheme.shortFadeDuration
+            from: 1.0
+            properties: "opacity"
+            to: 0.0
         }
     }
 }

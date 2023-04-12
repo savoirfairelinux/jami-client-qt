@@ -16,44 +16,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 TabButton {
     id: root
-
-    property alias labelText: label.text
     property alias acceleratorSequence: accelerator.sequence
-    property alias badgeCount: badge.count
-
     property var backgroundColor: JamiTheme.backgroundColor
-    property var hoverColor: JamiTheme.backgroundColor
-    property var textColor: JamiTheme.textColor
-    property var textColorHovered: JamiTheme.textColorHovered
+    property alias badgeCount: badge.count
     property var borderWidth: 2
     property var bottomMargin: 1
-    property var underlineContentOnly: false
     property var fontSize: JamiTheme.filterItemFontSize
+    property var hoverColor: JamiTheme.backgroundColor
+    property alias labelText: label.text
+    property var textColor: JamiTheme.textColor
+    property var textColorHovered: JamiTheme.textColorHovered
+    property var underlineContentOnly: false
+
+    hoverEnabled: true
 
     signal selected
 
-    hoverEnabled: true
     onClicked: selected()
 
     Rectangle {
         id: contentRect
-
         anchors.fill: root
-
-        color: root.hovered ?
-                   root.hoverColor :
-                   root.backgroundColor
+        color: root.hovered ? root.hoverColor : root.backgroundColor
 
         RowLayout {
             id: informations
@@ -62,47 +54,41 @@ TabButton {
 
             Text {
                 id: label
-
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                 Layout.bottomMargin: root.bottomMargin
-
-                font.pointSize: fontSize
                 color: {
                     if (!root.down && root.hovered)
-                        return root.textColorHovered
-                    return root.textColor
+                        return root.textColorHovered;
+                    return root.textColor;
                 }
+                font.pointSize: fontSize
                 opacity: root.down ? 1.0 : 0.5
             }
-
             BadgeNotifier {
                 id: badge
-                size: 20
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                size: 20
             }
         }
     }
-
     Rectangle {
-        width: underlineContentOnly ?
-                   informations.width + JamiTheme.menuBorderPreferredHeight :
-                   contentRect.width
-        anchors.horizontalCenter: contentRect.horizontalCenter
         anchors.bottom: contentRect.bottom
-        height: borderWidth
+        anchors.horizontalCenter: contentRect.horizontalCenter
         color: {
             if (!root.down && root.hovered)
-                return root.textColorHovered
+                return root.textColorHovered;
             if (!root.down)
-                return "transparent"
-            return root.textColor
+                return "transparent";
+            return root.textColor;
         }
+        height: borderWidth
+        width: underlineContentOnly ? informations.width + JamiTheme.menuBorderPreferredHeight : contentRect.width
     }
-
     Shortcut {
         id: accelerator
         context: Qt.ApplicationShortcut
         enabled: contentRect.visible
+
         onActivated: selected()
     }
 }

@@ -16,46 +16,41 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 TabBar {
     id: tabBar
-
     enum TabIndex {
         Conversations,
         Requests
     }
 
-    function selectTab(idx) {
-        ConversationsAdapter.filterRequests = (idx === SidePanelTabBar.Requests)
-    }
-
     currentIndex: 0
+
+    function selectTab(idx) {
+        ConversationsAdapter.filterRequests = (idx === SidePanelTabBar.Requests);
+    }
 
     FilterTabButton {
         id: conversationsTabButton
-
+        acceleratorSequence: "Ctrl+L"
+        badgeCount: ConversationsAdapter.totalUnreadMessageCount
         down: !ConversationsAdapter.filterRequests
         labelText: JamiStrings.conversations
-        onSelected: selectTab(SidePanelTabBar.Conversations)
-        badgeCount: ConversationsAdapter.totalUnreadMessageCount
-        acceleratorSequence: "Ctrl+L"
-    }
 
+        onSelected: selectTab(SidePanelTabBar.Conversations)
+    }
     FilterTabButton {
         id: requestsTabButton
-
+        acceleratorSequence: "Ctrl+R"
+        badgeCount: ConversationsAdapter.pendingRequestCount
         down: !conversationsTabButton.down
         labelText: JamiStrings.invitations
+
         onSelected: selectTab(SidePanelTabBar.Requests)
-        badgeCount: ConversationsAdapter.pendingRequestCount
-        acceleratorSequence: "Ctrl+R"
     }
 }

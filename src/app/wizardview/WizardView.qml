@@ -16,142 +16,114 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
-
 import "../"
 import "../commoncomponents"
 import "components"
 
 BaseView {
     id: root
-    objectName: "WizardView"
-
+    color: JamiTheme.backgroundColor
     inhibits: ["ConversationView"]
+    objectName: "WizardView"
 
     // signal to redirect the page to main view
     signal loaderSourceChangeRequested(int sourceToLoad)
 
-    color: JamiTheme.backgroundColor
-
-    Connections{
+    Connections {
         target: AccountAdapter
 
         // reportFailure
         function onReportFailure() {
-            var errorMessage = JamiStrings.errorCreateAccount
-
+            var errorMessage = JamiStrings.errorCreateAccount;
             for (var i = 0; i < controlPanelStackView.children.length; i++) {
                 if (i === controlPanelStackView.currentIndex) {
-                    controlPanelStackView.children[i].errorOccured(errorMessage)
-                    return
+                    controlPanelStackView.children[i].errorOccured(errorMessage);
+                    return;
                 }
             }
         }
     }
-
     Connections {
         target: WizardViewStepModel
 
         function onCloseWizardView() {
-            loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
-            root.dismiss()
+            loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView);
+            root.dismiss();
         }
     }
-
     JamiFlickable {
         id: wizardViewScrollView
-
         property ScrollBar vScrollBar: ScrollBar.vertical
 
         anchors.fill: parent
-
         contentHeight: controlPanelStackView.height
 
         StackLayout {
             id: controlPanelStackView
-
+            anchors.centerIn: parent
             objectName: "controlPanelStackView"
+            width: wizardViewScrollView.width
 
             function setPage(obj) {
-                wizardViewScrollView.vScrollBar.position = 0
+                wizardViewScrollView.vScrollBar.position = 0;
                 for (var i in this.children) {
                     if (this.children[i] === obj) {
-                        currentIndex = i
-                        return
+                        currentIndex = i;
+                        return;
                     }
                 }
             }
 
-            anchors.centerIn: parent
-
-            width: wizardViewScrollView.width
+            Component.onCompleted: {
+                // avoid binding loop
+                height = Qt.binding(function () {
+                        var index = currentIndex === WizardViewStepModel.MainSteps.CreateRendezVous ? WizardViewStepModel.MainSteps.CreateJamiAccount : currentIndex;
+                        return Math.max(controlPanelStackView.itemAt(index).preferredHeight, wizardViewScrollView.height);
+                    });
+            }
 
             WelcomePage {
                 id: welcomePage
-
                 objectName: "welcomePage"
 
                 onShowThisPage: controlPanelStackView.setPage(this)
             }
-
             CreateAccountPage {
                 id: createAccountPage
-
                 objectName: "createAccountPage"
 
                 onShowThisPage: controlPanelStackView.setPage(this)
             }
-
             ImportFromDevicePage {
                 id: importFromDevicePage
-
                 objectName: "importFromDevicePage"
 
                 onShowThisPage: controlPanelStackView.setPage(this)
             }
-
             ImportFromBackupPage {
                 id: importFromBackupPage
-
                 objectName: "importFromBackupPage"
 
                 onShowThisPage: controlPanelStackView.setPage(this)
             }
-
             ConnectToAccountManagerPage {
                 id: connectToAccountManagerPage
-
                 objectName: "connectToAccountManagerPage"
 
                 onShowThisPage: controlPanelStackView.setPage(this)
             }
-
             CreateSIPAccountPage {
                 id: createSIPAccountPage
-
                 objectName: "createSIPAccountPage"
 
                 onShowThisPage: controlPanelStackView.setPage(this)
-            }
-
-            Component.onCompleted: {
-                // avoid binding loop
-                height = Qt.binding(function (){
-                    var index = currentIndex
-                            === WizardViewStepModel.MainSteps.CreateRendezVous ?
-                                WizardViewStepModel.MainSteps.CreateJamiAccount : currentIndex
-                    return Math.max(
-                                controlPanelStackView.itemAt(index).preferredHeight,
-                                wizardViewScrollView.height)
-                })
             }
         }
     }

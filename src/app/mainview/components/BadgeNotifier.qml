@@ -16,64 +16,64 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Constants 1.1
 
 Rectangle {
     id: root
-
-    property real size
+    property bool animate: true
     property int count: 0
     property int lastCount: count
     property bool populated: false
-    property bool animate: true
+    property real size
 
-    width: size
-    height: size
-
-    radius: JamiTheme.primaryRadius
     color: JamiTheme.filterBadgeColor
-
+    height: size
+    radius: JamiTheme.primaryRadius
     visible: count > 0
-
-    Text {
-        id: countLabel
-
-        anchors.centerIn: root
-        text: count > 9 ? "9+" : count
-        color: JamiTheme.filterBadgeTextColor
-        font.pointSize: JamiTheme.filterBadgeFontSize
-        font.weight: Font.ExtraBold
-    }
+    width: size
 
     onCountChanged: {
         if (count > lastCount && animate)
-            notifyAnim.start()
-        lastCount = count
+            notifyAnim.start();
+        lastCount = count;
         if (!populated)
-            populated = true
+            populated = true;
+    }
+
+    Text {
+        id: countLabel
+        anchors.centerIn: root
+        color: JamiTheme.filterBadgeTextColor
+        font.pointSize: JamiTheme.filterBadgeFontSize
+        font.weight: Font.ExtraBold
+        text: count > 9 ? "9+" : count
     }
     ParallelAnimation {
         id: notifyAnim
-
         ColorAnimation {
-            target: root; properties: "color"
+            duration: 150
+            easing.type: Easing.InOutQuad
             from: JamiTheme.filterBadgeTextColor
+            properties: "color"
+            target: root
             to: JamiTheme.filterBadgeColor
-            duration: 150; easing.type: Easing.InOutQuad
         }
         ColorAnimation {
-            target: countLabel; properties: "color"
+            duration: 150
+            easing.type: Easing.InOutQuad
             from: JamiTheme.filterBadgeColor
+            properties: "color"
+            target: countLabel
             to: JamiTheme.filterBadgeTextColor
-            duration: 150; easing.type: Easing.InOutQuad
         }
         NumberAnimation {
-            target: root; property: "y"
-            from: -3; to: 0
-            duration: 150; easing.type: Easing.InOutQuad
+            duration: 150
+            easing.type: Easing.InOutQuad
+            from: -3
+            property: "y"
+            target: root
+            to: 0
         }
     }
 }

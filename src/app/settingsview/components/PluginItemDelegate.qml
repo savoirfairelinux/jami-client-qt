@@ -15,34 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ItemDelegate {
     id: root
-
-    property string pluginName: ""
-    property string pluginId: ""
-    property string pluginIcon: ""
-    property bool isLoaded: false
     property string activeId: ""
-    height: pluginPreferencesView.visible ?
-                implicitHeight + pluginPreferencesView.childrenRect.height :
-                implicitHeight
+    property bool isLoaded: false
+    property string pluginIcon: ""
+    property string pluginId: ""
+    property string pluginName: ""
+
+    height: pluginPreferencesView.visible ? implicitHeight + pluginPreferencesView.childrenRect.height : implicitHeight
 
     signal settingsClicked
 
-    onActiveIdChanged: pluginPreferencesView.visible = activeId != pluginId ?
-                           false :
-                           !pluginPreferencesView.visible
+    onActiveIdChanged: pluginPreferencesView.visible = activeId != pluginId ? false : !pluginPreferencesView.visible
 
     ColumnLayout {
         width: parent.width
@@ -53,81 +46,74 @@ ItemDelegate {
 
             Label {
                 id: pluginImage
+                Layout.alignment: Qt.AlignLeft | Qt.AlingVCenter
+                Layout.fillHeight: true
                 Layout.leftMargin: 8
                 Layout.topMargin: 8
-                Layout.alignment: Qt.AlignLeft | Qt.AlingVCenter
                 width: JamiTheme.preferredFieldHeight
-                Layout.fillHeight: true
 
                 background: Rectangle {
                     color: "transparent"
+
                     Image {
                         anchors.centerIn: parent
+                        height: JamiTheme.preferredFieldHeight
+                        mipmap: true
                         source: "file:" + pluginIcon
                         sourceSize: Qt.size(256, 256)
-                        mipmap: true
                         width: JamiTheme.preferredFieldHeight
-                        height: JamiTheme.preferredFieldHeight
                     }
                 }
             }
-
             Label {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                Layout.topMargin: 8
                 Layout.leftMargin: 8
+                Layout.topMargin: 8
                 color: JamiTheme.textColor
-
-                font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
+                font.pointSize: JamiTheme.settingsFontSize
                 text: pluginName === "" ? pluginId : pluginName
                 verticalAlignment: Text.AlignVCenter
             }
-
             ToggleSwitch {
                 id: loadSwitch
-                Layout.fillHeight: true
                 property bool isHovering: false
-                Layout.topMargin: 8
+
+                Layout.fillHeight: true
                 Layout.rightMargin: 8
+                Layout.topMargin: 8
+                checked: isLoaded
+                tooltipText: JamiStrings.loadUnload
                 width: 20
 
-                tooltipText: JamiStrings.loadUnload
-
-                checked: isLoaded
                 onSwitchToggled: {
                     if (isLoaded)
-                        PluginModel.unloadPlugin(pluginId)
+                        PluginModel.unloadPlugin(pluginId);
                     else
-                        PluginModel.loadPlugin(pluginId)
-                    installedPluginsModel.pluginChanged(index)
+                        PluginModel.loadPlugin(pluginId);
+                    installedPluginsModel.pluginChanged(index);
                 }
             }
-
             PushButton {
                 id: btnPreferencesPlugin
-
                 Layout.alignment: Qt.AlingVCenter | Qt.AlignRight
-                Layout.topMargin: 8
                 Layout.rightMargin: 8
-
-                source: JamiResources.round_settings_24dp_svg
-                normalColor: JamiTheme.primaryBackgroundColor
+                Layout.topMargin: 8
                 imageColor: JamiTheme.textColor
+                normalColor: JamiTheme.primaryBackgroundColor
+                source: JamiResources.round_settings_24dp_svg
                 toolTipText: JamiStrings.showHidePrefs
 
                 onClicked: settingsClicked()
             }
         }
-
         PluginPreferencesView {
             id: pluginPreferencesView
-
             Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
             Layout.preferredHeight: pluginPreferencesView.childrenRect.height
+            Layout.rightMargin: JamiTheme.preferredMarginSize
         }
     }
 }

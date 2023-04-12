@@ -15,24 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import net.jami.Constants 1.1
 
 MaterialButton {
     id: root
-
+    property string normalText: value
     property bool spinnerTriggered: false
     property string spinnerTriggeredtext: value
-    property string normalText: value
 
-    animatedIconSource: spinnerTriggered ?
-                             JamiResources.jami_rolling_spinner_gif :
-                             ""
-    text: spinnerTriggered ? spinnerTriggeredtext : normalText
-    color: !enabled ? JamiTheme.buttonTintedGreyInactive :
-                      JamiTheme.buttonTintedBlue
-
+    animatedIconSource: spinnerTriggered ? JamiResources.jami_rolling_spinner_gif : ""
+    color: !enabled ? JamiTheme.buttonTintedGreyInactive : JamiTheme.buttonTintedBlue
     hoverEnabled: enabled
     hoveredColor: JamiTheme.buttonTintedBlueHovered
     pressedColor: JamiTheme.buttonTintedBluePressed
+    text: spinnerTriggered ? spinnerTriggeredtext : normalText
 }

@@ -15,18 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Row {
     id: root
-
-    property int steps: 0
     property int currentStep: 0
+    property int steps: 0
 
     Repeater {
         model: steps
@@ -34,12 +30,12 @@ Row {
         Rectangle {
             color: {
                 if (modelData === currentStep - 1)
-                    return JamiTheme.accountCreationCurrentStepColor
-                return JamiTheme.accountCreationOtherStepColor
+                    return JamiTheme.accountCreationCurrentStepColor;
+                return JamiTheme.accountCreationOtherStepColor;
             }
-            radius: height / 2
             implicitHeight: 12
             implicitWidth: 12
+            radius: height / 2
         }
     }
 }

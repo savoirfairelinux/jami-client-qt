@@ -15,71 +15,60 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
-    color: JamiTheme.secondaryBackgroundColor
-    border.color: selectedScreenNumber === elementIndex
-                  ? JamiTheme.screenSelectionBorderColor
-                  : JamiTheme.tabbarBorderColor
-
-    width: elementWidth
-    height: 3 * width / 4
-
     property var elementIndex
-    property string rectTitle
     property var rId
+    property string rectTitle
+
+    border.color: selectedScreenNumber === elementIndex ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
+    color: JamiTheme.secondaryBackgroundColor
+    height: 3 * width / 4
+    width: elementWidth
 
     Text {
         id: textTitle
-
+        anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.topMargin: marginSize
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width - 2 * marginSize
-
-        font.pointSize: JamiTheme.textFontSize
-        text: rectTitle
-        elide: Text.ElideRight
-        horizontalAlignment: Text.AlignHCenter
         color: JamiTheme.textColor
+        elide: Text.ElideRight
+        font.pointSize: JamiTheme.textFontSize
+        horizontalAlignment: Text.AlignHCenter
+        text: rectTitle
+        width: parent.width - 2 * marginSize
     }
-
     VideoView {
+        anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: textTitle.bottom
         anchors.topMargin: 10
-        anchors.horizontalCenter: parent.horizontalCenter
         height: parent.height - 50
         width: parent.width - 50
 
-        Component.onDestruction: {
-            VideoDevices.stopDevice(rendererId)
-        }
         Component.onCompleted: {
             if (root.rId !== "") {
-                rendererId = VideoDevices.startDevice(root.rId)
+                rendererId = VideoDevices.startDevice(root.rId);
             }
         }
+        Component.onDestruction: {
+            VideoDevices.stopDevice(rendererId);
+        }
     }
-
     MouseArea {
-        anchors.fill: parent
         acceptedButtons: Qt.LeftButton
+        anchors.fill: parent
 
         onClicked: {
             if (selectedScreenNumber !== root.elementIndex) {
-                selectedScreenNumber = root.elementIndex
+                selectedScreenNumber = root.elementIndex;
             }
         }
     }

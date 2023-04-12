@@ -15,25 +15,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 Rectangle {
     id: root
-
     color: "transparent"
 
     HoverHandler {
-        target: parent
         enabled: parent.visible
+        target: parent
+
         onHoveredChanged: {
-            parent.color = hovered ? JamiTheme.smartListHoveredColor : "transparent"
+            parent.color = hovered ? JamiTheme.smartListHoveredColor : "transparent";
         }
     }
 }

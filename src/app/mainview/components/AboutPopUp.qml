@@ -15,83 +15,66 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
-
 import "../../commoncomponents"
 
 BaseModalDialog {
     id: root
-
-    width: Math.min(parent.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
     height: Math.min(parent.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
-
     popupContentMargins: 14
+    width: Math.min(parent.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
 
     PushButton {
         id: btnClose
-
         anchors.right: parent.right
+        anchors.rightMargin: JamiTheme.preferredMarginSize
         anchors.top: parent.top
         anchors.topMargin: JamiTheme.preferredMarginSize
-        anchors.rightMargin: JamiTheme.preferredMarginSize
         imageColor: "grey"
         normalColor: JamiTheme.transparentColor
-
         source: JamiResources.round_close_24dp_svg
 
-        onClicked: { close(); }
+        onClicked: {
+            close();
+        }
     }
 
     popupContent: JamiFlickable {
         id: aboutPopUpScrollView
-
-        width: root.width
         contentHeight: aboutPopUpContentRectColumnLayout.implicitHeight
+        width: root.width
 
         ColumnLayout {
             id: aboutPopUpContentRectColumnLayout
-
             width: root.width
 
             ResponsiveImage {
                 id: aboutPopUPJamiLogoImage
-
                 Layout.alignment: Qt.AlignCenter
-                Layout.topMargin: JamiTheme.preferredMarginSize
-                Layout.preferredWidth: JamiTheme.aboutLogoPreferredWidth
                 Layout.preferredHeight: JamiTheme.aboutLogoPreferredHeight
-
-                source: JamiTheme.darkTheme ?
-                            JamiResources.logo_jami_standard_coul_white_svg :
-                            JamiResources.logo_jami_standard_coul_svg
+                Layout.preferredWidth: JamiTheme.aboutLogoPreferredWidth
+                Layout.topMargin: JamiTheme.preferredMarginSize
+                source: JamiTheme.darkTheme ? JamiResources.logo_jami_standard_coul_white_svg : JamiResources.logo_jami_standard_coul_svg
             }
-
             TextEdit {
                 id: jamiSlogansText
-
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPopUpScrollView.width
                 Layout.topMargin: 26
-
-                wrapMode: Text.WordWrap
-                font.pixelSize: JamiTheme.bigFontSize
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
-                text: textMetricsjamiSlogansText.text
-                selectByMouse: true
-                readOnly: true
                 color: JamiTheme.tintedBlue
+                font.pixelSize: JamiTheme.bigFontSize
+                horizontalAlignment: Text.AlignHCenter
+                readOnly: true
+                selectByMouse: true
+                text: textMetricsjamiSlogansText.text
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
 
                 TextMetrics {
                     id: textMetricsjamiSlogansText
@@ -99,65 +82,51 @@ BaseModalDialog {
                     text: JamiStrings.slogan
                 }
             }
-
             TextEdit {
                 id: jamiVersionText
-
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPopUpScrollView.width
-
-                font.pixelSize: JamiTheme.tinyCreditsTextSize
-
-                padding: 0
-
-                text: JamiStrings.version + ": " + UtilsAdapter.getVersionStr()
-                selectByMouse: true
-                readOnly: true
                 color: JamiTheme.textColor
-
+                font.pixelSize: JamiTheme.tinyCreditsTextSize
                 horizontalAlignment: Text.AlignHCenter
+                padding: 0
+                readOnly: true
+                selectByMouse: true
+                text: JamiStrings.version + ": " + UtilsAdapter.getVersionStr()
                 verticalAlignment: Text.AlignVCenter
             }
-
             TextEdit {
                 id: jamiDeclarationText
-
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPopUpScrollView.width - JamiTheme.preferredMarginSize * 2
                 Layout.topMargin: 15
-
-                wrapMode: Text.WordWrap
-                font.pixelSize: JamiTheme.creditsTextSize
                 color: JamiTheme.textColor
-
+                font.pixelSize: JamiTheme.creditsTextSize
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+                readOnly: true
+                selectByMouse: true
 
                 // TextMetrics does not work for multi-line.
                 text: JamiStrings.declaration
-                selectByMouse: true
-                readOnly: true
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
             }
-
             TextEdit {
                 id: jamiDeclarationHyperText
-
                 Layout.alignment: Qt.AlignCenter
 
                 // Strangely, hoveredLink works badly when width grows too large
                 Layout.preferredWidth: 50
                 Layout.topMargin: 15
-
                 color: JamiTheme.textColor
-
                 font.pixelSize: JamiTheme.creditsTextSize
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
+                readOnly: true
+                selectByMouse: true
                 text: textMetricsjamiDeclarationHyperText.text
                 textFormat: TextEdit.RichText
-                selectByMouse: true
-                readOnly: true
+                verticalAlignment: Text.AlignVCenter
+
                 onLinkActivated: Qt.openUrlExternally(link)
 
                 TextMetrics {
@@ -165,58 +134,50 @@ BaseModalDialog {
                     font: jamiDeclarationHyperText.font
                     text: '<a href="https://jami.net" style="color: ' + JamiTheme.blueLinkColor + '">jami.net</a>'
                 }
-
                 MouseArea {
-                    anchors.fill: parent
 
                     // We don't want to eat clicks on the Text.
                     acceptedButtons: Qt.NoButton
+                    anchors.fill: parent
                     cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
                 }
             }
-
             TextEdit {
                 id: jamiNoneWarrantyHyperText
-
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: Math.min(390, root.width)
                 Layout.topMargin: 15
-                wrapMode: Text.WordWrap
-                font.pixelSize: JamiTheme.tinyCreditsTextSize
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignTop
                 color: JamiTheme.textColor
-
+                font.pixelSize: JamiTheme.tinyCreditsTextSize
+                horizontalAlignment: Text.AlignHCenter
+                readOnly: true
+                selectByMouse: true
                 text: textMetricsjamiNoneWarrantyHyperText.text
                 textFormat: TextEdit.RichText
-                selectByMouse: true
-                readOnly: true
+                verticalAlignment: Text.AlignTop
+                wrapMode: Text.WordWrap
+
                 onLinkActivated: Qt.openUrlExternally(link)
 
                 TextMetrics {
                     id: textMetricsjamiNoneWarrantyHyperText
                     font: jamiDeclarationHyperText.font
-                    text: JamiStrings.declarationYear + " " + '<a href="https://savoirfairelinux.com" style="color: ' + JamiTheme.blueLinkColor + '">Savoir-faire Linux Inc.</a><br>'
-                          + 'This program comes with absolutely no warranty. See the <a href="http://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.blueLinkColor + '">GNU General Public License</a>, version 3 or later for details.'
+                    text: JamiStrings.declarationYear + " " + '<a href="https://savoirfairelinux.com" style="color: ' + JamiTheme.blueLinkColor + '">Savoir-faire Linux Inc.</a><br>' + 'This program comes with absolutely no warranty. See the <a href="http://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.blueLinkColor + '">GNU General Public License</a>, version 3 or later for details.'
                 }
-
                 MouseArea {
-                    anchors.fill: parent
                     acceptedButtons: Qt.NoButton
+                    anchors.fill: parent
                     cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
                 }
             }
-
             ProjectCreditsScrollView {
                 id: projectCreditsScrollView
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: aboutPopUpScrollView.width - JamiTheme.preferredMarginSize * 2
-                Layout.preferredHeight: 100
-                Layout.topMargin: 25
                 Layout.margins: JamiTheme.preferredMarginSize
+                Layout.preferredHeight: 100
+                Layout.preferredWidth: aboutPopUpScrollView.width - JamiTheme.preferredMarginSize * 2
+                Layout.topMargin: 25
             }
-
         }
     }
 }

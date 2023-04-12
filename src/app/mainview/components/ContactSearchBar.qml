@@ -15,124 +15,99 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
+    property alias placeHolderText: contactSearchBar.placeholderText
+    property alias textContent: contactSearchBar.text
 
+    color: JamiTheme.secondaryBackgroundColor
+    radius: JamiTheme.primaryRadius
+
+    function clearText() {
+        contactSearchBar.clear();
+        contactSearchBar.forceActiveFocus();
+    }
     signal contactSearchBarTextChanged(string text)
     signal returnPressedWhileSearching
 
-    property alias textContent: contactSearchBar.text
-    property alias placeHolderText: contactSearchBar.placeholderText
-
-    function clearText() {
-        contactSearchBar.clear()
-        contactSearchBar.forceActiveFocus()
+    Keys.onPressed: function (keyEvent) {
+        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+            if (contactSearchBar.text !== "") {
+                returnPressedWhileSearching();
+                keyEvent.accepted = true;
+            }
+        }
     }
-
-    radius: JamiTheme.primaryRadius
-    color: JamiTheme.secondaryBackgroundColor
-
     onFocusChanged: {
         if (focus) {
-            contactSearchBar.forceActiveFocus()
+            contactSearchBar.forceActiveFocus();
         }
     }
 
     LineEditContextMenu {
         id: lineEditContextMenu
-
         lineEditObj: contactSearchBar
     }
-
     ResponsiveImage {
         id: searchIconImage
-
-        anchors.verticalCenter: root.verticalCenter
         anchors.left: root.left
         anchors.leftMargin: 10
-
-        width: 20
-        height: 20
-
-        source: JamiResources.ic_baseline_search_24dp_svg
+        anchors.verticalCenter: root.verticalCenter
         color: JamiTheme.primaryForegroundColor
+        height: 20
+        source: JamiResources.ic_baseline_search_24dp_svg
+        width: 20
     }
-
     TextField {
         id: contactSearchBar
-
-        anchors.verticalCenter: root.verticalCenter
         anchors.left: searchIconImage.right
-        anchors.right: contactSearchBar.text.length ?
-                           clearTextButton.left :
-                           root.right
-
-        height: root.height - 5
-
+        anchors.right: contactSearchBar.text.length ? clearTextButton.left : root.right
+        anchors.verticalCenter: root.verticalCenter
         color: JamiTheme.textColor
-
-        font.pointSize: JamiTheme.textFontSize
         font.kerning: true
-
-        selectByMouse: true
-
+        font.pointSize: JamiTheme.textFontSize
+        height: root.height - 5
         placeholderText: JamiStrings.search
         placeholderTextColor: JamiTheme.placeholderTextColor
+        selectByMouse: true
+
+        onReleased: function (event) {
+            if (event.button === Qt.RightButton)
+                lineEditContextMenu.openMenuAt(event);
+        }
+        onTextChanged: root.contactSearchBarTextChanged(contactSearchBar.text)
 
         background: Rectangle {
             id: searchBarBackground
-
             color: "transparent"
         }
-
-        onTextChanged: root.contactSearchBarTextChanged(contactSearchBar.text)
-        onReleased: function (event) {
-            if (event.button === Qt.RightButton)
-                lineEditContextMenu.openMenuAt(event)
-        }
     }
-
     PushButton {
         id: clearTextButton
-
-        anchors.verticalCenter: root.verticalCenter
         anchors.right: root.right
         anchors.rightMargin: 10
-
+        anchors.verticalCenter: root.verticalCenter
+        imageColor: JamiTheme.primaryForegroundColor
+        normalColor: root.color
+        opacity: visible ? 1 : 0
         preferredSize: 21
         radius: JamiTheme.primaryRadius
-
-        visible: contactSearchBar.text.length
-        opacity: visible ? 1 : 0
-
-        normalColor: root.color
-        imageColor: JamiTheme.primaryForegroundColor
-
         source: JamiResources.ic_clear_24dp_svg
         toolTipText: JamiStrings.clearText
+        visible: contactSearchBar.text.length
 
         onClicked: contactSearchBar.clear()
 
-        Behavior on opacity {
-            NumberAnimation { duration: 500; easing.type: Easing.OutCubic }
-        }
-    }
-
-    Keys.onPressed: function (keyEvent) {
-        if (keyEvent.key === Qt.Key_Enter ||
-                keyEvent.key === Qt.Key_Return) {
-            if (contactSearchBar.text !== "") {
-                returnPressedWhileSearching()
-                keyEvent.accepted = true
+        Behavior on opacity  {
+            NumberAnimation {
+                duration: 500
+                easing.type: Easing.OutCubic
             }
         }
     }

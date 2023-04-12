@@ -15,70 +15,66 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 // Assumed to be attached to Flickable
 ScrollBar {
     id: root
-
     property bool attachedFlickableMoving: false
     property alias handleColor: scrollBarRect.color
 
     active: {
         if (root.orientation === Qt.Horizontal)
-            return visible
+            return visible;
         else
-            return hovered || pressed || attachedFlickableMoving
+            return hovered || pressed || attachedFlickableMoving;
     }
-    hoverEnabled: true
-    orientation: Qt.Vertical
-
-    topPadding: root.orientation === Qt.Vertical ? 2 : 0
-    leftPadding: root.orientation === Qt.Horizontal ? 2 : 0
     bottomPadding: 2
+    hoverEnabled: true
+    leftPadding: root.orientation === Qt.Horizontal ? 2 : 0
+    orientation: Qt.Vertical
     rightPadding: 2
+    topPadding: root.orientation === Qt.Vertical ? 2 : 0
 
+    background: Rectangle {
+        color: JamiTheme.transparentColor
+        implicitHeight: scrollBarRect.implicitHeight
+        implicitWidth: scrollBarRect.implicitWidth
+        radius: width / 2
+    }
     contentItem: Rectangle {
         id: scrollBarRect
-
+        color: pressed ? Qt.darker(JamiTheme.scrollBarHandleColor, 2.0) : JamiTheme.scrollBarHandleColor
         implicitHeight: JamiTheme.scrollBarHandleSize
         implicitWidth: JamiTheme.scrollBarHandleSize
-        radius: width / 2
-        color: pressed ? Qt.darker(JamiTheme.scrollBarHandleColor, 2.0) :
-                         JamiTheme.scrollBarHandleColor
         opacity: 0
+        radius: width / 2
 
         states: State {
             name: "active"
-            when: root.policy === ScrollBar.AlwaysOn ||
-                  (root.active && root.size < 1.0)
+            when: root.policy === ScrollBar.AlwaysOn || (root.active && root.size < 1.0)
+
             PropertyChanges {
-                target: root.contentItem
                 opacity: 1
+                target: root.contentItem
             }
         }
-
         transitions: Transition {
             from: "active"
+
             SequentialAnimation {
-                PauseAnimation { duration: JamiTheme.longFadeDuration }
-                NumberAnimation { target: root.contentItem
+                PauseAnimation {
+                    duration: JamiTheme.longFadeDuration
+                }
+                NumberAnimation {
                     duration: JamiTheme.shortFadeDuration
                     property: "opacity"
+                    target: root.contentItem
                     to: 0.0
                 }
             }
         }
-    }
-
-    background: Rectangle {
-        implicitHeight: scrollBarRect.implicitHeight
-        implicitWidth: scrollBarRect.implicitWidth
-        color: JamiTheme.transparentColor
-        radius: width / 2
     }
 }

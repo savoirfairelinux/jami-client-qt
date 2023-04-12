@@ -15,45 +15,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
-
-
 
 RowLayout {
     id: root
-
     required property string title
-    signal backArrowClicked
+
     spacing: 10
+
+    signal backArrowClicked
 
     BackButton {
         id: backToSettingsMenuButton
-
-        Layout.preferredWidth: JamiTheme.preferredFieldHeight
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
+        Layout.preferredWidth: JamiTheme.preferredFieldHeight
         visible: viewNode.isSinglePane
 
         onClicked: backArrowClicked()
     }
-
     Label {
         Layout.fillWidth: true
-        text: root.title
-        font.pixelSize: JamiTheme.settingsHeaderPixelSize
-        font.kerning: true
-        color: JamiTheme.textColor
         Layout.leftMargin: backToSettingsMenuButton.visible ? 0 : JamiTheme.preferredSettingsMarginSize
-
+        color: JamiTheme.textColor
+        font.kerning: true
+        font.pixelSize: JamiTheme.settingsHeaderPixelSize
         horizontalAlignment: Text.AlignLeft
+        text: root.title
         verticalAlignment: Text.AlignVCenter
     }
 }

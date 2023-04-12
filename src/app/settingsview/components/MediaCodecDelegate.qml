@@ -15,102 +15,92 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
 ItemDelegate {
     id: root
-
-    property string mediaCodecName : ""
-    property bool isEnabled : false
-    property int mediaCodecId
-    property string samplerRate: ""
     property int checkBoxWidth: 24
+    property bool isEnabled: false
+    property int mediaCodecId
+    property string mediaCodecName: ""
     property int mediaType
-
-    signal mediaCodecStateChange(string idToSet , bool isToBeEnabled)
+    property string samplerRate: ""
 
     highlighted: ListView.isCurrentItem
-    background: Rectangle {
-        color: highlighted || hovered ? JamiTheme.smartListSelectedColor : JamiTheme.editBackgroundColor
-    }
     hoverEnabled: true
 
+    signal mediaCodecStateChange(string idToSet, bool isToBeEnabled)
 
     RowLayout {
         anchors.fill: parent
 
         CheckBox {
             id: checkBoxIsEnabled
-
-            Layout.leftMargin: 20
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
             Layout.fillHeight: true
+            Layout.leftMargin: 20
             Layout.preferredWidth: checkBoxWidth
-
-            tristate: false
             checkState: isEnabled ? Qt.Checked : Qt.Unchecked
-
+            nextCheckState: function () {
+                var result;
+                var result_bool;
+                if (checkState === Qt.Checked) {
+                    result = Qt.Unchecked;
+                    result_bool = false;
+                } else {
+                    result = Qt.Checked;
+                    result_bool = true;
+                }
+                mediaCodecStateChange(mediaCodecId, result_bool);
+                return result;
+            }
             text: ""
+            tristate: false
+
             indicator: Image {
                 anchors.centerIn: parent
+                height: checkBoxWidth
+                source: checkBoxIsEnabled.checked ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg
+                width: checkBoxWidth
+
                 layer {
                     enabled: true
+                    mipmap: false
+                    smooth: true
+
                     effect: ColorOverlay {
                         color: JamiTheme.tintedBlue
                     }
-                    mipmap: false
-                    smooth: true
                 }
-                width: checkBoxWidth
-                height: checkBoxWidth
-                source: checkBoxIsEnabled.checked ?
-                            JamiResources.check_box_24dp_svg :
-                            JamiResources.check_box_outline_blank_24dp_svg
             }
-
-            nextCheckState: function() {
-                    var result
-                    var result_bool
-
-                    if (checkState === Qt.Checked) {
-                        result = Qt.Unchecked
-                        result_bool = false
-                    } else {
-                        result = Qt.Checked
-                        result_bool = true
-                    }
-                    mediaCodecStateChange(mediaCodecId, result_bool)
-                    return result
-                }
         }
-
         Label {
             id: formatNameLabel
-
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.fillWidth: true
             Layout.rightMargin: JamiTheme.preferredMarginSize / 2
-
-            text: {
-                if (mediaType == MediaSettings.VIDEO)
-                    return mediaCodecName
-                else if (mediaType == MediaSettings.AUDIO)
-                    return mediaCodecName + " " + samplerRate + " Hz"
-            }
             color: JamiTheme.textColor
             elide: Text.ElideRight
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-            font.pointSize: JamiTheme.textFontSize
             font.kerning: true
+            font.pointSize: JamiTheme.textFontSize
+            horizontalAlignment: Text.AlignLeft
+            text: {
+                if (mediaType == MediaSettings.VIDEO)
+                    return mediaCodecName;
+                else if (mediaType == MediaSettings.AUDIO)
+                    return mediaCodecName + " " + samplerRate + " Hz";
+            }
+            verticalAlignment: Text.AlignVCenter
         }
+    }
+
+    background: Rectangle {
+        color: highlighted || hovered ? JamiTheme.smartListSelectedColor : JamiTheme.editBackgroundColor
     }
 }

@@ -14,32 +14,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import net.jami.Constants 1.1
-
-
 import "../../commoncomponents"
 
 ResponsiveImage {
     id: root
-
-    property bool isSharing: false
     property bool arrowTimerVisibility
+    property bool isSharing: false
+
     source: JamiResources.localisation_sharing_send_pin_svg
 
     ResponsiveImage {
         id: arrowSharePosition
-
-        visible: arrowTimerVisibility
-        source: JamiResources.localisation_sharing_send_arrow_svg
+        anchors.bottomMargin: isSharing ? 0 : 4
+        anchors.fill: parent
+        anchors.leftMargin: isSharing ? 0 : 3
         color: root.color
         mirrorHorizontally: isSharing ? false : true
         mirrorVertically: isSharing ? false : true
-        anchors.fill: parent
-        anchors.bottomMargin: isSharing ? 0 : 4
-        anchors.leftMargin: isSharing ? 0 : 3
+        source: JamiResources.localisation_sharing_send_arrow_svg
+        visible: arrowTimerVisibility
     }
 }
-

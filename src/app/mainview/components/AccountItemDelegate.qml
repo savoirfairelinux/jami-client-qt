@@ -16,32 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ItemDelegate {
     id: root
-
-    width: ListView.view.width
     height: JamiTheme.accountListItemHeight
-
-    background: Rectangle {
-        color: {
-            if (root.pressed)
-                return JamiTheme.smartListSelectedColor
-            else if (root.hovered)
-                return JamiTheme.smartListHoveredColor
-            else
-                return JamiTheme.backgroundColor
-        }
-    }
+    width: ListView.view.width
 
     RowLayout {
         anchors.fill: parent
@@ -50,58 +35,61 @@ ItemDelegate {
         spacing: 10
 
         Avatar {
-            Layout.preferredWidth: JamiTheme.accountListAvatarSize
-            Layout.preferredHeight: JamiTheme.accountListAvatarSize
             Layout.alignment: Qt.AlignVCenter
-
-            presenceStatus: Status
-
+            Layout.preferredHeight: JamiTheme.accountListAvatarSize
+            Layout.preferredWidth: JamiTheme.accountListAvatarSize
             imageId: ID
             mode: Avatar.Mode.Account
+            presenceStatus: Status
         }
-
         ColumnLayout {
-            Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.fillWidth: true
             spacing: 2
 
             Text {
-                Layout.fillWidth: true
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-                text: Alias
-                textFormat: TextEdit.PlainText
-
-                font.pointSize: JamiTheme.textFontSize
+                Layout.fillWidth: true
                 color: JamiTheme.textColor
                 elide: Text.ElideRight
-            }
-
-            Text {
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-                visible: text.length && Alias != Username
-
-                text: Username
-                textFormat: TextEdit.PlainText
-
                 font.pointSize: JamiTheme.textFontSize
+                text: Alias
+                textFormat: TextEdit.PlainText
+            }
+            Text {
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                Layout.fillWidth: true
                 color: JamiTheme.faddedLastInteractionFontColor
                 elide: Text.ElideRight
+                font.pointSize: JamiTheme.textFontSize
+                text: Username
+                textFormat: TextEdit.PlainText
+                visible: text.length && Alias != Username
             }
         }
 
         // unread message count
         Item {
-            Layout.preferredWidth: childrenRect.width
-            Layout.preferredHeight: childrenRect.height
             Layout.alignment: Qt.AlignRight
+            Layout.preferredHeight: childrenRect.height
+            Layout.preferredWidth: childrenRect.width
+
             BadgeNotifier {
-                size: 20
-                count: NotificationCount
                 animate: index === 0
+                count: NotificationCount
+                size: 20
             }
+        }
+    }
+
+    background: Rectangle {
+        color: {
+            if (root.pressed)
+                return JamiTheme.smartListSelectedColor;
+            else if (root.hovered)
+                return JamiTheme.smartListHoveredColor;
+            else
+                return JamiTheme.backgroundColor;
         }
     }
 }

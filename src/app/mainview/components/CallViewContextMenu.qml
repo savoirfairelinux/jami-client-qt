@@ -17,138 +17,139 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import net.jami.Enums 1.1
-
 import "../../commoncomponents"
 import "../../commoncomponents/contextmenu"
 import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 
 Popup {
     id: root
-
-    signal screenshotTaken
-    property bool screenshotButtonHovered: false
-
-    property string hoveredOverlayUri: ""
-    property string hoveredOverlaySinkId: ""
     property bool hoveredOverVideoMuted: true
+    property string hoveredOverlaySinkId: ""
+    property string hoveredOverlayUri: ""
     property bool isOnLocal: false
-
     property var listModel: ListModel {
         id: actionsModel
     }
+    property bool screenshotButtonHovered: false
 
-    onAboutToShow: {
-        actionsModel.clear()
-        actionsModel.append({"Top": true})
-        if (root.isOnLocal)
-            actionsModel.append({"Name": JamiStrings.mirrorLocalVideo,
-                                "IconSource": JamiResources.flip_24dp_svg})
-        if (hoveredOverlayUri !== "" && hoveredOverVideoMuted === false)
-            actionsModel.append({"Name": JamiStrings.tileScreenshot,
-                                "IconSource" : JamiResources.screenshot_black_24dp_svg})
-        actionsModel.append({"Name": JamiStrings.advancedInformation,
-                            "IconSource": JamiResources.informations_black_24dp_svg})
-        actionsModel.append({"Bottom": true})
-        itemListView.implicitHeight = 20 + 45 * (actionsModel.count - 2)
-    }
+    signal screenshotTaken
 
     onAboutToHide: {
-        screenshotButtonHovered = false
-        hoveredOverlayUri = ""
-        hoveredOverlaySinkId = ""
-        hoveredOverVideoMuted = true
-        actionsModel.clear()
+        screenshotButtonHovered = false;
+        hoveredOverlayUri = "";
+        hoveredOverlaySinkId = "";
+        hoveredOverVideoMuted = true;
+        actionsModel.clear();
+    }
+    onAboutToShow: {
+        actionsModel.clear();
+        actionsModel.append({
+                "Top": true
+            });
+        if (root.isOnLocal)
+            actionsModel.append({
+                    "Name": JamiStrings.mirrorLocalVideo,
+                    "IconSource": JamiResources.flip_24dp_svg
+                });
+        if (hoveredOverlayUri !== "" && hoveredOverVideoMuted === false)
+            actionsModel.append({
+                    "Name": JamiStrings.tileScreenshot,
+                    "IconSource": JamiResources.screenshot_black_24dp_svg
+                });
+        actionsModel.append({
+                "Name": JamiStrings.advancedInformation,
+                "IconSource": JamiResources.informations_black_24dp_svg
+            });
+        actionsModel.append({
+                "Bottom": true
+            });
+        itemListView.implicitHeight = 20 + 45 * (actionsModel.count - 2);
     }
 
     background: Rectangle {
         color: "transparent"
     }
-
     contentItem: Rectangle {
         id: container
-        width: childrenRect.width
-        height: childrenRect.height
         color: "#c4272727"
+        height: childrenRect.height
         radius: 4
+        width: childrenRect.width
 
         ColumnLayout {
-            anchors.topMargin: 8
             anchors.bottomMargin: 8
+            anchors.topMargin: 8
+
             ListView {
                 id: itemListView
-
-                orientation: ListView.Vertical
-                implicitWidth: 200
                 implicitHeight: 100
+                implicitWidth: 200
                 interactive: false
-
                 model: actionsModel
+                orientation: ListView.Vertical
+
                 delegate: ItemDelegate {
                     id: menuItem
-
-                    width: 200
                     height: Top || Bottom ? 10 : 45
+                    width: 200
 
-                    background: Rectangle {
-                        visible: !Top && !Bottom
-                        anchors.fill: parent
-                        color: menuItem.down ? "#c4aaaaaa" : menuItem.hovered ? "#c4777777" : "transparent"
+                    onClicked: {
+                        switch (Name) {
+                        case JamiStrings.advancedInformation:
+                            CallAdapter.startTimerInformation();
+                            callInformationOverlay.open();
+                            break;
+                        case JamiStrings.tileScreenshot:
+                            if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId), UtilsAdapter.getDirScreenshot())) {
+                                screenshotTaken();
+                            }
+                            break;
+                        case JamiStrings.mirrorLocalVideo:
+                            UtilsAdapter.setAppValue(Settings.FlipSelf, !UtilsAdapter.getAppValue(Settings.FlipSelf));
+                            CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
+                            break;
+                        }
+                        root.close();
+                    }
+                    onHoveredChanged: {
+                        if (Name === JamiStrings.tileScreenshot) {
+                            screenshotButtonHovered = hovered;
+                        }
                     }
 
                     RowLayout {
                         anchors.fill: parent
                         visible: !Top && !Bottom
+
                         ResponsiveImage {
                             Layout.leftMargin: JamiTheme.preferredMarginSize
-                            source: IconSource
                             color: "white"
-                            width: 20
                             height: 20
+                            source: IconSource
+                            width: 20
                         }
                         Text {
                             Layout.fillWidth: true
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
-                            text: Name
+                            color: "white"
                             elide: Text.ElideRight
                             font.pointSize: JamiTheme.participantFontSize
-                            color: "white"
+                            horizontalAlignment: Text.AlignLeft
+                            text: Name
+                            verticalAlignment: Text.AlignVCenter
                         }
                     }
 
-                    onClicked: {
-                        switch(Name) {
-                            case JamiStrings.advancedInformation:
-                                CallAdapter.startTimerInformation()
-                                callInformationOverlay.open()
-                                break
-                            case JamiStrings.tileScreenshot:
-                                if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId),
-                                                            UtilsAdapter.getDirScreenshot())) {
-                                    screenshotTaken()
-                                }
-                                break
-                            case JamiStrings.mirrorLocalVideo:
-                                UtilsAdapter.setAppValue(Settings.FlipSelf, !UtilsAdapter.getAppValue(Settings.FlipSelf))
-                                CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf)
-                                break
-                        }
-                        root.close()
-                    }
-
-                    onHoveredChanged: {
-                        if (Name === JamiStrings.tileScreenshot) {
-                            screenshotButtonHovered = hovered
-                        }
+                    background: Rectangle {
+                        anchors.fill: parent
+                        color: menuItem.down ? "#c4aaaaaa" : menuItem.hovered ? "#c4777777" : "transparent"
+                        visible: !Top && !Bottom
                     }
                 }
             }

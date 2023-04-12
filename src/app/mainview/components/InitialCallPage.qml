@@ -16,167 +16,156 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
+    color: "black"
 
-    signal callCanceled
     signal callAccepted
+    signal callCanceled
+    function fillIncomingControls() {
+        incomingControlsModel.clear();
+        incomingControlsModel.append({
+                "type": "refuse",
+                "image": JamiResources.round_close_24dp_svg
+            });
+        incomingControlsModel.append({
+                "type": "mic",
+                "image": JamiResources.place_audiocall_24dp_svg
+            });
+        if (CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0)
+            incomingControlsModel.append({
+                    "type": "cam",
+                    "image": JamiResources.videocam_24dp_svg
+                });
+    }
 
     onCallAccepted: CallAdapter.acceptACall(CurrentAccount.id, CurrentConversation.id)
     onCallCanceled: CallAdapter.hangUpACall(CurrentAccount.id, CurrentConversation.id)
-
-    color: "black"
 
     LocalVideo {
         id: previewRenderer
         anchors.centerIn: parent
         anchors.fill: parent
-        visible: !CurrentCall.isAudioOnly &&
-                 CurrentAccount.videoEnabled_Video &&
-                 VideoDevices.listSize !== 0 &&
-                 ((CurrentCall.status >= Call.Status.INCOMING_RINGING
-                   && CurrentCall.status <= Call.Status.SEARCHING)
-                  || CurrentCall.status === Call.Status.CONNECTED)
         opacity: 0.5
+        visible: !CurrentCall.isAudioOnly && CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0 && ((CurrentCall.status >= Call.Status.INCOMING_RINGING && CurrentCall.status <= Call.Status.SEARCHING) || CurrentCall.status === Call.Status.CONNECTED)
+
+        onVisibleChanged: {
+            controlPreview.stop();
+            if (visible) {
+                controlPreview.startVideo = true;
+                controlPreview.interval = 1000;
+            } else {
+                controlPreview.startVideo = false;
+                controlPreview.interval = 0;
+            }
+            controlPreview.start();
+        }
 
         // HACK: this is a workaround to the preview video starting
         // and stopping a few times. The root cause should be investigated ASAP.
         Timer {
             id: controlPreview
             property bool startVideo
+
             interval: 1000
+
             onTriggered: {
-                var rendId = visible && startVideo ? VideoDevices.getDefaultDevice() : ""
-                previewRenderer.startWithId(rendId)
+                var rendId = visible && startVideo ? VideoDevices.getDefaultDevice() : "";
+                previewRenderer.startWithId(rendId);
             }
-        }
-        onVisibleChanged: {
-            controlPreview.stop()
-            if (visible) {
-                controlPreview.startVideo = true
-                controlPreview.interval = 1000
-            } else {
-                controlPreview.startVideo = false
-                controlPreview.interval = 0
-            }
-            controlPreview.start()
         }
     }
-
     ListModel {
         id: incomingControlsModel
         Component.onCompleted: {
-            fillIncomingControls()
+            fillIncomingControls();
         }
     }
-
     Connections {
         target: CurrentAccount
 
         function onVideoEnabledVideoChanged() {
-            fillIncomingControls()
+            fillIncomingControls();
         }
     }
-
     Connections {
         target: VideoDevices
 
         function onListSizeChanged() {
-            fillIncomingControls()
+            fillIncomingControls();
         }
     }
-
-    function fillIncomingControls() {
-            incomingControlsModel.clear()
-            incomingControlsModel.append({"type": "refuse", "image": JamiResources.round_close_24dp_svg})
-            incomingControlsModel.append({"type": "mic", "image" : JamiResources.place_audiocall_24dp_svg})
-            if (CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0)
-                incomingControlsModel.append({"type": "cam", "image" : JamiResources.videocam_24dp_svg})
-    }
-
     ListModel {
         id: outgoingControlsModel
         Component.onCompleted: {
-            append({"type": "cancel", "image": JamiResources.ic_call_end_white_24dp_svg})
+            append({
+                    "type": "cancel",
+                    "image": JamiResources.ic_call_end_white_24dp_svg
+                });
         }
     }
 
     // Prevent right click propagate to VideoCallPage.
     MouseArea {
+        acceptedButtons: Qt.AllButtons
         anchors.fill: parent
         propagateComposedEvents: false
-        acceptedButtons: Qt.AllButtons
+
         onDoubleClicked: function (mouse) {
-            mouse.accepted = true
+            mouse.accepted = true;
         }
     }
-
     ColumnLayout {
         anchors.horizontalCenter: root.horizontalCenter
         anchors.verticalCenter: root.verticalCenter
 
         ConversationAvatar {
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: JamiTheme.avatarSizeInCall
             Layout.preferredHeight: JamiTheme.avatarSizeInCall
-
-            showPresenceIndicator: false
+            Layout.preferredWidth: JamiTheme.avatarSizeInCall
             animationMode: SpinningAnimation.Mode.Radial
             imageId: CurrentConversation.id
+            showPresenceIndicator: false
         }
-
         Text {
+            property string title: CurrentConversation.title
+
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: JamiTheme.preferredFieldWidth
             Layout.topMargin: 32
-
+            color: "white"
+            elide: Text.ElideRight
             font.pointSize: JamiTheme.titleFontSize
-
             horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-
-            property string title: CurrentConversation.title
-
+            maximumLineCount: !CurrentCall.isOutgoing ? 2 : 1
             text: {
                 if (!CurrentCall.isOutgoing)
-                    return CurrentCall.isAudioOnly ?
-                                JamiStrings.incomingAudioCallFrom.replace("{}", title) :
-                                JamiStrings.incomingVideoCallFrom.replace("{}", title)
+                    return CurrentCall.isAudioOnly ? JamiStrings.incomingAudioCallFrom.replace("{}", title) : JamiStrings.incomingVideoCallFrom.replace("{}", title);
                 else
-                    return title
+                    return title;
             }
+            verticalAlignment: Text.AlignVCenter
             wrapMode: Text.WordWrap
-            elide: Text.ElideRight
-            maximumLineCount: !CurrentCall.isOutgoing ? 2 : 1
-            color: "white"
         }
-
         Text {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: root.width
             Layout.topMargin: 8
-
-            font.pointSize: JamiTheme.smartlistItemFontSize
-
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-
-            text: UtilsAdapter.getCallStatusStr(CurrentCall.status) + "…"
             color: JamiTheme.whiteColor
+            font.pointSize: JamiTheme.smartlistItemFontSize
+            horizontalAlignment: Text.AlignHCenter
+            text: UtilsAdapter.getCallStatusStr(CurrentCall.status) + "…"
+            verticalAlignment: Text.AlignVCenter
             visible: CurrentCall.isOutgoing
         }
-
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: 32
@@ -190,70 +179,63 @@ Rectangle {
 
                     PushButton {
                         id: actionButton
+                        Layout.alignment: Qt.AlignHCenter
                         Layout.leftMargin: 10
                         Layout.rightMargin: 10
-                        Layout.alignment: Qt.AlignHCenter
-                        implicitWidth: JamiTheme.callButtonPreferredSize
-                        implicitHeight: JamiTheme.callButtonPreferredSize
-
-                        pressedColor: {
-                            if ( type === "cam" || type === "mic")
-                                return JamiTheme.acceptGreen
-                            return JamiTheme.refuseRed
-                        }
                         hoveredColor: {
-                            if ( type === "cam" || type === "mic")
-                                return JamiTheme.acceptGreen
-                            return JamiTheme.refuseRed
+                            if (type === "cam" || type === "mic")
+                                return JamiTheme.acceptGreen;
+                            return JamiTheme.refuseRed;
                         }
-                        normalColor: {
-                            if ( type === "cam" || type === "mic")
-                                return JamiTheme.acceptGreenTransparency
-                            return JamiTheme.refuseRedTransparent
-                        }
-
-                        source: image
                         imageColor: JamiTheme.whiteColor
+                        implicitHeight: JamiTheme.callButtonPreferredSize
+                        implicitWidth: JamiTheme.callButtonPreferredSize
+                        normalColor: {
+                            if (type === "cam" || type === "mic")
+                                return JamiTheme.acceptGreenTransparency;
+                            return JamiTheme.refuseRedTransparent;
+                        }
+                        pressedColor: {
+                            if (type === "cam" || type === "mic")
+                                return JamiTheme.acceptGreen;
+                            return JamiTheme.refuseRed;
+                        }
+                        source: image
 
                         onClicked: {
-                            if ( type === "cam" || type === "mic") {
-                                var acceptVideoMedia = true
+                            if (type === "cam" || type === "mic") {
+                                var acceptVideoMedia = true;
                                 if (type === "cam")
-                                    acceptVideoMedia = true
-                                else if ( type === "mic" )
-                                    acceptVideoMedia = false
-                                CallAdapter.setCallMedia(CurrentAccount.id, CurrentConversation.id, acceptVideoMedia)
-                                callAccepted()
+                                    acceptVideoMedia = true;
+                                else if (type === "mic")
+                                    acceptVideoMedia = false;
+                                CallAdapter.setCallMedia(CurrentAccount.id, CurrentConversation.id, acceptVideoMedia);
+                                callAccepted();
                             } else {
-                                callCanceled()
+                                callCanceled();
                             }
                         }
                     }
-
                     Label {
                         id: buttonLabel
                         Layout.alignment: Qt.AlignHCenter
-                        Layout.preferredWidth: JamiTheme.callButtonPreferredSize
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                        font.pointSize: JamiTheme.smartlistItemInfoFontSize
-                        font.kerning: true
+                        Layout.preferredWidth: JamiTheme.callButtonPreferredSize
                         color: actionButton.hovered ? JamiTheme.whiteColor : JamiTheme.whiteColorTransparent
-
-
+                        font.kerning: true
+                        font.pointSize: JamiTheme.smartlistItemInfoFontSize
+                        horizontalAlignment: Text.AlignHCenter
                         text: {
                             if (type === "refuse")
-                                return JamiStrings.refuse
+                                return JamiStrings.refuse;
                             else if (type === "cam")
-                                return JamiStrings.acceptVideo
+                                return JamiStrings.acceptVideo;
                             else if (type === "mic")
-                                return CurrentCall.isAudioOnly ? JamiStrings.accept : JamiStrings.acceptAudio
+                                return CurrentCall.isAudioOnly ? JamiStrings.accept : JamiStrings.acceptAudio;
                             else if (type === "cancel")
-                                return JamiStrings.endCall
-                            return ""
+                                return JamiStrings.endCall;
+                            return "";
                         }
-
-                        horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                         wrapMode: Text.WordWrap
                     }
@@ -261,20 +243,18 @@ Rectangle {
             }
         }
     }
-
     Shortcut {
+        context: Qt.ApplicationShortcut
         sequence: "Ctrl+Y"
-        context: Qt.ApplicationShortcut
-        onActivated: CallAdapter.acceptACall(CurrentAccount.id,
-                                             CurrentConversation.id)
-    }
 
+        onActivated: CallAdapter.acceptACall(CurrentAccount.id, CurrentConversation.id)
+    }
     Shortcut {
-        sequence: "Ctrl+Shift+D"
         context: Qt.ApplicationShortcut
+        sequence: "Ctrl+Shift+D"
+
         onActivated: {
-            CallAdapter.hangUpACall(CurrentAccount.id,
-                                    CurrentConversation.id)
+            CallAdapter.hangUpACall(CurrentAccount.id, CurrentConversation.id);
         }
     }
 }

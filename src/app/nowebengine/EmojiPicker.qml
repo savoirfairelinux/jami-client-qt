@@ -15,15 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 
 Rectangle {
     id: root
-
     required property ListView listView
 
+    function closeEmojiPicker() {
+    }
     signal emojiIsPicked(string content)
-    function openEmojiPicker() {}
-    function closeEmojiPicker() {}
+    function openEmojiPicker() {
+    }
 }

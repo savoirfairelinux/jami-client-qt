@@ -15,61 +15,49 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
     id: root
-
     title: JamiStrings.pluginSettingsTitle
-
 
     flickableContent: ColumnLayout {
         id: pluginSettingsColumnLayout
-
-        width: contentFlickableWidth
-        spacing: JamiTheme.settingsBlockSpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
-
+        spacing: JamiTheme.settingsBlockSpacing
+        width: contentFlickableWidth
 
         ColumnLayout {
             id: generalSettings
-
-            width: parent.width
             spacing: JamiTheme.settingsCategorySpacing
+            width: parent.width
 
             ToggleSwitch {
                 id: enabledplugin
-
-                checked: PluginAdapter.isEnabled
                 Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
                 Layout.fillWidth: true
+                checked: PluginAdapter.isEnabled
                 labelText: JamiStrings.enable
 
                 onSwitchToggled: {
-                    PluginModel.setPluginsEnabled(checked)
-                    PluginAdapter.isEnabled = checked
+                    PluginModel.setPluginsEnabled(checked);
+                    PluginAdapter.isEnabled = checked;
                 }
             }
-
             PluginListView {
                 id: pluginListView
-
-                visible: PluginAdapter.isEnabled
-
                 Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                Layout.preferredWidth: parent.width
                 Layout.minimumHeight: 0
                 Layout.preferredHeight: childrenRect.height
+                Layout.preferredWidth: parent.width
+                visible: PluginAdapter.isEnabled
             }
         }
     }

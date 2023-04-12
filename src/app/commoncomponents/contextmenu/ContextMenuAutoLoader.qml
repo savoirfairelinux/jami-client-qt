@@ -15,47 +15,43 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
-import "../../commoncomponents/contextmenu"
+import "."
 
 Loader {
     id: root
+    property int contextMenuItemPreferredHeight: 0
+    property int contextMenuItemPreferredWidth: 0
+    property int contextMenuSeparatorPreferredHeight: 0
 
     // Cannot have menuItemsToLoad directly assigned as list<GeneralMenuItem>
     // https://stackoverflow.com/questions/26733011/how-to-declare-list-property-in-qml
     property var menuItemsToLoad
-    property int contextMenuItemPreferredWidth: 0
-    property int contextMenuItemPreferredHeight: 0
-    property int contextMenuSeparatorPreferredHeight: 0
 
     active: false
 
     function openMenu() {
-        root.active = true
-        root.sourceComponent = menuComponent
+        root.active = true;
+        root.sourceComponent = menuComponent;
     }
 
     Connections {
-        target: root.item
         enabled: root.status === Loader.Ready
+        target: root.item
+
         function onClosed() {
-            root.active = false
+            root.active = false;
         }
     }
-
     Component {
         id: menuComponent
-
         BaseContextMenu {
             id: contextMenu
-
             Component.onCompleted: {
-                contextMenu.menuPreferredWidth = contextMenuItemPreferredWidth
-                contextMenu.menuItemsPreferredHeight = contextMenuItemPreferredHeight
-                contextMenu.menuSeparatorPreferredHeight = contextMenuSeparatorPreferredHeight
-                contextMenu.loadMenuItems(menuItemsToLoad)
+                contextMenu.menuPreferredWidth = contextMenuItemPreferredWidth;
+                contextMenu.menuItemsPreferredHeight = contextMenuItemPreferredHeight;
+                contextMenu.menuSeparatorPreferredHeight = contextMenuSeparatorPreferredHeight;
+                contextMenu.loadMenuItems(menuItemsToLoad);
             }
         }
     }

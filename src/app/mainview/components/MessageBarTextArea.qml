@@ -15,89 +15,59 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 JamiFlickable {
     id: root
-
+    property alias placeholderText: textArea.placeholderText
     property alias text: textArea.text
     property var textAreaObj: textArea
-    property alias placeholderText: textArea.placeholderText
 
-    ScrollBar.vertical.visible: textArea.text
     ScrollBar.horizontal.visible: textArea.text
-
-    signal sendMessagesRequired
-
-    function insertText(text) {
-        textArea.insert(textArea.cursorPosition, text)
-    }
+    ScrollBar.vertical.visible: textArea.text
+    attachedFlickableMoving: contentHeight > height || root.moving
+    interactive: true
 
     function clearText() {
-        textArea.clear()
+        textArea.clear();
     }
-
+    function insertText(text) {
+        textArea.insert(textArea.cursorPosition, text);
+    }
     function pasteText() {
-        textArea.paste()
+        textArea.paste();
     }
+    signal sendMessagesRequired
 
     LineEditContextMenu {
         id: textAreaContextMenu
-
-        lineEditObj: textArea
         customizePaste: true
+        lineEditObj: textArea
 
         onContextMenuRequirePaste: {
             // Intercept paste event to use C++ QMimeData
-            MessagesAdapter.onPaste()
+            MessagesAdapter.onPaste();
         }
     }
 
-    interactive: true
-    attachedFlickableMoving: contentHeight > height || root.moving
-
     TextArea.flickable: TextArea {
         id: textArea
-
-        leftPadding: JamiTheme.scrollBarHandleSize
-        rightPadding: JamiTheme.scrollBarHandleSize
-        topPadding: 0
         bottomPadding: 0
-
-        verticalAlignment: TextEdit.AlignVCenter
-
-        font.pointSize: JamiTheme.textFontSize + 2
-        font.hintingPreference: Font.PreferNoHinting
-
         color: JamiTheme.textColor
-        wrapMode: TextEdit.Wrap
+        font.hintingPreference: Font.PreferNoHinting
+        font.pointSize: JamiTheme.textFontSize + 2
+        leftPadding: JamiTheme.scrollBarHandleSize
+        placeholderTextColor: JamiTheme.placeholderTextColor
+        rightPadding: JamiTheme.scrollBarHandleSize
         selectByMouse: true
         textFormat: TextEdit.PlainText
-        placeholderTextColor: JamiTheme.placeholderTextColor
-
-        background: Rectangle {
-            border.width: 0
-            color: JamiTheme.transparentColor
-        }
-
-        onReleased: function (event) {
-            if (event.button === Qt.RightButton)
-                textAreaContextMenu.openMenuAt(event)
-        }
-
-        onTextChanged: {
-            if (text)
-                MessagesAdapter.userIsComposing(true)
-            else
-                MessagesAdapter.userIsComposing(false)
-        }
+        topPadding: 0
+        verticalAlignment: TextEdit.AlignVCenter
+        wrapMode: TextEdit.Wrap
 
         // Intercept paste event to use C++ QMimeData
         // And enter event to customize send behavior
@@ -105,24 +75,38 @@ JamiFlickable {
         //     Shift + Enter -> Next Line
         Keys.onPressed: function (keyEvent) {
             if (keyEvent.matches(StandardKey.Paste)) {
-                MessagesAdapter.onPaste()
-                keyEvent.accepted = true
+                MessagesAdapter.onPaste();
+                keyEvent.accepted = true;
             } else if (keyEvent.matches(StandardKey.MoveToPreviousLine)) {
                 if (root.text !== "")
-                    return
-                MessagesAdapter.replyToId = ""
-                MessagesAdapter.editId = CurrentConversation.lastSelfMessageId
+                    return;
+                MessagesAdapter.replyToId = "";
+                MessagesAdapter.editId = CurrentConversation.lastSelfMessageId;
                 keyEvent.accepted = true;
-            } else if (keyEvent.key === Qt.Key_Enter ||
-                       keyEvent.key === Qt.Key_Return) {
+            } else if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
                 if (!(keyEvent.modifiers & Qt.ShiftModifier)) {
-                    root.sendMessagesRequired()
-                    keyEvent.accepted = true
+                    root.sendMessagesRequired();
+                    keyEvent.accepted = true;
                 }
             } else if (keyEvent.key === Qt.Key_Tab) {
-                nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
-                keyEvent.accepted = true
+                nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason);
+                keyEvent.accepted = true;
             }
+        }
+        onReleased: function (event) {
+            if (event.button === Qt.RightButton)
+                textAreaContextMenu.openMenuAt(event);
+        }
+        onTextChanged: {
+            if (text)
+                MessagesAdapter.userIsComposing(true);
+            else
+                MessagesAdapter.userIsComposing(false);
+        }
+
+        background: Rectangle {
+            border.width: 0
+            color: JamiTheme.transparentColor
         }
     }
 }

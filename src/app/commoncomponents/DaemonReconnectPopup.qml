@@ -15,104 +15,86 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
 BaseModalDialog {
     id: root
-
     property bool connectionFailed: false
     property int preferredMargin: 15
 
     autoClose: false
 
-    Connections {
-        target: {
-            if (Qt.platform.os.toString()  !== "windows" && Qt.platform.os.toString()  !== "osx")
-                return DBusErrorHandler
-            return null
-        }
-        ignoreUnknownSignals: true
-
-        function onShowDaemonReconnectPopup(visible) {
-            if (!visible) {
-                viewCoordinator.dismiss(this)
-            }
-        }
-
-        function onDaemonReconnectFailed() {
-            connectionFailed = true
+    onPopupContentLoadStatusChanged: {
+        if (popupContentLoadStatus === Loader.Ready) {
+            root.height = Qt.binding(function () {
+                    return popupContentLoader.item.implicitHeight + 50;
+                });
+            root.width = Qt.binding(function () {
+                    return popupContentLoader.item.implicitWidth + 50;
+                });
         }
     }
 
+    Connections {
+        ignoreUnknownSignals: true
+        target: {
+            if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
+                return DBusErrorHandler;
+            return null;
+        }
 
-    onPopupContentLoadStatusChanged: {
-        if (popupContentLoadStatus === Loader.Ready) {
-            root.height = Qt.binding(function() {
-                return popupContentLoader.item.implicitHeight + 50
-            })
-            root.width = Qt.binding(function() {
-                return popupContentLoader.item.implicitWidth + 50
-            })
+        function onDaemonReconnectFailed() {
+            connectionFailed = true;
+        }
+        function onShowDaemonReconnectPopup(visible) {
+            if (!visible) {
+                viewCoordinator.dismiss(this);
+            }
         }
     }
 
     popupContent: ColumnLayout {
         id: daemonReconnectPopupColumnLayout
-
         spacing: 0
 
         Text {
             id: daemonReconnectPopupTextLabel
-
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.topMargin: preferredMargin
-
-            text: connectionFailed ? JamiStrings.reconnectionFailed :
-                                     JamiStrings.reconnectDaemon
+            color: JamiTheme.textColor
             font.pointSize: JamiTheme.textFontSize + 2
             horizontalAlignment: Text.AlignHCenter
+            text: connectionFailed ? JamiStrings.reconnectionFailed : JamiStrings.reconnectDaemon
             verticalAlignment: Text.AlignVCenter
-            color: JamiTheme.textColor
         }
-
         AnimatedImage {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+            Layout.bottomMargin: preferredMargin
             Layout.preferredHeight: 30
             Layout.preferredWidth: 30
-            Layout.bottomMargin: preferredMargin
-
-            visible: !connectionFailed
-
-            source: JamiResources.jami_rolling_spinner_gif
-
-            playing: true
-            paused: false
-            mipmap: true
-            smooth: true
             fillMode: Image.PreserveAspectFit
+            mipmap: true
+            paused: false
+            playing: true
+            smooth: true
+            source: JamiResources.jami_rolling_spinner_gif
+            visible: !connectionFailed
         }
-
         MaterialButton {
             id: btnOk
-
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-
-            preferredWidth: JamiTheme.preferredFieldWidth / 2
-
-            visible: connectionFailed
-
-            text: JamiStrings.optionOk
+            autoAccelerator: true
             color: JamiTheme.buttonTintedBlue
             hoveredColor: JamiTheme.buttonTintedBlueHovered
+            preferredWidth: JamiTheme.preferredFieldWidth / 2
             pressedColor: JamiTheme.buttonTintedBluePressed
             secondary: true
-                autoAccelerator: true
+            text: JamiStrings.optionOk
+            visible: connectionFailed
 
             onClicked: Qt.quit()
         }

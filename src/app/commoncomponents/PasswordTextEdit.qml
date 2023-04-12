@@ -14,43 +14,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
 ModalTextEdit {
     id: modalTextEditRoot
-
     property bool firstEntry: false
 
-    signal icoClicked
-
-    prefixIconSrc: firstEntry ? JamiResources.lock_svg : JamiResources.round_edit_24dp_svg
-
-    suffixBisIconSrc: echoMode == TextInput.Password ? JamiResources.eye_cross_svg : JamiResources.noun_eye_svg
-    suffixBisIconColor: JamiTheme.buttonTintedBlue
-
-    placeholderText: JamiStrings.password
-    infoTipText: firstEntry ? JamiStrings.password : ""
-    staticText: ""
     echoMode: TextInput.Password
+    infoTipText: firstEntry ? JamiStrings.password : ""
+    placeholderText: JamiStrings.password
+    prefixIconSrc: firstEntry ? JamiResources.lock_svg : JamiResources.round_edit_24dp_svg
+    staticText: ""
+    suffixBisIconColor: JamiTheme.buttonTintedBlue
+    suffixBisIconSrc: echoMode == TextInput.Password ? JamiResources.eye_cross_svg : JamiResources.noun_eye_svg
+
+    signal icoClicked
+    function startEditing() {
+        root.editMode = true;
+        forceActiveFocus();
+    }
 
     onIcoClicked: {
         if (echoMode == TextInput.Normal) {
-            echoMode = TextInput.Password
-            suffixBisIconSrc = JamiResources.eye_cross_svg
+            echoMode = TextInput.Password;
+            suffixBisIconSrc = JamiResources.eye_cross_svg;
         } else {
-            echoMode = TextInput.Normal
-            suffixBisIconSrc = JamiResources.noun_eye_svg
+            echoMode = TextInput.Normal;
+            suffixBisIconSrc = JamiResources.noun_eye_svg;
         }
     }
-
-    function startEditing() {
-        root.editMode = true
-        forceActiveFocus()
-    }
 }
-

@@ -15,26 +15,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import Qt5Compat.GraphicalEffects
-
-
 import "../../commoncomponents"
 
 Popup {
     id: root
-
-    width: popupContent.width
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     height: popupContent.height
-
+    modal: true
+    padding: 0
     parent: Overlay.overlay
+    visible: false
+    width: popupContent.width
 
     // center in parent
     x: Math.round((parent.width - width) / 2)
@@ -42,140 +40,130 @@ Popup {
 
     signal joinClicked
 
-    modal:true
-    padding: 0
-
-    visible: false
-    closePolicy:  Popup.CloseOnEscape | Popup.CloseOnPressOutside
-
     Rectangle {
         id: container
-
         anchors.fill: parent
-        radius: JamiTheme.modalPopupRadius
         color: JamiTheme.secondaryBackgroundColor
+        radius: JamiTheme.modalPopupRadius
 
         ColumnLayout {
-            id:  popupContent
-
+            id: popupContent
             Layout.alignment: Qt.AlignCenter
 
             PushButton {
                 id: btnClose
-
                 Layout.alignment: Qt.AlignRight
-                width: 30
-                height: 30
-                imageContainerWidth: 30
-                imageContainerHeight : 30
                 Layout.margins: 8
-                radius : 5
+                height: 30
                 imageColor: "grey"
+                imageContainerHeight: 30
+                imageContainerWidth: 30
                 normalColor: JamiTheme.transparentColor
+                radius: 5
                 source: JamiResources.round_close_24dp_svg
-                onClicked: { root.visible = false }
-            }
+                width: 30
 
+                onClicked: {
+                    root.visible = false;
+                }
+            }
             Text {
-                Layout.preferredWidth: 280
+                Layout.alignment: Qt.AlignCenter
                 Layout.leftMargin: 20
+                Layout.preferredWidth: 280
                 Layout.rightMargin: 20
-                Layout.alignment: Qt.AlignCenter
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                font.pixelSize: JamiTheme.popuptextSize
-                lineHeight: JamiTheme.wizardViewTextLineHeight
-                wrapMode: Text.WordWrap
                 color: JamiTheme.textColor
+                font.pixelSize: JamiTheme.popuptextSize
+                horizontalAlignment: Text.AlignHCenter
+                lineHeight: JamiTheme.wizardViewTextLineHeight
                 text: JamiStrings.joinJamiNoPassword
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
             }
-
-            RowLayout{
-                Layout.topMargin: JamiTheme.popupButtonsMargin
-                Layout.bottomMargin: JamiTheme.popupButtonsMargin
-
+            RowLayout {
                 Layout.alignment: Qt.AlignCenter
+                Layout.bottomMargin: JamiTheme.popupButtonsMargin
+                Layout.topMargin: JamiTheme.popupButtonsMargin
                 spacing: JamiTheme.popupButtonsMargin
 
                 MaterialButton {
-
-                    TextMetrics{
-                        id: joinJamiSize
-                        font.weight: Font.Bold
-                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                        text: JamiStrings.joinJami
-                    }
-
                     Layout.leftMargin: JamiTheme.popupButtonsMargin
                     objectName: "joinButton"
-                    preferredWidth: joinJamiSize.width + 2*(JamiTheme.buttontextWizzardPadding + 1)
-                    textLeftPadding: JamiTheme.buttontextWizzardPadding
-                    textRightPadding: JamiTheme.buttontextWizzardPadding
+                    preferredWidth: joinJamiSize.width + 2 * (JamiTheme.buttontextWizzardPadding + 1)
                     secondary: true
                     text: JamiStrings.joinJami
+                    textLeftPadding: JamiTheme.buttontextWizzardPadding
+                    textRightPadding: JamiTheme.buttontextWizzardPadding
+
                     onClicked: {
-                        root.joinClicked()
-                        WizardViewStepModel.nextStep()
-                        root.close()
+                        root.joinClicked();
+                        WizardViewStepModel.nextStep();
+                        root.close();
+                    }
+
+                    TextMetrics {
+                        id: joinJamiSize
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        font.weight: Font.Bold
+                        text: JamiStrings.joinJami
                     }
                 }
-
                 MaterialButton {
-
-                    TextMetrics{
-                        id: chooseAUsernameSize
-                        font.weight: Font.Bold
-                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                        text: JamiStrings.chooseAUsername
-                    }
-
                     Layout.rightMargin: JamiTheme.popupButtonsMargin
-                    preferredWidth: chooseAUsernameSize.width + 2*JamiTheme.buttontextWizzardPadding
+                    preferredWidth: chooseAUsernameSize.width + 2 * JamiTheme.buttontextWizzardPadding
                     primary: true
                     text: JamiStrings.chooseAUsername
+
                     onClicked: root.close()
+
+                    TextMetrics {
+                        id: chooseAUsernameSize
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        font.weight: Font.Bold
+                        text: JamiStrings.chooseAUsername
+                    }
                 }
             }
-
         }
     }
-
-    background: Rectangle {
-        color: JamiTheme.transparentColor
+    DropShadow {
+        color: JamiTheme.shadowColor
+        height: root.height
+        horizontalOffset: 3.0
+        radius: container.radius * 4
+        source: container
+        transparentBorder: true
+        verticalOffset: 3.0
+        width: root.width
+        z: -1
     }
 
     Overlay.modal: Rectangle {
         color: JamiTheme.transparentColor
+
         // Color animation for overlay when pop up is shown.
-        ColorAnimation on color {
-            to: JamiTheme.popupOverlayColor
+        ColorAnimation on color  {
             duration: 500
+            to: JamiTheme.popupOverlayColor
         }
     }
-
-    DropShadow {
-        z: -1
-        width: root.width
-        height: root.height
-        horizontalOffset: 3.0
-        verticalOffset: 3.0
-        radius: container.radius * 4
-        color: JamiTheme.shadowColor
-        source: container
-        transparentBorder: true
+    background: Rectangle {
+        color: JamiTheme.transparentColor
     }
-
     enter: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 0.0; to: 1.0
             duration: JamiTheme.shortFadeDuration
+            from: 0.0
+            properties: "opacity"
+            to: 1.0
         }
     }
-
     exit: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 1.0; to: 0.0
             duration: JamiTheme.shortFadeDuration
+            from: 1.0
+            properties: "opacity"
+            to: 0.0
         }
     }
 }

@@ -15,8 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import "../mainview/components/"
+import "../mainview/components"
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -26,78 +25,74 @@ import net.jami.Constants 1.1
 
 ColumnLayout {
     id: root
-
-    property bool showTime
-    property bool showDay
-    property string formattedTime
-    property string formattedDay
     property real detailsOpacity: 0.6
+    property string formattedDay
+    property string formattedTime
+    property bool showDay
+    property bool showTime
 
     spacing: 0
 
     Connections {
         target: MessagesAdapter
+
         function onTimestampUpdated() {
             if ((showTime || showDay) && Timestamp !== undefined) {
-                formattedTime = MessagesAdapter.getFormattedTime(Timestamp)
+                formattedTime = MessagesAdapter.getFormattedTime(Timestamp);
             }
         }
     }
-
     Item {
-        visible: showDay
         Layout.alignment: Qt.AlignHCenter
-
-        Layout.preferredHeight: childrenRect.height
+        Layout.bottomMargin: formattedTimeLabel.visible ? 0 : JamiTheme.dayTimestampBottomMargin
         Layout.fillWidth: true
+        Layout.preferredHeight: childrenRect.height
         Layout.topMargin: JamiTheme.dayTimestampTopMargin
-        Layout.bottomMargin: formattedTimeLabel.visible ?
-                                 0 :
-                                 JamiTheme.dayTimestampBottomMargin
+        visible: showDay
 
         Rectangle {
             id: line
-
+            anchors.centerIn: parent
+            color: JamiTheme.timestampColor
             height: 1
             opacity: detailsOpacity
-            color:JamiTheme.timestampColor
             width: parent.width - JamiTheme.timestampLinePadding
-            anchors.centerIn: parent
         }
-
         Rectangle {
             id: dayRectangle
-
-            width: formattedDayLabel.width + JamiTheme.dayTimestampVPadding
-            height: formattedDayLabel.height + JamiTheme.dayTimestampHPadding
-            radius: 5
-            color: JamiTheme.chatviewBgColor
             Layout.fillHeight: true
             anchors.centerIn: parent
+            color: JamiTheme.chatviewBgColor
+            height: formattedDayLabel.height + JamiTheme.dayTimestampHPadding
+            radius: 5
+            width: formattedDayLabel.width + JamiTheme.dayTimestampVPadding
 
-            border { color:  JamiTheme.timestampColor; width: 1 }
-
+            border {
+                color: JamiTheme.timestampColor
+                width: 1
+            }
             Text {
                 id: formattedDayLabel
-
                 color: JamiTheme.chatviewTextColor
-                anchors { verticalCenter: parent.verticalCenter; horizontalCenter: parent.horizontalCenter}
-                text: formattedDay
                 font.pointSize: JamiTheme.timestampFont
+                text: formattedDay
+
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    verticalCenter: parent.verticalCenter
+                }
             }
         }
     }
-
     Label {
         id: formattedTimeLabel
-
-        text: formattedTime
-        Layout.bottomMargin: JamiTheme.timestampBottomMargin
-        Layout.topMargin: JamiTheme.timestampTopMargin
         Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-        color: JamiTheme.timestampColor
-        visible: showTime || showDay
+        Layout.bottomMargin: JamiTheme.timestampBottomMargin
         Layout.preferredHeight: visible * implicitHeight
+        Layout.topMargin: JamiTheme.timestampTopMargin
+        color: JamiTheme.timestampColor
         font.pointSize: JamiTheme.timestampFont
+        text: formattedTime
+        visible: showTime || showDay
     }
 }

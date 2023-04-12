@@ -15,102 +15,84 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
     color: "transparent"
-
     visible: false
 
     ColumnLayout {
+        anchors.bottomMargin: 10
         anchors.left: root.left
         anchors.right: root.right
-        anchors.bottomMargin: 10
-
-        Label{
-            Layout.topMargin: 34
-            Layout.alignment: Qt.AlignHCenter
-            height: 64
-            background: Rectangle {
-                Image {
-                    anchors.centerIn: parent
-                    source: pluginIcon === "" ? JamiResources.plugins_24dp_svg : "file:" + pluginIcon
-                    sourceSize: Qt.size(256, 256)
-                    height: 64
-                    width: 64
-                    mipmap: true
-                }
-            }
-        }
 
         Label {
             Layout.alignment: Qt.AlignHCenter
+            Layout.topMargin: 34
+            height: 64
+
+            background: Rectangle {
+                Image {
+                    anchors.centerIn: parent
+                    height: 64
+                    mipmap: true
+                    source: pluginIcon === "" ? JamiResources.plugins_24dp_svg : "file:" + pluginIcon
+                    sourceSize: Qt.size(256, 256)
+                    width: 64
+                }
+            }
+        }
+        Label {
+            Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: 24
-            height: JamiTheme.preferredFieldHeight
-
-            text: "%1\n%2".arg(pluginName).arg(JamiStrings.pluginPreferences)
-            font.pointSize: JamiTheme.headerFontSize
-            font.kerning: true
             color: JamiTheme.textColor
-
+            font.kerning: true
+            font.pointSize: JamiTheme.headerFontSize
+            height: JamiTheme.preferredFieldHeight
             horizontalAlignment: Text.AlignHCenter
+            text: "%1\n%2".arg(pluginName).arg(JamiStrings.pluginPreferences)
             verticalAlignment: Text.AlignVCenter
         }
-
         RowLayout {
             Layout.fillWidth: true
 
             Text {
                 Layout.fillWidth: true
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                font.pointSize: JamiTheme.headerFontSize
-                font.kerning: true
-
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
                 color: JamiTheme.textColor
-
-                text: JamiStrings.generalSettingsTitle
                 elide: Text.ElideRight
+                font.kerning: true
+                font.pointSize: JamiTheme.headerFontSize
+                horizontalAlignment: Text.AlignLeft
+                text: JamiStrings.generalSettingsTitle
+                verticalAlignment: Text.AlignVCenter
             }
-
             PushButton {
-                Layout.preferredWidth: JamiTheme.preferredFieldHeight
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
                 Layout.alignment: Qt.AlignHCenter
-
+                Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                Layout.preferredWidth: JamiTheme.preferredFieldHeight
                 imageColor: JamiTheme.textColor
+                preferredSize: 32
+                source: pluginGeneralSettingsView.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
                 toolTipText: JamiStrings.tipGeneralPluginSettingsDisplay
 
-                preferredSize: 32
-                source: pluginGeneralSettingsView.visible ?
-                            JamiResources.expand_less_24dp_svg :
-                            JamiResources.expand_more_24dp_svg
-
                 onClicked: {
-                    pluginGeneralSettingsView.visible = !pluginGeneralSettingsView.visible
+                    pluginGeneralSettingsView.visible = !pluginGeneralSettingsView.visible;
                 }
             }
         }
-
         PluginPreferencesListView {
             id: pluginGeneralSettingsView
-            visible: false
             Layout.fillWidth: true
+            visible: false
         }
-
         RowLayout {
             Layout.fillWidth: true
             visible: pluginAccountSettingsView.count > 0
@@ -118,85 +100,66 @@ Rectangle {
             Text {
                 Layout.fillWidth: true
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                font.pointSize: JamiTheme.headerFontSize
-                font.kerning: true
-
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
                 color: JamiTheme.textColor
-
-                text: JamiStrings.accountSettingsMenuTitle
                 elide: Text.ElideRight
+                font.kerning: true
+                font.pointSize: JamiTheme.headerFontSize
+                horizontalAlignment: Text.AlignLeft
+                text: JamiStrings.accountSettingsMenuTitle
+                verticalAlignment: Text.AlignVCenter
             }
-
             PushButton {
-                Layout.preferredWidth: JamiTheme.preferredFieldHeight
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
                 Layout.alignment: Qt.AlignHCenter
-
+                Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                Layout.preferredWidth: JamiTheme.preferredFieldHeight
                 imageColor: JamiTheme.textColor
+                preferredSize: 32
+                source: pluginAccountSettingsView.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
                 toolTipText: JamiStrings.tipAccountPluginSettingsDisplay
 
-                preferredSize: 32
-                source: pluginAccountSettingsView.visible ?
-                            JamiResources.expand_less_24dp_svg :
-                            JamiResources.expand_more_24dp_svg
-
                 onClicked: {
-                    pluginAccountSettingsView.visible = !pluginAccountSettingsView.visible
+                    pluginAccountSettingsView.visible = !pluginAccountSettingsView.visible;
                 }
             }
         }
-
         PluginPreferencesListView {
             id: pluginAccountSettingsView
-            visible: false
             Layout.fillWidth: true
             accountId: LRCInstance.currentAccountId
+            visible: false
         }
-
         MaterialButton {
             id: uninstallButton
-
             Layout.alignment: Qt.AlignCenter
-
-            preferredWidth: JamiTheme.preferredFieldWidth
             buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
+            iconSource: JamiResources.delete_24dp_svg
+            preferredWidth: JamiTheme.preferredFieldWidth
             pressedColor: JamiTheme.buttonTintedBlackPressed
             secondary: true
-            toolTipText: JamiStrings.pluginUninstallConfirmation.arg(pluginName)
-            iconSource: JamiResources.delete_24dp_svg
-
             text: JamiStrings.uninstall
+            toolTipText: JamiStrings.pluginUninstallConfirmation.arg(pluginName)
 
-            onClicked: viewCoordinator.presentDialog(
-                           appWindow,
-                           "commoncomponents/SimpleMessageDialog.qml",
-                           {
-                               title: JamiStrings.uninstallPlugin,
-                               infoText: JamiStrings.pluginUninstallConfirmation.arg(pluginName),
-                               buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel],
-                               buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                                              SimpleMessageDialog.ButtonStyle.TintedBlack],
-                               buttonCallBacks: [function () {
-                                   pluginPreferencesView.visible = false
-                                   PluginModel.uninstallPlugin(pluginId)
-                                   installedPluginsModel.removePlugin(index)
-                               }]
-                           })
+            onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                    "title": JamiStrings.uninstallPlugin,
+                    "infoText": JamiStrings.pluginUninstallConfirmation.arg(pluginName),
+                    "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
+                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
+                    "buttonCallBacks": [function () {
+                            pluginPreferencesView.visible = false;
+                            PluginModel.uninstallPlugin(pluginId);
+                            installedPluginsModel.removePlugin(index);
+                        }]
+                })
         }
-
         Rectangle {
             Layout.bottomMargin: 10
-            height: 2
             Layout.fillWidth: true
-            color: "transparent"
-            border.width: 1
             border.color: JamiTheme.separationLine
+            border.width: 1
+            color: "transparent"
+            height: 2
         }
     }
 }

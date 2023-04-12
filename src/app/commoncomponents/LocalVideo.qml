@@ -15,27 +15,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtMultimedia
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Adapters 1.1
 
 VideoView {
     id: root
-
     crop: true
 
     function startWithId(id, force = false) {
         if (id !== undefined && id.length === 0) {
-            VideoDevices.stopDevice(rendererId)
-            rendererId = id
+            VideoDevices.stopDevice(rendererId);
+            rendererId = id;
         } else {
-            const forceRestart = rendererId === id
-            rendererId = VideoDevices.startDevice(id, forceRestart)
+            const forceRestart = rendererId === id;
+            rendererId = VideoDevices.startDevice(id, forceRestart);
         }
     }
 }
-
-

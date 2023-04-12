@@ -15,48 +15,39 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
     id: root
-
     JamiListView {
         id: bannedListWidget
-
         property int bannedContactsSize: 0
 
         Layout.fillWidth: true
         Layout.preferredHeight: Math.min(bannedContactsSize, 5) * (74 + spacing)
         spacing: JamiTheme.settingsListViewsSpacing
 
+        delegate: ContactItemDelegate {
+            id: bannedListDelegate
+            btnImgSource: JamiStrings.optionUnban
+            btnToolTip: JamiStrings.reinstateContact
+            contactID: ContactID
+            contactName: ContactName
+            height: 74
+            width: bannedListWidget.width
+
+            onBtnContactClicked: MessagesAdapter.unbanContact(index)
+            onClicked: bannedListWidget.currentIndex = index
+        }
         model: BannedListModel {
             lrcInstance: LRCInstance
 
             onCountChanged: bannedListWidget.bannedContactsSize = count
-        }
-
-        delegate: ContactItemDelegate {
-            id: bannedListDelegate
-
-            width: bannedListWidget.width
-            height: 74
-
-            contactName: ContactName
-            contactID: ContactID
-
-            btnImgSource: JamiStrings.optionUnban
-            btnToolTip: JamiStrings.reinstateContact
-
-            onClicked: bannedListWidget.currentIndex = index
-            onBtnContactClicked: MessagesAdapter.unbanContact(index)
         }
     }
 }

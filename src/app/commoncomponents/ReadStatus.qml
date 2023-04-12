@@ -15,33 +15,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 ListView {
     id: root
-
     property var readers: []
+
+    Layout.alignment: Qt.AlignRight
+    interactive: false
     model: readers
     orientation: ListView.Horizontal
-    interactive: false
-    Layout.alignment: Qt.AlignRight
-    spacing: -(JamiTheme.avatarReadReceiptSize/3)
+    spacing: -(JamiTheme.avatarReadReceiptSize / 3)
 
     delegate: Avatar {
-        width: JamiTheme.avatarReadReceiptSize
         height: JamiTheme.avatarReadReceiptSize
-        z: -index
-
         imageId: modelData
-        showPresenceIndicator: false
         mode: Avatar.Mode.Contact
+        showPresenceIndicator: false
+        width: JamiTheme.avatarReadReceiptSize
+        z: -index
     }
 }

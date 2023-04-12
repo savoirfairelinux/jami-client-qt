@@ -15,29 +15,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 MenuSeparator {
     id: menuSeparator
-
-    property int separatorPreferredWidth: JamiTheme.menuItemsPreferredWidth
-    property int separatorPreferredHeight: 1
     property string separatorColor: JamiTheme.tabbarBorderColor
+    property int separatorPreferredHeight: 1
+    property int separatorPreferredWidth: JamiTheme.menuItemsPreferredWidth
 
+    bottomPadding: 1
     padding: 0
     topPadding: 1
-    bottomPadding: 1
-    contentItem: Rectangle {
-        implicitWidth: separatorPreferredWidth
-        implicitHeight: separatorPreferredHeight
-        color: separatorColor
-    }
 
     background: Rectangle {
         color: JamiTheme.backgroundColor
+    }
+    contentItem: Rectangle {
+        color: separatorColor
+        implicitHeight: separatorPreferredHeight
+        implicitWidth: separatorPreferredWidth
     }
 }

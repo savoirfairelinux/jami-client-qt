@@ -15,83 +15,72 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
 
 Item {
     id: root
-
-    property real containerWidth: 30
-    property real containerHeight: 30
-
-    property int padding: 0
-    property point offset: Qt.point(0, 0)
-
-    property alias source: image.source
-    property alias status: image.status
     property alias cache: image.cache
     property string color: "transparent"
+    property real containerHeight: 30
+    property real containerWidth: 30
     property bool hovered: false
+    property bool isSvg: {
+        var match = /[^.]+$/.exec(source);
+        return match !== null && match[0] === 'svg';
+    }
     property bool mirrorHorizontally: false
     property bool mirrorVertically: false
-
-    property bool isSvg: {
-        var match = /[^.]+$/.exec(source)
-        return match !== null && match[0] === 'svg'
-    }
+    property point offset: Qt.point(0, 0)
+    property int padding: 0
+    property alias source: image.source
+    property alias status: image.status
 
     anchors.horizontalCenterOffset: offset.x
     anchors.verticalCenterOffset: offset.y
+    height: Math.trunc(containerHeight * Math.sqrt(2) * 0.5) + 3 - padding
 
     // works out to 24 if containerWidth is 30
     width: Math.trunc(containerWidth * Math.sqrt(2) * 0.5) + 3 - padding
-    height: Math.trunc(containerHeight * Math.sqrt(2) * 0.5) + 3 - padding
 
     Connections {
         target: CurrentScreenInfo
 
         function onDevicePixelRatioChanged() {
-            image.setSourceSize()
+            image.setSourceSize();
         }
     }
-
     Image {
         id: image
-
         anchors.fill: root
-
-        fillMode: Image.PreserveAspectFit
-        smooth: true
         antialiasing: true
         asynchronous: true
-        visible: false
+        fillMode: Image.PreserveAspectFit
         mirror: root.mirrorHorizontally
         mirrorVertically: root.mirrorVertically
+        smooth: true
+        visible: false
 
         function setSourceSize() {
-            sourceSize = undefined
+            sourceSize = undefined;
             if (isSvg)
-                sourceSize = Qt.size(width, height)
+                sourceSize = Qt.size(width, height);
         }
 
         Component.onCompleted: setSourceSize()
     }
-
     ColorOverlay {
         anchors.fill: image
-        source: image
         color: root.color
+        source: image
     }
-
     HoverHandler {
         target: parent
-        onHoveredChanged: {
-            root.hovered = hovered
 
+        onHoveredChanged: {
+            root.hovered = hovered;
         }
     }
 }

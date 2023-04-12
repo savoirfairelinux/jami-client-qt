@@ -15,99 +15,78 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
     id: root
-
     property int itemWidth
+
     spacing: JamiTheme.settingsCategorySpacing + 2
 
     Text {
-
         Layout.alignment: Qt.AlignLeft
-        Layout.preferredWidth:Math.min(JamiTheme.maximumWidthSettingsView,
-                                                   root.width - 2 * JamiTheme.preferredSettingsMarginSize)
-
-        text: JamiStrings.sdpSettingsTitle
+        Layout.preferredWidth: Math.min(JamiTheme.maximumWidthSettingsView, root.width - 2 * JamiTheme.preferredSettingsMarginSize)
         color: JamiTheme.textColor
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-        wrapMode : Text.WordWrap
-
-        font.pixelSize: JamiTheme.settingsTitlePixelSize
         font.kerning: true
-
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        horizontalAlignment: Text.AlignLeft
+        text: JamiStrings.sdpSettingsTitle
+        verticalAlignment: Text.AlignVCenter
+        wrapMode: Text.WordWrap
     }
-
     ColumnLayout {
         id: mainLayout
         Layout.fillWidth: true
 
         Text {
             Layout.fillWidth: true
-            text: JamiStrings.sdpSettingsSubtitle
-            font.pointSize: JamiTheme.settingsFontSize
-            font.kerning: true
-            wrapMode: Text.WordWrap
             color: JamiTheme.textColor
+            font.kerning: true
+            font.pointSize: JamiTheme.settingsFontSize
+            text: JamiStrings.sdpSettingsSubtitle
+            wrapMode: Text.WordWrap
         }
-
         SettingSpinBox {
             id: audioRTPMinPortSpinBox
-
-            title: JamiStrings.audioRTPMinPort
-            itemWidth: root.itemWidth
             bottomValue: 0
+            itemWidth: root.itemWidth
+            title: JamiStrings.audioRTPMinPort
             topValue: audioRTPMaxPortSpinBox.valueField - 1
-
             valueField: CurrentAccount.audioPortMin_Audio
 
             onNewValue: CurrentAccount.audioPortMin_Audio = valueField
         }
-
         SettingSpinBox {
             id: audioRTPMaxPortSpinBox
-
-            title: JamiStrings.audioRTPMaxPort
-            itemWidth: root.itemWidth
             bottomValue: audioRTPMinPortSpinBox.valueField + 1
+            itemWidth: root.itemWidth
+            title: JamiStrings.audioRTPMaxPort
             topValue: 65535
-
             valueField: CurrentAccount.audioPortMax_Audio
 
             onNewValue: CurrentAccount.audioPortMax_Audio = valueField
         }
-
         SettingSpinBox {
             id: videoRTPMinPortSpinBox
-
-            title: JamiStrings.videoRTPMinPort
-            itemWidth: root.itemWidth
             bottomValue: 0
+            itemWidth: root.itemWidth
+            title: JamiStrings.videoRTPMinPort
             topValue: videoRTPMaxPortSpinBox.valueField - 1
-
             valueField: CurrentAccount.videoPortMin_Video
 
             onNewValue: CurrentAccount.videoPortMin_Video = valueField
         }
-
         SettingSpinBox {
             id: videoRTPMaxPortSpinBox
-
-            title: JamiStrings.videoRTPMaxPort
-            itemWidth: root.itemWidth
             bottomValue: videoRTPMinPortSpinBox.valueField + 1
+            itemWidth: root.itemWidth
+            title: JamiStrings.videoRTPMaxPort
             topValue: 65535
-
             valueField: CurrentAccount.videoPortMax_Video
 
             onNewValue: CurrentAccount.videoPortMax_Video = valueField

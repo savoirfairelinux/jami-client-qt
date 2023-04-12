@@ -15,24 +15,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import net.jami.Constants 1.1
 
 Rectangle {
     id: root
-
-    anchors.top: parent.top
-    anchors.horizontalCenter: parent.horizontalCenter
-    width: textMessage.width + 20
-    height: textMessage.height + 10
-    anchors.topMargin: 10
-    radius: 15
-    color: JamiTheme.toastRectColor
-
     property int duration
     property int fadingTime
     property string message
+
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    anchors.topMargin: 10
+    color: JamiTheme.toastRectColor
+    height: textMessage.height + 10
+    radius: 15
+    width: textMessage.width + 20
 
     Component.onCompleted: {
         anim.start();
@@ -40,33 +38,31 @@ Rectangle {
 
     Text {
         id: textMessage
-
         anchors.centerIn: root
-        text: message
-        font.pointSize: JamiTheme.toastFontSize
         color: JamiTheme.toastColor
+        font.pointSize: JamiTheme.toastFontSize
+        text: message
     }
 
-    SequentialAnimation on opacity {
+    SequentialAnimation on opacity  {
         id: anim
-
         running: false
 
+        onRunningChanged: {
+            if (!running)
+                root.destroy();
+        }
+
         NumberAnimation {
-            to: 0.9
             duration: root.fadingTime
+            to: 0.9
         }
         PauseAnimation {
             duration: root.duration
         }
         NumberAnimation {
-            to: 0
             duration: root.fadingTime
-        }
-
-        onRunningChanged: {
-            if (!running)
-                root.destroy();
+            to: 0
         }
     }
 }

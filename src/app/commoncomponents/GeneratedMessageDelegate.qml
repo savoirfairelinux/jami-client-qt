@@ -17,53 +17,53 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 Column {
     id: root
-
-    property bool showTime: false
-    property bool showDay: false
-    property int seq: MsgSeq.single
     property alias font: textLabel.font
-    property int timestamp: Timestamp
-    property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
-    width: ListView.view ? ListView.view.width : 0
+    property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+    property int seq: MsgSeq.single
+    property bool showDay: false
+    property bool showTime: false
+    property int timestamp: Timestamp
+
+    bottomPadding: 12
+    opacity: 0
     spacing: 2
     topPadding: 12
-    bottomPadding: 12
-    ColumnLayout {
+    width: ListView.view ? ListView.view.width : 0
 
+    Component.onCompleted: opacity = 1
+
+    ColumnLayout {
         width: parent.width
 
         TimestampInfo {
-            id:timestampItem
-
+            id: timestampItem
+            Layout.alignment: Qt.AlignHCenter
+            formattedDay: root.formattedDay
+            formattedTime: root.formattedTime
             showDay: root.showDay
             showTime: root.showTime
-            formattedTime: root.formattedTime
-            formattedDay: root.formattedDay
-            Layout.alignment: Qt.AlignHCenter
         }
-
         Label {
             id: textLabel
-
-            text: Body
             Layout.alignment: Qt.AlignHCenter
-            font.pointSize: 12
             color: JamiTheme.chatviewTextColor
+            font.pointSize: 12
+            text: Body
         }
     }
 
-    opacity: 0
-    Behavior on opacity { NumberAnimation { duration: 100 } }
-    Component.onCompleted: opacity = 1
+    Behavior on opacity  {
+        NumberAnimation {
+            duration: 100
+        }
+    }
 }

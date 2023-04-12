@@ -15,62 +15,54 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import QtWebEngine
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-
 import "../commoncomponents"
 
 WebEngineView {
     id: wev
-    property bool isVideo
-    property string html
-    readonly property real minSize: 192
-    readonly property real maxSize: 256
+    readonly property real adjustedWidth: Math.min(maxSize, Math.max(minSize, innerContent.width - senderMargin))
     readonly property real aspectRatio: 1 / .75
-    readonly property real adjustedWidth: Math.min(maxSize,
-                                                   Math.max(minSize,
-                                                            innerContent.width - senderMargin))
+    property string html
+    property bool isVideo
+    readonly property real maxSize: 256
+    readonly property real minSize: 192
+
     anchors.right: isOutgoing ? parent.right : undefined
-    width: isFullScreen ? parent.width : adjustedWidth
-    height: isVideo ?
-                isFullScreen ?
-                    parent.height :
-                    Math.ceil(adjustedWidth / aspectRatio) :
-    54
-    onContextMenuRequested: function(request) {
-        request.accepted = true
-    }
+    height: isVideo ? isFullScreen ? parent.height : Math.ceil(adjustedWidth / aspectRatio) : 54
+    layer.enabled: !isFullScreen
     settings.fullScreenSupportEnabled: isVideo
     settings.javascriptCanOpenWindows: false
+    width: isFullScreen ? parent.width : adjustedWidth
+
     Component.onCompleted: loadHtml(html, 'file://')
-    layer.enabled: !isFullScreen
+    onContextMenuRequested: function (request) {
+        request.accepted = true;
+    }
+    onFullScreenRequested: function (request) {
+        if (request.toggleOn) {
+            layoutManager.pushFullScreenItem(this, localMediaCompLoader, null, function () {
+                    wev.fullScreenCancelled();
+                });
+        } else if (!request.toggleOn) {
+            layoutManager.removeFullScreenItem(this);
+        }
+        request.accept();
+    }
+
     layer.effect: OpacityMask {
         maskSource: MessageBubble {
+            height: wev.height
             out: isOutgoing
+            radius: msgRadius
             type: seq
             width: wev.width
-            height: wev.height
-            radius: msgRadius
         }
-    }
-    onFullScreenRequested: function(request) {
-        if (request.toggleOn) {
-            layoutManager.pushFullScreenItem(
-                        this,
-                        localMediaCompLoader,
-                        null,
-                        function() { wev.fullScreenCancelled() })
-        } else if (!request.toggleOn) {
-            layoutManager.removeFullScreenItem(this)
-        }
-        request.accept()
     }
 }

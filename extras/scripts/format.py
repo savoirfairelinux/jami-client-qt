@@ -69,7 +69,7 @@ def qml_format_files(files):
     for filename in files:
         if os.path.isfile(filename):
             print(f"Formatting: {filename}", end='\r')
-            subprocess.call([QMLFORMAT, "-i", filename])
+            subprocess.call([QMLFORMAT, "-i", "--normalize", filename])
             # This may generate a backup file (ending with ~), so delete it.
             backup_file = filename + "~"
             if os.path.isfile(backup_file):
@@ -137,23 +137,25 @@ def main():
                         help="The type of files to format (qml, cpp, or both)")
     args = parser.parse_args()
 
-    if not command_exists("clang-format-" + CFVERSION):
-        if not command_exists("clang-format"):
-            print("Required version of clang-format not found")
-            sys.exit(1)
+    if args.type in ["cpp", "both"]:
+        if not command_exists("clang-format-" + CFVERSION):
+            if not command_exists("clang-format"):
+                print("Required version of clang-format not found")
+                sys.exit(1)
+            else:
+                CLANGFORMAT = "clang-format"
         else:
-            CLANGFORMAT = "clang-format"
-    else:
-        CLANGFORMAT = "clang-format-" + CFVERSION
-    print("Using source formatter: " + CLANGFORMAT)
+            CLANGFORMAT = "clang-format-" + CFVERSION
+        print("Using source formatter: " + CLANGFORMAT)
 
-    if args.qt is not None:
+    if args.qt is not None and args.type in ["qml", "both"]:
         global QMLFORMAT  # pylint: disable=global-statement
         QMLFORMAT = find_qmlformat(args.qt)
-        if QMLFORMAT is not None:
-            print("Using qmlformatter: " + QMLFORMAT)
-        else:
-            print("No qmlformat found, can't format QML files")
+
+    if QMLFORMAT is not None:
+        print("Using qmlformatter: " + QMLFORMAT)
+    else:
+        print("No qmlformat found, can't format QML files")
 
     if args.install:
         install_hook(args.install, args.qt)
@@ -166,10 +168,10 @@ def main():
     if not src_files and not qml_files:
         exit_if_no_files()
     else:
-        if src_files and args.type in ["cpp", "both"]:
+        if src_files and args.type in ["cpp", "both"] and CLANGFORMAT:
             print("Formatting source files...")
             clang_format_files(src_files)
-        if qml_files and args.type in ["qml", "both"]:
+        if qml_files and args.type in ["qml", "both"] and QMLFORMAT:
             print("Formatting QML files...")
             qml_format_files(qml_files)
 

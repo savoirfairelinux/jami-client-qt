@@ -15,55 +15,44 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 RowLayout {
     id: root
-
-    property alias labelText: title.text
     property alias comboModel: comboBoxOfLayout.model
-    property alias tipText: comboBoxOfLayout.tooltipText
-    property alias role: comboBoxOfLayout.textRole
-    property alias placeholderText: comboBoxOfLayout.placeholderText
     property alias currentSelectionText: comboBoxOfLayout.currentSelectionText
     property alias enabled: comboBoxOfLayout.enabled
     property alias fontPointSize: comboBoxOfLayout.font.pointSize
+    property alias labelText: title.text
     property alias modelIndex: comboBoxOfLayout.currentIndex
     property alias modelSize: comboBoxOfLayout.count
-
+    property alias placeholderText: comboBoxOfLayout.placeholderText
+    property alias role: comboBoxOfLayout.textRole
+    property alias tipText: comboBoxOfLayout.tooltipText
     property int widthOfComboBox: 50
 
     signal activated
 
     Text {
         id: title
-
         Layout.fillWidth: true
         Layout.rightMargin: JamiTheme.preferredMarginSize
-        font.pointSize: JamiTheme.settingsFontSize
-        font.kerning: true
         color: JamiTheme.textColor
-        wrapMode: Text.WordWrap
+        font.kerning: true
+        font.pointSize: JamiTheme.settingsFontSize
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
+        wrapMode: Text.WordWrap
     }
-
     SettingParaCombobox {
         id: comboBoxOfLayout
-
         Layout.preferredWidth: widthOfComboBox
-
-        font.pointSize: JamiTheme.buttonFontSize
         font.kerning: true
-
+        font.pointSize: JamiTheme.buttonFontSize
         model: comboModel
-
         textRole: role
         tooltipText: tipText
 

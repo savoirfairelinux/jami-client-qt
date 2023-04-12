@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
  * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -16,269 +16,256 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
 SBSMessageBase {
-    id : root
-
-    property bool isRemoteImage
+    id: root
+    property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
     property bool isEmojiOnly: IsEmojiOnly
+    property bool isRemoteImage
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
-    property string colorUrl: UtilsAdapter.luma(bubble.color) ?
-                                  JamiTheme.chatviewLinkColorLight :
-                                  JamiTheme.chatviewLinkColorDark
 
-    isOutgoing: Author === CurrentAccount.uri
     author: Author
-    readers: Readers
-    timestamp: Timestamp
-    formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
-    formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
-    textHovered: textHoverhandler.hovered
-    textContentWidth: textEditId.width
+    formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
+    formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+    isOutgoing: Author === CurrentAccount.uri
+    opacity: 0
+    readers: Readers
     textContentHeight: textEditId.height
+    textContentWidth: textEditId.width
+    textHovered: textHoverhandler.hovered
+    timestamp: Timestamp
 
+    Component.onCompleted: {
+        if (Linkified.length === 0) {
+            MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl);
+        }
+        opacity = 1;
+    }
 
     innerContent.children: [
         TextEdit {
             id: textEditId
-
-            padding: isEmojiOnly ? 0 : JamiTheme.preferredMarginSize
             anchors.right: isOutgoing ? parent.right : undefined
+            color: getBaseColor()
+            font.hintingPreference: Font.PreferNoHinting
+            font.pixelSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.emojiBubbleSize
+            horizontalAlignment: Text.AlignLeft
+            padding: isEmojiOnly ? 0 : JamiTheme.preferredMarginSize
+            readOnly: true
+            renderType: Text.NativeRendering
+            selectByMouse: true
             text: {
                 if (LinkifiedBody !== "" && Linkified.length === 0) {
-                    MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl)
+                    MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl);
                 }
-                return (LinkifiedBody !== "") ? LinkifiedBody :  "*("+ JamiStrings.deletedMessage +")*"
+                return (LinkifiedBody !== "") ? LinkifiedBody : "*(" + JamiStrings.deletedMessage + ")*";
             }
-            horizontalAlignment: Text.AlignLeft
+            textFormat: Text.MarkdownText
+            width: {
+                if (extraContent.active)
+                    Math.max(extraContent.width, Math.min((2 / 3) * root.maxMsgWidth, implicitWidth - avatarBlockWidth, extraContent.minSize) - senderMargin);
+                else if (isEmojiOnly)
+                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
+                else
+                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin);
+            }
+            wrapMode: Label.WrapAtWordBoundaryOrAnywhere
+
+            function getBaseColor() {
+                var baseColor;
+                if (isEmojiOnly) {
+                    if (JamiTheme.darkTheme)
+                        baseColor = JamiTheme.chatviewTextColorLight;
+                    else
+                        baseColor = JamiTheme.chatviewTextColorDark;
+                } else {
+                    if (UtilsAdapter.luma(bubble.color))
+                        baseColor = JamiTheme.chatviewTextColorLight;
+                    else
+                        baseColor = JamiTheme.chatviewTextColorDark;
+                }
+                return baseColor;
+            }
+
+            onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
+            onLinkHovered: root.hoveredLink = hoveredLink
 
             HoverHandler {
                 id: textHoverhandler
             }
-
-            width: {
-                if (extraContent.active)
-                    Math.max(extraContent.width,
-                             Math.min((2/3)*root.maxMsgWidth,implicitWidth - avatarBlockWidth,
-                                      extraContent.minSize) - senderMargin )
-                else if (isEmojiOnly)
-                    Math.min((2/3)*root.maxMsgWidth,implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2))
-                else
-                    Math.min((2/3)*root.maxMsgWidth,implicitWidth, innerContent.width - senderMargin)
-            }
-
-            wrapMode: Label.WrapAtWordBoundaryOrAnywhere
-            selectByMouse: true
-            font.pixelSize: isEmojiOnly? JamiTheme.chatviewEmojiSize : JamiTheme.emojiBubbleSize
-            font.hintingPreference: Font.PreferNoHinting
-            renderType: Text.NativeRendering
-            textFormat: Text.MarkdownText
-            onLinkHovered: root.hoveredLink = hoveredLink
-            onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
-            readOnly: true
-            color: getBaseColor()
-
-            function getBaseColor() {
-                var baseColor
-                if (isEmojiOnly) {
-                    if (JamiTheme.darkTheme)
-                        baseColor = JamiTheme.chatviewTextColorLight
-                    else
-                        baseColor = JamiTheme.chatviewTextColorDark
-                } else {
-                    if (UtilsAdapter.luma(bubble.color))
-                        baseColor = JamiTheme.chatviewTextColorLight
-                    else
-                        baseColor = JamiTheme.chatviewTextColorDark
-                }
-                return baseColor
-            }
-
             TapHandler {
-                enabled: parent.selectedText.length > 0
                 acceptedButtons: Qt.RightButton
+                enabled: parent.selectedText.length > 0
+
                 onTapped: function onTapped(eventPoint) {
-                    ctxMenu.openMenuAt(eventPoint.position)
+                    ctxMenu.openMenuAt(eventPoint.position);
                 }
             }
-
             LineEditContextMenu {
                 id: ctxMenu
-
                 lineEditObj: parent
                 selectOnly: parent.readOnly
             }
         },
         RowLayout {
             id: editedRow
-
             anchors.right: isOutgoing ? parent.right : undefined
             visible: PreviousBodies.length !== 0
 
-            ResponsiveImage  {
+            ResponsiveImage {
                 id: editedImage
-
-                Layout.leftMargin: JamiTheme.preferredMarginSize
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
+                Layout.leftMargin: JamiTheme.preferredMarginSize
+                height: JamiTheme.editedFontSize
                 source: JamiResources.round_edit_24dp_svg
                 width: JamiTheme.editedFontSize
-                height: JamiTheme.editedFontSize
+
                 layer {
                     enabled: true
+
                     effect: ColorOverlay {
                         color: editedLabel.color
                     }
                 }
             }
-
             Text {
                 id: editedLabel
-
-                Layout.rightMargin: JamiTheme.preferredMarginSize
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
-
-                text: JamiStrings.edited
-                color: UtilsAdapter.luma(bubble.color) ?
-                        JamiTheme.chatviewTextColorLight :
-                        JamiTheme.chatviewTextColorDark
+                Layout.rightMargin: JamiTheme.preferredMarginSize
+                color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                 font.pointSize: JamiTheme.editedFontSize
+                text: JamiStrings.edited
 
                 TapHandler {
                     acceptedButtons: Qt.LeftButton
+
                     onTapped: {
-                        viewCoordinator.presentDialog(
-                                    appWindow,
-                                    "commoncomponents/EditedPopup.qml",
-                                    {previousBodies: PreviousBodies})
+                        viewCoordinator.presentDialog(appWindow, "commoncomponents/EditedPopup.qml", {
+                                "previousBodies": PreviousBodies
+                            });
                     }
                 }
             }
         },
         Loader {
             id: extraContent
-
-            anchors.right: isOutgoing ? parent.right : undefined
-            property real minSize: 192
             property real maxSize: 320
+            property real minSize: 192
+
             active: LinkPreviewInfo.url !== undefined
+            anchors.right: isOutgoing ? parent.right : undefined
+
             sourceComponent: ColumnLayout {
                 id: previewContent
-
                 spacing: 12
+
                 Component.onCompleted: {
-                    isRemoteImage = MessagesAdapter.isRemoteImage(LinkPreviewInfo.url)
+                    isRemoteImage = MessagesAdapter.isRemoteImage(LinkPreviewInfo.url);
                 }
+
                 HoverHandler {
-                    target: previewContent
-                    onHoveredChanged: {
-                        root.hoveredLink = hovered ? LinkPreviewInfo.url : ""
-                    }
                     cursorShape: Qt.PointingHandCursor
+                    target: previewContent
+
+                    onHoveredChanged: {
+                        root.hoveredLink = hovered ? LinkPreviewInfo.url : "";
+                    }
                 }
                 AnimatedImage {
                     id: img
-
-                    cache: false
-                    source: isRemoteImage ?
-                                LinkPreviewInfo.url :
-                                (hasImage ? LinkPreviewInfo.image : "")
-
-                    fillMode: Image.PreserveAspectCrop
-                    mipmap: true
-                    antialiasing: true
-                    autoTransform: true
-                    asynchronous: true
-                    readonly property bool hasImage: LinkPreviewInfo.image !== null
+                    property real adjustedWidth: Math.min(extraContent.maxSize, Math.max(extraContent.minSize, maxMsgWidth))
                     property real aspectRatio: implicitWidth / implicitHeight
-                    property real adjustedWidth: Math.min(extraContent.maxSize,
-                                                          Math.max(extraContent.minSize,
-                                                                   maxMsgWidth))
-                    Layout.preferredWidth: adjustedWidth
+                    readonly property bool hasImage: LinkPreviewInfo.image !== null
+
                     Layout.preferredHeight: Math.ceil(adjustedWidth / aspectRatio)
+                    Layout.preferredWidth: adjustedWidth
+                    antialiasing: true
+                    asynchronous: true
+                    autoTransform: true
+                    cache: false
+                    fillMode: Image.PreserveAspectCrop
+                    layer.enabled: isRemoteImage
+                    mipmap: true
+                    source: isRemoteImage ? LinkPreviewInfo.url : (hasImage ? LinkPreviewInfo.image : "")
+
                     Rectangle {
+                        anchors.fill: parent
                         color: JamiTheme.previewImageBackgroundColor
                         z: -1
-                        anchors.fill: parent
                     }
-                    layer.enabled: isRemoteImage
+
                     layer.effect: OpacityMask {
                         maskSource: MessageBubble {
-                            Rectangle { height: msgRadius; width: parent.width }
+                            height: img.height
                             out: isOutgoing
+                            radius: msgRadius
                             type: seq
                             width: img.width
-                            height: img.height
-                            radius: msgRadius
+
+                            Rectangle {
+                                height: msgRadius
+                                width: parent.width
+                            }
                         }
                     }
                 }
                 Column {
-                    opacity: img.status !== Image.Loading
-                    visible: !isRemoteImage
-                    Layout.preferredWidth: img.width - 2 * hPadding
                     Layout.leftMargin: hPadding
+                    Layout.preferredWidth: img.width - 2 * hPadding
                     Layout.rightMargin: hPadding
+                    opacity: img.status !== Image.Loading
                     spacing: 6
+                    visible: !isRemoteImage
+
                     Label {
-                        width: parent.width
-                        font.pointSize: 10
+                        color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                         font.hintingPreference: Font.PreferNoHinting
-                        wrapMode: Label.WrapAtWordBoundaryOrAnywhere
+                        font.pointSize: 10
                         renderType: Text.NativeRendering
-                        textFormat: TextEdit.RichText
-                        color: UtilsAdapter.luma(bubble.color) ?
-                                JamiTheme.chatviewTextColorLight :
-                                JamiTheme.chatviewTextColorDark
-                        visible: LinkPreviewInfo.title !== null
                         text: LinkPreviewInfo.title
+                        textFormat: TextEdit.RichText
+                        visible: LinkPreviewInfo.title !== null
+                        width: parent.width
+                        wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                     }
                     Label {
-                        width: parent.width
-                        font.pointSize: 11
+                        color: root.colorUrl
                         font.hintingPreference: Font.PreferNoHinting
-                        wrapMode: Label.WrapAtWordBoundaryOrAnywhere
+                        font.pointSize: 11
+                        font.underline: root.hoveredLink
                         renderType: Text.NativeRendering
+                        text: LinkPreviewInfo.description
                         textFormat: TextEdit.RichText
                         visible: LinkPreviewInfo.description !== null
-                        font.underline: root.hoveredLink
-                        text: LinkPreviewInfo.description
-                        color: root.colorUrl
-
+                        width: parent.width
+                        wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                     }
                     Label {
-                        width: parent.width
-                        font.pointSize: 10
+                        color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                         font.hintingPreference: Font.PreferNoHinting
-                        wrapMode: Label.WrapAtWordBoundaryOrAnywhere
+                        font.pointSize: 10
                         renderType: Text.NativeRendering
-                        textFormat: TextEdit.RichText
-                        color: UtilsAdapter.luma(bubble.color) ?
-                                JamiTheme.chatviewTextColorLight :
-                                JamiTheme.chatviewTextColorDark
                         text: LinkPreviewInfo.domain
+                        textFormat: TextEdit.RichText
+                        width: parent.width
+                        wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                     }
                 }
             }
         }
     ]
-
-    opacity: 0
-    Behavior on opacity { NumberAnimation { duration: 100 } }
-    Component.onCompleted: {
-        if (Linkified.length === 0) {
-            MessagesAdapter.parseMessageUrls(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl)
+    Behavior on opacity  {
+        NumberAnimation {
+            duration: 100
         }
-        opacity = 1
     }
 }

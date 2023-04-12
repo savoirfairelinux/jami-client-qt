@@ -15,54 +15,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
-    property alias filesToSendListModel: repeater.model
     property alias filesToSendCount: repeater.count
+    property alias filesToSendListModel: repeater.model
+
     color: JamiTheme.primaryBackgroundColor
 
     JamiFlickable {
         id: filesToSendContainerScrollView
-
+        ScrollBar.vertical.policy: ScrollBar.AlwaysOff
         anchors.fill: root
-
         contentHeight: root.height
         contentWidth: filesToSendContainerRow.width
-
-        horizontalHandleColor:
-            filesToSendContainerScrollView.ScrollBar.horizontal.pressed ?
-                JamiTheme.darkGreyColor : JamiTheme.whiteColor
-        ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+        horizontalHandleColor: filesToSendContainerScrollView.ScrollBar.horizontal.pressed ? JamiTheme.darkGreyColor : JamiTheme.whiteColor
 
         Row {
             id: filesToSendContainerRow
-
             anchors.centerIn: parent
-
-            spacing: JamiTheme.filesToSendContainerSpacing
             padding: JamiTheme.filesToSendContainerPadding
+            spacing: JamiTheme.filesToSendContainerSpacing
 
             Repeater {
                 id: repeater
-
                 delegate: FilesToSendDelegate {
                     anchors.verticalCenter: filesToSendContainerRow.verticalCenter
-
-                    width: JamiTheme.filesToSendDelegateWidth
                     height: JamiTheme.filesToSendDelegateHeight
+                    width: JamiTheme.filesToSendDelegateWidth
 
-                    onRemoveFileButtonClicked: function(index) {
-                        filesToSendListModel.removeFromPending(index)
+                    onRemoveFileButtonClicked: function (index) {
+                        filesToSendListModel.removeFromPending(index);
                     }
                 }
                 model: FilesToSendListModel {

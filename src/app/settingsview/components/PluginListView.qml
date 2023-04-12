@@ -15,118 +15,98 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
     property string activePlugin: ""
 
-    visible: false
     color: JamiTheme.secondaryBackgroundColor
+    visible: false
 
     ColumnLayout {
+        anchors.bottomMargin: 20
         anchors.left: root.left
         anchors.right: root.right
-        anchors.bottomMargin: 20
 
         Label {
             Layout.fillWidth: true
             Layout.preferredHeight: 25
-
-            text: JamiStrings.installedPlugins
-            font.pointSize: JamiTheme.headerFontSize
-            font.kerning: true
             color: JamiTheme.textColor
-
+            font.kerning: true
+            font.pointSize: JamiTheme.headerFontSize
             horizontalAlignment: Text.AlignLeft
+            text: JamiStrings.installedPlugins
             verticalAlignment: Text.AlignVCenter
         }
-
         MaterialButton {
             id: installButton
-
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize / 2
-
-            preferredWidth: JamiTheme.preferredFieldWidth
             buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
+            iconSource: JamiResources.round_add_24dp_svg
+            preferredWidth: JamiTheme.preferredFieldWidth
             pressedColor: JamiTheme.buttonTintedBlackPressed
             secondary: true
+            text: JamiStrings.installPlugin
             toolTipText: JamiStrings.addNewPlugin
 
-            iconSource: JamiResources.round_add_24dp_svg
-
-            text: JamiStrings.installPlugin
-
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "commoncomponents/JamiFileDialog.qml",
-                            {
-                                title: JamiStrings.selectPluginInstall,
-                                fileMode: JamiFileDialog.OpenFile,
-                                folder: StandardPaths.writableLocation(StandardPaths.DownloadLocation),
-                                nameFilters: [JamiStrings.pluginFiles, JamiStrings.allFiles]
-                            })
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                        "title": JamiStrings.selectPluginInstall,
+                        "fileMode": JamiFileDialog.OpenFile,
+                        "folder": StandardPaths.writableLocation(StandardPaths.DownloadLocation),
+                        "nameFilters": [JamiStrings.pluginFiles, JamiStrings.allFiles]
+                    });
                 dlg.fileAccepted.connect(function (file) {
-                    var url = UtilsAdapter.getAbsPath(file.toString())
-                    PluginModel.installPlugin(url, true)
-                    installedPluginsModel.addPlugin()
-                })
+                        var url = UtilsAdapter.getAbsPath(file.toString());
+                        PluginModel.installPlugin(url, true);
+                        installedPluginsModel.addPlugin();
+                    });
             }
         }
-
         ListView {
             id: pluginList
-
+            Layout.bottomMargin: 10
             Layout.fillWidth: true
             Layout.minimumHeight: 0
-            Layout.bottomMargin: 10
             Layout.preferredHeight: childrenRect.height
             clip: true
 
-            model: PluginListModel {
-                id: installedPluginsModel
-
-                lrcInstance: LRCInstance
-                onLrcInstanceChanged: {
-                    this.reset()
-                }
-            }
-
             delegate: PluginItemDelegate {
                 id: pluginItemDelegate
-
-                width: pluginList.width
-                implicitHeight: 50
-
-                pluginName: PluginName
-                pluginId: PluginId
-                pluginIcon: PluginIcon
-                isLoaded: IsLoaded
                 activeId: root.activePlugin
+                implicitHeight: 50
+                isLoaded: IsLoaded
+                pluginIcon: PluginIcon
+                pluginId: PluginId
+                pluginName: PluginName
+                width: pluginList.width
+
+                onSettingsClicked: {
+                    root.activePlugin = root.activePlugin === pluginId ? "" : pluginId;
+                }
 
                 background: Rectangle {
                     anchors.fill: parent
                     color: "transparent"
                 }
+            }
+            model: PluginListModel {
+                id: installedPluginsModel
+                lrcInstance: LRCInstance
 
-                onSettingsClicked: {
-                    root.activePlugin = root.activePlugin === pluginId ? "" : pluginId
+                onLrcInstanceChanged: {
+                    this.reset();
                 }
             }
         }

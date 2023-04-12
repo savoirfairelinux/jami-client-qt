@@ -18,604 +18,571 @@
 
 // JamiTheme as a singleton is to provide global theme property entry.
 pragma Singleton
-
 import QtQuick
-
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 
 Item {
-    property bool darkTheme: UtilsAdapter.useApplicationTheme()
+    property int aboutBtnSize: 24
+    property real aboutButtonPreferredWidth: 150
+    property real aboutLogoPreferredHeight: 61
+    property real aboutLogoPreferredWidth: 183
 
-    Connections {
-        target: UtilsAdapter
+    // Call buttons
+    property color acceptButtonGreen: "#4caf50"
+    property color acceptButtonHoverGreen: "#5db761"
+    property color acceptButtonPressedGreen: "#449d48"
+    property color acceptGreen: rgba256(11, 130, 113, 100)
+    property color acceptGreenTransparency: rgba256(11, 130, 113, 56)
+    property color accountCreationCurrentStepColor: "#28b1ed"
 
-        function onChangeFontSize() {
-            baseZoom = UtilsAdapter.getAppValue(Settings.BaseZoom)
-        }
-
-        function onAppThemeChanged() {
-            darkTheme = UtilsAdapter.useApplicationTheme()
-        }
-    }
-
-    // Jami theme colors
-    function rgba256(r, g, b, a) {
-        return Qt.rgba(r / 255, g / 255, b / 255, a / 100.)
-    }
-
-    function calcSize(size) {
-        return Math.min(Math.max(5, baseZoom * size), 30)
-    }
-
-    function pixelToPoint(size) {
-        return size * 0.75
-    }
-
+    // Wizard / account manager
+    property color accountCreationOtherStepColor: "grey"
+    property real accountListAvatarSize: 40
+    property real accountListItemHeight: 64
+    property real advancedAccountSettingsHeightMargin: 16.5
+    property real avatarPresenceRatio: 0.26
+    property int avatarReadReceiptSize: 18
+    property real avatarSize: 30
+    property real avatarSizeInCall: 130
+    property color backgroundColor: darkTheme ? bgSideBarDarkMode_ : lightGrey_
     property real baseZoom: UtilsAdapter.getAppValue(Settings.BaseZoom)
-    property real fontSizeOffset: (Qt.platform.os.toString() === "osx" ? 3 : 0)
-    property real fontSizeOffsetSmall: (Qt.platform.os.toString() === "osx" ? 1 : 0)
+    property color bgDarkMode_: "#201f21"
+    property color bgInvitationRectColor: darkTheme ? "#222222" : whiteColor
+    property color bgSideBarDarkMode_: rgba256(24, 24, 24, 100)
+    property color bgTextInput: darkTheme ? "#060608" : whiteColor
+    property real bigFontSize: calcSize(22)
 
     // General
     property color blackColor: "#000000"
-    property color redColor: "red"
-    property color whiteColor: "#ffffff"
-    property color darkGreyColor: "#272727"
-    property color darkGreyColorOpacity: "#be272727" // 77%
-    property color tintedBlue: darkTheme ? "#03B9E9" : "#005699"
-    property color sysColor: "#F0EFEF"
 
-    property color transparentColor: "transparent"
-    property color primaryForegroundColor: darkTheme ? whiteColor : blackColor
-    property color primaryBackgroundColor: darkTheme ? bgDarkMode_ : whiteColor
-    property color backgroundColor: darkTheme? bgSideBarDarkMode_ : lightGrey_
-    property color shadowColor: "#80000000"
-    property color secondaryBackgroundColor: darkTheme ? bgDarkMode_ : whiteColor
-    property color greyBorderColor: "#333"
-    property color selectionBlue: darkTheme? "#0061a5" : "#109ede"
+    // InvitationView
+    property color blockOrange: rgba256(232, 92, 36, 100)
+    property color blockOrangeTransparency: rgba256(232, 92, 36, 56)
 
-    property color hoverColor: darkTheme ? "#515151" : "#c7c7c7"
-    property color pressColor: darkTheme ? "#777" : "#c0c0c0"
-    property color selectedColor: darkTheme ? "#0e81c5" : "#e0e0e0"
-    property color smartListHoveredColor: darkTheme ? "#444444" : "#dedede"
-    property color smartListSelectedColor: darkTheme ? "#515151" : "#d1d1d1"
-    property color editBackgroundColor: darkTheme ? "#373737" : lightGrey_
-    property color textColor: primaryForegroundColor
-    property color textColorHovered: darkTheme? "#cccccc" : "#333333"
-    property color tabbarBorderColor: darkTheme ? blackColor : "#e3e3e3"
-    property color popupOverlayColor: darkTheme ? Qt.rgba(255, 255, 255, 0.22) :
-                                                  Qt.rgba(0, 0, 0, 0.33)
-    property real formsRadius: 30
-
-    // Side panel
-    property color presenceGreen: "#4cd964"
-    property color notificationRed: "#ff3b30"
-    property color notificationBlue: "#31b7ff"
-    property color unPresenceOrange: "orange"
-    property color draftTextColor: "#cf5300"
-    property color selectedTabColor: primaryForegroundColor
-    property color filterBadgeColor: "#eed4d8"
-    property color filterBadgeTextColor: "#cc0022"
-
-    // General buttons
-    property color pressedButtonColor: darkTheme ? pressColor : "#a0a0a0"
-    property color hoveredButtonColor: darkTheme ? hoverColor : "#c7c7c7"
-    property color hoveredButtonColorWizard: darkTheme ? "#123F4A" : "#E5EEF5"
-    property color normalButtonColor: darkTheme ? backgroundColor : "#e0e0e0"
-
-    property color invertedPressedButtonColor: Qt.rgba(0, 0, 0, 0.5)
-    property color invertedHoveredButtonColor: Qt.rgba(0, 0, 0, 0.6)
-    property color invertedNormalButtonColor: Qt.rgba(0, 0, 0, 0.75)
-
-    property color editLineColor: "#03b9e9"
+    //MessagesResearch
+    property color blueLinkColor: darkTheme ? "#3366BB" : "#0645AD"
+    property color blueLogo_: darkTheme ? whiteColor : rgba256(0, 7, 71, 100)
+    property string buttonConference: "transparent"
+    property string buttonConferenceHovered: "#110000"
+    property string buttonConferencePressed: "#110000"
+    property real buttonFontSize: calcSize(9)
+    property color buttonTintedBlack: darkTheme ? "#fff" : "#333"
+    property color buttonTintedBlackHovered: darkTheme ? "#ddd" : "#111"
+    property color buttonTintedBlackPressed: darkTheme ? "#ddd" : "#000"
     property color buttonTintedBlue: tintedBlue
     property color buttonTintedBlueHovered: darkTheme ? "#039CC4" : "#0071c9"
     property color buttonTintedBlueInternalHover: Qt.rgba(0, 86, 153, 0.2)
     property color buttonTintedBluePressed: "#0071c9"
     property color buttonTintedGrey: darkTheme ? "#555" : "#999"
     property color buttonTintedGreyHovered: "#777"
-    property color buttonTintedGreyPressed: "#777"
     property color buttonTintedGreyInactive: darkTheme ? "#777" : "#bbb"
-    property color buttonTintedBlack: darkTheme ? "#fff" : "#333"
-    property color buttonTintedBlackHovered: darkTheme ? "#ddd" : "#111"
-    property color buttonTintedBlackPressed: darkTheme ? "#ddd" : "#000"
+    property color buttonTintedGreyPressed: "#777"
     property color buttonTintedRed: "red"
     property color buttonTintedRedHovered: "#c00"
     property color buttonTintedRedPressed: "#b00"
-    property color acceptGreen: rgba256(11, 130, 113, 100)
-    property color acceptGreenTransparency: rgba256(11, 130, 113, 56)
-    property color refuseRed: rgba256(204, 0, 34, 100)
-    property color refuseRedTransparent: rgba256(204, 0, 34, 56)
-    property color mosaicButtonNormalColor: "#272727"
-    property color whiteColorTransparent: rgba256(255, 255, 255, 50)
-    property color raiseHandColor: rgba256(0, 184, 255, 77)
+    property real buttontextFontPixelSize: calcSize(15)
+    property real buttontextHeightMargin: 21
 
-    property color primaryTextColor: darkTheme ? "black" : "white"
-    property color secAndTertiTextColor: buttonTintedBlue
-    property color secondaryButtonBorderColor: darkTheme ? "#1D5F70" : "#A3C2DA"
-    property color secondaryButtonHoveredBorderColor: tintedBlue
-    property color secAndTertiHoveredBackgroundColor: darkTheme ? "#123F4A" : "#E5EEF5"
+    //MaterialButton
+    property real buttontextPadding: 10
+    property real buttontextWizzardPadding: 30
+    property real callButtonPreferredSize: 50
+    property color callInfoColor: whiteColor
+    property int callInformationBlockSpacing: 25
+    property int callInformationElementsSpacing: 5
+    property int callInformationlayoutMargins: 10
+    property real chatViewFooterButtonIconSize: 48
+    property real chatViewFooterButtonRadius: 5
+    property real chatViewFooterButtonSize: 36
+    property real chatViewFooterMaximumHeight: 280
+    property real chatViewFooterPreferredHeight: 50
+    property real chatViewFooterRowSpacing: 1
+    property real chatViewFooterTextAreaMaximumHeight: 130
+
+    // MessageWebView
+    property real chatViewHairLineSize: 1
+    property real chatViewHeaderPreferredHeight: 64
+    property real chatViewMaximumWidth: 900
+    property real chatViewScrollToBottomButtonBottomMargin: 8
+    property color chatviewBgColor: darkTheme ? bgDarkMode_ : whiteColor
+    property color chatviewButtonColor: darkTheme ? whiteColor : blackColor
+    property real chatviewEmojiSize: calcSize(60)
+    property real chatviewFontSize: calcSize(15)
+    property color chatviewLinkColorDark: "#353637"
+    property color chatviewLinkColorLight: "#f0f0f0"
+    property color chatviewTextColor: darkTheme ? "#f0f0f0" : "#000000"
+    property color chatviewTextColorDark: "#353637"
+    property color chatviewTextColorLight: "#f0f0f0"
+    property color chatviewUsernameColor: "#A7A7A7"
     property color closeButtonLighterBlack: "#4c4c4c"
-
-    // Jami switch
-    property color switchBackgroundCheckedColor: "#8dbaea"
-    property color switchBackgroundColor: darkTheme ? "#626262" : "#E5EEF5"
-    property color switchHandleColor: darkTheme ? "#2B2B2B" : whiteColor
-    property color switchHandleCheckedColor: tintedBlue
-    property color switchHandleBorderColor: tintedBlue
-    property color switchHandleCheckedBorderColor: darkTheme ? "#0071c9" : "#005699"
 
     //Combobox
     property color comboBoxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
-    property color comboboxBorderColorActive: darkTheme ? "#03B9E9" : "#005699"
-    property color comboboxBorderColor: darkTheme ? "#1D5F70" : "#A3C2DA"
-    property color comboboxIconColor: darkTheme ? "#03B9E9" : "#005699"
     property color comboboxBackgroundColorHovered: darkTheme ? "#123F4A" : "#E5EEF5"
+    property color comboboxBorderColor: darkTheme ? "#1D5F70" : "#A3C2DA"
+    property color comboboxBorderColorActive: darkTheme ? "#03B9E9" : "#005699"
+    property color comboboxIconColor: darkTheme ? "#03B9E9" : "#005699"
     property color comboboxTextColor: darkTheme ? "#03B9E9" : "#005699"
     property color comboboxTextColorHovered: tintedBlue
 
-    //Spinbox
-    property color spinboxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
-    property color spinboxBorderColor: darkTheme ? "#1D5F70" : "#A3C2DA"
-
-    //Toast
-    property color toastColor: darkTheme ? "#f0f0f0" : "#000000"
-    property color toastRectColor: !darkTheme ? "#f0f0f0" : "#000000"
-    property real toastFontSize: calcSize(15)
-
-    // Call buttons
-    property color acceptButtonGreen: "#4caf50"
-    property color acceptButtonHoverGreen: "#5db761"
-    property color acceptButtonPressedGreen: "#449d48"
-
-    property color declineButtonRed: "#f44336"
+    // Messages point size
+    property real contactEventPointSize: calcSize(10 + fontSizeOffset)
+    property int contactMessageAvatarSize: 24
+    property real contextMenuItemTextMaxWidth: 182
+    property real contextMenuItemTextPreferredWidth: 152
+    property real cornerIconSize: 40
+    property real creditsTextSize: calcSize(15 + fontSizeOffset)
+    property real customNicknameClosedBoxHeight: 65
+    property real customNicknameClosedBoxWidth: 230
+    property real customNicknameOpenedBoxHeight: 320
+    property real customNicknameOpenedBoxWidth: 412
+    property color darkGrey: rgba256(63, 63, 63, 100)
+    property color darkGreyColor: "#272727"
+    property color darkGreyColorOpacity: "#be272727" // 77%
+    property bool darkTheme: UtilsAdapter.useApplicationTheme()
+    property int dayTimestampBottomMargin: 8
+    property int dayTimestampHPadding: 16
+    property int dayTimestampTopMargin: 8
+    property real dayTimestampVPadding: 32
     property color declineButtonHoverRed: "#f5554a"
     property color declineButtonPressedRed: "#db3c30"
-
-    property color sipInputButtonBackgroundColor: "#336699"
-    property color sipInputButtonHoverColor: "#4477aa"
-    property color sipInputButtonPressColor: "#5588bb"
-
-    property string buttonConference: "transparent"
-    property string buttonConferenceHovered:"#110000"
-    property string buttonConferencePressed: "#110000"
-
-    // Wizard / account manager
-    property color accountCreationOtherStepColor: "grey"
-    property color accountCreationCurrentStepColor: "#28b1ed"
-    property color wizardBlueButtons: "#28b1ed"
-    property color wizardGreenColor: "#aed581"
-    property color requiredFieldColor: "#ff1f62"
-    property color requiredFieldBackgroundColor: "#fee4e9"
-
-    // Misc
-    property color recordIconColor: "#dc2719"
-    property color successLabelColor: "#2b5084"
-    property color rubberBandSelectionBlue: "steelblue"
-    property color screenSelectionBorderColor: raiseHandColor
-    property color separationLine: darkTheme ? selectedColor : backgroundColor
-
-    // ParticipantCallInStatusView
-    property color participantCallInStatusTextColor: whiteColor
-
-    // InvitationView
-    property color blockOrange: rgba256(232, 92, 36, 100)
-    property color blockOrangeTransparency: rgba256(232, 92, 36, 56)
-
-    // Chatview
-    property color jamiLightBlue: darkTheme ? "#003b4e" : Qt.rgba(59, 193, 211, 0.3)
-    property color jamiDarkBlue: darkTheme ? "#28b1ed" : "#003b4e"
-    property color chatviewTextColor: darkTheme ? "#f0f0f0" : "#000000"
-    property color chatviewTextColorLight: "#f0f0f0"
-    property color chatviewTextColorDark: "#353637"
-    property color chatviewLinkColorLight: "#f0f0f0"
-    property color chatviewLinkColorDark: "#353637"
-    property real chatviewFontSize: calcSize(15)
-    property real chatviewEmojiSize: calcSize(60)
-    property color timestampColor: darkTheme ? "#bbb" : "#777"
-    property color messageReplyColor: darkTheme ? "#bbb" : "#A7A7A7"
-    property color messageOutTxtColor: "#000000"
-    property color messageInBgColor: "#e5e5e5"
-    property color messageOutBgColor: darkTheme? "#616161" : "#005699"
-    property color messageInTxtColor: "#FFFFFF"
-    property color fileOutTimestampColor: darkTheme ? "#eee" : "#555"
-    property color fileInTimestampColor: darkTheme ? "#999" : "#555"
-    property color chatviewBgColor: darkTheme ? bgDarkMode_ : whiteColor
-    property color bgInvitationRectColor: darkTheme ? "#222222" : whiteColor
-    property color placeholderTextColor: darkTheme ? "#7a7a7a" : "black" //Qt.rgba(0, 0, 0, 0.2)
-    property color placeholderTextColorWhite: "#cccccc"
-    property color inviteHoverColor: darkTheme ? blackColor : whiteColor
-    property color chatviewButtonColor: darkTheme ? whiteColor : blackColor
-    property color bgTextInput: darkTheme ? "#060608" : whiteColor
-    property color previewTextContainerColor: darkTheme ? "#959595" : "#ececec"
-    property color previewImageBackgroundColor: whiteColor
-    property color previewCardContainerColor : darkTheme ? blackColor : whiteColor
-    property color previewUrlColor : darkTheme ? "#eeeeee" : "#333"
-    property color messageWebViewFooterButtonImageColor: darkTheme ? "#838383" : "#656565"
-    property color chatviewUsernameColor : "#A7A7A7"
-
-    //mapPosition
-    property color mapButtonsOverlayColor: darkTheme ? "#000000" : "#f0f0f0"
-    property color mapButtonColor: darkTheme ?  "#f0f0f0" : "#000000"
-    property color sharePositionIndicatorColor: darkTheme ? "#03B9E9" : "#005699"
-    property color sharedPositionIndicatorColor: darkTheme ? whiteColor : blackColor
+    property color declineButtonRed: "#f44336"
+    property color draftTextColor: "#cf5300"
+    property color editBackgroundColor: darkTheme ? "#373737" : lightGrey_
+    property color editLineColor: "#03b9e9"
+    property real editedFontSize: calcSize(8)
 
     //EmojiReact
     property real emojiBubbleSize: calcSize(17)
     property real emojiBubbleSizeBig: calcSize(21)
-    property real emojiReactSize: calcSize(12)
+    property int emojiMargins: 20
+    property int emojiPickerHeight: 425
+    property int emojiPickerWidth: 400
     property real emojiPopupFontsize: calcSize(25)
     property real emojiPopupFontsizeBig: calcSize(28)
-    property real namePopupFontsize: calcSize(15)
-    property real avatarSize: 30
     property int emojiPushButtonSize: 30
-    property int emojiMargins: 20
     property color emojiReactBubbleBgColor: darkTheme ? darkGreyColor : whiteColor
     property color emojiReactPushButtonColor: darkTheme ? "#bbb" : "#003b4e"
-    property real messageOptionTextFontSize: calcSize(15)
-    property int emojiPickerWidth: 400
-    property int emojiPickerHeight: 425
+    property real emojiReactSize: calcSize(12)
 
-    // Files To Send Container
-    property color removeFileButtonColor: Qt.rgba(96, 95, 97, 0.5)
-
-    // JamiScrollBar
-    property color scrollBarHandleColor: "#cecece"
-
-    // TypingDots
-    property color typingDotsNormalColor: darkTheme ? "#686b72" : "lightgrey"
-    property color typingDotsEnlargeColor: darkTheme ? "white" : Qt.darker("lightgrey", 3.0)
+    // Extras panel
+    property real extrasPanelMinWidth: 300
 
     // Font.
-
-    property color faddedFontColor: darkTheme? "#c0c0c0" : "#a0a0a0"
+    property color faddedFontColor: darkTheme ? "#c0c0c0" : "#a0a0a0"
     property color faddedLastInteractionFontColor: darkTheme ? "#c0c0c0" : "#505050"
+    property color fileInTimestampColor: darkTheme ? "#999" : "#555"
+    property color fileOutTimestampColor: darkTheme ? "#eee" : "#555"
+    property real filesToSendContainerPadding: 10
 
-    property color darkGrey: rgba256(63, 63, 63, 100)
-    property color blueLogo_: darkTheme ? whiteColor : rgba256(0, 7, 71, 100)
-    property color lightGrey_: rgba256(242, 242, 242, 100)
-    property color mediumGrey: rgba256(218, 219, 220, 100)
-    property color grey_: rgba256(160, 160, 160, 100)
-    property color red_: rgba256(251, 72, 71, 100)
-    property color urgentOrange_: rgba256(255, 165, 0, 100)
-    property color green_: rgba256(127, 255, 0, 100)
-    property color presenceGreen_: rgba256(76, 217, 100, 100)
-    property color bgSideBarDarkMode_: rgba256(24, 24, 24, 100)
-    property color bgDarkMode_: "#201f21"
-
-    property int shortFadeDuration: 150
-    property int longFadeDuration: 400
-    property int recordBlinkDuration: 500
-    property int overlayFadeDelay: 4000
-    property int overlayFadeDuration: 250
-    property int smartListTransitionDuration: 120
-
-
-    // Sizes
-    property real mainViewLeftPaneMinWidth: 300
-    property real mainViewPaneMinWidth: 430
-    property real qrCodeImageSize: 256
-    property real splitViewHandlePreferredWidth: 4
-    property real indicatorFontSize: calcSize(6)
-    property real tinyFontSize: calcSize(7 + fontSizeOffset)
-    property real textFontSize: calcSize(9 + fontSizeOffset)
-    property real bigFontSize: calcSize(22)
-    property real settingsFontSize: calcSize(11 + fontSizeOffset)
-    property real buttonFontSize: calcSize(9)
-    property real materialButtonPreferredHeight: calcSize(36)
-    property real participantFontSize: calcSize(10 + fontSizeOffset)
-    property real participantSwarmDetailFontSize: calcSize(15 + fontSizeOffset)
-    property real menuFontSize: calcSize(12 + fontSizeOffset)
-    property real headerFontSize: calcSize(14.25 + fontSizeOffset)
-    property real titleFontSize: calcSize(16 + fontSizeOffset)
-    property real title2FontSize: calcSize(15 + fontSizeOffset)
-    property real tinyCreditsTextSize: calcSize(13 + fontSizeOffset)
-    property real creditsTextSize: calcSize(15 + fontSizeOffset)
-    property real primaryRadius: calcSize(4)
-    property real smartlistItemFontSize: calcSize(10.5 + fontSizeOffset)
-    property real smartlistItemInfoFontSize: calcSize(9 + fontSizeOffsetSmall)
-    property real filterItemFontSize: calcSize(smartlistItemFontSize)
+    // MessageWebView File Transfer Container
+    property real filesToSendContainerSpacing: 120
+    property real filesToSendDelegateButtonSize: 16
+    property real filesToSendDelegateFontPointSize: calcSize(textFontSize + 2)
+    property real filesToSendDelegateHeight: 100
+    property real filesToSendDelegateRadius: 7
+    property real filesToSendDelegateWidth: 100
+    property color filterBadgeColor: "#eed4d8"
     property real filterBadgeFontSize: calcSize(8.25)
-    property real editedFontSize: calcSize(8)
-    property real accountListItemHeight: 64
-    property real accountListAvatarSize: 40
-    property real smartListItemHeight: 64
-    property real smartListAvatarSize: 52
-    property real avatarSizeInCall: 130
-    property real aboutButtonPreferredWidth: 150
-    property real aboutLogoPreferredWidth: 183
-    property real aboutLogoPreferredHeight: 61
-    property real callButtonPreferredSize: 50
-    property real contextMenuItemTextPreferredWidth: 152
-    property real contextMenuItemTextMaxWidth: 182
-    property int participantCallInStatusViewWidth: 175
-    property int participantCallInStatusViewHeight: 300
-    property int participantCallInStatusDelegateHeight: 85
-    property int participantCallInStatusDelegateRadius: 5
-    property real participantCallInStatusOpacity: 0.77
-    property int participantCallInAvatarSize: 60
-    property int participantCallInNameFontSize: calcSize(11)
-    property int participantCallInStatusFontSize: calcSize(8)
-    property int participantCallInStatusTextWidthLimit: 80
-    property int participantCallInStatusTextWidth: 40
-    property int mosaicButtonRadius: 5
-    property int mosaicButtonPreferredMargin: 5
-    property real mosaicButtonOpacity: 0.77
-    property int mosaicButtonTextPreferredWidth: 40
-    property int mosaicButtonTextPreferredHeight: 16
-    property int mosaicButtonTextPointSize: calcSize(8 + fontSizeOffsetSmall)
-    property int mosaicButtonPreferredWidth: 70
-    property int mosaicButtonMaxWidth: 100
-    property real avatarPresenceRatio: 0.26
-    property int avatarReadReceiptSize: 18
+    property color filterBadgeTextColor: "#cc0022"
+    property real filterItemFontSize: calcSize(smartlistItemFontSize)
+    property real fontSizeOffset: (Qt.platform.os.toString() === "osx" ? 3 : 0)
+    property real fontSizeOffsetSmall: (Qt.platform.os.toString() === "osx" ? 1 : 0)
+    property real formsRadius: 30
+    property color green_: rgba256(127, 255, 0, 100)
+    property color greyBorderColor: "#333"
+    property color grey_: rgba256(160, 160, 160, 100)
+    property real headerFontSize: calcSize(14.25 + fontSizeOffset)
+    property color hoverColor: darkTheme ? "#515151" : "#c7c7c7"
+    property color hoveredButtonColor: darkTheme ? hoverColor : "#c7c7c7"
+    property color hoveredButtonColorWizard: darkTheme ? "#123F4A" : "#E5EEF5"
+    property real illustrationHeight: 244
+    property real illustrationWidth: 212
+    property real indicatorFontSize: calcSize(6)
+    property real infoBoxDescFontSize: calcSize(12)
 
-    property int menuItemsPreferredWidth: 220
-    property int menuItemsPreferredHeight: 48
-    property int menuItemsCommonBorderWidth: 1
-    property int menuBorderPreferredHeight: 8
+    //InfoBox
+    property real infoBoxTitleFontSize: calcSize(13)
+    property color invertedHoveredButtonColor: Qt.rgba(0, 0, 0, 0.6)
+    property color invertedNormalButtonColor: Qt.rgba(0, 0, 0, 0.75)
+    property color invertedPressedButtonColor: Qt.rgba(0, 0, 0, 0.5)
 
-    property real maximumWidthSettingsView: 516
-    property real settingsHeaderpreferredHeight: 64
-    property real preferredFieldWidth: 256
-    property real preferredFieldHeight: 36
-    property real preferredButtonSettingsHeight: 46
-    property real preferredMarginSize: 16
-    property real preferredSettingsMarginSize: 40
-    property real preferredSettingsContentMarginSize: 30
-    property real preferredSettingsBottomMarginSize: 30
-    property real settingsMarginSize: 8
-    property real preferredDialogWidth: 400
-    property real preferredDialogHeight: 300
-    property real minimumPreviewWidth: 120
-    property real minimumMapWidth: 250
-    property real pluginHandlersPopupViewHeight: 200
-    property real pluginHandlersPopupViewDelegateHeight: 50
-    property real secondaryDialogDimension: 500
+    // InvitationView
+    property real invitationViewAvatarSize: 112
+    property real invitationViewButtonIconSize: 24
+    property real invitationViewButtonRadius: 25
+    property real invitationViewButtonSize: 48
+    property real invitationViewButtonsSpacing: 30
+    property color inviteHoverColor: darkTheme ? blackColor : whiteColor
+    property color jamiDarkBlue: darkTheme ? "#28b1ed" : "#003b4e"
+    property color jamiIdColor: darkTheme ? blackColor : sysColor
+    property real jamiIdFontSize: calcSize(13)
+    property real jamiIdLogoHeight: 24
+    property real jamiIdLogoWidth: 70
 
+    //JamiIdentifier
+    property real jamiIdMargins: 36
+
+    // Chatview
+    property color jamiLightBlue: darkTheme ? "#003b4e" : Qt.rgba(59, 193, 211, 0.3)
+    property real jumpToFontSize: calcSize(13)
+    property int keyboardShortcutDelegateSize: 50
+    property int keyboardShortcutTabBarSize: 24
+    property real layoutWidthFileTransfer: 80
+
+    // WizardView Advanced Account Settings
+    property color lightBlue_: darkTheme ? "#03B9E9" : "#e5eef5"
+    property color lightGrey_: rgba256(242, 242, 242, 100)
     property real lineEditContextMenuItemsHeight: 15
     property real lineEditContextMenuItemsWidth: 100
     property real lineEditContextMenuSeparatorsHeight: 2
+    property int longFadeDuration: 400
+
+    // Jami Identifier
+    property color mainColor: "#005699"
+
+    // Sizes
+    property real mainViewLeftPaneMinWidth: 300
+    property real mainViewMargin: 30
+    property real mainViewMinHeight: 500
+
+    // Main application spec
+    property real mainViewMinWidth: 430
+    property real mainViewPaneMinWidth: 430
+    property real mainViewPreferredHeight: 600
+    property real mainViewPreferredWidth: 730
+    property color mapButtonColor: darkTheme ? "#f0f0f0" : "#000000"
+
+    //mapPosition
+    property color mapButtonsOverlayColor: darkTheme ? "#000000" : "#f0f0f0"
+    property real materialButtonPreferredHeight: calcSize(36)
+    property real materialLineEditPadding: 16
+    property real materialLineEditPixelSize: calcSize(15)
+
+    // MaterialLineEdit
+    property real materialLineEditPointSize: calcSize(10 + fontSizeOffset)
+    property real materialLineEditSelectedPixelSize: calcSize(12)
+    property real maximumWidthSettingsView: 516
+    property color mediumGrey: rgba256(218, 219, 220, 100)
+    property int menuBorderPreferredHeight: 8
+    property real menuFontSize: calcSize(12 + fontSizeOffset)
+    property int menuItemsCommonBorderWidth: 1
+    property int menuItemsPreferredHeight: 48
+    property int menuItemsPreferredWidth: 220
+
+    // MessageBar
+    property int messageBarMarginSize: 10
+    property color messageInBgColor: "#e5e5e5"
+    property color messageInTxtColor: "#FFFFFF"
+    property real messageOptionTextFontSize: calcSize(15)
+    property color messageOutBgColor: darkTheme ? "#616161" : "#005699"
+    property color messageOutTxtColor: "#000000"
+    property color messageReplyColor: darkTheme ? "#bbb" : "#A7A7A7"
+    property color messageWebViewFooterButtonImageColor: darkTheme ? "#838383" : "#656565"
+    property real minimumMapWidth: 250
+    property real minimumPreviewWidth: 120
+
+    // Modal Popup
+    property real modalPopupRadius: 20
+    property int mosaicButtonMaxWidth: 100
+    property color mosaicButtonNormalColor: "#272727"
+    property real mosaicButtonOpacity: 0.77
+    property int mosaicButtonPreferredMargin: 5
+    property int mosaicButtonPreferredWidth: 70
+    property int mosaicButtonRadius: 5
+    property int mosaicButtonTextPointSize: calcSize(8 + fontSizeOffsetSmall)
+    property int mosaicButtonTextPreferredHeight: 16
+    property int mosaicButtonTextPreferredWidth: 40
+    property real namePopupFontsize: calcSize(15)
+    property color normalButtonColor: darkTheme ? backgroundColor : "#e0e0e0"
+    property color notificationBlue: "#31b7ff"
+    property color notificationRed: "#ff3b30"
+    property int overlayFadeDelay: 4000
+    property int overlayFadeDuration: 250
+    property int participantCallInAvatarSize: 60
+    property int participantCallInNameFontSize: calcSize(11)
+    property int participantCallInStatusDelegateHeight: 85
+    property int participantCallInStatusDelegateRadius: 5
+    property int participantCallInStatusFontSize: calcSize(8)
+    property real participantCallInStatusOpacity: 0.77
+
+    // ParticipantCallInStatusView
+    property color participantCallInStatusTextColor: whiteColor
+    property int participantCallInStatusTextWidth: 40
+    property int participantCallInStatusTextWidthLimit: 80
+    property int participantCallInStatusViewHeight: 300
+    property int participantCallInStatusViewWidth: 175
+    property real participantFontSize: calcSize(10 + fontSizeOffset)
+    property real participantSwarmDetailFontSize: calcSize(15 + fontSizeOffset)
+    property real passwordEditClosedBoxHeight: 65
+    property real passwordEditClosedBoxWidth: 330
+    property real passwordEditOpenedBoxHeight: 380
+    property real passwordEditOpenedBoxWidth: 425
+    property real photoPopupRadius: 5
+    property color placeholderTextColor: darkTheme ? "#7a7a7a" : "black" //Qt.rgba(0, 0, 0, 0.2)
+    property color placeholderTextColorWhite: "#cccccc"
+    property real pluginHandlersPopupViewDelegateHeight: 50
+    property real pluginHandlersPopupViewHeight: 200
+    property real popupButtonsMargin: 20
+    property color popupOverlayColor: darkTheme ? Qt.rgba(255, 255, 255, 0.22) : Qt.rgba(0, 0, 0, 0.33)
+    property real popupPhotoTextSize: calcSize(18)
+
+    //Popups
+    property real popuptextSize: calcSize(15)
+    property real preferredButtonSettingsHeight: 46
+    property real preferredDialogHeight: 300
+    property real preferredDialogWidth: 400
+    property real preferredFieldHeight: 36
+    property real preferredFieldWidth: 256
+    property real preferredMarginSize: 16
+    property real preferredSettingsBottomMarginSize: 30
+    property real preferredSettingsContentMarginSize: 30
+    property real preferredSettingsMarginSize: 40
+
+    // Side panel
+    property color presenceGreen: "#4cd964"
+    property color presenceGreen_: rgba256(76, 217, 100, 100)
+    property color pressColor: darkTheme ? "#777" : "#c0c0c0"
+
+    // General buttons
+    property color pressedButtonColor: darkTheme ? pressColor : "#a0a0a0"
+    property color previewCardContainerColor: darkTheme ? blackColor : whiteColor
+    property color previewImageBackgroundColor: whiteColor
+    property color previewTextContainerColor: darkTheme ? "#959595" : "#ececec"
+    property color previewUrlColor: darkTheme ? "#eeeeee" : "#333"
+    property color primaryBackgroundColor: darkTheme ? bgDarkMode_ : whiteColor
+    property color primaryForegroundColor: darkTheme ? whiteColor : blackColor
+    property real primaryRadius: calcSize(4)
+    property color primaryTextColor: darkTheme ? "black" : "white"
+    property real pushButtonMargin: 10
+    property real pushButtonSize: 22
+    property real qrCodeImageSize: 256
+    property color raiseHandColor: rgba256(0, 184, 255, 77)
+    property int recordBlinkDuration: 500
+
+    // Misc
+    property color recordIconColor: "#dc2719"
 
     // Recording
     property real recordingBtnSize: 12
     property real recordingIndicatorSize: 24
+    property color rectColor: darkTheme ? blackColor : "#e5eef5"
+    property color redColor: "red"
+    property color red_: rgba256(251, 72, 71, 100)
+    property color refuseRed: rgba256(204, 0, 34, 100)
+    property color refuseRedTransparent: rgba256(204, 0, 34, 56)
 
-    //TimestampInfo
-    property int timestampLinePadding: 40
-    property int dayTimestampTopMargin: 8
-    property int dayTimestampBottomMargin: 8
-    property int timestampBottomMargin: 16
-    property int timestampTopMargin: 16
-    property int dayTimestampHPadding: 16
-    property real dayTimestampVPadding: 32
-    property real timestampFont: calcSize(12)
-    property int timestampIntervalTime: 120
+    // Files To Send Container
+    property color removeFileButtonColor: Qt.rgba(96, 95, 97, 0.5)
+    property color requiredFieldBackgroundColor: "#fee4e9"
+    property color requiredFieldColor: "#ff1f62"
+    property color rubberBandSelectionBlue: "steelblue"
+    property int sbsMessageBaseMaximumReplyHeight: baseZoom * 40
+    property int sbsMessageBaseMaximumReplyWidth: baseZoom * 300
+
+    // SBSMessageBase
+    property int sbsMessageBasePreferredPadding: 12
+    property int sbsMessageBaseReplyBottomMargin: baseZoom * 10
+    property int sbsMessageBaseReplyMargin: 45
+    property int sbsMessageBaseReplyTopMargin: 6
+    property color screenSelectionBorderColor: raiseHandColor
+
+    // JamiScrollBar
+    property color scrollBarHandleColor: "#cecece"
+
+    // JamiScrollBar
+    property int scrollBarHandleSize: 6
+    property real searchbarSize: 200
+    property color secAndTertiHoveredBackgroundColor: darkTheme ? "#123F4A" : "#E5EEF5"
+    property color secAndTertiTextColor: buttonTintedBlue
+    property color secondaryBackgroundColor: darkTheme ? bgDarkMode_ : whiteColor
+    property color secondaryButtonBorderColor: darkTheme ? "#1D5F70" : "#A3C2DA"
+    property color secondaryButtonHoveredBorderColor: tintedBlue
+    property real secondaryDialogDimension: 500
+    property color selectedColor: darkTheme ? "#0e81c5" : "#e0e0e0"
+    property color selectedTabColor: primaryForegroundColor
+    property color selectionBlue: darkTheme ? "#0061a5" : "#109ede"
+    property color separationLine: darkTheme ? selectedColor : backgroundColor
+
+    // Settings
+    property int settingMenuPixelSize: calcSize(13)
+    property int settingToggleDescrpitonPixelSize: calcSize(13)
+    property int settingsBlockSpacing: 40
+    property int settingsBoxRadius: 10
+    property int settingsCategoryAudioVideoSpacing: 6
+    property int settingsCategorySpacing: 15
+    property int settingsDescriptionPixelSize: calcSize(15)
+    property real settingsFontSize: calcSize(11 + fontSizeOffset)
+    property int settingsHeaderPixelSize: calcSize(26)
+    property real settingsHeaderpreferredHeight: 64
+    property int settingsListViewsSpacing: 10
+    property real settingsMarginSize: 8
+    property int settingsMenuChildrenButtonHeight: 30
+    property int settingsMenuHeaderButtonHeight: 50
+    property int settingsTitlePixelSize: calcSize(22)
+    property color shadowColor: "#80000000"
+    property color shadowColorBlue: Qt.rgba(0, 0.34, 0.6, 0.16)
+    property color sharePositionIndicatorColor: darkTheme ? "#03B9E9" : "#005699"
+    property color sharedPositionIndicatorColor: darkTheme ? whiteColor : blackColor
+    property int shortFadeDuration: 150
+    property color sipInputButtonBackgroundColor: "#336699"
+    property color sipInputButtonHoverColor: "#4477aa"
+    property color sipInputButtonPressColor: "#5588bb"
+    property real smartListAvatarSize: 52
+    property color smartListHoveredColor: darkTheme ? "#444444" : "#dedede"
+    property real smartListItemHeight: 64
+    property color smartListSelectedColor: darkTheme ? "#515151" : "#d1d1d1"
+    property int smartListTransitionDuration: 120
+    property real smartlistItemFontSize: calcSize(10.5 + fontSizeOffset)
+    property real smartlistItemInfoFontSize: calcSize(9 + fontSizeOffsetSmall)
+
+    //Spinbox
+    property color spinboxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
+    property color spinboxBorderColor: darkTheme ? "#1D5F70" : "#A3C2DA"
+    property real splitViewHandlePreferredWidth: 4
+    property color successLabelColor: "#2b5084"
+    property real swarmDetailsPageDocumentsHeight: 40 * baseZoom
+    property real swarmDetailsPageDocumentsMargins: 5
+    property real swarmDetailsPageDocumentsMediaRadius: 15
+    property real swarmDetailsPageDocumentsMediaSize: 150
+    property real swarmDetailsPageDocumentsMinHeight: 40
+    property real swarmDetailsPageDocumentsPaperClipSize: 24
 
     //swarmDetailsPage
     property real swarmDetailsPageTopMargin: 32
-    property real swarmDetailsPageDocumentsMargins: 5
-    property real swarmDetailsPageDocumentsMediaRadius: 15
-    property real swarmDetailsPageDocumentsPaperClipSize: 24
-    property real swarmDetailsPageDocumentsMediaSize: 150
-    property real swarmDetailsPageDocumentsHeight: 40 * baseZoom
-    property real swarmDetailsPageDocumentsMinHeight: 40
 
-    //Call information
-    property real textFontPointSize: calcSize(10)
-    property real titleFontPointSize: calcSize(13)
-    property color callInfoColor: whiteColor
-    property int callInformationElementsSpacing: 5
-    property int callInformationBlockSpacing: 25
-    property int callInformationlayoutMargins: 10
-
+    // Jami switch
+    property color switchBackgroundCheckedColor: "#8dbaea"
+    property color switchBackgroundColor: darkTheme ? "#626262" : "#E5EEF5"
+    property color switchHandleBorderColor: tintedBlue
+    property color switchHandleCheckedBorderColor: darkTheme ? "#0071c9" : "#005699"
+    property color switchHandleCheckedColor: tintedBlue
+    property color switchHandleColor: darkTheme ? "#2B2B2B" : whiteColor
+    property real switchIndicatorPreferredWidth: 20
 
     // Jami switch
     property real switchIndicatorRadius: 30
     property real switchPreferredHeight: 20
     property real switchPreferredWidth: 40
-    property real switchIndicatorPreferredWidth: 20
+    property color sysColor: "#F0EFEF"
+    property color tabbarBorderColor: darkTheme ? blackColor : "#e3e3e3"
+    property color textColor: primaryForegroundColor
+    property color textColorHovered: darkTheme ? "#cccccc" : "#333333"
+    property real textEditError: calcSize(15)
 
-    // Jami Identifier
-    property color mainColor: "#005699"
-    property real pushButtonSize: 22
-    property real pushButtonMargin: 10
-
-    // Modal Popup
-    property real modalPopupRadius: 20
-    property real photoPopupRadius: 5
-
-    //MessagesResearch
-    property color blueLinkColor: darkTheme ? "#3366BB" : "#0645AD"
-    property real jumpToFontSize: calcSize(13)
-    property real searchbarSize: 200
-
-    // MessageWebView
-    property real chatViewHairLineSize: 1
-    property real chatViewMaximumWidth: 900
-    property real chatViewHeaderPreferredHeight: 64
-    property real chatViewFooterPreferredHeight: 50
-    property real chatViewFooterMaximumHeight: 280
-    property real chatViewFooterRowSpacing: 1
-    property real chatViewFooterButtonSize: 36
-    property real chatViewFooterButtonIconSize: 48
-    property real chatViewFooterButtonRadius: 5
-    property real chatViewFooterTextAreaMaximumHeight: 130
-    property real chatViewScrollToBottomButtonBottomMargin: 8
-
-    property real usernameBlockFontSize : calcSize(12)
-    property real usernameBlockLineHeight : 14
-    property real usernameBlockPadding : contactMessageAvatarSize  + 8
-
-    // TypingDots
-    property real typingDotsAnimationInterval: 500
-    property real typingDotsRadius: 30
-    property real typingDotsSize: 8
-
-    // MessageWebView File Transfer Container
-    property real filesToSendContainerSpacing: 120
-    property real filesToSendContainerPadding: 10
-    property real filesToSendDelegateWidth: 100
-    property real filesToSendDelegateHeight: 100
-    property real filesToSendDelegateRadius: 7
-    property real filesToSendDelegateButtonSize: 16
-    property real filesToSendDelegateFontPointSize: calcSize(textFontSize + 2)
-    property real layoutWidthFileTransfer: 80
-
-    // SBSMessageBase
-    property int sbsMessageBasePreferredPadding: 12
-    property int sbsMessageBaseMaximumReplyWidth: baseZoom * 300
-    property int sbsMessageBaseMaximumReplyHeight: baseZoom * 40
-    property int sbsMessageBaseReplyBottomMargin: baseZoom * 10
-    property int sbsMessageBaseReplyMargin: 45
-    property int sbsMessageBaseReplyTopMargin: 6
-
-
-    // MessageBar
-    property int messageBarMarginSize: 10
-
-    // InvitationView
-    property real invitationViewAvatarSize: 112
-    property real invitationViewButtonRadius: 25
-    property real invitationViewButtonSize: 48
-    property real invitationViewButtonIconSize: 24
-    property real invitationViewButtonsSpacing: 30
-
-    //JamiIdentifier
-    property real jamiIdMargins: 36
-    property real jamiIdLogoWidth: 70
-    property real jamiIdLogoHeight: 24
-    property real jamiIdFontSize: calcSize(13)
-    property color jamiIdColor: darkTheme ? blackColor : sysColor
-
-    // MainView
-    property color welcomeViewBackgroundColor: darkTheme ? lightGrey_ : secondaryBackgroundColor
-    property real welcomeRectSideMargins: 45
-    property real welcomeRectTopMargin: 90
-    property color rectColor: darkTheme ? blackColor : "#e5eef5"
-    property color welcomeText: darkTheme ? "#0071c9" : "#002B4A"
-    property real illustrationWidth: 212
-    property real illustrationHeight: 244
-
-    // WizardView
-    property real wizardViewPageLayoutSpacing: 12
-    property real wizardViewPageBackButtonMargins: 20
-    property real wizardViewPageBackButtonSize: 30
-    property real wizardViewPageBackButtonWidth: 51
-    property real wizardViewPageBackButtonHeight: 30
-    property real wizardViewTitleFontPixelSize: calcSize(26)
-    property real wizardViewDescriptionFontPixelSize: calcSize(15)
-    property real wizardViewButtonFontPixelSize: calcSize(15)
-    property real wizardViewAboutJamiFontPixelSize: calcSize(12)
-    property real wizardViewLayoutTopMargin: 38
-    property real wizardViewTextLineHeight: 1.4
-    property real wizardViewMarginSize: pixelToPoint(10)
-    property real wizardViewBlocMarginSize: pixelToPoint(40)
-    property real wizardViewDescriptionMarginSize: pixelToPoint(20)
-
-    // WizardView Welcome Page
-    property real welcomeLabelPointSize: 30
-    property real welcomeLogoWidth: 100
-    property real welcomeLogoHeight: 100
-    property real wizardButtonWidth: 400
-    property real wizardButtonHeightMargin: 31
-
-    // WizardView Advanced Account Settings
-    property color lightBlue_: darkTheme ? "#03B9E9" : "#e5eef5"
-    property color shadowColorBlue: Qt.rgba(0, 0.34,0.6,0.16)
-    property real passwordEditOpenedBoxWidth: 425
-    property real passwordEditClosedBoxWidth: 330
-    property real passwordEditOpenedBoxHeight: 380
-    property real passwordEditClosedBoxHeight: 65
-    property real customNicknameOpenedBoxWidth: 412
-    property real customNicknameClosedBoxWidth: 230
-    property real customNicknameOpenedBoxHeight: 320
-    property real customNicknameClosedBoxHeight: 65
-    property real advancedAccountSettingsHeightMargin: 16.5
-
-    property real cornerIconSize: 40
-
-
-    //InfoBox
-    property real infoBoxTitleFontSize: calcSize(13)
-    property real infoBoxDescFontSize: calcSize(12)
-
-    //Tipbox
-
-    property real tipBoxTitleFontSize: calcSize(13)
-    property real tipBoxContentFontSize: calcSize(12)
-    property color tipBoxBackgroundColor: darkTheme ? blackColor : whiteColor
-    property color tipBoxBorderColor: darkTheme ? "#123F4A" : "#A3C2DA"
+    //Call information
+    property real textFontPointSize: calcSize(10)
+    property real textFontSize: calcSize(9 + fontSizeOffset)
 
     //sharePosition
     property real timerButtonsFontSize: calcSize(11)
+    property int timestampBottomMargin: 16
+    property color timestampColor: darkTheme ? "#bbb" : "#777"
+    property real timestampFont: calcSize(12)
+    property int timestampIntervalTime: 120
 
-    //Popups
-    property real popuptextSize: calcSize(15)
-    property real popupButtonsMargin: 20
-    property real popupPhotoTextSize: calcSize(18)
+    //TimestampInfo
+    property int timestampLinePadding: 40
+    property int timestampTopMargin: 16
+    property color tintedBlue: darkTheme ? "#03B9E9" : "#005699"
+    property real tinyCreditsTextSize: calcSize(13 + fontSizeOffset)
+    property real tinyFontSize: calcSize(7 + fontSizeOffset)
+    property color tipBoxBackgroundColor: darkTheme ? blackColor : whiteColor
+    property color tipBoxBorderColor: darkTheme ? "#123F4A" : "#A3C2DA"
+    property real tipBoxContentFontSize: calcSize(12)
 
-    // MaterialLineEdit
-    property real materialLineEditPointSize: calcSize(10 + fontSizeOffset)
-    property real materialLineEditPixelSize: calcSize(15)
-    property real materialLineEditSelectedPixelSize: calcSize(12)
-    property real materialLineEditPadding: 16
-    property real textEditError: calcSize(15)
-
-    //MaterialButton
-    property real buttontextPadding: 10
-    property real buttontextWizzardPadding: 30
-    property real buttontextHeightMargin: 21
-    property real buttontextFontPixelSize: calcSize(15)
-
-    // UsernameTextEdit
-    property real usernameTextEditPointSize:calcSize(9 + fontSizeOffset)
-    property real usernameTextEditlookupInterval: 200
-
-    // JamiScrollBar
-    property int scrollBarHandleSize: 6
+    //Tipbox
+    property real tipBoxTitleFontSize: calcSize(13)
+    property real title2FontSize: calcSize(15 + fontSizeOffset)
+    property real titleFontPointSize: calcSize(13)
+    property real titleFontSize: calcSize(16 + fontSizeOffset)
 
     //KeyboardShortcutTable
     property int titleRectMargin: 25
-    property int keyboardShortcutTabBarSize: 24
-    property int keyboardShortcutDelegateSize: 50
 
-    // Main application spec
-    property real mainViewMinWidth: 430
-    property real mainViewMinHeight: 500
+    //Toast
+    property color toastColor: darkTheme ? "#f0f0f0" : "#000000"
+    property real toastFontSize: calcSize(15)
+    property color toastRectColor: !darkTheme ? "#f0f0f0" : "#000000"
+    property color transparentColor: "transparent"
 
-    property real wizardViewMinWidth: 500
+    // TypingDots
+    property real typingDotsAnimationInterval: 500
+    property color typingDotsEnlargeColor: darkTheme ? "white" : Qt.darker("lightgrey", 3.0)
+
+    // TypingDots
+    property color typingDotsNormalColor: darkTheme ? "#686b72" : "lightgrey"
+    property real typingDotsRadius: 30
+    property real typingDotsSize: 8
+    property color unPresenceOrange: "orange"
+    property color urgentOrange_: rgba256(255, 165, 0, 100)
+    property real usernameBlockFontSize: calcSize(12)
+    property real usernameBlockLineHeight: 14
+    property real usernameBlockPadding: contactMessageAvatarSize + 8
+
+    // UsernameTextEdit
+    property real usernameTextEditPointSize: calcSize(9 + fontSizeOffset)
+    property real usernameTextEditlookupInterval: 200
+
+    // WizardView Welcome Page
+    property real welcomeLabelPointSize: 30
+    property real welcomeLogoHeight: 100
+    property real welcomeLogoWidth: 100
+    property real welcomeRectSideMargins: 45
+    property real welcomeRectTopMargin: 90
+    property color welcomeText: darkTheme ? "#0071c9" : "#002B4A"
+
+    // MainView
+    property color welcomeViewBackgroundColor: darkTheme ? lightGrey_ : secondaryBackgroundColor
+    property color whiteColor: "#ffffff"
+    property color whiteColorTransparent: rgba256(255, 255, 255, 50)
+    property color wizardBlueButtons: "#28b1ed"
+    property real wizardButtonHeightMargin: 31
+    property real wizardButtonWidth: 400
+    property color wizardGreenColor: "#aed581"
+    property real wizardViewAboutJamiFontPixelSize: calcSize(12)
+    property real wizardViewBlocMarginSize: pixelToPoint(40)
+    property real wizardViewButtonFontPixelSize: calcSize(15)
+    property real wizardViewDescriptionFontPixelSize: calcSize(15)
+    property real wizardViewDescriptionMarginSize: pixelToPoint(20)
+    property real wizardViewLayoutTopMargin: 38
+    property real wizardViewMarginSize: pixelToPoint(10)
     property real wizardViewMinHeight: 600
+    property real wizardViewMinWidth: 500
+    property real wizardViewPageBackButtonHeight: 30
+    property real wizardViewPageBackButtonMargins: 20
+    property real wizardViewPageBackButtonSize: 30
+    property real wizardViewPageBackButtonWidth: 51
 
-    property real mainViewPreferredWidth: 730
-    property real mainViewPreferredHeight: 600
+    // WizardView
+    property real wizardViewPageLayoutSpacing: 12
+    property real wizardViewTextLineHeight: 1.4
+    property real wizardViewTitleFontPixelSize: calcSize(26)
 
-    property real mainViewMargin: 30
+    function calcSize(size) {
+        return Math.min(Math.max(5, baseZoom * size), 30);
+    }
+    function pixelToPoint(size) {
+        return size * 0.75;
+    }
 
-    // Extras panel
-    property real extrasPanelMinWidth: 300
-    property int aboutBtnSize: 24
-
-    // Messages point size
-    property real contactEventPointSize: calcSize(10 + fontSizeOffset)
-    property int contactMessageAvatarSize: 24
-
-    // Settings
-    property int settingMenuPixelSize: calcSize(13)
-    property int settingToggleDescrpitonPixelSize: calcSize(13)
-    property int settingsTitlePixelSize: calcSize(22)
-    property int settingsHeaderPixelSize: calcSize(26)
-    property int settingsDescriptionPixelSize: calcSize(15)
-    property int settingsCategorySpacing: 15
-    property int settingsCategoryAudioVideoSpacing: 6
-    property int settingsBoxRadius: 10
-    property int settingsBlockSpacing: 40
-    property int settingsMenuChildrenButtonHeight: 30
-    property int settingsMenuHeaderButtonHeight: 50
-    property int settingsListViewsSpacing: 10
-
-
-
+    // Jami theme colors
+    function rgba256(r, g, b, a) {
+        return Qt.rgba(r / 255, g / 255, b / 255, a / 100.);
+    }
     function setTheme(dark) {
-        darkTheme = dark
+        darkTheme = dark;
+    }
+
+    Connections {
+        target: UtilsAdapter
+
+        function onAppThemeChanged() {
+            darkTheme = UtilsAdapter.useApplicationTheme();
+        }
+        function onChangeFontSize() {
+            baseZoom = UtilsAdapter.getAppValue(Settings.BaseZoom);
+        }
     }
 }

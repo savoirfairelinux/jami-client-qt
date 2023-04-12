@@ -15,46 +15,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
     id: root
-
     property int itemWidth
+
     spacing: JamiTheme.settingsCategorySpacing
 
     Text {
-
         Layout.alignment: Qt.AlignLeft
         Layout.preferredWidth: parent.width
-        text: JamiStrings.chatSettingsTitle
         color: JamiTheme.textColor
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-        wrapMode : Text.WordWrap
-
-        font.pixelSize: JamiTheme.settingsTitlePixelSize
         font.kerning: true
+        font.pixelSize: JamiTheme.settingsTitlePixelSize
+        horizontalAlignment: Text.AlignLeft
+        text: JamiStrings.chatSettingsTitle
+        verticalAlignment: Text.AlignVCenter
+        wrapMode: Text.WordWrap
     }
-
     ToggleSwitch {
         id: checkBoxSendDisplayed
-
-        tooltipText: JamiStrings.enableReadReceiptsTooltip
-        labelText: JamiStrings.enableReadReceipts
-        descText: JamiStrings.enableReadReceiptsTooltip
-
         checked: CurrentAccount.sendReadReceipt
+        descText: JamiStrings.enableReadReceiptsTooltip
+        labelText: JamiStrings.enableReadReceipts
+        tooltipText: JamiStrings.enableReadReceiptsTooltip
 
         onSwitchToggled: CurrentAccount.sendReadReceipt = checked
     }
-
 }

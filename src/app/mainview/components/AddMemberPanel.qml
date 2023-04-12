@@ -15,69 +15,59 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
+    property int type: ContactList.ADDCONVMEMBER
 
     color: JamiTheme.backgroundColor
-    property int type: ContactList.ADDCONVMEMBER
 
     ColumnLayout {
         id: contactPickerPopupRectColumnLayout
-
         anchors.fill: parent
 
         ContactSearchBar {
             id: contactPickerContactSearchBar
-
             Layout.alignment: Qt.AlignCenter
-            Layout.margins: 5
             Layout.fillWidth: true
+            Layout.margins: 5
             Layout.preferredHeight: 35
-
             placeHolderText: JamiStrings.addParticipant
 
             onContactSearchBarTextChanged: {
-                ContactAdapter.setSearchFilter(text)
+                ContactAdapter.setSearchFilter(text);
             }
         }
-
         JamiListView {
             id: contactPickerListView
-
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.leftMargin: 4
             Layout.rightMargin: 4
-
             model: ContactAdapter.getContactSelectableModel(type)
+
+            onVisibleChanged: {
+                if (visible)
+                    model = ContactAdapter.getContactSelectableModel(type);
+            }
 
             Connections {
                 target: CurrentConversationMembers
 
                 function onCountChanged() {
-                    contactPickerListView.model = ContactAdapter.getContactSelectableModel(type)
+                    contactPickerListView.model = ContactAdapter.getContactSelectableModel(type);
                 }
-            }
-
-            onVisibleChanged: {
-                if (visible)
-                    model = ContactAdapter.getContactSelectableModel(type)
             }
 
             delegate: ContactPickerItemDelegate {
                 id: contactPickerItemDelegate
-
                 showPresenceIndicator: true
             }
         }

@@ -15,28 +15,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 ToolTip {
     id: root
-
     property alias backGroundColor: background.color
     property alias textColor: label.color
 
     onVisibleChanged: {
         if (visible)
-            animation.start()
+            animation.start();
     }
 
-    contentItem: Text {
-        id: label
-        text: root.text
-        font.pixelSize: 13
-        color: "white"
+    ParallelAnimation {
+        id: animation
+        NumberAnimation {
+            duration: JamiTheme.shortFadeDuration
+            from: 0
+            properties: "opacity"
+            target: background
+            to: 1.0
+        }
+        NumberAnimation {
+            duration: JamiTheme.shortFadeDuration * 0.5
+            from: 0.5
+            properties: "scale"
+            target: background
+            to: 1.0
+        }
     }
 
     background: Rectangle {
@@ -44,18 +52,10 @@ ToolTip {
         color: "#c4272727"
         radius: 5
     }
-
-    ParallelAnimation {
-        id: animation
-        NumberAnimation {
-             target: background; properties: "opacity"
-             from: 0; to: 1.0
-             duration: JamiTheme.shortFadeDuration
-        }
-        NumberAnimation {
-             target: background; properties: "scale"
-             from: 0.5; to: 1.0
-             duration: JamiTheme.shortFadeDuration * 0.5
-        }
+    contentItem: Text {
+        id: label
+        color: "white"
+        font.pixelSize: 13
+        text: root.text
     }
 }

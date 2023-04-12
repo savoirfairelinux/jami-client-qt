@@ -15,56 +15,43 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
-
-    spacing: 8
     id: root
+    spacing: 8
 
     Text {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-        text: JamiStrings.profile
-        elide: Text.ElideRight
-
-        font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
         color: JamiTheme.textColor
-
+        elide: Text.ElideRight
+        font.kerning: true
+        font.pointSize: JamiTheme.headerFontSize
         horizontalAlignment: Text.AlignLeft
+        text: JamiStrings.profile
         verticalAlignment: Text.AlignVCenter
     }
-
     PhotoboothView {
         id: currentAccountAvatar
-        width: avatarSize
-        height: avatarSize
-
         Layout.alignment: Qt.AlignCenter
-
-        imageId: LRCInstance.currentAccountId
         avatarSize: 180
+        height: avatarSize
+        imageId: LRCInstance.currentAccountId
+        width: avatarSize
     }
-
     ModalTextEdit {
         id: displayNameLineEdit
-
         Layout.alignment: Qt.AlignCenter
         Layout.preferredHeight: JamiTheme.preferredFieldHeight + 8
         Layout.preferredWidth: JamiTheme.preferredFieldWidth
-
-        staticText: CurrentAccount.alias
         placeholderText: JamiStrings.enterNickname
+        staticText: CurrentAccount.alias
 
         onAccepted: AccountAdapter.setCurrAccDisplayName(dynamicText)
     }

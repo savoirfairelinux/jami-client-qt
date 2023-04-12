@@ -15,391 +15,331 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "../../commoncomponents"
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
-
 SettingsPageBase {
     id: root
-
     property int itemWidth: 188
 
     title: JamiStrings.appearence
 
     flickableContent: ColumnLayout {
         id: appearenceSettingsColumnLayout
-
-        width: contentFlickableWidth
-        spacing: JamiTheme.settingsBlockSpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
+        spacing: JamiTheme.settingsBlockSpacing
+        width: contentFlickableWidth
 
         ColumnLayout {
             id: generalSettings
-
-            width: parent.width
             spacing: JamiTheme.settingsCategorySpacing
+            width: parent.width
 
             Text {
                 id: enableAccountTitle
-
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: parent.width
-
-                text: JamiStrings.generalSettingsTitle
                 color: JamiTheme.textColor
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
-
-                font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
-
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                horizontalAlignment: Text.AlignLeft
+                text: JamiStrings.generalSettingsTitle
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
             }
-
             ToggleSwitch {
                 id: enableTypingIndicatorCheckbox
-
                 Layout.fillWidth: true
-
                 checked: UtilsAdapter.getAppValue(Settings.EnableTypingIndicator)
-
-                labelText: JamiStrings.enableTypingIndicator
                 descText: JamiStrings.enableTypingIndicatorDescription
-
+                labelText: JamiStrings.enableTypingIndicator
                 tooltipText: JamiStrings.enableTypingIndicator
 
                 onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.EnableTypingIndicator, checked)
             }
-
             ToggleSwitch {
                 id: displayImagesCheckbox
+                Layout.fillWidth: true
+                checked: UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews)
+                descText: JamiStrings.displayHyperlinkPreviewsDescription
+                labelText: JamiStrings.displayHyperlinkPreviews
+                tooltipText: JamiStrings.displayHyperlinkPreviews
                 visible: WITH_WEBENGINE
 
-                Layout.fillWidth: true
-
-                checked: UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews)
-
-                labelText: JamiStrings.displayHyperlinkPreviews
-                descText: JamiStrings.displayHyperlinkPreviewsDescription
-
-                tooltipText: JamiStrings.displayHyperlinkPreviews
-
                 onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.DisplayHyperlinkPreviews, checked)
+                    UtilsAdapter.setAppValue(Settings.Key.DisplayHyperlinkPreviews, checked);
                 }
             }
-
             SettingsComboBox {
                 id: outputComboBoxSetting
-
                 Layout.fillWidth: true
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
                 labelText: JamiStrings.layout
-                tipText: JamiStrings.layout
-                comboModel: ListModel {
-                    id: layoutModel
-                    Component.onCompleted: {
-                        append({ textDisplay: JamiStrings.horizontalViewOpt })
-                        append({ textDisplay: JamiStrings.verticalViewOpt })
-                    }
-                }
-                widthOfComboBox: itemWidth
-                role: "textDisplay"
-
                 modelIndex: UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally) ? 1 : 0
+                role: "textDisplay"
+                tipText: JamiStrings.layout
+                widthOfComboBox: itemWidth
 
                 onActivated: {
-                    UtilsAdapter.setAppValue(
-                                Settings.Key.ShowChatviewHorizontally,
-                                comboModel.get(modelIndex).textDisplay === JamiStrings.verticalViewOpt
-                                )
+                    UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, comboModel.get(modelIndex).textDisplay === JamiStrings.verticalViewOpt);
                 }
 
                 Connections {
                     target: UtilsAdapter
 
                     function onChangeLanguage() {
-                        var idx = outputComboBoxSetting.modelIndex
-                        layoutModel.clear()
-                        layoutModel.append({ textDisplay: JamiStrings.horizontalViewOpt })
-                        layoutModel.append({ textDisplay: JamiStrings.verticalViewOpt })
-                        outputComboBoxSetting.modelIndex = idx
+                        var idx = outputComboBoxSetting.modelIndex;
+                        layoutModel.clear();
+                        layoutModel.append({
+                                "textDisplay": JamiStrings.horizontalViewOpt
+                            });
+                        layoutModel.append({
+                                "textDisplay": JamiStrings.verticalViewOpt
+                            });
+                        outputComboBoxSetting.modelIndex = idx;
+                    }
+                }
+
+                comboModel: ListModel {
+                    id: layoutModel
+                    Component.onCompleted: {
+                        append({
+                                "textDisplay": JamiStrings.horizontalViewOpt
+                            });
+                        append({
+                                "textDisplay": JamiStrings.verticalViewOpt
+                            });
                     }
                 }
             }
         }
-
         ColumnLayout {
             id: themeSettings
+            property var nativeDarkThemeShift: UtilsAdapter.hasNativeDarkTheme() ? 1 : 0
 
             Layout.preferredWidth: parent.width
             spacing: JamiTheme.settingsCategorySpacing
 
-            property var nativeDarkThemeShift: UtilsAdapter.hasNativeDarkTheme() ? 1 : 0
-
             function isComplete() {
-                var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme)
+                var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme);
                 if (themeSettings.nativeDarkThemeShift && theme === "System")
-                    sysThemeButton.checked = true
+                    sysThemeButton.checked = true;
                 if (theme === "Light") {
-                    lightThemeButton.checked = true
+                    lightThemeButton.checked = true;
                 } else if (theme === "Dark") {
-                    darkThemeButton.checked = true
+                    darkThemeButton.checked = true;
                 }
             }
 
             Component.onCompleted: themeSettings.isComplete()
 
             Text {
-
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: parent.width
-
-                text: JamiStrings.theme
                 color: JamiTheme.textColor
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
-
-                font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                horizontalAlignment: Text.AlignLeft
+                text: JamiStrings.theme
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
             }
-
-            ButtonGroup { id: optionsB }
-
+            ButtonGroup {
+                id: optionsB
+            }
             Flow {
-
-                Layout.preferredWidth: parent.width
                 Layout.preferredHeight: childrenRect.height
+                Layout.preferredWidth: parent.width
                 spacing: 5
 
                 Rectangle {
                     id: lightThemeButtonBg
-                    width: 165
-                    height: 60
                     border.color: JamiTheme.darkTheme ? "transparent" : JamiTheme.tintedBlue
                     color: JamiTheme.whiteColor
+                    height: 60
                     radius: JamiTheme.settingsBoxRadius
+                    width: 165
 
                     MaterialRadioButton {
                         id: lightThemeButton
-
-                        anchors.fill: parent
-                        anchors.leftMargin: 19
-
-                        text: JamiStrings.light
                         ButtonGroup.group: optionsB
-                        color: JamiTheme.blackColor
-                        bgColor: lightThemeButtonBg.color
-
                         KeyNavigation.down: darkThemeButton
                         KeyNavigation.tab: KeyNavigation.down
+                        anchors.fill: parent
+                        anchors.leftMargin: 19
+                        bgColor: lightThemeButtonBg.color
+                        color: JamiTheme.blackColor
+                        text: JamiStrings.light
 
                         onCheckedChanged: {
                             if (checked)
-                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light")
+                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light");
                         }
                     }
                 }
-
                 Rectangle {
                     id: darkThemeButtonBg
-
-                    width: 165
-                    height: 60
-                    color: JamiTheme.darkTheme ? JamiTheme.blackColor : JamiTheme.bgDarkMode_
                     border.color: JamiTheme.darkTheme ? JamiTheme.tintedBlue : "transparent"
+                    color: JamiTheme.darkTheme ? JamiTheme.blackColor : JamiTheme.bgDarkMode_
+                    height: 60
                     radius: JamiTheme.settingsBoxRadius
+                    width: 165
 
                     MaterialRadioButton {
                         id: darkThemeButton
-
-                        anchors.fill: parent
-                        anchors.leftMargin: 19
-
-                        text: JamiStrings.dark
                         ButtonGroup.group: optionsB
-                        color: JamiTheme.whiteColor
-                        bgColor: darkThemeButtonBg.color
-
-                        KeyNavigation.up: lightThemeButton
                         KeyNavigation.down: sysThemeButton
                         KeyNavigation.tab: KeyNavigation.down
+                        KeyNavigation.up: lightThemeButton
+                        anchors.fill: parent
+                        anchors.leftMargin: 19
+                        bgColor: darkThemeButtonBg.color
+                        color: JamiTheme.whiteColor
+                        text: JamiStrings.dark
 
                         onCheckedChanged: {
                             if (checked)
-                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark")
+                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark");
                         }
                     }
                 }
-
                 Rectangle {
                     id: sysThemeButtonBg
-
-                    width: 165
-                    height: 60
                     color: JamiTheme.darkTheme ? "#515151" : JamiTheme.sysColor
+                    height: 60
                     radius: JamiTheme.settingsBoxRadius
+                    width: 165
 
                     MaterialRadioButton {
                         id: sysThemeButton
-
+                        ButtonGroup.group: optionsB
+                        KeyNavigation.up: darkThemeButton
                         anchors.fill: parent
                         anchors.leftMargin: 19
-
-                        text: JamiStrings.system
-                        ButtonGroup.group: optionsB
-                        color: JamiTheme.darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
                         bgColor: sysThemeButtonBg.color
-
-                        KeyNavigation.up: darkThemeButton
+                        color: JamiTheme.darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
+                        text: JamiStrings.system
 
                         onCheckedChanged: {
                             if (checked)
-                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System")
+                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System");
                         }
                     }
                 }
             }
         }
-
         ColumnLayout {
             id: zoomSettings
-
-            width: parent.width
             spacing: JamiTheme.settingsCategorySpacing
+            width: parent.width
 
             Text {
-
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: parent.width
-
-                text: JamiStrings.zoomLevel
                 color: JamiTheme.textColor
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
-
-                font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
-
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                horizontalAlignment: Text.AlignLeft
+                text: JamiStrings.zoomLevel
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
             }
-
             Slider {
                 id: zoomSpinBox
-
-                Layout.maximumWidth: parent.width
                 Layout.alignment: Qt.AlignLeft
-                Layout.fillWidth: true
                 Layout.fillHeight: true
-
+                Layout.fillWidth: true
+                Layout.maximumWidth: parent.width
+                from: 50
+                snapMode: Slider.SnapAlways
+                stepSize: 10
+                to: 200
                 value: Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0)
 
-                from: 50
-                to: 200
-                stepSize: 10
-                snapMode: Slider.SnapAlways
-
                 onMoved: {
-                    UtilsAdapter.setAppValue(Settings.BaseZoom, value / 100.0)
+                    UtilsAdapter.setAppValue(Settings.BaseZoom, value / 100.0);
                 }
 
                 background: Rectangle {
-                    implicitWidth: 200
-                    implicitHeight: 2
-                    width: zoomSpinBox.availableWidth
-                    height: 2
-                    radius: 2
                     color: JamiTheme.tintedBlue
+                    height: 2
+                    implicitHeight: 2
+                    implicitWidth: 200
+                    radius: 2
+                    width: zoomSpinBox.availableWidth
                 }
-
                 handle: ColumnLayout {
                     x: zoomSpinBox.visualPosition * zoomSpinBox.availableWidth - textSize.width / 2
 
-
                     Rectangle {
-                        Layout.topMargin: -12
-                        implicitWidth: 6
-                        implicitHeight: 25
-                        radius: implicitWidth
-                        color: JamiTheme.tintedBlue
                         Layout.alignment: Qt.AlignHCenter
+                        Layout.topMargin: -12
+                        color: JamiTheme.tintedBlue
+                        implicitHeight: 25
+                        implicitWidth: 6
+                        radius: implicitWidth
                     }
-
                     Text {
                         id: zoomSpinBoxValueLabel
+                        Layout.alignment: Qt.AlignHCenter
+                        color: JamiTheme.tintedBlue
+                        font.bold: true
+                        font.kerning: true
+                        font.pointSize: JamiTheme.settingsFontSize
+                        text: zoomSpinBox.value
 
-                        TextMetrics{
+                        TextMetrics {
                             id: textSize
-                            font.pointSize: JamiTheme.settingsFontSize
-                            font.kerning: true
                             font.bold: true
+                            font.kerning: true
+                            font.pointSize: JamiTheme.settingsFontSize
                             text: zoomSpinBoxValueLabel.text
                         }
-
-                        color: JamiTheme.tintedBlue
-                        text: zoomSpinBox.value
-                        Layout.alignment: Qt.AlignHCenter
-
-                        font.pointSize: JamiTheme.settingsFontSize
-                        font.kerning: true
-                        font.bold: true
                     }
                 }
             }
-
             Connections {
                 target: UtilsAdapter
 
                 function onChangeFontSize() {
-                    zoomSpinBox.value = Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0)
+                    zoomSpinBox.value = Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0);
                 }
             }
         }
-
         MaterialButton {
             id: defaultSettings
-
-            TextMetrics{
-                id: defaultSettingsTextSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                font.capitalization: Font.AllUppercase
-                text: defaultSettings.text
-            }
-
+            preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
             secondary: true
-
             text: JamiStrings.defaultSettings
-            preferredWidth: defaultSettingsTextSize.width + 2*JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                enableTypingIndicatorCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.EnableTypingIndicator)
-                displayImagesCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.DisplayHyperlinkPreviews)
-                zoomSpinBox.value = Math.round(UtilsAdapter.getDefault(Settings.BaseZoom) * 100.0)
-
-                UtilsAdapter.setToDefault(Settings.Key.EnableTypingIndicator)
-                UtilsAdapter.setToDefault(Settings.Key.DisplayHyperlinkPreviews)
-                UtilsAdapter.setToDefault(Settings.Key.AppTheme)
-                UtilsAdapter.setToDefault(Settings.Key.BaseZoom)
-
-                themeSettings.isComplete()
+                enableTypingIndicatorCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.EnableTypingIndicator);
+                displayImagesCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.DisplayHyperlinkPreviews);
+                zoomSpinBox.value = Math.round(UtilsAdapter.getDefault(Settings.BaseZoom) * 100.0);
+                UtilsAdapter.setToDefault(Settings.Key.EnableTypingIndicator);
+                UtilsAdapter.setToDefault(Settings.Key.DisplayHyperlinkPreviews);
+                UtilsAdapter.setToDefault(Settings.Key.AppTheme);
+                UtilsAdapter.setToDefault(Settings.Key.BaseZoom);
+                themeSettings.isComplete();
             }
 
+            TextMetrics {
+                id: defaultSettingsTextSize
+                font.capitalization: Font.AllUppercase
+                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                font.weight: Font.Bold
+                text: defaultSettings.text
+            }
         }
     }
 }

@@ -16,25 +16,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "components"
 import "../commoncomponents"
-
 import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
 ListSelectionView {
     id: viewNode
-    objectName: "SettingsView"
 
     // A map of view names to file paths for QML files that define each view.
     property variant resources: {
@@ -53,96 +48,93 @@ ListSelectionView {
         "AudioSettingsPage": Qt.resolvedUrl("components/AudioSettingsPage.qml"),
         "VideoSettingsPage": Qt.resolvedUrl("components/VideoSettingsPage.qml"),
         "ScreenSharingSettingsPage": Qt.resolvedUrl("components/ScreenSharingSettingsPage.qml"),
-        "PluginSettingsPage": Qt.resolvedUrl("components/PluginSettingsPage.qml"),
+        "PluginSettingsPage": Qt.resolvedUrl("components/PluginSettingsPage.qml")
     }
+    property int selectedMenu: index
 
-    splitViewStateKey: "Main"
     inhibits: ["ConversationView"]
-
     leftPaneItem: viewCoordinator.getView("SettingsSidePanel")
+    objectName: "SettingsView"
+    splitViewStateKey: "Main"
 
+    Component.onCompleted: {
+        leftPaneItem.createChild();
+    }
     onDismissed: {
         // Trigger an update to messages if needed.
         // Currently needed when changing the show link preview setting.
-        CurrentConversation.reloadInteractions()
+        CurrentConversation.reloadInteractions();
         if (UtilsAdapter.getAccountListSize() === 0) {
-            viewCoordinator.requestAppWindowWizardView()
+            viewCoordinator.requestAppWindowWizardView();
         } else {
-            AccountAdapter.changeAccount(0)
+            AccountAdapter.changeAccount(0);
         }
     }
 
-    Component.onCompleted: {
-        leftPaneItem.createChild()
-    }
-
-    property int selectedMenu: index
-
     rightPaneItem: StackView {
         id: settingsView
-        objectName: "settingsView"
-
         property var currentIndex: selectedMenu !== -1 ? selectedMenu : 0
+
         anchors.fill: parent
+        objectName: "settingsView"
 
         signal stopBooth
 
-        initialItem: ManageAccountPage {}
-
         onCurrentIndexChanged: {
-
-            switch(currentIndex) {
-                default:
-                case 0:
-                    replace(currentItem, viewNode.resources["ManageAccountPage"], StackView.Immediate)
-                    break
-                case 1:
-                    replace(currentItem, viewNode.resources["CustomizeProfilePage"], StackView.Immediate)
-                    break
-                case 2:
-                    replace(currentItem, viewNode.resources["LinkedDevicesPage"], StackView.Immediate)
-                    break
-                case 3:
-                    replace(currentItem, viewNode.resources["CallSettingsPage"], StackView.Immediate)
-                    break
-                case 4:
-                    replace(currentItem, viewNode.resources["AdvancedSettingsPage"], StackView.Immediate)
-                    break
-                case 5:
-                    replace(currentItem, viewNode.resources["SystemSettingsPage"], StackView.Immediate)
-                    break
-                case 6:
-                    replace(currentItem, viewNode.resources["AppearenceSettingsPage"], StackView.Immediate)
-                    break
-                case 7:
-                    replace(currentItem, viewNode.resources["LocationSharingSettingsPage"], StackView.Immediate)
-                    break
-                case 8:
-                    replace(currentItem, viewNode.resources["FileTransferSettingsPage"], StackView.Immediate)
-                    break
-                case 9:
-                    replace(currentItem, viewNode.resources["CallRecordingSettingsPage"], StackView.Immediate)
-                    break
-                case 10:
-                    replace(currentItem, viewNode.resources["TroubleshootSettingsPage"], StackView.Immediate)
-                    break
-                case 11:
-                    replace(currentItem, viewNode.resources["UpdateSettingsPage"], StackView.Immediate)
-                    break
-                case 12:
-                    replace(currentItem, viewNode.resources["AudioSettingsPage"], StackView.Immediate)
-                    break
-                case 13:
-                    replace(currentItem, viewNode.resources["VideoSettingsPage"], StackView.Immediate)
-                    break
-                case 14:
-                    replace(currentItem, viewNode.resources["ScreenSharingSettingsPage"], StackView.Immediate)
-                    break
-                case 15:
-                    replace(currentItem, viewNode.resources["PluginSettingsPage"], StackView.Immediate)
-                    break
+            switch (currentIndex) {
+            default:
+            case 0:
+                replace(currentItem, viewNode.resources["ManageAccountPage"], StackView.Immediate);
+                break;
+            case 1:
+                replace(currentItem, viewNode.resources["CustomizeProfilePage"], StackView.Immediate);
+                break;
+            case 2:
+                replace(currentItem, viewNode.resources["LinkedDevicesPage"], StackView.Immediate);
+                break;
+            case 3:
+                replace(currentItem, viewNode.resources["CallSettingsPage"], StackView.Immediate);
+                break;
+            case 4:
+                replace(currentItem, viewNode.resources["AdvancedSettingsPage"], StackView.Immediate);
+                break;
+            case 5:
+                replace(currentItem, viewNode.resources["SystemSettingsPage"], StackView.Immediate);
+                break;
+            case 6:
+                replace(currentItem, viewNode.resources["AppearenceSettingsPage"], StackView.Immediate);
+                break;
+            case 7:
+                replace(currentItem, viewNode.resources["LocationSharingSettingsPage"], StackView.Immediate);
+                break;
+            case 8:
+                replace(currentItem, viewNode.resources["FileTransferSettingsPage"], StackView.Immediate);
+                break;
+            case 9:
+                replace(currentItem, viewNode.resources["CallRecordingSettingsPage"], StackView.Immediate);
+                break;
+            case 10:
+                replace(currentItem, viewNode.resources["TroubleshootSettingsPage"], StackView.Immediate);
+                break;
+            case 11:
+                replace(currentItem, viewNode.resources["UpdateSettingsPage"], StackView.Immediate);
+                break;
+            case 12:
+                replace(currentItem, viewNode.resources["AudioSettingsPage"], StackView.Immediate);
+                break;
+            case 13:
+                replace(currentItem, viewNode.resources["VideoSettingsPage"], StackView.Immediate);
+                break;
+            case 14:
+                replace(currentItem, viewNode.resources["ScreenSharingSettingsPage"], StackView.Immediate);
+                break;
+            case 15:
+                replace(currentItem, viewNode.resources["PluginSettingsPage"], StackView.Immediate);
+                break;
             }
+        }
 
+        initialItem: ManageAccountPage {
         }
     }
 }

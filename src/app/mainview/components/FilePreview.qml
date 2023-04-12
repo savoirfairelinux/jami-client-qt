@@ -19,88 +19,80 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../settingsview/components"
 
 Component {
     id: root
-
     Rectangle {
         id: dataTransferRect
-
         clip: true
-        width: (contentWidth - spacingLength ) / numberElementsPerRow
-        height: width
         color: "transparent"
+        height: width
+        width: (contentWidth - spacingLength) / numberElementsPerRow
 
-        ColumnLayout{
+        ColumnLayout {
             anchors.fill: parent
             anchors.margins: JamiTheme.swarmDetailsPageDocumentsMargins
 
             Text {
                 id: myText
-
-                text: TransferName
+                Layout.fillWidth: true
                 color: JamiTheme.textColor
                 elide: Text.ElideRight
-                Layout.fillWidth: true
                 horizontalAlignment: Text.AlignHCenter
+                text: TransferName
             }
             Rectangle {
+                Layout.bottomMargin: JamiTheme.swarmDetailsPageDocumentsMargins
                 Layout.preferredHeight: parent.height - myText.height - JamiTheme.swarmDetailsPageDocumentsMargins
                 Layout.preferredWidth: parent.width
                 Layout.rightMargin: JamiTheme.swarmDetailsPageDocumentsMargins
-                Layout.bottomMargin: JamiTheme.swarmDetailsPageDocumentsMargins
                 color: "transparent"
 
                 Rectangle {
                     id: rectContent
-
                     anchors.fill: parent
                     anchors.margins: JamiTheme.swarmDetailsPageDocumentsMargins
-                    color: "transparent"
                     border.color: themeColor
                     border.width: 2
-                    radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
+                    color: "transparent"
                     layer.enabled: true
+                    radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
 
                     ResponsiveImage {
                         id: paperClipImage
-
-                        source: JamiResources.link_black_24dp_svg
-                        width: parent.width / 2
-                        height: parent.height / 2
                         anchors.centerIn: parent
                         color: JamiTheme.textColor
+                        height: parent.height / 2
+                        source: JamiResources.link_black_24dp_svg
+                        width: parent.width / 2
 
                         MouseArea {
+                            acceptedButtons: Qt.LeftButton | Qt.RightButton
                             anchors.fill: parent
                             hoverEnabled: true
-                            acceptedButtons: Qt.LeftButton | Qt.RightButton
-                            onEntered: {
-                                cursorShape = Qt.PointingHandCursor
-                            }
 
                             onClicked: function (mouse) {
                                 if (mouse.button === Qt.RightButton) {
-                                    ctxMenu.x = mouse.x
-                                    ctxMenu.y = mouse.y
-                                    ctxMenu.openMenu()
+                                    ctxMenu.x = mouse.x;
+                                    ctxMenu.y = mouse.y;
+                                    ctxMenu.openMenu();
                                 } else {
-                                    Qt.openUrlExternally(new Url("file://" + Body))
+                                    Qt.openUrlExternally(new Url("file://" + Body));
                                 }
+                            }
+                            onEntered: {
+                                cursorShape = Qt.PointingHandCursor;
                             }
                         }
                         SBSContextMenu {
                             id: ctxMenu
-
-                            msgId: Id
                             location: Body
+                            msgId: Id
                             transferId: Id
                             transferName: TransferName
                         }

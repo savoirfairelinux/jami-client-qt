@@ -15,19 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
     property real marginSize: 20
     property real textMarginSize: 50
 
@@ -35,160 +31,113 @@ Rectangle {
 
     Text {
         id: invitationViewSentRequestText
-
+        anchors.horizontalCenter: root.horizontalCenter
         anchors.top: root.top
         anchors.topMargin: visible ? marginSize : 0
-        anchors.horizontalCenter: root.horizontalCenter
-
-        width: infoColumnLayout.width - textMarginSize
-        height: visible ? contentHeight : 0
-
-        visible: !CurrentConversation.needsSyncing
-
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-
-        font.pointSize: JamiTheme.textFontSize
         color: JamiTheme.textColor
+        font.pointSize: JamiTheme.textFontSize
+        height: visible ? contentHeight : 0
+        horizontalAlignment: Text.AlignHCenter
+        text: JamiStrings.invitationViewSentRequest.arg(CurrentConversation.title)
+        verticalAlignment: Text.AlignVCenter
+        visible: !CurrentConversation.needsSyncing
+        width: infoColumnLayout.width - textMarginSize
         wrapMode: Text.Wrap
-
-        text: JamiStrings.invitationViewSentRequest.arg(
-                  CurrentConversation.title)
     }
-
     ColumnLayout {
         id: infoColumnLayout
-
         anchors.centerIn: root
-
         width: root.width
 
         Avatar {
             id: avatar
-
             Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: invitationViewSentRequestText.visible ? marginSize : 0
             Layout.preferredHeight: JamiTheme.invitationViewAvatarSize
             Layout.preferredWidth: JamiTheme.invitationViewAvatarSize
-
-            showPresenceIndicator: false
-            mode: Avatar.Mode.Conversation
+            Layout.topMargin: invitationViewSentRequestText.visible ? marginSize : 0
             imageId: CurrentConversation.id
+            mode: Avatar.Mode.Conversation
+            showPresenceIndicator: false
         }
-
         Text {
             id: invitationViewMiddlePhraseText
-
             Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: marginSize
             Layout.preferredWidth: infoColumnLayout.width - textMarginSize
-
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-
-            font.weight: Font.DemiBold
-            font.pointSize: JamiTheme.textFontSize + 3
+            Layout.topMargin: marginSize
             color: JamiTheme.textColor
+            font.pointSize: JamiTheme.textFontSize + 3
+            font.weight: Font.DemiBold
+            horizontalAlignment: Text.AlignHCenter
+            text: CurrentConversation.needsSyncing ? JamiStrings.invitationViewAcceptedConversation : JamiStrings.invitationViewJoinConversation
+            verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
-
-            text: CurrentConversation.needsSyncing ?
-                      JamiStrings.invitationViewAcceptedConversation :
-                      JamiStrings.invitationViewJoinConversation
         }
-
         Text {
             id: invitationViewWaitingForSyncText
-
             Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: marginSize
-            Layout.preferredWidth: infoColumnLayout.width - textMarginSize
             Layout.preferredHeight: visible ? contentHeight : 0
-
-            visible: CurrentConversation.needsSyncing
-
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-
-            font.pointSize: JamiTheme.textFontSize
+            Layout.preferredWidth: infoColumnLayout.width - textMarginSize
+            Layout.topMargin: marginSize
             color: JamiTheme.textColor
+            font.pointSize: JamiTheme.textFontSize
+            horizontalAlignment: Text.AlignHCenter
+            text: JamiStrings.invitationViewWaitingForSync.arg(CurrentConversation.title)
+            verticalAlignment: Text.AlignVCenter
+            visible: CurrentConversation.needsSyncing
             wrapMode: Text.Wrap
-
-            text: JamiStrings.invitationViewWaitingForSync.arg(
-                      CurrentConversation.title)
         }
-
         RowLayout {
             id: buttonGroupRowLayout
-
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: marginSize
-
             spacing: JamiTheme.invitationViewButtonsSpacing
-
             visible: !CurrentConversation.needsSyncing
 
             PushButton {
                 id: blockButton
-
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: JamiTheme.invitationViewButtonSize
                 Layout.preferredWidth: JamiTheme.invitationViewButtonSize
-
-                preferredSize: JamiTheme.invitationViewButtonIconSize
-                radius: JamiTheme.invitationViewButtonRadius
-
-                toolTipText: JamiStrings.blockContact
-
-                source: JamiResources.block_black_24dp_svg
-                imageColor: JamiTheme.primaryBackgroundColor
-
-                normalColor: JamiTheme.blockOrangeTransparency
-                pressedColor: JamiTheme.blockOrange
                 hoveredColor: JamiTheme.blockOrange
+                imageColor: JamiTheme.primaryBackgroundColor
+                normalColor: JamiTheme.blockOrangeTransparency
+                preferredSize: JamiTheme.invitationViewButtonIconSize
+                pressedColor: JamiTheme.blockOrange
+                radius: JamiTheme.invitationViewButtonRadius
+                source: JamiResources.block_black_24dp_svg
+                toolTipText: JamiStrings.blockContact
 
                 onClicked: MessagesAdapter.blockConversation()
             }
-
             PushButton {
                 id: refuseButton
-
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: JamiTheme.invitationViewButtonSize
                 Layout.preferredWidth: JamiTheme.invitationViewButtonSize
-
-                preferredSize: JamiTheme.invitationViewButtonSize
-                radius: JamiTheme.invitationViewButtonRadius
-
-                toolTipText: JamiStrings.declineContactRequest
-
-                source: JamiResources.cross_black_24dp_svg
-                imageColor: JamiTheme.primaryBackgroundColor
-
-                normalColor: JamiTheme.refuseRedTransparent
-                pressedColor: JamiTheme.refuseRed
                 hoveredColor: JamiTheme.refuseRed
+                imageColor: JamiTheme.primaryBackgroundColor
+                normalColor: JamiTheme.refuseRedTransparent
+                preferredSize: JamiTheme.invitationViewButtonSize
+                pressedColor: JamiTheme.refuseRed
+                radius: JamiTheme.invitationViewButtonRadius
+                source: JamiResources.cross_black_24dp_svg
+                toolTipText: JamiStrings.declineContactRequest
 
                 onClicked: MessagesAdapter.refuseInvitation()
             }
-
             PushButton {
                 id: acceptButton
-
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: JamiTheme.invitationViewButtonSize
                 Layout.preferredWidth: JamiTheme.invitationViewButtonSize
-
-                preferredSize: JamiTheme.invitationViewButtonIconSize
-                radius: JamiTheme.invitationViewButtonRadius
-
-                toolTipText: JamiStrings.acceptContactRequest
-
-                source: JamiResources.check_black_24dp_svg
-                imageColor: JamiTheme.primaryBackgroundColor
-
-                normalColor: JamiTheme.acceptGreenTransparency
-                pressedColor: JamiTheme.acceptGreen
                 hoveredColor: JamiTheme.acceptGreen
+                imageColor: JamiTheme.primaryBackgroundColor
+                normalColor: JamiTheme.acceptGreenTransparency
+                preferredSize: JamiTheme.invitationViewButtonIconSize
+                pressedColor: JamiTheme.acceptGreen
+                radius: JamiTheme.invitationViewButtonRadius
+                source: JamiResources.check_black_24dp_svg
+                toolTipText: JamiStrings.acceptContactRequest
 
                 onClicked: MessagesAdapter.acceptInvitation()
             }

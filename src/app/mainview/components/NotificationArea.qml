@@ -14,31 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
-    opacity: visible
-    color: CurrentConversation.color
-
-    property string id: ""
-    property string uri: ""
     property string device: ""
+    property string id: ""
+    property string textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+    property string uri: ""
 
-    property string textColor: UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+    color: CurrentConversation.color
+    opacity: visible
+
     RowLayout {
         anchors.fill: parent
         anchors.margins: JamiTheme.preferredMarginSize
@@ -46,67 +40,58 @@ Rectangle {
 
         Text {
             id: errorLabel
-            Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
+            Layout.fillWidth: true
             Layout.margins: 0
-            text: JamiStrings.wantToJoin
             color: root.textColor
-            font.pixelSize: JamiTheme.headerFontSize
             elide: Text.ElideRight
+            font.pixelSize: JamiTheme.headerFontSize
+            text: JamiStrings.wantToJoin
         }
-
         PushButton {
             id: joinCallInAudio
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: JamiTheme.preferredMarginSize
-
+            border.color: root.textColor
+            border.width: 1
+            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+            imageColor: root.textColor
+            normalColor: "transparent"
             source: JamiResources.place_audiocall_24dp_svg
             toolTipText: JamiStrings.joinCall
 
-            imageColor: root.textColor
-            normalColor: "transparent"
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-            border.width: 1
-            border.color: root.textColor
-
             onClicked: MessagesAdapter.joinCall(uri, device, id, true)
         }
-
         PushButton {
             id: joinCallInVideo
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: JamiTheme.preferredMarginSize
-
-            source: JamiResources.videocam_24dp_svg
-            toolTipText: JamiStrings.joinCall
-
+            border.color: root.textColor
+            border.width: 1
+            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
             imageColor: root.textColor
             normalColor: "transparent"
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-            border.width: 1
-            border.color: root.textColor
+            source: JamiResources.videocam_24dp_svg
+            toolTipText: JamiStrings.joinCall
             visible: CurrentAccount.videoEnabled_Video
 
             onClicked: MessagesAdapter.joinCall(uri, device, id)
         }
-
         PushButton {
             id: btnClose
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-
             imageColor: root.textColor
             normalColor: JamiTheme.transparentColor
-
             source: JamiResources.round_close_24dp_svg
 
             onClicked: ConversationsAdapter.ignoreActiveCall(CurrentConversation.id, id, uri, device)
         }
     }
 
-    Behavior on opacity {
+    Behavior on opacity  {
         NumberAnimation {
-            from: 0
             duration: JamiTheme.shortFadeDuration
+            from: 0
         }
     }
 }

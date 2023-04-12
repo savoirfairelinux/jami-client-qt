@@ -15,82 +15,62 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../mainview/components"
 
 Item {
     id: root
-
-    property alias imageId: avatar.imageId
-
-    property bool newItem: false
-    property bool readOnly: false
     property real avatarSize
     property bool doubleEditAvatar: false
+    property alias imageId: avatar.imageId
+    property bool newItem: false
+    property bool readOnly: false
 
     height: Math.max(avatarSize, buttonSize)
 
     Rectangle {
         id: imageLayer
-
         anchors.centerIn: parent
         anchors.fill: parent
         color: "transparent"
 
         Avatar {
             id: avatar
-
-            width: avatarSize
-            height: avatarSize
             anchors.centerIn: parent
             anchors.margins: 1
-
-            mode: newItem? Avatar.Mode.Conversation : Avatar.Mode.Account
-
             fillMode: Image.PreserveAspectCrop
+            height: avatarSize
+            mode: newItem ? Avatar.Mode.Conversation : Avatar.Mode.Account
             showPresenceIndicator: false
+            width: avatarSize
         }
-
         PushButton {
             id: editImage
-
-            width: doubleEditAvatar ? avatar.width / 2 : avatar.width / 4
-            height: doubleEditAvatar ? avatar.height / 2 : avatar.height / 4
-            anchors.top: parent.top
-            anchors.right: parent.right
             anchors.margins: doubleEditAvatar ? height / 4 : avatar.width / 22
-
-            source: JamiResources.round_edit_24dp_svg
-
-            preferredSize: doubleEditAvatar ? avatar.width / 3 : avatar.width / 6
-
-            normalColor: JamiTheme.secondaryBackgroundColor
-            imageColor: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.hoveredButtonColorWizard
+            anchors.right: parent.right
+            anchors.top: parent.top
             border.color: JamiTheme.buttonTintedBlue
-
             enabled: avatar.visible && !root.readOnly
+            height: doubleEditAvatar ? avatar.height / 2 : avatar.height / 4
+            hoveredColor: JamiTheme.hoveredButtonColorWizard
+            imageColor: JamiTheme.buttonTintedBlue
+            normalColor: JamiTheme.secondaryBackgroundColor
+            preferredSize: doubleEditAvatar ? avatar.width / 3 : avatar.width / 6
+            source: JamiResources.round_edit_24dp_svg
             visible: enabled
+            width: doubleEditAvatar ? avatar.width / 2 : avatar.width / 4
 
-
-
-            onClicked : viewCoordinator.presentDialog(
-                           parent,
-                           "commoncomponents/PhotoboothPopup.qml",
-                            { parent: editImage,
-                              imageId: root.imageId,
-                              newItem: root.newItem,
-                            })
-
+            onClicked: viewCoordinator.presentDialog(parent, "commoncomponents/PhotoboothPopup.qml", {
+                    "parent": editImage,
+                    "imageId": root.imageId,
+                    "newItem": root.newItem
+                })
         }
     }
 }

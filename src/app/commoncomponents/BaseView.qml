@@ -14,25 +14,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 
 Rectangle {
     id: viewNode
+
+    // A list of view names that this view inhibits the presentation of.
+    property var inhibits: []
 
     // True if this view is managed by the view coordinator.
     // False if this view is managed by its parent view, and will
     // only be destroyed when its parent is destroyed.
     property bool managed: true
 
-    // A list of view names that this view inhibits the presentation of.
-    property var inhibits: []
-
-    function dismiss() { viewCoordinator.dismiss(objectName) }
-
-    signal presented
+    function dismiss() {
+        viewCoordinator.dismiss(objectName);
+    }
     signal dismissed
+    signal presented
 
-    Component.onCompleted: { if (managed) presented() }
-    Component.onDestruction: { if (managed) dismissed() }
+    Component.onCompleted: {
+        if (managed)
+            presented();
+    }
+    Component.onDestruction: {
+        if (managed)
+            dismissed();
+    }
 }

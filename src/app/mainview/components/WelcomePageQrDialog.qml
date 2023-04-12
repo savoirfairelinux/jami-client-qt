@@ -15,12 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 BaseModalDialog {
@@ -29,18 +26,16 @@ BaseModalDialog {
     //Content height + margin.
     property int size: JamiTheme.qrCodeImageSize + 30
 
-    width: size
-    height: size
-
     backgroundColor: JamiTheme.whiteColor
-
+    height: size
     popupContentPreferredHeight: JamiTheme.qrCodeImageSize
     popupContentPreferredWidth: JamiTheme.qrCodeImageSize
+    width: size
+
     popupContent: Image {
         id: userQrImage
-
-        smooth: false
         fillMode: Image.PreserveAspectFit
+        smooth: false
         source: "image://qrImage/account_" + CurrentAccount.id
     }
 }

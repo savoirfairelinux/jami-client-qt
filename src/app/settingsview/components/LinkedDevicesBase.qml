@@ -15,104 +15,89 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import SortFilterProxyModel 0.2
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
-    id:root
-
-    width: parent.width
+    id: root
     property bool inverted: false
-    property string title
     property bool isCurrent: true
+    property string title
 
     visible: settingsListView.model.count > 0
+    width: parent.width
 
-    function removeDeviceSlot(index){
-        var deviceId = settingsListView.model.data(settingsListView.model.index(index,0),
-                                                   DeviceItemListModel.DeviceID)
-        if(CurrentAccount.hasArchivePassword){
-            viewCoordinator.presentDialog(
-                        appWindow,
-                        "settingsview/components/RevokeDevicePasswordDialog.qml",
-                        { deviceId: deviceId })
+    function removeDeviceSlot(index) {
+        var deviceId = settingsListView.model.data(settingsListView.model.index(index, 0), DeviceItemListModel.DeviceID);
+        if (CurrentAccount.hasArchivePassword) {
+            viewCoordinator.presentDialog(appWindow, "settingsview/components/RevokeDevicePasswordDialog.qml", {
+                    "deviceId": deviceId
+                });
         } else {
-            viewCoordinator.presentDialog(
-                        appWindow,
-                        "commoncomponents/SimpleMessageDialog.qml",
-                        {
-                            title: JamiStrings.removeDevice,
-                            infoText: JamiStrings.sureToRemoveDevice,
-                            buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel],
-                            buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                                SimpleMessageDialog.ButtonStyle.TintedBlack],
-                            buttonCallBacks: [
-                                function() { DeviceItemListModel.revokeDevice(deviceId, "") }
-                            ]
-                        })
+            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                    "title": JamiStrings.removeDevice,
+                    "infoText": JamiStrings.sureToRemoveDevice,
+                    "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
+                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
+                    "buttonCallBacks": [function () {
+                            DeviceItemListModel.revokeDevice(deviceId, "");
+                        }]
+                });
         }
     }
 
     Text {
         id: title
-
         Layout.alignment: Qt.AlignLeft
         Layout.preferredWidth: parent.width
-
-        text: root.title
         color: JamiTheme.textColor
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-        wrapMode : Text.WordWrap
-
-        font.weight: Font.Medium
-        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
         font.kerning: true
+        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+        font.weight: Font.Medium
+        horizontalAlignment: Text.AlignLeft
+        text: root.title
+        verticalAlignment: Text.AlignVCenter
+        wrapMode: Text.WordWrap
     }
-
     JamiListView {
         id: settingsListView
-
         Layout.fillWidth: true
         Layout.preferredHeight: Math.min(model.count, 5) * (70 + spacing)
-        spacing: JamiTheme.settingsListViewsSpacing
         interactive: !isCurrent
-
-        model: SortFilterProxyModel {
-            sourceModel: DeviceItemListModel
-            sorters: [
-                RoleSorter { roleName: "DeviceName"; sortOrder: Qt.DescendingOrder}
-            ]
-
-            filters: ValueFilter {
-                roleName: "DeviceID"
-                value: CurrentAccount.deviceId
-                inverted: root.inverted
-            }
-        }
+        spacing: JamiTheme.settingsListViewsSpacing
 
         delegate: DeviceItemDelegate {
             id: settingsListDelegate
-
             Layout.fillWidth: true
-            implicitWidth: root.width
-            height: 70
-            deviceName: root.isCurrent ? DeviceName : "Device name: " + DeviceName
             deviceId: DeviceID
-            onBtnRemoveDeviceClicked: removeDeviceSlot(index)
+            deviceName: root.isCurrent ? DeviceName : "Device name: " + DeviceName
+            height: 70
+            implicitWidth: root.width
             isCurrent: root.isCurrent
-        }
 
+            onBtnRemoveDeviceClicked: removeDeviceSlot(index)
+        }
+        model: SortFilterProxyModel {
+            sourceModel: DeviceItemListModel
+
+            filters: ValueFilter {
+                inverted: root.inverted
+                roleName: "DeviceID"
+                value: CurrentAccount.deviceId
+            }
+            sorters: [
+                RoleSorter {
+                    roleName: "DeviceName"
+                    sortOrder: Qt.DescendingOrder
+                }
+            ]
+        }
     }
 }
