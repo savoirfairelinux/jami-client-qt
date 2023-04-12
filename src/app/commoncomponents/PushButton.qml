@@ -169,7 +169,7 @@ AbstractButton {
             },
             State {
                 name: "hovered"
-                when: hovered || root.focus
+                when: hovered || root.activeFocus
                 PropertyChanges {
                     target: background
                     color: hoveredColor
@@ -177,7 +177,7 @@ AbstractButton {
             },
             State {
                 name: "forceHovered"
-                when: forceHovered || root.focus
+                when: forceHovered || root.activeFocus
                 PropertyChanges {
                     target: background
                     color: hoveredColor
