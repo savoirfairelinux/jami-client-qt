@@ -790,6 +790,18 @@ Item {
     property string sendFile: qsTr("Send file")
     property string leaveAudioMessage: qsTr("Leave audio message")
     property string leaveVideoMessage: qsTr("Leave video message")
+    property string showMore: qsTr("Show more")
+
+    property string bold: qsTr("Bold")
+    property string italic: qsTr("Italic")
+    property string barre: qsTr("Barre")
+    property string title: qsTr("Title")
+    property string link: qsTr("Link")
+    property string code: qsTr("Code")
+    property string quote: qsTr("Quote")
+    property string bulletPoint: qsTr("Bullet Point")
+    property string bulletNumber: qsTr("Bullet Number")
+
     property string send: qsTr("Send")
     property string remove: qsTr("Remove")
     property string replyTo: qsTr("Reply to")
