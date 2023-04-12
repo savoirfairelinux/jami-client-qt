@@ -33,18 +33,19 @@ ItemDelegate {
     property bool isCurrent: false
 
     property bool editable: false
+    property bool isHovered: root.hovered || button.hovered || root.editable
 
     signal btnRemoveDeviceClicked
 
     background: Rectangle {
-        color: JamiTheme.editBackgroundColor
-        height: root.height
-        radius: 5
+        color: isHovered ? JamiTheme.smartListSelectedColor : JamiTheme.editBackgroundColor
+        radius: JamiTheme.settingsBoxRadius
     }
 
     RowLayout {
         id: rowLayout
         anchors.fill: root
+        anchors.rightMargin: isHovered ? button.width + 20 : 0
 
         ResponsiveImage {
             id: deviceImage
@@ -89,6 +90,7 @@ ItemDelegate {
                     AvAdapter.setDeviceName(editDeviceName.text);
                     editable = !editable;
                 }
+
                 onReadOnlyChanged: {
                     if (readOnly)
                         editDeviceName.text = Qt.binding(function () {
@@ -122,34 +124,34 @@ ItemDelegate {
                 text: deviceId === "" ? JamiStrings.deviceId : deviceId
             }
         }
+    }
 
-        PushButton {
-            id: btnEditDevice
+    MaterialButton {
+        id: button
+        z: 1
+        anchors.right: parent.right
+        anchors.rightMargin: 13
+        anchors.verticalCenter: parent.verticalCenter
+        Layout.preferredWidth: 86
+        preferredWidth: 86
+        Layout.preferredHeight: 36
+        layer.enabled: false
+        visible: isHovered
+        secondary: true
 
-            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.rightMargin: 13
-            Layout.preferredWidth: JamiTheme.preferredFieldHeight
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
+        text: isCurrent ? (editable ? JamiStrings.saveNewDeviceName : JamiStrings.editDeviceName) : JamiStrings.unlinkDevice
 
-            imageColor: JamiTheme.tintedBlue
-            normalColor: highlighted ? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
-
-            source: isCurrent ? (editable ? JamiResources.round_save_alt_24dp_svg : JamiResources.round_edit_24dp_svg) : JamiResources.delete_24dp_svg
-
-            toolTipText: isCurrent ? (editable ? JamiStrings.saveNewDeviceName : JamiStrings.editDeviceName) : JamiStrings.unlinkDevice
-
-            onClicked: {
-                if (isCurrent) {
-                    if (!editable) {
-                        editable = !editable;
-                        editDeviceName.forceActiveFocus();
-                    } else {
-                        editDeviceName.focus = false;
-                        editDeviceName.accepted();
-                    }
+        onClicked: {
+            if (isCurrent) {
+                if (!editable) {
+                    editable = !editable;
+                    editDeviceName.forceActiveFocus();
                 } else {
-                    btnRemoveDeviceClicked();
+                    editDeviceName.focus = false;
+                    editDeviceName.accepted();
                 }
+            } else {
+                btnRemoveDeviceClicked();
             }
         }
     }
