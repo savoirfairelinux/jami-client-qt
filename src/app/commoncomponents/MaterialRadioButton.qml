@@ -23,93 +23,14 @@ import net.jami.Models 1.1
 
 RadioButton {
     id: root
-
-    property string iconSource: ""
-    property color borderColor: JamiTheme.radioBorderColor
-    property color checkedColor: JamiTheme.radioBorderColor
     property color backgroundColor: JamiTheme.radioBackgroundColor
-    property color textColor: JamiTheme.textColor
+    property color borderColor: JamiTheme.radioBorderColor
     property color borderOuterRectangle: "transparent"
+    property color checkedColor: JamiTheme.radioBorderColor
+    property string iconSource: ""
+    property color textColor: JamiTheme.textColor
 
     height: implicitHeight
-
-    Rectangle {
-        anchors.fill: parent
-        color: backgroundColor
-        radius: JamiTheme.settingsBoxRadius
-        border {
-            width: 1
-            color: borderOuterRectangle
-        }
-    }
-
-    indicator: Rectangle {
-        id: indicatorRectangle
-        z: 1
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: 18
-        color: "transparent"
-
-        border {
-            id: border
-            color: borderColor
-            width: 1
-        }
-
-        implicitWidth: 20
-        implicitHeight: 20
-        radius: JamiTheme.settingsBoxRadius
-
-        Rectangle {
-            id: innerRect
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            width: 12
-            height: 12
-            radius: JamiTheme.settingsBoxRadius
-            visible: checked || hovered
-
-            Behavior on visible  {
-                enabled: hovered
-                NumberAnimation {
-                    from: 0
-                    duration: JamiTheme.shortFadeDuration
-                }
-            }
-
-            color: checkedColor
-
-            HoverHandler {
-                target: parent
-            }
-        }
-    }
-
-    contentItem: RowLayout {
-
-        anchors.fill: parent
-        anchors.leftMargin: 55
-        anchors.rightMargin: 5
-        spacing: 10
-
-        ResponsiveImage {
-            visible: iconSource !== ""
-            source: iconSource
-            width: JamiTheme.radioImageSize
-            height: JamiTheme.radioImageSize
-            color: borderColor
-        }
-
-        Text {
-            text: root.text
-            color: textColor
-            Layout.fillWidth: true
-            wrapMode: Text.WordWrap
-            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
-        }
-    }
 
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
@@ -119,20 +40,92 @@ RadioButton {
 
     Rectangle {
         anchors.fill: parent
+        color: backgroundColor
         radius: JamiTheme.settingsBoxRadius
+
+        border {
+            color: borderOuterRectangle
+            width: 1
+        }
+    }
+    Rectangle {
+        anchors.fill: parent
         color: "transparent"
+        radius: JamiTheme.settingsBoxRadius
         visible: checked || hovered
 
         border {
-            width: 1
             color: borderColor
+            width: 1
         }
 
         Behavior on visible  {
             enabled: hovered
+
             NumberAnimation {
-                from: 0
                 duration: JamiTheme.shortFadeDuration
+                from: 0
+            }
+        }
+    }
+
+    contentItem: RowLayout {
+        anchors.fill: parent
+        anchors.leftMargin: 55
+        anchors.rightMargin: 5
+        spacing: 10
+
+        ResponsiveImage {
+            color: borderColor
+            height: JamiTheme.radioImageSize
+            source: iconSource
+            visible: iconSource !== ""
+            width: JamiTheme.radioImageSize
+        }
+        Text {
+            color: textColor
+            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+            text: root.text
+            wrapMode: Text.WordWrap
+        }
+    }
+    indicator: Rectangle {
+        id: indicatorRectangle
+        anchors.left: parent.left
+        anchors.leftMargin: 18
+        anchors.verticalCenter: parent.verticalCenter
+        color: "transparent"
+        implicitHeight: 20
+        implicitWidth: 20
+        radius: JamiTheme.settingsBoxRadius
+        z: 1
+
+        border {
+            id: border
+            color: borderColor
+            width: 1
+        }
+        Rectangle {
+            id: innerRect
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            color: checkedColor
+            height: 12
+            radius: JamiTheme.settingsBoxRadius
+            visible: checked || hovered
+            width: 12
+
+            HoverHandler {
+                target: parent
+            }
+
+            Behavior on visible  {
+                enabled: hovered
+
+                NumberAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                    from: 0
+                }
             }
         }
     }

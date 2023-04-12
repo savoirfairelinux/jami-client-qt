@@ -97,7 +97,7 @@ SidePanelBase {
                                 "title": JamiStrings.system
                             }, {
                                 "id": 6,
-                                "title": JamiStrings.appearence
+                                "title": JamiStrings.appearance
                             }, {
                                 "id": 7,
                                 "title": JamiStrings.locationSharingLabel

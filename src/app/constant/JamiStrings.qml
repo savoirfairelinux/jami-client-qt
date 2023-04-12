@@ -873,7 +873,7 @@ Item {
     property string enableAccountDescription: qsTr("Enabling your account allows you to be contacted on Jami")
 
     // General
-    property string appearence: qsTr("Appearance")
+    property string appearance: qsTr("Appearance")
 
     // System
     property string experimental: qsTr("Experimental")
