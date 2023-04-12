@@ -164,15 +164,15 @@ AbstractButton {
                 PropertyChanges { target: background; color: pressedColor}
             },
             State {
-                name: "hovered"; when: hovered || root.focus
+                name: "hovered"; when: hovered || root.activeFocus
                 PropertyChanges { target: background; color: hoveredColor }
             },
             State {
-                name: "forceHovered"; when: forceHovered || root.focus
+                name: "forceHovered"; when: forceHovered || root.activeFocus
                 PropertyChanges { target: background; color: hoveredColor }
             },
             State {
-                name: "normal"; when: !hovered && ! checked
+                name: "normal"; when: !hovered && !checked
                 PropertyChanges { target: background; color: normalColor }
             }
         ]

@@ -233,6 +233,11 @@ Item {
     property color previewUrlColor : darkTheme ? "#eeeeee" : "#333"
     property color messageWebViewFooterButtonImageColor: darkTheme ? "#838383" : "#656565"
     property color chatviewUsernameColor : "#A7A7A7"
+    property color chatViewFooterButtonImageColor: darkTheme ? "#03B9E9" : blackColor
+    property color chatViewFooterShowMoreButtonColor: darkTheme ? "#123f4a" : "#D9E6F0"
+    property color chatViewFooterButtonColor: darkTheme ? "#123F4A" :  "#E5E5E5"
+    property color showMoreOpenButtonColor: darkTheme ? "#03b9e9" : "#aec9df"
+    property color showMoreOpenImgColor: darkTheme ? blackColor : "#005699"
 
     //mapPosition
     property color mapButtonsOverlayColor: darkTheme ? "#000000" : "#f0f0f0"
@@ -435,8 +440,9 @@ Item {
     property real chatViewHeaderPreferredHeight: 64
     property real chatViewFooterPreferredHeight: 50
     property real chatViewFooterMaximumHeight: 280
-    property real chatViewFooterRowSpacing: 1
+    property real chatViewFooterRowSpacing: 4
     property real chatViewFooterButtonSize: 36
+    property real chatViewFooterRealButtonSize: 26
     property real chatViewFooterButtonIconSize: 48
     property real chatViewFooterButtonRadius: 5
     property real chatViewFooterTextAreaMaximumHeight: 130

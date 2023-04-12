@@ -18,6 +18,8 @@
 
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
+import SortFilterProxyModel 0.2
 
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
@@ -33,6 +35,16 @@ ColumnLayout {
     property real marginSize: JamiTheme.messageBarMarginSize
     property bool sendButtonVisibility: false
     property bool animate: false
+    property bool showDefault: true
+    property bool showTypo: false
+    property color listViewButtonNormalColor: showDefault ? JamiTheme.chatViewFooterButtonColor : JamiTheme.chatViewFooterShowMoreButtonColor
+    property color listViewButtonImgColor: JamiTheme.chatViewFooterButtonImageColor
+
+    property color showMoreNormalColor: showDefault ? JamiTheme.messageInBgColor : JamiTheme.showMoreOpenButtonColor
+    property color showMoreImgColor: showDefault ? JamiTheme.blackColor : JamiTheme.showMoreOpenImgColor
+
+    property color showTypoNormalColor: !showTypo ? JamiTheme.messageInBgColor : JamiTheme.showMoreOpenButtonColor
+    property color showTypoImgColor: !showTypo ? JamiTheme.blackColor : JamiTheme.showMoreOpenImgColor
 
     signal sendMessageButtonClicked
     signal sendFileButtonClicked
@@ -41,7 +53,7 @@ ColumnLayout {
     signal showMapClicked
     signal emojiButtonClicked
 
-    implicitHeight: messageBarRowLayout.height
+    implicitHeight: test.height//messageBarRowLayout_.height
 
     spacing: 0
 
@@ -55,190 +67,393 @@ ColumnLayout {
         color: JamiTheme.tabbarBorderColor
     }
 
-    RowLayout {
-        id: messageBarRowLayout
+    MessageBarTextArea {
+        id: textArea
 
-        Layout.alignment: Qt.AlignCenter
+        objectName: "messageBarTextArea"
+
+        // forward activeFocus to the actual text area object
+        onActiveFocusChanged: {
+            if (activeFocus)
+                textAreaObj.forceActiveFocus()
+        }
+
+        placeholderText: JamiStrings.writeTo.arg(CurrentConversation.title)
+
+        Layout.alignment: Qt.AlignVCenter
+        Layout.fillWidth: true
+        Layout.margins: marginSize / 2
+        Layout.preferredHeight: {
+            return JamiTheme.chatViewFooterPreferredHeight
+                    > contentHeight ? JamiTheme.chatViewFooterPreferredHeight : contentHeight
+        }
+        Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight
+                              - marginSize / 2
+
+        onSendMessagesRequired: root.sendMessageButtonClicked()
+        onTextChanged: MessagesAdapter.userIsComposing(text ? true : false)
+    }
+
+    Item {
+        id: test
         Layout.fillWidth: true
         Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
+        Layout.bottomMargin: JamiTheme.preferredMarginSize
+        Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
 
-        spacing: JamiTheme.chatViewFooterRowSpacing
 
-        PushButton {
-            id: showMapButton
 
-            Layout.alignment: Qt.AlignVCenter
-            Layout.leftMargin: marginSize
-            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-            visible: WITH_WEBENGINE && !CurrentConversation.isSip
+        RowLayout {
 
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize
+            id: messageBarRowLayout_
 
-            toolTipText: JamiStrings.shareLocation
+            spacing: JamiTheme.chatViewFooterRowSpacing
 
-            source: JamiResources.share_location_svg
+            Row {
 
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
+                PushButton {
+                    id: typoButton
 
-            onClicked: root.showMapClicked()
-        }
+                    preferredSize: JamiTheme.chatViewFooterButtonSize
+                    imageContainerWidth: 20
+                    imageContainerHeight: 20
 
-        PushButton {
-            id: sendFileButton
+                    radius: JamiTheme.chatViewFooterButtonRadius
 
-            Layout.alignment: Qt.AlignVCenter
-            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
+                    toolTipText: "new text format"
 
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
+                    source: JamiResources.text_edit_svg
 
-            toolTipText: JamiStrings.sendFile
-            visible: !CurrentConversation.isSip
+                    normalColor: showTypoNormalColor
+                    imageColor: showTypoImgColor
 
-            source: JamiResources.link_black_24dp_svg
+                    onClicked: showTypo = !showTypo
+                }
 
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
+                ListView {
+                    id: listViewTypo
 
-            onClicked: root.sendFileButtonClicked()
-        }
+                    visible: showTypo
 
-        PushButton {
-            id: audioRecordMessageButton
+                    width: count * 36 + 10
+                    height: JamiTheme.chatViewFooterButtonSize
+                    orientation: ListView.Horizontal
+                    interactive: false
+                    leftMargin : 10
+                    spacing: 10
 
-            Layout.alignment: Qt.AlignVCenter
-            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
+                    Rectangle {
+                        anchors.fill: parent
+                        color: JamiTheme.chatViewFooterShowMoreButtonColor
+                        z: -1
+                    }
 
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize
+                    property list<Action> menuTypoActions: [
+                        Action {
+                            id: boldAction
+                            property var iconSrc: JamiResources.bold_svg
+                            property var toolTip: JamiStrings.bold
+                            onTriggered: function clickAction() {
+                                print("hello")
+                            }
+                        },
+                        Action {
+                            id: italicAction
+                            property var iconSrc: JamiResources.italic_svg
+                            property var toolTip: JamiStrings.italic
+                            onTriggered: function clickAction() {
+                                print("hello")
+                            }
+                        },
+                        Action {
+                            id: barreAction
+                            property var iconSrc: JamiResources.barre_svg
+                            property var toolTip: JamiStrings.barre
+                            onTriggered: function clickAction() {
+                                print("hello")
+                            }
+                        },
+                        Action {
+                            id: titleAction
+                            property var iconSrc: JamiResources.title_svg
+                            property var toolTip: JamiStrings.title
+                            onTriggered: function clickAction() {
+                                print("hello")
+                            }
+                        },
+                        Action {
+                            id: linkAction
+                            property var iconSrc: JamiResources.link_svg
+                            property var toolTip: JamiStrings.link
+                            onTriggered: function clickAction() {
+                                print("hello")
+                            }
+                        },
+                        Action {
+                            id: codeAction
+                            property var iconSrc: JamiResources.code_svg
+                            property var toolTip: JamiStrings.code
+                            onTriggered: function clickAction() {
+                                print("hello")
+                            }
+                        },
+                        Action {
+                            id: quoteAction
+                            property var iconSrc: JamiResources.quote_svg
+                            property var toolTip: JamiStrings.quote
+                            onTriggered: function clickAction() {
+                                print("hello")
+                            }
+                        },
+                        Action {
+                            id: bulletPointAction
+                            property var iconSrc: JamiResources.bullet_point_svg
+                            property var toolTip: JamiStrings.bulletPoint
+                            onTriggered: function clickAction() {
+                                print("hello")
+                            }
+                        },
+                        Action {
+                            id: bulletNumberAction
+                            property var iconSrc: JamiResources.bullet_number_svg
+                            property var toolTip: JamiStrings.bulletNumber
+                            onTriggered: function clickAction() {
+                                print("hello")
+                            }
+                        }
+                    ]
 
-            toolTipText: JamiStrings.leaveAudioMessage
-            visible: !CurrentConversation.isSip
+                    model: menuTypoActions
 
-            source: JamiResources.message_audio_black_24dp_svg
+                    delegate: PushButton {
+                        anchors.verticalCenter: parent.verticalCenter
 
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
+                        preferredSize: JamiTheme.chatViewFooterRealButtonSize
+                        imageContainerWidth: 10
+                        imageContainerHeight: 10
+                        radius: 5
 
-            onClicked: root.audioRecordMessageButtonClicked()
+                        toolTipText: modelData.toolTip
+                        source: modelData.iconSrc
 
-            Component.onCompleted: JamiQmlUtils.audioRecordMessageButtonObj = audioRecordMessageButton
-        }
+                        normalColor: JamiTheme.chatViewFooterShowMoreButtonColor
+                        imageColor: hovered ? JamiTheme.tintedBlue : listViewButtonImgColor
+                        hoveredColor: JamiTheme.showMoreOpenButtonColor
+                        pressedColor: JamiTheme.showMoreOpenButtonColor
 
-        PushButton {
-            id: videoRecordMessageButton
+                        action: modelData
 
-            Layout.alignment: Qt.AlignVCenter
-            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-            visible: VideoDevices.listSize !== 0 && !CurrentConversation.isSip
-
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize
-
-            toolTipText: JamiStrings.leaveVideoMessage
-
-            source: JamiResources.message_video_black_24dp_svg
-
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
-
-            onClicked: root.videoRecordMessageButtonClicked()
-
-            Component.onCompleted: JamiQmlUtils.videoRecordMessageButtonObj = videoRecordMessageButton
-        }
-
-        MessageBarTextArea {
-            id: textArea
-
-            objectName: "messageBarTextArea"
-
-            // forward activeFocus to the actual text area object
-            onActiveFocusChanged: {
-                if (activeFocus)
-                    textAreaObj.forceActiveFocus()
-            }
-
-            placeholderText: JamiStrings.writeTo.arg(CurrentConversation.title)
-
-            Layout.alignment: Qt.AlignVCenter
-            Layout.fillWidth: true
-            Layout.margins: marginSize / 2
-            Layout.preferredHeight: {
-                return JamiTheme.chatViewFooterPreferredHeight
-                        > contentHeight ? JamiTheme.chatViewFooterPreferredHeight : contentHeight
-            }
-            Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight
-                                  - marginSize / 2
-
-            onSendMessagesRequired: root.sendMessageButtonClicked()
-            onTextChanged: MessagesAdapter.userIsComposing(text ? true : false)
-        }
-
-        PushButton {
-            id: emojiButton
-            visible: WITH_WEBENGINE
-
-            Layout.alignment: Qt.AlignVCenter
-            Layout.rightMargin: sendMessageButton.visible ? 0 : marginSize
-            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize
-
-            toolTipText: JamiStrings.addEmoji
-
-            source: JamiResources.emoji_black_24dp_svg
-
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
-
-            onClicked: root.emojiButtonClicked()
-
-            Component.onCompleted: JamiQmlUtils.emojiPickerButtonObj = emojiButton
-        }
-
-        PushButton {
-            id: sendMessageButton
-
-            objectName: "sendMessageButton"
-
-            Layout.alignment: Qt.AlignVCenter
-            Layout.rightMargin: visible ? marginSize : 0
-            Layout.preferredWidth: scale * JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
-
-            toolTipText: JamiStrings.send
-
-            source: JamiResources.send_black_24dp_svg
-
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
-
-            opacity: sendButtonVisibility ? 1 : 0
-            visible: opacity
-            scale: opacity
-
-            Behavior on opacity {
-                enabled: animate
-                NumberAnimation {
-                    duration: JamiTheme.shortFadeDuration
-                    easing.type: Easing.InOutQuad
+                    }
                 }
             }
 
-            onClicked: root.sendMessageButtonClicked()
+            Row {
+
+                ListView {
+                    id: listViewAction
+
+                    width: count * 36
+                    height: JamiTheme.chatViewFooterButtonSize
+                    orientation: ListView.Horizontal
+                    interactive: false
+
+                    Rectangle {
+                        anchors.fill: parent
+                        color: JamiTheme.chatViewFooterShowMoreButtonColor
+                        z: -1
+                    }
+
+                    property list<Action> menuActions: [
+                        Action {
+                            id: sendFile
+                            property var iconSrc: JamiResources.link_black_24dp_svg
+                            property var toolTip: JamiStrings.sendFile
+                            property bool show: true
+                            property bool needWebEngine: false
+                            property bool needVideoDevice: false
+                            property bool noSip: false
+                            onTriggered: function clickAction() {
+                                sendFileButtonClicked()
+                            }
+                        },
+                        Action {
+                            id: addEmoji
+                            property var iconSrc: JamiResources.emoji_black_24dp_svg
+                            property var toolTip: JamiStrings.addEmoji
+                            property bool show: true
+                            property bool needWebEngine: true
+                            property bool needVideoDevice: false
+                            property bool noSip: true
+                            onTriggered: function clickAction() {
+                                emojiButtonClicked()
+                            }
+                        },
+                        Action {
+                            id: leaveAudioMessage
+                            property var iconSrc: JamiResources.message_audio_black_24dp_svg
+                            property var toolTip: JamiStrings.leaveAudioMessage
+                            property bool show: false
+                            property bool needWebEngine: false
+                            property bool needVideoDevice: false
+                            property bool noSip: false
+                            onTriggered: function clickAction() {
+                                audioRecordMessageButtonClicked()
+                            }
+                        },
+                        Action {
+                            id: leaveVideoMessage
+                            property var iconSrc: JamiResources.message_video_black_24dp_svg
+                            property var toolTip: JamiStrings.leaveVideoMessage
+                            property bool show: false
+                            property bool needWebEngine: false
+                            property bool needVideoDevice: true
+                            property bool noSip: false
+                            onTriggered: function clickAction() {
+                                videoRecordMessageButtonClicked()
+                            }
+                        },
+                        Action {
+                            id: shareLocation
+                            property var iconSrc: JamiResources.localisation_sharing_send_pin_svg
+                            property var toolTip: JamiStrings.shareLocation
+                            property bool show: false
+                            property bool needWebEngine: false
+                            property bool needVideoDevice: false
+                            property bool noSip: false
+                            onTriggered: function clickAction() {
+                                showMapClicked()
+                            }
+                        }
+                    ]
+                    ListModel {
+                        id: listActions
+                        Component.onCompleted: {
+                            print(listViewAction.menuActions.length)
+                            for(var i = 0; i<listViewAction.menuActions.length; i++){
+                                append({menuAction: listViewAction.menuActions[i]})
+                            }
+                        }
+                    }
+
+                    model: SortFilterProxyModel {
+                        sourceModel: listActions
+                        filters: [
+                            ExpressionFilter {
+                                expression: menuAction.show === true
+                                enabled: root.showDefault
+                            },
+                            ExpressionFilter {
+                                expression: menuAction.needWebEngine === false
+                                enabled: !WITH_WEBENGINE
+                            },
+                            ExpressionFilter {
+                                expression: menuAction.noSip === true
+                                enabled: CurrentConversation.isSip
+                            },
+                            ExpressionFilter {
+                                expression: menuAction.needVideoDevice === false
+                                enabled: VideoDevices.listSize === 0
+                            }
+                        ]
+                    }
+
+                    delegate: PushButton {
+
+                        preferredSize: JamiTheme.chatViewFooterButtonSize
+                        imageContainerWidth: 20
+                        imageContainerHeight: 20
+                        radius: 0
+
+                        toolTipText: modelData.toolTip
+                        source: modelData.iconSrc
+
+                        normalColor: listViewButtonNormalColor
+                        imageColor: listViewButtonImgColor
+                        hoveredColor: JamiTheme.showMoreOpenButtonColor
+                        pressedColor: JamiTheme.showMoreOpenButtonColor
+
+                        action: modelData
+                    }
+
+                }
+
+                Rectangle {
+                    z: -1
+                    radius: 0
+                    color: showMoreButton.normalColor
+                    width: JamiTheme.chatViewFooterButtonSize / 2
+                    height: JamiTheme.chatViewFooterButtonSize
+
+                    PushButton {
+                        id: showMoreButton
+                        anchors.left: parent.left
+
+                        preferredSize: JamiTheme.chatViewFooterButtonSize
+                        imageContainerWidth: 20
+                        imageContainerHeight: 20
+
+                        radius: JamiTheme.chatViewFooterButtonRadius
+
+                        toolTipText: JamiStrings.showMore
+
+                        source: JamiResources.more_vert_24dp_svg
+
+                        normalColor: showMoreNormalColor
+                        imageColor: showMoreImgColor
+
+                        onClicked: {
+
+                            showDefault = !showDefault
+                        }
+                    }
+                }
+
+
+
+            }
         }
 
-        Component.onCompleted: JamiQmlUtils.messageBarButtonsRowObj = messageBarRowLayout
+
+        Row {
+
+            spacing: JamiTheme.chatViewFooterRowSpacing
+            anchors.right: parent.right
+            anchors.rightMargin: sendMessageButton.visible ? marginSize : 0
+
+            PushButton {
+                id: sendMessageButton
+
+                objectName: "sendMessageButton"
+
+                width: scale * JamiTheme.chatViewFooterButtonSize
+                height: JamiTheme.chatViewFooterButtonSize
+
+                radius: JamiTheme.chatViewFooterButtonRadius
+                preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
+                imageContainerWidth: 25
+                imageContainerHeight: 25
+
+                toolTipText: JamiStrings.send
+
+                source: JamiResources.send_black_24dp_svg
+
+                normalColor: JamiTheme.tintedBlue
+                imageColor: JamiTheme.whiteColor
+
+                opacity: sendButtonVisibility ? 1 : 0
+                visible: opacity
+                scale: opacity
+
+                Behavior on opacity {
+                    enabled: animate
+                    NumberAnimation {
+                        duration: JamiTheme.shortFadeDuration
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+
+                onClicked: root.sendMessageButtonClicked()
+            }
+        }
     }
 }
