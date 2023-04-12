@@ -17,6 +17,8 @@
  */
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
+import SortFilterProxyModel 0.2
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -30,6 +32,11 @@ ColumnLayout {
     property real marginSize: JamiTheme.messageBarMarginSize
     property bool sendButtonVisibility: false
     property bool animate: false
+    property bool showDefault: true
+    property bool showTypo: false
+    property bool showTypoSecond: false
+
+    property int messageBarLayoutMaximumWidth: 486
 
     signal sendMessageButtonClicked
     signal sendFileButtonClicked
@@ -38,9 +45,33 @@ ColumnLayout {
     signal showMapClicked
     signal emojiButtonClicked
 
-    implicitHeight: messageBarRowLayout.height
+    spacing: 5
 
-    spacing: 0
+    function instanceTypoObject() {
+        var component = Qt.createComponent("qrc:/commoncomponents/MarkdownPopup.qml");
+        var obj = component.createObject(parent, {
+                "parent": showMoreTypoButton,
+                "start": textArea.selectionStart,
+                "end": textArea.selectionEnd,
+                "text": root.text
+            });
+        obj.addStyle.connect(function (char1, char2) {
+                listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, char1, char2);
+            });
+        obj.addPrefixStyle.connect(function (headerPrefix, isBulletNumber) {
+                listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, headerPrefix, isBulletNumber);
+            });
+        obj.popupClosed.connect(function () {
+                showMoreTypoButton.checked = false;
+            });
+        if (obj === null) {
+            // Error Handling
+            console.log("Error creating object");
+        } else {
+            obj.open();
+        }
+        instanceTypoObject.obj = obj;
+    }
 
     Rectangle {
         id: messageBarHairLine
@@ -52,188 +83,712 @@ ColumnLayout {
         color: JamiTheme.tabbarBorderColor
     }
 
-    RowLayout {
-        id: messageBarRowLayout
+    MessageBarTextArea {
+        id: textArea
 
-        Layout.alignment: Qt.AlignCenter
+        objectName: "messageBarTextArea"
+
+        // forward activeFocus to the actual text area object
+        onActiveFocusChanged: {
+            if (activeFocus)
+                textAreaObj.forceActiveFocus();
+        }
+
+        placeholderText: JamiStrings.writeTo.arg(CurrentConversation.title)
+
+        Layout.alignment: Qt.AlignVCenter
         Layout.fillWidth: true
-        Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
-
-        spacing: JamiTheme.chatViewFooterRowSpacing
-
-        PushButton {
-            id: showMapButton
-
-            Layout.alignment: Qt.AlignVCenter
-            Layout.leftMargin: marginSize
-            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-            visible: WITH_WEBENGINE && !CurrentConversation.isSip
-
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize
-
-            toolTipText: JamiStrings.shareLocation
-
-            source: JamiResources.share_location_svg
-
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
-
-            onClicked: root.showMapClicked()
+        Layout.leftMargin: marginSize / 2
+        Layout.rightMargin: marginSize / 2
+        Layout.preferredHeight: {
+            return JamiTheme.chatViewFooterPreferredHeight > contentHeight ? JamiTheme.chatViewFooterPreferredHeight : contentHeight;
         }
+        Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight - marginSize / 2
 
-        PushButton {
-            id: sendFileButton
+        onSendMessagesRequired: root.sendMessageButtonClicked()
+        onTextChanged: MessagesAdapter.userIsComposing(text ? true : false)
+    }
 
-            Layout.alignment: Qt.AlignVCenter
-            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
-
-            toolTipText: JamiStrings.sendFile
-            visible: !CurrentConversation.isSip
-
-            source: JamiResources.link_black_24dp_svg
-
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
-
-            onClicked: root.sendFileButtonClicked()
-        }
-
-        PushButton {
-            id: audioRecordMessageButton
-
-            Layout.alignment: Qt.AlignVCenter
-            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize
-
-            toolTipText: JamiStrings.leaveAudioMessage
-            visible: !CurrentConversation.isSip
-
-            source: JamiResources.message_audio_black_24dp_svg
-
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
-
-            onClicked: root.audioRecordMessageButtonClicked()
-
-            Component.onCompleted: JamiQmlUtils.audioRecordMessageButtonObj = audioRecordMessageButton
-        }
-
-        PushButton {
-            id: videoRecordMessageButton
-
-            Layout.alignment: Qt.AlignVCenter
-            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-            visible: VideoDevices.listSize !== 0 && !CurrentConversation.isSip
-
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize
-
-            toolTipText: JamiStrings.leaveVideoMessage
-
-            source: JamiResources.message_video_black_24dp_svg
-
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
-
-            onClicked: root.videoRecordMessageButtonClicked()
-
-            Component.onCompleted: JamiQmlUtils.videoRecordMessageButtonObj = videoRecordMessageButton
-        }
-
-        MessageBarTextArea {
-            id: textArea
-
-            objectName: "messageBarTextArea"
-
-            // forward activeFocus to the actual text area object
-            onActiveFocusChanged: {
-                if (activeFocus)
-                    textAreaObj.forceActiveFocus();
+    onShowTypoSecondChanged: {
+        if (showTypoSecond) {
+            if (instanceTypoObject.obj !== undefined) {
+                showMoreTypoButton.checked = false;
+                instanceTypoObject.obj.destroy();
+                instanceTypoObject.obj = undefined;
             }
+        }
+    }
 
-            placeholderText: JamiStrings.writeTo.arg(CurrentConversation.title)
+    Item {
+        id: messageBar
+        Layout.fillWidth: true
+        Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
+        Layout.leftMargin: marginSize
+        Layout.bottomMargin: marginSize
 
-            Layout.alignment: Qt.AlignVCenter
-            Layout.fillWidth: true
-            Layout.margins: marginSize / 2
-            Layout.preferredHeight: {
-                return JamiTheme.chatViewFooterPreferredHeight > contentHeight ? JamiTheme.chatViewFooterPreferredHeight : contentHeight;
+        onWidthChanged: {
+            if (width < messageBarRowLayout.width + sendButtonRow.width + 2 * JamiTheme.preferredMarginSize) {
+                showTypoSecond = false;
+            } else {
+                if (width > 2 * messageBarRowLayout.width) {
+                    showTypoSecond = true;
+                }
             }
-            Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight - marginSize / 2
-
-            onSendMessagesRequired: root.sendMessageButtonClicked()
-            onTextChanged: MessagesAdapter.userIsComposing(text ? true : false)
         }
 
-        PushButton {
-            id: emojiButton
-            visible: WITH_WEBENGINE
+        RowLayout {
+            id: messageBarRowLayout
 
-            Layout.alignment: Qt.AlignVCenter
-            Layout.rightMargin: sendMessageButton.visible ? 0 : marginSize
-            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
+            spacing: JamiTheme.chatViewFooterRowSpacing
 
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize
+            Row {
 
-            toolTipText: JamiStrings.addEmoji
+                PushButton {
+                    id: typoButton
 
-            source: JamiResources.emoji_black_24dp_svg
+                    preferredSize: JamiTheme.chatViewFooterButtonSize
+                    imageContainerWidth: 24
+                    imageContainerHeight: 24
 
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
+                    radius: JamiTheme.chatViewFooterButtonRadius
 
-            onClicked: root.emojiButtonClicked()
+                    toolTipText: showTypo ? JamiStrings.hideFormating : JamiStrings.showFormating
+                    source: JamiResources.text_edit_black_24dp_svg
 
-            Component.onCompleted: JamiQmlUtils.emojiPickerButtonObj = emojiButton
-        }
+                    normalColor: !showTypo ? JamiTheme.chatViewFooterListColor : JamiTheme.showMoreButtonOpenColor
+                    imageColor: JamiTheme.chatViewFooterImgColor
+                    pressedColor: JamiTheme.showMoreButtonOpenColor
+                    hoveredColor: JamiTheme.showMoreButtonOpenColor
 
-        PushButton {
-            id: sendMessageButton
+                    onClicked: {
+                        showTypo = !showTypo;
+                        if (messageBar.width < messageBarLayoutMaximumWidth + sendButtonRow.width + 2 * JamiTheme.preferredMarginSize)
+                            showTypoSecond = false;
+                        if (!showDefault)
+                            showDefault = true;
+                    }
 
-            objectName: "sendMessageButton"
+                    Rectangle {
+                        visible: showTypo
 
-            Layout.alignment: Qt.AlignVCenter
-            Layout.rightMargin: visible ? marginSize : 0
-            Layout.preferredWidth: scale * JamiTheme.chatViewFooterButtonSize
-            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
+                        anchors.fill: parent
+                        anchors.leftMargin: 3
+                        anchors.rightMargin: -5
+                        color: JamiTheme.showMoreButtonOpenColor
+                        z: -2
+                    }
+                }
 
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
+                Row {
+                    id: listViewTypo
+                    height: JamiTheme.chatViewFooterButtonSize
 
-            toolTipText: JamiStrings.send
+                    function addStyle(text, start, end, char1, char2) {
+                        // get the selected text with markdown effect
+                        var selectedText = text.substring(start - char1.length, end + char2.length);
+                        if (selectedText.startsWith(char1) && selectedText.endsWith(char2)) {
+                            // If the selected text is already formatted with the given characters, remove them
+                            selectedText = text.substring(start, end);
+                            root.text = text.substring(0, start - char1.length) + selectedText + text.substring(end + char2.length);
+                            textArea.selectText(start - char1.length, end - char1.length);
+                        } else {
+                            // Otherwise, add the formatting characters to the selected text
+                            root.text = text.substring(0, start) + char1 + text.substring(start, end) + char2 + text.substring(end);
+                            textArea.selectText(start + char1.length, end + char1.length);
+                        }
+                    }
 
-            source: JamiResources.send_black_24dp_svg
+                    //https://github.com/mattermost/mattermost-webapp/blob/master/utils/markdown/apply_markdown.ts
+                    function addPrefixStyle(message, selectionStart, selectionEnd, delimiter, isBulletNumber) {
+                        function getMultilineSuffix(suffix) {
+                            if (suffix.startsWith('\n')) {
+                                return '';
+                            }
+                            return suffix.indexOf('\n') === -1 ? suffix : suffix.slice(0, suffix.indexOf('\n'));
+                        }
+                        function getNewSuffix(suffix) {
+                            if (suffix.startsWith('\n')) {
+                                return suffix;
+                            }
+                            return suffix.indexOf('\n') === -1 ? '' : suffix.slice(suffix.indexOf('\n'));
+                        }
+                        var prefix = message.slice(0, selectionStart);
+                        var selection = message.slice(selectionStart, selectionEnd);
+                        var suffix = message.slice(selectionEnd);
+                        var newPrefix = prefix.includes('\n') ? prefix.slice(0, prefix.lastIndexOf('\n')) : '';
+                        var multilinePrefix = prefix.includes('\n') ? prefix.slice(prefix.lastIndexOf('\n')) : prefix;
+                        var multilineSuffix = getMultilineSuffix(suffix);
+                        var newSuffix = getNewSuffix(suffix);
+                        var multilineSelection = multilinePrefix + selection + multilineSuffix;
+                        var isFirstLineSelected = !multilineSelection.startsWith('\n');
+                        if (selection.startsWith('\n')) {
+                            multilineSelection = prefix + selection + multilineSuffix;
+                        }
+                        const delimiterLength = 3;
+                        var getDelimiter_counter = 1;
+                        function getDelimiter() {
+                            return `${getDelimiter_counter++}. `;
+                        }
+                        function getHasCurrentMarkdown() {
+                            var linesQuantity = (multilineSelection.match(/\n/g) || []).length;
+                            var newLinesWithDelimitersQuantity = (multilineSelection.match(new RegExp(`\n${delimiter}`, 'g')) || []).length;
+                            if (newLinesWithDelimitersQuantity === linesQuantity && !isFirstLineSelected) {
+                                return true;
+                            }
+                            return linesQuantity === newLinesWithDelimitersQuantity && multilineSelection.startsWith(delimiter);
+                        }
+                        function getHasCurrentMarkdownBullet() {
+                            const linesQuantity = (multilineSelection.match(/\n/g) || []).length;
+                            const newLinesWithDelimitersQuantity = (multilineSelection.match(/\n\d+\. /g) || []).length;
+                            if (newLinesWithDelimitersQuantity === linesQuantity && !isFirstLineSelected) {
+                                return true;
+                            }
+                            return linesQuantity === newLinesWithDelimitersQuantity && (/^\d\. /).test(multilineSelection);
+                        }
+                        var newValue;
+                        var newStart;
+                        var newEnd;
+                        var count;
+                        var startPos;
+                        var multilineSelectionLength;
+                        if (!isBulletNumber) {
+                            if (getHasCurrentMarkdown()) {
 
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
+                                // clear first line from delimiter
+                                if (isFirstLineSelected) {
+                                    multilineSelection = multilineSelection.slice(delimiter.length);
+                                }
+                                newValue = newPrefix + multilineSelection.replace(new RegExp(`\n${delimiter}`, 'g'), '\n') + newSuffix;
+                                count = 0;
+                                if (isFirstLineSelected) {
+                                    count++;
+                                }
+                                count += (multilineSelection.match(/\n/g) || []).length;
+                                newStart = Math.max(selectionStart - delimiter.length, 0);
+                                newEnd = Math.max(selectionEnd - (delimiter.length * count), 0);
+                            } else {
+                                newValue = newPrefix + multilineSelection.replace(/\n/g, `\n${delimiter}`) + newSuffix;
+                                count = 0;
+                                if (isFirstLineSelected) {
+                                    newValue = delimiter + newValue;
+                                    count++;
+                                }
+                                count += (multilineSelection.match(new RegExp('\\n', 'g')) || []).length;
+                                newStart = selectionStart + delimiter.length;
+                                newEnd = selectionEnd + (delimiter.length * count);
+                            }
+                        } else {
+                            if (getHasCurrentMarkdownBullet()) {
+                                if (message[selectionStart] === "\n")
+                                    startPos = message.lastIndexOf('\n', selectionStart - 1) + 1;
+                                else
+                                    startPos = message.lastIndexOf('\n', selectionStart) + 1;
+                                newStart = startPos;
+                                multilineSelection = multilineSelection.replace(/^\d+\.\s/gm, '');
+                                newValue = newPrefix + multilineSelection + newSuffix;
+                                multilineSelectionLength = multilineSelection.length;
 
-            opacity: sendButtonVisibility ? 1 : 0
-            visible: opacity
-            scale: opacity
+                                //if the first line is not selected, we meed to remove the first "\n" of multilineSelection
+                                if (newStart)
+                                    multilineSelectionLength = multilineSelection.length - 1;
+                                newEnd = Math.max(newStart + multilineSelectionLength, 0);
+                            } else {
+                                if (message[selectionStart] === "\n")
+                                    startPos = message.lastIndexOf('\n', selectionStart - 1) + 1;
+                                else
+                                    startPos = message.lastIndexOf('\n', selectionStart) + 1;
+                                newStart = startPos;
 
-            Behavior on opacity  {
-                enabled: animate
-                NumberAnimation {
-                    duration: JamiTheme.shortFadeDuration
-                    easing.type: Easing.InOutQuad
+                                // if no text is selected
+                                if (selectionStart === selectionEnd) {
+                                    newStart = newStart + 3;
+                                }
+                                if (isFirstLineSelected) {
+                                    multilineSelection = getDelimiter() + multilineSelection;
+                                }
+                                const selectionArr = Array.from(multilineSelection);
+                                for (var i = 0; i < selectionArr.length; i++) {
+                                    if (selectionArr[i] === '\n') {
+                                        selectionArr[i] = `\n${getDelimiter()}`;
+                                    }
+                                }
+                                multilineSelection = selectionArr.join('');
+                                newValue = newPrefix + multilineSelection + newSuffix;
+                                multilineSelectionLength = multilineSelection.length;
+
+                                //if the first line is not selected, we meed to remove the first "\n" of multilineSelection
+                                if (startPos)
+                                    multilineSelectionLength = multilineSelection.length - 1;
+                                newEnd = Math.max(startPos + multilineSelectionLength, 0);
+                            }
+                        }
+                        root.text = newValue;
+                        textArea.selectText(newStart, newEnd);
+                    }
+
+                    ListView {
+                        id: listViewTypoFirst
+
+                        /*visible: showTypo
+
+                        width: contentWidth + 2 * leftMargin*/
+                        visible: width > 0
+                        width: showTypo ? contentWidth + 2 * leftMargin : 0
+
+                        Behavior on width  {
+                            NumberAnimation {
+                                duration: JamiTheme.longFadeDuration
+                            }
+                        }
+
+                        height: JamiTheme.chatViewFooterButtonSize
+                        orientation: ListView.Horizontal
+                        interactive: false
+                        leftMargin: 10
+                        rightMargin: 10
+                        spacing: 10
+
+                        Rectangle {
+                            anchors.fill: parent
+                            color: JamiTheme.chatViewFooterListColor
+                            z: -1
+                        }
+
+                        property list<Action> menuTypoActionsFirst: [
+                            Action {
+                                id: boldAction
+                                property var iconSrc: JamiResources.bold_black_24dp_svg
+                                property var toolTip: JamiStrings.bold
+                                property int start: textArea.selectionStart
+                                property int end: textArea.selectionEnd
+                                onTriggered: function clickAction() {
+                                    listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "**", "**");
+                                }
+                            },
+                            Action {
+                                id: italicAction
+                                property var iconSrc: JamiResources.italic_black_24dp_svg
+                                property var toolTip: JamiStrings.italic
+                                onTriggered: function clickAction() {
+                                    listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "*", "*");
+                                }
+                            },
+                            Action {
+                                id: barreAction
+                                property var iconSrc: JamiResources.s_barre_black_24dp_svg
+                                property var toolTip: JamiStrings.barre
+                                onTriggered: function clickAction() {
+                                    listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "~~", "~~");
+                                }
+                            },
+                            Action {
+                                id: titleAction
+                                property var iconSrc: JamiResources.title_black_24dp_svg
+                                property var toolTip: JamiStrings.title
+                                onTriggered: function clickAction() {
+                                    listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "### ", false);
+                                }
+                            }
+                        ]
+
+                        model: menuTypoActionsFirst
+
+                        delegate: PushButton {
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            preferredSize: JamiTheme.chatViewFooterRealButtonSize
+                            imageContainerWidth: 15
+                            imageContainerHeight: 15
+                            radius: 5
+
+                            toolTipText: modelData.toolTip
+                            source: modelData.iconSrc
+
+                            normalColor: JamiTheme.chatViewFooterListColor
+                            imageColor: JamiTheme.chatViewFooterImgColor
+                            hoveredColor: JamiTheme.showMoreButtonOpenColor
+                            pressedColor: hoveredColor
+
+                            action: modelData
+                        }
+                    }
+
+                    Rectangle {
+
+                        height: JamiTheme.chatViewFooterButtonSize
+                        color: JamiTheme.chatViewFooterListColor
+
+                        //width: 2
+                        //visible: showTypo && showTypoSecond
+                        visible: width > 0
+                        width: showTypo && showTypoSecond ? 2 : 0
+
+                        Behavior on width  {
+                            NumberAnimation {
+                                duration: JamiTheme.longFadeDuration
+                            }
+                        }
+
+                        Rectangle {
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: 2
+                            height: JamiTheme.chatViewFooterButtonSize / 2
+                            color: JamiTheme.chatViewFooterSeparateLineColor
+                        }
+                    }
+
+                    Rectangle {
+                        z: -1
+                        radius: 0
+                        color: JamiTheme.chatViewFooterListColor
+                        width: JamiTheme.chatViewFooterButtonSize
+                        height: JamiTheme.chatViewFooterButtonSize
+
+                        visible: showTypo && !showTypoSecond
+
+                        PushButton {
+                            id: showMoreTypoButton
+
+                            anchors.verticalCenter: parent.verticalCenter
+                            preferredSize: JamiTheme.chatViewFooterRealButtonSize
+                            imageContainerWidth: 20
+                            imageContainerHeight: 20
+
+                            radius: JamiTheme.chatViewFooterButtonRadius
+
+                            toolTipText: JamiStrings.showMore
+
+                            source: JamiResources.more_vert_24dp_svg
+                            checkable: true
+
+                            normalColor: JamiTheme.chatViewFooterListColor
+                            imageColor: JamiTheme.chatViewFooterImgColor
+                            hoveredColor: JamiTheme.showMoreButtonOpenColor
+                            pressedColor: hoveredColor
+                            checkedColor: hoveredColor
+
+                            onClicked: {
+                                instanceTypoObject();
+                            }
+                        }
+                    }
+
+                    ListView {
+                        id: listViewTypoSecond
+
+                        /*visible: showTypo && showTypoSecond
+
+                        width: contentWidth + 2 * leftMargin*/
+                        visible: width > 0
+                        width: showTypo && showTypoSecond ? contentWidth + 2 * leftMargin : 0
+
+                        Behavior on width  {
+                            NumberAnimation {
+                                duration: JamiTheme.longFadeDuration
+                            }
+                        }
+
+                        height: JamiTheme.chatViewFooterButtonSize
+                        orientation: ListView.Horizontal
+                        interactive: false
+                        leftMargin: 10
+                        rightMargin: 10
+                        spacing: 10
+
+                        Rectangle {
+                            anchors.fill: parent
+                            color: JamiTheme.chatViewFooterListColor
+                            z: -1
+                        }
+
+                        property list<Action> menuTypoActionsSecond: [
+                            Action {
+                                id: linkAction
+                                property var iconSrc: JamiResources.link_web_black_24dp_svg
+                                property var toolTip: JamiStrings.link
+                                onTriggered: function clickAction() {
+                                    listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "[", "](url)");
+                                }
+                            },
+                            Action {
+                                id: codeAction
+                                property var iconSrc: JamiResources.code_black_24dp_svg
+                                property var toolTip: JamiStrings.code
+                                onTriggered: function clickAction() {
+                                    listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "```", "```");
+                                }
+                            },
+                            Action {
+                                id: quoteAction
+                                property var iconSrc: JamiResources.quote_black_24dp_svg
+                                property var toolTip: JamiStrings.quote
+                                onTriggered: function clickAction() {
+                                    listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "> ", false);
+                                }
+                            },
+                            Action {
+                                id: bulletPointAction
+                                property var iconSrc: JamiResources.bullet_point_black_24dp_svg
+                                property var toolTip: JamiStrings.bulletPoint
+                                onTriggered: function clickAction() {
+                                    listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "- ", false);
+                                }
+                            },
+                            Action {
+                                id: bulletNumberAction
+                                property var iconSrc: JamiResources.bullet_number_black_24dp_svg
+                                property var toolTip: JamiStrings.bulletNumber
+                                onTriggered: function clickAction() {
+                                    listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "", true);
+                                }
+                            }
+                        ]
+
+                        model: menuTypoActionsSecond
+
+                        delegate: PushButton {
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            preferredSize: JamiTheme.chatViewFooterRealButtonSize
+                            imageContainerWidth: 20
+                            imageContainerHeight: 20
+                            radius: 5
+
+                            toolTipText: modelData.toolTip
+                            source: modelData.iconSrc
+
+                            normalColor: JamiTheme.chatViewFooterListColor
+                            imageColor: JamiTheme.chatViewFooterImgColor
+                            hoveredColor: JamiTheme.showMoreButtonOpenColor
+                            pressedColor: hoveredColor
+
+                            action: modelData
+                        }
+                    }
                 }
             }
 
-            onClicked: root.sendMessageButtonClicked()
+            Row {
+
+                ListView {
+                    id: listViewAction
+
+                    width: contentWidth + 2 * leftMargin
+
+                    Behavior on width  {
+                        NumberAnimation {
+                            duration: JamiTheme.longFadeDuration
+                        }
+                    }
+
+                    height: JamiTheme.chatViewFooterButtonSize
+                    orientation: ListView.Horizontal
+                    interactive: false
+
+                    leftMargin: 10
+                    rightMargin: 10
+                    spacing: 10
+
+                    Rectangle {
+                        anchors.fill: parent
+                        color: JamiTheme.chatViewFooterListColor
+                        z: -1
+                    }
+
+                    property list<Action> menuActions: [
+                        Action {
+                            id: sendFile
+                            property var iconSrc: JamiResources.link_black_24dp_svg
+                            property var toolTip: JamiStrings.sendFile
+                            property bool show: true
+                            property bool needWebEngine: false
+                            property bool needVideoDevice: false
+                            property bool noSip: false
+                            onTriggered: function clickAction() {
+                                sendFileButtonClicked();
+                            }
+                        },
+                        Action {
+                            id: addEmoji
+                            property var iconSrc: JamiResources.emoji_black_24dp_svg
+                            property var toolTip: JamiStrings.addEmoji
+                            property bool show: true
+                            property bool needWebEngine: true
+                            property bool needVideoDevice: false
+                            property bool noSip: true
+                            onTriggered: function clickAction() {
+                                emojiButtonClicked();
+                            }
+                        },
+                        Action {
+                            id: leaveAudioMessage
+                            property var iconSrc: JamiResources.message_audio_black_24dp_svg
+                            property var toolTip: JamiStrings.leaveAudioMessage
+                            property bool show: false
+                            property bool needWebEngine: false
+                            property bool needVideoDevice: false
+                            property bool noSip: false
+                            onTriggered: function clickAction() {
+                                audioRecordMessageButtonClicked();
+                            }
+                        },
+                        Action {
+                            id: leaveVideoMessage
+                            property var iconSrc: JamiResources.message_video_black_24dp_svg
+                            property var toolTip: JamiStrings.leaveVideoMessage
+                            property bool show: false
+                            property bool needWebEngine: false
+                            property bool needVideoDevice: true
+                            property bool noSip: false
+                            onTriggered: function clickAction() {
+                                videoRecordMessageButtonClicked();
+                            }
+                        },
+                        Action {
+                            id: shareLocation
+                            property var iconSrc: JamiResources.localisation_sharing_send_pin_svg
+                            property var toolTip: JamiStrings.shareLocation
+                            property bool show: false
+                            property bool needWebEngine: false
+                            property bool needVideoDevice: false
+                            property bool noSip: false
+                            onTriggered: function clickAction() {
+                                showMapClicked();
+                            }
+                        }
+                    ]
+
+                    ListModel {
+                        id: listActions
+                        Component.onCompleted: {
+                            for (var i = 0; i < listViewAction.menuActions.length; i++) {
+                                append({
+                                        "menuAction": listViewAction.menuActions[i]
+                                    });
+                            }
+                        }
+                    }
+
+                    model: SortFilterProxyModel {
+                        sourceModel: listActions
+                        filters: [
+                            ExpressionFilter {
+                                expression: menuAction.show === true
+                                enabled: root.showDefault
+                            },
+                            ExpressionFilter {
+                                expression: menuAction.needWebEngine === false
+                                enabled: !WITH_WEBENGINE
+                            },
+                            ExpressionFilter {
+                                expression: menuAction.noSip === true
+                                enabled: CurrentConversation.isSip
+                            },
+                            ExpressionFilter {
+                                expression: menuAction.needVideoDevice === false
+                                enabled: VideoDevices.listSize === 0
+                            }
+                        ]
+                    }
+
+                    delegate: PushButton {
+                        id: buttonDelegate
+                        anchors.verticalCenter: parent ? parent.verticalCenter : undefined
+                        preferredSize: JamiTheme.chatViewFooterRealButtonSize
+                        imageContainerWidth: 20
+                        imageContainerHeight: 20
+                        radius: 5
+
+                        toolTipText: modelData.toolTip
+                        source: modelData.iconSrc
+
+                        normalColor: JamiTheme.chatViewFooterListColor
+                        imageColor: JamiTheme.chatViewFooterImgColor
+                        hoveredColor: JamiTheme.showMoreButtonOpenColor
+                        pressedColor: hoveredColor
+
+                        action: modelData
+                    }
+                }
+
+                Rectangle {
+                    z: -1
+                    radius: 0
+                    color: showMoreButton.normalColor
+                    width: JamiTheme.chatViewFooterButtonSize / 2
+                    height: JamiTheme.chatViewFooterButtonSize
+
+                    PushButton {
+                        id: showMoreButton
+                        anchors.left: parent.left
+
+                        preferredSize: JamiTheme.chatViewFooterButtonSize
+                        imageContainerWidth: 20
+                        imageContainerHeight: 20
+
+                        radius: JamiTheme.chatViewFooterButtonRadius
+
+                        toolTipText: showDefault ? JamiStrings.showMore : JamiStrings.showLess
+
+                        source: JamiResources.more_vert_24dp_svg
+
+                        normalColor: showDefault ? JamiTheme.chatViewFooterListColor : JamiTheme.showMoreButtonOpenColor
+                        imageColor: JamiTheme.chatViewFooterImgColor
+                        pressedColor: JamiTheme.showMoreButtonOpenColor
+                        hoveredColor: JamiTheme.showMoreButtonOpenColor
+
+                        onClicked: {
+                            showDefault = !showDefault;
+                            if (showTypo)
+                                showTypo = false;
+                        }
+                    }
+                }
+            }
         }
 
-        Component.onCompleted: JamiQmlUtils.messageBarButtonsRowObj = messageBarRowLayout
+        Row {
+            id: sendButtonRow
+            spacing: JamiTheme.chatViewFooterRowSpacing
+            anchors.right: parent.right
+            anchors.rightMargin: sendMessageButton.visible ? marginSize : 0
+
+            PushButton {
+                id: sendMessageButton
+
+                objectName: "sendMessageButton"
+
+                width: scale * JamiTheme.chatViewFooterButtonSize
+                height: JamiTheme.chatViewFooterButtonSize
+
+                radius: JamiTheme.chatViewFooterButtonRadius
+                preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
+                imageContainerWidth: 25
+                imageContainerHeight: 25
+
+                toolTipText: JamiStrings.send
+
+                source: JamiResources.send_black_24dp_svg
+
+                normalColor: JamiTheme.chatViewFooterSendButtonColor
+                imageColor: JamiTheme.chatViewFooterSendButtonImgColor
+                hoveredColor: JamiTheme.buttonTintedBlueHovered
+                pressedColor: hoveredColor
+
+                opacity: sendButtonVisibility ? 1 : 0
+                visible: opacity
+                scale: opacity
+
+                Behavior on opacity  {
+                    enabled: animate
+                    NumberAnimation {
+                        duration: JamiTheme.shortFadeDuration
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+
+                onClicked: root.sendMessageButtonClicked()
+            }
+        }
     }
 }
