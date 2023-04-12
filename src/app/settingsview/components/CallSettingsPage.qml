@@ -18,6 +18,7 @@
 
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 import QtMultimedia
 
 import net.jami.Models 1.1
@@ -321,6 +322,81 @@ SettingsPageBase {
                         updateAndShowModeratorsSlot()
                     }
                 }
+            }
+        }
+
+        ColumnLayout {
+                id: chatViewSettings
+
+                width: parent.width
+                spacing: 9
+
+                function isComplete() {
+                    var horizontalView = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally) ? 1 : 0
+                    verticalRadio.checked = horizontalView === 0
+                    horizontalRadio.checked = horizontalView === 1
+                }
+
+                Component.onCompleted: chatViewSettings.isComplete()
+
+            Text {
+
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
+
+                text: JamiStrings.chatSettingsTitle
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode : Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+
+            }
+
+            Flow {
+
+                Layout.preferredWidth: parent.width
+                Layout.preferredHeight: childrenRect.height
+                spacing: 5
+
+                ButtonGroup { id: optionsB }
+
+                    MaterialRadioButton {
+                        id: verticalRadio
+                        width: 255
+                        height: 60
+
+                        text: JamiStrings.verticalViewOpt
+                        ButtonGroup.group: optionsB
+                        iconSource: JamiResources.horizontal_view_svg
+
+                        onCheckedChanged: {
+
+                            if (checked) {
+                                UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, false)
+                            }
+                        }
+                    }
+
+                    MaterialRadioButton {
+                        id: horizontalRadio
+
+                         width: 255
+                        height: 60
+
+                        text: JamiStrings.horizontalViewOpt
+                        ButtonGroup.group: optionsB
+                        //color: JamiTheme.blackColor
+                        iconSource: JamiResources.vertical_view_svg
+
+                        onCheckedChanged: {    
+                            if (checked) {
+                                UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, true)
+                            }
+                        }
+                    }
             }
         }
     }

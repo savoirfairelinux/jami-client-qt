@@ -111,7 +111,7 @@ SidePanelBase {
                         },
                         {
                             "id": 6,
-                            "title": JamiStrings.appearence
+                            "title": JamiStrings.appearance
                         },
                         {
                             "id": 7,
