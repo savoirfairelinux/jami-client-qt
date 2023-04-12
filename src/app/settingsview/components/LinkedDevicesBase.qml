@@ -81,13 +81,20 @@ ColumnLayout {
         font.kerning: true
     }
 
-    JamiListView {
+    ListView {
         id: settingsListView
 
         Layout.fillWidth: true
-        Layout.preferredHeight: Math.min(model.count, 5) * (70 + spacing)
+        Layout.preferredHeight: Math.min(model.count, 3) * (70 + spacing)
+        Layout.maximumHeight: Layout.preferredHeight
+
         spacing: JamiTheme.settingsListViewsSpacing
         interactive: !isCurrent
+
+
+    Component.onCompleted: {
+        positionViewAtIndex(0, ListView.Beginning)
+    }
 
         model: SortFilterProxyModel {
             sourceModel: DeviceItemListModel
@@ -112,7 +119,12 @@ ColumnLayout {
             deviceId: DeviceID
             onBtnRemoveDeviceClicked: removeDeviceSlot(index)
             isCurrent: root.isCurrent
-        }
 
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                
+            }
+        }
     }
 }

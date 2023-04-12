@@ -36,19 +36,19 @@ ItemDelegate {
     property bool isCurrent : false
 
     property bool editable : false
+    property bool isHovered : root.hovered || button.hovered || root.editable
 
     signal btnRemoveDeviceClicked
 
-
     background: Rectangle {
-        color: JamiTheme.editBackgroundColor
-        height: root.height
-        radius: 5
+        color: isHovered ? JamiTheme.smartListSelectedColor : JamiTheme.editBackgroundColor
+        radius: JamiTheme.settingsBoxRadius
     }
 
     RowLayout {
         id: rowLayout
         anchors.fill: root
+        anchors.rightMargin: isHovered ? button.width + 20 : 0 
 
         ResponsiveImage {
             id: deviceImage
@@ -93,6 +93,7 @@ ItemDelegate {
                     AvAdapter.setDeviceName(editDeviceName.text)
                     editable = !editable
                 }
+
                 onReadOnlyChanged: {
                     if (readOnly)
                         editDeviceName.text = Qt.binding(function() {
@@ -127,45 +128,41 @@ ItemDelegate {
             }
         }
 
-        PushButton {
-            id: btnEditDevice
+    }
 
-            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.rightMargin: 13
-            Layout.preferredWidth: JamiTheme.preferredFieldHeight
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
+    MaterialButton {
+        id: button
+        z: 1
+        anchors.right: parent.right
+        anchors.rightMargin: 13
+        anchors.verticalCenter: parent.verticalCenter
+        Layout.preferredWidth: 86
+        preferredWidth: 86
+        Layout.preferredHeight: 36
+            layer.enabled: false
+        visible: isHovered
+        secondary: true
 
-            imageColor: JamiTheme.tintedBlue
-            normalColor: highlighted ?
-                             JamiTheme.selectedColor :
-                             JamiTheme.editBackgroundColor
+        text: isCurrent ?
+                            (editable ?
+                                JamiStrings.saveNewDeviceName :
+                                JamiStrings.editDeviceName) :
+                            JamiStrings.unlinkDevice
 
-            source: isCurrent ?
-                        (editable ?
-                             JamiResources.round_save_alt_24dp_svg :
-                             JamiResources.round_edit_24dp_svg) :
-                        JamiResources.delete_24dp_svg
-
-            toolTipText: isCurrent ?
-                             (editable ?
-                                  JamiStrings.saveNewDeviceName :
-                                  JamiStrings.editDeviceName) :
-                             JamiStrings.unlinkDevice
-
-            onClicked: {
-                if (isCurrent) {
-                    if (!editable) {
-                        editable = !editable
-                        editDeviceName.forceActiveFocus()
-                    }
-                    else {
-                        editDeviceName.focus = false
-                        editDeviceName.accepted()
-                    }
-                } else {
-                    btnRemoveDeviceClicked()
+        onClicked: {
+            if (isCurrent) {
+                if (!editable) {
+                    
+                    editable = !editable
+                    editDeviceName.forceActiveFocus()
                 }
+                else {
+                        editDeviceName.focus = false
+                    editDeviceName.accepted()
+                }
+            } else {
+                btnRemoveDeviceClicked()
             }
         }
-    }
+    }    
 }
