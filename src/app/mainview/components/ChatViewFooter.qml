@@ -130,7 +130,6 @@ Rectangle {
 
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
-            Layout.preferredHeight: implicitHeight
             property var emojiPicker
 
             Connections {
