@@ -42,7 +42,7 @@ RadioButton {
         radius: JamiTheme.settingsBoxRadius
         border {
             width: 1
-            color: borderOuterRectangle 
+            color: borderOuterRectangle
         }
     }
 
@@ -98,29 +98,29 @@ RadioButton {
         anchors.rightMargin: 5
         spacing: 10
 
-            ResponsiveImage  {
-                visible: iconSource !== ""
-                source: iconSource
-                width: JamiTheme.radioImageSize
-                height: JamiTheme.radioImageSize
-                color: borderColor
+        ResponsiveImage  {
+            visible: iconSource !== ""
+            source: iconSource
+            width: JamiTheme.radioImageSize
+            height: JamiTheme.radioImageSize
+            color: borderColor
 
-            }
-
-            Text {
-                text: root.text
-                color: textColor
-                Layout.fillWidth: true
-                wrapMode: Text.WordWrap
-                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
-            }
         }
 
-            Keys.onPressed: function (event) {
-                if (event.key === Qt.Key_Enter
-                        || event.key === Qt.Key_Return) {
-                    root.checked = true
-                }
+        Text {
+            text: root.text
+            color: textColor
+            Layout.fillWidth: true
+            wrapMode: Text.WordWrap
+            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+        }
+    }
+
+    Keys.onPressed: function (event) {
+        if (event.key === Qt.Key_Enter
+                || event.key === Qt.Key_Return) {
+            root.checked = true
+        }
     }
 
     Rectangle {
@@ -131,8 +131,8 @@ RadioButton {
 
         border {
             width: 1
-            color: borderColor   
-            }
+            color: borderColor
+        }
 
         Behavior on visible {
             enabled: hovered
