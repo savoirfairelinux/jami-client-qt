@@ -15,11 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtWebEngine
 import QtWebChannel
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
@@ -52,26 +50,24 @@ WebEngineView {
 
     onNavigationRequested: function (request) {
         if (request.navigationType === WebEngineView.LinkClickedNavigation) {
-            MessagesAdapter.openUrl(request.url)
-            request.action = WebEngineView.IgnoreRequest
+            MessagesAdapter.openUrl(request.url);
+            request.action = WebEngineView.IgnoreRequest;
         }
     }
 
     onContextMenuRequested: function (request) {
-        var needContextMenu = request.selectedText.length || request.isContentEditable
+        var needContextMenu = request.selectedText.length || request.isContentEditable;
         if (!needContextMenu)
-            request.accepted = true
+            request.accepted = true;
     }
 
     Component.onCompleted: {
-        profile.cachePath = UtilsAdapter.getCachePath()
-        profile.persistentStoragePath = UtilsAdapter.getCachePath()
-        profile.persistentCookiesPolicy = WebEngineProfile.NoPersistentCookies
-        profile.httpCacheType = WebEngineProfile.NoCache
-        profile.httpUserAgent = JamiStrings.httpUserAgentName
-
-        root.loadHtml(UtilsAdapter.qStringFromFile(onCompletedLoadHtml),
-                      onCompletedLoadHtml)
-        root.url = onCompletedUrl
+        profile.cachePath = UtilsAdapter.getCachePath();
+        profile.persistentStoragePath = UtilsAdapter.getCachePath();
+        profile.persistentCookiesPolicy = WebEngineProfile.NoPersistentCookies;
+        profile.httpCacheType = WebEngineProfile.NoCache;
+        profile.httpUserAgent = JamiStrings.httpUserAgentName;
+        root.loadHtml(UtilsAdapter.qStringFromFile(onCompletedLoadHtml), onCompletedLoadHtml);
+        root.url = onCompletedUrl;
     }
 }

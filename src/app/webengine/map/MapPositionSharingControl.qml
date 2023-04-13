@@ -17,11 +17,9 @@
  */
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
@@ -50,23 +48,22 @@ ColumnLayout {
 
                 function standartCountdown(seconds) {
                     var minutes = Math.floor(seconds / 60);
-                    var hour = Math.floor(minutes / 60)
-                    minutes = minutes % 60
-                    var sec = seconds % 60
+                    var hour = Math.floor(minutes / 60);
+                    minutes = minutes % 60;
+                    var sec = seconds % 60;
                     if (hour) {
                         if (minutes)
-                            return qsTr("%1h%2min").arg(hour).arg(minutes)
+                            return qsTr("%1h%2min").arg(hour).arg(minutes);
                         else
-                            return qsTr("%1h").arg(hour)
+                            return qsTr("%1h").arg(hour);
                     }
                     if (minutes) {
                         if (sec)
-                            return qsTr("%1m%2sec").arg(minutes).arg(sec)
+                            return qsTr("%1m%2sec").arg(minutes).arg(sec);
                         else
-                            return qsTr("%1m").arg(minutes)
-
+                            return qsTr("%1m").arg(minutes);
                     }
-                    return qsTr("%1sec").arg(sec)
+                    return qsTr("%1sec").arg(sec);
                 }
 
                 property int remainingTimeMs: 0
@@ -74,7 +71,7 @@ ColumnLayout {
                     target: PositionManager
                     function onSendCountdownUpdate(key, remainingTime) {
                         if (key === attachedAccountId + "_" + currentConvId) {
-                            textTimer.remainingTimeMs = remainingTime
+                            textTimer.remainingTimeMs = remainingTime;
                         }
                     }
                 }
@@ -97,15 +94,9 @@ ColumnLayout {
             visible: !isSharingToCurrentConversation && !isUnpin && webView.isLoaded
 
             text: JamiStrings.shareLocation
-            color: isError
-                   ? JamiTheme.buttonTintedGreyInactive
-                   : JamiTheme.buttonTintedBlue
-            hoveredColor: isError
-                          ? JamiTheme.buttonTintedGreyInactive
-                          : JamiTheme.buttonTintedBlueHovered
-            pressedColor: isError
-                          ? JamiTheme.buttonTintedGreyInactive
-                          : JamiTheme.buttonTintedBluePressed
+            color: isError ? JamiTheme.buttonTintedGreyInactive : JamiTheme.buttonTintedBlue
+            hoveredColor: isError ? JamiTheme.buttonTintedGreyInactive : JamiTheme.buttonTintedBlueHovered
+            pressedColor: isError ? JamiTheme.buttonTintedGreyInactive : JamiTheme.buttonTintedBluePressed
             Layout.alignment: Qt.AlignHCenter
             property bool isHovered: false
             property string positioningError: "default"
@@ -116,41 +107,39 @@ ColumnLayout {
 
             function errorString(posError) {
                 if (posError === "locationServicesError")
-                    return JamiStrings.locationServicesError
-                return JamiStrings.locationServicesClosedError
+                    return JamiStrings.locationServicesError;
+                return JamiStrings.locationServicesClosedError;
             }
 
             onPositionShareConvIdsCountChanged: {
-                isSharingToCurrentConversation = PositionManager.isPositionSharedToConv(attachedAccountId, currentConvId)
+                isSharingToCurrentConversation = PositionManager.isPositionSharedToConv(attachedAccountId, currentConvId);
             }
 
             onCurrentConvIdChanged: {
-                isSharingToCurrentConversation = PositionManager.isPositionSharedToConv(attachedAccountId, currentConvId)
+                isSharingToCurrentConversation = PositionManager.isPositionSharedToConv(attachedAccountId, currentConvId);
             }
 
             onIsMapUnpinChanged: {
-                isSharingToCurrentConversation = PositionManager.isPositionSharedToConv(attachedAccountId, currentConvId)
+                isSharingToCurrentConversation = PositionManager.isPositionSharedToConv(attachedAccountId, currentConvId);
             }
 
             onClicked: {
-                var sharingDuration = 60 * 1000 * UtilsAdapter.getAppValue(Settings.PositionShareDuration)
+                var sharingDuration = 60 * 1000 * UtilsAdapter.getAppValue(Settings.PositionShareDuration);
                 if (!isError && !isUnpin) {
                     PositionManager.sharePosition(sharingDuration, attachedAccountId, currentConvId);
                 }
-                webView.runJavaScript("zoomTolayersExtent()" );
+                webView.runJavaScript("zoomTolayersExtent()");
             }
 
             MaterialToolTip {
                 property bool isSharingPossible: !(sharePositionButton.isError && (sharePositionButton.positioningError !== "default"))
 
                 visible: sharePositionButton.hovered
-                text: isSharingPossible
-                      ? JamiStrings.shareLocationToolTip.arg(PositionManager.getmapTitle(attachedAccountId, currentConvId))
-                      : sharePositionButton.errorString(sharePositionButton.positioningError)
+                text: isSharingPossible ? JamiStrings.shareLocationToolTip.arg(PositionManager.getmapTitle(attachedAccountId, currentConvId)) : sharePositionButton.errorString(sharePositionButton.positioningError)
             }
             Connections {
                 target: PositionManager
-                function onPositioningError (err) {
+                function onPositioningError(err) {
                     sharePositionButton.positioningError = err;
                 }
             }
@@ -164,24 +153,12 @@ ColumnLayout {
             textRightPadding: JamiTheme.buttontextPadding
             primary: true
             visible: isSharing
-            text: stopAllSharing
-                  ? JamiStrings.shortStopAllSharings
-                  : JamiStrings.stopSharingLocation
-            color: isError
-                   ? JamiTheme.buttonTintedGreyInactive
-                   : JamiTheme.buttonTintedRed
-            hoveredColor: isError
-                          ? JamiTheme.buttonTintedGreyInactive
-                          : JamiTheme.buttonTintedRedHovered
-            pressedColor: isError
-                          ? JamiTheme.buttonTintedGreyInactive
-                          :  JamiTheme.buttonTintedRedPressed
+            text: stopAllSharing ? JamiStrings.shortStopAllSharings : JamiStrings.stopSharingLocation
+            color: isError ? JamiTheme.buttonTintedGreyInactive : JamiTheme.buttonTintedRed
+            hoveredColor: isError ? JamiTheme.buttonTintedGreyInactive : JamiTheme.buttonTintedRedHovered
+            pressedColor: isError ? JamiTheme.buttonTintedGreyInactive : JamiTheme.buttonTintedRedPressed
             Layout.alignment: Qt.AlignHCenter
-            toolTipText: stopAllSharing
-                         ? isUnpin
-                           ? JamiStrings.unpinStopSharingTooltip
-                           : JamiStrings.stopAllSharings
-            : JamiStrings.stopSharingSeveralConversationTooltip
+            toolTipText: stopAllSharing ? isUnpin ? JamiStrings.unpinStopSharingTooltip : JamiStrings.stopAllSharings : JamiStrings.stopSharingSeveralConversationTooltip
             property bool isHovered: false
             property string positioningError
             property bool isError: positioningError.length
@@ -191,7 +168,7 @@ ColumnLayout {
                     if (stopAllSharing) {
                         PositionManager.stopSharingPosition();
                     } else {
-                        stopSharingPositionPopup.open()
+                        stopSharingPositionPopup.open();
                     }
                 }
             }

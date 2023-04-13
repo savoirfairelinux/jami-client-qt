@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -33,8 +30,8 @@ Rectangle {
 
     property var body: {
         if (MessagesAdapter.editId === "")
-            return ""
-        return MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.LinkifiedBody)
+            return "";
+        return MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.LinkifiedBody);
     }
 
     RowLayout {
@@ -49,9 +46,7 @@ Rectangle {
 
                 text: JamiStrings.edit
 
-                color:  UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+                color: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                 font.pointSize: JamiTheme.textFontSize
                 font.kerning: true
                 font.bold: true
@@ -70,15 +65,12 @@ Rectangle {
 
                 text: metrics.elidedText
                 textFormat: Text.MarkdownText
-                color:  UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+                color: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                 font.pointSize: JamiTheme.textFontSize
                 font.kerning: true
                 font.bold: true
             }
         }
-
 
         PushButton {
             id: closeReply

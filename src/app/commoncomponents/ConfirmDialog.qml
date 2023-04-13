@@ -15,11 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -29,10 +27,8 @@ BaseModalDialog {
 
     signal accepted
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize,
-                    JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize,
-                     JamiTheme.preferredDialogHeight)
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
+    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
 
     property string confirmLabel: ""
     property string textLabel: ""
@@ -44,8 +40,7 @@ BaseModalDialog {
             id: labelAction
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: column.width -
-                                   JamiTheme.preferredMarginSize * 2
+            Layout.preferredWidth: column.width - JamiTheme.preferredMarginSize * 2
 
             color: JamiTheme.textColor
             text: root.textLabel
@@ -79,8 +74,8 @@ BaseModalDialog {
                 autoAccelerator: true
 
                 onClicked: {
-                    close()
-                    accepted()
+                    close();
+                    accepted();
                 }
             }
 

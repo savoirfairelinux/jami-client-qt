@@ -15,14 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 RowLayout {
@@ -31,7 +28,8 @@ RowLayout {
     property string currentConversationId: CurrentConversation.id
 
     property bool isOpen: extrasPanel.isOpen(ChatView.MessagesResearchPanel)
-    onIsOpenChanged: if (isOpen) textArea.forceActiveFocus()
+    onIsOpenChanged: if (isOpen)
+        textArea.forceActiveFocus()
 
     PushButton {
         id: startSearchMessages
@@ -56,10 +54,18 @@ RowLayout {
 
         opacity: isOpen
         visible: opacity
-        Behavior on opacity { NumberAnimation { duration: 150 } }
+        Behavior on opacity  {
+            NumberAnimation {
+                duration: 150
+            }
+        }
 
         Layout.preferredWidth: isOpen ? JamiTheme.searchbarSize : 0
-        Behavior on Layout.preferredWidth { NumberAnimation { duration: 150 } }
+        Behavior on Layout.preferredWidth  {
+            NumberAnimation {
+                duration: 150
+            }
+        }
 
         TextField {
             id: textArea
@@ -72,7 +78,7 @@ RowLayout {
             placeholderTextColor: JamiTheme.chatviewTextColor
 
             onTextChanged: {
-                MessagesAdapter.searchbarPrompt = text
+                MessagesAdapter.searchbarPrompt = text;
             }
         }
 
@@ -94,16 +100,19 @@ RowLayout {
 
             property string convId: CurrentConversation.id
             onConvIdChanged: {
-                textArea.clear()
+                textArea.clear();
             }
 
             onClicked: {
-                textArea.clear()
-                textArea.forceActiveFocus()
+                textArea.clear();
+                textArea.forceActiveFocus();
             }
 
-            Behavior on opacity {
-                NumberAnimation { duration: 500; easing.type: Easing.OutCubic }
+            Behavior on opacity  {
+                NumberAnimation {
+                    duration: 500
+                    easing.type: Easing.OutCubic
+                }
             }
         }
     }

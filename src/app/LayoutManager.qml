@@ -15,14 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
-
 import "mainview/components"
 
 QtObject {
@@ -35,8 +32,7 @@ QtObject {
     readonly property bool isFullScreen: visibility === Window.FullScreen
 
     // Both the Hidden and Minimized states combined for convenience.
-    readonly property bool isHidden: visibility === Window.Hidden ||
-                                     visibility === Window.Minimized
+    readonly property bool isHidden: visibility === Window.Hidden || visibility === Window.Minimized
 
     // Used to store if a OngoingCallPage component is fullscreened.
     property bool isCallFullscreen: false
@@ -44,28 +40,27 @@ QtObject {
     // Restore a visible windowed mode.
     function restoreApp() {
         if (isHidden) {
-            if (priv.windowedVisibility === Window.Hidden
-                    || priv.windowedVisibility === Window.Minimized) {
-                showNormal()
-                return
+            if (priv.windowedVisibility === Window.Hidden || priv.windowedVisibility === Window.Minimized) {
+                showNormal();
+                return;
             }
-            visibility = priv.windowedVisibility
+            visibility = priv.windowedVisibility;
         }
-        appWindow.allowVisibleWindow = true
+        appWindow.allowVisibleWindow = true;
     }
 
     // Start in a hidden state.
     function startMinimized(visibilitySetting) {
         // Save the loaded setting for when the app is restored.
-        priv.windowedVisibility = visibilitySetting
-        appWindow.allowVisibleWindow = false
+        priv.windowedVisibility = visibilitySetting;
+        appWindow.allowVisibleWindow = false;
         appWindow.hide();
     }
 
     // Close to a hidden state.
     function closeToTray(visibilitySetting = undefined) {
         // Save the current visibility.
-        priv.windowedVisibility = visibility
+        priv.windowedVisibility = visibility;
         appWindow.hide();
     }
 
@@ -74,52 +69,45 @@ QtObject {
         // If closed-to-tray or minimized or fullscreen, save the cached windowedVisibility
         // value instead.
         if (isHidden || isFullScreen) {
-            AppSettingsManager.setValue(Settings.WindowState, priv.windowedVisibility)
+            AppSettingsManager.setValue(Settings.WindowState, priv.windowedVisibility);
         } else {
-            AppSettingsManager.setValue(Settings.WindowState, visibility)
+            AppSettingsManager.setValue(Settings.WindowState, visibility);
         }
 
         // Likewise, don't save fullscreen geometry.
-        const geometry = isFullScreen ?
-                           priv.windowedGeometry :
-                           Qt.rect(appWindow.x, appWindow.y,
-                                   appWindow.width, appWindow.height)
-        AppSettingsManager.setValue(Settings.WindowGeometry, geometry)
+        const geometry = isFullScreen ? priv.windowedGeometry : Qt.rect(appWindow.x, appWindow.y, appWindow.width, appWindow.height);
+        AppSettingsManager.setValue(Settings.WindowGeometry, geometry);
     }
 
     // Restore the window geometry and visibility settings.
     function restoreWindowSettings() {
-        var geometry = AppSettingsManager.getValue(Settings.WindowGeometry)
+        var geometry = AppSettingsManager.getValue(Settings.WindowGeometry);
 
         // Position.
         if (!isNaN(geometry.x) && !isNaN(geometry.y)) {
-            appWindow.x = geometry.x
-            appWindow.y = geometry.y
+            appWindow.x = geometry.x;
+            appWindow.y = geometry.y;
         }
 
         // Dimensions.
-        appWindow.width = geometry.width ?
-                    geometry.width :
-                    JamiTheme.mainViewPreferredWidth
-        appWindow.height = geometry.height ?
-                    geometry.height :
-                    JamiTheme.mainViewPreferredHeight
-        appWindow.minimumWidth = JamiTheme.mainViewMinWidth
-        appWindow.minimumHeight = JamiTheme.mainViewMinHeight
+        appWindow.width = geometry.width ? geometry.width : JamiTheme.mainViewPreferredWidth;
+        appWindow.height = geometry.height ? geometry.height : JamiTheme.mainViewPreferredHeight;
+        appWindow.minimumWidth = JamiTheme.mainViewMinWidth;
+        appWindow.minimumHeight = JamiTheme.mainViewMinHeight;
 
         // State.
-        const visibilityStr = AppSettingsManager.getValue(Settings.WindowState)
-        var visibilitySetting = parseInt(visibilityStr)
+        const visibilityStr = AppSettingsManager.getValue(Settings.WindowState);
+        var visibilitySetting = parseInt(visibilityStr);
 
         // We should never restore a hidden or fullscreen state here. Default to normal
         // windowed state in such a case. This shouldn't happen.
         if (visibilitySetting === Window.Hidden || visibilitySetting === Window.FullScreen) {
-            visibilitySetting = Window.Windowed
+            visibilitySetting = Window.Windowed;
         }
         if (MainApplication.startMinimized) {
-            startMinimized(visibilitySetting)
+            startMinimized(visibilitySetting);
         } else {
-            visibility = visibilitySetting
+            visibility = visibilitySetting;
         }
     }
 
@@ -127,37 +115,36 @@ QtObject {
     // the main window in fullscreen mode if needed. Callbacks should be used
     // to perform component-specific tasks upon successful transitions.
     function pushFullScreenItem(item, prevParent, pushedCb, removedCb) {
-        if (item === null || item === undefined
-                || priv.fullScreenItems.length >= 3) {
-            return
+        if (item === null || item === undefined || priv.fullScreenItems.length >= 3) {
+            return;
         }
 
         // Make sure our window is in fullscreen mode.
-        priv.requestWindowModeChange(true)
+        priv.requestWindowModeChange(true);
 
         // Add the item to our list and reparent it to appContainer.
         priv.fullScreenItems.push({
-                                 "item": item,
-                                 "prevParent": prevParent,
-                                 "prevAnchorsFill": item.anchors.fill,
-                                 "removedCb": removedCb
-                             })
-        item.parent = appContainer
-        item.anchors.fill = item.parent
+                "item": item,
+                "prevParent": prevParent,
+                "prevAnchorsFill": item.anchors.fill,
+                "removedCb": removedCb
+            });
+        item.parent = appContainer;
+        item.anchors.fill = item.parent;
         if (pushedCb) {
-            pushedCb()
+            pushedCb();
         }
 
         // Reevaluate isCallFullscreen.
-        priv.fullScreenItemsChanged()
+        priv.fullScreenItemsChanged();
     }
 
     // Remove an item if specified, or by default, the top item. Automatically
     // resets the main window to windowed mode if no items remain in the stack.
-    function popFullScreenItem(obj=null) {
+    function popFullScreenItem(obj = null) {
         // Remove the item and reparent it to its original parent.
         if (obj === null) {
-            obj = priv.fullScreenItems.pop()
+            obj = priv.fullScreenItems.pop();
         } else {
             const index = priv.fullScreenItems.indexOf(obj);
             if (index > -1) {
@@ -166,45 +153,47 @@ QtObject {
         }
         if (obj !== undefined) {
             if (obj.item !== appWindow) {
-                obj.item.anchors.fill = obj.prevAnchorsFill
-                obj.item.parent = obj.prevParent
+                obj.item.anchors.fill = obj.prevAnchorsFill;
+                obj.item.parent = obj.prevParent;
                 if (obj.removedCb) {
-                    obj.removedCb()
+                    obj.removedCb();
                 }
             }
 
             // Reevaluate isCallFullscreen.
-            priv.fullScreenItemsChanged()
+            priv.fullScreenItemsChanged();
         }
 
         // Only leave fullscreen mode if our window isn't in fullscreen
         // mode already.
         if (priv.fullScreenItems.length === 0 && priv.windowedVisibility !== Window.Hidden) {
             // Simply recall the last visibility state.
-            visibility = priv.windowedVisibility
+            visibility = priv.windowedVisibility;
         }
     }
 
     // Used to filter removal for a specific item.
     function removeFullScreenItem(item) {
-        priv.fullScreenItems.forEach(o => {
-            if (o.item === item) {
-                popFullScreenItem(o)
-                return
-            }
-        });
+        priv.fullScreenItems.forEach(o =>
+                if (o.item === item) {
+                    popFullScreenItem(o);
+                    return;
+                }
+            });
     }
 
     // Toggle the application window in fullscreen mode.
     function toggleWindowFullScreen() {
-        priv.requestWindowModeChange(!isFullScreen)
+        priv.requestWindowModeChange(!isFullScreen);
 
         // If we succeeded, place a dummy item onto the stack as
         // a state indicator to prevent returning to windowed mode
         // when popping an item on top. The corresponding pop will
         // be made within requestWindowModeChange.
         if (isFullScreen) {
-            priv.fullScreenItems.push({ "item": appWindow })
+            priv.fullScreenItems.push({
+                    "item": appWindow
+                });
         }
     }
 
@@ -222,9 +211,7 @@ QtObject {
 
         // When fullScreenItems is changed, we can recompute isCallFullscreen.
         onFullScreenItemsChanged: {
-            isCallFullscreen = fullScreenItems
-                .filter(o => o.item instanceof OngoingCallPage)
-                .length
+            isCallFullscreen = fullScreenItems.filter(o => o.item instanceof OngoingCallPage;).length;
         }
 
         // Listen for a hangup combined with a fullscreen call state and
@@ -233,12 +220,12 @@ QtObject {
             target: CallAdapter
             function onHasCallChanged() {
                 if (!CallAdapter.hasCall && isCallFullscreen) {
-                    priv.fullScreenItems.forEach(o => {
-                        if (o.item instanceof OngoingCallPage) {
-                            popFullScreenItem(o)
-                            return
-                        }
-                    });
+                    priv.fullScreenItems.forEach(o =>
+                            if (o.item instanceof OngoingCallPage) {
+                                popFullScreenItem(o);
+                                return;
+                            }
+                        });
                 }
             }
         }
@@ -248,15 +235,14 @@ QtObject {
             if (fullScreen) {
                 if (!isFullScreen) {
                     // Save the previous visibility state and geometry.
-                    windowedVisibility = visibility
-                    windowedGeometry = Qt.rect(appWindow.x, appWindow.y,
-                                               appWindow.width, appWindow.height)
-                    showFullScreen()
+                    windowedVisibility = visibility;
+                    windowedGeometry = Qt.rect(appWindow.x, appWindow.y, appWindow.width, appWindow.height);
+                    showFullScreen();
                 }
             } else {
                 // Clear the stack.
                 while (fullScreenItems.length) {
-                    popFullScreenItem()
+                    popFullScreenItem();
                 }
             }
         }

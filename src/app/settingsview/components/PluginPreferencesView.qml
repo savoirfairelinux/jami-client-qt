@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -38,7 +35,7 @@ Rectangle {
         anchors.right: root.right
         anchors.bottomMargin: 10
 
-        Label{
+        Label {
             Layout.topMargin: 34
             Layout.alignment: Qt.AlignHCenter
             height: 64
@@ -95,12 +92,10 @@ Rectangle {
                 toolTipText: JamiStrings.tipGeneralPluginSettingsDisplay
 
                 preferredSize: 32
-                source: pluginGeneralSettingsView.visible ?
-                            JamiResources.expand_less_24dp_svg :
-                            JamiResources.expand_more_24dp_svg
+                source: pluginGeneralSettingsView.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
 
                 onClicked: {
-                    pluginGeneralSettingsView.visible = !pluginGeneralSettingsView.visible
+                    pluginGeneralSettingsView.visible = !pluginGeneralSettingsView.visible;
                 }
             }
         }
@@ -139,12 +134,10 @@ Rectangle {
                 toolTipText: JamiStrings.tipAccountPluginSettingsDisplay
 
                 preferredSize: 32
-                source: pluginAccountSettingsView.visible ?
-                            JamiResources.expand_less_24dp_svg :
-                            JamiResources.expand_more_24dp_svg
+                source: pluginAccountSettingsView.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
 
                 onClicked: {
-                    pluginAccountSettingsView.visible = !pluginAccountSettingsView.visible
+                    pluginAccountSettingsView.visible = !pluginAccountSettingsView.visible;
                 }
             }
         }
@@ -173,21 +166,17 @@ Rectangle {
 
             text: JamiStrings.uninstall
 
-            onClicked: viewCoordinator.presentDialog(
-                           appWindow,
-                           "commoncomponents/SimpleMessageDialog.qml",
-                           {
-                               title: JamiStrings.uninstallPlugin,
-                               infoText: JamiStrings.pluginUninstallConfirmation.arg(pluginName),
-                               buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel],
-                               buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                                              SimpleMessageDialog.ButtonStyle.TintedBlack],
-                               buttonCallBacks: [function () {
-                                   pluginPreferencesView.visible = false
-                                   PluginModel.uninstallPlugin(pluginId)
-                                   installedPluginsModel.removePlugin(index)
-                               }]
-                           })
+            onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                    "title": JamiStrings.uninstallPlugin,
+                    "infoText": JamiStrings.pluginUninstallConfirmation.arg(pluginName),
+                    "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
+                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
+                    "buttonCallBacks": [function () {
+                            pluginPreferencesView.visible = false;
+                            PluginModel.uninstallPlugin(pluginId);
+                            installedPluginsModel.removePlugin(index);
+                        }]
+                })
         }
 
         Rectangle {

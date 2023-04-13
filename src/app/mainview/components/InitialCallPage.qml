@@ -16,15 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -42,12 +39,7 @@ Rectangle {
         id: previewRenderer
         anchors.centerIn: parent
         anchors.fill: parent
-        visible: !CurrentCall.isAudioOnly &&
-                 CurrentAccount.videoEnabled_Video &&
-                 VideoDevices.listSize !== 0 &&
-                 ((CurrentCall.status >= Call.Status.INCOMING_RINGING
-                   && CurrentCall.status <= Call.Status.SEARCHING)
-                  || CurrentCall.status === Call.Status.CONNECTED)
+        visible: !CurrentCall.isAudioOnly && CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0 && ((CurrentCall.status >= Call.Status.INCOMING_RINGING && CurrentCall.status <= Call.Status.SEARCHING) || CurrentCall.status === Call.Status.CONNECTED)
         opacity: 0.5
 
         // HACK: this is a workaround to the preview video starting
@@ -57,27 +49,27 @@ Rectangle {
             property bool startVideo
             interval: 1000
             onTriggered: {
-                var rendId = visible && startVideo ? VideoDevices.getDefaultDevice() : ""
-                previewRenderer.startWithId(rendId)
+                var rendId = visible && startVideo ? VideoDevices.getDefaultDevice() : "";
+                previewRenderer.startWithId(rendId);
             }
         }
         onVisibleChanged: {
-            controlPreview.stop()
+            controlPreview.stop();
             if (visible) {
-                controlPreview.startVideo = true
-                controlPreview.interval = 1000
+                controlPreview.startVideo = true;
+                controlPreview.interval = 1000;
             } else {
-                controlPreview.startVideo = false
-                controlPreview.interval = 0
+                controlPreview.startVideo = false;
+                controlPreview.interval = 0;
             }
-            controlPreview.start()
+            controlPreview.start();
         }
     }
 
     ListModel {
         id: incomingControlsModel
         Component.onCompleted: {
-            fillIncomingControls()
+            fillIncomingControls();
         }
     }
 
@@ -85,7 +77,7 @@ Rectangle {
         target: CurrentAccount
 
         function onVideoEnabledVideoChanged() {
-            fillIncomingControls()
+            fillIncomingControls();
         }
     }
 
@@ -93,22 +85,34 @@ Rectangle {
         target: VideoDevices
 
         function onListSizeChanged() {
-            fillIncomingControls()
+            fillIncomingControls();
         }
     }
 
     function fillIncomingControls() {
-            incomingControlsModel.clear()
-            incomingControlsModel.append({"type": "refuse", "image": JamiResources.round_close_24dp_svg})
-            incomingControlsModel.append({"type": "mic", "image" : JamiResources.place_audiocall_24dp_svg})
-            if (CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0)
-                incomingControlsModel.append({"type": "cam", "image" : JamiResources.videocam_24dp_svg})
+        incomingControlsModel.clear();
+        incomingControlsModel.append({
+                "type": "refuse",
+                "image": JamiResources.round_close_24dp_svg
+            });
+        incomingControlsModel.append({
+                "type": "mic",
+                "image": JamiResources.place_audiocall_24dp_svg
+            });
+        if (CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0)
+            incomingControlsModel.append({
+                    "type": "cam",
+                    "image": JamiResources.videocam_24dp_svg
+                });
     }
 
     ListModel {
         id: outgoingControlsModel
         Component.onCompleted: {
-            append({"type": "cancel", "image": JamiResources.ic_call_end_white_24dp_svg})
+            append({
+                    "type": "cancel",
+                    "image": JamiResources.ic_call_end_white_24dp_svg
+                });
         }
     }
 
@@ -118,7 +122,7 @@ Rectangle {
         propagateComposedEvents: false
         acceptedButtons: Qt.AllButtons
         onDoubleClicked: function (mouse) {
-            mouse.accepted = true
+            mouse.accepted = true;
         }
     }
 
@@ -150,11 +154,9 @@ Rectangle {
 
             text: {
                 if (!CurrentCall.isOutgoing)
-                    return CurrentCall.isAudioOnly ?
-                                JamiStrings.incomingAudioCallFrom.replace("{}", title) :
-                                JamiStrings.incomingVideoCallFrom.replace("{}", title)
+                    return CurrentCall.isAudioOnly ? JamiStrings.incomingAudioCallFrom.replace("{}", title) : JamiStrings.incomingVideoCallFrom.replace("{}", title);
                 else
-                    return title
+                    return title;
             }
             wrapMode: Text.WordWrap
             elide: Text.ElideRight
@@ -197,35 +199,35 @@ Rectangle {
                         implicitHeight: JamiTheme.callButtonPreferredSize
 
                         pressedColor: {
-                            if ( type === "cam" || type === "mic")
-                                return JamiTheme.acceptGreen
-                            return JamiTheme.refuseRed
+                            if (type === "cam" || type === "mic")
+                                return JamiTheme.acceptGreen;
+                            return JamiTheme.refuseRed;
                         }
                         hoveredColor: {
-                            if ( type === "cam" || type === "mic")
-                                return JamiTheme.acceptGreen
-                            return JamiTheme.refuseRed
+                            if (type === "cam" || type === "mic")
+                                return JamiTheme.acceptGreen;
+                            return JamiTheme.refuseRed;
                         }
                         normalColor: {
-                            if ( type === "cam" || type === "mic")
-                                return JamiTheme.acceptGreenTransparency
-                            return JamiTheme.refuseRedTransparent
+                            if (type === "cam" || type === "mic")
+                                return JamiTheme.acceptGreenTransparency;
+                            return JamiTheme.refuseRedTransparent;
                         }
 
                         source: image
                         imageColor: JamiTheme.whiteColor
 
                         onClicked: {
-                            if ( type === "cam" || type === "mic") {
-                                var acceptVideoMedia = true
+                            if (type === "cam" || type === "mic") {
+                                var acceptVideoMedia = true;
                                 if (type === "cam")
-                                    acceptVideoMedia = true
-                                else if ( type === "mic" )
-                                    acceptVideoMedia = false
-                                CallAdapter.setCallMedia(CurrentAccount.id, CurrentConversation.id, acceptVideoMedia)
-                                callAccepted()
+                                    acceptVideoMedia = true;
+                                else if (type === "mic")
+                                    acceptVideoMedia = false;
+                                CallAdapter.setCallMedia(CurrentAccount.id, CurrentConversation.id, acceptVideoMedia);
+                                callAccepted();
                             } else {
-                                callCanceled()
+                                callCanceled();
                             }
                         }
                     }
@@ -240,17 +242,16 @@ Rectangle {
                         font.kerning: true
                         color: actionButton.hovered ? JamiTheme.whiteColor : JamiTheme.whiteColorTransparent
 
-
                         text: {
                             if (type === "refuse")
-                                return JamiStrings.refuse
+                                return JamiStrings.refuse;
                             else if (type === "cam")
-                                return JamiStrings.acceptVideo
+                                return JamiStrings.acceptVideo;
                             else if (type === "mic")
-                                return CurrentCall.isAudioOnly ? JamiStrings.accept : JamiStrings.acceptAudio
+                                return CurrentCall.isAudioOnly ? JamiStrings.accept : JamiStrings.acceptAudio;
                             else if (type === "cancel")
-                                return JamiStrings.endCall
-                            return ""
+                                return JamiStrings.endCall;
+                            return "";
                         }
 
                         horizontalAlignment: Text.AlignHCenter
@@ -265,16 +266,14 @@ Rectangle {
     Shortcut {
         sequence: "Ctrl+Y"
         context: Qt.ApplicationShortcut
-        onActivated: CallAdapter.acceptACall(CurrentAccount.id,
-                                             CurrentConversation.id)
+        onActivated: CallAdapter.acceptACall(CurrentAccount.id, CurrentConversation.id)
     }
 
     Shortcut {
         sequence: "Ctrl+Shift+D"
         context: Qt.ApplicationShortcut
         onActivated: {
-            CallAdapter.hangUpACall(CurrentAccount.id,
-                                    CurrentConversation.id)
+            CallAdapter.hangUpACall(CurrentAccount.id, CurrentConversation.id);
         }
     }
 }

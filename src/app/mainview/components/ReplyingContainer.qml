@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -34,18 +31,17 @@ Rectangle {
     property var isSelf: false
     property var author: {
         if (MessagesAdapter.replyToId === "")
-            return ""
-
-        var author = MessagesAdapter.dataForInteraction(MessagesAdapter.replyToId, MessageList.Author)
-        isSelf = author === "" || author === undefined
+            return "";
+        var author = MessagesAdapter.dataForInteraction(MessagesAdapter.replyToId, MessageList.Author);
+        isSelf = author === "" || author === undefined;
         if (isSelf) {
-            avatar.mode = Avatar.Mode.Account
-            avatar.imageId = CurrentAccount.id
+            avatar.mode = Avatar.Mode.Account;
+            avatar.imageId = CurrentAccount.id;
         } else {
-            avatar.mode = Avatar.Mode.Contact
-            avatar.imageId = author
+            avatar.mode = Avatar.Mode.Contact;
+            avatar.imageId = author;
         }
-        return isSelf ? CurrentAccount.uri : author
+        return isSelf ? CurrentAccount.uri : author;
     }
 
     RowLayout {
@@ -60,9 +56,7 @@ Rectangle {
 
                 text: JamiStrings.replyTo
 
-                color:  UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+                color: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                 font.pointSize: JamiTheme.textFontSize
                 font.kerning: true
                 font.bold: true
@@ -84,19 +78,14 @@ Rectangle {
             Label {
                 id: username
 
-                text: author === CurrentAccount.uri ?
-                            CurrentAccount.bestName
-                            : UtilsAdapter.getBestNameForUri(CurrentAccount.id, author)
+                text: author === CurrentAccount.uri ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, author)
 
-                color:  UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+                color: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                 font.pointSize: JamiTheme.textFontSize
                 font.kerning: true
                 font.bold: true
             }
         }
-
 
         PushButton {
             id: closeReply

@@ -16,17 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 ItemDelegate {
@@ -40,16 +37,14 @@ ItemDelegate {
 
     highlighted: ListView.isCurrentItem
     property bool interactive: true
-    property string lastInteractionDate: LastInteractionTimeStamp === undefined
-                                         ? ""
-                                         : LastInteractionTimeStamp
+    property string lastInteractionDate: LastInteractionTimeStamp === undefined ? "" : LastInteractionTimeStamp
 
     property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionDate)
 
     Connections {
         target: UtilsAdapter
         function onChangeLanguage() {
-            UtilsAdapter.clearInteractionsCache(root.accountId, root.convId)
+            UtilsAdapter.clearInteractionsCache(root.accountId, root.convId);
         }
     }
 
@@ -58,29 +53,29 @@ ItemDelegate {
 
     Connections {
         target: PositionManager
-        function onPositionShareConvIdsCountChanged () {
-            root.showSharePositionIndicator = PositionManager.isPositionSharedToConv(accountId, UID)
+        function onPositionShareConvIdsCountChanged() {
+            root.showSharePositionIndicator = PositionManager.isPositionSharedToConv(accountId, UID);
         }
-        function onSharingUrisCountChanged () {
-            root.showSharedPositionIndicator = PositionManager.isConvSharingPosition(accountId, UID)
+        function onSharingUrisCountChanged() {
+            root.showSharedPositionIndicator = PositionManager.isConvSharingPosition(accountId, UID);
         }
     }
 
     Connections {
         target: MessagesAdapter
         function onTimestampUpdated() {
-            lastInteractionFormattedDate = MessagesAdapter.getBestFormattedDate(lastInteractionDate)
+            lastInteractionFormattedDate = MessagesAdapter.getBestFormattedDate(lastInteractionDate);
         }
     }
 
     Component.onCompleted: {
         // Store to avoid undefined at the end
-        root.accountId = Qt.binding(() => CurrentAccount.id)
-        root.convId = UID
+        root.accountId = Qt.binding(() => CurrentAccount.id;);
+        root.convId = UID;
     }
 
     Component.onDestruction: {
-        UtilsAdapter.clearInteractionsCache(root.accountId, root.convId)
+        UtilsAdapter.clearInteractionsCache(root.accountId, root.convId);
     }
 
     RowLayout {
@@ -122,7 +117,6 @@ ItemDelegate {
                     source: JamiResources.check_black_24dp_svg
                 }
             }
-
         }
 
         ColumnLayout {
@@ -143,10 +137,7 @@ ItemDelegate {
                 color: JamiTheme.textColor
             }
             RowLayout {
-                visible: ContactType !== Profile.Type.TEMPORARY
-                         && !IsBanned
-                         && lastInteractionFormattedDate !== undefined
-                         && interactive
+                visible: ContactType !== Profile.Type.TEMPORARY && !IsBanned && lastInteractionFormattedDate !== undefined && interactive
                 Layout.fillWidth: true
                 Layout.minimumHeight: 20
                 Layout.alignment: Qt.AlignTop
@@ -166,9 +157,7 @@ ItemDelegate {
                     elide: Text.ElideRight
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignVCenter
-                    text: Draft ?
-                              Draft :
-                              (LastInteraction === undefined ? "" : LastInteraction)
+                    text: Draft ? Draft : (LastInteraction === undefined ? "" : LastInteraction)
                     textFormat: TextEdit.PlainText
                     font.pointSize: JamiTheme.smartlistItemInfoFontSize
                     font.weight: UnreadMessagesCount ? Font.Normal : Font.Light
@@ -249,46 +238,46 @@ ItemDelegate {
         }
 
         Accessible.role: Accessible.Button
-        Accessible.name: Title === undefined? "" : Title
-        Accessible.description: LastInteraction === undefined? "" : LastInteraction
+        Accessible.name: Title === undefined ? "" : Title
+        Accessible.description: LastInteraction === undefined ? "" : LastInteraction
     }
 
     background: Rectangle {
         color: {
             if (root.pressed || root.highlighted)
-                return JamiTheme.smartListSelectedColor
+                return JamiTheme.smartListSelectedColor;
             else if (root.hovered)
-                return JamiTheme.smartListHoveredColor
+                return JamiTheme.smartListHoveredColor;
             else
-                return "transparent"
+                return "transparent";
         }
     }
 
     onClicked: {
         if (!interactive) {
-            highlighted = !highlighted
+            highlighted = !highlighted;
             return;
         }
-        ListView.view.model.select(index)
+        ListView.view.model.select(index);
     }
     onDoubleClicked: {
         if (!interactive)
             return;
-        ListView.view.model.select(index)
+        ListView.view.model.select(index);
         if (CurrentConversation.isSwarm && !CurrentConversation.isCoreDialog && !UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
             return; // For now disable calls for swarm with multiple participants
         if (LRCInstance.currentAccountType === Profile.Type.SIP || !CurrentAccount.videoEnabled_Video)
-            CallAdapter.placeAudioOnlyCall()
+            CallAdapter.placeAudioOnlyCall();
         else {
             if (!CurrentConversation.readOnly) {
-                CallAdapter.placeCall()
+                CallAdapter.placeCall();
             }
         }
     }
     onPressAndHold: {
         if (!interactive)
             return;
-        ListView.view.openContextMenuAt(pressX, pressY, root)
+        ListView.view.openContextMenuAt(pressX, pressY, root);
     }
 
     MouseArea {
@@ -296,7 +285,7 @@ ItemDelegate {
         enabled: interactive
         acceptedButtons: Qt.RightButton
         onClicked: function (mouse) {
-            root.ListView.view.openContextMenuAt(mouse.x, mouse.y, root)
+            root.ListView.view.openContextMenuAt(mouse.x, mouse.y, root);
         }
     }
 }

@@ -15,16 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 TextEdit {
     id: root
 
-    property string eText : ""
+    property string eText: ""
     property int maxWidth: 100
     property int fontSize: JamiTheme.textFontSize
     property int textWidth: 0
@@ -50,7 +48,7 @@ TextEdit {
         text: eText
 
         onTextChanged: {
-            textWidth = elided.boundingRect.width
+            textWidth = elided.boundingRect.width;
         }
     }
 }

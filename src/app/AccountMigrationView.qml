@@ -15,16 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "commoncomponents"
 
 // Account Migration Dialog for migrating account
@@ -42,16 +39,13 @@ BaseView {
     signal loaderSourceChangeRequested(int sourceToLoad)
 
     function slotMigrationButtonClicked() {
-        stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.Synching
-
-        AccountAdapter.setArchivePasswordAsync(
-                    CurrentAccountToMigrate.accountId, passwordInputLineEdit.text)
+        stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.Synching;
+        AccountAdapter.setArchivePasswordAsync(CurrentAccountToMigrate.accountId, passwordInputLineEdit.text);
     }
 
     function slotDeleteButtonClicked() {
-        stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.Synching
-
-        CurrentAccountToMigrate.removeCurrentAccountToMigrate()
+        stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.Synching;
+        CurrentAccountToMigrate.removeCurrentAccountToMigrate();
     }
 
     Timer {
@@ -61,9 +55,8 @@ BaseView {
         repeat: false
 
         onTriggered: {
-            stackedWidget.currentIndex =
-                    AccountMigrationView.AccountMigrationStep.PasswordEnter
-            successState = true
+            stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.PasswordEnter;
+            successState = true;
         }
     }
 
@@ -73,24 +66,19 @@ BaseView {
         target: CurrentAccountToMigrate
 
         function onMigrationEnded(ok) {
-            successState = ok
-
+            successState = ok;
             if (ok) {
-                passwordInputLineEdit.clear()
-
-                stackedWidget.currentIndex =
-                        AccountMigrationView.AccountMigrationStep.PasswordEnter
+                passwordInputLineEdit.clear();
+                stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.PasswordEnter;
             } else {
-                timerFailureReturn.restart()
+                timerFailureReturn.restart();
             }
         }
 
         function onCurrentAccountToMigrateRemoved() {
-            successState = true
-            passwordInputLineEdit.clear()
-
-            stackedWidget.currentIndex =
-                    AccountMigrationView.AccountMigrationStep.PasswordEnter
+            successState = true;
+            passwordInputLineEdit.clear();
+            stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.PasswordEnter;
         }
     }
 
@@ -122,7 +110,7 @@ BaseView {
 
                         font.pointSize: JamiTheme.headerFontSize
                         font.kerning: true
-                        wrapMode:Text.Wrap
+                        wrapMode: Text.Wrap
 
                         text: JamiStrings.authenticationRequired
 
@@ -138,7 +126,7 @@ BaseView {
 
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
-                        wrapMode:Text.Wrap
+                        wrapMode: Text.Wrap
 
                         text: JamiStrings.migrationReason
 
@@ -193,9 +181,9 @@ BaseView {
 
                             text: {
                                 if (CurrentAccountToMigrate.alias.length !== 0) {
-                                    return CurrentAccountToMigrate.alias
+                                    return CurrentAccountToMigrate.alias;
                                 } else {
-                                    return JamiStrings.notAvailable
+                                    return JamiStrings.notAvailable;
                                 }
                             }
                             font.pointSize: JamiTheme.textFontSize
@@ -228,11 +216,11 @@ BaseView {
 
                             text: {
                                 if (CurrentAccountToMigrate.username.length !== 0) {
-                                    return CurrentAccountToMigrate.username
+                                    return CurrentAccountToMigrate.username;
                                 } else if (CurrentAccountToMigrate.managerUsername.length !== 0) {
-                                    return CurrentAccountToMigrate.managerUsername
+                                    return CurrentAccountToMigrate.managerUsername;
                                 } else {
-                                    return JamiStrings.notAvailable
+                                    return JamiStrings.notAvailable;
                                 }
                             }
                             font.pointSize: JamiTheme.textFontSize
@@ -265,9 +253,9 @@ BaseView {
 
                             text: {
                                 if (CurrentAccountToMigrate.managerUri.length !== 0) {
-                                    return CurrentAccountToMigrate.managerUri
+                                    return CurrentAccountToMigrate.managerUri;
                                 } else {
-                                    return JamiStrings.notAvailable
+                                    return JamiStrings.notAvailable;
                                 }
                             }
                             font.pointSize: JamiTheme.textFontSize
@@ -323,7 +311,7 @@ BaseView {
 
                             preferredWidth: JamiTheme.preferredFieldWidth / 2
 
-                            color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                            color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
                             hoveredColor: JamiTheme.buttonTintedBlackHovered
                             pressedColor: JamiTheme.buttonTintedBlackPressed
                             secondary: true
@@ -368,7 +356,7 @@ BaseView {
                     height: stackedWidget.height
                     Layout.alignment: Qt.AlignHCenter
 
-                    RowLayout{
+                    RowLayout {
                         spacing: 8
 
                         Layout.alignment: Qt.AlignHCenter
@@ -417,8 +405,7 @@ BaseView {
                         Layout.bottomMargin: 80
 
                         color: successState ? JamiTheme.textColor : JamiTheme.redColor
-                        text: successState ? JamiStrings.inProgress :
-                                             JamiStrings.authenticationFailed
+                        text: successState ? JamiStrings.inProgress : JamiStrings.authenticationFailed
                         font.pointSize: JamiTheme.textFontSize + 5
                         font.kerning: true
 

@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
@@ -33,19 +30,14 @@ ColumnLayout {
     spacing: JamiTheme.settingsCategorySpacing
 
     function openFileDialog(title, oldPath, fileType, onAcceptedCb) {
-        var openPath = oldPath === "" ?
-                    (UtilsAdapter.getCurrentPath() + "/ringtones/") :
-                    (UtilsAdapter.toFileAbsolutepath(oldPath))
-        var dlg = viewCoordinator.presentDialog(
-                    appWindow,
-                    "commoncomponents/JamiFileDialog.qml",
-                    {
-                        title: title,
-                        fileMode: JamiFileDialog.OpenFile,
-                        folder: openPath,
-                        nameFilters: [fileType, JamiStrings.allFiles]
-                    })
-        dlg.fileAccepted.connect(onAcceptedCb)
+        var openPath = oldPath === "" ? (UtilsAdapter.getCurrentPath() + "/ringtones/") : (UtilsAdapter.toFileAbsolutepath(oldPath));
+        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                "title": title,
+                "fileMode": JamiFileDialog.OpenFile,
+                "folder": openPath,
+                "nameFilters": [fileType, JamiStrings.allFiles]
+            });
+        dlg.fileAccepted.connect(onAcceptedCb);
     }
 
     Text {
@@ -57,8 +49,8 @@ ColumnLayout {
         color: JamiTheme.textColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        wrapMode : Text.WordWrap
-        
+        wrapMode: Text.WordWrap
+
         font.pixelSize: JamiTheme.settingsTitlePixelSize
         font.kerning: true
     }
@@ -101,13 +93,9 @@ ColumnLayout {
             textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateListFile_TLS) !== "" ? UtilsAdapter.toFileInfoName(CurrentAccount.certificateListFile_TLS) : JamiStrings.selectCACertDefault
             itemWidth: root.itemWidth
 
-            onClick: openFileDialog(JamiStrings.selectCACert,
-                                    CurrentAccount.certificateListFile_TLS,
-                                    JamiStrings.certificateFile,
-                                    function (file) {
-                                        CurrentAccount.certificateListFile_TLS =
-                                                UtilsAdapter.getAbsPath(file.toString())
-                                    })
+            onClick: openFileDialog(JamiStrings.selectCACert, CurrentAccount.certificateListFile_TLS, JamiStrings.certificateFile, function (file) {
+                    CurrentAccount.certificateListFile_TLS = UtilsAdapter.getAbsPath(file.toString());
+                })
         }
 
         SettingMaterialButton {
@@ -120,13 +108,9 @@ ColumnLayout {
             itemWidth: root.itemWidth
             textField: UtilsAdapter.toFileInfoName(CurrentAccount.certificateFile_TLS) !== "" ? UtilsAdapter.toFileInfoName(CurrentAccount.certificateFile_TLS) : JamiStrings.selectCACertDefault
 
-            onClick: openFileDialog(JamiStrings.selectUserCert,
-                                    CurrentAccount.certificateFile_TLS,
-                                    JamiStrings.certificateFile,
-                                    function (file) {
-                                        CurrentAccount.certificateFile_TLS =
-                                                UtilsAdapter.getAbsPath(file.toString())
-                                    })
+            onClick: openFileDialog(JamiStrings.selectUserCert, CurrentAccount.certificateFile_TLS, JamiStrings.certificateFile, function (file) {
+                    CurrentAccount.certificateFile_TLS = UtilsAdapter.getAbsPath(file.toString());
+                })
         }
 
         SettingMaterialButton {
@@ -139,13 +123,9 @@ ColumnLayout {
             itemWidth: root.itemWidth
             textField: UtilsAdapter.toFileInfoName(CurrentAccount.privateKeyFile_TLS) !== "" ? UtilsAdapter.toFileInfoName(CurrentAccount.privateKeyFile_TLS) : JamiStrings.selectCACertDefault
 
-            onClick: openFileDialog(JamiStrings.selectPrivateKey,
-                                    CurrentAccount.privateKeyFile_TLS,
-                                    JamiStrings.keyFile,
-                                    function (file) {
-                                        CurrentAccount.privateKeyFile_TLS =
-                                                UtilsAdapter.getAbsPath(file.toString())
-                                    })
+            onClick: openFileDialog(JamiStrings.selectPrivateKey, CurrentAccount.privateKeyFile_TLS, JamiStrings.keyFile, function (file) {
+                    CurrentAccount.privateKeyFile_TLS = UtilsAdapter.getAbsPath(file.toString());
+                })
         }
 
         // Private key password
@@ -204,10 +184,26 @@ ColumnLayout {
 
             labelText: JamiStrings.tlsProtocol
             comboModel: ListModel {
-                ListElement{textDisplay: "Default"; firstArg: "Default"; secondArg: 0}
-                ListElement{textDisplay: "TLSv1"; firstArg: "TLSv1"; secondArg: 1}
-                ListElement{textDisplay: "TLSv1.1"; firstArg: "TLSv1.1"; secondArg: 2}
-                ListElement{textDisplay: "TLSv1.2"; firstArg: "TLSv1.2"; secondArg: 3}
+                ListElement {
+                    textDisplay: "Default"
+                    firstArg: "Default"
+                    secondArg: 0
+                }
+                ListElement {
+                    textDisplay: "TLSv1"
+                    firstArg: "TLSv1"
+                    secondArg: 1
+                }
+                ListElement {
+                    textDisplay: "TLSv1.1"
+                    firstArg: "TLSv1.1"
+                    secondArg: 2
+                }
+                ListElement {
+                    textDisplay: "TLSv1.2"
+                    firstArg: "TLSv1.2"
+                    secondArg: 3
+                }
             }
             widthOfComboBox: root.itemWidth
             tipText: JamiStrings.audioDeviceSelector
@@ -215,8 +211,7 @@ ColumnLayout {
 
             modelIndex: CurrentAccount.method_TLS
 
-            onActivated: CurrentAccount.method_TLS =
-                         parseInt(comboModel.get(modelIndex).secondArg)
+            onActivated: CurrentAccount.method_TLS = parseInt(comboModel.get(modelIndex).secondArg)
         }
 
         SettingsMaterialTextEdit {

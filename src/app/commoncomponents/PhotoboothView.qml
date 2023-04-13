@@ -15,16 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../mainview/components"
 
 Item {
@@ -54,7 +51,7 @@ Item {
             anchors.centerIn: parent
             anchors.margins: 1
 
-            mode: newItem? Avatar.Mode.Conversation : Avatar.Mode.Account
+            mode: newItem ? Avatar.Mode.Conversation : Avatar.Mode.Account
 
             fillMode: Image.PreserveAspectCrop
             showPresenceIndicator: false
@@ -81,16 +78,11 @@ Item {
             enabled: avatar.visible && !root.readOnly
             visible: enabled
 
-
-
-            onClicked : viewCoordinator.presentDialog(
-                           parent,
-                           "commoncomponents/PhotoboothPopup.qml",
-                            { parent: editImage,
-                              imageId: root.imageId,
-                              newItem: root.newItem,
-                            })
-
+            onClicked: viewCoordinator.presentDialog(parent, "commoncomponents/PhotoboothPopup.qml", {
+                    "parent": editImage,
+                    "imageId": root.imageId,
+                    "newItem": root.newItem
+                })
         }
     }
 }

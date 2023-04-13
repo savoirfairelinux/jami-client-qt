@@ -15,16 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import Qt5Compat.GraphicalEffects
-
 
 Popup {
     id: root
@@ -45,7 +42,7 @@ Popup {
     padding: 0
 
     visible: false
-    closePolicy:  Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
     Rectangle {
         id: container
@@ -61,7 +58,7 @@ Popup {
         }
 
         ColumnLayout {
-            id:  popupContent
+            id: popupContent
 
             Layout.alignment: Qt.AlignCenter
 
@@ -72,15 +69,16 @@ Popup {
                 width: 30
                 height: 30
                 imageContainerWidth: 30
-                imageContainerHeight : 30
+                imageContainerHeight: 30
                 Layout.margins: 8
-                radius : 5
+                radius: 5
                 imageColor: "grey"
                 normalColor: JamiTheme.transparentColor
                 source: JamiResources.round_close_24dp_svg
-                onClicked: { root.close() }
+                onClicked: {
+                    root.close();
+                }
             }
-
 
             ListView {
                 id: listViewReaction
@@ -89,7 +87,7 @@ Popup {
                 Layout.rightMargin: JamiTheme.popupButtonsMargin
                 spacing: 15
                 Layout.preferredWidth: 400
-                Layout.preferredHeight: childrenRect.height + 30 < 700 ? childrenRect.height + 30 :  700
+                Layout.preferredHeight: childrenRect.height + 30 < 700 ? childrenRect.height + 30 : 700
                 model: Object.entries(emojiReaction)
                 clip: true
                 property int modelCount: Object.entries(emojiReaction).length
@@ -112,7 +110,6 @@ Popup {
                         Layout.topMargin: (textmetric.height - height) + (height - authorName.height) / 2
                     }
 
-
                     Text {
                         id: authorName
 
@@ -123,11 +120,7 @@ Popup {
                         elide: Text.ElideRight
                         font.pointSize: JamiTheme.namePopupFontsize
                         color: JamiTheme.chatviewTextColor
-                        text: isMe
-                              ? " " + CurrentAccount.bestName
-                                + "   "
-                              : " " + UtilsAdapter.getBestNameForUri(CurrentAccount.id, authorUri)
-                                + "   "
+                        text: isMe ? " " + CurrentAccount.bestName + "   " : " " + UtilsAdapter.getBestNameForUri(CurrentAccount.id, authorUri) + "   "
                     }
 
                     GridLayout {
@@ -135,7 +128,7 @@ Popup {
                         visible: !isMe
                         layoutDirection: Qt.RightToLeft
                         Repeater {
-                            model: emojiArray.length < 15 ?  emojiArray.length : 15
+                            model: emojiArray.length < 15 ? emojiArray.length : 15
                             delegate: Text {
                                 text: emojiArray[index]
                                 horizontalAlignment: Text.AlignRight
@@ -149,7 +142,7 @@ Popup {
                         columns: 5
                         layoutDirection: Qt.RightToLeft
                         Repeater {
-                            model: emojiArray.length < 15 ?  emojiArray.length : 15
+                            model: emojiArray.length < 15 ? emojiArray.length : 15
                             delegate: Button {
                                 id: emojiButton
 
@@ -167,9 +160,9 @@ Popup {
                                 }
 
                                 onClicked: {
-                                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id,emojiButton.text,msgId)
+                                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id, emojiButton.text, msgId);
                                     if (emojiArray.length === 1)
-                                        close()
+                                        close();
                                 }
                             }
                         }
@@ -182,7 +175,7 @@ Popup {
     Overlay.modal: Rectangle {
         color: JamiTheme.transparentColor
         // Color animation for overlay when pop up is shown.
-        ColorAnimation on color {
+        ColorAnimation on color  {
             to: JamiTheme.popupOverlayColor
             duration: 500
         }
@@ -202,14 +195,18 @@ Popup {
 
     enter: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 0.0; to: 1.0
+            properties: "opacity"
+            from: 0.0
+            to: 1.0
             duration: JamiTheme.shortFadeDuration
         }
     }
 
     exit: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 1.0; to: 0.0
+            properties: "opacity"
+            from: 1.0
+            to: 0.0
             duration: JamiTheme.shortFadeDuration
         }
     }

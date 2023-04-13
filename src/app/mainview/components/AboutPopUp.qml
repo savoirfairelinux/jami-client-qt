@@ -15,17 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
-
 import "../../commoncomponents"
 
 BaseModalDialog {
@@ -48,7 +44,9 @@ BaseModalDialog {
 
         source: JamiResources.round_close_24dp_svg
 
-        onClicked: { close(); }
+        onClicked: {
+            close();
+        }
     }
 
     popupContent: JamiFlickable {
@@ -70,9 +68,7 @@ BaseModalDialog {
                 Layout.preferredWidth: JamiTheme.aboutLogoPreferredWidth
                 Layout.preferredHeight: JamiTheme.aboutLogoPreferredHeight
 
-                source: JamiTheme.darkTheme ?
-                            JamiResources.logo_jami_standard_coul_white_svg :
-                            JamiResources.logo_jami_standard_coul_svg
+                source: JamiTheme.darkTheme ? JamiResources.logo_jami_standard_coul_white_svg : JamiResources.logo_jami_standard_coul_svg
             }
 
             TextEdit {
@@ -197,8 +193,7 @@ BaseModalDialog {
                 TextMetrics {
                     id: textMetricsjamiNoneWarrantyHyperText
                     font: jamiDeclarationHyperText.font
-                    text: JamiStrings.declarationYear + " " + '<a href="https://savoirfairelinux.com" style="color: ' + JamiTheme.blueLinkColor + '">Savoir-faire Linux Inc.</a><br>'
-                          + 'This program comes with absolutely no warranty. See the <a href="http://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.blueLinkColor + '">GNU General Public License</a>, version 3 or later for details.'
+                    text: JamiStrings.declarationYear + " " + '<a href="https://savoirfairelinux.com" style="color: ' + JamiTheme.blueLinkColor + '">Savoir-faire Linux Inc.</a><br>' + 'This program comes with absolutely no warranty. See the <a href="http://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.blueLinkColor + '">GNU General Public License</a>, version 3 or later for details.'
                 }
 
                 MouseArea {
@@ -216,7 +211,6 @@ BaseModalDialog {
                 Layout.topMargin: 25
                 Layout.margins: JamiTheme.preferredMarginSize
             }
-
         }
     }
 }

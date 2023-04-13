@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright (C) 2023 Savoir-faire Linux Inc.
  * Author: Fadi Shehadeh   <fadi.shehadeh@savoirfairelinux.com>
@@ -17,16 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
@@ -59,18 +54,20 @@ SettingsPageBase {
             labelText: JamiStrings.fps
             currentSelectionText: VideoDevices.screenSharingDefaultFps.toString()
             placeholderText: VideoDevices.screenSharingDefaultFps.toString()
-            comboModel: ListModel { id: screenSharingFpsModel }
+            comboModel: ListModel {
+                id: screenSharingFpsModel
+            }
             role: "FPS"
             Component.onCompleted: {
-                var elements = VideoDevices.sharingFpsSourceModel
+                var elements = VideoDevices.sharingFpsSourceModel;
                 for (var item in elements) {
-                    screenSharingFpsModel.append({"FPS": elements[item]})
+                    screenSharingFpsModel.append({
+                            "FPS": elements[item]
+                        });
                 }
             }
 
             onActivated: VideoDevices.setDisplayFPS(screenSharingFpsModel.get(modelIndex).FPS)
         }
-
     }
-
 }

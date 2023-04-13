@@ -18,7 +18,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -44,13 +43,12 @@ SBSMessageBase {
     readers: Readers
     formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
 
-
     Connections {
         target: CurrentConversation
         enabled: root.isActive
 
         function onActiveCallsChanged() {
-            root.isActive = LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1
+            root.isActive = LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1;
         }
     }
 
@@ -60,11 +58,9 @@ SBSMessageBase {
     bubble.color: {
         if (ConfId === "" && Duration === 0) {
             // If missed, we can add a darker pattern
-            return isOutgoing ?
-                        Qt.lighter(CurrentConversation.color, 1.15) :
-                        Qt.darker(JamiTheme.messageInBgColor, 1.15)
+            return isOutgoing ? Qt.lighter(CurrentConversation.color, 1.15) : Qt.darker(JamiTheme.messageInBgColor, 1.15);
         }
-        return isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor
+        return isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor;
     }
 
     innerContent.children: [
@@ -80,10 +76,10 @@ SBSMessageBase {
                 Layout.margins: 8
                 Layout.fillWidth: true
 
-                text:{
+                text: {
                     if (root.isActive)
-                        return JamiStrings.joinCall
-                    return Body
+                        return JamiStrings.joinCall;
+                    return Body;
                 }
                 horizontalAlignment: Qt.AlignHCenter
 
@@ -93,9 +89,7 @@ SBSMessageBase {
                 renderType: Text.NativeRendering
                 textFormat: Text.MarkdownText
 
-                color: UtilsAdapter.luma(bubble.color) ?
-                       JamiTheme.chatviewTextColorLight :
-                       JamiTheme.chatviewTextColorDark
+                color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
             }
 
             JoinCallButton {
@@ -116,6 +110,10 @@ SBSMessageBase {
     ]
 
     opacity: 0
-    Behavior on opacity { NumberAnimation { duration: 100 } }
+    Behavior on opacity  {
+        NumberAnimation {
+            duration: 100
+        }
+    }
     Component.onCompleted: opacity = 1
 }

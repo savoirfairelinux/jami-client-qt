@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import net.jami.Constants 1.1
 
@@ -47,7 +46,7 @@ Rectangle {
         color: JamiTheme.toastColor
     }
 
-    SequentialAnimation on opacity {
+    SequentialAnimation on opacity  {
         id: anim
 
         running: false

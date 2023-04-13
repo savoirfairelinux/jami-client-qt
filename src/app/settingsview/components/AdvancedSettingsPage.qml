@@ -15,16 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
@@ -36,7 +33,6 @@ SettingsPageBase {
     title: JamiStrings.advancedSettingsTitle
 
     flickableContent: ColumnLayout {
-
         id: currentAccountEnableColumnLayout
 
         width: contentFlickableWidth
@@ -116,4 +112,3 @@ SettingsPageBase {
         }
     }
 }
-

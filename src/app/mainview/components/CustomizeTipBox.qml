@@ -14,15 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
@@ -82,7 +79,6 @@ ColumnLayout {
         color: JamiTheme.textColor
     }
 
-
     PhotoboothView {
         id: setAvatarWidget
         width: avatarSize + avatarSize / 2
@@ -93,7 +89,6 @@ ColumnLayout {
         imageId: CurrentAccount.id
         avatarSize: 53
         doubleEditAvatar: true
-
     }
 
     ModalTextEdit {

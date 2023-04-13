@@ -15,11 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
@@ -33,32 +31,31 @@ BaseModalDialog {
 
     Connections {
         target: {
-            if (Qt.platform.os.toString()  !== "windows" && Qt.platform.os.toString()  !== "osx")
-                return DBusErrorHandler
-            return null
+            if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
+                return DBusErrorHandler;
+            return null;
         }
         ignoreUnknownSignals: true
 
         function onShowDaemonReconnectPopup(visible) {
             if (!visible) {
-                viewCoordinator.dismiss(this)
+                viewCoordinator.dismiss(this);
             }
         }
 
         function onDaemonReconnectFailed() {
-            connectionFailed = true
+            connectionFailed = true;
         }
     }
 
-
     onPopupContentLoadStatusChanged: {
         if (popupContentLoadStatus === Loader.Ready) {
-            root.height = Qt.binding(function() {
-                return popupContentLoader.item.implicitHeight + 50
-            })
-            root.width = Qt.binding(function() {
-                return popupContentLoader.item.implicitWidth + 50
-            })
+            root.height = Qt.binding(function () {
+                    return popupContentLoader.item.implicitHeight + 50;
+                });
+            root.width = Qt.binding(function () {
+                    return popupContentLoader.item.implicitWidth + 50;
+                });
         }
     }
 
@@ -73,8 +70,7 @@ BaseModalDialog {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.topMargin: preferredMargin
 
-            text: connectionFailed ? JamiStrings.reconnectionFailed :
-                                     JamiStrings.reconnectDaemon
+            text: connectionFailed ? JamiStrings.reconnectionFailed : JamiStrings.reconnectDaemon
             font.pointSize: JamiTheme.textFontSize + 2
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -112,7 +108,7 @@ BaseModalDialog {
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed
             secondary: true
-                autoAccelerator: true
+            autoAccelerator: true
 
             onClicked: Qt.quit()
         }

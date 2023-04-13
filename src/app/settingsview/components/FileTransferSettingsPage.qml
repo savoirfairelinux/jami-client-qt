@@ -16,16 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
@@ -33,7 +30,6 @@ SettingsPageBase {
 
     property int itemWidth: 164
     title: JamiStrings.fileTransfer
-
 
     flickableContent: ColumnLayout {
         id: callSettingsColumnLayout
@@ -69,7 +65,7 @@ SettingsPageBase {
         MaterialButton {
             id: defaultSettings
 
-            TextMetrics{
+            TextMetrics {
                 id: defaultSettingsTextSize
                 font.weight: Font.Bold
                 font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -80,14 +76,13 @@ SettingsPageBase {
             secondary: true
 
             text: JamiStrings.defaultSettings
-            preferredWidth: defaultSettingsTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+            preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                autoAcceptFilesCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.AutoAcceptFiles)
-                acceptTransferBelowSpinBox.valueField = UtilsAdapter.getDefault(Settings.Key.AcceptTransferBelow)
-
-                UtilsAdapter.setToDefault(Settings.Key.AutoAcceptFiles)
-                UtilsAdapter.setToDefault(Settings.Key.AcceptTransferBelow)
+                autoAcceptFilesCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.AutoAcceptFiles);
+                acceptTransferBelowSpinBox.valueField = UtilsAdapter.getDefault(Settings.Key.AcceptTransferBelow);
+                UtilsAdapter.setToDefault(Settings.Key.AutoAcceptFiles);
+                UtilsAdapter.setToDefault(Settings.Key.AcceptTransferBelow);
             }
         }
     }
