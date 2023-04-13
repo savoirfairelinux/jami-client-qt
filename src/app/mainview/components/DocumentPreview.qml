@@ -156,7 +156,6 @@ Item {
                     Layout.preferredWidth: info.width
                     font.pointSize: JamiTheme.filesToSendDelegateFontPointSize
                     color: JamiTheme.chatviewTextColor
-                    font.bold : true
                     text: TransferName
                     elide: Text.ElideRight
                 }
