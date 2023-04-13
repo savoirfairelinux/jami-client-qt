@@ -15,10 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
-import "../../commoncomponents/contextmenu"
+import "."
 
 Loader {
     id: root
@@ -33,15 +31,15 @@ Loader {
     active: false
 
     function openMenu() {
-        root.active = true
-        root.sourceComponent = menuComponent
+        root.active = true;
+        root.sourceComponent = menuComponent;
     }
 
     Connections {
         target: root.item
         enabled: root.status === Loader.Ready
         function onClosed() {
-            root.active = false
+            root.active = false;
         }
     }
 
@@ -52,10 +50,10 @@ Loader {
             id: contextMenu
 
             Component.onCompleted: {
-                contextMenu.menuPreferredWidth = contextMenuItemPreferredWidth
-                contextMenu.menuItemsPreferredHeight = contextMenuItemPreferredHeight
-                contextMenu.menuSeparatorPreferredHeight = contextMenuSeparatorPreferredHeight
-                contextMenu.loadMenuItems(menuItemsToLoad)
+                contextMenu.menuPreferredWidth = contextMenuItemPreferredWidth;
+                contextMenu.menuItemsPreferredHeight = contextMenuItemPreferredHeight;
+                contextMenu.menuSeparatorPreferredHeight = contextMenuSeparatorPreferredHeight;
+                contextMenu.loadMenuItems(menuItemsToLoad);
             }
         }
     }

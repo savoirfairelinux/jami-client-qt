@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Window {
@@ -239,14 +236,13 @@ Window {
                 text: {
                     switch (selectionBar.currentIndex) {
                     case 0:
-                        return JamiStrings.generalSettingsTitle
+                        return JamiStrings.generalSettingsTitle;
                     case 1:
-                        return JamiStrings.conversationKeyboardShortcuts
+                        return JamiStrings.conversationKeyboardShortcuts;
                     case 2:
-                        return JamiStrings.callKeyboardShortcuts
+                        return JamiStrings.callKeyboardShortcuts;
                     case 3:
-                        return JamiStrings.settings
-
+                        return JamiStrings.settings;
                     }
                 }
                 color: JamiTheme.textColor
@@ -261,27 +257,23 @@ Window {
             anchors.horizontalCenter: parent.horizontalCenter
 
             width: parent.width
-            height: parent.height - titleRect.height - JamiTheme.titleRectMargin -
-                    keyboardShortCutList.anchors.topMargin - selectionBar.height -
-                    selectionBar.anchors.bottomMargin
+            height: parent.height - titleRect.height - JamiTheme.titleRectMargin - keyboardShortCutList.anchors.topMargin - selectionBar.height - selectionBar.anchors.bottomMargin
 
             model: {
                 switch (selectionBar.currentIndex) {
                 case 0:
-                    return keyboardGeneralShortcutsModel
+                    return keyboardGeneralShortcutsModel;
                 case 1:
-                    return keyboardConversationShortcutsModel
+                    return keyboardConversationShortcutsModel;
                 case 2:
-                    return keyboardCallsShortcutsModel
+                    return keyboardCallsShortcutsModel;
                 case 3:
-                    return keyboardSettingsShortcutsModel
-
+                    return keyboardSettingsShortcutsModel;
                 }
             }
             delegate: KeyboardShortcutKeyDelegate {
                 width: keyboardShortCutList.width
-                height: Math.max(JamiTheme.keyboardShortcutDelegateSize,
-                                 implicitHeight)
+                height: Math.max(JamiTheme.keyboardShortcutDelegateSize, implicitHeight)
             }
         }
 

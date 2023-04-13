@@ -14,16 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 BaseModalDialog {
@@ -33,17 +30,15 @@ BaseModalDialog {
     height: 256
 
     property bool isAdmin: {
-        var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri)
-        return role === Member.Role.ADMIN
+        var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri);
+        return role === Member.Role.ADMIN;
     }
-
 
     popupContent: Rectangle {
         id: rect
 
         color: JamiTheme.transparentColor
         width: root.width
-
 
         PushButton {
             id: btnCancel
@@ -54,7 +49,9 @@ BaseModalDialog {
             anchors.topMargin: 10
             anchors.rightMargin: 10
             source: JamiResources.round_close_24dp_svg
-            onClicked: { close();}
+            onClicked: {
+                close();
+            }
         }
 
         ColumnLayout {
@@ -81,11 +78,11 @@ BaseModalDialog {
                 Layout.alignment: Qt.AlignCenter
 
                 Layout.topMargin: 26
-                text: isAdmin? JamiStrings.becomeHostOneCall : JamiStrings.hostThisCall
+                text: isAdmin ? JamiStrings.becomeHostOneCall : JamiStrings.hostThisCall
 
                 onClicked: {
-                    MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0")
-                    close()
+                    MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
+                    close();
                 }
             }
 
@@ -100,10 +97,10 @@ BaseModalDialog {
                 visible: isAdmin
 
                 onClicked: {
-                    CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri)
-                    CurrentConversation.setInfo("rdvDevice", devicesListView.currentItem.deviceId)
-                    MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0")
-                    close()
+                    CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri);
+                    CurrentConversation.setInfo("rdvDevice", devicesListView.currentItem.deviceId);
+                    MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
+                    close();
                 }
             }
         }

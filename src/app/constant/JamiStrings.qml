@@ -18,9 +18,7 @@
 
 // JamiStrings as a singleton is to provide global strings entries.
 pragma Singleton
-
 import QtQuick
-
 import net.jami.Helpers 1.1
 
 Item {
@@ -210,10 +208,7 @@ Item {
 
     // BackupKeyPage
     property string whyBackupAccount: qsTr("Why should I back-up this account?")
-    property string  backupAccountInfos: qsTr("Your account only exists on this device. " +
-                                              "If you lose your device or uninstall the application, " +
-                                              "your account will be deleted and CANNOT be recovered. " +
-                                              "You can back up your account now or later (in the Account Settings).")
+    property string backupAccountInfos: qsTr("Your account only exists on this device. " + "If you lose your device or uninstall the application, " + "your account will be deleted and CANNOT be recovered. " + "You can back up your account now or later (in the Account Settings).")
     property string backupAccountHere: qsTr("Back up account here")
     property string backupAccountBtn: qsTr("Back up account")
     property string skip: qsTr("Skip")
@@ -326,27 +321,27 @@ Item {
     property string minuteLeft: qsTr("%1 minute left")
     property string locationServicesError: qsTr("Your precise location could not be determined.\nIn Device Settings, please turn on \"Location Services\".\nOther participants' location can still be received.")
     property string locationServicesClosedError: qsTr("Your precise location could not be determined. Please check your Internet connection.")
-    property string stopAllSharings: qsTr("Turn off location sharing");
-    property string shortStopAllSharings: qsTr("Turn off sharing");
-    property string stopConvSharing: qsTr("Stop location sharing in this conversation (%1)");
-    property string stopSharingPopupBody: qsTr("Location is shared in several conversations");
-    property string unpinStopSharingTooltip: qsTr("Pin map to be able to share location or to turn off location in specific conversations");
+    property string stopAllSharings: qsTr("Turn off location sharing")
+    property string shortStopAllSharings: qsTr("Turn off sharing")
+    property string stopConvSharing: qsTr("Stop location sharing in this conversation (%1)")
+    property string stopSharingPopupBody: qsTr("Location is shared in several conversations")
+    property string unpinStopSharingTooltip: qsTr("Pin map to be able to share location or to turn off location in specific conversations")
     property string stopSharingSeveralConversationTooltip: qsTr("Location is shared in several conversations, click to choose how to turn off location sharing")
-    property string shareLocationToolTip: qsTr("Share location to participants of this conversation (%1)");
-    property string minimizeMapTooltip: qsTr("Minimize");
-    property string maximizeMapTooltip: qsTr("Maximize");
-    property string reduceMapTooltip: qsTr("Reduce");
-    property string extendMapTooltip: qsTr("Extend");
-    property string dragMapTooltip: qsTr("Drag");
-    property string centerMapTooltip: qsTr("Center");
-    property string closeMapTooltip: qsTr("Close");
-    property string unpin: qsTr("Unpin");
-    property string pinWindow: qsTr("Pin");
-    property string positionShareDuration: qsTr("Position share duration");
-    property string positionShareLimit: qsTr("Limit the duration of location sharing");
-    property string locationSharingLabel: qsTr("Location sharing");
-    property string maxLocationDuration: qsTr("Unlimited");
-    property string minLocationDuration: qsTr("1 min");
+    property string shareLocationToolTip: qsTr("Share location to participants of this conversation (%1)")
+    property string minimizeMapTooltip: qsTr("Minimize")
+    property string maximizeMapTooltip: qsTr("Maximize")
+    property string reduceMapTooltip: qsTr("Reduce")
+    property string extendMapTooltip: qsTr("Extend")
+    property string dragMapTooltip: qsTr("Drag")
+    property string centerMapTooltip: qsTr("Center")
+    property string closeMapTooltip: qsTr("Close")
+    property string unpin: qsTr("Unpin")
+    property string pinWindow: qsTr("Pin")
+    property string positionShareDuration: qsTr("Position share duration")
+    property string positionShareLimit: qsTr("Limit the duration of location sharing")
+    property string locationSharingLabel: qsTr("Location sharing")
+    property string maxLocationDuration: qsTr("Unlimited")
+    property string minLocationDuration: qsTr("1 min")
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
@@ -404,7 +399,6 @@ Item {
     property string usernameToolTip: qsTr("- 32 characters maximum\n- Alphabetical characters (A to Z and a to z)\n- Numeric characters (0 to 9)\n- Special characters allowed: dash (-)")
 
     // Good to know
-
     property string goodToKnow: qsTr("Good to know")
     property string local: qsTr("Local")
     property string encrypt: qsTr("Encrypt")
@@ -425,9 +419,8 @@ Item {
     property string udp: qsTr("UDP")
     property string displayName: qsTr("Display Name")
 
-
     // accountSettingsPages
-    property string customizeAccountDescription:qsTr("Your profile is only shared with your contacts.\nYour picture and your nickname can be changed at all time in the settings of your account.")
+    property string customizeAccountDescription: qsTr("Your profile is only shared with your contacts.\nYour picture and your nickname can be changed at all time in the settings of your account.")
     property string usernameAccountDescription: qsTr("A chosen username can help to be found more easily on Jami.\nIf a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.")
     property string ecryptAccountDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.")
     property string saveAccountTitle: qsTr("Backup account")
@@ -614,9 +607,7 @@ Item {
     property string archive: qsTr("Archive")
     property string openFile: qsTr("Open file")
     property string importAccountArchive: qsTr("Create account from backup")
-    property string importAccountExplanation: qsTr("You can obtain an archive by clicking on \"Back up account\" " +
-                                                   "in the Account Settings. " +
-                                                   "This will create a .gz file on your device.")
+    property string importAccountExplanation: qsTr("You can obtain an archive by clicking on \"Back up account\" " + "in the Account Settings. " + "This will create a .gz file on your device.")
     property string connectFromBackup: qsTr("Restore account from backup")
     property string generatingAccount: qsTr("Generating account…")
     property string importFromBackup: qsTr("Import from backup")
@@ -625,11 +616,9 @@ Item {
     property string selectArchiveFile: qsTr("Select archive file")
     property string passwordArchive: qsTr("If the account is encrypted with a password, please fill the following field.")
 
-
     // ImportFromDevicePage
     property string mainAccountPassword: qsTr("Enter Jami account password")
-    property string enterPIN: qsTr("Enter the PIN from another configured Jami account. " +
-                                   "Use the \"Link Another Device\" feature to obtain a PIN.")
+    property string enterPIN: qsTr("Enter the PIN from another configured Jami account. " + "Use the \"Link Another Device\" feature to obtain a PIN.")
     property string connectFromAnotherDevice: qsTr("Link device")
     property string importButton: qsTr("Import")
     property string pin: qsTr("Enter the PIN code")
@@ -643,7 +632,6 @@ Item {
     property string importStep3Desc: qsTr("Select \"Link another device\"")
     property string importStep4Desc: qsTr("The PIN code will be available for 10 minutes")
     property string importPasswordDesc: qsTr("Fill if the account is password-encrypted.")
-
 
     // LinkDevicesDialog
     property string pinTimerInfos: qsTr("The PIN and the account password should be entered in your device within 10 minutes.")
@@ -746,9 +734,6 @@ Item {
     property string alreadyHaveAccount: qsTr("I already have an account")
     property string useExistingAccount: qsTr("Use existing Jami account")
     property string welcomeToJami: qsTr("Welcome to Jami")
-
-
-
 
     // SmartList
     property string clearText: qsTr("Clear Text")
@@ -904,5 +889,4 @@ Item {
     // Appearence
     property string theme: qsTr("Theme")
     property string zoomLevel: qsTr("Text zoom level")
-
 }

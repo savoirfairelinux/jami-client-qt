@@ -16,20 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
-//
 // PushButton contains the following configurable properties:
 // - colored states
 // - radius
 // - minimal support for text
 // - animation duration
 // TODO: allow transparent background tinted text/icon
-//
 AbstractButton {
     id: root
 
@@ -85,7 +81,7 @@ AbstractButton {
     hoverEnabled: true
     focusPolicy: Qt.TabFocus
 
-    property bool forceHovered:  false
+    property bool forceHovered: false
 
     Accessible.role: Accessible.Button
     Accessible.name: buttonText
@@ -112,18 +108,18 @@ AbstractButton {
 
         source: {
             if (checkable && checkedImageSource)
-                return checked ? checkedImageSource : normalImageSource
+                return checked ? checkedImageSource : normalImageSource;
             else
-                return normalImageSource
+                return normalImageSource;
         }
 
         color: {
             if (checked && checkedImageColor)
-                return checkedImageColor
+                return checkedImageColor;
             else if (imageColor)
-                return imageColor
+                return imageColor;
             else
-                return JamiTheme.transparentColor
+                return JamiTheme.transparentColor;
         }
     }
 
@@ -156,49 +152,79 @@ AbstractButton {
 
         states: [
             State {
-                name: "checked"; when: checked
-                PropertyChanges { target: background; color:  checkedColor}
+                name: "checked"
+                when: checked
+                PropertyChanges {
+                    target: background
+                    color: checkedColor
+                }
             },
             State {
-                name: "pressed"; when: pressed
-                PropertyChanges { target: background; color: pressedColor}
+                name: "pressed"
+                when: pressed
+                PropertyChanges {
+                    target: background
+                    color: pressedColor
+                }
             },
             State {
-                name: "hovered"; when: hovered || root.focus
-                PropertyChanges { target: background; color: hoveredColor }
+                name: "hovered"
+                when: hovered || root.focus
+                PropertyChanges {
+                    target: background
+                    color: hoveredColor
+                }
             },
             State {
-                name: "forceHovered"; when: forceHovered || root.focus
-                PropertyChanges { target: background; color: hoveredColor }
+                name: "forceHovered"
+                when: forceHovered || root.focus
+                PropertyChanges {
+                    target: background
+                    color: hoveredColor
+                }
             },
             State {
-                name: "normal"; when: !hovered && ! checked
-                PropertyChanges { target: background; color: normalColor }
+                name: "normal"
+                when: !hovered && !checked
+                PropertyChanges {
+                    target: background
+                    color: normalColor
+                }
             }
         ]
 
         transitions: [
             Transition {
-                to: "normal"; reversible: true; enabled: duration
-                ColorAnimation { duration: root.duration }
+                to: "normal"
+                reversible: true
+                enabled: duration
+                ColorAnimation {
+                    duration: root.duration
+                }
             },
             Transition {
-                to: "pressed"; reversible: true; enabled: duration
-                ColorAnimation { duration: root.duration * 0.5 }
+                to: "pressed"
+                reversible: true
+                enabled: duration
+                ColorAnimation {
+                    duration: root.duration * 0.5
+                }
             },
             Transition {
-                to: ""; reversible: true; enabled: duration
-                ColorAnimation { duration: root.duration }
+                to: ""
+                reversible: true
+                enabled: duration
+                ColorAnimation {
+                    duration: root.duration
+                }
             }
         ]
-
     }
 
     Keys.onPressed: function (keyEvent) {
-        if (keyEvent.key === Qt.Key_Enter ||
-                keyEvent.key === Qt.Key_Return) {
-            clicked()
-            keyEvent.accepted = true
+        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+            clicked();
+            keyEvent.accepted = true;
         }
     }
 }

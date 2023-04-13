@@ -15,17 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import QtWebEngine
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-
 import "../commoncomponents"
 
 WebEngineView {
@@ -35,18 +32,12 @@ WebEngineView {
     readonly property real minSize: 192
     readonly property real maxSize: 256
     readonly property real aspectRatio: 1 / .75
-    readonly property real adjustedWidth: Math.min(maxSize,
-                                                   Math.max(minSize,
-                                                            innerContent.width - senderMargin))
+    readonly property real adjustedWidth: Math.min(maxSize, Math.max(minSize, innerContent.width - senderMargin))
     anchors.right: isOutgoing ? parent.right : undefined
     width: isFullScreen ? parent.width : adjustedWidth
-    height: isVideo ?
-                isFullScreen ?
-                    parent.height :
-                    Math.ceil(adjustedWidth / aspectRatio) :
-    54
-    onContextMenuRequested: function(request) {
-        request.accepted = true
+    height: isVideo ? isFullScreen ? parent.height : Math.ceil(adjustedWidth / aspectRatio) : 54
+    onContextMenuRequested: function (request) {
+        request.accepted = true;
     }
     settings.fullScreenSupportEnabled: isVideo
     settings.javascriptCanOpenWindows: false
@@ -61,16 +52,14 @@ WebEngineView {
             radius: msgRadius
         }
     }
-    onFullScreenRequested: function(request) {
+    onFullScreenRequested: function (request) {
         if (request.toggleOn) {
-            layoutManager.pushFullScreenItem(
-                        this,
-                        localMediaCompLoader,
-                        null,
-                        function() { wev.fullScreenCancelled() })
+            layoutManager.pushFullScreenItem(this, localMediaCompLoader, null, function () {
+                    wev.fullScreenCancelled();
+                });
         } else if (!request.toggleOn) {
-            layoutManager.removeFullScreenItem(this)
+            layoutManager.removeFullScreenItem(this);
         }
-        request.accept()
+        request.accept();
     }
 }

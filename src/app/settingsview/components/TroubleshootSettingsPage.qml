@@ -16,19 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 import "../js/logviewwindowcreation.js" as LogViewWindowCreation
-
 
 SettingsPageBase {
     id: root
@@ -36,7 +32,6 @@ SettingsPageBase {
     property int itemWidth
 
     title: JamiStrings.troubleshootTitle
-
 
     flickableContent: ColumnLayout {
         id: troubleshootSettingsColumnLayout
@@ -66,7 +61,7 @@ SettingsPageBase {
             MaterialButton {
                 id: enableTroubleshootingButton
 
-                TextMetrics{
+                TextMetrics {
                     id: enableTroubleshootingButtonTextSize
                     font.weight: Font.Bold
                     font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -76,7 +71,7 @@ SettingsPageBase {
 
                 Layout.alignment: Qt.AlignRight
 
-                preferredWidth: enableTroubleshootingButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+                preferredWidth: enableTroubleshootingButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
                 buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
                 primary: true
@@ -85,8 +80,8 @@ SettingsPageBase {
                 toolTipText: JamiStrings.troubleshootButton
 
                 onClicked: {
-                    LogViewWindowCreation.createlogViewWindowObject()
-                    LogViewWindowCreation.showLogViewWindow()
+                    LogViewWindowCreation.createlogViewWindowObject();
+                    LogViewWindowCreation.showLogViewWindow();
                 }
             }
         }

@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "commoncomponents"
 
 ApplicationWindow {
@@ -46,10 +43,9 @@ ApplicationWindow {
     }
 
     function getTextBoundingRect(font, text) {
-        textMetrics.font = font
-        textMetrics.text = text
-
-        return textMetrics.boundingRect
+        textMetrics.font = font;
+        textMetrics.text = text;
+        return textMetrics.boundingRect;
     }
 
     ResponsiveImage {
@@ -89,16 +85,13 @@ ApplicationWindow {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                     Layout.topMargin: preferredMargin
 
-                    text: connectionFailed ?
-                              JamiStrings.reconnectWarn :
-                              JamiStrings.reconnectTry
+                    text: connectionFailed ? JamiStrings.reconnectWarn : JamiStrings.reconnectTry
                     font.pointSize: 11
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
 
                     Component.onCompleted: {
-                        contentRect.implicitWidth = getTextBoundingRect(
-                                    font, text).width + 100
+                        contentRect.implicitWidth = getTextBoundingRect(font, text).width + 100;
                     }
                 }
 
@@ -143,17 +136,17 @@ ApplicationWindow {
                                 anchors.centerIn: parent
 
                                 width: {
-                                    return (parent.width / 2 - 18) * 2
+                                    return (parent.width / 2 - 18) * 2;
                                 }
 
                                 text: JamiString.optionOk
 
                                 color: {
                                     if (btnOk.hovered)
-                                        return btnOk.hoveredColor
+                                        return btnOk.hoveredColor;
                                     if (btnOk.checked)
-                                        return btnOk.pressedColor
-                                    return btnOk.normalColor
+                                        return btnOk.pressedColor;
+                                    return btnOk.normalColor;
                                 }
                                 font: root.font
                                 horizontalAlignment: Text.AlignHCenter
@@ -169,10 +162,10 @@ ApplicationWindow {
                         color: "transparent"
                         border.color: {
                             if (btnOk.hovered)
-                                return btnOk.hoveredColor
+                                return btnOk.hoveredColor;
                             if (btnOk.checked)
-                                return btnOk.pressedColor
-                            return btnOk.normalColor
+                                return btnOk.pressedColor;
+                            return btnOk.normalColor;
                         }
                         radius: 4
                     }
@@ -186,22 +179,21 @@ ApplicationWindow {
 
         function onShowDaemonReconnectPopup(visible) {
             if (visible)
-                popup.open()
+                popup.open();
             else {
-                popup.close()
-                Qt.quit()
+                popup.close();
+                Qt.quit();
             }
         }
 
         function onDaemonReconnectFailed() {
-            root.connectionFailed = true
+            root.connectionFailed = true;
         }
     }
 
     Component.onCompleted: {
-        DBusErrorHandler.setActive(true)
-
-        x = Screen.width / 2 - width / 2
-        y = Screen.height / 2 - height / 2
+        DBusErrorHandler.setActive(true);
+        x = Screen.width / 2 - width / 2;
+        y = Screen.height / 2 - height / 2;
     }
 }

@@ -15,43 +15,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtMultimedia
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "../../commoncomponents"
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
-
 SettingsPageBase {
     id: root
-
 
     property bool isSIP
     property int itemWidth: 132
     title: JamiStrings.callSettingsTitle
 
     function updateAndShowModeratorsSlot() {
-        moderatorListWidget.model.reset()
-        moderatorListWidget.visible = moderatorListWidget.model.rowCount() > 0
+        moderatorListWidget.model.reset();
+        moderatorListWidget.visible = moderatorListWidget.model.rowCount() > 0;
     }
 
     Connections {
         target: ContactAdapter
 
         function onDefaultModeratorsUpdated() {
-            updateAndShowModeratorsSlot()
+            updateAndShowModeratorsSlot();
         }
     }
-
 
     flickableContent: ColumnLayout {
         id: callSettingsColumnLayout
@@ -77,13 +71,11 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
-
             }
-
 
             ToggleSwitch {
                 id: checkBoxUntrusted
@@ -101,7 +93,6 @@ SettingsPageBase {
                 checked: CurrentAccount.autoAnswer
                 onSwitchToggled: CurrentAccount.autoAnswer = checked
             }
-
         }
 
         ColumnLayout {
@@ -119,11 +110,10 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
-
             }
 
             ToggleSwitch {
@@ -147,23 +137,18 @@ SettingsPageBase {
                 itemWidth: root.itemWidth
 
                 onClick: {
-                    var dlg = viewCoordinator.presentDialog(
-                                appWindow,
-                                "commoncomponents/JamiFileDialog.qml",
-                                {
-                                    title: JamiStrings.selectNewRingtone,
-                                    fileMode: JamiFileDialog.OpenFile,
-                                    folder: JamiQmlUtils.qmlFilePrefix +
-                                            UtilsAdapter.toFileAbsolutepath(
-                                                CurrentAccount.ringtonePath_Ringtone),
-                                    nameFilters: [JamiStrings.audioFile, JamiStrings.allFiles]
-                                })
+                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                            "title": JamiStrings.selectNewRingtone,
+                            "fileMode": JamiFileDialog.OpenFile,
+                            "folder": JamiQmlUtils.qmlFilePrefix + UtilsAdapter.toFileAbsolutepath(CurrentAccount.ringtonePath_Ringtone),
+                            "nameFilters": [JamiStrings.audioFile, JamiStrings.allFiles]
+                        });
                     dlg.fileAccepted.connect(function (file) {
-                        var url = UtilsAdapter.getAbsPath(file.toString())
-                        if(url.length !== 0) {
-                            CurrentAccount.ringtonePath_Ringtone = url
-                        }
-                    })
+                            var url = UtilsAdapter.getAbsPath(file.toString());
+                            if (url.length !== 0) {
+                                CurrentAccount.ringtonePath_Ringtone = url;
+                            }
+                        });
                 }
             }
         }
@@ -183,11 +168,10 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
-
             }
 
             ToggleSwitch {
@@ -216,11 +200,10 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
-
             }
 
             ToggleSwitch {
@@ -230,7 +213,6 @@ SettingsPageBase {
                 checked: CurrentAccount.isLocalModeratorsEnabled
                 onSwitchToggled: CurrentAccount.isLocalModeratorsEnabled = checked
             }
-
 
             ToggleSwitch {
                 id: checkboxAllModerators
@@ -250,7 +232,7 @@ SettingsPageBase {
                     Layout.rightMargin: JamiTheme.preferredMarginSize
 
                     color: JamiTheme.textColor
-                    wrapMode : Text.WordWrap
+                    wrapMode: Text.WordWrap
                     text: JamiStrings.defaultModerators
                     font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
@@ -264,7 +246,7 @@ SettingsPageBase {
 
                     Layout.alignment: Qt.AlignCenter
 
-                    preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
+                    preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
                     buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
                     primary: true
@@ -273,12 +255,10 @@ SettingsPageBase {
                     text: JamiStrings.addModerator
 
                     onClicked: {
-                        ContactPickerCreation.presentContactPickerPopup(
-                                    ContactList.CONVERSATION,
-                                    appWindow)
+                        ContactPickerCreation.presentContactPickerPopup(ContactList.CONVERSATION, appWindow);
                     }
 
-                    TextMetrics{
+                    TextMetrics {
                         id: textSize
                         font.weight: Font.Bold
                         font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -287,7 +267,6 @@ SettingsPageBase {
                     }
                 }
             }
-
 
             JamiListView {
                 id: moderatorListWidget
@@ -316,9 +295,8 @@ SettingsPageBase {
 
                     onClicked: moderatorListWidget.currentIndex = index
                     onBtnContactClicked: {
-                        AccountAdapter.setDefaultModerator(
-                                    LRCInstance.currentAccountId, contactID, false)
-                        updateAndShowModeratorsSlot()
+                        AccountAdapter.setDefaultModerator(LRCInstance.currentAccountId, contactID, false);
+                        updateAndShowModeratorsSlot();
                     }
                 }
             }

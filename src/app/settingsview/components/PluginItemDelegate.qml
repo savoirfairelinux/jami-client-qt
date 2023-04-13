@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ItemDelegate {
@@ -34,15 +31,11 @@ ItemDelegate {
     property string pluginIcon: ""
     property bool isLoaded: false
     property string activeId: ""
-    height: pluginPreferencesView.visible ?
-                implicitHeight + pluginPreferencesView.childrenRect.height :
-                implicitHeight
+    height: pluginPreferencesView.visible ? implicitHeight + pluginPreferencesView.childrenRect.height : implicitHeight
 
     signal settingsClicked
 
-    onActiveIdChanged: pluginPreferencesView.visible = activeId != pluginId ?
-                           false :
-                           !pluginPreferencesView.visible
+    onActiveIdChanged: pluginPreferencesView.visible = activeId != pluginId ? false : !pluginPreferencesView.visible
 
     ColumnLayout {
         width: parent.width
@@ -98,10 +91,10 @@ ItemDelegate {
                 checked: isLoaded
                 onSwitchToggled: {
                     if (isLoaded)
-                        PluginModel.unloadPlugin(pluginId)
+                        PluginModel.unloadPlugin(pluginId);
                     else
-                        PluginModel.loadPlugin(pluginId)
-                    installedPluginsModel.pluginChanged(index)
+                        PluginModel.loadPlugin(pluginId);
+                    installedPluginsModel.pluginChanged(index);
                 }
             }
 

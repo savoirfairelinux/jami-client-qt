@@ -14,10 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 
 StackLayout {
@@ -25,19 +23,22 @@ StackLayout {
 
     property int detailsIndex: -1
 
-    function isOpen(panel) { return visible && currentIndex === panel }
+    function isOpen(panel) {
+        return visible && currentIndex === panel;
+    }
 
     visible: currentIndex > -1
 
     property bool detailsShouldOpen: false
-    onVisibleChanged: if (visible) detailsShouldOpen = true
+    onVisibleChanged: if (visible)
+        detailsShouldOpen = true
 
     function restoreState() {
         // Only applies to Jami accounts, and we musn't be in a call.
         if (detailsShouldOpen && !inCallView) {
-            switchToPanel(ChatView.SwarmDetailsPanel, false)
+            switchToPanel(ChatView.SwarmDetailsPanel, false);
         } else {
-            closePanel()
+            closePanel();
         }
     }
 
@@ -47,8 +48,7 @@ StackLayout {
         function onCountChanged() {
             // Close the panel if there are 8 or more members in the
             // conversation AND the "Add Member" panel is currently open.
-            if (CurrentConversationMembers.count >= 8
-                    && isOpen(ChatView.AddMemberPanel)) {
+            if (CurrentConversationMembers.count >= 8 && isOpen(ChatView.AddMemberPanel)) {
                 closePanel();
             }
         }
@@ -57,19 +57,19 @@ StackLayout {
     // This will open the details panel if it's not already visible.
     // Additionally, `toggle` being true (default) will close the panel
     // if it is already open to `panel`.
-    function switchToPanel(panel, toggle=true) {
+    function switchToPanel(panel, toggle = true) {
         if (visible && toggle && currentIndex === panel) {
-            closePanel()
+            closePanel();
         } else {
-            currentIndex = panel
+            currentIndex = panel;
         }
     }
 
     function closePanel() {
         // We need to close the panel, but not save it when appropriate.
-        currentIndex = -1
+        currentIndex = -1;
         if (!inCallView)
-            detailsShouldOpen = false
+            detailsShouldOpen = false;
     }
 
     SwarmDetailsPanel {
@@ -77,11 +77,12 @@ StackLayout {
 
         property int parentIndex: root.currentIndex
         // When we change to the details panel we should load the tab index.
-        onParentIndexChanged: tabBarIndex = Math.min(tabBarItemsLength - 1,
-                                                     Math.max(0, root.detailsIndex))
+        onParentIndexChanged: tabBarIndex = Math.min(tabBarItemsLength - 1, Math.max(0, root.detailsIndex))
         // Save it when it changes.
         onTabBarIndexChanged: root.detailsIndex = tabBarIndex
     }
-    MessagesResearchPanel {}
-    AddMemberPanel {}
+    MessagesResearchPanel {
+    }
+    AddMemberPanel {
+    }
 }

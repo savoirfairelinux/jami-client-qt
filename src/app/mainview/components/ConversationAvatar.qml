@@ -15,12 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
-
 import "../../commoncomponents"
 
 Item {
@@ -40,9 +37,7 @@ Item {
         id: avatar
 
         anchors.fill: root
-        anchors.margins: animation.mode === SpinningAnimation.Mode.Disabled ?
-                             0 :
-                             animation.spinningAnimationWidth
+        anchors.margins: animation.mode === SpinningAnimation.Mode.Disabled ? 0 : animation.spinningAnimationWidth
 
         mode: Avatar.Mode.Conversation
     }

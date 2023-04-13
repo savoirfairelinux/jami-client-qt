@@ -14,12 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
@@ -46,7 +44,6 @@ RadioButton {
         radius: 10
 
         Rectangle {
-
             id: innerRect
 
             anchors.horizontalCenter: parent.horizontalCenter
@@ -54,9 +51,9 @@ RadioButton {
             width: 10
             height: 10
             radius: 10
-            visible : checked || hovered
+            visible: checked || hovered
 
-            Behavior on visible {
+            Behavior on visible  {
                 NumberAnimation {
                     from: 0
                     duration: JamiTheme.shortFadeDuration
@@ -80,10 +77,8 @@ RadioButton {
     }
 
     Keys.onPressed: function (event) {
-        if (event.key === Qt.Key_Enter
-                || event.key === Qt.Key_Return) {
-            root.checked = true
+        if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
+            root.checked = true;
         }
     }
-
 }

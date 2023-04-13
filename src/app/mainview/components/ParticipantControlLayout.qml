@@ -15,22 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 RowLayout {
     id: root
 
-    property int visibleButtons: toggleModerator.visible
-                                 + toggleMute.visible
-                                 + maximizeParticipant.visible
-                                 + minimizeParticipant.visible
-                                 + hangupParticipant.visible
+    property int visibleButtons: toggleModerator.visible + toggleMute.visible + maximizeParticipant.visible + minimizeParticipant.visible + hangupParticipant.visible
 
     spacing: 8
 
@@ -44,8 +37,7 @@ RowLayout {
         Layout.alignment: Qt.AlignVCenter
         source: JamiResources.moderator_svg
         onClicked: CallAdapter.setModerator(uri, showSetModerator)
-        toolTipText: showSetModerator? JamiStrings.setModerator
-                                     : JamiStrings.unsetModerator
+        toolTipText: showSetModerator ? JamiStrings.setModerator : JamiStrings.unsetModerator
     }
 
     ParticipantOverlayButton {
@@ -56,27 +48,25 @@ RowLayout {
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
         Layout.alignment: Qt.AlignVCenter
-        source: showModeratorMute ?
-                    JamiResources.micro_black_24dp_svg :
-                    JamiResources.micro_off_black_24dp_svg
+        source: showModeratorMute ? JamiResources.micro_black_24dp_svg : JamiResources.micro_off_black_24dp_svg
         checkable: meModerator
         onClicked: {
             if (participantIsModeratorMuted && isLocalMuted) {
                 if (isMe)
-                    muteAlertMessage = JamiStrings.mutedLocally
+                    muteAlertMessage = JamiStrings.mutedLocally;
                 else
-                    muteAlertMessage = JamiStrings.participantMicIsStillMuted
-                muteAlertActive = true
+                    muteAlertMessage = JamiStrings.participantMicIsStillMuted;
+                muteAlertActive = true;
             }
-            CallAdapter.muteParticipant(uri, deviceId, sinkId, showModeratorMute)
+            CallAdapter.muteParticipant(uri, deviceId, sinkId, showModeratorMute);
         }
         toolTipText: {
             if (!checkable && participantIsModeratorMuted)
-                return JamiStrings.mutedByModerator
+                return JamiStrings.mutedByModerator;
             if (showModeratorMute)
-                return JamiStrings.muteParticipant
+                return JamiStrings.muteParticipant;
             else
-                return JamiStrings.unmuteParticipant
+                return JamiStrings.unmuteParticipant;
         }
     }
 

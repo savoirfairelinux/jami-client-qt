@@ -17,16 +17,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 import "../../commoncomponents"
 
@@ -51,45 +48,44 @@ Window {
     property real componentMinWidth: 350
     property real marginSize: JamiTheme.preferredMarginSize
     property real elementWidth: {
-        var layoutWidth = selectScreenWindowLayout.width
-        var minSize = componentMinWidth + 2 * marginSize
-        var numberElementPerRow = Math.floor(layoutWidth / minSize)
+        var layoutWidth = selectScreenWindowLayout.width;
+        var minSize = componentMinWidth + 2 * marginSize;
+        var numberElementPerRow = Math.floor(layoutWidth / minSize);
         if (numberElementPerRow == 1 && layoutWidth > componentMinWidth * 1.5) {
-            numberElementPerRow = 2
+            numberElementPerRow = 2;
         }
         if (showWindows)
-            numberElementPerRow = Math.min(listModel.length, numberElementPerRow)
+            numberElementPerRow = Math.min(listModel.length, numberElementPerRow);
         else
-            numberElementPerRow = Math.min(listModel.length + 1, numberElementPerRow)
-        var spacingLength = marginSize * (numberElementPerRow  + 2)
-
-        return (layoutWidth - spacingLength) / numberElementPerRow
+            numberElementPerRow = Math.min(listModel.length + 1, numberElementPerRow);
+        var spacingLength = marginSize * (numberElementPerRow + 2);
+        return (layoutWidth - spacingLength) / numberElementPerRow;
     }
 
     function calculateRepeaterModel() {
-        listModel = []
-        var idx
+        listModel = [];
+        var idx;
         if (!showWindows) {
             for (idx in Qt.application.screens) {
-                listModel.push(JamiStrings.screen.arg(idx))
+                listModel.push(JamiStrings.screen.arg(idx));
             }
         } else {
-            AvAdapter.getListWindows()
+            AvAdapter.getListWindows();
             for (idx in AvAdapter.windowsNames) {
-                listModel.push(AvAdapter.windowsNames[idx])
+                listModel.push(AvAdapter.windowsNames[idx]);
             }
         }
     }
 
     onVisibleChanged: {
         if (!visible)
-            return
+            return;
         if (!active) {
-            selectedScreenNumber = undefined
+            selectedScreenNumber = undefined;
         }
-        screenSharePreviewRepeater.model = {}
-        calculateRepeaterModel()
-        screenSharePreviewRepeater.model = root.listModel
+        screenSharePreviewRepeater.model = {};
+        calculateRepeaterModel();
+        screenSharePreviewRepeater.model = root.listModel;
     }
 
     Rectangle {
@@ -137,9 +133,7 @@ Window {
 
                     Loader {
                         // Show all screens
-                        active: !showWindows &&
-                                Qt.application.screens.length > 1 &&
-                                Qt.platform.os.toString() !== "windows"
+                        active: !showWindows && Qt.application.screens.length > 1 && Qt.platform.os.toString() !== "windows"
                         sourceComponent: ScreenSharePreview {
                             id: screenSelectionRectAll
 
@@ -162,8 +156,8 @@ Window {
                             rectTitle: listModel[index] ? listModel[index] : ""
                             rId: {
                                 if (showWindows)
-                                    return rId = AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[index], AvAdapter.windowsNames[index])
-                                return rId = AvAdapter.getSharingResource(index)
+                                    return rId = AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[index], AvAdapter.windowsNames[index]);
+                                return rId = AvAdapter.getSharingResource(index);
                             }
                         }
                     }
@@ -197,15 +191,15 @@ Window {
 
                     onClicked: {
                         if (selectAllScreens)
-                            AvAdapter.shareAllScreens()
+                            AvAdapter.shareAllScreens();
                         else {
                             if (!showWindows)
-                                AvAdapter.shareEntireScreen(selectedScreenNumber)
+                                AvAdapter.shareEntireScreen(selectedScreenNumber);
                             else {
-                                AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber], AvAdapter.windowsNames[selectedScreenNumber - Qt.application.screens.length])
+                                AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber], AvAdapter.windowsNames[selectedScreenNumber - Qt.application.screens.length]);
                             }
                         }
-                        root.close()
+                        root.close();
                     }
                 }
 

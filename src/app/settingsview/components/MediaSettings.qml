@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
@@ -37,35 +34,29 @@ ColumnLayout {
     property int mediaType
 
     function decreaseCodecPriority() {
-        var index = mediaListWidget.currentIndex
+        var index = mediaListWidget.currentIndex;
         if (index >= mediaListWidget.model.rowCount() - 1)
-            return
-        var codecId = mediaListWidget.model.data(mediaListWidget.model.index(index,0),
-                                                 MediaCodecListModel.MediaCodecID)
-
-        AvAdapter.decreaseCodecPriority(codecId, mediaType === MediaSettings.VIDEO)
-        mediaListWidget.currentIndex = index + 1
-        updateCodecs()
+            return;
+        var codecId = mediaListWidget.model.data(mediaListWidget.model.index(index, 0), MediaCodecListModel.MediaCodecID);
+        AvAdapter.decreaseCodecPriority(codecId, mediaType === MediaSettings.VIDEO);
+        mediaListWidget.currentIndex = index + 1;
+        updateCodecs();
     }
 
     function updateCodecs() {
-        mediaListWidget.model.layoutAboutToBeChanged()
-        mediaListWidget.model.dataChanged(mediaListWidget.model.index(0, 0),
-                                          mediaListWidget.model.index(
-                                              mediaListWidget.model.rowCount() - 1, 0))
-        mediaListWidget.model.layoutChanged()
+        mediaListWidget.model.layoutAboutToBeChanged();
+        mediaListWidget.model.dataChanged(mediaListWidget.model.index(0, 0), mediaListWidget.model.index(mediaListWidget.model.rowCount() - 1, 0));
+        mediaListWidget.model.layoutChanged();
     }
 
-    function increaseCodecPriority(){
-        var index = mediaListWidget.currentIndex
+    function increaseCodecPriority() {
+        var index = mediaListWidget.currentIndex;
         if (index === 0)
-            return
-        var codecId = mediaListWidget.model.data(mediaListWidget.model.index(index,0),
-                                                 MediaCodecListModel.MediaCodecID)
-
-        AvAdapter.increaseCodecPriority(codecId, mediaType === MediaSettings.VIDEO)
-        mediaListWidget.currentIndex = index - 1
-        updateCodecs()
+            return;
+        var codecId = mediaListWidget.model.data(mediaListWidget.model.index(index, 0), MediaCodecListModel.MediaCodecID);
+        AvAdapter.increaseCodecPriority(codecId, mediaType === MediaSettings.VIDEO);
+        mediaListWidget.currentIndex = index - 1;
+        updateCodecs();
     }
 
     RowLayout {
@@ -78,11 +69,11 @@ ColumnLayout {
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             maxWidth: width
-            eText:  {
+            eText: {
                 if (mediaType === MediaSettings.VIDEO)
-                    return JamiStrings.videoCodecs
+                    return JamiStrings.videoCodecs;
                 else if (mediaType === MediaSettings.AUDIO)
-                    return JamiStrings.audioCodecs
+                    return JamiStrings.audioCodecs;
             }
             fontSize: JamiTheme.settingsFontSize
         }
@@ -117,19 +108,19 @@ ColumnLayout {
             width: mediaListWidget.width
             height: mediaListWidget.height / 4
 
-            mediaCodecName : MediaCodecName
-            isEnabled : IsEnabled
+            mediaCodecName: MediaCodecName
+            isEnabled: IsEnabled
             mediaCodecId: MediaCodecID
             samplerRate: Samplerate
             mediaType: root.mediaType
 
             onClicked: {
-                mediaListWidget.currentIndex = index
+                mediaListWidget.currentIndex = index;
             }
 
             onMediaCodecStateChange: {
-                AvAdapter.enableCodec(idToSet, isToBeEnabled)
-                updateCodecs()
+                AvAdapter.enableCodec(idToSet, isToBeEnabled);
+                updateCodecs();
             }
         }
     }

@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
@@ -40,32 +37,24 @@ SettingsPageBase {
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
-        enum Setting {
-            AUDIOINPUT,
-            AUDIOOUTPUT,
-            RINGTONEDEVICE,
-            AUDIOMANAGER
-        }
-
         Connections {
             target: UtilsAdapter
 
             function onChangeLanguage() {
-                inputAudioModel.reset()
-                outputAudioModel.reset()
-                ringtoneAudioModel.reset()
+                inputAudioModel.reset();
+                outputAudioModel.reset();
+                ringtoneAudioModel.reset();
             }
         }
 
         function populateAudioSettings() {
-            inputComboBoxSetting.modelIndex = inputComboBoxSetting.comboModel.getCurrentIndex()
-            outputComboBoxSetting.modelIndex = outputComboBoxSetting.comboModel.getCurrentIndex()
-            ringtoneComboBoxSetting.modelIndex = ringtoneComboBoxSetting.comboModel.getCurrentIndex()
-            if(audioManagerComboBoxSetting.comboModel.rowCount() > 0) {
-                audioManagerComboBoxSetting.modelIndex =
-                        audioManagerComboBoxSetting.comboModel.getCurrentSettingIndex()
+            inputComboBoxSetting.modelIndex = inputComboBoxSetting.comboModel.getCurrentIndex();
+            outputComboBoxSetting.modelIndex = outputComboBoxSetting.comboModel.getCurrentIndex();
+            ringtoneComboBoxSetting.modelIndex = ringtoneComboBoxSetting.comboModel.getCurrentIndex();
+            if (audioManagerComboBoxSetting.comboModel.rowCount() > 0) {
+                audioManagerComboBoxSetting.modelIndex = audioManagerComboBoxSetting.comboModel.getCurrentSettingIndex();
             }
-            audioManagerComboBoxSetting.visible = audioManagerComboBoxSetting.comboModel.rowCount() > 0
+            audioManagerComboBoxSetting.visible = audioManagerComboBoxSetting.comboModel.rowCount() > 0;
         }
 
         SettingsComboBox {
@@ -85,9 +74,9 @@ SettingsPageBase {
             role: "DeviceName"
 
             onActivated: {
-                AvAdapter.stopAudioMeter()
-                AVModel.setInputDevice(modelIndex)
-                AvAdapter.startAudioMeter()
+                AvAdapter.stopAudioMeter();
+                AVModel.setInputDevice(modelIndex);
+                AvAdapter.startAudioMeter();
             }
         }
 
@@ -119,8 +108,6 @@ SettingsPageBase {
                 from: 0
                 to: 100
             }
-
-
         }
 
         SettingsComboBox {
@@ -140,9 +127,9 @@ SettingsPageBase {
             role: "DeviceName"
 
             onActivated: {
-                AvAdapter.stopAudioMeter()
-                AVModel.setOutputDevice(modelIndex)
-                AvAdapter.startAudioMeter()
+                AvAdapter.stopAudioMeter();
+                AVModel.setOutputDevice(modelIndex);
+                AvAdapter.startAudioMeter();
             }
         }
 
@@ -163,9 +150,9 @@ SettingsPageBase {
             role: "DeviceName"
 
             onActivated: {
-                AvAdapter.stopAudioMeter()
-                AVModel.setRingtoneDevice(modelIndex)
-                AvAdapter.startAudioMeter()
+                AvAdapter.stopAudioMeter();
+                AVModel.setRingtoneDevice(modelIndex);
+                AvAdapter.startAudioMeter();
             }
         }
 
@@ -185,13 +172,19 @@ SettingsPageBase {
             Component.onCompleted: currentAccountEnableColumnLayout.populateAudioSettings()
 
             onActivated: {
-                AvAdapter.stopAudioMeter()
-                var selectedAudioManager = comboModel.data(
-                            comboModel.index(modelIndex, 0), AudioManagerListModel.AudioManagerID)
-                AVModel.setAudioManager(selectedAudioManager)
-                AvAdapter.startAudioMeter()
-                currentAccountEnableColumnLayout.populateAudioSettings()
+                AvAdapter.stopAudioMeter();
+                var selectedAudioManager = comboModel.data(comboModel.index(modelIndex, 0), AudioManagerListModel.AudioManagerID);
+                AVModel.setAudioManager(selectedAudioManager);
+                AvAdapter.startAudioMeter();
+                currentAccountEnableColumnLayout.populateAudioSettings();
             }
         }
+    }
+
+    enum Setting {
+        AUDIOINPUT,
+        AUDIOOUTPUT,
+        RINGTONEDEVICE,
+        AUDIOMANAGER
     }
 }

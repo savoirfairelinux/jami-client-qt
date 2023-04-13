@@ -15,13 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 RowLayout {
@@ -95,9 +92,8 @@ RowLayout {
         enabled: parent.visible
         onTapped: function onTapped(eventPoint) {
             // switchToggled should be emitted as onToggled is not called (because it's only called if the user click on the switch)
-            switchOfLayout.toggle()
-            switchToggled()
+            switchOfLayout.toggle();
+            switchToggled();
         }
     }
-
 }

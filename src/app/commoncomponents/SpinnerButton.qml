@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import net.jami.Constants 1.1
 
 MaterialButton {
@@ -25,12 +24,9 @@ MaterialButton {
     property string spinnerTriggeredtext: value
     property string normalText: value
 
-    animatedIconSource: spinnerTriggered ?
-                             JamiResources.jami_rolling_spinner_gif :
-                             ""
+    animatedIconSource: spinnerTriggered ? JamiResources.jami_rolling_spinner_gif : ""
     text: spinnerTriggered ? spinnerTriggeredtext : normalText
-    color: !enabled ? JamiTheme.buttonTintedGreyInactive :
-                      JamiTheme.buttonTintedBlue
+    color: !enabled ? JamiTheme.buttonTintedGreyInactive : JamiTheme.buttonTintedBlue
 
     hoverEnabled: enabled
     hoveredColor: JamiTheme.buttonTintedBlueHovered

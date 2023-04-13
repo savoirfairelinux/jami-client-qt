@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -48,7 +45,7 @@ Rectangle {
             placeHolderText: JamiStrings.addParticipant
 
             onContactSearchBarTextChanged: {
-                ContactAdapter.setSearchFilter(text)
+                ContactAdapter.setSearchFilter(text);
             }
         }
 
@@ -66,13 +63,13 @@ Rectangle {
                 target: CurrentConversationMembers
 
                 function onCountChanged() {
-                    contactPickerListView.model = ContactAdapter.getContactSelectableModel(type)
+                    contactPickerListView.model = ContactAdapter.getContactSelectableModel(type);
                 }
             }
 
             onVisibleChanged: {
                 if (visible)
-                    model = ContactAdapter.getContactSelectableModel(type)
+                    model = ContactAdapter.getContactSelectableModel(type);
             }
 
             delegate: ContactPickerItemDelegate {

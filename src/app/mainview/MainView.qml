@@ -15,11 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -31,7 +29,6 @@ import "../"
 import "../wizardview"
 import "../settingsview"
 import "../settingsview/components"
-
 import "js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
 Rectangle {
@@ -48,9 +45,9 @@ Rectangle {
     property string currentConvId: CurrentConversation.id
     onCurrentConvIdChanged: {
         if (currentConvId !== '') {
-            viewCoordinator.present("ConversationView")
+            viewCoordinator.present("ConversationView");
         } else {
-            viewCoordinator.present("WelcomePage")
+            viewCoordinator.present("WelcomePage");
         }
     }
 
@@ -60,7 +57,7 @@ Rectangle {
     onHeightChanged: Qt.callLater(JamiQmlUtils.updateMessageBarButtonsPoints)
 
     Component.onCompleted: {
-        JamiQmlUtils.mainViewRectObj = mainView
+        JamiQmlUtils.mainViewRectObj = mainView;
     }
 
     Shortcut {
@@ -70,10 +67,10 @@ Rectangle {
     }
 
     WheelHandler {
-        onWheel: (wheel)=> {
+        onWheel: wheel =>
             if (wheel.modifiers & Qt.ControlModifier) {
-                var delta = wheel.angleDelta.y / 120
-                UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + delta * 0.1)
+                var delta = wheel.angleDelta.y / 120;
+                UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + delta * 0.1);
             }
         }
     }
@@ -82,7 +79,7 @@ Rectangle {
         sequence: "Ctrl++"
         context: Qt.ApplicationShortcut
         onActivated: {
-            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + 0.1)
+            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + 0.1);
         }
     }
 
@@ -90,7 +87,7 @@ Rectangle {
         sequence: "Ctrl+="
         context: Qt.ApplicationShortcut
         onActivated: {
-            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + 0.1)
+            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + 0.1);
         }
     }
 
@@ -98,7 +95,7 @@ Rectangle {
         sequence: "Ctrl+-"
         context: Qt.ApplicationShortcut
         onActivated: {
-            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) - 0.1)
+            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) - 0.1);
         }
     }
 
@@ -106,7 +103,7 @@ Rectangle {
         sequence: "Ctrl+_"
         context: Qt.ApplicationShortcut
         onActivated: {
-            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) - 0.1)
+            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) - 0.1);
         }
     }
 
@@ -138,8 +135,8 @@ Rectangle {
         sequence: "F10"
         context: Qt.ApplicationShortcut
         onActivated: {
-            KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject(appWindow)
-            KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow()
+            KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject(appWindow);
+            KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow();
         }
     }
 
@@ -153,9 +150,9 @@ Rectangle {
         sequence: "Escape"
         context: Qt.ApplicationShortcut
         onActivated: {
-            MessagesAdapter.replyToId = ""
-            MessagesAdapter.editId = ""
-            layoutManager.popFullScreenItem()
+            MessagesAdapter.replyToId = "";
+            MessagesAdapter.editId = "";
+            layoutManager.popFullScreenItem();
         }
     }
 

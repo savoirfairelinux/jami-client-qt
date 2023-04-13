@@ -15,23 +15,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
-
 import "../../commoncomponents"
 
 Control {
     id: root
 
     enum ActionPopupMode {
-        MediaDevice = 0,
+        MediaDevice,
         ListElement,
         LayoutOption
     }
@@ -75,9 +72,9 @@ Control {
 
         function onAudioDeviceListChanged(inputs, outputs) {
             audioInputDeviceListModel.reset();
-            audioInputMenuAction.enabled = inputs
+            audioInputMenuAction.enabled = inputs;
             audioOutputDeviceListModel.reset();
-            audioOutputMenuAction.enabled = outputs
+            audioOutputMenuAction.enabled = outputs;
         }
     }
 
@@ -92,9 +89,9 @@ Control {
                 type: AudioDeviceModel.Type.Record
             }
             function accept(index) {
-                AvAdapter.stopAudioMeter()
-                AVModel.setInputDevice(index)
-                AvAdapter.startAudioMeter()
+                AvAdapter.stopAudioMeter();
+                AVModel.setInputDevice(index);
+                AvAdapter.startAudioMeter();
             }
         },
         Action {
@@ -107,9 +104,9 @@ Control {
                 type: AudioDeviceModel.Type.Playback
             }
             function accept(index) {
-                AvAdapter.stopAudioMeter()
-                AVModel.setOutputDevice(index)
-                AvAdapter.startAudioMeter()
+                AvAdapter.stopAudioMeter();
+                AVModel.setOutputDevice(index);
+                AvAdapter.startAudioMeter();
             }
         },
         Action {
@@ -120,34 +117,43 @@ Control {
                 id: shareModel
             }
             onTriggered: {
-                shareModel.clear()
-                shareModel.append({"Name": JamiStrings.shareScreen,
-                                    "IconSource": JamiResources.laptop_black_24dp_svg})
+                shareModel.clear();
+                shareModel.append({
+                        "Name": JamiStrings.shareScreen,
+                        "IconSource": JamiResources.laptop_black_24dp_svg
+                    });
                 if (Qt.platform.os.toString() !== "osx") {
-                    shareModel.append({"Name": JamiStrings.shareWindow,
-                                        "IconSource" : JamiResources.window_black_24dp_svg})
+                    shareModel.append({
+                            "Name": JamiStrings.shareWindow,
+                            "IconSource": JamiResources.window_black_24dp_svg
+                        });
                 }
-                if (Qt.platform.os.toString() !== "windows") {  // temporarily disable for windows
-                    shareModel.append({"Name": JamiStrings.shareScreenArea,
-                                    "IconSource" : JamiResources.share_area_black_24dp_svg})
+                if (Qt.platform.os.toString() !== "windows") {
+                    // temporarily disable for windows
+                    shareModel.append({
+                            "Name": JamiStrings.shareScreenArea,
+                            "IconSource": JamiResources.share_area_black_24dp_svg
+                        });
                 }
-                shareModel.append({"Name": JamiStrings.shareFile,
-                                    "IconSource" : JamiResources.file_black_24dp_svg})
+                shareModel.append({
+                        "Name": JamiStrings.shareFile,
+                        "IconSource": JamiResources.file_black_24dp_svg
+                    });
             }
             function accept(index) {
-                switch(shareModel.get(index).Name) {
-                  case JamiStrings.shareScreen:
-                      shareScreenClicked()
-                      break
-                  case JamiStrings.shareWindow:
-                      shareWindowClicked()
-                      break
-                  case JamiStrings.shareScreenArea:
-                      shareScreenAreaClicked()
-                      break
-                  case JamiStrings.shareFile:
-                      shareFileClicked()
-                      break
+                switch (shareModel.get(index).Name) {
+                case JamiStrings.shareScreen:
+                    shareScreenClicked();
+                    break;
+                case JamiStrings.shareWindow:
+                    shareWindowClicked();
+                    break;
+                case JamiStrings.shareScreenArea:
+                    shareScreenAreaClicked();
+                    break;
+                case JamiStrings.shareFile:
+                    shareFileClicked();
+                    break;
                 }
             }
         },
@@ -159,81 +165,90 @@ Control {
                 id: layoutModel
             }
             function accept(index) {
-                switch(layoutModel.get(index).Name) {
-                  case JamiStrings.viewFullScreen:
-                        root.fullScreenClicked()
-                        layoutModel.get(index).ActiveSetting = layoutManager.isCallFullscreen
-                        break
-                  case JamiStrings.mosaic:
-                        if (!CurrentCall.isGrid)
-                            CallAdapter.showGridConferenceLayout()
-                        break
-                  case JamiStrings.participantsSide:
-                        if (!UtilsAdapter.getAppValue(Settings.ParticipantsSide)) {
-                            UtilsAdapter.setAppValue(Settings.ParticipantsSide, true)
-                            participantsSide = true
-                        }
-                        break
-                  case JamiStrings.participantsTop:
-                        if (UtilsAdapter.getAppValue(Settings.ParticipantsSide)) {
-                            UtilsAdapter.setAppValue(Settings.ParticipantsSide, false)
-                            participantsSide = false
-                        }
-                        break
-                  case JamiStrings.hideSelf:
-                        UtilsAdapter.setAppValue(Settings.HideSelf, !layoutModel.get(index).ActiveSetting)
-                        CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
-                        break
-                  case JamiStrings.hideSpectators:
-                        UtilsAdapter.setAppValue(Settings.HideSpectators, !layoutModel.get(index).ActiveSetting)
-                        CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators)
-                        break
+                switch (layoutModel.get(index).Name) {
+                case JamiStrings.viewFullScreen:
+                    root.fullScreenClicked();
+                    layoutModel.get(index).ActiveSetting = layoutManager.isCallFullscreen;
+                    break;
+                case JamiStrings.mosaic:
+                    if (!CurrentCall.isGrid)
+                        CallAdapter.showGridConferenceLayout();
+                    break;
+                case JamiStrings.participantsSide:
+                    if (!UtilsAdapter.getAppValue(Settings.ParticipantsSide)) {
+                        UtilsAdapter.setAppValue(Settings.ParticipantsSide, true);
+                        participantsSide = true;
+                    }
+                    break;
+                case JamiStrings.participantsTop:
+                    if (UtilsAdapter.getAppValue(Settings.ParticipantsSide)) {
+                        UtilsAdapter.setAppValue(Settings.ParticipantsSide, false);
+                        participantsSide = false;
+                    }
+                    break;
+                case JamiStrings.hideSelf:
+                    UtilsAdapter.setAppValue(Settings.HideSelf, !layoutModel.get(index).ActiveSetting);
+                    CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf);
+                    break;
+                case JamiStrings.hideSpectators:
+                    UtilsAdapter.setAppValue(Settings.HideSpectators, !layoutModel.get(index).ActiveSetting);
+                    CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators);
+                    break;
                 }
             }
             onTriggered: {
-                layoutModel.clear()
+                layoutModel.clear();
                 if (CurrentCall.isConference) {
-                    layoutModel.append({"Name": JamiStrings.mosaic,
-                                        "IconSource": JamiResources.mosaic_black_24dp_svg,
-                                        "ActiveSetting": CurrentCall.isGrid,
-                                        "TopMargin": true,
-                                        "BottomMargin": true,
-                                        "SectionEnd": true})
-
-                    var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
-                    layoutModel.append({"Name": JamiStrings.participantsTop,
-                                        "IconSource": JamiResources.onthetop_black_24dp_svg,
-                                        "ActiveSetting": !onTheSide,
-                                        "TopMargin": true,
-                                        "BottomMargin": false,
-                                        "SectionEnd": false})
-                    layoutModel.append({"Name": JamiStrings.participantsSide,
-                                        "IconSource": JamiResources.ontheside_black_24dp_svg,
-                                        "ActiveSetting": onTheSide,
-                                        "TopMargin": false,
-                                        "BottomMargin": true,
-                                        "SectionEnd": true})
-
-                    layoutModel.append({"Name": JamiStrings.hideSelf,
-                                        "IconSource": JamiResources.hidemyself_black_24dp_svg,
-                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSelf),
-                                        "TopMargin": true,
-                                        "BottomMargin": false,
-                                        "SectionEnd": false})
+                    layoutModel.append({
+                            "Name": JamiStrings.mosaic,
+                            "IconSource": JamiResources.mosaic_black_24dp_svg,
+                            "ActiveSetting": CurrentCall.isGrid,
+                            "TopMargin": true,
+                            "BottomMargin": true,
+                            "SectionEnd": true
+                        });
+                    var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide);
+                    layoutModel.append({
+                            "Name": JamiStrings.participantsTop,
+                            "IconSource": JamiResources.onthetop_black_24dp_svg,
+                            "ActiveSetting": !onTheSide,
+                            "TopMargin": true,
+                            "BottomMargin": false,
+                            "SectionEnd": false
+                        });
+                    layoutModel.append({
+                            "Name": JamiStrings.participantsSide,
+                            "IconSource": JamiResources.ontheside_black_24dp_svg,
+                            "ActiveSetting": onTheSide,
+                            "TopMargin": false,
+                            "BottomMargin": true,
+                            "SectionEnd": true
+                        });
+                    layoutModel.append({
+                            "Name": JamiStrings.hideSelf,
+                            "IconSource": JamiResources.hidemyself_black_24dp_svg,
+                            "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSelf),
+                            "TopMargin": true,
+                            "BottomMargin": false,
+                            "SectionEnd": false
+                        });
                 }
-
-                layoutModel.append({"Name": JamiStrings.viewFullScreen,
-                                    "IconSource": JamiResources.open_in_full_24dp_svg,
-                                    "ActiveSetting": layoutManager.isCallFullscreen,
-                                    "TopMargin": true,
-                                    "BottomMargin": true,
-                                    "SectionEnd": CurrentCall.isConference})
+                layoutModel.append({
+                        "Name": JamiStrings.viewFullScreen,
+                        "IconSource": JamiResources.open_in_full_24dp_svg,
+                        "ActiveSetting": layoutManager.isCallFullscreen,
+                        "TopMargin": true,
+                        "BottomMargin": true,
+                        "SectionEnd": CurrentCall.isConference
+                    });
                 if (CurrentCall.isConference) {
-                    layoutModel.append({"Name": JamiStrings.hideSpectators,
-                                        "IconSource": JamiResources.videocam_off_24dp_svg,
-                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSpectators),
-                                        "TopMargin": true,
-                                        "BottomMargin": true})
+                    layoutModel.append({
+                            "Name": JamiStrings.hideSpectators,
+                            "IconSource": JamiResources.videocam_off_24dp_svg,
+                            "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSpectators),
+                            "TopMargin": true,
+                            "BottomMargin": true
+                        });
                 }
             }
         },
@@ -243,7 +258,7 @@ Control {
             text: JamiStrings.selectVideoDevice
             property var listModel: VideoDevices.deviceSourceModel
             function accept(index) {
-                VideoDevices.setDefaultDevice(index)
+                VideoDevices.setDefaultDevice(index);
             }
         }
     ]
@@ -252,19 +267,16 @@ Control {
         Action {
             id: muteAudioAction
             onTriggered: {
-                var muteState = CallAdapter.getMuteState(CurrentAccount.uri)
-                var modMuted = muteState === CallAdapter.MODERATOR_MUTED
-                    || muteState === CallAdapter.BOTH_MUTED
+                var muteState = CallAdapter.getMuteState(CurrentAccount.uri);
+                var modMuted = muteState === CallAdapter.MODERATOR_MUTED || muteState === CallAdapter.BOTH_MUTED;
                 if (muteAudioAction.checked && modMuted) {
-                    muteAlertActive = true
-                    muteAlertMessage = JamiStrings.participantModIsStillMuted
+                    muteAlertActive = true;
+                    muteAlertMessage = JamiStrings.participantModIsStillMuted;
                 }
-                CallAdapter.muteAudioToggle()
+                CallAdapter.muteAudioToggle();
             }
             checkable: true
-            icon.source: checked ?
-                             JamiResources.micro_off_black_24dp_svg :
-                             JamiResources.micro_black_24dp_svg
+            icon.source: checked ? JamiResources.micro_off_black_24dp_svg : JamiResources.micro_black_24dp_svg
             icon.color: checked ? "red" : "white"
             text: !checked ? JamiStrings.mute : JamiStrings.unmute
             checked: CurrentCall.isAudioMuted
@@ -282,9 +294,7 @@ Control {
             id: muteVideoAction
             onTriggered: CallAdapter.muteCameraToggle()
             checkable: true
-            icon.source: checked ?
-                             JamiResources.videocam_off_24dp_svg :
-                             JamiResources.videocam_24dp_svg
+            icon.source: checked ? JamiResources.videocam_off_24dp_svg : JamiResources.videocam_24dp_svg
             icon.color: checked ? "red" : "white"
             text: !checked ? JamiStrings.muteCamera : JamiStrings.unmuteCamera
             checked: !CurrentCall.isCapturing
@@ -320,13 +330,9 @@ Control {
         Action {
             id: resumePauseCallAction
             onTriggered: root.resumePauseCallClicked()
-            icon.source: CurrentCall.isPaused ?
-                             JamiResources.play_circle_outline_24dp_svg :
-                             JamiResources.pause_circle_outline_24dp_svg
+            icon.source: CurrentCall.isPaused ? JamiResources.play_circle_outline_24dp_svg : JamiResources.pause_circle_outline_24dp_svg
             icon.color: "white"
-            text: CurrentCall.isPaused ?
-                      JamiStrings.resumeCall :
-                      JamiStrings.pauseCall
+            text: CurrentCall.isPaused ? JamiStrings.resumeCall : JamiStrings.pauseCall
         },
         Action {
             id: inputPanelSIPAction
@@ -346,18 +352,13 @@ Control {
             id: shareAction
             onTriggered: {
                 if (CurrentCall.isSharing)
-                    root.stopSharingClicked()
+                    root.stopSharingClicked();
                 else
-                    root.shareScreenClicked()
+                    root.shareScreenClicked();
             }
-            icon.source: CurrentCall.isSharing ?
-                             JamiResources.share_stop_black_24dp_svg :
-                             JamiResources.share_screen_black_24dp_svg
-            icon.color: CurrentCall.isSharing ?
-                            "red" : "white"
-            text: CurrentCall.isSharing ?
-                      JamiStrings.stopSharing :
-                      JamiStrings.shareScreen
+            icon.source: CurrentCall.isSharing ? JamiResources.share_stop_black_24dp_svg : JamiResources.share_screen_black_24dp_svg
+            icon.color: CurrentCall.isSharing ? "red" : "white"
+            text: CurrentCall.isSharing ? JamiStrings.stopSharing : JamiStrings.shareScreen
             property real size: 34
             property var menuAction: shareMenuAction
         },
@@ -367,9 +368,7 @@ Control {
             checkable: true
             icon.source: JamiResources.hand_black_24dp_svg
             icon.color: checked ? JamiTheme.raiseHandColor : "white"
-            text: checked ?
-                      JamiStrings.lowerHand :
-                      JamiStrings.raiseHand
+            text: checked ? JamiStrings.lowerHand : JamiStrings.raiseHand
             checked: CurrentCall.isHandRaised
             property real size: 34
         },
@@ -377,7 +376,7 @@ Control {
             id: layoutAction
             onTriggered: {
                 if (!CurrentCall.isGrid)
-                    CallAdapter.showGridConferenceLayout()
+                    CallAdapter.showGridConferenceLayout();
             }
             checkable: true
             icon.source: JamiResources.mosaic_black_24dp_svg
@@ -396,9 +395,8 @@ Control {
             property bool blinksWhenChecked: true
             property real size: 28
             checked: CurrentCall.isRecordingLocally
-            onCheckedChanged: function(checked) {
-                CallOverlayModel.setUrgentCount(recordAction,
-                                                checked ? -1 : 0)
+            onCheckedChanged: function (checked) {
+                CallOverlayModel.setUrgentCount(recordAction, checked ? -1 : 0);
             }
         },
         Action {
@@ -407,8 +405,7 @@ Control {
             icon.source: JamiResources.plugins_24dp_svg
             icon.color: "white"
             text: JamiStrings.viewPlugin
-            enabled: PluginAdapter.isEnabled
-                     && PluginAdapter.callMediaHandlersListCount
+            enabled: PluginAdapter.isEnabled && PluginAdapter.callMediaHandlersListCount
         },
         Action {
             id: swarmDetailsAction
@@ -418,12 +415,12 @@ Control {
             text: JamiStrings.details
             enabled: {
                 if (LRCInstance.currentAccountType === Profile.Type.SIP)
-                    return true
+                    return true;
                 if (!CurrentConversation.isTemporary && !CurrentConversation.isSwarm)
-                    return false
+                    return false;
                 if (CurrentConversation.isRequest || CurrentConversation.needsSyncing)
-                    return false
-                return true
+                    return false;
+                return true;
             }
         }
     ]
@@ -433,54 +430,74 @@ Control {
     Connections {
         target: CurrentCall
 
-        function onIsActiveChanged() { if (CurrentCall.isActive) reset() }
-        function onIsRecordingLocallyChanged() { Qt.callLater(reset) }
-        function onIsHandRaisedChanged() { Qt.callLater(reset) }
-        function onIsConferenceChanged() { Qt.callLater(reset) }
-        function onIsModeratorChanged() { Qt.callLater(reset) }
-        function onIsSIPChanged() { Qt.callLater(reset) }
-        function onIsAudioOnlyChanged() { Qt.callLater(reset) }
-        function onIsAudioMutedChanged() { Qt.callLater(reset) }
-        function onIsVideoMutedChanged() { Qt.callLater(reset) }
+        function onIsActiveChanged() {
+            if (CurrentCall.isActive)
+                reset();
+        }
+        function onIsRecordingLocallyChanged() {
+            Qt.callLater(reset);
+        }
+        function onIsHandRaisedChanged() {
+            Qt.callLater(reset);
+        }
+        function onIsConferenceChanged() {
+            Qt.callLater(reset);
+        }
+        function onIsModeratorChanged() {
+            Qt.callLater(reset);
+        }
+        function onIsSIPChanged() {
+            Qt.callLater(reset);
+        }
+        function onIsAudioOnlyChanged() {
+            Qt.callLater(reset);
+        }
+        function onIsAudioMutedChanged() {
+            Qt.callLater(reset);
+        }
+        function onIsVideoMutedChanged() {
+            Qt.callLater(reset);
+        }
     }
 
     Connections {
         target: CurrentAccount
-        function onVideoEnabledVideoChanged() { reset() }
+        function onVideoEnabledVideoChanged() {
+            reset();
+        }
     }
 
     function reset() {
-        CallOverlayModel.clearControls()
+        CallOverlayModel.clearControls();
 
         // centered controls
-        CallOverlayModel.addPrimaryControl(muteAudioAction)
-        CallOverlayModel.addPrimaryControl(hangupAction)
-
+        CallOverlayModel.addPrimaryControl(muteAudioAction);
+        CallOverlayModel.addPrimaryControl(hangupAction);
         if (CurrentAccount.videoEnabled_Video)
-            CallOverlayModel.addPrimaryControl(muteVideoAction)
+            CallOverlayModel.addPrimaryControl(muteVideoAction);
 
         // overflow controls
-        CallOverlayModel.addSecondaryControl(audioOutputAction)
+        CallOverlayModel.addSecondaryControl(audioOutputAction);
         if (CurrentCall.isConference) {
-            CallOverlayModel.addSecondaryControl(raiseHandAction)
+            CallOverlayModel.addSecondaryControl(raiseHandAction);
         }
         if (CurrentCall.isModerator && !CurrentCall.isSIP)
-            CallOverlayModel.addSecondaryControl(addPersonAction)
+            CallOverlayModel.addSecondaryControl(addPersonAction);
         if (CurrentCall.isSIP) {
-            CallOverlayModel.addSecondaryControl(resumePauseCallAction)
-            CallOverlayModel.addSecondaryControl(inputPanelSIPAction)
-            CallOverlayModel.addSecondaryControl(callTransferAction)
+            CallOverlayModel.addSecondaryControl(resumePauseCallAction);
+            CallOverlayModel.addSecondaryControl(inputPanelSIPAction);
+            CallOverlayModel.addSecondaryControl(callTransferAction);
         }
-        CallOverlayModel.addSecondaryControl(chatAction)
+        CallOverlayModel.addSecondaryControl(chatAction);
         if (CurrentAccount.videoEnabled_Video && !CurrentCall.isSIP)
-            CallOverlayModel.addSecondaryControl(shareAction)
-        CallOverlayModel.addSecondaryControl(layoutAction)
-        CallOverlayModel.addSecondaryControl(recordAction)
+            CallOverlayModel.addSecondaryControl(shareAction);
+        CallOverlayModel.addSecondaryControl(layoutAction);
+        CallOverlayModel.addSecondaryControl(recordAction);
         if (pluginsAction.enabled)
-            CallOverlayModel.addSecondaryControl(pluginsAction)
+            CallOverlayModel.addSecondaryControl(pluginsAction);
         if (swarmDetailsAction.enabled)
-            CallOverlayModel.addSecondaryControl(swarmDetailsAction)
-        overflowItemCount = CallOverlayModel.secondaryModel().rowCount()
+            CallOverlayModel.addSecondaryControl(swarmDetailsAction);
+        overflowItemCount = CallOverlayModel.secondaryModel().rowCount();
     }
 
     Item {
@@ -529,18 +546,16 @@ Control {
                 spacing: itemSpacing
 
                 property int overflowIndex: {
-                    var maxItems = Math.floor(
-                                (overflowRect.remainingSpace) / (root.height + itemSpacing)) - 2
-                    return Math.min(overflowItemCount, maxItems)
+                    var maxItems = Math.floor((overflowRect.remainingSpace) / (root.height + itemSpacing)) - 2;
+                    return Math.min(overflowItemCount, maxItems);
                 }
                 property int nOverflowItems: overflowItemCount - overflowIndex
                 onNOverflowItemsChanged: {
-                    var diff = overflowItemListView.count - nOverflowItems
-                    var effectiveOverflowIndex = overflowIndex
+                    var diff = overflowItemListView.count - nOverflowItems;
+                    var effectiveOverflowIndex = overflowIndex;
                     if (effectiveOverflowIndex === overflowItemCount - 2)
-                        effectiveOverflowIndex += diff
-
-                    CallOverlayModel.overflowIndex = effectiveOverflowIndex
+                        effectiveOverflowIndex += diff;
+                    CallOverlayModel.overflowIndex = effectiveOverflowIndex;
                 }
 
                 model: CallOverlayModel.overflowModel()
@@ -571,24 +586,19 @@ Control {
                     implicitWidth: root.height
                     implicitHeight: implicitWidth
                     radius: type === HalfPill.None ? 0 : 5
-                    color: overflowButton.down ?
-                               "#c4777777":
-                               overflowButton.hovered ?
-                                   "#c4444444" :
-                                   "#c4272727"
+                    color: overflowButton.down ? "#c4777777" : overflowButton.hovered ? "#c4444444" : "#c4272727"
                     type: {
-                        if (overflowItemListView.count ||
-                                urgentOverflowListView.count ||
-                                (overflowHiddenListView.count &&
-                                overflowButton.popup.visible)) {
-                            return HalfPill.None
+                        if (overflowItemListView.count || urgentOverflowListView.count || (overflowHiddenListView.count && overflowButton.popup.visible)) {
+                            return HalfPill.None;
                         } else {
-                            return HalfPill.Left
+                            return HalfPill.Left;
                         }
                     }
 
-                    Behavior on color {
-                        ColorAnimation { duration: JamiTheme.shortFadeDuration }
+                    Behavior on color  {
+                        ColorAnimation {
+                            duration: JamiTheme.shortFadeDuration
+                        }
                     }
                 }
 
@@ -603,20 +613,22 @@ Control {
 
                         spacing: itemSpacing
                         anchors.fill: parent
-                        model: !overflowButton.popup.visible ?
-                                   CallOverlayModel.overflowVisibleModel() :
-                                   null
+                        model: !overflowButton.popup.visible ? CallOverlayModel.overflowVisibleModel() : null
 
                         delegate: buttonDelegate
 
                         add: Transition {
                             NumberAnimation {
                                 property: "opacity"
-                                from: 0 ; to: 1.0; duration: 80
+                                from: 0
+                                to: 1.0
+                                duration: 80
                             }
                             NumberAnimation {
                                 property: "scale"
-                                from: 0; to: 1.0; duration: 80
+                                from: 0
+                                to: 1.0
+                                duration: 80
                             }
                         }
                     }
@@ -625,8 +637,7 @@ Control {
                 popup: Popup {
                     y: overflowButton.height + itemSpacing
                     width: overflowButton.width
-                    implicitHeight: Math.min(root.parentHeight - itemSpacing,
-                                             (overflowButton.width + itemSpacing) * overflowHiddenListView.count)
+                    implicitHeight: Math.min(root.parentHeight - itemSpacing, (overflowButton.width + itemSpacing) * overflowHiddenListView.count)
                     padding: 0
 
                     contentItem: JamiListView {
@@ -634,9 +645,7 @@ Control {
                         spacing: itemSpacing
                         implicitHeight: Math.min(contentHeight, parent.height)
                         interactive: true
-                        model: overflowButton.popup.visible ?
-                                   overflowButton.delegateModel :
-                                   null
+                        model: overflowButton.popup.visible ? overflowButton.delegateModel : null
                     }
 
                     background: Rectangle {

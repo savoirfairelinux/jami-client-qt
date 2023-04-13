@@ -17,16 +17,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import net.jami.Enums 1.1
-
 import "../../commoncomponents"
 import "../../commoncomponents/contextmenu"
 import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
@@ -47,26 +44,36 @@ Popup {
     }
 
     onAboutToShow: {
-        actionsModel.clear()
-        actionsModel.append({"Top": true})
+        actionsModel.clear();
+        actionsModel.append({
+                "Top": true
+            });
         if (root.isOnLocal)
-            actionsModel.append({"Name": JamiStrings.mirrorLocalVideo,
-                                "IconSource": JamiResources.flip_24dp_svg})
+            actionsModel.append({
+                    "Name": JamiStrings.mirrorLocalVideo,
+                    "IconSource": JamiResources.flip_24dp_svg
+                });
         if (hoveredOverlayUri !== "" && hoveredOverVideoMuted === false)
-            actionsModel.append({"Name": JamiStrings.tileScreenshot,
-                                "IconSource" : JamiResources.screenshot_black_24dp_svg})
-        actionsModel.append({"Name": JamiStrings.advancedInformation,
-                            "IconSource": JamiResources.informations_black_24dp_svg})
-        actionsModel.append({"Bottom": true})
-        itemListView.implicitHeight = 20 + 45 * (actionsModel.count - 2)
+            actionsModel.append({
+                    "Name": JamiStrings.tileScreenshot,
+                    "IconSource": JamiResources.screenshot_black_24dp_svg
+                });
+        actionsModel.append({
+                "Name": JamiStrings.advancedInformation,
+                "IconSource": JamiResources.informations_black_24dp_svg
+            });
+        actionsModel.append({
+                "Bottom": true
+            });
+        itemListView.implicitHeight = 20 + 45 * (actionsModel.count - 2);
     }
 
     onAboutToHide: {
-        screenshotButtonHovered = false
-        hoveredOverlayUri = ""
-        hoveredOverlaySinkId = ""
-        hoveredOverVideoMuted = true
-        actionsModel.clear()
+        screenshotButtonHovered = false;
+        hoveredOverlayUri = "";
+        hoveredOverlaySinkId = "";
+        hoveredOverVideoMuted = true;
+        actionsModel.clear();
     }
 
     background: Rectangle {
@@ -126,28 +133,27 @@ Popup {
                     }
 
                     onClicked: {
-                        switch(Name) {
-                            case JamiStrings.advancedInformation:
-                                CallAdapter.startTimerInformation()
-                                callInformationOverlay.open()
-                                break
-                            case JamiStrings.tileScreenshot:
-                                if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId),
-                                                            UtilsAdapter.getDirScreenshot())) {
-                                    screenshotTaken()
-                                }
-                                break
-                            case JamiStrings.mirrorLocalVideo:
-                                UtilsAdapter.setAppValue(Settings.FlipSelf, !UtilsAdapter.getAppValue(Settings.FlipSelf))
-                                CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf)
-                                break
+                        switch (Name) {
+                        case JamiStrings.advancedInformation:
+                            CallAdapter.startTimerInformation();
+                            callInformationOverlay.open();
+                            break;
+                        case JamiStrings.tileScreenshot:
+                            if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId), UtilsAdapter.getDirScreenshot())) {
+                                screenshotTaken();
+                            }
+                            break;
+                        case JamiStrings.mirrorLocalVideo:
+                            UtilsAdapter.setAppValue(Settings.FlipSelf, !UtilsAdapter.getAppValue(Settings.FlipSelf));
+                            CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
+                            break;
                         }
-                        root.close()
+                        root.close();
                     }
 
                     onHoveredChanged: {
                         if (Name === JamiStrings.tileScreenshot) {
-                            screenshotButtonHovered = hovered
+                            screenshotButtonHovered = hovered;
                         }
                     }
                 }

@@ -15,10 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
 
@@ -40,8 +38,8 @@ Item {
     property bool mirrorVertically: false
 
     property bool isSvg: {
-        var match = /[^.]+$/.exec(source)
-        return match !== null && match[0] === 'svg'
+        var match = /[^.]+$/.exec(source);
+        return match !== null && match[0] === 'svg';
     }
 
     anchors.horizontalCenterOffset: offset.x
@@ -55,7 +53,7 @@ Item {
         target: CurrentScreenInfo
 
         function onDevicePixelRatioChanged() {
-            image.setSourceSize()
+            image.setSourceSize();
         }
     }
 
@@ -73,9 +71,9 @@ Item {
         mirrorVertically: root.mirrorVertically
 
         function setSourceSize() {
-            sourceSize = undefined
+            sourceSize = undefined;
             if (isSvg)
-                sourceSize = Qt.size(width, height)
+                sourceSize = Qt.size(width, height);
         }
 
         Component.onCompleted: setSourceSize()
@@ -90,8 +88,7 @@ Item {
     HoverHandler {
         target: parent
         onHoveredChanged: {
-            root.hovered = hovered
-
+            root.hovered = hovered;
         }
     }
 }

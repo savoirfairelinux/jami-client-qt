@@ -15,14 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
@@ -34,18 +31,16 @@ ColumnLayout {
     Text {
 
         Layout.alignment: Qt.AlignLeft
-        Layout.preferredWidth:Math.min(JamiTheme.maximumWidthSettingsView,
-                                                   root.width - 2 * JamiTheme.preferredSettingsMarginSize)
+        Layout.preferredWidth: Math.min(JamiTheme.maximumWidthSettingsView, root.width - 2 * JamiTheme.preferredSettingsMarginSize)
 
         text: JamiStrings.sdpSettingsTitle
         color: JamiTheme.textColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        wrapMode : Text.WordWrap
+        wrapMode: Text.WordWrap
 
         font.pixelSize: JamiTheme.settingsTitlePixelSize
         font.kerning: true
-
     }
 
     ColumnLayout {
