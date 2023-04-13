@@ -556,47 +556,6 @@ if(MSVC)
     target_sources(${PROJECT_NAME} PRIVATE ${QM_FILES})
   endif()
 
-  # POST_BUILD steps
-
-  # check time stamp
-  set(TIME_STAMP_FILE ".deploy.stamp")
-  add_custom_command(
-    TARGET ${PROJECT_NAME}
-    POST_BUILD
-    WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
-    COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-    -P ${EXTRAS_DIR}/build/cmake/time_stamp_check.cmake)
-
-  # copy runtime files and run windeployqt on target and deploy Qt libs
-  add_custom_command(
-    TARGET ${PROJECT_NAME}
-    POST_BUILD
-    WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
-    COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-    -DCOPY_TO_PATH=$<TARGET_FILE_DIR:${PROJECT_NAME}>
-    -DDRING_PATH=${DAEMON_DIR}
-    -DPROJECT_ROOT_DIR=${PROJECT_SOURCE_DIR}
-    -DPACKAGING_DIR=${PACKAGING_DIR}
-    -P ${EXTRAS_DIR}/build/cmake/windows_daemon_deploy.cmake)
-
-  add_custom_command(
-    TARGET ${PROJECT_NAME}
-    POST_BUILD
-    WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
-    COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-    -DWIN_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
-    -DQML_SRC_DIR=${APP_SRC_DIR}
-    -DEXE_NAME=$<TARGET_FILE:${PROJECT_NAME}>
-    -P ${EXTRAS_DIR}/build/cmake/windows_qt_deploy.cmake)
-
-  # create time stamp
-  add_custom_command(
-    TARGET ${PROJECT_NAME}
-    POST_BUILD
-    WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
-    COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-    -P ${EXTRAS_DIR}/build/cmake/time_stamp_create.cmake)
-
   # executable name
   set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Jami")
 elseif (NOT APPLE)

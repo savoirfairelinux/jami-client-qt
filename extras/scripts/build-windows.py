@@ -41,6 +41,8 @@ import subprocess
 import platform
 import argparse
 import multiprocessing
+import shutil
+import time
 
 
 # Visual Studio helpers
@@ -93,43 +95,26 @@ def execute_cmd(cmd, with_shell=False, env_vars=None, cmd_dir=repo_root_dir):
     return proc.returncode
 
 
-def get_latest_vs_version():
-    """Find the latest visual c++ compiler tools version."""
+def get_vs_prop(prop):
+    """Get a visual studio property."""
     args = [
         "-latest",
         "-products *",
         "-requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
-        "-property installationVersion",
+        "-property " + prop,
     ]
     cmd = [VS_WHERE_PATH] + args
     output = subprocess.check_output(" ".join(cmd)).decode("utf-8")
     if output:
-        return output.splitlines()[0].split(".")[0]
-    else:
-        return
-
-
-def find_latest_vs_dir():
-    """Find the latest visual c++ compiler tools path."""
-    args = [
-        "-latest",
-        "-products *",
-        "-requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
-        "-property installationPath",
-    ]
-    cmd = [VS_WHERE_PATH] + args
-    output = subprocess.check_output(
-        " ".join(cmd)).decode("utf-8", errors="ignore")
-    if output:
         return output.splitlines()[0]
     else:
-        return
+        return None
 
 
 def find_ms_build():
     """Find the latest msbuild executable."""
     filename = "MSBuild.exe"
-    vs_path = find_latest_vs_dir()
+    vs_path = get_vs_prop("installationPath")
     if vs_path is None:
         return
     for root, _, files in os.walk(os.path.join(vs_path, "MSBuild")):
@@ -169,7 +154,7 @@ def get_vs_env(arch="x64", _platform="", version=""):
 
 def get_vs_env_cmd(arch="x64", _platform="", version=""):
     """Get the vcvarsall.bat command."""
-    vs_path = find_latest_vs_dir()
+    vs_path = get_vs_prop("installationPath")
     if vs_path is None:
         return
     vc_env_init = [os.path.join(
@@ -286,6 +271,7 @@ def build(config_str, qt_dir, tests):
     cmake_options = [
         "-DWITH_DAEMON_SUBMODULE=ON",
         "-DCMAKE_PREFIX_PATH=" + qt_dir,
+        "-DCMAKE_MSVCIDE_RUN_PATH=" + qt_dir + "\\bin",
         "-DCMAKE_INSTALL_PREFIX=" + daemon_bin_dir,
         "-DLIBJAMI_INCLUDE_DIR=" + daemon_dir + "\\src\\jami",
         "-DCMAKE_SYSTEM_VERSION=" + WIN_SDK_VERSION,
@@ -307,11 +293,73 @@ def build(config_str, qt_dir, tests):
         sys.exit(1)
 
 
+def deploy_runtimes(qt_dir):
+    """Deploy the dependencies to the runtime directory."""
+    print("Deploying runtime dependencies")
+
+    runtime_dir = os.path.join(repo_root_dir, "x64", "Release")
+    stamp_file = os.path.join(runtime_dir, ".deploy.stamp")
+    if os.path.exists(stamp_file):
+        return
+
+    daemon_dir = os.path.join(repo_root_dir, "daemon")
+    ringtone_dir = os.path.join(daemon_dir, "ringtones")
+    packaging_dir = os.path.join(repo_root_dir, "extras", "packaging")
+
+    def install_file(src, rel_path):
+        shutil.copy(os.path.join(rel_path, src), runtime_dir)
+
+    print("Copying libjami dependencies")
+    install_file("contrib/build/openssl/libcrypto-1_1-x64.dll", daemon_dir)
+    install_file("contrib/build/openssl/libssl-1_1-x64.dll", daemon_dir)
+    # Ringtone files (ul,ogg,wav,opus files in the daemon ringtone dir).
+
+    print("Copying ringtones")
+    ringtone_dir = os.path.join(daemon_dir, "ringtones")
+    ringtone_files = [f for f in os.listdir(ringtone_dir) if f.endswith(
+        (".ul", ".ogg", ".wav", ".opus"))]
+    ringtone_files = [os.path.join(ringtone_dir, f) for f in ringtone_files]
+    default_ringtone = os.path.join(ringtone_dir, "default.opus")
+    ringtone_files.remove(default_ringtone)
+    ringtone_dir_out = os.path.join(runtime_dir, "ringtones")
+    if os.path.exists(ringtone_dir_out):
+        shutil.rmtree(ringtone_dir_out)
+    os.makedirs(ringtone_dir_out, exist_ok=True)
+    for ringtone in ringtone_files:
+        shutil.copy(ringtone, os.path.join(runtime_dir, "ringtones"))
+    # Create a hard link to the default ringtone (Windows).
+    os.link(os.path.join(runtime_dir, "ringtones", "01_AfroNigeria.opus"),
+            os.path.join(runtime_dir, "ringtones", "default.opus"))
+
+    print("Copying misc. client configuration files")
+    install_file("wix/qt.conf", packaging_dir)
+    install_file("wix/License.rtf", packaging_dir)
+    install_file("resources/images/jami.ico", repo_root_dir)
+
+    # windeployqt
+    print("Running windeployqt (this may take a while)...")
+    win_deploy_qt = os.path.join(qt_dir, "bin", "windeployqt.exe")
+    qml_src_dir = os.path.join(repo_root_dir, "src", "app")
+    os.environ["VCINSTALLDIR"] = os.path.join(
+        get_vs_prop("installationPath"), "VC")
+    executable = os.path.join(runtime_dir, "Jami.exe")
+    execute_cmd([win_deploy_qt, "--verbose", "1", "--no-compiler-runtime",
+                 "--qmldir", qml_src_dir, "--release", executable],
+                False, cmd_dir=runtime_dir)
+
+    with open(stamp_file, "w", encoding="utf-8") as file:
+        # Write the current time to the file.
+        file.write(str(time.time()))
+
+
 def run_tests(config_str, qt_dir):
     """Run tests."""
     print("Running client tests")
 
     os.environ["PATH"] += os.pathsep + os.path.join(qt_dir, 'bin')
+    daemon_dir = os.path.join(repo_root_dir, "daemon")
+    os.environ["PATH"] += os.pathsep + \
+        os.path.join(daemon_dir, "contrib", "build", "openssl")
     os.environ["QT_QPA_PLATFORM"] = "offscreen"
     os.environ["QT_QUICK_BACKEND"] = "software"
     os.environ['QT_QPA_FONTDIR'] = os.path.join(
@@ -319,6 +367,9 @@ def run_tests(config_str, qt_dir):
     os.environ['QT_PLUGIN_PATH'] = os.path.join(qt_dir, 'plugins')
     os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = os.path.join(
         qt_dir, 'plugins', 'platforms')
+    os.environ['QTWEBENGINEPROCESS_PATH'] = os.path.join(
+        qt_dir, 'bin', 'QtWebEngineProcess.exe')
+    os.environ["QML2_IMPORT_PATH"] = os.path.join(qt_dir, "qml")
 
     tests_dir = os.path.join(build_dir, "tests")
     if execute_cmd(["ctest", "-V", "-C", config_str],
@@ -357,7 +408,7 @@ def generate_zip(version):
     app_output_dir = os.path.join(repo_root_dir, 'x64', 'Release')
     app_files = os.path.join(app_output_dir, '*')
 
-    # TODO: exclude Jami.PDB, .deploy.stamp, and vc_redist.x64.exe
+    # TODO: exclude Jami.PDB, .deploy.stamp
 
     artifacts_dir = os.path.join(build_dir, 'artifacts')
     if not os.path.exists(artifacts_dir):
@@ -404,7 +455,13 @@ def parse_args():
     parser.add_argument(
         "-i", "--init", action="store_true", help="Initialize submodules")
     parser.add_argument(
-        "-s",
+        '-sd',
+        '--skip-deploy',
+        action='store_true',
+        default=False,
+        help='Force skip deployment of runtime files needed for packaging')
+    parser.add_argument(
+        "-sb",
         "--skip-build",
         action="store_true",
         default=False,
@@ -426,7 +483,7 @@ def main():
         print("These scripts will only run on a 64-bit system for now.")
         sys.exit(1)
     if sys.platform == "win32":
-        vs_version = get_latest_vs_version()
+        vs_version = get_vs_prop("installationVersion").split(".")[0]
         if vs_version is None or int(vs_version) < 15:
             print("Visual Studio 2017 or later is required.")
             sys.exit(1)
@@ -454,19 +511,21 @@ def main():
         sys.exit(0)
 
     config_str = ('Release', 'Beta')[parsed_args.beta]
-    skip_build = parsed_args.skip_build
+
+    def do_build(do_tests):
+        if not parsed_args.skip_build:
+            build(config_str, parsed_args.qt, do_tests)
+        if not parsed_args.skip_deploy:
+            deploy_runtimes(parsed_args.qt)
 
     if parsed_args.subcommand == "pack":
-        if not skip_build:
-            build(config_str, parsed_args.qt, False)
-        elif parsed_args.msi:
+        do_build(False)
+        if parsed_args.msi:
             generate_msi(get_version())
         elif parsed_args.zip:
             generate_zip(get_version())
     else:
-        if not skip_build:
-            build(config_str, parsed_args.qt,
-                  parsed_args.tests)
+        do_build(parsed_args.tests)
         if parsed_args.tests:
             run_tests(config_str, parsed_args.qt)
 
