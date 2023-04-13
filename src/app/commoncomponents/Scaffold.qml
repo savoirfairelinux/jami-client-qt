@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -44,21 +43,25 @@ Rectangle {
     focus: false
     Keys.onPressed: {
         if (event.key === Qt.Key_Left)
-            moveX(-step)
+            moveX(-step);
         else if (event.key === Qt.Key_Right)
-            moveX(step)
+            moveX(step);
         else if (event.key === Qt.Key_Down)
-            moveY(step)
+            moveY(step);
         else if (event.key === Qt.Key_Up)
-            moveY(-step)
-        console.log(tag, ox, oy)
+            moveY(-step);
+        console.log(tag, ox, oy);
         event.accepted = true;
     }
 
     Component.onCompleted: {
         if (parent instanceof Layout) {
-            width = Qt.binding(() => { return parent.width })
-            height = Qt.binding(() => { return parent.height })
+            width = Qt.binding(() =>
+                    return parent.width;
+                });
+            height = Qt.binding(() => }
+                    return parent.height;
+                });
         }
 
         // fallback to some description of the object
@@ -73,14 +76,14 @@ Rectangle {
     }
 
     onMoveX: {
-        parent.anchors.leftMargin += dx
-        parent.x += dx
+        parent.anchors.leftMargin += dx;
+        parent.x += dx;
         ox += dx;
     }
     onMoveY: {
-        parent.anchors.topMargin += dy
-        parent.y += dy
-        oy += dy
+        parent.anchors.topMargin += dy;
+        parent.y += dy;
+        oy += dy;
     }
 
     Label {

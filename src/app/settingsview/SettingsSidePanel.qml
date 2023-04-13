@@ -14,17 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.Helpers 1.1
-
 import "../mainview/components"
 import "../commoncomponents"
 import "components"
@@ -36,12 +33,11 @@ SidePanelBase {
     color: JamiTheme.backgroundColor
     property int currentIndex
 
-
     function createChild() {
         if (page.menu === undefined) {
-            return
+            return;
         }
-        page.menu.createChild()
+        page.menu.createChild();
     }
 
     Page {
@@ -51,15 +47,15 @@ SidePanelBase {
 
         background: null
 
-        header: AccountComboBox {}
+        header: AccountComboBox {
+        }
 
         // Bind to requests for a settings page to be selected via shorcut.
         Connections {
             target: JamiQmlUtils
             function onSettingsPageRequested(index) {
-                viewCoordinator.present("SettingsView")
-
-                buttonGroup.checkedButton = buttonGroup.buttons[index]
+                viewCoordinator.present("SettingsView");
+                buttonGroup.checkedButton = buttonGroup.buttons[index];
             }
         }
 
@@ -73,104 +69,83 @@ SidePanelBase {
             contentHeight: col.implicitHeight
 
             function getHeaders() {
-                return [
-                {
-                    "title": JamiStrings.accountSettingsMenuTitle,
-                    "icon": JamiResources.account_24dp_svg,
-                    "children": [
-                        {
-                            "id": 0,
-                            "title": JamiStrings.manageAccountSettingsTitle
-                        },
-                        {
-                            "id": 1,
-                            "title": JamiStrings.customizeProfile
-                        },
-                        {
-                            "id": 2,
-                            "title": JamiStrings.linkedDevicesSettingsTitle,
-                            "visible": "isJamiAccount"
-                        },
-                        {
-                            "id": 3,
-                            "title": JamiStrings.callSettingsTitle
-                        },
-                        {
-                            "id": 4,
-                            "title": JamiStrings.advancedSettingsTitle
-                        }
-                    ]
-                },
-                {
-                    "title": JamiStrings.generalSettingsTitle,
-                    "icon": JamiResources.gear_black_24dp_svg,
-                    "children": [
-                        {
-                            "id": 5,
-                            "title": JamiStrings.system
-                        },
-                        {
-                            "id": 6,
-                            "title": JamiStrings.appearence
-                        },
-                        {
-                            "id": 7,
-                            "title": JamiStrings.locationSharingLabel
-                        },
-                        {
-                            "id": 8,
-                            "title": JamiStrings.fileTransfer
-                        },
-                        {
-                            "id": 9,
-                            "title": JamiStrings.callRecording
-                        },
-                        {
-                            "id": 10,
-                            "title": JamiStrings.troubleshootTitle
-                        },
-                        {
-                            "id": 11,
-                            "title": JamiStrings.updatesTitle,
-                            "visible": "isUpdatable"
-                        }
-                    ]
-                },{
-                    "title": JamiStrings.audioVideoSettingsTitle,
-                    "icon": JamiResources.media_black_24dp_svg,
-                    "children": [
-                        {
-                            "id": 12,
-                            "title": JamiStrings.audio
-                        },
-                        {
-                            "id": 13,
-                            "title": JamiStrings.video
-                        },
-                        {
-                            "id": 14,
-                            "title": JamiStrings.screenSharing
-                        }
-                    ]
-                },{
-                    "title": JamiStrings.pluginSettingsTitle,
-                    "icon": JamiResources.plugins_24dp_svg,
-                    "children": [
-                        {
-                            "id": 15,
-                            "title": JamiStrings.pluginSettingsTitle
-                        }
-                    ]
-                }
-            ]}
+                return [{
+                        "title": JamiStrings.accountSettingsMenuTitle,
+                        "icon": JamiResources.account_24dp_svg,
+                        "children": [{
+                                "id": 0,
+                                "title": JamiStrings.manageAccountSettingsTitle
+                            }, {
+                                "id": 1,
+                                "title": JamiStrings.customizeProfile
+                            }, {
+                                "id": 2,
+                                "title": JamiStrings.linkedDevicesSettingsTitle,
+                                "visible": "isJamiAccount"
+                            }, {
+                                "id": 3,
+                                "title": JamiStrings.callSettingsTitle
+                            }, {
+                                "id": 4,
+                                "title": JamiStrings.advancedSettingsTitle
+                            }]
+                    }, {
+                        "title": JamiStrings.generalSettingsTitle,
+                        "icon": JamiResources.gear_black_24dp_svg,
+                        "children": [{
+                                "id": 5,
+                                "title": JamiStrings.system
+                            }, {
+                                "id": 6,
+                                "title": JamiStrings.appearence
+                            }, {
+                                "id": 7,
+                                "title": JamiStrings.locationSharingLabel
+                            }, {
+                                "id": 8,
+                                "title": JamiStrings.fileTransfer
+                            }, {
+                                "id": 9,
+                                "title": JamiStrings.callRecording
+                            }, {
+                                "id": 10,
+                                "title": JamiStrings.troubleshootTitle
+                            }, {
+                                "id": 11,
+                                "title": JamiStrings.updatesTitle,
+                                "visible": "isUpdatable"
+                            }]
+                    }, {
+                        "title": JamiStrings.audioVideoSettingsTitle,
+                        "icon": JamiResources.media_black_24dp_svg,
+                        "children": [{
+                                "id": 12,
+                                "title": JamiStrings.audio
+                            }, {
+                                "id": 13,
+                                "title": JamiStrings.video
+                            }, {
+                                "id": 14,
+                                "title": JamiStrings.screenSharing
+                            }]
+                    }, {
+                        "title": JamiStrings.pluginSettingsTitle,
+                        "icon": JamiResources.plugins_24dp_svg,
+                        "children": [{
+                                "id": 15,
+                                "title": JamiStrings.pluginSettingsTitle
+                            }]
+                    }];
+            }
 
             Column {
                 id: col
                 anchors.left: parent.left
                 Component.onCompleted: {
-                    page.menu = clv.createObject(this, {"base":flick.getHeaders()});
+                    page.menu = clv.createObject(this, {
+                            "base": flick.getHeaders()
+                        });
                 }
-
             }
             Component {
                 id: clv
@@ -184,8 +159,8 @@ SidePanelBase {
                     Layout.fillWidth: true
 
                     function createChild() {
-                        itemAt(0).children[0].createChild()
-                        root.currentIndex = 0
+                        itemAt(0).children[0].createChild();
+                        root.currentIndex = 0;
                     }
 
                     ColumnLayout {
@@ -198,51 +173,50 @@ SidePanelBase {
                             property var sprite: null
 
                             property var isChildren: {
-                                var ob = base[modelData]
-                                var c = ob["children"]
-                                return c === undefined
+                                var ob = base[modelData];
+                                var c = ob["children"];
+                                return c === undefined;
                             }
 
                             function updateVisibility() {
-                                var currentVisibility =  visible
-                                var ob = base[modelData]
-                                var c = ob["visible"]
+                                var currentVisibility = visible;
+                                var ob = base[modelData];
+                                var c = ob["visible"];
                                 if (c === undefined)
-                                    return true
-                                var res = false
+                                    return true;
+                                var res = false;
                                 if (c === "isUpdatable") {
-                                    res = UpdateManager.isUpdaterEnabled()
+                                    res = UpdateManager.isUpdaterEnabled();
                                 } else if (c === "isJamiAccount") {
-                                    res = CurrentAccount.type !== Profile.Type.SIP
+                                    res = CurrentAccount.type !== Profile.Type.SIP;
                                 } else {
-                                    console.warn("Visibility condition not managed")
+                                    console.warn("Visibility condition not managed");
                                 }
                                 if (currentVisibility !== res && root.currentIndex === ob["id"]) {
                                     // If a menu disappears, go to the first index
-                                    root.currentIndex = 0
-                                    root.indexSelected(0)
+                                    root.currentIndex = 0;
+                                    root.indexSelected(0);
                                 }
-
-                                return res
+                                return res;
                             }
 
-
                             function createChild() {
-                                var ob = base[modelData]
-                                if(sprite === null) {
+                                var ob = base[modelData];
+                                if (sprite === null) {
                                     //deselect the current selection and collapse menu
                                     if (repeater.selected)
-                                        repeater.selected.destroy()
-
-                                    var c = ob["children"]
+                                        repeater.selected.destroy();
+                                    var c = ob["children"];
                                     if (c !== undefined) {
-                                        sprite = clv.createObject(parent, {"base" : c});
-                                        repeater.selected = sprite
-                                        indexSelected(c[0]["id"])
-                                        root.currentIndex = c[0]["id"]
+                                        sprite = clv.createObject(parent, {
+                                                "base": c
+                                            });
+                                        repeater.selected = sprite;
+                                        indexSelected(c[0]["id"]);
+                                        root.currentIndex = c[0]["id"];
                                     } else {
-                                        indexSelected(ob["id"])
-                                        root.currentIndex = ob["id"]
+                                        indexSelected(ob["id"]);
+                                        root.currentIndex = ob["id"];
                                     }
                                 }
                             }
@@ -264,7 +238,7 @@ SidePanelBase {
                             radius: 0
 
                             buttonText: {
-                                return base[modelData]["title"]
+                                return base[modelData]["title"];
                             }
 
                             buttonTextFont.pixelSize: !isChildren ? JamiTheme.settingsDescriptionPixelSize : JamiTheme.settingMenuPixelSize
@@ -277,19 +251,18 @@ SidePanelBase {
                             imageColor: !isChildren ? JamiTheme.tintedBlue : null
 
                             source: {
-
                                 if (!isChildren)
-                                    return base[modelData]["icon"]
-                                else return ""
+                                    return base[modelData]["icon"];
+                                else
+                                    return "";
                             }
 
                             onClicked: createChild()
 
                             Keys.onPressed: function (keyEvent) {
-                                if (keyEvent.key === Qt.Key_Enter ||
-                                        keyEvent.key === Qt.Key_Return) {
-                                    clicked()
-                                    keyEvent.accepted = true
+                                if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+                                    clicked();
+                                    keyEvent.accepted = true;
                                 }
                             }
                         }
@@ -297,6 +270,5 @@ SidePanelBase {
                 }
             }
         }
-
     }
 }

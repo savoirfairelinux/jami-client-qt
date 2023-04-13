@@ -15,11 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
@@ -40,15 +38,13 @@ BaseModalDialog {
     property var innerContentData: []
 
     function openWithParameters(title, info = "") {
-        root.title = title
+        root.title = title;
         if (info !== "")
-            root.infoText = info
-        open()
+            root.infoText = info;
+        open();
     }
 
-    width: Math.max(JamiTheme.preferredDialogWidth,
-                    buttonTitles.length * (JamiTheme.preferredFieldWidth / 2
-                    + JamiTheme.preferredMarginSize))
+    width: Math.max(JamiTheme.preferredDialogWidth, buttonTitles.length * (JamiTheme.preferredFieldWidth / 2 + JamiTheme.preferredMarginSize))
     height: JamiTheme.preferredDialogHeight / 2 - JamiTheme.preferredMarginSize
 
     popupContent: ColumnLayout {
@@ -94,33 +90,33 @@ BaseModalDialog {
                     buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
                     color: {
-                        switch(buttonStyles[modelData]) {
+                        switch (buttonStyles[modelData]) {
                         case SimpleMessageDialog.ButtonStyle.TintedBlue:
-                            return JamiTheme.buttonTintedBlue
+                            return JamiTheme.buttonTintedBlue;
                         case SimpleMessageDialog.ButtonStyle.TintedBlack:
-                            return JamiTheme.buttonTintedBlack
+                            return JamiTheme.buttonTintedBlack;
                         case SimpleMessageDialog.ButtonStyle.TintedRed:
-                            return JamiTheme.buttonTintedRed
+                            return JamiTheme.buttonTintedRed;
                         }
                     }
                     hoveredColor: {
-                        switch(buttonStyles[modelData]) {
+                        switch (buttonStyles[modelData]) {
                         case SimpleMessageDialog.ButtonStyle.TintedBlue:
-                            return JamiTheme.buttonTintedBlueHovered
+                            return JamiTheme.buttonTintedBlueHovered;
                         case SimpleMessageDialog.ButtonStyle.TintedBlack:
-                            return JamiTheme.buttonTintedBlackHovered
+                            return JamiTheme.buttonTintedBlackHovered;
                         case SimpleMessageDialog.ButtonStyle.TintedRed:
-                            return JamiTheme.buttonTintedRedHovered
+                            return JamiTheme.buttonTintedRedHovered;
                         }
                     }
                     pressedColor: {
-                        switch(buttonStyles[modelData]) {
+                        switch (buttonStyles[modelData]) {
                         case SimpleMessageDialog.ButtonStyle.TintedBlue:
-                            return JamiTheme.buttonTintedBluePressed
+                            return JamiTheme.buttonTintedBluePressed;
                         case SimpleMessageDialog.ButtonStyle.TintedBlack:
-                            return JamiTheme.buttonTintedBlackPressed
+                            return JamiTheme.buttonTintedBlackPressed;
                         case SimpleMessageDialog.ButtonStyle.TintedRed:
-                            return JamiTheme.buttonTintedRedPressed
+                            return JamiTheme.buttonTintedRedPressed;
                         }
                     }
                     secondary: true
@@ -130,8 +126,8 @@ BaseModalDialog {
 
                     onClicked: {
                         if (buttonCallBacks[modelData])
-                            buttonCallBacks[modelData]()
-                        close()
+                            buttonCallBacks[modelData]();
+                        close();
                     }
                 }
             }

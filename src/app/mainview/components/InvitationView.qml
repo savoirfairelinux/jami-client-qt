@@ -15,14 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -52,8 +49,7 @@ Rectangle {
         color: JamiTheme.textColor
         wrapMode: Text.Wrap
 
-        text: JamiStrings.invitationViewSentRequest.arg(
-                  CurrentConversation.title)
+        text: JamiStrings.invitationViewSentRequest.arg(CurrentConversation.title)
     }
 
     ColumnLayout {
@@ -91,9 +87,7 @@ Rectangle {
             color: JamiTheme.textColor
             wrapMode: Text.Wrap
 
-            text: CurrentConversation.needsSyncing ?
-                      JamiStrings.invitationViewAcceptedConversation :
-                      JamiStrings.invitationViewJoinConversation
+            text: CurrentConversation.needsSyncing ? JamiStrings.invitationViewAcceptedConversation : JamiStrings.invitationViewJoinConversation
         }
 
         Text {
@@ -113,8 +107,7 @@ Rectangle {
             color: JamiTheme.textColor
             wrapMode: Text.Wrap
 
-            text: JamiStrings.invitationViewWaitingForSync.arg(
-                      CurrentConversation.title)
+            text: JamiStrings.invitationViewWaitingForSync.arg(CurrentConversation.title)
         }
 
         RowLayout {

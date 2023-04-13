@@ -17,16 +17,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import Qt5Compat.GraphicalEffects
 import QtQuick.Layouts
 import QtQuick.Shapes
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Item {
@@ -36,20 +33,14 @@ Item {
     property int shapeWidth: participantFootInfo.width + 8
     property int shapeHeight: 30
     property int shapeRadius: 5
-    property string pathShape: "M0,0 h%1 q%2,0 %2,%2 v%3 h-%4 z"
-        .arg(shapeWidth - shapeRadius)
-        .arg(shapeRadius)
-        .arg(shapeHeight - shapeRadius)
-        .arg(shapeWidth)
+    property string pathShape: "M0,0 h%1 q%2,0 %2,%2 v%3 h-%4 z".arg(shapeWidth - shapeRadius).arg(shapeRadius).arg(shapeHeight - shapeRadius).arg(shapeWidth)
 
     property string uri: ""
     property string deviceId: ""
     property string bestName: ""
     property string sinkId: ""
     property bool participantIsActive: false
-    property bool canMaximize: root.meModerator &&
-                                    (!root.participantIsActive
-                                    || CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL)
+    property bool canMaximize: root.meModerator && (!root.participantIsActive || CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL)
     property bool participantIsHost: CallAdapter.participantIsHost(uri)
     property bool participantIsModerator: false
     property bool participantIsMuted: isLocalMuted || participantIsModeratorMuted
@@ -73,8 +64,7 @@ Item {
 
     function takeScreenshot() {
         if (!hoveredOverVideoMuted) {
-            if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId),
-                                           UtilsAdapter.getDirScreenshot())) {
+            if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId), UtilsAdapter.getDirScreenshot())) {
                 toastManager.instantiateToast();
             }
         }
@@ -82,7 +72,7 @@ Item {
 
     onMuteAlertActiveChanged: {
         if (muteAlertActive) {
-            alertTimer.restart()
+            alertTimer.restart();
         }
     }
 
@@ -98,10 +88,10 @@ Item {
         interval: JamiTheme.overlayFadeDelay
         onTriggered: {
             if (overlayMenu.hovered) {
-                fadeOutTimer.restart()
-                return
+                fadeOutTimer.restart();
+                return;
             }
-            participantRect.opacity = 0
+            participantRect.opacity = 0;
         }
     }
 
@@ -128,8 +118,8 @@ Item {
 
         underlayItems: Avatar {
             property real componentSize: Math.min(mediaDistRender.contentRect.width / 2, mediaDistRender.contentRect.height / 2)
-            height:  componentSize
-            width:  componentSize
+            height: componentSize
+            width: componentSize
             anchors.centerIn: parent
             // round the avatar source size up to some nearest multiple
             readonly property real step: 96
@@ -143,7 +133,7 @@ Item {
                 // Only request avatars when visibility changes (and once)
                 // This avoid to request images for non showed participants
                 if (visible && !imageId) {
-                    imageId = root.isMe ? LRCInstance.currentAccountId : root.uri
+                    imageId = root.isMe ? LRCInstance.currentAccountId : root.uri;
                 }
             }
         }
@@ -160,7 +150,7 @@ Item {
                 acceptedButtons: Qt.MiddleButton
                 acceptedModifiers: Qt.ControlModifier
                 onTapped: {
-                    takeScreenshot()
+                    takeScreenshot();
                 }
             }
 
@@ -168,17 +158,17 @@ Item {
                 id: hoverIndicator
 
                 onPointChanged: {
-                    participantRect.opacity = 1
-                    fadeOutTimer.restart()
+                    participantRect.opacity = 1;
+                    fadeOutTimer.restart();
                 }
 
                 onHoveredChanged: {
                     if (overlayMenu.hovered) {
-                        participantRect.opacity = 1
-                        fadeOutTimer.restart()
-                        return
+                        participantRect.opacity = 1;
+                        fadeOutTimer.restart();
+                        return;
                     }
-                    participantRect.opacity = hovered ? 1 : 0
+                    participantRect.opacity = hovered ? 1 : 0;
                 }
             }
 
@@ -196,10 +186,10 @@ Item {
 
                     onHoveredChanged: {
                         if (hovered) {
-                            participantRect.opacity = 1
-                            fadeOutTimer.restart()
+                            participantRect.opacity = 1;
+                            fadeOutTimer.restart();
                         } else {
-                            participantRect.opacity = 0
+                            participantRect.opacity = 0;
                         }
                     }
 
@@ -230,7 +220,9 @@ Item {
                             strokeColor: "transparent"
                             fillColor: JamiTheme.darkGreyColorOpacity
                             capStyle: ShapePath.RoundCap
-                            PathSvg { path: pathShape }
+                            PathSvg {
+                                path: pathShape
+                            }
                         }
                     }
 
@@ -243,8 +235,7 @@ Item {
                             id: bestNameLabel
 
                             Layout.leftMargin: 8
-                            Layout.preferredWidth: Math.min(nameTextMetrics.boundingRect.width + 8,
-                                                            participantIndicators.width - indicatorsRowLayout.width - 16)
+                            Layout.preferredWidth: Math.min(nameTextMetrics.boundingRect.width + 8, participantIndicators.width - indicatorsRowLayout.width - 16)
                             Layout.preferredHeight: shapeHeight
 
                             text: bestName
@@ -253,7 +244,9 @@ Item {
                             font.pointSize: JamiTheme.participantFontSize
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
-                            HoverHandler { id: hoverName }
+                            HoverHandler {
+                                id: hoverName
+                            }
                             MaterialToolTip {
                                 visible: hoverName.hovered && (text.length > 0)
                                 text: bestNameLabel.truncated ? bestName : ""
@@ -279,7 +272,9 @@ Item {
                                 source: JamiResources.star_outline_24dp_svg
                                 color: JamiTheme.whiteColor
 
-                                HoverHandler { id: hoverHost }
+                                HoverHandler {
+                                    id: hoverHost
+                                }
                                 MaterialToolTip {
                                     visible: hoverHost.hovered
                                     text: JamiStrings.host
@@ -300,7 +295,9 @@ Item {
                                 source: JamiResources.moderator_svg
                                 color: JamiTheme.whiteColor
 
-                                HoverHandler { id: hoverModerator }
+                                HoverHandler {
+                                    id: hoverModerator
+                                }
                                 MaterialToolTip {
                                     visible: hoverModerator.hovered
                                     text: JamiStrings.moderator
@@ -321,17 +318,19 @@ Item {
                                 source: JamiResources.micro_off_black_24dp_svg
                                 color: JamiTheme.redColor
 
-                                HoverHandler { id: hoverMicrophone }
+                                HoverHandler {
+                                    id: hoverMicrophone
+                                }
                                 MaterialToolTip {
                                     visible: hoverMicrophone.hovered
                                     text: {
                                         if (!root.isMe && !root.meModerator && root.participantIsModeratorMuted && root.isLocalMuted)
-                                            return JamiStrings.bothMuted
+                                            return JamiStrings.bothMuted;
                                         if (root.isLocalMuted)
-                                            return JamiStrings.localMuted
+                                            return JamiStrings.localMuted;
                                         if (!root.isMe && !root.meModerator && root.participantIsModeratorMuted)
-                                            return JamiStrings.moderatorMuted
-                                        return JamiStrings.notMuted
+                                            return JamiStrings.moderatorMuted;
+                                        return JamiStrings.notMuted;
                                     }
                                 }
                             }
@@ -339,7 +338,11 @@ Item {
                     }
                 }
 
-                Behavior on opacity { NumberAnimation { duration: JamiTheme.shortFadeDuration }}
+                Behavior on opacity  {
+                    NumberAnimation {
+                        duration: JamiTheme.shortFadeDuration
+                    }
+                }
             }
 
             PushButton {
@@ -381,7 +384,7 @@ Item {
                     radius: height / 2
                     color: JamiTheme.recordIconColor
 
-                    SequentialAnimation on color {
+                    SequentialAnimation on color  {
                         loops: Animation.Infinite
                         running: recordingIndicator.visible
                         ColorAnimation {
@@ -424,7 +427,7 @@ Item {
                     id: alertTimer
                     interval: JamiTheme.overlayFadeDelay
                     onTriggered: {
-                        root.muteAlertActive = false
+                        root.muteAlertActive = false;
                     }
                 }
             }

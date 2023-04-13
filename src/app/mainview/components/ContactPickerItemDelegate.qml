@@ -15,24 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ItemDelegate {
     id: root
 
     width: ListView.view.width
-    height: Math.max(
-                contactPickerContactName.height + textMetricsContactPickerContactId.height + 10,
-                avatar.height + 10
-            )
+    height: Math.max(contactPickerContactName.height + textMetricsContactPickerContactId.height + 10, avatar.height + 10)
 
     property var showPresenceIndicator: false
 
@@ -124,25 +118,24 @@ ItemDelegate {
         acceptedButtons: Qt.LeftButton
 
         onPressed: {
-            itemSmartListBackground.color = JamiTheme.pressColor
+            itemSmartListBackground.color = JamiTheme.pressColor;
         }
 
         onReleased: {
-            itemSmartListBackground.color = JamiTheme.normalButtonColor
-
-            ContactAdapter.contactSelected(index)
-            root.contactClicked()
+            itemSmartListBackground.color = JamiTheme.normalButtonColor;
+            ContactAdapter.contactSelected(index);
+            root.contactClicked();
             // TODO remove from there
             if (contactPickerPopup)
-                contactPickerPopup.close()
+                contactPickerPopup.close();
         }
 
         onEntered: {
-            itemSmartListBackground.color = JamiTheme.hoverColor
+            itemSmartListBackground.color = JamiTheme.hoverColor;
         }
 
         onExited: {
-            itemSmartListBackground.color = JamiTheme.backgroundColor
+            itemSmartListBackground.color = JamiTheme.backgroundColor;
         }
     }
 }

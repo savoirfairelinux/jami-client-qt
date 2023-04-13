@@ -17,12 +17,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
@@ -44,15 +42,19 @@ Loader {
 
     sourceComponent: {
         if (Status === Interaction.Status.TRANSFER_FINISHED) {
-            mediaInfo = MessagesAdapter.getMediaInfo(Body)
+            mediaInfo = MessagesAdapter.getMediaInfo(Body);
             if (Object.keys(mediaInfo).length !== 0 && WITH_WEBENGINE)
-                return localMediaMsgComp
+                return localMediaMsgComp;
         }
-        return dataTransferMsgComp
+        return dataTransferMsgComp;
     }
 
     opacity: 0
-    Behavior on opacity { NumberAnimation { duration: 100 } }
+    Behavior on opacity  {
+        NumberAnimation {
+            duration: 100
+        }
+    }
     onLoaded: opacity = 1
 
     Component {
@@ -63,9 +65,7 @@ Loader {
 
             property var transferStats: MessagesAdapter.getTransferStats(Id, Status)
             property bool canOpen: Status === Interaction.Status.TRANSFER_FINISHED || isOutgoing
-            property real maxMsgWidth: root.width - senderMargin -
-                                       2 * hPadding - avatarBlockWidth
-                                       - buttonsLoader.width - 24 - 6 - 24
+            property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth - buttonsLoader.width - 24 - 6 - 24
 
             isOutgoing: Author === CurrentAccount.uri
             showTime: root.showTime
@@ -88,12 +88,9 @@ Loader {
                         target: parent
                         enabled: canOpen
                         onHoveredChanged: {
-                            dataTransferItem.hoveredLink = enabled && hovered ?
-                                        ("file:///" + Body) : ""
+                            dataTransferItem.hoveredLink = enabled && hovered ? ("file:///" + Body) : "";
                         }
-                        cursorShape: enabled ?
-                                         Qt.PointingHandCursor :
-                                         Qt.ArrowCursor
+                        cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
                     }
                     Loader {
                         id: buttonsLoader
@@ -109,22 +106,22 @@ Loader {
                             case Interaction.Status.TRANSFER_ERROR:
                             case Interaction.Status.TRANSFER_UNJOINABLE_PEER:
                             case Interaction.Status.TRANSFER_TIMEOUT_EXPIRED:
-                                iconSourceA = JamiResources.error_outline_black_24dp_svg
-                                return terminatedComp
+                                iconSourceA = JamiResources.error_outline_black_24dp_svg;
+                                return terminatedComp;
                             case Interaction.Status.TRANSFER_CREATED:
                             case Interaction.Status.TRANSFER_FINISHED:
-                                iconSourceA = JamiResources.link_black_24dp_svg
-                                return terminatedComp
+                                iconSourceA = JamiResources.link_black_24dp_svg;
+                                return terminatedComp;
                             case Interaction.Status.TRANSFER_AWAITING_HOST:
-                                iconSourceA = JamiResources.download_black_24dp_svg
-                                iconSourceB = JamiResources.close_black_24dp_svg
-                                return optionsComp
+                                iconSourceA = JamiResources.download_black_24dp_svg;
+                                iconSourceB = JamiResources.close_black_24dp_svg;
+                                return optionsComp;
                             case Interaction.Status.TRANSFER_ONGOING:
-                                iconSourceA = JamiResources.close_black_24dp_svg
-                                return optionsComp
+                                iconSourceA = JamiResources.close_black_24dp_svg;
+                                return optionsComp;
                             default:
-                                iconSourceA = JamiResources.error_outline_black_24dp_svg
-                                return terminatedComp
+                                iconSourceA = JamiResources.error_outline_black_24dp_svg;
+                                return terminatedComp;
                             }
                         }
                         Component {
@@ -134,9 +131,7 @@ Loader {
                                 Layout.leftMargin: 12
                                 Layout.preferredWidth: 24
                                 Layout.preferredHeight: 24
-                                color: UtilsAdapter.luma(bubble.color)
-                                       ? JamiTheme.chatviewTextColorLight
-                                       : JamiTheme.chatviewTextColorDark
+                                color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                             }
                         }
                         Component {
@@ -150,10 +145,11 @@ Loader {
                                     onClicked: {
                                         switch (Status) {
                                         case Interaction.Status.TRANSFER_ONGOING:
-                                            return MessagesAdapter.cancelFile(Id)
+                                            return MessagesAdapter.cancelFile(Id);
                                         case Interaction.Status.TRANSFER_AWAITING_HOST:
-                                            return MessagesAdapter.acceptFile(Id)
-                                        default: break
+                                            return MessagesAdapter.acceptFile(Id);
+                                        default:
+                                            break;
                                         }
                                     }
                                 }
@@ -166,8 +162,9 @@ Loader {
                                     onClicked: {
                                         switch (Status) {
                                         case Interaction.Status.TRANSFER_AWAITING_HOST:
-                                            return MessagesAdapter.cancelFile(Id)
-                                        default: break
+                                            return MessagesAdapter.cancelFile(Id);
+                                        default:
+                                            break;
                                         }
                                     }
                                 }
@@ -182,27 +179,20 @@ Loader {
 
                             width: Math.min(implicitWidth, maxMsgWidth)
                             topPadding: 10
-                            text: CurrentConversation.isSwarm ?
-                                      TransferName :
-                                      Body
+                            text: CurrentConversation.isSwarm ? TransferName : Body
                             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                             font.weight: Font.DemiBold
                             font.pointSize: 11
                             renderType: Text.NativeRendering
                             readOnly: true
-                            color: UtilsAdapter.luma(bubble.color)
-                                   ? JamiTheme.chatviewTextColorLight
-                                   : JamiTheme.chatviewTextColorDark
+                            color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                             MouseArea {
                                 anchors.fill: parent
-                                cursorShape: canOpen ?
-                                                 Qt.PointingHandCursor :
-                                                 Qt.ArrowCursor
+                                cursorShape: canOpen ? Qt.PointingHandCursor : Qt.ArrowCursor
                                 onClicked: function (mouse) {
-                                    dataTransferItem.hoveredLink = canOpen ?
-                                                ("file:///" + Body) : ""
+                                    dataTransferItem.hoveredLink = canOpen ? ("file:///" + Body) : "";
                                     if (dataTransferItem.hoveredLink)
-                                        Qt.openUrlExternally(new Url(dataTransferItem.hoveredLink))
+                                        Qt.openUrlExternally(new Url(dataTransferItem.hoveredLink));
                                 }
                             }
                         }
@@ -212,27 +202,24 @@ Loader {
                             width: Math.min(implicitWidth, maxMsgWidth)
                             bottomPadding: 10
                             text: {
-                                var res = formattedTime + " - "
+                                var res = formattedTime + " - ";
                                 if (transferStats.totalSize !== undefined) {
-                                    if (transferStats.progress !== 0 &&
-                                            transferStats.progress !== transferStats.totalSize) {
-                                        res += UtilsAdapter.humanFileSize(transferStats.progress) + " / "
+                                    if (transferStats.progress !== 0 && transferStats.progress !== transferStats.totalSize) {
+                                        res += UtilsAdapter.humanFileSize(transferStats.progress) + " / ";
                                     }
-                                    var totalSize = transferStats.totalSize !== 0 ? transferStats.totalSize : TotalSize
-                                    res += UtilsAdapter.humanFileSize(totalSize)
+                                    var totalSize = transferStats.totalSize !== 0 ? transferStats.totalSize : TotalSize;
+                                    res += UtilsAdapter.humanFileSize(totalSize);
                                 }
-                                return res + " - " + MessagesAdapter.getStatusString(Status)
+                                return res + " - " + MessagesAdapter.getStatusString(Status);
                             }
                             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                             font.pointSize: 10
                             renderType: Text.NativeRendering
-                            color: UtilsAdapter.luma(bubble.color)
-                                   ? JamiTheme.chatviewTextColorLight
-                                   : JamiTheme.chatviewTextColorDark
+                            color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                         }
                     }
-                }
-                ,ProgressBar {
+                },
+                ProgressBar {
                     id: progressBar
 
                     visible: Status === Interaction.Status.TRANSFER_ONGOING
@@ -272,20 +259,21 @@ Loader {
                     height: sourceComponent.height
                     sourceComponent: {
                         if (mediaInfo.isImage)
-                            return imageComp
+                            return imageComp;
                         if (mediaInfo.isAnimatedImage)
-                            return animatedImageComp
-                        return avComp
+                            return animatedImageComp;
+                        return avComp;
                     }
                     Component {
                         id: avComp
 
                         Loader {
                             Component.onCompleted: {
-                                var qml = WITH_WEBENGINE ?
-                                            "qrc:/webengine/MediaPreviewBase.qml" :
-                                            "qrc:/nowebengine/MediaPreviewBase.qml"
-                                setSource( qml, { isVideo: mediaInfo.isVideo, html:mediaInfo.html } )
+                                var qml = WITH_WEBENGINE ? "qrc:/webengine/MediaPreviewBase.qml" : "qrc:/nowebengine/MediaPreviewBase.qml";
+                                setSource(qml, {
+                                        "isVideo": mediaInfo.isVideo,
+                                        "html": mediaInfo.html
+                                    });
                             }
                         }
                     }
@@ -305,9 +293,7 @@ Loader {
                             asynchronous: true
                             source: "file:///" + Body
                             property real aspectRatio: implicitWidth / implicitHeight
-                            property real adjustedWidth: Math.min(maxSize,
-                                                                  Math.max(minSize,
-                                                                           innerContent.width - senderMargin))
+                            property real adjustedWidth: Math.min(maxSize, Math.max(minSize, innerContent.width - senderMargin))
                             width: adjustedWidth
                             height: Math.ceil(adjustedWidth / aspectRatio)
                             Rectangle {
@@ -326,9 +312,9 @@ Loader {
                                 }
                             }
                             HoverHandler {
-                                target : parent
+                                target: parent
                                 onHoveredChanged: {
-                                    localMediaMsgItem.hoveredLink = hovered ? animatedImg.source : ""
+                                    localMediaMsgItem.hoveredLink = hovered ? animatedImg.source : "";
                                 }
                                 cursorShape: Qt.PointingHandCursor
                             }
@@ -362,8 +348,8 @@ Loader {
                             readonly property real idealWidth: innerContent.width - senderMargin
                             onStatusChanged: {
                                 if (status == Image.Ready && aspectRatio) {
-                                    height = Qt.binding(() => JamiQmlUtils.clamp(idealWidth / aspectRatio, 64, 256))
-                                    width = Qt.binding(() => height * aspectRatio)
+                                    height = Qt.binding(() => JamiQmlUtils.clamp(idealWidth / aspectRatio, 64, 256););
+                                    width = Qt.binding(() => height * aspectRatio;);
                                 }
                             }
 
@@ -383,9 +369,9 @@ Loader {
                                 }
                             }
                             HoverHandler {
-                                target : parent
+                                target: parent
                                 onHoveredChanged: {
-                                    localMediaMsgItem.hoveredLink = hovered ? img.source : ""
+                                    localMediaMsgItem.hoveredLink = hovered ? img.source : "";
                                 }
                                 cursorShape: Qt.PointingHandCursor
                             }

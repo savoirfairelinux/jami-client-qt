@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtMultimedia
 import Qt5Compat.GraphicalEffects
@@ -27,9 +26,7 @@ Item {
     property alias videoSink: videoOutput.videoSink
     property alias underlayItems: rootUnderlayItem.children
     property alias overlayItems: rootOverlayItem.children
-    property real invAspectRatio: (videoOutput.sourceRect.height
-                                   / videoOutput.sourceRect.width) ||
-                                  0.5625 // 16:9 default
+    property real invAspectRatio: (videoOutput.sourceRect.height / videoOutput.sourceRect.width) || 0.5625 // 16:9 default
     property bool crop: false
     property bool flip: false
 
@@ -61,11 +58,13 @@ Item {
         opacity: videoProvider.activeRenderers[rendererId] !== undefined
         visible: opacity
 
-        fillMode: crop ?
-                      VideoOutput.PreserveAspectCrop :
-                      VideoOutput.PreserveAspectFit
+        fillMode: crop ? VideoOutput.PreserveAspectCrop : VideoOutput.PreserveAspectFit
 
-        Behavior on opacity { NumberAnimation { duration: 150 } }
+        Behavior on opacity  {
+            NumberAnimation {
+                duration: 150
+            }
+        }
 
         layer.enabled: opacity
         layer.effect: FastBlur {
@@ -74,7 +73,7 @@ Item {
             radius: (1. - opacity) * 100
         }
 
-        transform:  Scale {
+        transform: Scale {
             origin.x: videoOutput.width / 2
             xScale: root.flip ? -1 : 1
         }

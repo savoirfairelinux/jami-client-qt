@@ -15,12 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -49,49 +47,51 @@ Popup {
 
     function xPositionProvider(width) {
         // Use the width at function scope to retrigger property evaluation.
-        const listViewWidth = listView.width
+        const listViewWidth = listView.width;
         if (isOutgoing) {
-            const leftMargin = msgBubble.mapToItem(listView, 0, 0).x
-            return width > leftMargin ? -leftMargin : -width
+            const leftMargin = msgBubble.mapToItem(listView, 0, 0).x;
+            return width > leftMargin ? -leftMargin : -width;
         } else {
-            const rightMargin = listViewWidth - (msgBubble.x + msgBubble.width)
-            return width > rightMargin ? msgBubble.width - width : msgBubble.width
+            const rightMargin = listViewWidth - (msgBubble.x + msgBubble.width);
+            return width > rightMargin ? msgBubble.width - width : msgBubble.width;
         }
     }
     function yPositionProvider(height) {
-        const topOffset = msgBubble.mapToItem(listView, 0, 0).y
-        if (topOffset < 0) return -topOffset
-        const bottomOffset = topOffset + height - listView.height
-        if (bottomOffset > 0) return -bottomOffset
-        return 0
+        const topOffset = msgBubble.mapToItem(listView, 0, 0).y;
+        if (topOffset < 0)
+            return -topOffset;
+        const bottomOffset = topOffset + height - listView.height;
+        if (bottomOffset > 0)
+            return -bottomOffset;
+        return 0;
     }
     x: xPositionProvider(width)
     y: yPositionProvider(height)
 
     signal addMoreEmoji
     onAddMoreEmoji: {
-        JamiQmlUtils.updateMessageBarButtonsPoints()
-        openEmojiPicker()
+        JamiQmlUtils.updateMessageBarButtonsPoints();
+        openEmojiPicker();
     }
 
     function openEmojiPicker() {
-        var component =  WITH_WEBENGINE ?
-                    Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") :
-                    Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml")
-        emojiPicker = component.createObject(root.parent, { listView: listView })
-        emojiPicker.emojiIsPicked.connect(function(content) {
-            if (emojiReplied.includes(content)) {
-                MessagesAdapter.removeEmojiReaction(CurrentConversation.id, content, msgId)
-            } else {
-                MessagesAdapter.addEmojiReaction(CurrentConversation.id, content, msgId)
-            }
-        })
+        var component = WITH_WEBENGINE ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml");
+        emojiPicker = component.createObject(root.parent, {
+                "listView": listView
+            });
+        emojiPicker.emojiIsPicked.connect(function (content) {
+                if (emojiReplied.includes(content)) {
+                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id, content, msgId);
+                } else {
+                    MessagesAdapter.addEmojiReaction(CurrentConversation.id, content, msgId);
+                }
+            });
         if (emojiPicker !== null) {
-            root.opacity = 0
-            emojiPicker.closed.connect(() => close())
-            emojiPicker.x = xPositionProvider(JamiTheme.emojiPickerWidth)
-            emojiPicker.y = yPositionProvider(JamiTheme.emojiPickerHeight)
-            emojiPicker.open()
+            root.opacity = 0;
+            emojiPicker.closed.connect(() => close(););
+            emojiPicker.x = xPositionProvider(JamiTheme.emojiPickerWidth);
+            emojiPicker.y = yPositionProvider(JamiTheme.emojiPickerHeight);
+            emojiPicker.open();
         } else {
             console.log("Error creating emojiPicker from message options popup");
         }
@@ -104,30 +104,31 @@ Popup {
     onIsScrollingChanged: close()
 
     onOpened: root.closeWithoutAnimation = false
-    onClosed: if (emojiPicker) emojiPicker.closeEmojiPicker()
+    onClosed: if (emojiPicker)
+        emojiPicker.closeEmojiPicker()
 
     function getModel() {
-        var model = ["👍", "👎", "😂"]
-        var cur = []
+        var model = ["👍", "👎", "😂"];
+        var cur = [];
         //Add emoji reacted
-        var index = 0
+        var index = 0;
         for (let emoji of emojiReplied) {
             if (index < model.length) {
-                cur[index] = emoji
-                index ++
+                cur[index] = emoji;
+                index++;
             }
         }
         //complete with default model
-        var modelIndex = cur.length
-        for (let j = 0; j < model.length; j++) {
+        var modelIndex = cur.length;
+        for (var j = 0; j < model.length; j++) {
             if (cur.length < model.length) {
-                if (!cur.includes(model[j]) ) {
-                    cur[modelIndex] = model[j]
-                    modelIndex ++
+                if (!cur.includes(model[j])) {
+                    cur[modelIndex] = model[j];
+                    modelIndex++;
                 }
             }
         }
-        return cur
+        return cur;
     }
 
     Rectangle {
@@ -174,10 +175,10 @@ Popup {
 
                         onClicked: {
                             if (emojiReplied.includes(modelData))
-                                MessagesAdapter.removeEmojiReaction(CurrentConversation.id,text,msgId)
+                                MessagesAdapter.removeEmojiReaction(CurrentConversation.id, text, msgId);
                             else
-                                MessagesAdapter.addEmojiReaction(CurrentConversation.id,text,msgId)
-                            close()
+                                MessagesAdapter.addEmojiReaction(CurrentConversation.id, text, msgId);
+                            close();
                         }
                     }
                 }
@@ -188,8 +189,8 @@ Popup {
                     imageColor: JamiTheme.emojiReactPushButtonColor
                     visible: WITH_WEBENGINE
                     onClicked: {
-                        root.closeWithoutAnimation = true
-                        root.addMoreEmoji()
+                        root.closeWithoutAnimation = true;
+                        root.addMoreEmoji();
                         //close()
                     }
                 }
@@ -210,8 +211,8 @@ Popup {
                 Layout.fillWidth: true
                 Layout.margins: 5
                 onClicked: {
-                    UtilsAdapter.setClipboardText(msgBody)
-                    close()
+                    UtilsAdapter.setClipboardText(msgBody);
+                    close();
                 }
             }
 
@@ -222,8 +223,8 @@ Popup {
                 Layout.fillWidth: true
                 Layout.margins: 5
                 onClicked: {
-                    MessagesAdapter.copyToDownloads(root.transferId, root.transferName)
-                    close()
+                    MessagesAdapter.copyToDownloads(root.transferId, root.transferName);
+                    close();
                 }
             }
 
@@ -234,8 +235,8 @@ Popup {
                 Layout.fillWidth: true
                 Layout.margins: 5
                 onClicked: {
-                    MessagesAdapter.openDirectory(root.location)
-                    close()
+                    MessagesAdapter.openDirectory(root.location);
+                    close();
                 }
             }
 
@@ -249,9 +250,9 @@ Popup {
                 Layout.margins: 5
 
                 onClicked: {
-                    MessagesAdapter.replyToId = ""
-                    MessagesAdapter.editId = root.msgId
-                    close()
+                    MessagesAdapter.replyToId = "";
+                    MessagesAdapter.editId = root.msgId;
+                    close();
                 }
             }
 
@@ -262,8 +263,8 @@ Popup {
                 Layout.fillWidth: true
                 Layout.margins: 5
                 onClicked: {
-                    MessagesAdapter.editMessage(CurrentConversation.id, "", root.msgId)
-                    close()
+                    MessagesAdapter.editMessage(CurrentConversation.id, "", root.msgId);
+                    close();
                 }
             }
         }
@@ -272,7 +273,7 @@ Popup {
     Overlay.modal: Rectangle {
         color: JamiTheme.transparentColor
         // Color animation for overlay when pop up is shown.
-        ColorAnimation on color {
+        ColorAnimation on color  {
             to: JamiTheme.popupOverlayColor
             duration: 500
         }
@@ -293,14 +294,18 @@ Popup {
 
     enter: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 0.0; to: 1.0
+            properties: "opacity"
+            from: 0.0
+            to: 1.0
             duration: JamiTheme.shortFadeDuration
         }
     }
 
     exit: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 1.0; to: 0.0
+            properties: "opacity"
+            from: 1.0
+            to: 0.0
             duration: root.closeWithoutAnimation ? 0 : JamiTheme.shortFadeDuration
         }
     }

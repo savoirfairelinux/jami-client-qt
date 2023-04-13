@@ -14,15 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 
 Item {
     id: root
@@ -34,14 +31,13 @@ Item {
     property int requestId: -1
     property var replyTransferName: MessagesAdapter.dataForInteraction(ReplyTo, MessageList.TransferName)
 
-
     Component.onCompleted: {
         // Make sure we show the original post
         // In the future, we may just want to load the previous interaction of the thread
         // and not show it, but for now we can simplify.
         if (ReplyTo !== "") {
             // Store the request Id for later filtering.
-            requestId = MessagesAdapter.loadConversationUntil(ReplyTo)
+            requestId = MessagesAdapter.loadConversationUntil(ReplyTo);
         }
     }
 
@@ -51,8 +47,8 @@ Item {
         function onMoreMessagesLoaded(loadingRequestId) {
             // Filter for the request Id we're waiting for (now the message is loaded).
             if (requestId === loadingRequestId) {
-                requestId = -1
-                replyTransferName = MessagesAdapter.dataForInteraction(ReplyTo, MessageList.TransferName)
+                requestId = -1;
+                replyTransferName = MessagesAdapter.dataForInteraction(ReplyTo, MessageList.TransferName);
             }
         }
     }
@@ -60,11 +56,7 @@ Item {
     TextEdit {
         id: body
 
-        text: replyTransferName ?
-                  replyTransferName :
-                  (ReplyToBody === "" && ReplyToAuthor !== "") ?
-                      JamiStrings.deleteReplyMessage :
-                      (ReplyToBody ? ReplyToBody : "")
+        text: replyTransferName ? replyTransferName : (ReplyToBody === "" && ReplyToAuthor !== "") ? JamiStrings.deleteReplyMessage : (ReplyToBody ? ReplyToBody : "")
 
         width: Math.min(JamiTheme.sbsMessageBaseMaximumReplyWidth, implicitWidth)
 
@@ -72,7 +64,7 @@ Item {
 
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         selectByMouse: true
-        font.pixelSize: IsEmojiOnly? JamiTheme.chatviewEmojiSize : JamiTheme.emojiBubbleSize
+        font.pixelSize: IsEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.emojiBubbleSize
         font.hintingPreference: Font.PreferNoHinting
         renderType: Text.NativeRendering
         textFormat: Text.MarkdownText
@@ -80,19 +72,19 @@ Item {
         color: getBaseColor()
 
         function getBaseColor() {
-            var baseColor
+            var baseColor;
             if (IsEmojiOnly) {
                 if (JamiTheme.darkTheme)
-                    baseColor = JamiTheme.chatviewTextColorLight
+                    baseColor = JamiTheme.chatviewTextColorLight;
                 else
-                    baseColor = JamiTheme.chatviewTextColorDark
+                    baseColor = JamiTheme.chatviewTextColorDark;
             } else {
                 if (UtilsAdapter.luma(replyBubble.color))
-                    baseColor = JamiTheme.chatviewTextColorLight
+                    baseColor = JamiTheme.chatviewTextColorLight;
                 else
-                    baseColor = JamiTheme.chatviewTextColorDark
+                    baseColor = JamiTheme.chatviewTextColorDark;
             }
-            return baseColor
+            return baseColor;
         }
     }
 
@@ -100,8 +92,14 @@ Item {
         anchors.fill: parent
         visible: body.height > JamiTheme.sbsMessageBaseMaximumReplyHeight
         gradient: Gradient {
-            GradientStop {position: 0.66 ; color: "transparent"}
-            GradientStop {position: 1 ; color: replyBubble.color}
+            GradientStop {
+                position: 0.66
+                color: "transparent"
+            }
+            GradientStop {
+                position: 1
+                color: replyBubble.color
+            }
         }
     }
 }

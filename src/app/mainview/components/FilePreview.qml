@@ -19,11 +19,9 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../settingsview/components"
 
@@ -34,11 +32,11 @@ Component {
         id: dataTransferRect
 
         clip: true
-        width: (contentWidth - spacingLength ) / numberElementsPerRow
+        width: (contentWidth - spacingLength) / numberElementsPerRow
         height: width
         color: "transparent"
 
-        ColumnLayout{
+        ColumnLayout {
             anchors.fill: parent
             anchors.margins: JamiTheme.swarmDetailsPageDocumentsMargins
 
@@ -83,16 +81,16 @@ Component {
                             hoverEnabled: true
                             acceptedButtons: Qt.LeftButton | Qt.RightButton
                             onEntered: {
-                                cursorShape = Qt.PointingHandCursor
+                                cursorShape = Qt.PointingHandCursor;
                             }
 
                             onClicked: function (mouse) {
                                 if (mouse.button === Qt.RightButton) {
-                                    ctxMenu.x = mouse.x
-                                    ctxMenu.y = mouse.y
-                                    ctxMenu.openMenu()
+                                    ctxMenu.x = mouse.x;
+                                    ctxMenu.y = mouse.y;
+                                    ctxMenu.openMenu();
                                 } else {
-                                    Qt.openUrlExternally(new Url("file://" + Body))
+                                    Qt.openUrlExternally(new Url("file://" + Body));
                                 }
                             }
                         }

@@ -15,26 +15,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../mainview/components"
-
 
 BaseModalDialog {
     id: root
 
     height: 157
-    x: - width / 2
-    y: - height / 5
+    x: -width / 2
+    y: -height / 5
 
     property string imageId
     property bool newItem
@@ -45,19 +41,19 @@ BaseModalDialog {
     signal focusOnNextItem
 
     function startBooth() {
-        recordBox.openRecorder(true)
+        recordBox.openRecorder(true);
     }
 
-    function stopBooth(){
-        recordBox.closeRecorder()
+    function stopBooth() {
+        recordBox.closeRecorder();
     }
 
-    function focusOnNextPhotoBoothItem () {
-        takePhotoButton.forceActiveFocus()
+    function focusOnNextPhotoBoothItem() {
+        takePhotoButton.forceActiveFocus();
     }
 
-    function focusOnPreviousPhotoBoothItem () {
-        importButton.forceActiveFocus()
+    function focusOnPreviousPhotoBoothItem() {
+        importButton.forceActiveFocus();
     }
 
     RecordBox {
@@ -66,21 +62,19 @@ BaseModalDialog {
         isPhoto: true
         visible: false
 
-        onValidatePhoto: function(photo) {
+        onValidatePhoto: function (photo) {
             if (!root.newItem)
-                AccountAdapter.setCurrentAccountAvatarBase64(photo)
+                AccountAdapter.setCurrentAccountAvatarBase64(photo);
             else
-                UtilsAdapter.setTempCreationImageFromString(photo, imageId)
-
-            root.close()
-
+                UtilsAdapter.setTempCreationImageFromString(photo, imageId);
+            root.close();
         }
     }
 
     popupContent: Item {
 
         Component.onCompleted: {
-            root.width = Qt.binding(() => clearButton.visible ? 283 : 210)
+            root.width = Qt.binding(() => clearButton.visible ? 283 : 210;);
         }
 
         Rectangle {
@@ -99,12 +93,13 @@ BaseModalDialog {
                 anchors.topMargin: 10
                 anchors.rightMargin: 10
                 source: JamiResources.round_close_24dp_svg
-                onClicked: { close();}
+                onClicked: {
+                    close();
+                }
             }
 
-
             ColumnLayout {
-                id:  mainLayout
+                id: mainLayout
                 anchors.fill: parent
                 anchors.margins: JamiTheme.preferredMarginSize
 
@@ -148,34 +143,32 @@ BaseModalDialog {
                         hoveredColor: JamiTheme.smartListHoveredColor
 
                         Keys.onPressed: function (keyEvent) {
-                            if (keyEvent.key === Qt.Key_Enter ||
-                                    keyEvent.key === Qt.Key_Return) {
-                                clicked()
-                                keyEvent.accepted = true
+                            if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+                                clicked();
+                                keyEvent.accepted = true;
                             } else if (keyEvent.key === Qt.Key_Up) {
-                                root.focusOnPreviousItem()
-                                keyEvent.accepted = true
+                                root.focusOnPreviousItem();
+                                keyEvent.accepted = true;
                             }
                         }
 
                         KeyNavigation.tab: {
                             if (clearButton.visible)
-                                return clearButton
-                            return importButton
+                                return clearButton;
+                            return importButton;
                         }
                         KeyNavigation.down: KeyNavigation.tab
 
                         onClicked: {
-                            recordBox.parent = buttonsRowLayout
-
-                            recordBox.x = Qt.binding(function() {
-                                var buttonCenterX = buttonsRowLayout.width / 2
-                                return buttonCenterX - recordBox.width / 2
-                            })
-                            recordBox.y = Qt.binding(function() {
-                                return - recordBox.height / 2
-                            })
-                            startBooth()
+                            recordBox.parent = buttonsRowLayout;
+                            recordBox.x = Qt.binding(function () {
+                                    var buttonCenterX = buttonsRowLayout.width / 2;
+                                    return buttonCenterX - recordBox.width / 2;
+                                });
+                            recordBox.y = Qt.binding(function () {
+                                    return -recordBox.height / 2;
+                                });
+                            startBooth();
                         }
                     }
 
@@ -199,43 +192,35 @@ BaseModalDialog {
                         imageColor: JamiTheme.buttonTintedBlue
                         hoveredColor: JamiTheme.smartListHoveredColor
 
-
                         Keys.onPressed: function (keyEvent) {
-                            if (keyEvent.key === Qt.Key_Enter ||
-                                    keyEvent.key === Qt.Key_Return) {
-                                clicked()
-                                keyEvent.accepted = true
-                            } else if (keyEvent.key === Qt.Key_Down ||
-                                       keyEvent.key === Qt.Key_Tab) {
-                                clearButton.forceActiveFocus()
-                                keyEvent.accepted = true
+                            if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+                                clicked();
+                                keyEvent.accepted = true;
+                            } else if (keyEvent.key === Qt.Key_Down || keyEvent.key === Qt.Key_Tab) {
+                                clearButton.forceActiveFocus();
+                                keyEvent.accepted = true;
                             }
                         }
 
                         KeyNavigation.up: takePhotoButton
 
                         onClicked: {
-                            stopBooth()
-                            var dlg = viewCoordinator.presentDialog(
-                                        appWindow,
-                                        "commoncomponents/JamiFileDialog.qml",
-                                        {
-                                            title: JamiStrings.chooseAvatarImage,
-                                            fileMode: JamiFileDialog.OpenFile,
-                                            folder: StandardPaths.writableLocation(
-                                                        StandardPaths.PicturesLocation),
-                                            nameFilters: [JamiStrings.imageFiles,
-                                                JamiStrings.allFiles]
-                                        })
-                            dlg.fileAccepted.connect(function(file) {
-                                var filePath = UtilsAdapter.getAbsPath(file)
-                                if (!root.newItem) {
-                                    AccountAdapter.setCurrentAccountAvatarFile(filePath)
-                                } else {
-                                    UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId)
-                                }
-                                root.close()
-                            })
+                            stopBooth();
+                            var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                                    "title": JamiStrings.chooseAvatarImage,
+                                    "fileMode": JamiFileDialog.OpenFile,
+                                    "folder": StandardPaths.writableLocation(StandardPaths.PicturesLocation),
+                                    "nameFilters": [JamiStrings.imageFiles, JamiStrings.allFiles]
+                                });
+                            dlg.fileAccepted.connect(function (file) {
+                                    var filePath = UtilsAdapter.getAbsPath(file);
+                                    if (!root.newItem) {
+                                        AccountAdapter.setCurrentAccountAvatarFile(filePath);
+                                    } else {
+                                        UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId);
+                                    }
+                                    root.close();
+                                });
                         }
                     }
 
@@ -258,38 +243,35 @@ BaseModalDialog {
                         imageColor: JamiTheme.buttonTintedBlue
                         hoveredColor: JamiTheme.smartListHoveredColor
 
-
                         visible: {
                             if (!newItem && LRCInstance.currentAccountAvatarSet)
-                                return true
+                                return true;
                             if (newItem && UtilsAdapter.tempCreationImage(imageId).length !== 0)
-                                return true
-                            return false
+                                return true;
+                            return false;
                         }
 
                         KeyNavigation.up: importButton
 
                         Keys.onPressed: function (keyEvent) {
-                            if (keyEvent.key === Qt.Key_Enter ||
-                                    keyEvent.key === Qt.Key_Return) {
-                                clicked()
-                                importButton.forceActiveFocus()
-                                keyEvent.accepted = true
-                            } else if (keyEvent.key === Qt.Key_Down ||
-                                       keyEvent.key === Qt.Key_Tab) {
-                                btnCancel.forceActiveFocus()
-                                keyEvent.accepted = true
+                            if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+                                clicked();
+                                importButton.forceActiveFocus();
+                                keyEvent.accepted = true;
+                            } else if (keyEvent.key === Qt.Key_Down || keyEvent.key === Qt.Key_Tab) {
+                                btnCancel.forceActiveFocus();
+                                keyEvent.accepted = true;
                             }
                         }
 
                         onClicked: {
                             if (!root.newItem)
-                                AccountAdapter.setCurrentAccountAvatarBase64()
+                                AccountAdapter.setCurrentAccountAvatarBase64();
                             else
-                                UtilsAdapter.setTempCreationImageFromString("", imageId)
-                            visible = false
-                            stopBooth()
-                            root.close()
+                                UtilsAdapter.setTempCreationImageFromString("", imageId);
+                            visible = false;
+                            stopBooth();
+                            root.close();
                         }
                     }
                 }

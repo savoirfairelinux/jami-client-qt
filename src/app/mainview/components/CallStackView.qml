@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Item {
@@ -32,12 +29,7 @@ Item {
     property alias chatViewContainer: ongoingCallPage.chatViewContainer
     property alias contentView: callStackMainView
 
-    property var sipKeys: [
-        "1", "2", "3", "A",
-        "4", "5", "6", "B",
-        "7", "8", "9", "C",
-        "*", "0", "#", "D"
-    ]
+    property var sipKeys: ["1", "2", "3", "A", "4", "5", "6", "B", "7", "8", "9", "C", "*", "0", "#", "D"]
 
     Shortcut {
         sequence: "Ctrl+D"
@@ -48,32 +40,27 @@ Item {
 
     Keys.onPressed: {
         if (LRCInstance.currentAccountType !== Profile.Type.SIP)
-            return
-        var key = event.text.toUpperCase()
-        if(sipKeys.find(function (item) {
-            return item === key
-        })) {
-            CallAdapter.sipInputPanelPlayDTMF(key)
+            return;
+        var key = event.text.toUpperCase();
+        if (sipKeys.find(function (item) {
+                return item === key;
+            })) {
+            CallAdapter.sipInputPanelPlayDTMF(key);
         }
     }
 
     // TODO: this should all be done by listening to
     // parent visibility change or parent `Component.onDestruction`
     function needToCloseInCallConversationAndPotentialWindow() {
-        ongoingCallPage.closeInCallConversation()
-        ongoingCallPage.closeContextMenuAndRelatedWindows()
+        ongoingCallPage.closeInCallConversation();
+        ongoingCallPage.closeContextMenuAndRelatedWindows();
     }
 
     function toggleFullScreen() {
         if (!layoutManager.isCallFullscreen) {
-            layoutManager.pushFullScreenItem(
-                        callStackMainView.currentItem,
-                        callStackMainView,
-                        null,
-                        null)
+            layoutManager.pushFullScreenItem(callStackMainView.currentItem, callStackMainView, null, null);
         } else {
-            layoutManager.removeFullScreenItem(
-                        callStackMainView.currentItem)
+            layoutManager.removeFullScreenItem(callStackMainView.currentItem);
         }
     }
 
@@ -89,17 +76,20 @@ Item {
             case Call.Status.IN_PROGRESS:
             case Call.Status.CONNECTED:
             case Call.Status.PAUSED:
-                return 1
+                return 1;
             case Call.Status.SEARCHING:
             case Call.Status.CONNECTING:
             case Call.Status.INCOMING_RINGING:
             case Call.Status.OUTGOING_RINGING:
             default:
-                return 0
+                return 0;
             }
         }
 
-        InitialCallPage {}
-        OngoingCallPage { id: ongoingCallPage }
+        InitialCallPage {
+        }
+        OngoingCallPage {
+            id: ongoingCallPage
+        }
     }
 }

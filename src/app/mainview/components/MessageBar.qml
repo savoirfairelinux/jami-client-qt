@@ -15,14 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
@@ -161,7 +158,7 @@ ColumnLayout {
             // forward activeFocus to the actual text area object
             onActiveFocusChanged: {
                 if (activeFocus)
-                    textAreaObj.forceActiveFocus()
+                    textAreaObj.forceActiveFocus();
             }
 
             placeholderText: JamiStrings.writeTo.arg(CurrentConversation.title)
@@ -170,11 +167,9 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.margins: marginSize / 2
             Layout.preferredHeight: {
-                return JamiTheme.chatViewFooterPreferredHeight
-                        > contentHeight ? JamiTheme.chatViewFooterPreferredHeight : contentHeight
+                return JamiTheme.chatViewFooterPreferredHeight > contentHeight ? JamiTheme.chatViewFooterPreferredHeight : contentHeight;
             }
-            Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight
-                                  - marginSize / 2
+            Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight - marginSize / 2
 
             onSendMessagesRequired: root.sendMessageButtonClicked()
             onTextChanged: MessagesAdapter.userIsComposing(text ? true : false)
@@ -228,7 +223,7 @@ ColumnLayout {
             visible: opacity
             scale: opacity
 
-            Behavior on opacity {
+            Behavior on opacity  {
                 enabled: animate
                 NumberAnimation {
                     duration: JamiTheme.shortFadeDuration

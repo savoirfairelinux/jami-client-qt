@@ -16,14 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -35,24 +32,22 @@ Rectangle {
     signal showThisPage
 
     function clearAllTextFields() {
-        connectBtn.spinnerTriggered = false
-        errorText = ""
+        connectBtn.spinnerTriggered = false;
+        errorText = "";
     }
 
     function errorOccured(errorMessage) {
-        connectBtn.spinnerTriggered = false
-        errorText = errorMessage
+        connectBtn.spinnerTriggered = false;
+        errorText = errorMessage;
     }
 
     Connections {
         target: WizardViewStepModel
 
         function onMainStepChanged() {
-            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
-                    WizardViewStepModel.accountCreationOption ===
-                    WizardViewStepModel.AccountCreationOption.ConnectToAccountManager) {
-                clearAllTextFields()
-                root.showThisPage()
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation && WizardViewStepModel.accountCreationOption === WizardViewStepModel.AccountCreationOption.ConnectToAccountManager) {
+                clearAllTextFields();
+                root.showThisPage();
             }
         }
     }
@@ -78,8 +73,7 @@ Rectangle {
             color: JamiTheme.textColor
 
             font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
-            wrapMode : Text.WordWrap
-
+            wrapMode: Text.WordWrap
         }
 
         Text {
@@ -95,7 +89,7 @@ Rectangle {
             color: JamiTheme.textColor
 
             font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-            wrapMode : Text.WordWrap
+            wrapMode: Text.WordWrap
         }
 
         ModalTextEdit {
@@ -133,11 +127,9 @@ Rectangle {
 
             color: JamiTheme.textColor
             wrapMode: Text.Wrap
-
         }
 
         ModalTextEdit {
-
             id: usernameManagerEdit
 
             objectName: "usernameManagerEdit"
@@ -156,7 +148,6 @@ Rectangle {
         }
 
         PasswordTextEdit {
-
             id: passwordManagerEdit
 
             objectName: "passwordManagerEdit"
@@ -172,13 +163,12 @@ Rectangle {
             KeyNavigation.tab: KeyNavigation.down
 
             onAccepted: connectBtn.forceActiveFocus()
-
         }
 
         SpinnerButton {
             id: connectBtn
 
-            TextMetrics{
+            TextMetrics {
                 id: textSize
                 font.weight: Font.Bold
                 font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
@@ -191,15 +181,12 @@ Rectangle {
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
+            preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             spinnerTriggeredtext: JamiStrings.creatingAccount
             normalText: JamiStrings.connect
 
-            enabled: accountManagerEdit.dynamicText.length !== 0
-                     && usernameManagerEdit.dynamicText.length !== 0
-                     && passwordManagerEdit.dynamicText.length !== 0
-                     && !spinnerTriggered
+            enabled: accountManagerEdit.dynamicText.length !== 0 && usernameManagerEdit.dynamicText.length !== 0 && passwordManagerEdit.dynamicText.length !== 0 && !spinnerTriggered
 
             primary: true
 
@@ -207,18 +194,16 @@ Rectangle {
             KeyNavigation.down: backButton
             KeyNavigation.tab: KeyNavigation.down
 
-
             onClicked: {
                 if (connectBtn.focus)
-                    accountManagerEdit.forceActiveFocus()
-                spinnerTriggered = true
-
-                WizardViewStepModel.accountCreationInfo =
-                        JamiQmlUtils.setUpAccountCreationInputPara(
-                            {username : usernameManagerEdit.dynamicText,
-                                password : passwordManagerEdit.dynamicText,
-                                manager : accountManagerEdit.dynamicText})
-                WizardViewStepModel.nextStep()
+                    accountManagerEdit.forceActiveFocus();
+                spinnerTriggered = true;
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
+                        "username": usernameManagerEdit.dynamicText,
+                        "password": passwordManagerEdit.dynamicText,
+                        "manager": accountManagerEdit.dynamicText
+                    });
+                WizardViewStepModel.nextStep();
             }
         }
 
@@ -249,11 +234,10 @@ Rectangle {
 
         preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
-
         KeyNavigation.up: {
             if (connectBtn.enabled)
-                return connectBtn
-            return passwordManagerEdit
+                return connectBtn;
+            return passwordManagerEdit;
         }
         KeyNavigation.down: accountManagerEdit
         KeyNavigation.tab: KeyNavigation.down

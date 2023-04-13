@@ -15,20 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ItemDelegate {
     id: root
 
-    property string handlerName : ""
+    property string handlerName: ""
     property string handlerId: ""
     property string handlerIcon: ""
     property bool isLoaded: false
@@ -37,7 +34,7 @@ ItemDelegate {
     signal btnLoadHandlerToggled
     signal openPreferences
 
-    RowLayout{
+    RowLayout {
         anchors.fill: parent
 
         Label {
@@ -46,7 +43,7 @@ ItemDelegate {
 
             width: 30
 
-            background: Rectangle{
+            background: Rectangle {
                 color: "transparent"
                 Image {
                     anchors.centerIn: parent
@@ -81,12 +78,12 @@ ItemDelegate {
 
             ToolTip.visible: hovered
             ToolTip.text: {
-                return JamiStrings.onOff
+                return JamiStrings.onOff;
             }
 
             checked: isLoaded
             onClicked: {
-                btnLoadHandlerToggled()
+                btnLoadHandlerToggled();
             }
 
             background: Rectangle {
@@ -100,13 +97,13 @@ ItemDelegate {
                     onPressed: {
                     }
                     onReleased: {
-                        loadSwitch.clicked()
+                        loadSwitch.clicked();
                     }
                     onEntered: {
-                        loadSwitch.isHovering = true
+                        loadSwitch.isHovering = true;
                     }
                     onExited: {
-                        loadSwitch.isHovering = false
+                        loadSwitch.isHovering = false;
                     }
                 }
             }

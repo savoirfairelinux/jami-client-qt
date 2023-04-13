@@ -15,10 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 // Assumed to be attached to Flickable
@@ -30,9 +28,9 @@ ScrollBar {
 
     active: {
         if (root.orientation === Qt.Horizontal)
-            return visible
+            return visible;
         else
-            return hovered || pressed || attachedFlickableMoving
+            return hovered || pressed || attachedFlickableMoving;
     }
     hoverEnabled: true
     orientation: Qt.Vertical
@@ -48,14 +46,12 @@ ScrollBar {
         implicitHeight: JamiTheme.scrollBarHandleSize
         implicitWidth: JamiTheme.scrollBarHandleSize
         radius: width / 2
-        color: pressed ? Qt.darker(JamiTheme.scrollBarHandleColor, 2.0) :
-                         JamiTheme.scrollBarHandleColor
+        color: pressed ? Qt.darker(JamiTheme.scrollBarHandleColor, 2.0) : JamiTheme.scrollBarHandleColor
         opacity: 0
 
         states: State {
             name: "active"
-            when: root.policy === ScrollBar.AlwaysOn ||
-                  (root.active && root.size < 1.0)
+            when: root.policy === ScrollBar.AlwaysOn || (root.active && root.size < 1.0)
             PropertyChanges {
                 target: root.contentItem
                 opacity: 1
@@ -65,8 +61,11 @@ ScrollBar {
         transitions: Transition {
             from: "active"
             SequentialAnimation {
-                PauseAnimation { duration: JamiTheme.longFadeDuration }
-                NumberAnimation { target: root.contentItem
+                PauseAnimation {
+                    duration: JamiTheme.longFadeDuration
+                }
+                NumberAnimation {
+                    target: root.contentItem
                     duration: JamiTheme.shortFadeDuration
                     property: "opacity"
                     to: 0.0

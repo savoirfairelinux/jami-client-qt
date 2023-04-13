@@ -15,17 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import Qt5Compat.GraphicalEffects
-
-
 import "../../commoncomponents"
 
 Popup {
@@ -42,11 +38,11 @@ Popup {
 
     signal joinClicked
 
-    modal:true
+    modal: true
     padding: 0
 
     visible: false
-    closePolicy:  Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
     Rectangle {
         id: container
@@ -56,7 +52,7 @@ Popup {
         color: JamiTheme.secondaryBackgroundColor
 
         ColumnLayout {
-            id:  popupContent
+            id: popupContent
 
             Layout.alignment: Qt.AlignCenter
 
@@ -67,13 +63,15 @@ Popup {
                 width: 30
                 height: 30
                 imageContainerWidth: 30
-                imageContainerHeight : 30
+                imageContainerHeight: 30
                 Layout.margins: 8
-                radius : 5
+                radius: 5
                 imageColor: "grey"
                 normalColor: JamiTheme.transparentColor
                 source: JamiResources.round_close_24dp_svg
-                onClicked: { root.visible = false }
+                onClicked: {
+                    root.visible = false;
+                }
             }
 
             Text {
@@ -90,7 +88,7 @@ Popup {
                 text: JamiStrings.joinJamiNoPassword
             }
 
-            RowLayout{
+            RowLayout {
                 Layout.topMargin: JamiTheme.popupButtonsMargin
                 Layout.bottomMargin: JamiTheme.popupButtonsMargin
 
@@ -99,7 +97,7 @@ Popup {
 
                 MaterialButton {
 
-                    TextMetrics{
+                    TextMetrics {
                         id: joinJamiSize
                         font.weight: Font.Bold
                         font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -108,21 +106,21 @@ Popup {
 
                     Layout.leftMargin: JamiTheme.popupButtonsMargin
                     objectName: "joinButton"
-                    preferredWidth: joinJamiSize.width + 2*(JamiTheme.buttontextWizzardPadding + 1)
+                    preferredWidth: joinJamiSize.width + 2 * (JamiTheme.buttontextWizzardPadding + 1)
                     textLeftPadding: JamiTheme.buttontextWizzardPadding
                     textRightPadding: JamiTheme.buttontextWizzardPadding
                     secondary: true
                     text: JamiStrings.joinJami
                     onClicked: {
-                        root.joinClicked()
-                        WizardViewStepModel.nextStep()
-                        root.close()
+                        root.joinClicked();
+                        WizardViewStepModel.nextStep();
+                        root.close();
                     }
                 }
 
                 MaterialButton {
 
-                    TextMetrics{
+                    TextMetrics {
                         id: chooseAUsernameSize
                         font.weight: Font.Bold
                         font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -130,13 +128,12 @@ Popup {
                     }
 
                     Layout.rightMargin: JamiTheme.popupButtonsMargin
-                    preferredWidth: chooseAUsernameSize.width + 2*JamiTheme.buttontextWizzardPadding
+                    preferredWidth: chooseAUsernameSize.width + 2 * JamiTheme.buttontextWizzardPadding
                     primary: true
                     text: JamiStrings.chooseAUsername
                     onClicked: root.close()
                 }
             }
-
         }
     }
 
@@ -147,7 +144,7 @@ Popup {
     Overlay.modal: Rectangle {
         color: JamiTheme.transparentColor
         // Color animation for overlay when pop up is shown.
-        ColorAnimation on color {
+        ColorAnimation on color  {
             to: JamiTheme.popupOverlayColor
             duration: 500
         }
@@ -167,14 +164,18 @@ Popup {
 
     enter: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 0.0; to: 1.0
+            properties: "opacity"
+            from: 0.0
+            to: 1.0
             duration: JamiTheme.shortFadeDuration
         }
     }
 
     exit: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 1.0; to: 0.0
+            properties: "opacity"
+            from: 1.0
+            to: 0.0
             duration: JamiTheme.shortFadeDuration
         }
     }

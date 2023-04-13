@@ -18,9 +18,7 @@
 
 // JamiQmlUtils as a singleton is to provide global property entry
 pragma Singleton
-
 import QtQuick
-
 import net.jami.Adapters 1.1
 
 Item {
@@ -33,9 +31,9 @@ Item {
     property var accountCreationInputParaObject: ({})
 
     function setUpAccountCreationInputPara(inputPara) {
-        JamiQmlUtils.accountCreationInputParaObject = {}
-        Object.assign(JamiQmlUtils.accountCreationInputParaObject, inputPara)
-        return accountCreationInputParaObject
+        JamiQmlUtils.accountCreationInputParaObject = {};
+        Object.assign(JamiQmlUtils.accountCreationInputParaObject, inputPara);
+        return accountCreationInputParaObject;
     }
 
     // MessageBar buttons in mainview points
@@ -52,18 +50,9 @@ Item {
 
     function updateMessageBarButtonsPoints() {
         if (messageBarButtonsRowObj && audioRecordMessageButtonObj && videoRecordMessageButtonObj) {
-            audioRecordMessageButtonInMainViewPoint =
-                    messageBarButtonsRowObj.mapToItem(mainViewRectObj,
-                                                      audioRecordMessageButtonObj.x,
-                                                      audioRecordMessageButtonObj.y)
-            videoRecordMessageButtonInMainViewPoint =
-                    messageBarButtonsRowObj.mapToItem(mainViewRectObj,
-                                                      videoRecordMessageButtonObj.x,
-                                                      videoRecordMessageButtonObj.y)
-            emojiPickerButtonInMainViewPoint =
-                    messageBarButtonsRowObj.mapToItem(mainViewRectObj,
-                                                      emojiPickerButtonObj.x,
-                                                      emojiPickerButtonObj.y)
+            audioRecordMessageButtonInMainViewPoint = messageBarButtonsRowObj.mapToItem(mainViewRectObj, audioRecordMessageButtonObj.x, audioRecordMessageButtonObj.y);
+            videoRecordMessageButtonInMainViewPoint = messageBarButtonsRowObj.mapToItem(mainViewRectObj, videoRecordMessageButtonObj.x, videoRecordMessageButtonObj.y);
+            emojiPickerButtonInMainViewPoint = messageBarButtonsRowObj.mapToItem(mainViewRectObj, emojiPickerButtonObj.x, emojiPickerButtonObj.y);
         }
     }
 
@@ -72,13 +61,12 @@ Item {
     }
 
     function getTextBoundingRect(font, text) {
-        globalTextMetrics.font = font
-        globalTextMetrics.text = text
-
-        return Qt.size(globalTextMetrics.contentWidth, globalTextMetrics.contentHeight)
+        globalTextMetrics.font = font;
+        globalTextMetrics.text = text;
+        return Qt.size(globalTextMetrics.contentWidth, globalTextMetrics.contentHeight);
     }
 
     function clamp(val, min, max) {
-        return Math.min(Math.max(val, min), max)
+        return Math.min(Math.max(val, min), max);
     }
 }

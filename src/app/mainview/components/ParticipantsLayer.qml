@@ -16,14 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import SortFilterProxyModel 0.2
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -43,9 +39,9 @@ Item {
     property bool screenshotButtonHovered: false
 
     onVisibleChanged: {
-        CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
-        CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators)
-        CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf)
+        CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf);
+        CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators);
+        CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
     }
 
     Component {
@@ -57,9 +53,7 @@ Item {
             anchors.fill: parent
             anchors.leftMargin: leftMargin_
             isScreenshotButtonHovered: screenshotButtonHovered && hoveredOverlaySinkId === sinkId_
-            opacity: screenshotButtonHovered
-                     ? hoveredOverlaySinkId !== sinkId ? 0.1 : 1
-                     : 1
+            opacity: screenshotButtonHovered ? hoveredOverlaySinkId !== sinkId ? 0.1 : 1 : 1
             sinkId: sinkId_
             uri: uri_
             deviceId: deviceId_
@@ -67,8 +61,8 @@ Item {
             participantIsModerator: isModerator_
             bestName: {
                 if (bestName_ === uri_)
-                    NameDirectory.lookupAddress(CurrentAccount.id, uri_)
-                return bestName_
+                    NameDirectory.lookupAddress(CurrentAccount.id, uri_);
+                return bestName_;
             }
             videoMuted: videoMuted_
             participantIsActive: active_
@@ -79,11 +73,11 @@ Item {
             participantHandIsRaised: isHandRaised_
             isSharing: isSharing_
 
-            onParticipantHoveredChanged:  {
+            onParticipantHoveredChanged: {
                 if (participantHovered) {
-                    hoveredOverlayUri = overlay.uri
-                    hoveredOverlaySinkId = overlay.sinkId
-                    hoveredOverVideoMuted = videoMuted_
+                    hoveredOverlayUri = overlay.uri;
+                    hoveredOverlaySinkId = overlay.sinkId;
+                    hoveredOverVideoMuted = videoMuted_;
                 }
             }
 
@@ -95,7 +89,7 @@ Item {
 
                 function onRegisteredNameFound(status, address, name) {
                     if (address === uri_ && status === NameDirectory.LookupStatus.SUCCESS) {
-                        bestName_ = name
+                        bestName_ = name;
                     }
                 }
             }
@@ -106,10 +100,12 @@ Item {
         id: genericParticipantsModel
         sourceModel: CallParticipantsModel
         filters: AllOf {
-            ValueFilter { roleName: "Active"; value: false }
             ValueFilter {
-                enabled: CallParticipantsModel.count > 1 &&
-                         CurrentCall.hideSelf
+                roleName: "Active"
+                value: false
+            }
+            ValueFilter {
+                enabled: CallParticipantsModel.count > 1 && CurrentCall.hideSelf
                 roleName: "IsLocal"
                 value: false
             }
@@ -124,7 +120,10 @@ Item {
     SortFilterProxyModel {
         id: activeParticipantsModel
         sourceModel: CallParticipantsModel
-        filters: ValueFilter { roleName: "Active"; value: true }
+        filters: ValueFilter {
+            roleName: "Active"
+            value: true
+        }
     }
 
     ParticipantsLayoutVertical {

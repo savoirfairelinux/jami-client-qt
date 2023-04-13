@@ -16,14 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -35,27 +32,25 @@ Rectangle {
     signal showThisPage
 
     function initializeOnShowUp() {
-        clearAllTextFields()
+        clearAllTextFields();
     }
 
     function clearAllTextFields() {
-        connectBtn.spinnerTriggered = false
+        connectBtn.spinnerTriggered = false;
     }
 
     function errorOccured(errorMessage) {
-        errorText = errorMessage
-        connectBtn.spinnerTriggered = false
+        errorText = errorMessage;
+        connectBtn.spinnerTriggered = false;
     }
 
     Connections {
         target: WizardViewStepModel
 
         function onMainStepChanged() {
-            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
-                    WizardViewStepModel.accountCreationOption ===
-                    WizardViewStepModel.AccountCreationOption.ImportFromDevice) {
-                clearAllTextFields()
-                root.showThisPage()
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation && WizardViewStepModel.accountCreationOption === WizardViewStepModel.AccountCreationOption.ImportFromDevice) {
+                clearAllTextFields();
+                root.showThisPage();
             }
         }
     }
@@ -82,7 +77,7 @@ Rectangle {
             color: JamiTheme.textColor
 
             font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
-            wrapMode : Text.WordWrap
+            wrapMode: Text.WordWrap
         }
 
         Text {
@@ -99,8 +94,6 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             lineHeight: JamiTheme.wizardViewTextLineHeight
         }
-
-
 
         Flow {
             spacing: 30
@@ -139,7 +132,6 @@ Rectangle {
                 description: JamiStrings.importStep4Desc
                 icoColor: JamiTheme.buttonTintedBlue
             }
-
         }
 
         ModalTextEdit {
@@ -161,11 +153,9 @@ Rectangle {
             KeyNavigation.tab: KeyNavigation.down
 
             onAccepted: passwordFromDevice.forceActiveFocus()
-
         }
 
         Text {
-
 
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
@@ -176,8 +166,6 @@ Rectangle {
             font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
             font.weight: Font.Medium
         }
-
-
 
         PasswordTextEdit {
             id: passwordFromDevice
@@ -192,21 +180,20 @@ Rectangle {
             KeyNavigation.up: pinFromDevice
             KeyNavigation.down: {
                 if (connectBtn.enabled)
-                    return connectBtn
+                    return connectBtn;
                 else if (connectBtn.spinnerTriggered)
-                    return passwordFromDevice
-                return backButton
+                    return passwordFromDevice;
+                return backButton;
             }
             KeyNavigation.tab: KeyNavigation.down
 
             onAccepted: pinFromDevice.forceActiveFocus()
-
         }
 
         SpinnerButton {
             id: connectBtn
 
-            TextMetrics{
+            TextMetrics {
                 id: textSize
                 font.weight: Font.Bold
                 font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -219,7 +206,7 @@ Rectangle {
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding +1
+            preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding + 1
             primary: true
 
             spinnerTriggeredtext: JamiStrings.generatingAccount
@@ -232,13 +219,12 @@ Rectangle {
             KeyNavigation.down: backButton
 
             onClicked: {
-                spinnerTriggered = true
-
-                WizardViewStepModel.accountCreationInfo =
-                        JamiQmlUtils.setUpAccountCreationInputPara(
-                            {archivePin : pinFromDevice.dynamicText,
-                                password : passwordFromDevice.dynamicText})
-                WizardViewStepModel.nextStep()
+                spinnerTriggered = true;
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
+                        "archivePin": pinFromDevice.dynamicText,
+                        "password": passwordFromDevice.dynamicText
+                    });
+                WizardViewStepModel.nextStep();
             }
         }
 

@@ -18,12 +18,10 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import Qt5Compat.GraphicalEffects
-
 import "../../commoncomponents"
 
 Popup {
@@ -40,14 +38,14 @@ Popup {
     closePolicy: Popup.NoAutoClosed
 
     onClosed: {
-        CallAdapter.stopTimerInformation()
+        CallAdapter.stopTimerInformation();
     }
 
     onOpened: {
-        AvAdapter.resetRendererInfo()
-        CallAdapter.resetCallInfo()
-        CallAdapter.setCallInfo()
-        AvAdapter.setRendererInfo()
+        AvAdapter.resetRendererInfo();
+        CallAdapter.resetCallInfo();
+        CallAdapter.setCallInfo();
+        AvAdapter.setRendererInfo();
     }
 
     background: Rectangle {
@@ -77,12 +75,12 @@ Popup {
             toolTipText: JamiStrings.close
 
             onClicked: {
-                root.close()
+                root.close();
             }
         }
 
         RowLayout {
-            id:  windowContent
+            id: windowContent
 
             ColumnLayout {
                 spacing: JamiTheme.callInformationBlockSpacing
@@ -90,7 +88,7 @@ Popup {
                 Layout.preferredWidth: callInfoListview.width
                 Layout.alignment: Qt.AlignTop
 
-                Text{
+                Text {
                     id: textTest
                     color: JamiTheme.callInfoColor
                     text: JamiStrings.callInformation
@@ -118,8 +116,8 @@ Popup {
                         }
 
                         Text {
-                            function stringWithoutRing(peerNumber){
-                                return peerNumber.replace("@ring.dht","") ;
+                            function stringWithoutRing(peerNumber) {
+                                return peerNumber.replace("@ring.dht", "");
                             }
                             color: JamiTheme.callInfoColor
                             text: JamiStrings.peerNumber + ": " + stringWithoutRing(PEER_NUMBER)
@@ -149,7 +147,7 @@ Popup {
                                     Layout.preferredHeight: 20
                                     imageColor: JamiTheme.callInfoColor
                                     onClicked: {
-                                        socketLayout.showAll = !socketLayout.showAll
+                                        socketLayout.showAll = !socketLayout.showAll;
                                     }
                                 }
                             }
@@ -223,7 +221,7 @@ Popup {
                     delegate: Column {
                         spacing: JamiTheme.callInformationElementsSpacing
 
-                        Text{
+                        Text {
                             color: JamiTheme.callInfoColor
                             text: JamiStrings.rendererId + ": " + RENDERER_ID
                             font.pointSize: JamiTheme.textFontPointSize

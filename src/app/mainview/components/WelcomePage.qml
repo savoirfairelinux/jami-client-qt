@@ -14,16 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 import "../js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
@@ -68,14 +65,15 @@ ListSelectionView {
                     color: JamiTheme.rectColor
                     anchors.topMargin: 25
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: identifier.width + 2 * JamiTheme.mainViewMargin + (welcomeLogo.visible ?  welcomeLogo.width : 0)
+                    width: identifier.width + 2 * JamiTheme.mainViewMargin + (welcomeLogo.visible ? welcomeLogo.width : 0)
                     height: childrenRect.height + 10
-                    opacity:1
+                    opacity: 1
 
-                    Behavior on width {
-                        NumberAnimation { duration: JamiTheme.shortFadeDuration }
+                    Behavior on width  {
+                        NumberAnimation {
+                            duration: JamiTheme.shortFadeDuration
+                        }
                     }
-
 
                     Label {
                         id: welcome
@@ -158,8 +156,10 @@ ListSelectionView {
 
                         source: JamiResources.welcome_illustration_2_svg
 
-                        Behavior on opacity {
-                            NumberAnimation { duration: JamiTheme.shortFadeDuration }
+                        Behavior on opacity  {
+                            NumberAnimation {
+                                duration: JamiTheme.shortFadeDuration
+                            }
                         }
                     }
                 }
@@ -192,17 +192,19 @@ ListSelectionView {
                                 property bool hideTipBox: false
 
                                 visible: {
-                                    if(hideTipBox) return false
+                                    if (hideTipBox)
+                                        return false;
                                     if (type === "backup") {
-                                        return LRCInstance.currentAccountType !== Profile.Type.SIP
-                                               && CurrentAccount.managerUri.length === 0
+                                        return LRCInstance.currentAccountType !== Profile.Type.SIP && CurrentAccount.managerUri.length === 0;
                                     } else if (type === "customize") {
-                                        return CurrentAccount.alias.length === 0
+                                        return CurrentAccount.alias.length === 0;
                                     }
-                                    return true
+                                    return true;
                                 }
 
-                                onIgnoreClicked: { hideTipBox = true }
+                                onIgnoreClicked: {
+                                    hideTipBox = true;
+                                }
                             }
                         }
                     }
@@ -223,9 +225,7 @@ ListSelectionView {
                     preferredWidth: JamiTheme.aboutButtonPreferredWidth
                     text: JamiStrings.aboutJami
 
-                    onClicked: viewCoordinator.presentDialog(
-                                   appWindow,
-                                   "mainview/components/AboutPopUp.qml")
+                    onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
                 }
 
                 PushButton {
@@ -236,7 +236,7 @@ ListSelectionView {
                     hoveredColor: JamiTheme.transparentColor
                     anchors.right: parent.right
                     anchors.rightMargin: JamiTheme.preferredMarginSize
-                    preferredSize : 30
+                    preferredSize: 30
                     imageContainerWidth: JamiTheme.pushButtonSize
                     imageContainerHeight: JamiTheme.pushButtonSize
 
@@ -245,9 +245,9 @@ ListSelectionView {
                     source: JamiResources.keyboard_black_24dp_svg
                     toolTipText: JamiStrings.keyboardShortcuts
 
-                    onClicked:  {
-                        KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject(appWindow)
-                        KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow()
+                    onClicked: {
+                        KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject(appWindow);
+                        KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow();
                     }
                 }
             }
