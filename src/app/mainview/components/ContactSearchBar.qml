@@ -15,13 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -34,8 +31,8 @@ Rectangle {
     property alias placeHolderText: contactSearchBar.placeholderText
 
     function clearText() {
-        contactSearchBar.clear()
-        contactSearchBar.forceActiveFocus()
+        contactSearchBar.clear();
+        contactSearchBar.forceActiveFocus();
     }
 
     radius: JamiTheme.primaryRadius
@@ -43,7 +40,7 @@ Rectangle {
 
     onFocusChanged: {
         if (focus) {
-            contactSearchBar.forceActiveFocus()
+            contactSearchBar.forceActiveFocus();
         }
     }
 
@@ -72,9 +69,7 @@ Rectangle {
 
         anchors.verticalCenter: root.verticalCenter
         anchors.left: searchIconImage.right
-        anchors.right: contactSearchBar.text.length ?
-                           clearTextButton.left :
-                           root.right
+        anchors.right: contactSearchBar.text.length ? clearTextButton.left : root.right
 
         height: root.height - 5
 
@@ -97,7 +92,7 @@ Rectangle {
         onTextChanged: root.contactSearchBarTextChanged(contactSearchBar.text)
         onReleased: function (event) {
             if (event.button === Qt.RightButton)
-                lineEditContextMenu.openMenuAt(event)
+                lineEditContextMenu.openMenuAt(event);
         }
     }
 
@@ -122,17 +117,19 @@ Rectangle {
 
         onClicked: contactSearchBar.clear()
 
-        Behavior on opacity {
-            NumberAnimation { duration: 500; easing.type: Easing.OutCubic }
+        Behavior on opacity  {
+            NumberAnimation {
+                duration: 500
+                easing.type: Easing.OutCubic
+            }
         }
     }
 
     Keys.onPressed: function (keyEvent) {
-        if (keyEvent.key === Qt.Key_Enter ||
-                keyEvent.key === Qt.Key_Return) {
+        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
             if (contactSearchBar.text !== "") {
-                returnPressedWhileSearching()
-                keyEvent.accepted = true
+                returnPressedWhileSearching();
+                keyEvent.accepted = true;
             }
         }
     }

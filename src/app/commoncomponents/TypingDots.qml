@@ -15,11 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 
 Row {
@@ -36,9 +34,9 @@ Row {
 
         onTriggered: {
             if (root.currentRect < 2)
-                root.currentRect ++
+                root.currentRect++;
             else
-                root.currentRect = 0
+                root.currentRect = 0;
         }
     }
 

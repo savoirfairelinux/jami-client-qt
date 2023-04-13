@@ -16,28 +16,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
-
 import "../../commoncomponents"
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
-
 
 SettingsPageBase {
     id: root
 
     property int itemWidth: 578
     title: JamiStrings.locationSharingLabel
-
 
     flickableContent: ColumnLayout {
         id: callSettingsColumnLayout
@@ -54,15 +49,15 @@ SettingsPageBase {
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             function standartCountdown(minutes) {
-                var hour = Math.floor(minutes / 60)
-                var min = minutes % 60
+                var hour = Math.floor(minutes / 60);
+                var min = minutes % 60;
                 if (hour) {
                     if (min)
-                        return qsTr("%1h%2min").arg(hour).arg(min)
+                        return qsTr("%1h%2min").arg(hour).arg(min);
                     else
-                        return qsTr("%1h").arg(hour)
+                        return qsTr("%1h").arg(hour);
                 }
-                return qsTr("%1min").arg(min)
+                return qsTr("%1min").arg(min);
             }
 
             Text {
@@ -73,7 +68,7 @@ SettingsPageBase {
                 text: JamiStrings.positionShareDuration
                 font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
             }
@@ -128,14 +123,13 @@ SettingsPageBase {
             property bool isMax: UtilsAdapter.getAppValue(Settings.PositionShareDuration) < 0.05
             value: isMax ? Math.log(600) : Math.log(UtilsAdapter.getAppValue(Settings.PositionShareDuration))
 
-            function valueLabel(){
-                if (value != Math.log(600)){
-                    UtilsAdapter.setAppValue(Settings.PositionShareDuration, Math.floor(Math.exp(value)))
-                    timeSharingLocationValueLabel.text = timeSharingLocation.standartCountdown(Math.floor(Math.exp(value)))
-                }
-                else {
-                    UtilsAdapter.setAppValue(Settings.PositionShareDuration, 0)
-                    timeSharingLocationValueLabel.text = JamiStrings.maxLocationDuration
+            function valueLabel() {
+                if (value != Math.log(600)) {
+                    UtilsAdapter.setAppValue(Settings.PositionShareDuration, Math.floor(Math.exp(value)));
+                    timeSharingLocationValueLabel.text = timeSharingLocation.standartCountdown(Math.floor(Math.exp(value)));
+                } else {
+                    UtilsAdapter.setAppValue(Settings.PositionShareDuration, 0);
+                    timeSharingLocationValueLabel.text = JamiStrings.maxLocationDuration;
                 }
             }
 
@@ -159,7 +153,6 @@ SettingsPageBase {
             handle: ColumnLayout {
                 x: timeSharingSlider.visualPosition * timeSharingSlider.availableWidth - textSize.width / 2
 
-
                 Rectangle {
                     Layout.topMargin: -12
                     implicitWidth: 6
@@ -172,7 +165,7 @@ SettingsPageBase {
                 Text {
                     id: timeSharingLocationValueLabel
 
-                    TextMetrics{
+                    TextMetrics {
                         id: textSize
                         font.pointSize: JamiTheme.settingsFontSize
                         font.kerning: true
@@ -194,7 +187,7 @@ SettingsPageBase {
         MaterialButton {
             id: defaultSettings
 
-            TextMetrics{
+            TextMetrics {
                 id: defaultSettingsTextSize
                 font.weight: Font.Bold
                 font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -205,12 +198,12 @@ SettingsPageBase {
             secondary: true
 
             text: JamiStrings.defaultSettings
-            preferredWidth: defaultSettingsTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+            preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                timeSharingSlider.value = Math.log(UtilsAdapter.getDefault(Settings.Key.PositionShareDuration))
-                timeSharingSlider.valueLabel()
-                UtilsAdapter.setToDefault(Settings.Key.PositionShareDuration)
+                timeSharingSlider.value = Math.log(UtilsAdapter.getDefault(Settings.Key.PositionShareDuration));
+                timeSharingSlider.valueLabel();
+                UtilsAdapter.setToDefault(Settings.Key.PositionShareDuration);
             }
         }
     }

@@ -15,15 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-
-
 import "../../commoncomponents"
 
 Control {
@@ -84,8 +80,6 @@ Control {
 
                 text: JamiStrings.scrollToEnd
                 color: UtilsAdapter.luma(CurrentConversation.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
-
-
             }
 
             ResponsiveImage {
@@ -112,8 +106,7 @@ Control {
 
         MouseArea {
             anchors.fill: parent
-            cursorShape: root.opacity ? Qt.PointingHandCursor :
-                                        Qt.ArrowCursor
+            cursorShape: root.opacity ? Qt.PointingHandCursor : Qt.ArrowCursor
 
             onClicked: root.clicked()
         }

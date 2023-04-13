@@ -14,12 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -35,7 +33,8 @@ Item {
     // Background rounded rectangle.
     Rectangle {
         id: outerRect
-        anchors.fill: parent; radius: 20
+        anchors.fill: parent
+        radius: 20
         color: JamiTheme.secondaryBackgroundColor
     }
 
@@ -43,7 +42,9 @@ Item {
     Item {
         anchors.fill: outerRect
         layer.enabled: true
-        layer.effect: OpacityMask { maskSource: outerRect }
+        layer.effect: OpacityMask {
+            maskSource: outerRect
+        }
 
         Rectangle {
             id: logoRect
@@ -81,45 +82,32 @@ Item {
             Layout.rightMargin: JamiTheme.pushButtonMargin
             Layout.preferredHeight: childrenRect.height
 
-            component JamiIdControlButton: PushButton {
-                property bool clicked: true
-                preferredSize : 30
-                normalColor: JamiTheme.transparentColor
-                hoveredColor: JamiTheme.hoveredButtonColorWizard
-                imageContainerWidth: JamiTheme.pushButtonSize
-                imageContainerHeight: JamiTheme.pushButtonSize
-                border.color: JamiTheme.tintedBlue
-                imageColor: JamiTheme.buttonTintedBlue
-            }
-
             JamiIdControlButton {
                 id: btnEdit
                 visible: CurrentAccount.registeredName === ""
-                border.color: enabled ? JamiTheme.buttonTintedBlue :  JamiTheme.buttonTintedBlack
-                imageColor: enabled ? JamiTheme.buttonTintedBlue :  JamiTheme.buttonTintedBlack
+                border.color: enabled ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedBlack
+                imageColor: enabled ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedBlack
                 enabled: {
                     if (!usernameTextEdit.editMode)
-                        return true
-                    switch(usernameTextEdit.nameRegistrationState) {
+                        return true;
+                    switch (usernameTextEdit.nameRegistrationState) {
                     case UsernameTextEdit.NameRegistrationState.BLANK:
                     case UsernameTextEdit.NameRegistrationState.FREE:
-                        return true
+                        return true;
                     case UsernameTextEdit.NameRegistrationState.SEARCHING:
                     case UsernameTextEdit.NameRegistrationState.INVALID:
                     case UsernameTextEdit.NameRegistrationState.TAKEN:
-                        return false
+                        return false;
                     }
                 }
-                source: usernameTextEdit.editMode
-                        ? JamiResources.check_black_24dp_svg
-                        : JamiResources.round_edit_24dp_svg
+                source: usernameTextEdit.editMode ? JamiResources.check_black_24dp_svg : JamiResources.round_edit_24dp_svg
                 toolTipText: JamiStrings.chooseUsername
                 onClicked: {
                     if (!usernameTextEdit.editMode) {
-                        usernameTextEdit.startEditing()
-                        usernameTextEdit.readOnly = false
+                        usernameTextEdit.startEditing();
+                        usernameTextEdit.readOnly = false;
                     } else {
-                        usernameTextEdit.accepted()
+                        usernameTextEdit.accepted();
                     }
                 }
             }
@@ -135,9 +123,7 @@ Item {
                 id: btnShare
                 source: JamiResources.share_24dp_svg
                 toolTipText: JamiStrings.share
-                onClicked: viewCoordinator.presentDialog(
-                               appWindow,
-                               "mainview/components/WelcomePageQrDialog.qml")
+                onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
 
             JamiIdControlButton {
@@ -147,14 +133,13 @@ Item {
                 toolTipText: JamiStrings.identifierURI
                 onClicked: {
                     if (clicked) {
-                        usernameTextEdit.staticText = CurrentAccount.uri
-                        btnId.toolTipText = JamiStrings.identifierRegisterName
+                        usernameTextEdit.staticText = CurrentAccount.uri;
+                        btnId.toolTipText = JamiStrings.identifierRegisterName;
                     } else {
-                        usernameTextEdit.staticText = CurrentAccount.registeredName
-                        btnId.toolTipText = JamiStrings.identifierURI
+                        usernameTextEdit.staticText = CurrentAccount.registeredName;
+                        btnId.toolTipText = JamiStrings.identifierURI;
                     }
-
-                    clicked = !clicked
+                    clicked = !clicked;
                 }
             }
         }
@@ -173,19 +158,28 @@ Item {
             readOnly: true
 
             onAccepted: {
-                usernameTextEdit.readOnly = true
+                usernameTextEdit.readOnly = true;
                 if (dynamicText === '') {
-                    return
+                    return;
                 }
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "settingsview/components/NameRegistrationDialog.qml",
-                            { registeredName: dynamicText })
-                dlg.accepted.connect(function() {
-                    usernameTextEdit.nameRegistrationState =
-                            UsernameTextEdit.NameRegistrationState.BLANK
-                })
+                var dlg = viewCoordinator.presentDialog(appWindow, "settingsview/components/NameRegistrationDialog.qml", {
+                        "registeredName": dynamicText
+                    });
+                dlg.accepted.connect(function () {
+                        usernameTextEdit.nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
+                    });
             }
         }
+    }
+
+    component JamiIdControlButton: PushButton {
+        property bool clicked: true
+        preferredSize: 30
+        normalColor: JamiTheme.transparentColor
+        hoveredColor: JamiTheme.hoveredButtonColorWizard
+        imageContainerWidth: JamiTheme.pushButtonSize
+        imageContainerHeight: JamiTheme.pushButtonSize
+        border.color: JamiTheme.tintedBlue
+        imageColor: JamiTheme.buttonTintedBlue
     }
 }

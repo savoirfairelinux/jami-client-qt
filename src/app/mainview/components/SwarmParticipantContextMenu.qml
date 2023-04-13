@@ -15,13 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../commoncomponents/contextmenu"
 
@@ -38,8 +35,8 @@ ContextMenuAutoLoader {
             canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
             iconSource: JamiResources.videocam_24dp_svg
             onClicked: {
-                ConversationsAdapter.openDialogConversationWith(participantUri)
-                CallAdapter.placeCall()
+                ConversationsAdapter.openDialogConversationWith(participantUri);
+                CallAdapter.placeCall();
             }
         },
         GeneralMenuItem {
@@ -48,8 +45,8 @@ ContextMenuAutoLoader {
             canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
             iconSource: JamiResources.place_audiocall_24dp_svg
             onClicked: {
-                ConversationsAdapter.openDialogConversationWith(participantUri)
-                CallAdapter.placeAudioOnlyCall()
+                ConversationsAdapter.openDialogConversationWith(participantUri);
+                CallAdapter.placeAudioOnlyCall();
             }
         },
         GeneralMenuItem {
@@ -59,9 +56,9 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.goToConversation
             onClicked: {
                 if (ConversationsAdapter.dialogId(participantUri) !== "")
-                    ConversationsAdapter.openDialogConversationWith(participantUri)
+                    ConversationsAdapter.openDialogConversationWith(participantUri);
                 else
-                    ConversationsAdapter.setFilter(participantUri)
+                    ConversationsAdapter.setFilter(participantUri);
             }
         },
         GeneralMenuItem {
@@ -69,7 +66,7 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.blockContact
             iconSource: JamiResources.block_black_24dp_svg
             onClicked: {
-                ContactAdapter.removeContact(participantUri, true)
+                ContactAdapter.removeContact(participantUri, true);
             }
         },
         GeneralMenuItem {
@@ -81,9 +78,9 @@ ContextMenuAutoLoader {
 
             onClicked: {
                 if (memberRole === Member.Role.BANNED) {
-                    MessagesAdapter.addConversationMember(conversationId, participantUri)
+                    MessagesAdapter.addConversationMember(conversationId, participantUri);
                 } else {
-                    MessagesAdapter.removeConversationMember(conversationId, participantUri)
+                    MessagesAdapter.removeConversationMember(conversationId, participantUri);
                 }
             }
         },
@@ -93,15 +90,12 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.contactDetails
             iconSource: JamiResources.person_24dp_svg
             onClicked: {
-                viewCoordinator.presentDialog(
-                            appWindow,
-                            "mainview/components/UserProfile.qml",
-                            {
-                                aliasText: UtilsAdapter.getBestNameForUri(CurrentAccount.id, participantUri),
-                                registeredNameText: UtilsAdapter.getBestIdForUri(CurrentAccount.id, participantUri),
-                                idText: participantUri,
-                                convId: UtilsAdapter.getConvIdForUri(CurrentAccount.id, participantUri)
-                            })
+                viewCoordinator.presentDialog(appWindow, "mainview/components/UserProfile.qml", {
+                        "aliasText": UtilsAdapter.getBestNameForUri(CurrentAccount.id, participantUri),
+                        "registeredNameText": UtilsAdapter.getBestIdForUri(CurrentAccount.id, participantUri),
+                        "idText": participantUri,
+                        "convId": UtilsAdapter.getConvIdForUri(CurrentAccount.id, participantUri)
+                    });
             }
         }
     ]

@@ -16,15 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 RowLayout {
@@ -70,12 +67,10 @@ RowLayout {
         onValueChanged: newValue()
 
         Keys.onPressed: function (keyEvent) {
-
-            if (keyEvent.key === Qt.Key_Enter ||
-                    keyEvent.key === Qt.Key_Return) {
-                textInput.focus = false
-                spinbox.value = textInput.text
-                keyEvent.accepted = true
+            if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+                textInput.focus = false;
+                spinbox.value = textInput.text;
+                keyEvent.accepted = true;
             }
         }
 
@@ -83,10 +78,10 @@ RowLayout {
             id: textInput
 
             text: spinbox.textFromValue(spinbox.value, spinbox.locale)
-            color : JamiTheme.textColor
+            color: JamiTheme.textColor
             horizontalAlignment: Qt.AlignHCenter
             verticalAlignment: Qt.AlignVCenter
-            inputMethodHints : Qt.ImhDigitsOnly
+            inputMethodHints: Qt.ImhDigitsOnly
             validator: spinbox.validator
             font.pointSize: JamiTheme.settingsFontSize
         }
@@ -110,10 +105,10 @@ RowLayout {
         up.indicator: Rectangle {
 
             width: parent.width / 8
-            radius : 4
+            radius: 4
             anchors {
-                top : parent.top
-                bottom : parent.bottom
+                top: parent.top
+                bottom: parent.bottom
                 right: parent.right
                 margins: 1
             }
@@ -136,10 +131,10 @@ RowLayout {
         down.indicator: Rectangle {
 
             width: parent.width / 8
-            radius : 4
+            radius: 4
             anchors {
-                top : parent.top
-                bottom : parent.bottom
+                top: parent.top
+                bottom: parent.bottom
                 left: parent.left
                 margins: 1
             }

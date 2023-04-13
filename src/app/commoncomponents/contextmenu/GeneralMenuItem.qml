@@ -15,14 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
-
-import "../../commoncomponents"
+import "../"
 
 // General menu item.
 // Can control top, bottom, left, right border width.
@@ -61,8 +58,7 @@ MenuItem {
             anchors.leftMargin: 1
             anchors.rightMargin: 1
 
-            color: menuItemContentRect.hovered ?
-                       JamiTheme.hoverColor : JamiTheme.backgroundColor
+            color: menuItemContentRect.hovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
         }
 
         anchors.fill: parent
@@ -88,10 +84,8 @@ MenuItem {
                 id: contextMenuItemText
 
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                Layout.leftMargin: contextMenuItemImage.status === Image.Ready ?
-                                       itemTextMargin : itemTextMargin / 2
-                Layout.rightMargin: contextMenuItemImage.status === Image.Ready ?
-                                        itemTextMargin : itemTextMargin / 2
+                Layout.leftMargin: contextMenuItemImage.status === Image.Ready ? itemTextMargin : itemTextMargin / 2
+                Layout.rightMargin: contextMenuItemImage.status === Image.Ready ? itemTextMargin : itemTextMargin / 2
                 Layout.preferredHeight: itemPreferredHeight
                 Layout.fillWidth: true
 
@@ -108,20 +102,13 @@ MenuItem {
                     text: contextMenuItemText.text
 
                     onBoundingRectChanged: {
-                        var sizeToCompare = itemPreferredWidth -
-                                (contextMenuItemImage.source.toString().length > 0 ?
-                                     itemTextMargin + itemImageLeftMargin + contextMenuItemImage.width :
-                                     itemTextMargin / 2)
-                        if (autoTextSizeAdjustment
-                                && boundingRect.width > sizeToCompare) {
+                        var sizeToCompare = itemPreferredWidth - (contextMenuItemImage.source.toString().length > 0 ? itemTextMargin + itemImageLeftMargin + contextMenuItemImage.width : itemTextMargin / 2);
+                        if (autoTextSizeAdjustment && boundingRect.width > sizeToCompare) {
                             if (boundingRect.width > JamiTheme.contextMenuItemTextMaxWidth) {
-                                itemPreferredWidth += JamiTheme.contextMenuItemTextMaxWidth
-                                        - JamiTheme.contextMenuItemTextPreferredWidth
-                                        + itemTextMargin
-                                contextMenuItemText.elide = Text.ElideRight
+                                itemPreferredWidth += JamiTheme.contextMenuItemTextMaxWidth - JamiTheme.contextMenuItemTextPreferredWidth + itemTextMargin;
+                                contextMenuItemText.elide = Text.ElideRight;
                             } else
-                                itemPreferredWidth += boundingRect.width + itemTextMargin
-                                        - sizeToCompare
+                                itemPreferredWidth += boundingRect.width + itemTextMargin - sizeToCompare;
                         }
                     }
                 }
@@ -129,8 +116,8 @@ MenuItem {
         }
 
         onReleased: {
-            menuItem.clicked()
-            parentMenu.close()
+            menuItem.clicked();
+            parentMenu.close();
         }
     }
 

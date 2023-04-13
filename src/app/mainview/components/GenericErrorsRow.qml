@@ -14,16 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -44,14 +41,14 @@ Rectangle {
             id: errorLabel
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
-            text: CurrentAccount.enabled? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
+            text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
             color: JamiTheme.filterBadgeTextColor
             font.pixelSize: JamiTheme.headerFontSize
             elide: Text.ElideRight
         }
     }
 
-    Behavior on opacity {
+    Behavior on opacity  {
         NumberAnimation {
             from: 0
             duration: JamiTheme.shortFadeDuration

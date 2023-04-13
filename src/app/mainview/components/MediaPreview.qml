@@ -19,11 +19,9 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../settingsview/components"
 
@@ -33,7 +31,7 @@ Component {
     Rectangle {
         id: localMediaRect
 
-        width: (flickableWidth - spacingLength) /  numberElementsPerRow
+        width: (flickableWidth - spacingLength) / numberElementsPerRow
         height: width
         color: "transparent"
 
@@ -70,7 +68,7 @@ Component {
                             height: localMediaCompLoader.height
                             Rectangle {
                                 anchors.centerIn: parent
-                                width:  localMediaCompLoader.width
+                                width: localMediaCompLoader.width
                                 height: localMediaCompLoader.height
                                 radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
                             }
@@ -84,19 +82,20 @@ Component {
                         anchors.fill: parent
                         anchors.margins: 2
                         sourceComponent: {
-                            if (mediaInfo.isImage || mediaInfo.isAnimatedImage )
-                                return imageMediaComp
+                            if (mediaInfo.isImage || mediaInfo.isAnimatedImage)
+                                return imageMediaComp;
                             else if (WITH_WEBENGINE)
-                                return avMediaComp
+                                return avMediaComp;
                         }
                         Component {
                             id: avMediaComp
                             Loader {
                                 Component.onCompleted: {
-                                    var qml = WITH_WEBENGINE ?
-                                                "qrc:/webengine/VideoPreview.qml" :
-                                                "qrc:/nowebengine/VideoPreview.qml"
-                                    setSource( qml, { isVideo: mediaInfo.isVideo, html:mediaInfo.html } )
+                                    var qml = WITH_WEBENGINE ? "qrc:/webengine/VideoPreview.qml" : "qrc:/nowebengine/VideoPreview.qml";
+                                    setSource(qml, {
+                                            "isVideo": mediaInfo.isVideo,
+                                            "html": mediaInfo.html
+                                        });
                                 }
 
                                 property real msgRadius: 20
@@ -118,7 +117,7 @@ Component {
                                         height: fileImage.height
                                         Rectangle {
                                             anchors.centerIn: parent
-                                            width:  fileImage.width
+                                            width: fileImage.width
                                             height: fileImage.height
                                             radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
                                         }
@@ -130,16 +129,16 @@ Component {
                                     acceptedButtons: Qt.LeftButton | Qt.RightButton
 
                                     onEntered: {
-                                        cursorShape = Qt.PointingHandCursor
+                                        cursorShape = Qt.PointingHandCursor;
                                     }
 
-                                    onClicked: function(mouse)  {
+                                    onClicked: function (mouse) {
                                         if (mouse.button === Qt.RightButton) {
-                                            ctxMenu.x = mouse.x
-                                            ctxMenu.y = mouse.y
-                                            ctxMenu.openMenu()
+                                            ctxMenu.x = mouse.x;
+                                            ctxMenu.y = mouse.y;
+                                            ctxMenu.openMenu();
                                         } else {
-                                            MessagesAdapter.openUrl(fileImage.source)
+                                            MessagesAdapter.openUrl(fileImage.source);
                                         }
                                     }
                                 }

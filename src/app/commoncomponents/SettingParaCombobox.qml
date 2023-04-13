@@ -15,10 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 ComboBox {
@@ -43,9 +41,9 @@ ComboBox {
         // The placeholder text is either the placeholderText property or a default text.
         // Otherwise, display the currentSelectionText property.
         if (currentIndex < 0 && !count) {
-            return placeholderText !== "" ? placeholderText : JamiStrings.notAvailable
+            return placeholderText !== "" ? placeholderText : JamiStrings.notAvailable;
         }
-        return currentSelectionText
+        return currentSelectionText;
     }
 
     delegate: ItemDelegate {
@@ -53,10 +51,11 @@ ComboBox {
 
         contentItem: Text {
             text: {
-                if (index < 0) return ''
-                var currentItem = root.delegateModel.items.get(index)
-                const value = currentItem.model[root.textRole]
-                return value === undefined ? '' : value.toString()
+                if (index < 0)
+                    return '';
+                var currentItem = root.delegateModel.items.get(index);
+                const value = currentItem.model[root.textRole];
+                return value === undefined ? '' : value.toString();
             }
 
             color: hovered ? JamiTheme.comboboxTextColorHovered : JamiTheme.textColor
@@ -68,7 +67,6 @@ ComboBox {
         background: Rectangle {
             color: hovered ? JamiTheme.comboboxBackgroundColorHovered : JamiTheme.transparentColor
         }
-
     }
 
     indicator: ResponsiveImage {
@@ -81,8 +79,7 @@ ComboBox {
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: 16
 
-        source: popup.visible ? JamiResources.expand_less_24dp_svg
-                              : JamiResources.expand_more_24dp_svg
+        source: popup.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
 
         color: JamiTheme.comboboxIconColor
     }
@@ -128,7 +125,5 @@ ComboBox {
             border.color: JamiTheme.comboboxBorderColorActive
             radius: 5
         }
-
     }
-
 }

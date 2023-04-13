@@ -15,14 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 SpinningAnimation {
@@ -40,8 +37,7 @@ SpinningAnimation {
 
         anchors.centerIn: root
 
-        width: JamiTheme.participantCallInStatusViewWidth + callStatus.Layout.preferredWidth
-               - JamiTheme.participantCallInStatusTextWidth - spinningAnimationWidth
+        width: JamiTheme.participantCallInStatusViewWidth + callStatus.Layout.preferredWidth - JamiTheme.participantCallInStatusTextWidth - spinningAnimationWidth
         height: JamiTheme.participantCallInStatusDelegateHeight - spinningAnimationWidth
 
         color: JamiTheme.darkGreyColor
@@ -100,15 +96,12 @@ SpinningAnimation {
                 elide: Text.ElideRight
 
                 onWidthChanged: {
-                    if (width > JamiTheme.participantCallInStatusTextWidth
-                            && width < JamiTheme.participantCallInStatusTextWidthLimit)
-                        callStatus.Layout.preferredWidth = width
+                    if (width > JamiTheme.participantCallInStatusTextWidth && width < JamiTheme.participantCallInStatusTextWidthLimit)
+                        callStatus.Layout.preferredWidth = width;
                     else if (width >= JamiTheme.participantCallInStatusTextWidthLimit)
-                        callStatus.Layout.preferredWidth
-                                = JamiTheme.participantCallInStatusTextWidthLimit
+                        callStatus.Layout.preferredWidth = JamiTheme.participantCallInStatusTextWidthLimit;
                     else
-                        callStatus.Layout.preferredWidth
-                                = JamiTheme.participantCallInStatusTextWidth
+                        callStatus.Layout.preferredWidth = JamiTheme.participantCallInStatusTextWidth;
                 }
             }
         }

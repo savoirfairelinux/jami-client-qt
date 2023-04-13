@@ -16,16 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import Qt.labs.platform
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -40,26 +37,24 @@ Rectangle {
     signal showThisPage
 
     function clearAllTextFields() {
-        connectBtn.spinnerTriggered = false
-        filePath = ""
-        errorText = ""
-        fileImportBtnText = JamiStrings.selectArchiveFile
+        connectBtn.spinnerTriggered = false;
+        filePath = "";
+        errorText = "";
+        fileImportBtnText = JamiStrings.selectArchiveFile;
     }
 
     function errorOccured(errorMessage) {
-        errorText = errorMessage
-        connectBtn.spinnerTriggered = false
+        errorText = errorMessage;
+        connectBtn.spinnerTriggered = false;
     }
 
     Connections {
         target: WizardViewStepModel
 
         function onMainStepChanged() {
-            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
-                    WizardViewStepModel.accountCreationOption ===
-                    WizardViewStepModel.AccountCreationOption.ImportFromBackup) {
-                clearAllTextFields()
-                root.showThisPage()
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation && WizardViewStepModel.accountCreationOption === WizardViewStepModel.AccountCreationOption.ImportFromBackup) {
+                clearAllTextFields();
+                root.showThisPage();
             }
         }
     }
@@ -87,7 +82,7 @@ Rectangle {
 
             color: JamiTheme.textColor
             font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
-            wrapMode : Text.WordWrap
+            wrapMode: Text.WordWrap
         }
 
         Text {
@@ -101,20 +96,19 @@ Rectangle {
             color: JamiTheme.textColor
 
             font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-            wrapMode : Text.WordWrap
+            wrapMode: Text.WordWrap
             lineHeight: JamiTheme.wizardViewTextLineHeight
         }
 
         MaterialButton {
             id: fileImportBtn
 
-            TextMetrics{
+            TextMetrics {
                 id: textSizeFileImportBtn
                 font.weight: Font.Bold
                 font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
                 text: fileImportBtn.text
             }
-
 
             objectName: "fileImportBtn"
             secondary: true
@@ -124,7 +118,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
-            preferredWidth: textSizeFileImportBtn.width + 2*JamiTheme.buttontextWizzardPadding
+            preferredWidth: textSizeFileImportBtn.width + 2 * JamiTheme.buttontextWizzardPadding
 
             text: fileImportBtnText
             toolTipText: JamiStrings.importAccountArchive
@@ -134,30 +128,25 @@ Rectangle {
             KeyNavigation.tab: KeyNavigation.down
 
             onClicked: {
-                errorText = ""
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "commoncomponents/JamiFileDialog.qml",
-                            {
-                                title: JamiStrings.openFile,
-                                fileMode: JamiFileDialog.OpenFile,
-                                folder: StandardPaths.writableLocation(
-                                            StandardPaths.HomeLocation) + "/Desktop",
-                                nameFilters: [JamiStrings.jamiArchiveFiles,
-                                    JamiStrings.allFiles]
-                            })
-                dlg.fileAccepted.connect(function(file) {
-                    filePath = file
-                    if (file.length !== "") {
-                        fileImportBtnText = UtilsAdapter.toFileInfoName(file)
-                        passwordFromBackupEdit.forceActiveFocus()
-                    } else {
-                        fileImportBtnText = JamiStrings.archive
-                    }
-                })
-                dlg.rejected.connect(function() {
-                    fileImportBtn.forceActiveFocus()
-                })
+                errorText = "";
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                        "title": JamiStrings.openFile,
+                        "fileMode": JamiFileDialog.OpenFile,
+                        "folder": StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop",
+                        "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+                    });
+                dlg.fileAccepted.connect(function (file) {
+                        filePath = file;
+                        if (file.length !== "") {
+                            fileImportBtnText = UtilsAdapter.toFileInfoName(file);
+                            passwordFromBackupEdit.forceActiveFocus();
+                        } else {
+                            fileImportBtnText = JamiStrings.archive;
+                        }
+                    });
+                dlg.rejected.connect(function () {
+                        fileImportBtn.forceActiveFocus();
+                    });
             }
         }
 
@@ -171,7 +160,7 @@ Rectangle {
             color: JamiTheme.textColor
 
             font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-            wrapMode : Text.WordWrap
+            wrapMode: Text.WordWrap
             lineHeight: JamiTheme.wizardViewTextLineHeight
         }
 
@@ -196,7 +185,7 @@ Rectangle {
         SpinnerButton {
             id: connectBtn
 
-            TextMetrics{
+            TextMetrics {
                 id: textSizeConnectBtn
                 font.weight: Font.Bold
                 font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
@@ -209,7 +198,7 @@ Rectangle {
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
-            preferredWidth: textSizeConnectBtn.width + 2*JamiTheme.buttontextWizzardPadding + 1
+            preferredWidth: textSizeConnectBtn.width + 2 * JamiTheme.buttontextWizzardPadding + 1
             primary: true
 
             spinnerTriggeredtext: JamiStrings.generatingAccount
@@ -217,10 +206,10 @@ Rectangle {
 
             enabled: {
                 if (spinnerTriggered)
-                    return false
+                    return false;
                 if (!(filePath.length === 0) && errorText.length === 0)
-                    return true
-                return false
+                    return true;
+                return false;
             }
 
             KeyNavigation.up: passwordFromBackupEdit
@@ -229,14 +218,13 @@ Rectangle {
 
             onClicked: {
                 if (connectBtn.focus)
-                    fileImportBtn.forceActiveFocus()
-                spinnerTriggered = true
-
-                WizardViewStepModel.accountCreationInfo =
-                        JamiQmlUtils.setUpAccountCreationInputPara(
-                            {archivePath : UtilsAdapter.getAbsPath(filePath),
-                                password : passwordFromBackupEdit.dynamicText})
-                WizardViewStepModel.nextStep()
+                    fileImportBtn.forceActiveFocus();
+                spinnerTriggered = true;
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
+                        "archivePath": UtilsAdapter.getAbsPath(filePath),
+                        "password": passwordFromBackupEdit.dynamicText
+                    });
+                WizardViewStepModel.nextStep();
             }
         }
 
@@ -272,8 +260,8 @@ Rectangle {
         KeyNavigation.tab: fileImportBtn
         KeyNavigation.up: {
             if (connectBtn.enabled)
-                return connectBtn
-            return passwordFromBackupEdit
+                return connectBtn;
+            return passwordFromBackupEdit;
         }
         KeyNavigation.down: fileImportBtn
 

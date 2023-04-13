@@ -15,16 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Popup {
@@ -55,79 +52,73 @@ Popup {
     signal validatePhoto(string photo)
 
     function openRecorder(vid) {
-        isVideo = vid
-        updateState(RecordBox.States.INIT)
-
+        isVideo = vid;
+        updateState(RecordBox.States.INIT);
         if (isVideo) {
-            localVideo.startWithId(VideoDevices.getDefaultDevice())
+            localVideo.startWithId(VideoDevices.getDefaultDevice());
         }
-        open()
+        open();
     }
 
     function closeRecorder() {
         if (isVideo) {
-            localVideo.startWithId("")
+            localVideo.startWithId("");
         }
         if (!root.isPhoto)
-            stopRecording()
-        close()
+            stopRecording();
+        close();
     }
 
     function updateState(new_state) {
-        state = new_state
+        state = new_state;
         if (isPhoto) {
-            screenshotBtn.visible = (state === RecordBox.States.INIT)
-            recordButton.visible = false
-            btnStop.visible = false
+            screenshotBtn.visible = (state === RecordBox.States.INIT);
+            recordButton.visible = false;
+            btnStop.visible = false;
         } else {
-            screenshotBtn.visible = false
-            recordButton.visible = (state === RecordBox.States.INIT)
-            btnStop.visible = (state === RecordBox.States.RECORDING)
+            screenshotBtn.visible = false;
+            recordButton.visible = (state === RecordBox.States.INIT);
+            btnStop.visible = (state === RecordBox.States.RECORDING);
         }
-        btnRestart.visible = (state === RecordBox.States.REC_SUCCESS)
-        btnSend.visible = (state === RecordBox.States.REC_SUCCESS)
-
+        btnRestart.visible = (state === RecordBox.States.REC_SUCCESS);
+        btnSend.visible = (state === RecordBox.States.REC_SUCCESS);
         if (state === RecordBox.States.INIT) {
-            duration = 0
-            time.text = "00:00"
-            timer.stop()
+            duration = 0;
+            time.text = "00:00";
+            timer.stop();
         } else if (state === RecordBox.States.REC_SUCCESS) {
-            timer.stop()
+            timer.stop();
         }
     }
 
     function startRecording() {
-        timer.start()
-        pathRecorder = AVModel.startLocalMediaRecorder(isVideo? VideoDevices.getDefaultDevice() : "")
+        timer.start();
+        pathRecorder = AVModel.startLocalMediaRecorder(isVideo ? VideoDevices.getDefaultDevice() : "");
         if (pathRecorder == "") {
-            timer.stop()
+            timer.stop();
         }
     }
 
     function stopRecording() {
         if (pathRecorder !== "") {
-            AVModel.stopLocalRecorder(pathRecorder)
+            AVModel.stopLocalRecorder(pathRecorder);
         }
     }
 
     function sendRecord() {
         if (pathRecorder !== "") {
-            MessagesAdapter.sendFile(pathRecorder)
-            MessagesAdapter.replyToId = ""
+            MessagesAdapter.sendFile(pathRecorder);
+            MessagesAdapter.replyToId = "";
         }
     }
 
     function updateTimer() {
-
-        duration += 1
-
-        var m = Math.trunc(duration / 60)
-        var s = (duration % 60)
-
-        var min = (m < 10) ? "0" + String(m) : String(m)
-        var sec = (s < 10) ? "0" + String(s) : String(s)
-
-        time.text = min + ":" + sec
+        duration += 1;
+        var m = Math.trunc(duration / 60);
+        var s = (duration % 60);
+        var min = (m < 10) ? "0" + String(m) : String(m);
+        var sec = (s < 10) ? "0" + String(s) : String(s);
+        time.text = min + ":" + sec;
     }
 
     modal: true
@@ -135,20 +126,21 @@ Popup {
 
     onActiveFocusChanged: {
         if (visible) {
-            closeRecorder()
+            closeRecorder();
         }
     }
 
     onVisibleChanged: {
         if (!visible) {
-            closeRecorder()
+            closeRecorder();
         }
     }
 
-    background: Item {} // Computed by id: box, to do the layer on LocalVideo
+    background: Item {
+    } // Computed by id: box, to do the layer on LocalVideo
 
     width: preferredWidth
-    height: isVideo? previewWidget.height + 80 : preferredHeight
+    height: isVideo ? previewWidget.height + 80 : preferredHeight
     Rectangle {
         id: box
         radius: 5
@@ -173,8 +165,8 @@ Popup {
             anchors.margins: 8
 
             onClicked: {
-                closeRecorder()
-                updateState(RecordBox.States.INIT)
+                closeRecorder();
+                updateState(RecordBox.States.INIT);
             }
         }
 
@@ -273,9 +265,9 @@ Popup {
                     imageColor: JamiTheme.recordIconColor
 
                     onClicked: {
-                        updateState(RecordBox.States.RECORDING)
+                        updateState(RecordBox.States.RECORDING);
                         if (!root.isPhoto)
-                            startRecording()
+                            startRecording();
                     }
                 }
 
@@ -295,8 +287,8 @@ Popup {
                     imageColor: UtilsAdapter.luma(JamiTheme.backgroundColor) ? "white" : JamiTheme.redColor
 
                     onClicked: {
-                        root.photo = videoProvider.captureVideoFrame(VideoDevices.getDefaultDevice())
-                        updateState(RecordBox.States.REC_SUCCESS)
+                        root.photo = videoProvider.captureVideoFrame(VideoDevices.getDefaultDevice());
+                        updateState(RecordBox.States.REC_SUCCESS);
                     }
                 }
 
@@ -317,8 +309,8 @@ Popup {
 
                     onClicked: {
                         if (!root.isPhoto)
-                            stopRecording()
-                        updateState(RecordBox.States.REC_SUCCESS)
+                            stopRecording();
+                        updateState(RecordBox.States.REC_SUCCESS);
                     }
                 }
 
@@ -339,8 +331,8 @@ Popup {
 
                     onClicked: {
                         if (!root.isPhoto)
-                            stopRecording()
-                        updateState(RecordBox.States.INIT)
+                            stopRecording();
+                        updateState(RecordBox.States.INIT);
                     }
                 }
 
@@ -360,13 +352,13 @@ Popup {
 
                     onClicked: {
                         if (!root.isPhoto) {
-                            stopRecording()
-                            sendRecord()
+                            stopRecording();
+                            sendRecord();
                         } else if (root.photo !== "") {
-                            root.validatePhoto(root.photo)
+                            root.validatePhoto(root.photo);
                         }
-                        closeRecorder()
-                        updateState(RecordBox.States.INIT)
+                        closeRecorder();
+                        updateState(RecordBox.States.INIT);
                     }
                 }
 

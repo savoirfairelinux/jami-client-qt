@@ -15,11 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -45,8 +43,7 @@ BaseModalDialog {
             id: labelDeletion
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: deleteAccountContentColumnLayout.width -
-                                   JamiTheme.preferredMarginSize * 2
+            Layout.preferredWidth: deleteAccountContentColumnLayout.width - JamiTheme.preferredMarginSize * 2
 
             color: JamiTheme.textColor
             text: JamiStrings.confirmDeleteQuestion
@@ -63,8 +60,7 @@ BaseModalDialog {
             id: labelBestId
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: deleteAccountContentColumnLayout.width -
-                                   JamiTheme.preferredMarginSize * 2
+            Layout.preferredWidth: deleteAccountContentColumnLayout.width - JamiTheme.preferredMarginSize * 2
 
             color: JamiTheme.textColor
             text: bestName
@@ -82,8 +78,7 @@ BaseModalDialog {
             id: labelAccountHash
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: deleteAccountContentColumnLayout.width -
-                                   JamiTheme.preferredMarginSize * 2
+            Layout.preferredWidth: deleteAccountContentColumnLayout.width - JamiTheme.preferredMarginSize * 2
 
             color: JamiTheme.textColor
             text: accountId
@@ -102,8 +97,7 @@ BaseModalDialog {
             visible: !isSIP
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: deleteAccountContentColumnLayout.width -
-                                   JamiTheme.preferredMarginSize * 2
+            Layout.preferredWidth: deleteAccountContentColumnLayout.width - JamiTheme.preferredMarginSize * 2
 
             text: JamiStrings.deleteAccountInfos
 
@@ -140,15 +134,17 @@ BaseModalDialog {
 
                 Connections {
                     target: root
-                    function onClosed() { btnDelete.enabled = true }
+                    function onClosed() {
+                        btnDelete.enabled = true;
+                    }
                 }
 
                 onClicked: {
-                    btnDelete.enabled = false
-                    busyInd.running = true
-                    AccountAdapter.deleteCurrentAccount()
-                    close()
-                    accepted()
+                    btnDelete.enabled = false;
+                    busyInd.running = true;
+                    AccountAdapter.deleteCurrentAccount();
+                    close();
+                    accepted();
                 }
             }
 
@@ -158,7 +154,9 @@ BaseModalDialog {
 
                 Connections {
                     target: root
-                    function onClosed() { busyInd.running = false }
+                    function onClosed() {
+                        busyInd.running = false;
+                    }
                 }
             }
 

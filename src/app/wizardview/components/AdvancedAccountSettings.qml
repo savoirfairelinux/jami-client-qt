@@ -15,20 +15,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import Qt5Compat.GraphicalEffects
-
 import "../../commoncomponents"
 
 Rectangle {
-
     id: root
     signal saveButtonClicked
 
@@ -43,13 +39,12 @@ Rectangle {
     opacity: 0.93
 
     function clear() {
-        openedPassword = false
-        openedNickname = false
-        passwordEdit.dynamicText = ""
-        passwordConfirmEdit.dynamicText = ""
-        UtilsAdapter.setTempCreationImageFromString()
+        openedPassword = false;
+        openedNickname = false;
+        passwordEdit.dynamicText = "";
+        passwordConfirmEdit.dynamicText = "";
+        UtilsAdapter.setTempCreationImageFromString();
     }
-
 
     JamiFlickable {
         id: scrollView
@@ -58,9 +53,9 @@ Rectangle {
             anchors.fill: parent
 
             onClicked: {
-                openedPassword = false
-                openedNickname = false
-                adviceBox.checked = false
+                openedPassword = false;
+                openedNickname = false;
+                adviceBox.checked = false;
             }
         }
 
@@ -95,30 +90,33 @@ Rectangle {
 
                     Layout.preferredWidth: {
                         if (root.openedPassword)
-                            return Math.min(settings.width, JamiTheme.passwordEditOpenedBoxWidth)
+                            return Math.min(settings.width, JamiTheme.passwordEditOpenedBoxWidth);
                         if (root.openedNickname)
-                            return Math.min(settings.width, cornerIcon1.width)
-                        return Math.min(settings.width, JamiTheme.passwordEditClosedBoxWidth)
+                            return Math.min(settings.width, cornerIcon1.width);
+                        return Math.min(settings.width, JamiTheme.passwordEditClosedBoxWidth);
                     }
 
                     Layout.preferredHeight: {
                         if (root.openedPassword)
-                            return passwordColumnLayout.implicitHeight
-                        return Math.max(cornerIcon1.height, labelEncrypt.height + 2*JamiTheme.advancedAccountSettingsHeightMargin)
+                            return passwordColumnLayout.implicitHeight;
+                        return Math.max(cornerIcon1.height, labelEncrypt.height + 2 * JamiTheme.advancedAccountSettingsHeightMargin);
                     }
 
-
-                    Behavior on Layout.preferredWidth {
-                        NumberAnimation { duration: 100 }
+                    Behavior on Layout.preferredWidth  {
+                        NumberAnimation {
+                            duration: 100
+                        }
                     }
-                    Behavior on Layout.preferredHeight {
-                        NumberAnimation { duration: 100 }
+                    Behavior on Layout.preferredHeight  {
+                        NumberAnimation {
+                            duration: 100
+                        }
                     }
 
                     Rectangle {
                         id: bg
                         radius: JamiTheme.formsRadius
-                        border.color: openedPassword? JamiTheme.transparentColor : JamiTheme.lightBlue_
+                        border.color: openedPassword ? JamiTheme.transparentColor : JamiTheme.lightBlue_
                         layer.enabled: true
                         color: root.icon1Hovered ? JamiTheme.buttonTintedBlue : JamiTheme.secAndTertiHoveredBackgroundColor
                         anchors.fill: parent
@@ -126,22 +124,21 @@ Rectangle {
                         Rectangle {
 
                             layer.enabled: true
-                            height: parent.height /2
-                            width: parent.width /2
+                            height: parent.height / 2
+                            width: parent.width / 2
                             anchors.bottom: parent.bottom
                             anchors.left: parent.left
-                            border.color: openedPassword? JamiTheme.transparentColor : JamiTheme.lightBlue_
+                            border.color: openedPassword ? JamiTheme.transparentColor : JamiTheme.lightBlue_
                             color: root.icon1Hovered ? JamiTheme.buttonTintedBlue : JamiTheme.secAndTertiHoveredBackgroundColor
 
                             Rectangle {
 
-                                height:  parent.height
+                                height: parent.height
                                 width: parent.width
                                 anchors.bottom: parent.bottom
                                 anchors.left: parent.left
                                 anchors.margins: 1
                                 color: root.icon1Hovered ? JamiTheme.buttonTintedBlue : JamiTheme.secAndTertiHoveredBackgroundColor
-
                             }
                         }
 
@@ -182,7 +179,6 @@ Rectangle {
                             }
 
                             PasswordTextEdit {
-
                                 id: passwordEdit
 
                                 visible: openedPassword
@@ -201,7 +197,6 @@ Rectangle {
                             }
 
                             PasswordTextEdit {
-
                                 id: passwordConfirmEdit
                                 visible: openedPassword
                                 placeholderText: JamiStrings.confirmPassword
@@ -237,7 +232,7 @@ Rectangle {
                             MaterialButton {
                                 id: setButton
 
-                                TextMetrics{
+                                TextMetrics {
                                     id: setButtonTextSize
                                     font.weight: Font.Bold
                                     font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
@@ -248,27 +243,25 @@ Rectangle {
 
                                 Layout.topMargin: 10
                                 Layout.alignment: Qt.AlignCenter
-                                preferredWidth: setButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+                                preferredWidth: setButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
                                 text: JamiStrings.setPassword
                                 primary: true
 
                                 hoveredColor: checkEnable() ? JamiTheme.buttonTintedBlueHovered : JamiTheme.buttonTintedGreyInactive
                                 pressedColor: checkEnable() ? JamiTheme.buttonTintedBluePressed : JamiTheme.buttonTintedGreyInactive
 
-                                color: checkEnable() ? JamiTheme.buttonTintedBlue :
-                                                       JamiTheme.buttonTintedGreyInactive
+                                color: checkEnable() ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGreyInactive
 
                                 enabled: checkEnable()
 
                                 function checkEnable() {
-                                    text = JamiStrings.setPassword
-                                    return (passwordEdit.dynamicText === passwordConfirmEdit.dynamicText
-                                            && passwordEdit.dynamicText.length !== 0)
+                                    text = JamiStrings.setPassword;
+                                    return (passwordEdit.dynamicText === passwordConfirmEdit.dynamicText && passwordEdit.dynamicText.length !== 0);
                                 }
 
                                 onClicked: {
-                                    root.validatedPassword = passwordConfirmEdit.dynamicText
-                                    text = JamiStrings.setPasswordSuccess
+                                    root.validatedPassword = passwordConfirmEdit.dynamicText;
+                                    text = JamiStrings.setPasswordSuccess;
                                 }
                             }
 
@@ -278,7 +271,6 @@ Rectangle {
                                 Layout.preferredWidth: parent.width
 
                                 Rectangle {
-
                                     id: cornerIcon1
                                     layer.enabled: true
 
@@ -287,31 +279,28 @@ Rectangle {
                                     height: JamiTheme.cornerIconSize
                                     width: JamiTheme.cornerIconSize
 
-
-                                    color: openedPassword  ? JamiTheme.buttonTintedBlue : JamiTheme.transparentColor
+                                    color: openedPassword ? JamiTheme.buttonTintedBlue : JamiTheme.transparentColor
                                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                                    Layout.leftMargin:  openedPassword ? 2 : openedNickname ? 0 : 20
+                                    Layout.leftMargin: openedPassword ? 2 : openedNickname ? 0 : 20
                                     Layout.bottomMargin: openedPassword ? 2 : 0
 
                                     Rectangle {
 
                                         visible: openedPassword
 
-                                        height: cornerIcon1.height/2
-                                        width: cornerIcon1.width/2
+                                        height: cornerIcon1.height / 2
+                                        width: cornerIcon1.width / 2
                                         anchors.left: cornerIcon1.left
                                         anchors.bottom: cornerIcon1.bottom
                                         color: JamiTheme.buttonTintedBlue
-
                                     }
 
-                                    ResponsiveImage  {
+                                    ResponsiveImage {
 
                                         width: 18
                                         height: 18
                                         source: JamiResources.lock_svg
-                                        color: root.icon1Hovered ? JamiTheme.primaryTextColor
-                                                                                            : openedPassword ? JamiTheme.primaryTextColor : JamiTheme.buttonTintedBlue
+                                        color: root.icon1Hovered ? JamiTheme.primaryTextColor : openedPassword ? JamiTheme.primaryTextColor : JamiTheme.buttonTintedBlue
                                         anchors.centerIn: cornerIcon1
                                     }
                                 }
@@ -326,7 +315,6 @@ Rectangle {
                                     wrapMode: Text.WordWrap
                                     color: root.icon1Hovered ? JamiTheme.primaryTextColor : JamiTheme.textColor
                                     font.pixelSize: JamiTheme.creditsTextSize
-
                                 }
                             }
                         }
@@ -334,8 +322,8 @@ Rectangle {
                         TapHandler {
                             target: passwordColumnLayout
                             onTapped: {
-                                openedNickname = false
-                                openedPassword = true
+                                openedNickname = false;
+                                openedPassword = true;
                             }
                         }
 
@@ -343,37 +331,39 @@ Rectangle {
                             target: passwordColumnLayout
                             enabled: !openedPassword
                             onHoveredChanged: {
-                                root.icon1Hovered = hovered
+                                root.icon1Hovered = hovered;
                             }
                         }
                     }
                 }
 
-
-
                 Item {
                     Layout.alignment: Qt.AlignRight | Qt.AlignTop
 
-                    Behavior on Layout.preferredWidth {
-                        NumberAnimation { duration: 100 }
+                    Behavior on Layout.preferredWidth  {
+                        NumberAnimation {
+                            duration: 100
+                        }
                     }
 
-                    Behavior on Layout.preferredHeight {
-                        NumberAnimation { duration: 100 }
+                    Behavior on Layout.preferredHeight  {
+                        NumberAnimation {
+                            duration: 100
+                        }
                     }
 
                     Layout.preferredWidth: {
                         if (openedNickname)
-                            return Math.min(settings.width, JamiTheme.customNicknameOpenedBoxWidth)
+                            return Math.min(settings.width, JamiTheme.customNicknameOpenedBoxWidth);
                         if (openedPassword)
-                            return Math.min(settings.width, cornerIcon1.width)
-                        return Math.min(settings.width, JamiTheme.customNicknameClosedBoxWidth)
+                            return Math.min(settings.width, cornerIcon1.width);
+                        return Math.min(settings.width, JamiTheme.customNicknameClosedBoxWidth);
                     }
 
                     Layout.preferredHeight: {
                         if (openedNickname)
-                            return customColumnLayout.implicitHeight
-                        return Math.max(cornerIcon2.height, labelCustomize.height + 2*JamiTheme.advancedAccountSettingsHeightMargin)
+                            return customColumnLayout.implicitHeight;
+                        return Math.max(cornerIcon2.height, labelCustomize.height + 2 * JamiTheme.advancedAccountSettingsHeightMargin);
                     }
 
                     Rectangle {
@@ -387,8 +377,8 @@ Rectangle {
 
                         Rectangle {
 
-                            height: parent.height /2
-                            width: parent.width /2
+                            height: parent.height / 2
+                            width: parent.width / 2
                             anchors.bottom: parent.bottom
                             anchors.right: parent.right
                             border.color: openedNickname ? JamiTheme.transparentColor : JamiTheme.lightBlue_
@@ -404,16 +394,12 @@ Rectangle {
                                 anchors.right: parent.right
                                 anchors.margins: 1
                                 color: root.icon2Hovered ? JamiTheme.buttonTintedBlue : JamiTheme.secAndTertiHoveredBackgroundColor
-
                             }
-
                         }
 
                         ColumnLayout {
-
                             id: customColumnLayout
                             anchors.fill: parent
-
 
                             Text {
 
@@ -444,7 +430,7 @@ Rectangle {
                                     Layout.leftMargin: JamiTheme.cornerIconSize
 
                                     newItem: true
-                                    imageId: visible? "temp" : ""
+                                    imageId: visible ? "temp" : ""
                                     avatarSize: 80
                                 }
 
@@ -463,8 +449,6 @@ Rectangle {
                                 }
                             }
 
-
-
                             Text {
 
                                 visible: openedNickname
@@ -482,14 +466,12 @@ Rectangle {
                                 lineHeight: JamiTheme.wizardViewTextLineHeight
                             }
 
-                            RowLayout{
+                            RowLayout {
 
                                 Layout.alignment: openedNickname ? Qt.AlignRight : Qt.AlignLeft
                                 Layout.preferredWidth: parent.width
 
-
                                 Rectangle {
-
                                     id: cornerIcon2
                                     layer.enabled: true
 
@@ -498,28 +480,27 @@ Rectangle {
                                     height: JamiTheme.cornerIconSize
                                     width: JamiTheme.cornerIconSize
 
-                                    color: openedNickname  ? JamiTheme.buttonTintedBlue : JamiTheme.transparentColor
+                                    color: openedNickname ? JamiTheme.buttonTintedBlue : JamiTheme.transparentColor
                                     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                                     Layout.leftMargin: openedPassword ? 0 : 20
-                                    Layout.rightMargin:  openedNickname ? 2 : 0
+                                    Layout.rightMargin: openedNickname ? 2 : 0
                                     Layout.bottomMargin: openedNickname ? 2 : 0
 
                                     Rectangle {
                                         visible: openedNickname
 
-                                        height: cornerIcon2.height/2
-                                        width: cornerIcon2.width/2
+                                        height: cornerIcon2.height / 2
+                                        width: cornerIcon2.width / 2
                                         anchors.right: cornerIcon2.right
                                         anchors.bottom: cornerIcon2.bottom
                                         color: JamiTheme.buttonTintedBlue
                                     }
 
-                                    ResponsiveImage  {
+                                    ResponsiveImage {
                                         width: 18
                                         height: 18
                                         source: JamiResources.noun_paint_svg
-                                        color: root.icon2Hovered ? JamiTheme.primaryTextColor
-                                                                : openedNickname ? JamiTheme.primaryTextColor : JamiTheme.buttonTintedBlue
+                                        color: root.icon2Hovered ? JamiTheme.primaryTextColor : openedNickname ? JamiTheme.primaryTextColor : JamiTheme.buttonTintedBlue
                                         anchors.centerIn: cornerIcon2
                                     }
                                 }
@@ -541,8 +522,8 @@ Rectangle {
                         TapHandler {
                             target: customColumnLayout
                             onTapped: {
-                                openedNickname = true
-                                openedPassword = false
+                                openedNickname = true;
+                                openedPassword = false;
                             }
                         }
 
@@ -550,7 +531,7 @@ Rectangle {
                             target: customColumnLayout
                             enabled: !openedNickname
                             onHoveredChanged: {
-                                root.icon2Hovered = hovered
+                                root.icon2Hovered = hovered;
                             }
                         }
                     }
@@ -559,7 +540,7 @@ Rectangle {
                 MaterialButton {
                     id: showAdvancedButton
 
-                    TextMetrics{
+                    TextMetrics {
                         id: showAdvancedButtonTextSize
                         font.weight: Font.Bold
                         font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
@@ -571,17 +552,15 @@ Rectangle {
                     Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
-                    preferredWidth: showAdvancedButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding + 1
+                    preferredWidth: showAdvancedButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding + 1
                     text: JamiStrings.optionSave
 
                     onClicked: {
-                        root.saveButtonClicked()
-                        root.alias = displayNameLineEdit.dynamicText
+                        root.saveButtonClicked();
+                        root.alias = displayNameLineEdit.dynamicText;
                     }
                 }
             }
-
         }
     }
-
 }

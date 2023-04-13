@@ -15,18 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
 
 Item {
-
     id: root
 
     property real margin: 5
@@ -35,7 +32,7 @@ Item {
     RowLayout {
 
         anchors.fill: root
-        spacing : 2
+        spacing: 2
 
         Rectangle {
             id: mainRect
@@ -58,8 +55,8 @@ Item {
                         height: rect.height
                         Rectangle {
                             anchors.centerIn: parent
-                            width:  rect.width
-                            height:  rect.height
+                            width: rect.width
+                            height: rect.height
                             radius: JamiTheme.chatViewFooterButtonRadius
                         }
                     }
@@ -74,7 +71,7 @@ Item {
 
                     ResponsiveImage {
                         id: fileIcon
-                        visible : !IsImage
+                        visible: !IsImage
                         anchors.fill: parent
                         anchors.margins: 14
                         source: {
@@ -100,14 +97,14 @@ Item {
                         fillMode: Image.PreserveAspectCrop
                         source: {
                             if (!IsImage)
-                                return ""
+                                return "";
 
                             // :/ -> resource url for test purposes
-                            var sourceUrl = FilePath
+                            var sourceUrl = FilePath;
                             if (!sourceUrl.startsWith(":/"))
-                                return JamiQmlUtils.qmlFilePrefix + sourceUrl
+                                return JamiQmlUtils.qmlFilePrefix + sourceUrl;
                             else
-                                return "qrc" + sourceUrl
+                                return "qrc" + sourceUrl;
                         }
 
                         layer.enabled: true
@@ -148,9 +145,9 @@ Item {
 
         Rectangle {
             id: info
-            Layout.preferredHeight: root.height -margin
+            Layout.preferredHeight: root.height - margin
             Layout.preferredWidth: JamiTheme.layoutWidthFileTransfer
-            color : JamiTheme.transparentColor
+            color: JamiTheme.transparentColor
             Layout.alignment: Qt.AlignLeft
 
             ColumnLayout {
@@ -166,7 +163,7 @@ Item {
                     Layout.preferredWidth: info.width
                     font.pointSize: JamiTheme.filesToSendDelegateFontPointSize
                     color: JamiTheme.chatviewTextColor
-                    font.bold : true
+                    font.bold: true
                     text: FileName
                     elide: Text.ElideRight
                 }

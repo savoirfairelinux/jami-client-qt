@@ -15,14 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 RowLayout {
@@ -75,20 +72,20 @@ RowLayout {
         elidedText: modalTextEditTextSize.elidedText
 
         onAccepted: {
-            root.dynamicText = dynamicText
-            editFinished()
+            root.dynamicText = dynamicText;
+            editFinished();
         }
 
         editMode: false
         isPersistent: false
 
         onActiveFocusChanged: {
-            if(!activeFocus){
-                root.dynamicText = dynamicText
-                editFinished()
-                modalTextEdit.editMode = false
+            if (!activeFocus) {
+                root.dynamicText = dynamicText;
+                editFinished();
+                modalTextEdit.editMode = false;
             } else {
-                modalTextEdit.editMode = true
+                modalTextEdit.editMode = true;
             }
         }
     }
@@ -105,10 +102,9 @@ RowLayout {
         placeholderText: root.placeholderText ? root.placeholderText : root.titleField
 
         onAccepted: {
-            root.dynamicText = dynamicText
-            editFinished()
-            echoMode = TextInput.Password
+            root.dynamicText = dynamicText;
+            editFinished();
+            echoMode = TextInput.Password;
         }
-
     }
 }

@@ -15,10 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 Switch {
@@ -60,17 +58,15 @@ Switch {
 
             radius: JamiTheme.switchIndicatorRadius
 
-            color: root.checked ? JamiTheme.switchHandleCheckedColor :
-                                  JamiTheme.switchHandleColor
+            color: root.checked ? JamiTheme.switchHandleCheckedColor : JamiTheme.switchHandleColor
             border.color: JamiTheme.switchHandleBorderColor
         }
     }
 
     Keys.onPressed: function (keyEvent) {
-        if (keyEvent.key === Qt.Key_Enter ||
-                keyEvent.key === Qt.Key_Return) {
-            checked = !checked
-            keyEvent.accepted = true
+        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+            checked = !checked;
+            keyEvent.accepted = true;
         }
     }
 }

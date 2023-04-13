@@ -14,17 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.Helpers 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 SimpleMessageDialog {
@@ -32,7 +29,7 @@ SimpleMessageDialog {
 
     property int bytesRead: 0
     property int totalBytes: 0
-    property string hSizeRead:  UtilsAdapter.humanFileSize(bytesRead)
+    property string hSizeRead: UtilsAdapter.humanFileSize(bytesRead)
     property string hTotalBytes: UtilsAdapter.humanFileSize(totalBytes)
     property alias progressBarValue: progressBar.value
 
@@ -40,31 +37,29 @@ SimpleMessageDialog {
         target: UpdateManager
 
         function onUpdateDownloadProgressChanged(bytesRead, totalBytes) {
-            downloadDialog.setDownloadProgress(bytesRead, totalBytes)
+            downloadDialog.setDownloadProgress(bytesRead, totalBytes);
         }
 
         function onUpdateDownloadErrorOccurred(error) {
-            downloadDialog.close()
+            downloadDialog.close();
         }
 
         function onUpdateDownloadFinished() {
-            downloadDialog.close()
+            downloadDialog.close();
         }
     }
 
     function setDownloadProgress(bytesRead, totalBytes) {
-        downloadDialog.bytesRead = bytesRead
-        downloadDialog.totalBytes = totalBytes
+        downloadDialog.bytesRead = bytesRead;
+        downloadDialog.totalBytes = totalBytes;
     }
 
-    infoText: JamiStrings.updateDownloading +
-              " (%1 / %2)".arg(hSizeRead).arg(hTotalBytes)
+    infoText: JamiStrings.updateDownloading + " (%1 / %2)".arg(hSizeRead).arg(hTotalBytes)
 
     innerContentData: ProgressBar {
         id: progressBar
 
-        value: downloadDialog.bytesRead /
-               downloadDialog.totalBytes
+        value: downloadDialog.bytesRead / downloadDialog.totalBytes
 
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredMarginSize
@@ -102,9 +97,11 @@ SimpleMessageDialog {
 
     buttonTitles: [JamiStrings.optionCancel]
     buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
-    buttonCallBacks: [function() { UpdateManager.cancelUpdate() }]
+    buttonCallBacks: [function () {
+            UpdateManager.cancelUpdate();
+        }]
     onVisibleChanged: {
         if (!visible)
-            UpdateManager.cancelUpdate()
+            UpdateManager.cancelUpdate();
     }
 }

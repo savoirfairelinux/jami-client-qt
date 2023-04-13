@@ -15,16 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Popup {
@@ -41,11 +38,11 @@ Popup {
 
     signal joinClicked
 
-    modal:true
+    modal: true
     padding: 0
 
     visible: false
-    closePolicy:  Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     Rectangle {
         id: container
 
@@ -54,7 +51,7 @@ Popup {
         color: JamiTheme.secondaryBackgroundColor
 
         ColumnLayout {
-            id:  popupContent
+            id: popupContent
 
             Layout.alignment: Qt.AlignCenter
 
@@ -65,13 +62,15 @@ Popup {
                 width: 30
                 height: 30
                 imageContainerWidth: 30
-                imageContainerHeight : 30
+                imageContainerHeight: 30
                 Layout.margins: 8
-                radius : 5
+                radius: 5
                 imageColor: "grey"
                 normalColor: JamiTheme.transparentColor
                 source: JamiResources.round_close_24dp_svg
-                onClicked: { root.visible = false }
+                onClicked: {
+                    root.visible = false;
+                }
             }
 
             Text {
@@ -88,7 +87,7 @@ Popup {
                 text: JamiStrings.stopSharingPopupBody
             }
 
-            RowLayout{
+            RowLayout {
                 Layout.margins: JamiTheme.popupButtonsMargin
                 Layout.alignment: Qt.AlignCenter
 
@@ -103,8 +102,8 @@ Popup {
                     text: JamiStrings.stopConvSharing.arg(PositionManager.getmapTitle(attachedAccountId, CurrentConversation.id))
 
                     onClicked: {
-                        PositionManager.stopSharingPosition(attachedAccountId, CurrentConversation.id)
-                        root.close()
+                        PositionManager.stopSharingPosition(attachedAccountId, CurrentConversation.id);
+                        root.close();
                     }
                 }
 
@@ -120,8 +119,8 @@ Popup {
                     text: JamiStrings.stopAllSharings
 
                     onClicked: {
-                        PositionManager.stopSharingPosition()
-                        root.close()
+                        PositionManager.stopSharingPosition();
+                        root.close();
                     }
                 }
             }
@@ -135,7 +134,7 @@ Popup {
     Overlay.modal: Rectangle {
         color: JamiTheme.transparentColor
         // Color animation for overlay when pop up is shown.
-        ColorAnimation on color {
+        ColorAnimation on color  {
             to: JamiTheme.popupOverlayColor
             duration: 500
         }
@@ -155,14 +154,18 @@ Popup {
 
     enter: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 0.0; to: 1.0
+            properties: "opacity"
+            from: 0.0
+            to: 1.0
             duration: JamiTheme.shortFadeDuration
         }
     }
 
     exit: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 1.0; to: 0.0
+            properties: "opacity"
+            from: 1.0
+            to: 0.0
             duration: JamiTheme.shortFadeDuration
         }
     }

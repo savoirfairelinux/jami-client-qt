@@ -15,8 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import "../mainview/components/"
+import "../mainview/components"
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -39,7 +38,7 @@ ColumnLayout {
         target: MessagesAdapter
         function onTimestampUpdated() {
             if ((showTime || showDay) && Timestamp !== undefined) {
-                formattedTime = MessagesAdapter.getFormattedTime(Timestamp)
+                formattedTime = MessagesAdapter.getFormattedTime(Timestamp);
             }
         }
     }
@@ -51,16 +50,14 @@ ColumnLayout {
         Layout.preferredHeight: childrenRect.height
         Layout.fillWidth: true
         Layout.topMargin: JamiTheme.dayTimestampTopMargin
-        Layout.bottomMargin: formattedTimeLabel.visible ?
-                                 0 :
-                                 JamiTheme.dayTimestampBottomMargin
+        Layout.bottomMargin: formattedTimeLabel.visible ? 0 : JamiTheme.dayTimestampBottomMargin
 
         Rectangle {
             id: line
 
             height: 1
             opacity: detailsOpacity
-            color:JamiTheme.timestampColor
+            color: JamiTheme.timestampColor
             width: parent.width - JamiTheme.timestampLinePadding
             anchors.centerIn: parent
         }
@@ -75,13 +72,19 @@ ColumnLayout {
             Layout.fillHeight: true
             anchors.centerIn: parent
 
-            border { color:  JamiTheme.timestampColor; width: 1 }
+            border {
+                color: JamiTheme.timestampColor
+                width: 1
+            }
 
             Text {
                 id: formattedDayLabel
 
                 color: JamiTheme.chatviewTextColor
-                anchors { verticalCenter: parent.verticalCenter; horizontalCenter: parent.horizontalCenter}
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    horizontalCenter: parent.horizontalCenter
+                }
                 text: formattedDay
                 font.pointSize: JamiTheme.timestampFont
             }

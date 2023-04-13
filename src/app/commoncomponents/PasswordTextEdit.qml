@@ -14,9 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
@@ -40,17 +38,16 @@ ModalTextEdit {
 
     onIcoClicked: {
         if (echoMode == TextInput.Normal) {
-            echoMode = TextInput.Password
-            suffixBisIconSrc = JamiResources.eye_cross_svg
+            echoMode = TextInput.Password;
+            suffixBisIconSrc = JamiResources.eye_cross_svg;
         } else {
-            echoMode = TextInput.Normal
-            suffixBisIconSrc = JamiResources.noun_eye_svg
+            echoMode = TextInput.Normal;
+            suffixBisIconSrc = JamiResources.noun_eye_svg;
         }
     }
 
     function startEditing() {
-        root.editMode = true
-        forceActiveFocus()
+        root.editMode = true;
+        forceActiveFocus();
     }
 }
-

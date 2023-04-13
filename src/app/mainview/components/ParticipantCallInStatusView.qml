@@ -15,25 +15,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 JamiListView {
     id: root
 
-    width: currentItem ? currentItem.width + currentItem.spinningAnimationWidth
-                       : JamiTheme.participantCallInStatusViewWidth
+    width: currentItem ? currentItem.width + currentItem.spinningAnimationWidth : JamiTheme.participantCallInStatusViewWidth
     height: JamiTheme.participantCallInStatusDelegateHeight
 
     model: CallOverlayModel.pendingConferenceesModel()
-    delegate: ParticipantCallInStatusDelegate {}
+    delegate: ParticipantCallInStatusDelegate {
+    }
 
     visible: currentItem ? true : false
 
@@ -41,17 +38,13 @@ JamiListView {
         target: model
 
         function onRowsInserted() {
-            var preferredHeight = JamiTheme.participantCallInStatusDelegateHeight * model.rowCount()
-            root.height = JamiTheme.participantCallInStatusViewHeight
-                    < preferredHeight ? JamiTheme.participantCallInStatusViewHeight
-                                      : preferredHeight
+            var preferredHeight = JamiTheme.participantCallInStatusDelegateHeight * model.rowCount();
+            root.height = JamiTheme.participantCallInStatusViewHeight < preferredHeight ? JamiTheme.participantCallInStatusViewHeight : preferredHeight;
         }
 
         function onRowsRemoved() {
-            var preferredHeight = JamiTheme.participantCallInStatusDelegateHeight * model.rowCount()
-            root.height = JamiTheme.participantCallInStatusViewHeight
-                    < preferredHeight ? JamiTheme.participantCallInStatusViewHeight
-                                      : preferredHeight
+            var preferredHeight = JamiTheme.participantCallInStatusDelegateHeight * model.rowCount();
+            root.height = JamiTheme.participantCallInStatusViewHeight < preferredHeight ? JamiTheme.participantCallInStatusViewHeight : preferredHeight;
         }
     }
 }

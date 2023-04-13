@@ -16,10 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Constants 1.1
 
 TextField {
@@ -60,13 +58,13 @@ TextField {
         anchors.fill: root
         radius: JamiTheme.primaryRadius
 
-        border.color: readOnly || underlined? "transparent" : borderColor
+        border.color: readOnly || underlined ? "transparent" : borderColor
         color: {
             if (readOnly)
-                return "transparent"
+                return "transparent";
             if (underlined)
-                return borderColor
-            return backgroundColor
+                return borderColor;
+            return backgroundColor;
         }
 
         Rectangle {
@@ -84,7 +82,7 @@ TextField {
 
     onReleased: function (event) {
         if (event.button === Qt.RightButton)
-            lineEditContextMenu.openMenuAt(event)
+            lineEditContextMenu.openMenuAt(event);
     }
 
     // Enter/Return keys intervention
@@ -94,12 +92,11 @@ TextField {
     // (since losing focus will also emit editingFinished)
     // Use accepted when the info is not saved by focus lost
     Keys.onPressed: function (event) {
-        if (event.key === Qt.Key_Enter ||
-                event.key === Qt.Key_Return) {
+        if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
             if (loseFocusWhenEnterPressed)
-                root.focus = false
-            root.accepted()
-            event.accepted = true
+                root.focus = false;
+            root.accepted();
+            event.accepted = true;
         }
     }
 }

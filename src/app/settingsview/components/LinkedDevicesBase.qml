@@ -15,22 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import SortFilterProxyModel 0.2
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
-
 import "../../commoncomponents"
 
 ColumnLayout {
-    id:root
+    id: root
 
     width: parent.width
     property bool inverted: false
@@ -39,28 +35,22 @@ ColumnLayout {
 
     visible: settingsListView.model.count > 0
 
-    function removeDeviceSlot(index){
-        var deviceId = settingsListView.model.data(settingsListView.model.index(index,0),
-                                                   DeviceItemListModel.DeviceID)
-        if(CurrentAccount.hasArchivePassword){
-            viewCoordinator.presentDialog(
-                        appWindow,
-                        "settingsview/components/RevokeDevicePasswordDialog.qml",
-                        { deviceId: deviceId })
+    function removeDeviceSlot(index) {
+        var deviceId = settingsListView.model.data(settingsListView.model.index(index, 0), DeviceItemListModel.DeviceID);
+        if (CurrentAccount.hasArchivePassword) {
+            viewCoordinator.presentDialog(appWindow, "settingsview/components/RevokeDevicePasswordDialog.qml", {
+                    "deviceId": deviceId
+                });
         } else {
-            viewCoordinator.presentDialog(
-                        appWindow,
-                        "commoncomponents/SimpleMessageDialog.qml",
-                        {
-                            title: JamiStrings.removeDevice,
-                            infoText: JamiStrings.sureToRemoveDevice,
-                            buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel],
-                            buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                                SimpleMessageDialog.ButtonStyle.TintedBlack],
-                            buttonCallBacks: [
-                                function() { DeviceItemListModel.revokeDevice(deviceId, "") }
-                            ]
-                        })
+            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                    "title": JamiStrings.removeDevice,
+                    "infoText": JamiStrings.sureToRemoveDevice,
+                    "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
+                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
+                    "buttonCallBacks": [function () {
+                            DeviceItemListModel.revokeDevice(deviceId, "");
+                        }]
+                });
         }
     }
 
@@ -74,7 +64,7 @@ ColumnLayout {
         color: JamiTheme.textColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        wrapMode : Text.WordWrap
+        wrapMode: Text.WordWrap
 
         font.weight: Font.Medium
         font.pixelSize: JamiTheme.settingsDescriptionPixelSize
@@ -92,7 +82,10 @@ ColumnLayout {
         model: SortFilterProxyModel {
             sourceModel: DeviceItemListModel
             sorters: [
-                RoleSorter { roleName: "DeviceName"; sortOrder: Qt.DescendingOrder}
+                RoleSorter {
+                    roleName: "DeviceName"
+                    sortOrder: Qt.DescendingOrder
+                }
             ]
 
             filters: ValueFilter {
@@ -113,6 +106,5 @@ ColumnLayout {
             onBtnRemoveDeviceClicked: removeDeviceSlot(index)
             isCurrent: root.isCurrent
         }
-
     }
 }

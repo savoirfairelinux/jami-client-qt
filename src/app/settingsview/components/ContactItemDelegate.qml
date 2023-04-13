@@ -16,20 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 ItemDelegate {
     id: root
 
-    property string contactName : ""
+    property string contactName: ""
     property string contactID: ""
     property string btnImgSource: ""
     property string btnToolTip: ""
@@ -112,7 +109,7 @@ ItemDelegate {
 
             Layout.rightMargin: 16
 
-            TextMetrics{
+            TextMetrics {
                 id: textSize
                 font.weight: Font.Bold
                 font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -124,13 +121,11 @@ ItemDelegate {
             buttontextHeightMargin: 14
 
             text: btnImgSource
-            preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
+            preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             toolTipText: btnToolTip
 
             onClicked: btnContactClicked()
-
         }
     }
 }
-

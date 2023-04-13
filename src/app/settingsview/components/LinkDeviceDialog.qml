@@ -16,15 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 BaseModalDialog {
@@ -41,51 +38,47 @@ BaseModalDialog {
         id: stackedWidget
 
         function setGeneratingPage() {
-            if(passwordEdit.length === 0 && CurrentAccount.hasArchivePassword){
-                setExportPage(NameDirectory.ExportOnRingStatus.WRONG_PASSWORD, "")
-                return
+            if (passwordEdit.length === 0 && CurrentAccount.hasArchivePassword) {
+                setExportPage(NameDirectory.ExportOnRingStatus.WRONG_PASSWORD, "");
+                return;
             }
-
-            stackedWidget.currentIndex = exportingSpinnerPage.pageIndex
-            spinnerMovie.playing = true
-
-            timerForExport.restart()
+            stackedWidget.currentIndex = exportingSpinnerPage.pageIndex;
+            spinnerMovie.playing = true;
+            timerForExport.restart();
         }
 
         function setExportPage(status, pin) {
             if (status === NameDirectory.ExportOnRingStatus.SUCCESS) {
-                infoLabel.success = true
-                infoLabelsRowLayout.visible = true
-                infoLabel.text = JamiStrings.pinTimerInfos
-                exportedPIN.text = pin
+                infoLabel.success = true;
+                infoLabelsRowLayout.visible = true;
+                infoLabel.text = JamiStrings.pinTimerInfos;
+                exportedPIN.text = pin;
             } else {
-                infoLabel.success = false
-                infoLabelsRowLayout.visible = false
-
-                switch(status) {
+                infoLabel.success = false;
+                infoLabelsRowLayout.visible = false;
+                switch (status) {
                 case NameDirectory.ExportOnRingStatus.WRONG_PASSWORD:
-                    infoLabel.text = JamiStrings.incorrectPassword
-                    break
+                    infoLabel.text = JamiStrings.incorrectPassword;
+                    break;
                 case NameDirectory.ExportOnRingStatus.NETWORK_ERROR:
-                    infoLabel.text = JamiStrings.linkDeviceNetWorkError
-                    break
+                    infoLabel.text = JamiStrings.linkDeviceNetWorkError;
+                    break;
                 case NameDirectory.ExportOnRingStatus.INVALID:
-                    infoLabel.text = JamiStrings.somethingWentWrong
-                    break
+                    infoLabel.text = JamiStrings.somethingWentWrong;
+                    break;
                 }
             }
-            stackedWidget.currentIndex = exportingInfoPage.pageIndex
+            stackedWidget.currentIndex = exportingInfoPage.pageIndex;
         }
 
-        Timer{
+        Timer {
             id: timerForExport
 
             repeat: false
             interval: 200
 
             onTriggered: {
-                AccountAdapter.model.exportOnRing(LRCInstance.currentAccountId,
-                                                  passwordEdit.dynamicText)
+                AccountAdapter.model.exportOnRing(LRCInstance.currentAccountId, passwordEdit.dynamicText);
             }
         }
 
@@ -93,19 +86,18 @@ BaseModalDialog {
             target: NameDirectory
 
             function onExportOnRingEnded(status, pin) {
-                stackedWidget.setExportPage(status, pin)
+                stackedWidget.setExportPage(status, pin);
             }
         }
 
         onVisibleChanged: {
             if (visible) {
-                infoLabel.text = JamiStrings.pinTimerInfos
-
-                if(CurrentAccount.hasArchivePassword) {
-                    stackedWidget.currentIndex = enterPasswordPage.pageIndex
-                    passwordEdit.forceActiveFocus()
+                infoLabel.text = JamiStrings.pinTimerInfos;
+                if (CurrentAccount.hasArchivePassword) {
+                    stackedWidget.currentIndex = enterPasswordPage.pageIndex;
+                    passwordEdit.forceActiveFocus();
                 } else {
-                    setGeneratingPage()
+                    setGeneratingPage();
                 }
             }
         }
@@ -142,7 +134,7 @@ BaseModalDialog {
                     placeholderText: JamiStrings.enterCurrentPassword
 
                     onDynamicTextChanged: {
-                        btnConfirm.enabled = dynamicText.length > 0
+                        btnConfirm.enabled = dynamicText.length > 0;
                     }
 
                     onAccepted: btnConfirm.clicked()
@@ -161,7 +153,7 @@ BaseModalDialog {
                         preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
                         buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
-                        color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                        color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
                         pressedColor: JamiTheme.buttonTintedBlackPressed
                         secondary: true
@@ -250,8 +242,7 @@ BaseModalDialog {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.margins: JamiTheme.preferredMarginSize
-                    Layout.preferredWidth: yourPinLabel.contentWidth +
-                                           exportedPIN.contentWidth + 5
+                    Layout.preferredWidth: yourPinLabel.contentWidth + exportedPIN.contentWidth + 5
                     Label {
                         id: yourPinLabel
 
@@ -292,13 +283,12 @@ BaseModalDialog {
                     id: infoLabel
 
                     property bool success: false
-                    property int borderWidth : success? 1 : 0
-                    property int borderRadius : success? 15 : 0
-                    property string backgroundColor : success? "whitesmoke" : "transparent"
-                    property string borderColor : success? "lightgray" : "transparent"
+                    property int borderWidth: success ? 1 : 0
+                    property int borderRadius: success ? 15 : 0
+                    property string backgroundColor: success ? "whitesmoke" : "transparent"
+                    property string borderColor: success ? "lightgray" : "transparent"
 
-                    Layout.maximumWidth: stackedWidget.width -
-                                         JamiTheme.preferredMarginSize * 2
+                    Layout.maximumWidth: stackedWidget.width - JamiTheme.preferredMarginSize * 2
 
                     Layout.alignment: Qt.AlignCenter
 
@@ -307,8 +297,7 @@ BaseModalDialog {
 
                     wrapMode: Text.Wrap
                     text: JamiStrings.pinTimerInfos
-                    font.pointSize: success ? JamiTheme.textFontSize :
-                                              JamiTheme.textFontSize + 3
+                    font.pointSize: success ? JamiTheme.textFontSize : JamiTheme.textFontSize + 3
                     font.kerning: true
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -342,12 +331,11 @@ BaseModalDialog {
 
                     onClicked: {
                         if (infoLabel.success)
-                            accepted()
-                        close()
+                            accepted();
+                        close();
                     }
                 }
             }
         }
     }
 }
-

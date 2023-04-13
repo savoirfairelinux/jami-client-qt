@@ -15,17 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
@@ -40,7 +37,6 @@ SettingsPageBase {
     title: JamiStrings.manageAccountSettingsTitle
 
     flickableContent: ColumnLayout {
-
         id: manageAccountColumnLayout
 
         width: contentFlickableWidth
@@ -64,11 +60,10 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
-
             }
 
             ToggleSwitch {
@@ -84,7 +79,6 @@ SettingsPageBase {
                 checked: CurrentAccount.enabled
                 onSwitchToggled: CurrentAccount.enableAccount(checked)
             }
-
         }
 
         ColumnLayout {
@@ -104,11 +98,10 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
-
             }
 
             SIPUserIdentity {
@@ -160,13 +153,12 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                 font.kerning: true
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
-
         }
 
         ColumnLayout {
@@ -175,7 +167,6 @@ SettingsPageBase {
             width: parent.width
             visible: !isSIP && CurrentAccount.managerUri === ""
             spacing: JamiTheme.settingsCategorySpacing
-
 
             Text {
                 id: encryptTitle
@@ -187,7 +178,7 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
@@ -203,7 +194,7 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                 font.kerning: true
@@ -213,36 +204,28 @@ SettingsPageBase {
             MaterialButton {
                 id: passwdPushButton
 
-                TextMetrics{
+                TextMetrics {
                     id: passwdPushButtonTextSize
                     font.weight: Font.Bold
                     font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
                     text: passwdPushButton.text
                 }
 
-                preferredWidth: passwdPushButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+                preferredWidth: passwdPushButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
                 primary: true
                 Layout.alignment: Qt.AlignLeft
 
-                toolTipText: CurrentAccount.hasArchivePassword ?
-                                 JamiStrings.changeCurrentPassword :
-                                 JamiStrings.setAPassword
-                text: CurrentAccount.hasArchivePassword ?
-                          JamiStrings.changePassword :
-                          JamiStrings.setPassword
+                toolTipText: CurrentAccount.hasArchivePassword ? JamiStrings.changeCurrentPassword : JamiStrings.setAPassword
+                text: CurrentAccount.hasArchivePassword ? JamiStrings.changePassword : JamiStrings.setPassword
 
-                onClicked: viewCoordinator.presentDialog(
-                               appWindow,
-                               "commoncomponents/PasswordDialog.qml",
-                               { purpose: CurrentAccount.hasArchivePassword ?
-                                              PasswordDialog.ChangePassword :
-                                              PasswordDialog.SetPassword })
+                onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                        "purpose": CurrentAccount.hasArchivePassword ? PasswordDialog.ChangePassword : PasswordDialog.SetPassword
+                    })
             }
         }
 
         ColumnLayout {
-
             id: saveAccount
             width: parent.width
             visible: !isSIP && CurrentAccount.managerUri === ""
@@ -258,7 +241,7 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
@@ -274,25 +257,24 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                 font.kerning: true
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-
             MaterialButton {
                 id: btnExportAccount
 
-                TextMetrics{
+                TextMetrics {
                     id: btnExportAccountTextSize
                     font.weight: Font.Bold
                     font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
                     text: btnExportAccount.text
                 }
 
-                preferredWidth: btnExportAccountTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+                preferredWidth: btnExportAccountTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
                 primary: true
                 Layout.alignment: Qt.AlignLeft
 
@@ -300,47 +282,36 @@ SettingsPageBase {
                 text: JamiStrings.saveAccountTitle
 
                 onClicked: {
-                    var dlg = viewCoordinator.presentDialog(
-                                appWindow,
-                                "commoncomponents/JamiFileDialog.qml",
-                                {
-                                    title: JamiStrings.backupAccountHere,
-                                    fileMode: FileDialog.SaveFile,
-                                    folder: StandardPaths.writableLocation(StandardPaths.DesktopLocation),
-                                    nameFilters: [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
-                                })
+                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                            "title": JamiStrings.backupAccountHere,
+                            "fileMode": FileDialog.SaveFile,
+                            "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
+                            "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+                        });
                     dlg.fileAccepted.connect(function (file) {
-                        // is there password? If so, go to password dialog, else, go to following directly
-                        var exportPath = UtilsAdapter.getAbsPath(file.toString())
-                        if (CurrentAccount.hasArchivePassword) {
-                            viewCoordinator.presentDialog(
-                                        appWindow,
-                                        "commoncomponents/PasswordDialog.qml",
-                                        {
-                                            purpose: PasswordDialog.ExportAccount,
-                                            path: exportPath
-                                        })
-                            return
-                        } else if (exportPath.length > 0) {
-                            var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath)
-                            viewCoordinator.presentDialog(
-                                        appWindow,
-                                        "commoncomponents/SimpleMessageDialog.qml",
-                                        {
-                                            title: success ? JamiStrings.success : JamiStrings.error,
-                                            infoText: success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
-                                            buttonTitles: [JamiStrings.optionOk],
-                                            buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
-                                        })
-                        }
-                    })
+                            // is there password? If so, go to password dialog, else, go to following directly
+                            var exportPath = UtilsAdapter.getAbsPath(file.toString());
+                            if (CurrentAccount.hasArchivePassword) {
+                                viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                                        "purpose": PasswordDialog.ExportAccount,
+                                        "path": exportPath
+                                    });
+                                return;
+                            } else if (exportPath.length > 0) {
+                                var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath);
+                                viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                                        "title": success ? JamiStrings.success : JamiStrings.error,
+                                        "infoText": success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
+                                        "buttonTitles": [JamiStrings.optionOk],
+                                        "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue]
+                                    });
+                            }
+                        });
                 }
             }
-
         }
 
         ColumnLayout {
-
             id: bannedAccount
             width: parent.width
             visible: !isSIP && CurrentAccount.hasBannedContacts
@@ -356,7 +327,7 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
@@ -383,7 +354,7 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
@@ -399,25 +370,24 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                 font.kerning: true
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-
             MaterialButton {
                 id: deleteAccountPushButton
 
-                TextMetrics{
+                TextMetrics {
                     id: deleteAccountPushButtonTextSize
                     font.weight: Font.Bold
                     font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
                     text: deleteAccountPushButton.text
                 }
 
-                preferredWidth: deleteAccountPushButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+                preferredWidth: deleteAccountPushButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
                 primary: true
                 Layout.alignment: Qt.AlignLeft
@@ -427,22 +397,17 @@ SettingsPageBase {
                 hoveredColor: JamiTheme.buttonTintedRedHovered
                 pressedColor: JamiTheme.buttonTintedRedPressed
 
-
                 text: JamiStrings.deleteAccount
 
                 onClicked: {
-                    var dlg = viewCoordinator.presentDialog(
-                                appWindow,
-                                "commoncomponents/DeleteAccountDialog.qml",
-                                {
-                                    isSIP: CurrentAccount.type === Profile.Type.SIP,
-                                    bestName: CurrentAccount.bestName,
-                                    accountId: CurrentAccount.uri
-                                })
-                    dlg.accepted.connect(navigateToMainView)
+                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/DeleteAccountDialog.qml", {
+                            "isSIP": CurrentAccount.type === Profile.Type.SIP,
+                            "bestName": CurrentAccount.bestName,
+                            "accountId": CurrentAccount.uri
+                        });
+                    dlg.accepted.connect(navigateToMainView);
                 }
             }
-
         }
     }
 }

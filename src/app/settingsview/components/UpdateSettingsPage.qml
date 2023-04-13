@@ -17,19 +17,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.Helpers 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
-
 
 SettingsPageBase {
     id: root
@@ -37,36 +33,28 @@ SettingsPageBase {
     title: JamiStrings.updatesTitle
 
     function presentInfoDialog(infoText) {
-        viewCoordinator.presentDialog(
-                    appWindow,
-                    "commoncomponents/SimpleMessageDialog.qml",
-                    {
-                        title: JamiStrings.updateDialogTitle,
-                        infoText: infoText,
-                        buttonTitles: [JamiStrings.optionOk],
-                        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                        buttonCallBacks: []
-                    })
+        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                "title": JamiStrings.updateDialogTitle,
+                "infoText": infoText,
+                "buttonTitles": [JamiStrings.optionOk],
+                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonCallBacks": []
+            });
     }
 
     function presentConfirmInstallDialog(infoText, beta) {
-        viewCoordinator.presentDialog(
-                    appWindow,
-                    "commoncomponents/SimpleMessageDialog.qml",
-                    {
-                        title: JamiStrings.updateDialogTitle,
-                        infoText: infoText,
-                        buttonTitles: [JamiStrings.optionUpgrade, JamiStrings.optionLater],
-                        buttonStyles: [
-                            SimpleMessageDialog.ButtonStyle.TintedBlue,
-                            SimpleMessageDialog.ButtonStyle.TintedBlue
-                        ],
-                        buttonCallBacks: [function() {UpdateManager.applyUpdates(beta)}]
-                    })
+        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                "title": JamiStrings.updateDialogTitle,
+                "infoText": infoText,
+                "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
+                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonCallBacks": [function () {
+                        UpdateManager.applyUpdates(beta);
+                    }]
+            });
     }
 
     flickableContent: ColumnLayout {
-
         id: manageAccountEnableColumnLayout
         width: contentFlickableWidth
         spacing: JamiTheme.settingsBlockSpacing
@@ -78,23 +66,21 @@ SettingsPageBase {
 
             Layout.fillWidth: true
 
-            checked: Qt.platform.os.toString() === "windows" ?
-                         UtilsAdapter.getAppValue(Settings.Key.AutoUpdate) :
-                         UpdateManager.isAutoUpdaterEnabled()
+            checked: Qt.platform.os.toString() === "windows" ? UtilsAdapter.getAppValue(Settings.Key.AutoUpdate) : UpdateManager.isAutoUpdaterEnabled()
 
             labelText: JamiStrings.update
             tooltipText: JamiStrings.enableAutoUpdates
 
             onSwitchToggled: {
-                UtilsAdapter.setAppValue(Settings.Key.AutoUpdate, checked)
-                UpdateManager.setAutoUpdateCheck(checked)
+                UtilsAdapter.setAppValue(Settings.Key.AutoUpdate, checked);
+                UpdateManager.setAutoUpdateCheck(checked);
             }
         }
 
         MaterialButton {
             id: checkUpdateButton
 
-            TextMetrics{
+            TextMetrics {
                 id: checkUpdateButtonTextSize
                 font.weight: Font.Bold
                 font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -104,7 +90,7 @@ SettingsPageBase {
 
             Layout.alignment: Qt.AlignLeft
 
-            preferredWidth: checkUpdateButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+            preferredWidth: checkUpdateButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             primary: true
             autoAccelerator: true
@@ -118,13 +104,13 @@ SettingsPageBase {
         MaterialButton {
             id: installBetaButton
 
-            visible: !UpdateManager.isCurrentVersionBeta() && Qt.platform.os.toString()  === "windows"
+            visible: !UpdateManager.isCurrentVersionBeta() && Qt.platform.os.toString() === "windows"
 
             Layout.alignment: Qt.AlignHCenter
 
             preferredWidth: JamiTheme.preferredFieldWidth
 
-            color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+            color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
             secondary: true
@@ -133,19 +119,15 @@ SettingsPageBase {
             toolTipText: JamiStrings.betaInstall
             text: JamiStrings.betaInstall
 
-            onClicked: viewCoordinator.presentDialog(
-                       appWindow,
-                       "commoncomponents/SimpleMessageDialog.qml",
-                       {
-                           title: JamiStrings.updateDialogTitle,
-                           infoText: JamiStrings.confirmBeta,
-                           buttonTitles: [JamiStrings.optionUpgrade, JamiStrings.optionLater],
-                           buttonStyles: [
-                               SimpleMessageDialog.ButtonStyle.TintedBlue,
-                               SimpleMessageDialog.ButtonStyle.TintedBlue
-                           ],
-                           buttonCallBacks: [function() {UpdateManager.applyUpdates(true)}]
-                       })
+            onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                    "title": JamiStrings.updateDialogTitle,
+                    "infoText": JamiStrings.confirmBeta,
+                    "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
+                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
+                    "buttonCallBacks": [function () {
+                            UpdateManager.applyUpdates(true);
+                        }]
+                })
         }
     }
 }
