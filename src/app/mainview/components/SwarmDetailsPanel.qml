@@ -120,7 +120,7 @@ Rectangle {
                             titleLine.editMode = activeFocus
                         }
 
-                        infoTipLineText: JamiStrings.swarmName
+                        infoTipLineText: CurrentConversation.isCoreDialog? JamiStrings.contactName : JamiStrings.swarmName
                     }
 
                     ModalTextEdit {
