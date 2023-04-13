@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94e6fde5_82091d26",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-13T12:48:24Z",
+      "side": 1,
+      "message": "It\u0027s the component name, it refers to \"NewSwarmPage.qml\"",
+      "parentUuid": "0c851e64_bd00e74f",
+      "range": {
+        "startLine": 854,
+        "startChar": 7,
+        "endLine": 854,
+        "endChar": 19
+      },
+      "revId": "59d5a0182a0eb3b1d2cfb5bd95eff86bf9446f66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "467a5d01_f4e7b655",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99ea5b3c_9445338d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-13T12:48:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "467a5d01_f4e7b655",
+      "range": {
+        "startLine": 867,
+        "startChar": 7,
+        "endLine": 867,
+        "endChar": 13
+      },
+      "revId": "59d5a0182a0eb3b1d2cfb5bd95eff86bf9446f66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f29f49e_8e9d8739",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-04-13T06:03:52Z",
       "side": 1,
       "message": "1. Should there be a space ` `?\n2. Should this be sentence case?\n\n`Manage account`",
+      "range": {
+        "startLine": 888,
+        "startChar": 7,
+        "endLine": 888,
+        "endChar": 20
+      },
+      "revId": "59d5a0182a0eb3b1d2cfb5bd95eff86bf9446f66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d2cdde9_2de3c677",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-13T12:48:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f29f49e_8e9d8739",
       "range": {
         "startLine": 888,
         "startChar": 7,
