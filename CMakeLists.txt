@@ -796,26 +796,27 @@ else()
           MACOSX_BUNDLE_SHORT_VERSION_STRING "${JAMI_VERSION}"
           MACOSX_BUNDLE_BUNDLE_VERSION "${JAMI_BUILD}"
           MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}")
-      if(APPSTORE)
-          message(STATUS "app store version")
-          set_target_properties(${PROJECT_NAME} PROPERTIES
-               XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/appstore/Jami.entitlements")
-      else()
-          set_target_properties(${PROJECT_NAME} PROPERTIES
-                SPARKLE_URL "${SPARKLE_URL}"
-                SPARKLE_PUBLIC_KEY "${SPARKLE_PUBLIC_KEY}"
-                XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
-                XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
-      endif()
-      if(DEPLOY)
-          add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                             COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${SRC_DIR}
-                             -DMAC_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
-                             -DEXE_NAME="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
-                             -DSPARKLE_PATH=${SPARKLE_FRAMEWORK}
-                             -DENABLE_SPARKLE=${ENABLE_SPARKLE}
-                             -P ${EXTRAS_DIR}/build/cmake/macos_qt_deploy.cmake)
-      endif()
+  if(APPSTORE)
+    message(STATUS "app store version")
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+          XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/appstore/Jami.entitlements")
+  else()
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+          SPARKLE_URL "${SPARKLE_URL}"
+          SPARKLE_PUBLIC_KEY "${SPARKLE_PUBLIC_KEY}"
+          XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
+          XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
+  endif()
+  if(DEPLOY)
+    message("Qt deploying in dir " ${QML_SRC_DIR})
+    execute_process(COMMAND
+      "${CMAKE_PREFIX_PATH}/bin/macdeployqt"
+      "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
+      -qmldir=${QML_SRC_DIR})
+    if(${ENABLE_SPARKLE} MATCHES true)
+      file(COPY ${SPARKLE_FRAMEWORK} DESTINATION ${EXE_NAME}/Contents/Frameworks/)
+    endif()
+  endif()
 endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CLIENT_INCLUDE_DIRS})
