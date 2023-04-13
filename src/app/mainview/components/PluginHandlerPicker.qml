@@ -15,15 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Popup {
@@ -58,23 +55,23 @@ Popup {
                 function onAboutToShow(visible) {
                     // Reset the model on each show.
                     if (isCall) {
-                        pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
+                        pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id);
                     } else {
-                        var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0]
-                        pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId)
+                        var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0];
+                        pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId);
                     }
                 }
             }
 
             function toggleHandlerSlot(handlerId, isLoaded) {
                 if (isCall) {
-                    PluginModel.toggleCallMediaHandler(handlerId, CurrentCall.id, !isLoaded)
-                    pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
+                    PluginModel.toggleCallMediaHandler(handlerId, CurrentCall.id, !isLoaded);
+                    pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id);
                 } else {
-                    var accountId = LRCInstance.currentAccountId
-                    var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0]
-                    PluginModel.toggleChatHandler(handlerId, accountId, peerId, !isLoaded)
-                    pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
+                    var accountId = LRCInstance.currentAccountId;
+                    var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0];
+                    PluginModel.toggleChatHandler(handlerId, accountId, peerId, !isLoaded);
+                    pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(accountId, peerId);
                 }
             }
 
@@ -111,7 +108,7 @@ Popup {
                         imageColor: JamiTheme.textColor
 
                         onClicked: {
-                            root.close()
+                            root.close();
                         }
                     }
                 }
@@ -125,10 +122,10 @@ Popup {
 
                     model: {
                         if (isCall) {
-                            return PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id)
+                            return PluginAdapter.getMediaHandlerSelectableModel(CurrentCall.id);
                         } else {
-                            var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0]
-                            return PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId)
+                            var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversationMembers[0];
+                            return PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId);
                         }
                     }
 
@@ -138,20 +135,20 @@ Popup {
                         width: pluginhandlerPickerListView.width
                         height: JamiTheme.pluginHandlersPopupViewDelegateHeight
 
-                        handlerName : HandlerName
+                        handlerName: HandlerName
                         handlerId: HandlerId
                         handlerIcon: HandlerIcon
                         isLoaded: IsLoaded
                         pluginId: PluginId
 
                         onBtnLoadHandlerToggled: {
-                            toggleHandlerSlot(HandlerId, isLoaded)
+                            toggleHandlerSlot(HandlerId, isLoaded);
                         }
 
                         onOpenPreferences: {
-                            root.handlerName = handlerName
-                            root.pluginId = pluginId
-                            stack.push(pluginhandlerPreferenceStack2, StackView.Immediate)
+                            root.handlerName = handlerName;
+                            root.pluginId = pluginId;
+                            stack.push(pluginhandlerPreferenceStack2, StackView.Immediate);
                         }
                     }
                 }
@@ -183,7 +180,7 @@ Popup {
                         toolTipText: JamiStrings.goBackToPluginsList
 
                         onClicked: {
-                            stack.pop(null, StackView.Immediate)
+                            stack.pop(null, StackView.Immediate);
                         }
                     }
 
@@ -211,7 +208,7 @@ Popup {
                         imageColor: JamiTheme.textColor
 
                         onClicked: {
-                            root.close()
+                            root.close();
                         }
                     }
                 }
@@ -242,7 +239,7 @@ Popup {
                         preferenceCurrentValue: PreferenceCurrentValue
                         pluginId: PluginId
                         currentPath: CurrentPath
-                        preferenceKey : PreferenceKey
+                        preferenceKey: PreferenceKey
                         fileFilters: FileFilters
                         isImage: IsImage
                         enabled: Enabled
@@ -250,16 +247,16 @@ Popup {
                             id: handlerPickerPreferenceModel
 
                             lrcInstance: LRCInstance
-                            preferenceKey : PreferenceKey
+                            preferenceKey: PreferenceKey
                             accountId_: LRCInstance.currentAccountId
                             pluginId: PluginId
                         }
 
-                        onClicked:  pluginhandlerPreferencePickerListView.currentIndex = index
+                        onClicked: pluginhandlerPreferencePickerListView.currentIndex = index
 
                         onBtnPreferenceClicked: {
-                            PluginModel.setPluginPreference(pluginId, LRCInstance.currentAccountId, preferenceKey, preferenceNewValue)
-                            handlerPickerPrefsModel.reset()
+                            PluginModel.setPluginPreference(pluginId, LRCInstance.currentAccountId, preferenceKey, preferenceNewValue);
+                            handlerPickerPrefsModel.reset();
                         }
                     }
                 }

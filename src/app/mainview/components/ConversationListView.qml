@@ -16,14 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 JamiListView {
@@ -34,12 +31,12 @@ JamiListView {
     property string headerLabel
     property bool headerVisible
 
-    delegate: SmartListItemDelegate {}
+    delegate: SmartListItemDelegate {
+    }
     currentIndex: model.currentFilteredRow
 
     // highlight selection
     // down and hover states are done within the delegate
-
     highlightMoveDuration: 60
 
     headerPositioning: ListView.OverlayHeader
@@ -67,9 +64,9 @@ JamiListView {
 
         // actually select the conversation
         function onValidSelectionChanged() {
-            var row = model.currentFilteredRow
-            var convId = model.dataForRow(row, ConversationList.UID)
-            LRCInstance.selectConversation(convId)
+            var row = model.currentFilteredRow;
+            var convId = model.dataForRow(row, ConversationList.UID);
+            LRCInstance.selectConversation(convId);
         }
     }
 
@@ -77,23 +74,27 @@ JamiListView {
 
     add: Transition {
         NumberAnimation {
-            property: "opacity"; from: 0; to: 1.0
+            property: "opacity"
+            from: 0
+            to: 1.0
             duration: JamiTheme.smartListTransitionDuration
         }
     }
 
     displaced: Transition {
         NumberAnimation {
-            properties: "x,y"; easing.type: Easing.OutCubic
+            properties: "x,y"
+            easing.type: Easing.OutCubic
             duration: JamiTheme.smartListTransitionDuration
         }
         NumberAnimation {
-            property: "opacity"; to: 1.0
+            property: "opacity"
+            to: 1.0
             duration: JamiTheme.smartListTransitionDuration * (1 - from)
         }
     }
 
-    Behavior on opacity {
+    Behavior on opacity  {
         NumberAnimation {
             easing.type: Easing.OutCubic
             duration: 2 * JamiTheme.smartListTransitionDuration
@@ -101,8 +102,8 @@ JamiListView {
     }
 
     function openContextMenuAt(x, y, delegate) {
-        var mappedCoord = root.mapFromItem(delegate, x, y)
-        contextMenu.openMenuAt(mappedCoord.x, mappedCoord.y)
+        var mappedCoord = root.mapFromItem(delegate, x, y);
+        contextMenu.openMenuAt(mappedCoord.x, mappedCoord.y);
     }
 
     ConversationSmartListContextMenu {
@@ -111,38 +112,32 @@ JamiListView {
         property int index: -1
 
         function openMenuAt(x, y) {
-            contextMenu.x = x
-            contextMenu.y = y
-
-            index = root.indexAt(x, y + root.contentY)
+            contextMenu.x = x;
+            contextMenu.y = y;
+            index = root.indexAt(x, y + root.contentY);
 
             // TODO: use accountId and convId only
-            responsibleAccountId = LRCInstance.currentAccountId
-            responsibleConvUid = model.dataForRow(index, ConversationList.UID)
-            isBanned = model.dataForRow(index, ConversationList.IsBanned)
-            mode = model.dataForRow(index, ConversationList.Mode)
-            isCoreDialog = model.dataForRow(index, ConversationList.IsCoreDialog)
-            contactType = LRCInstance.currentAccountType
-            readOnly = mode === Conversation.Mode.NON_SWARM &&
-                    (model.dataForRow(index, ConversationList.ContactType) !==
-                                                   Profile.Type.TEMPORARY) &&
-                    CurrentAccount.type !== Profile.Type.SIP
-            hasCall = UtilsAdapter.getCallId(responsibleAccountId,
-                                          responsibleConvUid) !== ""
+            responsibleAccountId = LRCInstance.currentAccountId;
+            responsibleConvUid = model.dataForRow(index, ConversationList.UID);
+            isBanned = model.dataForRow(index, ConversationList.IsBanned);
+            mode = model.dataForRow(index, ConversationList.Mode);
+            isCoreDialog = model.dataForRow(index, ConversationList.IsCoreDialog);
+            contactType = LRCInstance.currentAccountType;
+            readOnly = mode === Conversation.Mode.NON_SWARM && (model.dataForRow(index, ConversationList.ContactType) !== Profile.Type.TEMPORARY) && CurrentAccount.type !== Profile.Type.SIP;
+            hasCall = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid) !== "";
 
             // For UserProfile dialog.
             if (isCoreDialog) {
-                aliasText = model.dataForRow(index, ConversationList.Title)
-                registeredNameText = model.dataForRow(index, ConversationList.BestId)
-                idText = model.dataForRow(index, ConversationList.URI)
+                aliasText = model.dataForRow(index, ConversationList.Title);
+                registeredNameText = model.dataForRow(index, ConversationList.BestId);
+                idText = model.dataForRow(index, ConversationList.URI);
             }
-
-            openMenu()
+            openMenu();
         }
 
         onShowSwarmDetails: {
-            model.select(index)
-            CurrentConversation.showSwarmDetails()
+            model.select(index);
+            CurrentConversation.showSwarmDetails();
         }
     }
 
@@ -152,7 +147,7 @@ JamiListView {
         enabled: CurrentAccount.videoEnabled_Video && root.visible
         onActivated: {
             if (CurrentAccount.videoEnabled_Video)
-                CallAdapter.placeCall()
+                CallAdapter.placeCall();
         }
     }
 
@@ -167,17 +162,14 @@ JamiListView {
         sequence: "Ctrl+Shift+L"
         context: Qt.ApplicationShortcut
         enabled: root.visible
-        onActivated: MessagesAdapter.clearConversationHistory(
-                         CurrentAccount.id,
-                         CurrentConversation.id)
+        onActivated: MessagesAdapter.clearConversationHistory(CurrentAccount.id, CurrentConversation.id)
     }
 
     Shortcut {
         sequence: "Ctrl+Shift+B"
         context: Qt.ApplicationShortcut
         enabled: root.visible
-        onActivated: MessagesAdapter.blockConversation(
-                         CurrentConversation.id)
+        onActivated: MessagesAdapter.blockConversation(CurrentConversation.id)
     }
 
     Shortcut {
@@ -186,8 +178,8 @@ JamiListView {
         enabled: root.visible
         onActivated: {
             if (currentIndex + 1 >= count)
-                return
-            model.select(currentIndex + 1)
+                return;
+            model.select(currentIndex + 1);
         }
     }
 
@@ -197,8 +189,8 @@ JamiListView {
         enabled: root.visible
         onActivated: {
             if (currentIndex <= 0)
-                return
-            model.select(currentIndex - 1)
+                return;
+            model.select(currentIndex - 1);
         }
     }
 }

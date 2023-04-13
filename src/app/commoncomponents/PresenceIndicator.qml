@@ -15,9 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
@@ -40,9 +38,9 @@ Rectangle {
     }
     color: {
         if (status === Account.Status.REGISTERED)
-            return JamiTheme.presenceGreen
+            return JamiTheme.presenceGreen;
         else if (status === Account.Status.TRYING)
-            return JamiTheme.unPresenceOrange
-        return JamiTheme.notificationRed
+            return JamiTheme.unPresenceOrange;
+        return JamiTheme.notificationRed;
     }
 }

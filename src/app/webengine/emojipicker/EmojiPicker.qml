@@ -16,17 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 import QtWebEngine
 import QtWebChannel
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-
 import "../"
 
 Popup {
@@ -44,14 +41,13 @@ Popup {
     onIsScrollingChanged: close()
 
     function openEmojiPicker() {
-        root.open()
-        emojiPickerWebView.runJavaScript(
-                    "prepare_to_show(" + JamiTheme.darkTheme + ");")
+        root.open();
+        emojiPickerWebView.runJavaScript("prepare_to_show(" + JamiTheme.darkTheme + ");");
     }
 
     function closeEmojiPicker() {
-        emojiPickerWebView.runJavaScript("prepare_to_hide();")
-        close()
+        emojiPickerWebView.runJavaScript("prepare_to_hide();");
+        close();
     }
     padding: 0
     visible: false
@@ -66,13 +62,13 @@ Popup {
         // Functions that are exposed, return code can be derived from js side
         // by setting callback function.
         function emojiIsPicked(arg) {
-            root.emojiIsPicked(arg)
-            closeEmojiPicker()
+            root.emojiIsPicked(arg);
+            closeEmojiPicker();
         }
 
         // For emojiPicker to properly close
         function emojiPickerHideFinished() {
-            root.visible = false
+            root.visible = false;
         }
     }
 
@@ -88,17 +84,11 @@ Popup {
 
         onLoadingChanged: function (loadingInfo) {
             if (loadingInfo.status === WebEngineView.LoadSucceededStatus) {
-                emojiPickerWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                     ":/webengine/qwebchannel.js"))
-                emojiPickerWebView.runJavaScript(
-                            UtilsAdapter.qStringFromFile(
-                                ":/webengine/emojipicker/emoji.js"))
-                emojiPickerWebView.runJavaScript(
-                            UtilsAdapter.qStringFromFile(
-                                ":/webengine/emojipicker/emojiPickerLoader.js"))
-                emojiPickerWebView.runJavaScript(
-                            "init_emoji_picker(" + JamiTheme.darkTheme + ");")
-                root.openEmojiPicker()
+                emojiPickerWebView.runJavaScript(UtilsAdapter.qStringFromFile(":/webengine/qwebchannel.js"));
+                emojiPickerWebView.runJavaScript(UtilsAdapter.qStringFromFile(":/webengine/emojipicker/emoji.js"));
+                emojiPickerWebView.runJavaScript(UtilsAdapter.qStringFromFile(":/webengine/emojipicker/emojiPickerLoader.js"));
+                emojiPickerWebView.runJavaScript("init_emoji_picker(" + JamiTheme.darkTheme + ");");
+                root.openEmojiPicker();
             }
         }
     }
@@ -106,7 +96,7 @@ Popup {
     Overlay.modal: Rectangle {
         color: JamiTheme.transparentColor
         // Color animation for overlay when pop up is shown.
-        ColorAnimation on color {
+        ColorAnimation on color  {
             to: JamiTheme.popupOverlayColor
             duration: 500
         }
@@ -114,14 +104,18 @@ Popup {
 
     enter: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 0.0; to: 1.0
+            properties: "opacity"
+            from: 0.0
+            to: 1.0
             duration: JamiTheme.shortFadeDuration
         }
     }
 
     exit: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 1.0; to: 0.0
+            properties: "opacity"
+            from: 1.0
+            to: 0.0
             duration: JamiTheme.shortFadeDuration
         }
     }

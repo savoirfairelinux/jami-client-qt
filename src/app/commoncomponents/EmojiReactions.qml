@@ -15,10 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -34,49 +32,49 @@ Item {
     visible: emojis.length && Body !== ""
 
     property string emojis: {
-        var space = ""
-        var emojiList = []
-        var emojiNumberList = []
+        var space = "";
+        var emojiList = [];
+        var emojiNumberList = [];
         for (const reactions of Object.entries(emojiReaction)) {
-            var authorEmojiList = reactions[1]
+            var authorEmojiList = reactions[1];
             for (var emojiIndex in authorEmojiList) {
-                var emoji = authorEmojiList[emojiIndex]
+                var emoji = authorEmojiList[emojiIndex];
                 if (emojiList.includes(emoji)) {
-                    var findIndex = emojiList.indexOf(emoji)
+                    var findIndex = emojiList.indexOf(emoji);
                     if (findIndex != -1)
-                        emojiNumberList[findIndex] += 1
+                        emojiNumberList[findIndex] += 1;
                 } else {
-                    emojiList.push(emoji)
-                    emojiNumberList.push(1)
+                    emojiList.push(emoji);
+                    emojiNumberList.push(1);
                 }
             }
         }
-        var cur = ""
+        var cur = "";
         for (var i in emojiList) {
             if (emojiNumberList[i] !== 1)
-                cur = cur + space + emojiList[i] + emojiNumberList[i] + ""
+                cur = cur + space + emojiList[i] + emojiNumberList[i] + "";
             else
-                cur = cur + space + emojiList[i] + ""
-            space = "  "
+                cur = cur + space + emojiList[i] + "";
+            space = "  ";
         }
-        return cur
+        return cur;
     }
 
     property var ownEmojiList: {
-        var list = []
-        var index = 0
+        var list = [];
+        var index = 0;
         for (const reactions of Object.entries(emojiReaction)) {
-            var authorUri = reactions[0]
-            var authorEmojiList = reactions[1]
+            var authorUri = reactions[0];
+            var authorEmojiList = reactions[1];
             if (CurrentAccount.uri === authorUri) {
                 for (var emojiIndex in authorEmojiList) {
-                    list[index] = authorEmojiList[emojiIndex]
-                    index ++
+                    list[index] = authorEmojiList[emojiIndex];
+                    index++;
                 }
-                return list
+                return list;
             }
         }
-        return []
+        return [];
     }
 
     Rectangle {

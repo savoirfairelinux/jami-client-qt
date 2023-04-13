@@ -15,13 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -49,9 +46,9 @@ Rectangle {
             source: JamiResources.unpin_svg
             onClicked: {
                 if (!isUnpin) {
-                    PositionManager.unPinMap(attachedAccountId)
+                    PositionManager.unPinMap(attachedAccountId);
                 } else {
-                    PositionManager.pinMap(attachedAccountId)
+                    PositionManager.pinMap(attachedAccountId);
                 }
             }
         }
@@ -64,7 +61,7 @@ Rectangle {
             normalColor: JamiTheme.transparentColor
             source: JamiResources.share_location_svg
             onClicked: {
-                webView.runJavaScript("zoomTolayersExtent()" );
+                webView.runJavaScript("zoomTolayersExtent()");
             }
         }
 
@@ -91,19 +88,16 @@ Rectangle {
             id: btnMaximise
 
             visible: !isUnpin
-            toolTipText: mapObject.isFullScreen
-                         ? JamiStrings.reduceMapTooltip
-                         : JamiStrings.maximizeMapTooltip
+            toolTipText: mapObject.isFullScreen ? JamiStrings.reduceMapTooltip : JamiStrings.maximizeMapTooltip
             imageColor: JamiTheme.mapButtonColor
             normalColor: JamiTheme.transparentColor
-            source: mapObject.isFullScreen? JamiResources.close_fullscreen_24dp_svg : JamiResources.open_in_full_24dp_svg
+            source: mapObject.isFullScreen ? JamiResources.close_fullscreen_24dp_svg : JamiResources.open_in_full_24dp_svg
             onClicked: {
                 if (!mapObject.isFullScreen) {
-                    mapObject.x = mapObject.xPos
-                    mapObject.y = mapObject.yPos
+                    mapObject.x = mapObject.xPos;
+                    mapObject.y = mapObject.yPos;
                 }
-
-                mapObject.isFullScreen = !mapObject.isFullScreen
+                mapObject.isFullScreen = !mapObject.isFullScreen;
             }
         }
 
@@ -117,8 +111,8 @@ Rectangle {
             visible: !isUnpin
 
             onClicked: {
-                PositionManager.setMapInactive(attachedAccountId)
-                PositionManager.mapAutoOpening = false
+                PositionManager.setMapInactive(attachedAccountId);
+                PositionManager.mapAutoOpening = false;
             }
         }
     }

@@ -14,18 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import SortFilterProxyModel 0.2
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 BaseModalDialog {
@@ -40,7 +36,6 @@ BaseModalDialog {
         color: JamiTheme.transparentColor
         width: root.width
 
-
         PushButton {
             id: btnCancel
             imageColor: "grey"
@@ -50,7 +45,9 @@ BaseModalDialog {
             anchors.topMargin: 10
             anchors.rightMargin: 10
             source: JamiResources.round_close_24dp_svg
-            onClicked: { close(); }
+            onClicked: {
+                close();
+            }
         }
 
         ColumnLayout {
@@ -81,7 +78,10 @@ BaseModalDialog {
                 model: SortFilterProxyModel {
                     sourceModel: DeviceItemListModel
                     sorters: [
-                        RoleSorter { roleName: "IsCurrent"; sortOrder: Qt.DescendingOrder },
+                        RoleSorter {
+                            roleName: "IsCurrent"
+                            sortOrder: Qt.DescendingOrder
+                        },
                         StringSorter {
                             roleName: "DeviceName"
                             caseSensitivity: Qt.CaseInsensitive
@@ -92,9 +92,9 @@ BaseModalDialog {
                 delegate: ItemDelegate {
                     id: item
 
-                    property string deviceName : DeviceName
-                    property string deviceId : DeviceID
-                    property bool isCurrent : DeviceName
+                    property string deviceName: DeviceName
+                    property string deviceId: DeviceID
+                    property bool isCurrent: DeviceName
 
                     implicitWidth: devicesListView.width
                     width: devicesListView.width
@@ -105,12 +105,12 @@ BaseModalDialog {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            devicesListView.currentIndex = index
+                            devicesListView.currentIndex = index;
                         }
                     }
 
                     background: Rectangle {
-                        color: highlighted? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
+                        color: highlighted ? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
                     }
 
                     RowLayout {
@@ -182,7 +182,7 @@ BaseModalDialog {
                 MaterialButton {
                     id: chooseBtn
 
-                    TextMetrics{
+                    TextMetrics {
                         id: chooseBtnTextSize
                         font.weight: Font.Bold
                         font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -193,23 +193,23 @@ BaseModalDialog {
                     Layout.alignment: Qt.AlignCenter
                     Layout.fillWidth: true
                     primary: true
-                    preferredWidth: chooseBtnTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+                    preferredWidth: chooseBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
                     enabled: devicesListView.currentItem
 
                     text: JamiStrings.chooseThisDevice
                     toolTipText: JamiStrings.chooseThisDevice
 
                     onClicked: {
-                        CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri)
-                        CurrentConversation.setInfo("rdvDevice", devicesListView.currentItem.deviceId)
-                        close()
+                        CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri);
+                        CurrentConversation.setInfo("rdvDevice", devicesListView.currentItem.deviceId);
+                        close();
                     }
                 }
 
                 MaterialButton {
                     id: rmDeviceBtn
 
-                    TextMetrics{
+                    TextMetrics {
                         id: rmDeviceBtnTextSize
                         font.weight: Font.Bold
                         font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -220,16 +220,16 @@ BaseModalDialog {
                     Layout.alignment: Qt.AlignCenter
                     Layout.fillWidth: true
                     primary: true
-                    preferredWidth: rmDeviceBtnTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+                    preferredWidth: rmDeviceBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
                     enabled: devicesListView.currentItem
 
                     text: JamiStrings.removeCurrentDevice
                     toolTipText: JamiStrings.removeCurrentDevice
 
                     onClicked: {
-                        CurrentConversation.setInfo("rdvAccount", "")
-                        CurrentConversation.setInfo("rdvDevice", "")
-                        close()
+                        CurrentConversation.setInfo("rdvAccount", "");
+                        CurrentConversation.setInfo("rdvDevice", "");
+                        close();
                     }
                 }
             }

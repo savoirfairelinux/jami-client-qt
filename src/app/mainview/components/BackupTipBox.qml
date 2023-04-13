@@ -14,16 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Item {
@@ -118,38 +115,31 @@ Item {
             pressedColor: JamiTheme.buttonTintedGreyPressed
 
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "commoncomponents/JamiFileDialog.qml",
-                            {
-                                //objectName: "exportDialog",
-                                title: JamiStrings.backupAccountHere,
-                                fileMode: JamiFileDialog.SaveFile,
-                                folder: StandardPaths.writableLocation(
-                                            StandardPaths.HomeLocation) + "/Desktop",
-                                nameFilters: [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
-                            })
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                        "title": JamiStrings.backupAccountHere,
+                        "fileMode": JamiFileDialog.SaveFile,
+                        "folder": StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop",
+                        "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+                    });
                 dlg.fileAccepted.connect(function (file) {
-                    // Is there password? If so, go to password dialog, else, go to following directly
-                    if (CurrentAccount.hasArchivePassword) {
-                        var pwdDlg = viewCoordinator.presentDialog(
-                                    appWindow,
-                                    "commoncomponents/PasswordDialog.qml",
-                                    {
-                                        //objectName: "passwordDialog",
-                                        path: UtilsAdapter.getAbsPath(file),
-                                        purpose: PasswordDialog.ExportAccount
-                                    })
-                        pwdDlg.done.connect(function () { root.ignore() })
-                    } else {
-                        if (file.toString().length > 0) {
-                            root.ignore()
+                        // Is there password? If so, go to password dialog, else, go to following directly
+                        if (CurrentAccount.hasArchivePassword) {
+                            var pwdDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                                    "path": UtilsAdapter.getAbsPath(file),
+                                    "purpose": PasswordDialog.ExportAccount
+                                });
+                            pwdDlg.done.connect(function () {
+                                    root.ignore();
+                                });
+                        } else {
+                            if (file.toString().length > 0) {
+                                root.ignore();
+                            }
                         }
-                    }
-                })
+                    });
                 dlg.rejected.connect(function () {
-                    backupBtn.forceActiveFocus()
-                })
+                        backupBtn.forceActiveFocus();
+                    });
             }
         }
     }

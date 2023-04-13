@@ -15,13 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 import "../../commoncomponents/contextmenu"
 
@@ -52,10 +49,9 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.startVideoCall
             iconSource: JamiResources.videocam_24dp_svg
             onClicked: {
-                LRCInstance.selectConversation(responsibleConvUid,
-                                               responsibleAccountId)
+                LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
                 if (CurrentAccount.videoEnabled_Video)
-                    CallAdapter.placeCall()
+                    CallAdapter.placeCall();
             }
         },
         GeneralMenuItem {
@@ -65,9 +61,8 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.startAudioCall
             iconSource: JamiResources.place_audiocall_24dp_svg
             onClicked: {
-                LRCInstance.selectConversation(responsibleConvUid,
-                                               responsibleAccountId)
-                CallAdapter.placeAudioOnlyCall()
+                LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
+                CallAdapter.placeAudioOnlyCall();
             }
         },
         GeneralMenuItem {
@@ -76,9 +71,7 @@ ContextMenuAutoLoader {
             canTrigger: mode === Conversation.Mode.NON_SWARM && !hasCall && !root.isBanned
             itemName: JamiStrings.clearConversation
             iconSource: JamiResources.ic_clear_24dp_svg
-            onClicked: MessagesAdapter.clearConversationHistory(
-                           responsibleAccountId,
-                           responsibleConvUid)
+            onClicked: MessagesAdapter.clearConversationHistory(responsibleAccountId, responsibleConvUid)
         },
         GeneralMenuItem {
             id: removeContact
@@ -86,26 +79,23 @@ ContextMenuAutoLoader {
             canTrigger: !hasCall && !root.isBanned
             itemName: {
                 if (mode !== Conversation.Mode.NON_SWARM)
-                    return JamiStrings.removeConversation
+                    return JamiStrings.removeConversation;
                 else
-                    return JamiStrings.removeContact
+                    return JamiStrings.removeContact;
             }
             iconSource: JamiResources.ic_hangup_participant_24dp_svg
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "commoncomponents/ConfirmDialog.qml",
-                            {
-                                title: JamiStrings.confirmAction,
-                                textLabel: JamiStrings.confirmRmConversation,
-                                confirmLabel: JamiStrings.optionRemove
-                            })
-                dlg.accepted.connect(function() {
-                    if (!isCoreDialog)
-                        MessagesAdapter.removeConversation(responsibleConvUid)
-                    else
-                        MessagesAdapter.removeContact(responsibleConvUid)
-                })
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                        "title": JamiStrings.confirmAction,
+                        "textLabel": JamiStrings.confirmRmConversation,
+                        "confirmLabel": JamiStrings.optionRemove
+                    });
+                dlg.accepted.connect(function () {
+                        if (!isCoreDialog)
+                            MessagesAdapter.removeConversation(responsibleConvUid);
+                        else
+                            MessagesAdapter.removeContact(responsibleConvUid);
+                    });
             }
         },
         GeneralMenuItem {
@@ -114,11 +104,8 @@ ContextMenuAutoLoader {
             canTrigger: hasCall
             itemName: JamiStrings.endCall
             iconSource: JamiResources.ic_call_end_white_24dp_svg
-            addMenuSeparatorAfter: contactType !== Profile.Type.SIP
-                                   && (contactType === Profile.Type.PENDING
-                                       || !hasCall)
-            onClicked: CallAdapter.hangUpACall(responsibleAccountId,
-                                               responsibleConvUid)
+            addMenuSeparatorAfter: contactType !== Profile.Type.SIP && (contactType === Profile.Type.PENDING || !hasCall)
+            onClicked: CallAdapter.hangUpACall(responsibleAccountId, responsibleConvUid)
         },
         GeneralMenuItem {
             id: acceptContactRequest
@@ -144,17 +131,14 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.block_black_24dp_svg
             addMenuSeparatorAfter: canTrigger
             onClicked: {
-                var dlg = viewCoordinator.presentDialog(
-                            appWindow,
-                            "commoncomponents/ConfirmDialog.qml",
-                            {
-                                title: JamiStrings.confirmAction,
-                                textLabel: JamiStrings.confirmBlockConversation,
-                                confirmLabel: JamiStrings.optionBlock
-                            })
-                dlg.accepted.connect(function() {
-                    MessagesAdapter.blockConversation(responsibleConvUid)
-                })
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                        "title": JamiStrings.confirmAction,
+                        "textLabel": JamiStrings.confirmBlockConversation,
+                        "confirmLabel": JamiStrings.optionBlock
+                    });
+                dlg.accepted.connect(function () {
+                        MessagesAdapter.blockConversation(responsibleConvUid);
+                    });
             }
         },
         GeneralMenuItem {
@@ -174,17 +158,14 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.person_24dp_svg
             onClicked: {
                 if (isCoreDialog) {
-                    viewCoordinator.presentDialog(
-                                appWindow,
-                                "mainview/components/UserProfile.qml",
-                                {
-                                    aliasText: aliasText,
-                                    registeredNameText: registeredNameText,
-                                    idText: idText,
-                                    convId: responsibleConvUid
-                                })
+                    viewCoordinator.presentDialog(appWindow, "mainview/components/UserProfile.qml", {
+                            "aliasText": aliasText,
+                            "registeredNameText": registeredNameText,
+                            "idText": idText,
+                            "convId": responsibleConvUid
+                        });
                 } else {
-                    root.showSwarmDetails()
+                    root.showSwarmDetails();
                 }
             }
         }

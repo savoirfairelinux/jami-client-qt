@@ -15,10 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -29,7 +27,7 @@ ProgressBar {
     property real rmsLevel: 0
 
     value: {
-        return clamp(rmsLevel * 300.0, 0.0, 100.0)
+        return clamp(rmsLevel * 300.0, 0.0, 100.0);
     }
 
     contentItem: Item {
@@ -45,23 +43,23 @@ ProgressBar {
 
     onVisibleChanged: {
         if (visible) {
-            rmsLevel = 0
-            AvAdapter.startAudioMeter()
+            rmsLevel = 0;
+            AvAdapter.startAudioMeter();
         } else
-            AvAdapter.stopAudioMeter()
+            AvAdapter.stopAudioMeter();
     }
 
     function clamp(num, a, b) {
-        return Math.max(Math.min(num, Math.max(a, b)), Math.min(a, b))
+        return Math.max(Math.min(num, Math.max(a, b)), Math.min(a, b));
     }
 
-    Connections{
+    Connections {
         target: AVModel
         enabled: root.visible
 
         function onAudioMeter(id, level) {
             if (id === "audiolayer_id") {
-                rmsLevel = level
+                rmsLevel = level;
             }
         }
     }

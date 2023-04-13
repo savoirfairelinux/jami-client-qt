@@ -15,17 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
@@ -39,14 +36,13 @@ SettingsPageBase {
 
     title: JamiStrings.system
 
-
     onDownloadPathChanged: {
-        if(downloadPath === "") return
-        UtilsAdapter.setDownloadPath(downloadPath)
+        if (downloadPath === "")
+            return;
+        UtilsAdapter.setDownloadPath(downloadPath);
     }
 
     flickableContent: ColumnLayout {
-
         id: manageAccountEnableColumnLayout
         width: contentFlickableWidth
         spacing: JamiTheme.settingsBlockSpacing
@@ -66,12 +62,11 @@ SettingsPageBase {
                 options: FolderDialog.ShowDirsOnly
 
                 onAccepted: {
-                    var dir = UtilsAdapter.getAbsPath(folder.toString())
-                    var dirName = UtilsAdapter.dirName(folder.toString())
-                    downloadPath = dir
-                    downloadPathBestName = dirName
+                    var dir = UtilsAdapter.getAbsPath(folder.toString());
+                    var dirName = UtilsAdapter.dirName(folder.toString());
+                    downloadPath = dir;
+                    downloadPathBestName = dirName;
                 }
-
             }
 
             ToggleSwitch {
@@ -153,10 +148,13 @@ SettingsPageBase {
                         var supported = UtilsAdapter.supportedLang();
                         var keys = Object.keys(supported);
                         var currentKey = UtilsAdapter.getAppValue(Settings.Key.LANG);
-                        for (var i = 0 ; i < keys.length ; ++i) {
-                            append({ textDisplay: supported[keys[i]], id: keys[i] })
+                        for (var i = 0; i < keys.length; ++i) {
+                            append({
+                                    "textDisplay": supported[keys[i]],
+                                    "id": keys[i]
+                                });
                             if (keys[i] === currentKey)
-                                langComboBoxSetting.modelIndex = i
+                                langComboBoxSetting.modelIndex = i;
                         }
                     }
                 }
@@ -165,7 +163,7 @@ SettingsPageBase {
                 role: "textDisplay"
 
                 onActivated: {
-                    UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id)
+                    UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id);
                 }
             }
 
@@ -173,18 +171,19 @@ SettingsPageBase {
                 target: UtilsAdapter
 
                 function onChangeLanguage() {
-                    var langIdx = langComboBoxSetting.modelIndex
-                    langModel.clear()
+                    var langIdx = langComboBoxSetting.modelIndex;
+                    langModel.clear();
                     var supported = UtilsAdapter.supportedLang();
                     var keys = Object.keys(supported);
-                    for (var i = 0 ; i < keys.length ; ++i) {
-                        langModel.append({ textDisplay: supported[keys[i]], id: keys[i] })
+                    for (var i = 0; i < keys.length; ++i) {
+                        langModel.append({
+                                "textDisplay": supported[keys[i]],
+                                "id": keys[i]
+                            });
                     }
-                    langComboBoxSetting.modelIndex = langIdx
+                    langComboBoxSetting.modelIndex = langIdx;
                 }
             }
-
-
         }
 
         ColumnLayout {
@@ -202,11 +201,10 @@ SettingsPageBase {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                wrapMode : Text.WordWrap
+                wrapMode: Text.WordWrap
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
-
             }
 
             ToggleSwitch {
@@ -216,17 +214,15 @@ SettingsPageBase {
                 labelText: JamiStrings.experimentalCallSwarm
                 tooltipText: JamiStrings.experimentalCallSwarmTooltip
                 onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.EnableExperimentalSwarm, checked)
+                    UtilsAdapter.setAppValue(Settings.Key.EnableExperimentalSwarm, checked);
                 }
             }
-
-
         }
 
         MaterialButton {
             id: defaultSettings
 
-            TextMetrics{
+            TextMetrics {
                 id: textSize
                 font.weight: Font.Bold
                 font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -237,22 +233,18 @@ SettingsPageBase {
             secondary: true
 
             text: JamiStrings.defaultSettings
-            preferredWidth: textSize.width + 2*JamiTheme.buttontextWizzardPadding
+            preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                notificationCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.EnableNotifications)
-                closeOrMinCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.MinimizeOnClose)
-                checkboxCallSwarm.checked = UtilsAdapter.getDefault(Settings.Key.EnableExperimentalSwarm)
-                langComboBoxSetting.modelIndex = 0
-
-                UtilsAdapter.setToDefault(Settings.Key.EnableNotifications)
-                UtilsAdapter.setToDefault(Settings.Key.MinimizeOnClose)
-                UtilsAdapter.setToDefault(Settings.Key.LANG)
-                UtilsAdapter.setToDefault(Settings.Key.EnableExperimentalSwarm)
+                notificationCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.EnableNotifications);
+                closeOrMinCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.MinimizeOnClose);
+                checkboxCallSwarm.checked = UtilsAdapter.getDefault(Settings.Key.EnableExperimentalSwarm);
+                langComboBoxSetting.modelIndex = 0;
+                UtilsAdapter.setToDefault(Settings.Key.EnableNotifications);
+                UtilsAdapter.setToDefault(Settings.Key.MinimizeOnClose);
+                UtilsAdapter.setToDefault(Settings.Key.LANG);
+                UtilsAdapter.setToDefault(Settings.Key.EnableExperimentalSwarm);
             }
-
         }
-
-
     }
 }

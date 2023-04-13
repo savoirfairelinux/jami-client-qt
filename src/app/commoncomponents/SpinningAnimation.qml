@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import Qt5Compat.GraphicalEffects
 
@@ -43,11 +42,17 @@ Item {
 
         angle: 0.0
         gradient: Gradient {
-            GradientStop { position: 0.5; color: "transparent" }
-            GradientStop { position: 1.0; color: "white" }
+            GradientStop {
+                position: 0.5
+                color: "transparent"
+            }
+            GradientStop {
+                position: 1.0
+                color: "white"
+            }
         }
 
-        RotationAnimation on angle {
+        RotationAnimation on angle  {
             running: root.visible
             loops: Animation.Infinite
             duration: spinningAnimationDuration
@@ -89,7 +94,7 @@ Item {
             }
         }
 
-        RotationAnimation on angle {
+        RotationAnimation on angle  {
             running: root.visible
             loops: Animation.Infinite
             duration: spinningAnimationDuration

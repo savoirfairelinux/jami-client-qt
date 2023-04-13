@@ -15,12 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
 
 Popup {
@@ -49,9 +47,7 @@ Popup {
 
     // A popup is invisible until opened.
     visible: false
-    closePolicy:  autoClose ?
-                      (Popup.CloseOnEscape | Popup.CloseOnPressOutside) :
-                      Popup.NoAutoClose
+    closePolicy: autoClose ? (Popup.CloseOnEscape | Popup.CloseOnPressOutside) : Popup.NoAutoClose
 
     Rectangle {
         id: container
@@ -100,7 +96,7 @@ Popup {
         color: JamiTheme.transparentColor
 
         // Color animation for overlay when pop up is shown.
-        ColorAnimation on color {
+        ColorAnimation on color  {
             to: JamiTheme.popupOverlayColor
             duration: 500
         }
@@ -120,13 +116,17 @@ Popup {
 
     enter: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 0.0; to: 1.0
+            properties: "opacity"
+            from: 0.0
+            to: 1.0
             duration: JamiTheme.shortFadeDuration
         }
     }
     exit: Transition {
         NumberAnimation {
-            properties: "opacity"; from: 1.0; to: 0.0
+            properties: "opacity"
+            from: 1.0
+            to: 0.0
             duration: JamiTheme.shortFadeDuration
         }
     }

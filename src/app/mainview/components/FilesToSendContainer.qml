@@ -15,13 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -39,9 +36,7 @@ Rectangle {
         contentHeight: root.height
         contentWidth: filesToSendContainerRow.width
 
-        horizontalHandleColor:
-            filesToSendContainerScrollView.ScrollBar.horizontal.pressed ?
-                JamiTheme.darkGreyColor : JamiTheme.whiteColor
+        horizontalHandleColor: filesToSendContainerScrollView.ScrollBar.horizontal.pressed ? JamiTheme.darkGreyColor : JamiTheme.whiteColor
         ScrollBar.vertical.policy: ScrollBar.AlwaysOff
 
         Row {
@@ -61,8 +56,8 @@ Rectangle {
                     width: JamiTheme.filesToSendDelegateWidth
                     height: JamiTheme.filesToSendDelegateHeight
 
-                    onRemoveFileButtonClicked: function(index) {
-                        filesToSendListModel.removeFromPending(index)
+                    onRemoveFileButtonClicked: function (index) {
+                        filesToSendListModel.removeFromPending(index);
                     }
                 }
                 model: FilesToSendListModel {

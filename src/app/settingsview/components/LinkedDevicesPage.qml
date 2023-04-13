@@ -16,17 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 SettingsPageBase {
@@ -52,7 +49,7 @@ SettingsPageBase {
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
-            wrapMode : Text.WordWrap
+            wrapMode: Text.WordWrap
 
             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
             font.kerning: true
@@ -96,7 +93,7 @@ SettingsPageBase {
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
-            wrapMode : Text.WordWrap
+            wrapMode: Text.WordWrap
 
             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
             font.kerning: true
@@ -106,7 +103,7 @@ SettingsPageBase {
         MaterialButton {
             id: linkDevPushButton
 
-            TextMetrics{
+            TextMetrics {
                 id: linkDevPushButtonTextSize
                 font.weight: Font.Bold
                 font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
@@ -114,7 +111,7 @@ SettingsPageBase {
             }
 
             Layout.alignment: Qt.AlignLeft
-            preferredWidth: linkDevPushButtonTextSize.width + 2*JamiTheme.buttontextWizzardPadding
+            preferredWidth: linkDevPushButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             visible: CurrentAccount.managerUri === "" && CurrentAccount.enabled
 
@@ -122,10 +119,7 @@ SettingsPageBase {
             toolTipText: JamiStrings.tipLinkNewDevice
             text: JamiStrings.linkAnotherDevice
 
-            onClicked: viewCoordinator.presentDialog(
-                           appWindow,
-                           "settingsview/components/LinkDeviceDialog.qml",
-                           )
+            onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
         }
     }
 }
