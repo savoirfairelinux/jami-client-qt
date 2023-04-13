@@ -69,8 +69,7 @@ def qml_format_files(files):
     for filename in files:
         if os.path.isfile(filename):
             print(f"Formatting: {filename}", end='\r')
-            extra_args = ['--force']
-            subprocess.call([QMLFORMAT, '--inplace', filename] + extra_args)
+            subprocess.call([QMLFORMAT, '--inplace', filename])
             # This may generate a backup file (ending with ~), so delete it.
             backup_file = filename + "~"
             if os.path.isfile(backup_file):
