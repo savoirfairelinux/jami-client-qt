@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c851e64_bd00e74f",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-13T06:03:52Z",
+      "side": 1,
+      "message": "Or have we got it wrong? There should not be spaces?\n\nShould this be `New swarm page` or should the other places not have spaces?\n\nWhat is the convention used at SFL?\n\nThank you",
+      "range": {
+        "startLine": 854,
+        "startChar": 7,
+        "endLine": 854,
+        "endChar": 19
+      },
+      "revId": "59d5a0182a0eb3b1d2cfb5bd95eff86bf9446f66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "467a5d01_f4e7b655",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-13T06:03:52Z",
+      "side": 1,
+      "message": "How about just `Tips`?",
+      "range": {
+        "startLine": 867,
+        "startChar": 7,
+        "endLine": 867,
+        "endChar": 13
+      },
+      "revId": "59d5a0182a0eb3b1d2cfb5bd95eff86bf9446f66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f29f49e_8e9d8739",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-13T06:03:52Z",
+      "side": 1,
+      "message": "1. Should there be a space ` `?\n2. Should this be sentence case?\n\n`Manage account`",
+      "range": {
+        "startLine": 888,
+        "startChar": 7,
+        "endLine": 888,
+        "endChar": 20
+      },
+      "revId": "59d5a0182a0eb3b1d2cfb5bd95eff86bf9446f66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
