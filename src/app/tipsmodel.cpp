@@ -25,6 +25,56 @@ TipsModel::TipsModel(AppSettingsManager* settingsManager, QObject* parent)
     : QAbstractListModel(parent)
     , settingsManager_(settingsManager)
 {
+    QObject::connect(settingsManager_, &AppSettingsManager::retranslate, this, &TipsModel::reset);
+    reset();
+}
+
+int
+TipsModel::rowCount(const QModelIndex& parent) const
+{
+    if (parent.isValid())
+        return 0;
+    return tips_.size();
+}
+
+QVariant
+TipsModel::data(const QModelIndex& index, int role) const
+{
+    if (!index.isValid())
+        return QVariant();
+
+    auto tip = tips_.at(index.row());
+
+    switch (role) {
+    case Tips::Role::TipId:
+        return QVariant::fromValue(tip["id"].toInt());
+    case Tips::Role::Title:
+        return QVariant::fromValue(tip["title"]);
+    case Tips::Role::Description:
+        return QVariant::fromValue(tip["desc"]);
+    case Tips::Role::Type:
+        return QVariant::fromValue(tip["type"]);
+    }
+    return QVariant();
+}
+
+QHash<int, QByteArray>
+TipsModel::roleNames() const
+{
+    using namespace Tips;
+    QHash<int, QByteArray> roles;
+#define X(role) roles[role] = #role;
+    TIPS_ROLES
+#undef X
+    return roles;
+}
+
+void
+TipsModel::reset()
+{
+    beginResetModel();
+    tips_.clear();
+
     tips_.append({{"id", "0"}, {"title", tr("Customize")}, {"desc", ""}, {"type", "customize"}});
     tips_.append({{"id", "13"}, {"title", tr("Backup account")}, {"desc", ""}, {"type", "backup"}});
     tips_.append({{"id", "1"},
@@ -102,44 +152,5 @@ TipsModel::TipsModel(AppSettingsManager* settingsManager, QObject* parent)
     std::random_device rd;
     std::mt19937 g(rd());
     std::shuffle(tips_.begin() + 2, tips_.end(), g);
-}
-
-int
-TipsModel::rowCount(const QModelIndex& parent) const
-{
-    if (parent.isValid())
-        return 0;
-    return tips_.size();
-}
-
-QVariant
-TipsModel::data(const QModelIndex& index, int role) const
-{
-    if (!index.isValid())
-        return QVariant();
-
-    auto tip = tips_.at(index.row());
-
-    switch (role) {
-    case Tips::Role::TipId:
-        return QVariant::fromValue(tip["id"].toInt());
-    case Tips::Role::Title:
-        return QVariant::fromValue(tip["title"]);
-    case Tips::Role::Description:
-        return QVariant::fromValue(tip["desc"]);
-    case Tips::Role::Type:
-        return QVariant::fromValue(tip["type"]);
-    }
-    return QVariant();
-}
-
-QHash<int, QByteArray>
-TipsModel::roleNames() const
-{
-    using namespace Tips;
-    QHash<int, QByteArray> roles;
-#define X(role) roles[role] = #role;
-    TIPS_ROLES
-#undef X
-    return roles;
+    endResetModel();
 }
