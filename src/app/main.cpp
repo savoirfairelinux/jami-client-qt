@@ -41,37 +41,10 @@
 
 #ifndef ENABLE_TESTS
 
-static char**
-parseInputArgument(int& argc, char* argv[], QList<char*> argsToParse)
-{
-    /*
-     * Forcefully append argsToParse.
-     */
-    int oldArgc = argc;
-    argc += argsToParse.size();
-    auto newArgv = new char*[argc];
-    for (int i = 0; i < oldArgc; i++) {
-        newArgv[i] = argv[i];
-    }
-
-    for (int i = oldArgc; i < argc; i++) {
-        newArgv[i] = argsToParse.at(i - oldArgc);
-    }
-    return newArgv;
-}
-
-#ifdef WITH_WEBENGINE
-// Qt WebEngine Chromium Flags
-static char disableWebSecurity[] {"--disable-web-security"};
-static char singleProcess[] {"--single-process"};
-#endif
-
 int
 main(int argc, char* argv[])
 {
     setlocale(LC_ALL, "en_US.utf8");
-
-    QList<char*> qtWebEngineChromiumFlags;
 
 #ifdef Q_OS_LINUX
     if (!getenv("QT_QPA_PLATFORMTHEME")) {
@@ -94,10 +67,6 @@ main(int argc, char* argv[])
      */
     unsetenv("QT_STYLE_OVERRIDE");
 #endif
-#ifdef WITH_WEBENGINE
-    qtWebEngineChromiumFlags << disableWebSecurity;
-    qtWebEngineChromiumFlags << singleProcess;
-#endif
 
     QApplication::setApplicationName(QStringLiteral("Jami"));
     QApplication::setOrganizationDomain(QStringLiteral("jami.net"));
@@ -107,9 +76,16 @@ main(int argc, char* argv[])
     QApplication::setHighDpiScaleFactorRoundingPolicy(
         Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
-    auto newArgv = parseInputArgument(argc, argv, qtWebEngineChromiumFlags);
+#ifdef WITH_WEBENGINE
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS",
+            "--disable-web-security"
+            " --single-process");
+#endif
 
-    MainApplication app(argc, newArgv);
+    MainApplication app(argc, argv);
+
+    QtWebEngineQuick::initialize();
+
     app.setDesktopFileName(QStringLiteral("jami"));
 #if defined(Q_OS_MACOS)
     if (macutils::isMetalSupported()) {
