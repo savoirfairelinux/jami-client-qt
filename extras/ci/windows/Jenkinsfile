@@ -1,0 +1,153 @@
+/*
+ * Copyright (C) 2023 Savoir-faire Linux Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation; either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public
+ * License along with this program.  If not, see
+ * <https://www.gnu.org/licenses/>.
+ */
+
+// A function to rsync a directory to another directory.
+def rsync(src, dst, types = '*', shallow = false) {
+    String baseParams = '/MIR /NP /E /MT /Z /R:3 /W:1 /NFL'
+    String shallowStr = shallow ? '/S /LEV:1': ''
+    bat "robocopy ${src} ${dst} ${baseParams} /IF ${types} ${shallowStr}"
+}
+
+pipeline {
+    agent {
+        node {
+            label 'builder-win'
+        }
+    }
+    triggers {
+        gerrit customUrl: '',
+        gerritProjects: [
+            [
+                branches: [[compareType: 'PLAIN', pattern: 'master']],
+                compareType: 'PLAIN',
+                disableStrictForbiddenFileVerification: false,
+                pattern: 'jami-client-qt'
+            ]
+        ],
+        triggerOnEvents: [
+            commentAddedContains('!build'),
+            patchsetCreated(
+                excludeDrafts: true, excludeNoCodeChange: true,
+                excludeTrivialRebase: true
+            )
+        ]
+    }
+    options {
+        ansiColor('xterm')
+    }
+    parameters {
+        string(
+            name: 'GERRIT_REFSPEC',
+            defaultValue: 'refs/heads/master',
+            description: 'The Gerrit refspec to fetch.'
+        )
+        string(
+            name: 'CACHE_DIR',
+            description: 'The directory to sync the contrib build cache from.'
+        )
+        string(
+            name: 'MAKE_TOOL',
+            defaultValue: 'C:/Qt/Tools/QtCreator/bin/jom/jom.exe',
+            description: 'Path to JOM or NMAKE.'
+        )
+        string(
+            name: 'QT_PATH',
+            defaultValue: 'C:/Qt/6.2.3/msvc2019_64',
+            description: 'Path to Qt.'
+        )
+    }
+    environment {
+        cacheDir = params.CACHE_DIR
+        syncContribBuildCache = false
+    }
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                script {
+                    checkout changelog: true, poll: false,
+                        scm: [
+                            $class: 'GitSCM',
+                            branches: [[name: 'FETCH_HEAD']],
+                            doGenerateSubmoduleConfigurations: false,
+                            extensions: [
+                                [$class: 'CloneOption', noTags: true, reference: '', shallow: true],
+                                [$class: 'WipeWorkspace']
+                            ],
+                            submoduleCfg: [],
+                            userRemoteConfigs: [[refspec: '${GERRIT_REFSPEC}',
+                                                 url: 'https://${JAMI_GERRIT_URL}/jami-client-qt']]
+                        ]
+                    // Update submodules right away
+                    dir('jami-client-qt') {
+                        bat 'git submodule update --init'
+                    }
+                }
+            }
+        }
+        if (syncContribBuildCache) {
+            stage ('Sync contrib build cache') {
+                steps {
+                    dir('jami-client-qt') {
+                        String artifacts = '*.h *.hpp *.lib *.dll *.pdb *.exp *.a'
+                        rsync(cacheDir + '\\contrib\\build', 'daemon\\contrib\\build', artifacts)
+                        rsync(cacheDir + '\\contrib\\build', 'daemon\\contrib\\build', "*", true)
+                        rsync(cacheDir + '\\contrib\\msvc', 'daemon\\contrib\\msvc', artifacts)
+                    }
+                }
+            }
+        } else {
+            stage ('Link and checkout cached daemon') {
+                steps {
+                    script {
+                        String daemonHead
+                        dir('jami-client-qt') {
+                            daemonHead = bat(returnStdout: true, script: "git rev-parse HEAD:daemon").trim()
+                            daemonHead = daemonHead.split("\\r?\\n")[1]
+                            bat "rmdir /S /Q daemon"
+                            bat "mklink /D daemon ${cacheDir}"
+                        }
+                        dir('jami-client-qt/daemon') {
+                            bat "git fetch origin master"
+                            bat "git checkout ${daemonHead}"
+                        }
+                    }
+                }
+            }
+        }
+        stage ('Build daemon') {
+            steps {
+                dir('jami-client-qt\\daemon\\build') {
+                    bat "del /S /Q *"
+                }
+                dir('jami-client-qt\\daemon\\compat\\msvc') {
+                    bat "set MAKE_TOOL=${params.MAKE_TOOL} && call python winmake.py -iv -b daemon || exit /b 1"
+                }
+            }
+        }
+        stage ('Build Client') {
+            steps {
+                dir('jami-client-qt/extras/scripts') {
+                    bat """
+                        python build-windows.py --init || exit /b 1
+                        python build-windows.py --qt=${params.QT_PATH} --tests --skip-deploy || exit /b 1
+                    """
+                }
+            }
+        }
+    }
+}
