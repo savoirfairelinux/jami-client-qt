@@ -54,6 +54,7 @@ SettingsPageBase {
         AdvancedChatSettings {
             id: advancedChatSettings
 
+            visible: LRCInstance.currentAccountType === Profile.Type.JAMI
             width: parent.width
         }
 
