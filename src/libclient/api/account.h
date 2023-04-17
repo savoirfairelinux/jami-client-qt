@@ -74,9 +74,6 @@ to_status(const QString& type)
 enum class KeyExchangeProtocol { NONE, SDES };
 Q_ENUM_NS(KeyExchangeProtocol)
 
-enum class TlsMethod { DEFAULT, TLSv1, TLSv1_1, TLSv1_2 };
-Q_ENUM_NS(TlsMethod)
-
 struct ConfProperties_t
 {
     QString mailbox;
@@ -171,14 +168,10 @@ struct ConfProperties_t
         QString certificateFile;
         QString privateKeyFile;
         QString password;
-        TlsMethod method;
-        QString ciphers;
-        QString serverName;
         bool verifyServer;
         bool verifyClient;
         bool requireClientCertificate;
         bool disableSecureDlgCheck;
-        int negotiationTimeoutSec;
     } TLS;
     struct DHT_t
     {

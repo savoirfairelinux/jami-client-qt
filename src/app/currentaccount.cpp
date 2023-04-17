@@ -161,9 +161,6 @@ CurrentAccount::updateData()
         set_certificateFileTLS(accConfig.TLS.certificateFile, true);
         set_privateKeyFileTLS(accConfig.TLS.privateKeyFile, true);
         set_passwordTLS(accConfig.TLS.password, true);
-        set_serverNameTLS(accConfig.TLS.serverName, true);
-        set_methodTLS(accConfig.TLS.method, true);
-        set_negotiationTimeoutSecTLS(accConfig.TLS.negotiationTimeoutSec, true);
 
         // SRTP
         set_enableSRTP(accConfig.SRTP.enable, true);

@@ -912,26 +912,12 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.TLS.certificateFile = details[ConfProperties::TLS::CERTIFICATE_FILE];
     confProperties.TLS.privateKeyFile = details[ConfProperties::TLS::PRIVATE_KEY_FILE];
     confProperties.TLS.password = details[ConfProperties::TLS::PASSWORD];
-    auto method = toStdString(details[ConfProperties::TLS::METHOD]);
-    if (method == "TLSv1") {
-        confProperties.TLS.method = account::TlsMethod::TLSv1;
-    } else if (method == "TLSv1.1") {
-        confProperties.TLS.method = account::TlsMethod::TLSv1_1;
-    } else if (method == "TLSv1.2") {
-        confProperties.TLS.method = account::TlsMethod::TLSv1_2;
-    } else {
-        confProperties.TLS.method = account::TlsMethod::DEFAULT;
-    }
-    confProperties.TLS.ciphers = details[ConfProperties::TLS::CIPHERS];
-    confProperties.TLS.serverName = details[ConfProperties::TLS::SERVER_NAME];
     confProperties.TLS.verifyServer = toBool(details[ConfProperties::TLS::VERIFY_SERVER]);
     confProperties.TLS.verifyClient = toBool(details[ConfProperties::TLS::VERIFY_CLIENT]);
     confProperties.TLS.requireClientCertificate = toBool(
         details[ConfProperties::TLS::REQUIRE_CLIENT_CERTIFICATE]);
     confProperties.TLS.disableSecureDlgCheck = toBool(
         details[ConfProperties::TLS::DISABLE_SECURE_DLG_CHECK]);
-    confProperties.TLS.negotiationTimeoutSec = toInt(
-        details[ConfProperties::TLS::NEGOTIATION_TIMEOUT_SEC]);
     // DHT
     confProperties.DHT.port = toInt(details[ConfProperties::DHT::PORT]);
     confProperties.DHT.PublicInCalls = toBool(details[ConfProperties::DHT::PUBLIC_IN_CALLS]);
@@ -1031,31 +1017,12 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::TLS::CERTIFICATE_FILE] = this->TLS.certificateFile;
     details[ConfProperties::TLS::PRIVATE_KEY_FILE] = this->TLS.privateKeyFile;
     details[ConfProperties::TLS::PASSWORD] = this->TLS.password;
-    switch (this->TLS.method) {
-    case account::TlsMethod::TLSv1:
-        details[ConfProperties::TLS::METHOD] = "TLSv1";
-        break;
-    case account::TlsMethod::TLSv1_1:
-        details[ConfProperties::TLS::METHOD] = "TLSv1.1";
-        break;
-    case account::TlsMethod::TLSv1_2:
-        details[ConfProperties::TLS::METHOD] = "TLSv1.2";
-        break;
-    case account::TlsMethod::DEFAULT:
-    default:
-        details[ConfProperties::TLS::METHOD] = "Default";
-        break;
-    }
-    details[ConfProperties::TLS::CIPHERS] = this->TLS.ciphers;
-    details[ConfProperties::TLS::SERVER_NAME] = this->TLS.serverName;
     details[ConfProperties::TLS::VERIFY_SERVER] = toQString(this->TLS.verifyServer);
     details[ConfProperties::TLS::VERIFY_CLIENT] = toQString(this->TLS.verifyClient);
     details[ConfProperties::TLS::REQUIRE_CLIENT_CERTIFICATE] = toQString(
         this->TLS.requireClientCertificate);
     details[ConfProperties::TLS::DISABLE_SECURE_DLG_CHECK] = toQString(
         this->TLS.disableSecureDlgCheck);
-    details[ConfProperties::TLS::NEGOTIATION_TIMEOUT_SEC] = toQString(
-        this->TLS.negotiationTimeoutSec);
     // DHT
     details[ConfProperties::DHT::PORT] = toQString(this->DHT.port);
     details[ConfProperties::DHT::PUBLIC_IN_CALLS] = toQString(this->DHT.PublicInCalls);
