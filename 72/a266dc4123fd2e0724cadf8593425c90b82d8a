@@ -1,0 +1,7 @@
+Code-Review+2: Maxim Cournoyer <maxim.cournoyer@savoirfairelinux.com>
+Verified+1: Jenkins CI <jenkins@ring-packaging.cx>
+Submitted-by: Maxim Cournoyer <maxim.cournoyer@savoirfairelinux.com>
+Submitted-at: Mon, 17 Apr 2023 11:53:54 -0400
+Reviewed-on: https://review.jami.net/c/jami-client-qt/+/23972
+Project: jami-client-qt
+Branch: refs/heads/master
