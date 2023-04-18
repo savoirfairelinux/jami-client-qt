@@ -22,6 +22,8 @@ import net.jami.Constants 1.1
 BaseView {
     id: viewNode
 
+    property bool isRTL: UtilsAdapter.isRtl()
+
     required property Item leftPaneItem
     required property Item rightPaneItem
 
@@ -37,9 +39,9 @@ BaseView {
 
     onPresented: {
         if (leftPaneItem)
-            leftPaneItem.parent = leftPane;
+            leftPaneItem.parent = isRTL ? rightPane : leftPane;
         if (rightPaneItem)
-            rightPaneItem.parent = rightPane;
+            rightPaneItem.parent = isRTL ? leftPane : rightPane;
         splitView.restoreSplitViewState();
         resolvePanes();
     }
@@ -50,15 +52,28 @@ BaseView {
         onIsSinglePaneChanged.connect(isSinglePaneChangedHandler);
     }
 
-    property real previousLeftPaneWidth: leftPane.width
+    property real previousLeftPaneWidth: isRTL ? rightPane.width : leftPane.width
+    property real previousRightPaneWidth: isRTL ? leftPane.width : rightPane.width
+
     onWidthChanged: resolvePanes()
     function resolvePanes() {
-        isSinglePane = width < rightPaneMinWidth + previousLeftPaneWidth;
+        if (isRTL) {
+            isSinglePane = width < rightPaneMinWidth + previousRightPaneWidth;
+        } else {
+            isSinglePane = width < rightPaneMinWidth + previousLeftPaneWidth;
+        }
     }
 
     // Override this if needed.
     property var isSinglePaneChangedHandler: function () {
-        rightPaneItem.parent = isSinglePane ? leftPane : rightPane;
+        console.warn("isSinglePaneChangedHandler");
+        if (viewNode.isRTL) {
+            console.warn("isSinglePaneChangedHandler isRTL");
+            leftPaneItem.parent = isSinglePane ? rightPane : leftPane;
+        } else {
+            console.warn("isSinglePaneChangedHandler not isRTL");
+            rightPaneItem.parent = isSinglePane ? leftPane : rightPane;
+        }
     }
 
     JamiSplitView {

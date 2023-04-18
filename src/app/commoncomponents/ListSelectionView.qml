@@ -15,19 +15,29 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import net.jami.Adapters 1.1
+
 import QtQuick
 
 DualPaneView {
     id: viewNode
 
+    property bool isRTL: UtilsAdapter.isRtl()
     property bool hideRightPaneInSinglePaneMode : false
+    property bool hideLeftPaneInSinglePaneMode : false
 
     Component.onCompleted: {
-        if (hideRightPaneInSinglePaneMode) return
+        if ( isRTL ? hideLeftPaneInSinglePaneMode : hideRightPaneInSinglePaneMode) return
         onIndexChanged.connect(function() {
             if (hasValidSelection) {
                 if (selectionFallback && isSinglePane)
-                    rightPaneItem.parent = leftPane
+
+                    if(isRTL){
+                        leftPaneItem.parent = rightPane
+                    }
+                
+                    else {
+                        rightPaneItem.parent = leftPane }
                 return
             }
             if (!isSinglePane) dismiss()
@@ -69,7 +79,7 @@ DualPaneView {
     }
 
     onLeftPaneItemChanged: {
-        if (leftPaneItem) leftPaneItem.indexSelected.connect(selectIndex)
+        if (leftPaneItem) rightPaneItem.indexSelected.connect(selectIndex)
     }
     isSinglePaneChangedHandler: () => {
         if (hideRightPaneInSinglePaneMode) return

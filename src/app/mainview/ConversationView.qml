@@ -32,6 +32,8 @@ ListSelectionView {
     splitViewStateKey: "Main"
     hasValidSelection: CurrentConversation.id !== ''
 
+    property bool isRTL: UtilsAdapter.isRtl()
+
     Connections {
         target: CurrentConversation
         function onReloadInteractions() {
@@ -56,9 +58,12 @@ ListSelectionView {
 
     color: JamiTheme.transparentColor
 
-    leftPaneItem: viewCoordinator.getView("SidePanel")
+    leftPaneItem: isRTL ? stack : viewCoordinator.getView("SidePanel")
 
-    rightPaneItem: StackLayout {
+    rightPaneItem: isRTL ? viewCoordinator.getView("SidePanel") : stack
+
+    StackLayout {
+        id: stack
         currentIndex: !CurrentConversation.hasCall ? 0 : 1
         onCurrentIndexChanged: chatView.parent = currentIndex === 1 ? callStackView.chatViewContainer : chatViewContainer
 
