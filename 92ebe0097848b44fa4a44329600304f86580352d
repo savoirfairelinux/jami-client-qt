@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9291f22f_483f625d",
+        "filename": "src/app/main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-18T20:42:30Z",
+      "side": 1,
+      "message": "QtWebEngineQuick::initialize() called with QCoreApplication object already created and should be call before. This is depreciated and may fail in the future.",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 35
+      },
+      "revId": "92ebe0097848b44fa4a44329600304f86580352d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
