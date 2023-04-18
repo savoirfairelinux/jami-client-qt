@@ -50,6 +50,15 @@ UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
     }
 }
 
+bool
+UtilsAdapter::isRtl()
+{
+    auto pref = getAppValue(Settings::Key::LANG).toString();
+    pref == "SYSTEM" ? QLocale::system().name() : pref;
+    qWarning() << pref;
+    return pref == "ar" || pref == "he" || pref == "fa" || pref == "ur";
+}
+
 QVariant
 UtilsAdapter::getAppValue(const QString& key, const QVariant& defaultValue)
 {

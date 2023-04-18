@@ -24,6 +24,7 @@ import net.jami.Enums 1.1
 
 Item {
     property bool darkTheme: UtilsAdapter.useApplicationTheme()
+    property bool isRTL: UtilsAdapter.isRtl()
 
     Connections {
         target: UtilsAdapter
@@ -287,8 +288,8 @@ Item {
     property int smartListTransitionDuration: 120
 
     // Sizes
-    property real mainViewLeftPaneMinWidth: 300
-    property real mainViewPaneMinWidth: 430
+    property real mainViewLeftPaneMinWidth: isRTL ? 430 : 300
+    property real mainViewPaneMinWidth: isRTL ? 300 : 430
     property real qrCodeImageSize: 256
     property real splitViewHandlePreferredWidth: 4
     property real indicatorFontSize: calcSize(6)
