@@ -1,0 +1,28 @@
+ .../src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h                   | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h b/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
+index a9b9e137de..562327f1c4 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
+@@ -18,6 +18,7 @@
+ 
+ #include <limits.h>
+ 
++#include <cstdint>
+ #include <cstddef>
+ #include <cstring>
+ #include <ostream>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h b/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h
+index d132a72e8c..f49ba32d49 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h
+@@ -22,6 +22,7 @@
+ #include <climits>
+ #include <cstdarg>
+ #include <cstddef>
++#include <cstdint>
+ #include <set>
+ #include <sstream>
+ #include <string>
