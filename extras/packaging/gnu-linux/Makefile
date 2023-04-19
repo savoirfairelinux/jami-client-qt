@@ -81,6 +81,7 @@ purge-release-tarballs:
 	rm -f jami-*.tar.* tarballs.manifest
 
 release-tarball:
+	rm -f "$(RELEASE_TARBALL_FILENAME)" tarballs.manifest
 	$(MAKE) -f extras/packaging/gnu-linux/Makefile "$(RELEASE_TARBALL_FILENAME)"
 
 # Predicate to check if the 'guix' command is available.
@@ -166,8 +167,10 @@ DISTRIBUTIONS := \
 	ubuntu_20.04 \
 	ubuntu_22.04 \
 	ubuntu_22.10 \
+	ubuntu_23.04 \
 	fedora_36 \
 	fedora_37 \
+	fedora_38 \
 	opensuse-leap_15.4 \
 	snap
 
