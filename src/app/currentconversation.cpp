@@ -55,6 +55,7 @@ CurrentConversation::updateData()
     // If the conversation is empty, clear the id and return.
     if (convId.isEmpty()) {
         set_id();
+        uris_->setMembers({}, {}, {});
         return;
     }
 
@@ -266,6 +267,7 @@ CurrentConversation::updateConversationPreferences(const QString& convId)
 void
 CurrentConversation::connectModel()
 {
+    uris_->setMembers({}, {}, {});
     auto convModel = lrcInstance_->getCurrentConversationModel();
     if (!convModel)
         return;
