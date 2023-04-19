@@ -168,6 +168,7 @@ DISTRIBUTIONS := \
 	ubuntu_22.10 \
 	fedora_36 \
 	fedora_37 \
+	fedora_38 \
 	opensuse-leap_15.4 \
 	snap
 
