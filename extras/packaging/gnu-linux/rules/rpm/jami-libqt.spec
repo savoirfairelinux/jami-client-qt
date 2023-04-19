@@ -27,6 +27,7 @@ Vendor:        Savoir-faire Linux Inc.
 URL:           https://jami.net/
 Source:        jami-libqt-%{version}.tar.xz
 Patch0:        0001-qtbug-101201-fatal-error-getcurrenkeyboard.patch
+Patch1:        0002-check-ulimit.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -62,6 +63,7 @@ This package contains Qt libraries for Jami.
 %prep
 %setup -n qt-everywhere-src-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 echo "Building Qt using %{job_count} parallel jobs"
@@ -78,6 +80,7 @@ sed -i 's,#include <string.h>,#include <string.h>\n#include <limits>,g' qtbase/s
 cat qtbase/src/corelib/global/qendian.h
 sed -i 's,#include <string.h>,#include <string.h>\n#include <limits>,g' qtbase/src/corelib/global/qfloat16.h
 sed -i 's,#include <QtCore/qbytearray.h>,#include <QtCore/qbytearray.h>\n#include <limits>,g' qtbase/src/corelib/text/qbytearraymatcher.h
+cat qtwebengine/configure.cmake
 # recent gcc version do not like lto from qt
 CXXFLAGS="${CXXFLAGS} -fno-lto" CFLAGS="${CFLAGS} -fno-lto" ./configure \
   -opensource \
