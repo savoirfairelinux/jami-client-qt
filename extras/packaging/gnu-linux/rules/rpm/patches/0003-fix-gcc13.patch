@@ -1,0 +1,55 @@
+ .../3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h    | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h             | 2 +-
+ qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h             | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h                  | 1 +
+ 4 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h b/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
+index a9b9e137de..562327f1c4 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
+@@ -18,6 +18,7 @@
+ 
+ #include <limits.h>
+ 
++#include <cstdint>
+ #include <cstddef>
+ #include <cstring>
+ #include <ostream>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h
+index e9b79943dd..18428a5946 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h
+@@ -7,7 +7,7 @@
+ #define GLSLANG_SHADERLANG_H_
+ 
+ #include <stddef.h>
+-
++#include <cstdint>
+ #include "KHR/khrplatform.h"
+ 
+ #include <array>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
+index a8f3bb28c6..bd9e105835 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
+@@ -14,6 +14,7 @@
+ #include <array>
+ #include <string>
+ #include <vector>
++#include <cstdint>
+ 
+ // This type is defined here to simplify ANGLE's integration with glslang for SPIRv.
+ using ShCompileOptions = uint64_t;
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h b/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h
+index d132a72e8c..f49ba32d49 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h
+@@ -22,6 +22,7 @@
+ #include <climits>
+ #include <cstdarg>
+ #include <cstddef>
++#include <cstdint>
+ #include <set>
+ #include <sstream>
+ #include <string>
