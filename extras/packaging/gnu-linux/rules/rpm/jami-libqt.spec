@@ -27,6 +27,7 @@ Vendor:        Savoir-faire Linux Inc.
 URL:           https://jami.net/
 Source:        jami-libqt-%{version}.tar.xz
 Patch0:        0001-qtbug-101201-fatal-error-getcurrenkeyboard.patch
+Patch1:        0002-check-ulimit.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
