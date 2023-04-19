@@ -36,7 +36,7 @@ rpmdev-setuptree
 # Copy the source tarball.
 cp --reflink=auto "/src/$RELEASE_TARBALL_FILENAME" /root/rpmbuild/SOURCES
 
-cp patches/0001-qtbug-101201-fatal-error-getcurrenkeyboard.patch /root/rpmbuild/SOURCES/
+cp patches/*.patch /root/rpmbuild/SOURCES/
 
 QT_JAMI_PREFIX="/usr/lib64/qt-jami"
 PATH="${QT_JAMI_PREFIX}/bin:${PATH}"
@@ -115,6 +115,8 @@ if [ ! -f "${RPM_PATH}" ]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc36.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_37" ]]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc37.x86_64.rpm "${RPM_PATH}"
+        elif [[ "${DISTRIBUTION}" == "fedora_38" ]]; then
+            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc38.x86_64.rpm "${RPM_PATH}"
         else
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-*.rpm "${RPM_PATH}"
         fi
