@@ -1,0 +1,121 @@
+ qtwebengine/src/3rdparty/chromium/base/logging.h                                                              | 2 ++
+ qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h         | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h                              | 2 +-
+ qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h                              | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h                                   | 1 +
+ .../src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h        | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc                             | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h                       | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/vulkan_memory_allocator/src/vk_mem_alloc.h                      | 1 +
+ 9 files changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/qtwebengine/src/3rdparty/chromium/base/logging.h b/qtwebengine/src/3rdparty/chromium/base/logging.h
+index c4db4c92dc..602560db1a 100644
+--- a/qtwebengine/src/3rdparty/chromium/base/logging.h
++++ b/qtwebengine/src/3rdparty/chromium/base/logging.h
+@@ -7,6 +7,8 @@
+
+ #include <stddef.h>
+
++
++#include <cstdint>
+ #include <cassert>
+ #include <cstdint>
+ #include <sstream>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h b/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
+index a9b9e137de..562327f1c4 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
+@@ -18,6 +18,7 @@
+
+ #include <limits.h>
+
++#include <cstdint>
+ #include <cstddef>
+ #include <cstring>
+ #include <ostream>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h
+index e9b79943dd..18428a5946 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h
+@@ -7,7 +7,7 @@
+ #define GLSLANG_SHADERLANG_H_
+
+ #include <stddef.h>
+-
++#include <cstdint>
+ #include "KHR/khrplatform.h"
+
+ #include <array>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
+index a8f3bb28c6..bd9e105835 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
+@@ -14,6 +14,7 @@
+ #include <array>
+ #include <string>
+ #include <vector>
++#include <cstdint>
+
+ // This type is defined here to simplify ANGLE's integration with glslang for SPIRv.
+ using ShCompileOptions = uint64_t;
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h b/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h
+index d132a72e8c..f49ba32d49 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/angle/src/common/angleutils.h
+@@ -22,6 +22,7 @@
+ #include <climits>
+ #include <cstdarg>
+ #include <cstddef>
++#include <cstdint>
+ #include <set>
+ #include <sstream>
+ #include <string>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h b/qtwebengine/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
+index c7e4f2b378..f30ce91b36 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
+@@ -34,6 +34,7 @@
+ #include <sys/types.h>
+
+ #include <string>
++#include <cstdint>
+
+ #include "client/linux/handler/microdump_extra_info.h"
+ #include "common/using_std_string.h"
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc b/qtwebengine/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
+index a3099e15db..74437e9db3 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
++++ b/qtwebengine/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
+@@ -26,6 +26,7 @@
+ #endif
+ #include <algorithm>
+ #include <cassert>
++#include <cstdio>
+ #include <cinttypes>
+ #include <cstddef>
+ #include <cstdint>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h b/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h
+index 1b4c53815b..359d5ebdd2 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h
+@@ -17,6 +17,7 @@
+ #ifndef INCLUDE_PERFETTO_EXT_BASE_UUID_H_
+ #define INCLUDE_PERFETTO_EXT_BASE_UUID_H_
+
++#include <cstdint>
+ #include <array>
+ #include <string>
+
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/vulkan_memory_allocator/src/vk_mem_alloc.h b/qtwebengine/src/3rdparty/chromium/third_party/vulkan_memory_allocator/src/vk_mem_alloc.h
+index 917e369c6d..0795b1d683 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/vulkan_memory_allocator/src/vk_mem_alloc.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/vulkan_memory_allocator/src/vk_mem_alloc.h
+@@ -3844,6 +3844,7 @@ VMA_CALL_PRE void VMA_CALL_POST vmaDestroyImage(
+ #ifdef VMA_IMPLEMENTATION
+ #undef VMA_IMPLEMENTATION
+
++#include <cstdio>
+ #include <cstdint>
+ #include <cstdlib>
+ #include <cstring>

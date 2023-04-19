@@ -1,1 +1,3 @@
 0001-qtbug-101201-fatal-error-getcurrenkeyboard.patch
+0002-check-ulimit.patch
+0003-fix-gcc13.patch
