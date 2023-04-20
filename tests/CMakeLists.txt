@@ -38,7 +38,11 @@ set(TEST_QML_RESOURCES
     ${CMAKE_SOURCE_DIR}/src/app/resources.qrc)
 
 # Common jami files
-add_library(test_common_obj OBJECT ${COMMON_SOURCES} ${COMMON_HEADERS})
+add_library(test_common_obj OBJECT
+    ${COMMON_SOURCES}
+    ${COMMON_HEADERS}
+    ${MD4C_OBJECTS}
+    ${TIDY_OBJECTS})
 target_link_libraries(test_common_obj ${QML_TEST_LIBS})
 target_compile_definitions(test_common_obj PRIVATE ENABLE_TESTS="ON")
 
@@ -77,6 +81,7 @@ set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/main_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/account_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/contact_unittest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/unittests/messageparser_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/globaltestenvironment.h
     ${COMMON_TESTS_SOURCES})
 
