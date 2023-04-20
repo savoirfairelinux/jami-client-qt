@@ -16,6 +16,24 @@
       "message": "If you enter in the chat text with `Shift`+`Enter`, does it show correctly once sent for the sender?\n\nFor example:\n```\nThis is the first line.\nThis is the second line.\n\nThis is the fourth line. The third line is blank.\n```\n\nCurrently Jami Version: 202304121407 shows it incorrectly as:\n```\nThis is the first line. This is the second line. This is the fourth line. The third line is blank.\n```\n\nShould a Unit Test be added for one `Shift`+`Enter` and two consecutive `Shift`+`Enter`s?\n\nThank you",
       "revId": "74499929ade045f4ea57969eb6b38326356c94ea",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a08aa42_e52223a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-20T20:00:11Z",
+      "side": 1,
+      "message": "Not related to this.",
+      "parentUuid": "bc253cc7_c6bac88d",
+      "revId": "74499929ade045f4ea57969eb6b38326356c94ea",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
