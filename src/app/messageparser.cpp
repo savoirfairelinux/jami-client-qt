@@ -153,10 +153,7 @@ htmlChunkCb(const MD_CHAR* data, MD_SIZE data_size, void* userData)
 QString
 MessageParser::markdownToHtml(const char* markdown)
 {
-    static auto md_flags = MD_FLAG_WIKILINKS | MD_FLAG_LATEXMATHSPANS | MD_FLAG_PERMISSIVEAUTOLINKS
-                           | MD_FLAG_UNDERLINE | MD_FLAG_STRIKETHROUGH
-                           | MD_FLAG_NOINDENTEDCODEBLOCKS | MD_FLAG_NOHTMLBLOCKS
-                           | MD_FLAG_NOHTMLSPANS;
+    static auto md_flags = MD_DIALECT_COMMONMARK;
     size_t data_len = strlen(markdown);
     if (data_len <= 0) {
         return QString();
