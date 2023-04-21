@@ -260,8 +260,7 @@ Rectangle {
                 spacing: JamiTheme.wizardViewPageLayoutSpacing
 
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
+                anchors.verticalCenter: parent.verticalCenter
 
                 width: Math.max(508, root.width - 100)
 
@@ -288,6 +287,10 @@ Rectangle {
                     newItem: true
                     imageId: visible ? "temp" : ""
                     avatarSize: 150
+
+                    KeyNavigation.up: backButton
+                    KeyNavigation.down: displayNameLineEdit
+                    KeyNavigation.tab: KeyNavigation.down
                 }
 
                 ModalTextEdit {
@@ -297,6 +300,10 @@ Rectangle {
                     Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: 30
                     placeholderText: JamiStrings.enterNickname
+
+                    KeyNavigation.up: currentAccountAvatar
+                    KeyNavigation.down: backButton
+                    KeyNavigation.tab: KeyNavigation.down
                 }
 
                 Text {
@@ -328,8 +335,8 @@ Rectangle {
 
         preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
-        KeyNavigation.up: personalizeAccount
-        KeyNavigation.down: sipServernameEdit
+        KeyNavigation.up: createAccountStack.currentIndex !== 0 ? displayNameLineEdit : personalizeAccount
+        KeyNavigation.down: createAccountStack.currentIndex !== 0 ? currentAccountAvatar : sipServernameEdit
         KeyNavigation.tab: KeyNavigation.down
 
         onClicked: {
