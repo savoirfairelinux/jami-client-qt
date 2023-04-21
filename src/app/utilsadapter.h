@@ -66,6 +66,7 @@ class UtilsAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     QML_PROPERTY(QStringList, logList)
+    QML_RO_PROPERTY(bool, isRTL)
 public:
     explicit UtilsAdapter(AppSettingsManager* settingsManager,
                           SystemTray* systemTray,
@@ -148,6 +149,8 @@ public:
     Q_INVOKABLE QString getOneline(const QString& input);
 
     Q_INVOKABLE QVariantMap getVideoPlayer(const QString& resource, const QString& bgColor);
+
+    Q_INVOKABLE bool isRTL();
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
