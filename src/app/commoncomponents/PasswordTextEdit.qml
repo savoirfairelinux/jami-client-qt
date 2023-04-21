@@ -23,7 +23,6 @@ ModalTextEdit {
     id: modalTextEditRoot
 
     property bool firstEntry: false
-
     signal icoClicked
 
     prefixIconSrc: firstEntry ? JamiResources.lock_svg : JamiResources.round_edit_24dp_svg
