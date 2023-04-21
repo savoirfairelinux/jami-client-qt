@@ -79,7 +79,7 @@ AbstractButton {
     checkable: false
     checked: false
     hoverEnabled: true
-    focusPolicy: Qt.TabFocus
+    focusPolicy: Qt.StrongFocus
 
     property bool forceHovered: false
 
@@ -169,7 +169,7 @@ AbstractButton {
             },
             State {
                 name: "hovered"
-                when: hovered || root.activeFocus
+                when: hovered
                 PropertyChanges {
                     target: background
                     color: hoveredColor
@@ -177,7 +177,7 @@ AbstractButton {
             },
             State {
                 name: "forceHovered"
-                when: forceHovered || root.activeFocus
+                when: forceHovered
                 PropertyChanges {
                     target: background
                     color: hoveredColor
