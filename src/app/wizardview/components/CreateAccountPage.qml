@@ -372,7 +372,6 @@ Rectangle {
 
         KeyNavigation.tab: usernameEdit
         KeyNavigation.up: advancedAccountSettingsPage
-
         KeyNavigation.down: usernameEdit
 
         onClicked: {

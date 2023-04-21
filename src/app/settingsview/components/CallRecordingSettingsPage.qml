@@ -166,6 +166,7 @@ SettingsPageBase {
                     Layout.fillHeight: true
 
                     value: AVModel.getRecordQuality() / 100
+                    useSystemFocusVisuals: false
 
                     from: 0
                     to: 500

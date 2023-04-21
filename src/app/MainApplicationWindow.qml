@@ -44,6 +44,37 @@ ApplicationWindow {
         None
     }
 
+    onActiveFocusItemChanged: {
+        print(activeFocusItem);
+        focusOverlay.margin = -5;
+        if (activeFocusItem && ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason))) {
+            if (activeFocusItem.focusOnChild) {
+                focusOverlay.parent = activeFocusItem.parent;
+            } else if (activeFocusItem.dontShowFocusState) {
+                focusOverlay.parent = null;
+            } else {
+                if (activeFocusItem.showFocusMargin)
+                    focusOverlay.margin = 0;
+                focusOverlay.parent = activeFocusItem;
+            }
+        } else {
+            focusOverlay.parent = null;
+        }
+    }
+
+    Rectangle {
+        id: focusOverlay
+        property real margin: -5
+        z: -2
+        anchors.fill: parent
+        anchors.margins: margin
+        visible: true
+        color: "transparent"
+        radius: parent ? parent.radius ? parent.radius : 0 : 0
+        border.width: 2
+        border.color: JamiTheme.tintedBlue
+    }
+
     property ApplicationWindow appWindow: root
     property LayoutManager layoutManager: LayoutManager {
         appContainer: appContainer
