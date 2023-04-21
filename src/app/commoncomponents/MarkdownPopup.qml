@@ -57,7 +57,9 @@ Popup {
             imageContainerHeight: 20
             radius: 5
 
-            toolTipText: modelData.toolTip
+            toolTipText: modelData.shortcutText
+            shortcutKey: modelData.shortcutKey
+            hasShortcut: true
             source: modelData.iconSrc
 
             normalColor: JamiTheme.chatViewFooterListColor
