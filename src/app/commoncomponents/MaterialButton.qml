@@ -39,9 +39,7 @@ AbstractButton {
     property var hoveredColor: JamiTheme.buttonTintedBlueHovered
     property var secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
     property var pressedColor: JamiTheme.buttonTintedBluePressed
-    property var keysNavigationFocusColor: Qt.darker(hoveredColor, 2)
     property bool hasIcon: animatedIconSource.length !== 0 || iconSource.length !== 0
-
     property var preferredWidth
     property real textLeftPadding
     property real textRightPadding
@@ -68,7 +66,7 @@ AbstractButton {
     }
 
     hoverEnabled: true
-    focusPolicy: Qt.TabFocus
+    focusPolicy: Qt.StrongFocus
 
     Accessible.role: Accessible.Button
     Accessible.name: root.text
@@ -182,14 +180,14 @@ AbstractButton {
     background: Rectangle {
 
         color: {
-            var baseColor = root.focus ? root.keysNavigationFocusColor : root.color;
+            var baseColor = root.color;
             if (root.primary) {
                 if (root.hovered && root.hoverEnabled)
                     return root.hoveredColor;
                 return baseColor;
             }
             if (root.secondary || root.tertiary) {
-                if ((root.hovered && root.hoverEnabled) || root.focus)
+                if (root.hovered && root.hoverEnabled)
                     return root.secHoveredColor;
                 return JamiTheme.transparentColor;
             }
@@ -209,7 +207,7 @@ AbstractButton {
                 return JamiTheme.secondaryButtonBorderColor;
             if (root.down)
                 return root.pressedColor;
-            return root.focus ? root.keysNavigationFocusColor : root.color;
+            return root.color;
         }
 
         radius: JamiTheme.primaryRadius
