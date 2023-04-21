@@ -545,6 +545,9 @@ Item {
     property real tipBoxContentFontSize: calcSize(12)
     property color tipBoxBackgroundColor: darkTheme ? blackColor : whiteColor
     property color tipBoxBorderColor: darkTheme ? "#123F4A" : "#A3C2DA"
+    property color tooltipBackgroundColor: darkTheme ? "#66000000" : "#c4272727"
+    property color tooltipShortCutBackgroundColor: darkTheme ? blackColor : "#2c2c2c"
+    property color tooltipShortCutTextColor: "#a7a7a7"
 
     //sharePosition
     property real timerButtonsFontSize: calcSize(11)
