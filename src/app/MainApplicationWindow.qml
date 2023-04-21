@@ -44,6 +44,26 @@ ApplicationWindow {
         None
     }
 
+    onActiveFocusItemChanged: {
+        if (activeFocusItem && ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason)))
+            focusOverlay.parent = activeFocusItem;
+        else
+            focusOverlay.parent = null;
+    }
+
+    Rectangle {
+        id: focusOverlay
+        z: -2
+        anchors.fill: parent
+        anchors.margins: -5
+        visible: true
+        color: "transparent"
+        radius: parent.radius ? parent.radius : 0
+
+        border.width: 2
+        border.color: JamiTheme.tintedBlue
+    }
+
     property ApplicationWindow appWindow: root
     property LayoutManager layoutManager: LayoutManager {
         appContainer: appContainer

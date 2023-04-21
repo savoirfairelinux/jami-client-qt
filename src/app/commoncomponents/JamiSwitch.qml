@@ -26,6 +26,25 @@ Switch {
 
     hoverEnabled: true
 
+    focusPolicy: Qt.StrongFocus
+    useSystemFocusVisuals: false
+    property bool showFocusState: false
+
+    /*onActiveFocusChanged: {
+        showFocusState = activeFocus && focusReason === Qt.TabFocusReason;
+    }
+
+    Rectangle {
+        z: -2
+        anchors.fill: parent
+        anchors.margins: -5
+        visible: showFocusState
+        color: "transparent"
+        radius: JamiTheme.switchIndicatorRadius
+
+        border.width: 2
+        border.color: JamiTheme.tintedBlue
+    }*/
     MaterialToolTip {
         id: toolTip
 
@@ -67,6 +86,9 @@ Switch {
         if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
             checked = !checked;
             keyEvent.accepted = true;
+        }
+        if (keyEvent.key === Qt.Key_Escape) {
+            showFocusState = false;
         }
     }
 }

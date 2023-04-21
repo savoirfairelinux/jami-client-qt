@@ -39,7 +39,7 @@ AbstractButton {
     property var hoveredColor: JamiTheme.buttonTintedBlueHovered
     property var secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
     property var pressedColor: JamiTheme.buttonTintedBluePressed
-    property var keysNavigationFocusColor: Qt.darker(hoveredColor, 2)
+    //property var keysNavigationFocusColor: Qt.darker(hoveredColor, 2)
     property bool hasIcon: animatedIconSource.length !== 0 || iconSource.length !== 0
 
     property var preferredWidth
@@ -68,8 +68,25 @@ AbstractButton {
     }
 
     hoverEnabled: true
-    focusPolicy: Qt.TabFocus
+    focusPolicy: Qt.StrongFocus
 
+    property bool showFocusState: false
+
+    /*onActiveFocusChanged: {
+        showFocusState = activeFocus && focusReason === Qt.TabFocusReason;
+    }
+
+    Rectangle {
+        z: -2
+        anchors.fill: parent
+        anchors.margins: -5
+        visible: showFocusState
+        color: "transparent"
+        radius: JamiTheme.primaryRadius
+
+        border.width: 2
+        border.color: JamiTheme.tintedBlue
+    }*/
     Accessible.role: Accessible.Button
     Accessible.name: root.text
     Accessible.description: toolTipText
@@ -182,7 +199,7 @@ AbstractButton {
     background: Rectangle {
 
         color: {
-            var baseColor = root.focus ? root.keysNavigationFocusColor : root.color;
+            var baseColor = root.color;//root.focus ? root.keysNavigationFocusColor : root.color;
             if (root.primary) {
                 if (root.hovered && root.hoverEnabled)
                     return root.hoveredColor;
@@ -209,7 +226,7 @@ AbstractButton {
                 return JamiTheme.secondaryButtonBorderColor;
             if (root.down)
                 return root.pressedColor;
-            return root.focus ? root.keysNavigationFocusColor : root.color;
+            return root.color;//root.focus ? root.keysNavigationFocusColor : root.color;
         }
 
         radius: JamiTheme.primaryRadius
@@ -219,6 +236,9 @@ AbstractButton {
         if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
             clicked();
             keyEvent.accepted = true;
+        }
+        if (keyEvent.key === Qt.Key_Escape) {
+            showFocusState = false;
         }
     }
 
