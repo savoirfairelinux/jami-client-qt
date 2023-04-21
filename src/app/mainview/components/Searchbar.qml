@@ -69,6 +69,7 @@ RowLayout {
 
         TextField {
             id: textArea
+            property bool dontShowFocusState: true
 
             background.visible: false
             anchors.right: clearTextButton.left
