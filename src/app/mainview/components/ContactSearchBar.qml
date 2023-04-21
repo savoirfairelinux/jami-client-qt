@@ -67,6 +67,8 @@ Rectangle {
     TextField {
         id: contactSearchBar
 
+        property bool dontShowFocusState: true
+
         anchors.verticalCenter: root.verticalCenter
         anchors.left: searchIconImage.right
         anchors.right: contactSearchBar.text.length ? clearTextButton.left : root.right

@@ -54,6 +54,9 @@ ItemDelegate {
             tristate: false
             checkState: isEnabled ? Qt.Checked : Qt.Unchecked
 
+            focusPolicy: Qt.StrongFocus
+            useSystemFocusVisuals: false
+
             text: ""
             indicator: Image {
                 anchors.centerIn: parent
@@ -94,9 +97,9 @@ ItemDelegate {
             Layout.rightMargin: JamiTheme.preferredMarginSize / 2
 
             text: {
-                if (mediaType == MediaSettings.VIDEO)
+                if (mediaType === MediaSettings.VIDEO)
                     return mediaCodecName;
-                else if (mediaType == MediaSettings.AUDIO)
+                else if (mediaType === MediaSettings.AUDIO)
                     return mediaCodecName + " " + samplerRate + " Hz";
             }
             color: JamiTheme.textColor
