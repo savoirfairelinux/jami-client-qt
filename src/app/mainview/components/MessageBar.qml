@@ -403,7 +403,8 @@ ColumnLayout {
                             Action {
                                 id: boldAction
                                 property var iconSrc: JamiResources.bold_black_24dp_svg
-                                property var toolTip: JamiStrings.bold
+                                property var shortcutText: JamiStrings.bold
+                                property string shortcutKey: "Ctrl+B"
 
                                 onTriggered: function clickAction() {
                                     listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "**", "**");
@@ -412,7 +413,8 @@ ColumnLayout {
                             Action {
                                 id: italicAction
                                 property var iconSrc: JamiResources.italic_black_24dp_svg
-                                property var toolTip: JamiStrings.italic
+                                property var shortcutText: JamiStrings.italic
+                                property string shortcutKey: "Ctrl+I"
                                 onTriggered: function clickAction() {
                                     listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "*", "*");
                                 }
@@ -420,7 +422,8 @@ ColumnLayout {
                             Action {
                                 id: barreAction
                                 property var iconSrc: JamiResources.s_barre_black_24dp_svg
-                                property var toolTip: JamiStrings.barre
+                                property var shortcutText: JamiStrings.barre
+                                property string shortcutKey: "Shift+Alt+X"
                                 onTriggered: function clickAction() {
                                     listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "~~", "~~");
                                 }
@@ -428,7 +431,8 @@ ColumnLayout {
                             Action {
                                 id: titleAction
                                 property var iconSrc: JamiResources.title_black_24dp_svg
-                                property var toolTip: JamiStrings.title
+                                property var shortcutText: JamiStrings.title
+                                property string shortcutKey: "Ctrl+Alt+H"
                                 onTriggered: function clickAction() {
                                     listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "### ", false);
                                 }
@@ -445,7 +449,10 @@ ColumnLayout {
                             imageContainerHeight: 15
                             radius: 5
 
-                            toolTipText: modelData.toolTip
+                            toolTipText: modelData.shortcutText
+                            shortcutKey: modelData.shortcutKey
+                            hasShortcut: true
+
                             source: modelData.iconSrc
                             focusPolicy: Qt.TabFocus
 
@@ -563,7 +570,8 @@ ColumnLayout {
                             Action {
                                 id: linkAction
                                 property var iconSrc: JamiResources.link_web_black_24dp_svg
-                                property var toolTip: JamiStrings.link
+                                property var shortcutText: JamiStrings.link
+                                property string shortcutKey: "Ctrl+Alt+K"
                                 onTriggered: function clickAction() {
                                     listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "[", "](url)");
                                 }
@@ -571,7 +579,8 @@ ColumnLayout {
                             Action {
                                 id: codeAction
                                 property var iconSrc: JamiResources.code_black_24dp_svg
-                                property var toolTip: JamiStrings.code
+                                property var shortcutText: JamiStrings.code
+                                property string shortcutKey: "Ctrl+Alt+C"
                                 onTriggered: function clickAction() {
                                     listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "```", "```");
                                 }
@@ -579,7 +588,8 @@ ColumnLayout {
                             Action {
                                 id: quoteAction
                                 property var iconSrc: JamiResources.quote_black_24dp_svg
-                                property var toolTip: JamiStrings.quote
+                                property var shortcutText: JamiStrings.quote
+                                property string shortcutKey: "Shift+Alt+9"
                                 onTriggered: function clickAction() {
                                     listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "> ", false);
                                 }
@@ -587,7 +597,8 @@ ColumnLayout {
                             Action {
                                 id: bulletPointAction
                                 property var iconSrc: JamiResources.bullet_point_black_24dp_svg
-                                property var toolTip: JamiStrings.bulletPoint
+                                property var shortcutText: JamiStrings.bulletPoint
+                                property string shortcutKey: "Shift+Alt+8"
                                 onTriggered: function clickAction() {
                                     listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "- ", false);
                                 }
@@ -595,7 +606,8 @@ ColumnLayout {
                             Action {
                                 id: bulletNumberAction
                                 property var iconSrc: JamiResources.bullet_number_black_24dp_svg
-                                property var toolTip: JamiStrings.bulletNumber
+                                property var shortcutText: JamiStrings.bulletNumber
+                                property string shortcutKey: "Shift+Alt+7"
                                 onTriggered: function clickAction() {
                                     listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "", true);
                                 }
@@ -612,7 +624,9 @@ ColumnLayout {
                             imageContainerHeight: 20
                             radius: 5
 
-                            toolTipText: modelData.toolTip
+                            toolTipText: modelData.shortcutText
+                            shortcutKey: modelData.shortcutKey
+                            hasShortcut: true
                             source: modelData.iconSrc
                             focusPolicy: Qt.TabFocus
 
