@@ -16,6 +16,24 @@
       "message": "-- Installing: /home/amarok/Projects/jami/client-qt/install/lib64/libmd4c.so.0.4.8\n-- Installing: /home/amarok/Projects/jami/client-qt/install/lib64/libmd4c.so.0\n-- Set runtime path of \"/home/amarok/Projects/jami/client-qt/install/lib64/libmd4c.so.0.4.8\" to \"/home/amarok/Projects/jami/client-qt/install/lib\"\n-- Installing: /home/amarok/Projects/jami/client-qt/install/lib64/libmd4c.so\n-- Installing: /home/amarok/Projects/jami/client-qt/install/include/md4c.h\nCMake Error at 3rdparty/md4c/src/cmake_install.cmake:103 (file):\n  file INSTALL cannot find\n  \"/home/amarok/Projects/jami/client-qt/build/src/md4c.pc\": No such file or\n  directory.\nCall Stack (most recent call first):\n  3rdparty/md4c/cmake_install.cmake:47 (include)\n  cmake_install.cmake:57 (include)",
       "revId": "84c8478d94f63078604c46e8de41942022652347",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6594f9d_20f33b1f",
+        "filename": ".gitmodules",
+        "patchSetId": 15
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-04-21T23:18:27Z",
+      "side": 0,
+      "message": "yeah they force the install from CMAKE_BINARY_DIR which won\u0027t be right when using add_subdirectory :( afaics EXCLUDE_FROM_ALL prevents useless install",
+      "parentUuid": "33bae55e_24d7527a",
+      "revId": "84c8478d94f63078604c46e8de41942022652347",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
