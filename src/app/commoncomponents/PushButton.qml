@@ -79,8 +79,25 @@ AbstractButton {
     checkable: false
     checked: false
     hoverEnabled: true
-    focusPolicy: Qt.TabFocus
+    focusPolicy: Qt.StrongFocus
 
+    property bool showFocusState: false
+
+    /*onActiveFocusChanged: {
+        showFocusState = activeFocus && focusReason === Qt.TabFocusReason;
+    }
+
+    Rectangle {
+        z: -2
+        anchors.fill: parent
+        anchors.margins: -5
+        visible: showFocusState
+        color: "transparent"
+        radius: root.radius
+
+        border.width: 2
+        border.color: JamiTheme.tintedBlue
+    }*/
     property bool forceHovered: false
 
     Accessible.role: Accessible.Button
@@ -169,7 +186,7 @@ AbstractButton {
             },
             State {
                 name: "hovered"
-                when: hovered || root.activeFocus
+                when: hovered
                 PropertyChanges {
                     target: background
                     color: hoveredColor
@@ -177,7 +194,7 @@ AbstractButton {
             },
             State {
                 name: "forceHovered"
-                when: forceHovered || root.activeFocus
+                when: forceHovered
                 PropertyChanges {
                     target: background
                     color: hoveredColor
@@ -225,6 +242,9 @@ AbstractButton {
         if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
             clicked();
             keyEvent.accepted = true;
+        }
+        if (keyEvent.key === Qt.Key_Escape) {
+            showFocusState = false;
         }
     }
 }

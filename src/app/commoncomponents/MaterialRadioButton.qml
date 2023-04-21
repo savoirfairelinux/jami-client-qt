@@ -26,6 +26,7 @@ RadioButton {
 
     property string color: JamiTheme.textColor
     property string bgColor: ""
+    useSystemFocusVisuals: false
 
     indicator: Rectangle {
         id: rect

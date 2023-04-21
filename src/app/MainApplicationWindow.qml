@@ -44,6 +44,34 @@ ApplicationWindow {
         None
     }
 
+    onActiveFocusItemChanged: {
+        print(activeFocusItem);
+        if (activeFocusItem && ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason)))
+            if (activeFocusItem.focusOnChild) {
+                print("on estlaaaaa");
+                focusOverlay.parent = activeFocusItem.parent;
+            } else if (activeFocusItem.dontShowFocusState) {
+                print("on est ici");
+                focusOverlay.parent = null;
+            } else
+                focusOverlay.parent = activeFocusItem;
+        else
+            focusOverlay.parent = null;
+    }
+
+    Rectangle {
+        id: focusOverlay
+        z: -2
+        anchors.fill: parent
+        anchors.margins: -5
+        visible: true
+        color: "transparent"
+        radius: parent.radius ? parent.radius : 0
+
+        border.width: 2
+        border.color: JamiTheme.tintedBlue
+    }
+
     property ApplicationWindow appWindow: root
     property LayoutManager layoutManager: LayoutManager {
         appContainer: appContainer
