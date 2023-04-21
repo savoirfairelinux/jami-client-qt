@@ -183,4 +183,23 @@ Rectangle {
         context: Qt.ApplicationShortcut
         onActivated: Qt.quit()
     }
+
+    Shortcut {
+        sequence: "Ctrl+S"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+
+        // toggle the language between arabic and english
+        var lang = UtilsAdapter.getAppValue(Settings.Key.LANG)
+        if (lang === "ar") {
+            console.warn("CHANGE TO ENGLISH")
+            lang = "en_IE"
+        } else {
+            console.warn("CHANGE TO ARABIC")
+            lang = "ar"
+        }
+        UtilsAdapter.setAppValue(Settings.Key.LANG, lang)
+        console.warn("lang", lang)
+    }
+}
 }

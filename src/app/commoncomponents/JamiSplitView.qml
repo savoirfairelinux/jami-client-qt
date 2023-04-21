@@ -22,6 +22,10 @@ import net.jami.Constants 1.1
 SplitView {
     id: root
 
+    property bool isRTL: UtilsAdapter.isRTL
+
+    onIsRTLChanged: swapItems()
+
     property string splitViewStateKey: objectName
     property bool autoManageState: !(parent instanceof BaseView)
 
@@ -39,6 +43,16 @@ SplitView {
         if (!autoManageState)
             return;
         visible ? restoreSplitViewState() : saveSplitViewState();
+    }
+
+    function swapItems() {
+        var qqci = children[0];
+        if (qqci.children.length > 1) {
+            // swap the children
+            var tempPane = qqci.children[0];
+            qqci.children[0] = qqci.children[1];
+            qqci.children.push(tempPane);
+        }
     }
 
     handle: Rectangle {
