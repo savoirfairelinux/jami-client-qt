@@ -572,6 +572,7 @@ Item {
     property string conversationKeyboardShortcuts: qsTr("Conversation")
     property string callKeyboardShortcuts: qsTr("Call")
     property string settings: qsTr("Settings")
+    property string markdownKeyboardShortcuts: qsTr("Markdown")
     property string openAccountList: qsTr("Open account list")
     property string focusConversationsList: qsTr("Focus conversations list")
     property string requestsList: qsTr("Requests list")
@@ -795,7 +796,7 @@ Item {
 
     property string bold: qsTr("Bold")
     property string italic: qsTr("Italic")
-    property string barre: qsTr("Barre")
+    property string barre: qsTr("Strikethrough")
     property string title: qsTr("Title")
     property string link: qsTr("Link")
     property string code: qsTr("Code")

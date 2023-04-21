@@ -207,6 +207,56 @@ Window {
         }
     }
 
+    ListModel {
+        id: keyboardMarkdownShortcutsModel
+
+        ListElement {
+            shortcut: "Ctrl + B"
+            shortcut2: ""
+            description: qsTr("Bold")
+        }
+        ListElement {
+            shortcut: "Ctrl + I"
+            shortcut2: ""
+            description: qsTr("Italic")
+        }
+        ListElement {
+            shortcut: "Shift + Alt + X"
+            shortcut2: ""
+            description: qsTr("Strikethrough")
+        }
+        ListElement {
+            shortcut: "Ctrl + Alt + H"
+            shortcut2: ""
+            description: qsTr("Heading")
+        }
+        ListElement {
+            shortcut: "Ctrl + Alt + K"
+            shortcut2: ""
+            description: qsTr("Link")
+        }
+        ListElement {
+            shortcut: "Ctrl + Alt + C"
+            shortcut2: ""
+            description: qsTr("Code")
+        }
+        ListElement {
+            shortcut: "Shift + Alt + 9"
+            shortcut2: ""
+            description: qsTr("Quote")
+        }
+        ListElement {
+            shortcut: "Shift + Alt + 8"
+            shortcut2: ""
+            description: qsTr("Bulleted List")
+        }
+        ListElement {
+            shortcut: "Shift + Alt + 7"
+            shortcut2: ""
+            description: qsTr("Numbered List")
+        }
+    }
+
     Rectangle {
         id: windowRect
 
@@ -243,6 +293,8 @@ Window {
                         return JamiStrings.callKeyboardShortcuts;
                     case 3:
                         return JamiStrings.settings;
+                    case 4:
+                        return JamiStrings.markdownKeyboardShortcuts;
                     }
                 }
                 color: JamiTheme.textColor
@@ -269,6 +321,8 @@ Window {
                     return keyboardCallsShortcutsModel;
                 case 3:
                     return keyboardSettingsShortcutsModel;
+                case 4:
+                    return keyboardMarkdownShortcutsModel;
                 }
             }
             delegate: KeyboardShortcutKeyDelegate {
@@ -292,7 +346,7 @@ Window {
             }
 
             Repeater {
-                model: ["1", "2", "3", "4"]
+                model: ["1", "2", "3", "4", "5"]
 
                 KeyboardShortcutTabButton {
                     currentIndex: selectionBar.currentIndex
