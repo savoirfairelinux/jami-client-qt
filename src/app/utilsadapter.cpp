@@ -48,6 +48,7 @@ UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
     if (lrcInstance_->avModel().getRecordPath().isEmpty()) {
         lrcInstance_->avModel().setRecordPath(getDefaultRecordPath());
     }
+    set_isRTL(isRTL());
 }
 
 QVariant
@@ -80,6 +81,7 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
     if (key == Settings::Key::LANG) {
         settingsManager_->loadTranslations();
         Q_EMIT changeLanguage();
+        set_isRTL(isRTL());
     } else if (key == Settings::Key::BaseZoom)
         Q_EMIT changeFontSize();
     else if (key == Settings::Key::EnableExperimentalSwarm)
@@ -807,4 +809,13 @@ UtilsAdapter::getVideoPlayer(const QString& resource, const QString& bgColor)
         {"isVideo", true},
         {"html", htmlVideo.arg(resource, bgColor)},
     };
+}
+
+bool
+UtilsAdapter::isRTL()
+{
+    auto pref = getAppValue(Settings::Key::LANG).toString();
+    pref == "SYSTEM" ? QLocale::system().name() : pref;
+    qWarning() << pref;
+    return pref == "ar" || pref == "he" || pref == "fa" || pref == "ur";
 }
