@@ -122,6 +122,7 @@ SettingsPageBase {
 
             property bool isMax: UtilsAdapter.getAppValue(Settings.PositionShareDuration) < 0.05
             value: isMax ? Math.log(600) : Math.log(UtilsAdapter.getAppValue(Settings.PositionShareDuration))
+            useSystemFocusVisuals: false
 
             function valueLabel() {
                 if (value != Math.log(600)) {

@@ -59,6 +59,7 @@ Popup {
 
             toolTipText: modelData.toolTip
             source: modelData.iconSrc
+            focusPolicy: Qt.TabFocus
 
             normalColor: JamiTheme.chatViewFooterListColor
             imageColor: JamiTheme.chatViewFooterImgColor

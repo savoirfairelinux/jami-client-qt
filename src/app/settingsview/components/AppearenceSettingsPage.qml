@@ -200,6 +200,7 @@ SettingsPageBase {
                     MaterialRadioButton {
                         id: lightThemeButton
 
+                        property bool focusOnChild: true
                         anchors.fill: parent
                         anchors.leftMargin: 19
 
@@ -230,6 +231,7 @@ SettingsPageBase {
                     MaterialRadioButton {
                         id: darkThemeButton
 
+                        property bool focusOnChild: true
                         anchors.fill: parent
                         anchors.leftMargin: 19
 
@@ -260,6 +262,7 @@ SettingsPageBase {
                     MaterialRadioButton {
                         id: sysThemeButton
 
+                        property bool focusOnChild: true
                         anchors.fill: parent
                         anchors.leftMargin: 19
 
@@ -314,6 +317,7 @@ SettingsPageBase {
                 to: 200
                 stepSize: 10
                 snapMode: Slider.SnapAlways
+                useSystemFocusVisuals: false
 
                 onMoved: {
                     UtilsAdapter.setAppValue(Settings.BaseZoom, value / 100.0);
