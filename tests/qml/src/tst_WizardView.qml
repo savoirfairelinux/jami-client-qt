@@ -18,6 +18,8 @@
 
 import QtQuick
 import QtTest
+import QtQuick.Controls
+import QtQuick.Layouts
 
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
@@ -189,6 +191,50 @@ WizardView {
             // Wait until the account removal is finished
             spyAccountIsRemoved.wait()
             compare(spyAccountIsRemoved.count, 1)
+        }
+    }
+
+
+    TestCase {
+        name: "Check outline on active focused item"
+        when: windowShown
+
+        function test_outline_activefocus_item() {
+            uut.clearSignalSpy()
+
+            var controlPanelStackView = findChild(uut, "controlPanelStackView")
+
+            var welcomePage = findChild(uut, "welcomePage")
+            var createAccountPage = findChild(uut, "createAccountPage")
+
+            var usernameEdit = findChild(createAccountPage, "usernameEdit")
+            var popup = findChild(createAccountPage, "popup")
+            var joinButton = findChild(popup, "joinButton")
+            var createAccountStack = findChild(createAccountPage, "createAccountStack")
+            var chooseUsernameButton = findChild(createAccountPage, "chooseUsernameButton")
+
+            // WelcomePage initially
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    welcomePage)
+
+            // Go to createAccount page
+            WizardViewStepModel.startAccountCreationFlow(
+                        WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
+            compare(createAccountStack.currentIndex, 0)
+
+            usernameEdit.forceActiveFocus()
+            compare(usernameEdit.activeFocus, true)
+            compare(chooseUsernameButton.activeFocus, false)
+
+            // Double click on tab key to go on "Join Jami" button
+            keyClick(Qt.Key_Tab)
+            keyClick(Qt.Key_Tab)
+
+            compare(usernameEdit.activeFocus, false)
+            compare(chooseUsernameButton.activeFocus, true)
+
+            var testOverlay = findChild(chooseUsernameButton, "focusOverlay")
+
         }
     }
 }

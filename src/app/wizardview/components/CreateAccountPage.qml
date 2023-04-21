@@ -370,10 +370,9 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        KeyNavigation.tab: usernameEdit
+        KeyNavigation.tab: adviceBox
         KeyNavigation.up: advancedAccountSettingsPage
-
-        KeyNavigation.down: usernameEdit
+        KeyNavigation.down: KeyNavigation.tab
 
         onClicked: {
             adviceBox.checked = false;
@@ -416,6 +415,10 @@ Rectangle {
             advancedAccountSettingsPage.openedPassword = false;
             advancedAccountSettingsPage.openedNickname = false;
         }
+
+        KeyNavigation.tab: !createAccountStack.currentIndex ? usernameEdit : advancedAccountSettingsPage
+        KeyNavigation.up: backButton
+        KeyNavigation.down: KeyNavigation.tab
     }
 
     Item {

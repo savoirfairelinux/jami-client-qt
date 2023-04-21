@@ -23,8 +23,12 @@ Switch {
     id: root
 
     property alias toolTipText: toolTip.text
+    property alias radius: handleBackground.radius
 
     hoverEnabled: true
+
+    focusPolicy: Qt.StrongFocus
+    useSystemFocusVisuals: false
 
     MaterialToolTip {
         id: toolTip

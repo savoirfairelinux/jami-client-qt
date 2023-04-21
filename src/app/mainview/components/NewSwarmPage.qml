@@ -32,8 +32,8 @@ DualPaneView {
 
     onVisibleChanged: {
         UtilsAdapter.setTempCreationImageFromString();
-        title.clear();
-        description.clear();
+        title.staticText = "";
+        description.staticText = "";
     }
 
     property var members: []
@@ -137,68 +137,52 @@ DualPaneView {
                 avatarSize: 180
             }
 
-            EditableLineEdit {
+            ModalTextEdit {
                 id: title
                 objectName: "titleLineEdit"
-                Layout.alignment: Qt.AlignCenter
+
+                maxCharacters: JamiTheme.maximumCharacters
+
+                Layout.minimumHeight: JamiTheme.preferredFieldHeight
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
-                font.pointSize: JamiTheme.titleFontSize
-
-                verticalAlignment: Text.AlignVCenter
-
+                staticText: ""
                 placeholderText: JamiStrings.swarmName
-                tooltipText: JamiStrings.swarmName
-                backgroundColor: root.color
-                color: UtilsAdapter.luma(backgroundColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
-                placeholderTextColor: {
-                    if (editable) {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.placeholderTextColorWhite;
-                        } else {
-                            return JamiTheme.placeholderTextColor;
-                        }
+
+                textColor: {
+                    if (UtilsAdapter.luma(root.color)) {
+                        return JamiTheme.placeholderTextColorWhite;
                     } else {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.chatviewTextColorLight;
-                        } else {
-                            return JamiTheme.chatviewTextColorDark;
-                        }
+                        return JamiTheme.placeholderTextColor;
                     }
                 }
+
+                onAccepted: description.forceActiveFocus()
             }
 
-            EditableLineEdit {
+            ModalTextEdit {
                 id: description
                 objectName: "descriptionLineEdit"
-                Layout.alignment: Qt.AlignCenter
+
+                maxCharacters: JamiTheme.maximumCharacters
+
+                Layout.minimumHeight: JamiTheme.preferredFieldHeight
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
-                font.pointSize: JamiTheme.menuFontSize
-
-                verticalAlignment: Text.AlignVCenter
-
+                staticText: ""
                 placeholderText: JamiStrings.addADescription
-                tooltipText: JamiStrings.addADescription
-                backgroundColor: root.color
-                color: UtilsAdapter.luma(backgroundColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
-                placeholderTextColor: {
-                    if (editable) {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.placeholderTextColorWhite;
-                        } else {
-                            return JamiTheme.placeholderTextColor;
-                        }
+
+                textColor: {
+                    if (UtilsAdapter.luma(root.color)) {
+                        return JamiTheme.placeholderTextColorWhite;
                     } else {
-                        if (UtilsAdapter.luma(root.color)) {
-                            return JamiTheme.chatviewTextColorLight;
-                        } else {
-                            return JamiTheme.chatviewTextColorDark;
-                        }
+                        return JamiTheme.placeholderTextColor;
                     }
                 }
+
+                onAccepted: btnCreateSwarm.forceActiveFocus()
             }
 
             MaterialButton {
@@ -221,7 +205,7 @@ DualPaneView {
                 primary: true
                 text: JamiStrings.createTheSwarm
 
-                onClicked: createSwarmClicked(title.text, description.text, UtilsAdapter.tempCreationImage())
+                onClicked: createSwarmClicked(title.dynamicText, description.dynamicText, UtilsAdapter.tempCreationImage())
             }
         }
     }
