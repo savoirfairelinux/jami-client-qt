@@ -23,8 +23,12 @@ Switch {
     id: root
 
     property alias toolTipText: toolTip.text
+    property alias radius: handleBackground.radius
 
     hoverEnabled: true
+
+    focusPolicy: Qt.StrongFocus
+    useSystemFocusVisuals: false
 
     MaterialToolTip {
         id: toolTip
@@ -67,6 +71,9 @@ Switch {
         if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
             checked = !checked;
             keyEvent.accepted = true;
+        }
+        if (keyEvent.key === Qt.Key_Escape) {
+            showFocusState = false;
         }
     }
 }

@@ -382,7 +382,7 @@ ColumnLayout {
 
                         Behavior on width  {
                             NumberAnimation {
-                                duration: JamiTheme.longFadeDuration
+                                duration: JamiTheme.longFadeDuration / 2
                             }
                         }
 
@@ -447,6 +447,7 @@ ColumnLayout {
 
                             toolTipText: modelData.toolTip
                             source: modelData.iconSrc
+                            focusPolicy: Qt.TabFocus
 
                             normalColor: JamiTheme.chatViewFooterListColor
                             imageColor: JamiTheme.chatViewFooterImgColor
@@ -466,7 +467,7 @@ ColumnLayout {
 
                         Behavior on width  {
                             NumberAnimation {
-                                duration: JamiTheme.longFadeDuration
+                                duration: JamiTheme.longFadeDuration / 2
                             }
                         }
 
@@ -541,7 +542,7 @@ ColumnLayout {
 
                         Behavior on width  {
                             NumberAnimation {
-                                duration: JamiTheme.longFadeDuration
+                                duration: JamiTheme.longFadeDuration / 2
                             }
                         }
 
@@ -613,6 +614,7 @@ ColumnLayout {
 
                             toolTipText: modelData.toolTip
                             source: modelData.iconSrc
+                            focusPolicy: Qt.TabFocus
 
                             normalColor: JamiTheme.chatViewFooterListColor
                             imageColor: JamiTheme.chatViewFooterImgColor
@@ -634,7 +636,7 @@ ColumnLayout {
 
                     Behavior on width  {
                         NumberAnimation {
-                            duration: JamiTheme.longFadeDuration
+                            duration: JamiTheme.longFadeDuration / 2
                         }
                     }
 
