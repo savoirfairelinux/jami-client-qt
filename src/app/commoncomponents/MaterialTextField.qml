@@ -27,6 +27,7 @@ TextField {
     property bool isActive: activeFocus || contextMenu.active
     property bool isSettings: false
     property bool isSwarmDetail: false
+    property bool dontShowFocusState: !readOnly
 
     onActiveFocusChanged: {
         if (!activeFocus && !contextMenu.active) {
