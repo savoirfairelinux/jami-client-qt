@@ -35,6 +35,25 @@ Rectangle {
     property bool icon1Hovered: false
     property bool icon2Hovered: false
 
+    onActiveFocusChanged: {
+        if (activeFocus) {
+            openedPassword = false;
+            openedNickname = false;
+            forcePasswordActiveFocus();
+        }
+    }
+
+    function forcePasswordActiveFocus() {
+        openedPassword = true;
+        passwordEdit.forceActiveFocus();
+    }
+
+    function forceProfileActiveFocus() {
+        openedPassword = false;
+        openedNickname = true;
+        displayNameLineEdit.forceActiveFocus();
+    }
+
     color: JamiTheme.secondaryBackgroundColor
     opacity: 0.93
 
@@ -192,8 +211,8 @@ Rectangle {
                                 Layout.alignment: Qt.AlignLeft
                                 Layout.fillWidth: true
 
-                                KeyNavigation.tab: passwordConfirmEdit
-                                KeyNavigation.down: passwordConfirmEdit
+                                KeyNavigation.up: passwordConfirmEdit
+                                KeyNavigation.down: KeyNavigation.up
                             }
 
                             PasswordTextEdit {
@@ -207,9 +226,15 @@ Rectangle {
                                 Layout.alignment: Qt.AlignLeft
                                 Layout.fillWidth: true
 
-                                KeyNavigation.tab: passwordEdit
                                 KeyNavigation.up: passwordEdit
-                                KeyNavigation.down: setButton
+                                KeyNavigation.down: KeyNavigation.up
+
+                                onActiveFocusChanged: {
+                                    if (!activeFocus) {
+                                        if (!setButton.enabled)
+                                            forceProfileActiveFocus();
+                                    }
+                                }
                             }
 
                             Text {
@@ -263,6 +288,15 @@ Rectangle {
                                     root.validatedPassword = passwordConfirmEdit.dynamicText;
                                     text = JamiStrings.setPasswordSuccess;
                                 }
+
+                                onActiveFocusChanged: {
+                                    if (!activeFocus) {
+                                        forceProfileActiveFocus();
+                                    }
+                                }
+
+                                KeyNavigation.up: passwordConfirmEdit
+                                KeyNavigation.down: passwordEdit
                             }
 
                             RowLayout {
@@ -559,6 +593,8 @@ Rectangle {
                         root.saveButtonClicked();
                         root.alias = displayNameLineEdit.dynamicText;
                     }
+
+                    //KeyNavigation.up: openedNickname ? displayNameLineEdit : passwordConfirmEdit
                 }
             }
         }

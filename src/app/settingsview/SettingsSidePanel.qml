@@ -172,6 +172,7 @@ SidePanelBase {
                         PushButton {
                             id: btn
                             property var sprite: null
+                            property bool showFocusMargin: true
 
                             property var isChildren: {
                                 var ob = base[modelData];
