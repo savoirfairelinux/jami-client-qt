@@ -22,6 +22,30 @@
       },
       "revId": "69ae4dd841d9bb43ee4ecc9b48bf257b8d8e4b66",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fdbbecf_e68cd9a1",
+        "filename": "src/app/commoncomponents/SettingParaCombobox.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2023-04-24T13:41:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea99b3e9_05fae50b",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 4
+      },
+      "revId": "69ae4dd841d9bb43ee4ecc9b48bf257b8d8e4b66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
