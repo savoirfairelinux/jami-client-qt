@@ -733,7 +733,7 @@ MessagesAdapter::getFormattedDay(const quint64 timestamp)
 }
 
 void
-MessagesAdapter::startSearch(QString& text, bool isMedia)
+MessagesAdapter::startSearch(const QString& text, bool isMedia)
 {
     mediaInteractions_.reset(new MessageListModel(this));
     set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
