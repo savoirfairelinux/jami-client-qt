@@ -144,6 +144,7 @@ Item {
                 Layout.preferredHeight: 50
 
                 leftPadding: 16
+                rightPadding: 16
 
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter

@@ -60,6 +60,7 @@ SplitView {
         implicitHeight: root.height
         color: JamiTheme.primaryBackgroundColor
         Rectangle {
+            anchors.left: parent.left
             implicitWidth: 1
             implicitHeight: root.height
             color: JamiTheme.tabbarBorderColor

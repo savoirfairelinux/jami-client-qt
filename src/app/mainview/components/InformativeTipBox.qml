@@ -62,6 +62,7 @@ ColumnLayout {
             Layout.leftMargin: 8
             Layout.preferredWidth: column.prefWidth - 2 * column.margin - column.iconSize
             font.pixelSize: JamiTheme.tipBoxTitleFontSize
+            horizontalAlignment: Text.AlignLeft
             elide: Qt.ElideRight
         }
     }
@@ -75,6 +76,7 @@ ColumnLayout {
         wrapMode: Text.WordWrap
         font.weight: opened ? Font.Medium : Font.Normal
         text: root.title
+        horizontalAlignment: Text.AlignLeft
         color: JamiTheme.textColor
     }
 
@@ -85,6 +87,7 @@ ColumnLayout {
         visible: opened
         wrapMode: Text.WordWrap
         text: root.description
+        horizontalAlignment: Text.AlignLeft
         color: JamiTheme.textColor
     }
 }
