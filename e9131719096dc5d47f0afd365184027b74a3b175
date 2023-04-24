@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43a08734_63555c12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-24T19:32:45Z",
+      "side": 1,
+      "message": "remove log, add ticket for missing parts (advanced account in wizard, welcomeview in settings, callview)",
+      "range": {
+        "startLine": 7,
+        "startChar": 18,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "e9131719096dc5d47f0afd365184027b74a3b175",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
