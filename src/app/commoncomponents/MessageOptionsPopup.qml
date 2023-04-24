@@ -18,7 +18,6 @@
 
 import QtQuick
 import QtQuick.Controls
-import Qt5Compat.GraphicalEffects
 import QtQuick.Layouts
 
 import net.jami.Models 1.1
@@ -133,7 +132,7 @@ Popup {
     Rectangle {
         id: bubble
 
-        color: JamiTheme.chatviewBgColor
+        color: JamiTheme.backgroundColor
         anchors.fill: parent
         radius: JamiTheme.modalPopupRadius
 
@@ -276,19 +275,6 @@ Popup {
             to: JamiTheme.popupOverlayColor
             duration: 500
         }
-    }
-
-    DropShadow {
-        z: -1
-
-        width: bubble.width
-        height: bubble.height
-        horizontalOffset: 3.0
-        verticalOffset: 3.0
-        radius: bubble.radius * 4
-        color: JamiTheme.shadowColor
-        source: bubble
-        transparentBorder: true
     }
 
     enter: Transition {

@@ -21,7 +21,6 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import Qt5Compat.GraphicalEffects
 import "../../commoncomponents"
 
 Item {
@@ -80,19 +79,6 @@ Item {
     TapHandler {
         target: rect
         onTapped: opened = !opened
-    }
-
-    DropShadow {
-        z: -1
-        visible: hovered || opened
-        width: root.width
-        height: root.height
-        horizontalOffset: 3.0
-        verticalOffset: 3.0
-        radius: 16
-        color: Qt.rgba(0, 0.34, 0.6, 0.16)
-        source: rect
-        transparentBorder: true
     }
 
     PushButton {

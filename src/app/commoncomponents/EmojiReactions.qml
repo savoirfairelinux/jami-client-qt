@@ -16,7 +16,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
-import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -94,18 +93,5 @@ Item {
             color: JamiTheme.chatviewTextColor
             text: root.emojis
         }
-    }
-
-    DropShadow {
-        z: -1
-
-        width: bubble.width
-        height: bubble.height
-        horizontalOffset: 3.0
-        verticalOffset: 3.0
-        radius: bubble.radius * 4
-        color: JamiTheme.shadowColor
-        source: bubble
-        transparentBorder: true
     }
 }

@@ -18,7 +18,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 import SortFilterProxyModel 0.2
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -106,17 +105,6 @@ Popup {
             bBorderwidth: 2
             rBorderwidth: 1
             borderColor: JamiTheme.tabbarBorderColor
-        }
-
-        layer {
-            enabled: true
-            effect: DropShadow {
-                horizontalOffset: 3.0
-                verticalOffset: 3.0
-                radius: 16.0
-                color: JamiTheme.shadowColor
-                transparentBorder: true
-            }
         }
     }
 }

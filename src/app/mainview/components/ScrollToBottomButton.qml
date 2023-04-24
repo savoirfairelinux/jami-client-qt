@@ -17,7 +17,6 @@
  */
 import QtQuick
 import QtQuick.Controls
-import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 import "../../commoncomponents"
@@ -109,18 +108,6 @@ Control {
             cursorShape: root.opacity ? Qt.PointingHandCursor : Qt.ArrowCursor
 
             onClicked: root.clicked()
-        }
-
-        layer {
-            enabled: true
-            effect: DropShadow {
-                z: -1
-                horizontalOffset: 3.0
-                verticalOffset: 3.0
-                radius: 8.0
-                color: JamiTheme.shadowColor
-                transparentBorder: true
-            }
         }
     }
 }

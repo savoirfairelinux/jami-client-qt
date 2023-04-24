@@ -18,7 +18,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
@@ -330,16 +329,6 @@ ItemDelegate {
                 radius: 5
                 color: "#c4272727"
             }
-        }
-
-        layer.enabled: true
-        layer.effect: DropShadow {
-            z: -1
-            horizontalOffset: 0
-            verticalOffset: 0
-            radius: 8.0
-            color: "#80000000"
-            transparentBorder: true
         }
     }
 

@@ -22,7 +22,6 @@ import QtQuick.Controls
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
-import Qt5Compat.GraphicalEffects
 import "../"
 import "../../commoncomponents"
 import "../../settingsview/components"
@@ -177,17 +176,6 @@ Rectangle {
                                 NumberAnimation {
                                     duration: JamiTheme.shortFadeDuration
                                 }
-                            }
-
-                            DropShadow {
-                                z: -1
-                                anchors.fill: boxInfo
-                                horizontalOffset: 1.0
-                                verticalOffset: 1.0
-                                radius: boxInfo.radius
-                                color: JamiTheme.shadowColor
-                                source: boxInfo
-                                transparentBorder: true
                             }
 
                             Rectangle {
@@ -446,17 +434,6 @@ Rectangle {
             NumberAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
-        }
-
-        DropShadow {
-            z: -1
-            anchors.fill: boxAdvice
-            horizontalOffset: 2.0
-            verticalOffset: 2.0
-            radius: boxAdvice.radius
-            color: JamiTheme.shadowColor
-            source: boxAdvice
-            transparentBorder: true
         }
 
         Rectangle {

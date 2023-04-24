@@ -17,7 +17,6 @@
  */
 import QtQuick
 import QtQuick.Controls
-import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
 
 Menu {
@@ -91,16 +90,6 @@ Menu {
         border.width: JamiTheme.menuItemsCommonBorderWidth
         border.color: JamiTheme.tabbarBorderColor
         color: JamiTheme.backgroundColor
-
-        layer.enabled: true
-        layer.effect: DropShadow {
-            z: -1
-            horizontalOffset: 3.0
-            verticalOffset: 3.0
-            radius: 16.0
-            color: JamiTheme.shadowColor
-            transparentBorder: true
-        }
     }
 
     Component.onDestruction: {
