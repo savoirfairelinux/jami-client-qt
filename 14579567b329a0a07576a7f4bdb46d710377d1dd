@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4f9bf56_c557dd40",
+        "filename": "src/app/commoncomponents/MaterialToolTip.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-24T19:59:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "615bbcf8_5d777674",
+      "range": {
+        "startLine": 54,
+        "startChar": 20,
+        "endLine": 54,
+        "endChar": 36
+      },
+      "revId": "14579567b329a0a07576a7f4bdb46d710377d1dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07b7e1a7_128dac69",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-24T19:28:57Z",
       "side": 1,
       "message": "JamiTheme",
+      "range": {
+        "startLine": 66,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "14579567b329a0a07576a7f4bdb46d710377d1dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e70b1a6_31241ba2",
+        "filename": "src/app/commoncomponents/MaterialToolTip.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 988
+      },
+      "writtenOn": "2023-04-24T19:59:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07b7e1a7_128dac69",
       "range": {
         "startLine": 66,
         "startChar": 27,
