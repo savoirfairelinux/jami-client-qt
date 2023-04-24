@@ -47,13 +47,13 @@ ListView {
     property var prompt: MessagesAdapter.searchbarPrompt
 
     onPromptChanged: {
-        MessagesAdapter.startSearch(prompt);
+        MessagesAdapter.startSearch(prompt, false);
     }
 
     Connections {
         target: researchTabBar
         function onFilterTabChange() {
-            MessagesAdapter.startSearch(prompt);
+            MessagesAdapter.startSearch(prompt, false);
         }
     }
 
