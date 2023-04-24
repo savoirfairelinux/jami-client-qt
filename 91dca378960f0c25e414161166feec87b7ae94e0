@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35206c97_b5afced6",
+        "filename": "daemon",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-24T13:52:18Z",
+      "side": 1,
+      "message": "don\u0027t update daemon",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "91dca378960f0c25e414161166feec87b7ae94e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
