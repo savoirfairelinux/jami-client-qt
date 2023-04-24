@@ -132,7 +132,7 @@ protected:
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;
-    Q_INVOKABLE void startSearch(QString& text, bool isMedia = false);
+    Q_INVOKABLE void startSearch(const QString& text, bool isMedia);
     Q_INVOKABLE int getMessageIndexFromId(QString& id);
 
     // Run corrsponding js functions, c++ to qml.
