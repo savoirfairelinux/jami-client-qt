@@ -221,8 +221,8 @@ Rectangle {
             objectName: "dataTransferSendContainer"
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: footerColumnLayout.width
-            Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
+            Layout.fillWidth: true
+            Layout.rightMargin: 10
             Layout.preferredHeight: filesToSendCount ? JamiTheme.filesToSendDelegateHeight : 0
         }
     }

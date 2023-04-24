@@ -178,6 +178,7 @@ ListSelectionView {
                     Flow {
                         id: flow
                         spacing: 13
+                        layoutDirection: UtilsAdapter.isRTL ? Qt.RightToLeft : Qt.LeftToRight
 
                         Repeater {
                             id: tipsRepeater

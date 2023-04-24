@@ -32,6 +32,7 @@ Item {
     property alias source: image.source
     property alias status: image.status
     property alias cache: image.cache
+    property alias mirror: image.mirror
     property string color: "transparent"
     property bool hovered: false
     property bool mirrorHorizontally: false
@@ -67,8 +68,6 @@ Item {
         antialiasing: true
         asynchronous: true
         visible: false
-        mirror: root.mirrorHorizontally
-        mirrorVertically: root.mirrorVertically
 
         function setSourceSize() {
             sourceSize = undefined;

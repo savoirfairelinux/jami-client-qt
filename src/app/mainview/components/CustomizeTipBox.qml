@@ -61,6 +61,7 @@ ColumnLayout {
             visible: !opened
             Layout.alignment: Qt.AlignLeft
             Layout.leftMargin: column.margin
+            horizontalAlignment: Text.AlignLeft
             font.pixelSize: JamiTheme.tipBoxTitleFontSize
             elide: Qt.ElideRight
         }
@@ -71,6 +72,7 @@ ColumnLayout {
         Layout.leftMargin: 20
         Layout.topMargin: 8
         Layout.bottomMargin: 15
+        horizontalAlignment: Text.AlignLeft
         font.pixelSize: JamiTheme.tipBoxContentFontSize
         visible: !opened
         wrapMode: Text.WordWrap

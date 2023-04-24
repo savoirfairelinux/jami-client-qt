@@ -116,9 +116,10 @@ ItemDelegate {
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
                 Layout.leftMargin: editDeviceName.leftPadding
+                Layout.rightMargin: editDeviceName.leftPadding
                 Layout.bottomMargin: 10
-
-                elide: Text.ElideRight
+                horizontalAlignment: Text.AlignLeft
+                elide: Text.ElideMiddle
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.textColor
                 text: deviceId === "" ? JamiStrings.deviceId : deviceId

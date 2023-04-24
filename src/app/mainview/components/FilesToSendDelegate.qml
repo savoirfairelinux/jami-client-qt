@@ -29,6 +29,8 @@ Item {
     property real margin: 5
     signal removeFileButtonClicked(int index)
 
+    width: JamiTheme.layoutWidthFileTransfer * 2
+
     RowLayout {
 
         anchors.fill: root
@@ -158,6 +160,7 @@ Item {
                     font.bold: true
                     text: FileName
                     elide: Text.ElideRight
+                    horizontalAlignment: Text.AlignLeft
                 }
 
                 RowLayout {
