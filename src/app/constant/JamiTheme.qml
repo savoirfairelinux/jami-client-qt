@@ -455,9 +455,8 @@ Item {
     property real typingDotsSize: 8
 
     // MessageWebView File Transfer Container
-    property real filesToSendContainerSpacing: 120
+    property real filesToSendContainerSpacing: 25
     property real filesToSendContainerPadding: 10
-    property real filesToSendDelegateWidth: 100
     property real filesToSendDelegateHeight: 100
     property real filesToSendDelegateRadius: 7
     property real filesToSendDelegateButtonSize: 16

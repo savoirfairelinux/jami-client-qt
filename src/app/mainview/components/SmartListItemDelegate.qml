@@ -135,6 +135,7 @@ ItemDelegate {
                 Layout.fillWidth: true
                 Layout.minimumHeight: 20
                 Layout.alignment: Qt.AlignVCenter
+                horizontalAlignment: Text.AlignLeft
                 elide: Text.ElideMiddle
                 text: Title === undefined ? "" : Title
                 textFormat: TextEdit.PlainText
@@ -166,6 +167,7 @@ ItemDelegate {
                     elide: Text.ElideRight
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignVCenter
+                    horizontalAlignment: Text.AlignLeft
                     text: Draft ?
                               Draft :
                               (LastInteraction === undefined ? "" : LastInteraction)

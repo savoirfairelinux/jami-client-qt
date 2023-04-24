@@ -63,6 +63,8 @@ RowLayout {
         Layout.alignment: Qt.AlignCenter
         font.pointSize: JamiTheme.settingsFontSize
         font.kerning: true
+        LayoutMirroring.enabled: false
+        LayoutMirroring.childrenInherit: true
 
         onValueChanged: newValue()
 

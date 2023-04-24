@@ -250,6 +250,9 @@ Rectangle {
                 StackLayout {
                     id: chatViewStack
 
+                    LayoutMirroring.enabled: false
+                    LayoutMirroring.childrenInherit: true
+
                     Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
                     Layout.fillHeight: true

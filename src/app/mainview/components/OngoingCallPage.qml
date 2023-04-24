@@ -119,19 +119,13 @@ Rectangle {
         }
     }
 
-    SplitView {
+    JamiSplitView {
         id: mainColumnLayout
 
         anchors.fill: parent
 
         property bool isHorizontal: false // Calculated when showing the stack view
         orientation: isHorizontal ? Qt.Horizontal : Qt.Vertical
-
-        handle: Rectangle {
-            implicitWidth: isHorizontal ? JamiTheme.splitViewHandlePreferredWidth : root.width
-            implicitHeight: isHorizontal ? root.height : JamiTheme.splitViewHandlePreferredWidth
-            color: SplitHandle.pressed ? JamiTheme.pressColor : (SplitHandle.hovered ? JamiTheme.hoverColor : JamiTheme.tabbarBorderColor)
-        }
 
         Rectangle {
             id: callPageMainRect

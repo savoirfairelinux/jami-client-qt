@@ -72,6 +72,7 @@ ItemDelegate {
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.textColor
                 elide: Text.ElideRight
+                horizontalAlignment: Text.AlignLeft
             }
 
             Text {
@@ -86,6 +87,7 @@ ItemDelegate {
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.faddedLastInteractionFontColor
                 elide: Text.ElideRight
+                horizontalAlignment: Text.AlignLeft
             }
         }
 

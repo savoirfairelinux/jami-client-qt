@@ -139,6 +139,7 @@ Label {
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.textColor
                 elide: Text.ElideRight
+                horizontalAlignment: Text.AlignLeft
             }
 
             Text {
@@ -155,6 +156,7 @@ Label {
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.faddedLastInteractionFontColor
                 elide: Text.ElideRight
+                horizontalAlignment: Text.AlignLeft
             }
         }
 
