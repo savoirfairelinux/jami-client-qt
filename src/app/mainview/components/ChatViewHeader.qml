@@ -85,6 +85,8 @@ Rectangle {
 
             preferredSize: 24
 
+            mirror: UtilsAdapter.isRTL
+
             source: JamiResources.back_24dp_svg
             toolTipText: CurrentConversation.inCall ? JamiStrings.backCall : JamiStrings.hideChat
 

@@ -26,6 +26,8 @@ ProgressBar {
 
     property real rmsLevel: 0
 
+    LayoutMirroring.enabled: false
+
     value: {
         return clamp(rmsLevel * 300.0, 0.0, 100.0);
     }

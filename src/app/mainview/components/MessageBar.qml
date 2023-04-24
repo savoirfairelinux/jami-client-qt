@@ -189,6 +189,7 @@ ColumnLayout {
             id: messageBarRowLayout
 
             spacing: JamiTheme.chatViewFooterRowSpacing
+            anchors.left: parent.left
 
             Row {
 
@@ -826,6 +827,8 @@ ColumnLayout {
                 imageContainerHeight: 25
 
                 toolTipText: JamiStrings.send
+
+                mirror: UtilsAdapter.isRTL
 
                 source: JamiResources.send_black_24dp_svg
 
