@@ -73,6 +73,8 @@ AbstractButton {
     property alias imagePadding: image.padding
     property alias imageOffset: image.offset
 
+    property alias mirror: image.mirror
+
     width: preferredWidth ? preferredWidth : preferredSize
     height: preferredHeight ? preferredHeight : preferredSize
 
