@@ -112,37 +112,30 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
     cd "$DAEMON"
 
-    # Build the contribs.
-    mkdir -p contrib/native
-    (
-        cd contrib/native
-        ../bootstrap ${prefix:+"--prefix=$prefix"}
-        make -j"${proc}"
-    )
-
+    CONFIGURE_FLAGS+=" -DBUILD_CONTRIB=On"
     if [[ "${enable_libwrap}" != "true" ]]; then
       # Disable shared if requested
       if [[ "$OSTYPE" != "darwin"* ]]; then
-        CONFIGURE_FLAGS+=" --disable-shared"
+        CONFIGURE_FLAGS+=" -DJAMI_DBUS=On"
       fi
     fi
 
     BUILD_TYPE="Release"
     if [ "${debug}" = "true" ]; then
       BUILD_TYPE="Debug"
-      CONFIGURE_FLAGS+=" --enable-debug"
+      CONFIGURE_FLAGS+=" -DCMAKE_BUILD_TYPE=Debug"
     fi
-
-    # Build the daemon itself.
-    test -f configure || ./autogen.sh
 
     if [ "${global}" = "true" ]; then
-        ./configure ${CONFIGURE_FLAGS} ${prefix:+"--prefix=$prefix"}
+      CONFIGURE_FLAGS+=${prefix:+" -DCMAKE_INSTALL_PREFIX=$prefix"}
     else
-        ./configure ${CONFIGURE_FLAGS} --prefix="${INSTALL_DIR}"
+      CONFIGURE_FLAGS+=" -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
     fi
-    make -j"${proc}" V=1
-    make_install "${global}" "${priv_install}"
+
+    mkdir build -p
+    cd build
+    cmake ${CONFIGURE_FLAGS} ..
+    V=2 make -j"${proc}" install
 
     # Verify system's version if no path provided.
     if [ -z "$qtpath" ]; then

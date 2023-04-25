@@ -327,12 +327,17 @@ set(LIBCLIENT_HEADERS_API
   api/profile.h
   api/video.h)
 
+set(TARGET ${CMAKE_LIBRARY_ARCHITECTURE})
+if (NOT TARGET)
+    execute_process(COMMAND gcc -dumpmachine  COMMAND tr -d '\n' OUTPUT_VARIABLE TARGET)
+endif()
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR
   "${DAEMON_DIR}/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR}/native-${TARGET}/ffmpeg
   ${LIBJAMI_CONTRIB_DIR}/apple-darwin/include/
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
