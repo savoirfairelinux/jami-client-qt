@@ -303,11 +303,16 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/messageparser.h
   ${APP_SRC_DIR}/htmlparser.h)
 
+set(TARGET ${CMAKE_LIBRARY_ARCHITECTURE})
+if (NOT TARGET)
+    execute_process(COMMAND gcc -dumpmachine  COMMAND tr -d '\n' OUTPUT_VARIABLE TARGET)
+endif()
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR}/native-${TARGET}/ffmpeg
   ${LIBJAMI_CONTRIB_DIR}/apple-darwin/include/
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
@@ -364,7 +369,6 @@ if(MSVC)
   # daemon
   set(JAMID_SRC_PATH ${DAEMON_DIR}/contrib/msvc/include)
   set(JAMID_LIB ${DAEMON_DIR}/build/x64/ReleaseLib_win32/bin/libjami.lib)
-  set(GNUTLS_LIB ${DAEMON_DIR}/contrib/msvc/lib/x64/libgnutls.lib)
 
   # Beta config
   if(BETA)
@@ -417,10 +421,12 @@ elseif (NOT APPLE)
   endif()
 
   list(PREPEND CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
+    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil
+    ${LIBJAMI_CONTRIB_DIR}/native-${TARGET}/ffmpeg/libavutil)
   pkg_check_modules(LIBAVUTIL libavutil>=55.75.100)
   list(REMOVE_ITEM CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
+    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil
+    ${LIBJAMI_CONTRIB_DIR}/native-${TARGET}/ffmpeg/libavutil)
 
   include_directories(
     ${LIBCLIENT_SRC_DIR}
@@ -537,7 +543,6 @@ if(MSVC)
 
   list(APPEND CLIENT_LIBS
     ${JAMID_LIB}
-    ${GNUTLS_LIB}
     ${LIBCLIENT_NAME}
     ${QT_LIBS}
     ${QRENCODE_LIB}

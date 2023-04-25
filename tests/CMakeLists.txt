@@ -60,7 +60,6 @@ if(MSVC)
         ${QTWRAPPER_LIB}
         ${RINGCLIENT_STATIC_LIB}
         ${QRENCODE_LIB}
-        ${GNUTLS_LIB}
         ${DRING_LIB}
         ${WINDOWS_SYS_LIBS})
 
