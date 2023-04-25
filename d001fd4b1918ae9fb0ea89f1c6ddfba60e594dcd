@@ -33,6 +33,24 @@
       "message": "break tests (patch under this one build ok on msvc/linux)",
       "revId": "d001fd4b1918ae9fb0ea89f1c6ddfba60e594dcd",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8429dad4_f253fba6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-25T20:40:15Z",
+      "side": 1,
+      "message": "FAIL!  : qml_test::Check Focus for NewSwarmPage::test_focus_new_swarm_page() Uncaught exception: Cannot assign to non-existent property \"text\"",
+      "parentUuid": "84bfa9b9_7720830a",
+      "revId": "d001fd4b1918ae9fb0ea89f1c6ddfba60e594dcd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
