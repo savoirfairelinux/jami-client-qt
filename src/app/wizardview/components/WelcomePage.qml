@@ -163,7 +163,12 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            preferredWidth: {
+                if (root.width === 0) {
+                    return JamiTheme.wizardButtonWidth
+                }
+                return Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            }
 
             text: JamiStrings.joinJami
             toolTipText: JamiStrings.createNewJamiAccount
@@ -181,7 +186,12 @@ Rectangle {
             objectName: "alreadyHaveAccount"
             primary: true
 
-            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            preferredWidth: {
+                if (root.width === 0) {
+                    return JamiTheme.wizardButtonWidth
+                }
+                return Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            }
 
             Layout.alignment: Qt.AlignCenter
 
@@ -266,7 +276,12 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: newSIPAccountButton.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            preferredWidth: {
+                if (root.width === 0) {
+                    return JamiTheme.wizardButtonWidth
+                }
+                return Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            }
             text: JamiStrings.advancedFeatures
             toolTipText: showAdvanced ? JamiStrings.hideAdvancedFeatures : JamiStrings.showAdvancedFeatures
 
