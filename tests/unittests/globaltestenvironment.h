@@ -57,7 +57,7 @@ public:
                                                 lrcInstance.data(),
                                                 nullptr));
 
-        previewEngine.reset(new PreviewEngine(nullptr));
+        previewEngine.reset(new PreviewEngine(connectivityMonitor.get(), nullptr));
         messageParser.reset(new MessageParser(previewEngine.data(), nullptr));
     }
 

@@ -1,7 +1,5 @@
 /*
  * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
- * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,26 +17,25 @@
 
 #pragma once
 
-#include <QColor>
-#include <QObject>
+#include "networkmanager.h"
 
-class PreviewEngine : public QObject
+class HtmlParser;
+
+class PreviewEngine final : public NetWorkManager
 {
     Q_OBJECT
     Q_DISABLE_COPY(PreviewEngine)
 public:
-    PreviewEngine(QObject* parent = nullptr);
-    ~PreviewEngine();
+    PreviewEngine(ConnectivityMonitor* cm, QObject* parent = nullptr);
+    ~PreviewEngine() = default;
 
-    void parseMessage(const QString& messageId, const QString& msg);
-
-    Q_INVOKABLE void log(const QString& str);
-    Q_INVOKABLE void emitInfoReady(const QString& messageId, const QVariantMap& info);
+    void onParseLink(const QString& messageId, const QString& link);
 
 Q_SIGNALS:
+    void parseLink(const QString& messageId, const QString& link);
     void infoReady(const QString& messageId, const QVariantMap& info);
 
 private:
-    struct Impl;
-    std::unique_ptr<Impl> pimpl_;
+    // An instance of HtmlParser used to parse HTML.
+    HtmlParser* htmlParser_;
 };

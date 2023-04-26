@@ -88,6 +88,7 @@ private:
             }
         }
 
+        // Traverse the children of the current node.
         for (TidyNode child = tidyGetChild(node); child; child = tidyGetNext(child)) {
             traverseNode(child, tags, cb, depth);
         }
