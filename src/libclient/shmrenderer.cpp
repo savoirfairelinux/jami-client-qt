@@ -20,7 +20,6 @@
 #include "shmrenderer.h"
 
 #include "dbus/videomanager.h"
-#include "videomanager_interface.h"
 
 #include <QDebug>
 #include <QMutex>
@@ -50,7 +49,7 @@ using namespace api::video;
 namespace video {
 
 // Uncomment following line to output in console the FPS value
-//#define DEBUG_FPS
+#define DEBUG_FPS
 
 /* Shared memory object
  * Implementation note: double-buffering
@@ -87,27 +86,60 @@ public:
         , shmArea((SHMHeader*) MAP_FAILED)
         , shmAreaLen(0)
         , frameGen(0)
-        , fpsC(0)
-        , fps(0)
-        , timer(new QTimer(this))
-        , lastFrameDebug(std::chrono::system_clock::now())
     {
-        timer->setInterval(33);
-        connect(timer, &QTimer::timeout, [this]() { Q_EMIT parent_->frameUpdated(); });
         VideoManager::instance().startShmSink(parent_->id(), true);
 
-        parent_->moveToThread(&thread);
-        connect(&thread, &QThread::finished, [this] { parent_->stopRendering(); });
-        thread.start();
+        // Listen for FPS updates from the Renderer.
+        connect(parent_, &Renderer::fpsChanged, this, &Impl::onFpsChanged, Qt::DirectConnection);
+
+        // Continuously check for new frames on a separate thread.
+        // This is necessary because the frame rate is not constant.
+        // The function getNewFrame() will return false if no new frame is available.
+        thread = QThread::create([this] {
+            forever {
+                if (QThread::currentThread()->isInterruptionRequested()) {
+                    return;
+                }
+
+                if (!waitForNewFrame()) {
+                    continue;
+                }
+
+                frameCount++;
+                auto currentTime = clock_type::now();
+                // Get the elapsed time in milliseconds.
+                auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+                    currentTime - lastFrameTime);
+                if (elapsed.count() >= Renderer::FPS_RATE_SEC * 1000) {
+                    auto fps = static_cast<double>(frameCount) / elapsed.count() * 1000;
+                    frameCount = 0;
+                    lastFrameTime = currentTime;
+                    parent_->setFPS(fps);
+#ifdef DEBUG_FPS
+                    qDebug() << this << ": FPS " << fps;
+#endif
+                }
+
+                // Notify the Renderer that a new frame is available if the interval has passed.
+                if (currentTime - lastFrameUpdateTime >= std::chrono::nanoseconds(frameIntervalNs)) {
+                    lastFrameUpdateTime = currentTime;
+                    Q_EMIT parent_->frameUpdated();
+                }
+            }
+        });
     };
     ~Impl()
     {
-        thread.quit();
-        thread.wait();
+        thread->terminate();
+        thread->wait(frameIntervalNs / (1000 * 1000));
     }
 
-    // Constants
-    constexpr static const int FRAME_CHECK_RATE_HZ = 120;
+    void onFpsChanged()
+    {
+        // Update the frame interval in nanoseconds. Max wait time is the expected frame interval.
+        auto intervalS = 1.0 / parent_->fps();
+        frameIntervalNs = static_cast<int>(intervalS * 1000 * 1000 * 1000);
+    }
 
     // Lock the memory while the copy is being made
     bool shmLock()
@@ -122,7 +154,7 @@ public:
     };
 
     // Wait for new frame data from shared memory and save pointer.
-    bool getNewFrame(bool wait)
+    bool waitForNewFrame()
     {
         if (!shmLock())
             return false;
@@ -130,11 +162,8 @@ public:
         if (frameGen == shmArea->frameGen) {
             shmUnlock();
 
-            if (not wait)
-                return false;
-
-            // wait for a new frame, max 33ms
-            static const struct timespec timeout = {0, 33000000};
+            // Wait for a new frame.
+            const struct timespec timeout = {0, frameIntervalNs};
             if (::sem_timedwait(&shmArea->frameGenMutex, &timeout) < 0)
                 return false;
 
@@ -161,22 +190,6 @@ public:
         frameGen = shmArea->frameGen;
 
         shmUnlock();
-
-        ++fpsC;
-
-        // Compute the FPS shown to the client
-        auto currentTime = std::chrono::system_clock::now();
-        const std::chrono::duration<double> seconds = currentTime - lastFrameDebug;
-        if (seconds.count() >= FPS_RATE_SEC) {
-            fps = static_cast<int>(fpsC / seconds.count());
-            fpsC = 0;
-            lastFrameDebug = currentTime;
-            parent_->setFPS(fps);
-#ifdef DEBUG_FPS
-            qDebug() << this << ": FPS " << fps;
-#endif
-        }
-
         return true;
     };
 
@@ -212,8 +225,16 @@ public:
         return true;
     };
 
+    void stop()
+    {
+        thread->requestInterruption();
+        thread->wait(frameIntervalNs / (1000 * 1000));
+    }
+
 private:
     ShmRenderer* parent_;
+
+    using clock_type = std::chrono::high_resolution_clock;
 
 public:
     QString path;
@@ -222,13 +243,13 @@ public:
     unsigned shmAreaLen;
     uint frameGen;
 
-    int fpsC;
-    int fps;
-    std::chrono::time_point<std::chrono::system_clock> lastFrameDebug;
+    uint frameIntervalNs;
+    int frameCount = 0;
+    std::chrono::time_point<clock_type> lastFrameTime;
+    std::chrono::time_point<clock_type> lastFrameUpdateTime;
 
-    QTimer* timer;
     QMutex mutex;
-    QThread thread;
+    QThread* thread;
     std::shared_ptr<lrc::api::video::Frame> frame;
 };
 
@@ -249,10 +270,8 @@ Frame
 ShmRenderer::currentFrame() const
 {
     QMutexLocker lk {&pimpl_->mutex};
-    if (pimpl_->getNewFrame(false)) {
-        if (auto frame_ptr = pimpl_->frame)
-            return std::move(*frame_ptr);
-    }
+    if (auto frame_ptr = pimpl_->frame)
+        return std::move(*frame_ptr);
     return {};
 }
 
@@ -283,6 +302,16 @@ ShmRenderer::startShm()
     }
 
     pimpl_->shmAreaLen = mapSize;
+
+    // Set the frame interval in nanoseconds. We don't know the exact frame interval, and updates
+    // to the fps property are not guaranteed to be in sync with the frame interval. So we set the
+    // frame interval to a reasonable value, and update it as we receive frames (via setting the
+    // fps). A camera with a 2 fps frame rate will have a frame interval of 500ms, which is the
+    // worst case scenario.
+    pimpl_->frameIntervalNs = 500 * 1000 * 1000;
+
+    pimpl_->thread->start();
+
     return true;
 }
 
@@ -292,7 +321,7 @@ ShmRenderer::stopShm()
     if (pimpl_->fd < 0)
         return;
 
-    pimpl_->timer->stop();
+    pimpl_->stop();
 
     // Emit the signal before closing the file, this lower the risk of invalid
     // memory access
@@ -322,8 +351,6 @@ ShmRenderer::startRendering()
 
     if (!startShm())
         return;
-
-    pimpl_->timer->start();
 
     Q_EMIT started(size());
 }
