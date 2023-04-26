@@ -74,6 +74,10 @@ MessageParser::parseMessage(const QString& messageId,
             if (tagsMap.contains(QString::number(TidyTag_A))) {
                 style += QString("a{color:%1;}").arg(linkColor.name());
 
+                // print the number of links in the message
+                qDebug() << "Number of links in the message:"
+                         << tagsMap[QString::number(TidyTag_A)].toList().size();
+
                 // Update the UI before we start parsing the link.
                 html.prepend(QString(styleTag).arg(style));
                 Q_EMIT messageParsed(messageId, html);
@@ -85,7 +89,7 @@ MessageParser::parseMessage(const QString& messageId,
                     static QRegularExpression hrefRegex("href=\"(.*?)\"");
                     auto match = hrefRegex.match(anchorTag);
                     if (match.hasMatch()) {
-                        previewEngine_->parseMessage(messageId, match.captured(1));
+                        Q_EMIT previewEngine_->parseLink(messageId, match.captured(1));
                     }
                 }
 

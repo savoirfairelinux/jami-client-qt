@@ -1,7 +1,5 @@
 /*
  * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
- * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,86 +17,34 @@
 
 #include "previewengine.h"
 
-#include "utils.h"
+#include "htmlparser.h"
 
-#include <QWebEngineScript>
-#include <QWebEngineProfile>
-#include <QWebEngineSettings>
-
-#include <QtWebChannel>
-#include <QWebEnginePage>
-
-struct PreviewEngine::Impl : public QWebEnginePage
+PreviewEngine::PreviewEngine(ConnectivityMonitor* cm, QObject* parent)
+    : NetWorkManager(cm, parent)
+    , htmlParser_(new HtmlParser(this))
 {
-public:
-    PreviewEngine& parent_;
-    QWebChannel* channel_;
-
-    Impl(PreviewEngine& parent)
-        : QWebEnginePage((QObject*) nullptr)
-        , parent_(parent)
-    {
-        QWebEngineProfile* profile = QWebEngineProfile::defaultProfile();
-
-        QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
-        dataDir.cdUp();
-        auto cachePath = dataDir.absolutePath() + "/jami";
-        profile->setCachePath(cachePath);
-        profile->setPersistentStoragePath(cachePath);
-        profile->setPersistentCookiesPolicy(QWebEngineProfile::NoPersistentCookies);
-        profile->setHttpCacheType(QWebEngineProfile::NoCache);
-
-        settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-        settings()->setAttribute(QWebEngineSettings::ScrollAnimatorEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::LinksIncludedInFocusChain, false);
-        settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::AllowRunningInsecureContent, true);
-        settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
-        settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
-        settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
-
-        channel_ = new QWebChannel(this);
-        channel_->registerObject(QStringLiteral("jsbridge"), &parent_);
-
-        setWebChannel(channel_);
-        runJavaScript(Utils::QByteArrayFromFile(":webengine/qwebchannel.js"),
-                      QWebEngineScript::MainWorld);
-        runJavaScript(Utils::QByteArrayFromFile(":webengine/previewInfo.js"),
-                      QWebEngineScript::MainWorld);
-        runJavaScript(Utils::QByteArrayFromFile(":webengine/previewInterop.js"),
-                      QWebEngineScript::MainWorld);
-    }
-
-    void parseMessage(const QString& messageId, const QString& msg)
-    {
-        runJavaScript(QString("getPreviewInfo(`%1`, `%2`)").arg(messageId, msg));
-    }
-};
-
-PreviewEngine::PreviewEngine(QObject* parent)
-    : QObject(parent)
-    , pimpl_(std::make_unique<Impl>(*this))
-{}
-
-PreviewEngine::~PreviewEngine() {}
-
-void
-PreviewEngine::parseMessage(const QString& messageId, const QString& msg)
-{
-    pimpl_->parseMessage(messageId, msg);
+    // Connect on a queued connection to avoid blocking caller thread.
+    connect(this, &PreviewEngine::parseLink, this, &PreviewEngine::onParseLink, Qt::QueuedConnection);
 }
 
 void
-PreviewEngine::log(const QString& str)
+PreviewEngine::onParseLink(const QString& messageId, const QString& link)
 {
-    qDebug() << str;
-}
-
-void
-PreviewEngine::emitInfoReady(const QString& messageId, const QVariantMap& info)
-{
-    Q_EMIT infoReady(messageId, info);
+    qDebug() << Q_FUNC_INFO << messageId << link;
+    get(link, [this](const QString& html) {
+        //        qDebug() << "HTML:" << html;
+        //        htmlParser_->parseHtmlString(html);
+        //        auto tagsMap = htmlParser_->getTags({TidyTag_META, TidyTag_A});
+        //        qWarning() << tagsMap[QString::number(TidyTag_A)];
+        //        // Loop through all the meta tags and extract the ones we are interested in.
+        //        // For the title, we are interested in the following tags:
+        //        // 1. og:title
+        //        // 2. twitter:title
+        //        for (auto& tag : tagsMap) {
+        //            if (tag.toString().contains("og:title") ||
+        //            tag.toString().contains("twitter:title")) {
+        //                qDebug() << "Title:" << tag;
+        //            }
+        //        }
+    });
 }
