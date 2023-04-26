@@ -1031,12 +1031,11 @@ QString
 ConversationModel::createConversation(const VectorString& participants, const MapStringString& infos)
 {
     auto convUid = ConfigurationManager::instance().startConversation(owner.id);
+    pimpl_->addSwarmConversation(convUid);
     if (!infos.isEmpty())
         updateConversationInfos(convUid, infos);
-    for (const auto& participant : participants) {
+    for (const auto& participant : participants)
         ConfigurationManager::instance().addConversationMember(owner.id, convUid, participant);
-    }
-    pimpl_->addSwarmConversation(convUid);
     Q_EMIT newConversation(convUid);
     pimpl_->invalidateModel();
     Q_EMIT modelChanged();
