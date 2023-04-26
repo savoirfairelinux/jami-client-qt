@@ -50,10 +50,10 @@ NetWorkManager::NetWorkManager(ConnectivityMonitor* cm, QObject* parent)
 void
 NetWorkManager::get(const QUrl& url, const DoneCallBack& doneCb, const QString& path)
 {
-    if (!connectivityMonitor_->isOnline()) {
-        Q_EMIT errorOccured(GetError::DISCONNECTED);
-        return;
-    }
+    //    if (!connectivityMonitor_->isOnline()) {
+    //        Q_EMIT errorOccured(GetError::DISCONNECTED);
+    //        return;
+    //    }
 
     if (reply_ && reply_->isRunning()) {
         qWarning() << Q_FUNC_INFO << "currently downloading";
@@ -91,6 +91,7 @@ NetWorkManager::get(const QUrl& url, const DoneCallBack& doneCb, const QString& 
             });
 
     connect(reply_, &QNetworkReply::finished, [this, doneCb, path]() {
+        qWarning() << Q_FUNC_INFO;
         reply_->disconnect();
         QString response = {};
         if (path.isEmpty())
