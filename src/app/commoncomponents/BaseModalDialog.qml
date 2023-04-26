@@ -112,6 +112,7 @@ Popup {
         color: JamiTheme.shadowColor
         source: container
         transparentBorder: true
+        samples: radius + 1
     }
 
     enter: Transition {

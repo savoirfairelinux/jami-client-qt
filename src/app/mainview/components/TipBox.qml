@@ -93,6 +93,7 @@ Item {
         color: Qt.rgba(0, 0.34, 0.6, 0.16)
         source: rect
         transparentBorder: true
+        samples: radius + 1
     }
 
     PushButton {
