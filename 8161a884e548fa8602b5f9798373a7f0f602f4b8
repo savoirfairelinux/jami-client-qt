@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a719a6b_a3e452a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-26T13:50:22Z",
+      "side": 1,
+      "message": "Missing GitLab: #xxx",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "8161a884e548fa8602b5f9798373a7f0f602f4b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a840dc10_b5e0a113",
+        "filename": "daemon",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-26T13:50:22Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "8161a884e548fa8602b5f9798373a7f0f602f4b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56509557_cceeb6ff",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-26T13:50:22Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 190,
+        "startChar": 24,
+        "endLine": 190,
+        "endChar": 71
+      },
+      "revId": "8161a884e548fa8602b5f9798373a7f0f602f4b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dcd76e8_2d2755ea",
+        "filename": "src/app/mainview/MainView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-26T13:50:22Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 194,
+        "startChar": 14,
+        "endLine": 202,
+        "endChar": 14
+      },
+      "revId": "8161a884e548fa8602b5f9798373a7f0f602f4b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad5fe36f_bdcaabdb",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-26T13:50:22Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 819,
+        "startChar": 10,
+        "endLine": 819,
+        "endChar": 23
+      },
+      "revId": "8161a884e548fa8602b5f9798373a7f0f602f4b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
