@@ -55,14 +55,42 @@ private Q_SLOTS:
     void onRendererStopped(const QString& id);
 
 private:
-    QVideoFrame* frame(const QString& id);
     void copyUnaligned(QVideoFrame* dst, const video::Frame& src);
     AVModel& avModel_;
 
+    // Use a double buffering to avoid failed reads from the QML renderer thread.
     struct FrameObject
     {
-        std::unique_ptr<QVideoFrame> videoFrame;
-        QMutex mutex;
+        std::array<std::unique_ptr<QVideoFrame>, 2> videoFrames;
+        // Swap the current writable frame with the current readable frame.
+        // Change the current writeable frame index.
+        void swapFrames()
+        {
+            QMutexLocker locker(&mutex);
+            videoFrames[0].swap(videoFrames[1]);
+        }
+        // Get a pointer to frame (regardless of its state).
+        QVideoFrame* getFrame(QVideoFrame::MapMode mode)
+        {
+            QMutexLocker locker(&mutex);
+            auto idx = mode == QVideoFrame::ReadOnly ? 0 : 1;
+            return videoFrames[idx].get();
+        }
+        // Get a pointer to a mapped frame.
+        QVideoFrame* getMappedFrame(QVideoFrame::MapMode mode)
+        {
+            auto videoFrame = getFrame(mode);
+            QMutexLocker locker(&mutex);
+            if (!videoFrame || !videoFrame->isValid() || subscribers.isEmpty()) {
+                return nullptr;
+            }
+            if (videoFrame->isMapped() || videoFrame->map(mode)) {
+                return videoFrame;
+            }
+            qWarning() << "Failed to map video frame";
+            return nullptr;
+        }
+        QRecursiveMutex mutex;
         QSet<QVideoSink*> subscribers;
     };
     std::map<QString, std::unique_ptr<FrameObject>> framesObjects_;
