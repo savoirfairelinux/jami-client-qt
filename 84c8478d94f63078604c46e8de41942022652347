@@ -34,6 +34,24 @@
       "parentUuid": "33bae55e_24d7527a",
       "revId": "84c8478d94f63078604c46e8de41942022652347",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8440561b_91b62621",
+        "filename": ".gitmodules",
+        "patchSetId": 15
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-26T19:41:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "f6594f9d_20f33b1f",
+      "revId": "84c8478d94f63078604c46e8de41942022652347",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
