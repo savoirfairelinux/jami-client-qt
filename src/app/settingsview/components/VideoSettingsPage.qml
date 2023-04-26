@@ -249,21 +249,6 @@ SettingsPageBase {
                     generalSettings.startPreviewing(true);
                 }
             }
-
-            Text {
-                visible: VideoDevices.listSize === 0
-
-                Layout.fillWidth: true
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                text: JamiStrings.previewUnavailable
-                font.pointSize: JamiTheme.settingsFontSize
-                font.kerning: true
-                color: JamiTheme.primaryForegroundColor
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
         }
     }
 }
