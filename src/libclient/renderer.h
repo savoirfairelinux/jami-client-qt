@@ -47,7 +47,7 @@ public:
     /**
      * @return renderer's fps
      */
-    int fps() const;
+    double fps() const;
 
     /**
      * @return renderer's id
@@ -67,7 +67,7 @@ public:
     /**
      * set fps
      */
-    void setFPS(int fps);
+    void setFPS(double fps);
 
     MapStringString getInfos() const;
 
@@ -85,7 +85,7 @@ Q_SIGNALS:
 private:
     QString id_;
     QSize size_;
-    int fps_;
+    double fps_;
 };
 
 } // namespace video
