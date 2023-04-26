@@ -340,6 +340,7 @@ ItemDelegate {
             radius: 8.0
             color: "#80000000"
             transparentBorder: true
+            samples: radius + 1
         }
     }
 
