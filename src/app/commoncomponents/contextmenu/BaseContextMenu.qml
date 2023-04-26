@@ -100,6 +100,7 @@ Menu {
             radius: 16.0
             color: JamiTheme.shadowColor
             transparentBorder: true
+            samples: radius + 1
         }
     }
 

@@ -107,5 +107,6 @@ Item {
         color: JamiTheme.shadowColor
         source: bubble
         transparentBorder: true
+        samples: radius + 1
     }
 }

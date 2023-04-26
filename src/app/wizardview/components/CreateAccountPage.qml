@@ -188,6 +188,7 @@ Rectangle {
                                 color: JamiTheme.shadowColor
                                 source: boxInfo
                                 transparentBorder: true
+                                samples: radius + 1
                             }
 
                             Rectangle {
@@ -460,6 +461,7 @@ Rectangle {
             color: JamiTheme.shadowColor
             source: boxAdvice
             transparentBorder: true
+            samples: radius + 1
         }
 
         Rectangle {
