@@ -120,6 +120,7 @@ Control {
                 radius: 8.0
                 color: JamiTheme.shadowColor
                 transparentBorder: true
+                samples: radius + 1
             }
         }
     }
