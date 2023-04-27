@@ -248,12 +248,12 @@ Window {
         ListElement {
             shortcut: "Shift + Alt + 8"
             shortcut2: ""
-            description: qsTr("Bulleted List")
+            description: qsTr("Unordered list")
         }
         ListElement {
             shortcut: "Shift + Alt + 7"
             shortcut2: ""
-            description: qsTr("Numbered List")
+            description: qsTr("Ordered list")
         }
     }
 

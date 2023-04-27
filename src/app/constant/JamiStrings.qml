@@ -796,13 +796,13 @@ Item {
 
     property string bold: qsTr("Bold")
     property string italic: qsTr("Italic")
-    property string barre: qsTr("Strikethrough")
+    property string strikethrough: qsTr("Strikethrough")
     property string title: qsTr("Title")
     property string link: qsTr("Link")
     property string code: qsTr("Code")
     property string quote: qsTr("Quote")
-    property string bulletPoint: qsTr("Bullet Point")
-    property string bulletNumber: qsTr("Bullet Number")
+    property string unorderedList: qsTr("Unordered list")
+    property string orderedList: qsTr("Ordered list")
     property string showFormating: qsTr("Show Formating")
     property string hideFormating: qsTr("Hide Formating")
 

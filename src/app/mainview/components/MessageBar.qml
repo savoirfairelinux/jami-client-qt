@@ -105,10 +105,10 @@ ColumnLayout {
             "Quote": function () {
                 listViewTypoSecond.itemAtIndex(2).action.triggered();
             },
-            "Bulleted List": function () {
+            "Unordered list": function () {
                 listViewTypoSecond.itemAtIndex(3).action.triggered();
             },
-            "Numbered List": function () {
+            "Ordered list": function () {
                 listViewTypoSecond.itemAtIndex(4).action.triggered();
             }
         }
@@ -158,13 +158,13 @@ ColumnLayout {
         Shortcut {
             sequence: "Shift+Alt+8"
             context: Qt.ApplicationShortcut
-            onActivated: textArea.markdownShortCut["Bulleted List"]()
+            onActivated: textArea.markdownShortCut["Unordered list"]()
         }
 
         Shortcut {
             sequence: "Shift+Alt+7"
             context: Qt.ApplicationShortcut
-            onActivated: textArea.markdownShortCut["Numbered List"]()
+            onActivated: textArea.markdownShortCut["Ordered list"]()
         }
     }
 
@@ -249,7 +249,7 @@ ColumnLayout {
                         }
                     }
 
-                    function addPrefixStyle(message, selectionStart, selectionEnd, delimiter, isBulletNumber) {
+                    function addPrefixStyle(message, selectionStart, selectionEnd, delimiter, isOrderedList) {
 
                         //represents all the selected lines
                         var multilineSelection;
@@ -304,7 +304,7 @@ ColumnLayout {
                         var count;
                         var startPos;
                         var multilineSelectionLength;
-                        if (!isBulletNumber) {
+                        if (!isOrderedList) {
                             if (getHasCurrentMarkdown()) {
 
                                 // clear first line from delimiter
@@ -420,9 +420,9 @@ ColumnLayout {
                                 }
                             },
                             Action {
-                                id: barreAction
+                                id: strikethroughAction
                                 property var iconSrc: JamiResources.s_barre_black_24dp_svg
-                                property var shortcutText: JamiStrings.barre
+                                property var shortcutText: JamiStrings.strikethrough
                                 property string shortcutKey: "Shift+Alt+X"
                                 onTriggered: function clickAction() {
                                     listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "~~", "~~");
@@ -595,18 +595,18 @@ ColumnLayout {
                                 }
                             },
                             Action {
-                                id: bulletPointAction
+                                id: unorderedListAction
                                 property var iconSrc: JamiResources.bullet_point_black_24dp_svg
-                                property var shortcutText: JamiStrings.bulletPoint
+                                property var shortcutText: JamiStrings.unorderedList
                                 property string shortcutKey: "Shift+Alt+8"
                                 onTriggered: function clickAction() {
                                     listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "- ", false);
                                 }
                             },
                             Action {
-                                id: bulletNumberAction
+                                id: orderedListAction
                                 property var iconSrc: JamiResources.bullet_number_black_24dp_svg
-                                property var shortcutText: JamiStrings.bulletNumber
+                                property var shortcutText: JamiStrings.orderedList
                                 property string shortcutKey: "Shift+Alt+7"
                                 onTriggered: function clickAction() {
                                     listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "", true);
