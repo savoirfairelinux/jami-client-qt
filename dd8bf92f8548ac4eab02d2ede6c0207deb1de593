@@ -1,4 +1,143 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7244381f_117c7031",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-27T00:03:41Z",
+      "side": 1,
+      "message": "strikethrough",
+      "range": {
+        "startLine": 799,
+        "startChar": 20,
+        "endLine": 799,
+        "endChar": 25
+      },
+      "revId": "dd8bf92f8548ac4eab02d2ede6c0207deb1de593",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d70c1466_0140dc3b",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-27T00:03:41Z",
+      "side": 1,
+      "message": "For consistency wit LibreOffice Writer, should the en source string be:\n`Unordered List`\n\nShould the string be sentence case, i.e. `Unordered list`\n\nThank you",
+      "range": {
+        "startLine": 251,
+        "startChar": 31,
+        "endLine": 251,
+        "endChar": 44
+      },
+      "revId": "dd8bf92f8548ac4eab02d2ede6c0207deb1de593",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50d21d87_53b39795",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-27T00:03:41Z",
+      "side": 1,
+      "message": "For consistency wit LibreOffice Writer, should the en source string be:\n`Ordered List`\n\nShould the string be sentence case, i.e. `Ordered list`\n\nThank you",
+      "range": {
+        "startLine": 256,
+        "startChar": 31,
+        "endLine": 256,
+        "endChar": 44
+      },
+      "revId": "dd8bf92f8548ac4eab02d2ede6c0207deb1de593",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1c4aea8_f6d8b573",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-27T00:03:41Z",
+      "side": 1,
+      "message": "`strikethrough`",
+      "range": {
+        "startLine": 425,
+        "startChar": 71,
+        "endLine": 425,
+        "endChar": 76
+      },
+      "revId": "dd8bf92f8548ac4eab02d2ede6c0207deb1de593",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8284df08_140cc95b",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-27T00:03:41Z",
+      "side": 1,
+      "message": "unorderedList",
+      "range": {
+        "startLine": 600,
+        "startChar": 71,
+        "endLine": 600,
+        "endChar": 82
+      },
+      "revId": "dd8bf92f8548ac4eab02d2ede6c0207deb1de593",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a63e14a0_b2b4a6ea",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-27T00:03:41Z",
+      "side": 1,
+      "message": "orderedList",
+      "range": {
+        "startLine": 609,
+        "startChar": 71,
+        "endLine": 609,
+        "endChar": 83
+      },
+      "revId": "dd8bf92f8548ac4eab02d2ede6c0207deb1de593",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
