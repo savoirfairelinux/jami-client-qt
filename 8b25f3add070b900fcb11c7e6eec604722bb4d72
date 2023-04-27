@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0e4df03_b9bc8b44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-27T12:53:36Z",
+      "side": 1,
+      "message": "Do not merge while 6.4 is not mandatory. samples isn\u0027t defined with 6.2",
+      "revId": "8b25f3add070b900fcb11c7e6eec604722bb4d72",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
