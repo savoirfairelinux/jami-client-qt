@@ -341,7 +341,7 @@ Utils::GetRingtonePath()
 #ifdef Q_OS_WIN
     return QCoreApplication::applicationDirPath() + "\\ringtones\\default.opus";
 #else
-    return QString("/usr/share/ring/ringtones/default.opus");
+    return QString("/usr/share/jami/ringtones/default.opus");
 #endif
 }
 
