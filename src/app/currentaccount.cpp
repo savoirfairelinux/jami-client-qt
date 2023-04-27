@@ -18,6 +18,8 @@
 
 #include "currentaccount.h"
 
+#include "utils.h"
+
 CurrentAccount::CurrentAccount(LRCInstance* lrcInstance,
                                AppSettingsManager* settingsManager,
                                QObject* parent)
@@ -188,6 +190,9 @@ CurrentAccount::updateData()
         // Ringtone
         set_ringtoneEnabledRingtone(accConfig.Ringtone.ringtoneEnabled, true);
         set_ringtonePathRingtone(accConfig.Ringtone.ringtonePath, true);
+        if (get_ringtonePathRingtone() == "default.opus" || get_ringtonePathRingtone().isEmpty()) {
+            set_ringtonePathRingtone(Utils::GetRingtonePath(), true);
+        }
 
         // Moderators
         set_isAllModeratorsEnabled(lrcInstance_->accountModel().isAllModerators(
