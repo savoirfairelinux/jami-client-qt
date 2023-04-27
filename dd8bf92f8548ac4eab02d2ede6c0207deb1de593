@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0adba7f3_4319d8d0",
+        "filename": "src/app/videoprovider.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-04-27T15:33:03Z",
+      "side": 0,
+      "message": "On DBUS we should keep the previous method else, there is some glithces",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 9
+      },
+      "revId": "dd8bf92f8548ac4eab02d2ede6c0207deb1de593",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
