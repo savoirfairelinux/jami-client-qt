@@ -1,4 +1,68 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "632eb329_43b5e1d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-27T23:54:54Z",
+      "side": 1,
+      "message": "Thank you",
+      "revId": "21b5c95eeb44fcc3d451fa8a1db41b3cac386c77",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f3674e7_321508b7",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-27T23:54:54Z",
+      "side": 1,
+      "message": "Sentence case to become `Screen sharing`?",
+      "range": {
+        "startLine": 202,
+        "startChar": 41,
+        "endLine": 202,
+        "endChar": 55
+      },
+      "revId": "21b5c95eeb44fcc3d451fa8a1db41b3cac386c77",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "089bd852_c98e5336",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-04-27T23:54:54Z",
+      "side": 1,
+      "message": "Should it have a capital `K` to become `OK`?",
+      "range": {
+        "startLine": 750,
+        "startChar": 36,
+        "endLine": 750,
+        "endChar": 38
+      },
+      "revId": "21b5c95eeb44fcc3d451fa8a1db41b3cac386c77",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
