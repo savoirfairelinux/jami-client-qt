@@ -28,8 +28,6 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property bool showSearch: true
-
     signal backClicked
     signal addToConversationClicked
     signal pluginSelector
@@ -159,7 +157,7 @@ Rectangle {
 
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 spacing: headerButtons.spacing
-                visible: root.showSearch && CurrentConversation.isSwarm
+                visible: root.swarmDetailsVisibility
 
                 Shortcut {
                     sequence: "Ctrl+Shift+F"
