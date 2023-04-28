@@ -90,7 +90,7 @@ BaseModalDialog {
                 text: JamiStrings.optionRemove
 
                 onClicked: {
-                    DeviceItemListModel.revokeDevice(deviceId, passwordEdit.text);
+                    DeviceItemListModel.revokeDevice(deviceId, passwordEdit.dynamicText);
                     close();
                 }
             }
