@@ -2045,12 +2045,12 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
         <source>Bold</source>
-        <translation type="unfinished"/>
+        <translation>Полужирный</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
         <source>Italic</source>
-        <translation type="unfinished"/>
+        <translation>Курсив</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
@@ -3472,7 +3472,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="853"/>
         <source>Create the swarm</source>
-        <translation type="unfinished"/>
+        <translation>Создать группу</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
