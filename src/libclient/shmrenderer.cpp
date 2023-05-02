@@ -31,7 +31,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/mman.h>
-#include <semaphore.h>
+#include <pthread.h>
 #include <errno.h>
 
 #ifndef CLOCK_REALTIME
@@ -54,31 +54,37 @@ namespace video {
 
 struct SHMHeader
 {
-    sem_t mutex;          /*!< Lock it before any operations on following fields.           */
-    sem_t frameGenMutex;  /*!< unlocked by producer when frameGen modified                  */
-    unsigned frameGen;    /*!< monotonically incremented when a producer changes readOffset */
-    unsigned frameSize;   /*!< size in bytes of 1 frame                                     */
-    unsigned mapSize;     /*!< size to map if you need to see all data                      */
-    unsigned readOffset;  /*!< offset of readable frame in data                             */
-    unsigned writeOffset; /*!< offset of writable frame in data                             */
-
+    pthread_mutex_t mutex; // lock it before any operations on these fields
+    pthread_cond_t cv;     // signal when a frame is ready
+    bool frameReady;       // true if a frame is ready to be read
+    unsigned frameSize;    // size in bytes of 1 frame
+    unsigned mapSize;      // size to map if you need all the data
+    unsigned readOffset;   // offset of readable frame in data
+    unsigned writeOffset;  // offset of writable frame in data
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-    uint8_t data[]; /*!< the whole shared memory                                      */
+    uint8_t data[]; // the whole shared memory
 #pragma GCC diagnostic pop
 };
 
+static void
+secondsToAbsoluteTimespec(double seconds, struct timespec* ts)
+{
+    // Limit to 1 second for our current use case.
+    seconds = std::min(seconds, 1.0);
+    clock_gettime(CLOCK_REALTIME, ts);
+    ts->tv_sec += (time_t) seconds;
+    ts->tv_nsec += (long) ((seconds - (time_t) seconds) * 1e9);
+}
+
 struct ShmRenderer::Impl final : public QObject
 {
-    Q_OBJECT
-public:
-    Impl(ShmRenderer* parent)
+    Q_OBJECT public : Impl(ShmRenderer* parent)
         : QObject(nullptr)
         , parent_(parent)
         , fd(-1)
         , shmArea((SHMHeader*) MAP_FAILED)
         , shmAreaLen(0)
-        , frameGen(0)
     {
         VideoManager::instance().startShmSink(parent_->id(), true);
 
@@ -100,72 +106,59 @@ public:
             }
         });
     };
-    ~Impl() {} // Thread is stopped by parent in ShmRenderer::stopShm.
+    ~Impl() {}
 
     void stopThread()
     {
-        // Request thread loop interruption and then unblock the sem_wait.
         thread->requestInterruption();
-
-        // Set the isDestroying flag to true so that the thread loop can exit
-        // without emitting the frameUpdated signal. This works as ShmHolder::renderFrame
-        // will reset frameSize appropriately.
-        shmLock();
-        shmArea->frameSize = 0;
-        shmUnlock();
-
-        ::sem_post(&shmArea->frameGenMutex);
-
+        // set frameReady to true to unblock the thread
+        pthread_mutex_lock(&shmArea->mutex);
+        shmArea->frameReady = true;
+        pthread_cond_signal(&shmArea->cv);
+        pthread_mutex_unlock(&shmArea->mutex);
         thread->wait();
     }
-
-    // Lock the memory while the copy is being made
-    bool shmLock()
-    {
-        return ::sem_wait(&shmArea->mutex) >= 0;
-    };
-
-    // Remove the lock, allow a new frame to be drawn
-    void shmUnlock()
-    {
-        ::sem_post(&shmArea->mutex);
-    };
 
     // Wait for new frame data from shared memory and save pointer.
     bool waitForNewFrame()
     {
-        if (!shmLock())
-            return false;
+        pthread_mutex_lock(&shmArea->mutex);
 
-        if (frameGen == shmArea->frameGen) {
-            shmUnlock();
-
-            if (::sem_wait(&shmArea->frameGenMutex) < 0)
+        // wait for the producer to signal that the buffer is ready
+        while (shmArea->frameReady == false) {
+            //  wait for a frame interval
+            static struct timespec ts;
+            secondsToAbsoluteTimespec(1.0 / parent_->fps(), &ts);
+            int ret = pthread_cond_timedwait(&shmArea->cv, &shmArea->mutex, &ts);
+            if (ret == ETIMEDOUT) {
+                pthread_mutex_unlock(&shmArea->mutex);
                 return false;
-
-            if (!shmLock())
-                return false;
+            }
         }
 
         // valid frame to render (daemon may have stopped)?
-        if (!shmArea->frameSize) {
-            shmUnlock();
+        if (!shmArea->frameSize || QThread::currentThread()->isInterruptionRequested()) {
+            pthread_mutex_unlock(&shmArea->mutex);
             return false;
         }
 
-        // map frame data
+        // we may need to resize/remap the shared memory (unlocks on failure)
         if (!remapShm()) {
             qDebug() << "Could not resize shared memory";
             return false;
         }
 
+        // read frame data from shared memory
         if (not frame)
             frame.reset(new lrc::api::video::Frame);
         frame->ptr = shmArea->data + shmArea->readOffset;
         frame->size = shmArea->frameSize;
-        frameGen = shmArea->frameGen;
 
-        shmUnlock();
+        // mark frame as read so the producer can reuse it
+        shmArea->frameReady = false;
+        pthread_cond_signal(&shmArea->cv);
+
+        pthread_mutex_unlock(&shmArea->mutex);
         return true;
     };
 
@@ -177,7 +170,7 @@ public:
         // during time we unlock it for remapping.
         while (shmAreaLen != shmArea->mapSize) {
             auto mapSize = shmArea->mapSize;
-            shmUnlock();
+            pthread_mutex_unlock(&shmArea->mutex);
 
             if (::munmap(shmArea, shmAreaLen)) {
                 qDebug() << "Could not unmap shared area: " << strerror(errno);
@@ -192,8 +185,9 @@ public:
                 return false;
             }
 
-            if (!shmLock())
+            if (pthread_mutex_trylock(&shmArea->mutex) != 0) {
                 return false;
+            }
 
             shmAreaLen = mapSize;
         }
@@ -204,17 +198,18 @@ public:
 private:
     ShmRenderer* parent_;
 
+    using clock_type = std::chrono::high_resolution_clock;
+
 public:
     QString path;
     int fd;
     SHMHeader* shmArea;
     unsigned shmAreaLen;
-    uint frameGen;
 
     QMutex mutex;
     QThread* thread;
     std::shared_ptr<lrc::api::video::Frame> frame;
-};
+}; // namespace lrc
 
 ShmRenderer::ShmRenderer(const QString& id, const QSize& res, const QString& shmPath)
     : Renderer(id, res)
