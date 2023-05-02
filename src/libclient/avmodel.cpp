@@ -20,7 +20,6 @@
 #include "api/avmodel.h"
 
 #include "api/video.h"
-#include "api/call.h"
 #include "api/lrc.h"
 #ifdef ENABLE_LIBWRAP
 #include "directrenderer.h"
@@ -734,7 +733,7 @@ AVModel::getListWindows() const
         auto finishedloop = true;
     } catch (...) {
     }
- #endif
+#endif
     return ret;
 }
 
@@ -943,44 +942,48 @@ createRenderer(const QString& id, const QSize& res, const QString& shmPath = {})
 void
 AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& shmPath)
 {
-    auto connectRenderer = [this](Renderer* renderer, const QString& id) {
-        connect(
-            renderer,
-            &Renderer::fpsChanged,
-            this,
-            [this, id](void) { Q_EMIT linked_.updateRenderersFPSInfo(id); },
-            Qt::QueuedConnection);
-        connect(
-            renderer,
-            &Renderer::started,
-            this,
-            [this, id](const QSize& size) { Q_EMIT linked_.rendererStarted(id, size); },
-            Qt::DirectConnection);
-        connect(
-            renderer,
-            &Renderer::frameBufferRequested,
-            this,
-            [this, id](AVFrame* frame) { Q_EMIT linked_.frameBufferRequested(id, frame); },
-            Qt::DirectConnection);
-        connect(
-            renderer,
-            &Renderer::frameUpdated,
-            this,
-            [this, id] { Q_EMIT linked_.frameUpdated(id); },
-            Qt::DirectConnection);
-        connect(
-            renderer,
-            &Renderer::stopped,
-            this,
-            [this, id] { Q_EMIT linked_.rendererStopped(id); },
-            Qt::DirectConnection);
-    };
-    std::lock_guard<std::mutex> lk(renderers_mtx_);
-    renderers_.erase(id); // Because it should be done before creating the renderer
+    // First remove the existing renderer.
+    renderers_.erase(id);
+
+    // Create a new one and add it.
     auto renderer = createRenderer(id, res, shmPath);
+    std::lock_guard<std::mutex> lk(renderers_mtx_);
     auto& r = renderers_[id];
     r = std::move(renderer);
-    connectRenderer(r.get(), id);
+    renderers_mtx_.unlock();
+
+    // Listen and forward id-bound signals upwards.
+    connect(
+        r.get(),
+        &Renderer::fpsChanged,
+        this,
+        [this, id](void) { linked_.updateRenderersFPSInfo(id); },
+        Qt::QueuedConnection);
+    connect(
+        r.get(),
+        &Renderer::started,
+        this,
+        [this, id](const QSize& size) { Q_EMIT linked_.rendererStarted(id, size); },
+        Qt::DirectConnection);
+    connect(
+        r.get(),
+        &Renderer::frameBufferRequested,
+        this,
+        [this, id](AVFrame* frame) { Q_EMIT linked_.frameBufferRequested(id, frame); },
+        Qt::DirectConnection);
+    connect(
+        r.get(),
+        &Renderer::frameUpdated,
+        this,
+        [this, id] { Q_EMIT linked_.frameUpdated(id); },
+        Qt::DirectConnection);
+    connect(
+        r.get(),
+        &Renderer::stopped,
+        this,
+        [this, id] { Q_EMIT linked_.rendererStopped(id); },
+        Qt::DirectConnection);
+
     r->startRendering();
 }
 
