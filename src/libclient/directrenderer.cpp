@@ -50,6 +50,8 @@ public:
         configureTarget();
         if (!VideoManager::instance().registerSinkTarget(parent_->id(), target))
             qWarning() << "Cannot register " << parent_->id();
+
+        connect(&fpsTracker, &FpsTracker::fpsChanged, parent_, &DirectRenderer::fpsChanged);
     };
     ~Impl()
     {
@@ -90,17 +92,8 @@ public:
             QMutexLocker lk(&mutex);
             frameBufferPtr = std::move(buf);
         }
-        // compute FPS
-        ++fpsC;
-        auto currentTime = std::chrono::system_clock::now();
-        const std::chrono::duration<double> seconds = currentTime - lastFrameDebug;
-        if (seconds.count() >= FPS_RATE_SEC) {
-            fps = static_cast<int>(fpsC / seconds.count());
-            fpsC = 0;
-            lastFrameDebug = currentTime;
-            parent_->setFPS(fps);
-        }
 
+        parent_->updateFpsTracker();
         Q_EMIT parent_->frameUpdated();
     };
 
@@ -109,6 +102,7 @@ private:
 
 public:
     libjami::SinkTarget target;
+    FpsTracker fpsTracker;
     QMutex mutex;
     libjami::FrameBuffer frameBufferPtr;
 };
