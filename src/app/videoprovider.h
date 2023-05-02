@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "utils.h"
 #include "qtutils.h"
 
 #include "api/avmodel.h"
@@ -27,10 +26,11 @@ extern "C" {
 #include "libavutil/frame.h"
 }
 
-#include <QVideoSink>
-#include <QVideoFrame>
 #include <QQmlEngine>
-#include <QMutex>
+#include <QReadWriteLock>
+#include <QScopeGuard>
+#include <QVideoFrame>
+#include <QVideoSink>
 
 using namespace lrc::api;
 
@@ -55,16 +55,85 @@ private Q_SLOTS:
     void onRendererStopped(const QString& id);
 
 private:
-    QVideoFrame* frame(const QString& id);
     void copyUnaligned(QVideoFrame* dst, const video::Frame& src);
     AVModel& avModel_;
 
     struct FrameObject
     {
-        std::unique_ptr<QVideoFrame> videoFrame;
-        QMutex mutex;
+        QVideoFrame frame1;
+        QVideoFrame frame2;
+        QReadWriteLock subscribersMutex;
         QSet<QVideoSink*> subscribers;
+
+        // To reliably swap frames, we need to make sure that both frames are
+        // mapped WriteOnly. This is QVideoFrame::map is the only way we can
+        // sync on the same mutex locked by the render thread when uploading the
+        // data. So we map both frames for writing and then swap them.
+        bool swapFrames()
+        {
+            static auto mapForWrite = [](QVideoFrame& frame) -> bool {
+                // If the map mode is set to WriteOnly, nothing needs to be done.
+                if (frame.mapMode() == QVideoFrame::WriteOnly) {
+                    return true;
+                }
+                // Otherwise, if the frame is mapped, unmap it first (we assume at this
+                // point that the map mode is ReadOnly).
+                else if (frame.isMapped()) {
+                    frame.unmap();
+                }
+                return frame.map(QVideoFrame::WriteOnly);
+            };
+
+            // Make sure both frames are unmapped when we leave this function.
+            auto unmapper = qScopeGuard([&] {
+                if (frame1.isMapped()) {
+                    frame1.unmap();
+                }
+                if (frame2.isMapped()) {
+                    frame2.unmap();
+                }
+            });
+
+            // frame2 is supposed to already be mapped WriteOnly, but lets just make
+            // sure both are WriteOnly in case that changes at some point.
+            if (!mapForWrite(frame1) || !mapForWrite(frame2)) {
+                return false;
+            }
+
+            frame1.swap(frame2);
+            return true;
+        }
+
+        QVideoFrame* getFrame(QVideoFrame::MapMode mode)
+        {
+            return mode == QVideoFrame::ReadOnly ? &frame1 : &frame2;
+        }
+
+        QVideoFrame* getMappedFrame(QVideoFrame::MapMode mode)
+        {
+            auto frame = getFrame(mode);
+            if (!frame || !frame->isValid()) {
+                return nullptr;
+            }
+            if (mode == QVideoFrame::WriteOnly) {
+                QReadLocker subsLk(&subscribersMutex);
+                if (subscribers.isEmpty()) {
+                    return nullptr;
+                }
+            }
+            if (frame->isMapped()) {
+                if (frame->mapMode() != mode) {
+                    frame->unmap();
+                } else {
+                    return frame;
+                }
+            }
+            if (frame->map(mode)) {
+                return frame;
+            }
+            return nullptr;
+        }
     };
     std::map<QString, std::unique_ptr<FrameObject>> framesObjects_;
-    QMutex framesObjsMutex_;
+    QReadWriteLock framesObjsMutex_;
 };
