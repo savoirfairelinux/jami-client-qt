@@ -32,6 +32,8 @@
 namespace lrc {
 namespace video {
 
+class FpsTracker;
+
 class Renderer : public QObject
 {
     Q_OBJECT
@@ -39,7 +41,6 @@ public:
     constexpr static const char RENDERER_ID[] = "RENDERER_ID";
     constexpr static const char FPS[] = "FPS";
     constexpr static const char RES[] = "RES";
-    constexpr static const int FPS_RATE_SEC = 1;
 
     Renderer(const QString& id, const QSize& res);
     virtual ~Renderer();
@@ -47,7 +48,7 @@ public:
     /**
      * @return renderer's fps
      */
-    int fps() const;
+    double fps() const;
 
     /**
      * @return renderer's id
@@ -67,7 +68,12 @@ public:
     /**
      * set fps
      */
-    void setFPS(int fps);
+    void setFPS(double fps);
+
+    /**
+     * Update the FPS tracker.
+     */
+    void updateFpsTracker();
 
     MapStringString getInfos() const;
 
@@ -85,7 +91,30 @@ Q_SIGNALS:
 private:
     QString id_;
     QSize size_;
-    int fps_;
+    double fps_;
+
+    FpsTracker* fpsTracker_;
+};
+
+// Helper that counts ticks, and notifies of FPS changes.
+class FpsTracker : public QObject
+{
+    Q_OBJECT
+public:
+    FpsTracker(QObject* parent = nullptr);
+    ~FpsTracker() = default;
+
+           // Call this function every frame.
+    void update();
+
+           // Emitted after every checkInterval_ when update() is called.
+    Q_SIGNAL void fpsUpdated(double fps);
+
+private:
+    using clock_type = std::chrono::high_resolution_clock;
+    const double checkInterval_ = 1.0;
+    unsigned frameCount_;
+    std::chrono::time_point<clock_type> lastTime_;
 };
 
 } // namespace video
