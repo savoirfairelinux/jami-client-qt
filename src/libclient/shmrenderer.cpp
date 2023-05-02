@@ -20,7 +20,6 @@
 #include "shmrenderer.h"
 
 #include "dbus/videomanager.h"
-#include "videomanager_interface.h"
 
 #include <QDebug>
 #include <QMutex>
@@ -39,18 +38,11 @@
 #define CLOCK_REALTIME 0
 #endif
 
-#include <QTimer>
-
-#include <chrono>
-
 namespace lrc {
 
 using namespace api::video;
 
 namespace video {
-
-// Uncomment following line to output in console the FPS value
-//#define DEBUG_FPS
 
 /* Shared memory object
  * Implementation note: double-buffering
@@ -87,27 +79,45 @@ public:
         , shmArea((SHMHeader*) MAP_FAILED)
         , shmAreaLen(0)
         , frameGen(0)
-        , fpsC(0)
-        , fps(0)
-        , timer(new QTimer(this))
-        , lastFrameDebug(std::chrono::system_clock::now())
     {
-        timer->setInterval(33);
-        connect(timer, &QTimer::timeout, [this]() { Q_EMIT parent_->frameUpdated(); });
         VideoManager::instance().startShmSink(parent_->id(), true);
 
-        parent_->moveToThread(&thread);
-        connect(&thread, &QThread::finished, [this] { parent_->stopRendering(); });
-        thread.start();
-    };
-    ~Impl()
-    {
-        thread.quit();
-        thread.wait();
-    }
+        // Continuously check for new frames on a separate thread.
+        // This is necessary because the frame rate is not constant.
+        // The function getNewFrame() will return false if no new frame is available.
+        thread = QThread::create([this] {
+            forever {
+                if (QThread::currentThread()->isInterruptionRequested()) {
+                    return;
+                }
 
-    // Constants
-    constexpr static const int FRAME_CHECK_RATE_HZ = 120;
+                if (!waitForNewFrame()) {
+                    continue;
+                }
+
+                parent_->updateFpsTracker();
+                Q_EMIT parent_->frameUpdated();
+            }
+        });
+    };
+    ~Impl() {} // Thread is stopped by parent in ShmRenderer::stopShm.
+
+    void stopThread()
+    {
+        // Request thread loop interruption and then unblock the sem_wait.
+        thread->requestInterruption();
+
+        // Set the isDestroying flag to true so that the thread loop can exit
+        // without emitting the frameUpdated signal. This works as ShmHolder::renderFrame
+        // will reset frameSize appropriately.
+        shmLock();
+        shmArea->frameSize = 0;
+        shmUnlock();
+
+        ::sem_post(&shmArea->frameGenMutex);
+
+        thread->wait();
+    }
 
     // Lock the memory while the copy is being made
     bool shmLock()
@@ -122,7 +132,7 @@ public:
     };
 
     // Wait for new frame data from shared memory and save pointer.
-    bool getNewFrame(bool wait)
+    bool waitForNewFrame()
     {
         if (!shmLock())
             return false;
@@ -130,12 +140,7 @@ public:
         if (frameGen == shmArea->frameGen) {
             shmUnlock();
 
-            if (not wait)
-                return false;
-
-            // wait for a new frame, max 33ms
-            static const struct timespec timeout = {0, 33000000};
-            if (::sem_timedwait(&shmArea->frameGenMutex, &timeout) < 0)
+            if (::sem_wait(&shmArea->frameGenMutex) < 0)
                 return false;
 
             if (!shmLock())
@@ -161,22 +166,6 @@ public:
         frameGen = shmArea->frameGen;
 
         shmUnlock();
-
-        ++fpsC;
-
-        // Compute the FPS shown to the client
-        auto currentTime = std::chrono::system_clock::now();
-        const std::chrono::duration<double> seconds = currentTime - lastFrameDebug;
-        if (seconds.count() >= FPS_RATE_SEC) {
-            fps = static_cast<int>(fpsC / seconds.count());
-            fpsC = 0;
-            lastFrameDebug = currentTime;
-            parent_->setFPS(fps);
-#ifdef DEBUG_FPS
-            qDebug() << this << ": FPS " << fps;
-#endif
-        }
-
         return true;
     };
 
@@ -222,13 +211,8 @@ public:
     unsigned shmAreaLen;
     uint frameGen;
 
-    int fpsC;
-    int fps;
-    std::chrono::time_point<std::chrono::system_clock> lastFrameDebug;
-
-    QTimer* timer;
     QMutex mutex;
-    QThread thread;
+    QThread* thread;
     std::shared_ptr<lrc::api::video::Frame> frame;
 };
 
@@ -249,10 +233,8 @@ Frame
 ShmRenderer::currentFrame() const
 {
     QMutexLocker lk {&pimpl_->mutex};
-    if (pimpl_->getNewFrame(false)) {
-        if (auto frame_ptr = pimpl_->frame)
-            return std::move(*frame_ptr);
-    }
+    if (auto frame_ptr = pimpl_->frame)
+        return std::move(*frame_ptr);
     return {};
 }
 
@@ -283,6 +265,7 @@ ShmRenderer::startShm()
     }
 
     pimpl_->shmAreaLen = mapSize;
+    pimpl_->thread->start();
     return true;
 }
 
@@ -292,7 +275,7 @@ ShmRenderer::stopShm()
     if (pimpl_->fd < 0)
         return;
 
-    pimpl_->timer->stop();
+    pimpl_->stopThread();
 
     // Emit the signal before closing the file, this lower the risk of invalid
     // memory access
@@ -322,8 +305,6 @@ ShmRenderer::startRendering()
 
     if (!startShm())
         return;
-
-    pimpl_->timer->start();
 
     Q_EMIT started(size());
 }

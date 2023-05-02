@@ -20,7 +20,6 @@
 #include "api/avmodel.h"
 
 #include "api/video.h"
-#include "api/call.h"
 #include "api/lrc.h"
 #ifdef ENABLE_LIBWRAP
 #include "directrenderer.h"
@@ -734,7 +733,7 @@ AVModel::getListWindows() const
         auto finishedloop = true;
     } catch (...) {
     }
- #endif
+#endif
     return ret;
 }
 
@@ -948,7 +947,7 @@ AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& sh
             renderer,
             &Renderer::fpsChanged,
             this,
-            [this, id](void) { Q_EMIT linked_.updateRenderersFPSInfo(id); },
+            [this, id](void) { linked_.updateRenderersFPSInfo(id); },
             Qt::QueuedConnection);
         connect(
             renderer,
