@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "utils.h"
 #include "qtutils.h"
 
 #include "api/avmodel.h"
@@ -31,6 +30,7 @@ extern "C" {
 #include <QVideoFrame>
 #include <QQmlEngine>
 #include <QMutex>
+#include <QReadWriteLock>
 
 using namespace lrc::api;
 
@@ -55,16 +55,51 @@ private Q_SLOTS:
     void onRendererStopped(const QString& id);
 
 private:
-    QVideoFrame* frame(const QString& id);
     void copyUnaligned(QVideoFrame* dst, const video::Frame& src);
     AVModel& avModel_;
 
     struct FrameObject
     {
-        std::unique_ptr<QVideoFrame> videoFrame;
-        QMutex mutex;
+        QVideoFrame frame1;
+        QVideoFrame frame2;
+        QReadWriteLock subscribersMutex;
         QSet<QVideoSink*> subscribers;
+
+        void swapFrames()
+        {
+            frame1.swap(frame2);
+        }
+
+        QVideoFrame* getFrame(QVideoFrame::MapMode mode)
+        {
+            return mode == QVideoFrame::ReadOnly ? &frame1 : &frame2;
+        }
+
+        QVideoFrame* getMappedFrame(QVideoFrame::MapMode mode)
+        {
+            auto frame = getFrame(mode);
+            if (!frame || !frame->isValid()) {
+                return nullptr;
+            }
+            if (mode == QVideoFrame::WriteOnly) {
+                QReadLocker subsLk(&subscribersMutex);
+                if (subscribers.isEmpty()) {
+                    return nullptr;
+                }
+            }
+            if (frame->isMapped()) {
+                if (frame->mapMode() != mode) {
+                    frame->unmap();
+                } else {
+                    return frame;
+                }
+            }
+            if (frame->map(mode)) {
+                return frame;
+            }
+            return nullptr;
+        }
     };
     std::map<QString, std::unique_ptr<FrameObject>> framesObjects_;
-    QMutex framesObjsMutex_;
+    QReadWriteLock framesObjsMutex_;
 };

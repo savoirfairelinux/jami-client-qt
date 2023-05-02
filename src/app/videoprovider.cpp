@@ -18,17 +18,9 @@
 
 #include "videoprovider.h"
 
-using namespace lrc::api;
+#include "utils.h"
 
-static bool
-mapVideoFrame(QVideoFrame* videoFrame)
-{
-    if (!videoFrame || !videoFrame->isValid()
-        || (!videoFrame->isMapped() && !videoFrame->map(QVideoFrame::WriteOnly))) {
-        return false;
-    }
-    return true;
-}
+using namespace lrc::api;
 
 VideoProvider::VideoProvider(AVModel& avModel, QObject* parent)
     : QObject(parent)
@@ -84,28 +76,20 @@ VideoProvider::subscribe(QObject* obj, const QString& id)
             &VideoProvider::unsubscribe,
             static_cast<Qt::ConnectionType>(Qt::DirectConnection | Qt::UniqueConnection));
 
-    QMutexLocker lk(&framesObjsMutex_);
+    QWriteLocker framesLk(&framesObjsMutex_);
     // Check if we already have a FrameObject for this id.
     auto it = framesObjects_.find(id);
     if (it == framesObjects_.end()) {
-        auto fo = std::make_unique<FrameObject>();
-        qDebug() << "Creating new FrameObject for id:" << id;
-        auto emplaced = framesObjects_.emplace(id, std::move(fo));
-        if (!emplaced.second) {
-            qWarning() << Q_FUNC_INFO << "Couldn't create FrameObject for id:" << id;
-            return;
-        }
-        // Get the iterator to the newly created FrameObject so we can add the subscriber.
-        it = emplaced.first;
+        it = framesObjects_.emplace(id, std::make_unique<FrameObject>()).first;
     } else {
         // Make sure it's not already subscribed to this QVideoSink.
-        QMutexLocker subsLk(&it->second->mutex);
+        QReadLocker subsLk(&it->second->subscribersMutex);
         if (it->second->subscribers.contains(sink)) {
             qWarning() << Q_FUNC_INFO << "QVideoSink already subscribed to id:" << id;
             return;
         }
     }
-    QMutexLocker subsLk(&it->second->mutex);
+    QWriteLocker subsLk(&it->second->subscribersMutex);
     it->second->subscribers.insert(sink);
     qDebug().noquote() << QString("Added sink: 0x%1 to subscribers for id: %2")
                               .arg((quintptr) obj, QT_POINTER_SIZE, 16, QChar('0'))
@@ -115,9 +99,9 @@ VideoProvider::subscribe(QObject* obj, const QString& id)
 void
 VideoProvider::unsubscribe(QObject* obj)
 {
-    QMutexLocker lk(&framesObjsMutex_);
+    QReadLocker framesLk(&framesObjsMutex_);
     for (auto& frameObjIt : qAsConst(framesObjects_)) {
-        QMutexLocker subsLk(&frameObjIt.second->mutex);
+        QWriteLocker subsLk(&frameObjIt.second->subscribersMutex);
         auto& subs = frameObjIt.second->subscribers;
         auto it = subs.constFind(static_cast<QVideoSink*>(obj));
         if (it != subs.cend()) {
@@ -130,26 +114,6 @@ VideoProvider::unsubscribe(QObject* obj)
     }
 }
 
-QVideoFrame*
-VideoProvider::frame(const QString& id)
-{
-    // framesObjsMutex_ MUST be locked
-    auto it = framesObjects_.find(id);
-    if (it == framesObjects_.end()) {
-        return {};
-    }
-    QMutexLocker lk(&it->second->mutex);
-    if (it->second->subscribers.empty()) {
-        return {};
-    }
-    auto videoFrame = it->second->videoFrame.get();
-    if (!mapVideoFrame(videoFrame)) {
-        qWarning() << "QVideoFrame can't be mapped" << id;
-        return {};
-    }
-    return videoFrame;
-}
-
 QString
 VideoProvider::captureVideoFrame(const QString& id)
 {
@@ -160,8 +124,13 @@ VideoProvider::captureVideoFrame(const QString& id)
 QImage
 VideoProvider::captureRawVideoFrame(const QString& id)
 {
-    QMutexLocker framesLk(&framesObjsMutex_);
-    if (auto* videoFrame = frame(id)) {
+    QReadLocker framesLk(&framesObjsMutex_);
+    auto it = framesObjects_.find(id);
+    if (it == framesObjects_.end()) {
+        return {};
+    }
+
+    if (auto* videoFrame = it->second->getMappedFrame(QVideoFrame::ReadOnly)) {
         auto imageFormat = QVideoFrameFormat::imageFormatFromPixelFormat(
             QVideoFrameFormat::Format_RGBA8888);
         auto img = QImage(videoFrame->bits(0),
@@ -182,18 +151,15 @@ VideoProvider::onRendererStarted(const QString& id, const QSize& size)
                                         : QVideoFrameFormat::Format_BGRA8888;
     auto frameFormat = QVideoFrameFormat(size, pixelFormat);
     {
-        QMutexLocker lk(&framesObjsMutex_);
+        QWriteLocker lk(&framesObjsMutex_);
         auto it = framesObjects_.find(id);
         if (it == framesObjects_.end()) {
-            auto fo = std::make_unique<FrameObject>();
-            fo->videoFrame = std::make_unique<QVideoFrame>(frameFormat);
-            qDebug() << "Create new QVideoFrame" << frameFormat.frameSize();
-            framesObjects_.emplace(id, std::move(fo));
-        } else {
-            it->second->videoFrame.reset(new QVideoFrame(frameFormat));
-            qDebug() << "QVideoFrame reset to" << frameFormat.frameSize();
+            it = framesObjects_.emplace(id, std::make_unique<FrameObject>()).first;
         }
+        it->second->frame1 = QVideoFrame(frameFormat);
+        it->second->frame2 = QVideoFrame(frameFormat);
     }
+    qDebug() << "FrameObject set to" << frameFormat.frameSize() << id;
 
     activeRenderers_[id] = size;
     Q_EMIT activeRenderersChanged();
@@ -202,14 +168,17 @@ VideoProvider::onRendererStarted(const QString& id, const QSize& size)
 void
 VideoProvider::onFrameBufferRequested(const QString& id, AVFrame* avframe)
 {
-    QMutexLocker framesLk(&framesObjsMutex_);
-    if (auto* videoFrame = frame(id)) {
+    QReadLocker framesLk(&framesObjsMutex_);
+    auto it = framesObjects_.find(id);
+    if (it == framesObjects_.end()) {
+        return;
+    }
+
+    if (auto* videoFrame = it->second->getMappedFrame(QVideoFrame::WriteOnly)) {
         // The ownership of avframe structure remains the subscriber(jamid), and
         // the videoFrame instance is owned by the VideoProvider(client). The
         // avframe structure contains only a description of the QVideoFrame
         // underlying buffer.
-        // TODO: ideally, the colorspace format should likely come from jamid and
-        // be the decoded format.
         avframe->format = AV_PIX_FMT_RGBA;
         avframe->width = videoFrame->width();
         avframe->height = videoFrame->height();
@@ -221,44 +190,45 @@ VideoProvider::onFrameBufferRequested(const QString& id, AVFrame* avframe)
 void
 VideoProvider::onFrameUpdated(const QString& id)
 {
-    QMutexLocker framesLk(&framesObjsMutex_);
+    QReadLocker framesLk(&framesObjsMutex_);
     auto it = framesObjects_.find(id);
     if (it == framesObjects_.end()) {
         return;
     }
-    QMutexLocker lk(&it->second->mutex);
-    if (it->second->subscribers.empty()) {
-        return;
-    }
-    auto videoFrame = it->second->videoFrame.get();
-    if (videoFrame == nullptr) {
-        qWarning() << "QVideoFrame has not been initialized.";
-        return;
-    }
-    if (!avModel_.useDirectRenderer()) {
-        // Shared memory renderering.
-        if (!mapVideoFrame(videoFrame)) {
-            qWarning() << "QVideoFrame can't be mapped" << id;
+
+    QVideoFrame* videoFrame = nullptr;
+    if (!avModel_.useDirectRenderer()) { // Shared memory renderering.
+        videoFrame = it->second->getMappedFrame(QVideoFrame::WriteOnly);
+        if (!videoFrame) {
             return;
         }
         auto srcFrame = avModel_.getRendererFrame(id);
         if (srcFrame.ptr != nullptr and srcFrame.size > 0) {
             copyUnaligned(videoFrame, srcFrame);
+        } else {
+            return;
         }
     }
+    // Swap then get the new readable frame. This is done to avoid to minimize
+    // reallocation of the underlying buffer and to avoid manual emitting of
+    // QVideoSink::videoFrameUpdated signal, which is done automatically when
+    // changing the frame pointer. Previous manual emitting of the signal was
+    // queueing superfluous and ill-timed draw events in the QSGRender loop.
+    it->second->swapFrames();
+    videoFrame = it->second->getFrame(QVideoFrame::ReadOnly);
     if (videoFrame->isMapped()) {
         videoFrame->unmap();
-        for (const auto& sink : qAsConst(it->second->subscribers)) {
-            sink->setVideoFrame(*videoFrame);
-            Q_EMIT sink->videoFrameChanged(*videoFrame);
-        }
+    }
+    QReadLocker subsLk(&it->second->subscribersMutex);
+    for (const auto& sink : qAsConst(it->second->subscribers)) {
+        sink->setVideoFrame(*videoFrame);
     }
 }
 
 void
 VideoProvider::onRendererStopped(const QString& id)
 {
-    QMutexLocker framesLk(&framesObjsMutex_);
+    QWriteLocker framesLk(&framesObjsMutex_);
     auto it = framesObjects_.find(id);
     if (it == framesObjects_.end()) {
         return;
@@ -267,13 +237,14 @@ VideoProvider::onRendererStopped(const QString& id)
     activeRenderers_.remove(id);
     Q_EMIT activeRenderersChanged();
 
-    QMutexLocker lk(&it->second->mutex);
+    QWriteLocker subsLk(&it->second->subscribersMutex);
     if (it->second->subscribers.empty()) {
-        lk.unlock();
+        subsLk.unlock();
         framesObjects_.erase(it);
         return;
     }
-    it->second->videoFrame.reset();
+    it->second->frame1 = {};
+    it->second->frame2 = {};
 }
 
 void
@@ -297,7 +268,7 @@ VideoProvider::copyUnaligned(QVideoFrame* dst, const video::Frame& src)
     // The source buffer must be greater or equal to the min required
     // buffer size. The SHM buffer might be slightly larger than the
     // required size due to the 16-byte alignment.
-    if (dst->width() * dst->height() * BYTES_PER_PIXEL > src.size) {
+    if (static_cast<unsigned>(dst->width() * dst->height() * BYTES_PER_PIXEL) > src.size) {
         qCritical() << "The size of frame buffer " << src.size << " is smaller than expected "
                     << dst->width() * dst->height() * BYTES_PER_PIXEL;
         return;
