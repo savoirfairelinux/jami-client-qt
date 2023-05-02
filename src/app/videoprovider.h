@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "utils.h"
 #include "qtutils.h"
 
 #include "api/avmodel.h"
@@ -31,6 +30,7 @@ extern "C" {
 #include <QVideoFrame>
 #include <QQmlEngine>
 #include <QMutex>
+#include <QReadWriteLock>
 
 using namespace lrc::api;
 
@@ -66,5 +66,5 @@ private:
         QSet<QVideoSink*> subscribers;
     };
     std::map<QString, std::unique_ptr<FrameObject>> framesObjects_;
-    QMutex framesObjsMutex_;
+    QReadWriteLock framesObjsMutex_;
 };

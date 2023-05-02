@@ -18,6 +18,8 @@
 
 #include "videoprovider.h"
 
+#include "utils.h"
+
 using namespace lrc::api;
 
 static bool
@@ -84,13 +86,14 @@ VideoProvider::subscribe(QObject* obj, const QString& id)
             &VideoProvider::unsubscribe,
             static_cast<Qt::ConnectionType>(Qt::DirectConnection | Qt::UniqueConnection));
 
-    QMutexLocker lk(&framesObjsMutex_);
+    QWriteLocker framesLk(&framesObjsMutex_);
     // Check if we already have a FrameObject for this id.
     auto it = framesObjects_.find(id);
     if (it == framesObjects_.end()) {
         auto fo = std::make_unique<FrameObject>();
         qDebug() << "Creating new FrameObject for id:" << id;
         auto emplaced = framesObjects_.emplace(id, std::move(fo));
+        framesLk.unlock();
         if (!emplaced.second) {
             qWarning() << Q_FUNC_INFO << "Couldn't create FrameObject for id:" << id;
             return;
@@ -115,7 +118,7 @@ VideoProvider::subscribe(QObject* obj, const QString& id)
 void
 VideoProvider::unsubscribe(QObject* obj)
 {
-    QMutexLocker lk(&framesObjsMutex_);
+    QReadLocker framesLk(&framesObjsMutex_);
     for (auto& frameObjIt : qAsConst(framesObjects_)) {
         QMutexLocker subsLk(&frameObjIt.second->mutex);
         auto& subs = frameObjIt.second->subscribers;
@@ -133,7 +136,7 @@ VideoProvider::unsubscribe(QObject* obj)
 QVideoFrame*
 VideoProvider::frame(const QString& id)
 {
-    // framesObjsMutex_ MUST be locked
+    // framesObjsMutex_ MUST be locked for reading.
     auto it = framesObjects_.find(id);
     if (it == framesObjects_.end()) {
         return {};
@@ -160,7 +163,7 @@ VideoProvider::captureVideoFrame(const QString& id)
 QImage
 VideoProvider::captureRawVideoFrame(const QString& id)
 {
-    QMutexLocker framesLk(&framesObjsMutex_);
+    QReadLocker framesLk(&framesObjsMutex_);
     if (auto* videoFrame = frame(id)) {
         auto imageFormat = QVideoFrameFormat::imageFormatFromPixelFormat(
             QVideoFrameFormat::Format_RGBA8888);
@@ -182,7 +185,7 @@ VideoProvider::onRendererStarted(const QString& id, const QSize& size)
                                         : QVideoFrameFormat::Format_BGRA8888;
     auto frameFormat = QVideoFrameFormat(size, pixelFormat);
     {
-        QMutexLocker lk(&framesObjsMutex_);
+        QWriteLocker framesLk(&framesObjsMutex_);
         auto it = framesObjects_.find(id);
         if (it == framesObjects_.end()) {
             auto fo = std::make_unique<FrameObject>();
@@ -202,7 +205,7 @@ VideoProvider::onRendererStarted(const QString& id, const QSize& size)
 void
 VideoProvider::onFrameBufferRequested(const QString& id, AVFrame* avframe)
 {
-    QMutexLocker framesLk(&framesObjsMutex_);
+    QReadLocker framesLk(&framesObjsMutex_);
     if (auto* videoFrame = frame(id)) {
         // The ownership of avframe structure remains the subscriber(jamid), and
         // the videoFrame instance is owned by the VideoProvider(client). The
@@ -221,11 +224,13 @@ VideoProvider::onFrameBufferRequested(const QString& id, AVFrame* avframe)
 void
 VideoProvider::onFrameUpdated(const QString& id)
 {
-    QMutexLocker framesLk(&framesObjsMutex_);
+    QReadLocker framesLk(&framesObjsMutex_);
     auto it = framesObjects_.find(id);
     if (it == framesObjects_.end()) {
         return;
     }
+    framesLk.unlock();
+
     QMutexLocker lk(&it->second->mutex);
     if (it->second->subscribers.empty()) {
         return;
@@ -258,11 +263,12 @@ VideoProvider::onFrameUpdated(const QString& id)
 void
 VideoProvider::onRendererStopped(const QString& id)
 {
-    QMutexLocker framesLk(&framesObjsMutex_);
+    QReadLocker framesLk(&framesObjsMutex_);
     auto it = framesObjects_.find(id);
     if (it == framesObjects_.end()) {
         return;
     }
+    framesLk.unlock();
 
     activeRenderers_.remove(id);
     Q_EMIT activeRenderersChanged();
