@@ -39,7 +39,7 @@ public:
     constexpr static const char RENDERER_ID[] = "RENDERER_ID";
     constexpr static const char FPS[] = "FPS";
     constexpr static const char RES[] = "RES";
-    constexpr static const int FPS_RATE_SEC = 1;
+    constexpr static const double FPS_RATE_SEC = 1.0;
 
     Renderer(const QString& id, const QSize& res);
     virtual ~Renderer();
