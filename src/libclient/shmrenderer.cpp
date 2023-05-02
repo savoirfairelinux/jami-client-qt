@@ -20,7 +20,6 @@
 #include "shmrenderer.h"
 
 #include "dbus/videomanager.h"
-#include "videomanager_interface.h"
 
 #include <QDebug>
 #include <QMutex>
@@ -39,10 +38,6 @@
 #define CLOCK_REALTIME 0
 #endif
 
-#include <QTimer>
-
-#include <chrono>
-
 namespace lrc {
 
 using namespace api::video;
@@ -50,7 +45,7 @@ using namespace api::video;
 namespace video {
 
 // Uncomment following line to output in console the FPS value
-//#define DEBUG_FPS
+// #define DEBUG_FPS
 
 /* Shared memory object
  * Implementation note: double-buffering
@@ -76,6 +71,17 @@ struct SHMHeader
 #pragma GCC diagnostic pop
 };
 
+// This is a helper function to convert seconds (double) to an absolute timespec.
+static void
+secondsToAbsoluteTimespec(double seconds, struct timespec* ts)
+{
+    // Limit to 1 second for our current use case.
+    seconds = std::min(seconds, 1.0);
+    clock_gettime(CLOCK_REALTIME, ts);
+    ts->tv_sec += (time_t) seconds;
+    ts->tv_nsec += (long) ((seconds - (time_t) seconds) * 1e9);
+}
+
 struct ShmRenderer::Impl final : public QObject
 {
     Q_OBJECT
@@ -87,27 +93,45 @@ public:
         , shmArea((SHMHeader*) MAP_FAILED)
         , shmAreaLen(0)
         , frameGen(0)
-        , fpsC(0)
-        , fps(0)
-        , timer(new QTimer(this))
-        , lastFrameDebug(std::chrono::system_clock::now())
     {
-        timer->setInterval(33);
-        connect(timer, &QTimer::timeout, [this]() { Q_EMIT parent_->frameUpdated(); });
         VideoManager::instance().startShmSink(parent_->id(), true);
 
-        parent_->moveToThread(&thread);
-        connect(&thread, &QThread::finished, [this] { parent_->stopRendering(); });
-        thread.start();
+        // Subscribe to frame rate updates.
+        connect(&fpsTracker, &FpsTracker::fpsUpdated, this, [this](double fps) {
+            parent_->setFPS(fps);
+#ifdef DEBUG_FPS
+            qDebug() << this << ": FPS " << fps;
+#endif
+        });
+
+        // Continuously check for new frames on a separate thread.
+        // This is necessary because the frame rate is not constant.
+        // The function getNewFrame() will return false if no new frame is available.
+        thread = QThread::create([this] {
+            forever {
+                if (QThread::currentThread()->isInterruptionRequested()) {
+                    return;
+                }
+
+                if (!waitForNewFrame()) {
+                    continue;
+                }
+
+                fpsTracker.update();
+                Q_EMIT parent_->frameUpdated();
+            }
+        });
     };
     ~Impl()
     {
-        thread.quit();
-        thread.wait();
+        stopThread();
     }
 
-    // Constants
-    constexpr static const int FRAME_CHECK_RATE_HZ = 120;
+    void stopThread()
+    {
+        thread->requestInterruption();
+        thread->wait();
+    }
 
     // Lock the memory while the copy is being made
     bool shmLock()
@@ -122,7 +146,7 @@ public:
     };
 
     // Wait for new frame data from shared memory and save pointer.
-    bool getNewFrame(bool wait)
+    bool waitForNewFrame()
     {
         if (!shmLock())
             return false;
@@ -130,12 +154,10 @@ public:
         if (frameGen == shmArea->frameGen) {
             shmUnlock();
 
-            if (not wait)
-                return false;
-
-            // wait for a new frame, max 33ms
-            static const struct timespec timeout = {0, 33000000};
-            if (::sem_timedwait(&shmArea->frameGenMutex, &timeout) < 0)
+            //  Wait for a frame interval (approximate at our current FPS).
+            static struct timespec ts;
+            secondsToAbsoluteTimespec(1.0 / parent_->fps(), &ts);
+            if (::sem_timedwait(&shmArea->frameGenMutex, &ts) < 0)
                 return false;
 
             if (!shmLock())
@@ -161,22 +183,6 @@ public:
         frameGen = shmArea->frameGen;
 
         shmUnlock();
-
-        ++fpsC;
-
-        // Compute the FPS shown to the client
-        auto currentTime = std::chrono::system_clock::now();
-        const std::chrono::duration<double> seconds = currentTime - lastFrameDebug;
-        if (seconds.count() >= FPS_RATE_SEC) {
-            fps = static_cast<int>(fpsC / seconds.count());
-            fpsC = 0;
-            lastFrameDebug = currentTime;
-            parent_->setFPS(fps);
-#ifdef DEBUG_FPS
-            qDebug() << this << ": FPS " << fps;
-#endif
-        }
-
         return true;
     };
 
@@ -222,13 +228,9 @@ public:
     unsigned shmAreaLen;
     uint frameGen;
 
-    int fpsC;
-    int fps;
-    std::chrono::time_point<std::chrono::system_clock> lastFrameDebug;
-
-    QTimer* timer;
+    FpsTracker fpsTracker;
     QMutex mutex;
-    QThread thread;
+    QThread* thread;
     std::shared_ptr<lrc::api::video::Frame> frame;
 };
 
@@ -249,10 +251,8 @@ Frame
 ShmRenderer::currentFrame() const
 {
     QMutexLocker lk {&pimpl_->mutex};
-    if (pimpl_->getNewFrame(false)) {
-        if (auto frame_ptr = pimpl_->frame)
-            return std::move(*frame_ptr);
-    }
+    if (auto frame_ptr = pimpl_->frame)
+        return std::move(*frame_ptr);
     return {};
 }
 
@@ -283,6 +283,7 @@ ShmRenderer::startShm()
     }
 
     pimpl_->shmAreaLen = mapSize;
+    pimpl_->thread->start();
     return true;
 }
 
@@ -292,7 +293,7 @@ ShmRenderer::stopShm()
     if (pimpl_->fd < 0)
         return;
 
-    pimpl_->timer->stop();
+    pimpl_->stopThread();
 
     // Emit the signal before closing the file, this lower the risk of invalid
     // memory access
@@ -322,8 +323,6 @@ ShmRenderer::startRendering()
 
     if (!startShm())
         return;
-
-    pimpl_->timer->start();
 
     Q_EMIT started(size());
 }
