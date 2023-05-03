@@ -34,6 +34,24 @@
       "parentUuid": "8cbfffc9_e2533e4c",
       "revId": "9ba688ac95f4eb3e8d0ba90f24d7769447dbf08e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9332b209_06711edc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2023-05-03T09:41:31Z",
+      "side": 1,
+      "message": "\u003e Pointers are used in order to reset the frame size/format or allow QML component subscriptions to endure beyond the render cycles.  \n  \nDon\u0027t see a problem to make it entirely on stack:  \n\n```\nstruct { QVideoFrame frame; } object;\nobject.frame \u003d QVideoFrame(newFormat);\n```\n  \nAs documentation says, `QExplicitlySharedDataPointer implements thread-safe reference counting`, so already published frames will not change and will be owned by QVideoSink\u0027s only until they get new frames.",
+      "parentUuid": "a760b030_00e5ec91",
+      "revId": "9ba688ac95f4eb3e8d0ba90f24d7769447dbf08e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
