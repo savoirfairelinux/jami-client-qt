@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5583f14_56b7831d",
+        "filename": "src/libclient/shmrenderer.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-03T00:09:26Z",
+      "side": 1,
+      "message": "this causes issues when returning from screen share",
+      "range": {
+        "startLine": 114,
+        "startChar": 8,
+        "endLine": 114,
+        "endChar": 31
+      },
+      "revId": "814a56060612c973faa105a8728b847bf4b84760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
