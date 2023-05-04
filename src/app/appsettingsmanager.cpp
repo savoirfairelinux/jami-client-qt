@@ -119,21 +119,6 @@ AppSettingsManager::loadTranslations()
         installedTr_.append(qtTranslator_name);
     }
 
-    QTranslator* lrcTranslator_lang = new QTranslator(qApp);
-    QTranslator* lrcTranslator_name = new QTranslator(qApp);
-    if (locale_name != locale_lang) {
-        if (lrcTranslator_lang->load(appDir + QDir::separator() + "jami" + QDir::separator()
-                                     + "translations" + QDir::separator() + "lrc_" + locale_lang)) {
-            qApp->installTranslator(lrcTranslator_lang);
-            installedTr_.append(lrcTranslator_lang);
-        }
-    }
-    if (lrcTranslator_name->load(appDir + QDir::separator() + "jami" + QDir::separator()
-                                 + "translations" + QDir::separator() + "lrc_" + locale_name)) {
-        qApp->installTranslator(lrcTranslator_name);
-        installedTr_.append(lrcTranslator_name);
-    }
-
     QTranslator* mainTranslator_lang = new QTranslator(qApp);
     QTranslator* mainTranslator_name = new QTranslator(qApp);
     if (locale_name != locale_lang) {
