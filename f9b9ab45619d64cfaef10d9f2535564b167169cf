@@ -1,4 +1,22 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f639f11_6c1692b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-04T20:25:47Z",
+      "side": 1,
+      "message": "Should the `r` be deleted or replaced with `j`?\n\nFor example, should `lrc` be changed to `jlc` or `lc`?\n\nl \u003d library\nr \u003d ring\nc \u003d client\n\njami-libclient (formerly LibRingClient or lrc for short), a library used for the qt, gnome, and macos clients.\n\nhttps://git.jami.net/savoirfairelinux/jami-libclient",
+      "revId": "f9b9ab45619d64cfaef10d9f2535564b167169cf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
