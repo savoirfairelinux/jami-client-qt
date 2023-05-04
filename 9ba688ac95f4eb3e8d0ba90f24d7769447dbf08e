@@ -70,6 +70,24 @@
       "parentUuid": "9332b209_06711edc",
       "revId": "9ba688ac95f4eb3e8d0ba90f24d7769447dbf08e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f05dab16_c66afb42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2023-05-04T16:24:13Z",
+      "side": 1,
+      "message": "\u003e The objective is obviously to minimize frame copies, and it seems a QQuickItem::updatePaintNode/QSGNode approach will be better.\n\nYes, I think writing a custom QQuickItem that displays daemon\u0027s native frames is the only solution to avoid copies, because QVideoFrame in Qt6 can\u0027t wrap existing video buffers (WTF? QVideoFrame in Qt5 allows to do this easily).\n\nAbout the overall model, I think the pull model [1] for pipeline is more appropriate because a sink gets an actual frame to display without additional latency. Also it avoids extra work when frames are not needed by clients (for example, a main window of a client is hidden by other windows). Currently the daemon use the push model, as I see.\n\nTo avoid flickering with the pull model the daemon should implement double buffering. So in fact we should implement a VideoProvider in the daemon. The advantage here is that the clients should not worry about synchronization. The frames can be requested from any thread at any time, immediately rendered and forgotten until the next cycle. The disadvantage is that all clients should implement a custom widget to work with the daemon.\n\nThe draft for the daemon:\n```\nnamespace jami {\n\nclass VideoProvider\n{\npublic:\n    AVFrame* frame(std::size_t index) {\n        std::shared_lock lock(framesMutex_);\n        auto frames \u003d frames_[index];\n        std::shared_lock lock(frames.mutex_);\n        if (frames.flag) {\n            return frame1;\n        } else {\n            return frame2;\n        }\n    }\n\n    AVFrame* captureFrame(std::size_t index) {\n        std::shared_lock lock(framesMutex_);\n        auto frames \u003d frames_[index];\n        auto* frame \u003d av_frame_alloc();\n        std::unique_lock lock(frames.mutex_); // to block a writer until we make a copy\n        ...\n        return frame;\n    }\n\nprivate:\n    struct Frames {\n        AVFrame* frame1;\n        AVFrame* frame2;\n        std::shared_mutex mutex_;\n        bool flag;\n    };\n    std::vector\u003cFrames\u003e frames_;\n    std::shared_mutex framesMutex_;\n}\n\n}\n```\n\nWhat do you think?\n\nAnd of course if the daemon and clients are different processes (like with DBus) we can just use Pipewire :).\n\n[1] https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/FAQ/#are-you-using-a-push-or-pull-model-for-scheduling",
+      "parentUuid": "47d398e6_6b2db5e4",
+      "revId": "9ba688ac95f4eb3e8d0ba90f24d7769447dbf08e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
