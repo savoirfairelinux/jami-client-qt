@@ -540,11 +540,11 @@ UtilsAdapter::supportedLang()
     QString appDir = qApp->applicationDirPath() + QDir::separator() + "share";
 #endif
     auto trDir = QDir(appDir + QDir::separator() + "jami" + QDir::separator() + "translations");
-    QStringList trFiles = trDir.entryList(QStringList() << "ring_client_windows_*.qm", QDir::Files);
+    QStringList trFiles = trDir.entryList(QStringList() << "jami_client_qt_*.qm", QDir::Files);
     QVariantMap result;
     result["SYSTEM"] = tr("System");
     // Get available locales
-    QRegExp regex("ring_client_windows_(.*).qm");
+    QRegExp regex("jami_client_qt_(.*).qm");
     QSet<QString> nativeNames;
     for (const auto& f : trFiles) {
         auto match = regex.indexIn(f);

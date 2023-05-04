@@ -138,14 +138,14 @@ AppSettingsManager::loadTranslations()
     QTranslator* mainTranslator_name = new QTranslator(qApp);
     if (locale_name != locale_lang) {
         if (mainTranslator_lang->load(appDir + QDir::separator() + "jami" + QDir::separator()
-                                      + "translations" + QDir::separator() + "ring_client_windows_"
+                                      + "translations" + QDir::separator() + "jami_client_qt_"
                                       + locale_lang)) {
             qApp->installTranslator(mainTranslator_lang);
             installedTr_.append(mainTranslator_lang);
         }
     }
     if (mainTranslator_name->load(appDir + QDir::separator() + "jami" + QDir::separator()
-                                  + "translations" + QDir::separator() + "ring_client_windows_"
+                                  + "translations" + QDir::separator() + "jami_client_qt_"
                                   + locale_name)) {
         qApp->installTranslator(mainTranslator_name);
         installedTr_.append(mainTranslator_name);
