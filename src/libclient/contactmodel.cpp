@@ -418,9 +418,9 @@ ContactModel::searchContact(const QString& query)
     pimpl_->searchResult.clear();
 
     auto uri = URI(query);
-    QString uriID = uri.format(URI::Section::USER_INFO | URI::Section::HOSTNAME
+    QString uriId = uri.format(URI::Section::USER_INFO | URI::Section::HOSTNAME
                                | URI::Section::PORT);
-    pimpl_->searchQuery = uriID;
+    pimpl_->searchQuery = uriId;
 
     auto uriScheme = uri.schemeType();
     if (static_cast<int>(uriScheme) > 2 && owner.profileInfo.type == profile::Type::SIP) {
@@ -452,11 +452,11 @@ ContactModelPimpl::updateTemporaryMessage(const QString& mes)
 void
 ContactModelPimpl::searchContact(const URI& query)
 {
-    QString uriID = query.format(URI::Section::USER_INFO | URI::Section::HOSTNAME
+    QString uriId = query.format(URI::Section::USER_INFO | URI::Section::HOSTNAME
                                  | URI::Section::PORT);
     if (query.isEmpty()) {
         // This will remove the temporary item
-        Q_EMIT linked.modelUpdated(uriID);
+        Q_EMIT linked.modelUpdated(uriId);
         updateTemporaryMessage("");
         return;
     }
@@ -464,51 +464,49 @@ ContactModelPimpl::searchContact(const URI& query)
     if (query.protocolHint() == URI::ProtocolHint::RING) {
         updateTemporaryMessage("");
         // no lookup, this is a ring infoHash
-        for (auto& i : contacts) {
-            if (i.profileInfo.uri == uriID) {
+        for (auto& i : contacts)
+            if (i.profileInfo.uri == uriId)
                 return;
-            }
-        }
-        auto& temporaryContact = searchResult[uriID];
-        temporaryContact.profileInfo.uri = uriID;
-        temporaryContact.profileInfo.alias = uriID;
+        auto& temporaryContact = searchResult[uriId];
+        temporaryContact.profileInfo.uri = uriId;
+        temporaryContact.profileInfo.alias = uriId;
         temporaryContact.profileInfo.type = profile::Type::TEMPORARY;
-        Q_EMIT linked.modelUpdated(uriID);
+        Q_EMIT linked.modelUpdated(uriId);
     } else {
         updateTemporaryMessage(tr("Searching…"));
 
         // If the username contains an @ it's an exact match
         bool isJamsAccount = !linked.owner.confProperties.managerUri.isEmpty();
         if (isJamsAccount and not query.hasHostname())
-            ConfigurationManager::instance().searchUser(linked.owner.id, uriID);
+            ConfigurationManager::instance().searchUser(linked.owner.id, uriId);
         else
-            ConfigurationManager::instance().lookupName(linked.owner.id, "", uriID);
+            ConfigurationManager::instance().lookupName(linked.owner.id, "", uriId);
     }
 }
 
 void
 ContactModelPimpl::searchSipContact(const URI& query)
 {
-    QString uriID = query.format(URI::Section::USER_INFO | URI::Section::HOSTNAME
+    QString uriId = query.format(URI::Section::USER_INFO | URI::Section::HOSTNAME
                                  | URI::Section::PORT);
     if (query.isEmpty()) {
         // This will remove the temporary item
-        Q_EMIT linked.modelUpdated(uriID);
+        Q_EMIT linked.modelUpdated(uriId);
         updateTemporaryMessage("");
         return;
     }
 
     {
         std::lock_guard<std::mutex> lk(contactsMtx_);
-        if (contacts.find(uriID) == contacts.end()) {
+        if (contacts.find(uriId) == contacts.end()) {
             auto& temporaryContact = searchResult[query];
 
-            temporaryContact.profileInfo.uri = uriID;
-            temporaryContact.profileInfo.alias = uriID;
+            temporaryContact.profileInfo.uri = uriId;
+            temporaryContact.profileInfo.alias = uriId;
             temporaryContact.profileInfo.type = profile::Type::TEMPORARY;
         }
     }
-    Q_EMIT linked.modelUpdated(uriID);
+    Q_EMIT linked.modelUpdated(uriId);
 }
 
 uint64_t
