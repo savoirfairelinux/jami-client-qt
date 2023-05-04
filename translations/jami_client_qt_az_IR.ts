@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pa">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="az_IR">
 <context>
     <name>CallAdapter</name>
     <message>
@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="454"/>
         <source>Incoming call</source>
-        <translation>ਆਉਂਦੀ ਕਾਲ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="455"/>
@@ -58,7 +58,7 @@
     <message>
         <location filename="../src/app/currentcall.cpp" line="178"/>
         <source>Me</source>
-        <translation>ਮੈਂ</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -117,17 +117,17 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="39"/>
         <source>Invitations</source>
-        <translation>ਸੱਦੇ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="49"/>
         <source>Version</source>
-        <translation>ਵਰਜਨ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="55"/>
         <source>Credits</source>
-        <translation>ਸ਼ਲਾਘਾਯੋਗ ਵਿਅਕਤੀ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="58"/>
@@ -167,32 +167,32 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="74"/>
         <source>Delete account</source>
-        <translation>ਖਾਤਾ ਮਿਟਾਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="76"/>
         <source>Authentication failed</source>
-        <translation>ਪ੍ਰਮਾਣੀਕਰਨ ਨਹੀਂ ਹੋਇਆ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="77"/>
         <source>Password</source>
-        <translation>ਪਾਸਵਰਡ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="78"/>
         <source>Username</source>
-        <translation>ਵਰਤੋਂਕਾਰ ਨਾਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="79"/>
         <source>Alias</source>
-        <translation>ਦੂਜਾ ਨਾਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="82"/>
         <source>Allow incoming calls from unknown contacts</source>
-        <translation>ਅਣਜਾਣ ਸੰਪਰਕਾਂ ਤੋਂ ਕਾਲਾਂ ਆਉਣ ਦਿਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
@@ -202,12 +202,12 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="29"/>
         <source>Accept</source>
-        <translation>ਮਨਜ਼ੂਰ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
         <source>Refuse</source>
-        <translation>ਨਾ-ਮਨਜ਼ੂਰ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
@@ -267,7 +267,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="101"/>
         <source>Security</source>
-        <translation>ਸੁਰੱਖਿਆ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="102"/>
@@ -347,7 +347,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
         <source>Enable local peer discovery</source>
-        <translation>ਸਥਾਨਕ ਸਾਥੀ ਦੀ ਭਾਲ ਚਾਲੂ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
@@ -362,7 +362,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
         <source>End call</source>
-        <translation>ਕਾਲ ਸਮਾਪਤ ਕਰੋ</translation>
+        <translation>Zəngi bitir</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
@@ -383,7 +383,7 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
         <source>Encrypt account with password</source>
-        <translation>ਪਾਸਵਰਡ ਨਾਲ ਖਾਤੇ ਵਿੱਚ ਗੁਪਤ ਸੰਕੇਤ ਪਾਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
@@ -404,7 +404,7 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
         <source>Network error</source>
-        <translation>ਨੈੱਟਵਰਕ ਗੜਬੜ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
@@ -419,12 +419,12 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
         <source>Link device</source>
-        <translation>ਡੀਵਾਈਸ ਲਿੰਕ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
         <source>Conversations</source>
-        <translation>ਗੱਲਾਂਬਾਤਾਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
@@ -514,12 +514,12 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
         <source>Create a Jami account</source>
-        <translation>Jami ਖਾਤਾ ਬਣਾਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
         <source>About Jami</source>
-        <translation>Jami ਬਾਰੇ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
@@ -539,13 +539,13 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
         <source>Ok</source>
-        <translation>ਠੀਕ ਹੈ</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
         <source>Cancel</source>
-        <translation>ਰੱਦ ਕਰੋ</translation>
+        <translation>Ləğv et</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
@@ -645,7 +645,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="126"/>
         <source>Use TURN</source>
-        <translation>TURN ਵਰਤੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="127"/>
@@ -655,12 +655,12 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="128"/>
         <source>TURN username</source>
-        <translation>TURN ਵਰਤੋਂਕਾਰ ਨਾਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
         <source>TURN password</source>
-        <translation>TURN ਪਾਸਵਰਡ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
@@ -700,7 +700,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="142"/>
         <source>Media</source>
-        <translation>ਮੀਡੀਆ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="143"/>
@@ -755,12 +755,12 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="164"/>
         <source>Bootstrap</source>
-        <translation>ਬੂਟਸਟ੍ਰੈਪ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="167"/>
         <source>Back</source>
-        <translation>ਪਿੱਛੇ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
@@ -770,22 +770,22 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
         <source>Account</source>
-        <translation>ਖਾਤਾ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
         <source>General</source>
-        <translation>ਸਧਾਰਨ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="181"/>
         <source>Audio</source>
-        <translation>ਅਵਾਜ਼</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="182"/>
         <source>Microphone</source>
-        <translation type="unfinished"/>
+        <translation>Mikrofon</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="183"/>
@@ -820,7 +820,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="192"/>
         <source>Video</source>
-        <translation>ਵੀਡੀਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="193"/>
@@ -855,17 +855,17 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="202"/>
         <source>Screen Sharing</source>
-        <translation type="unfinished"/>
+        <translation>Ekran Paylaşması</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="203"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation type="unfinished"/>
+        <translation>Ekran paylaşma kadr sürətini seçin (bir saniyədə olan kadrlar)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="204"/>
         <source>no video</source>
-        <translation>ਕੋਈ ਵੀਡਿਓ ਨਹੀਂ</translation>
+        <translation>video yoxdur</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="539"/>
@@ -926,7 +926,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="850"/>
         <source>None</source>
-        <translation>ਕੋਈ ਨਹੀਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
@@ -951,12 +951,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
         <source>Skip</source>
-        <translation>ਲੰਘਾਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
         <source>Call settings</source>
-        <translation>ਕਾਲ ਸੈਟਿੰਗਾਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="112"/>
@@ -1001,12 +1001,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
         <source>Success</source>
-        <translation>ਸਫਲਤਾ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
         <source>Error</source>
-        <translation>ਗੜਬੜ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
@@ -1016,7 +1016,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
         <source>Recommended</source>
-        <translation>ਸਿਫ਼ਾਰਸ਼ੀ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
@@ -1057,13 +1057,13 @@ Would you like to update now?</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="229"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
         <source>Mute</source>
-        <translation>ਚੁੱਪ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="230"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
         <source>Unmute</source>
-        <translation>ਬੋਲੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
@@ -1089,7 +1089,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="173"/>
         <source>Manage account</source>
-        <translation>ਖਾਤੇ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="174"/>
@@ -1099,7 +1099,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="177"/>
         <source>Advanced settings</source>
-        <translation>ਉੱਨਤ ਸੈਟਿੰਗਾਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
@@ -1214,17 +1214,17 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
         <source>Block contact</source>
-        <translation>ਸੰਪਰਕ &apos;ਤੇ ਬੰਦਸ਼ ਲਗਾਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="273"/>
         <source>Contact details</source>
-        <translation>ਸੰਪਰਕ ਵੇਰਵੇ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
         <source>Hold</source>
-        <translation>ਰੋਕ ਕੇ ਰੱਖੀ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="277"/>
@@ -1249,27 +1249,27 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
         <source>Exit full screen</source>
-        <translation>ਪੂਰੀ ਸਕ੍ਰੀਨ ਤੋਂ ਨਿਕਾਸ ਕਰੋ</translation>
+        <translation>Tam ekran görünüşündən çıxın</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="283"/>
         <source>Share screen</source>
-        <translation>ਸਕਰੀਨ ਸਾਂਝੀ ਕਰੋ</translation>
+        <translation>Ekranı paylaş</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="284"/>
         <source>Share window</source>
-        <translation>ਸ਼ੇਅਰ ਵਿੰਡੋ</translation>
+        <translation>Paylaşım pəncərəsi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
         <source>Share screen area</source>
-        <translation>ਸਕਰੀਨ ਖੇਤਰ ਨੂੰ ਸਾਂਝਾ ਕਰੋ</translation>
+        <translation>Ekran sahəsini paylaşın</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
         <source>Share file</source>
-        <translation>ਫ਼ਾਈਲ ਸਾਂਝੀ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
@@ -1374,12 +1374,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source>Share location</source>
-        <translation>ਟਿਕਾਣਾ ਸਾਂਝਾ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="314"/>
         <source>Stop sharing</source>
-        <translation>ਸਾਂਝਾ ਕਰਨਾ ਬੰਦ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
@@ -1441,7 +1441,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
         <source>Reduce</source>
-        <translation>ਛੋਟਾ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
@@ -1526,7 +1526,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
         <source>No network connectivity</source>
-        <translation>ਕੋਈ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਨਹੀਂ ਹੈ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
@@ -1546,7 +1546,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="357"/>
         <source>Messages</source>
-        <translation>ਸੁਨੇਹੇ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
@@ -1581,7 +1581,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
         <source>Required</source>
-        <translation>ਲੁੜੀਂਦਾ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="371"/>
@@ -1591,7 +1591,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
         <source>Connect</source>
-        <translation>ਜੋੜੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
@@ -1611,7 +1611,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
         <source>Create account</source>
-        <translation>ਖਾਤਾ ਬਣਾਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
@@ -1626,7 +1626,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="387"/>
         <source>Optional</source>
-        <translation>ਮਰਜ਼ੀ ਮੁਤਾਬਕ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="388"/>
@@ -1646,7 +1646,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="392"/>
         <source>Invalid username</source>
-        <translation>ਅਵੈਧ ਵਰਤੋਂਕਾਰ ਨਾਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="393"/>
@@ -1656,7 +1656,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="394"/>
         <source>Username already taken</source>
-        <translation>ਵਰਤੋਂਕਾਰ ਨਾਂ ਪਹਿਲਾਂ ਹੀ ਲਿਆ ਗਿਆ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="399"/>
@@ -1681,7 +1681,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
         <source>Proxy</source>
-        <translation>ਪ੍ਰੌਕਸੀ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
@@ -1706,7 +1706,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="414"/>
         <source>Add SIP account</source>
-        <translation>SIP ਖਾਤਾ ਜੋੜੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="420"/>
@@ -1727,12 +1727,12 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
         <source>Bold</source>
-        <translation type="unfinished"/>
+        <translation>Qalın</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
         <source>Italic</source>
-        <translation>ਟੇਡੇ ਅੱਖਰ</translation>
+        <translation>Kursiv</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
@@ -1742,7 +1742,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
         <source>Title</source>
-        <translation>ਸਿਰਲੇਖ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
@@ -1792,7 +1792,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="423"/>
         <source>Backup account</source>
-        <translation>ਬੈਕਅੱਪ ਖਾਤਾ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="425"/>
@@ -1852,7 +1852,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
         <source>Change password</source>
-        <translation>ਪਾਸਵਰਡ ਬਦਲੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="880"/>
@@ -1957,7 +1957,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="462"/>
         <source>Identity</source>
-        <translation>ਪਛਾਣ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="465"/>
@@ -2008,7 +2008,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="490"/>
         <source>System</source>
-        <translation>ਸਿਸਟਮ</translation>
+        <translation>Sistem</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="493"/>
@@ -2039,12 +2039,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="514"/>
         <source>User interface language</source>
-        <translation>ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਭਾਸ਼ਾ</translation>
+        <translation>İstifadəçi interfeysi dili</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="519"/>
         <source>File transfer</source>
-        <translation>ਫ਼ਾਈਲ ਤਬਾਦਲਾ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="520"/>
@@ -2059,7 +2059,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="525"/>
         <source>Register</source>
-        <translation>ਦਰਜ ਹੋਵੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="526"/>
@@ -2069,7 +2069,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="531"/>
         <source>Save file</source>
-        <translation>ਫ਼ਾਈਲ ਸਾਂਭੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="532"/>
@@ -2080,7 +2080,7 @@ Please try again later.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="533"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
         <source>Me</source>
-        <translation>ਮੈਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="536"/>
@@ -2120,7 +2120,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="547"/>
         <source>Installer download canceled</source>
-        <translation>ਇੰਸਟੌਲਰ ਡਾਊਨਲੋਡ ਰੱਦ ਕੀਤਾ ਗਿਆ</translation>
+        <translation>Quraşdırıcı yükləmə ləğv edildi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="549"/>
@@ -2225,7 +2225,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
         <source>Reply</source>
-        <translation>ਜਵਾਬ ਦਿਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="485"/>
@@ -2396,17 +2396,17 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
         <source>Dismiss</source>
-        <translation>ਖਾਰਜ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
         <source>Your profile is only shared with your contacts</source>
-        <translation>ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਨਾਲ ਸਾਂਝਾ ਕੀਤੀ ਜਾਂਦੀ ਹੈ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="873"/>
         <source>Delete message</source>
-        <translation>ਸੁਨੇਹਾ ਮਿਟਾਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
@@ -2497,12 +2497,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="686"/>
         <source>Profile is only shared with contacts</source>
-        <translation>ਪ੍ਰੋਫ਼ਾਈਲ ਸਿਰਫ਼ ਸੰਪਰਕਾਂ ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾਂਦੀ ਹੈ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
         <source>Enter your name</source>
-        <translation>ਆਪਣਾ ਨਾਂ ਦਾਖਲ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="718"/>
@@ -2575,7 +2575,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
         <source>Welcome to Jami</source>
-        <translation>Jami ਵਿੱਚ ਜੀ ਆਇਆਂ ਨੂੰ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="878"/>
@@ -2596,7 +2596,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
         <source>Block</source>
-        <translation>ਬਲਾਕ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
@@ -2621,7 +2621,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
         <source>Send file</source>
-        <translation>ਫ਼ਾਈਲ ਭੇਜੋ</translation>
+        <translation>Fayl göndər</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="791"/>
@@ -2636,7 +2636,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
         <source>Send</source>
-        <translation>ਭੇਜੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="486"/>
@@ -2677,7 +2677,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
         <source>Copy</source>
-        <translation>ਨਕਲ ਲਾਹੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
@@ -2747,7 +2747,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
         <source>Share</source>
-        <translation>ਸਾਂਝਾ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="265"/>
@@ -2777,7 +2777,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
         <source>View full screen</source>
-        <translation>ਪੂਰੀ ਸਕ੍ਰੀਨ ਦੇਖੋ</translation>
+        <translation>Tam ekranı aç</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
@@ -2955,17 +2955,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="513"/>
         <source>Layout</source>
-        <translation>ਲੇਆਉਟ</translation>
+        <translation>Düzən</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
         <source>Vertical view</source>
-        <translation>ਲੰਬਕਾਰੀ ਦ੍ਰਿਸ਼</translation>
+        <translation>Şaquli görünüş</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
         <source>Horizontal view</source>
-        <translation>ਹਰੀਜ਼ੱਟਲ ਦ੍ਰਿਸ਼</translation>
+        <translation>Üfüqi görünüş</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
@@ -3006,7 +3006,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="574"/>
         <source>Settings</source>
-        <translation>ਸੈਟਿੰਗਾਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="575"/>
@@ -3041,12 +3041,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="581"/>
         <source>Full screen</source>
-        <translation>ਪੂਰੀ ਸਕਰੀਨ</translation>
+        <translation>Tam ekran</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="582"/>
         <source>Clear history</source>
-        <translation>ਇਤਿਹਾਸ ਮਿਟਾਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
@@ -3111,7 +3111,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="605"/>
         <source>Open file</source>
-        <translation>ਫ਼ਾਈਲ ਖੋਲ੍ਹੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="611"/>
@@ -3167,7 +3167,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
         <source>Link a new device</source>
-        <translation>ਨਵਾਂ ਡੀਵਾਈਸ ਜੋੜੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
@@ -3237,7 +3237,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="645"/>
         <source>Change</source>
-        <translation>ਬਦਲੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="646"/>
@@ -3257,7 +3257,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="655"/>
         <source>Take photo</source>
-        <translation>ਫ਼ੋਟੋ ਖਿੱਚੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="660"/>
@@ -3362,7 +3362,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="692"/>
         <source>Profile</source>
-        <translation>ਪ੍ਰੋਫ਼ਾਈਲ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="695"/>
@@ -3372,7 +3372,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="698"/>
         <source>Select a screen to share</source>
-        <translation>ਸਾਂਝਾ ਕਰਨ ਲਈ ਇੱਕ ਸਕ੍ਰੀਨ ਚੁਣੋ</translation>
+        <translation>Paylaşmaq üçün ekran seçin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="699"/>
@@ -3458,12 +3458,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
         <source>Search Results</source>
-        <translation>ਖੋਜ ਨਤੀਜੇ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
         <source>Delete</source>
-        <translation>ਮਿਟਾਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
@@ -3484,7 +3484,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
         <source>Maximize</source>
-        <translation>ਵੱਡਾ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
@@ -3563,7 +3563,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="71"/>
         <source>Full screen</source>
-        <translation>ਪੂਰੀ ਸਕਰੀਨ</translation>
+        <translation>Tam ekran</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="76"/>
@@ -3593,7 +3593,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="106"/>
         <source>Clear history</source>
-        <translation>ਇਤਿਹਾਸ ਮਿਟਾਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="111"/>
@@ -3603,7 +3603,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Block contact</source>
-        <translation>ਸੰਪਰਕ &apos;ਤੇ ਬੰਦਸ਼ ਲਗਾਓ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="121"/>
@@ -3638,7 +3638,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="156"/>
         <source>Account settings</source>
-        <translation>ਖਾਤਾ ਸੈਟਿੰਗਾਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="161"/>
@@ -3663,7 +3663,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="186"/>
         <source>End call</source>
-        <translation>ਕਾਲ ਸਮਾਪਤ ਕਰੋ</translation>
+        <translation>Zəngi bitir</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="191"/>
@@ -3673,7 +3673,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="196"/>
         <source>Mute microphone</source>
-        <translation>ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਬੰਦ ਕਰੋ</translation>
+        <translation>Mikrofonu səssiz et</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="201"/>
@@ -3789,17 +3789,17 @@ Copy and share it with your friends!</source>
         <location filename="../src/app/messagesadapter.cpp" line="361"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
-        <translation>ਕਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="363"/>
         <source>Accept</source>
-        <translation>ਮਨਜ਼ੂਰ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="365"/>
         <source>Canceled</source>
-        <translation>ਰੱਦ ਕੀਤਾ ਗਿਆ</translation>
+        <translation>Ləğv edilib</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="368"/>
@@ -3836,12 +3836,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="722"/>
         <source>Today</source>
-        <translation>ਅੱਜ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="724"/>
         <source>Yesterday</source>
-        <translation>ਕੱਲ੍ਹ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="703"/>
@@ -3851,32 +3851,32 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
         <source>Hold</source>
-        <translation>ਰੋਕ ਕੇ ਰੱਖੀ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="64"/>
         <source>Talking</source>
-        <translation>ਗੱਲ ਚੱਲ ਰਹੀ ਹੈ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="66"/>
         <source>ERROR</source>
-        <translation>ਗੜਬੜ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="68"/>
         <source>Incoming</source>
-        <translation>ਕਾਲ ਆ ਰਹੀ ਹੈ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="70"/>
         <source>Calling</source>
-        <translation>ਕਾਲ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="74"/>
         <source>Searching</source>
-        <translation>ਖੋਜਿਆ ਜਾ ਰਿਹਾ ਹੈ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="76"/>
@@ -3896,14 +3896,14 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/api/call.h" line="86"/>
         <source>Communication established</source>
-        <translation>ਸੰਚਾਰ ਸ਼ੁਰੂ ਹੋਇਆ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="260"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="208"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1002"/>
         <source>Contact added</source>
-        <translation>ਸੰਪਰਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="262"/>
@@ -3913,12 +3913,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="264"/>
         <source>%1 joined</source>
-        <translation>%1 ਸ਼ਾਮਲ ਹੋਇਆ</translation>
+        <translation>%1 qoşuldu</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="266"/>
         <source>%1 left</source>
-        <translation>%1 ਲਾਗਆਉਟ ਹੈ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="268"/>
@@ -3940,24 +3940,24 @@ Copy and share it with your friends!</source>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="180"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1000"/>
         <source>Outgoing call</source>
-        <translation>ਜਾਂਦੀ ਕਾਲ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="176"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="186"/>
         <source>Incoming call</source>
-        <translation>ਆਉਂਦੀ ਕਾਲ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="182"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="998"/>
         <source>Missed outgoing call</source>
-        <translation>ਖੁੰਝੀ ਜਾਂਦੀ ਕਾਲ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="188"/>
         <source>Missed incoming call</source>
-        <translation>ਖੁੰਝੀ ਆਉਂਦੀ ਕਾਲ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="198"/>
@@ -3968,7 +3968,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1004"/>
         <source>Invitation received</source>
-        <translation>ਸੱਦਾ ਮਿਲਿਆ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="213"/>
@@ -3980,7 +3980,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/libclient/avmodel.cpp" line="386"/>
         <location filename="../src/libclient/avmodel.cpp" line="405"/>
         <source>default</source>
-        <translation>طے شدہ</translation>
+        <translation>defolt</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
@@ -3995,7 +3995,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
-        <translation>ਘੰਟੀ ਵੱਜ ਰਹੀ ਹੈ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="75"/>
@@ -4015,7 +4015,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>OK</source>
-        <translation>ਠੀਕ ਹੈ</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="79"/>
@@ -4171,7 +4171,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
-        <translation>ਰੁਝੇਵੇਂ ਵਿੱਚ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="110"/>
@@ -4261,7 +4261,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="473"/>
         <source>Me</source>
-        <translation>ਮੈਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="109"/>
@@ -4297,7 +4297,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/app/smartlistmodel.cpp" line="174"/>
         <location filename="../src/app/smartlistmodel.cpp" line="175"/>
         <source>Calls</source>
-        <translation>ਕਾਲਾਂ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/smartlistmodel.cpp" line="63"/>
@@ -4307,7 +4307,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/app/smartlistmodel.cpp" line="176"/>
         <location filename="../src/app/smartlistmodel.cpp" line="177"/>
         <source>Contacts</source>
-        <translation>ਸੰਪਰਕ</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4320,7 +4320,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="220"/>
         <source>Decline</source>
-        <translation>ਕਾਲ ਕੱਟੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="222"/>
@@ -4330,12 +4330,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>
         <source>Accept</source>
-        <translation>ਮਨਜ਼ੂਰ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="225"/>
         <source>Refuse</source>
-        <translation>ਨਾ-ਮਨਜ਼ੂਰ ਕਰੋ</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4363,7 +4363,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="79"/>
         <source>Backup account</source>
-        <translation>ਬੈਕਅੱਪ ਖਾਤਾ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
@@ -4466,17 +4466,17 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="340"/>
         <source>%1 Mbps</source>
-        <translation>%1 ਮੈਗਾਬਾਈਟ ਪ੍ਰਤੀ ਸਕਿੰਟ</translation>
+        <translation>%1 Mbit/s</translation>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="340"/>
         <source>Default</source>
-        <translation>طے شدہ</translation>
+        <translation>Defolt</translation>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="545"/>
         <source>System</source>
-        <translation>ਸਿਸਟਮ</translation>
+        <translation>Sistem</translation>
     </message>
 </context>
 <context>

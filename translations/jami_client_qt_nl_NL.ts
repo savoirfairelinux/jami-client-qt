@@ -4519,22 +4519,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="478"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="476"/>
         <source>Searching…</source>
         <translation>Bezig met zoeken…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1017"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1015"/>
         <source>Invalid ID</source>
         <translation>Ongeldige ID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1018"/>
         <source>Username not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1023"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1021"/>
         <source>Couldn&apos;t lookup…</source>
         <translation type="unfinished"></translation>
     </message>

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sq_AL" sourcelanguage="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sq_AL">
 <context>
     <name>CallAdapter</name>
     <message>
@@ -43,6 +43,14 @@
         <location filename="../src/app/conversationsadapter.cpp" line="243"/>
         <source>%1 received a new trust request</source>
         <translation>%1 mori një kërkesë të re besimi</translation>
+    </message>
+</context>
+<context>
+    <name>CurrentAccountSettingsScrollPage</name>
+    <message>
+        <location filename="../src/app/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="816"/>
+        <source/>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -107,78 +115,14 @@
 <context>
     <name>JamiStrings</name>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="29"/>
-        <source>Accept</source>
-        <translation>Pranoje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
-        <source>Accept in audio</source>
-        <translation>Pranoje në audio</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="31"/>
-        <source>Accept in video</source>
-        <translation>Pranoje në video</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
-        <source>Refuse</source>
-        <translation>Hidhe tej</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
-        <source>End call</source>
-        <translation>Përfundoje thirrjen</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
-        <source>Incoming audio call from {}</source>
-        <translation>Thirrje audio ardhëse prej {}</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
-        <source>Incoming video call from {}</source>
-        <translation>Thirrje video ardhëse prej {}</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="39"/>
         <source>Invitations</source>
         <translation>Ftesa</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
-        <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>Jami është një platformë universale komunikimesh, me privatësinë si themel të vetin, që për këdo bazohet në një rrjet të shpërndarë.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
-        <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>Migrimi në teknologjinë Zgjoje do të lejojë njëkohësimin e kësaj bisede në shumë pajisje dhe do të përmirësojë qëndrueshmërinë e funksionimit. Gjatë procesit, historiku i dikurshëm i bisedës do të spastrohet.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
-        <source>Could not re-connect to the Jami daemon (jamid).
-Jami will now quit.</source>
-        <translation>S’u rilidh dot me demonin Jami (jamid).
-Jami tani do të mbyllet.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="46"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="779"/>
-        <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation>Po provohet të rilidhet me demonin Jami (jamid)…</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="49"/>
         <source>Version</source>
         <translation>Version</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
-        <source>Jami is a free universal communication software that respects the freedom and privacy of its users.</source>
-        <translation>Jami është një software i lirë universal komunikimesh që respekton lirinë dhe privatësinë e përdoruesve të vet.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="55"/>
@@ -199,31 +143,6 @@ Jami tani do të mbyllet.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Close settings</source>
         <translation>Mbylli rregullimet</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
-        <source>Add Account</source>
-        <translation>Shtoni Llogari</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="64"/>
-        <source>Add to conference</source>
-        <translation>Shtoje te konferenca</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="65"/>
-        <source>Add to conversation</source>
-        <translation>Shtoje te biseda</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="66"/>
-        <source>Transfer this call</source>
-        <translation>Shpërngule këtë thirrje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="67"/>
-        <source>Transfer to</source>
-        <translation>Shpërngule te</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="70"/>
@@ -251,11 +170,6 @@ Jami tani do të mbyllet.</translation>
         <translation>Fshije llogarinë</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
-        <source>In progress…</source>
-        <translation>Në ecuri e sipër…</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="76"/>
         <source>Authentication failed</source>
         <translation>Mirëfilltësimi dështoi</translation>
@@ -279,6 +193,36 @@ Jami tani do të mbyllet.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="82"/>
         <source>Allow incoming calls from unknown contacts</source>
         <translation>Lejo thirrje ardhëse prej kontaktesh të panjohur</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
+        <source>In progress…</source>
+        <translation>Në ecuri e sipër…</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="29"/>
+        <source>Accept</source>
+        <translation>Pranoje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
+        <source>Refuse</source>
+        <translation>Hidhe tej</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
+        <source>Incoming audio call from {}</source>
+        <translation>Thirrje audio ardhëse prej {}</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
+        <source>Incoming video call from {}</source>
+        <translation>Thirrje video ardhëse prej {}</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="42"/>
+        <source>Migrate conversation</source>
+        <translation>Migroje bisedën</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="83"/>
@@ -309,26 +253,6 @@ Jami tani do të mbyllet.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="88"/>
         <source>Select a new ringtone</source>
         <translation>Përzgjidhni një zile të re</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
-        <source>Certificate File (*.crt)</source>
-        <translation>Kartelë Dëshmish (*.crt)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="90"/>
-        <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation>Kartelë Audio (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
-        <source>Enable read receipts</source>
-        <translation>Aktivizo dëshmi leximi</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
-        <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation>Dërgoni dhe merrni dëshmi që tregojnë se po shfaqet një mesazh.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
@@ -411,6 +335,288 @@ Jami tani do të mbyllet.</translation>
         <translation>Përzgjidhni një dëshmi përdoruesi</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
+        <source>Registration expiration time (seconds)</source>
+        <translation>Kohë skadimi regjistrimi (sekonda)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
+        <source>Use custom address and port</source>
+        <translation>Përdor adresë dhe portë vetjake</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
+        <source>Enable local peer discovery</source>
+        <translation>Aktivizo pikasje ortakësh vendorë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
+        <source>Frames per second</source>
+        <translation>Kuadro për sekondë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
+        <source>Select video frame rate (frames per second)</source>
+        <translation>Përzgjidhni shpejtësi kuadrosh video (kuadro për sekondë)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
+        <source>End call</source>
+        <translation>Përfundoje thirrjen</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
+        <source>Pause call</source>
+        <translation>Ndale thirren</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
+        <source>Resume call</source>
+        <translation>Rimerre thirrjen</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
+        <source>Creating account…</source>
+        <translation>Po krijohet llogaria…</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
+        <source>Encrypt account with password</source>
+        <translation>Fshehtëzoni llogarinë me fjalëkalim</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
+        <source>Create a rendezvous point</source>
+        <translation>Krijoni një pikë takimesh</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="389"/>
+        <source>Choose a name for your rendezvous point</source>
+        <translation>Zgjidhni një emër për pikën tuaj të takimeve</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
+        <source>Launch at startup</source>
+        <translation>Vëre në punë gjatë nisjes nisjes së sistemit</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
+        <source>Network error</source>
+        <translation>Gabim rrjeti</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
+        <source>SSL error</source>
+        <translation>Gabim SSL</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
+        <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN.</source>
+        <translation>Jepni PIN-in prej një llogarie tjetër Jami të formësuar. Që të merrni një PIN, përdorni veçorinë “Lidhni Pajisje Tjetër”.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
+        <source>Link device</source>
+        <translation>Lidhni pajisje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
+        <source>Conversations</source>
+        <translation>Biseda</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
+        <source>Enable</source>
+        <translation>Aktivizoje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
+        <source>Are you sure you would like to join Jami without a username?
+If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
+        <translation>Jeni i sigurt se doni të bëheni pjesë e Jami-t pa një emër përdoruesi?
+Nëse po, kësaj llogarie do t’i përshoqërihet vetëm një identifikues prej 40 shenjash i prodhuar kuturu.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="396"/>
+        <source>- 32 characters maximum
+- Alphabetical characters (A to Z and a to z)
+- Numeric characters (0 to 9)
+- Special characters allowed: dash (-)</source>
+        <translation>- E shumta 32 shenja
+- Shkronja (A deri Z dhe a deri z)
+- Numra (0 deri 9)
+- Shenja speciale të lejuara: dash (-)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
+        <source>Your account will be created and stored locally.</source>
+        <translation>Llogaria juaj do të krijohet dhe depozitohet lokalisht.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
+        <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
+        <translation>Zgjedhja e një emri përdoruesi është e këshilluar dhe një emër përdoruesi NUK mund të ndryshohet më vonë, pasi të zgjidhet.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
+        <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
+        <translation>Fshehtëzimi i llogarisë tuaj me një fjalëkalim është në dëshirën tuaj dhe nëse humb fjalëkalimi, NUK mund të rimerret më vonë.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
+        <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
+        <translation>Ujdisja e një fotoje profili dhe e një nofke janë në dëshirën tuaj dhe mund të ndryshohen më vonë te rregullimet.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
+        <source>Back up account to a .gz file</source>
+        <translation>Kopjeruani llogarinë si një kartelë .gz</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="669"/>
+        <source>Display or hide preferences</source>
+        <translation>Shfaq ose fshih parapëlqime</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
+        <source>Add new plugin</source>
+        <translation>Shtoni shtojcë të re</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
+        <source>Select a file</source>
+        <translation>Përzgjidhni kartelë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="117"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="673"/>
+        <source>Select</source>
+        <translation>Përzgjidhe</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="674"/>
+        <source>Choose image file</source>
+        <translation>Zgjidhni kartelë figure</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
+        <source>Enter the rendezvous point&apos;s name</source>
+        <translation>Jepni emrin e pikës së takimit</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="690"/>
+        <source>Creating rendezvous point…</source>
+        <translation>Po krijohet pikë takimi…</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
+        <source>Create account from Jami Account Management Server (JAMS)</source>
+        <translation>Krijoni llogari prej Shërbyesi Administrimi Llogarish Jami (JAMS)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
+        <source>Create a Jami account</source>
+        <translation>Krijoni një llogari Jami</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
+        <source>About Jami</source>
+        <translation>Mbi Jami-n</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
+        <source>Decline contact request</source>
+        <translation>Hidhe poshtë kërkesën për kontakt</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
+        <source>Accept contact request</source>
+        <translation>Pranoni kërkesë kontakti</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
+        <source>Automatically check for updates</source>
+        <translation>Kontrollo vetvetiu për përditësime</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
+        <source>Ok</source>
+        <translation>Në rregull</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
+        <source>Cancel</source>
+        <translation>Anuloje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
+        <source>Accept in audio</source>
+        <translation>Pranoje në audio</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="31"/>
+        <source>Accept in video</source>
+        <translation>Pranoje në video</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
+        <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
+        <translation>Jami është një platformë universale komunikimesh, me privatësinë si themel të vetin, që për këdo bazohet në një rrjet të shpërndarë.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
+        <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
+        <translation>Migrimi në teknologjinë Zgjoje do të lejojë njëkohësimin e kësaj bisede në shumë pajisje dhe do të përmirësojë qëndrueshmërinë e funksionimit. Gjatë procesit, historiku i dikurshëm i bisedës do të spastrohet.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
+        <source>Jami is a free universal communication software that respects the freedom and privacy of its users.</source>
+        <translation>Jami është një software i lirë universal komunikimesh që respekton lirinë dhe privatësinë e përdoruesve të vet.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
+        <source>Add Account</source>
+        <translation>Shtoni Llogari</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="64"/>
+        <source>Add to conference</source>
+        <translation>Shtoje te konferenca</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="65"/>
+        <source>Add to conversation</source>
+        <translation>Shtoje te biseda</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="66"/>
+        <source>Transfer this call</source>
+        <translation>Shpërngule këtë thirrje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
+        <source>Certificate File (*.crt)</source>
+        <translation>Kartelë Dëshmish (*.crt)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="90"/>
+        <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
+        <translation>Kartelë Audio (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
+        <source>Enable read receipts</source>
+        <translation>Aktivizo dëshmi leximi</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
+        <source>Send and receive receipts indicating that a message have been displayed</source>
+        <translation>Dërgoni dhe merrni dëshmi që tregojnë se po shfaqet një mesazh.</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="116"/>
         <source>Select a CA certificate</source>
         <translation>Përzgjidhni një dëshmi AD-je</translation>
@@ -429,11 +635,6 @@ Jami tani do të mbyllet.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="122"/>
         <source>Auto Registration After Expired</source>
         <translation>Vetëregjistrim Pas Skadimit</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
-        <source>Registration expiration time (seconds)</source>
-        <translation>Kohë skadimi regjistrimi (sekonda)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="124"/>
@@ -491,11 +692,6 @@ Jami tani do të mbyllet.</translation>
         <translation>Adresë publike</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
-        <source>Use custom address and port</source>
-        <translation>Përdor adresë dhe portë vetjake</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="138"/>
         <source>Address</source>
         <translation>Adresë</translation>
@@ -544,11 +740,6 @@ Jami tani do të mbyllet.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="156"/>
         <source>Video RTP maximum port</source>
         <translation>Portë maksimum RTP video</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
-        <source>Enable local peer discovery</source>
-        <translation>Aktivizo pikasje ortakësh vendorë</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
@@ -656,16 +847,6 @@ Jami tani do të mbyllet.</translation>
         <translation>Përzgjidhni qartësi videoje</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
-        <source>Frames per second</source>
-        <translation>Kuadro për sekondë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
-        <source>Select video frame rate (frames per second)</source>
-        <translation>Përzgjidhni shpejtësi kuadrosh video (kuadro për sekondë)</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
         <source>Enable hardware acceleration</source>
         <translation>Aktivizo përshpejtim hardware-i:</translation>
@@ -691,225 +872,6 @@ Jami tani do të mbyllet.</translation>
         <translation>nuk ka video</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="209"/>
-        <source>Back up account here</source>
-        <translation>Kopjeruani llogari këtu</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
-        <source>Back up account</source>
-        <translation>Kopjeruani llogarinë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
-        <source>Unavailable</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="322"/>
-        <source>Turn off sharing</source>
-        <translation>Çaktivizo dhënie</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="323"/>
-        <source>Stop location sharing in this conversation (%1)</source>
-        <translation>Ndal tregim vendndodhje në këtë bisedë (%1)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="344"/>
-        <source>Hide chat</source>
-        <translation>Fshihe fjalosjen</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
-        <source>Back to Call</source>
-        <translation>Mbrapsht te Thirrja</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
-        <source>Scroll to end of conversation</source>
-        <translation>Rrëshqit në fund të bisedës</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
-        <source>Choose a password to encrypt your account on this device. Note that the password CANNOT be recovered.</source>
-        <translation>Zgjidhni një fjalëkalim që të fshehtëzoni llogarinë tuaj në këtë pajisje. Kini parasysh se fjalëkalimi NUK mund të rimerret.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="388"/>
-        <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation>Mund të zgjidhni një emër përdoruesi, për t’i ndihmuar të tjerët t’ju gjejnë dhe të komunikojmë më lehtë me ju në Jami.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
-        <source>Are you sure you would like to join Jami without a username?
-If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
-        <translation>Jeni i sigurt se doni të bëheni pjesë e Jami-t pa një emër përdoruesi?
-Nëse po, kësaj llogarie do t’i përshoqërihet vetëm një identifikues prej 40 shenjash i prodhuar kuturu.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="396"/>
-        <source>- 32 characters maximum
-- Alphabetical characters (A to Z and a to z)
-- Numeric characters (0 to 9)
-- Special characters allowed: dash (-)</source>
-        <translation>- E shumta 32 shenja
-- Shkronja (A deri Z dhe a deri z)
-- Numra (0 deri 9)
-- Shenja speciale të lejuara: dash (-)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
-        <source>Your account will be created and stored locally.</source>
-        <translation>Llogaria juaj do të krijohet dhe depozitohet lokalisht.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
-        <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
-        <translation>Zgjedhja e një emri përdoruesi është e këshilluar dhe një emër përdoruesi NUK mund të ndryshohet më vonë, pasi të zgjidhet.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
-        <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation>Fshehtëzimi i llogarisë tuaj me një fjalëkalim është në dëshirën tuaj dhe nëse humb fjalëkalimi, NUK mund të rimerret më vonë.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
-        <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
-        <translation>Ujdisja e një fotoje profili dhe e një nofke janë në dëshirën tuaj dhe mund të ndryshohen më vonë te rregullimet.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
-        <source>UDP</source>
-        <translation>UDP</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="417"/>
-        <source>Display Name</source>
-        <translation>Emër Në Ekran</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
-        <source>A chosen username can help to be found more easily on Jami.
-If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Një emër përdoruesi mund të ndihmojë gjetjen tuaj më lehtë në Jami.
-Nëse nuk zgjidhet një emër përdoruesi, kësaj llogarie do t’i përshoqërohet si emër përdoruesi një identifikues me 40 shenja i krijuar kuturu. Gjetja juaj dhe përdorimi i Jamit me të është më i vështirë.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="424"/>
-        <source>This Jami account exists only on this device.
-The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation>Kjo llogari Jami ekziston vetëm në këtë pajisje.
-Llogaria do të humbë, nëse humbet kjo pajisje, ose në të çinstalohet aplikacioni. Rekomandohet të bëni një kopjeruajtje të kësaj llogarie.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="430"/>
-        <source>Linking this account to other devices enables it to be used on other devices.</source>
-        <translation>Lidhja e kësaj llogarie te pajisje të tjera bën të mundur përdorimin e saj në pajisje të tjera.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="440"/>
-        <source>Encrypt account</source>
-        <translation>Fshehtëzoje llogarinë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
-        <source>Back up account to a .gz file</source>
-        <translation>Kopjeruani llogarinë si një kartelë .gz</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="449"/>
-        <source>This profile is only shared with this account's contacts.
-The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation>Ky profil u tregohet vetëm kontakteve të kësaj llogarie.
-Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="450"/>
-        <source>Encrypt account with a password</source>
-        <translation>Fshehtëzoni llogarinë me një fjalëkalim</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
-        <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation>Një llogari Jami krijohet dhe depozitohet lokalisht vetëm në këtë pajisje, si një arkiv që përmban kyçet e llogarisë tuaj. Përdorimi i këtij arkivi mundet, në daçi, të mbrohet me fjalëkalim.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="452"/>
-        <source>Please note that if you lose your password, it CANNOT be recovered!</source>
-        <translation>Ju lutemi, kini parasysh se, nëse humbni fjalëkalimin tuaj, NUK mund të rikthehet!</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
-        <source>Link a new device</source>
-        <translation>Lidhni një pajisje të re</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="480"/>
-        <source>Would you really like to delete this account?</source>
-        <translation>Doni vërtet të fshihet kjo llogari?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="481"/>
-        <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation>Nëse llogaria juaj s’është kopjeruajtur, apo shtuar te një pajisje tjetër, ajo dhe emri i përdoruesit regjistruar për të do të HUMBIN NË MËNYRË TË PAKTHYESHME.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="491"/>
-        <source>Dark</source>
-        <translation>E errët</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="492"/>
-        <source>Light</source>
-        <translation>E çelët</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
-        <source>Application theme</source>
-        <translation>Temë aplikacioni</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="502"/>
-        <source>Include local video in recording</source>
-        <translation>Përfshi videon vendore në regjistrim</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
-        <source>Default settings</source>
-        <translation>Rregullime parazgjedhje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="508"/>
-        <source>Enable typing indicators</source>
-        <translation>Aktivizo tregues shtypjeje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="509"/>
-        <source>Send and receive typing indicators showing that a message is being typed.</source>
-        <translation>Dërgoni dhe merrni shenja shtypjeje që tregojnë se po shtypet një mesazh.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="510"/>
-        <source>Show link preview in conversations</source>
-        <translation>Shfaq paraparje lidhjesh në biseda</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="888"/>
-        <source>Appearance</source>
-        <translation>Dukje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
-        <source>Accept transfer limit (in Mb)</source>
-        <translation>Kufi pranimi shpërnguljesh (në Mb)</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="539"/>
         <source>Toggle automatic updates</source>
         <translation>Aktivizo/çaktivizo përditësime të automatizuara</translation>
@@ -932,110 +894,29 @@ Do të donit të përditësohet tani?</translation>
         <translation>Fotot e ekranit ruaji te</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
-        <source>Select &quot;Link another device&quot;</source>
-        <translation>Përzgjidhni “Lidhni pajisje tjetër”</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
+        <source>Create account from backup</source>
+        <translation>Krijoni llogari prej kopjeruajtjeje</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="650"/>
-        <source>Choose a picture as your avatar</source>
-        <translation>Zgjidhni një foto si avatarin tuaj</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
+        <source>You can obtain an archive by clicking on &quot;Back up account&quot; in the Account Settings. This will create a .gz file on your device.</source>
+        <translation>Një arkiv mund ta përftoni duke klikuar mbi “Kopjeruani llogari” që nga Rregullime Llogarie. Kjo do të krijojë në pajisjen tuaj një kartelë .gz.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
-        <source>Share freely and privately with Jami</source>
-        <translation>Ndani lirisht dhe privatisht me të tjerët, përmes Jami-t</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
+        <source>Restore account from backup</source>
+        <translation>Riktheni llogari prej kopjeruajtjeje</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
-        <source>Unban</source>
-        <translation>Zhdëboje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
-        <source>Add</source>
-        <translation>Shtoje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
-        <source>more emojis</source>
-        <translation>më tepër emoxhi</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
-        <source>Reply to</source>
-        <translation>Përgjigjuni te</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
-        <source>In reply to</source>
-        <translation>Në përgjigje të</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
+        <source>Import Jami account from local archive file.</source>
+        <translation>Importo llogari Jami prej një kartele vendore arkiv</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
         <source> replied to</source>
         <translation>iu përgjigj</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
-        <source>Reply</source>
-        <translation>Përgjigjuni</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="485"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="816"/>
-        <source>Edit</source>
-        <translation>Përpunoni</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="817"/>
-        <source>Edited</source>
-        <translation>U përpunua</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="818"/>
-        <source>Join call</source>
-        <translation>Merr pjesë në thirrje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
-        <source>A call is in progress. Do you want to join the call?</source>
-        <translation>Ka një thirrje në zhvillim e sipër. Doni të merrni pjesë në thirrje?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
-        <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
-        <translation>Strehuesi aktual për këtë zgjua duket i pakapshëm. Doni të strehoni thirrjen?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="821"/>
-        <source>Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.</source>
-        <translation>Zgjidhni një pajisje enkas për strehim thirrjesh në këtë zgjua. Në s’u caktoftë, thirrjen do ta strehojë pajisja që e filloi.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="822"/>
-        <source>Choose this device</source>
-        <translation>Zgjidh këtë pajisje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="823"/>
-        <source>Remove current device</source>
-        <translation>Hiqe pajisjen e tanishme</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
-        <source>Host only this call</source>
-        <translation>Streho vetëm këtë thirrje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="825"/>
-        <source>Host this call</source>
-        <translation>Streho këtë thirrje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="826"/>
-        <source>Make me the default host for future calls</source>
-        <translation>Bëmë strehën parazgjedhje për thirrje të ardhshme</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
@@ -1076,21 +957,6 @@ Do të donit të përditësohet tani?</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
         <source>Skip</source>
         <translation>Anashkaloje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
-        <source>Start swarm</source>
-        <translation>Filloni zgjua</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
-        <source>Create swarm</source>
-        <translation>Krijoni zgjua</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
-        <source>Show invitations</source>
-        <translation>Shfaq ftesa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
@@ -1158,16 +1024,6 @@ Do të donit të përditësohet tani?</translation>
         <translation>E rekomanduar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
-        <source>Jami archive files (*.gz)</source>
-        <translation>Kartela arkivash Jami (*.gz)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="217"/>
-        <source>All files (*)</source>
-        <translation>Krejt kartelat (*)</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
         <source>Reinstate as contact</source>
         <translation>Rikthejeni si kontakt</translation>
@@ -1215,26 +1071,6 @@ Do të donit të përditësohet tani?</translation>
         <translation>Çheshtoje</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
-        <source>Pause call</source>
-        <translation>Ndale thirren</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
-        <source>Resume call</source>
-        <translation>Rimerre thirrjen</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
-        <source>Mute camera</source>
-        <translation>Heshtoje kamerën</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
-        <source>Unmute camera</source>
-        <translation>Çheshtoje kamerën</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
         <source>Add participant</source>
         <translation>Shtoni pjesëmarrës</translation>
@@ -1243,11 +1079,6 @@ Do të donit të përditësohet tani?</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
         <source>Add participants</source>
         <translation>Shtoni pjesëmarrës</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
-        <source>Details</source>
-        <translation>Hollësi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
@@ -1294,16 +1125,6 @@ Do të donit të përditësohet tani?</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="240"/>
         <source>Mosaic</source>
         <translation>Mozaik</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
-        <source>Participant is still muted on their device</source>
-        <translation>Pjesëmarrësi është ende i heshtuar në pajisjen e tij</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
-        <source>You are still muted on your device</source>
-        <translation>Jeni ende i heshtuar në pajisjen tuaj</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
@@ -1361,17 +1182,6 @@ Do të donit të përditësohet tani?</translation>
         <translation>Fshih spektatorët</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
-        <source>Copy</source>
-        <translation>Kopjoje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
-        <source>Share</source>
-        <translation>Ndajeni me të tjerë</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="258"/>
         <source>Cut</source>
         <translation>Prije</translation>
@@ -1397,24 +1207,9 @@ Do të donit të përditësohet tani?</translation>
         <translation>Spastroje bisedën</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="265"/>
-        <source>Confirm action</source>
-        <translation>Ripohoni veprimin</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="266"/>
         <source>Remove conversation</source>
         <translation>Hiqe bisedën</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
-        <source>Would you really like to remove this conversation?</source>
-        <translation>Doni vërtet të hiqet kjo bisedë?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
-        <source>Would you really like to block this conversation?</source>
-        <translation>Doni vërtet të bllokohet kjo bisedë?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
@@ -1425,16 +1220,6 @@ Do të donit të përditësohet tani?</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
         <source>Block contact</source>
         <translation>Bllokojeni kontaktin</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
-        <source>Block swarm</source>
-        <translation>Bllokoje zgjoin</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
-        <source>Conversation details</source>
-        <translation>Hollësi bisede</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="273"/>
@@ -1472,11 +1257,6 @@ Do të donit të përditësohet tani?</translation>
         <translation>Dil nga gjithë ekrani</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
-        <source>View full screen</source>
-        <translation>Pamja sa i gjithë ekrani</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="283"/>
         <source>Share screen</source>
         <translation>Bashkëndaj ekranin</translation>
@@ -1485,11 +1265,6 @@ Do të donit të përditësohet tani?</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="284"/>
         <source>Share window</source>
         <translation>Ndaje dritaren me të tjerë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
-        <source>Stop sharing screen or file</source>
-        <translation>Resht së dhëni ekranin ose kartelën</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
@@ -1629,7 +1404,7 @@ Do të donit të përditësohet tani?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
         <source>%1 minute left</source>
-        <translation>Edhe %1 minutq</translation>
+        <translation>Edhe %1 minutë</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
@@ -1766,6 +1541,11 @@ Mundet ende të merret vendndodhja e pjesëmarrësve të tjerë.</translation>
         <translation>Mesazh i fshirë</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
+        <source>Back to Call</source>
+        <translation>Mbrapsht te Thirrja</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="356"/>
         <source>Jump to</source>
         <translation>Kalo te</translation>
@@ -1806,11 +1586,6 @@ Mundet ende të merret vendndodhja e pjesëmarrësve të tjerë.</translation>
         <translation>dhe</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="369"/>
-        <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation>Jepni URL Shërbyesi Administrimi Llogarish Jami (JAMS)</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
         <source>Required</source>
         <translation>E domosdoshme</translation>
@@ -1821,19 +1596,9 @@ Mundet ende të merret vendndodhja e pjesëmarrësve të tjerë.</translation>
         <translation>URL Shërbyesi Administrimi Llogarish Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="372"/>
-        <source>Enter JAMS credentials</source>
-        <translation>Jepni kredencialet për te JAMS</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
         <source>Connect</source>
         <translation>Lidhu</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
-        <source>Creating account…</source>
-        <translation>Po krijohet llogaria…</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
@@ -1851,27 +1616,6 @@ Mundet ende të merret vendndodhja e pjesëmarrësve të tjerë.</translation>
         <translation>Zgjidhni emër përdoruesi</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="380"/>
-        <source>Choose a username</source>
-        <translation>Zgjidhni emër përdoruesi</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
-        <source>Choose an identifier</source>
-        <translation>Zgjidhni identifikues</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
-        <source>The identifier is not available</source>
-        <translation>Identifikuesi s’është i passhëm</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
-        <source>Encrypt account with password</source>
-        <translation>Fshehtëzoni llogarinë me fjalëkalim</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
         <source>Create account</source>
         <translation>Krijoni llogari</translation>
@@ -1882,14 +1626,19 @@ Mundet ende të merret vendndodhja e pjesëmarrësve të tjerë.</translation>
         <translation>Ripohoni fjalëkalimin</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
+        <source>Choose a password to encrypt your account on this device. Note that the password CANNOT be recovered.</source>
+        <translation>Zgjidhni një fjalëkalim që të fshehtëzoni llogarinë tuaj në këtë pajisje. Kini parasysh se fjalëkalimi NUK mund të rimerret.</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="387"/>
         <source>Optional</source>
         <translation>Opsionale</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="389"/>
-        <source>Choose a name for your rendezvous point</source>
-        <translation>Zgjidhni një emër për pikën tuaj të takimeve</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="388"/>
+        <source>You can choose a username to help others more easily find and reach you on Jami.</source>
+        <translation>Mund të zgjidhni një emër përdoruesi, për t’i ndihmuar të tjerët t’ju gjejnë dhe të komunikojmë më lehtë me ju në Jami.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="390"/>
@@ -1974,6 +1723,76 @@ Your picture and your nickname can be changed at all time in the settings of you
 Fotoja dhe nofka juaj mund të ndryshohet kurdo, që nga rregullimet e llogarisë tuaj.</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
+        <source>Show more</source>
+        <translation>Shfaq më tepër</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
+        <source>Show less</source>
+        <translation>Shfaq më pak</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
+        <source>Bold</source>
+        <translation>I trashësuar</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
+        <source>Italic</source>
+        <translation>Të pjerrëta</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
+        <source>Barre</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
+        <source>Title</source>
+        <translation>Titull</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
+        <source>Link</source>
+        <translation>Lidhje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
+        <source>Code</source>
+        <translation>Kod</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
+        <source>Quote</source>
+        <translation>Citim</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
+        <source>Bullet Point</source>
+        <translation>Me Pika</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
+        <source>Bullet Number</source>
+        <translation>Me Numra</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
+        <source>Show Formating</source>
+        <translation>Shfaq Formatim</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
+        <source>Hide Formating</source>
+        <translation>Fshih Formatim</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="888"/>
+        <source>Appearance</source>
+        <translation>Dukje</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="422"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.</source>
         <translation>Llogaria juaj Jami regjistrohet vetëm në këtë pajisje, si një arkiv që përmban kyçet e llogarisë tuaj. Përdorimi i këtij arkivi mundet të mbrohet me fjalëkalim.</translation>
@@ -2044,71 +1863,6 @@ Fotoja dhe nofka juaj mund të ndryshohet kurdo, që nga rregullimet e llogaris�
         <translation>Ndryshoni fjalëkalimin</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
-        <source>Show more</source>
-        <translation>Shfaq më tepër</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
-        <source>Show less</source>
-        <translation>Shfaq më pak</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
-        <source>Bold</source>
-        <translation>I trashësuar</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
-        <source>Italic</source>
-        <translation>Të pjerrëta</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
-        <source>Barre</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
-        <source>Title</source>
-        <translation>Titull</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
-        <source>Link</source>
-        <translation>Lidhje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
-        <source>Code</source>
-        <translation>Kod</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
-        <source>Quote</source>
-        <translation>Citim</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
-        <source>Bullet Point</source>
-        <translation>Me Pika</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
-        <source>Bullet Number</source>
-        <translation>Me Numra</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
-        <source>Show Formating</source>
-        <translation>Shfaq Formatim</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
-        <source>Hide Formating</source>
-        <translation>Fshih Formatim</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="880"/>
         <source>Jami identity</source>
         <translation>Identitet Jami</translation>
@@ -2167,16 +1921,6 @@ Fotoja dhe nofka juaj mund të ndryshohet kurdo, që nga rregullimet e llogaris�
         <location filename="../src/app/constant/JamiStrings.qml" line="442"/>
         <source>Change current password</source>
         <translation>Ndryshoni fjalëkalimin e tanishëm</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
-        <source>Display advanced settings</source>
-        <translation>Shfaq rregullime të mëtejshme</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
-        <source>Hide advanced settings</source>
-        <translation>Fshihi rregullimet e mëtejshme</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="172"/>
@@ -2256,19 +2000,9 @@ Please try again later.</source>
 Ju lutemi, riprovoni më vonë.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="474"/>
-        <source>Display banned contacts</source>
-        <translation>Shfaq kontakte të dëbuar</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="475"/>
         <source>Banned</source>
         <translation>Dëbuar</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="476"/>
-        <source>Hide banned contacts</source>
-        <translation>Fshihi kontaktet e dëbuar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="477"/>
@@ -2296,11 +2030,6 @@ Ju lutemi, riprovoni më vonë.</translation>
         <translation>Aktivizo njoftime</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
-        <source>Launch at startup</source>
-        <translation>Vëre në punë gjatë nisjes nisjes së sistemit</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="500"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="501"/>
         <source>Choose download directory</source>
@@ -2317,29 +2046,9 @@ Ju lutemi, riprovoni më vonë.</translation>
         <translation>Ndryshoni madhësi teksti (%)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
-        <source>Preview requires downloading content from third-party servers.</source>
-        <translation>Paraparja lyp shkarkim lënde prej shërbyesish palë të treta.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="513"/>
-        <source>Layout</source>
-        <translation>Strukturë</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="514"/>
         <source>User interface language</source>
         <translation>Gjuha e ndërfaqes së përdoruesit</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
-        <source>Vertical view</source>
-        <translation>Pamje vertikale</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
-        <source>Horizontal view</source>
-        <translation>Pamje horizontale</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="519"/>
@@ -2365,18 +2074,6 @@ Ju lutemi, riprovoni më vonë.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="526"/>
         <source>Incorrect password</source>
         <translation>Fjalëkalim i pasaktë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
-        <source>Network error</source>
-        <translation>Gabim rrjeti</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="551"/>
-        <source>Something went wrong</source>
-        <translation>Diç shkoi ters</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="531"/>
@@ -2430,11 +2127,6 @@ Ju lutemi, riprovoni më vonë.</translation>
         <translation>Ndodhi një gabim, kur kërkohej për një version të ri</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
-        <source>SSL error</source>
-        <translation>Gabim SSL</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="547"/>
         <source>Installer download canceled</source>
         <translation>Shkarkimi i instaluesit u anulua</translation>
@@ -2448,6 +2140,298 @@ Ju lutemi, riprovoni më vonë.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="550"/>
         <source>Network disconnected</source>
         <translation>Rrjeti u shkëput</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
+        <source>This feature will enable call buttons in swarms with multiple participants.</source>
+        <translation>Kjo veçori do të aktivizojë butona thirrjesh në zgjoje me shumë pjesëmarrës.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
+        <source>Call recording</source>
+        <translation>Incizim thirrjesh</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
+        <source>If the account is encrypted with a password, please fill the following field.</source>
+        <translation>Nëse llogaria është fshehtëzuar me një fjalëkalim, ju lutemi, plotësoni fushën vijuese.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
+        <source>Enter the PIN code</source>
+        <translation>Jepni kodin PIN</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
+        <source>Step 01</source>
+        <translation>Hapi 1</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
+        <source>Step 02</source>
+        <translation>Hapi 2</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
+        <source>Step 03</source>
+        <translation>Hapi 3</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
+        <source>Step 04</source>
+        <translation>Hapi 4</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
+        <source>Go to the account management settings of a previous device</source>
+        <translation>Kaloni te rregullime e administrimit të llogarisë së një pajisje të dikurshme</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
+        <source>Select &quot;Link another device&quot;</source>
+        <translation>Përzgjidhni “Lidhni pajisje tjetër”</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="650"/>
+        <source>Choose a picture as your avatar</source>
+        <translation>Zgjidhni një foto si avatarin tuaj</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
+        <source>Choose a picture</source>
+        <translation>Zgjidhni një foto</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
+        <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
+        <translation>Kartela Figurë (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
+        <source>Share freely and privately with Jami</source>
+        <translation>Ndani lirisht dhe privatisht me të tjerët, përmes Jami-t</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
+        <source>Add</source>
+        <translation>Shtoje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
+        <source>more emojis</source>
+        <translation>më tepër emoxhi</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
+        <source>Reply to</source>
+        <translation>Përgjigjuni te</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
+        <source>In reply to</source>
+        <translation>Në përgjigje të</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
+        <source>Reply</source>
+        <translation>Përgjigjuni</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="485"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="816"/>
+        <source>Edit</source>
+        <translation>Përpunoni</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="817"/>
+        <source>Edited</source>
+        <translation>U përpunua</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="818"/>
+        <source>Join call</source>
+        <translation>Merr pjesë në thirrje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
+        <source>A call is in progress. Do you want to join the call?</source>
+        <translation>Ka një thirrje në zhvillim e sipër. Doni të merrni pjesë në thirrje?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
+        <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
+        <translation>Strehuesi aktual për këtë zgjua duket i pakapshëm. Doni të strehoni thirrjen?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="821"/>
+        <source>Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.</source>
+        <translation>Zgjidhni një pajisje enkas për strehim thirrjesh në këtë zgjua. Në s’u caktoftë, thirrjen do ta strehojë pajisja që e filloi.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="822"/>
+        <source>Choose this device</source>
+        <translation>Zgjidh këtë pajisje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="823"/>
+        <source>Remove current device</source>
+        <translation>Hiqe pajisjen e tanishme</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
+        <source>Host only this call</source>
+        <translation>Streho vetëm këtë thirrje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="825"/>
+        <source>Host this call</source>
+        <translation>Streho këtë thirrje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="826"/>
+        <source>Make me the default host for future calls</source>
+        <translation>Bëmë strehën parazgjedhje për thirrje të ardhshme</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="835"/>
+        <source>About</source>
+        <translation>Mbi</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="836"/>
+        <source>%1 Members</source>
+        <translation>%1 Anëtarë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="837"/>
+        <source>Member</source>
+        <translation>Anëtar</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
+        <source>Documents</source>
+        <translation>Dokumente</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
+        <source>Swarm&apos;s name</source>
+        <translation>Emër zgjoi</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="840"/>
+        <source>Contact&apos;s name</source>
+        <translation>Emër kontakti</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="841"/>
+        <source>Add a description</source>
+        <translation>Shtoni një përshkrim</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
+        <source>Ignore all notifications from this conversation</source>
+        <translation>Shpërfilli krejt njoftimet prej kësaj bisedë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
+        <source>Choose a color</source>
+        <translation>Zgjidhni një ngjyrë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="847"/>
+        <source>Leave conversation</source>
+        <translation>Braktise bisedën</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="848"/>
+        <source>Leave</source>
+        <translation>Braktise</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
+        <source>Type of swarm</source>
+        <translation>Lloj zgjoi</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="853"/>
+        <source>Create the swarm</source>
+        <translation>Krijoje zgjoin</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
+        <source>Go to conversation</source>
+        <translation>Kalo te biseda</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="855"/>
+        <source>Promote to administrator</source>
+        <translation>Gradojeni si përgjegjës</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="856"/>
+        <source>Kick member</source>
+        <translation>Përzini anëtar</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="857"/>
+        <source>Reinstate member</source>
+        <translation>Riktheni anëtar</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
+        <source>Administrator</source>
+        <translation>Përgjegjës</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
+        <source>Invited</source>
+        <translation>Ftuar</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
+        <source>Remove member</source>
+        <translation>Hiqni anëtar</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
+        <source>To:</source>
+        <translation>Për:</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="864"/>
+        <source>Customize</source>
+        <translation>Përshtateni</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
+        <source>Dismiss</source>
+        <translation>Hidhe Tej</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
+        <source>Your profile is only shared with your contacts</source>
+        <translation>Profili juaj ndahet vetëm me kontaktet tuaja</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="873"/>
+        <source>Delete message</source>
+        <translation>Fshije mesazhin</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
+        <source>*(Deleted Message)*</source>
+        <translation>*(Mesazh i Fshirë)*</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="875"/>
+        <source>Edit message</source>
+        <translation>Përpunojeni mesazhin</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="551"/>
+        <source>Something went wrong</source>
+        <translation>Diç shkoi ters</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="554"/>
@@ -2465,19 +2449,544 @@ Ju lutemi, riprovoni më vonë.</translation>
         <translation>Merrni regjistra</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
-        <source>(Experimental) Enable call support for swarm</source>
-        <translation>(Eksperimentale) Aktivizoni mbulim thirrjesh për zgjua</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
-        <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation>Kjo veçori do të aktivizojë butona thirrjesh në zgjoje me shumë pjesëmarrës.</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
         <source>Select a record directory</source>
         <translation>Përzgjidhni një drejtori regjistrimesh</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
+        <source>Debug</source>
+        <translation>Diagnostikoji</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
+        <source>Show Stats</source>
+        <translation>Shfaq Statistika</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
+        <source>Start</source>
+        <translation>Fillo</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
+        <source>Stop</source>
+        <translation>Ndale</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
+        <source>Generating account…</source>
+        <translation>Po prodhohet llogari…</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
+        <source>Import from backup</source>
+        <translation>Importoni prej kopjeruajtjeje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="636"/>
+        <source>Enter account&apos;s password</source>
+        <translation>Jepni fjalëkalimin e llogarisë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
+        <source>Stop taking photo</source>
+        <translation>Resht së bëri foto</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="654"/>
+        <source>Clear avatar image</source>
+        <translation>Spastro figurë avatari</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="671"/>
+        <source>Go back to plugins list</source>
+        <translation>Kthehu te lista e shtojcave</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="686"/>
+        <source>Profile is only shared with contacts</source>
+        <translation>Profili ndahet vetëm me kontaktet</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
+        <source>Enter your name</source>
+        <translation>Jepni emrin tuaj</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="718"/>
+        <source>Hide advanced features</source>
+        <translation>Fshihi veçoritë e thelluara</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
+        <source>Create new Jami account</source>
+        <translation>Krijoni llogari Jami të re</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="727"/>
+        <source>Create new SIP account</source>
+        <translation>Krijoni llogari SIP të re</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
+        <source>Welcome to</source>
+        <translation>Mirë se vini te</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
+        <source>Upgrade</source>
+        <translation>Përmirësoje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
+        <source>Later</source>
+        <translation>Më vonë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
+        <source>Local muted</source>
+        <translation>Heshtuar lokalisht</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="46"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="779"/>
+        <source>Trying to reconnect to the Jami daemon (jamid)…</source>
+        <translation>Po provohet të rilidhet me demonin Jami (jamid)…</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
+        <source>Could not re-connect to the Jami daemon (jamid).
+Jami will now quit.</source>
+        <translation>S’u rilidh dot me demonin Jami (jamid).
+Jami tani do të mbyllet.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
+        <source>Configure a SIP account</source>
+        <translation>Formësoni një llogari SIP</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
+        <source>Join Jami</source>
+        <translation>Bëhuni pjesë e Jami-t</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
+        <source>I already have an account</source>
+        <translation>Kam tashmë një llogari</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
+        <source>Use existing Jami account</source>
+        <translation>Përdorni llogari Jami ekzistuese</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
+        <source>Welcome to Jami</source>
+        <translation>Mirë se vini te Jami</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="878"/>
+        <source>Share this Jami identifier to be contacted on this account!</source>
+        <translation>Që të kontaktoheni në këtë llogari, jepuni këtë identifikues Jami!</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="879"/>
+        <source>Here is your Jami identifier, don&apos;t hesitate to share it in order to be contacted more easily!</source>
+        <translation>Ja identifikuesi juaj Jami, mos ngurroni t’ua jepni të tjerëve, që të mund të lidheni më kollaj!</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
+        <source>Save</source>
+        <translation>Ruaje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
+        <source>Block</source>
+        <translation>Bllokoje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
+        <source>Is swarm:</source>
+        <translation>Është zgjua:</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
+        <source>True</source>
+        <translation>True</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="785"/>
+        <source>False</source>
+        <translation>False</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="788"/>
+        <source>Add emoji</source>
+        <translation>Shtoni emoji</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
+        <source>Send file</source>
+        <translation>Dërgo kartelë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="791"/>
+        <source>Leave audio message</source>
+        <translation>Lini mesazh audio</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="792"/>
+        <source>Leave video message</source>
+        <translation>Lini mesazh video</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
+        <source>Send</source>
+        <translation>Dërgoje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="486"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="809"/>
+        <source>Remove</source>
+        <translation>Hiqe</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
+        <source>Write to %1</source>
+        <translation>Shkruajini %1</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="829"/>
+        <source>%1 has sent you a request for a conversation.</source>
+        <translation>%1 ju ka dërguar një kërkesë për bisedë.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="830"/>
+        <source>Hello,
+Would you like to join the conversation?</source>
+        <translation>Tungjatjeta,
+Do të donit të merrnit pjesë në bisedë?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="831"/>
+        <source>You have accepted
+the conversation request</source>
+        <translation>E keni pranuar
+kërkesën për bisedë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
+        <source>Waiting until %1
+connects to synchronize the conversation.</source>
+        <translation>Po priter deri sa %1
+të lidhet, për njëkohësim të bisedës.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
+        <source>Copy</source>
+        <translation>Kopjoje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
+        <source>Start swarm</source>
+        <translation>Filloni zgjua</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
+        <source>Create swarm</source>
+        <translation>Krijoni zgjua</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
+        <source>Show invitations</source>
+        <translation>Shfaq ftesa</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="67"/>
+        <source>Transfer to</source>
+        <translation>Shpërngule te</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="209"/>
+        <source>Back up account here</source>
+        <translation>Kopjeruani llogari këtu</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
+        <source>Back up account</source>
+        <translation>Kopjeruani llogarinë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
+        <source>Jami archive files (*.gz)</source>
+        <translation>Kartela arkivash Jami (*.gz)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="217"/>
+        <source>All files (*)</source>
+        <translation>Krejt kartelat (*)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
+        <source>Mute camera</source>
+        <translation>Heshtoje kamerën</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
+        <source>Unmute camera</source>
+        <translation>Çheshtoje kamerën</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
+        <source>Details</source>
+        <translation>Hollësi</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
+        <source>Participant is still muted on their device</source>
+        <translation>Pjesëmarrësi është ende i heshtuar në pajisjen e tij</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
+        <source>You are still muted on your device</source>
+        <translation>Jeni ende i heshtuar në pajisjen tuaj</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
+        <source>Share</source>
+        <translation>Ndajeni me të tjerë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="265"/>
+        <source>Confirm action</source>
+        <translation>Ripohoni veprimin</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
+        <source>Would you really like to remove this conversation?</source>
+        <translation>Doni vërtet të hiqet kjo bisedë?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
+        <source>Would you really like to block this conversation?</source>
+        <translation>Doni vërtet të bllokohet kjo bisedë?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
+        <source>Block swarm</source>
+        <translation>Bllokoje zgjoin</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
+        <source>Conversation details</source>
+        <translation>Hollësi bisede</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
+        <source>View full screen</source>
+        <translation>Pamja sa i gjithë ekrani</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
+        <source>Stop sharing screen or file</source>
+        <translation>Resht së dhëni ekranin ose kartelën</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
+        <source>Unavailable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="322"/>
+        <source>Turn off sharing</source>
+        <translation>Çaktivizo dhënie</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="323"/>
+        <source>Stop location sharing in this conversation (%1)</source>
+        <translation>Ndal tregim vendndodhje në këtë bisedë (%1)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="344"/>
+        <source>Hide chat</source>
+        <translation>Fshihe fjalosjen</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
+        <source>Scroll to end of conversation</source>
+        <translation>Rrëshqit në fund të bisedës</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="369"/>
+        <source>Enter the Jami Account Management Server (JAMS) URL</source>
+        <translation>Jepni URL Shërbyesi Administrimi Llogarish Jami (JAMS)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="372"/>
+        <source>Enter JAMS credentials</source>
+        <translation>Jepni kredencialet për te JAMS</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="380"/>
+        <source>Choose a username</source>
+        <translation>Zgjidhni emër përdoruesi</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
+        <source>Choose an identifier</source>
+        <translation>Zgjidhni identifikues</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
+        <source>The identifier is not available</source>
+        <translation>Identifikuesi s’është i passhëm</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
+        <source>UDP</source>
+        <translation>UDP</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="417"/>
+        <source>Display Name</source>
+        <translation>Emër Në Ekran</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
+        <source>A chosen username can help to be found more easily on Jami.
+If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
+        <translation>Një emër përdoruesi mund të ndihmojë gjetjen tuaj më lehtë në Jami.
+Nëse nuk zgjidhet një emër përdoruesi, kësaj llogarie do t’i përshoqërohet si emër përdoruesi një identifikues me 40 shenja i krijuar kuturu. Gjetja juaj dhe përdorimi i Jamit me të është më i vështirë.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="424"/>
+        <source>This Jami account exists only on this device.
+The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
+        <translation>Kjo llogari Jami ekziston vetëm në këtë pajisje.
+Llogaria do të humbë, nëse humbet kjo pajisje, ose në të çinstalohet aplikacioni. Rekomandohet të bëni një kopjeruajtje të kësaj llogarie.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="430"/>
+        <source>Linking this account to other devices enables it to be used on other devices.</source>
+        <translation>Lidhja e kësaj llogarie te pajisje të tjera bën të mundur përdorimin e saj në pajisje të tjera.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
+        <source>Display advanced settings</source>
+        <translation>Shfaq rregullime të mëtejshme</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
+        <source>Hide advanced settings</source>
+        <translation>Fshihi rregullimet e mëtejshme</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="449"/>
+        <source>This profile is only shared with this account's contacts.
+The profile can be changed at all times from the account&apos;s settings.</source>
+        <translation>Ky profil u tregohet vetëm kontakteve të kësaj llogarie.
+Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
+        <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
+        <translation>Një llogari Jami krijohet dhe depozitohet lokalisht vetëm në këtë pajisje, si një arkiv që përmban kyçet e llogarisë tuaj. Përdorimi i këtij arkivi mundet, në daçi, të mbrohet me fjalëkalim.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="452"/>
+        <source>Please note that if you lose your password, it CANNOT be recovered!</source>
+        <translation>Ju lutemi, kini parasysh se, nëse humbni fjalëkalimin tuaj, NUK mund të rikthehet!</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="474"/>
+        <source>Display banned contacts</source>
+        <translation>Shfaq kontakte të dëbuar</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="476"/>
+        <source>Hide banned contacts</source>
+        <translation>Fshihi kontaktet e dëbuar</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="480"/>
+        <source>Would you really like to delete this account?</source>
+        <translation>Doni vërtet të fshihet kjo llogari?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="481"/>
+        <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
+        <translation>Nëse llogaria juaj s’është kopjeruajtur, apo shtuar te një pajisje tjetër, ajo dhe emri i përdoruesit regjistruar për të do të HUMBIN NË MËNYRË TË PAKTHYESHME.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="491"/>
+        <source>Dark</source>
+        <translation>E errët</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="492"/>
+        <source>Light</source>
+        <translation>E çelët</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
+        <source>Application theme</source>
+        <translation>Temë aplikacioni</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="496"/>
+        <source>Show notifications</source>
+        <translation>Shfaq njoftime</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="497"/>
+        <source>Minimize on close</source>
+        <translation>Minimizoje, kur mbyllet</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="498"/>
+        <source>Run at system startup</source>
+        <translation>Vëre në punë gjatë nisjes së sistemit</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="502"/>
+        <source>Include local video in recording</source>
+        <translation>Përfshi videon vendore në regjistrim</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
+        <source>Preview requires downloading content from third-party servers.</source>
+        <translation>Paraparja lyp shkarkim lënde prej shërbyesish palë të treta.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="513"/>
+        <source>Layout</source>
+        <translation>Strukturë</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
+        <source>Vertical view</source>
+        <translation>Pamje vertikale</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
+        <source>Horizontal view</source>
+        <translation>Pamje horizontale</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
+        <source>(Experimental) Enable call support for swarm</source>
+        <translation>(Eksperimentale) Aktivizoni mbulim thirrjesh për zgjua</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
@@ -2591,26 +3100,6 @@ Ju lutemi, riprovoni më vonë.</translation>
         <translation>Hap tabelë shkurtoresh tastiere</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
-        <source>Debug</source>
-        <translation>Diagnostikoji</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
-        <source>Show Stats</source>
-        <translation>Shfaq Statistika</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
-        <source>Start</source>
-        <translation>Fillo</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
-        <source>Stop</source>
-        <translation>Ndale</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="597"/>
         <source>Report Bug</source>
         <translation>Njoftoni të metë</translation>
@@ -2619,12 +3108,6 @@ Ju lutemi, riprovoni më vonë.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="598"/>
         <source>Clear</source>
         <translation>Spastroje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
-        <source>Cancel</source>
-        <translation>Anuloje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="600"/>
@@ -2647,16 +3130,6 @@ Ju lutemi, riprovoni më vonë.</translation>
         <translation>Hap kartelë</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
-        <source>Generating account…</source>
-        <translation>Po prodhohet llogari…</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
-        <source>Import from backup</source>
-        <translation>Importoni prej kopjeruajtjeje</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="611"/>
         <source>Import from archive backup</source>
         <translation>Importoni prej kopjeruajtjeje arkivi</translation>
@@ -2670,16 +3143,6 @@ Ju lutemi, riprovoni më vonë.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="617"/>
         <source>Enter Jami account password</source>
         <translation>Jepni fjalëkalim llogarie Jami</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
-        <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN.</source>
-        <translation>Jepni PIN-in prej një llogarie tjetër Jami të formësuar. Që të merrni një PIN, përdorni veçorinë “Lidhni Pajisje Tjetër”.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
-        <source>Link device</source>
-        <translation>Lidhni pajisje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="620"/>
@@ -2702,80 +3165,50 @@ Ju lutemi, riprovoni më vonë.</translation>
         <translation>PIN-i dhe fjalëkalimi i llogarisë duhen dhënë te pajisja juaj brenda 10 minutash.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
-        <source>Choose a picture</source>
-        <translation>Zgjidhni një foto</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="840"/>
-        <source>Contact&apos;s name</source>
-        <translation>Emër kontakti</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="857"/>
-        <source>Reinstate member</source>
-        <translation>Riktheni anëtar</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="873"/>
-        <source>Delete message</source>
-        <translation>Fshije mesazhin</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
-        <source>*(Deleted Message)*</source>
-        <translation>*(Mesazh i Fshirë)*</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="875"/>
-        <source>Edit message</source>
-        <translation>Përpunojeni mesazhin</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="635"/>
         <source>Close</source>
         <translation>Mbylle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
-        <source>Call recording</source>
-        <translation>Incizim thirrjesh</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="440"/>
+        <source>Encrypt account</source>
+        <translation>Fshehtëzoje llogarinë</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
-        <source>If the account is encrypted with a password, please fill the following field.</source>
-        <translation>Nëse llogaria është fshehtëzuar me një fjalëkalim, ju lutemi, plotësoni fushën vijuese.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="450"/>
+        <source>Encrypt account with a password</source>
+        <translation>Fshehtëzoni llogarinë me një fjalëkalim</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
-        <source>Enter the PIN code</source>
-        <translation>Jepni kodin PIN</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
+        <source>Link a new device</source>
+        <translation>Lidhni një pajisje të re</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
-        <source>Step 01</source>
-        <translation>Hapi 1</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
+        <source>Default settings</source>
+        <translation>Rregullime parazgjedhje</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
-        <source>Step 02</source>
-        <translation>Hapi 2</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="508"/>
+        <source>Enable typing indicators</source>
+        <translation>Aktivizo tregues shtypjeje</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
-        <source>Step 03</source>
-        <translation>Hapi 3</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="509"/>
+        <source>Send and receive typing indicators showing that a message is being typed.</source>
+        <translation>Dërgoni dhe merrni shenja shtypjeje që tregojnë se po shtypet një mesazh.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
-        <source>Step 04</source>
-        <translation>Hapi 4</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="510"/>
+        <source>Show link preview in conversations</source>
+        <translation>Shfaq paraparje lidhjesh në biseda</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
-        <source>Go to the account management settings of a previous device</source>
-        <translation>Kaloni te rregullime e administrimit të llogarisë së një pajisje të dikurshme</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
+        <source>Accept transfer limit (in Mb)</source>
+        <translation>Kufi pranimi shpërnguljesh (në Mb)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
@@ -2786,11 +3219,6 @@ Ju lutemi, riprovoni më vonë.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
         <source>Fill if the account is password-encrypted.</source>
         <translation>Plotësojeni nëse llogaria është e fshehtëzuar me fjalëkalim.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="636"/>
-        <source>Enter account&apos;s password</source>
-        <translation>Jepni fjalëkalimin e llogarisë</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="637"/>
@@ -2843,24 +3271,9 @@ Ju lutemi, riprovoni më vonë.</translation>
         <translation>Importo avatar prej kartele figurë</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
-        <source>Stop taking photo</source>
-        <translation>Resht së bëri foto</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="654"/>
-        <source>Clear avatar image</source>
-        <translation>Spastro figurë avatari</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="655"/>
         <source>Take photo</source>
         <translation>Bëni një foto</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
-        <source>Enable</source>
-        <translation>Aktivizoje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="660"/>
@@ -2908,37 +3321,6 @@ Ju lutemi, riprovoni më vonë.</translation>
         <translation>Jeni i sigurt se doni të çinstalohet %1?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="669"/>
-        <source>Display or hide preferences</source>
-        <translation>Shfaq ose fshih parapëlqime</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
-        <source>Add new plugin</source>
-        <translation>Shtoni shtojcë të re</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="671"/>
-        <source>Go back to plugins list</source>
-        <translation>Kthehu te lista e shtojcave</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
-        <source>Select a file</source>
-        <translation>Përzgjidhni kartelë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="117"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="673"/>
-        <source>Select</source>
-        <translation>Përzgjidhe</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="674"/>
-        <source>Choose image file</source>
-        <translation>Zgjidhni kartelë figure</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="675"/>
         <source>Display or hide General plugin settings</source>
         <translation>Shfaqni ose fshihni rregullet e Përgjithshme të shtojcave</translation>
@@ -2984,29 +3366,9 @@ Ju lutemi, riprovoni më vonë.</translation>
         <translation>Zgjidhni Shtojcë</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="686"/>
-        <source>Profile is only shared with contacts</source>
-        <translation>Profili ndahet vetëm me kontaktet</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="687"/>
         <source>Save profile</source>
         <translation>Ruaje profilin</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
-        <source>Enter your name</source>
-        <translation>Jepni emrin tuaj</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
-        <source>Enter the rendezvous point&apos;s name</source>
-        <translation>Jepni emrin e pikës së takimit</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="690"/>
-        <source>Creating rendezvous point…</source>
-        <translation>Po krijohet pikë takimi…</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="691"/>
@@ -3096,24 +3458,9 @@ Kopjojeni dhe jepuani shokëve!</translation>
         <translation>Shfaq veçori të thelluara</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="718"/>
-        <source>Hide advanced features</source>
-        <translation>Fshihi veçoritë e thelluara</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="719"/>
         <source>Connect to a JAMS server</source>
         <translation>Lidhu me një shërbyes JAMS</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
-        <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>Krijoni llogari prej Shërbyesi Administrimi Llogarish Jami (JAMS)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
-        <source>Configure a SIP account</source>
-        <translation>Formësoni një llogari SIP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
@@ -3121,74 +3468,9 @@ Kopjojeni dhe jepuani shokëve!</translation>
         <translation>Gabim gjatë krijimit të llogarisë tuaj. Kontrolloni kredencialet tuaja.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
-        <source>Create a rendezvous point</source>
-        <translation>Krijoni një pikë takimesh</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
-        <source>Create a Jami account</source>
-        <translation>Krijoni një llogari Jami</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
-        <source>Join Jami</source>
-        <translation>Bëhuni pjesë e Jami-t</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
-        <source>Create new Jami account</source>
-        <translation>Krijoni llogari Jami të re</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="727"/>
-        <source>Create new SIP account</source>
-        <translation>Krijoni llogari SIP të re</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
-        <source>About Jami</source>
-        <translation>Mbi Jami-n</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
-        <source>Welcome to</source>
-        <translation>Mirë se vini te</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
-        <source>I already have an account</source>
-        <translation>Kam tashmë një llogari</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
-        <source>Use existing Jami account</source>
-        <translation>Përdorni llogari Jami ekzistuese</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
-        <source>Welcome to Jami</source>
-        <translation>Mirë se vini te Jami</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="878"/>
-        <source>Share this Jami identifier to be contacted on this account!</source>
-        <translation>Që të kontaktoheni në këtë llogari, jepuni këtë identifikues Jami!</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="879"/>
-        <source>Here is your Jami identifier, don&apos;t hesitate to share it in order to be contacted more easily!</source>
-        <translation>Ja identifikuesi juaj Jami, mos ngurroni t’ua jepni të tjerëve, që të mund të lidheni më kollaj!</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="736"/>
         <source>Clear Text</source>
         <translation>Tekst i Thjeshtë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
-        <source>Conversations</source>
-        <translation>Biseda</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
@@ -3196,50 +3478,14 @@ Kopjojeni dhe jepuani shokëve!</translation>
         <translation>Përfundime Kërkimi</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
-        <source>Decline contact request</source>
-        <translation>Hidhe poshtë kërkesën për kontakt</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
-        <source>Accept contact request</source>
-        <translation>Pranoni kërkesë kontakti</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
-        <source>Automatically check for updates</source>
-        <translation>Kontrollo vetvetiu për përditësime</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
-        <source>Ok</source>
-        <translation>Në rregull</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
-        <source>Save</source>
-        <translation>Ruaje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
-        <source>Upgrade</source>
-        <translation>Përmirësoje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
-        <source>Later</source>
-        <translation>Më vonë</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
         <source>Delete</source>
         <translation>Fshije</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
-        <source>Block</source>
-        <translation>Bllokoje</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
+        <source>Unban</source>
+        <translation>Zhdëboje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="760"/>
@@ -3267,11 +3513,6 @@ Kopjojeni dhe jepuani shokëve!</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="766"/>
         <source>Hangup</source>
         <translation>Mbylle</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
-        <source>Local muted</source>
-        <translation>Heshtuar lokalisht</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="770"/>
@@ -3302,239 +3543,6 @@ Kopjojeni dhe jepuani shokëve!</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
         <source>Remove default moderator</source>
         <translation>Hiq moderator parazgjedhje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
-        <source>Is swarm:</source>
-        <translation>Është zgjua:</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
-        <source>True</source>
-        <translation>True</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="785"/>
-        <source>False</source>
-        <translation>False</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="788"/>
-        <source>Add emoji</source>
-        <translation>Shtoni emoji</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
-        <source>Send file</source>
-        <translation>Dërgo kartelë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="791"/>
-        <source>Leave audio message</source>
-        <translation>Lini mesazh audio</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="792"/>
-        <source>Leave video message</source>
-        <translation>Lini mesazh video</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
-        <source>Send</source>
-        <translation>Dërgoje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="486"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="809"/>
-        <source>Remove</source>
-        <translation>Hiqe</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="42"/>
-        <source>Migrate conversation</source>
-        <translation>Migroje bisedën</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="496"/>
-        <source>Show notifications</source>
-        <translation>Shfaq njoftime</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="497"/>
-        <source>Minimize on close</source>
-        <translation>Minimizoje, kur mbyllet</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="498"/>
-        <source>Run at system startup</source>
-        <translation>Vëre në punë gjatë nisjes së sistemit</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
-        <source>Create account from backup</source>
-        <translation>Krijoni llogari prej kopjeruajtjeje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
-        <source>You can obtain an archive by clicking on &quot;Back up account&quot; in the Account Settings. This will create a .gz file on your device.</source>
-        <translation>Një arkiv mund ta përftoni duke klikuar mbi “Kopjeruani llogari” që nga Rregullime Llogarie. Kjo do të krijojë në pajisjen tuaj një kartelë .gz.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
-        <source>Restore account from backup</source>
-        <translation>Riktheni llogari prej kopjeruajtjeje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
-        <source>Import Jami account from local archive file.</source>
-        <translation>Importo llogari Jami prej një kartele vendore arkiv</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
-        <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation>Kartela Figurë (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
-        <source>Write to %1</source>
-        <translation>Shkruajini %1</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="829"/>
-        <source>%1 has sent you a request for a conversation.</source>
-        <translation>%1 ju ka dërguar një kërkesë për bisedë.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="830"/>
-        <source>Hello,
-Would you like to join the conversation?</source>
-        <translation>Tungjatjeta,
-Do të donit të merrnit pjesë në bisedë?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="831"/>
-        <source>You have accepted
-the conversation request</source>
-        <translation>E keni pranuar
-kërkesën për bisedë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
-        <source>Waiting until %1
-connects to synchronize the conversation.</source>
-        <translation>Po priter deri sa %1
-të lidhet, për njëkohësim të bisedës.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="835"/>
-        <source>About</source>
-        <translation>Mbi</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="836"/>
-        <source>%1 Members</source>
-        <translation>%1 Anëtarë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="837"/>
-        <source>Member</source>
-        <translation>Anëtar</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
-        <source>Documents</source>
-        <translation>Dokumente</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
-        <source>Swarm&apos;s name</source>
-        <translation>Emër zgjoi</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="841"/>
-        <source>Add a description</source>
-        <translation>Shtoni një përshkrim</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
-        <source>Ignore all notifications from this conversation</source>
-        <translation>Shpërfilli krejt njoftimet prej kësaj bisedë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
-        <source>Choose a color</source>
-        <translation>Zgjidhni një ngjyrë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="847"/>
-        <source>Leave conversation</source>
-        <translation>Braktise bisedën</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="848"/>
-        <source>Leave</source>
-        <translation>Braktise</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
-        <source>Type of swarm</source>
-        <translation>Lloj zgjoi</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="853"/>
-        <source>Create the swarm</source>
-        <translation>Krijoje zgjoin</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
-        <source>Go to conversation</source>
-        <translation>Kalo te biseda</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="855"/>
-        <source>Promote to administrator</source>
-        <translation>Gradojeni si përgjegjës</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="856"/>
-        <source>Kick member</source>
-        <translation>Përzini anëtar</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
-        <source>Administrator</source>
-        <translation>Përgjegjës</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
-        <source>Invited</source>
-        <translation>Ftuar</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
-        <source>Remove member</source>
-        <translation>Hiqni anëtar</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
-        <source>To:</source>
-        <translation>Për:</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="864"/>
-        <source>Customize</source>
-        <translation>Përshtateni</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
-        <source>Dismiss</source>
-        <translation>Hidhe Tej</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
-        <source>Your profile is only shared with your contacts</source>
-        <translation>Profili juaj ndahet vetëm me kontaktet tuaja</translation>
     </message>
 </context>
 <context>
@@ -3780,9 +3788,82 @@ të lidhet, për njëkohësim të bisedës.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="473"/>
-        <source>Me</source>
-        <translation>Unë</translation>
+        <location filename="../src/app/messagesadapter.cpp" line="355"/>
+        <source>Sending</source>
+        <translation>Po dërgohet</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="357"/>
+        <source>Failure</source>
+        <translation>Dështim</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="359"/>
+        <source>Sent</source>
+        <translation>Dërguar</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="361"/>
+        <location filename="../src/libclient/api/call.h" line="72"/>
+        <source>Connecting</source>
+        <translation>Po lidhet</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="363"/>
+        <source>Accept</source>
+        <translation>Pranoje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="365"/>
+        <source>Canceled</source>
+        <translation>U anulua</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="368"/>
+        <source>Unable to make contact</source>
+        <translation>S’arrihet të vendoset kontakt</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="370"/>
+        <source>Ongoing</source>
+        <translation>Në punë e sipër</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="372"/>
+        <source>Waiting for contact</source>
+        <translation>Po pritet për kontakt</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="374"/>
+        <source>Incoming transfer</source>
+        <translation>Shpërngulje ardhëse</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="376"/>
+        <source>Timed out waiting for contact</source>
+        <translation>Mbaroi koha duke pritur për kontakt</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="378"/>
+        <location filename="../src/libclient/api/call.h" line="78"/>
+        <location filename="../src/libclient/api/call.h" line="84"/>
+        <source>Finished</source>
+        <translation>Përfundoi</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="722"/>
+        <source>Today</source>
+        <translation>Sot</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="724"/>
+        <source>Yesterday</source>
+        <translation>Dje</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="703"/>
+        <source>just now</source>
+        <translation>mu tani</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
@@ -3810,12 +3891,6 @@ të lidhet, për njëkohësim të bisedës.</translation>
         <translation>Po thirret</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="361"/>
-        <location filename="../src/libclient/api/call.h" line="72"/>
-        <source>Connecting</source>
-        <translation>Po lidhet</translation>
-    </message>
-    <message>
         <location filename="../src/libclient/api/call.h" line="74"/>
         <source>Searching</source>
         <translation>Po kërkohet</translation>
@@ -3824,13 +3899,6 @@ të lidhet, për njëkohësim të bisedës.</translation>
         <location filename="../src/libclient/api/call.h" line="76"/>
         <source>Inactive</source>
         <translation>Jo aktiv</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="378"/>
-        <location filename="../src/libclient/api/call.h" line="78"/>
-        <location filename="../src/libclient/api/call.h" line="84"/>
-        <source>Finished</source>
-        <translation>Përfundoi</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
@@ -3846,12 +3914,6 @@ të lidhet, për njëkohësim të bisedës.</translation>
         <location filename="../src/libclient/api/call.h" line="86"/>
         <source>Communication established</source>
         <translation>Komunikimi u vendos</translation>
-    </message>
-    <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="1004"/>
-        <source>Invitation received</source>
-        <translation>Ftesa u mor</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="260"/>
@@ -3918,6 +3980,12 @@ të lidhet, për njëkohësim të bisedës.</translation>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="198"/>
         <source>Join call</source>
         <translation>Merr pjesë në thirrje</translation>
+    </message>
+    <message>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="1004"/>
+        <source>Invitation received</source>
+        <translation>Ftesa u mor</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="213"/>
@@ -4208,69 +4276,9 @@ të lidhet, për njëkohësim të bisedës.</translation>
         <translation>E papranuar Gjëkundi</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="363"/>
-        <source>Accept</source>
-        <translation>Pranoje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="355"/>
-        <source>Sending</source>
-        <translation>Po dërgohet</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="359"/>
-        <source>Sent</source>
-        <translation>Dërguar</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="368"/>
-        <source>Unable to make contact</source>
-        <translation>S’arrihet të vendoset kontakt</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="372"/>
-        <source>Waiting for contact</source>
-        <translation>Po pritet për kontakt</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="374"/>
-        <source>Incoming transfer</source>
-        <translation>Shpërngulje ardhëse</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="376"/>
-        <source>Timed out waiting for contact</source>
-        <translation>Mbaroi koha duke pritur për kontakt</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="722"/>
-        <source>Today</source>
-        <translation>Sot</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="724"/>
-        <source>Yesterday</source>
-        <translation>Dje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="365"/>
-        <source>Canceled</source>
-        <translation>U anulua</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="370"/>
-        <source>Ongoing</source>
-        <translation>Në punë e sipër</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="703"/>
-        <source>just now</source>
-        <translation>mu tani</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="357"/>
-        <source>Failure</source>
-        <translation>Dështim</translation>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="473"/>
+        <source>Me</source>
+        <translation>Unë</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="109"/>
@@ -4285,6 +4293,14 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/app/positioning.cpp" line="114"/>
         <source>locationServicesUnknownError</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SettingParaCombobox</name>
+    <message>
+        <location filename="../src/app/commoncomponents/SettingParaCombobox.qml" line="42"/>
+        <source/>
         <translation type="unfinished"/>
     </message>
 </context>
