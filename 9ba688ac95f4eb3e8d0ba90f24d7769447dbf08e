@@ -52,6 +52,24 @@
       "parentUuid": "a760b030_00e5ec91",
       "revId": "9ba688ac95f4eb3e8d0ba90f24d7769447dbf08e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47d398e6_6b2db5e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-04T14:53:23Z",
+      "side": 1,
+      "message": "Okay nice that\u0027ll simplify the code regarding QVideoFrame. The mutexes will need to be in a moveable container, or we can keep the std::map\u003cQString, std::unique_ptr\u003cFrameObject\u003e\u003e.",
+      "parentUuid": "9332b209_06711edc",
+      "revId": "9ba688ac95f4eb3e8d0ba90f24d7769447dbf08e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
