@@ -831,7 +831,7 @@ ConversationModel::removeConversation(const QString& uid, bool banned)
                     "participant";
         return;
     }
-    if (conversation.isSwarm() && !banned) {
+    if (conversation.isSwarm() && !banned && !conversation.isCoreDialog()) {
         if (conversation.isRequest)
             ConfigurationManager::instance().declineConversationRequest(owner.id, uid);
         else
@@ -2824,6 +2824,7 @@ ConversationModelPimpl::slotConversationRemoved(const QString& accountId,
             return;
         }
         auto contactUri = peers.first();
+        auto mode = conversation.mode;
         contact::Info contact;
         try {
             contact = linked.owner.contactModel->getContact(contactUri);
@@ -2832,7 +2833,7 @@ ConversationModelPimpl::slotConversationRemoved(const QString& accountId,
 
         removeConversation();
 
-        if (conversation.mode == conversation::Mode::ONE_TO_ONE) {
+        if (mode == conversation::Mode::ONE_TO_ONE) {
             // If it's a 1:1 conversation and we don't have any more conversation
             // we can remove the contact
             auto contactRemoved = true;
