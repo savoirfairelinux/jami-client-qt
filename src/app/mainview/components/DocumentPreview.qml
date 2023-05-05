@@ -103,7 +103,7 @@ Item {
 
                     ResponsiveImage {
                         id: fileIcon
-                        visible: !mediaInfo.isImage && !mediaInfo.isAnimatedImage
+                        visible: (!mediaInfo.isImage && !mediaInfo.isAnimatedImage) || icon.status == Image.Error
                         anchors.fill: parent
                         anchors.margins: 8
                         source: {
@@ -120,7 +120,7 @@ Item {
                     }
 
                     AnimatedImage {
-                        id: name
+                        id: icon
 
                         property string fileSource: ""
                         anchors.fill: parent
