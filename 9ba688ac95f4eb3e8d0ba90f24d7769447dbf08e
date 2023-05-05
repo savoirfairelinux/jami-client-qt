@@ -88,6 +88,24 @@
       "parentUuid": "47d398e6_6b2db5e4",
       "revId": "9ba688ac95f4eb3e8d0ba90f24d7769447dbf08e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eea61bf0_49034d63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-05T20:55:34Z",
+      "side": 1,
+      "message": "Yeah, I think in terms of a QQuickItem refactor, we\u0027ll wait to see what Qt 6.5 with the Ffmpeg backend has to offer. However, we are having trouble finding the time and prioritizing that currently. Here is an epic I made a while back for that: https://git.jami.net/groups/savoirfairelinux/-/epics/40, hopefully I can work on that soon.\n\n\u003e And of course if the daemon and clients are different processes (like with DBus) we can just use Pipewire :).\nInteresting. Currently, we are using shared memory and there are some syncing issues in the client that I have patches to fix (still needs some reworking in AVModel as the whole design was based on a fixed rate consumer).",
+      "parentUuid": "f05dab16_c66afb42",
+      "revId": "9ba688ac95f4eb3e8d0ba90f24d7769447dbf08e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
