@@ -78,7 +78,6 @@ ListSelectionView {
                 property string currentConvId: CurrentConversation.id
                 onCurrentConvIdChanged: {
                     if (!CurrentConversation.hasCall) {
-                        resetPanels();
                         Qt.callLater(focusChatView);
                     } else {
                         dismiss();
