@@ -47,10 +47,6 @@ Rectangle {
         chatViewFooter.textInput.forceActiveFocus();
     }
 
-    function resetPanels() {
-        chatViewHeader.showSearch = true;
-    }
-
     function instanceMapObject() {
         if (WITH_WEBENGINE) {
             var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
@@ -86,7 +82,6 @@ Rectangle {
         if (visible) {
             chatViewSplitView.resolvePanes(true);
             if (root.parent.objectName === "CallViewChatViewContainer") {
-                chatViewHeader.showSearch = !root.parent.showDetails;
                 if (root.parent.showDetails) {
                     extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel);
                 } else {

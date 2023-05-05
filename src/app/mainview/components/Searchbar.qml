@@ -28,11 +28,15 @@ RowLayout {
     property string currentConversationId: CurrentConversation.id
 
     property bool isOpen: extrasPanel.isOpen(ChatView.MessagesResearchPanel)
-    onIsOpenChanged: if (isOpen)
-        textArea.forceActiveFocus()
+    onIsOpenChanged: {
+        if (isOpen)
+            textArea.forceActiveFocus()
+    }
 
     PushButton {
         id: startSearchMessages
+        Layout.preferredHeight: 30
+        Layout.preferredWidth: 30
 
         source: JamiResources.search_svg
         normalColor: JamiTheme.chatviewBgColor
@@ -60,7 +64,7 @@ RowLayout {
             }
         }
 
-        Layout.preferredWidth: isOpen ? JamiTheme.searchbarSize : 0
+        width: isOpen ? JamiTheme.searchbarSize : 0
         Behavior on Layout.preferredWidth  {
             NumberAnimation {
                 duration: 150
