@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06f23000_0cbc819b",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2023-05-06T19:33:54Z",
+      "side": 1,
+      "message": "Remove?",
+      "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e3bbdd6_c7c2ca96",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2023-05-06T19:33:54Z",
+      "side": 1,
+      "message": "Are you sure that this operation is thread-safe? Documentation says nothing about it.",
+      "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
