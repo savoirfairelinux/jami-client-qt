@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8bfa42dd_e1c52b2c",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-08T22:18:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "06f23000_0cbc819b",
+      "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e3bbdd6_c7c2ca96",
         "filename": "src/app/videoprovider.h",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2023-05-06T19:33:54Z",
       "side": 1,
       "message": "Are you sure that this operation is thread-safe? Documentation says nothing about it.",
+      "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0343ce80_4cc94e5e",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-08T22:18:56Z",
+      "side": 1,
+      "message": "Good point. AFAICS, the only way to prevent \"undefined behavior\" in the case of an upload during the swap would be to have both frames mapped write-only.",
+      "parentUuid": "3e3bbdd6_c7c2ca96",
       "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
