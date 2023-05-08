@@ -36,6 +36,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8c7ec7b_c9456456",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-08T22:44:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bfa42dd_e1c52b2c",
+      "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e3bbdd6_c7c2ca96",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Good point. AFAICS, the only way to prevent \"undefined behavior\" in the case of an upload during the swap would be to have both frames mapped write-only.",
       "parentUuid": "3e3bbdd6_c7c2ca96",
+      "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6161198_7e5df7a0",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-08T22:44:08Z",
+      "side": 1,
+      "message": "I think the current sequence is:\n```\nsequenceDiagram\n    participant libjami\n    participant VideoProvider\n    participant Qml/QSGRenderThread\n    loop render cycle\n        alt DirectRenderer\n            libjami-\u003e\u003eVideoProvider: frameBufferRequested\n            VideoProvider-\u003e\u003elibjami: +w - frame2, wrap in AVFrame\n        end\n        libjami-\u003e\u003eVideoProvider: frameUpdated\n        alt ShmRenderer\n            VideoProvider-\u003e\u003eVideoProvider: +w - frame2, copy from SHM\n        end\n        VideoProvider-\u003e\u003eVideoProvider: make sure both frames are locked\n        VideoProvider-\u003e\u003eVideoProvider: swap them\n        VideoProvider-\u003e\u003eVideoProvider: make sure both frames are unmapped\n        VideoProvider--)Qml/QSGRenderThread: notify frame1 for upload\n    end\n    Qml/QSGRenderThread--)Qml/QSGRenderThread: +r frame1, upload\n```\n\nAnd I think this might be excessive. Docs say `This may involve copying the contents around, so avoid mapping and unmapping unless required`, and haven\u0027t seen any issues with the unprotected swap. Considering `If the map mode includes the QVideoFrame::ReadOnly flag the mapped memory will be populated with the content of the video frame when initially mapped`, and that the upload is queued, if it occurs during the swap, what would happen? I figured the \"undefined behavior\" would be some tearing, as both frames are the same format/size.\n\nWhat do you think?",
+      "parentUuid": "0343ce80_4cc94e5e",
       "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
