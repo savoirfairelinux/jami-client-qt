@@ -29,7 +29,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="961"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Captura de pantalla</translation>
     </message>
 </context>
 <context>
@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="183"/>
         <source>%1 received a new message</source>
-        <translation type="unfinished"/>
+        <translation>%1 recibió un mensaje nuevo</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="243"/>
@@ -879,17 +879,18 @@ En caso afirmativo sólo un identificador aleatoriamente generado de 40 caracter
         <location filename="../src/app/constant/JamiStrings.qml" line="542"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation type="unfinished"/>
+        <translation>Hay una nueva versión de Jami disponible
+¿Quieres actualizar ahora?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="564"/>
         <source>Save recordings to</source>
-        <translation type="unfinished"/>
+        <translation>Guardar grabaciones en</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="565"/>
         <source>Save screenshots to</source>
-        <translation type="unfinished"/>
+        <translation>Guardar capturas de pantalla en</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
@@ -914,12 +915,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
         <source> replied to</source>
-        <translation type="unfinished"/>
+        <translation>responder a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
         <source>Mute conversation</source>
-        <translation type="unfinished"/>
+        <translation>Silenciar conversación</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
@@ -994,12 +995,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
         <source>Why should I back-up this account?</source>
-        <translation type="unfinished"/>
+        <translation>¿Por qué debería hacer una copia de respaldo de esta cuenta?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later (in the Account Settings).</source>
-        <translation type="unfinished"/>
+        <translation>Su cuenta sólo existe en este dispositivo. Si pierde el dispositivo o desinstala la aplicación su cuenta será borrada y NO PUEDE ser recuperada. Puede hacer una copia de respaldo de su cuenta ahora o más tarde (desde Configuraciones de Cuenta).</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
@@ -1107,12 +1108,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
         <source>Audio and Video</source>
-        <translation type="unfinished"/>
+        <translation>Audio y Video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="189"/>
         <source>Sound test</source>
-        <translation type="unfinished"/>
+        <translation>Prueba de sonido</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
@@ -1287,7 +1288,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
         <source>Advanced information</source>
-        <translation type="unfinished"/>
+        <translation>Información avanzada</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
@@ -1317,7 +1318,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="297"/>
         <source>Screenshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Captura de pantalla guardada en %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
@@ -1347,12 +1348,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Video codec</source>
-        <translation type="unfinished"/>
+        <translation>Códec de vídeo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Aceleración por hardware</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
@@ -1362,7 +1363,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
         <source>Audio codec</source>
-        <translation type="unfinished"/>
+        <translation>Códec de audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
@@ -1372,7 +1373,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
         <source>Fps</source>
-        <translation type="unfinished"/>
+        <translation>Cps</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
@@ -1387,22 +1388,22 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
         <source>10 minutes</source>
-        <translation type="unfinished"/>
+        <translation>10 minutos</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
         <source>One hour</source>
-        <translation type="unfinished"/>
+        <translation>Una hora</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <source>%1 minutes left</source>
-        <translation type="unfinished"/>
+        <translation>Quedan %1 minutos</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
         <source>%1 minute left</source>
-        <translation type="unfinished"/>
+        <translation>Quedan %1 minutos</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
@@ -1414,7 +1415,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
         <source>Your precise location could not be determined. Please check your Internet connection.</source>
-        <translation type="unfinished"/>
+        <translation>Su ubicación precisa no pudo ser determinada. Por favor verifique su conexión a Internet.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="321"/>
@@ -2420,7 +2421,7 @@ Por favor intentalo más tarde.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="875"/>
         <source>Edit message</source>
-        <translation type="unfinished"/>
+        <translation>Editar mensaje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="528"/>

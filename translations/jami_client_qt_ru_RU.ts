@@ -29,7 +29,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="961"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Снимок экрана</translation>
     </message>
 </context>
 <context>
@@ -222,7 +222,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="42"/>
         <source>Migrate conversation</source>
-        <translation type="unfinished"/>
+        <translation>Перенести беседу</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="83"/>
@@ -565,7 +565,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation type="unfinished"/>
+        <translation>Переход на технологию роёв позволит синхронизировать эту беседу между различными устройствами и повысить надёжность. В процессе история старых бесед будет очищена.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
@@ -585,7 +585,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="65"/>
         <source>Add to conversation</source>
-        <translation type="unfinished"/>
+        <translation>Добавить к беседе</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="66"/>
@@ -595,12 +595,12 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
         <source>Certificate File (*.crt)</source>
-        <translation type="unfinished"/>
+        <translation>Файл сертификата (*.crt)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="90"/>
         <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation type="unfinished"/>
+        <translation>Аудиофайл (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
@@ -620,7 +620,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="118"/>
         <source>Key File (*.key)</source>
-        <translation type="unfinished"/>
+        <translation>Файл ключа (*.key)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="121"/>
@@ -881,17 +881,17 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="564"/>
         <source>Save recordings to</source>
-        <translation type="unfinished"/>
+        <translation>Сохранять записи в</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="565"/>
         <source>Save screenshots to</source>
-        <translation type="unfinished"/>
+        <translation>Сохранять снимки экрана в</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
         <source>Create account from backup</source>
-        <translation type="unfinished"/>
+        <translation>Создать аккаунт из резервной копии</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
@@ -911,7 +911,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
         <source> replied to</source>
-        <translation type="unfinished"/>
+        <translation>в ответ на</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
@@ -931,7 +931,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
         <source>Tip</source>
-        <translation type="unfinished"/>
+        <translation>Совет</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
@@ -986,7 +986,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="200"/>
         <source>Mirror local video</source>
-        <translation type="unfinished"/>
+        <translation>Отразить своё видео</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
@@ -1104,12 +1104,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
         <source>Audio and Video</source>
-        <translation type="unfinished"/>
+        <translation>Аудио и видео</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="189"/>
         <source>Sound test</source>
-        <translation type="unfinished"/>
+        <translation>Проверка звука</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
@@ -1159,22 +1159,22 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
         <source>On the side</source>
-        <translation type="unfinished"/>
+        <translation>Сбоку</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
         <source>On the top</source>
-        <translation type="unfinished"/>
+        <translation>Сверху</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="252"/>
         <source>Hide self</source>
-        <translation type="unfinished"/>
+        <translation>Скрыть себя</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="253"/>
         <source>Hide spectators</source>
-        <translation type="unfinished"/>
+        <translation>Скрыть зрителей</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="258"/>
@@ -1284,7 +1284,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
         <source>Advanced information</source>
-        <translation type="unfinished"/>
+        <translation>Дополнительная информация</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
@@ -1344,12 +1344,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Video codec</source>
-        <translation type="unfinished"/>
+        <translation>Видеокодек</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Аппаратное ускорение</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
@@ -1359,7 +1359,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
         <source>Audio codec</source>
-        <translation type="unfinished"/>
+        <translation>Аудиокодек</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
@@ -1384,22 +1384,22 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
         <source>10 minutes</source>
-        <translation type="unfinished"/>
+        <translation>10 минут</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
         <source>One hour</source>
-        <translation type="unfinished"/>
+        <translation>Один час</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <source>%1 minutes left</source>
-        <translation type="unfinished"/>
+        <translation>%1 минут осталось</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
         <source>%1 minute left</source>
-        <translation type="unfinished"/>
+        <translation>%1 минута осталась</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
@@ -1461,12 +1461,12 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
         <source>Unpin</source>
-        <translation type="unfinished"/>
+        <translation>Открепить</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
         <source>Pin</source>
-        <translation type="unfinished"/>
+        <translation>Закрепить</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="337"/>
@@ -1486,12 +1486,12 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
         <source>Unlimited</source>
-        <translation type="unfinished"/>
+        <translation>Без ограничений</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
         <source>1 min</source>
-        <translation type="unfinished"/>
+        <translation>1 мин</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="345"/>
@@ -1521,7 +1521,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
         <source>The account is disabled</source>
-        <translation type="unfinished"/>
+        <translation>Аккаунт отключён</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
@@ -1536,12 +1536,12 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
         <source>Back to Call</source>
-        <translation type="unfinished"/>
+        <translation>Назад к звонку</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="356"/>
         <source>Jump to</source>
-        <translation type="unfinished"/>
+        <translation>Перейти к</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="357"/>
@@ -1551,7 +1551,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>Файлы</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="359"/>
@@ -2136,7 +2136,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
         <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation type="unfinished"/>
+        <translation>Эта функция включит кнопки звонка в роях с несколькими участниками.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
@@ -2151,27 +2151,27 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
         <source>Enter the PIN code</source>
-        <translation type="unfinished"/>
+        <translation>Введите ПИН-код</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
         <source>Step 01</source>
-        <translation type="unfinished"/>
+        <translation>Шаг 01</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
         <source>Step 02</source>
-        <translation type="unfinished"/>
+        <translation>Шаг 02</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
         <source>Step 03</source>
-        <translation type="unfinished"/>
+        <translation>Шаг 03</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
         <source>Step 04</source>
-        <translation type="unfinished"/>
+        <translation>Шаг 04</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
@@ -2191,12 +2191,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
         <source>Choose a picture</source>
-        <translation type="unfinished"/>
+        <translation>Выберите картинку</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
         <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Файлы изображений (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
@@ -2211,7 +2211,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
         <source>more emojis</source>
-        <translation type="unfinished"/>
+        <translation>ещё эмодзи</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
@@ -2292,12 +2292,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="836"/>
         <source>%1 Members</source>
-        <translation type="unfinished"/>
+        <translation>%1 участников</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="837"/>
         <source>Member</source>
-        <translation type="unfinished"/>
+        <translation>Участник</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
@@ -2307,7 +2307,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
         <source>Swarm&apos;s name</source>
-        <translation type="unfinished"/>
+        <translation>Имя роя</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="840"/>
@@ -2342,7 +2342,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
         <source>Type of swarm</source>
-        <translation type="unfinished"/>
+        <translation>Тип роя</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="853"/>
@@ -2686,12 +2686,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
         <source>Start swarm</source>
-        <translation type="unfinished"/>
+        <translation>Запустить рой</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
         <source>Create swarm</source>
-        <translation type="unfinished"/>
+        <translation>Создать рой</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
@@ -2771,7 +2771,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
         <source>Block swarm</source>
-        <translation type="unfinished"/>
+        <translation>Заблокировать рой</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
@@ -2974,7 +2974,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
         <source>(Experimental) Enable call support for swarm</source>
-        <translation type="unfinished"/>
+        <translation>(Экспериментальая) Включить поддержку звонков для роя</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
@@ -3701,17 +3701,17 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettingsPage.qml" line="56"/>
         <source>%1h%2min</source>
-        <translation type="unfinished"/>
+        <translation>%1ч%2мин</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettingsPage.qml" line="58"/>
         <source>%1h</source>
-        <translation type="unfinished"/>
+        <translation>%1ч</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettingsPage.qml" line="60"/>
         <source>%1min</source>
-        <translation type="unfinished"/>
+        <translation>%1мин</translation>
     </message>
 </context>
 <context>
@@ -3737,27 +3737,27 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="56"/>
         <source>%1h%2min</source>
-        <translation type="unfinished"/>
+        <translation>%1ч%2мин</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="58"/>
         <source>%1h</source>
-        <translation type="unfinished"/>
+        <translation>%1ч</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="62"/>
         <source>%1m%2sec</source>
-        <translation type="unfinished"/>
+        <translation>%1м%2с</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
         <source>%1m</source>
-        <translation type="unfinished"/>
+        <translation>%1м</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="66"/>
         <source>%1sec</source>
-        <translation type="unfinished"/>
+        <translation>%1с</translation>
     </message>
 </context>
 <context>
@@ -3938,7 +3938,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="358"/>
         <source>Swarm created</source>
-        <translation type="unfinished"/>
+        <translation>Рой создан</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="174"/>

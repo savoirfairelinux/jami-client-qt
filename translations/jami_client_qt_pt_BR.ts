@@ -9,7 +9,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="152"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>Chamada perdida com %1</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="454"/>
@@ -29,7 +29,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="961"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Captura de tela</translation>
     </message>
 </context>
 <context>
@@ -2221,7 +2221,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
         <source>In reply to</source>
-        <translation type="unfinished"/>
+        <translation>Em resposta à</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="814"/>

@@ -42,7 +42,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="243"/>
         <source>%1 received a new trust request</source>
-        <translation>%1 a reçu une nouvelle demande de contact</translation>
+        <translation>%1 a reçu une nouvelle demande de confiance  </translation>
     </message>
 </context>
 <context>
@@ -81,12 +81,12 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="142"/>
         <source>Public group</source>
-        <translation>Groupe publique</translation>
+        <translation>Groupe public</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="323"/>
         <source>An error occurred while fetching this repository</source>
-        <translation>Une erreur s&apos;est produite lors de la récupération de ce référentiel.</translation>
+        <translation>Une erreur s&apos;est produite lors de la récupération de ce référentiel</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="325"/>
@@ -213,7 +213,7 @@ Veuillez entrer votre mot de passe.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
         <source>Incoming audio call from {}</source>
-        <translation>Appel audio entrant de  {}</translation>
+        <translation>Appel audio entrant de {}</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
@@ -238,7 +238,7 @@ Veuillez entrer votre mot de passe.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="85"/>
         <source>Enable custom ringtone</source>
-        <translation>Activer les sonneries personnalisables</translation>
+        <translation>Activer une sonnerie personnalisée</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="86"/>
@@ -248,7 +248,7 @@ Veuillez entrer votre mot de passe.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="87"/>
         <source>Add a custom ringtone</source>
-        <translation>Ajouter une sonnerie externe</translation>
+        <translation>Ajouter une sonnerie personnalisée</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="88"/>
@@ -288,7 +288,7 @@ Veuillez entrer votre mot de passe.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="105"/>
         <source>CA certificate</source>
-        <translation>Certificat de l&apos;Autorité de Certification</translation>
+        <translation>Certificat de l&apos;Autorité de certification</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="106"/>
@@ -313,12 +313,12 @@ Veuillez entrer votre mot de passe.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="110"/>
         <source>Verify server TLS certificates</source>
-        <translation>Vérifier les certificats cotés serveur</translation>
+        <translation>Vérifier les certificats TLS du serveur</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="111"/>
         <source>Require certificate for incoming TLS connections</source>
-        <translation>Nécessite un certificat pour les connexions TLS entrantes</translation>
+        <translation>Exiger un certificat pour les connexions TLS entrantes</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="113"/>
@@ -338,7 +338,7 @@ Veuillez entrer votre mot de passe.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
         <source>Registration expiration time (seconds)</source>
-        <translation>Temps d&apos;expiration de l&apos;enregistrement (en secondes)</translation>
+        <translation>Durée d&apos;expiration de l&apos;enregistrement (en secondes)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
@@ -368,7 +368,7 @@ Veuillez entrer votre mot de passe.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
         <source>Pause call</source>
-        <translation>Mettre l&apos;appel en pause</translation>
+        <translation>Mettre l&apos;appel en attente</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
@@ -2040,7 +2040,7 @@ Veuillez réessayer plus tard</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="503"/>
         <source>Text zoom</source>
-        <translation>Zoomer le texte</translation>
+        <translation>Agrandir le texte</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="504"/>

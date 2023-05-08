@@ -76,12 +76,12 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="140"/>
         <source>Private group</source>
-        <translation type="unfinished"/>
+        <translation>Privati grupė</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="142"/>
         <source>Public group</source>
-        <translation type="unfinished"/>
+        <translation>Vieša grupė</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="323"/>
