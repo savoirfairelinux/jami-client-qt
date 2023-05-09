@@ -128,8 +128,8 @@ Rectangle {
         orientation: isHorizontal ? Qt.Horizontal : Qt.Vertical
 
         handle: Rectangle {
-            implicitWidth: isHorizontal ? JamiTheme.splitViewHandlePreferredWidth : root.width
-            implicitHeight: isHorizontal ? root.height : JamiTheme.splitViewHandlePreferredWidth
+            implicitWidth: mainColumnLayout.isHorizontal ? JamiTheme.splitViewHandlePreferredWidth : root.width
+            implicitHeight: mainColumnLayout.isHorizontal ? root.height : JamiTheme.splitViewHandlePreferredWidth
             color: SplitHandle.pressed ? JamiTheme.pressColor : (SplitHandle.hovered ? JamiTheme.hoverColor : JamiTheme.tabbarBorderColor)
         }
 
