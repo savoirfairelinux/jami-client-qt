@@ -141,6 +141,24 @@
       "parentUuid": "e6c4d078_f65c5acc",
       "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a34aa109_b55aff2c",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2023-05-09T15:04:06Z",
+      "side": 1,
+      "message": "```\nclass VideoProvider final : public QObject\n{\n    \u003c...\u003e\n    struct FrameObject\n    {\n        QVideoFrame videoFrame;\n        QReadWriteLock frameMutex;\n        QSet\u003cQVideoSink*\u003e subscribers;\n        QReadWriteLock subscribersMutex;\n    };\n    std::map\u003cQString, FrameObject\u003e framesObjects_;\n    QReadWriteLock framesObjsMutex_;\n};\n\nvoid\nVideoProvider::onFrameBufferRequested(const QString\u0026 id, AVFrame* avframe)\n{\n    framesObjsMutex_.lockForRead();\n\n    auto it \u003d framesObjects_.find(id);\n    if (it \u003d\u003d framesObjects_.end()) {\n        return;\n    }\n    QVideoFrame\u0026 videoFrame \u003d it-\u003esecond.videoFrame;\n\n    it-\u003esecond.frameMutex.lockForWrite(); // because captureRawVideoFrame() can be called\n    videoFrame \u003d QVideoFrame(videoFrame.surfaceFormat()); // create a new QVideoFrame with the same format\n    if (!videoFrame-\u003emap(QVideoFrame::WriteOnly))) {\n        return;\n    }\n\n    // The ownership of avframe structure remains the subscriber(jamid), and\n    // the videoFrame instance is owned by the VideoProvider(client). The\n    // avframe structure contains only a description of the QVideoFrame\n    // underlying buffer.\n    // TODO: ideally, the colorspace format should likely come from jamid and\n    // be the decoded format.\n    avframe-\u003eformat \u003d AV_PIX_FMT_RGBA;\n    avframe-\u003ewidth \u003d videoFrame-\u003ewidth();\n    avframe-\u003eheight \u003d videoFrame-\u003eheight();\n    avframe-\u003edata[0] \u003d (uint8_t*) videoFrame-\u003ebits(0);\n    avframe-\u003elinesize[0] \u003d videoFrame-\u003ebytesPerLine(0);\n}\n\nvoid\nVideoProvider::onFrameUpdated(const QString\u0026 id)\n{\n    if (avModel_.useDirectRenderer()) {\n\n        auto it \u003d framesObjects_.find(id);\n        if (it \u003d\u003d framesObjects_.end()) {\n            return;\n        }\n        QVideoFrame\u0026 videoFrame \u003d it-\u003esecond.videoFrame;\n        videoFrame.unmap();\n        it-\u003esecond.frameMutex.unlock(); // locked by onFrameBufferRequested()\n\n        it-\u003esecond.frameMutex.lockForRead();\n        it-\u003esecond.subscribersMutex.lockForRead();\n        for (const auto\u0026 sink : qAsConst(it-\u003esecond.subscribers)) {\n            sink-\u003esetVideoFrame(videoFrame);\n            Q_EMIT sink-\u003evideoFrameChanged(videoFrame);\n        }\n        it-\u003esecond.subscribersMutex.unlock();\n        it-\u003esecond.frameMutex.unlock();\n\n        framesObjsMutex_.unlock();  // locked by onFrameBufferRequested()\n\n    } else {\n\n    QReadLocker framesLk(\u0026framesObjsMutex_);\n    auto it \u003d framesObjects_.find(id);\n    if (it \u003d\u003d framesObjects_.end()) {\n        return;\n    }\n    QVideoFrame\u0026 videoFrame \u003d it-\u003esecond.videoFrame;\n\n    it-\u003esecond.frameMutex.lockForWrite(); // because captureRawVideoFrame() can be called\n    videoFrame \u003d QVideoFrame(videoFrame.surfaceFormat()); // create a new QVideoFrame with the same format\n    if (!videoFrame-\u003emap(QVideoFrame::WriteOnly))) {\n        return;\n    }\n\n    auto srcFrame \u003d avModel_.getRendererFrame(id);\n    if (srcFrame.ptr !\u003d nullptr and srcFrame.size \u003e 0) {\n        copyUnaligned(videoFrame, srcFrame);\n    }\n\n    videoFrame.unmap();\n    it-\u003esecond.frameMutex.unlock();\n\n    it-\u003esecond.frameMutex.lockForRead();\n    it-\u003esecond.subscribersMutex.lockForRead();\n    for (const auto\u0026 sink : qAsConst(it-\u003esecond.subscribers)) {\n        sink-\u003esetVideoFrame(videoFrame);\n        Q_EMIT sink-\u003evideoFrameChanged(videoFrame);\n    }\n    it-\u003esecond.subscribersMutex.unlock();\n    it-\u003esecond.frameMutex.unlock();\n}\n```\n\nLooks robust. What do you think?",
+      "parentUuid": "62d160de_50fccc4b",
+      "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
