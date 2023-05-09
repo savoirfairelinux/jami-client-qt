@@ -159,6 +159,24 @@
       "parentUuid": "62d160de_50fccc4b",
       "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afcde9c9_016becf6",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-09T22:32:38Z",
+      "side": 1,
+      "message": "Yeah, it looks good. I think you\u0027re right, the only way to reliably map the QVideoFrames for writing is by creating a new one for each frame. This was the original prototype and I incorrectly tried avoiding the necessary, and somehow it was gracefully handled prior to Qt 6.4.",
+      "parentUuid": "a34aa109_b55aff2c",
+      "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
