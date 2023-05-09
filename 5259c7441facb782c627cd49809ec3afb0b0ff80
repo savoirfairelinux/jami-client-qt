@@ -105,6 +105,24 @@
       "parentUuid": "0343ce80_4cc94e5e",
       "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6c4d078_f65c5acc",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2023-05-09T10:43:20Z",
+      "side": 1,
+      "message": "We sent frames to subscribers immediately we have got them (sink-\u003esetVideoFrame(frame) is called in onFrameUpdated()). After that we can\u0027t know when these frames will be mapped for reading, so we can\u0027t map these frames for writing. So we need to create a new QVideoFrame for each frame from the daemon. So double buffering is useless because we never write to the same buffer twice.\n\nSo the first question is why to use double buffering here? The only way to make the current design of pipeline robust is single buffering.",
+      "parentUuid": "c6161198_7e5df7a0",
+      "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
