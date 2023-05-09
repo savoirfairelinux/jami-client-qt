@@ -177,6 +177,24 @@
       "parentUuid": "a34aa109_b55aff2c",
       "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "956c7ce3_c95995ba",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-09T22:34:00Z",
+      "side": 1,
+      "message": "I was doing some experiments with QQuickItem::updatePaintNode which are promising but won\u0027t have some of the built-in conveniences of QQuickVideoOutput. I\u0027ll need more time to get that working properly.",
+      "parentUuid": "afcde9c9_016becf6",
+      "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
