@@ -103,7 +103,7 @@ Item {
                 source: usernameTextEdit.editMode ? JamiResources.check_black_24dp_svg : JamiResources.round_edit_24dp_svg
                 toolTipText: JamiStrings.chooseUsername
                 onClicked: {
-                    if (!usernameTextEdit.editMode) {
+                    if (usernameTextEdit.readOnly) {
                         usernameTextEdit.startEditing();
                         usernameTextEdit.readOnly = false;
                     } else {
