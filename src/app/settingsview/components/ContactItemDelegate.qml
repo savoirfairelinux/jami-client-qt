@@ -50,6 +50,7 @@ ItemDelegate {
             Layout.rightMargin: JamiTheme.preferredMarginSize
             Layout.preferredWidth: JamiTheme.preferredFieldHeight
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
+            horizontalAlignment: Text.AlignLeft
 
             background: Avatar {
                 id: avatar

@@ -72,8 +72,10 @@ RadioButton {
     contentItem: Text {
         text: root.text
         color: root.color
-        leftPadding: root.indicator.width + root.spacing
+        anchors.left: rect.right
+        anchors.leftMargin: root.spacing
         verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignLeft
         font.pixelSize: JamiTheme.settingsDescriptionPixelSize
     }
 

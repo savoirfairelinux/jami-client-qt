@@ -30,8 +30,11 @@ BaseView {
 
     property alias splitViewStateKey: splitView.splitViewStateKey
 
-    property real leftPaneMinWidth: JamiTheme.mainViewLeftPaneMinWidth
-    property real rightPaneMinWidth: JamiTheme.mainViewPaneMinWidth
+    property real minorPaneMinWidth: JamiTheme.mainViewLeftPaneMinWidth
+    property real majorPaneMinWidth: JamiTheme.mainViewPaneMinWidth
+
+    property real previousMinorPaneWidth: leftPane.width
+    property real previousMajorPaneWidth: rightPane.width
 
     property bool isSinglePane
 
@@ -50,10 +53,9 @@ BaseView {
         onIsSinglePaneChanged.connect(isSinglePaneChangedHandler);
     }
 
-    property real previousLeftPaneWidth: leftPane.width
     onWidthChanged: resolvePanes()
     function resolvePanes() {
-        isSinglePane = width < rightPaneMinWidth + previousLeftPaneWidth;
+        isSinglePane = width < majorPaneMinWidth + previousMinorPaneWidth;
     }
 
     // Override this if needed.
@@ -65,19 +67,27 @@ BaseView {
         id: splitView
         anchors.fill: parent
         splitViewStateKey: viewNode.objectName
+        isSinglePane: viewNode.isSinglePane
 
-        Item {
+        SplitPane {
             id: leftPane
-            onWidthChanged: if (!isSinglePane)
-                previousLeftPaneWidth = width
-            SplitView.minimumWidth: isSinglePane ? viewNode.width : viewNode.leftPaneMinWidth
-            SplitView.maximumWidth: isSinglePane ? viewNode.width : viewNode.width - rightPaneMinWidth
-            SplitView.preferredWidth: viewNode.leftPaneMinWidth
-            clip: true
+            isMinorPane: true
         }
-        Item {
+        SplitPane {
             id: rightPane
-            clip: true
+            isMinorPane: false
         }
+    }
+
+    component SplitPane: Item {
+        clip: true
+        required property bool isMinorPane
+        onWidthChanged: {
+            if (!isSinglePane && isMinorPane)
+                previousMinorPaneWidth = width;
+        }
+        SplitView.minimumWidth: isSinglePane ? viewNode.width : (isMinorPane ? minorPaneMinWidth : majorPaneMinWidth)
+        SplitView.maximumWidth: isSinglePane ? viewNode.width : viewNode.width - (isMinorPane ? majorPaneMinWidth : minorPaneMinWidth)
+        SplitView.preferredWidth: isMinorPane ? minorPaneMinWidth : majorPaneMinWidth
     }
 }
