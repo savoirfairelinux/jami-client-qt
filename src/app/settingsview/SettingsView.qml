@@ -31,6 +31,7 @@ import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 ListSelectionView {
     id: viewNode
     objectName: "SettingsView"
+    selectionFallback: true
 
     // A map of view names to file paths for QML files that define each view.
     property variant resources: {
@@ -57,6 +58,18 @@ ListSelectionView {
 
     leftPaneItem: viewCoordinator.getView("SettingsSidePanel")
 
+    Component.onCompleted: {
+        leftPaneItem.updateModel()
+    }
+
+    Connections {
+        target: viewNode
+
+        function onIsSinglePaneChanged() {
+            leftPaneItem.isSinglePane = viewNode.isSinglePane
+        }
+    }
+
     onDismissed: {
         // Trigger an update to messages if needed.
         // Currently needed when changing the show link preview setting.
@@ -66,10 +79,6 @@ ListSelectionView {
         } else {
             AccountAdapter.changeAccount(0);
         }
-    }
-
-    Component.onCompleted: {
-        leftPaneItem.createChild();
     }
 
     property int selectedMenu: index
@@ -83,8 +92,7 @@ ListSelectionView {
 
         signal stopBooth
 
-        initialItem: ManageAccountPage {
-        }
+        initialItem: ManageAccountPage {}
 
         onCurrentIndexChanged: {
             switch (currentIndex) {

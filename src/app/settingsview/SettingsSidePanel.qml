@@ -32,12 +32,125 @@ SidePanelBase {
 
     color: JamiTheme.backgroundColor
     property int currentIndex
+    property bool isSinglePane
 
-    function createChild() {
-        if (page.menu === undefined) {
-            return;
+    function getHeaders() {
+        return [{
+                "title": JamiStrings.accountSettingsMenuTitle,
+                "icon": JamiResources.account_24dp_svg,
+                "first": 0,
+                "last": 4,
+                "children": [{
+                        "id": 0,
+                        "title": JamiStrings.manageAccountSettingsTitle
+                    }, {
+                        "id": 1,
+                        "title": JamiStrings.customizeProfile
+                    }, {
+                        "id": 2,
+                        "title": JamiStrings.linkedDevicesSettingsTitle,
+                        "visible": CurrentAccount.type !== Profile.Type.SIP
+                    }, {
+                        "id": 3,
+                        "title": JamiStrings.callSettingsTitle
+                    }, {
+                        "id": 4,
+                        "title": JamiStrings.advancedSettingsTitle
+                    }]
+            }, {
+                "title": JamiStrings.generalSettingsTitle,
+                "icon": JamiResources.gear_black_24dp_svg,
+                "first": 5,
+                "last": 11,
+                "children": [{
+                        "id": 5,
+                        "title": JamiStrings.system
+                    }, {
+                        "id": 6,
+                        "title": JamiStrings.appearence
+                    }, {
+                        "id": 7,
+                        "title": JamiStrings.locationSharingLabel
+                    }, {
+                        "id": 8,
+                        "title": JamiStrings.fileTransfer
+                    }, {
+                        "id": 9,
+                        "title": JamiStrings.callRecording
+                    }, {
+                        "id": 10,
+                        "title": JamiStrings.troubleshootTitle
+                    }, {
+                        "id": 11,
+                        "title": JamiStrings.updatesTitle,
+                        "visible": UpdateManager.isUpdaterEnabled()
+                    }]
+            }, {
+                "title": JamiStrings.audioVideoSettingsTitle,
+                "icon": JamiResources.media_black_24dp_svg,
+                "first": 12,
+                "last": 14,
+                "children": [{
+                        "id": 12,
+                        "title": JamiStrings.audio
+                    }, {
+                        "id": 13,
+                        "title": JamiStrings.video
+                    }, {
+                        "id": 14,
+                        "title": JamiStrings.screenSharing
+                    }]
+            }, {
+                "title": JamiStrings.pluginSettingsTitle,
+                "icon": JamiResources.plugins_24dp_svg,
+                "first": 15,
+                "last": 15,
+                "children": [{
+                        "id": 15,
+                        "title": JamiStrings.pluginSettingsTitle
+                    }]
+            }];
+    }
+
+    function updateModel() {
+        if (visible) {
+            listView.model = {}
+            listView.model = getHeaders()
         }
-        page.menu.createChild();
+    }
+
+    Connections {
+        target: UtilsAdapter
+
+        function onChangeLanguage() {
+            updateModel()
+        }
+    }
+
+    // Bind to requests for a settings page to be selected via shorcut.
+    Connections {
+        target: JamiQmlUtils
+        function onSettingsPageRequested(index) {
+            viewCoordinator.present("SettingsView")
+            root.indexSelected(index)
+            root.currentIndex = index
+        }
+    }
+
+    onIsSinglePaneChanged: {
+        if (visible && !isSinglePane)
+            select(root.currentIndex)
+    }
+
+    function open(index) {
+        indexSelected(index)
+        root.currentIndex = index
+    }
+
+    function select(index) {
+        if (!root.isSinglePane)
+            indexSelected(index)
+        root.currentIndex = index
     }
 
     Page {
@@ -50,216 +163,87 @@ SidePanelBase {
         header: AccountComboBox {
         }
 
-        // Bind to requests for a settings page to be selected via shorcut.
-        Connections {
-            target: JamiQmlUtils
-            function onSettingsPageRequested(index) {
-                viewCoordinator.present("SettingsView");
-                root.indexSelected(index);
-                root.currentIndex = index;
-            }
-        }
-
-        property var menu: undefined
-
-        Flickable {
-            id: flick
-            width: root.width
-            height: childrenRect.height
+        ListView {
+            id: listView
+            width: page.width
+            height: page.height
             clip: true
-            contentHeight: col.implicitHeight
+            contentHeight: contentItem.childrenRect.height
 
-            function getHeaders() {
-                return [{
-                        "title": JamiStrings.accountSettingsMenuTitle,
-                        "icon": JamiResources.account_24dp_svg,
-                        "children": [{
-                                "id": 0,
-                                "title": JamiStrings.manageAccountSettingsTitle
-                            }, {
-                                "id": 1,
-                                "title": JamiStrings.customizeProfile
-                            }, {
-                                "id": 2,
-                                "title": JamiStrings.linkedDevicesSettingsTitle,
-                                "visible": "isJamiAccount"
-                            }, {
-                                "id": 3,
-                                "title": JamiStrings.callSettingsTitle
-                            }, {
-                                "id": 4,
-                                "title": JamiStrings.advancedSettingsTitle
-                            }]
-                    }, {
-                        "title": JamiStrings.generalSettingsTitle,
-                        "icon": JamiResources.gear_black_24dp_svg,
-                        "children": [{
-                                "id": 5,
-                                "title": JamiStrings.system
-                            }, {
-                                "id": 6,
-                                "title": JamiStrings.appearence
-                            }, {
-                                "id": 7,
-                                "title": JamiStrings.locationSharingLabel
-                            }, {
-                                "id": 8,
-                                "title": JamiStrings.fileTransfer
-                            }, {
-                                "id": 9,
-                                "title": JamiStrings.callRecording
-                            }, {
-                                "id": 10,
-                                "title": JamiStrings.troubleshootTitle
-                            }, {
-                                "id": 11,
-                                "title": JamiStrings.updatesTitle,
-                                "visible": "isUpdatable"
-                            }]
-                    }, {
-                        "title": JamiStrings.audioVideoSettingsTitle,
-                        "icon": JamiResources.media_black_24dp_svg,
-                        "children": [{
-                                "id": 12,
-                                "title": JamiStrings.audio
-                            }, {
-                                "id": 13,
-                                "title": JamiStrings.video
-                            }, {
-                                "id": 14,
-                                "title": JamiStrings.screenSharing
-                            }]
-                    }, {
-                        "title": JamiStrings.pluginSettingsTitle,
-                        "icon": JamiResources.plugins_24dp_svg,
-                        "children": [{
-                                "id": 15,
-                                "title": JamiStrings.pluginSettingsTitle
-                            }]
-                    }];
-            }
-
-            Column {
+            model: getHeaders()
+            delegate: ColumnLayout {
                 id: col
-                anchors.left: parent.left
-                Component.onCompleted: {
-                    page.menu = clv.createObject(this, {
-                            "base": flick.getHeaders()
-                        });
-                }
-            }
-            Component {
-                id: clv
+                width: page.width
+                property bool isChildSelected: root.currentIndex >= modelData.first && root.currentIndex <= modelData.last
 
-                Repeater {
-                    id: repeater
+                PushButton {
+                    buttonText: modelData.title
+                    circled: false
+                    radius: 0
 
-                    property var base: ({})
-                    property var selected: null
-                    model: Object.keys(base)
-                    Layout.fillWidth: true
+                    alignement: Text.AlignLeft
+                    Layout.preferredWidth: parent.width
+                    Layout.leftMargin: 0
+                    preferredLeftMargin: 25
 
-                    function createChild() {
-                        itemAt(0).children[0].createChild();
-                        root.currentIndex = 0;
+                    imageContainerWidth: 30
+                    height: JamiTheme.settingsMenuHeaderButtonHeight
+
+                    buttonTextFont.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                    buttonTextColor: isChildSelected ? JamiTheme.tintedBlue : JamiTheme.primaryForegroundColor
+                    buttonTextFont.weight: isChildSelected ? Font.Medium : Font.Normal
+                    buttonTextEnableElide: true
+
+                    normalColor: isChildSelected ? JamiTheme.smartListSelectedColor : "transparent"
+                    hoveredColor: JamiTheme.smartListHoveredColor
+                    imageColor: JamiTheme.tintedBlue
+
+                    source: modelData.icon
+
+                    onClicked: select(modelData.first)
+                    Keys.onPressed: function (keyEvent) {
+                        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+                            clicked();
+                            keyEvent.accepted = true;
+                        }
                     }
+                }
 
-                    ColumnLayout {
-                        id: clvButtons
-                        spacing: 0
-                        Layout.fillWidth: true
+                ListView {
+                    id: childListView
+                    width: parent.width
+                    height: childrenRect.height
+                    clip: true
+                    visible: isChildSelected
 
+                    model: modelData.children
+                    delegate: ColumnLayout {
+                        id: childCol
+                        width: childListView.width
+                        property bool isSelected: root.currentIndex == modelData.id
                         PushButton {
-                            id: btn
-                            property var sprite: null
-                            property bool showFocusMargin: true
-
-                            property var isChildren: {
-                                var ob = base[modelData];
-                                var c = ob["children"];
-                                return c === undefined;
-                            }
-
-                            function updateVisibility() {
-                                var currentVisibility = visible;
-                                var ob = base[modelData];
-                                var c = ob["visible"];
-                                if (c === undefined)
-                                    return true;
-                                var res = false;
-                                if (c === "isUpdatable") {
-                                    res = UpdateManager.isUpdaterEnabled();
-                                } else if (c === "isJamiAccount") {
-                                    res = CurrentAccount.type !== Profile.Type.SIP;
-                                } else {
-                                    console.warn("Visibility condition not managed");
-                                }
-                                if (currentVisibility !== res && root.currentIndex === ob["id"]) {
-                                    // If a menu disappears, go to the first index
-                                    root.currentIndex = 0;
-                                    root.indexSelected(0);
-                                }
-                                return res;
-                            }
-
-                            function createChild() {
-                                var ob = base[modelData];
-                                if (sprite === null) {
-                                    //deselect the current selection and collapse menu
-                                    if (repeater.selected)
-                                        repeater.selected.destroy();
-                                    var c = ob["children"];
-                                    if (c !== undefined) {
-                                        sprite = clv.createObject(parent, {
-                                                "base": c
-                                            });
-                                        repeater.selected = sprite;
-                                        indexSelected(c[0]["id"]);
-                                        root.currentIndex = c[0]["id"];
-                                    } else {
-                                        indexSelected(ob["id"]);
-                                        root.currentIndex = ob["id"];
-                                    }
-                                }
-                            }
-
-                            visible: updateVisibility()
-
-                            property bool isOpen: !isChildren && sprite != null
-                            property bool isChildOpen: isChildren && (base[modelData]["id"] === root.currentIndex)
-
-                            alignement: Text.AlignLeft
-                            Layout.preferredWidth: root.width - (isChildren ? 28 : 0)
-                            Layout.leftMargin: isChildren ? 28 : 0
-                            preferredLeftMargin: isChildren ? 47 : 25
-
-                            imageContainerWidth: !isChildren ? 30 : 0
-                            height: isChildren ? JamiTheme.settingsMenuChildrenButtonHeight : JamiTheme.settingsMenuHeaderButtonHeight
-
+                            buttonText: modelData.title
                             circled: false
                             radius: 0
+                            visible: modelData.visible ? modelData.visible : true
 
-                            buttonText: {
-                                return base[modelData]["title"];
-                            }
+                            alignement: Text.AlignLeft
+                            Layout.preferredWidth: parent.width - 28
+                            Layout.leftMargin: 28
+                            preferredLeftMargin: 47
 
-                            buttonTextFont.pixelSize: !isChildren ? JamiTheme.settingsDescriptionPixelSize : JamiTheme.settingMenuPixelSize
-                            buttonTextColor: isOpen || isChildOpen ? JamiTheme.tintedBlue : JamiTheme.primaryForegroundColor
-                            buttonTextFont.weight: isOpen || isChildOpen ? Font.Medium : Font.Normal
+                            imageContainerWidth: 0
+                            height: JamiTheme.settingsMenuChildrenButtonHeight
+
+                            buttonTextFont.pixelSize: JamiTheme.settingMenuPixelSize
+                            buttonTextColor: isSelected ? JamiTheme.tintedBlue : JamiTheme.primaryForegroundColor
+                            buttonTextFont.weight: isSelected ? Font.Medium : Font.Normal
                             buttonTextEnableElide: true
 
-                            normalColor: isOpen ? JamiTheme.smartListSelectedColor : "transparent"
+                            normalColor: "transparent"
                             hoveredColor: JamiTheme.smartListHoveredColor
-                            imageColor: !isChildren ? JamiTheme.tintedBlue : null
 
-                            source: {
-                                if (!isChildren)
-                                    return base[modelData]["icon"];
-                                else
-                                    return "";
-                            }
-
-                            onClicked: createChild()
+                            onClicked: open(modelData.id)
 
                             Keys.onPressed: function (keyEvent) {
                                 if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
