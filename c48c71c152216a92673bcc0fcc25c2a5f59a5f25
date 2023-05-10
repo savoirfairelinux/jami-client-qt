@@ -16,6 +16,24 @@
       "message": "\n    Si on réduit en mode welcomeview, on voit la welcome et pas le sidepanel\n    Si on réduit en mode settings ou chatview, tout disparait)\n    Et dans \"Appearance\" le texte est pas bien placé sur les bouttons de \"Theme\"",
       "revId": "c48c71c152216a92673bcc0fcc25c2a5f59a5f25",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88d2153f_f9743ad0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-10T15:16:06Z",
+      "side": 1,
+      "message": "Et dans \"Appearance\" le texte est pas bien placé sur les bouttons de \"Theme\"\n    \nDone",
+      "parentUuid": "a24049ca_c04e6f66",
+      "revId": "c48c71c152216a92673bcc0fcc25c2a5f59a5f25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
