@@ -72,6 +72,7 @@ Item {
                 Layout.leftMargin: root.margin
                 Layout.preferredWidth: root.prefWidth - 2 * root.margin - root.iconSize
                 font.pixelSize: JamiTheme.tipBoxTitleFontSize
+                horizontalAlignment: Text.AlignLeft
                 elide: Qt.ElideRight
             }
         }
@@ -87,6 +88,7 @@ Item {
             font.weight: Font.Normal
             text: JamiStrings.whyBackupAccount
             color: JamiTheme.textColor
+            horizontalAlignment: Text.AlignLeft
         }
 
         Text {
@@ -98,6 +100,7 @@ Item {
             wrapMode: Text.WordWrap
             text: JamiStrings.backupAccountInfos
             color: JamiTheme.textColor
+            horizontalAlignment: Text.AlignLeft
         }
 
         MaterialButton {

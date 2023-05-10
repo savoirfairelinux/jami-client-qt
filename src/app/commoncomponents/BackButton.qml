@@ -31,6 +31,8 @@ PushButton {
     preferredHeight: JamiTheme.wizardViewPageBackButtonHeight
     hoveredColor: JamiTheme.hoveredButtonColorWizard
 
+    mirror: Qt.application.layoutDirection === Qt.RightToLeft
+
     source: JamiResources.ic_arrow_back_24dp_svg
     toolTipText: JamiStrings.back
 

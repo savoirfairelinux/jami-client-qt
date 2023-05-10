@@ -139,6 +139,7 @@ SettingsPageBase {
 
                 Layout.fillWidth: true
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                LayoutMirroring.enabled: false
 
                 labelText: JamiStrings.language
                 tipText: JamiStrings.language

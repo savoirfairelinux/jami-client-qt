@@ -22,6 +22,13 @@ import net.jami.Constants 1.1
 SplitView {
     id: root
 
+    property bool isRTL: UtilsAdapter.isRTL
+    property bool isSinglePane: false
+    property bool isSwapped: UtilsAdapter.isRTL
+
+    onIsRTLChanged: swapItems()
+    onIsSinglePaneChanged: swapItems()
+
     property string splitViewStateKey: objectName
     property bool autoManageState: !(parent instanceof BaseView)
 
@@ -41,11 +48,26 @@ SplitView {
         visible ? restoreSplitViewState() : saveSplitViewState();
     }
 
+    function swapItems() {
+        if ((isSinglePane && !isSwapped) // Do not swap in isSinglePane mode
+            || (!isRTL && !isSwapped)) // Do not swap if not RTL
+            return;
+        var qqci = children[0];
+        if (qqci.children.length > 1) {
+            // swap the children
+            var tempPane = qqci.children[0];
+            qqci.children[0] = qqci.children[1];
+            qqci.children.push(tempPane);
+            isSwapped = true
+        }
+    }
+
     handle: Rectangle {
         implicitWidth: JamiTheme.splitViewHandlePreferredWidth
         implicitHeight: root.height
         color: JamiTheme.primaryBackgroundColor
         Rectangle {
+            anchors.left: parent.left
             implicitWidth: 1
             implicitHeight: root.height
             color: JamiTheme.tabbarBorderColor
