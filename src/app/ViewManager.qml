@@ -55,6 +55,7 @@ QtObject {
             // Set the view name to the object name if it has one.
             const viewName = obj.objectName.toString() !== '' ? obj.objectName : path.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, "");
             viewPaths[viewName] = path;
+            obj.visible = false
             if (cb !== null) {
                 cb(obj);
             }
@@ -84,6 +85,9 @@ QtObject {
     }
 
     function getView(viewName) {
-        return views[viewPaths[viewName]] || null;
+        var view = views[viewPaths[viewName]] || null
+        if (view != null)
+            view.visible = true
+        return view
     }
 }

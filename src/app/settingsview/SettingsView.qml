@@ -31,6 +31,7 @@ import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 ListSelectionView {
     id: viewNode
     objectName: "SettingsView"
+    selectionFallback: true
 
     // A map of view names to file paths for QML files that define each view.
     property variant resources: {
@@ -68,10 +69,6 @@ ListSelectionView {
         }
     }
 
-    Component.onCompleted: {
-        leftPaneItem.createChild();
-    }
-
     property int selectedMenu: index
 
     rightPaneItem: StackView {
@@ -83,8 +80,7 @@ ListSelectionView {
 
         signal stopBooth
 
-        initialItem: ManageAccountPage {
-        }
+        initialItem: ManageAccountPage {}
 
         onCurrentIndexChanged: {
             switch (currentIndex) {
