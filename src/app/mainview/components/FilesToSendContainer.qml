@@ -19,6 +19,7 @@ import QtQuick
 import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
+import net.jami.Adapters 1.1
 import "../../commoncomponents"
 
 Rectangle {
@@ -27,6 +28,9 @@ Rectangle {
     property alias filesToSendListModel: repeater.model
     property alias filesToSendCount: repeater.count
     color: JamiTheme.primaryBackgroundColor
+
+    LayoutMirroring.enabled: UtilsAdapter.isRTL
+    LayoutMirroring.childrenInherit: true
 
     JamiFlickable {
         id: filesToSendContainerScrollView
@@ -44,6 +48,8 @@ Rectangle {
 
             anchors.centerIn: parent
 
+            layoutDirection: UtilsAdapter.isRTL ? Qt.RightToLeft : Qt.LeftToRight
+
             spacing: JamiTheme.filesToSendContainerSpacing
             padding: JamiTheme.filesToSendContainerPadding
 
@@ -53,7 +59,6 @@ Rectangle {
                 delegate: FilesToSendDelegate {
                     anchors.verticalCenter: filesToSendContainerRow.verticalCenter
 
-                    width: JamiTheme.filesToSendDelegateWidth
                     height: JamiTheme.filesToSendDelegateHeight
 
                     onRemoveFileButtonClicked: function (index) {

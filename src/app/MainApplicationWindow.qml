@@ -37,6 +37,11 @@ import "commoncomponents"
 ApplicationWindow {
     id: root
 
+    property bool isRTL: UtilsAdapter.isRTL
+
+    LayoutMirroring.enabled: isRTL
+    LayoutMirroring.childrenInherit: isRTL
+
     enum LoadedSource {
         WizardView,
         MainView,
