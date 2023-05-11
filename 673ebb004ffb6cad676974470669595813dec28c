@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2caa0c2a_591d0bd9",
+        "filename": "src/app/conversationlistmodelbase.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-05-11T19:40:18Z",
+      "side": 1,
+      "message": "we could grab model_ from accInfo",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 5
+      },
+      "revId": "673ebb004ffb6cad676974470669595813dec28c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "133e95bd_f0212acd",
+        "filename": "src/app/conversationlistmodelbase.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-05-11T19:40:18Z",
+      "side": 1,
+      "message": "auto\u0026 accInfo \u003d lrcInstance_-\u003egetAccountInfo(accountId_); ?",
+      "range": {
+        "startLine": 159,
+        "startChar": 16,
+        "endLine": 159,
+        "endChar": 70
+      },
+      "revId": "673ebb004ffb6cad676974470669595813dec28c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
