@@ -68,7 +68,7 @@ public:
         // Important: Subscription to this signal MUST be synchronous(Qt::DirectConnection).
         Q_EMIT parent_->frameBufferRequested(frameBufferPtr.get());
 
-        if (frameBufferPtr->data[0] == nullptr) {
+        if (frameBufferPtr->format == AV_PIX_FMT_NONE) {
             return nullptr;
         }
 
