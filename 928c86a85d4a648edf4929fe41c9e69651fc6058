@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d288db3_70a34073",
+        "filename": "src/app/mainview/components/FilePreview.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-05-11T19:56:05Z",
+      "side": 0,
+      "message": "seems MediaPreview is also deletable?",
+      "revId": "928c86a85d4a648edf4929fe41c9e69651fc6058",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
