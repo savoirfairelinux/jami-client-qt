@@ -18,19 +18,21 @@
 
 #pragma once
 
-#include "utils.h"
-#include "qtutils.h"
-
 #include "api/avmodel.h"
 
 extern "C" {
 #include "libavutil/frame.h"
 }
 
+#include <QSet>
+#include <QVariantMap>
 #include <QVideoSink>
 #include <QVideoFrame>
 #include <QQmlEngine>
-#include <QMutex>
+#include <QReadWriteLock>
+
+#include <map>
+#include <atomic>
 
 using namespace lrc::api;
 
@@ -38,7 +40,6 @@ class VideoProvider final : public QObject
 {
     Q_OBJECT
     QML_ELEMENT
-    QML_PROPERTY(QVariantMap, activeRenderers)
 public:
     explicit VideoProvider(AVModel& avModel, QObject* parent = nullptr);
     ~VideoProvider() = default;
@@ -48,6 +49,10 @@ public:
     Q_INVOKABLE QString captureVideoFrame(const QString& id);
     Q_INVOKABLE QImage captureRawVideoFrame(const QString& id);
 
+    Q_PROPERTY(QVariantMap renderers READ getRenderers NOTIFY renderersChanged)
+    QVariantMap getRenderers();
+    Q_SIGNAL void renderersChanged();
+
 private Q_SLOTS:
     void onRendererStarted(const QString& id, const QSize& size);
     void onFrameBufferRequested(const QString& id, AVFrame* avframe);
@@ -55,16 +60,17 @@ private Q_SLOTS:
     void onRendererStopped(const QString& id);
 
 private:
-    QVideoFrame* frame(const QString& id);
-    void copyUnaligned(QVideoFrame* dst, const video::Frame& src);
     AVModel& avModel_;
+    void copyUnaligned(QVideoFrame& dst, const video::Frame& src);
 
     struct FrameObject
     {
-        std::unique_ptr<QVideoFrame> videoFrame;
-        QMutex mutex;
+        QVideoFrame videoFrame;
+        QReadWriteLock frameMutex;
         QSet<QVideoSink*> subscribers;
+        QReadWriteLock subscribersMutex;
+        std::atomic_bool active;
     };
-    std::map<QString, std::unique_ptr<FrameObject>> framesObjects_;
-    QMutex framesObjsMutex_;
+    std::map<QString, FrameObject> renderers_;
+    QReadWriteLock renderersMutex_;
 };
