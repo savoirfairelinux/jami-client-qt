@@ -16,6 +16,24 @@
       "message": "Tested with direct rendering and commit 1510ccaede0726a4e002be0445fef06a840dbde6, because the master branch does not work for me.",
       "revId": "6a833bd85af3e358e1edd0ff646bc11ac9f2d954",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07d195f5_7b6bb1a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-11T21:57:41Z",
+      "side": 1,
+      "message": "Okay. Will test with shared memory renderer, then cleanup/format if all works well.",
+      "parentUuid": "88f6f2a4_713610f0",
+      "revId": "6a833bd85af3e358e1edd0ff646bc11ac9f2d954",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

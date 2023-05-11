@@ -195,6 +195,24 @@
       "parentUuid": "afcde9c9_016becf6",
       "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acb90ba1_5a76e8e2",
+        "filename": "src/app/videoprovider.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-11T21:57:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "956c7ce3_c95995ba",
+      "revId": "5259c7441facb782c627cd49809ec3afb0b0ff80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
