@@ -22,6 +22,30 @@
       },
       "revId": "2299fdf39e3d53ae1006b9c835fefa0af990de03",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24d5c253_7c12daf6",
+        "filename": "src/app/settingsview/SettingsSidePanel.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-05-11T19:01:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0503a88e_b2535c5f",
+      "range": {
+        "startLine": 236,
+        "startChar": 60,
+        "endLine": 236,
+        "endChar": 75
+      },
+      "revId": "2299fdf39e3d53ae1006b9c835fefa0af990de03",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
