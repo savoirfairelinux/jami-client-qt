@@ -24,10 +24,18 @@ SplitView {
 
     property bool isRTL: UtilsAdapter.isRTL
     property bool isSinglePane: false
-    property bool isSwapped: UtilsAdapter.isRTL
+    property bool isSwapped: false
 
-    onIsRTLChanged: swapItems()
-    onIsSinglePaneChanged: swapItems()
+    onIsRTLChanged: {
+        if (isRTL && isSinglePane && !isSwapped)
+            return
+        if ((isRTL && !isSwapped) || (!isRTL && isSwapped))
+            swapItems()
+    }
+    onIsSinglePaneChanged: {
+        if (isSwapped || isRTL)
+            swapItems()
+    }
 
     property string splitViewStateKey: objectName
     property bool autoManageState: !(parent instanceof BaseView)
@@ -49,16 +57,13 @@ SplitView {
     }
 
     function swapItems() {
-        if ((isSinglePane && !isSwapped) // Do not swap in isSinglePane mode
-            || (!isRTL && !isSwapped)) // Do not swap if not RTL
-            return;
+        isSwapped = !isSwapped
         var qqci = children[0];
         if (qqci.children.length > 1) {
             // swap the children
             var tempPane = qqci.children[0];
             qqci.children[0] = qqci.children[1];
             qqci.children.push(tempPane);
-            isSwapped = true
         }
     }
 

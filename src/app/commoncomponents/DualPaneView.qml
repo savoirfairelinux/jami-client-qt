@@ -25,6 +25,8 @@ BaseView {
     required property Item leftPaneItem
     required property Item rightPaneItem
 
+    property bool isRTL: UtilsAdapter.isRTL
+
     property alias leftPane: leftPane
     property alias rightPane: rightPane
 
@@ -33,34 +35,34 @@ BaseView {
     property real minorPaneMinWidth: JamiTheme.mainViewLeftPaneMinWidth
     property real majorPaneMinWidth: JamiTheme.mainViewPaneMinWidth
 
-    property real previousMinorPaneWidth: leftPane.width
-    property real previousMajorPaneWidth: rightPane.width
+    property real previousMinorPaneWidth: isRTL ? leftPane.width : rightPane.width
+    property real previousMajorPaneWidth: isRTL ? rightPane.width : leftPane.width
 
     property bool isSinglePane
 
     onPresented: {
         if (leftPaneItem)
-            leftPaneItem.parent = leftPane;
+            leftPaneItem.parent = leftPane
         if (rightPaneItem)
-            rightPaneItem.parent = rightPane;
-        splitView.restoreSplitViewState();
-        resolvePanes();
+            rightPaneItem.parent = rightPane
+        splitView.restoreSplitViewState()
+        resolvePanes()
     }
     onDismissed: splitView.saveSplitViewState()
 
     Component.onCompleted: {
         // Avoid double triggering this handler during instantiation.
-        onIsSinglePaneChanged.connect(isSinglePaneChangedHandler);
+        onIsSinglePaneChanged.connect(isSinglePaneChangedHandler)
     }
 
     onWidthChanged: resolvePanes()
     function resolvePanes() {
-        isSinglePane = width < majorPaneMinWidth + previousMinorPaneWidth;
+        isSinglePane = width < majorPaneMinWidth + previousMinorPaneWidth
     }
 
     // Override this if needed.
     property var isSinglePaneChangedHandler: function () {
-        rightPaneItem.parent = isSinglePane ? leftPane : rightPane;
+        rightPaneItem.parent = isSinglePane ? leftPane : rightPane
     }
 
     JamiSplitView {
@@ -83,11 +85,24 @@ BaseView {
         clip: true
         required property bool isMinorPane
         onWidthChanged: {
-            if (!isSinglePane && isMinorPane)
-                previousMinorPaneWidth = width;
+            if (!isSinglePane && ((isRTL && !isMinorPane) || (!isRTL && isMinorPane)))
+                previousMinorPaneWidth = width
+            if (!isSinglePane && ((isRTL && isMinorPane) || (!isRTL && !isMinorPane)))
+                previousMajorPaneWidth = width
         }
-        SplitView.minimumWidth: isSinglePane ? viewNode.width : (isMinorPane ? minorPaneMinWidth : majorPaneMinWidth)
-        SplitView.maximumWidth: isSinglePane ? viewNode.width : viewNode.width - (isMinorPane ? majorPaneMinWidth : minorPaneMinWidth)
-        SplitView.preferredWidth: isMinorPane ? minorPaneMinWidth : majorPaneMinWidth
+
+        Connections {
+            target: UtilsAdapter
+
+            function onIsRTLChanged() {
+                var bck = previousMinorPaneWidth
+                previousMinorPaneWidth = previousMajorPaneWidth
+                previousMajorPaneWidth = bck
+            }
+        }
+
+        SplitView.minimumWidth: isSinglePane ? viewNode.width : (isMinorPane && !isRTL ? minorPaneMinWidth : majorPaneMinWidth)
+        SplitView.maximumWidth: isSinglePane ? viewNode.width : viewNode.width - (isMinorPane && !isRTL ? majorPaneMinWidth : minorPaneMinWidth)
+        SplitView.preferredWidth: isMinorPane && !isRTL ? minorPaneMinWidth : majorPaneMinWidth
     }
 }
