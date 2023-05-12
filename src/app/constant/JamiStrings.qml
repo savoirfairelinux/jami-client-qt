@@ -165,7 +165,6 @@ Item {
 
     // SettingsHeader
     property string back: qsTr("Back")
-    property string accountSettingsTitle: qsTr("Account Settings")
     property string accountSettingsMenuTitle: qsTr("Account")
     property string generalSettingsTitle: qsTr("General")
     property string pluginSettingsTitle: qsTr("Plugins")
@@ -199,7 +198,7 @@ Item {
     property string enableHWAccel: qsTr("Enable hardware acceleration")
     property string mirrorLocalVideo: qsTr("Mirror local video")
     property string previewUnavailable: qsTr("Preview unavailable")
-    property string screenSharing: qsTr("Screen Sharing")
+    property string screenSharing: qsTr("Screen sharing")
     property string selectScreenSharingFPS: qsTr("Select screen sharing frame rate (frames per second)")
     property string noVideo: qsTr("no video")
 
