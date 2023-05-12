@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa7019db_7372d6f4",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-12T15:56:30Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "f22e0c36_95df0afd",
+      "range": {
+        "startLine": 268,
+        "startChar": 12,
+        "endLine": 268,
+        "endChar": 27
+      },
+      "revId": "668e6dbe24d0c625ddf21315ad47fb5c7a889c70",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab6a47ad_4a14a9e5",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-26T19:41:05Z",
       "side": 0,
       "message": "yeay",
+      "range": {
+        "startLine": 67,
+        "startChar": 61,
+        "endLine": 70,
+        "endChar": 51
+      },
+      "revId": "668e6dbe24d0c625ddf21315ad47fb5c7a889c70",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b6c6a8e_ececb7e1",
+        "filename": "src/app/previewengine.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-12T15:56:30Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "ab6a47ad_4a14a9e5",
       "range": {
         "startLine": 67,
         "startChar": 61,
