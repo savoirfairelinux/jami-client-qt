@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f9f2657_2421149e",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-15T21:03:02Z",
+      "side": 0,
+      "message": "some suggestions:\n- I think these instructions should remain unless the 22.04 is the only parameter below. At which point, highlighting it and calling it `ubuntu_\u003cVERSION\u003e` or something could be good.\n- merge the title lines / keep (recommended)",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 53
+      },
+      "revId": "4d2c55348bc014b6301480938eebabe3d097bd64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
