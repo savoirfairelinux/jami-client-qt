@@ -23,10 +23,10 @@ ConversationListModelBase::ConversationListModelBase(LRCInstance* instance, QObj
     : AbstractListModelBase(parent)
 {
     lrcInstance_ = instance;
+    model_ = lrcInstance_->getCurrentConversationModel();
     try {
         auto& accInfo = lrcInstance_->getCurrentAccountInfo();
         accountId_ = accInfo.id;
-        model_ = accInfo.conversationModel.get();
     } catch (...) {
     }
 }
