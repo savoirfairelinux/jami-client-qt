@@ -384,7 +384,7 @@ Veuillez entrer votre mot de passe.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
         <source>Encrypt account with password</source>
-        <translation>Chiffrer mon compte avec un mot de passe</translation>
+        <translation>Chiffrer le compte avec un mot de passe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
@@ -394,7 +394,7 @@ Veuillez entrer votre mot de passe.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="389"/>
         <source>Choose a name for your rendezvous point</source>
-        <translation>Choisissez un nom pour votre point de rendez-vous</translation>
+        <translation>Choisissez un nom pour le point de rendez-vous</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
@@ -436,8 +436,8 @@ Veuillez entrer votre mot de passe.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
         <source>Are you sure you would like to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
-        <translation>Êtes-vous sûr de vouloir rejoindre Jami sans nom d&apos;utilisateur ?
-Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attribué à ce compte.</translation>
+        <translation>Êtes-vous certain de vouloir rejoindre Jami sans nom d&apos;utilisateur ?
+Dans ce cas, ce compte sera seulement associé à un identifiant aléatoire de 40 caractères. </translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="396"/>
@@ -453,22 +453,22 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
         <source>Your account will be created and stored locally.</source>
-        <translation>Votre compte sera créé et sauvegardé localement</translation>
+        <translation>Votre compte sera créé et sauvegardé localement.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
-        <translation>Il est recommandé de choisir un nom d&apos;utilisateur. Un nom d&apos;utilisateur choisi NE PEUT PAS être modifié ultérieurement.</translation>
+        <translation>Il est recommandé de choisir un nom d&apos;utilisateur car celui-ci NE PEUT PAS être modifié ultérieurement.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation>Le chiffrement de votre compte à l&apos;aide d&apos;un mot de passe est facultatif, et si le mot de passe est perdu, il NE PEUT PAS être récupéré ultérieurement.</translation>
+        <translation>Le chiffrement de votre compte à l&apos;aide d&apos;un mot de passe est facultatif. Si celui-ci est perdu, il NE PEUT PAS être récupéré ultérieurement.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
         <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
-        <translation>La définition d&apos;une photo de profil et d&apos;un surnom est facultative et peut être modifiée ultérieurement dans les paramètres.</translation>
+        <translation>Les choix d&apos;une photo de profil et d&apos;un surnom sont facultatifs. Ces paramètres peuvent être modifiés ultérieurement.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
@@ -488,7 +488,7 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
         <source>Select a file</source>
-        <translation>Sélectionner un fichier</translation>
+        <translation>Choisir un fichier</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="117"/>
@@ -595,7 +595,7 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="66"/>
         <source>Transfer this call</source>
-        <translation>Transférer cet appel</translation>
+        <translation>Transférer l&apos;appel</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
@@ -605,7 +605,7 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="90"/>
         <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation>Fichier son (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
+        <translation>Fichier audio (*.wav, *.ogg, *.opus, *.mp3, *.aiff, *.wma)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
@@ -615,7 +615,7 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
         <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation>Envoyer et recevoir des indicateurs que les messages ont été affichés</translation>
+        <translation>Envoyer et recevoir des indicateurs d&apos;affichage des messages</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="116"/>
@@ -670,7 +670,7 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
         <source>TURN Realm</source>
-        <translation>Identifiant TURN</translation>
+        <translation>Domaine TURN</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="131"/>
@@ -685,7 +685,7 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="135"/>
         <source>Allow IP Auto Rewrite</source>
-        <translation>Autoriser la réécriture automatique  IP </translation>
+        <translation>Autoriser la réécriture automatique IP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="136"/>
@@ -720,7 +720,7 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="152"/>
         <source>Only used during negotiation in case ICE is not supported</source>
-        <translation>Seulement utilisé pendant la négociation si ICE n&apos;est pas suppporté</translation>
+        <translation>Seulement utilisé pendant la négociation si ICE n&apos;est pas supporté</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="153"/>
@@ -745,7 +745,7 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
         <source>Connect to other DHT nodes advertising on your local network.</source>
-        <translation>Se connecter à d&apos;autres nœuds DHT affichés sur votre réseau local</translation>
+        <translation>Se connecter à d&apos;autres nœuds DHT publiés sur le réseau local.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
@@ -755,7 +755,7 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
         <source>Proxy address</source>
-        <translation>Adresse du nœud  DHT délégataire</translation>
+        <translation>Adresse du nœud délégataire DHT</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="164"/>
@@ -770,7 +770,7 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
         <source>Account Settings</source>
-        <translation>Paramètres Compte Jami</translation>
+        <translation>Paramètres du compte</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
@@ -865,7 +865,7 @@ Si oui, seul un identifiant de 40 caractères généré aléatoirement sera attr
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="203"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation>Choisir la fréquence d&apos;affichage du partage d&apos;écran (nombre d&apos;image par seconde)</translation>
+        <translation>Choisir la fréquence d&apos;affichage du partage d&apos;écran (nombre d&apos;images par seconde)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="204"/>
@@ -952,7 +952,7 @@ Souhaitez-vous mettre à jour Jami maintenant.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
         <source>Why should I save my account?</source>
-        <translation>Pourquoi devrais-je sauvegarder mon compte ?</translation>
+        <translation>Pourquoi devrais-je sauvegarder mon compte ?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
@@ -982,7 +982,7 @@ Souhaitez-vous mettre à jour Jami maintenant.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="148"/>
         <source>Name server</source>
-        <translation>serveur de nom</translation>
+        <translation>Serveur de nom</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
@@ -997,7 +997,7 @@ Souhaitez-vous mettre à jour Jami maintenant.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
         <source>Why should I back-up this account?</source>
-        <translation>Pourquoi devrais-je sauvegarder ce compte ?</translation>
+        <translation>Pourquoi devrais-je sauvegarder ce compte ?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
@@ -1110,7 +1110,7 @@ Souhaitez-vous mettre à jour Jami maintenant.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
         <source>Audio and Video</source>
-        <translation>Audio et Vidéo</translation>
+        <translation>Audio et vidéo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="189"/>
@@ -1135,7 +1135,7 @@ Souhaitez-vous mettre à jour Jami maintenant.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
         <source>You are muted by a moderator</source>
-        <translation>Vous  avez été mis en sourdine par le modérateur</translation>
+        <translation>Vous  avez été mis en sourdine par un modérateur</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
@@ -1260,12 +1260,12 @@ Souhaitez-vous mettre à jour Jami maintenant.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="283"/>
         <source>Share screen</source>
-        <translation>Partager votre écran</translation>
+        <translation>Partager l&apos;écran</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="284"/>
         <source>Share window</source>
-        <translation>Partager la fenêtre</translation>
+        <translation>Partager une fenêtre</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
@@ -1275,17 +1275,17 @@ Souhaitez-vous mettre à jour Jami maintenant.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
         <source>Share file</source>
-        <translation>Partager le fichier</translation>
+        <translation>Partager un fichier</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
         <source>Select sharing method</source>
-        <translation>Choisissez une méthode pour partager</translation>
+        <translation>Choisir une méthode de partage</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
         <source>View plugin</source>
-        <translation>Voir les modules d&apos;extension</translation>
+        <translation>Voir le module d&apos;extension</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
