@@ -1745,7 +1745,7 @@ La foto e il soprannome possono essere cambiate nelle impostazioni dell&apos;acc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
         <source>Barre</source>
-        <translation type="unfinished"/>
+        <translation>Barrato</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
@@ -2790,7 +2790,7 @@ si connetta per sincronizzare la conversazione.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
         <source>View full screen</source>
-        <translation>Visualizzazione schermo intero</translation>
+        <translation>Visualizza a schermo intero</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="285"/>

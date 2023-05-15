@@ -1735,7 +1735,7 @@ Poza și pseudonimul tău pot fi schimbate din reglările contului tău.</transl
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
         <source>Bold</source>
-        <translation>Aldin</translation>
+        <translation>Gros</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
@@ -1745,7 +1745,7 @@ Poza și pseudonimul tău pot fi schimbate din reglările contului tău.</transl
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
         <source>Barre</source>
-        <translation>Bară</translation>
+        <translation>Barat</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
