@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9cfe180_cea56678",
+        "filename": "INSTALL.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-15T20:48:56Z",
+      "side": 1,
+      "message": "Missing debian repositories",
+      "range": {
+        "startLine": 22,
+        "startChar": 107,
+        "endLine": 22,
+        "endChar": 114
+      },
+      "revId": "6bdf1e57ad12769483a0dd9adcc05d3ff24ddab7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b1ce0f9_2fa8079d",
+        "filename": "INSTALL.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-15T20:48:56Z",
+      "side": 1,
+      "message": "hardcoded version.",
+      "range": {
+        "startLine": 27,
+        "startChar": 70,
+        "endLine": 27,
+        "endChar": 72
+      },
+      "revId": "6bdf1e57ad12769483a0dd9adcc05d3ff24ddab7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
