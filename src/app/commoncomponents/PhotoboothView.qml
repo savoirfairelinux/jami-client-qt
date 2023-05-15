@@ -34,7 +34,7 @@ Item {
     property real avatarSize
     property bool doubleEditAvatar: false
 
-    height: Math.max(avatarSize, buttonSize)
+    height: avatarSize
 
     Rectangle {
         id: imageLayer
