@@ -149,6 +149,7 @@ Popup {
 
         PushButton {
             id: cancelBtn
+            objectName: "cancelBtn"
             z: 1
 
             normalColor: "transparent"
@@ -164,6 +165,7 @@ Popup {
             anchors.top: box.top
             anchors.margins: 8
 
+            focusPolicy: Qt.TabFocus
             onClicked: {
                 closeRecorder();
                 updateState(RecordBox.States.INIT);
@@ -253,7 +255,7 @@ Popup {
 
                 PushButton {
                     id: recordButton
-
+                    objectName: "recordButton"
                     Layout.alignment: Qt.AlignCenter
 
                     preferredSize: btnSize
@@ -264,6 +266,7 @@ Popup {
                     source: JamiResources.fiber_manual_record_24dp_svg
                     imageColor: JamiTheme.recordIconColor
 
+                    focusPolicy: Qt.TabFocus
                     onClicked: {
                         updateState(RecordBox.States.RECORDING);
                         if (!root.isPhoto)
@@ -273,7 +276,7 @@ Popup {
 
                 PushButton {
                     id: screenshotBtn
-
+                    objectName: "screenshotBtn"
                     Layout.alignment: Qt.AlignCenter
 
                     preferredSize: btnSize
@@ -286,6 +289,7 @@ Popup {
                     source: JamiResources.fiber_manual_record_24dp_svg
                     imageColor: UtilsAdapter.luma(JamiTheme.backgroundColor) ? "white" : JamiTheme.redColor
 
+                    focusPolicy: Qt.TabFocus
                     onClicked: {
                         root.photo = videoProvider.captureVideoFrame(VideoDevices.getDefaultDevice());
                         updateState(RecordBox.States.REC_SUCCESS);
@@ -294,7 +298,7 @@ Popup {
 
                 PushButton {
                     id: btnStop
-
+                    objectName: "btnStop"
                     Layout.alignment: Qt.AlignCenter
 
                     preferredSize: btnSize
@@ -307,6 +311,7 @@ Popup {
                     border.width: 1
                     border.color: imageColor
 
+                    focusPolicy: Qt.TabFocus
                     onClicked: {
                         if (!root.isPhoto)
                             stopRecording();
@@ -316,7 +321,7 @@ Popup {
 
                 PushButton {
                     id: btnRestart
-
+                    objectName: "btnRestart"
                     Layout.alignment: Qt.AlignCenter
 
                     preferredSize: btnSize
@@ -329,6 +334,7 @@ Popup {
                     border.width: 1
                     border.color: imageColor
 
+                    focusPolicy: Qt.TabFocus
                     onClicked: {
                         if (!root.isPhoto)
                             stopRecording();
@@ -338,7 +344,7 @@ Popup {
 
                 PushButton {
                     id: btnSend
-
+                    objectName: btnSend
                     Layout.alignment: Qt.AlignCenter
 
                     preferredSize: btnSize
@@ -350,6 +356,7 @@ Popup {
                     border.width: 1
                     border.color: imageColor
 
+                    focusPolicy: Qt.TabFocus
                     onClicked: {
                         if (!root.isPhoto) {
                             stopRecording();
