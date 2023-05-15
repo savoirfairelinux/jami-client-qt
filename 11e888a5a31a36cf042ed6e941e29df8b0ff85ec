@@ -118,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b59546cf_7627fbbe",
+        "filename": "src/app/messageparser.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-15T17:33:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bdcc956_09536525",
+      "range": {
+        "startLine": 62,
+        "startChar": 33,
+        "endLine": 62,
+        "endChar": 55
+      },
+      "revId": "11e888a5a31a36cf042ed6e941e29df8b0ff85ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a9d79ea_5fa9b516",
