@@ -32,10 +32,10 @@ SettingsPageBase {
 
     property int itemWidth: 188
 
-    title: JamiStrings.appearence
+    title: JamiStrings.appearance
 
     flickableContent: ColumnLayout {
-        id: appearenceSettingsColumnLayout
+        id: appearanceSettingsColumnLayout
 
         width: contentFlickableWidth
         spacing: JamiTheme.settingsBlockSpacing
@@ -70,10 +70,8 @@ SettingsPageBase {
                 Layout.fillWidth: true
 
                 checked: UtilsAdapter.getAppValue(Settings.EnableTypingIndicator)
-
                 labelText: JamiStrings.enableTypingIndicator
                 descText: JamiStrings.enableTypingIndicatorDescription
-
                 tooltipText: JamiStrings.enableTypingIndicator
 
                 onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.EnableTypingIndicator, checked)
@@ -96,57 +94,12 @@ SettingsPageBase {
                     UtilsAdapter.setAppValue(Settings.Key.DisplayHyperlinkPreviews, checked);
                 }
             }
-
-            SettingsComboBox {
-                id: outputComboBoxSetting
-
-                Layout.fillWidth: true
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                labelText: JamiStrings.layout
-                tipText: JamiStrings.layout
-                comboModel: ListModel {
-                    id: layoutModel
-                    Component.onCompleted: {
-                        append({
-                                "textDisplay": JamiStrings.horizontalViewOpt
-                            });
-                        append({
-                                "textDisplay": JamiStrings.verticalViewOpt
-                            });
-                    }
-                }
-                widthOfComboBox: itemWidth
-                role: "textDisplay"
-
-                modelIndex: UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally) ? 1 : 0
-
-                onActivated: {
-                    UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, comboModel.get(modelIndex).textDisplay === JamiStrings.verticalViewOpt);
-                }
-
-                Connections {
-                    target: UtilsAdapter
-
-                    function onChangeLanguage() {
-                        var idx = outputComboBoxSetting.modelIndex;
-                        layoutModel.clear();
-                        layoutModel.append({
-                                "textDisplay": JamiStrings.horizontalViewOpt
-                            });
-                        layoutModel.append({
-                                "textDisplay": JamiStrings.verticalViewOpt
-                            });
-                        outputComboBoxSetting.modelIndex = idx;
-                    }
-                }
-            }
         }
 
         ColumnLayout {
             id: themeSettings
 
-            Layout.preferredWidth: parent.width
+            width: parent.width
             spacing: JamiTheme.settingsCategorySpacing
 
             property var nativeDarkThemeShift: UtilsAdapter.hasNativeDarkTheme() ? 1 : 0
@@ -179,104 +132,66 @@ SettingsPageBase {
                 font.kerning: true
             }
 
-            ButtonGroup {
-                id: optionsB
-            }
-
             Flow {
 
                 Layout.preferredWidth: parent.width
                 Layout.preferredHeight: childrenRect.height
-                spacing: 5
+                spacing: 10
 
-                Rectangle {
-                    id: lightThemeButtonBg
+                ButtonGroup {
+                    id: optionsB
+                }
+
+                MaterialRadioButton {
+                    id: lightThemeButton
+
                     width: 165
                     height: 60
-                    border.color: JamiTheme.darkTheme ? "transparent" : JamiTheme.tintedBlue
-                    color: JamiTheme.whiteColor
-                    radius: JamiTheme.settingsBoxRadius
+                    backgroundColor: JamiTheme.lightThemeBackgroundColor
+                    textColor: JamiTheme.blackColor
+                    checkedColor: JamiTheme.lightThemeCheckedColor
+                    borderColor: JamiTheme.lightThemeBorderColor
+                    borderOuterRectangle: JamiTheme.radioBackgroundColor
 
-                    MaterialRadioButton {
-                        id: lightThemeButton
+                    text: JamiStrings.light
+                    ButtonGroup.group: optionsB
 
-                        property bool focusOnChild: true
-                        anchors.fill: parent
-                        anchors.leftMargin: 19
-
-                        text: JamiStrings.light
-                        ButtonGroup.group: optionsB
-                        color: JamiTheme.blackColor
-                        bgColor: lightThemeButtonBg.color
-
-                        KeyNavigation.down: darkThemeButton
-                        KeyNavigation.tab: KeyNavigation.down
-
-                        onCheckedChanged: {
-                            if (checked)
-                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light");
-                        }
+                    onCheckedChanged: {
+                        if (checked)
+                            UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light");
                     }
                 }
 
-                Rectangle {
-                    id: darkThemeButtonBg
+                MaterialRadioButton {
+                    id: darkThemeButton
 
                     width: 165
                     height: 60
-                    color: JamiTheme.darkTheme ? JamiTheme.blackColor : JamiTheme.bgDarkMode_
-                    border.color: JamiTheme.darkTheme ? JamiTheme.tintedBlue : "transparent"
-                    radius: JamiTheme.settingsBoxRadius
+                    backgroundColor: JamiTheme.darkThemeBackgroundColor
+                    textColor: JamiTheme.whiteColor
+                    checkedColor: JamiTheme.darkThemeCheckedColor
+                    borderColor: JamiTheme.darkThemeBorderColor
 
-                    MaterialRadioButton {
-                        id: darkThemeButton
+                    text: JamiStrings.dark
+                    ButtonGroup.group: optionsB
 
-                        property bool focusOnChild: true
-                        anchors.fill: parent
-                        anchors.leftMargin: 19
-
-                        text: JamiStrings.dark
-                        ButtonGroup.group: optionsB
-                        color: JamiTheme.whiteColor
-                        bgColor: darkThemeButtonBg.color
-
-                        KeyNavigation.up: lightThemeButton
-                        KeyNavigation.down: sysThemeButton
-                        KeyNavigation.tab: KeyNavigation.down
-
-                        onCheckedChanged: {
-                            if (checked)
-                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark");
-                        }
+                    onCheckedChanged: {
+                        if (checked)
+                            UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark");
                     }
                 }
 
-                Rectangle {
-                    id: sysThemeButtonBg
+                MaterialRadioButton {
+                    id: sysThemeButton
 
                     width: 165
                     height: 60
-                    color: JamiTheme.darkTheme ? "#515151" : JamiTheme.sysColor
-                    radius: JamiTheme.settingsBoxRadius
+                    text: JamiStrings.system
+                    ButtonGroup.group: optionsB
 
-                    MaterialRadioButton {
-                        id: sysThemeButton
-
-                        property bool focusOnChild: true
-                        anchors.fill: parent
-                        anchors.leftMargin: 19
-
-                        text: JamiStrings.system
-                        ButtonGroup.group: optionsB
-                        color: JamiTheme.darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
-                        bgColor: sysThemeButtonBg.color
-
-                        KeyNavigation.up: darkThemeButton
-
-                        onCheckedChanged: {
-                            if (checked)
-                                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System");
-                        }
+                    onCheckedChanged: {
+                        if (checked)
+                            UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System");
                     }
                 }
             }
@@ -310,6 +225,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.topMargin: 10
 
                 value: Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0)
 
