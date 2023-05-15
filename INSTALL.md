@@ -15,14 +15,18 @@ So, you will need to get Qt 6.2 first. For this, there is 3 methods:
 
 If your distribution is supported, we provide a Qt package (libqt-jami) on our repo.
 
-#### Install libqt-jami
+#### Install libqt-jami, Debian based
 ```
 sudo apt install gnupg dirmngr ca-certificates curl --no-install-recommends
 curl -s https://dl.jami.net/public-key.gpg | sudo tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
-sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/nightly/ubuntu_22.04/ jami main' > /etc/apt/sources.list.d/jami.list"
+sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/nightly/ubuntu_<ubuntu-version>/ jami main' > /etc/apt/sources.list.d/jami.list"
 sudo apt-get update && sudo apt-get install libqt-jami
 ```
-
+#### Install libqt-jami, Fedora based
+```
+sudo dnf config-manager --add-repo https://dl.jami.net/nightly/fedora_38/jami-nightly.repo
+sudo dnf update && sudo dnf install jami-libqt
+```
 ### Qt from your distribution
 
 If Qt 6.2 is available, you can use the packages from your distribution:
