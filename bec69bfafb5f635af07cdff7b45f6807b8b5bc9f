@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ddc1495_ade24b6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-15T12:32:22Z",
+      "side": 1,
+      "message": "I let you answer to the last comments then LGTM. The code seems ok to me and working for Qt 6.4 with dbus/libwrap.\n\nThis can unlock the releases (after the preview thing) for GNU/Linux.",
+      "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a42993f_0db58ff5",
         "filename": "src/app/videoprovider.cpp",
         "patchSetId": 10
