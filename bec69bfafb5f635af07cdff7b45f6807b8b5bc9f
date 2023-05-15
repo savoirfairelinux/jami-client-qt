@@ -18,6 +18,41 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "052fc03b_5c0c8fc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-15T18:43:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ddc1495_ade24b6d",
+      "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0514ecb0_a77ca768",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-15T18:43:44Z",
+      "side": 1,
+      "message": "deadlock on Windows when closing a renderer. investigating",
+      "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a42993f_0db58ff5",
@@ -31,6 +66,24 @@
       "writtenOn": "2023-05-14T11:58:48Z",
       "side": 1,
       "message": "Add qWarning()?",
+      "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a20ca96_476c5b49",
+        "filename": "src/app/videoprovider.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-15T18:43:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a42993f_0db58ff5",
       "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -52,6 +105,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cac8308_72d06e18",
+        "filename": "src/app/videoprovider.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-15T18:43:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f5771ae_ede9e5e1",
+      "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ae0622b_0fdeaeab",
@@ -65,6 +136,24 @@
       "writtenOn": "2023-05-14T11:58:48Z",
       "side": 1,
       "message": "Add qWarning()?\nAnd should we invalidate avframe somehow? For example, `avframe-\u003eformat \u003d AV_PIX_FMT_NONE`.",
+      "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03f3a85a_e4ddd54a",
+        "filename": "src/app/videoprovider.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-15T18:43:44Z",
+      "side": 1,
+      "message": "yeah good idea, was using a check on data but format \u003d\u003d AV_PIX_FMT_NONE is clear",
+      "parentUuid": "9ae0622b_0fdeaeab",
       "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -86,6 +175,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a032782_f1617017",
+        "filename": "src/app/videoprovider.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-15T18:43:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b60e9b17_07d73b8d",
+      "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fba94c3c_986a1200",
@@ -99,6 +206,24 @@
       "writtenOn": "2023-05-14T11:58:48Z",
       "side": 1,
       "message": "Add qWarning()?",
+      "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98424514_b78fe6f0",
+        "filename": "src/app/videoprovider.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-15T18:43:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fba94c3c_986a1200",
       "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -120,6 +245,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a8fcfa1_ae390140",
+        "filename": "src/app/videoprovider.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-15T18:43:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b50e2be_27be798c",
+      "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f65a084b_73214ce9",
@@ -133,6 +276,24 @@
       "writtenOn": "2023-05-14T11:58:48Z",
       "side": 1,
       "message": "Add qWarning()?",
+      "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "173b0775_b32637ea",
+        "filename": "src/app/videoprovider.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-15T18:43:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f65a084b_73214ce9",
       "revId": "bec69bfafb5f635af07cdff7b45f6807b8b5bc9f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
