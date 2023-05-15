@@ -80,6 +80,6 @@ protected:
     using Role = ConversationList::Role;
 
     // Convenience pointer to be pulled from lrcinstance
-    ConversationModel* model_;
+    ConversationModel* model_ {nullptr};
     QString accountId_;
 };
