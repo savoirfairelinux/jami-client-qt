@@ -942,15 +942,12 @@ createRenderer(const QString& id, const QSize& res, const QString& shmPath = {})
 void
 AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& shmPath)
 {
-    // First remove the existing renderer.
-    renderers_.erase(id);
+    {
+        std::lock_guard<std::mutex> lk(renderers_mtx_);
+        renderers_[id] = createRenderer(id, res, shmPath);
+    }
 
-    // Create a new one and add it.
-    auto renderer = createRenderer(id, res, shmPath);
-    std::lock_guard<std::mutex> lk(renderers_mtx_);
     auto& r = renderers_[id];
-    r = std::move(renderer);
-    renderers_mtx_.unlock();
 
     // Listen and forward id-bound signals upwards.
     connect(
@@ -965,12 +962,14 @@ AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& sh
         this,
         [this, id](const QSize& size) { Q_EMIT linked_.rendererStarted(id, size); },
         Qt::DirectConnection);
+#ifdef ENABLE_LIBWRAP
     connect(
         r.get(),
         &Renderer::frameBufferRequested,
         this,
         [this, id](AVFrame* frame) { Q_EMIT linked_.frameBufferRequested(id, frame); },
         Qt::DirectConnection);
+#endif
     connect(
         r.get(),
         &Renderer::frameUpdated,
