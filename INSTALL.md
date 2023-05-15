@@ -13,8 +13,33 @@ So, you will need to get Qt 6.2 first. For this, there is 3 methods:
 
 ### Qt from https://jami.net (recommended)
 
-If your distribution is supported, we provide a Qt package (`libqt-jami`) on our repo. Follow instructions https://jami.net/download-jami-linux/ (but instead installing `jami` install `libqt-jami`).
+If your distribution is supported, we provide a Qt package (libqt-jami) on our repo.
 The files will be installed in `/usr/lib/libqt-jami`.
+
+#### Install libqt-jami, Debian based
+
+```
+sudo apt install gnupg dirmngr ca-certificates curl --no-install-recommends
+curl -s https://dl.jami.net/public-key.gpg | sudo tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
+sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/nightly/debian_<VERSION>/ jami main' > /etc/apt/sources.list.d/jami.list"
+sudo apt-get update && sudo apt-get install jami
+```
+
+#### Install libqt-jami, Ubuntu based
+
+```
+sudo apt install gnupg dirmngr ca-certificates curl --no-install-recommends
+curl -s https://dl.jami.net/public-key.gpg | sudo tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
+sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/nightly/ubuntu_<VERSION>/ jami main' > /etc/apt/sources.list.d/jami.list"
+sudo apt-get update && sudo apt-get install libqt-jami
+```
+
+#### Install jami-libqt, Fedora based
+
+```
+sudo dnf config-manager --add-repo https://dl.jami.net/nightly/fedora_<VERSION>/jami-nightly.repo
+sudo dnf update && sudo dnf install jami-libqt
+```
 
 ### Qt from your distribution
 
