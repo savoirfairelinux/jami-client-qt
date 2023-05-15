@@ -16,6 +16,24 @@
       "message": "please link gitlab ticket",
       "revId": "2f3a118da90bd030a8f5e98a83ae6988f6ff386e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d052a8cf_964ff934",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-05-15T20:23:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9c452d6_8306de47",
+      "revId": "2f3a118da90bd030a8f5e98a83ae6988f6ff386e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
