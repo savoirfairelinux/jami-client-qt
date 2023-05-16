@@ -55,7 +55,7 @@ SBSMessageBase {
                     MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, CurrentConversation.color);
                     return ""
                 }
-                return (ParsedBody !== "") ? ParsedBody : "*(" + JamiStrings.deletedMessage + ")*";
+                return (ParsedBody !== "") ? ParsedBody : "<i>(" + JamiStrings.deletedMessage + ")</i>";
             }
             horizontalAlignment: Text.AlignLeft
 
