@@ -27,6 +27,8 @@ Rectangle {
     id: root
 
     property string accountId: ""
+    required property string pluginId
+
     property int count: pluginPreferenceView.count + pluginPreferenceViewCategory.count
 
     implicitHeight: childrenRect.height
@@ -127,7 +129,7 @@ Rectangle {
                     visible: categories.length % 2 === 1
 
                     text: categories[categories.length - 1]
-                    highlighted: category === text
+                    highlighted: root.category === text
 
                     onClicked: {
                         root.category = oddCategoryButton.text;
@@ -158,11 +160,11 @@ Rectangle {
                     model: PreferenceItemListModel {
                         id: preferencesPerCategoryModel
                         lrcInstance: LRCInstance
-                        category_: category
-                        accountId_: accountId
-                        pluginId_: pluginId
+                        category: root.category
+                        accountId: root.accountId
+                        pluginId: root.pluginId
 
-                        onCategory_Changed: {
+                        onCategoryChanged: {
                             this.reset();
                         }
                     }
@@ -189,7 +191,7 @@ Rectangle {
 
                             lrcInstance: LRCInstance
                             preferenceKey: PreferenceKey
-                            accountId_: accountId
+                            accountId: root.accountId
                             pluginId: PluginId
                         }
 
@@ -217,11 +219,11 @@ Rectangle {
             model: PreferenceItemListModel {
                 id: generalPreferencesModel
                 lrcInstance: LRCInstance
-                category_: generalCategory
-                accountId_: accountId
-                pluginId_: pluginId
+                category: generalCategory
+                accountId: root.accountId
+                pluginId: root.pluginId
 
-                onCategory_Changed: {
+                onCategoryChanged: {
                     this.reset();
                 }
             }
@@ -248,7 +250,7 @@ Rectangle {
 
                     lrcInstance: LRCInstance
                     preferenceKey: PreferenceKey
-                    accountId_: accountId
+                    accountId: root.accountId
                     pluginId: PluginId
                 }
 

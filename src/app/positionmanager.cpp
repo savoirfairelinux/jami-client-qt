@@ -95,21 +95,19 @@ PositionManager::isConvSharingPosition(const QString& accountId, const QString& 
 void
 PositionManager::loadPreviousLocations(QString& accountId)
 {
-    QVariantMap shareInfo;
     for (auto it = objectListSharingUris_.begin(); it != objectListSharingUris_.end(); it++) {
-        if (it.key().first == accountId) {
-            QJsonObject jsonObj;
-            jsonObj.insert("type", QJsonValue("Position"));
-            jsonObj.insert("lat", it.value()->getLatitude().toString());
-            jsonObj.insert("long", it.value()->getLongitude().toString());
-            QJsonDocument doc(jsonObj);
-            QString strJson(doc.toJson(QJsonDocument::Compact));
-            // parse the position from json
-            QVariantMap positionReceived = parseJsonPosition(it.key().first,
-                                                             it.key().second,
-                                                             strJson);
-            addPositionToMap(it.key(), positionReceived);
+        if (it.key().first != accountId) {
+            continue;
         }
+        QJsonObject jsonObj;
+        jsonObj.insert("type", QJsonValue("Position"));
+        jsonObj.insert("lat", it.value()->getLatitude().toString());
+        jsonObj.insert("long", it.value()->getLongitude().toString());
+        QJsonDocument doc(jsonObj);
+        QString strJson(doc.toJson(QJsonDocument::Compact));
+        // parse the position from json
+        QVariantMap positionReceived = parseJsonPosition(it.key().first, it.key().second, strJson);
+        addPositionToMap(it.key(), positionReceived);
     }
 }
 
@@ -177,7 +175,7 @@ PositionManager::onWatchdogTimeout()
     if (it != objectListSharingUris_.cend()) {
         QString stopMsg("{\"type\":\"Stop\"}");
         onPositionReceived(it.key().first, it.key().second, stopMsg, -1, "");
-        makeVisibleSharingButton(it.key().first);
+        Q_EMIT makeVisibleSharingButton(it.key().first);
     }
 }
 
@@ -211,9 +209,10 @@ PositionManager::stopSharingPosition(QString accountId, const QString convId)
                     key = qMakePair(accountId, it->second);
                     stopPositionTimers(key);
                     sendStopMessage(accountId, it->second);
-                    it = positionShareConvIds_.erase(it);
-                } else
+                    it = positionShareConvIds_.erase(it); // clazy:exclude=strict-iterators
+                } else {
                     ++it;
+                }
             }
         } else {
             stopPositionTimers(key);
@@ -313,7 +312,6 @@ PositionManager::setMapActive(QString key)
 QString
 PositionManager::getAvatar(const QString& accountId, const QString& uri)
 {
-    QString avatarBase64;
     QByteArray ba;
     QBuffer bu(&ba);
 
@@ -373,8 +371,8 @@ PositionManager::stopPositionTimers(PositionKey key)
     if (key == PositionKey()) {
         mapTimerCountDown_.clear();
     } else {
-        auto it = mapTimerCountDown_.find(key);
-        if (it != mapTimerCountDown_.end()) {
+        auto it = mapTimerCountDown_.constFind(key);
+        if (it != mapTimerCountDown_.cend()) {
             mapTimerCountDown_.erase(it);
         }
         if (!mapTimerCountDown_.size())
@@ -409,11 +407,11 @@ PositionManager::showNotification(const QString& accountId,
     auto body = tr("%1 is sharing their location").arg(bestName);
 #ifdef Q_OS_LINUX
     auto contactPhoto = Utils::contactPhoto(lrcInstance_, from, QSize(50, 50), accountId);
-    auto notifId = QString("%1;%2;%3").arg(accountId).arg(convId).arg(from);
+    auto notifId = QString("%1;%2;%3").arg(accountId, convId, from);
     systemTray_->showNotification(notifId,
                                   tr("Location sharing"),
                                   body,
-                                  NotificationType::CHAT,
+                                  SystemTray::NotificationType::CHAT,
                                   Utils::QImageToByteArray(contactPhoto));
 
 #else
@@ -441,7 +439,7 @@ PositionManager::onNewAccount()
     for (auto it = mapStatus_.begin(); it != mapStatus_.end();) {
         if (it.value() == false) {
             Q_EMIT closeMap(it.key());
-            it = mapStatus_.erase(it);
+            it = mapStatus_.erase(it); // clazy:exclude=strict-iterators
             Q_EMIT mapStatusChanged();
         } else {
             it++;
@@ -564,8 +562,8 @@ void
 PositionManager::removePositionFromMemory(PositionKey key, QVariantMap positionReceived)
 {
     // Remove
-    auto it = objectListSharingUris_.find(key);
-    if (it != objectListSharingUris_.end()) {
+    auto it = objectListSharingUris_.constFind(key);
+    if (it != objectListSharingUris_.cend()) {
         // free memory
         it.value()->deleteLater();
         // delete value
@@ -596,7 +594,8 @@ PositionManager::onPositionReceived(const QString& accountId,
                                     const uint64_t& timestamp,
                                     const QString& daemonId)
 {
-    // handlers variables
+    Q_UNUSED(timestamp)
+    Q_UNUSED(daemonId)
 
     // parse the position from json
     QVariantMap positionReceived = parseJsonPosition(accountId, peerId, body);

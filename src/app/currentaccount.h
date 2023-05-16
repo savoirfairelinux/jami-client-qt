@@ -211,7 +211,9 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void updateData();
+    void setupForAccount();
     void onAccountUpdated(const QString& id);
+    void onBannedStatusChanged(const QString& contactUri, bool banned);
 
 private:
     bool isAllModeratorsEnabled_;
