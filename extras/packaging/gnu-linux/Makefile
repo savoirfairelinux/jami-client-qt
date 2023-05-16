@@ -127,7 +127,9 @@ $(RELEASE_TARBALL_FILENAME): tarballs.manifest
 	for m in \
 	    ./daemon \
 	    . \
-	    ./3rdparty/SortFilterProxyModel; do \
+	    ./3rdparty/SortFilterProxyModel \
+	    ./3rdparty/md4c \
+	    ./3rdparty/tidy-html5; do \
 	  (cd "$$m" && git archive --prefix "$$m/" HEAD \
 	    | tar xf - -C $(TMPDIR)/$(RELEASE_DIRNAME)); \
 	done
