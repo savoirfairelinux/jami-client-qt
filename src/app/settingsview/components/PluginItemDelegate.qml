@@ -117,6 +117,8 @@ ItemDelegate {
         PluginPreferencesView {
             id: pluginPreferencesView
 
+            pluginId: root.pluginId
+
             Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize

@@ -72,6 +72,7 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
     // notification responses (gnu/linux currently)
     connect(systemTray_,
             &SystemTray::answerCallActivated,
+            this,
             [this](const QString& accountId, const QString& convUid) {
                 acceptACall(accountId, convUid);
                 Q_EMIT lrcInstance_->notificationClicked();
@@ -81,6 +82,7 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
             });
     connect(systemTray_,
             &SystemTray::declineCallActivated,
+            this,
             [this](const QString& accountId, const QString& convUid) {
                 hangUpACall(accountId, convUid);
             });
@@ -134,10 +136,10 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
     // handle notifications
     if (call.status == lrc::api::call::Status::IN_PROGRESS) {
         // Call answered and in progress; close the notification
-        systemTray_->hideNotification(QString("%1;%2").arg(accountId).arg(convInfo.uid));
+        systemTray_->hideNotification(QString("%1;%2").arg(accountId, convInfo.uid));
     } else if (call.status == lrc::api::call::Status::ENDED) {
         // Call ended; close the notification
-        if (systemTray_->hideNotification(QString("%1;%2").arg(accountId).arg(convInfo.uid))
+        if (systemTray_->hideNotification(QString("%1;%2").arg(accountId, convInfo.uid))
             && call.startTime.time_since_epoch().count() == 0) {
             // This was a missed call; show a missed call notification
             auto convAvatar = Utils::conversationAvatar(lrcInstance_,
@@ -146,11 +148,11 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
                                                         accountId);
             auto& accInfo = lrcInstance_->getAccountInfo(accountId);
             auto from = accInfo.conversationModel->title(convInfo.uid);
-            auto notifId = QString("%1;%2").arg(accountId).arg(convInfo.uid);
+            auto notifId = QString("%1;%2").arg(accountId, convInfo.uid);
             systemTray_->showNotification(notifId,
                                           tr("Missed call"),
                                           tr("Missed call with %1").arg(from),
-                                          NotificationType::CHAT,
+                                          SystemTray::NotificationType::CHAT,
                                           Utils::QImageToByteArray(convAvatar));
         }
     }
@@ -449,11 +451,11 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
 
 #ifdef Q_OS_LINUX
     auto convAvatar = Utils::conversationAvatar(lrcInstance_, convUid, QSize(50, 50), accountId);
-    auto notifId = QString("%1;%2").arg(accountId).arg(convUid);
+    auto notifId = QString("%1;%2").arg(accountId, convUid);
     systemTray_->showNotification(notifId,
                                   tr("Incoming call"),
                                   tr("%1 is calling you").arg(title),
-                                  NotificationType::CALL,
+                                  SystemTray::NotificationType::CALL,
                                   Utils::QImageToByteArray(convAvatar));
 #else
     auto onClicked = [this, accountId, convUid]() {
@@ -544,7 +546,7 @@ CallAdapter::setActiveStream(const QString& uri, const QString& deviceId, const 
         auto participants = participantsModel.getParticipants();
         decltype(participants) activeParticipants = {};
         bool removeActive = false;
-        for (auto part : participants) {
+        for (const auto& part : participants) {
             auto isParticipant = part.uri == uri && part.device == deviceId
                                  && part.sinkId == streamId;
             if (part.active && !isParticipant)
@@ -957,21 +959,21 @@ CallAdapter::updateAdvancedInformation()
 bool
 CallAdapter::takeScreenshot(const QImage& image, const QString& path)
 {
-    QString name = QString("%1 %2")
-                       .arg(tr("Screenshot"))
+    QString name = QString("%1 %2").arg(tr("Screenshot"),
 #ifdef WIN32
-                       .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd HHmmss"));
+                                        QDateTime::currentDateTime().toString("yyyy-MM-dd HHmmss")
 #else
-                       .arg(QDateTime::currentDateTime().toString(Qt::ISODate));
+                                        QDateTime::currentDateTime().toString(Qt::ISODate)
 #endif
+    );
 
     bool fileAlreadyExists = true;
     int nb = 0;
-    QString filePath = QString("%1%2.png").arg(path).arg(name);
+    QString filePath = QString("%1%2.png").arg(path, name);
     while (fileAlreadyExists) {
-        filePath = QString("%1%2.png").arg(path).arg(name);
+        filePath = QString("%1%2.png").arg(path, name);
         if (nb)
-            filePath = QString("%1(%2).png").arg(filePath).arg(QString::number(nb));
+            filePath = QString("%1(%2).png").arg(filePath, QString::number(nb));
         QFileInfo check_file(filePath);
         fileAlreadyExists = check_file.exists() && check_file.isFile();
         nb++;
