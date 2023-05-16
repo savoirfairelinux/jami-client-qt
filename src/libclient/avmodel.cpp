@@ -38,6 +38,7 @@
 #include <QtCore/QDir>
 #include <QUrl>
 #include <QSize>
+#include <QReadWriteLock>
 
 #include <algorithm> // std::sort
 #include <chrono>
@@ -75,7 +76,7 @@ public:
     static const QString recorderSavesSubdir;
     AVModel& linked_;
 
-    std::mutex renderers_mtx_;
+    QReadWriteLock renderersMutex_;
     std::map<QString, std::unique_ptr<Renderer>> renderers_;
     QString currentVideoCaptureDevice_ {};
 
@@ -166,7 +167,7 @@ AVModel::AVModel(const CallbacksHandler& callbacksHandler)
 
 AVModel::~AVModel()
 {
-    std::lock_guard<std::mutex> lk(pimpl_->renderers_mtx_);
+    QWriteLocker lk(&pimpl_->renderersMutex_);
     for (auto r = pimpl_->renderers_.begin(); r != pimpl_->renderers_.end(); ++r) {
         (*r).second.reset();
     }
@@ -176,7 +177,7 @@ QList<MapStringString>
 AVModel::getRenderersInfo(QString id)
 {
     QList<MapStringString> infoList;
-    std::lock_guard<std::mutex> lk(pimpl_->renderers_mtx_);
+    QReadLocker lk(&pimpl_->renderersMutex_);
     for (auto r = pimpl_->renderers_.begin(); r != pimpl_->renderers_.end(); r++) {
         MapStringString qmap;
         auto& rend = r->second;
@@ -195,14 +196,17 @@ AVModel::getRenderersInfo(QString id)
 void
 AVModel::updateRenderersFPSInfo(QString rendererId)
 {
-    std::unique_lock<std::mutex> lk(pimpl_->renderers_mtx_);
+    QReadLocker lk(&pimpl_->renderersMutex_);
     auto it = std::find_if(pimpl_->renderers_.begin(),
                            pimpl_->renderers_.end(),
                            [&rendererId](const auto& c) {
                                return rendererId == c.second->getInfos()["RENDERER_ID"];
                            });
-    if (it != pimpl_->renderers_.end())
-        Q_EMIT onRendererFpsChange(qMakePair(rendererId, it->second->getInfos()["FPS"]));
+    if (it != pimpl_->renderers_.end()) {
+        auto fpsInfo = qMakePair(rendererId, it->second->getInfos()["FPS"]);
+        lk.unlock();
+        Q_EMIT onRendererFpsChange(fpsInfo);
+    }
 }
 
 bool
@@ -333,7 +337,7 @@ AVModel::setDeviceSettings(video::Settings& settings)
 
     // If the preview is running, reload it
     // doing this during a call will cause re-invite, this is unwanted
-    std::unique_lock<std::mutex> lk(pimpl_->renderers_mtx_);
+    QReadLocker lk(&pimpl_->renderersMutex_);
     auto it = pimpl_->renderers_.find(video::PREVIEW_RENDERER_ID);
     if (it != pimpl_->renderers_.end() && it->second && pimpl_->renderers_.size() == 1) {
         lk.unlock();
@@ -942,54 +946,63 @@ createRenderer(const QString& id, const QSize& res, const QString& shmPath = {})
 void
 AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& shmPath)
 {
+    // Remove the renderer if it already exists.
+    removeRenderer(id); // Will write-lock renderersMutex_.
+
     {
-        std::lock_guard<std::mutex> lk(renderers_mtx_);
+        QWriteLocker lk(&renderersMutex_);
         renderers_[id] = createRenderer(id, res, shmPath);
     }
 
-    auto& r = renderers_[id];
+    QReadLocker lk(&renderersMutex_);
+    auto it = renderers_.find(id);
+    if (it == renderers_.end()) {
+        qWarning() << Q_FUNC_INFO << "Renderer not found for id:" << id;
+        return;
+    }
 
-    // Listen and forward id-bound signals upwards.
-    connect(
-        r.get(),
-        &Renderer::fpsChanged,
-        this,
-        [this, id](void) { linked_.updateRenderersFPSInfo(id); },
-        Qt::QueuedConnection);
-    connect(
-        r.get(),
-        &Renderer::started,
-        this,
-        [this, id](const QSize& size) { Q_EMIT linked_.rendererStarted(id, size); },
-        Qt::DirectConnection);
+    if (auto* renderer = it->second.get()) {
+        connect(
+            renderer,
+            &Renderer::fpsChanged,
+            this,
+            [this, id](void) { linked_.updateRenderersFPSInfo(id); },
+            Qt::QueuedConnection);
+        connect(
+            renderer,
+            &Renderer::started,
+            this,
+            [this, id](const QSize& size) { Q_EMIT linked_.rendererStarted(id, size); },
+            Qt::DirectConnection);
 #ifdef ENABLE_LIBWRAP
-    connect(
-        r.get(),
-        &Renderer::frameBufferRequested,
-        this,
-        [this, id](AVFrame* frame) { Q_EMIT linked_.frameBufferRequested(id, frame); },
-        Qt::DirectConnection);
+        connect(
+            renderer,
+            &Renderer::frameBufferRequested,
+            this,
+            [this, id](AVFrame* frame) { Q_EMIT linked_.frameBufferRequested(id, frame); },
+            Qt::DirectConnection);
 #endif
-    connect(
-        r.get(),
-        &Renderer::frameUpdated,
-        this,
-        [this, id] { Q_EMIT linked_.frameUpdated(id); },
-        Qt::DirectConnection);
-    connect(
-        r.get(),
-        &Renderer::stopped,
-        this,
-        [this, id] { Q_EMIT linked_.rendererStopped(id); },
-        Qt::DirectConnection);
+        connect(
+            renderer,
+            &Renderer::frameUpdated,
+            this,
+            [this, id] { Q_EMIT linked_.frameUpdated(id); },
+            Qt::DirectConnection);
+        connect(
+            renderer,
+            &Renderer::stopped,
+            this,
+            [this, id] { Q_EMIT linked_.rendererStopped(id); },
+            Qt::DirectConnection);
 
-    r->startRendering();
+        renderer->startRendering();
+    }
 }
 
 void
 AVModelPimpl::removeRenderer(const QString& id)
 {
-    std::lock_guard<std::mutex> lk(renderers_mtx_);
+    QWriteLocker lk(&renderersMutex_);
     auto it = renderers_.find(id);
     if (it == renderers_.end()) {
         qWarning() << "Cannot remove renderer. " << id << "not found";
@@ -1001,14 +1014,14 @@ AVModelPimpl::removeRenderer(const QString& id)
 bool
 AVModelPimpl::hasRenderer(const QString& id)
 {
-    std::lock_guard<std::mutex> lk(renderers_mtx_);
+    QReadLocker lk(&renderersMutex_);
     return renderers_.find(id) != renderers_.end();
 }
 
 QSize
 AVModelPimpl::getRendererSize(const QString& id)
 {
-    std::lock_guard<std::mutex> lk(renderers_mtx_);
+    QReadLocker lk(&renderersMutex_);
     auto it = renderers_.find(id);
     if (it != renderers_.end()) {
         return it->second->size();
@@ -1019,7 +1032,7 @@ AVModelPimpl::getRendererSize(const QString& id)
 Frame
 AVModelPimpl::getRendererFrame(const QString& id)
 {
-    std::lock_guard<std::mutex> lk(renderers_mtx_);
+    QReadLocker lk(&renderersMutex_);
     auto it = renderers_.find(id);
     if (it != renderers_.end()) {
         return it->second->currentFrame();
