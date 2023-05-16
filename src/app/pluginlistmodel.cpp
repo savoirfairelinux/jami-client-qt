@@ -114,7 +114,7 @@ PluginListModel::addPlugin()
         return;
 
     int index = 0;
-    for (auto item : newList) {
+    for (const auto& item : newList) {
         if (installedPlugins_.indexOf(item) == -1)
             break;
         index++;
@@ -126,17 +126,19 @@ PluginListModel::addPlugin()
 }
 
 void
-PluginListModel::filterPlugins(VectorString& list)
+PluginListModel::filterPlugins(VectorString& list) const
 {
     if (!lrcInstance_ || !filterAccount_)
         return;
 
-    for (auto it = list.begin(); it != list.end();) {
-        auto prefs = lrcInstance_->pluginModel()
-                         .getPluginPreferences(*it, lrcInstance_->get_currentAccountId());
-        if (prefs.empty()) {
-            it = list.erase(it);
-        } else
-            it++;
-    }
+    const auto accountId = lrcInstance_->get_currentAccountId();
+    list.erase(std::remove_if(list.begin(), // clazy:exclude=strict-iterators
+                              list.end(),
+                              [&](const QString& pluginName) -> bool {
+                                  const auto prefs = lrcInstance_->pluginModel()
+                                                         .getPluginPreferences(pluginName,
+                                                                               accountId);
+                                  return prefs.empty();
+                              }),
+               list.cend());
 }

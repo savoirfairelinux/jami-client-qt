@@ -33,7 +33,7 @@ DBusErrorHandler::errorCallback()
 
     Q_EMIT showDaemonReconnectPopup(true);
 
-    QTimer::singleShot(2500, [this]() {
+    QTimer::singleShot(2500, this, [this]() {
         if ((!lrc::api::Lrc::isConnected()) || (!lrc::api::Lrc::dbusIsValid())) {
             qDebug() << "Could not reconnect to the daemon";
             Q_EMIT daemonReconnectFailed();
