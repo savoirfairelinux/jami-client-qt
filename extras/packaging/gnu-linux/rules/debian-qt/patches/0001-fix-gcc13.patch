@@ -2,8 +2,10 @@
  qtwebengine/src/3rdparty/chromium/base/debug/stack_trace.h                                                | 1 +
  qtwebengine/src/3rdparty/chromium/base/logging.h                                                          | 2 ++
  qtwebengine/src/3rdparty/chromium/cc/trees/target_property.cc                                             | 2 ++
+ qtwebengine/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h                      | 1 +
  qtwebengine/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h                 | 1 +
  qtwebengine/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc                       | 1 +
+ qtwebengine/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.h                        | 1 +
  qtwebengine/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h                            | 1 +
  qtwebengine/src/3rdparty/chromium/extensions/browser/api/audio/audio_device_id_calculator.h               | 1 +
  qtwebengine/src/3rdparty/chromium/extensions/common/constants.h                                           | 2 ++
@@ -11,18 +13,23 @@
  qtwebengine/src/3rdparty/chromium/gpu/config/gpu_feature_info.h                                           | 1 +
  qtwebengine/src/3rdparty/chromium/gpu/config/gpu_preferences.h                                            | 1 +
  qtwebengine/src/3rdparty/chromium/gpu/config/gpu_util.h                                                   | 2 ++
+ qtwebengine/src/3rdparty/chromium/net/base/parse_number.h                                                 | 1 +
+ qtwebengine/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h                                   | 1 +
  qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h          | 1 +
  qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/quic_connection_id.h        | 1 +
+ qtwebengine/src/3rdparty/chromium/pdf/document_attachment_info.h                                          | 1 +
  qtwebengine/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h               | 6 ++++--
  qtwebengine/src/3rdparty/chromium/sandbox/linux/syscall_broker/broker_file_permission.h                   | 1 +
  qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h     | 1 +
  qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h                          | 2 +-
  qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h                          | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/blink/public/common/origin_trials/origin_trial_public_key.h | 1 +
  qtwebengine/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/dark_mode_types.h          | 2 ++
  .../src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h    | 1 +
  qtwebengine/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h                             | 1 +
  qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h               | 1 +
  qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h                          | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h                           | 1 +
  qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h                           | 1 +
  qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/instruction.cc                   | 1 +
  qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h                        | 1 +
@@ -33,15 +40,17 @@
  qtwebengine/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp                             | 4 ++++
  qtwebengine/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h              | 1 +
  qtwebengine/src/3rdparty/chromium/third_party/webrtc/call/rtp_demuxer.h                                   | 1 +
+ .../src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h  | 1 +
  qtwebengine/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h                 | 1 +
  qtwebengine/src/3rdparty/chromium/ui/base/ime/linux/linux_input_method_context.h                          | 1 +
  qtwebengine/src/3rdparty/chromium/ui/events/gesture_event_details.h                                       | 1 +
  qtwebengine/src/3rdparty/chromium/ui/events/types/scroll_types.h                                          | 2 ++
+ qtwebengine/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h                                       | 1 +
  qtwebengine/src/3rdparty/chromium/v8/src/base/logging.h                                                   | 1 +
  qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h                                                    | 1 +
  qtwebengine/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h                                | 1 +
  qtwebengine/src/core/browsing_data_remover_delegate_qt.h                                                  | 2 ++
- 43 files changed, 59 insertions(+), 3 deletions(-)
+ 52 files changed, 68 insertions(+), 3 deletions(-)
 
 diff --git a/qtwebengine/src/3rdparty/chromium/base/debug/profiler.h b/qtwebengine/src/3rdparty/chromium/base/debug/profiler.h
 index 1229e06234..c7ed55e70f 100644
@@ -93,6 +102,18 @@ index 96f8c3bd7c..c3f087b1a9 100644
  namespace cc {
  
  static_assert(TargetProperty::LAST_TARGET_PROPERTY <
+diff --git a/qtwebengine/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h b/qtwebengine/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h
+index 2aba73ebcb..2e028fddcf 100644
+--- a/qtwebengine/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h
++++ b/qtwebengine/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h
+@@ -5,6 +5,7 @@
+ #ifndef COMPONENTS_VIZ_COMMON_SHARED_ELEMENT_RESOURCE_ID_H_
+ #define COMPONENTS_VIZ_COMMON_SHARED_ELEMENT_RESOURCE_ID_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
 diff --git a/qtwebengine/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h b/qtwebengine/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h
 index 3069c858d3..f4614b73c6 100644
 --- a/qtwebengine/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h
@@ -117,6 +138,18 @@ index 80fd26f4f4..3f08972a7a 100644
  
  #include "base/threading/platform_thread.h"
  
+diff --git a/qtwebengine/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.h b/qtwebengine/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.h
+index 6a3eeda565..525301379c 100644
+--- a/qtwebengine/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.h
++++ b/qtwebengine/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.h
+@@ -6,6 +6,7 @@
+ #define DEVICE_BASE_SYNCHRONIZATION_ONE_WRITER_SEQLOCK_H_
+ 
+ #include <atomic>
++#include <cstdint>
+ 
+ #include "base/atomicops.h"
+ #include "base/check.h"
 diff --git a/qtwebengine/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h b/qtwebengine/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h
 index 3cf2914e10..4b0552440c 100644
 --- a/qtwebengine/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h
@@ -204,6 +237,30 @@ index f72970c67a..d7f0b7d492 100644
  #include "build/build_config.h"
  #include "gpu/config/gpu_feature_info.h"
  #include "gpu/gpu_export.h"
+diff --git a/qtwebengine/src/3rdparty/chromium/net/base/parse_number.h b/qtwebengine/src/3rdparty/chromium/net/base/parse_number.h
+index 4e49ab7112..e99d2dd7aa 100644
+--- a/qtwebengine/src/3rdparty/chromium/net/base/parse_number.h
++++ b/qtwebengine/src/3rdparty/chromium/net/base/parse_number.h
+@@ -7,6 +7,7 @@
+ 
+ #include "base/strings/string_piece.h"
+ #include "net/base/net_export.h"
++#include <cstdint>
+ 
+ // This file contains utility functions for parsing numbers, in the context of
+ // network protocols.
+diff --git a/qtwebengine/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h b/qtwebengine/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h
+index 2e9c319a3d..4d723d18f2 100644
+--- a/qtwebengine/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h
++++ b/qtwebengine/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h
+@@ -6,6 +6,7 @@
+ #define NET_COOKIES_COOKIE_INCLUSION_STATUS_H_
+ 
+ #include <bitset>
++#include <cstdint>
+ #include <ostream>
+ #include <string>
+ #include <vector>
 diff --git a/qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h b/qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h
 index 6a300ed0c0..3e30f1cb02 100644
 --- a/qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h
@@ -227,6 +284,18 @@ index 52f1501728..db4d310849 100644
 +#include <cstdint>
  #include <string>
  #include <vector>
+ 
+diff --git a/qtwebengine/src/3rdparty/chromium/pdf/document_attachment_info.h b/qtwebengine/src/3rdparty/chromium/pdf/document_attachment_info.h
+index 138ca2efec..08f06e7b8c 100644
+--- a/qtwebengine/src/3rdparty/chromium/pdf/document_attachment_info.h
++++ b/qtwebengine/src/3rdparty/chromium/pdf/document_attachment_info.h
+@@ -5,6 +5,7 @@
+ #ifndef PDF_DOCUMENT_ATTACHMENT_INFO_H_
+ #define PDF_DOCUMENT_ATTACHMENT_INFO_H_
+ 
++#include <cstdint>
+ #include <string>
+ 
  
 diff --git a/qtwebengine/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h b/qtwebengine/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
 index b4fdb9a6d3..375d3ef327 100644
@@ -301,6 +370,18 @@ index 18175e15c7..28332857bc 100644
  
  // This type is defined here to simplify ANGLE's integration with glslang for SPIR-V.
  using ShCompileOptions = uint64_t;
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/blink/public/common/origin_trials/origin_trial_public_key.h b/qtwebengine/src/3rdparty/chromium/third_party/blink/public/common/origin_trials/origin_trial_public_key.h
+index c63049b174..82b27837b5 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/blink/public/common/origin_trials/origin_trial_public_key.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/blink/public/common/origin_trials/origin_trial_public_key.h
+@@ -6,6 +6,7 @@
+ #define THIRD_PARTY_BLINK_PUBLIC_COMMON_ORIGIN_TRIALS_ORIGIN_TRIAL_PUBLIC_KEY_H_
+ 
+ #include <array>
++#include <cstdint>
+ 
+ namespace blink {
+ 
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/dark_mode_types.h b/qtwebengine/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/dark_mode_types.h
 index 14c5548766..43c9a8d6a5 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/dark_mode_types.h
@@ -362,6 +443,18 @@ index fa5fc3a7e9..6cec934670 100644
  #include <string>
  #include <unordered_map>
  #include <vector>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
+index f378d57817..98d1336f9a 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
+@@ -15,6 +15,7 @@
+ #ifndef SRC_TINT_READER_WGSL_LEXER_H_
+ #define SRC_TINT_READER_WGSL_LEXER_H_
+ 
++#include <cstdint>
+ #include <string>
+ 
+ #include "src/tint/reader/wgsl/token.h"
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
 index 7b5b6754ed..62b1ca7e36 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
@@ -487,6 +580,18 @@ index 5fd37b4613..ce70405dd2 100644
  #include <map>
  #include <string>
  #include <utility>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h b/qtwebengine/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h
+index b70ac4aa59..7ba5555647 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h
+@@ -13,6 +13,7 @@
+ 
+ #include <gio/gio.h>
+ 
++#include <cstdint>
+ #include <string>
+ 
+ namespace webrtc {
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h b/qtwebengine/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h
 index ca249541d0..534214dbfa 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h
@@ -536,6 +641,18 @@ index 7ff15f0fc5..136cebc09e 100644
  namespace ui {
  
  enum class ScrollGranularity : uint8_t {
+diff --git a/qtwebengine/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h b/qtwebengine/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
+index 1ad025fec1..adadf96190 100644
+--- a/qtwebengine/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
++++ b/qtwebengine/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
+@@ -5,6 +5,7 @@
+ #ifndef UI_GFX_LINEAR_GRADIENT_H_
+ #define UI_GFX_LINEAR_GRADIENT_H_
+ 
++#include <cstdint>
+ #include <array>
+ #include <string>
+ 
 diff --git a/qtwebengine/src/3rdparty/chromium/v8/src/base/logging.h b/qtwebengine/src/3rdparty/chromium/v8/src/base/logging.h
 index fdac44e31e..a752dba6a2 100644
 --- a/qtwebengine/src/3rdparty/chromium/v8/src/base/logging.h

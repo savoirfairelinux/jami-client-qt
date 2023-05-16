@@ -36,8 +36,8 @@ PluginListPreferenceModel::populateLists()
     if (pluginId_.isEmpty())
         return;
     auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_, "");
-    if (!accountId__.isEmpty())
-        preferences.append(lrcInstance_->pluginModel().getPluginPreferences(pluginId_, accountId__));
+    if (!accountId_.isEmpty())
+        preferences.append(lrcInstance_->pluginModel().getPluginPreferences(pluginId_, accountId_));
     for (const auto& preference : preferences) {
         if (preference["key"] == preferenceKey_) {
             if (preference.find("entries") != preference.end()
@@ -59,14 +59,6 @@ PluginListPreferenceModel::rowCount(const QModelIndex& parent) const
     }
     /// A valid QModelIndex returns 0 as no entry has sub-elements.
     return 0;
-}
-
-int
-PluginListPreferenceModel::columnCount(const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    /// Only need one column.
-    return 1;
 }
 
 QVariant

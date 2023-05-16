@@ -53,6 +53,6 @@ public:
     Q_INVOKABLE void addPlugin();
 
 private:
-    void filterPlugins(VectorString& list);
+    void filterPlugins(VectorString& list) const;
     VectorString installedPlugins_ {};
 };

@@ -46,10 +46,11 @@ class ScreenInfo : public QObject
 public:
     void setCurrentFocusWindow(QWindow* window);
 
-private:
-    QMetaObject::Connection currentFocusWindowScreenConnection_;
-    QMetaObject::Connection devicePixelRatioConnection_;
+private Q_SLOTS:
+    void onScreenChanged();
+    void onPhysicalDotsPerInchChanged();
 
+private:
     QWindow* currentFocusWindow_ {nullptr};
     QScreen* currentFocusWindowScreen_ {nullptr};
 };
