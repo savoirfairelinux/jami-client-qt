@@ -26,6 +26,9 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
+    required property string pluginId
+    onPluginIdChanged: print("PLUG", pluginId)
+
     color: "transparent"
 
     visible: false
@@ -104,6 +107,7 @@ Rectangle {
             id: pluginGeneralSettingsView
             visible: false
             Layout.fillWidth: true
+            pluginId: root.pluginId
         }
 
         RowLayout {
@@ -147,6 +151,7 @@ Rectangle {
             visible: false
             Layout.fillWidth: true
             accountId: LRCInstance.currentAccountId
+            pluginId: root.pluginId
         }
 
         MaterialButton {

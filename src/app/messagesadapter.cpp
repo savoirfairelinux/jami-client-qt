@@ -341,8 +341,8 @@ MessagesAdapter::onPaste()
         // Extract the local paths of the files.
         for (int i = 0; i < urlList.size(); ++i) {
             // Trim file:// or file:/// from url.
-            QString filePath = urlList.at(i).toString().remove(
-                QRegularExpression("^file:\\/{2,3}"));
+            const static QRegularExpression fileSchemeRe("^file:\\/{2,3}");
+            QString filePath = urlList.at(i).toString().remove(fileSchemeRe);
             Q_EMIT newFilePasted(filePath);
         }
     } else {
@@ -658,7 +658,8 @@ MessagesAdapter::getMediaInfo(const QString& msg)
     }
     static const QRegExp vPattern("(video/)(avi|mov|webm|webp|rmvb)$", Qt::CaseInsensitive);
     vPattern.indexIn(mime.name());
-    QString type = vPattern.capturedTexts().size() == 3 ? vPattern.capturedTexts()[1] : "";
+    auto captured = vPattern.capturedTexts();
+    QString type = captured.size() == 3 ? captured[1] : "";
     if (!type.isEmpty()) {
         return {
             {"isVideo", true},
@@ -668,7 +669,8 @@ MessagesAdapter::getMediaInfo(const QString& msg)
     } else {
         static const QRegExp aPattern("(audio/)(ogg|flac|wav|mpeg|mp3)$", Qt::CaseInsensitive);
         aPattern.indexIn(mime.name());
-        type = aPattern.capturedTexts().size() == 3 ? aPattern.capturedTexts()[1] : "";
+        captured = aPattern.capturedTexts();
+        type = captured.size() == 3 ? captured[1] : "";
         if (!type.isEmpty()) {
             return {
                 {"isVideo", false},
@@ -684,9 +686,10 @@ bool
 MessagesAdapter::isRemoteImage(const QString& msg)
 {
     // TODO: test if all these open in the AnimatedImage component
-    QRegularExpression pattern("[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|apng|webp|avif|flif)$",
-                               QRegularExpression::CaseInsensitiveOption);
-    QRegularExpressionMatch match = pattern.match(msg);
+    const static QRegularExpression
+        imageRe("[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|apng|webp|avif|flif)$",
+                QRegularExpression::CaseInsensitiveOption);
+    QRegularExpressionMatch match = imageRe.match(msg);
     return match.hasMatch();
 }
 

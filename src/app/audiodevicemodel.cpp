@@ -53,7 +53,7 @@ AudioDeviceModel::data(const QModelIndex& index, int role) const
     case Qt::DisplayRole:
     case Role::DeviceName: {
         auto deviceName = devices_.at(index.row());
-        QRegularExpression re("{{(.*?)}}");
+        const static QRegularExpression re("{{(.*?)}}");
         QRegularExpressionMatch match = re.match(deviceName);
         if (match.hasMatch() && re.captureCount() > 0) {
             deviceName.replace(match.captured(0), QObject::tr(match.captured(1).toUtf8()));

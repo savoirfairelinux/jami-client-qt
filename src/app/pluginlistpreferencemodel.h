@@ -25,11 +25,12 @@
 class PluginListPreferenceModel : public AbstractListModelBase
 {
     Q_OBJECT
-    Q_PROPERTY(QString preferenceNewValue READ preferenceNewValue WRITE setPreferenceNewValue)
-    Q_PROPERTY(QString pluginId READ pluginId WRITE setPluginId)
+    Q_PROPERTY(QString preferenceNewValue READ preferenceNewValue WRITE setPreferenceNewValue NOTIFY
+                   preferenceNewValueChanged)
+    Q_PROPERTY(QString pluginId READ pluginId WRITE setPluginId NOTIFY pluginIdChanged)
     QML_PROPERTY(QString, preferenceKey)
     QML_PROPERTY(int, idx)
-    QML_PROPERTY(QString, accountId_)
+    QML_PROPERTY(QString, accountId)
 public:
     enum Role { PreferenceValue = Qt::UserRole + 1, PreferenceEntryValue };
     Q_ENUM(Role)
@@ -37,43 +38,40 @@ public:
     explicit PluginListPreferenceModel(QObject* parent = nullptr);
     ~PluginListPreferenceModel();
 
-    /*
-     * QAbstractListModel override.
-     */
+    // QAbstractListModel override.
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    int columnCount(const QModelIndex& parent) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
-    /*
-     * Override role name as access point in qml.
-     */
     QHash<int, QByteArray> roleNames() const override;
 
-    /*
-     * This function is to reset the model when there's new account added.
-     */
+    // This function is to reset the model when there's new account added.
     Q_INVOKABLE void reset();
-    /*
-     * This function is to get the current preference value
-     */
+
+    // This function is to get the current preference value.
     Q_INVOKABLE int getCurrentSettingIndex();
 
     Q_INVOKABLE void populateLists();
 
     void setPreferenceNewValue(const QString preferenceNewValue)
     {
-        preferenceNewValue_ = preferenceNewValue;
+        if (preferenceNewValue_ != preferenceNewValue) {
+            preferenceNewValue_ = preferenceNewValue;
+            Q_EMIT preferenceNewValueChanged();
+        }
     }
 
     void setPluginId(const QString pluginId)
     {
-        pluginId_ = pluginId;
-        populateLists();
+        if (pluginId_ != pluginId) {
+            pluginId_ = pluginId;
+            populateLists();
+            Q_EMIT pluginIdChanged();
+        }
     }
 
     QString preferenceCurrentValue()
     {
         return lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_,
-                                                                      accountId__)[preferenceKey_];
+                                                                      accountId_)[preferenceKey_];
     }
 
     QString preferenceNewValue()
@@ -87,9 +85,13 @@ public:
         return pluginId_;
     }
 
+Q_SIGNALS:
+    void preferenceNewValueChanged();
+    void pluginIdChanged();
+
 private:
-    QString pluginId_ = "";
-    QString preferenceNewValue_ = "";
+    QString pluginId_ {};
+    QString preferenceNewValue_ {};
     QStringList preferenceValuesList_;
     QStringList preferenceList_;
 };
