@@ -76,7 +76,7 @@ class CallParticipantsModel : public QAbstractListModel
 {
     Q_OBJECT
 
-    Q_PROPERTY(LayoutType conferenceLayout READ conferenceLayout NOTIFY layoutChanged)
+    Q_PROPERTY(LayoutType conferenceLayout READ conferenceLayout NOTIFY conferenceLayoutChanged)
     QML_RO_PROPERTY(int, count)
 
 public:
@@ -98,18 +98,18 @@ public:
     void setConferenceLayout(int layout, const QString& callId)
     {
         auto newLayout = static_cast<LayoutType>(layout);
-        if (callId == callId_ && newLayout != layout_) {
-            layout_ = newLayout;
-            Q_EMIT layoutChanged();
+        if (callId == callId_ && newLayout != conferenceLayout_) {
+            conferenceLayout_ = newLayout;
+            Q_EMIT conferenceLayoutChanged();
         }
     }
     LayoutType conferenceLayout()
     {
-        return layout_;
+        return conferenceLayout_;
     }
 
 Q_SIGNALS:
-    void layoutChanged();
+    void conferenceLayoutChanged();
 
 private:
     LRCInstance* lrcInstance_ {nullptr};
@@ -117,5 +117,5 @@ private:
     std::mutex participantsMtx_;
     QList<CallParticipant::Item> participants_ {};
     QString callId_;
-    LayoutType layout_;
+    LayoutType conferenceLayout_;
 };

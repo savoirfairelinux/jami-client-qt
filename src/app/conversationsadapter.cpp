@@ -85,18 +85,21 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     // notification responses
     connect(systemTray_,
             &SystemTray::openConversationActivated,
+            this,
             [this](const QString& accountId, const QString& convUid) {
                 Q_EMIT lrcInstance_->notificationClicked();
                 lrcInstance_->selectConversation(convUid, accountId);
             });
     connect(systemTray_,
             &SystemTray::acceptPendingActivated,
+            this,
             [this](const QString& accountId, const QString& convUid) {
                 auto& accInfo = lrcInstance_->getAccountInfo(accountId);
                 accInfo.conversationModel->acceptConversationRequest(convUid);
             });
     connect(systemTray_,
             &SystemTray::refusePendingActivated,
+            this,
             [this](const QString& accountId, const QString& convUid) {
                 auto& accInfo = lrcInstance_->getAccountInfo(accountId);
                 accInfo.conversationModel->removeConversation(convUid);
@@ -178,11 +181,11 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
                                                 interaction.authorUri,
                                                 QSize(50, 50),
                                                 accountId);
-        auto notifId = QString("%1;%2;%3").arg(accountId).arg(convUid).arg(interactionId);
+        auto notifId = QString("%1;%2;%3").arg(accountId, convUid, interactionId);
         systemTray_->showNotification(notifId,
                                       tr("%1 received a new message").arg(to),
                                       from + ": " + body_,
-                                      NotificationType::CHAT,
+                                      SystemTray::NotificationType::CHAT,
                                       Utils::QImageToByteArray(contactPhoto));
 
 #else
@@ -207,7 +210,7 @@ ConversationsAdapter::onNewReadInteraction(const QString& accountId,
 {
 #ifdef Q_OS_LINUX
     // hide notification
-    auto notifId = QString("%1;%2;%3").arg(accountId).arg(convUid).arg(interactionId);
+    auto notifId = QString("%1;%2;%3").arg(accountId, convUid, interactionId);
     systemTray_->hideNotification(notifId);
 #else
     Q_UNUSED(accountId)
@@ -238,11 +241,11 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId,
         if (preferences["ignoreNotifications"] == "true")
             return;
         auto contactPhoto = Utils::contactPhoto(lrcInstance_, peerUri, QSize(50, 50), accountId);
-        auto notifId = QString("%1;%2").arg(accountId).arg(conv);
+        auto notifId = QString("%1;%2").arg(accountId, conv);
         systemTray_->showNotification(notifId,
                                       tr("%1 received a new trust request").arg(to),
                                       "New request from " + from,
-                                      NotificationType::REQUEST,
+                                      SystemTray::NotificationType::REQUEST,
                                       Utils::QImageToByteArray(contactPhoto));
     }
 #else
@@ -257,7 +260,7 @@ ConversationsAdapter::onTrustRequestTreated(const QString& accountId, const QStr
 {
 #ifdef Q_OS_LINUX
     // hide notification
-    auto notifId = QString("%1;%2").arg(accountId).arg(peerUri);
+    auto notifId = QString("%1;%2").arg(accountId, peerUri);
     systemTray_->hideNotification(notifId);
 #else
     Q_UNUSED(accountId)

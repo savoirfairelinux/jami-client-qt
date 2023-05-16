@@ -132,15 +132,13 @@ const QString
 UtilsAdapter::getStyleSheet(const QString& name, const QString& source)
 {
     auto simplifiedCSS = source.simplified().replace("'", "\"");
-    QString s = QString::fromLatin1("(function() {"
-                                    "    var node = document.createElement('style');"
-                                    "    node.id = '%1';"
-                                    "    node.innerHTML = '%2';"
-                                    "    document.head.appendChild(node);"
-                                    "})()")
-                    .arg(name)
-                    .arg(simplifiedCSS);
-    return s;
+    static auto baseScript = QString::fromLatin1("(function() {"
+                                                 "    var node = document.createElement('style');"
+                                                 "    node.id = '%1';"
+                                                 "    node.innerHTML = '%2';"
+                                                 "    document.head.appendChild(node);"
+                                                 "})()");
+    return baseScript.arg(name, simplifiedCSS);
 }
 
 const QString
@@ -315,20 +313,6 @@ UtilsAdapter::getCallStatusStr(int statusInt)
     return lrc::api::call::to_string(status);
 }
 
-// returns true if name is valid registered name
-bool
-UtilsAdapter::validateRegNameForm(const QString& regName)
-{
-    QRegularExpression regExp(" ");
-
-    if (regName.size() > 2 && !regName.contains(regExp)) {
-        return true;
-
-    } else {
-        return false;
-    }
-}
-
 QString
 UtilsAdapter::getStringUTF8(QString string)
 {
@@ -377,15 +361,14 @@ UtilsAdapter::toFileAbsolutepath(QString inputFileName)
 QString
 UtilsAdapter::getAbsPath(QString path)
 {
+    static auto fileSchemeRe = QRegularExpression("^file:\\/{2,3}");
     // Note: this function is used on urls returned from qml-FileDialogs which
     // contain 'file:///' for reasons we don't understand.
     // TODO: this logic can be refactored into the JamiFileDialog component.
 #ifdef Q_OS_WIN
-    return path.replace(QRegularExpression("^file:\\/{2,3}"), "").replace("\n", "").replace("\r", "");
+    return path.replace(fileSchemeRe, "").replace("\n", "").replace("\r", "");
 #else
-    return path.replace(QRegularExpression("^file:\\/{2,3}"), "/")
-        .replace("\n", "")
-        .replace("\r", "");
+    return path.replace(fileSchemeRe, "/").replace("\n", "").replace("\r", "");
 #endif
 }
 
@@ -508,6 +491,7 @@ UtilsAdapter::monitor(const bool& continuous)
         debugMessageReceivedConnection_
             = QObject::connect(&lrcInstance_->behaviorController(),
                                &lrc::api::BehaviorController::debugMessageReceived,
+                               this,
                                [this](const QString& data) {
                                    logList_.append(data);
                                    if (logList_.size() >= LOGSLIMIT) {
@@ -549,15 +533,15 @@ UtilsAdapter::supportedLang()
     QRegExp regex("jami_client_qt_(.*).qm");
     QSet<QString> nativeNames;
     for (const auto& f : trFiles) {
-        auto match = regex.indexIn(f);
-        if (regex.capturedTexts().size() == 2) {
-            auto l = regex.capturedTexts()[1];
-            auto nativeName = QLocale(l).nativeLanguageName();
+        regex.indexIn(f);
+        auto captured = regex.capturedTexts();
+        if (captured.size() == 2) {
+            auto nativeName = QLocale(captured[1]).nativeLanguageName();
             if (nativeName.isEmpty()) // If a locale doesn't have any nativeLanguageName, ignore it.
                 continue;
             // Avoid to show potential duplicates.
             if (!nativeNames.contains(nativeName)) {
-                result[l] = nativeName;
+                result[captured[1]] = nativeName;
                 nativeNames.insert(nativeName);
             }
         }

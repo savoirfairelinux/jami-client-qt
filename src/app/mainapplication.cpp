@@ -78,20 +78,31 @@ ScreenInfo::setCurrentFocusWindow(QWindow* window)
         currentFocusWindow_ = window;
         set_devicePixelRatio(currentFocusWindow_->screen()->devicePixelRatio());
 
-        disconnect(devicePixelRatioConnection_);
-        disconnect(currentFocusWindowScreenConnection_);
-
-        currentFocusWindowScreenConnection_
-            = connect(currentFocusWindow_, &QWindow::screenChanged, [this] {
-                  currentFocusWindowScreen_ = currentFocusWindow_->screen();
-                  set_devicePixelRatio(currentFocusWindowScreen_->devicePixelRatio());
-
-                  devicePixelRatioConnection_ = connect(
-                      currentFocusWindowScreen_, &QScreen::physicalDotsPerInchChanged, [this] {
-                          set_devicePixelRatio(currentFocusWindowScreen_->devicePixelRatio());
-                      });
-              });
+        QObject::connect(currentFocusWindow_,
+                         &QWindow::screenChanged,
+                         this,
+                         &ScreenInfo::onScreenChanged,
+                         Qt::UniqueConnection);
     }
+}
+
+void
+ScreenInfo::onScreenChanged()
+{
+    currentFocusWindowScreen_ = currentFocusWindow_->screen();
+    set_devicePixelRatio(currentFocusWindowScreen_->devicePixelRatio());
+
+    QObject::connect(currentFocusWindowScreen_,
+                     &QScreen::physicalDotsPerInchChanged,
+                     this,
+                     &ScreenInfo::onPhysicalDotsPerInchChanged,
+                     Qt::UniqueConnection);
+}
+
+void
+ScreenInfo::onPhysicalDotsPerInchChanged()
+{
+    set_devicePixelRatio(currentFocusWindowScreen_->devicePixelRatio());
 }
 
 MainApplication::MainApplication(int& argc, char** argv)
@@ -170,7 +181,7 @@ MainApplication::init()
         lrcInstance_.get(),
         &LRCInstance::quitEngineRequested,
         this,
-        [this] { engine_->quit(); },
+        [this] { Q_EMIT engine_->quit(); },
         Qt::DirectConnection);
 
     auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
