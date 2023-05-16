@@ -108,6 +108,11 @@ void
 UpdateManager::cancelUpdate()
 {}
 
+
+void
+UpdateManager::cancelDownload()
+{}
+
 void
 UpdateManager::setAutoUpdateCheck(bool state)
 {
