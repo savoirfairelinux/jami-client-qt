@@ -35,9 +35,7 @@
 def SUBMODULES = ['daemon',
                   '3rdparty/SortFilterProxyModel',
                   '3rdparty/md4c',
-                  '3rdparty/tidy-html5',
-                  '3rdparty/qrencode-win32',
-                  'extras/packaging/update/sparkle/Sparkle']
+                  '3rdparty/tidy-html5']
 def TARGETS = [:]
 def REMOTE_HOST = env.SSH_HOST_DL_RING_CX
 def REMOTE_BASE_DIR = '/srv/repository/ring'
