@@ -480,7 +480,6 @@ Utils::conversationAvatar(LRCInstance* instance,
             return avatar;
         }
         // Else, combine avatars
-        auto idx = 0;
         auto peerAAvatar = getPhoto(members[0]);
         auto peerBAvatar = getPhoto(members[1]);
         peerAAvatar = Utils::halfCrop(peerAAvatar, true);
@@ -712,7 +711,8 @@ Utils::fallbackAvatar(const QString& canonicalUri, const QString& name, const QS
     // if a letter was passed, then we paint a letter in the circle,
     // otherwise we draw the default avatar icon
     QString trimmedName(name);
-    if (!trimmedName.remove(QRegularExpression("[\\n\\t\\r]")).isEmpty()) {
+    const static QRegularExpression newlineRe("[\\n\\t\\r]");
+    if (!trimmedName.remove(newlineRe).isEmpty()) {
         auto unicode = trimmedName.toUcs4().at(0);
         if (unicode >= 0x1F000 && unicode <= 0x1FFFF) {
             // emoticon

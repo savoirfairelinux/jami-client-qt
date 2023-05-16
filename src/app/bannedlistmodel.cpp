@@ -26,32 +26,13 @@ BannedListModel::BannedListModel(QObject* parent)
 
 {
     connect(this, &BannedListModel::lrcInstanceChanged, [this]() {
-        if (lrcInstance_ && lrcInstance_->getCurrentContactModel()) {
-            connect(
-                lrcInstance_->getCurrentContactModel(),
-                &ContactModel::bannedStatusChanged,
+        // Listen for account change and reconnect to the new account contact model.
+        connect(lrcInstance_,
+                &LRCInstance::currentAccountIdChanged,
                 this,
-                [&](const QString& uri, bool banned) {
-                    if (banned) {
-                        beginInsertRows(QModelIndex(), rowCount(), rowCount());
-                        bannedlist_.append(uri);
-                        endInsertRows();
-                        set_count(rowCount());
-                    } else {
-                        auto it = std::find_if(bannedlist_.begin(),
-                                               bannedlist_.end(),
-                                               [&uri](const auto& c) { return uri == c; });
-                        if (it != bannedlist_.end()) {
-                            auto elementIndex = std::distance(bannedlist_.begin(), it);
-                            beginRemoveRows(QModelIndex(), elementIndex, elementIndex);
-                            bannedlist_.remove(elementIndex);
-                            endRemoveRows();
-                            set_count(rowCount());
-                        }
-                    }
-                },
-                Qt::UniqueConnection);
-        }
+                &BannedListModel::connectModels);
+        // Try connecting now.
+        connectModels();
         reset();
     });
 }
@@ -64,16 +45,6 @@ BannedListModel::rowCount(const QModelIndex& parent) const
     if (!parent.isValid() && lrcInstance_)
         return bannedlist_.size();
     return 0;
-}
-
-int
-BannedListModel::columnCount(const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    /*
-     * Only need one column.
-     */
-    return 1;
 }
 
 QVariant
@@ -123,13 +94,6 @@ BannedListModel::index(int row, int column, const QModelIndex& parent) const
     return QModelIndex();
 }
 
-QModelIndex
-BannedListModel::parent(const QModelIndex& child) const
-{
-    Q_UNUSED(child);
-    return QModelIndex();
-}
-
 Qt::ItemFlags
 BannedListModel::flags(const QModelIndex& index) const
 {
@@ -147,4 +111,38 @@ BannedListModel::reset()
     bannedlist_ = lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts();
     endResetModel();
     set_count(rowCount());
+}
+
+void
+BannedListModel::connectModels()
+{
+    if (lrcInstance_ && lrcInstance_->getCurrentContactModel()) {
+        connect(lrcInstance_->getCurrentContactModel(),
+                &ContactModel::bannedStatusChanged,
+                this,
+                &BannedListModel::onBannedStatusChanged,
+                Qt::UniqueConnection);
+    }
+}
+
+void
+BannedListModel::onBannedStatusChanged(const QString& uri, bool banned)
+{
+    if (banned) {
+        beginInsertRows(QModelIndex(), rowCount(), rowCount());
+        bannedlist_.append(uri);
+        endInsertRows();
+        set_count(rowCount());
+    } else {
+        auto it = std::find_if(bannedlist_.begin(), bannedlist_.end(), [&uri](const auto& c) {
+            return uri == c;
+        });
+        if (it != bannedlist_.end()) {
+            auto elementIndex = std::distance(bannedlist_.begin(), it);
+            beginRemoveRows(QModelIndex(), elementIndex, elementIndex);
+            bannedlist_.remove(elementIndex);
+            endRemoveRows();
+            set_count(rowCount());
+        }
+    }
 }

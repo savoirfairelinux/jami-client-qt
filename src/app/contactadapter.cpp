@@ -28,7 +28,10 @@ ContactAdapter::ContactAdapter(LRCInstance* instance, QObject* parent)
     selectableProxyModel_.reset(new SelectableProxyModel(this));
     if (lrcInstance_) {
         connectSignals();
-        connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this] { connectSignals(); });
+        connect(lrcInstance_,
+                &LRCInstance::currentAccountIdChanged,
+                this,
+                &ContactAdapter::connectSignals);
     }
 }
 
@@ -246,20 +249,27 @@ ContactAdapter::removeContact(const QString& peerUri, bool banContact)
 void
 ContactAdapter::connectSignals()
 {
-    if (lrcInstance_->getCurrentContactModel()) {
-        connect(lrcInstance_->getCurrentContactModel(),
-                &ContactModel::bannedStatusChanged,
-                this,
-                &ContactAdapter::bannedStatusChanged,
-                Qt::UniqueConnection);
-        connect(
-            lrcInstance_->getCurrentContactModel(),
+    if (!lrcInstance_->getCurrentContactModel()) {
+        qWarning() << Q_FUNC_INFO << "No contact model";
+        return;
+    }
+
+    connect(lrcInstance_->getCurrentContactModel(),
+            &ContactModel::bannedStatusChanged,
+            this,
+            &ContactAdapter::bannedStatusChanged,
+            Qt::UniqueConnection);
+    connect(lrcInstance_->getCurrentContactModel(),
             &ContactModel::modelUpdated,
             this,
-            [&](const auto& uri) {
-                // Refresh contacts shown
-                selectableProxyModel_->invalidate();
-            },
+            &ContactAdapter::onModelUpdated,
             Qt::UniqueConnection);
-    }
+}
+
+void
+ContactAdapter::onModelUpdated(const QString& uri)
+{
+    Q_UNUSED(uri)
+    // Refresh contacts shown
+    selectableProxyModel_->invalidate();
 }
