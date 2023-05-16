@@ -37,19 +37,12 @@ CurrentAccount::CurrentAccount(LRCInstance* lrcInstance,
             this,
             &CurrentAccount::onAccountUpdated);
 
-
-    connect(lrcInstance_->getCurrentContactModel(),
-            &ContactModel::bannedStatusChanged,
+    connect(lrcInstance_,
+            &LRCInstance::currentAccountIdChanged,
             this,
-            [&](const auto&, auto) {
-                set_hasBannedContacts(
-                    lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts().size());
-            },
-            Qt::UniqueConnection);
+            &CurrentAccount::setupForAccount);
 
-    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this] { updateData(); });
-
-    updateData();
+    setupForAccount();
 }
 
 void
@@ -95,12 +88,32 @@ CurrentAccount::get_isLocalModeratorsEnabled()
 }
 
 void
+CurrentAccount::setupForAccount()
+{
+    connect(lrcInstance_->getCurrentContactModel(),
+            &ContactModel::bannedStatusChanged,
+            this,
+            &CurrentAccount::onBannedStatusChanged,
+            Qt::UniqueConnection);
+    updateData();
+}
+
+void
 CurrentAccount::onAccountUpdated(const QString& id)
 {
     // filter for our currently set id
     if (id_ != id)
         return;
     updateData();
+}
+
+void
+CurrentAccount::onBannedStatusChanged(const QString& contactUri, bool banned)
+{
+    Q_UNUSED(contactUri)
+    Q_UNUSED(banned)
+    set_hasBannedContacts(
+        lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts().size());
 }
 
 void

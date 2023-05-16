@@ -95,6 +95,10 @@ public:
 
 Q_SIGNALS:
     void bannedStatusChanged(const QString& uri, bool banned);
+    void defaultModeratorsUpdated();
+
+private Q_SLOTS:
+    void onModelUpdated(const QString& uri);
 
 private:
     SmartListModel::Type listModeltype_;
@@ -105,7 +109,4 @@ private:
 
     bool hasDifferentMembers(const VectorString& currentMembers,
                              const VectorString& convMembers) const;
-
-Q_SIGNALS:
-    void defaultModeratorsUpdated();
 };

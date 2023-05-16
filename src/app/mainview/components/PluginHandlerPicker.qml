@@ -223,9 +223,9 @@ Popup {
                     model: PreferenceItemListModel {
                         id: handlerPickerPrefsModel
                         lrcInstance: LRCInstance
-                        accountId_: LRCInstance.currentAccountId
-                        mediaHandlerName_: handlerName
-                        pluginId_: pluginId
+                        accountId: LRCInstance.currentAccountId
+                        mediaHandlerName: handlerName
+                        pluginId: root.pluginId
                     }
 
                     delegate: PreferenceItemDelegate {
@@ -248,7 +248,7 @@ Popup {
 
                             lrcInstance: LRCInstance
                             preferenceKey: PreferenceKey
-                            accountId_: LRCInstance.currentAccountId
+                            accountId: LRCInstance.currentAccountId
                             pluginId: PluginId
                         }
 

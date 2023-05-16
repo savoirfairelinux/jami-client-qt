@@ -58,7 +58,7 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
         set_currentAccountAvatarSet(!profileInfo.avatar.isEmpty());
     });
 
-    connect(&accountModel(), &AccountModel::profileUpdated, [this](const QString& id) {
+    connect(&accountModel(), &AccountModel::profileUpdated, this, [this](const QString& id) {
         if (id != currentAccountId_)
             return;
 

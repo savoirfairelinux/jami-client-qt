@@ -22,11 +22,6 @@
 
 #include <functional>
 
-#ifdef Q_OS_LINUX
-enum class NotificationType { INVALID, CALL, REQUEST, CHAT };
-Q_ENUMS(NotificationType)
-#endif // Q_OS_LINUX
-
 class AppSettingsManager;
 
 class SystemTray final : public QSystemTrayIcon
@@ -34,6 +29,11 @@ class SystemTray final : public QSystemTrayIcon
     Q_OBJECT
 
 public:
+#ifdef Q_OS_LINUX
+    enum NotificationType {INVALID, CALL, REQUEST, CHAT};
+    Q_ENUM(NotificationType)
+#endif // Q_OS_LINUX
+
     explicit SystemTray(AppSettingsManager* settingsManager, QObject* parent = nullptr);
     ~SystemTray();
 

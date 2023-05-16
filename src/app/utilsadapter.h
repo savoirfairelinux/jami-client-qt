@@ -105,7 +105,6 @@ public:
     Q_INVOKABLE int getCallStatus(const QString& callId);
     Q_INVOKABLE const QString getCallStatusStr(int statusInt);
     Q_INVOKABLE QString getStringUTF8(QString string);
-    Q_INVOKABLE bool validateRegNameForm(const QString& regName);
     Q_INVOKABLE QString getRecordQualityString(int value);
     Q_INVOKABLE QString getCurrentPath();
     Q_INVOKABLE QString stringSimplifier(QString input);
