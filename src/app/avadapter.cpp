@@ -177,7 +177,7 @@ AvAdapter::captureAllScreens()
         QPainter painter(&final);
         final.fill(Qt::black);
 
-        for (auto scr : scrs) {
+        for (const auto& scr : scrs) {
             painter.drawPixmap(currentPoint, 0, scr.width(), scr.height(), scr);
             currentPoint += scr.width();
         }
@@ -208,7 +208,7 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
     // xrectsel will freeze all displays too fast so that the call
     // context menu will not be closed even closed signal is emitted
     // use timer to wait until popup is closed
-    QTimer::singleShot(100, [=]() mutable {
+    QTimer::singleShot(100, this, [=]() mutable {
         x = y = width = height = 0;
         xrectsel(&x, &y, &width, &height);
         auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(),
@@ -296,16 +296,18 @@ AvAdapter::stopSharing(const QString& source)
     if (!source.isEmpty() && !callId.isEmpty()) {
         if (source.startsWith(libjami::Media::VideoProtocolPrefix::DISPLAY)) {
             qDebug() << "Stopping display: " << source;
-            lrcInstance_->getCurrentCallModel()->removeMedia(callId,
-                                                            libjami::Media::Details::MEDIA_TYPE_VIDEO,
-                                                            libjami::Media::VideoProtocolPrefix::DISPLAY,
-                                                            muteCamera_);
+            lrcInstance_->getCurrentCallModel()
+                ->removeMedia(callId,
+                              libjami::Media::Details::MEDIA_TYPE_VIDEO,
+                              libjami::Media::VideoProtocolPrefix::DISPLAY,
+                              muteCamera_);
         } else {
             qDebug() << "Stopping file: " << source;
-            lrcInstance_->getCurrentCallModel()->removeMedia(callId,
-                                                            libjami::Media::Details::MEDIA_TYPE_VIDEO,
-                                                            libjami::Media::VideoProtocolPrefix::FILE,
-                                                            muteCamera_);
+            lrcInstance_->getCurrentCallModel()
+                ->removeMedia(callId,
+                              libjami::Media::Details::MEDIA_TYPE_VIDEO,
+                              libjami::Media::VideoProtocolPrefix::FILE,
+                              muteCamera_);
         }
     }
 }

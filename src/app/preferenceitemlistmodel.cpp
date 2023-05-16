@@ -48,14 +48,6 @@ PreferenceItemListModel::rowCount(const QModelIndex& parent) const
     return 0;
 }
 
-int
-PreferenceItemListModel::columnCount(const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    /// Only need one column.
-    return 1;
-}
-
 QVariant
 PreferenceItemListModel::data(const QModelIndex& index, int role) const
 {
@@ -71,7 +63,7 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
 
     auto details = preferenceList_.at(index.row());
     preferenceCurrent = lrcInstance_->pluginModel()
-                            .getPluginPreferencesValues(pluginId__, accountId__)[details["key"]];
+                            .getPluginPreferencesValues(pluginId_, accountId_)[details["key"]];
     auto it = mapType.find(details["type"]);
     if (it != mapType.end()) {
         type = mapType[details["type"]];
@@ -88,10 +80,9 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
         }
     }
     const auto dependsOn = details["dependsOn"].split(",");
-    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__,
-                                                                              accountId__);
-    const auto prefValues = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId__,
-                                                                                   accountId__);
+    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_, accountId_);
+    const auto prefValues = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_,
+                                                                                   accountId_);
     bool enabled = true;
     for (auto& preference : preferences) {
         auto key = preference["key"];
@@ -119,7 +110,7 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
     case Role::PreferenceType:
         return QVariant(type);
     case Role::PluginId:
-        return QVariant(pluginId__);
+        return QVariant(pluginId_);
     case Role::PreferenceCurrentValue:
         return QVariant(preferenceCurrent);
     case Role::CurrentPath:
@@ -162,19 +153,23 @@ PreferenceItemListModel::reset()
 }
 
 QString
-PreferenceItemListModel::pluginId_() const
+PreferenceItemListModel::pluginId() const
 {
-    return pluginId__;
+    return pluginId_;
 }
 
 void
 PreferenceItemListModel::setPluginId(const QString& pluginId)
 {
-    beginResetModel();
-    pluginId__ = pluginId;
-    preferenceList_.clear();
-    preferencesCount();
-    endResetModel();
+    if (pluginId_ != pluginId) {
+        beginResetModel();
+        pluginId_ = pluginId;
+        preferenceList_.clear();
+        preferencesCount();
+        endResetModel();
+
+        Q_EMIT pluginIdChanged();
+    }
 }
 
 int
@@ -182,23 +177,22 @@ PreferenceItemListModel::preferencesCount()
 {
     if (!preferenceList_.isEmpty())
         return preferenceList_.size();
-    if (mediaHandlerName__.isEmpty()) {
-        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__, accountId__);
-        if (category__ != "all")
+    if (mediaHandlerName_.isEmpty()) {
+        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_, accountId_);
+        if (category_ != "all")
             for (auto& preference : preferences) {
-                if (preference["category"] == category__)
+                if (preference["category"] == category_)
                     preferenceList_.push_back(preference);
             }
         else
             preferenceList_ = preferences;
         return preferenceList_.size();
     } else {
-        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__, "");
-        preferences.append(
-            lrcInstance_->pluginModel().getPluginPreferences(pluginId__, accountId__));
+        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_, "");
+        preferences.append(lrcInstance_->pluginModel().getPluginPreferences(pluginId_, accountId_));
         for (auto& preference : preferences) {
             QStringList scopeList = preference["scope"].split(",");
-            if (scopeList.contains(mediaHandlerName__))
+            if (scopeList.contains(mediaHandlerName_))
                 preferenceList_.push_back(preference);
         }
         return preferenceList_.size();

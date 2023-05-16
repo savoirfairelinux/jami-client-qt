@@ -107,10 +107,7 @@ SystemTray::SystemTray(AppSettingsManager* settingsManager, QObject* parent)
 
     if (notify_get_server_info(&name, &vendor, &version, &spec)) {
         qDebug() << QString("notify server name: %1, vendor: %2, version: %3, spec: %4")
-                        .arg(name)
-                        .arg(vendor)
-                        .arg(version)
-                        .arg(spec);
+                        .arg(name, vendor, version, spec);
     }
 
     // check  notify server capabilities

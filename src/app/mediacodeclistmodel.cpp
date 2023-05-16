@@ -21,10 +21,7 @@
 #include "lrcinstance.h"
 
 #include "api/account.h"
-#include "api/contact.h"
-#include "api/conversation.h"
 #include "api/codecmodel.h"
-#include "api/devicemodel.h"
 
 MediaCodecListModel::MediaCodecListModel(QObject* parent)
     : AbstractListModelBase(parent)
@@ -50,7 +47,7 @@ MediaCodecListModel::rowCount(const QModelIndex& parent) const
             auto videoCodecListOld = lrcInstance_->getCurrentAccountInfo()
                                          .codecModel->getVideoCodecs();
 
-            for (auto codec : videoCodecListOld) {
+            for (const auto& codec : videoCodecListOld) {
                 if (codec.name.length()) {
                     realCodecList.append(codec);
                 }
@@ -60,16 +57,6 @@ MediaCodecListModel::rowCount(const QModelIndex& parent) const
         }
     }
     return 0;
-}
-
-int
-MediaCodecListModel::columnCount(const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    /*
-     * Only need one column.
-     */
-    return 1;
 }
 
 QVariant
@@ -82,7 +69,7 @@ MediaCodecListModel::data(const QModelIndex& index, int role) const
         QList<lrc::api::Codec> videoCodecList = lrcInstance_->getCurrentAccountInfo()
                                                     .codecModel->getVideoCodecs();
 
-        for (auto codec : videoCodecList) {
+        for (const auto& codec : videoCodecList) {
             if (codec.name.length()) {
                 mediaCodecList.append(codec);
             }
@@ -130,13 +117,6 @@ MediaCodecListModel::index(int row, int column, const QModelIndex& parent) const
     return QModelIndex();
 }
 
-QModelIndex
-MediaCodecListModel::parent(const QModelIndex& child) const
-{
-    Q_UNUSED(child);
-    return QModelIndex();
-}
-
 Qt::ItemFlags
 MediaCodecListModel::flags(const QModelIndex& index) const
 {
@@ -164,5 +144,8 @@ MediaCodecListModel::mediaType()
 void
 MediaCodecListModel::setMediaType(int mediaType)
 {
-    mediaType_ = mediaType;
+    if (mediaType_ != mediaType) {
+        mediaType_ = mediaType;
+        Q_EMIT mediaTypeChanged();
+    }
 }
