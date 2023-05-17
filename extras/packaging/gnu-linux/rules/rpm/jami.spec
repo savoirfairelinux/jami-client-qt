@@ -57,6 +57,9 @@ cd %{_builddir}/jami-%{version}/daemon/contrib/native && \
     make fetch && \
     make %{_smp_mflags} V=1 .ffmpeg
 # Qt-related variables
+export CXXFLAGS="${CXXFLAGS} -fno-lto"
+export CFLAGS="${CFLAGS} -fno-lto"
+export LDFLAGS="$(CFLAGS) ${LDFLAGS}"
 cd %{_builddir}/jami-%{version} && \
     mkdir build && cd build && \
     cmake -DENABLE_LIBWRAP=true \
@@ -66,10 +69,10 @@ cd %{_builddir}/jami-%{version} && \
           -DWITH_DAEMON_SUBMODULE=true \
           -DCMAKE_BUILD_TYPE=Release \
           ..
-make -C %{_builddir}/jami-%{version}/build %{_smp_mflags} V=1
+make -C %{_builddir}/jami-%{version}/build %{_smp_mflags} V=2
 
 %install
-DESTDIR=%{buildroot} make -C %{_builddir}/jami-%{version}/build install
+DESTDIR=%{buildroot} make -C %{_builddir}/jami-%{version}/build install V=2
 
 %files
 %defattr(-,root,root,-)
