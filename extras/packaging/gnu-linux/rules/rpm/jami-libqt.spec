@@ -83,7 +83,7 @@ sed -i 's,#include <string.h>,#include <string.h>\n#include <limits>,g' qtbase/s
 sed -i 's,#include <QtCore/qbytearray.h>,#include <QtCore/qbytearray.h>\n#include <limits>,g' qtbase/src/corelib/text/qbytearraymatcher.h
 cat qtwebengine/configure.cmake
 # recent gcc version do not like lto from qt
-CXXFLAGS="${CXXFLAGS} -fno-lto" CFLAGS="${CFLAGS} -fno-lto" ./configure \
+CXXFLAGS="${CXXFLAGS} -fno-lto" CFLAGS="${CFLAGS} -fno-lto" LDFLAGS="$(CFLAGS) ${LDFLAGS}" ./configure \
   -opensource \
   -confirm-license \
   -nomake examples \
