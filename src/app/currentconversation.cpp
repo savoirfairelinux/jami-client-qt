@@ -330,6 +330,8 @@ CurrentConversation::updateErrors(const QString& convId)
                 } else if (code == 4) {
                     newErrors.append(
                         tr("Not enough authorization for updating conversation's infos"));
+                } else if (code == 5) {
+                    newErrors.append(tr("Error while committing a new message: "));
                 } else {
                     continue;
                 }
