@@ -1,39 +1,49 @@
- qtwebengine/src/3rdparty/chromium/base/debug/profiler.h               | 1 +
- qtwebengine/src/3rdparty/chromium/base/debug/stack_trace.h            | 1 +
- qtwebengine/src/3rdparty/chromium/base/logging.h                      | 2 ++
- qtwebengine/src/3rdparty/chromium/cc/trees/target_property.cc         | 2 ++
- .../chromium/content/public/browser/browsing_data_remover_delegate.h  | 1 +
- .../chromium/device/base/synchronization/one_writer_seqlock.cc        | 1 +
- .../extensions/browser/api/audio/audio_device_id_calculator.h         | 1 +
- qtwebengine/src/3rdparty/chromium/extensions/common/constants.h       | 2 ++
- .../3rdparty/chromium/gpu/command_buffer/common/webgpu_cmd_enums.h    | 2 ++
- qtwebengine/src/3rdparty/chromium/gpu/config/gpu_feature_info.h       | 1 +
- qtwebengine/src/3rdparty/chromium/gpu/config/gpu_preferences.h        | 1 +
- qtwebengine/src/3rdparty/chromium/gpu/config/gpu_util.h               | 2 ++
- .../ppapi/utility/completion_callback_factory_thread_traits.h         | 6 ++++--
- .../abseil-cpp/absl/strings/internal/str_format/extension.h           | 1 +
- .../3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h  | 2 +-
- .../3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h  | 1 +
- .../third_party/blink/renderer/platform/graphics/dark_mode_types.h    | 2 ++
- .../breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h  | 1 +
- .../3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc | 1 +
- .../3rdparty/chromium/third_party/pdfium/constants/annotation_flags.h | 2 ++
- .../chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h    | 1 +
- .../src/trace_processor/importers/proto/proto_importer_module.h       | 2 ++
- .../src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp | 4 ++++
- .../src/3rdparty/chromium/third_party/webrtc/call/rtp_demuxer.h       | 1 +
- .../chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h  | 1 +
- .../3rdparty/chromium/ui/base/ime/linux/linux_input_method_context.h  | 1 +
- qtwebengine/src/3rdparty/chromium/ui/events/gesture_event_details.h   | 1 +
- qtwebengine/src/3rdparty/chromium/ui/events/types/scroll_types.h      | 2 ++
- qtwebengine/src/3rdparty/chromium/v8/src/base/logging.h               | 1 +
- qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h                | 1 +
- .../src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h    | 1 +
- qtwebengine/src/core/browsing_data_remover_delegate_qt.h              | 2 ++
- 32 files changed, 48 insertions(+), 3 deletions(-)
+ qtwebengine/src/3rdparty/chromium/base/debug/profiler.h                                                   | 1 +
+ qtwebengine/src/3rdparty/chromium/base/debug/stack_trace.h                                                | 1 +
+ qtwebengine/src/3rdparty/chromium/base/logging.h                                                          | 2 ++
+ qtwebengine/src/3rdparty/chromium/cc/trees/target_property.cc                                             | 2 ++
+ qtwebengine/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h                 | 1 +
+ qtwebengine/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc                       | 1 +
+ qtwebengine/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h                            | 1 +
+ qtwebengine/src/3rdparty/chromium/extensions/browser/api/audio/audio_device_id_calculator.h               | 1 +
+ qtwebengine/src/3rdparty/chromium/extensions/common/constants.h                                           | 2 ++
+ qtwebengine/src/3rdparty/chromium/gpu/command_buffer/common/webgpu_cmd_enums.h                            | 2 ++
+ qtwebengine/src/3rdparty/chromium/gpu/config/gpu_feature_info.h                                           | 1 +
+ qtwebengine/src/3rdparty/chromium/gpu/config/gpu_preferences.h                                            | 1 +
+ qtwebengine/src/3rdparty/chromium/gpu/config/gpu_util.h                                                   | 2 ++
+ qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h          | 1 +
+ qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/quic_connection_id.h        | 1 +
+ qtwebengine/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h               | 6 ++++--
+ qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h     | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h                          | 2 +-
+ qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h                          | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/dark_mode_types.h          | 2 ++
+ .../src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h    | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h                             | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h               | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h                          | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h                           | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/instruction.cc                   | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h                        | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc                         | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/pdfium/constants/annotation_flags.h                         | 2 ++
+ qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h                   | 1 +
+ .../3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h    | 2 ++
+ qtwebengine/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp                             | 4 ++++
+ qtwebengine/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h              | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/webrtc/call/rtp_demuxer.h                                   | 1 +
+ qtwebengine/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h                 | 1 +
+ qtwebengine/src/3rdparty/chromium/ui/base/ime/linux/linux_input_method_context.h                          | 1 +
+ qtwebengine/src/3rdparty/chromium/ui/events/gesture_event_details.h                                       | 1 +
+ qtwebengine/src/3rdparty/chromium/ui/events/types/scroll_types.h                                          | 2 ++
+ qtwebengine/src/3rdparty/chromium/v8/src/base/logging.h                                                   | 1 +
+ qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h                                                    | 1 +
+ qtwebengine/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h                                | 1 +
+ qtwebengine/src/core/browsing_data_remover_delegate_qt.h                                                  | 2 ++
+ 42 files changed, 58 insertions(+), 3 deletions(-)
 
 diff --git a/qtwebengine/src/3rdparty/chromium/base/debug/profiler.h b/qtwebengine/src/3rdparty/chromium/base/debug/profiler.h
-index 1229e06..c7ed55e 100644
+index 1229e06234..c7ed55e70f 100644
 --- a/qtwebengine/src/3rdparty/chromium/base/debug/profiler.h
 +++ b/qtwebengine/src/3rdparty/chromium/base/debug/profiler.h
 @@ -5,6 +5,7 @@
@@ -45,7 +55,7 @@ index 1229e06..c7ed55e 100644
  
  #include <string>
 diff --git a/qtwebengine/src/3rdparty/chromium/base/debug/stack_trace.h b/qtwebengine/src/3rdparty/chromium/base/debug/stack_trace.h
-index 60c3c5c..6c8021c 100644
+index 60c3c5c474..6c8021cfde 100644
 --- a/qtwebengine/src/3rdparty/chromium/base/debug/stack_trace.h
 +++ b/qtwebengine/src/3rdparty/chromium/base/debug/stack_trace.h
 @@ -7,6 +7,7 @@
@@ -57,7 +67,7 @@ index 60c3c5c..6c8021c 100644
  #include <string>
  
 diff --git a/qtwebengine/src/3rdparty/chromium/base/logging.h b/qtwebengine/src/3rdparty/chromium/base/logging.h
-index a3ff92f..c272f79 100644
+index a3ff92f0fd..c272f796a9 100644
 --- a/qtwebengine/src/3rdparty/chromium/base/logging.h
 +++ b/qtwebengine/src/3rdparty/chromium/base/logging.h
 @@ -7,6 +7,8 @@
@@ -70,7 +80,7 @@ index a3ff92f..c272f79 100644
  #include <cstdint>
  #include <sstream>
 diff --git a/qtwebengine/src/3rdparty/chromium/cc/trees/target_property.cc b/qtwebengine/src/3rdparty/chromium/cc/trees/target_property.cc
-index 96f8c3b..c3f087b 100644
+index 96f8c3bd7c..c3f087b1a9 100644
 --- a/qtwebengine/src/3rdparty/chromium/cc/trees/target_property.cc
 +++ b/qtwebengine/src/3rdparty/chromium/cc/trees/target_property.cc
 @@ -6,6 +6,8 @@
@@ -83,7 +93,7 @@ index 96f8c3b..c3f087b 100644
  
  static_assert(TargetProperty::LAST_TARGET_PROPERTY <
 diff --git a/qtwebengine/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h b/qtwebengine/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h
-index 3069c85..f4614b7 100644
+index 3069c858d3..f4614b73c6 100644
 --- a/qtwebengine/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h
 +++ b/qtwebengine/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h
 @@ -5,6 +5,7 @@
@@ -95,7 +105,7 @@ index 3069c85..f4614b7 100644
  #include <vector>
  #include "base/callback_forward.h"
 diff --git a/qtwebengine/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc b/qtwebengine/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
-index 80fd26f..3f08972 100644
+index 80fd26f4f4..3f08972a7a 100644
 --- a/qtwebengine/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
 +++ b/qtwebengine/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
 @@ -3,6 +3,7 @@
@@ -106,8 +116,20 @@ index 80fd26f..3f08972 100644
  
  #include "base/threading/platform_thread.h"
  
+diff --git a/qtwebengine/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h b/qtwebengine/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h
+index 3cf2914e10..4b0552440c 100644
+--- a/qtwebengine/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h
++++ b/qtwebengine/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h
+@@ -5,6 +5,7 @@
+ #ifndef DEVICE_BLUETOOTH_PUBLIC_CPP_BLUETOOTH_UUID_H_
+ #define DEVICE_BLUETOOTH_PUBLIC_CPP_BLUETOOTH_UUID_H_
+ 
++#include <cstdint>
+ #include <ostream>
+ #include <string>
+ #include <vector>
 diff --git a/qtwebengine/src/3rdparty/chromium/extensions/browser/api/audio/audio_device_id_calculator.h b/qtwebengine/src/3rdparty/chromium/extensions/browser/api/audio/audio_device_id_calculator.h
-index c24205c..ee67ecf 100644
+index c24205c402..ee67ecf189 100644
 --- a/qtwebengine/src/3rdparty/chromium/extensions/browser/api/audio/audio_device_id_calculator.h
 +++ b/qtwebengine/src/3rdparty/chromium/extensions/browser/api/audio/audio_device_id_calculator.h
 @@ -5,6 +5,7 @@
@@ -119,7 +141,7 @@ index c24205c..ee67ecf 100644
  #include <string>
  
 diff --git a/qtwebengine/src/3rdparty/chromium/extensions/common/constants.h b/qtwebengine/src/3rdparty/chromium/extensions/common/constants.h
-index 9ac68e2..ef27610 100644
+index 9ac68e2be9..ef2761020d 100644
 --- a/qtwebengine/src/3rdparty/chromium/extensions/common/constants.h
 +++ b/qtwebengine/src/3rdparty/chromium/extensions/common/constants.h
 @@ -10,6 +10,8 @@
@@ -132,7 +154,7 @@ index 9ac68e2..ef27610 100644
  
  // Scheme we serve extension content from.
 diff --git a/qtwebengine/src/3rdparty/chromium/gpu/command_buffer/common/webgpu_cmd_enums.h b/qtwebengine/src/3rdparty/chromium/gpu/command_buffer/common/webgpu_cmd_enums.h
-index a9c7adb..943bd4e 100644
+index a9c7adb5b5..943bd4e470 100644
 --- a/qtwebengine/src/3rdparty/chromium/gpu/command_buffer/common/webgpu_cmd_enums.h
 +++ b/qtwebengine/src/3rdparty/chromium/gpu/command_buffer/common/webgpu_cmd_enums.h
 @@ -7,6 +7,8 @@
@@ -145,7 +167,7 @@ index a9c7adb..943bd4e 100644
  namespace webgpu {
  
 diff --git a/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_feature_info.h b/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_feature_info.h
-index 027f1a5..70759b2 100644
+index 027f1a5af3..70759b2ae4 100644
 --- a/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_feature_info.h
 +++ b/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_feature_info.h
 @@ -5,6 +5,7 @@
@@ -157,7 +179,7 @@ index 027f1a5..70759b2 100644
  #include <vector>
  
 diff --git a/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_preferences.h b/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_preferences.h
-index 3ea2191..0a1ae11 100644
+index 3ea2191b50..0a1ae11202 100644
 --- a/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_preferences.h
 +++ b/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_preferences.h
 @@ -5,6 +5,7 @@
@@ -169,7 +191,7 @@ index 3ea2191..0a1ae11 100644
  #include <string>
  #include <vector>
 diff --git a/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_util.h b/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_util.h
-index f72970c..d7f0b7d 100644
+index f72970c67a..d7f0b7d492 100644
 --- a/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_util.h
 +++ b/qtwebengine/src/3rdparty/chromium/gpu/config/gpu_util.h
 @@ -5,6 +5,8 @@
@@ -181,8 +203,32 @@ index f72970c..d7f0b7d 100644
  #include "build/build_config.h"
  #include "gpu/config/gpu_feature_info.h"
  #include "gpu/gpu_export.h"
+diff --git a/qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h b/qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h
+index 6a300ed0c0..3e30f1cb02 100644
+--- a/qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h
++++ b/qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h
+@@ -5,6 +5,7 @@
+ #ifndef QUICHE_QUIC_CORE_CRYPTO_QUIC_HKDF_H_
+ #define QUICHE_QUIC_CORE_CRYPTO_QUIC_HKDF_H_
+ 
++#include <cstdint>
+ #include <vector>
+ 
+ #include "absl/strings/string_view.h"
+diff --git a/qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/quic_connection_id.h b/qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/quic_connection_id.h
+index 52f1501728..db4d310849 100644
+--- a/qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/quic_connection_id.h
++++ b/qtwebengine/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/quic_connection_id.h
+@@ -5,6 +5,7 @@
+ #ifndef QUICHE_QUIC_CORE_QUIC_CONNECTION_ID_H_
+ #define QUICHE_QUIC_CORE_QUIC_CONNECTION_ID_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
 diff --git a/qtwebengine/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h b/qtwebengine/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
-index b4fdb9a..375d3ef 100644
+index b4fdb9a6d3..375d3ef327 100644
 --- a/qtwebengine/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
 +++ b/qtwebengine/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
 @@ -38,6 +38,10 @@ namespace pp {
@@ -206,7 +252,7 @@ index b4fdb9a..375d3ef 100644
  
  /// The non-thread-safe version of thread traits. Using this class as the
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h b/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
-index c47536d..443f47a 100644
+index c47536d63e..443f47afd0 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
 @@ -18,6 +18,7 @@
@@ -218,7 +264,7 @@ index c47536d..443f47a 100644
  #include <cstring>
  #include <ostream>
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h
-index e13aa22..0ce8484 100644
+index e13aa2221d..0ce848486d 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderLang.h
 @@ -7,7 +7,7 @@
@@ -231,7 +277,7 @@ index e13aa22..0ce8484 100644
  
  #include <array>
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
-index 18175e1..2833285 100644
+index 18175e15c7..28332857bc 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
 @@ -14,6 +14,7 @@
@@ -243,7 +289,7 @@ index 18175e1..2833285 100644
  // This type is defined here to simplify ANGLE's integration with glslang for SPIR-V.
  using ShCompileOptions = uint64_t;
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/dark_mode_types.h b/qtwebengine/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/dark_mode_types.h
-index 14c5548..43c9a8d 100644
+index 14c5548766..43c9a8d6a5 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/dark_mode_types.h
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/dark_mode_types.h
 @@ -5,6 +5,8 @@
@@ -256,7 +302,7 @@ index 14c5548..43c9a8d 100644
  
  enum class DarkModeResult : uint8_t {
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h b/qtwebengine/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
-index c7e4f2b..f30ce91 100644
+index c7e4f2b378..f30ce91b36 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
 @@ -34,6 +34,7 @@
@@ -267,8 +313,80 @@ index c7e4f2b..f30ce91 100644
  
  #include "client/linux/handler/microdump_extra_info.h"
  #include "common/using_std_string.h"
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
+index 2d58d76cb6..139af564ea 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
+@@ -18,6 +18,7 @@
+ #include "dawn/common/TypedInteger.h"
+ #include "dawn/common/ityp_array.h"
+ 
++#include <cstdint>
+ #include <bitset>
+ #include <iostream>
+ #include <limits>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
+index 374bd8302a..0884eb2a19 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
+@@ -15,6 +15,7 @@
+ #ifndef SRC_TINT_READER_SPIRV_ENTRY_POINT_INFO_H_
+ #define SRC_TINT_READER_SPIRV_ENTRY_POINT_INFO_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
+index fa5fc3a7e9..6cec934670 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
+@@ -15,6 +15,7 @@
+ #ifndef SRC_TINT_READER_SPIRV_NAMER_H_
+ #define SRC_TINT_READER_SPIRV_NAMER_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <unordered_map>
+ #include <vector>
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
+index 7b5b6754ed..62b1ca7e36 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
+@@ -15,6 +15,7 @@
+ #ifndef SRC_TINT_READER_WGSL_TOKEN_H_
+ #define SRC_TINT_READER_WGSL_TOKEN_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <string_view>
+ #include <variant>  // NOLINT: cpplint doesn't recognise this
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/instruction.cc b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/instruction.cc
+index 4be648b37a..cac7238ef2 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/instruction.cc
++++ b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/instruction.cc
+@@ -14,6 +14,7 @@
+ 
+ #include "src/tint/writer/spirv/instruction.h"
+ 
++#include <cstdint>
+ #include <utility>
+ 
+ namespace tint::writer::spirv {
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
+index 46a5deb55b..4c3080ff25 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
+@@ -15,6 +15,7 @@
+ #ifndef SRC_TINT_WRITER_SPIRV_OPERAND_H_
+ #define SRC_TINT_WRITER_SPIRV_OPERAND_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc b/qtwebengine/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
-index a3099e1..2e6f0ee 100644
+index a3099e15db..2e6f0eea70 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
 @@ -30,6 +30,7 @@
@@ -280,7 +398,7 @@ index a3099e1..2e6f0ee 100644
  #include <utility>
  
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/pdfium/constants/annotation_flags.h b/qtwebengine/src/3rdparty/chromium/third_party/pdfium/constants/annotation_flags.h
-index d2731da..46bc87e 100644
+index d2731dac7a..46bc87ef92 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/pdfium/constants/annotation_flags.h
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/pdfium/constants/annotation_flags.h
 @@ -5,6 +5,8 @@
@@ -293,7 +411,7 @@ index d2731da..46bc87e 100644
  namespace annotation_flags {
  
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h b/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h
-index 1b4c538..472042f 100644
+index 1b4c53815b..472042fabc 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h
 @@ -18,6 +18,7 @@
@@ -305,7 +423,7 @@ index 1b4c538..472042f 100644
  
  #include "perfetto/ext/base/optional.h"
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h b/qtwebengine/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
-index c56f034..cd78249 100644
+index c56f0344f9..cd7824929e 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
 @@ -20,6 +20,8 @@
@@ -318,7 +436,7 @@ index c56f034..cd78249 100644
  
  namespace protos {
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp b/qtwebengine/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
-index 3164650..512a269 100644
+index 3164650728..512a26943d 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
 @@ -10,6 +10,10 @@
@@ -332,8 +450,20 @@ index 3164650..512a269 100644
  static constexpr const char* gColorNames[] = {
      "aliceblue",
      "antiquewhite",
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h b/qtwebengine/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
+index b7c586b80e..19ccbb024a 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
+@@ -146,6 +146,7 @@ available through VmaAllocatorCreateInfo::pRecordSettings.
+     #endif // #if VMA_VULKAN_VERSION >= 1001000
+ #endif // #if defined(__ANDROID__) && VMA_STATIC_VULKAN_FUNCTIONS && VK_NO_PROTOTYPES
+ 
++#include <cstdio>
+ #ifndef VULKAN_H_
+     #include <vulkan/vulkan.h>
+ #endif
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/webrtc/call/rtp_demuxer.h b/qtwebengine/src/3rdparty/chromium/third_party/webrtc/call/rtp_demuxer.h
-index 5fd37b4..ce70405 100644
+index 5fd37b4613..ce70405dd2 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/webrtc/call/rtp_demuxer.h
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/webrtc/call/rtp_demuxer.h
 @@ -11,6 +11,7 @@
@@ -345,7 +475,7 @@ index 5fd37b4..ce70405 100644
  #include <string>
  #include <utility>
 diff --git a/qtwebengine/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h b/qtwebengine/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h
-index ca24954..534214d 100644
+index ca249541d0..534214dbfa 100644
 --- a/qtwebengine/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h
 +++ b/qtwebengine/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h
 @@ -12,6 +12,7 @@
@@ -357,7 +487,7 @@ index ca24954..534214d 100644
  #include <vector>
  
 diff --git a/qtwebengine/src/3rdparty/chromium/ui/base/ime/linux/linux_input_method_context.h b/qtwebengine/src/3rdparty/chromium/ui/base/ime/linux/linux_input_method_context.h
-index 708d6c9..898016d 100644
+index 708d6c98ac..898016d886 100644
 --- a/qtwebengine/src/3rdparty/chromium/ui/base/ime/linux/linux_input_method_context.h
 +++ b/qtwebengine/src/3rdparty/chromium/ui/base/ime/linux/linux_input_method_context.h
 @@ -8,6 +8,7 @@
@@ -369,7 +499,7 @@ index 708d6c9..898016d 100644
  #include "ui/base/ime/text_input_type.h"
  
 diff --git a/qtwebengine/src/3rdparty/chromium/ui/events/gesture_event_details.h b/qtwebengine/src/3rdparty/chromium/ui/events/gesture_event_details.h
-index d97a696..68b18d8 100644
+index d97a696fd5..68b18d80cd 100644
 --- a/qtwebengine/src/3rdparty/chromium/ui/events/gesture_event_details.h
 +++ b/qtwebengine/src/3rdparty/chromium/ui/events/gesture_event_details.h
 @@ -5,6 +5,7 @@
@@ -381,7 +511,7 @@ index d97a696..68b18d8 100644
  
  #include "base/check_op.h"
 diff --git a/qtwebengine/src/3rdparty/chromium/ui/events/types/scroll_types.h b/qtwebengine/src/3rdparty/chromium/ui/events/types/scroll_types.h
-index 7ff15f0..136cebc 100644
+index 7ff15f0fc5..136cebc09e 100644
 --- a/qtwebengine/src/3rdparty/chromium/ui/events/types/scroll_types.h
 +++ b/qtwebengine/src/3rdparty/chromium/ui/events/types/scroll_types.h
 @@ -5,6 +5,8 @@
@@ -394,7 +524,7 @@ index 7ff15f0..136cebc 100644
  
  enum class ScrollGranularity : uint8_t {
 diff --git a/qtwebengine/src/3rdparty/chromium/v8/src/base/logging.h b/qtwebengine/src/3rdparty/chromium/v8/src/base/logging.h
-index fdac44e..a752dba 100644
+index fdac44e31e..a752dba6a2 100644
 --- a/qtwebengine/src/3rdparty/chromium/v8/src/base/logging.h
 +++ b/qtwebengine/src/3rdparty/chromium/v8/src/base/logging.h
 @@ -5,6 +5,7 @@
@@ -406,7 +536,7 @@ index fdac44e..a752dba 100644
  #include <sstream>
  #include <string>
 diff --git a/qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h b/qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h
-index 61644ff..6fbc037 100644
+index 61644ffe05..6fbc037437 100644
 --- a/qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h
 +++ b/qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h
 @@ -5,6 +5,7 @@
@@ -418,7 +548,7 @@ index 61644ff..6fbc037 100644
  #include <type_traits>
  
 diff --git a/qtwebengine/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h b/qtwebengine/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h
-index c1d69c1..eb33c68 100644
+index c1d69c18f0..eb33c6816a 100644
 --- a/qtwebengine/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h
 +++ b/qtwebengine/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h
 @@ -5,6 +5,7 @@
@@ -430,7 +560,7 @@ index c1d69c1..eb33c68 100644
  
  // Conversion routines between UT8 and UTF16, used by string-16.{h,cc}. You may
 diff --git a/qtwebengine/src/core/browsing_data_remover_delegate_qt.h b/qtwebengine/src/core/browsing_data_remover_delegate_qt.h
-index 4e690ff..dfa884c 100644
+index 4e690ffb19..dfa884cd65 100644
 --- a/qtwebengine/src/core/browsing_data_remover_delegate_qt.h
 +++ b/qtwebengine/src/core/browsing_data_remover_delegate_qt.h
 @@ -6,6 +6,8 @@
