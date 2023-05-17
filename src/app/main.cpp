@@ -103,6 +103,7 @@ main(int argc, char* argv[])
     QApplication::setOrganizationDomain(QStringLiteral("jami.net"));
     QApplication::setQuitOnLastWindowClosed(false);
     QCoreApplication::setApplicationVersion(QString(VERSION_STRING));
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts, true);
     QApplication::setHighDpiScaleFactorRoundingPolicy(
         Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
