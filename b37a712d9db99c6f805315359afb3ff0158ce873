@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ccc7304_a1e66e24",
+        "filename": "src/app/positionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-17T21:55:25Z",
+      "side": 1,
+      "message": "String doesn\u0027t seems correct. Does `it\u0027s` mean `it is`?\n\nShould the string be:\n`%1 is sharing their location`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dis%20sharing%20their\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 407,
+        "startChar": 20,
+        "endLine": 407,
+        "endChar": 47
+      },
+      "revId": "b37a712d9db99c6f805315359afb3ff0158ce873",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
