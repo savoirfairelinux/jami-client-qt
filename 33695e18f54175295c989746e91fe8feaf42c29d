@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1b4ec6b_f86748aa",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-17T21:39:25Z",
+      "side": 1,
+      "message": "Is the hyphen `-` required? Should the word be `unrecognized`?",
+      "range": {
+        "startLine": 327,
+        "startChar": 68,
+        "endLine": 327,
+        "endChar": 81
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d7f7696_5b19dd92",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-17T21:39:25Z",
+      "side": 1,
+      "message": "Less words and no apostrophe, should the string be:\n`Unrecognized conversation mode`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dunrecognized\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 327,
+        "startChar": 41,
+        "endLine": 327,
+        "endChar": 81
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03042f72_88b7ebde",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-17T21:39:25Z",
+      "side": 1,
+      "message": "English does not have `infos`, only `info`. Should this be `info` or `information`?",
+      "range": {
+        "startLine": 332,
+        "startChar": 81,
+        "endLine": 332,
+        "endChar": 86
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eddb52ee_eec839d2",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-17T21:39:25Z",
+      "side": 1,
+      "message": "1. Are you either authorized or not?\n2. Should `for` be `to`?\n3. Should `updating` be `update`?\n\nShould the string be:\n`Not authorized to update conversation information`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dNot%20authorized%20to%20update%20contacts\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 332,
+        "startChar": 28,
+        "endLine": 332,
+        "endChar": 52
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8955e19_0ded7dcc",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-17T21:39:25Z",
+      "side": 1,
+      "message": "If what comes after the string the new message that could not be committed, should `a` be removed?\n\n`An error occurred while committing new message:`",
+      "range": {
+        "startLine": 334,
+        "startChar": 77,
+        "endLine": 334,
+        "endChar": 78
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10872d5e_d96a7468",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-17T21:39:25Z",
+      "side": 1,
+      "message": "Should the space be outside the translatable string?\n\n`newErrors.append(tr(\"Error while committing a new message:\")+\" \");`",
+      "range": {
+        "startLine": 334,
+        "startChar": 78,
+        "endLine": 334,
+        "endChar": 79
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a90827f3_57ac242f",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-17T21:39:25Z",
+      "side": 1,
+      "message": "For consistency with error (code \u003d\u003d 1), should string be:\n`An error occurred while committing a new message`",
+      "range": {
+        "startLine": 334,
+        "startChar": 41,
+        "endLine": 334,
+        "endChar": 77
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
