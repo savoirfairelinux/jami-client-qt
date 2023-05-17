@@ -324,12 +324,13 @@ CurrentConversation::updateErrors(const QString& convId)
                 if (code == 1) {
                     newErrors.append(tr("An error occurred while fetching this repository"));
                 } else if (code == 2) {
-                    newErrors.append(tr("The conversation's mode is un-recognized"));
+                    newErrors.append(tr("Unrecognized conversation mode"));
                 } else if (code == 3) {
                     newErrors.append(tr("An invalid message was detected"));
                 } else if (code == 4) {
-                    newErrors.append(
-                        tr("Not enough authorization for updating conversation's infos"));
+                    newErrors.append(tr("Not authorized to update conversation information"));
+                } else if (code == 5) {
+                    newErrors.append(tr("An error occurred while committing a new message"));
                 } else {
                     continue;
                 }
