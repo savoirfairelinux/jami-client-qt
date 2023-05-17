@@ -83,7 +83,17 @@ sed -i 's,#include <string.h>,#include <string.h>\n#include <limits>,g' qtbase/s
 sed -i 's,#include <QtCore/qbytearray.h>,#include <QtCore/qbytearray.h>\n#include <limits>,g' qtbase/src/corelib/text/qbytearraymatcher.h
 cat qtwebengine/configure.cmake
 # recent gcc version do not like lto from qt
-CXXFLAGS="${CXXFLAGS} -fno-lto" CFLAGS="${CFLAGS} -fno-lto" ./configure \
+
+RPM_OPT_FLAGS=`echo $RPM_OPT_FLAGS | sed 's|-fexceptions||g'`
+RPM_OPT_FLAGS="$RPM_OPT_FLAGS %{?qt6_arm_flag} %{?qt6_deprecated_flag} %{?qt6_null_flag}"
+%if 0%{?use_clang}
+RPM_OPT_FLAGS=`echo $RPM_OPT_FLAGS | sed 's|-fno-delete-null-pointer-checks||g'`
+%endif
+export CFLAGS="$CFLAGS $RPM_OPT_FLAGS"
+export CXXFLAGS="$CXXFLAGS $RPM_OPT_FLAGS"
+export LDFLAGS="$LDFLAGS $RPM_LD_FLAGS"
+
+./configure \
   -opensource \
   -confirm-license \
   -nomake examples \

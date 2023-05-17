@@ -8,6 +8,11 @@ RUN dnf install -y dnf-command\(builddep\) rpmdevtools && \
 
 RUN dnf groupinstall -y "X Software Development"
 
+ENV LANG=C.utf8
+RUN echo "$LANG UTF-8" >> /etc/locale.gen
+RUN locale-gen
+RUN update-locale --reset LANG=$LANG
+
 RUN dnf install -y \
         git \
         rpm-build \
