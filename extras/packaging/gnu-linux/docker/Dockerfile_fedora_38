@@ -8,6 +8,8 @@ RUN dnf install -y dnf-command\(builddep\) rpmdevtools && \
 
 RUN dnf groupinstall -y "X Software Development"
 
+RUN localectl set-locale LANG=C.UTF-8
+
 RUN dnf install -y \
         git \
         rpm-build \
