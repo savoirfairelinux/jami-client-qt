@@ -27,7 +27,8 @@ getInnerHtml(const QString& tag)
     return match.hasMatch() ? match.captured(1) : QString {};
 };
 
-const QRegularExpression PreviewEngine::newlineRe("\\n");
+// Portable newline regex.
+const QRegularExpression PreviewEngine::newlineRe("\\r?\\n");
 
 PreviewEngine::PreviewEngine(ConnectivityMonitor* cm, QObject* parent)
     : NetworkManager(cm, parent)
@@ -83,7 +84,6 @@ PreviewEngine::getDescription(HtmlParser::TagInfoList& metaTags)
 QString
 PreviewEngine::getImage(HtmlParser::TagInfoList& metaTags)
 {
-    static const QRegularExpression newlineRe("\\n");
     // Try with og/twitter props
     QString image = getTagContent(metaTags[TidyTag_META], "image");
     if (image.isEmpty()) { // Try with href of link tag (rel="image_src")
