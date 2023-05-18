@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "221e896f_1b6b2090",
+        "filename": "src/app/bannedlistmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-18T14:24:53Z",
+      "side": 0,
+      "message": "Switching from an account without banned contact to an account with banned contact doesn\u0027t refresh the model (we see the title \"Banned contacts\" but not the list)",
+      "range": {
+        "startLine": 36,
+        "startChar": 7,
+        "endLine": 36,
+        "endChar": 25
+      },
+      "revId": "32e34042e892d3abcb9d394a1466a9f544fe75ce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

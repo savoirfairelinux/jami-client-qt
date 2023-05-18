@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28c9f8aa_35ebcf37",
+        "filename": "src/app/contactadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-18T14:24:53Z",
+      "side": 1,
+      "message": "When switching from one account to another, the model for default moderators is not updated (seems the same issue on master, so we may ignore)",
+      "range": {
+        "startLine": 34,
+        "startChar": 33,
+        "endLine": 34,
+        "endChar": 47
+      },
+      "revId": "b37a712d9db99c6f805315359afb3ff0158ce873",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ccc7304_a1e66e24",
         "filename": "src/app/positionmanager.cpp",
         "patchSetId": 5
