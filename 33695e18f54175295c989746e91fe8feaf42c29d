@@ -47,6 +47,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dbd9b61_d08a9386",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-18T12:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d7f7696_5b19dd92",
+      "range": {
+        "startLine": 327,
+        "startChar": 41,
+        "endLine": 327,
+        "endChar": 81
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c050bb49_4675d89a",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-18T12:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1b4ec6b_f86748aa",
+      "range": {
+        "startLine": 327,
+        "startChar": 68,
+        "endLine": 327,
+        "endChar": 81
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03042f72_88b7ebde",
@@ -88,6 +136,54 @@
         "startChar": 28,
         "endLine": 332,
         "endChar": 52
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2be04ff2_2544f929",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-18T12:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eddb52ee_eec839d2",
+      "range": {
+        "startLine": 332,
+        "startChar": 28,
+        "endLine": 332,
+        "endChar": 52
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5104a09_3ccb2046",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-18T12:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03042f72_88b7ebde",
+      "range": {
+        "startLine": 332,
+        "startChar": 81,
+        "endLine": 332,
+        "endChar": 86
       },
       "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
@@ -152,6 +248,78 @@
       "writtenOn": "2023-05-17T21:39:25Z",
       "side": 1,
       "message": "For consistency with error (code \u003d\u003d 1), should string be:\n`An error occurred while committing a new message`",
+      "range": {
+        "startLine": 334,
+        "startChar": 41,
+        "endLine": 334,
+        "endChar": 77
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a075127_1edaa9e9",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-18T12:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10872d5e_d96a7468",
+      "range": {
+        "startLine": 334,
+        "startChar": 78,
+        "endLine": 334,
+        "endChar": 79
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61ee9695_85acca1a",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-18T12:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8955e19_0ded7dcc",
+      "range": {
+        "startLine": 334,
+        "startChar": 77,
+        "endLine": 334,
+        "endChar": 78
+      },
+      "revId": "33695e18f54175295c989746e91fe8feaf42c29d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "977c9f2f_9dc1552e",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-18T12:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a90827f3_57ac242f",
       "range": {
         "startLine": 334,
         "startChar": 41,
