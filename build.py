@@ -197,13 +197,13 @@ PACMAN_CLIENT_DEPENDENCIES = [
 PACMAN_QT_WEBENGINE = ['qt6-webengine']
 
 OSX_DEPENDENCIES = [
-    'autoconf', 'cmake', 'gettext', 'pkg-config', 'qt6',
-    'libtool', 'yasm', 'nasm', 'automake'
+    'autoconf', 'cmake', 'gettext', 'pkg-config',
+    'libtool', 'yasm', 'nasm', 'automake', 'clang-format'
 ]
 
 OSX_DEPENDENCIES_UNLINK = [
-    'autoconf*', 'cmake*', 'gettext*', 'pkg-config*', 'qt*', 'qt@6.*',
-    'libtool*', 'yasm*', 'nasm*', 'automake*', 'gnutls*', 'nettle*', 'msgpack*'
+    'autoconf*', 'cmake*', 'gettext*', 'pkg-config*',
+    'libtool*', 'yasm*', 'nasm*', 'automake*', 'clang-format*'
 ]
 
 UNINSTALL_DAEMON_SCRIPT = [
