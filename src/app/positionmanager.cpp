@@ -406,7 +406,7 @@ PositionManager::showNotification(const QString& accountId,
     else
         bestName = lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(from);
 
-    auto body = tr("%1 is sharing it's location").arg(bestName);
+    auto body = tr("%1 is sharing their location").arg(bestName);
 #ifdef Q_OS_LINUX
     auto contactPhoto = Utils::contactPhoto(lrcInstance_, from, QSize(50, 50), accountId);
     auto notifId = QString("%1;%2;%3").arg(accountId).arg(convId).arg(from);
