@@ -134,18 +134,7 @@ main(int argc, char* argv[])
 
             // Check using Qt's QVulkanInstance.
             QVulkanInstance inst;
-            inst.setLayers({"VK_LAYER_KHRONOS_validation"});
-            bool ok = inst.create();
-            if (!ok) {
-                qWarning() << "QVulkanInstance cannot be created.";
-                return false;
-            }
-            if (!inst.layers().contains("VK_LAYER_KHRONOS_validation")) {
-                qWarning() << "VK_LAYER_KHRONOS_validation layer is not available.";
-                return false;
-            }
-
-            return true;
+            return inst.supportedLayers().contains("VK_LAYER_KHRONOS_validation");
 #else
             return false;
 #endif
