@@ -27,11 +27,11 @@ ContactAdapter::ContactAdapter(LRCInstance* instance, QObject* parent)
 {
     selectableProxyModel_.reset(new SelectableProxyModel(this));
     if (lrcInstance_) {
-        connectSignals();
         connect(lrcInstance_,
                 &LRCInstance::currentAccountIdChanged,
                 this,
                 &ContactAdapter::connectSignals);
+        connectSignals();
     }
 }
 
@@ -249,8 +249,7 @@ ContactAdapter::removeContact(const QString& peerUri, bool banContact)
 void
 ContactAdapter::connectSignals()
 {
-    if (!lrcInstance_->getCurrentContactModel()) {
-        qWarning() << Q_FUNC_INFO << "No contact model";
+    if (lrcInstance_->get_currentAccountId().isEmpty()) {
         return;
     }
 
