@@ -30,7 +30,7 @@ SettingsPageBase {
     title: JamiStrings.audio
 
     flickableContent: ColumnLayout {
-        id: currentAccountEnableColumnLayout
+        id: rootLayout
 
         width: contentFlickableWidth
         spacing: JamiTheme.settingsCategoryAudioVideoSpacing
@@ -169,14 +169,14 @@ SettingsPageBase {
             widthOfComboBox: itemWidth
             role: "ID_UTF8"
 
-            Component.onCompleted: currentAccountEnableColumnLayout.populateAudioSettings()
+            Component.onCompleted: rootLayout.populateAudioSettings()
 
             onActivated: {
                 AvAdapter.stopAudioMeter();
                 var selectedAudioManager = comboModel.data(comboModel.index(modelIndex, 0), AudioManagerListModel.AudioManagerID);
                 AVModel.setAudioManager(selectedAudioManager);
                 AvAdapter.startAudioMeter();
-                currentAccountEnableColumnLayout.populateAudioSettings();
+                rootLayout.populateAudioSettings();
             }
         }
     }
