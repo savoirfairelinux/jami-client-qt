@@ -90,6 +90,9 @@ CurrentAccount::get_isLocalModeratorsEnabled()
 void
 CurrentAccount::setupForAccount()
 {
+    if (lrcInstance_->get_currentAccountId().isEmpty())
+        return;
+
     connect(lrcInstance_->getCurrentContactModel(),
             &ContactModel::bannedStatusChanged,
             this,
