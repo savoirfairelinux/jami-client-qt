@@ -35,219 +35,213 @@ SettingsPageBase {
     title: JamiStrings.video
 
     flickableContent: ColumnLayout {
-        id: currentAccountEnableColumnLayout
+        id: rootLayout
 
         width: contentFlickableWidth
-        spacing: JamiTheme.settingsBlockSpacing
+        spacing: JamiTheme.settingsCategoryAudioVideoSpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
-        ColumnLayout {
-            id: generalSettings
+        function startPreviewing(force = false) {
+            if (!visible) {
+                return;
+            }
+            previewWidget.startWithId(VideoDevices.getDefaultDevice(), force);
+        }
 
-            width: parent.width
-            spacing: JamiTheme.settingsCategoryAudioVideoSpacing
+        Connections {
+            target: VideoDevices
 
-            function startPreviewing(force = false) {
-                if (!visible) {
-                    return;
-                }
-                previewWidget.startWithId(VideoDevices.getDefaultDevice(), force);
+            function onDefaultResChanged() {
+                rootLayout.startPreviewing(true);
             }
 
-            Connections {
-                target: VideoDevices
-
-                function onDefaultResChanged() {
-                    generalSettings.startPreviewing(true);
-                }
-
-                function onDefaultFpsChanged() {
-                    generalSettings.startPreviewing(true);
-                }
-
-                function onDeviceAvailable() {
-                    generalSettings.startPreviewing();
-                }
-
-                function onDeviceListChanged() {
-                    var deviceModel = deviceComboBoxSetting.comboModel;
-                    var resModel = resolutionComboBoxSetting.comboModel;
-                    var fpsModel = fpsComboBoxSetting.comboModel;
-                    var resultList = deviceModel.match(deviceModel.index(0, 0), VideoInputDeviceModel.DeviceId, VideoDevices.defaultId);
-                    deviceComboBoxSetting.modelIndex = resultList.length > 0 ? resultList[0].row : deviceModel.rowCount() ? 0 : -1;
-                    resultList = resModel.match(resModel.index(0, 0), VideoFormatResolutionModel.Resolution, VideoDevices.defaultRes);
-                    resolutionComboBoxSetting.modelIndex = resultList.length > 0 ? resultList[0].row : deviceModel.rowCount() ? 0 : -1;
-                    resultList = fpsModel.match(fpsModel.index(0, 0), VideoFormatFpsModel.FPS, VideoDevices.defaultFps);
-                    fpsComboBoxSetting.modelIndex = resultList.length > 0 ? resultList[0].row : deviceModel.rowCount() ? 0 : -1;
-                }
+            function onDefaultFpsChanged() {
+                rootLayout.startPreviewing(true);
             }
 
-            Component.onCompleted: {
-                flipControl.checked = UtilsAdapter.getAppValue(Settings.FlipSelf);
-                hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration();
-                if (previewWidget.visible)
-                    startPreviewing(true);
+            function onDeviceAvailable() {
+                rootLayout.startPreviewing();
             }
 
-            Component.onDestruction: {
+            function onDeviceListChanged() {
+                var deviceModel = deviceComboBoxSetting.comboModel;
+                var resModel = resolutionComboBoxSetting.comboModel;
+                var fpsModel = fpsComboBoxSetting.comboModel;
+                var resultList = deviceModel.match(deviceModel.index(0, 0), VideoInputDeviceModel.DeviceId, VideoDevices.defaultId);
+                deviceComboBoxSetting.modelIndex = resultList.length > 0 ? resultList[0].row : deviceModel.rowCount() ? 0 : -1;
+                resultList = resModel.match(resModel.index(0, 0), VideoFormatResolutionModel.Resolution, VideoDevices.defaultRes);
+                resolutionComboBoxSetting.modelIndex = resultList.length > 0 ? resultList[0].row : deviceModel.rowCount() ? 0 : -1;
+                resultList = fpsModel.match(fpsModel.index(0, 0), VideoFormatFpsModel.FPS, VideoDevices.defaultFps);
+                fpsComboBoxSetting.modelIndex = resultList.length > 0 ? resultList[0].row : deviceModel.rowCount() ? 0 : -1;
+            }
+        }
+
+        Component.onCompleted: {
+            flipControl.checked = UtilsAdapter.getAppValue(Settings.FlipSelf);
+            hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration();
+            if (previewWidget.visible)
+                startPreviewing(true);
+        }
+
+        Component.onDestruction: {
+            previewWidget.startWithId("");
+        }
+
+        // video Preview
+        Rectangle {
+            visible: VideoDevices.listSize !== 0
+
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredHeight: width * previewWidget.invAspectRatio
+
+            Layout.minimumWidth: 200
+            Layout.maximumWidth: 515
+            Layout.preferredWidth: parent.width
+
+            Layout.bottomMargin: JamiTheme.preferredMarginSize
+
+            color: JamiTheme.primaryForegroundColor
+
+            LocalVideo {
+                id: previewWidget
+
+                anchors.fill: parent
+                flip: flipControl.checked
+
+                underlayItems: Text {
+                    anchors.centerIn: parent
+                    font.pointSize: 18
+                    font.capitalization: Font.AllUppercase
+                    color: "white"
+                    text: JamiStrings.noVideo
+                }
+            }
+        }
+
+        ToggleSwitch {
+            id: flipControl
+
+            Layout.fillWidth: true
+            labelText: JamiStrings.mirrorLocalVideo
+
+            onSwitchToggled: {
+                UtilsAdapter.setAppValue(Settings.FlipSelf, checked);
+                CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
+            }
+        }
+
+        SettingsComboBox {
+            id: deviceComboBoxSetting
+
+            Layout.fillWidth: true
+
+            enabled: VideoDevices.listSize !== 0
+            opacity: enabled ? 1.0 : 0.5
+
+            widthOfComboBox: itemWidth
+
+            labelText: JamiStrings.device
+            tipText: JamiStrings.selectVideoDevice
+            placeholderText: JamiStrings.noVideoDevice
+            currentSelectionText: VideoDevices.defaultName
+
+            comboModel: SortFilterProxyModel {
+                id: filteredDevicesModel
+                sourceModel: SortFilterProxyModel {
+                    id: deviceSourceModel
+                    sourceModel: VideoDevices.deviceSourceModel
+                }
+                filters: ValueFilter {
+                    roleName: "DeviceName"
+                    value: VideoDevices.defaultName
+                    inverted: true
+                    enabled: deviceSourceModel.count > 1
+                }
+            }
+            role: "DeviceName"
+
+            onActivated: {
+                // TODO: start and stop preview logic in here should be in LRC
                 previewWidget.startWithId("");
+                VideoDevices.setDefaultDevice(filteredDevicesModel.mapToSource(modelIndex));
+                rootLayout.startPreviewing();
             }
+        }
 
-            // video Preview
-            Rectangle {
-                visible: VideoDevices.listSize !== 0
+        SettingsComboBox {
+            id: resolutionComboBoxSetting
 
-                Layout.alignment: Qt.AlignHCenter
-                Layout.preferredHeight: width * previewWidget.invAspectRatio
+            Layout.fillWidth: true
 
-                Layout.minimumWidth: 200
-                Layout.maximumWidth: 515
-                Layout.preferredWidth: parent.width
-                Layout.bottomMargin: JamiTheme.preferredMarginSize
+            enabled: VideoDevices.listSize !== 0
+            opacity: enabled ? 1.0 : 0.5
 
-                color: JamiTheme.primaryForegroundColor
+            widthOfComboBox: itemWidth
 
-                LocalVideo {
-                    id: previewWidget
+            labelText: JamiStrings.resolution
+            currentSelectionText: VideoDevices.defaultRes
+            tipText: JamiStrings.selectVideoResolution
 
-                    anchors.fill: parent
-                    flip: flipControl.checked
-
-                    underlayItems: Text {
-                        anchors.centerIn: parent
-                        font.pointSize: 18
-                        font.capitalization: Font.AllUppercase
-                        color: "white"
-                        text: JamiStrings.noVideo
-                    }
+            comboModel: SortFilterProxyModel {
+                id: filteredResModel
+                sourceModel: SortFilterProxyModel {
+                    id: resSourceModel
+                    sourceModel: VideoDevices.resSourceModel
                 }
-            }
-
-            ToggleSwitch {
-                id: flipControl
-
-                Layout.fillWidth: true
-                labelText: JamiStrings.mirrorLocalVideo
-
-                onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.FlipSelf, checked);
-                    CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
+                filters: ValueFilter {
+                    roleName: "Resolution"
+                    value: VideoDevices.defaultRes
+                    inverted: true
+                    enabled: resSourceModel.count > 1
                 }
             }
+            role: "Resolution"
 
-            SettingsComboBox {
-                id: deviceComboBoxSetting
+            onActivated: VideoDevices.setDefaultDeviceRes(filteredResModel.mapToSource(modelIndex))
+        }
 
-                Layout.fillWidth: true
+        SettingsComboBox {
+            id: fpsComboBoxSetting
 
-                enabled: VideoDevices.listSize !== 0
-                opacity: enabled ? 1.0 : 0.5
+            Layout.fillWidth: true
 
-                widthOfComboBox: itemWidth
+            enabled: VideoDevices.listSize !== 0
+            opacity: enabled ? 1.0 : 0.5
 
-                labelText: JamiStrings.device
-                tipText: JamiStrings.selectVideoDevice
-                placeholderText: JamiStrings.noVideoDevice
-                currentSelectionText: VideoDevices.defaultName
+            widthOfComboBox: itemWidth
 
-                comboModel: SortFilterProxyModel {
-                    id: filteredDevicesModel
-                    sourceModel: SortFilterProxyModel {
-                        id: deviceSourceModel
-                        sourceModel: VideoDevices.deviceSourceModel
-                    }
-                    filters: ValueFilter {
-                        roleName: "DeviceName"
-                        value: VideoDevices.defaultName
-                        inverted: true
-                        enabled: deviceSourceModel.count > 1
-                    }
+            tipText: JamiStrings.selectFPS
+            labelText: JamiStrings.fps
+            currentSelectionText: VideoDevices.defaultFps.toString()
+            comboModel: SortFilterProxyModel {
+                id: filteredFpsModel
+                sourceModel: SortFilterProxyModel {
+                    id: fpsSourceModel
+                    sourceModel: VideoDevices.fpsSourceModel
                 }
-                role: "DeviceName"
-
-                onActivated: {
-                    // TODO: start and stop preview logic in here should be in LRC
-                    previewWidget.startWithId("");
-                    VideoDevices.setDefaultDevice(filteredDevicesModel.mapToSource(modelIndex));
-                    generalSettings.startPreviewing();
+                filters: ValueFilter {
+                    roleName: "FPS"
+                    value: VideoDevices.defaultFps
+                    inverted: true
+                    enabled: fpsSourceModel.count > 1
                 }
             }
+            role: "FPS"
 
-            SettingsComboBox {
-                id: resolutionComboBoxSetting
+            onActivated: VideoDevices.setDefaultDeviceFps(filteredFpsModel.mapToSource(modelIndex))
+        }
 
-                Layout.fillWidth: true
+        ToggleSwitch {
+            id: hardwareAccelControl
 
-                enabled: VideoDevices.listSize !== 0
-                opacity: enabled ? 1.0 : 0.5
+            Layout.fillWidth: true
 
-                widthOfComboBox: itemWidth
+            labelText: JamiStrings.enableHWAccel
 
-                labelText: JamiStrings.resolution
-                currentSelectionText: VideoDevices.defaultRes
-                tipText: JamiStrings.selectVideoResolution
-
-                comboModel: SortFilterProxyModel {
-                    id: filteredResModel
-                    sourceModel: SortFilterProxyModel {
-                        id: resSourceModel
-                        sourceModel: VideoDevices.resSourceModel
-                    }
-                    filters: ValueFilter {
-                        roleName: "Resolution"
-                        value: VideoDevices.defaultRes
-                        inverted: true
-                        enabled: resSourceModel.count > 1
-                    }
-                }
-                role: "Resolution"
-
-                onActivated: VideoDevices.setDefaultDeviceRes(filteredResModel.mapToSource(modelIndex))
-            }
-
-            SettingsComboBox {
-                id: fpsComboBoxSetting
-
-                Layout.fillWidth: true
-
-                enabled: VideoDevices.listSize !== 0
-                opacity: enabled ? 1.0 : 0.5
-
-                widthOfComboBox: itemWidth
-
-                tipText: JamiStrings.selectFPS
-                labelText: JamiStrings.fps
-                currentSelectionText: VideoDevices.defaultFps.toString()
-                comboModel: SortFilterProxyModel {
-                    id: filteredFpsModel
-                    sourceModel: SortFilterProxyModel {
-                        id: fpsSourceModel
-                        sourceModel: VideoDevices.fpsSourceModel
-                    }
-                    filters: ValueFilter {
-                        roleName: "FPS"
-                        value: VideoDevices.defaultFps
-                        inverted: true
-                        enabled: fpsSourceModel.count > 1
-                    }
-                }
-                role: "FPS"
-
-                onActivated: VideoDevices.setDefaultDeviceFps(filteredFpsModel.mapToSource(modelIndex))
-            }
-
-            ToggleSwitch {
-                id: hardwareAccelControl
-
-                Layout.fillWidth: true
-
-                labelText: JamiStrings.enableHWAccel
-
-                onSwitchToggled: {
-                    AvAdapter.setHardwareAcceleration(checked);
-                    generalSettings.startPreviewing(true);
-                }
+            onSwitchToggled: {
+                AvAdapter.setHardwareAcceleration(checked);
+                rootLayout.startPreviewing(true);
             }
         }
     }
