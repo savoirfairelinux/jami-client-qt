@@ -22,6 +22,30 @@
       },
       "revId": "32e34042e892d3abcb9d394a1466a9f544fe75ce",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b5f8ad2_6c2bb72c",
+        "filename": "src/app/bannedlistmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-19T15:46:12Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "221e896f_1b6b2090",
+      "range": {
+        "startLine": 36,
+        "startChar": 7,
+        "endLine": 36,
+        "endChar": 25
+      },
+      "revId": "32e34042e892d3abcb9d394a1466a9f544fe75ce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

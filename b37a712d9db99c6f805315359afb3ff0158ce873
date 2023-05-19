@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "646ed941_6aeb428c",
+        "filename": "src/app/contactadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-19T15:46:12Z",
+      "side": 1,
+      "message": "Yes. https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1122",
+      "parentUuid": "28c9f8aa_35ebcf37",
+      "range": {
+        "startLine": 34,
+        "startChar": 33,
+        "endLine": 34,
+        "endChar": 47
+      },
+      "revId": "b37a712d9db99c6f805315359afb3ff0158ce873",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ccc7304_a1e66e24",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-17T21:55:25Z",
       "side": 1,
       "message": "String doesn\u0027t seems correct. Does `it\u0027s` mean `it is`?\n\nShould the string be:\n`%1 is sharing their location`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dis%20sharing%20their\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 407,
+        "startChar": 20,
+        "endLine": 407,
+        "endChar": 47
+      },
+      "revId": "b37a712d9db99c6f805315359afb3ff0158ce873",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "675eba24_167c7124",
+        "filename": "src/app/positionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-19T15:46:12Z",
+      "side": 1,
+      "message": "Yes, `it\u0027s` is incorrect. I pushed a different change for this: https://review.jami.net/c/jami-client-qt/+/24645.",
+      "parentUuid": "3ccc7304_a1e66e24",
       "range": {
         "startLine": 407,
         "startChar": 20,
