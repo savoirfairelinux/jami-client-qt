@@ -22,6 +22,30 @@
       },
       "revId": "8cf740b9fec57254ab1c7ba70ed553fd6172454d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba191777_f6fc78ae",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-19T12:34:04Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s a good idea. The goal is to get messages helping us to detect what is wrong with a conversation. \"An unknown error occurred\" should never happen and is unclear.",
+      "parentUuid": "7d8d0260_38a95189",
+      "range": {
+        "startLine": 335,
+        "startChar": 20,
+        "endLine": 335,
+        "endChar": 29
+      },
+      "revId": "8cf740b9fec57254ab1c7ba70ed553fd6172454d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
