@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d8d0260_38a95189",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-19T07:08:20Z",
+      "side": 1,
+      "message": "Before this line, should the following be added:\n`newErrors.append(tr(\"An unknown error occurred\"));`\n\nWhat do you think?\n\nThank you\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dunknown%20error%20occurred\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003d0",
+      "range": {
+        "startLine": 335,
+        "startChar": 20,
+        "endLine": 335,
+        "endChar": 29
+      },
+      "revId": "8cf740b9fec57254ab1c7ba70ed553fd6172454d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
