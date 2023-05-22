@@ -84,17 +84,22 @@
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="327"/>
-        <source>The conversation&apos;s mode is un-recognized</source>
+        <source>Unrecognized conversation mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="331"/>
+        <source>Not authorized to update conversation information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="333"/>
+        <source>An error occurred while committing a new message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="329"/>
         <source>An invalid message was detected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="332"/>
-        <source>Not enough authorization for updating conversation&apos;s infos</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3961,8 +3966,8 @@ connects to synchronize the conversation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="385"/>
-        <location filename="../src/libclient/avmodel.cpp" line="404"/>
+        <location filename="../src/libclient/avmodel.cpp" line="389"/>
+        <location filename="../src/libclient/avmodel.cpp" line="408"/>
         <source>default</source>
         <translation>podrazumevano</translation>
     </message>
