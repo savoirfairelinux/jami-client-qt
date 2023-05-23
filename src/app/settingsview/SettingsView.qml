@@ -92,7 +92,7 @@ ListSelectionView {
 
         signal stopBooth
 
-        initialItem: ManageAccountPage {}
+        initialItem: viewNode.resources["ManageAccountPage"]
 
         onCurrentIndexChanged: {
             switch (currentIndex) {
