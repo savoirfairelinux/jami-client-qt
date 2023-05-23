@@ -244,13 +244,13 @@ SidePanelBase {
                     }
                 }
 
-                ContactSearchBar {
+                Searchbar {
                     id: contactSearchBar
 
                     Layout.fillHeight: true
                     Layout.fillWidth: true
 
-                    onContactSearchBarTextChanged: function (text) {
+                    onSearchBarTextChanged: function(text){
                         // not calling positionViewAtBeginning will cause
                         // sort animation visual bugs
                         conversationListView.positionViewAtBeginning()

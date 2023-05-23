@@ -151,11 +151,28 @@ Rectangle {
         Searchbar {
             id: rowSearchBar
 
+            reductionEnabled: true
+
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.preferredHeight: 30
             Layout.preferredWidth: 30 + (isOpen? JamiTheme.searchbarSize : 0)
+            colorSearchBar: JamiTheme.backgroundColor
+
+            Behavior on Layout.preferredWidth {
+                NumberAnimation {
+                    duration: 150
+                }
+            }
 
             visible: root.swarmDetailsVisibility
+
+            onSearchBarTextChanged: function(text){
+                MessagesAdapter.searchbarPrompt = text;
+            }
+
+            onSearchClicked: {
+                root.searchClicked();
+            }
 
             Shortcut {
                 sequence: "Ctrl+Shift+F"
