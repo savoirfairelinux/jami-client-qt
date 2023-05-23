@@ -341,6 +341,8 @@ Item {
     property int participantCallInStatusFontSize: calcSize(8)
     property int participantCallInStatusTextWidthLimit: 80
     property int participantCallInStatusTextWidth: 40
+    property int horizontalChatViewIcon: 70
+    property int verticalChatViewIcon: 40
     property int mosaicButtonRadius: 5
     property int mosaicButtonPreferredMargin: 5
     property real mosaicButtonOpacity: 0.77

@@ -52,7 +52,7 @@ SettingsPageBase {
         ColumnLayout {
             id: enableAccount
 
-            width: parent.width
+            Layout.fillWidth: true
 
             FolderDialog {
                 id: downloadPathDialog
@@ -189,14 +189,14 @@ SettingsPageBase {
 
         ColumnLayout {
 
-            width: parent.width
+            Layout.fillWidth: true
             spacing: JamiTheme.settingsCategorySpacing
 
             Text {
                 id: experimentalTitle
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.experimental
                 color: JamiTheme.textColor

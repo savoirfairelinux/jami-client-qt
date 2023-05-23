@@ -59,14 +59,14 @@ SettingsPageBase {
         ColumnLayout {
             id: generalSettings
 
-            width: parent.width
+            Layout.fillWidth: true
             spacing: JamiTheme.settingsCategorySpacing
 
             Text {
                 id: enableAccountTitle
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.generalSettingsTitle
                 color: JamiTheme.textColor
@@ -99,13 +99,13 @@ SettingsPageBase {
         ColumnLayout {
             id: ringtoneSettings
 
-            width: parent.width
+            Layout.fillWidth: true
             spacing: 9
 
             Text {
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.ringtone
                 color: JamiTheme.textColor
@@ -157,14 +157,13 @@ SettingsPageBase {
         ColumnLayout {
             id: rendezVousSettings
 
-            width: parent.width
+            Layout.fillWidth: true
             spacing: JamiTheme.settingsCategorySpacing
 
             Text {
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
-
+                Layout.fillWidth: true
                 text: JamiStrings.rendezVousPoint
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
@@ -189,13 +188,13 @@ SettingsPageBase {
         ColumnLayout {
             id: moderationSettings
 
-            width: parent.width
+            Layout.fillWidth: true
             spacing: 9
 
             Text {
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.moderation
                 color: JamiTheme.textColor
@@ -320,7 +319,7 @@ SettingsPageBase {
             Text {
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.chatSettingsTitle
                 color: JamiTheme.textColor
@@ -334,8 +333,7 @@ SettingsPageBase {
 
             Flow {
 
-                Layout.preferredWidth: parent.width
-                Layout.preferredHeight: childrenRect.height
+                Layout.fillWidth: true
                 spacing: 5
 
                 ButtonGroup {
@@ -344,12 +342,18 @@ SettingsPageBase {
 
                 MaterialRadioButton {
                     id: verticalRadio
-                    width: 255
-                    height: 60
 
+                    TextMetrics {
+                        id: verticalRadioTextSize
+                        font.weight: Font.Normal
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        text: verticalRadio.text
+                    }
+
+                    width: verticalRadioTextSize.width + 2 * JamiTheme.buttontextWizzardPadding + 40
                     text: JamiStrings.verticalViewOpt
                     ButtonGroup.group: optionsB
-                    iconSource: JamiResources.horizontal_view_svg
+                    iconSource: JamiResources.vertical_view_svg
 
                     onCheckedChanged: {
                         if (checked) {
@@ -361,13 +365,18 @@ SettingsPageBase {
                 MaterialRadioButton {
                     id: horizontalRadio
 
-                    width: 255
-                    height: 60
+                    TextMetrics {
+                        id: horizontalRadioTextSize
+                        font.weight: Font.Normal
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        text: verticalRadio.text
+                    }
 
+                    width: horizontalRadioTextSize.width + 2 * JamiTheme.buttontextWizzardPadding + 70
                     text: JamiStrings.horizontalViewOpt
                     ButtonGroup.group: optionsB
                     //color: JamiTheme.blackColor
-                    iconSource: JamiResources.vertical_view_svg
+                    iconSource: JamiResources.horizontal_view_svg
 
                     onCheckedChanged: {
                         if (checked) {
