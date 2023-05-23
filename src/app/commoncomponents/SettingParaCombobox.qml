@@ -51,7 +51,8 @@ ComboBox {
 
         contentItem: Text {
             text: {
-                if (index < 0)
+                // Make sure the index is valid.
+                if (index < 0 || index >= root.delegateModel.items.count)
                     return '';
                 var currentItem = root.delegateModel.items.get(index);
                 const value = currentItem.model[root.textRole];
