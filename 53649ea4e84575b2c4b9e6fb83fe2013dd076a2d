@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a785c4b5_32d352ad",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-23T15:29:22Z",
+      "side": 1,
+      "message": "undefined reference with gnutls_get_version",
+      "range": {
+        "startLine": 300,
+        "startChar": 17,
+        "endLine": 300,
+        "endChar": 26
+      },
+      "revId": "53649ea4e84575b2c4b9e6fb83fe2013dd076a2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "377cc85e_a818ebd1",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-23T15:29:22Z",
+      "side": 1,
+      "message": "dbus seems broken (can build but not launch)",
+      "range": {
+        "startLine": 303,
+        "startChar": 17,
+        "endLine": 303,
+        "endChar": 30
+      },
+      "revId": "53649ea4e84575b2c4b9e6fb83fe2013dd076a2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
