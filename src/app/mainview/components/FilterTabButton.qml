@@ -33,6 +33,8 @@ TabButton {
     property var hoverColor: JamiTheme.backgroundColor
     property var textColor: JamiTheme.textColor
     property var textColorHovered: JamiTheme.textColorHovered
+    property var underlineColor: textColor
+    property var underlineColorHovered: textColorHovered
     property var borderWidth: 2
     property var bottomMargin: 1
     property var underlineContentOnly: false
@@ -85,10 +87,10 @@ TabButton {
         height: borderWidth
         color: {
             if (!root.down && root.hovered)
-                return root.textColorHovered;
+                return underlineColorHovered;
             if (!root.down)
                 return "transparent";
-            return root.textColor;
+            return root.underlineColor;
         }
     }
 
