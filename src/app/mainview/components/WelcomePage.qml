@@ -220,10 +220,18 @@ ListSelectionView {
 
                 MaterialButton {
                     id: aboutJami
-                    tertiary: true
 
+                    TextMetrics {
+                        id: textSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        font.capitalization: Font.AllUppercase
+                        text: aboutJami.text
+                    }
+
+                    tertiary: true
                     anchors.horizontalCenter: parent.horizontalCenter
-                    preferredWidth: JamiTheme.aboutButtonPreferredWidth
+                    preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
                     text: JamiStrings.aboutJami
 
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
