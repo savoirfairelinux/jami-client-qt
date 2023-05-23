@@ -350,7 +350,7 @@ SettingsPageBase {
                         text: verticalRadio.text
                     }
 
-                    width: verticalRadioTextSize.width + 2 * JamiTheme.buttontextWizzardPadding + 40
+                    width: verticalRadioTextSize.width + 2 * JamiTheme.buttontextWizzardPadding + JamiTheme.verticalChatViewIcon
                     text: JamiStrings.verticalViewOpt
                     ButtonGroup.group: optionsB
                     iconSource: JamiResources.vertical_view_svg
@@ -372,7 +372,7 @@ SettingsPageBase {
                         text: verticalRadio.text
                     }
 
-                    width: horizontalRadioTextSize.width + 2 * JamiTheme.buttontextWizzardPadding + 70
+                    width: horizontalRadioTextSize.width + 2 * JamiTheme.buttontextWizzardPadding + JamiTheme.horizontalChatViewIcon
                     text: JamiStrings.horizontalViewOpt
                     ButtonGroup.group: optionsB
                     //color: JamiTheme.blackColor
