@@ -59,6 +59,8 @@ Rectangle {
                 bottomMargin: JamiTheme.settingsMarginSize
                 fontSize: JamiTheme.menuFontSize
                 underlineContentOnly: true
+                underlineColor: CurrentConversation.color
+                underlineColorHovered: CurrentConversation.color
 
                 down: researchTabBar.currentIndex === 0
                 labelText: JamiStrings.messages
@@ -73,6 +75,9 @@ Rectangle {
                 bottomMargin: JamiTheme.settingsMarginSize
                 fontSize: JamiTheme.menuFontSize
                 underlineContentOnly: true
+                underlineColor: CurrentConversation.color
+                underlineColorHovered: CurrentConversation.color
+
 
                 down: researchTabBar.currentIndex === 1
                 labelText: JamiStrings.files
