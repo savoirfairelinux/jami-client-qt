@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cceabfe_bdfd3060",
+        "filename": "src/app/mainview/components/Searchbar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2023-05-23T14:37:56Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 9
+      },
+      "revId": "369641cb8a0d877dc062e45ffc35957f1139b639",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
