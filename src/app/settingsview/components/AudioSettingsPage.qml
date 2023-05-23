@@ -37,6 +37,11 @@ SettingsPageBase {
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
+        Component.onCompleted: {
+            rootLayout.populateAudioSettings();
+            AvAdapter.startAudioMeter();
+        }
+
         Connections {
             target: UtilsAdapter
 
@@ -168,8 +173,6 @@ SettingsPageBase {
             }
             widthOfComboBox: itemWidth
             role: "ID_UTF8"
-
-            Component.onCompleted: rootLayout.populateAudioSettings()
 
             onActivated: {
                 AvAdapter.stopAudioMeter();

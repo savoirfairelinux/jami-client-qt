@@ -32,6 +32,12 @@ ProgressBar {
         return clamp(rmsLevel * 300.0, 0.0, 100.0);
     }
 
+    Behavior on value {
+        NumberAnimation {
+            duration: 50
+        }
+    }
+
     contentItem: Item {
         implicitWidth: parent.width
         implicitHeight: parent.height
