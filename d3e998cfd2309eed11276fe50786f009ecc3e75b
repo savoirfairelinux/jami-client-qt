@@ -178,6 +178,24 @@
       "parentUuid": "aa7b16c4_d95f5115",
       "revId": "d3e998cfd2309eed11276fe50786f009ecc3e75b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9dadda4_cca7e4e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-23T20:02:41Z",
+      "side": 1,
+      "message": "I will add hotplug for cameras with built-in mics separately: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/689.",
+      "parentUuid": "cde04dda_9f323e0b",
+      "revId": "d3e998cfd2309eed11276fe50786f009ecc3e75b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
