@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2880de5_e06a7681",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-23T17:16:35Z",
+      "side": 1,
+      "message": "see comment in the other patch for commit format",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "dbaf7a337ed0572be13529b90f5c230cc9faa1e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba25214f_6c8eed52",
+        "filename": "src/app/mainview/components/Searchbar.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-23T17:16:35Z",
+      "side": 1,
+      "message": "This item is really similar to ContactSearchBar.qml, imho we should only have 1 component for the 2 searchbar (with a property to enable or not the reduction of the search bar)",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 19,
+        "endChar": 15
+      },
+      "revId": "dbaf7a337ed0572be13529b90f5c230cc9faa1e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
