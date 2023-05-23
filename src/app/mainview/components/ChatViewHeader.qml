@@ -155,6 +155,12 @@ Rectangle {
             Layout.preferredHeight: 30
             Layout.preferredWidth: 30 + (isOpen? JamiTheme.searchbarSize : 0)
 
+            Behavior on Layout.preferredWidth {
+                NumberAnimation {
+                    duration: 150
+                }
+            }
+
             visible: root.swarmDetailsVisibility
 
             Shortcut {
