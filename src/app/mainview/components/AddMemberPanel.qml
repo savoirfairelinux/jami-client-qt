@@ -34,7 +34,7 @@ Rectangle {
 
         anchors.fill: parent
 
-        ContactSearchBar {
+        Searchbar {
             id: contactPickerContactSearchBar
 
             Layout.alignment: Qt.AlignCenter
@@ -44,7 +44,7 @@ Rectangle {
 
             placeHolderText: JamiStrings.addParticipant
 
-            onContactSearchBarTextChanged: {
+            onSearchBarTextChanged: function(text){
                 ContactAdapter.setSearchFilter(text);
             }
         }

@@ -89,7 +89,7 @@ Popup {
                 }
             }
 
-            ContactSearchBar {
+            Searchbar {
                 id: contactPickerContactSearchBar
 
                 Layout.alignment: Qt.AlignCenter
@@ -99,7 +99,7 @@ Popup {
 
                 placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.addParticipant
 
-                onContactSearchBarTextChanged: {
+                onSearchBarTextChanged: function(text){
                     ContactAdapter.setSearchFilter(text);
                 }
             }
