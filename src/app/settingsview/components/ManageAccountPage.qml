@@ -47,14 +47,14 @@ SettingsPageBase {
         ColumnLayout {
             id: enableAccount
 
-            width: parent.width
+            Layout.fillWidth: true
             spacing: JamiTheme.settingsCategorySpacing
 
             Text {
                 id: enableAccountTitle
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.enableAccountSettingsTitle
                 color: JamiTheme.textColor
@@ -70,7 +70,7 @@ SettingsPageBase {
                 id: accountEnableSwitch
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
                 labelText: JamiStrings.enableAccountDescription
 
                 widthOfSwitch: 60
@@ -84,7 +84,7 @@ SettingsPageBase {
         ColumnLayout {
             id: userIdentity
 
-            width: parent.width
+            Layout.fillWidth: true
             spacing: JamiTheme.settingsCategorySpacing
             visible: isSIP
 
@@ -92,7 +92,7 @@ SettingsPageBase {
                 id: userIdentityTitle
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.identity
                 color: JamiTheme.textColor
@@ -115,7 +115,7 @@ SettingsPageBase {
         ColumnLayout {
             id: jamiIdentity
 
-            width: parent.width
+            Layout.fillWidth: true
             visible: !isSIP
             spacing: JamiTheme.settingsCategorySpacing
 
@@ -123,7 +123,7 @@ SettingsPageBase {
                 id: jamiIdentityTitle
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
                 text: JamiStrings.jamiIdentity
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
@@ -147,7 +147,7 @@ SettingsPageBase {
                 id: jamiIdentifierDescription
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.usernameAccountDescription
                 color: JamiTheme.textColor
@@ -164,7 +164,7 @@ SettingsPageBase {
         ColumnLayout {
             id: encryptAccount
 
-            width: parent.width
+            Layout.fillWidth: true
             visible: !isSIP && CurrentAccount.managerUri === ""
             spacing: JamiTheme.settingsCategorySpacing
 
@@ -172,7 +172,7 @@ SettingsPageBase {
                 id: encryptTitle
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.encryptTitle
                 color: JamiTheme.textColor
@@ -188,7 +188,7 @@ SettingsPageBase {
                 id: encryptDescription
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.ecryptAccountDescription
                 color: JamiTheme.textColor
