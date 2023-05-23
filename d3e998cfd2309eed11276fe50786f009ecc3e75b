@@ -196,6 +196,24 @@
       "parentUuid": "cde04dda_9f323e0b",
       "revId": "d3e998cfd2309eed11276fe50786f009ecc3e75b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dfec807_b059748a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-23T22:18:28Z",
+      "side": 1,
+      "message": "Thank you for your comment.\n\nHave added comments to the issue you mentioned at https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/689 to flag when we are to test your “hotplug for cameras with built-in mics”.\n\nFeel free to add us to your https://review.jami.net patch which has your “hotplug for cameras with built-in mics” feature.\n\nThank you once again.",
+      "parentUuid": "e9dadda4_cca7e4e2",
+      "revId": "d3e998cfd2309eed11276fe50786f009ecc3e75b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
