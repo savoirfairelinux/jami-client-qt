@@ -22,6 +22,30 @@
       },
       "revId": "7084fc17064043e451081af613d71921bfa7ea8e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc150964_e557daee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-23T13:55:47Z",
+      "side": 1,
+      "message": "I think it\u0027s okay, it\u0027s a Qt 6.4 migration fix.",
+      "parentUuid": "507e82ce_c17b81a8",
+      "range": {
+        "startLine": 11,
+        "startChar": 9,
+        "endLine": 11,
+        "endChar": 12
+      },
+      "revId": "7084fc17064043e451081af613d71921bfa7ea8e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
