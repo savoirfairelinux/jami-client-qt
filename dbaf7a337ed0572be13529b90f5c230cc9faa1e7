@@ -69,6 +69,30 @@
       },
       "revId": "dbaf7a337ed0572be13529b90f5c230cc9faa1e7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d878106c_2a3c6179",
+        "filename": "src/app/mainview/components/Searchbar.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-05-24T13:50:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba25214f_6c8eed52",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 19,
+        "endChar": 15
+      },
+      "revId": "dbaf7a337ed0572be13529b90f5c230cc9faa1e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
