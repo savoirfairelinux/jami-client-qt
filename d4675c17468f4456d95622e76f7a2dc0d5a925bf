@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb89494a_9b9c853d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-24T15:33:59Z",
+      "side": 1,
+      "message": "use present infinitive here",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 60
+      },
+      "revId": "d4675c17468f4456d95622e76f7a2dc0d5a925bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1c12381_e17b7107",
         "filename": "src/app/mainview/components/ChatViewHeader.qml",
         "patchSetId": 5
