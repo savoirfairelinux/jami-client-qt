@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e616689a_4bd9578e",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-05-24T15:29:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1c12381_e17b7107",
+      "range": {
+        "startLine": 154,
+        "startChar": 12,
+        "endLine": 154,
+        "endChar": 28
+      },
+      "revId": "d4675c17468f4456d95622e76f7a2dc0d5a925bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e94b596_08bab7c6",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5242cde2_a965658f",
+        "filename": "src/app/mainview/components/Searchbar.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-05-24T15:29:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e94b596_08bab7c6",
+      "range": {
+        "startLine": 87,
+        "startChar": 9,
+        "endLine": 94,
+        "endChar": 15
+      },
+      "revId": "d4675c17468f4456d95622e76f7a2dc0d5a925bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf052997_e7a1d90b",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-05-24T13:55:24Z",
       "side": 1,
       "message": "if reductionEnabled is false, the search icon should not be a clickable button",
+      "range": {
+        "startLine": 247,
+        "startChar": 16,
+        "endLine": 247,
+        "endChar": 25
+      },
+      "revId": "d4675c17468f4456d95622e76f7a2dc0d5a925bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef1c4326_d863d85d",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-05-24T15:29:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf052997_e7a1d90b",
       "range": {
         "startLine": 247,
         "startChar": 16,
