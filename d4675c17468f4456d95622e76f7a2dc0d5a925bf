@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1c12381_e17b7107",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-24T13:55:24Z",
+      "side": 1,
+      "message": "bad spacing with other items in the header",
+      "range": {
+        "startLine": 154,
+        "startChar": 12,
+        "endLine": 154,
+        "endChar": 28
+      },
+      "revId": "d4675c17468f4456d95622e76f7a2dc0d5a925bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e94b596_08bab7c6",
+        "filename": "src/app/mainview/components/Searchbar.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-24T13:55:24Z",
+      "side": 1,
+      "message": "did you run \"./build.py --init\". Qmlformat should be installed to avoid weird indentation like here.",
+      "range": {
+        "startLine": 87,
+        "startChar": 9,
+        "endLine": 94,
+        "endChar": 15
+      },
+      "revId": "d4675c17468f4456d95622e76f7a2dc0d5a925bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf052997_e7a1d90b",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-24T13:55:24Z",
+      "side": 1,
+      "message": "if reductionEnabled is false, the search icon should not be a clickable button",
+      "range": {
+        "startLine": 247,
+        "startChar": 16,
+        "endLine": 247,
+        "endChar": 25
+      },
+      "revId": "d4675c17468f4456d95622e76f7a2dc0d5a925bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
