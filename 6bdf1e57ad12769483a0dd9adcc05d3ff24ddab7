@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "675a98c0_ddd21d16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-05-24T13:15:23Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "e2c0dd0d_93c7dbbd",
+      "revId": "6bdf1e57ad12769483a0dd9adcc05d3ff24ddab7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9cfe180_cea56678",
@@ -41,6 +59,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a5d06d0_c94a715a",
+        "filename": "INSTALL.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-05-24T13:15:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9cfe180_cea56678",
+      "range": {
+        "startLine": 22,
+        "startChar": 107,
+        "endLine": 22,
+        "endChar": 114
+      },
+      "revId": "6bdf1e57ad12769483a0dd9adcc05d3ff24ddab7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b1ce0f9_2fa8079d",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-05-15T20:48:56Z",
       "side": 1,
       "message": "hardcoded version.",
+      "range": {
+        "startLine": 27,
+        "startChar": 70,
+        "endLine": 27,
+        "endChar": 72
+      },
+      "revId": "6bdf1e57ad12769483a0dd9adcc05d3ff24ddab7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d90d1268_e1c3ab99",
+        "filename": "INSTALL.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-05-24T13:15:23Z",
+      "side": 1,
+      "message": "I add \u003cVERSION\u003e syntax to handle all version of Ferdora",
+      "parentUuid": "3b1ce0f9_2fa8079d",
       "range": {
         "startLine": 27,
         "startChar": 70,
