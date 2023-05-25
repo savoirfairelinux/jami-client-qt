@@ -53,6 +53,11 @@ set(CMAKE_FIND_LIBRARY_SUFFIXES_orig ${CMAKE_FIND_LIBRARY_SUFFIXES})
 
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".dylib;.so;.dll")
 
+# Add the lib prefix for Windows checks.
+if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+  set(CMAKE_FIND_LIBRARY_PREFIXES "lib;")
+endif()
+
 if(WITH_DAEMON_SUBMODULE)
   find_library(LIBJAMI_LIB NAMES jami ring
     PATHS ${DAEMON_DIR}/src/.libs

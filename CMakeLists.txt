@@ -363,7 +363,7 @@ if(MSVC)
 
   # daemon
   set(JAMID_SRC_PATH ${DAEMON_DIR}/contrib/msvc/include)
-  set(JAMID_LIB ${DAEMON_DIR}/build/x64/ReleaseLib_win32/bin/jami.lib)
+  set(JAMID_LIB ${DAEMON_DIR}/build/x64/ReleaseLib_win32/bin/libjami.lib)
   set(GNUTLS_LIB ${DAEMON_DIR}/contrib/msvc/lib/x64/libgnutls.lib)
 
   # Beta config
