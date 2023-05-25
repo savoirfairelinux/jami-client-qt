@@ -40,7 +40,7 @@ Item {
     property string bestName: ""
     property string sinkId: ""
     property bool participantIsActive: false
-    property bool canMaximize: root.meModerator && (!root.participantIsActive || CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL)
+    property bool canMaximize: CurrentCall.isModerator && (!root.participantIsActive || CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL)
     property bool participantIsHost: CallAdapter.participantIsHost(uri)
     property bool participantIsModerator: false
     property bool participantIsMuted: isLocalMuted || participantIsModeratorMuted
@@ -53,7 +53,6 @@ Item {
     property bool isSharing: false
 
     property bool meHost: CallAdapter.isCurrentHost()
-    property bool meModerator: CallAdapter.isModerator()
     property bool isMe: false
 
     property string muteAlertMessage: ""
@@ -181,7 +180,7 @@ Item {
                 ParticipantOverlayMenu {
                     id: overlayMenu
 
-                    visible: isMe || meModerator
+                    visible: isMe || CurrentCall.isModerator
                     anchors.fill: parent
 
                     onHoveredChanged: {
@@ -195,11 +194,11 @@ Item {
 
                     showSetModerator: root.meHost && !root.isMe && !root.participantIsModerator
                     showUnsetModerator: root.meHost && !root.isMe && root.participantIsModerator
-                    showModeratorMute: root.meModerator && !root.participantIsModeratorMuted
-                    showModeratorUnmute: (root.meModerator || root.isMe) && root.participantIsModeratorMuted
+                    showModeratorMute: CurrentCall.isModerator && !root.participantIsModeratorMuted
+                    showModeratorUnmute: (CurrentCall.isModerator || root.isMe) && root.participantIsModeratorMuted
                     showMaximize: root.canMaximize
-                    showMinimize: root.meModerator && root.participantIsActive
-                    showHangup: root.meModerator && !root.isMe && !root.participantIsHost
+                    showMinimize: CurrentCall.isModerator && root.participantIsActive
+                    showHangup: CurrentCall.isModerator && !root.isMe && !root.participantIsHost
                 }
 
                 // Participant footer with host, moderator and mute indicators
@@ -313,7 +312,7 @@ Item {
                                 containerHeight: 12
                                 containerWidth: 12
 
-                                visible: (!root.isMe && !root.meModerator) ? root.participantIsMuted : root.isLocalMuted
+                                visible: (!root.isMe && !CurrentCall.isModerator) ? root.participantIsMuted : root.isLocalMuted
 
                                 source: JamiResources.micro_off_black_24dp_svg
                                 color: JamiTheme.redColor
@@ -324,11 +323,11 @@ Item {
                                 MaterialToolTip {
                                     visible: hoverMicrophone.hovered
                                     text: {
-                                        if (!root.isMe && !root.meModerator && root.participantIsModeratorMuted && root.isLocalMuted)
+                                        if (!root.isMe && !CurrentCall.isModerator && root.participantIsModeratorMuted && root.isLocalMuted)
                                             return JamiStrings.bothMuted;
                                         if (root.isLocalMuted)
                                             return JamiStrings.localMuted;
-                                        if (!root.isMe && !root.meModerator && root.participantIsModeratorMuted)
+                                        if (!root.isMe && !CurrentCall.isModerator && root.participantIsModeratorMuted)
                                             return JamiStrings.moderatorMuted;
                                         return JamiStrings.notMuted;
                                     }
@@ -353,12 +352,12 @@ Item {
                 visible: root.participantHandIsRaised
                 anchors.right: participantRect.right
                 anchors.top: participantRect.top
-                checkable: root.meModerator
+                checkable: CurrentCall.isModerator
                 pressedColor: JamiTheme.raiseHandColor
                 hoveredColor: JamiTheme.raiseHandColor
                 normalColor: JamiTheme.raiseHandColor
                 z: participantRect.z + 1
-                toolTipText: root.meModerator ? JamiStrings.lowerHand : ""
+                toolTipText: CurrentCall.isModerator ? JamiStrings.lowerHand : ""
                 onClicked: CallAdapter.raiseHand(uri, deviceId, false)
                 radius: 5
             }
