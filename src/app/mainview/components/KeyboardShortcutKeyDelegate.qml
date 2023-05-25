@@ -18,9 +18,12 @@
 import QtQuick
 import QtQuick.Layouts
 import net.jami.Constants 1.1
+import net.jami.Adapters 1.1
 
 RowLayout {
     id: root
+
+    layoutDirection: UtilsAdapter.isRTL ? Qt.RightToLeft : Qt.LeftToRight
 
     Rectangle {
         id: descriptionTextRect
@@ -29,6 +32,7 @@ RowLayout {
         Layout.preferredHeight: descriptionText.contentHeight + 10
         Layout.preferredWidth: descriptionText.contentWidth + 10
         Layout.leftMargin: 10
+        Layout.rightMargin: 10
 
         color: JamiTheme.transparentColor
 
@@ -50,6 +54,7 @@ RowLayout {
         Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
         Layout.preferredHeight: shortcutText.contentHeight + 10
         Layout.preferredWidth: shortcutText.contentWidth + 10
+        Layout.leftMargin: 10
         Layout.rightMargin: 10
 
         color: JamiTheme.backgroundColor
