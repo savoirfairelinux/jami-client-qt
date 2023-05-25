@@ -649,7 +649,7 @@ MessagesAdapter::getMediaInfo(const QString& msg)
         = "<body style='margin:0;padding:0;'>"
           "<%1 style='width:100%;height:%2;outline:none;background-color:#f1f3f4;"
           "object-fit:cover;' "
-          "controls controlsList='nodownload' src='file://%3' type='%4'/></body>";
+          "controls controlsList='nodownload noplaybackrate' src='file://%3' type='%4'/></body>";
     QMimeDatabase db;
     QMimeType mime = db.mimeTypeForFile(filePath);
     QVariantMap fileInfo = isLocalImage(mime.name());
