@@ -16,6 +16,24 @@
       "message": "Just a small comment, else LGTM",
       "revId": "9ce7b0e8fe982066363e288743141ed602f9b7fe",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ee5fa8d_6e10f660",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-05-25T18:53:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6348302b_120974d1",
+      "revId": "9ce7b0e8fe982066363e288743141ed602f9b7fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
