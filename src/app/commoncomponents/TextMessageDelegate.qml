@@ -52,7 +52,7 @@ SBSMessageBase {
             anchors.right: isOutgoing ? parent.right : undefined
             text: {
                 if (Body !== "" && ParsedBody.length === 0) {
-                    MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, CurrentConversation.color);
+                    MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
                     return ""
                 }
                 return (ParsedBody !== "") ? ParsedBody : "<i>(" + JamiStrings.deletedMessage + ")</i>";
