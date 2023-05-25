@@ -32,6 +32,18 @@ SBSMessageBase {
     property bool isEmojiOnly: IsEmojiOnly
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
     property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
+    property string colorText: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+
+    Connections {
+        target: bubble
+        function onColorChanged(color) {
+            root.colorUrl = UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
+            root.colorText = UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+            // Update parsed body with correct colors
+            if (Body !== "")
+                MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
+        }
+    }
 
     isOutgoing: Author === CurrentAccount.uri
     author: Author
@@ -52,7 +64,7 @@ SBSMessageBase {
             anchors.right: isOutgoing ? parent.right : undefined
             text: {
                 if (Body !== "" && ParsedBody.length === 0) {
-                    MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, CurrentConversation.color);
+                    MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
                     return ""
                 }
                 return (ParsedBody !== "") ? ParsedBody : "<i>(" + JamiStrings.deletedMessage + ")</i>";
@@ -144,7 +156,7 @@ SBSMessageBase {
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
 
                 text: JamiStrings.edited
-                color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+                color: root.colorText
                 font.pointSize: JamiTheme.editedFontSize
 
                 TapHandler {
@@ -228,7 +240,7 @@ SBSMessageBase {
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
-                        color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+                        color: root.colorText
                         visible: LinkPreviewInfo.title.length > 0
                         text: LinkPreviewInfo.title
                     }
@@ -251,7 +263,7 @@ SBSMessageBase {
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
-                        color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+                        color: root.colorText
                         text: LinkPreviewInfo.domain
                     }
                 }
