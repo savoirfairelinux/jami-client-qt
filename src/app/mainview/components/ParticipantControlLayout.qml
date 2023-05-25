@@ -49,7 +49,7 @@ RowLayout {
         Layout.preferredWidth: buttonPreferredSize
         Layout.alignment: Qt.AlignVCenter
         source: showModeratorMute ? JamiResources.micro_black_24dp_svg : JamiResources.micro_off_black_24dp_svg
-        checkable: meModerator
+        checkable: CurrentCall.isModerator
         onClicked: {
             if (participantIsModeratorMuted && isLocalMuted) {
                 if (isMe)
