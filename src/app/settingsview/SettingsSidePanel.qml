@@ -114,8 +114,16 @@ SidePanelBase {
 
     function updateModel() {
         if (visible) {
-            listView.model = {}
-            listView.model = getHeaders()
+            listView.model = {};
+            listView.model = getHeaders();
+        }
+    }
+
+    Connections {
+        target: CurrentAccount
+
+        function onTypeChanged() {
+            updateModel();
         }
     }
 
@@ -123,7 +131,7 @@ SidePanelBase {
         target: UtilsAdapter
 
         function onChangeLanguage() {
-            updateModel()
+            updateModel();
         }
     }
 
@@ -131,20 +139,20 @@ SidePanelBase {
     Connections {
         target: JamiQmlUtils
         function onSettingsPageRequested(index) {
-            viewCoordinator.present("SettingsView")
-            root.indexSelected(index)
-            root.currentIndex = index
+            viewCoordinator.present("SettingsView");
+            root.indexSelected(index);
+            root.currentIndex = index;
         }
     }
 
     onIsSinglePaneChanged: {
         if (visible && !isSinglePane)
-            select(root.currentIndex)
+            select(root.currentIndex);
     }
 
     function open(index) {
-        indexSelected(index)
-        root.currentIndex = index
+        indexSelected(index);
+        root.currentIndex = index;
     }
 
     function deselect() {
@@ -154,8 +162,8 @@ SidePanelBase {
 
     function select(index) {
         if (!root.isSinglePane)
-            indexSelected(index)
-        root.currentIndex = index
+            indexSelected(index);
+        root.currentIndex = index;
     }
 
     Page {
@@ -179,9 +187,11 @@ SidePanelBase {
             delegate: ColumnLayout {
                 id: col
                 width: page.width
+                spacing: 0
                 property bool isChildSelected: root.currentIndex >= modelData.first && root.currentIndex <= modelData.last
 
                 PushButton {
+                    id: sectionHeader
                     buttonText: modelData.title
                     circled: false
                     radius: 0
@@ -225,12 +235,13 @@ SidePanelBase {
                     delegate: ColumnLayout {
                         id: childCol
                         width: childListView.width
-                        property bool isSelected: root.currentIndex == modelData.id
+                        spacing: 0
+                        property bool isSelected: root.currentIndex === modelData.id
                         PushButton {
+                            visible: modelData.visible !== undefined ? modelData.visible : true
                             buttonText: modelData.title
                             circled: false
                             radius: 0
-                            visible: modelData.visible ? modelData.visible : true
 
                             alignement: Text.AlignLeft
                             Layout.preferredWidth: parent.width - 28
