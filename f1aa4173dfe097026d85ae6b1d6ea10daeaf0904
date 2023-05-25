@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b68c4b95_983f9415",
+        "filename": "src/app/mainview/components/ParticipantOverlay.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-25T18:47:33Z",
+      "side": 0,
+      "message": "CallAdapter::isModerator can be removed as unused",
+      "range": {
+        "startLine": 56,
+        "startChar": 34,
+        "endLine": 56,
+        "endChar": 56
+      },
+      "revId": "f1aa4173dfe097026d85ae6b1d6ea10daeaf0904",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
