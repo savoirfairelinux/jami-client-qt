@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 Build, test, and package the project.
 
@@ -340,9 +341,13 @@ def deploy_runtimes(qt_dir):
     print("Running windeployqt (this may take a while)...")
     win_deploy_qt = os.path.join(qt_dir, "bin", "windeployqt.exe")
     qml_src_dir = os.path.join(repo_root_dir, "src", "app")
-    os.environ["VCINSTALLDIR"] = os.path.join(
-        get_vs_prop("installationPath"), "VC")
-    executable = os.path.join(runtime_dir, "Jami.exe")
+    installation_dir = get_vs_prop("installationPath")
+    if not installation_dir:
+        print("Visual Studio not found. Please install Visual Studio 2017 or "
+              "later.")
+        sys.exit(1)
+    os.environ["VCINSTALLDIR"] = os.path.join(installation_dir, "VC")
+    executable = os.path.join(runtime_dir.encode(), b"Jami.exe")
     execute_cmd([win_deploy_qt, "--verbose", "1", "--no-compiler-runtime",
                  "--qmldir", qml_src_dir, "--release", executable],
                 False, cmd_dir=runtime_dir)
@@ -483,7 +488,11 @@ def main():
         print("These scripts will only run on a 64-bit system for now.")
         sys.exit(1)
     if sys.platform == "win32":
-        vs_version = get_vs_prop("installationVersion").split(".")[0]
+        vs_version = get_vs_prop("installationVersion")
+        if vs_version is None:
+            print("Visual Studio version not found.")
+            sys.exit(1)
+        vs_version = vs_version.split(".")[0]
         if vs_version is None or int(vs_version) < 15:
             print("Visual Studio 2017 or later is required.")
             sys.exit(1)
