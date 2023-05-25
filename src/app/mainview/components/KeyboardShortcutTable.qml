@@ -284,7 +284,8 @@ Window {
 
                 font.pointSize: JamiTheme.titleFontSize
                 text: {
-                    switch (selectionBar.currentIndex) {
+                    var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
+                    switch (modelId) {
                     case 0:
                         return JamiStrings.generalSettingsTitle;
                     case 1:
@@ -312,7 +313,8 @@ Window {
             height: parent.height - titleRect.height - JamiTheme.titleRectMargin - keyboardShortCutList.anchors.topMargin - selectionBar.height - selectionBar.anchors.bottomMargin
 
             model: {
-                switch (selectionBar.currentIndex) {
+                var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
+                switch (modelId) {
                 case 0:
                     return keyboardGeneralShortcutsModel;
                 case 1:
@@ -346,12 +348,16 @@ Window {
             }
 
             Repeater {
-                model: ["1", "2", "3", "4", "5"]
+                model: UtilsAdapter.isRTL ? ["5", "4", "3", "2", "1"] : ["1", "2", "3", "4", "5"]
 
                 KeyboardShortcutTabButton {
                     currentIndex: selectionBar.currentIndex
                     text: modelData
                 }
+            }
+
+            Component.onCompleted: {
+                setCurrentIndex(UtilsAdapter.isRTL ? 4 : 0);
             }
         }
     }
