@@ -174,9 +174,11 @@ SidePanelBase {
             delegate: ColumnLayout {
                 id: col
                 width: page.width
+                spacing: 0
                 property bool isChildSelected: root.currentIndex >= modelData.first && root.currentIndex <= modelData.last
 
                 PushButton {
+                    id: sectionHeader
                     buttonText: modelData.title
                     circled: false
                     radius: 0
@@ -220,12 +222,13 @@ SidePanelBase {
                     delegate: ColumnLayout {
                         id: childCol
                         width: childListView.width
-                        property bool isSelected: root.currentIndex == modelData.id
+                        spacing: 0
+                        property bool isSelected: root.currentIndex === modelData.id
                         PushButton {
+                            visible: modelData.visible !== undefined ? modelData.visible : true
                             buttonText: modelData.title
                             circled: false
                             radius: 0
-                            visible: modelData.visible ? modelData.visible : true
 
                             alignement: Text.AlignLeft
                             Layout.preferredWidth: parent.width - 28
