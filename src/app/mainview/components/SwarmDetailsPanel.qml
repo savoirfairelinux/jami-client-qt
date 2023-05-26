@@ -222,6 +222,7 @@ Rectangle {
             ColorDialog {
                 id: colorDialog
                 title: JamiStrings.chooseAColor
+                currentColor: CurrentConversation.color
                 onAccepted: {
                     CurrentConversation.setPreference("color", colorDialog.color);
                     this.destroy();
