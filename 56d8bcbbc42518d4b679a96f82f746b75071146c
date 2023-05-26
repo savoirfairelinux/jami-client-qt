@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69f55e81_2367f104",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2023-05-26T14:47:37Z",
+      "side": 1,
+      "message": "Could be the subject of another issue but I don\u0027t like the bubble darker color effect for missed calls. It\u0027s like not enough to be seen, but enough to feel something is strange ^^",
+      "revId": "56d8bcbbc42518d4b679a96f82f746b75071146c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
