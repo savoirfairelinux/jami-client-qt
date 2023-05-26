@@ -64,11 +64,10 @@ Rectangle {
 
                     newItem: true
                     imageId: LRCInstance.selectedConvUid
-                    avatarSize: JamiTheme.smartListAvatarSize * 3 / 2
+                    avatarSize: JamiTheme.smartListAvatarSize
                 }
 
                 ColumnLayout {
-
                     signal accepted
 
                     ModalTextEdit {
@@ -79,15 +78,14 @@ Rectangle {
                             text: CurrentConversation.title
                             elide: Text.ElideRight
                             elideWidth: titleLine.width
-                            font.pixelSize: JamiTheme.materialLineEditPixelSize
                         }
 
                         maxCharacters: JamiTheme.maximumCharacters
+                        fontPixelSize: JamiTheme.materialLineEditPixelSize
 
                         isSwarmDetail: true
                         readOnly: !isAdmin
 
-                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredWidth: Math.min(217, swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
 
                         staticText: CurrentConversation.title
@@ -121,16 +119,15 @@ Rectangle {
                             text: CurrentConversation.description
                             elide: Text.ElideRight
                             elideWidth: descriptionLineButton.width
-                            font.pixelSize: JamiTheme.materialLineEditPixelSize
                         }
 
                         maxCharacters: JamiTheme.maximumCharacters
+                        fontPixelSize: JamiTheme.materialLineEditSelectedPixelSize
 
                         isSwarmDetail: true
 
                         readOnly: !isAdmin || CurrentConversation.isCoreDialog
 
-                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredWidth: Math.min(217, swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
 
                         staticText: CurrentConversation.description
@@ -286,7 +283,7 @@ Rectangle {
                             anchors.top: parent.top
                             anchors.margins: JamiTheme.preferredMarginSize
                             text: JamiStrings.leaveConversation
-                            font.pixelSize: JamiTheme.participantSwarmDetailFontSize
+                            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                             font.kerning: true
                             elide: Text.ElideRight
                             horizontalAlignment: Text.AlignLeft
@@ -327,7 +324,7 @@ Rectangle {
                                 Layout.rightMargin: JamiTheme.preferredMarginSize
 
                                 text: JamiStrings.chooseAColor
-                                font.pixelSize: JamiTheme.participantSwarmDetailFontSize
+                                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                                 font.kerning: true
                                 elide: Text.ElideRight
                                 horizontalAlignment: Text.AlignLeft
@@ -377,7 +374,7 @@ Rectangle {
                                 Layout.maximumWidth: settingsSwarmItem.width / 2
 
                                 text: JamiStrings.defaultCallHost
-                                font.pixelSize: JamiTheme.participantSwarmDetailFontSize
+                                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                                 font.kerning: true
                                 elide: Text.ElideRight
                                 horizontalAlignment: Text.AlignLeft
@@ -481,7 +478,7 @@ Rectangle {
                             Layout.rightMargin: JamiTheme.preferredMarginSize
 
                             text: JamiStrings.typeOfSwarm
-                            font.pixelSize: JamiTheme.participantSwarmDetailFontSize
+                            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                             font.kerning: true
                             elide: Text.ElideRight
                             horizontalAlignment: Text.AlignLeft
@@ -497,7 +494,7 @@ Rectangle {
                             Layout.rightMargin: JamiTheme.preferredMarginSize
 
                             color: JamiTheme.textColor
-                            font.pixelSize: JamiTheme.participantSwarmDetailFontSize
+                            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                             font.weight: Font.Medium
                             text: CurrentConversation.modeString
                         }
@@ -516,7 +513,7 @@ Rectangle {
                             Layout.maximumWidth: parent.width / 2
 
                             text: JamiStrings.identifier
-                            font.pixelSize: JamiTheme.participantSwarmDetailFontSize
+                            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                             font.kerning: true
                             elide: Text.ElideRight
                             horizontalAlignment: Text.AlignLeft
@@ -532,7 +529,7 @@ Rectangle {
                             Layout.maximumWidth: parent.width / 2
 
                             color: JamiTheme.textColor
-                            font.pixelSize: JamiTheme.participantSwarmDetailFontSize
+                            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
 
                             text: CurrentConversation.id
                             elide: Text.ElideRight
