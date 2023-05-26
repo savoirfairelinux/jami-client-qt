@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a105ca0_1daa1d08",
+        "filename": "src/app/settingsview/SettingsSidePanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-26T12:50:36Z",
+      "side": 1,
+      "message": "Open a jami account, go to settings, switch to a SIP account \"Linked devices\" is still there",
+      "range": {
+        "startLine": 229,
+        "startChar": 38,
+        "endLine": 229,
+        "endChar": 49
+      },
+      "revId": "2cc81d0a246359fa2514a91f42d4489f86cbfeb7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
