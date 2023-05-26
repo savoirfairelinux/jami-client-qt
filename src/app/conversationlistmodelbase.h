@@ -38,6 +38,7 @@
     X(IsBanned) \
     X(UID) \
     X(InCall) \
+    X(IsSyncing) \
     X(IsAudioOnly) \
     X(CallStackViewShouldShow) \
     X(CallState) \

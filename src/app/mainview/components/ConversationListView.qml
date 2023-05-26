@@ -123,7 +123,10 @@ JamiListView {
             mode = model.dataForRow(index, ConversationList.Mode);
             isCoreDialog = model.dataForRow(index, ConversationList.IsCoreDialog);
             contactType = LRCInstance.currentAccountType;
-            readOnly = mode === Conversation.Mode.NON_SWARM && (model.dataForRow(index, ConversationList.ContactType) !== Profile.Type.TEMPORARY) && CurrentAccount.type !== Profile.Type.SIP;
+            readOnly =  mode === Conversation.Mode.NON_SWARM
+                        && (model.dataForRow(index, ConversationList.ContactType) !== Profile.Type.TEMPORARY)
+                        && CurrentAccount.type !== Profile.Type.SIP;
+            isSyncing = model.dataForRow(index, ConversationList.IsSyncing);
             hasCall = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid) !== "";
 
             // For UserProfile dialog.

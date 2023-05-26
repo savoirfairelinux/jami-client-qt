@@ -164,7 +164,7 @@ Rectangle {
                 }
             }
 
-            visible: root.swarmDetailsVisibility
+            visible: interactionButtonsVisibility && root.swarmDetailsVisibility
 
             onSearchBarTextChanged: function(text){
                 MessagesAdapter.searchbarPrompt = text;

@@ -35,6 +35,7 @@ ContextMenuAutoLoader {
     property int contactType: Profile.Type.INVALID
     property bool hasCall: false
     property bool readOnly: false
+    property bool isSyncing: false
 
     // For UserProfile dialog.
     property string aliasText
@@ -45,7 +46,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: startVideoCallItem
 
-            canTrigger: CurrentAccount.videoEnabled_Video && !hasCall && !readOnly
+            canTrigger: CurrentAccount.videoEnabled_Video && !hasCall && !readOnly && !isSyncing
             itemName: JamiStrings.startVideoCall
             iconSource: JamiResources.videocam_24dp_svg
             onClicked: {
@@ -57,7 +58,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: startAudioCall
 
-            canTrigger: !hasCall && !readOnly
+            canTrigger: !hasCall && !readOnly && !isSyncing
             itemName: JamiStrings.startAudioCall
             iconSource: JamiResources.place_audiocall_24dp_svg
             onClicked: {
