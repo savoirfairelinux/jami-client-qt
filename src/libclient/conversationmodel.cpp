@@ -514,8 +514,8 @@ ConversationModel::getConferenceableConversations(const QString& convId, const Q
                                                   != conferences.end();
                 bool callFilterPredicate = !conv.callId.isEmpty() && conv.callId != currentCallId
                                            && std::find(calls.begin(), calls.end(), conv.callId)
-                                                  != calls.end();
-                auto& peers = pimpl_->peersForConversation(conv);
+                                                  != calls.end(); 
+                auto& peers = accountInfo.conversationModel->peersForConversation(conv.uid);
                 if ((!confFilterPredicate && !callFilterPredicate) || !conv.isCoreDialog()) {
                     return;
                 }
@@ -535,22 +535,24 @@ ConversationModel::getConferenceableConversations(const QString& convId, const Q
                                     || call.status == lrc::api::call::Status::IN_PROGRESS;
                 }
 
-                auto contact = accountInfo.contactModel->getContact(peers.front());
-                // check if contact satisfy filter
-                bool result = (filter.isEmpty() || isConference)
-                                  ? true
-                                  : (contact.profileInfo.alias.contains(filter)
-                                     || contact.profileInfo.uri.contains(filter)
-                                     || contact.registeredName.contains(filter));
-                if (!result) {
-                    return;
-                }
-                if (isConference && tempConferences.count(conv.confId)) {
-                    tempConferences.find(conv.confId).value().push_back(accConv);
-                } else if (isConference) {
-                    tempConferences.insert(conv.confId, cv);
-                } else if (shouldAddCall) {
-                    callsVector.push_back(cv);
+                try {
+                    auto contact = accountInfo.contactModel->getContact(peers.front());
+                    // check if contact satisfy filter
+                    bool result = (filter.isEmpty() || isConference)
+                                    ? true
+                                    : (contact.profileInfo.alias.contains(filter)
+                                        || contact.profileInfo.uri.contains(filter)
+                                        || contact.registeredName.contains(filter));
+                    if (!result)
+                        return;
+                    if (isConference && tempConferences.count(conv.confId)) {
+                        tempConferences.find(conv.confId).value().push_back(accConv);
+                    } else if (isConference) {
+                        tempConferences.insert(conv.confId, cv);
+                    } else if (shouldAddCall) {
+                        callsVector.push_back(cv);
+                    }
+                } catch (...) {
                 }
             });
         } catch (...) {

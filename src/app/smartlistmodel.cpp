@@ -58,8 +58,7 @@ SmartListModel::rowCount(const QModelIndex& parent) const
             auto contacts = conferenceables_[ConferenceableItem::CONTACT];
             auto rowCount = contacts.size();
             if (calls.size()) {
-                rowCount = 2;
-                rowCount += sectionState_[tr("Calls")] ? calls.size() : 0;
+                rowCount = sectionState_[tr("Calls")] ? calls.size() : 0;
                 rowCount += sectionState_[tr("Contacts")] ? contacts.size() : 0;
             }
             return rowCount;
@@ -99,29 +98,25 @@ SmartListModel::data(const QModelIndex& index, int role) const
         } else {
             bool callsOpen = sectionState_[tr("Calls")];
             bool contactsOpen = sectionState_[tr("Contacts")];
-            auto callSectionEnd = callsOpen ? calls.size() + 1 : 1;
-            auto contactSectionEnd = contactsOpen ? callSectionEnd + contacts.size() + 1
-                                                  : callSectionEnd + 1;
+            auto callSectionEnd = callsOpen ? calls.size() : 0;
+            auto contactSectionEnd = contactsOpen ? callSectionEnd + contacts.size()
+                                                  : callSectionEnd;
             if (index.row() < callSectionEnd) {
-                if (index.row() == 0) {
-                    return QVariant(role == Role::SectionName
-                                        ? (callsOpen ? "➖ " : "➕ ") + QString(tr("Calls"))
-                                        : "");
-                } else {
-                    auto idx = index.row() - 1;
-                    itemConvUid = calls.at(idx).at(0).convId;
-                    itemAccountId = calls.at(idx).at(0).accountId;
+                if (role == Role::Presence)
+                    return true; // A call is always present
+                auto idx = index.row();
+                itemConvUid = calls.at(idx).at(0).convId;
+                itemAccountId = calls.at(idx).at(0).accountId;
+                auto& accInfo = lrcInstance_->getAccountInfo(itemAccountId);
+                if (role == Role::Title) {
+                    return accInfo.conversationModel->title(itemConvUid);
+                } else if (role == Role::UID) {
+                    return itemConvUid;
                 }
-            } else if (index.row() < contactSectionEnd) {
-                if (index.row() == callSectionEnd) {
-                    return QVariant(role == Role::SectionName
-                                        ? (contactsOpen ? "➖ " : "➕ ") + QString(tr("Contacts"))
-                                        : "");
-                } else {
-                    auto idx = index.row() - (callSectionEnd + 1);
-                    itemConvUid = contacts.at(idx).at(0).convId;
-                    itemAccountId = contacts.at(idx).at(0).accountId;
-                }
+            } else {
+                auto idx = index.row() - callSectionEnd;
+                itemConvUid = contacts.at(idx).at(0).convId;
+                itemAccountId = contacts.at(idx).at(0).accountId;
             }
         }
         if (role == Role::AccountId) {

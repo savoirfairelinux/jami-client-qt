@@ -74,7 +74,7 @@ public:
     int columnCount(const QModelIndex& parent) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    QVariant dataForItem(item_t item, int role = Qt::DisplayRole) const;
+    virtual QVariant dataForItem(item_t item, int role = Qt::DisplayRole) const;
 
 protected:
     using Role = ConversationList::Role;

@@ -42,7 +42,7 @@ ItemDelegate {
         width: 40
         height: 40
 
-        imageId: UID
+        imageId: UID // TODO be able to select another accountId
 
         showPresenceIndicator: root.showPresenceIndicator && Presence
     }
