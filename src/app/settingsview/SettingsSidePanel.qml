@@ -197,7 +197,7 @@ SidePanelBase {
                     radius: 0
 
                     alignement: Text.AlignLeft
-                    Layout.preferredWidth: parent.width
+                    Layout.fillWidth: true
                     Layout.leftMargin: 0
                     preferredLeftMargin: 25
 
