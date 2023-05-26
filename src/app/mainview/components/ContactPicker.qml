@@ -27,21 +27,20 @@ Popup {
     id: contactPickerPopup
 
     property int type: ContactList.CONFERENCE
-
-    contentWidth: 250
-    contentHeight: contactPickerPopupRectColumnLayout.height + 50
-
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
+    height: contentItem.childrenRect.height
     padding: 0
 
     modal: true
 
     contentItem: Rectangle {
         id: contactPickerPopupRect
-        width: 250
 
+        Layout.fillWidth: true
+
+        Component.onCompleted: print(this, width, height, implicitHeight)
         PushButton {
             id: closeButton
-
             anchors.top: contactPickerPopupRect.top
             anchors.topMargin: 5
             anchors.right: contactPickerPopupRect.right
@@ -57,7 +56,8 @@ Popup {
 
         ColumnLayout {
             id: contactPickerPopupRectColumnLayout
-
+            Layout.fillWidth: true
+            Component.onCompleted: print(this, height, implicitHeight)
             anchors.top: contactPickerPopupRect.top
             anchors.topMargin: 15
 
