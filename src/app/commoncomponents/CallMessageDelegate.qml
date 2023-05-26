@@ -55,12 +55,13 @@ SBSMessageBase {
     property bool isActive: LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1
     visible: isActive || ConfId === "" || Duration > 0
 
+    property var baseColor: isOutgoing? CurrentConversation.color : JamiTheme.messageInBgColor
     bubble.color: {
         if (ConfId === "" && Duration === 0) {
             // If missed, we can add a darker pattern
-            return isOutgoing ? Qt.lighter(CurrentConversation.color, 1.15) : Qt.darker(JamiTheme.messageInBgColor, 1.15);
+            return Qt.lighter(root.baseColor, 1.15)
         }
-        return isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor;
+        return root.baseColor
     }
 
     innerContent.children: [
@@ -89,7 +90,7 @@ SBSMessageBase {
                 renderType: Text.NativeRendering
                 textFormat: Text.MarkdownText
 
-                color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+                color: UtilsAdapter.luma(root.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
             }
 
             JoinCallButton {

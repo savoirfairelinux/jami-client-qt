@@ -340,7 +340,6 @@ Control {
                     type: seq
                     isReply: root.isReply
 
-
                     function getBaseColor() {
                         var baseColor = isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor
                         if (Id === MessagesAdapter.replyToId || Id === MessagesAdapter.editId) {
