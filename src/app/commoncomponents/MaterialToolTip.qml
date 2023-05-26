@@ -39,7 +39,7 @@ ToolTip {
         Text {
             id: label
             text: root.text
-            font.pixelSize: 13
+            font.pixelSize: JamiTheme.titleFontPointSize
             color: "white"
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredHeight: label.contentHeight
@@ -58,7 +58,7 @@ ToolTip {
             Text {
                 id: shortcutText
                 anchors.centerIn: parent
-                font.pixelSize: 13
+                font.pixelSize: JamiTheme.titleFontPointSize
                 font.weight: Font.DemiBold
                 color: JamiTheme.tooltipShortCutTextColor
                 text: root.shortcutKey
