@@ -307,7 +307,6 @@ Item {
     property real buttonFontSize: calcSize(9)
     property real materialButtonPreferredHeight: calcSize(36)
     property real participantFontSize: calcSize(10 + fontSizeOffset)
-    property real participantSwarmDetailFontSize: calcSize(15 + fontSizeOffset)
     property real menuFontSize: calcSize(12 + fontSizeOffset)
     property real headerFontSize: calcSize(14.25 + fontSizeOffset)
     property real titleFontSize: calcSize(16 + fontSizeOffset)
