@@ -555,6 +555,7 @@ Item {
 
     // Popups
     property real popuptextSize: calcSize(15)
+    property real popupTitleSize: 40
     property real popupButtonsMargin: 20
     property real popupPhotoTextSize: calcSize(18)
 
