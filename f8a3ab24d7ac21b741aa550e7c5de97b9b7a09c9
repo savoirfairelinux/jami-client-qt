@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4a2943d_4024c0a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2023-05-26T14:55:49Z",
+      "side": 1,
+      "message": "Could be the subject of another issue, but in Markdown syntax guide, code blocks have a special background text color.\nhttps://www.markdownguide.org/extended-syntax/#fenced-code-blocks",
+      "revId": "f8a3ab24d7ac21b741aa550e7c5de97b9b7a09c9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
