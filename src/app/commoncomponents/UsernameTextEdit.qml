@@ -51,6 +51,7 @@ ModalTextEdit {
 
     property bool isActive: false
     property string infohash: CurrentAccount.uri
+    property string accountId: CurrentAccount.id
     property string registeredName: CurrentAccount.registeredName
     staticText: root.isActive ? registeredName : (registeredName ? registeredName : infohash)
 
@@ -118,7 +119,7 @@ ModalTextEdit {
         onTriggered: {
             if (dynamicText.length !== 0) {
                 nameRegistrationState = UsernameTextEdit.NameRegistrationState.SEARCHING;
-                NameDirectory.lookupName(CurrentAccount.id, dynamicText);
+                NameDirectory.lookupName(root.accountId, dynamicText);
             } else {
                 nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
             }
