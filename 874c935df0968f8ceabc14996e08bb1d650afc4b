@@ -45,6 +45,29 @@
       },
       "revId": "874c935df0968f8ceabc14996e08bb1d650afc4b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5892354c_5baaa75a",
+        "filename": "src/app/settingsview/SettingsSidePanel.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-29T22:57:45Z",
+      "side": 1,
+      "message": "indentation?",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 33
+      },
+      "revId": "874c935df0968f8ceabc14996e08bb1d650afc4b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
