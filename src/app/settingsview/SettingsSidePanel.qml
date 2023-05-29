@@ -143,9 +143,13 @@ SidePanelBase {
     }
 
     function open(index) {
-        indexSelected(-1)
         indexSelected(index)
         root.currentIndex = index
+    }
+
+    function deselect() {
+        indexSelected(-1);
+        root.currentIndex = -1;
     }
 
     function select(index) {
