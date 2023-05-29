@@ -152,7 +152,7 @@ APT_DEPENDENCIES = [
     'libspeex-dev', 'libspeexdsp-dev', 'libswscale-dev', 'libtool',
     'libudev-dev', 'libyaml-cpp-dev', 'sip-tester', 'swig',
     'uuid-dev', 'yasm', 'libjsoncpp-dev', 'libva-dev', 'libvdpau-dev', 'libmsgpack-dev',
-    'pandoc', 'nasm', 'dpkg-dev'
+    'pandoc', 'nasm', 'dpkg-dev', 'clang-format'
 ]
 
 APT_CLIENT_DEPENDENCIES = [
