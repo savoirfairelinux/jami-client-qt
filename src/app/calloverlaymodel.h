@@ -36,12 +36,13 @@
 
 namespace CallControl {
 Q_NAMESPACE
-enum Role { ItemAction = Qt::UserRole + 1, UrgentCount };
+enum Role { ItemAction = Qt::UserRole + 1, UrgentCount, Enabled};
 Q_ENUM_NS(Role)
 
 struct Item
 {
     QObject* itemAction;
+    bool enabled {true};
     int urgentCount {0};
 };
 } // namespace CallControl
@@ -106,6 +107,7 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     void setUrgentCount(QVariant item, int count);
+    void setEnabled(QObject* obj, bool enabled);
     void addItem(const CallControl::Item& item);
     void clearData();
 
@@ -121,9 +123,10 @@ class CallOverlayModel : public QObject
 public:
     CallOverlayModel(LRCInstance* instance, QObject* parent = nullptr);
 
-    Q_INVOKABLE void addPrimaryControl(const QVariant& action);
-    Q_INVOKABLE void addSecondaryControl(const QVariant& action);
+    Q_INVOKABLE void addPrimaryControl(const QVariant& action, bool enabled);
+    Q_INVOKABLE void addSecondaryControl(const QVariant& action, bool enabled);
     Q_INVOKABLE void setUrgentCount(QVariant item, int count);
+    Q_INVOKABLE void setEnabled(QObject* obj, bool enabled);
     Q_INVOKABLE void clearControls();
 
     Q_INVOKABLE QVariant primaryModel();

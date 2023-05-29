@@ -18,6 +18,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import SortFilterProxyModel 0.2
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -299,6 +300,8 @@ Control {
             text: !checked ? JamiStrings.muteCamera : JamiStrings.unmuteCamera
             checked: !CurrentCall.isCapturing
             property var menuAction: videoInputMenuAction
+            enabled: CurrentAccount.videoEnabled_Video
+            onEnabledChanged: CallOverlayModel.setEnabled(this, muteVideoAction.enabled)
         }
     ]
 
@@ -319,6 +322,8 @@ Control {
             icon.source: JamiResources.add_people_black_24dp_svg
             icon.color: "white"
             text: JamiStrings.addParticipants
+            enabled: CurrentCall.isModerator && !CurrentCall.isSIP
+            onEnabledChanged: CallOverlayModel.setEnabled(this, addPersonAction.enabled)
         },
         Action {
             id: chatAction
@@ -333,6 +338,8 @@ Control {
             icon.source: CurrentCall.isPaused ? JamiResources.play_circle_outline_24dp_svg : JamiResources.pause_circle_outline_24dp_svg
             icon.color: "white"
             text: CurrentCall.isPaused ? JamiStrings.resumeCall : JamiStrings.pauseCall
+            enabled: CurrentCall.isSIP
+            onEnabledChanged: CallOverlayModel.setEnabled(this, resumePauseCallAction.enabled)
         },
         Action {
             id: inputPanelSIPAction
@@ -340,6 +347,8 @@ Control {
             icon.source: JamiResources.ic_keypad_svg
             icon.color: "white"
             text: JamiStrings.sipInputPanel
+            enabled: CurrentCall.isSIP
+            onEnabledChanged: CallOverlayModel.setEnabled(this, inputPanelSIPAction.enabled)
         },
         Action {
             id: callTransferAction
@@ -347,6 +356,8 @@ Control {
             icon.source: JamiResources.phone_forwarded_24dp_svg
             icon.color: "white"
             text: JamiStrings.transferCall
+            enabled: CurrentCall.isSIP
+            onEnabledChanged: CallOverlayModel.setEnabled(this, callTransferAction.enabled)
         },
         Action {
             id: shareAction
@@ -361,6 +372,8 @@ Control {
             text: CurrentCall.isSharing ? JamiStrings.stopSharing : JamiStrings.shareScreen
             property real size: 34
             property var menuAction: shareMenuAction
+            enabled: CurrentAccount.videoEnabled_Video && !CurrentCall.isSIP
+            onEnabledChanged: CallOverlayModel.setEnabled(this, shareAction.enabled)
         },
         Action {
             id: raiseHandAction
@@ -371,6 +384,8 @@ Control {
             text: checked ? JamiStrings.lowerHand : JamiStrings.raiseHand
             checked: CurrentCall.isHandRaised
             property real size: 34
+            enabled: CurrentCall.isConference
+            onEnabledChanged: CallOverlayModel.setEnabled(this, raiseHandAction.enabled)
         },
         Action {
             id: layoutAction
@@ -406,6 +421,7 @@ Control {
             icon.color: "white"
             text: JamiStrings.viewPlugin
             enabled: PluginAdapter.isEnabled && PluginAdapter.callMediaHandlersListCount
+            onEnabledChanged: CallOverlayModel.setEnabled(this, pluginsAction.enabled)
         },
         Action {
             id: swarmDetailsAction
@@ -414,7 +430,7 @@ Control {
             icon.color: "white"
             text: JamiStrings.details
             enabled: {
-                if (LRCInstance.currentAccountType === Profile.Type.SIP)
+                if (CurrentCall.isSIP)
                     return true;
                 if (!CurrentConversation.isTemporary && !CurrentConversation.isSwarm)
                     return false;
@@ -422,81 +438,35 @@ Control {
                     return false;
                 return true;
             }
+            onEnabledChanged: CallOverlayModel.setEnabled(this, swarmDetailsAction.enabled)
         }
     ]
 
     property var overflowItemCount
 
-    Connections {
-        target: CurrentCall
-
-        function onIsActiveChanged() {
-            if (CurrentCall.isActive)
-                reset();
-        }
-        function onIsRecordingLocallyChanged() {
-            Qt.callLater(reset);
-        }
-        function onIsHandRaisedChanged() {
-            Qt.callLater(reset);
-        }
-        function onIsConferenceChanged() {
-            Qt.callLater(reset);
-        }
-        function onIsModeratorChanged() {
-            Qt.callLater(reset);
-        }
-        function onIsSIPChanged() {
-            Qt.callLater(reset);
-        }
-        function onIsAudioOnlyChanged() {
-            Qt.callLater(reset);
-        }
-        function onIsAudioMutedChanged() {
-            Qt.callLater(reset);
-        }
-        function onIsVideoMutedChanged() {
-            Qt.callLater(reset);
-        }
-    }
-
-    Connections {
-        target: CurrentAccount
-        function onVideoEnabledVideoChanged() {
-            reset();
-        }
-    }
-
-    function reset() {
+    Component.onCompleted: {
         CallOverlayModel.clearControls();
 
         // centered controls
-        CallOverlayModel.addPrimaryControl(muteAudioAction);
-        CallOverlayModel.addPrimaryControl(hangupAction);
-        if (CurrentAccount.videoEnabled_Video)
-            CallOverlayModel.addPrimaryControl(muteVideoAction);
+        CallOverlayModel.addPrimaryControl(muteAudioAction, muteAudioAction.enabled);
+        CallOverlayModel.addPrimaryControl(hangupAction, hangupAction.enabled);
+        CallOverlayModel.addPrimaryControl(muteVideoAction, muteVideoAction.enabled);
 
         // overflow controls
-        CallOverlayModel.addSecondaryControl(audioOutputAction);
-        if (CurrentCall.isConference) {
-            CallOverlayModel.addSecondaryControl(raiseHandAction);
-        }
-        if (CurrentCall.isModerator && !CurrentCall.isSIP)
-            CallOverlayModel.addSecondaryControl(addPersonAction);
-        if (CurrentCall.isSIP) {
-            CallOverlayModel.addSecondaryControl(resumePauseCallAction);
-            CallOverlayModel.addSecondaryControl(inputPanelSIPAction);
-            CallOverlayModel.addSecondaryControl(callTransferAction);
-        }
-        CallOverlayModel.addSecondaryControl(chatAction);
-        if (CurrentAccount.videoEnabled_Video && !CurrentCall.isSIP)
-            CallOverlayModel.addSecondaryControl(shareAction);
-        CallOverlayModel.addSecondaryControl(layoutAction);
-        CallOverlayModel.addSecondaryControl(recordAction);
-        if (pluginsAction.enabled)
-            CallOverlayModel.addSecondaryControl(pluginsAction);
-        if (swarmDetailsAction.enabled)
-            CallOverlayModel.addSecondaryControl(swarmDetailsAction);
+        CallOverlayModel.addSecondaryControl(audioOutputAction, audioOutputAction.enabled);
+        CallOverlayModel.addSecondaryControl(raiseHandAction, raiseHandAction.enabled);
+        CallOverlayModel.addSecondaryControl(addPersonAction, addPersonAction.enabled);
+
+        CallOverlayModel.addSecondaryControl(resumePauseCallAction, resumePauseCallAction.enabled);
+        CallOverlayModel.addSecondaryControl(inputPanelSIPAction, inputPanelSIPAction.enabled);
+        CallOverlayModel.addSecondaryControl(callTransferAction, callTransferAction.enabled);
+
+        CallOverlayModel.addSecondaryControl(chatAction, chatAction.enabled);
+        CallOverlayModel.addSecondaryControl(shareAction, shareAction.enabled);
+        CallOverlayModel.addSecondaryControl(layoutAction, layoutAction.enabled);
+        CallOverlayModel.addSecondaryControl(recordAction, recordAction.enabled);
+        CallOverlayModel.addSecondaryControl(pluginsAction, pluginsAction.enabled);
+        CallOverlayModel.addSecondaryControl(swarmDetailsAction, swarmDetailsAction.enabled);
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount();
     }
 
@@ -519,7 +489,13 @@ Control {
                 implicitHeight: contentHeight
                 interactive: false
 
-                model: CallOverlayModel.primaryModel()
+                model: SortFilterProxyModel {
+                    sourceModel: CallOverlayModel.primaryModel()
+                    filters: ValueFilter {
+                        roleName: "Enabled"
+                        value: true
+                    }
+                }
                 delegate: buttonDelegate
             }
         }
@@ -547,7 +523,15 @@ Control {
 
                 property int overflowIndex: {
                     var maxItems = Math.floor((overflowRect.remainingSpace) / (root.height + itemSpacing)) - 2;
-                    return Math.min(overflowItemCount, maxItems);
+                    var idx = Math.min(overflowItemCount, maxItems);
+                    idx = Math.max(0, idx);
+                    if (CallOverlayModel.overflowModel().rowCount() > 0 || CallOverlayModel.overflowHiddenModel().rowCount() > 0) {
+                        var visibleIdx = CallOverlayModel.overflowModel().mapToSource(CallOverlayModel.overflowModel().index(idx, 0)).row;
+                        var hiddenIdx = CallOverlayModel.overflowHiddenModel().mapToSource(CallOverlayModel.overflowHiddenModel().index(idx - CallOverlayModel.overflowModel().rowCount(), 0)).row;
+                        if (visibleIdx >= 0 || hiddenIdx >= 0)
+                            idx = Math.max(visibleIdx, hiddenIdx);
+                    }
+                    return idx;
                 }
                 property int nOverflowItems: overflowItemCount - overflowIndex
                 onNOverflowItemsChanged: {

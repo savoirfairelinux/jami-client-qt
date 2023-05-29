@@ -43,6 +43,13 @@ CurrentCall::CurrentCall(LRCInstance* lrcInstance, QObject* parent)
             this,
             &CurrentCall::onShowIncomingCallView);
 
+    try {
+        auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+        set_isSIP(accInfo.profileInfo.type == profile::Type::SIP);
+    } catch (const std::exception& e) {
+        qWarning() << "Can't update current call type" << e.what();
+    }
+
     connectModel();
 }
 
