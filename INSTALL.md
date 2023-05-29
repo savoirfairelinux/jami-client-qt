@@ -109,7 +109,7 @@ If you use a Qt version that is not system-wide installed, you need to
 specify its path using the `--qt` flag, e.g.
 `./build.py --install --qt=/home/<username>/Qt/6.2.1/gcc_64`.
 
-Now you will have the daemon in `daemon/bin/jamid` and the client in
+Now you will have the daemon in `daemon/bin/dbus/jamid` and the client in
 `build/jami`. You can now run Jami using:
 
 ```bash
