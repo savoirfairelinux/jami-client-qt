@@ -150,6 +150,7 @@ public:
     Q_INVOKABLE QVariantMap getVideoPlayer(const QString& resource, const QString& bgColor);
 
     Q_INVOKABLE bool isRTL();
+    Q_INVOKABLE bool isSystemTrayIconVisible();
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
