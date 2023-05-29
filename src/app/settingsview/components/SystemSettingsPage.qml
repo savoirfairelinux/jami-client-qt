@@ -102,8 +102,6 @@ SettingsPageBase {
                 Layout.fillWidth: true
                 Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
-                layoutDirection: UtilsAdapter.isRTL ? Qt.RightToLeft : Qt.LeftToRight
-
                 Text {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
@@ -141,7 +139,6 @@ SettingsPageBase {
 
                 Layout.fillWidth: true
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                LayoutMirroring.enabled: false
 
                 labelText: JamiStrings.language
                 tipText: JamiStrings.language
