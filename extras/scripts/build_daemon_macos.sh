@@ -52,7 +52,7 @@ for ARCH in "${ARCHS[@]}"; do
     # force to build every contrib
     for dir in "$DAEMON"/contrib/src/*/; do
       PKG=$(basename -- "$dir")
-      if [ "$PKG" != "dbus-cpp" ] && [ "$PKG" != "natpmp" ] &&
+      if [ "$PKG" != "sdbus-cpp" ] && [ "$PKG" != "natpmp" ] &&
         [ "$PKG" != "portaudio" ] && [ "$PKG" != "pthreads" ] &&
         [ "$PKG" != "lttng-ust" ] && [ "$PKG" != "openssl" ] &&
         [ "$PKG" != "media-sdk" ] && [ "$PKG" != "jack" ] &&
