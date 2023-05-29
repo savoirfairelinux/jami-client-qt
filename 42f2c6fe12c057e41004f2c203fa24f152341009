@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4871f1b2_cdaed1ab",
+        "filename": "build.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-29T18:29:46Z",
+      "side": 1,
+      "message": "Not a build dependency, just used for commit hook for devs",
+      "range": {
+        "startLine": 155,
+        "startChar": 32,
+        "endLine": 155,
+        "endChar": 48
+      },
+      "revId": "42f2c6fe12c057e41004f2c203fa24f152341009",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
