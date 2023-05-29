@@ -33,7 +33,7 @@ export OSTYPE
 set -ex
 
 # Qt_MIN_VER required for client-qt
-QT_MIN_VER="6.2"
+QT_MIN_VER="6.4"
 
 debug=
 global=false
