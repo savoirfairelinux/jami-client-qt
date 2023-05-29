@@ -156,7 +156,11 @@ Rectangle {
             }
 
             function setXposition() {
-                return messageBar.width - JamiTheme.emojiPickerWidth;
+                if (UtilsAdapter.isRTL) {
+                    return messageBar.width - JamiTheme.emojiPickerWidth;
+                } else {
+                    return 0;
+                }
             }
 
             function setYposition() {
