@@ -34,7 +34,7 @@ extern const QString defaultDownloadPath;
 
 // clang-format off
 #define KEYS \
-    X(MinimizeOnClose, true) \
+    X(MinimizeOnClose, false) \
     X(DownloadPath, defaultDownloadPath) \
     X(ScreenshotPath, {}) \
     X(EnableNotifications, true) \

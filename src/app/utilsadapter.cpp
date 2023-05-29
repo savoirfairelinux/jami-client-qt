@@ -802,3 +802,11 @@ UtilsAdapter::isRTL()
     pref == "SYSTEM" ? QLocale::system().name() : pref;
     return pref == "ar" || pref == "he" || pref == "fa" || pref == "ur";
 }
+
+bool
+UtilsAdapter::isSystemTrayIconVisible()
+{
+    if (!systemTray_)
+        return false;
+    return systemTray_->geometry() != QRect();
+}
