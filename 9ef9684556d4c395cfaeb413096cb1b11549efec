@@ -16,6 +16,24 @@
       "message": "Why is it required only for SUSE?",
       "revId": "9ef9684556d4c395cfaeb413096cb1b11549efec",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c18ff2a5_9bb2708e",
+        "filename": "extras/packaging/gnu-linux/rules/rpm/jami-daemon.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-29T13:55:17Z",
+      "side": 0,
+      "message": "it\u0027s not the same name on suse and fedora (dbus-cpp-devel vs libdbus-c++-devel)",
+      "parentUuid": "ec6dd27d_4e3a14dc",
+      "revId": "9ef9684556d4c395cfaeb413096cb1b11549efec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
