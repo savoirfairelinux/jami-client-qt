@@ -147,6 +147,11 @@ SidePanelBase {
         root.currentIndex = index
     }
 
+    function deselect() {
+        indexSelected(-1);
+        currentIndex = -1;
+    }
+
     function select(index) {
         if (!root.isSinglePane)
             indexSelected(index)
