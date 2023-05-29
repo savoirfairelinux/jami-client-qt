@@ -35,10 +35,11 @@ IndexRangeFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
 {
     auto index = sourceModel()->index(sourceRow, 0, sourceParent);
     bool predicate = true;
+    bool enabled = sourceModel()->data(index, CallControl::Role::Enabled).toBool();
     if (filterRole() != Qt::DisplayRole) {
         predicate = sourceModel()->data(index, filterRole()).toInt() != 0;
     }
-    return sourceRow <= max_ && sourceRow >= min_ && predicate;
+    return sourceRow <= max_ && sourceRow >= min_ && predicate && enabled;
 }
 
 void
@@ -197,10 +198,12 @@ CallControlListModel::data(const QModelIndex& index, int role) const
     auto item = data_.at(index.row());
 
     switch (role) {
-    case Role::ItemAction:
+    case CallControl::Role::ItemAction:
         return QVariant::fromValue(item.itemAction);
-    case Role::UrgentCount:
+    case CallControl::Role::UrgentCount:
         return QVariant::fromValue(item.urgentCount);
+    case CallControl::Role::Enabled:
+        return QVariant::fromValue(item.enabled);
     }
     return QVariant();
 }
@@ -212,6 +215,7 @@ CallControlListModel::roleNames() const
     QHash<int, QByteArray> roles;
     roles[ItemAction] = "ItemAction";
     roles[UrgentCount] = "UrgentCount";
+    roles[Enabled] = "Enabled";
     return roles;
 }
 
@@ -233,6 +237,25 @@ CallControlListModel::setUrgentCount(QVariant item, int count)
 }
 
 void
+CallControlListModel::setEnabled(QVariant item, bool enabled)
+{
+    beginResetModel();
+    const auto* obj = item.value<QObject*>();
+    auto it = std::find_if(data_.cbegin(), data_.cend(), [obj](const auto& item) {
+        return item.itemAction == obj;
+    });
+    if (it != data_.cend()) {
+        auto row = std::distance(data_.cbegin(), it);
+        if (row >= rowCount())
+            return;
+        data_[row].enabled = enabled;
+        auto idx = index(row, 0);
+        Q_EMIT dataChanged(idx, idx);
+    }
+    endResetModel();
+}
+
+void
 CallControlListModel::addItem(const CallControl::Item& item)
 {
     beginResetModel();
@@ -244,6 +267,23 @@ void
 CallControlListModel::clearData()
 {
     data_.clear();
+}
+
+int
+CallControlListModel::getTrueIndex(int idx)
+{
+    auto index = -1;
+    auto index1 = 0;
+    for (const auto& data : data_) {
+        index++;
+        if (!data.enabled) {
+            continue;
+        }
+        if (idx == index1)
+            break;
+        index1++;
+    }
+    return index;
 }
 
 CallOverlayModel::CallOverlayModel(LRCInstance* instance, QObject* parent)
@@ -264,15 +304,15 @@ CallOverlayModel::CallOverlayModel(LRCInstance* instance, QObject* parent)
 }
 
 void
-CallOverlayModel::addPrimaryControl(const QVariant& action)
+CallOverlayModel::addPrimaryControl(const QVariant& action, bool enabled)
 {
-    primaryModel_->addItem(CallControl::Item {action.value<QObject*>()});
+    primaryModel_->addItem(CallControl::Item {action.value<QObject*>(), enabled});
 }
 
 void
-CallOverlayModel::addSecondaryControl(const QVariant& action)
+CallOverlayModel::addSecondaryControl(const QVariant& action, bool enabled)
 {
-    secondaryModel_->addItem(CallControl::Item {action.value<QObject*>()});
+    secondaryModel_->addItem(CallControl::Item {action.value<QObject*>(), enabled});
     setControlRanges();
 }
 
@@ -280,6 +320,13 @@ void
 CallOverlayModel::setUrgentCount(QVariant row, int count)
 {
     secondaryModel_->setUrgentCount(row, count);
+}
+
+void
+CallOverlayModel::setEnabled(QVariant row, bool enabled)
+{
+    primaryModel_->setEnabled(row, enabled);
+    secondaryModel_->setEnabled(row, enabled);
 }
 
 QVariant
@@ -363,7 +410,14 @@ CallOverlayModel::eventFilter(QObject* object, QEvent* event)
 void
 CallOverlayModel::setControlRanges()
 {
+    auto count = secondaryModel_->rowCount();
     overflowModel_->setRange(0, overflowIndex_);
-    overflowVisibleModel_->setRange(overflowIndex_, secondaryModel_->rowCount());
-    overflowHiddenModel_->setRange(overflowIndex_ + 1, secondaryModel_->rowCount());
+    overflowVisibleModel_->setRange(overflowIndex_, count);
+    overflowHiddenModel_->setRange(overflowIndex_ + 1, count);
+}
+
+int
+CallOverlayModel::getTrueIndex(int idx)
+{
+    return secondaryModel_->getTrueIndex(idx);
 }
