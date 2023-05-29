@@ -40,6 +40,7 @@ class VideoProvider final : public QObject
 {
     Q_OBJECT
     QML_ELEMENT
+    Q_PROPERTY(QVariantMap activeRenderers READ getActiveRenderers NOTIFY activeRenderersChanged)
 public:
     explicit VideoProvider(AVModel& avModel, QObject* parent = nullptr);
     ~VideoProvider() = default;
@@ -49,9 +50,8 @@ public:
     Q_INVOKABLE QString captureVideoFrame(const QString& id);
     Q_INVOKABLE QImage captureRawVideoFrame(const QString& id);
 
-    Q_PROPERTY(QVariantMap renderers READ getRenderers NOTIFY renderersChanged)
-    QVariantMap getRenderers();
-    Q_SIGNAL void renderersChanged();
+    QVariantMap getActiveRenderers();
+    Q_SIGNAL void activeRenderersChanged();
 
 private Q_SLOTS:
     void onRendererStarted(const QString& id, const QSize& size);
@@ -69,7 +69,7 @@ private:
         QReadWriteLock frameMutex;
         QSet<QVideoSink*> subscribers;
         QReadWriteLock subscribersMutex;
-        std::atomic_bool active;
+        bool active;
     };
     std::map<QString, FrameObject> renderers_;
     QReadWriteLock renderersMutex_;
