@@ -39,8 +39,6 @@ Rectangle {
     color: {
         if (status === Account.Status.REGISTERED)
             return JamiTheme.presenceGreen;
-        else if (status === Account.Status.TRYING)
-            return JamiTheme.unPresenceOrange;
-        return JamiTheme.notificationRed;
+        return JamiTheme.buttonTintedGrey;
     }
 }
