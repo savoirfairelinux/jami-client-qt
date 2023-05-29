@@ -103,26 +103,15 @@ VideoProvider::subscribe(QObject* obj, const QString& id)
 void
 VideoProvider::unsubscribe(QObject* obj)
 {
-    QString id;
-
-    renderersMutex_.lockForRead();
+    QReadLocker lk(&renderersMutex_);
     for (auto& pair : renderers_) {
         QWriteLocker lock(&pair.second.subscribersMutex);
         if (pair.second.subscribers.remove(static_cast<QVideoSink*>(obj))) {
             qDebug().noquote() << QString("Removed sink: 0x%1 from subscribers for id: %2")
                                       .arg((quintptr) obj, QT_POINTER_SIZE, 16, QChar('0'))
                                       .arg(pair.first);
-            if (!pair.second.active && pair.second.subscribers.isEmpty())
-                id = pair.first;
-            break;
+            return;
         }
-    }
-    renderersMutex_.unlock();
-
-    if (!id.isEmpty()) {
-        renderersMutex_.lockForWrite();
-        renderers_.erase(id);
-        renderersMutex_.unlock();
     }
 }
 
