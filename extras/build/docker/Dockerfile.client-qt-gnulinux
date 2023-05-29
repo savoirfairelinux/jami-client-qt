@@ -22,7 +22,7 @@ RUN apt-get install -y -o Acquire::Retries=10 \
         cmake \
         libtool \
         libdbus-1-dev \
-        libdbus-c++-dev \
+        libsystemd-dev \
         libargon2-0-dev \
         libcanberra-gtk3-dev \
         libclutter-gtk-1.0-dev \

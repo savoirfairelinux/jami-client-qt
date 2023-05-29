@@ -35,7 +35,7 @@ BuildRequires: opus-devel
 BuildRequires: pulseaudio-libs-devel
 %endif
 %if %{defined suse_version}
-BuildRequires: libdbus-c++-devel
+BuildRequires: systemd-devel
 BuildRequires: libexpat-devel
 BuildRequires: libopus-devel
 BuildRequires: libpulse-devel
