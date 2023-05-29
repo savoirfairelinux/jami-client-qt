@@ -35,7 +35,7 @@ StackLayout {
 
     function restoreState() {
         // Only applies to Jami accounts, and we musn't be in a call.
-        if (detailsShouldOpen && !inCallView) {
+        if (detailsShouldOpen && !inCallView && !CurrentConversation.needsSyncing && !CurrentConversation.isRequest) {
             switchToPanel(ChatView.SwarmDetailsPanel, false);
         } else {
             closePanel();
