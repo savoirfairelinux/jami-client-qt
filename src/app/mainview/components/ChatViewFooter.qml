@@ -156,7 +156,7 @@ Rectangle {
             }
 
             function setXposition() {
-                return messageBar.width - JamiTheme.emojiPickerWidth;
+                return 0;
             }
 
             function setYposition() {
