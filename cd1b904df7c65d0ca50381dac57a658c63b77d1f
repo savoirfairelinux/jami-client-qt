@@ -22,6 +22,29 @@
       },
       "revId": "cd1b904df7c65d0ca50381dac57a658c63b77d1f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7750b9b5_9e8ceadf",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-05-29T22:35:45Z",
+      "side": 1,
+      "message": "Please check that it works with RTL scripts, i.e. it shows on the right (not left)",
+      "range": {
+        "startLine": 159,
+        "startChar": 16,
+        "endLine": 159,
+        "endChar": 25
+      },
+      "revId": "cd1b904df7c65d0ca50381dac57a658c63b77d1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
