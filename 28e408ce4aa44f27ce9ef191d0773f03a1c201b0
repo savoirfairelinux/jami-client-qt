@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b093a46a_1b29847b",
+        "filename": "src/app/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-29T15:57:52Z",
+      "side": 1,
+      "message": "it would be a bug to solve, not a normal behavioru",
+      "parentUuid": "64263ac4_9d378da7",
+      "range": {
+        "startLine": 49,
+        "startChar": 83,
+        "endLine": 49,
+        "endChar": 96
+      },
+      "revId": "28e408ce4aa44f27ce9ef191d0773f03a1c201b0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e2a85eb_525b0679",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-05-26T21:35:45Z",
       "side": 1,
       "message": "Please don\u0027t add this.\n\nIf this is added, it won\u0027t be possible to call contacts there there is a problem with the chat syncing.",
+      "revId": "28e408ce4aa44f27ce9ef191d0773f03a1c201b0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d05580e_35d4387c",
+        "filename": "src/app/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-29T15:57:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e2a85eb_525b0679",
       "revId": "28e408ce4aa44f27ce9ef191d0773f03a1c201b0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
