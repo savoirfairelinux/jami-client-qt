@@ -85,136 +85,123 @@ Window {
         }
         hasOpened = true;
     }
+    color: JamiTheme.backgroundColor
 
     ColumnLayout {
         anchors.fill: parent
 
         spacing: 0
 
-        Rectangle {
-            id: buttonRectangleBackground
+        RowLayout {
+            id: buttons
 
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight * 2
+            ToggleSwitch {
+                id: startStopToggle
 
-            border.width: 0
-            color: JamiTheme.backgroundColor
-            radius: JamiTheme.modalPopupRadius
+                Layout.fillWidth: true
+                Layout.leftMargin: JamiTheme.preferredMarginSize
+                Layout.rightMargin: JamiTheme.preferredMarginSize
 
-            RowLayout {
-                id: buttons
+                checked: false
+                labelText: JamiStrings.logsViewDisplay
 
-                anchors.centerIn: parent
-
-                ToggleSwitch {
-                    id: startStopToggle
-
-                    Layout.fillWidth: true
-                    Layout.leftMargin: JamiTheme.preferredMarginSize
-                    Layout.rightMargin: JamiTheme.preferredMarginSize
-
-                    checked: false
-                    labelText: JamiStrings.logsViewDisplay
-
-                    onSwitchToggled: {
-                        logging = !logging;
-                        if (logging) {
-                            isStopped = false;
-                            root.cancelPressed = false;
-                            monitor(true);
-                        } else {
-                            isStopped = true;
-                            root.cancelPressed = true;
-                            monitor(false);
-                        }
-                    }
-                }
-
-                MaterialButton {
-                    id: clearButton
-
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.topMargin: JamiTheme.preferredMarginSize
-                    Layout.bottomMargin: JamiTheme.preferredMarginSize
-
-                    preferredWidth: itemWidth / widthDivisor
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                    secondary: true
-                    color: JamiTheme.buttonTintedBlack
-                    hoveredColor: JamiTheme.buttonTintedBlackHovered
-                    pressedColor: JamiTheme.buttonTintedBlackPressed
-                    text: JamiStrings.logsViewClear
-                    autoAccelerator: true
-
-                    onClicked: {
-                        logsText.clear();
-                        logging = false;
-                        startStopToggle.checked = false;
+                onSwitchToggled: {
+                    logging = !logging;
+                    if (logging) {
+                        isStopped = false;
+                        root.cancelPressed = false;
+                        monitor(true);
+                    } else {
+                        isStopped = true;
                         root.cancelPressed = true;
-                        UtilsAdapter.logList = [];
                         monitor(false);
                     }
                 }
+            }
 
-                MaterialButton {
-                    id: copyButton
+            MaterialButton {
+                id: clearButton
 
-                    Layout.alignment: Qt.AlignHCenter
+                Layout.alignment: Qt.AlignHCenter
+                Layout.topMargin: JamiTheme.preferredMarginSize
+                Layout.bottomMargin: JamiTheme.preferredMarginSize
 
-                    preferredWidth: itemWidth / widthDivisor
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+                preferredWidth: itemWidth / widthDivisor
+                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
-                    color: JamiTheme.buttonTintedBlack
-                    hoveredColor: JamiTheme.buttonTintedBlackHovered
-                    pressedColor: JamiTheme.buttonTintedBlackPressed
+                secondary: true
+                color: JamiTheme.buttonTintedBlack
+                hoveredColor: JamiTheme.buttonTintedBlackHovered
+                pressedColor: JamiTheme.buttonTintedBlackPressed
+                text: JamiStrings.logsViewClear
+                autoAccelerator: true
 
-                    secondary: true
-                    text: JamiStrings.logsViewCopy
-                    autoAccelerator: true
+                onClicked: {
+                    logsText.clear();
+                    logging = false;
+                    startStopToggle.checked = false;
+                    root.cancelPressed = true;
+                    UtilsAdapter.logList = [];
+                    monitor(false);
+                }
+            }
 
-                    onClicked: {
-                        logsText.selectAll();
-                        logsText.copy();
-                        logsText.deselect();
-                        copiedToolTip.open();
-                    }
+            MaterialButton {
+                id: copyButton
 
-                    ToolTip {
-                        id: copiedToolTip
+                Layout.alignment: Qt.AlignHCenter
 
-                        height: JamiTheme.preferredFieldHeight
-                        TextArea {
-                            text: JamiStrings.logsViewCopied
-                            color: JamiTheme.textColor
-                        }
-                        background: Rectangle {
-                            color: JamiTheme.primaryBackgroundColor
-                        }
-                    }
+                preferredWidth: itemWidth / widthDivisor
+                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+
+                color: JamiTheme.buttonTintedBlack
+                hoveredColor: JamiTheme.buttonTintedBlackHovered
+                pressedColor: JamiTheme.buttonTintedBlackPressed
+
+                secondary: true
+                text: JamiStrings.logsViewCopy
+                autoAccelerator: true
+
+                onClicked: {
+                    logsText.selectAll();
+                    logsText.copy();
+                    logsText.deselect();
+                    copiedToolTip.open();
                 }
 
-                MaterialButton {
-                    id: reportButton
+                ToolTip {
+                    id: copiedToolTip
 
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.topMargin: JamiTheme.preferredMarginSize
-                    Layout.bottomMargin: JamiTheme.preferredMarginSize
-                    Layout.rightMargin: JamiTheme.preferredMarginSize
-
-                    preferredWidth: itemWidth / widthDivisor
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                    color: JamiTheme.buttonTintedBlack
-                    hoveredColor: JamiTheme.buttonTintedBlackHovered
-                    pressedColor: JamiTheme.buttonTintedBlackPressed
-                    text: JamiStrings.logsViewReport
-                    secondary: true
-                    autoAccelerator: true
-
-                    onClicked: Qt.openUrlExternally("https://jami.net/bugs-and-improvements/")
+                    height: JamiTheme.preferredFieldHeight
+                    TextArea {
+                        text: JamiStrings.logsViewCopied
+                        color: JamiTheme.textColor
+                    }
+                    background: Rectangle {
+                        color: JamiTheme.primaryBackgroundColor
+                    }
                 }
+            }
+
+            MaterialButton {
+                id: reportButton
+
+                Layout.alignment: Qt.AlignHCenter
+                Layout.topMargin: JamiTheme.preferredMarginSize
+                Layout.bottomMargin: JamiTheme.preferredMarginSize
+                Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                preferredWidth: itemWidth / widthDivisor
+                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+
+                color: JamiTheme.buttonTintedBlack
+                hoveredColor: JamiTheme.buttonTintedBlackHovered
+                pressedColor: JamiTheme.buttonTintedBlackPressed
+                text: JamiStrings.logsViewReport
+                secondary: true
+                autoAccelerator: true
+
+                onClicked: Qt.openUrlExternally("https://jami.net/bugs-and-improvements/")
             }
         }
 
@@ -235,7 +222,7 @@ Window {
                 font.hintingPreference: Font.PreferNoHinting
 
                 readOnly: true
-                color: JamiTheme.blackColor
+                color: JamiTheme.textColor
                 wrapMode: TextArea.Wrap
                 selectByMouse: true
 
