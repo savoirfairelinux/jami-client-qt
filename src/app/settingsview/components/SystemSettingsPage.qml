@@ -83,7 +83,8 @@ SettingsPageBase {
                 id: closeOrMinCheckBox
                 Layout.fillWidth: true
 
-                checked: UtilsAdapter.getAppValue(Settings.MinimizeOnClose)
+                visible: UtilsAdapter.isSystemTrayIconVisible()
+                checked: UtilsAdapter.getAppValue(Settings.MinimizeOnClose) && UtilsAdapter.isSystemTrayIconVisible()
                 labelText: JamiStrings.keepMinimized
                 onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.MinimizeOnClose, checked)
             }
