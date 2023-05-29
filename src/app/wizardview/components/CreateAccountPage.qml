@@ -133,6 +133,7 @@ Rectangle {
 
                 UsernameTextEdit {
                     id: usernameEdit
+                    accountId: ""
 
                     icon: PushButton {
                         id: infoBox
