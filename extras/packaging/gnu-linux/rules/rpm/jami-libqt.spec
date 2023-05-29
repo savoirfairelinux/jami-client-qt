@@ -65,7 +65,7 @@ This package contains Qt libraries for Jami.
 
 %build
 echo "Building Qt using %{job_count} parallel jobs"
-# Qt 6.2 (https://wiki.linuxfromscratch.org/blfs/ticket/14729)
+# Qt 6.4 (https://wiki.linuxfromscratch.org/blfs/ticket/14729)
 sed -i 's,default=False,default=True,g' qtwebengine/src/3rdparty/chromium/third_party/catapult/tracing/tracing_build/generate_about_tracing_contents.py
 # Gcc 13
 sed -i 's,std::uint32_t,uint32_t,g' qt3d/src/3rdparty/assimp/src/code/AssetLib/FBX/FBXBinaryTokenizer.cpp

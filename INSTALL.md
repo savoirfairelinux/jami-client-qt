@@ -7,9 +7,9 @@ There are essentially two ways to build `client-qt`:
 
 ## Disclaimer
 
-Because the client-qt is multi-platforms and supporting macOS, we need a recent version of Qt to do rendering with Metal. So, Qt 6.2 is necessary.
+Because the client-qt is multi-platforms and supporting macOS, we need a recent version of Qt to do rendering with Metal. So, Qt 6.4 is necessary.
 This version is generally not packaged on a lot of platforms, and to control available plugins and such, we have our own Qt packaged (available on https://jami.net on the distributions we support).
-So, you will need to get Qt 6.2 first. For this, there is 3 methods:
+So, you will need to get Qt 6.4 first. For this, there is 3 methods:
 
 ### Qt from https://jami.net (recommended)
 
@@ -43,7 +43,7 @@ sudo dnf update && sudo dnf install jami-libqt
 
 ### Qt from your distribution
 
-If Qt 6.2 is available, you can use the packages from your distribution:
+If Qt 6.4 is available, you can use the packages from your distribution:
 
 It should be (For now qt5 only is packaged by distributions, so names can change).
 
@@ -107,7 +107,7 @@ Then, you can build daemon and the client using:
 
 If you use a Qt version that is not system-wide installed, you need to
 specify its path using the `--qt` flag, e.g.
-`./build.py --install --qt=/home/<username>/Qt/6.2.1/gcc_64`.
+`./build.py --install --qt=/home/<username>/Qt/6.4.1/gcc_64`.
 
 Now you will have the daemon in `daemon/bin/jamid` and the client in
 `build/jami`. You can now run Jami using:
@@ -123,7 +123,7 @@ Notes:
 
 ## Build only the client
 
-In order to use the Qt Client it is necessary to have the Qt version 6.2 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
+In order to use the Qt Client it is necessary to have the Qt version 6.4 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
 
 ## Build only this repository
 
@@ -173,7 +173,7 @@ Only 64-bit MSVC build can be compiled.
 
 - Download [Qt (Open Source)](https://www.qt.io/download-open-source?hsCtaTracking=9f6a2170-a938-42df-a8e2-a9f0b1d6cdce%7C6cb0de4f-9bb5-4778-ab02-bfb62735f3e5)
 
-- Using the online installer, install the following Qt 6.2.3 components:
+- Using the online installer, install the following Qt 6.4.3 components:
 
   - Git 2.10.2
   - MSVC 2019 64-bit
@@ -196,7 +196,7 @@ Only 64-bit MSVC build can be compiled.
 
   |                      | Qt Version |
   | -------------------- | ---------- |
-  | Minimum requirement: | 6.2.3      |
+  | Minimum requirement: | 6.4.3      |
 
 - Install [Python3](https://www.python.org/downloads/) for Windows
 
@@ -222,7 +222,7 @@ Only 64-bit MSVC build can be compiled.
 - Using a new **Non-Elevated Command Prompt**
 
 ```bash
-    python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.2.3/msvc2019_64)
+    python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.4.3/msvc2019_64)
 ```
 
 > **SDK** Note:
@@ -265,7 +265,7 @@ Once the build has finished, you should then be able to use the Visual Studio So
 
 ```
     python extras\scripts\build-windows.py --init
-    python extras\scripts\build-windows.py --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.2.3/msvc2019_64)
+    python extras\scripts\build-windows.py --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.4.3/msvc2019_64)
 ```
 
 ## Building On MacOS
@@ -275,9 +275,9 @@ Once the build has finished, you should then be able to use the Visual Studio So
 - macOS minimum version 10.15
 - install python3
 - download xcode
-- install Qt 6.2
+- install Qt 6.4
 
-Qt 6.2 can be installed via brew
+Qt 6.4 can be installed via brew
 
 ```bash
 brew install qt
