@@ -79,14 +79,14 @@ VideoProvider::subscribe(QObject* obj, const QString& id)
             static_cast<Qt::ConnectionType>(Qt::DirectConnection | Qt::UniqueConnection));
 
     QWriteLocker lock(&renderersMutex_);
+    FrameObject* fo = nullptr;
     // Check if we already have a FrameObject for this id.
     auto it = renderers_.find(id);
     if (it == renderers_.end()) {
         qDebug() << "Creating new FrameObject for id:" << id;
-        FrameObject& object = renderers_[id];
-        object.active = false;
-        it = renderers_.find(id);
+        fo = &renderers_[id];
     } else {
+        fo = &it->second;
         // Make sure it's not already subscribed to this QVideoSink.
         if (it->second.subscribers.contains(sink)) {
             qWarning() << Q_FUNC_INFO << "QVideoSink already subscribed to id:" << id;
@@ -94,7 +94,7 @@ VideoProvider::subscribe(QObject* obj, const QString& id)
         }
     }
 
-    it->second.subscribers.insert(sink);
+    fo->subscribers.insert(sink);
     qDebug().noquote() << QString("Added sink: 0x%1 to subscribers for id: %2")
                               .arg((quintptr) obj, QT_POINTER_SIZE, 16, QChar('0'))
                               .arg(id);
@@ -154,6 +154,7 @@ VideoProvider::onRendererStarted(const QString& id, const QSize& size)
     auto frameFormat = QVideoFrameFormat(size, pixelFormat);
 
     renderersMutex_.lockForWrite();
+
     auto it = renderers_.find(id);
     if (it == renderers_.end()) {
         qDebug() << "Create new QVideoFrame" << frameFormat.frameSize();
@@ -165,9 +166,9 @@ VideoProvider::onRendererStarted(const QString& id, const QSize& size)
         it->second.active = true;
         qDebug() << "QVideoFrame reset to" << frameFormat.frameSize();
     }
-    renderersMutex_.unlock();
 
-    Q_EMIT renderersChanged();
+    renderersMutex_.unlock();
+    Q_EMIT activeRenderersChanged();
 }
 
 void
@@ -279,21 +280,21 @@ VideoProvider::onRendererStopped(const QString& id)
         qWarning() << Q_FUNC_INFO << "Can't find renderer for id:" << id;
         return;
     }
+
     if (it->second.subscribers.isEmpty()) {
         renderers_.erase(id);
         renderersMutex_.unlock();
-        Q_EMIT renderersChanged();
+        Q_EMIT activeRenderersChanged();
         return;
     }
 
     it->second.frameMutex.lockForWrite();
     it->second.videoFrame = QVideoFrame();
-    it->second.active = false;
+    it->second.active = true;
     it->second.frameMutex.unlock();
 
     renderersMutex_.unlock();
-
-    Q_EMIT renderersChanged();
+    Q_EMIT activeRenderersChanged();
 }
 
 void
@@ -331,17 +332,12 @@ VideoProvider::copyUnaligned(QVideoFrame& dst, const video::Frame& src)
 }
 
 QVariantMap
-VideoProvider::getRenderers()
+VideoProvider::getActiveRenderers()
 {
-    QVariantMap map;
-    renderersMutex_.lockForRead();
+    QVariantMap activeRenderers;
+    QReadLocker lk(&renderersMutex_);
     for (auto& r : renderers_) {
-        if (r.second.active) {
-            r.second.frameMutex.lockForRead();
-            map[r.first] = r.second.videoFrame.size();
-            r.second.frameMutex.unlock();
-        }
+        activeRenderers[r.first] = r.second.active;
     }
-    renderersMutex_.unlock();
-    return map;
+    return activeRenderers;
 }
