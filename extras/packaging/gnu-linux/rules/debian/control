@@ -16,7 +16,7 @@ Build-Depends: debhelper (>= 9),
                libayatana-appindicator3-dev | libappindicator3-dev,
 # daemon
                libdbus-1-dev,
-               libdbus-c++-dev,
+               libsystemd-dev,
                libupnp-dev,
                libgnutls28-dev,
                libpulse-dev,
