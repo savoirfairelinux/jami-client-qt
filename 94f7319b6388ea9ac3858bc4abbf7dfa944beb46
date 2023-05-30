@@ -16,6 +16,24 @@
       "message": "@sblin About the Dockerfile in the daemon: why don\u0027t you want to use `sdbus-c++-xml2cpp` from contribs? I think it is logical as it\u0027s compiled in any case.",
       "revId": "94f7319b6388ea9ac3858bc4abbf7dfa944beb46",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95455932_f3efd175",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-30T12:53:57Z",
+      "side": 1,
+      "message": "sdbus-c++-xml2cpp should be in the PATH in order to be detected (and contrib is only build if 1.2.0 is not installed yet).\nAlso ideally if the system package is available and we do not use patches, it\u0027s preferable to use the system package.\n\nfor the CI, the binary wasn\u0027t found",
+      "parentUuid": "a977481d_c9663b9a",
+      "revId": "94f7319b6388ea9ac3858bc4abbf7dfa944beb46",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
