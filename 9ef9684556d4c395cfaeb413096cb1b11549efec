@@ -98,6 +98,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "86430daa_a59418de",
+        "filename": "daemon",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-30T15:27:43Z",
+      "side": 0,
+      "message": "Yeah I confirm it\u0027s ok (jenkins is updating, and msvc will fail for another reason, so I bypassed the result)",
+      "parentUuid": "ff52b1fd_af6d56e4",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "9ef9684556d4c395cfaeb413096cb1b11549efec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ec6dd27d_4e3a14dc",
         "filename": "extras/packaging/gnu-linux/rules/rpm/jami-daemon.spec",
         "patchSetId": 1
