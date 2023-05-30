@@ -34,6 +34,24 @@
       "parentUuid": "a977481d_c9663b9a",
       "revId": "94f7319b6388ea9ac3858bc4abbf7dfa944beb46",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14cb135d_75702a59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2023-05-30T13:51:05Z",
+      "side": 1,
+      "message": "Just tested and works fine (without `libsdbus-c++-bin`). In theory adapters pruduced by `sdbus-c++-xml2cpp` from 1.1.0 can be incompatible with headers from 1.2.0. But seems we are lucky ).\n\n```\nWORKDIR /daemon\nCOPY . .\n\n# Build daemon dependencies\nRUN mkdir -p contrib/native \u0026\u0026 \\\n    cd contrib/native \u0026\u0026 \\\n    ../bootstrap --prefix\u003d/contribs \u0026\u0026 \\\n    make -j2\n\nENV PATH\u003d\"${PATH}:/contribs/bin\"\n\n# Build the daemon\nRUN ./autogen.sh \u0026\u0026 \\\n    ./configure --with-contrib\u003d/contribs $config_args \u0026\u0026 \\\n    make -j2\n```",
+      "parentUuid": "95455932_f3efd175",
+      "revId": "94f7319b6388ea9ac3858bc4abbf7dfa944beb46",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
