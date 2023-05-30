@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a977481d_c9663b9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2023-05-30T10:43:02Z",
+      "side": 1,
+      "message": "@sblin About the Dockerfile in the daemon: why don\u0027t you want to use `sdbus-c++-xml2cpp` from contribs? I think it is logical as it\u0027s compiled in any case.",
+      "revId": "94f7319b6388ea9ac3858bc4abbf7dfa944beb46",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
