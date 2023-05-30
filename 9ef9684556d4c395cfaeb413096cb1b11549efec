@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fa37236_4ce19e44",
+        "filename": "daemon",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2023-05-30T14:23:17Z",
+      "side": 0,
+      "message": "Can you explain? It is an error to treat macOS as Linux. Some bug in `bootstrap`?",
+      "parentUuid": "de6db3a6_70f87ea1",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "9ef9684556d4c395cfaeb413096cb1b11549efec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ec6dd27d_4e3a14dc",
