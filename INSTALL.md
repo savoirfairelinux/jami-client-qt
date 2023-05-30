@@ -11,21 +11,14 @@ Because the client-qt is multi-platforms and supporting macOS, we need a recent 
 This version is generally not packaged on a lot of platforms, and to control available plugins and such, we have our own Qt packaged (available on https://jami.net on the distributions we support).
 So, you will need to get Qt 6.4 first. For this, there is 3 methods:
 
-### Qt from https://jami.net (recommended)
+### Qt from our repo (recommended)
 
 If your distribution is supported, we provide a Qt package (libqt-jami) on our repo.
 The files will be installed in `/usr/lib/libqt-jami`.
 
-#### Install libqt-jami, Debian based
-
-```
-sudo apt install gnupg dirmngr ca-certificates curl --no-install-recommends
-curl -s https://dl.jami.net/public-key.gpg | sudo tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
-sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/nightly/debian_<VERSION>/ jami main' > /etc/apt/sources.list.d/jami.list"
-sudo apt-get update && sudo apt-get install jami
-```
-
 #### Install libqt-jami, Ubuntu based
+
+To install libqt-jami on Ubuntu, execute these commands replacing ```ubuntu_<VERSION>``` by your distribution version. For example "ubuntu_22.04"
 
 ```
 sudo apt install gnupg dirmngr ca-certificates curl --no-install-recommends
@@ -34,7 +27,20 @@ sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] h
 sudo apt-get update && sudo apt-get install libqt-jami
 ```
 
+#### Install libqt-jami, Debian based
+
+To install libqt-jami on Debian, execute these commands replacing ```debian_<VERSION>``` by your distribution version. For example "debian_11"
+
+```
+sudo apt install gnupg dirmngr ca-certificates curl --no-install-recommends
+curl -s https://dl.jami.net/public-key.gpg | sudo tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
+sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/nightly/debian_<VERSION>/ jami main' > /etc/apt/sources.list.d/jami.list"
+sudo apt-get update && sudo apt-get install jami
+```
+
 #### Install jami-libqt, Fedora based
+
+To install libqt-jami on Fedora, execute these commands replacing ```fedora_<VERSION>``` by your distribution version. For example "fedora_38"
 
 ```
 sudo dnf config-manager --add-repo https://dl.jami.net/nightly/fedora_<VERSION>/jami-nightly.repo
@@ -87,6 +93,8 @@ for getting the latest development versions; otherwise, you can use
 `git submodule update --init` then checkout specific commits for each
 submodule).
 
+If you're a developer you need to install clang-format separatly before initializing with the command ```sudo apt install clang-format```
+
 ```bash
 ./build.py --init [--qt=<path/to/qt> (this is required for qmlformatting to work)]
 ```
@@ -96,7 +104,7 @@ Then you will need to install dependencies:
 - For GNU/Linux
 
 ```bash
-./build.py --dependencies # needs sudo
+sudo ./build.py --dependencies
 ```
 
 Then, you can build daemon and the client using:
