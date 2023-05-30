@@ -22,7 +22,7 @@
 #include "dbus/videomanager.h"
 
 #include <QDebug>
-#include <QMutex>
+#include <QReadWriteLock>
 #include <QThread>
 
 #include <sys/ipc.h>
@@ -86,12 +86,13 @@ public:
         // This is necessary because the frame rate is not constant.
         // The function getNewFrame() will return false if no new frame is available.
         thread = QThread::create([this] {
+            running = true;
             forever {
                 if (QThread::currentThread()->isInterruptionRequested()) {
                     return;
                 }
 
-                if (!waitForNewFrame()) {
+                if (!waitForNewFrame() || !running) {
                     continue;
                 }
 
@@ -107,13 +108,18 @@ public:
         // Request thread loop interruption and then unblock the sem_wait.
         thread->requestInterruption();
 
-        // Set the isDestroying flag to true so that the thread loop can exit
+        // Set the frameSize to 0 and notify so that the thread loop can exit
         // without emitting the frameUpdated signal for an invalid resolution
         // (e.g. smartphone rotation).
         // This works as ShmHolder::renderFrame should reset frameSize appropriately.
-        shmLock();
-        shmArea->frameSize = 0;
-        shmUnlock();
+        // However, the daemon may change the frameSize to 0 after we set it to 0 and
+        // before the frameSize is checked in the thread loop. So we use the running
+        // flag to make sure the thread loop exits without calling frameUpdated.
+        running = false;
+
+        //        shmLock();
+        //        shmArea->frameSize = 0;
+        //        shmUnlock();
 
         ::sem_post(&shmArea->frameGenMutex);
 
@@ -160,10 +166,14 @@ public:
             return false;
         }
 
-        if (not frame)
-            frame.reset(new lrc::api::video::Frame);
-        frame->ptr = shmArea->data + shmArea->readOffset;
-        frame->size = shmArea->frameSize;
+        {
+            QWriteLocker lk {&frameMutex};
+            if (not frame)
+                frame.reset(new lrc::api::video::Frame);
+            frame->ptr = shmArea->data + shmArea->readOffset;
+            frame->size = shmArea->frameSize;
+        }
+
         frameGen = shmArea->frameGen;
 
         shmUnlock();
@@ -212,8 +222,9 @@ public:
     unsigned shmAreaLen;
     uint frameGen;
 
-    QMutex mutex;
+    QReadWriteLock frameMutex;
     QThread* thread;
+    std::atomic<bool> running {false};
     std::shared_ptr<lrc::api::video::Frame> frame;
 };
 
@@ -226,14 +237,14 @@ ShmRenderer::ShmRenderer(const QString& id, const QSize& res, const QString& shm
 
 ShmRenderer::~ShmRenderer()
 {
-    VideoManager::instance().startShmSink(id(), false);
     stopShm();
+    VideoManager::instance().startShmSink(id(), false);
 }
 
 Frame
 ShmRenderer::currentFrame() const
 {
-    QMutexLocker lk {&pimpl_->mutex};
+    QReadLocker lk {&pimpl_->frameMutex};
     if (auto frame_ptr = pimpl_->frame)
         return std::move(*frame_ptr);
     return {};
@@ -276,14 +287,14 @@ ShmRenderer::stopShm()
     if (pimpl_->fd < 0)
         return;
 
+    pimpl_->stopThread();
+
     // Emit the signal before closing the file, this lower the risk of invalid
     // memory access
     Q_EMIT stopped();
 
-    pimpl_->stopThread();
-
     {
-        QMutexLocker lk(&pimpl_->mutex);
+        QWriteLocker lk(&pimpl_->frameMutex);
         // reset the frame so it doesn't point to an old value
         pimpl_->frame.reset();
     }
@@ -302,8 +313,6 @@ ShmRenderer::stopShm()
 void
 ShmRenderer::startRendering()
 {
-    QMutexLocker lk(&pimpl_->mutex);
-
     if (!startShm())
         return;
 
