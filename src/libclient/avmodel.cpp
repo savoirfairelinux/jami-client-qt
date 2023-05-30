@@ -947,7 +947,16 @@ void
 AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& shmPath)
 {
     // Remove the renderer if it already exists.
-    removeRenderer(id); // Will write-lock renderersMutex_.
+    auto it = renderers_.find(id);
+    if (it != renderers_.end()) {
+        // Remove the renderer's connections to avoid responding to queued updates.
+        it->second->disconnect();
+        // Manually trigger the stopped callback so VideoProvider can remove it's renderer.
+        Q_EMIT linked_.rendererStopped(id);
+
+        QWriteLocker lk(&renderersMutex_);
+        renderers_.erase(it);
+    }
 
     {
         QWriteLocker lk(&renderersMutex_);
@@ -955,13 +964,7 @@ AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& sh
     }
 
     QReadLocker lk(&renderersMutex_);
-    auto it = renderers_.find(id);
-    if (it == renderers_.end()) {
-        qWarning() << Q_FUNC_INFO << "Renderer not found for id:" << id;
-        return;
-    }
-
-    if (auto* renderer = it->second.get()) {
+    if (auto* renderer = renderers_.find(id)->second.get()) {
         connect(
             renderer,
             &Renderer::fpsChanged,
