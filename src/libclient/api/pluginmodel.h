@@ -184,6 +184,10 @@ public:
 Q_SIGNALS:
     void chatHandlerStatusUpdated(bool isVisible);
     void modelUpdated();
+    void askTrustPluginIssuer(const QString& issuer,
+                              const QString& companyDivision,
+                              const QString& pluginName,
+                              const QString& rootPath);
 };
 
 } // namespace api
