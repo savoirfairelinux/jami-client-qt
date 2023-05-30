@@ -947,7 +947,18 @@ void
 AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& shmPath)
 {
     // Remove the renderer if it already exists.
-    removeRenderer(id); // Will write-lock renderersMutex_.
+    auto it = renderers_.find(id);
+    if (it != renderers_.end()) {
+        // Move the renderer out of the map to avoid deleting it while holding the lock.
+        std::unique_ptr<Renderer> renderer;
+        {
+            QWriteLocker lk(&renderersMutex_);
+            renderer = std::move(it->second);
+            renderers_.erase(it);
+        }
+        // Delete the renderer outside of the lock.
+        renderer.reset();
+    }
 
     {
         QWriteLocker lk(&renderersMutex_);
@@ -955,13 +966,7 @@ AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& sh
     }
 
     QReadLocker lk(&renderersMutex_);
-    auto it = renderers_.find(id);
-    if (it == renderers_.end()) {
-        qWarning() << Q_FUNC_INFO << "Renderer not found for id:" << id;
-        return;
-    }
-
-    if (auto* renderer = it->second.get()) {
+    if (auto* renderer = renderers_.find(id)->second.get()) {
         connect(
             renderer,
             &Renderer::fpsChanged,
