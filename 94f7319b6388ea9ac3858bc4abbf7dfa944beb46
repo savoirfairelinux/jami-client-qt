@@ -52,6 +52,24 @@
       "parentUuid": "95455932_f3efd175",
       "revId": "94f7319b6388ea9ac3858bc4abbf7dfa944beb46",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd9341f4_ed32095f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2023-05-30T13:52:46Z",
+      "side": 1,
+      "message": "By the way, libgit2-dev is missing.",
+      "parentUuid": "14cb135d_75702a59",
+      "revId": "94f7319b6388ea9ac3858bc4abbf7dfa944beb46",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
