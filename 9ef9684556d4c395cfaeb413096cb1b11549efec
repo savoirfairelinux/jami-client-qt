@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "de6db3a6_70f87ea1",
+        "filename": "daemon",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-30T14:11:52Z",
+      "side": 0,
+      "message": "TO fix:\n\n-- Checking for module \u0027libsystemd\u003e\u003d236\u0027\n--   No package \u0027libsystemd\u0027 found\nCMake Error at CMakeLists.txt:21 (message):\n  libsystemd of version at least 236 is required, but was not found (if you\n  have systemd in your OS, you may want to install package containing\n  pkgconfig files for libsystemd library.  On Ubuntu, that is libsystemd-dev.\n  Alternatively, you may turn BUILD_LIBSYSTEMD on for sdbus-c++ to download,\n  build and incorporate libsystemd as embedded library within sdbus-c++)\n\n\n-- Configuring incomplete, errors occurred!\nSee also \"/Users/jenkins/workspace/client-qt-macos@2/jami-client-qt/daemon/contrib/native-arm64/sdbus-cpp/CMakeFiles/CMakeOutput.log\".\n\non macOS, we should not build sdbus-cpp",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "9ef9684556d4c395cfaeb413096cb1b11549efec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ec6dd27d_4e3a14dc",
