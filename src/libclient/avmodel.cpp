@@ -103,10 +103,12 @@ public:
     void addRenderer(const QString& id, const QSize& res, const QString& shmPath = {});
 
     /**
-     * Remove renderer from renderers_
+     * Remove renderer from renderers_. If the returned renderer is ignored, it
+     * will be deleted.
      * @param id
+     * @return the renderer
      */
-    void removeRenderer(const QString& id);
+    std::unique_ptr<Renderer> removeRenderer(const QString& id);
 
     bool hasRenderer(const QString& id);
     QSize getRendererSize(const QString& id);
@@ -947,7 +949,7 @@ void
 AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& shmPath)
 {
     // Remove the renderer if it already exists.
-    removeRenderer(id); // Will write-lock renderersMutex_.
+    std::ignore = removeRenderer(id);
 
     {
         QWriteLocker lk(&renderersMutex_);
@@ -955,13 +957,7 @@ AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& sh
     }
 
     QReadLocker lk(&renderersMutex_);
-    auto it = renderers_.find(id);
-    if (it == renderers_.end()) {
-        qWarning() << Q_FUNC_INFO << "Renderer not found for id:" << id;
-        return;
-    }
-
-    if (auto* renderer = it->second.get()) {
+    if (auto* renderer = renderers_.find(id)->second.get()) {
         connect(
             renderer,
             &Renderer::fpsChanged,
@@ -999,16 +995,18 @@ AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& sh
     }
 }
 
-void
+std::unique_ptr<Renderer>
 AVModelPimpl::removeRenderer(const QString& id)
 {
     QWriteLocker lk(&renderersMutex_);
     auto it = renderers_.find(id);
     if (it == renderers_.end()) {
         qWarning() << "Cannot remove renderer. " << id << "not found";
-        return;
+        return {};
     }
-    renderers_.erase(id);
+    auto removed = std::move(it->second);
+    renderers_.erase(it);
+    return removed;
 }
 
 bool
