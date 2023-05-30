@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ae047e6_c0867812",
+        "filename": "daemon",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-05-30T13:45:35Z",
+      "side": 1,
+      "message": "I updated the daemon as sdbus-cpp is now merged",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "c782a5b1c73e81f650f94804b0af918c1fa54cb8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
