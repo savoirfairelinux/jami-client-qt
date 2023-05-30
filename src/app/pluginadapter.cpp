@@ -29,6 +29,11 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
             &lrc::api::PluginModel::modelUpdated,
             this,
             &PluginAdapter::updateHandlersListCount);
+    connect(&lrcInstance_->pluginModel(),
+            &lrc::api::PluginModel::askTrustPluginIssuer,
+            this,
+            &PluginAdapter::updateHandlersListCount);
+
     connect(this, &PluginAdapter::isEnabledChanged, this, &PluginAdapter::updateHandlersListCount);
 }
 
