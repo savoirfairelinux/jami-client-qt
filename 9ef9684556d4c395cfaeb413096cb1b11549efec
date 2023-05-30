@@ -74,6 +74,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ff52b1fd_af6d56e4",
+        "filename": "daemon",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2023-05-30T15:00:53Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "3aecb8d0_d758394c",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "9ef9684556d4c395cfaeb413096cb1b11549efec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ec6dd27d_4e3a14dc",
         "filename": "extras/packaging/gnu-linux/rules/rpm/jami-daemon.spec",
         "patchSetId": 1
