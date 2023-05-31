@@ -21,7 +21,6 @@ import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import Qt5Compat.GraphicalEffects
 import "../../commoncomponents"
 
 Popup {
@@ -52,6 +51,14 @@ Popup {
         color: JamiTheme.transparentColor
     }
 
+    component SelectableTextItem: TextEdit {
+        readOnly: true
+        wrapMode: Text.WrapAnywhere
+        selectByMouse: true
+        font.pointSize: JamiTheme.textFontPointSize
+        color: JamiTheme.callInfoColor
+    }
+
     Rectangle {
         id: container
 
@@ -60,6 +67,36 @@ Popup {
         radius: 10
         width: windowContent.width
         height: windowContent.height
+
+        // A copy-to-clipboard button to the left of the close button.
+        PushButton {
+            id: copyButton
+
+            anchors.top: closeButton.top
+            anchors.right: closeButton.left
+            anchors.rightMargin: 5
+            normalColor: JamiTheme.transparentColor
+            imageColor: JamiTheme.callInfoColor
+            source: JamiResources.content_copy_24dp_svg
+            circled: false
+            toolTipText: JamiStrings.copyToClipboard
+
+            onClicked: {
+                var text = "";
+                function getSelectableText(parent) {
+                    for (var i = 0; i < parent.children.length; i++)
+                        if (parent.children[i] instanceof TextEdit)
+                            text += parent.children[i].text + "\n";
+                        else
+                            getSelectableText(parent.children[i]);
+                }
+                getSelectableText(callInfoListview);
+                text += "\n";
+                getSelectableText(renderersInfoListview);
+                UtilsAdapter.setClipboardText(text);
+                toastManager.instantiate(JamiStrings.copiedToClipboard, container);
+            }
+        }
 
         PushButton {
             id: closeButton
@@ -89,7 +126,6 @@ Popup {
                 Layout.alignment: Qt.AlignTop
 
                 Text {
-                    id: textTest
                     color: JamiTheme.callInfoColor
                     text: JamiStrings.callInformation
                     font.pointSize: JamiTheme.titleFontPointSize
@@ -107,22 +143,13 @@ Popup {
                     delegate: Column {
                         spacing: JamiTheme.callInformationElementsSpacing
 
-                        Text {
-                            color: JamiTheme.callInfoColor
+                        SelectableTextItem {
                             text: JamiStrings.callId + ": " + CALL_ID
-                            font.pointSize: JamiTheme.textFontPointSize
-                            wrapMode: Text.WrapAnywhere
                             width: callInfoListview.width
                         }
 
-                        Text {
-                            function stringWithoutRing(peerNumber) {
-                                return peerNumber.replace("@ring.dht", "");
-                            }
-                            color: JamiTheme.callInfoColor
-                            text: JamiStrings.peerNumber + ": " + stringWithoutRing(PEER_NUMBER)
-                            font.pointSize: JamiTheme.textFontPointSize
-                            wrapMode: Text.WrapAnywhere
+                        SelectableTextItem {
+                            text: JamiStrings.peerNumber + ": " + PEER_NUMBER.replace("@ring.dht", "")
                             width: callInfoListview.width
                         }
                         Column {
@@ -132,11 +159,8 @@ Popup {
                             width: callInfoListview.width
 
                             RowLayout {
-                                Text {
-                                    color: JamiTheme.callInfoColor
+                                SelectableTextItem {
                                     text: JamiStrings.sockets
-                                    font.pointSize: JamiTheme.textFontPointSize
-                                    wrapMode: Text.WrapAnywhere
                                     width: socketLayout.width
                                 }
 
@@ -152,45 +176,30 @@ Popup {
                                 }
                             }
 
-                            Text {
-                                color: JamiTheme.callInfoColor
+                            SelectableTextItem {
                                 text: SOCKETS
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
                                 visible: socketLayout.showAll
                                 width: socketLayout.width
                             }
                         }
 
-                        Text {
-                            color: JamiTheme.callInfoColor
+                        SelectableTextItem {
                             text: JamiStrings.videoCodec + ": " + VIDEO_CODEC
-                            font.pointSize: JamiTheme.textFontPointSize
-                            wrapMode: Text.WrapAnywhere
                             width: callInfoListview.width
                         }
 
-                        Text {
-                            color: JamiTheme.callInfoColor
+                        SelectableTextItem {
                             text: JamiStrings.audioCodec + ": " + AUDIO_CODEC + " " + AUDIO_SAMPLE_RATE + " Hz"
-                            font.pointSize: JamiTheme.textFontPointSize
-                            wrapMode: Text.WrapAnywhere
                             width: callInfoListview.width
                         }
 
-                        Text {
-                            color: JamiTheme.callInfoColor
+                        SelectableTextItem {
                             text: JamiStrings.hardwareAcceleration + ": " + HARDWARE_ACCELERATION
-                            font.pointSize: JamiTheme.textFontPointSize
-                            wrapMode: Text.WrapAnywhere
                             width: callInfoListview.width
                         }
 
-                        Text {
-                            color: JamiTheme.callInfoColor
+                        SelectableTextItem {
                             text: JamiStrings.videoBitrate + ": " + VIDEO_BITRATE + " bps"
-                            font.pointSize: JamiTheme.textFontPointSize
-                            wrapMode: Text.WrapAnywhere
                             width: callInfoListview.width
                         }
                     }
@@ -221,28 +230,18 @@ Popup {
                     delegate: Column {
                         spacing: JamiTheme.callInformationElementsSpacing
 
-                        Text {
-                            color: JamiTheme.callInfoColor
+                        SelectableTextItem {
                             text: JamiStrings.rendererId + ": " + RENDERER_ID
-                            font.pointSize: JamiTheme.textFontPointSize
-                            wrapMode: Text.WrapAnywhere
                             width: renderersInfoListview.width
                         }
 
-                        Text {
-                            id: testText
-                            color: JamiTheme.callInfoColor
+                        SelectableTextItem {
                             text: JamiStrings.fps_short + ": " + FPS
-                            font.pointSize: JamiTheme.textFontPointSize
-                            wrapMode: Text.WrapAnywhere
                             width: renderersInfoListview.width
                         }
 
-                        Text {
-                            color: JamiTheme.callInfoColor
+                        SelectableTextItem {
                             text: JamiStrings.resolution + ": " + RES
-                            font.pointSize: JamiTheme.textFontPointSize
-                            wrapMode: Text.WrapAnywhere
                             width: renderersInfoListview.width
                         }
                     }
