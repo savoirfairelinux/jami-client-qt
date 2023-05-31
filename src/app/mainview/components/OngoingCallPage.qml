@@ -186,7 +186,7 @@ Rectangle {
                 anchors.fill: parent
 
                 function instantiateToast() {
-                    instantiate(JamiStrings.screenshotTaken.arg(UtilsAdapter.getDirScreenshot()), 1000, 400);
+                    instantiate(JamiStrings.screenshotTaken.arg(UtilsAdapter.getDirScreenshot()));
                 }
             }
 
