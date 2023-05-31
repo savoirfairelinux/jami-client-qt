@@ -31,7 +31,7 @@ Popup {
     background.visible: false
     parent: Overlay.overlay
 
-    property var emojiReaction
+    property var reactions
     property string msgId
 
     // center in parent
@@ -88,9 +88,9 @@ Popup {
                 spacing: 15
                 Layout.preferredWidth: 400
                 Layout.preferredHeight: childrenRect.height + 30 < 700 ? childrenRect.height + 30 : 700
-                model: Object.entries(emojiReaction)
+                model: Object.entries(reactions)
                 clip: true
-                property int modelCount: Object.entries(emojiReaction).length
+                property int modelCount: Object.entries(reactions).length
 
                 delegate: RowLayout {
                     width: parent.width
