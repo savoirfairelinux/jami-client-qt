@@ -24,10 +24,9 @@ import net.jami.Constants 1.1
 Item {
     id: root
 
-    property var emojiReaction
+    property var reactions
     property real contentHeight: bubble.height
     property real contentWidth: bubble.width
-    property var emojiTexts: ownEmojiList
 
     visible: emojis.length && Body !== ""
 
@@ -35,8 +34,8 @@ Item {
         var space = "";
         var emojiList = [];
         var emojiNumberList = [];
-        for (const reactions of Object.entries(emojiReaction)) {
-            var authorEmojiList = reactions[1];
+        for (const reaction of Object.entries(reactions)) {
+            var authorEmojiList = reaction[1];
             for (var emojiIndex in authorEmojiList) {
                 var emoji = authorEmojiList[emojiIndex];
                 if (emojiList.includes(emoji)) {
@@ -60,12 +59,12 @@ Item {
         return cur;
     }
 
-    property var ownEmojiList: {
+    property var ownEmojis: {
         var list = [];
         var index = 0;
-        for (const reactions of Object.entries(emojiReaction)) {
-            var authorUri = reactions[0];
-            var authorEmojiList = reactions[1];
+        for (const reaction of Object.entries(reactions)) {
+            var authorUri = reaction[0];
+            var authorEmojiList = reaction[1];
             if (CurrentAccount.uri === authorUri) {
                 for (var emojiIndex in authorEmojiList) {
                     list[index] = authorEmojiList[emojiIndex];
