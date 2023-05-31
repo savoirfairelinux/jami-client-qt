@@ -33,9 +33,11 @@ Popup {
     padding: 0
     background.visible: false
 
+    required property var emojiReactions
+    property var emojiReplied: emojiReactions.ownEmojis
+
     required property string msgId
     required property string msgBody
-    required property var emojiReplied
     required property bool isOutgoing
     required property int type
     required property string transferName
@@ -107,27 +109,11 @@ Popup {
     onClosed: if (emojiPicker) emojiPicker.closeEmojiPicker()
 
     function getModel() {
-        var model = ["👍", "👎", "😂"]
-        var cur = []
-        //Add emoji reacted
-        var index = 0
-        for (let emoji of emojiReplied) {
-            if (index < model.length) {
-                cur[index] = emoji
-                index ++
-            }
-        }
-        //complete with default model
-        var modelIndex = cur.length
-        for (let j = 0; j < model.length; j++) {
-            if (cur.length < model.length) {
-                if (!cur.includes(model[j]) ) {
-                    cur[modelIndex] = model[j]
-                    modelIndex ++
-                }
-            }
-        }
-        return cur
+        const defaultModel = ["👍", "👎", "😂"]
+        const reactedEmojis = Array.isArray(emojiReplied) ? emojiReplied.slice(0, defaultModel.length) : []
+        const uniqueEmojis = Array.from(new Set(reactedEmojis))
+        const missingEmojis = defaultModel.filter(emoji => !uniqueEmojis.includes(emoji))
+        return uniqueEmojis.concat(missingEmojis)
     }
 
     Rectangle {
@@ -167,7 +153,7 @@ Popup {
 
                         background: Rectangle {
                             anchors.fill: parent
-                            opacity: emojiReplied.includes(modelData) ? 1 : 0
+                            opacity: emojiReplied ? (emojiReplied.includes(modelData) ? 1 : 0) : 0
                             color: JamiTheme.emojiReactPushButtonColor
                             radius: 10
                         }
