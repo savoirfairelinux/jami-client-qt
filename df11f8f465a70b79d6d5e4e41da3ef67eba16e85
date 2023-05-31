@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fba13be0_75482649",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-31T14:28:58Z",
+      "side": 1,
+      "message": "Absolutely thanks. And yeah it should never be called concurrently with the same id.",
+      "parentUuid": "bcbc8b79_e9c07ec1",
+      "range": {
+        "startLine": 950,
+        "startChar": 4,
+        "endLine": 961,
+        "endChar": 5
+      },
+      "revId": "df11f8f465a70b79d6d5e4e41da3ef67eba16e85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74f300fc_677b9ef4",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-31T02:11:36Z",
       "side": 1,
       "message": "std::unique_ptr\u003cRenderer\u003e\n  AVModelPimpl::removeRenderer(const QString\u0026 id)\n  {\n      QWriteLocker lk(\u0026renderersMutex_);\n      auto it \u003d renderers_.find(id);\n      if (it \u003d\u003d renderers_.end()) {\n          qWarning() \u003c\u003c \"Cannot remove renderer. \" \u003c\u003c id \u003c\u003c \"not found\";\n          return;\n      }\n      auto deleted \u003d std::move(it-\u003esecond);\n      renderers_.erase(it);\n      return deleted;\n  }\n\n* Avoids two lookups (reuse \u0027it\u0027)\n* unlock before destroying the renderer: even if the caller doesn\u0027t use the return value, it would still be destroyed after the mutex is unlocked.",
+      "range": {
+        "startLine": 1010,
+        "startChar": 0,
+        "endLine": 1016,
+        "endChar": 25
+      },
+      "revId": "df11f8f465a70b79d6d5e4e41da3ef67eba16e85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97c75eb8_1c99907b",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1016,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-05-31T14:28:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "74f300fc_677b9ef4",
       "range": {
         "startLine": 1010,
         "startChar": 0,
