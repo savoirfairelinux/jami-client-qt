@@ -31,6 +31,7 @@ Popup {
     property alias backgroundOpacity: container.background.opacity
     property alias title: titleText.text
     property var popupcontainerSubContentLoader: containerSubContentLoader
+    property alias content: contentLayout
 
     property bool closeButtonVisible: true
     property int button1Role

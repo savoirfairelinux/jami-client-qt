@@ -159,7 +159,7 @@ Window {
                 pressedColor: JamiTheme.buttonTintedBlackPressed
 
                 secondary: true
-                text: JamiStrings.logsViewCopy
+                text: JamiStrings.copyToClipboard
                 autoAccelerator: true
 
                 onClicked: {
@@ -174,7 +174,7 @@ Window {
 
                     height: JamiTheme.preferredFieldHeight
                     TextArea {
-                        text: JamiStrings.logsViewCopied
+                        text: JamiStrings.copiedToClipboard
                         color: JamiTheme.textColor
                     }
                     background: Rectangle {
@@ -247,7 +247,7 @@ Window {
                         id: rightClickMenu
 
                         MenuItem {
-                            text: JamiStrings.logsViewCopy
+                            text: JamiStrings.copyToClipboard
                             onTriggered: {
                                 logsText.copy();
                             }
