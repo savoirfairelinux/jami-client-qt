@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcbc8b79_e9c07ec1",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2023-05-31T02:11:36Z",
+      "side": 1,
+      "message": "should lock mutex during lookup in renderers_\n        std::unique_ptr\u003cRenderer\u003e renderer;\n        {\n            QWriteLocker lk(\u0026renderersMutex_);\n            auto it \u003d renderers_.find(id);\n            if (it !\u003d renderers_.end()) {\n                renderer \u003d std::move(it-\u003esecond);\n                renderers_.erase(it);\n            }\n        }\n        // Delete the renderer outside of the lock.\n        renderer.reset();\n\nor just\n        removeRenderer(id);\n\nlike before, (using the suggested removeRenderer bellow) \n\nHowever renderersMutex_ is locked twice which is not ideal: the Renderer could be created twice at the same time, if this function is called concurrently with the same renderer id.\nThat might be acceptable if we know that\u0027s never the case in practice.",
+      "range": {
+        "startLine": 950,
+        "startChar": 4,
+        "endLine": 961,
+        "endChar": 5
+      },
+      "revId": "df11f8f465a70b79d6d5e4e41da3ef67eba16e85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74f300fc_677b9ef4",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1016,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2023-05-31T02:11:36Z",
+      "side": 1,
+      "message": "std::unique_ptr\u003cRenderer\u003e\n  AVModelPimpl::removeRenderer(const QString\u0026 id)\n  {\n      QWriteLocker lk(\u0026renderersMutex_);\n      auto it \u003d renderers_.find(id);\n      if (it \u003d\u003d renderers_.end()) {\n          qWarning() \u003c\u003c \"Cannot remove renderer. \" \u003c\u003c id \u003c\u003c \"not found\";\n          return;\n      }\n      auto deleted \u003d std::move(it-\u003esecond);\n      renderers_.erase(it);\n      return deleted;\n  }\n\n* Avoids two lookups (reuse \u0027it\u0027)\n* unlock before destroying the renderer: even if the caller doesn\u0027t use the return value, it would still be destroyed after the mutex is unlocked.",
+      "range": {
+        "startLine": 1010,
+        "startChar": 0,
+        "endLine": 1016,
+        "endChar": 25
+      },
+      "revId": "df11f8f465a70b79d6d5e4e41da3ef67eba16e85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
