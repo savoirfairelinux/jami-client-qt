@@ -33,7 +33,7 @@ Item {
 
     function findChildByName(parent, objectName) {
         var item = null;
-        if (!parent) {
+        if (parent) {
             for (var i = 0; i < parent.children.length; i++) {
                 if (parent.children[i].objectName === objectName) {
                     item = parent.children[i];
