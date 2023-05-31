@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71358f7f_712754d3",
+        "filename": "INSTALL.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2023-05-31T15:36:01Z",
+      "side": 1,
+      "message": "Could be even more clear with :\n```\nTo install libqt-jami on Ubuntu, execute these commands replacing ubuntu_\u003cVERSION\u003e by your distribution version. For example \"ubuntu_22.04\"\n```\nTodo for all the distribs (debian and fedora)",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 18
+      },
+      "revId": "fc79cd9879e89ddbeb3a4de62664124f2b607b27",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
