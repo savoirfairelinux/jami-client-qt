@@ -91,6 +91,8 @@ public Q_SLOTS: // METHODS
     MapStringString getPluginPreferencesValues(const QString& path, const QString& accountId);
 
     bool resetPluginPreferencesValues(const QString& path, const QString& accountId);
+
+    void answerTrustPlugin(bool trust, const QString& path);
 };
 
 namespace org {
