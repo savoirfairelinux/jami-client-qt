@@ -163,3 +163,9 @@ PluginManagerInterface::resetPluginPreferencesValues(const QString& path, const 
 {
     return libjami::resetPluginPreferencesValues(path.toStdString(), accountId.toStdString());
 }
+
+void
+PluginManagerInterface::answerTrustPlugin(bool trust, const QString& path)
+{
+    libjami::answerTrustPlugin(trust, path.toStdString());
+}
