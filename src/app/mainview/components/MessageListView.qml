@@ -166,7 +166,7 @@ JamiListView {
         anchors.fill: parent
 
         function instantiateToast(dest) {
-            instantiate(JamiStrings.fileSaved.arg(dest), 1000, 400)
+            instantiate(JamiStrings.fileSaved.arg(dest))
         }
     }
 

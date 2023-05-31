@@ -158,9 +158,9 @@ Window {
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
                 pressedColor: JamiTheme.buttonTintedBlackPressed
 
-                secondary: true
-                text: JamiStrings.logsViewCopy
-                autoAccelerator: true
+                    secondary: true
+                    text: JamiStrings.copyToClipboard
+                    autoAccelerator: true
 
                 onClicked: {
                     logsText.selectAll();
@@ -172,16 +172,16 @@ Window {
                 ToolTip {
                     id: copiedToolTip
 
-                    height: JamiTheme.preferredFieldHeight
-                    TextArea {
-                        text: JamiStrings.logsViewCopied
-                        color: JamiTheme.textColor
-                    }
-                    background: Rectangle {
-                        color: JamiTheme.primaryBackgroundColor
+                        height: JamiTheme.preferredFieldHeight
+                        TextArea {
+                            text: JamiStrings.copiedToClipboard
+                            color: JamiTheme.textColor
+                        }
+                        background: Rectangle {
+                            color: JamiTheme.primaryBackgroundColor
+                        }
                     }
                 }
-            }
 
             MaterialButton {
                 id: reportButton
@@ -247,7 +247,7 @@ Window {
                         id: rightClickMenu
 
                         MenuItem {
-                            text: JamiStrings.logsViewCopy
+                            text: JamiStrings.copyToClipboard
                             onTriggered: {
                                 logsText.copy();
                             }

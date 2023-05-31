@@ -21,7 +21,6 @@ import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import Qt5Compat.GraphicalEffects
 import "../../commoncomponents"
 
 BaseModalDialog {
@@ -35,6 +34,16 @@ BaseModalDialog {
     maximumPopupWidth: popupContent.width + 2 * popupMargins
     closePolicy: Popup.NoAutoClosed
 
+    // Used to make the call info items selectable/copyable.
+    component SelectableTextItem: TextEdit {
+        readOnly: true
+        wrapMode: Text.WrapAnywhere
+        selectByMouse: true
+        font.pointSize: JamiTheme.textFontPointSize
+        color: JamiTheme.callInfoColor
+        width: parent.width
+    }
+
     onClosed: {
         CallAdapter.stopTimerInformation();
     }
@@ -46,12 +55,42 @@ BaseModalDialog {
         AvAdapter.setRendererInfo();
     }
 
-    backgroundColor: JamiTheme.darkGreyColor
+    backgroundColor: "red"//JamiTheme.darkGreyColor
     backgroundOpacity: 0.77
 
     popupContent: RowLayout {
         id: windowContent
         spacing: JamiTheme.callInformationBlockSpacing
+
+//        // A copy-to-clipboard button to the left of the close button.
+//        PushButton {
+//            id: copyButton
+
+//            anchors.top: closeButton.top
+//            anchors.right: closeButton.left
+//            anchors.rightMargin: 5
+//            normalColor: JamiTheme.transparentColor
+//            imageColor: JamiTheme.callInfoColor
+//            source: JamiResources.content_copy_24dp_svg
+//            circled: false
+//            toolTipText: JamiStrings.copyToClipboard
+
+//            onClicked: {
+//                var text = "";
+//                function getSelectableText(parent) {
+//                    for (var i = 0; i < parent.children.length; i++)
+//                        if (parent.children[i] instanceof TextEdit)
+//                            text += parent.children[i].text + "\n";
+//                        else
+//                            getSelectableText(parent.children[i]);
+//                }
+//                getSelectableText(callInfoListview);
+//                text += "\n";
+//                getSelectableText(renderersInfoListview);
+//                UtilsAdapter.setClipboardText(text);
+//                toastManager.instantiate(JamiStrings.copiedToClipboard, container);
+//            }
+//        }
 
         ColumnLayout {
             spacing: JamiTheme.callInformationBlockSpacing
@@ -59,7 +98,6 @@ BaseModalDialog {
             Layout.alignment: Qt.AlignTop
 
             Text {
-                id: textTest
                 color: JamiTheme.callInfoColor
                 text: JamiStrings.callInformation
                 font.pointSize: JamiTheme.menuFontSize
@@ -77,25 +115,21 @@ BaseModalDialog {
                 clip: true
 
                 delegate: Column {
+                    width: parent.width
 
-                    Text {
-                        color: JamiTheme.callInfoColor
-                        text: JamiStrings.callId + ": " + CALL_ID
-                        font.pointSize: JamiTheme.textFontPointSize
-                        wrapMode: Text.WrapAnywhere
+                    SelectableTextItem  {
+                        text: JamiStrings.callId + ": " + CALL_ID + "jdksladsklajdladklasjkljdr"
                         width: callInfoListview.width
                     }
 
-                    Text {
+                    SelectableTextItem  {
                         function stringWithoutRing(peerNumber) {
                             return peerNumber.replace("@ring.dht", "");
                         }
-                        color: JamiTheme.callInfoColor
                         text: JamiStrings.peerNumber + ": " + stringWithoutRing(PEER_NUMBER)
-                        font.pointSize: JamiTheme.textFontPointSize
-                        wrapMode: Text.WrapAnywhere
                         width: callInfoListview.width
                     }
+
                     Column {
                         id: socketLayout
 
@@ -105,12 +139,8 @@ BaseModalDialog {
                         topPadding: JamiTheme.callInformationBlockSpacing
 
                         RowLayout {
-
-                            Text {
-                                color: JamiTheme.callInfoColor
+                            SelectableTextItem  {
                                 text: JamiStrings.sockets
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
                                 width: socketLayout.width
                             }
 
@@ -126,45 +156,30 @@ BaseModalDialog {
                             }
                         }
 
-                        Text {
-                            color: JamiTheme.callInfoColor
+                        SelectableTextItem {
                             text: SOCKETS
-                            font.pointSize: JamiTheme.textFontPointSize
-                            wrapMode: Text.WrapAnywhere
                             visible: socketLayout.showAll
                             width: socketLayout.width
                         }
                     }
 
-                    Text {
-                        color: JamiTheme.callInfoColor
+                    SelectableTextItem {
                         text: JamiStrings.videoCodec + ": " + VIDEO_CODEC
-                        font.pointSize: JamiTheme.textFontPointSize
-                        wrapMode: Text.WrapAnywhere
                         width: callInfoListview.width
                     }
 
-                    Text {
-                        color: JamiTheme.callInfoColor
+                    SelectableTextItem {
                         text: JamiStrings.audioCodec + ": " + AUDIO_CODEC + " " + AUDIO_SAMPLE_RATE + " Hz"
-                        font.pointSize: JamiTheme.textFontPointSize
-                        wrapMode: Text.WrapAnywhere
                         width: callInfoListview.width
                     }
 
-                    Text {
-                        color: JamiTheme.callInfoColor
+                    SelectableTextItem {
                         text: JamiStrings.hardwareAcceleration + ": " + HARDWARE_ACCELERATION
-                        font.pointSize: JamiTheme.textFontPointSize
-                        wrapMode: Text.WrapAnywhere
                         width: callInfoListview.width
                     }
 
-                    Text {
-                        color: JamiTheme.callInfoColor
+                    SelectableTextItem {
                         text: JamiStrings.videoBitrate + ": " + VIDEO_BITRATE + " bps"
-                        font.pointSize: JamiTheme.textFontPointSize
-                        wrapMode: Text.WrapAnywhere
                         width: callInfoListview.width
                     }
                 }
@@ -197,28 +212,18 @@ BaseModalDialog {
                 delegate: Column {
                     spacing: JamiTheme.callInformationElementsSpacing
 
-                    Text {
-                        color: JamiTheme.callInfoColor
+                    SelectableTextItem {
                         text: JamiStrings.rendererId + ": " + RENDERER_ID
-                        font.pointSize: JamiTheme.textFontPointSize
-                        wrapMode: Text.WrapAnywhere
                         width: renderersInfoListview.width
                     }
 
-                    Text {
-                        id: testText
-                        color: JamiTheme.callInfoColor
+                    SelectableTextItem {
                         text: JamiStrings.fps_short + ": " + FPS
-                        font.pointSize: JamiTheme.textFontPointSize
-                        wrapMode: Text.WrapAnywhere
                         width: renderersInfoListview.width
                     }
 
-                    Text {
-                        color: JamiTheme.callInfoColor
+                    SelectableTextItem {
                         text: JamiStrings.resolution + ": " + RES
-                        font.pointSize: JamiTheme.textFontPointSize
-                        wrapMode: Text.WrapAnywhere
                         width: renderersInfoListview.width
                     }
                 }
