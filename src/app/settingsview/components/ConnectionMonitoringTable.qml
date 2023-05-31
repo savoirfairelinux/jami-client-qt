@@ -217,7 +217,7 @@ ListView {
                                 text: JamiStrings.copyAllData
                             }
                             onClicked: {
-                                tooltipContact.text = JamiStrings.logsViewCopied;
+                                tooltipContact.text = JamiStrings.copiedToClipboard;
                                 UtilsAdapter.setClipboardText(ConnectionDatas);
                             }
                         }
@@ -259,7 +259,7 @@ ListView {
                                 text: delegateDeviceText.text
                             }
                             onClicked: {
-                                tooltipDevice.text = delegateDeviceText.text + " (" + JamiStrings.logsViewCopied + ")";
+                                tooltipDevice.text = delegateDeviceText.text + " (" + JamiStrings.copiedToClipboard + ")";
                                 UtilsAdapter.setClipboardText(delegateDeviceText.text);
                             }
                         }

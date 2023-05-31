@@ -554,11 +554,14 @@ Item {
 
     // View Logs
     property string logsViewTitle: qsTr("Debug")
-    property string logsViewCopy: qsTr("Copy")
+    property string logsViewShowStats: qsTr("Show Stats")
+    property string logsViewStart: qsTr("Start")
+    property string logsViewStop: qsTr("Stop")
+    property string copyToClipboard: qsTr("Copy")
     property string logsViewReport: qsTr("Report Bug")
     property string logsViewClear: qsTr("Clear")
     property string cancel: qsTr("Cancel")
-    property string logsViewCopied: qsTr("Copied to clipboard!")
+    property string copiedToClipboard: qsTr("Copied to clipboard!")
     property string logsViewDisplay: qsTr("Receive Logs")
 
     // ImportFromBackupPage

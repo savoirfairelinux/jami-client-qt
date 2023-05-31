@@ -14,44 +14,40 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.qmlmodels
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 JamiListView {
     id: root
 
     function getDistanceToBottom() {
-        const scrollDiff = ScrollBar.vertical.position -
-                         (1.0 - ScrollBar.vertical.size)
-        return Math.abs(scrollDiff) * contentHeight
+        const scrollDiff = ScrollBar.vertical.position - (1.0 - ScrollBar.vertical.size);
+        return Math.abs(scrollDiff) * contentHeight;
     }
 
     function loadMoreMsgsIfNeeded() {
         if (atYBeginning && !CurrentConversation.allMessagesLoaded)
-            MessagesAdapter.loadMoreMessages()
+            MessagesAdapter.loadMoreMessages();
     }
 
     function computeTimestampVisibility(item1, item1Index, item2, item2Index) {
         if (item1 && item2) {
             if (item1Index < item2Index) {
-                item1.showTime = item1.timestamp - item2.timestamp > JamiTheme.timestampIntervalTime
-                item1.showDay = item1.formattedDay !== item2.formattedDay
+                item1.showTime = item1.timestamp - item2.timestamp > JamiTheme.timestampIntervalTime;
+                item1.showDay = item1.formattedDay !== item2.formattedDay;
             } else {
-                item2.showTime = item2.timestamp - item1.timestamp > JamiTheme.timestampIntervalTime
-                item2.showDay = item2.formattedDay !== item1.formattedDay
+                item2.showTime = item2.timestamp - item1.timestamp > JamiTheme.timestampIntervalTime;
+                item2.showDay = item2.formattedDay !== item1.formattedDay;
             }
-            return true
+            return true;
         }
-        return false
+        return false;
     }
 
     function scrollToBottom() {
@@ -59,27 +55,28 @@ JamiListView {
     }
 
     function computeChatview(item, itemIndex) {
-        if (!root) return
-        var rootItem = root.itemAtIndex(0)
-        var pItem = root.itemAtIndex(itemIndex - 1)
-        var pItemIndex = itemIndex - 1
-        var nItem = root.itemAtIndex(itemIndex + 1)
-        var nItemIndex = itemIndex + 1
+        if (!root)
+            return;
+        var rootItem = root.itemAtIndex(0);
+        var pItem = root.itemAtIndex(itemIndex - 1);
+        var pItemIndex = itemIndex - 1;
+        var nItem = root.itemAtIndex(itemIndex + 1);
+        var nItemIndex = itemIndex + 1;
 
         // middle insertion
         if (pItem && nItem) {
-            computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)
-            computeSequencing(item, nItem, root.itemAtIndex(itemIndex + 2))
+            computeTimestampVisibility(item, itemIndex, nItem, nItemIndex);
+            computeSequencing(item, nItem, root.itemAtIndex(itemIndex + 2));
         }
         // top buffer insertion = scroll up
         if (pItem && !nItem) {
-            computeTimestampVisibility(item, itemIndex, pItem, pItemIndex)
-            computeSequencing(root.itemAtIndex(itemIndex - 2), pItem, item)
+            computeTimestampVisibility(item, itemIndex, pItem, pItemIndex);
+            computeSequencing(root.itemAtIndex(itemIndex - 2), pItem, item);
         }
         // bottom buffer insertion = scroll down
         if (!pItem && nItem) {
-            computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)
-            computeSequencing(item, nItem, root.itemAtIndex(itemIndex + 2))
+            computeTimestampVisibility(item, itemIndex, nItem, nItemIndex);
+            computeSequencing(item, nItem, root.itemAtIndex(itemIndex + 2));
         }
         // index 0 insertion = new message
         if (itemIndex === 0) {
@@ -87,57 +84,56 @@ JamiListView {
             // This needs to be done in a delayed fashion because the new message is inserted
             // at the top of the list and the list is not yet updated.
             Qt.callLater(() => {
-                var fItem = root.itemAtIndex(1)
-                if (fItem) {
-                    computeTimestampVisibility(item, 0, fItem, 1)
-                    computeSequencing(null, item, fItem)
-                    computeSequencing(item, fItem, root.itemAtIndex(2))
-                }
-            })
+                    var fItem = root.itemAtIndex(1);
+                    if (fItem) {
+                        computeTimestampVisibility(item, 0, fItem, 1);
+                        computeSequencing(null, item, fItem);
+                        computeSequencing(item, fItem, root.itemAtIndex(2));
+                    }
+                });
         }
         // top element
-        if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
-            item.showTime = true
-            item.showDay = true
+        if (itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
+            item.showTime = true;
+            item.showDay = true;
         }
     }
 
     function computeSequencing(pItem, item, nItem) {
         if (root === undefined || !item)
-            return
-
+            return;
         function isFirst() {
-            if (!nItem) return true
+            if (!nItem)
+                return true;
             else {
-                if (item.showTime || item.isReply || nItem.isEmojiOnly ) {
-                    return true
+                if (item.showTime || item.isReply || nItem.isEmojiOnly) {
+                    return true;
                 } else if (nItem.author !== item.author) {
-                    return true
+                    return true;
                 }
             }
-            return false
+            return false;
         }
-
         function isLast() {
-            if (!pItem) return true
+            if (!pItem)
+                return true;
             else {
                 if (pItem.showTime || pItem.isReply || pItem.isEmojiOnly) {
-                    return true
+                    return true;
                 } else if (pItem.author !== item.author) {
-                    return true
+                    return true;
                 }
             }
-            return false
+            return false;
         }
-
         if (isLast() && isFirst())
-            item.seq = MsgSeq.single
+            item.seq = MsgSeq.single;
         if (!isLast() && isFirst())
-            item.seq = MsgSeq.first
+            item.seq = MsgSeq.first;
         if (isLast() && !isFirst())
-            item.seq = MsgSeq.last
+            item.seq = MsgSeq.last;
         if (!isLast() && !isFirst())
-            item.seq = MsgSeq.middle
+            item.seq = MsgSeq.middle;
     }
 
     // fade-in mechanism
@@ -150,12 +146,16 @@ JamiListView {
         SequentialAnimation {
             id: fadeAnimation
             NumberAnimation {
-                target: overlay; property: "opacity"
-                to: 1; duration: 0
+                target: overlay
+                property: "opacity"
+                to: 1
+                duration: 0
             }
             NumberAnimation {
-                target: overlay; property: "opacity"
-                to: 0; duration: 240
+                target: overlay
+                property: "opacity"
+                to: 0
+                duration: 240
             }
         }
     }
@@ -166,15 +166,15 @@ JamiListView {
         anchors.fill: parent
 
         function instantiateToast(dest) {
-            instantiate(JamiStrings.fileSaved.arg(dest), 1000, 400)
+            instantiate(JamiStrings.fileSaved.arg(dest));
         }
     }
 
     Connections {
         target: CurrentConversation
         function onScrollTo(id) {
-            var idx = MessagesAdapter.getMessageIndexFromId(id)
-            positionViewAtIndex(idx, ListView.Visible)
+            var idx = MessagesAdapter.getMessageIndexFromId(id);
+            positionViewAtIndex(idx, ListView.Visible);
         }
     }
 
@@ -201,8 +201,8 @@ JamiListView {
             roleValue: Interaction.Type.TEXT
 
             TextMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
+                Component.onCompleted: {
+                    computeChatview(this, index);
                 }
             }
         }
@@ -211,8 +211,8 @@ JamiListView {
             roleValue: Interaction.Type.CALL
 
             CallMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
+                Component.onCompleted: {
+                    computeChatview(this, index);
                 }
             }
         }
@@ -221,8 +221,8 @@ JamiListView {
             roleValue: Interaction.Type.CONTACT
 
             ContactMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
+                Component.onCompleted: {
+                    computeChatview(this, index);
                 }
             }
         }
@@ -232,8 +232,8 @@ JamiListView {
 
             GeneratedMessageDelegate {
                 font.bold: true
-                Component.onCompleted:  {
-                    computeChatview(this, index)
+                Component.onCompleted: {
+                    computeChatview(this, index);
                 }
             }
         }
@@ -242,12 +242,11 @@ JamiListView {
             roleValue: Interaction.Type.DATA_TRANSFER
 
             DataTransferMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
+                Component.onCompleted: {
+                    computeChatview(this, index);
                 }
             }
         }
-
     }
 
     onAtYBeginningChanged: loadMoreMsgsIfNeeded()
@@ -256,20 +255,19 @@ JamiListView {
         target: MessagesAdapter
 
         function onNewInteraction() {
-            if (root.getDistanceToBottom() < 80 &&
-                    !root.atYEnd) {
-                Qt.callLater(root.positionViewAtBeginning)
+            if (root.getDistanceToBottom() < 80 && !root.atYEnd) {
+                Qt.callLater(root.positionViewAtBeginning);
             }
         }
 
         function onMoreMessagesLoaded(loadingRequestId) {
             if (root.contentHeight < root.height || root.atYBeginning) {
-                root.loadMoreMsgsIfNeeded()
+                root.loadMoreMsgsIfNeeded();
             }
         }
 
         function onFileCopied(dest) {
-            toastManager.instantiateToast(dest)
+            toastManager.instantiateToast(dest);
         }
     }
 
@@ -279,7 +277,7 @@ JamiListView {
         anchors.bottom: root.bottom
         anchors.bottomMargin: JamiTheme.chatViewScrollToBottomButtonBottomMargin
         anchors.horizontalCenter: root.horizontalCenter
-        visible:  1 - verticalScrollBar.position >= verticalScrollBar.size * 2
+        visible: 1 - verticalScrollBar.position >= verticalScrollBar.size * 2
 
         onClicked: scrollToBottom()
     }
@@ -311,36 +309,31 @@ JamiListView {
             Connections {
                 target: MessagesAdapter
 
-                function onCurrentConvComposingListChanged () {
-                    var typeIndicatorNameTextString = ""
-                    var nameList = MessagesAdapter.currentConvComposingList
-
+                function onCurrentConvComposingListChanged() {
+                    var typeIndicatorNameTextString = "";
+                    var nameList = MessagesAdapter.currentConvComposingList;
                     if (nameList.length > 4) {
-                        typeIndicatorNameText.text = ""
-                        typeIndicatorEndingText.text = JamiStrings.typeIndicatorMax
-                        typeIndicatorNameText.calculateWidth()
-                        return
+                        typeIndicatorNameText.text = "";
+                        typeIndicatorEndingText.text = JamiStrings.typeIndicatorMax;
+                        typeIndicatorNameText.calculateWidth();
+                        return;
                     }
                     if (nameList.length === 1) {
-                        typeIndicatorNameText.text = nameList[0]
-                        typeIndicatorEndingText.text =
-                                JamiStrings.typeIndicatorSingle.replace("{}", "")
-                        typeIndicatorNameText.calculateWidth()
-                        return
+                        typeIndicatorNameText.text = nameList[0];
+                        typeIndicatorEndingText.text = JamiStrings.typeIndicatorSingle.replace("{}", "");
+                        typeIndicatorNameText.calculateWidth();
+                        return;
                     }
-
                     for (var i = 0; i < nameList.length; i++) {
-                        typeIndicatorNameTextString += nameList[i]
-
+                        typeIndicatorNameTextString += nameList[i];
                         if (i === nameList.length - 2)
-                            typeIndicatorNameTextString += JamiStrings.typeIndicatorAnd
+                            typeIndicatorNameTextString += JamiStrings.typeIndicatorAnd;
                         else if (i !== nameList.length - 1)
-                            typeIndicatorNameTextString += ", "
+                            typeIndicatorNameTextString += ", ";
                     }
-                    typeIndicatorNameText.text = typeIndicatorNameTextString
-                    typeIndicatorEndingText.text =
-                            JamiStrings.typeIndicatorPlural.replace("{}", "")
-                    typeIndicatorNameText.calculateWidth()
+                    typeIndicatorNameText.text = typeIndicatorNameTextString;
+                    typeIndicatorEndingText.text = JamiStrings.typeIndicatorPlural.replace("{}", "");
+                    typeIndicatorNameText.calculateWidth();
                 }
             }
 
@@ -349,17 +342,13 @@ JamiListView {
 
                 property int textWidth: 0
 
-                function calculateWidth () {
+                function calculateWidth() {
                     if (!text)
-                        return 0
+                        return 0;
                     else {
-                        var textSize = JamiQmlUtils.getTextBoundingRect(font, text).width
-                        var typingContentWidth = typingDots.width + typingDots.anchors.leftMargin
-                                + typeIndicatorNameText.anchors.leftMargin
-                                + typeIndicatorEndingText.contentWidth
-                        typeIndicatorNameText.Layout.preferredWidth =
-                                Math.min(typeIndicatorContainer.width - 5 - typingContentWidth,
-                                         textSize)
+                        var textSize = JamiQmlUtils.getTextBoundingRect(font, text).width;
+                        var typingContentWidth = typingDots.width + typingDots.anchors.leftMargin + typeIndicatorNameText.anchors.leftMargin + typeIndicatorEndingText.contentWidth;
+                        typeIndicatorNameText.Layout.preferredWidth = Math.min(typeIndicatorContainer.width - 5 - typingContentWidth, textSize);
                     }
                 }
 
