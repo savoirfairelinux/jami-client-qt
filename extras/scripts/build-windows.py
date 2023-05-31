@@ -376,11 +376,19 @@ def run_tests(config_str, qt_dir):
         qt_dir, 'bin', 'QtWebEngineProcess.exe')
     os.environ["QML2_IMPORT_PATH"] = os.path.join(qt_dir, "qml")
 
+    cmd = ["ctest", "-V", "-C", config_str]
+    # On Windows, when running on a jenkins slave, the QML tests don't output
+    # anything to stdout/stderr. Workaround by outputting to a file and then
+    # printing the contents of the file.
+    if os.environ.get("JENKINS_URL"):
+        cmd += ["--output-log", "test.log", "--quiet"]
     tests_dir = os.path.join(build_dir, "tests")
-    if execute_cmd(["ctest", "-V", "-C", config_str],
-                   False, None, tests_dir):
-        print("Tests failed.")
-        sys.exit(1)
+    exit_code = execute_cmd(cmd, False, None, tests_dir)
+    # Print the contents of the log file.
+    if os.environ.get("JENKINS_URL"):
+        with open(os.path.join(tests_dir, "test.log"), "r") as file:
+            print(file.read())
+    sys.exit(exit_code)
 
 
 def generate_msi(version):

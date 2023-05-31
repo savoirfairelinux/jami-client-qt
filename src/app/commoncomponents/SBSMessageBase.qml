@@ -15,12 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -64,9 +62,7 @@ Control {
 
     // If the ListView attached properties are not available,
     // then the root delegate is likely a Loader.
-    readonly property ListView listView: ListView.view ?
-                                             ListView.view :
-                                             parent.ListView.view
+    readonly property ListView listView: ListView.view ? ListView.view : parent.ListView.view
 
     rightPadding: hPadding
     leftPadding: hPadding
@@ -99,7 +95,7 @@ Control {
                 id: username
                 text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
                 font.bold: true
-                visible:(seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
+                visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
                 font.pixelSize: JamiTheme.usernameBlockFontSize
                 color: JamiTheme.chatviewUsernameColor
                 lineHeight: JamiTheme.usernameBlockLineHeight
@@ -107,7 +103,6 @@ Control {
                 textFormat: TextEdit.PlainText
             }
         }
-
 
         Item {
             id: replyItem
@@ -123,14 +118,15 @@ Control {
             Layout.leftMargin: isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
             Layout.rightMargin: !isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
 
-            transform: Translate { y: JamiTheme.sbsMessageBaseReplyBottomMargin }
-
+            transform: Translate {
+                y: JamiTheme.sbsMessageBaseReplyBottomMargin
+            }
 
             ColumnLayout {
                 width: parent.width
                 spacing: 2
 
-                RowLayout{
+                RowLayout {
                     id: replyToLayout
 
                     Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
@@ -155,8 +151,8 @@ Control {
                         showPresenceIndicator: false
                         imageId: {
                             if (replyItem.isSelf)
-                                return CurrentAccount.id
-                            return ReplyToAuthor
+                                return CurrentAccount.id;
+                            return ReplyToAuthor;
                         }
                         mode: replyItem.isSelf ? Avatar.Mode.Account : Avatar.Mode.Contact
                     }
@@ -179,10 +175,9 @@ Control {
                     color: replyItem.isSelf ? CurrentConversation.color : JamiTheme.messageInBgColor
                     radius: msgRadius
 
-                    Layout.preferredWidth: replyToRow.width + 2*JamiTheme.preferredMarginSize
-                    Layout.preferredHeight: replyToRow.height + 2*JamiTheme.preferredMarginSize
+                    Layout.preferredWidth: replyToRow.width + 2 * JamiTheme.preferredMarginSize
+                    Layout.preferredHeight: replyToRow.height + 2 * JamiTheme.preferredMarginSize
                     Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
-
 
                     // place actual content here
                     ReplyToRow {
@@ -194,8 +189,8 @@ Control {
                     MouseArea {
                         z: 2
                         anchors.fill: parent
-                        onClicked: function(mouse) {
-                            CurrentConversation.scrollToMsg(ReplyTo)
+                        onClicked: function (mouse) {
+                            CurrentConversation.scrollToMsg(ReplyTo);
                         }
                     }
                 }
@@ -211,7 +206,7 @@ Control {
             Item {
                 id: avatarBlock
 
-                Layout.preferredWidth: isOutgoing ? 0 : avatar.width + hPadding/3
+                Layout.preferredWidth: isOutgoing ? 0 : avatar.width + hPadding / 3
                 Layout.preferredHeight: isOutgoing ? 0 : bubble.height
                 Avatar {
                     id: avatar
@@ -238,7 +233,7 @@ Control {
                     hoverEnabled: true
                     onClicked: function (mouse) {
                         if (root.hoveredLink) {
-                            MessagesAdapter.openUrl(root.hoveredLink)
+                            MessagesAdapter.openUrl(root.hoveredLink);
                         }
                     }
                     property bool bubbleHovered: containsMouse || textHovered
@@ -276,30 +271,24 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? optionButtonItem.right : undefined
                         anchors.left: !isOutgoing ? optionButtonItem.left : undefined
-                        visible: CurrentAccount.type !== Profile.Type.SIP && Body !== "" &&
-                                    (
-                                        bubbleArea.bubbleHovered
-                                        || hovered
-                                        || reply.hovered
-                                        || bgHandler.hovered
-                                    )
+                        visible: CurrentAccount.type !== Profile.Type.SIP && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || bgHandler.hovered)
                         source: JamiResources.more_vert_24dp_svg
                         width: optionButtonItem.width / 2
                         height: optionButtonItem.height
 
                         onClicked: {
-                            var component = Qt.createComponent("qrc:/commoncomponents/MessageOptionsPopup.qml")
+                            var component = Qt.createComponent("qrc:/commoncomponents/MessageOptionsPopup.qml");
                             var obj = component.createObject(bubble, {
-                                                                 "emojiReplied": Qt.binding(() => emojiReaction.emojiTexts),
-                                                                 "isOutgoing": isOutgoing,
-                                                                 "msgId": Id,
-                                                                 "msgBody": Body,
-                                                                 "type": Type,
-                                                                 "transferName": TransferName,
-                                                                 "msgBubble": bubble,
-                                                                 "listView": listView
-                                                             })
-                            obj.open()
+                                    "emojiReactions": emojiReactions,
+                                    "isOutgoing": isOutgoing,
+                                    "msgId": Id,
+                                    "msgBody": Body,
+                                    "type": Type,
+                                    "transferName": TransferName,
+                                    "msgBubble": bubble,
+                                    "listView": listView
+                                });
+                            obj.open();
                         }
                     }
 
@@ -315,17 +304,11 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? more.left : undefined
                         anchors.left: !isOutgoing ? more.right : undefined
-                        visible: CurrentAccount.type !== Profile.Type.SIP && Body !== "" &&
-                                    (
-                                        bubbleArea.bubbleHovered
-                                        || hovered
-                                        || more.hovered
-                                        || bgHandler.hovered
-                                    )
+                        visible: CurrentAccount.type !== Profile.Type.SIP && Body !== "" && (bubbleArea.bubbleHovered || hovered || more.hovered || bgHandler.hovered)
 
                         onClicked: {
-                            MessagesAdapter.editId = ""
-                            MessagesAdapter.replyToId = Id
+                            MessagesAdapter.editId = "";
+                            MessagesAdapter.replyToId = Id;
                         }
                     }
                 }
@@ -335,18 +318,18 @@ Control {
 
                     property bool isEdited: PreviousBodies.length !== 0
                     visible: !IsEmojiOnly
-                    z:-1
+                    z: -1
                     out: isOutgoing
                     type: seq
                     isReply: root.isReply
 
                     function getBaseColor() {
-                        var baseColor = isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor
+                        var baseColor = isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor;
                         if (Id === MessagesAdapter.replyToId || Id === MessagesAdapter.editId) {
                             // If we are replying to or editing the message
-                            return Qt.darker(baseColor, 1.5)
+                            return Qt.darker(baseColor, 1.5);
                         }
-                        return baseColor
+                        return baseColor;
                     }
 
                     color: getBaseColor()
@@ -357,7 +340,6 @@ Control {
                     width: Type === Interaction.Type.TEXT && !isEdited ? root.textContentWidth : innerContent.childrenRect.width
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
                 }
-
 
                 Rectangle {
                     id: bg
@@ -412,8 +394,8 @@ Control {
                     target: CurrentConversation
                     function onScrollTo(id) {
                         if (id !== root.id)
-                            return
-                        selectAnimation.start()
+                            return;
+                        selectAnimation.start();
                     }
                 }
             }
@@ -444,10 +426,10 @@ Control {
 
                     width: {
                         if (root.readers.length === 0)
-                            return 0
-                        var nbAvatars = root.readers.length
-                        var margin = JamiTheme.avatarReadReceiptSize / 3
-                        return nbAvatars * JamiTheme.avatarReadReceiptSize - (nbAvatars - 1) * margin
+                            return 0;
+                        var nbAvatars = root.readers.length;
+                        var margin = JamiTheme.avatarReadReceiptSize / 3;
+                        return nbAvatars * JamiTheme.avatarReadReceiptSize - (nbAvatars - 1) * margin;
                     }
                     height: JamiTheme.avatarReadReceiptSize
 
@@ -458,20 +440,20 @@ Control {
         }
 
         EmojiReactions {
-            id: emojiReaction
+            id: emojiReactions
 
             property bool isOutgoing: Author === CurrentAccount.uri
             Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
             Layout.rightMargin: isOutgoing ? status.width : undefined
             Layout.leftMargin: !isOutgoing ? avatarBlock.width : undefined
-            Layout.topMargin: - contentHeight/4
+            Layout.topMargin: -contentHeight / 4
             Layout.preferredHeight: contentHeight + 5
             Layout.preferredWidth: contentWidth
-            emojiReaction: Reactions
+            reactions: Reactions
 
             TapHandler {
                 onTapped: {
-                    reactionPopup.open()
+                    reactionPopup.open();
                 }
             }
         }
@@ -483,10 +465,10 @@ Control {
             orientation: ListView.Horizontal
             Layout.preferredHeight: {
                 if (showTime || seq === MsgSeq.last)
-                    return contentHeight + timestampItem.contentHeight
+                    return contentHeight + timestampItem.contentHeight;
                 else if (readsMultiple.visible)
-                    return JamiTheme.avatarReadReceiptSize
-                return 0
+                    return JamiTheme.avatarReadReceiptSize;
+                return 0;
             }
 
             ReadStatus {
@@ -494,14 +476,14 @@ Control {
                 visible: root.readers.length > 1 && CurrentAccount.sendReadReceipt
                 width: {
                     if (root.readers.length === 0)
-                        return 0
-                    var nbAvatars = root.readers.length
-                    var margin = JamiTheme.avatarReadReceiptSize / 3
-                    return nbAvatars * JamiTheme.avatarReadReceiptSize - (nbAvatars - 1) * margin
+                        return 0;
+                    var nbAvatars = root.readers.length;
+                    var margin = JamiTheme.avatarReadReceiptSize / 3;
+                    return nbAvatars * JamiTheme.avatarReadReceiptSize - (nbAvatars - 1) * margin;
                 }
 
                 anchors.right: parent.right
-                anchors.top : parent.top
+                anchors.top: parent.top
                 anchors.topMargin: 1
                 readers: root.readers
             }
@@ -511,7 +493,7 @@ Control {
     EmojiReactionPopup {
         id: reactionPopup
 
-        emojiReaction: Reactions
+        reactions: Reactions
         msgId: Id
     }
 }
