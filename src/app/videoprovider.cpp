@@ -290,7 +290,7 @@ VideoProvider::onRendererStopped(const QString& id)
 
     it->second.frameMutex.lockForWrite();
     it->second.videoFrame = QVideoFrame();
-    it->second.active = true;
+    it->second.active = false;
     it->second.frameMutex.unlock();
 
     renderersMutex_.unlock();
