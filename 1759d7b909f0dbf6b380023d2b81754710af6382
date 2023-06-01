@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6ff7210_15c84905",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-01T15:23:34Z",
+      "side": 1,
+      "message": "I\u0027m all for the default value of false, but I believe this was in place to prevent users from accidentally closing Jami and wondering why they\u0027re not getting calls/messages.",
+      "revId": "1759d7b909f0dbf6b380023d2b81754710af6382",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
