@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cecd1fe3_6fb92916",
+        "filename": "src/app/commoncomponents/SettingParaCombobox.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-01T19:54:52Z",
+      "side": 1,
+      "message": "when is it out-of-range?",
+      "range": {
+        "startLine": 54,
+        "startChar": 33,
+        "endLine": 54,
+        "endChar": 38
+      },
+      "revId": "79657b42d4f89cda3611b87de2e6c87e9bac0fdd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
