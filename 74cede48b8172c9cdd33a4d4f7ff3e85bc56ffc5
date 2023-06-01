@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71365fce_f904a4fd",
+        "filename": "src/app/commoncomponents/PresenceIndicator.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-01T15:26:45Z",
+      "side": 0,
+      "message": "maybe this state should still have some sort of visual representation",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 46
+      },
+      "revId": "74cede48b8172c9cdd33a4d4f7ff3e85bc56ffc5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
