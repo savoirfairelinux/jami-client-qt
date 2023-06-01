@@ -69,7 +69,7 @@ private:
         QReadWriteLock frameMutex;
         QSet<QVideoSink*> subscribers;
         QReadWriteLock subscribersMutex;
-        bool active;
+        bool active {false};
     };
     std::map<QString, FrameObject> renderers_;
     QReadWriteLock renderersMutex_;
