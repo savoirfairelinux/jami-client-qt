@@ -36,8 +36,8 @@ public:
                            QObject* parent = nullptr);
     ~UpdateManager();
 
-    enum GetStatus { STARTED, FINISHED };
-    Q_ENUM(GetStatus)
+    enum Status { STARTED, FINISHED };
+    Q_ENUM(Status)
 
     Q_INVOKABLE void checkForUpdates(bool quiet = false);
     Q_INVOKABLE void applyUpdates(bool beta = false);
@@ -53,7 +53,7 @@ public:
                       const QString& filePath);
 
 Q_SIGNALS:
-    void statusChanged(GetStatus status);
+    void statusChanged(UpdateManager::Status status);
     void downloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
 
     void updateCheckReplyReceived(bool ok, bool found = false);

@@ -177,13 +177,6 @@ MainApplication::init()
         screenInfo_.setCurrentFocusWindow(this->focusWindow());
     });
 
-    QObject::connect(
-        lrcInstance_.get(),
-        &LRCInstance::quitEngineRequested,
-        this,
-        [this] { Q_EMIT engine_->quit(); },
-        Qt::DirectConnection);
-
     auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
     auto screenshotPath = settingsManager_->getValue(Settings::Key::ScreenshotPath);
     auto allowTransferFromTrusted = settingsManager_->getValue(Settings::Key::AutoAcceptFiles)
