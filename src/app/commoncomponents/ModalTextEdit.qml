@@ -75,7 +75,7 @@ Loader {
 
     // Needed to give proper focus to loaded item
     onFocusChanged: {
-        if (root.focus && root.isPersistent) {
+        if (item && root.focus && root.isPersistent) {
             item.forceActiveFocus();
         }
         isEditing = !isEditing;
