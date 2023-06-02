@@ -63,6 +63,7 @@ RowLayout {
         }
 
         visible: !root.isPassword
+        focus: visible
         isSettings: true
 
         Layout.alignment: Qt.AlignCenter
@@ -73,7 +74,7 @@ RowLayout {
 
         onAccepted: {
             root.dynamicText = dynamicText;
-            editFinished();
+            root.editFinished();
         }
 
         editMode: false
@@ -82,7 +83,7 @@ RowLayout {
         onActiveFocusChanged: {
             if (!activeFocus) {
                 root.dynamicText = dynamicText;
-                editFinished();
+                root.editFinished();
                 modalTextEdit.editMode = false;
             } else {
                 modalTextEdit.editMode = true;
@@ -94,6 +95,7 @@ RowLayout {
         id: passwordTextEdit
 
         visible: root.isPassword
+        focus: visible
         isSettings: true
 
         Layout.alignment: Qt.AlignCenter
@@ -103,8 +105,16 @@ RowLayout {
 
         onAccepted: {
             root.dynamicText = dynamicText;
-            editFinished();
+            root.editFinished();
             echoMode = TextInput.Password;
+        }
+
+        onActiveFocusChanged: {
+            if (!activeFocus) {
+                root.dynamicText = dynamicText;
+                root.editFinished();
+                echoMode = TextInput.Password;
+            }
         }
     }
 }
