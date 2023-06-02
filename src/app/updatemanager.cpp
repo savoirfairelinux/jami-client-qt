@@ -95,12 +95,12 @@ struct UpdateManager::Impl : public QObject
                 &NetworkManager::errorOccured,
                 &parent_,
                 &UpdateManager::updateErrorOccurred);
-        connect(&parent_, &UpdateManager::statusChanged, this, [this](GetStatus status) {
+        connect(&parent_, &UpdateManager::statusChanged, this, [this](Status status) {
             switch (status) {
-            case GetStatus::STARTED:
+            case Status::STARTED:
                 Q_EMIT parent_.updateDownloadStarted();
                 break;
-            case GetStatus::FINISHED:
+            case Status::FINISHED:
                 Q_EMIT parent_.updateDownloadFinished();
                 break;
             default:
@@ -117,12 +117,14 @@ struct UpdateManager::Impl : public QObject
                 Q_UNUSED(success)
                 Q_UNUSED(errorMessage)
                 lrcInstance_->finish();
-                Q_EMIT lrcInstance_->quitEngineRequested();
-                auto args = QString(" /passive /norestart WIXNONUILAUNCH=1");
                 QProcess process;
-                process.start("powershell ",
-                              QStringList() << tempPath_ + "\\" + downloadUrl.fileName() << "/L*V"
-                                            << tempPath_ + "\\jami_x64_install.log" + args);
+                auto msiPath = QDir::toNativeSeparators(tempPath_ + "/jami.release.x64.msi");
+                auto logPath = QDir::toNativeSeparators(tempPath_ + "/jami_x64_install.log");
+                process.start("msiexec",
+                              QStringList() << "/i" << msiPath << "/passive"
+                                            << "/norestart"
+                                            << "WIXNONUILAUNCH=1"
+                                            << "/L*V" << logPath);
                 process.waitForFinished();
             },
             tempPath_);
@@ -313,10 +315,10 @@ UpdateManager::downloadFile(const QUrl& url,
             resetDownload();
         }
         onDoneCallback(success, errorMessage);
-        Q_EMIT statusChanged(GetStatus::FINISHED);
+        Q_EMIT statusChanged(Status::FINISHED);
     });
 
-    Q_EMIT statusChanged(GetStatus::STARTED);
+    Q_EMIT statusChanged(Status::STARTED);
 }
 
 void

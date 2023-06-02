@@ -138,7 +138,6 @@ Q_SIGNALS:
     void selectedConvUidChanged();
     void restoreAppRequested();
     void notificationClicked();
-    void quitEngineRequested();
     void conversationUpdated(const QString& convId, const QString& accountId);
     void draftSaved(const QString& convId);
     void base64SwarmAvatarChanged();
