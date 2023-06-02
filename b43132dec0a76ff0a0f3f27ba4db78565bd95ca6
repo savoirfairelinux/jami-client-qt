@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01bd89c2_90c2521e",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-02T14:54:58Z",
+      "side": 1,
+      "message": "maybe just take the QObject* right away, then in QML:\n`model.setEnabled(this, value)`",
+      "range": {
+        "startLine": 240,
+        "startChar": 33,
+        "endLine": 240,
+        "endChar": 46
+      },
+      "revId": "b43132dec0a76ff0a0f3f27ba4db78565bd95ca6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c7cdad2_a55d084e",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-02T14:54:58Z",
+      "side": 1,
+      "message": "It\u0027s unclear what true index means. Assuming this means filtered (enabled) index, can\u0027t we do this with a QML filter model and use mapFromSource/mapToSource? If not, maybe filteredIndex and a comment would be better.",
+      "range": {
+        "startLine": 273,
+        "startChar": 22,
+        "endLine": 273,
+        "endChar": 34
+      },
+      "revId": "b43132dec0a76ff0a0f3f27ba4db78565bd95ca6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f7724df4_5ec1b4ca",
         "filename": "src/app/calloverlaymodel.cpp",
         "patchSetId": 1
