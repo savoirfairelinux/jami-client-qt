@@ -36,12 +36,12 @@ SimpleMessageDialog {
     Connections {
         target: UpdateManager
 
-        function onDownloadProgressChanged(bytesRead, totalBytes) {
-            downloadDialog.setDownloadProgress(bytesRead, totalBytes);
+        function onUpdateErrorOccurred(error) {
+            downloadDialog.close();
         }
 
-        function onUpdateDownloadErrorOccurred(error) {
-            downloadDialog.close();
+        function onDownloadProgressChanged(bytesRead, totalBytes) {
+            downloadDialog.setDownloadProgress(bytesRead, totalBytes);
         }
 
         function onUpdateDownloadFinished() {
