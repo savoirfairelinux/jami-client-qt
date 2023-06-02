@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db1cfb41_e25f4bdc",
+        "filename": "INSTALL.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 996
+      },
+      "writtenOn": "2023-06-02T15:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "761386f1_1429c6cc",
+      "range": {
+        "startLine": 14,
+        "startChar": 16,
+        "endLine": 14,
+        "endChar": 20
+      },
+      "revId": "173408b000778bcc730200f78e6d21ef0a0b2ea4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac8cb6bb_9c348d44",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-01T19:43:51Z",
       "side": 1,
       "message": "debian_11, the minor is not part of the release version (unline ubuntu)",
+      "range": {
+        "startLine": 32,
+        "startChar": 125,
+        "endLine": 32,
+        "endChar": 144
+      },
+      "revId": "173408b000778bcc730200f78e6d21ef0a0b2ea4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7392c04c_cdbcef90",
+        "filename": "INSTALL.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 996
+      },
+      "writtenOn": "2023-06-02T15:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac8cb6bb_9c348d44",
       "range": {
         "startLine": 32,
         "startChar": 125,
@@ -83,6 +131,54 @@
       "writtenOn": "2023-06-01T19:43:51Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 96,
+        "startChar": 73,
+        "endLine": 96,
+        "endChar": 84
+      },
+      "revId": "173408b000778bcc730200f78e6d21ef0a0b2ea4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31ee40e9_f5ef6763",
+        "filename": "INSTALL.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 996
+      },
+      "writtenOn": "2023-06-02T15:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51810138_c2bf5f3d",
+      "range": {
+        "startLine": 96,
+        "startChar": 12,
+        "endLine": 96,
+        "endChar": 22
+      },
+      "revId": "173408b000778bcc730200f78e6d21ef0a0b2ea4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25e16ff8_b7f5358c",
+        "filename": "INSTALL.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 996
+      },
+      "writtenOn": "2023-06-02T15:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "732d8230_0387f0bd",
       "range": {
         "startLine": 96,
         "startChar": 73,
