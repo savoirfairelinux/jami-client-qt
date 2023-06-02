@@ -241,6 +241,7 @@ Rectangle {
                 SplitView.maximumWidth: root.width
                 SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
                 SplitView.fillWidth: true
+                spacing: 0
 
                 StackLayout {
                     id: chatViewStack
