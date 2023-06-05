@@ -347,7 +347,7 @@ def deploy_runtimes(qt_dir):
               "later.")
         sys.exit(1)
     os.environ["VCINSTALLDIR"] = os.path.join(installation_dir, "VC")
-    executable = os.path.join(runtime_dir.encode(), b"Jami.exe")
+    executable = os.path.join(runtime_dir, "Jami.exe")
     execute_cmd([win_deploy_qt, "--verbose", "1", "--no-compiler-runtime",
                  "--qmldir", qml_src_dir, "--release", executable],
                 False, cmd_dir=runtime_dir)
@@ -376,19 +376,11 @@ def run_tests(config_str, qt_dir):
         qt_dir, 'bin', 'QtWebEngineProcess.exe')
     os.environ["QML2_IMPORT_PATH"] = os.path.join(qt_dir, "qml")
 
-    cmd = ["ctest", "-V", "-C", config_str]
-    # On Windows, when running on a jenkins slave, the QML tests don't output
-    # anything to stdout/stderr. Workaround by outputting to a file and then
-    # printing the contents of the file.
-    if os.environ.get("JENKINS_URL"):
-        cmd += ["--output-log", "test.log", "--quiet"]
     tests_dir = os.path.join(build_dir, "tests")
-    exit_code = execute_cmd(cmd, False, None, tests_dir)
-    # Print the contents of the log file.
-    if os.environ.get("JENKINS_URL"):
-        with open(os.path.join(tests_dir, "test.log"), "r") as file:
-            print(file.read())
-    sys.exit(exit_code)
+    if execute_cmd(["ctest", "-V", "-C", config_str],
+                   False, None, tests_dir):
+        print("Tests failed.")
+        sys.exit(1)
 
 
 def generate_msi(version):
