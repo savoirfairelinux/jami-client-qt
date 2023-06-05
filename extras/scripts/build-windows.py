@@ -347,7 +347,7 @@ def deploy_runtimes(qt_dir):
               "later.")
         sys.exit(1)
     os.environ["VCINSTALLDIR"] = os.path.join(installation_dir, "VC")
-    executable = os.path.join(runtime_dir.encode(), b"Jami.exe")
+    executable = os.path.join(runtime_dir, "Jami.exe")
     execute_cmd([win_deploy_qt, "--verbose", "1", "--no-compiler-runtime",
                  "--qmldir", qml_src_dir, "--release", executable],
                 False, cmd_dir=runtime_dir)
@@ -376,6 +376,7 @@ def run_tests(config_str, qt_dir):
         qt_dir, 'bin', 'QtWebEngineProcess.exe')
     os.environ["QML2_IMPORT_PATH"] = os.path.join(qt_dir, "qml")
 
+    tests_dir = os.path.join(build_dir, "tests")
     cmd = ["ctest", "-V", "-C", config_str]
     # On Windows, when running on a jenkins slave, the QML tests don't output
     # anything to stdout/stderr. Workaround by outputting to a file and then
