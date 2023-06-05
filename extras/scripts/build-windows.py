@@ -347,7 +347,7 @@ def deploy_runtimes(qt_dir):
               "later.")
         sys.exit(1)
     os.environ["VCINSTALLDIR"] = os.path.join(installation_dir, "VC")
-    executable = os.path.join(runtime_dir.encode(), b"Jami.exe")
+    executable = os.path.join(runtime_dir, "Jami.exe")
     execute_cmd([win_deploy_qt, "--verbose", "1", "--no-compiler-runtime",
                  "--qmldir", qml_src_dir, "--release", executable],
                 False, cmd_dir=runtime_dir)
