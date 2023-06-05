@@ -95,6 +95,7 @@ struct UpdateManager::Impl : public QObject
                 &NetworkManager::errorOccured,
                 &parent_,
                 &UpdateManager::updateErrorOccurred);
+
         connect(&parent_, &UpdateManager::statusChanged, this, [this](Status status) {
             switch (status) {
             case Status::STARTED:

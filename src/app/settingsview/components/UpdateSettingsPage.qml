@@ -32,6 +32,9 @@ SettingsPageBase {
 
     title: JamiStrings.updatesTitle
 
+    // A reference to an open confirmation dialog.
+    property var confirmationDialog: null
+
     function presentInfoDialog(infoText) {
         viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                 "title": JamiStrings.updateDialogTitle,
@@ -43,7 +46,7 @@ SettingsPageBase {
     }
 
     function presentConfirmInstallDialog(infoText, beta) {
-        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+        confirmationDialog = viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                 "title": JamiStrings.updateDialogTitle,
                 "infoText": infoText,
                 "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
@@ -52,6 +55,22 @@ SettingsPageBase {
                         UpdateManager.applyUpdates(beta);
                     }]
             });
+        confirmationDialog.closed.connect(function () {
+            confirmationDialog = null;
+        });
+    }
+
+    // Handle closing the confirmation dialog in case of errors.
+    Connections {
+        target: UpdateManager
+
+        function onUpdateErrorOccurred(error) {
+            print("EERRRROR", confirmationDialog)
+            if (confirmationDialog) {
+                confirmationDialog.close();
+                confirmationDialog = null;
+            }
+        }
     }
 
     flickableContent: ColumnLayout {
@@ -119,7 +138,8 @@ SettingsPageBase {
             toolTipText: JamiStrings.betaInstall
             text: JamiStrings.betaInstall
 
-            onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+            onClicked: {
+                confirmationDialog = viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                     "title": JamiStrings.updateDialogTitle,
                     "infoText": JamiStrings.confirmBeta,
                     "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
@@ -127,7 +147,11 @@ SettingsPageBase {
                     "buttonCallBacks": [function () {
                             UpdateManager.applyUpdates(true);
                         }]
-                })
+                });
+                confirmationDialog.closed.connect(function () {
+                    confirmationDialog = null;
+                });
+            }
         }
     }
 }

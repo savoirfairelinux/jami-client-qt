@@ -328,21 +328,21 @@ ApplicationWindow {
 
         function onUpdateErrorOccurred(error) {
             presentUpdateInfoDialog((function () {
-                        switch (error) {
-                        case NetworkManager.ACCESS_DENIED:
-                            return JamiStrings.genericError;
-                        case NetworkManager.DISCONNECTED:
-                            return JamiStrings.networkDisconnected;
-                        case NetworkManager.NETWORK_ERROR:
-                            return JamiStrings.updateNetworkError;
-                        case NetworkManager.SSL_ERROR:
-                            return JamiStrings.updateSSLError;
-                        case NetworkManager.CANCELED:
-                            return JamiStrings.updateDownloadCanceled;
-                        default:
-                            return {};
-                        }
-                    })());
+                switch (error) {
+                case NetworkManager.ACCESS_DENIED:
+                    return JamiStrings.genericError;
+                case NetworkManager.DISCONNECTED:
+                    return JamiStrings.networkDisconnected;
+                case NetworkManager.NETWORK_ERROR:
+                    return JamiStrings.updateNetworkError;
+                case NetworkManager.SSL_ERROR:
+                    return JamiStrings.updateSSLError;
+                case NetworkManager.CANCELED:
+                    return JamiStrings.updateDownloadCanceled;
+                default:
+                    return {};
+                }
+            })());
         }
     }
 
