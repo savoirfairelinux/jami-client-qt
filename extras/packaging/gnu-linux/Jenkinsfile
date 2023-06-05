@@ -215,7 +215,7 @@ make -f ${PACKAGING_DIR}/Makefile portable-release-tarball .tarball-version
         }
         stage('Sign & deploy packages') {
             agent {
-                label 'ring-buildmachine-02.mtl.sfl'
+                label 'jami-buildmachine-02.mtl.sfl'
             }
 
             when {
