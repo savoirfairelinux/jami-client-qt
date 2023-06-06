@@ -294,11 +294,11 @@ def build(config_str, qt_dir, tests):
         sys.exit(1)
 
 
-def deploy_runtimes(qt_dir):
+def deploy_runtimes(config_str, qt_dir):
     """Deploy the dependencies to the runtime directory."""
     print("Deploying runtime dependencies")
 
-    runtime_dir = os.path.join(repo_root_dir, "x64", "Release")
+    runtime_dir = os.path.join(repo_root_dir, "x64", config_str)
     stamp_file = os.path.join(runtime_dir, ".deploy.stamp")
     if os.path.exists(stamp_file):
         return
@@ -533,7 +533,7 @@ def main():
         if not parsed_args.skip_build:
             build(config_str, parsed_args.qt, do_tests)
         if not parsed_args.skip_deploy:
-            deploy_runtimes(parsed_args.qt)
+            deploy_runtimes(config_str, parsed_args.qt)
 
     if parsed_args.subcommand == "pack":
         do_build(False)
