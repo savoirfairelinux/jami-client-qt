@@ -22,6 +22,9 @@
 #include "qtutils.h"
 #include "systemtray.h"
 #include "qmlregister.h"
+#include "qtutils.h"
+
+#include "namedirectory.h"
 
 #include <QApplication>
 #include <QJsonObject>
@@ -226,27 +229,49 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId,
 {
 #ifdef Q_OS_LINUX
     if (!QApplication::focusWindow() || accountId != lrcInstance_->get_currentAccountId()) {
+        auto& accInfo = lrcInstance_->getAccountInfo(accountId);
+        auto preferences = accInfo.conversationModel->getConversationPreferences(convId);
+        // Should we ignore notifications for this conversation?
+        if (preferences["ignoreNotifications"] == "true")
+            return;
+
         auto conv = convId;
         if (conv.isEmpty()) {
             auto& convInfo = lrcInstance_->getConversationFromPeerUri(peerUri);
             if (convInfo.uid.isEmpty())
                 return;
         }
-        auto& accInfo = lrcInstance_->getAccountInfo(accountId);
-        auto from = accInfo.contactModel->bestNameForContact(peerUri);
         auto to = lrcInstance_->accountModel().bestNameForAccount(accountId);
 
-        auto preferences = accInfo.conversationModel->getConversationPreferences(convId);
-        // Ignore notifications for this conversation
-        if (preferences["ignoreNotifications"] == "true")
-            return;
-        auto contactPhoto = Utils::contactPhoto(lrcInstance_, peerUri, QSize(50, 50), accountId);
-        auto notifId = QString("%1;%2").arg(accountId, conv);
-        systemTray_->showNotification(notifId,
-                                      tr("%1 received a new trust request").arg(to),
-                                      "New request from " + from,
-                                      SystemTray::NotificationType::REQUEST,
-                                      Utils::QImageToByteArray(contactPhoto));
+        auto cb = [this, to, accountId, conv, peerUri](QString peerBestName) {
+            auto contactPhoto = Utils::contactPhoto(lrcInstance_, peerUri, QSize(50, 50), accountId);
+            auto notifId = QString("%1;%2").arg(accountId, conv);
+            systemTray_->showNotification(notifId,
+                                          tr("%1 received a new trust request").arg(to),
+                                          "New request from " + peerBestName,
+                                          SystemTray::NotificationType::REQUEST,
+                                          Utils::QImageToByteArray(contactPhoto));
+        };
+
+        // This peer is not yet a contact, so we don't have a name for it,
+        // but we can attempt to look it up using the name service before
+        // falling back to the bestNameForContact.
+        Utils::oneShotConnect(&NameDirectory::instance(),
+                              &NameDirectory::registeredNameFound,
+                              this,
+                              [this, accountId, peerUri, cb](NameDirectory::LookupStatus status,
+                                                             const QString& address,
+                                                             const QString& name) {
+                                  if (address == peerUri) {
+                                      if (status == NameDirectory::LookupStatus::SUCCESS)
+                                          cb(name);
+                                      else {
+                                          auto& accInfo = lrcInstance_->getAccountInfo(accountId);
+                                          cb(accInfo.contactModel->bestNameForContact(peerUri));
+                                      }
+                                  }
+                              });
+        std::ignore = NameDirectory::instance().lookupAddress(accountId, peerUri);
     }
 #else
     Q_UNUSED(accountId)
