@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13b38faa_d35663fd",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-07T16:45:14Z",
+      "side": 1,
+      "message": "This will never be true. It\u0027s a conversation request, so not yet cloned, so no custom preferences",
+      "range": {
+        "startLine": 234,
+        "startChar": 28,
+        "endLine": 236,
+        "endChar": 19
+      },
+      "revId": "c837e874035a76e2ac1e78dafed3fca1674ffd27",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfda09c6_e5bb179e",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-07T16:45:14Z",
+      "side": 1,
+      "message": "oh lol",
+      "range": {
+        "startLine": 274,
+        "startChar": 8,
+        "endLine": 274,
+        "endChar": 19
+      },
+      "revId": "c837e874035a76e2ac1e78dafed3fca1674ffd27",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
