@@ -203,60 +203,69 @@ ItemDelegate {
                 anchors.fill: parent
                 color: menuItem.down ? "#c4aaaaaa" : menuItem.hovered ? "#c4777777" : "transparent"
             }
-            contentItem: ColumnLayout {
+            // After update to qt 6.4.3 the layout was broken, adding a Rectangle
+            // as top level in the contentIntem is a workaround which removal can be
+            // tested with newer qt versions
+            contentItem: Rectangle {
                 anchors.fill: parent
-                spacing: 0
-                RowLayout {
-                    Layout.fillWidth: true
-                    Layout.rightMargin: 15
-                    Layout.leftMargin: 20
-                    Layout.fillHeight: true
-                    Layout.alignment: {
-                        if (menuAction.popupMode !== CallActionBar.ActionPopupMode.LayoutOption || TopMargin && BottomMargin) {
-                            return Qt.AlignLeft | Qt.AlignVCenter;
-                        }
-                        if (TopMargin) {
-                            Layout.bottomMargin = 4;
-                            return Qt.AlignBottom;
-                        }
-                        Layout.topMargin = 4;
-                        return Qt.AlignTop;
-                    }
+                color: "transparent"
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 0
 
-                    spacing: 6
-                    ResponsiveImage {
-                        source: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement || menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? IconSource : (menuItem.ListView.isCurrentItem ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg)
-                        color: "white"
-                        width: 20
-                        height: 20
-                    }
-                    Text {
-                        id: delegateText
+                    RowLayout {
                         Layout.fillWidth: true
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-                        text: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement || menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? Name : DeviceName
-                        elide: Text.ElideRight
-                        font.pointSize: JamiTheme.participantFontSize
-                        color: "white"
+                        Layout.fillHeight: true
+                        Layout.rightMargin: 15
+                        Layout.leftMargin: 20
+
+                        Layout.alignment: {
+                            if (menuAction.popupMode !== CallActionBar.ActionPopupMode.LayoutOption || TopMargin && BottomMargin) {
+                                return Qt.AlignLeft | Qt.AlignVCenter;
+                            }
+                            if (TopMargin) {
+                                Layout.bottomMargin = 4;
+                                return Qt.AlignBottom;
+                            }
+                            Layout.topMargin = 4;
+                            return Qt.AlignTop;
+                        }
+
+                        spacing: 6
+                        ResponsiveImage {
+                            source: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement || menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? IconSource : (menuItem.ListView.isCurrentItem ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg)
+                            color: "white"
+                            width: 20
+                            height: 20
+                        }
+                        Text {
+                            id: delegateText
+                            Layout.fillWidth: true
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                            text: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement || menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? Name : DeviceName
+                            elide: Text.ElideRight
+                            font.pointSize: JamiTheme.participantFontSize
+                            color: "white"
+                        }
+                        ResponsiveImage {
+                            source: JamiResources.check_black_24dp_svg
+                            color: "white"
+                            width: 20
+                            height: 20
+                            visible: menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? ActiveSetting : false
+                        }
                     }
-                    ResponsiveImage {
-                        source: JamiResources.check_black_24dp_svg
-                        color: "white"
-                        width: 20
-                        height: 20
-                        visible: menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? ActiveSetting : false
+                    Rectangle {
+                        id: buttonDiv
+                        visible: menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? SectionEnd : false
+                        Layout.fillWidth: true
+                        height: 1
+                        opacity: 0.2
+                        border.width: 0
+                        color: JamiTheme.separationLine
+                        Layout.alignment: Qt.AlignBottom
                     }
-                }
-                Rectangle {
-                    id: buttonDiv
-                    visible: menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? SectionEnd : false
-                    Layout.fillWidth: true
-                    height: 1
-                    opacity: 0.2
-                    border.width: 0
-                    color: JamiTheme.separationLine
-                    Layout.alignment: Qt.AlignBottom
                 }
             }
         }
