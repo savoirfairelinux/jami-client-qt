@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d6365ce_0fc80177",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-06-07T19:32:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01bd89c2_90c2521e",
+      "range": {
+        "startLine": 240,
+        "startChar": 33,
+        "endLine": 240,
+        "endChar": 46
+      },
+      "revId": "b43132dec0a76ff0a0f3f27ba4db78565bd95ca6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c7cdad2_a55d084e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-02T14:54:58Z",
       "side": 1,
       "message": "It\u0027s unclear what true index means. Assuming this means filtered (enabled) index, can\u0027t we do this with a QML filter model and use mapFromSource/mapToSource? If not, maybe filteredIndex and a comment would be better.",
+      "range": {
+        "startLine": 273,
+        "startChar": 22,
+        "endLine": 273,
+        "endChar": 34
+      },
+      "revId": "b43132dec0a76ff0a0f3f27ba4db78565bd95ca6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8c4e7a7_3e6286fd",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-06-07T19:32:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c7cdad2_a55d084e",
       "range": {
         "startLine": 273,
         "startChar": 22,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "023851bf_b0454603",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-06-07T19:32:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f7724df4_5ec1b4ca",
+      "range": {
+        "startLine": 276,
+        "startChar": 10,
+        "endLine": 276,
+        "endChar": 20
+      },
+      "revId": "b43132dec0a76ff0a0f3f27ba4db78565bd95ca6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fd6ab7c_aeed69ae",
@@ -93,6 +165,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02c4c6b3_8985aa5e",
+        "filename": "src/app/calloverlaymodel.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-06-07T19:32:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5fd6ab7c_aeed69ae",
+      "range": {
+        "startLine": 132,
+        "startChar": 20,
+        "endLine": 132,
+        "endChar": 32
+      },
+      "revId": "b43132dec0a76ff0a0f3f27ba4db78565bd95ca6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7dca66cb_b53cfa1c",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-05-31T14:59:27Z",
       "side": 1,
       "message": "I see some weird result sometimes (happened twice for like 20 calls) were this seems to give an incorrect result (too high or too low)",
+      "range": {
+        "startLine": 527,
+        "startChar": 44,
+        "endLine": 527,
+        "endChar": 56
+      },
+      "revId": "b43132dec0a76ff0a0f3f27ba4db78565bd95ca6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c05e1841_93921021",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-06-07T19:32:02Z",
+      "side": 1,
+      "message": "can you still reproduce with last changes?",
+      "parentUuid": "7dca66cb_b53cfa1c",
       "range": {
         "startLine": 527,
         "startChar": 44,
