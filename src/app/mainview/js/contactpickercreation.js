@@ -20,7 +20,7 @@ function presentContactPickerPopup(type, parent) {
     var comp = Qt.createComponent(
                 "../components/ContactPicker.qml")
     if (comp.status === Component.Ready) {
-        var obj = comp.createObject(parent, { type: type })
+        var obj = comp.createObject(parent, { type: type, parent: parent })
         if (obj === null) {
             console.log("Error creating object for contact picker")
         } else {

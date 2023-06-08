@@ -67,7 +67,7 @@ Popup {
 
                 Layout.preferredHeight: text.length === 0 ? 0 : contentHeight
 
-                font.pointSize: 12
+                font.pointSize: JamiTheme.menuFontSize
                 color: JamiTheme.textColor
             }
 
