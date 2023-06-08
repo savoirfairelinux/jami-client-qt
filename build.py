@@ -92,7 +92,7 @@ ZYPPER_INSTALL_SCRIPT = [
 ZYPPER_DEPENDENCIES = [
     # build system
     'autoconf', 'autoconf-archive', 'automake', 'cmake', 'make', 'patch', 'gcc-c++',
-    'libtool', 'which', 'pandoc', 'nasm', 'doxygen', 'graphviz',
+    'libtool', 'which', 'pandoc', 'nasm', 'doxygen', 'graphviz', 'systemd-devel',
     # contrib dependencies
     'curl', 'gzip', 'bzip2',
     # daemon
@@ -152,7 +152,7 @@ APT_DEPENDENCIES = [
     'libspeex-dev', 'libspeexdsp-dev', 'libswscale-dev', 'libtool',
     'libudev-dev', 'libyaml-cpp-dev', 'sip-tester', 'swig',
     'uuid-dev', 'yasm', 'libjsoncpp-dev', 'libva-dev', 'libvdpau-dev', 'libmsgpack-dev',
-    'pandoc', 'nasm', 'dpkg-dev'
+    'pandoc', 'nasm', 'dpkg-dev', 'libsystemd-dev'
 ]
 
 APT_CLIENT_DEPENDENCIES = [
@@ -181,7 +181,7 @@ PACMAN_DEPENDENCIES = [
     'gcc', 'ffmpeg', 'boost', 'cppunit', 'libdbus', 'dbus-c++', 'libe-book', 'expat',
     'jack', 'opus', 'pcre', 'libpulse', 'speex', 'speexdsp', 'libtool', 'yaml-cpp',
     'swig', 'yasm', 'make', 'patch', 'pkg-config',
-    'automake', 'libva', 'libvdpau', 'openssl', 'pandoc', 'nasm'
+    'automake', 'libva', 'libvdpau', 'openssl', 'pandoc', 'nasm', 'systemd-libs'
 ]
 
 PACMAN_CLIENT_DEPENDENCIES = [
