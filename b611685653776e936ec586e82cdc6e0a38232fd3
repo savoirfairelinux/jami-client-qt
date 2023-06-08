@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f7a568c_11ae7ed4",
+        "filename": "daemon",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-08T12:41:50Z",
+      "side": 0,
+      "message": "Ideally I have 2 connectivity patches:\n\nhttps://review.jami.net/c/jami-daemon/+/24857\nhttps://review.jami.net/c/jami-daemon/+/24845",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "b611685653776e936ec586e82cdc6e0a38232fd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
