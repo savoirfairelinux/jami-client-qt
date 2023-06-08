@@ -127,16 +127,21 @@ BaseModalDialog {
                 PasswordTextEdit {
                     id: passwordEdit
 
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: JamiTheme.preferredFieldWidth
-                    Layout.preferredHeight: 48
+                    firstEntry: true
+                    placeholderText: JamiStrings.password
 
-                    placeholderText: JamiStrings.enterCurrentPassword
+                    Layout.topMargin: 10
+                    Layout.leftMargin: JamiTheme.cornerIconSize
+                    Layout.rightMargin: JamiTheme.cornerIconSize
+                    Layout.alignment: Qt.AlignLeft
+                    Layout.fillWidth: true
+
+                    KeyNavigation.up: btnConfirm
+                    KeyNavigation.down: KeyNavigation.up
 
                     onDynamicTextChanged: {
                         btnConfirm.enabled = dynamicText.length > 0;
                     }
-
                     onAccepted: btnConfirm.clicked()
                 }
 
