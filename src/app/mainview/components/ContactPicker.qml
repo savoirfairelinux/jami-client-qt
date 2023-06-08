@@ -23,113 +23,66 @@ import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
-Popup {
+BaseModalDialog {
     id: contactPickerPopup
 
     property int type: ContactList.CONFERENCE
 
-    contentWidth: 250
-    contentHeight: contactPickerPopupRectColumnLayout.height + 50
+    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
+    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
 
     padding: 0
 
-    modal: true
+    title: {
+        switch (type) {
+        case ContactList.CONFERENCE:
+            return JamiStrings.addToConference;
+        case ContactList.ADDCONVMEMBER:
+            return JamiStrings.addToConversation;
+        case ContactList.TRANSFER:
+            return JamiStrings.transferThisCall;
+        default:
+            return JamiStrings.addDefaultModerator;
+        }
+    }
 
-    contentItem: Rectangle {
-        id: contactPickerPopupRect
-        width: 250
+    popupContent: ColumnLayout {
+        id: contactPickerPopupRectColumnLayout
 
-        PushButton {
-            id: closeButton
+        Searchbar {
+            id: contactPickerContactSearchBar
 
-            anchors.top: contactPickerPopupRect.top
-            anchors.topMargin: 5
-            anchors.right: contactPickerPopupRect.right
-            anchors.rightMargin: 5
-            imageColor: JamiTheme.textColor
+            Layout.alignment: Qt.AlignCenter
+            Layout.margins: 5
+            Layout.fillWidth: true
+            Layout.preferredHeight: 35
 
-            source: JamiResources.round_close_24dp_svg
+            placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.addParticipant
 
-            onClicked: {
-                contactPickerPopup.close();
+            onSearchBarTextChanged: function(text){
+                ContactAdapter.setSearchFilter(text);
             }
         }
 
-        ColumnLayout {
-            id: contactPickerPopupRectColumnLayout
+        JamiListView {
+            id: contactPickerListView
 
-            anchors.top: contactPickerPopupRect.top
-            anchors.topMargin: 15
+            Layout.alignment: Qt.AlignCenter
+            Layout.fillWidth: true
+            Layout.preferredHeight: 180
+            Layout.bottomMargin: JamiTheme.preferredMarginSize
 
-            Text {
-                id: contactPickerTitle
+            model: ContactAdapter.getContactSelectableModel(type)
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: contactPickerPopupRect.width
-                Layout.preferredHeight: 30
+            delegate: ContactPickerItemDelegate {
+                id: contactPickerItemDelegate
 
-                font.pointSize: JamiTheme.textFontSize
-                font.bold: true
-                color: JamiTheme.textColor
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
-                text: {
-                    switch (type) {
-                    case ContactList.CONFERENCE:
-                        return JamiStrings.addToConference;
-                    case ContactList.ADDCONVMEMBER:
-                        return JamiStrings.addToConversation;
-                    case ContactList.TRANSFER:
-                        return JamiStrings.transferThisCall;
-                    default:
-                        return JamiStrings.addDefaultModerator;
-                    }
-                }
-            }
-
-            Searchbar {
-                id: contactPickerContactSearchBar
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.margins: 5
-                Layout.fillWidth: true
-                Layout.preferredHeight: 35
-
-                placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.addParticipant
-
-                onSearchBarTextChanged: function(text){
-                    ContactAdapter.setSearchFilter(text);
-                }
-            }
-
-            JamiListView {
-                id: contactPickerListView
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: contactPickerPopupRect.width
-                Layout.preferredHeight: 200
-
-                model: ContactAdapter.getContactSelectableModel(type)
-
-                delegate: ContactPickerItemDelegate {
-                    id: contactPickerItemDelegate
-
-                    showPresenceIndicator: type !== ContactList.TRANSFER
-                }
+                showPresenceIndicator: type !== ContactList.TRANSFER
             }
         }
-
-        radius: 10
-        color: JamiTheme.backgroundColor
     }
 
     onAboutToShow: {
         contactPickerListView.model = ContactAdapter.getContactSelectableModel(type);
-    }
-
-    background: Rectangle {
-        color: "transparent"
     }
 }
