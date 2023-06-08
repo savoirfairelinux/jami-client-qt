@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28227f41_28fb466d",
+        "filename": "src/app/mainview/components/CallButtonDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-08T15:13:51Z",
+      "side": 1,
+      "message": "weird sentence (also, maybe open a Qt bug)",
+      "range": {
+        "startLine": 207,
+        "startChar": 65,
+        "endLine": 208,
+        "endChar": 37
+      },
+      "revId": "ceb06626372ee674cb8dedebfd65be47c183b387",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
