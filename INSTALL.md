@@ -22,7 +22,7 @@ The files will be installed in `/usr/lib/libqt-jami`.
 sudo apt install gnupg dirmngr ca-certificates curl --no-install-recommends
 curl -s https://dl.jami.net/public-key.gpg | sudo tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
 sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/nightly/debian_<VERSION>/ jami main' > /etc/apt/sources.list.d/jami.list"
-sudo apt-get update && sudo apt-get install jami
+sudo apt-get update && sudo apt-get install libqt-jami
 ```
 
 #### Install libqt-jami, Ubuntu based
@@ -88,7 +88,7 @@ for getting the latest development versions; otherwise, you can use
 submodule).
 
 ```bash
-./build.py --init [--qt=<path/to/qt> (this is required for qmlformatting to work)]
+./build.py --init --qt=<path/to/qt> # qt path is required for qmlformatting to work
 ```
 
 Then you will need to install dependencies:
