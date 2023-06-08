@@ -68,6 +68,7 @@ SettingsPageBase {
                 Layout.preferredWidth: parent.width
                 Layout.alignment: Qt.AlignHCenter
                 title: JamiStrings.linkedThisDevice
+                clip: true
             }
 
             LinkedDevicesBase {
@@ -78,6 +79,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignHCenter
                 inverted: true
                 isCurrent: false
+                clip: true
                 title: JamiStrings.linkedOtherDevices
             }
         }
@@ -92,7 +94,6 @@ SettingsPageBase {
             text: JamiStrings.linkedAccountDescription
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
             wrapMode: Text.WordWrap
 
             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
