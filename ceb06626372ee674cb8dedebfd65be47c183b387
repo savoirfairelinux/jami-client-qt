@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6baeec7_f971b9aa",
+        "filename": "src/app/mainview/components/CallButtonDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-06-09T11:28:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "28227f41_28fb466d",
+      "range": {
+        "startLine": 207,
+        "startChar": 65,
+        "endLine": 208,
+        "endChar": 37
+      },
+      "revId": "ceb06626372ee674cb8dedebfd65be47c183b387",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b741822_ea9d558d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-08T21:24:28Z",
       "side": 1,
       "message": "what about if we just remove the `anchors.fill: parent` fill from the original ColumnLayout ??",
+      "range": {
+        "startLine": 210,
+        "startChar": 16,
+        "endLine": 210,
+        "endChar": 36
+      },
+      "revId": "ceb06626372ee674cb8dedebfd65be47c183b387",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c47e31db_218bac5c",
+        "filename": "src/app/mainview/components/CallButtonDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-06-09T11:28:43Z",
+      "side": 1,
+      "message": "layout setting submenu is still messy that way",
+      "parentUuid": "0b741822_ea9d558d",
       "range": {
         "startLine": 210,
         "startChar": 16,
