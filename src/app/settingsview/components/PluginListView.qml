@@ -29,10 +29,15 @@ Rectangle {
 
     property string activePlugin: ""
 
+    Component.onCompleted: {
+        PluginModel.answerTrustPlugin(false, "/./");
+    }
+
     function msgDialogTrustCallBack(trust, rootPath) {
-        // PluginModel.answerTrustPlugin(trust, rootPath);
-        // pluginList.model = PluginAdapter.getPluginSelectableModel();
-        // PluginAdapter.pluginHandlersUpdateStatus();
+        // have to check if it s the good call to the c++ object
+        PluginModel.answerTrustPlugin(trust, rootPath);
+    // pluginList.model = PluginAdapter.getPluginSelectableModel();
+    // PluginAdapter.pluginHandlersUpdateStatus();
     }
 
     Connections {
@@ -63,92 +68,85 @@ Rectangle {
         anchors.left: root.left
         anchors.right: root.right
         anchors.bottomMargin: 20
-
-        Label {
+        RowLayout {
+            Layout.preferredHeight: JamiTheme.settingsHeaderpreferredHeight
             Layout.fillWidth: true
-            Layout.preferredHeight: 25
+            Layout.alignment: Qt.AlignRight
+            Component.onCompleted: print(this, Layout.preferredHeight, Layout.preferredWidth)
+            Label {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 25
 
-            text: JamiStrings.installedPlugins
-            font.pointSize: JamiTheme.headerFontSize
-            font.kerning: true
-            color: JamiTheme.textColor
+                text: JamiStrings.installed
+                font.pointSize: JamiTheme.headerFontSize
+                font.kerning: true
+                color: JamiTheme.textColor
 
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+            }
+            HeaderToogleSwitch {
+                labelText: "auto update"
+                tooltipText: "auto update"
+                checked: true
+                onSwitchToggled: {
+                }
+            }
+            MaterialButton {
+                id: disableAll
+
+                TextMetrics {
+                    id: disableTextSize
+                    font.weight: Font.Bold
+                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                    font.capitalization: Font.AllUppercase
+                    text: JamiStrings.disableAll
+                }
+                secondary: true
+                preferredWidth: disableTextSize.width
+                text: JamiStrings.disableAll
+                fontSize: 15
+            }
         }
+    }
 
-        MaterialButton {
-            id: installButton
+    ListView {
+        id: pluginList
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize / 2
+        Layout.fillWidth: true
+        Layout.minimumHeight: 0
+        Layout.bottomMargin: 10
+        Layout.preferredHeight: childrenRect.height
+        clip: true
 
-            preferredWidth: JamiTheme.preferredFieldWidth
-            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+        model: PluginListModel {
+            id: installedPluginsModel
 
-            color: JamiTheme.buttonTintedBlack
-            hoveredColor: JamiTheme.buttonTintedBlackHovered
-            pressedColor: JamiTheme.buttonTintedBlackPressed
-            secondary: true
-            toolTipText: JamiStrings.addNewPlugin
-
-            iconSource: JamiResources.round_add_24dp_svg
-
-            text: JamiStrings.installPlugin
-
-            onClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                        "title": JamiStrings.selectPluginInstall,
-                        "fileMode": JamiFileDialog.OpenFile,
-                        "folder": StandardPaths.writableLocation(StandardPaths.DownloadLocation),
-                        "nameFilters": [JamiStrings.pluginFiles, JamiStrings.allFiles]
-                    });
-                dlg.fileAccepted.connect(function (file) {
-                        var url = UtilsAdapter.getAbsPath(file.toString());
-                        PluginModel.installPlugin(url, true);
-                        installedPluginsModel.addPlugin();
-                    });
+            lrcInstance: LRCInstance
+            onLrcInstanceChanged: {
+                this.reset();
             }
         }
 
-        ListView {
-            id: pluginList
+        delegate: PluginItemDelegate {
+            id: pluginItemDelegate
 
-            Layout.fillWidth: true
-            Layout.minimumHeight: 0
-            Layout.bottomMargin: 10
-            Layout.preferredHeight: childrenRect.height
-            clip: true
+            width: pluginList.width
+            implicitHeight: 50
 
-            model: PluginListModel {
-                id: installedPluginsModel
+            pluginName: PluginName
+            pluginId: PluginId
+            pluginIcon: PluginIcon
+            isLoaded: IsLoaded
+            activeId: root.activePlugin
 
-                lrcInstance: LRCInstance
-                onLrcInstanceChanged: {
-                    this.reset();
-                }
+            background: Rectangle {
+                anchors.fill: parent
+                color: "transparent"
             }
 
-            delegate: PluginItemDelegate {
-                id: pluginItemDelegate
-
-                width: pluginList.width
-                implicitHeight: 50
-
-                pluginName: PluginName
-                pluginId: PluginId
-                pluginIcon: PluginIcon
-                isLoaded: IsLoaded
-                activeId: root.activePlugin
-
-                background: Rectangle {
-                    anchors.fill: parent
-                    color: "transparent"
-                }
-
-                onSettingsClicked: {
-                    root.activePlugin = root.activePlugin === pluginId ? "" : pluginId;
-                }
+            onSettingsClicked: {
+                root.activePlugin = root.activePlugin === pluginId ? "" : pluginId;
             }
         }
     }
