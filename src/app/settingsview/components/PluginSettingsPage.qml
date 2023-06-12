@@ -38,22 +38,8 @@ SettingsPageBase {
 
         ColumnLayout {
             id: generalSettings
-
-            width: parent.width
+            Layout.preferredWidth: root.width
             spacing: JamiTheme.settingsCategorySpacing
-
-            ToggleSwitch {
-                id: enabledplugin
-
-                checked: PluginAdapter.isEnabled
-                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                Layout.fillWidth: true
-                labelText: JamiStrings.enable
-
-                onSwitchToggled: {
-                    PluginModel.setPluginsEnabled(checked);
-                    PluginAdapter.isEnabled = checked;
-                }
             }
 
             PluginListView {
@@ -67,5 +53,4 @@ SettingsPageBase {
                 Layout.preferredHeight: childrenRect.height
             }
         }
-    }
 }

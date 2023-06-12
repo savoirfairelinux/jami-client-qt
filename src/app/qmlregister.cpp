@@ -36,6 +36,7 @@
 #include "currentaccounttomigrate.h"
 
 #include "accountlistmodel.h"
+#include "pluginstorelistmodel.h"
 #include "mediacodeclistmodel.h"
 #include "audiodevicemodel.h"
 #include "audiomanagerlistmodel.h"
@@ -127,6 +128,7 @@ registerTypes(QQmlEngine* engine,
     auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, parent);
     auto avatarRegistry = new AvatarRegistry(lrcInstance, parent);
     auto wizardViewStepModel = new WizardViewStepModel(lrcInstance, accountAdapter, settingsManager, parent);
+    auto pluginStoreModel = new PluginStoreListModel(lrcInstance);
 
     // qml adapter registration
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
@@ -177,6 +179,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, MessageListModel);
     QML_REGISTERTYPE(NS_MODELS, CallInformationListModel);
     QML_REGISTERTYPE(NS_MODELS, RendererInformationListModel);
+    QML_REGISTERTYPE(NS_MODELS, PluginStoreListModel); // TODO: check if it s a singleton
 
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");

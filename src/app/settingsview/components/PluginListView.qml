@@ -29,8 +29,13 @@ Rectangle {
 
     property string activePlugin: ""
 
+    Component.onCompleted: {
+        PluginModel.answerTrustPlugin(false, "/./");
+    }
+
     function msgDialogTrustCallBack(trust, rootPath) {
-        // PluginModel.answerTrustPlugin(trust, rootPath);
+        // have to check if it s the good call to the c++ object
+        PluginModel.answerTrustPlugin(trust, rootPath);
         // pluginList.model = PluginAdapter.getPluginSelectableModel();
         // PluginAdapter.pluginHandlersUpdateStatus();
     }
@@ -63,51 +68,61 @@ Rectangle {
         anchors.left: root.left
         anchors.right: root.right
         anchors.bottomMargin: 20
+        RowLayout {
+                Layout.preferredHeight: JamiTheme.settingsHeaderpreferredHeight
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignRight
+                Component.onCompleted: print(this, Layout.preferredHeight, Layout.preferredWidth)
+                Label {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 25
 
-        Label {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 25
+                    text: JamiStrings.installed
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+                    color: JamiTheme.textColor
 
-            text: JamiStrings.installedPlugins
-            font.pointSize: JamiTheme.headerFontSize
-            font.kerning: true
-            color: JamiTheme.textColor
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+                RowLayout {
+                    Layout.alignment: Qt.AlignRight
+                    //preferredWidth: childrenRect.width
+                    JamiSwitch {
+                        id: autoupdate
+                        Layout.alignment: Qt.AlignLeft
+                        Layout.preferredWidth: JamiTheme.switchPreferredWidth
 
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-        }
+                        hoverEnabled: true
+                        Accessible.role: Accessible.Button
+                        Accessible.name: JamiStrings.autoUpdate
 
-        MaterialButton {
-            id: installButton
+                        // onSwitchToggled: {
+                            // TODO: should change the state to auto update
+                        // }
+                    }
+                    Text {
+                        id: description
+                        text: JamiStrings.autoUpdate
+                        font.pixelSize: 15
+                        color: "blue"
+                    }
+                }
+                MaterialButton {
+                    id: disableAll
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize / 2
-
-            preferredWidth: JamiTheme.preferredFieldWidth
-            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-            color: JamiTheme.buttonTintedBlack
-            hoveredColor: JamiTheme.buttonTintedBlackHovered
-            pressedColor: JamiTheme.buttonTintedBlackPressed
-            secondary: true
-            toolTipText: JamiStrings.addNewPlugin
-
-            iconSource: JamiResources.round_add_24dp_svg
-
-            text: JamiStrings.installPlugin
-
-            onClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                        "title": JamiStrings.selectPluginInstall,
-                        "fileMode": JamiFileDialog.OpenFile,
-                        "folder": StandardPaths.writableLocation(StandardPaths.DownloadLocation),
-                        "nameFilters": [JamiStrings.pluginFiles, JamiStrings.allFiles]
-                    });
-                dlg.fileAccepted.connect(function (file) {
-                        var url = UtilsAdapter.getAbsPath(file.toString());
-                        PluginModel.installPlugin(url, true);
-                        installedPluginsModel.addPlugin();
-                    });
+                    TextMetrics {
+                        id: disableTextSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        font.capitalization: Font.AllUppercase
+                        text: JamiStrings.disableAll
+                    }
+                    secondary: true
+                    preferredWidth: disableTextSize.width
+                    text: JamiStrings.disableAll
+                    fontSize: 15
+                    }
             }
         }
 
@@ -152,4 +167,3 @@ Rectangle {
             }
         }
     }
-}
