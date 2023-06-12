@@ -22,9 +22,12 @@
 
 #include "api/pluginmodel.h"
 
-PluginListModel::PluginListModel(QObject* parent)
+PluginListModel::PluginListModel(LRCInstance* lrcInstance, QObject* parent)
     : AbstractListModelBase(parent)
-{}
+{
+    lrcInstance_ = lrcInstance;
+    reset();
+}
 
 PluginListModel::~PluginListModel() {}
 
@@ -33,6 +36,7 @@ PluginListModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid() && lrcInstance_) {
         /// Count
+        qWarning() << "PluginListModel::rowCount" << installedPlugins_.size();
         return installedPlugins_.size();
     }
     /// A valid QModelIndex returns 0 as no entry has sub-elements.
