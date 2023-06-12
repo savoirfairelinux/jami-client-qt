@@ -233,7 +233,7 @@ ApplicationWindow {
             windowSettingsLoaded = true;
 
             // Quiet check for updates on start if set to.
-            if (Qt.platform.os.toString() !== "osx") {
+            if (Qt.platform.os.toString() === "windows") {
                 if (UtilsAdapter.getAppValue(Settings.AutoUpdate)) {
                     UpdateManager.checkForUpdates(true);
                     UpdateManager.setAutoUpdateCheck(true);
