@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2019-2023 Savoir-faire Linux Inc.
  *
@@ -37,6 +38,15 @@ public:
 
     void sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)> onDoneCallback);
 
+    /**
+     * @brief download a file for a given url
+     * @param url
+     * @return void
+     */
+    void download(const QUrl& url,
+                  std::function<void(bool, const QString&)> onDoneCallback,
+                  const QString& filePath);
+    void resetDownload();
 Q_SIGNALS:
     void errorOccured(GetError error, const QString& msg = {});
 
@@ -46,5 +56,7 @@ protected:
 private:
     ConnectivityMonitor* connectivityMonitor_;
     bool lastConnectionState_;
+    QNetworkReply* downloadStatus_ {nullptr};
+    QScopedPointer<QFile> file_;
 };
 Q_DECLARE_METATYPE(NetworkManager*)
