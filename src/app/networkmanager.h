@@ -20,6 +20,8 @@
 #include <QObject>
 #include <QFile>
 #include <QSslError>
+#include <QMap>
+#include <QString>
 #include <QNetworkReply>
 
 class QNetworkAccessManager;
@@ -37,8 +39,17 @@ public:
 
     void sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)> onDoneCallback);
 
+    unsigned int downloadFile(const QUrl& url,
+                              unsigned int replyId,
+                              std::function<void(bool, const QString&)> onDoneCallback,
+                              const QString& filePath);
+    void resetDownload(QNetworkReply* reply);
+    void cancelDownload(unsigned int replyId);
 Q_SIGNALS:
     void errorOccured(GetError error, const QString& msg = {});
+    void downloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
+    void downloadFinished(int replyId);
+    void downloadStarted(int replyId);
 
 protected:
     QNetworkAccessManager* manager_;
@@ -46,5 +57,7 @@ protected:
 private:
     ConnectivityMonitor* connectivityMonitor_;
     bool lastConnectionState_;
+    QMap<unsigned int, QNetworkReply*> downloadReplies_ {};
+    QScopedPointer<QFile> file_;
 };
 Q_DECLARE_METATYPE(NetworkManager*)

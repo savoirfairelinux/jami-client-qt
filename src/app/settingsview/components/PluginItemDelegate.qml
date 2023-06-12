@@ -77,7 +77,21 @@ ItemDelegate {
                 text: pluginName === "" ? pluginId : pluginName
                 verticalAlignment: Text.AlignVCenter
             }
-
+            MaterialButton {
+                id: update
+                TextMetrics {
+                    id: updateTextSize
+                    font.weight: Font.Bold
+                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                    font.capitalization: Font.AllUppercase
+                    text: JamiStrings.update
+                }
+                visible: false
+                secondary: true
+                preferredWidth: updateTextSize.width
+                text: JamiStrings.update
+                fontSize: 15
+            }
             ToggleSwitch {
                 id: loadSwitch
                 Layout.fillHeight: true

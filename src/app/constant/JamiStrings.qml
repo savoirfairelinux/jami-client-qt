@@ -46,7 +46,7 @@ Item {
     property string reconnectTry: qsTr("Trying to reconnect to the Jami daemon (jamid)…")
 
     // AboutPopUp
-    property string version: qsTr("Version") + (UpdateManager.isCurrentVersionBeta() ? " (Beta)" : "")
+    property string version: qsTr("Version") + (AppVersionManager.isCurrentVersionBeta() ? " (Beta)" : "")
     property string companyDeclarationYear: declarationYear + " " + companyName
     property string declarationYear: "© 2015-2023"
     property string companyName: "Savoir-faire Linux Inc."
@@ -538,7 +538,7 @@ Item {
     property string enableAutoUpdates: qsTr("Enable/Disable automatic updates")
     property string tipAutoUpdate: qsTr("Toggle automatic updates")
     property string updatesTitle: qsTr("Updates")
-    property string updateDialogTitle: qsTr("Update")
+    property string update: qsTr("Update")
     property string updateFound: qsTr("A new version of Jami was found\nWould you like to update now?")
     property string updateNotFound: qsTr("No new version of Jami was found")
     property string updateCheckError: qsTr("An error occured when checking for a new version")
@@ -658,6 +658,12 @@ Item {
 
     // Plugins
     property string enable: qsTr("Enable")
+    property string autoUpdate: qsTr("Auto update")
+    property string disableAll: qsTr("Disable all")
+    property string installed: qsTr("Installed")
+    property string install: qsTr("Install")
+    property string installManually: qsTr("Install manually")
+    property string pluginStoreTitle: qsTr("Available")
     property string pluginPreferences: qsTr("Preferences")
     property string reset: qsTr("Reset")
     property string uninstall: qsTr("Uninstall")
@@ -675,7 +681,6 @@ Item {
     property string chooseImageFile: qsTr("Choose image file")
     property string tipGeneralPluginSettingsDisplay: qsTr("Display or hide General plugin settings")
     property string tipAccountPluginSettingsDisplay: qsTr("Display or hide Account plugin settings")
-    property string installedPlugins: qsTr("Installed plugins")
     property string pluginFiles: qsTr("Plugin Files (*.jpl)")
     property string loadUnload: qsTr("Load/Unload")
     property string selectAnImage: qsTr("Select An Image to %1")

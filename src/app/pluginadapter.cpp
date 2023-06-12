@@ -18,11 +18,27 @@
 
 #include "pluginadapter.h"
 
+#include "pluginversionmanager.h"
+#include "networkmanager.h"
 #include "lrcinstance.h"
+#include "qmlregister.h"
+#include "pluginstorelistmodel.h"
+
+#include <QJsonDocument>
+#include <QString>
+#include <QJsonArray>
+
+QString BASE_URL = "http://127.0.0.1:3000";
 
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
+    , pluginVersionManager_(new PluginVersionManager(NULL, this))
+    , pluginStoreListModel_(new PluginStoreListModel(this))
+    , pluginListModel_(new PluginListModel(instance, this))
+
 {
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
@@ -30,6 +46,63 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
             this,
             &PluginAdapter::updateHandlersListCount);
     connect(this, &PluginAdapter::isEnabledChanged, this, &PluginAdapter::updateHandlersListCount);
+    getPluginsFromStore();
+
+    connect(pluginVersionManager_,
+            &PluginVersionManager::downloadStarted,
+            this,
+            [this](const QString& pluginId) {
+                qWarning() << "Download started";
+                // Q_EMIT changedStatus(pluginId, PluginStatus::DOWNLOADING);
+            });
+
+    connect(pluginVersionManager_,
+            &PluginVersionManager::downloadFinished,
+            this,
+            [this](const QString& pluginId) {
+                qWarning() << "Download finished";
+                // Q_EMIT changedStatus(pluginId, PluginStatus::DOWNLOADED);
+            });
+}
+
+void
+PluginAdapter::getPluginsFromStore()
+{
+    pluginVersionManager_->sendGetRequest(QUrl(BASE_URL), [this](const QByteArray& data) {
+        auto result = QJsonDocument::fromJson(data).array();
+        QList<QVariantMap> plugins;
+        for (const auto& plugin : result) {
+            plugins.append(plugin.toVariant().toMap());
+        }
+        pluginStoreListModel_->setPlugins(plugins);
+    });
+}
+
+void
+PluginAdapter::getPluginDetails(const QString& pluginId)
+{
+    pluginVersionManager_->sendGetRequest(QUrl(BASE_URL + "/details/" + pluginId),
+                                          [](const QByteArray& plugin) {
+                                              qDebug() << "Plugin: " << plugin;
+                                          });
+}
+
+void
+PluginAdapter::installRemotePlugin(const QString& pluginId)
+{
+    pluginVersionManager_->downloadFile(
+        QUrl(BASE_URL + "/download/" + pluginId + ".jpl"),
+        0,
+        [this, pluginId](bool success, const QString& error) {
+            if (!success) {
+                qDebug() << "Download Plugin error: " << error;
+                return;
+            }
+            auto res = lrcInstance_->pluginModel().installPlugin("/tmp/" + pluginId + ".jpl", false);
+
+            // pluginListModel_->addPlugin(plugin);
+        },
+        "/tmp/");
 }
 
 QVariant
