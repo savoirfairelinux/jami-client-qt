@@ -25,7 +25,7 @@ import "../../commoncomponents"
 
 SettingsPageBase {
     id: root
-
+    contentFlickableWidth: Math.min(root.width, root.width - 2 * JamiTheme.preferredSettingsMarginSize)
     title: JamiStrings.pluginSettingsTitle
 
     flickableContent: ColumnLayout {
@@ -38,34 +38,24 @@ SettingsPageBase {
 
         ColumnLayout {
             id: generalSettings
-
-            width: parent.width
+            Layout.preferredWidth: root.width
             spacing: JamiTheme.settingsCategorySpacing
+        }
 
-            ToggleSwitch {
-                id: enabledplugin
+        PluginListView {
+            id: pluginListView
 
-                checked: PluginAdapter.isEnabled
-                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                Layout.fillWidth: true
-                labelText: JamiStrings.enable
+            visible: PluginAdapter.isEnabled
 
-                onSwitchToggled: {
-                    PluginModel.setPluginsEnabled(checked);
-                    PluginAdapter.isEnabled = checked;
-                }
-            }
-
-            PluginListView {
-                id: pluginListView
-
-                visible: PluginAdapter.isEnabled
-
-                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                Layout.preferredWidth: parent.width
-                Layout.minimumHeight: 0
-                Layout.preferredHeight: childrenRect.height
-            }
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            Layout.preferredWidth: parent.width
+            Layout.minimumHeight: 0
+            Layout.preferredHeight: childrenRect.height
+        }
+        PluginStoreListView {
+            Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
+            Layout.fillWidth: true
+            Layout.fillHeight: true
         }
     }
 }
