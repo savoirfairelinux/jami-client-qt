@@ -49,6 +49,7 @@
 #include <QtGui/QPixmap>
 #include <QtGui/QImage>
 #include <QtCore/QBuffer>
+#include <QJsonDocument>
 
 #include <atomic>
 
@@ -928,6 +929,14 @@ account::Info::fromDetails(const MapStringString& details)
     // Jams
     confProperties.managerUri = details[ConfProperties::MANAGER_URI];
     confProperties.managerUsername = details[ConfProperties::MANAGER_USERNAME];
+    //uiCustomization
+    QJsonDocument doc = QJsonDocument::fromJson(details[ConfProperties::UI_CUSTOMIZATION].toUtf8());
+    if(!doc.isNull() && doc.isObject())
+    {
+        confProperties.uiCustomization = doc.object();
+    }
+
+
 }
 
 MapStringString
@@ -1033,6 +1042,11 @@ account::ConfProperties_t::toDetails() const
     // Manager
     details[ConfProperties::MANAGER_URI] = this->managerUri;
     details[ConfProperties::MANAGER_USERNAME] = this->managerUsername;
+    // UI Customization 
+    QJsonDocument doc(this->uiCustomization);
+    details[ConfProperties::UI_CUSTOMIZATION] = doc.toJson(QJsonDocument::Compact);
+
+
 
     return details;
 }

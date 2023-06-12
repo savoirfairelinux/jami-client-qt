@@ -26,6 +26,8 @@
 
 #include <QString>
 
+#include <QJsonObject>
+
 namespace lrc {
 
 namespace api {
@@ -118,6 +120,7 @@ struct ConfProperties_t
     QString defaultModerators;
     bool localModeratorsEnabled;
     VectorMapStringString credentials;
+    QJsonObject uiCustomization;
     struct Audio_t
     {
         int audioPortMax;
