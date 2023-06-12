@@ -222,6 +222,9 @@ CurrentAccount::updateData()
         set_autoTransferSizeThreshold(settingsManager_->getValue(Settings::Key::AcceptTransferBelow)
                                           .toInt(),
                                       true);
+
+        // UI Customization settings
+        set_uiCustomization(accConfig.uiCustomization, true);
     } catch (...) {
         qWarning() << "Can't update current account info data for" << id_;
     }
