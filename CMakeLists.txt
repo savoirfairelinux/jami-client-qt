@@ -301,7 +301,9 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/positioning.h
   ${APP_SRC_DIR}/currentcall.h
   ${APP_SRC_DIR}/messageparser.h
-  ${APP_SRC_DIR}/htmlparser.h)
+  ${APP_SRC_DIR}/htmlparser.h
+  ${APP_SRC_DIR}/pluginstorelistmodel.h
+  ${APP_SRC_DIR}/pluginstorelistmodel.cpp)
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
