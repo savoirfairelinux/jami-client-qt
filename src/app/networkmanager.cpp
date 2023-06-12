@@ -65,3 +65,92 @@ NetworkManager::sendGetRequest(const QUrl& url,
         reply->deleteLater();
     });
 }
+
+void
+NetworkManager::download(const QUrl& url,
+                         std::function<void(bool, const QString&)> onDoneCallback,
+                         const QString& filePath)
+{
+    // If there is already a download in progress, return.
+    if (downloadStatus_ && downloadStatus_->isRunning()) {
+        qWarning() << Q_FUNC_INFO << "Download already in progress";
+        return;
+    }
+
+    // Clean up any previous download.
+    resetDownload();
+
+    // If the url is invalid, return.
+    if (!url.isValid()) {
+        Q_EMIT errorOccured(GetError::NETWORK_ERROR, "Invalid url");
+        return;
+    }
+
+    // If the file path is empty, return.
+    if (filePath.isEmpty()) {
+        Q_EMIT errorOccured(GetError::NETWORK_ERROR, "Invalid file path");
+        return;
+    }
+
+    // Create the file. Return if it cannot be created.
+    QFileInfo fileInfo(url.path());
+    QString fileName = fileInfo.fileName();
+    file_.reset(new QFile(filePath + "/" + fileName));
+    if (!file_->open(QIODevice::WriteOnly)) {
+        Q_EMIT errorOccured(GetError::ACCESS_DENIED);
+        file_.reset();
+        qWarning() << Q_FUNC_INFO << "Could not open file for writing";
+        return;
+    }
+
+    // Start the download.
+    QNetworkRequest request(url);
+    downloadStatus_ = manager_->get(request);
+
+    connect(downloadStatus_, &QNetworkReply::readyRead, this, [=]() {
+        if (file_ && file_->isOpen()) {
+            file_->write(downloadStatus_->readAll());
+        }
+    });
+
+    connect(downloadStatus_,
+            QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::errorOccurred),
+            this,
+            [this](QNetworkReply::NetworkError error) {
+                downloadStatus_->disconnect();
+                resetDownload();
+                qWarning() << Q_FUNC_INFO
+                           << QMetaEnum::fromType<QNetworkReply::NetworkError>().valueToKey(error);
+                Q_EMIT errorOccured(GetError::NETWORK_ERROR);
+            });
+
+    connect(downloadStatus_, &QNetworkReply::finished, this, [this, onDoneCallback]() {
+        bool success = false;
+        QString errorMessage;
+        if (downloadStatus_->error() == QNetworkReply::NoError) {
+            resetDownload();
+            success = true;
+        } else {
+            errorMessage = downloadStatus_->errorString();
+            resetDownload();
+        }
+        onDoneCallback(success, errorMessage);
+    });
+}
+
+void
+NetworkManager::resetDownload()
+{
+    if (downloadStatus_) {
+        downloadStatus_->deleteLater();
+        downloadStatus_ = nullptr;
+    }
+    if (file_) {
+        if (file_->isOpen()) {
+            file_->flush();
+            file_->close();
+        }
+        file_->deleteLater();
+        file_.reset();
+    }
+}
