@@ -28,6 +28,9 @@
 #include <QSortFilterProxyModel>
 #include <QString>
 
+class NetworkManager;
+class PluginStoreListModel;
+
 class PluginAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
@@ -37,6 +40,8 @@ class PluginAdapter final : public QmlAdapterBase
 
 public:
     explicit PluginAdapter(LRCInstance* instance, QObject* parent = nullptr);
+    Q_INVOKABLE void getPluginsFromStore();
+    Q_INVOKABLE void getPluginDetails(const QString& pluginId);
     ~PluginAdapter() = default;
 
 protected:
@@ -50,7 +55,8 @@ protected:
 private:
     void updateHandlersListCount();
 
+    NetworkManager* networkManager_;
     std::unique_ptr<PluginHandlerListModel> pluginHandlerListModel_;
-
+    PluginStoreListModel* pluginStoreListModel_;
     std::mutex mtx_;
 };

@@ -250,5 +250,4 @@ PluginModel::resetPluginPreferencesValues(const QString& path, const QString& ac
     Q_EMIT modelUpdated();
     return result;
 }
-
 } // namespace lrc

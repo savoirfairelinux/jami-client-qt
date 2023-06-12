@@ -19,10 +19,23 @@
 #include "pluginadapter.h"
 
 #include "lrcinstance.h"
+#include "networkmanager.h"
+#include "qmlregister.h"
+#include "pluginstorelistmodel.h"
+
+#include <QJsonDocument>
+#include <QJsonArray>
+
+QString BASE_URL = "http://127.0.0.1:3000";
 
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
+    , networkManager_(new NetworkManager(NULL, this))
+    , pluginStoreListModel_(new PluginStoreListModel(this))
+
 {
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
+
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
@@ -30,6 +43,29 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
             this,
             &PluginAdapter::updateHandlersListCount);
     connect(this, &PluginAdapter::isEnabledChanged, this, &PluginAdapter::updateHandlersListCount);
+    getPluginsFromStore();
+}
+
+void
+PluginAdapter::getPluginsFromStore()
+{
+    networkManager_->sendGetRequest(QUrl(BASE_URL), [this](const QByteArray& data) {
+        auto result = QJsonDocument::fromJson(data).array();
+        QList<QVariantMap> plugins;
+        for (const auto& plugin : result) {
+            plugins.append(plugin.toVariant().toMap());
+        }
+        pluginStoreListModel_->setPlugins(plugins);
+    });
+}
+
+void
+PluginAdapter::getPluginDetails(const QString& pluginId)
+{
+    networkManager_->sendGetRequest(QUrl(BASE_URL + "/details/" + pluginId),
+                                    [](const QByteArray& plugin) {
+                                        qDebug() << "Plugin: " << plugin;
+                                    });
 }
 
 QVariant
