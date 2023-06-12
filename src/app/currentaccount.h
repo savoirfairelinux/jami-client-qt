@@ -191,6 +191,9 @@ class CurrentAccount final : public QObject
     QML_NEW_ACCOUNT_MODEL_SETTINGS_PROPERTY(bool, autoTransferFromTrusted, AutoAcceptFiles)
     QML_NEW_ACCOUNT_MODEL_SETTINGS_PROPERTY(int, autoTransferSizeThreshold, AcceptTransferBelow)
 
+    // UI Customization settings
+    QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(QJsonObject, uiCustomization)
+
 public:
     explicit CurrentAccount(LRCInstance* lrcInstance,
                             AppSettingsManager* settingsManager,
