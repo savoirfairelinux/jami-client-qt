@@ -180,14 +180,6 @@ public:
      * @return true if preference was succesfully reset
      */
     Q_INVOKABLE bool resetPluginPreferencesValues(const QString& path, const QString& accountId);
-
-    /**
-     * Tells Daemon if user trust plugin issuer
-     *
-     * @param trust
-     * @param path
-     */
-    Q_INVOKABLE void answerTrustPlugin(bool trust, const QString& path);
 Q_SIGNALS:
     void chatHandlerStatusUpdated(bool isVisible);
     void modelUpdated();

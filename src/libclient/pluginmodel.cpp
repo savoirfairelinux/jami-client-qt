@@ -250,10 +250,4 @@ PluginModel::resetPluginPreferencesValues(const QString& path, const QString& ac
     Q_EMIT modelUpdated();
     return result;
 }
-
-void
-PluginModel::answerTrustPlugin(bool trust, const QString& path)
-{
-    PluginManager::instance().answerTrustPlugin(trust, path);
-}
 } // namespace lrc
