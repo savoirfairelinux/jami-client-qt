@@ -19,8 +19,10 @@
 
 #include "connectivitymonitor.h"
 
+#include <QMap>
 #include <QMetaEnum>
 #include <QtNetwork>
+#include <random>
 
 NetworkManager::NetworkManager(ConnectivityMonitor* cm, QObject* parent)
     : QObject(parent)
@@ -49,6 +51,7 @@ NetworkManager::NetworkManager(ConnectivityMonitor* cm, QObject* parent)
         }
         lastConnectionState_ = connected;
     });
+    std::mt19937 rng(std::random_device {}());
 }
 
 void
@@ -59,9 +62,127 @@ NetworkManager::sendGetRequest(const QUrl& url,
     QObject::connect(reply, &QNetworkReply::finished, this, [reply, onDoneCallback, this]() {
         if (reply->error() == QNetworkReply::NoError) {
             onDoneCallback(reply->readAll());
-        } else{
+        } else {
             Q_EMIT errorOccured(GetError::NETWORK_ERROR, reply->errorString());
-        }      
+        }
         reply->deleteLater();
     });
+}
+
+unsigned int
+NetworkManager::downloadFile(const QUrl& url,
+                             unsigned int replyId,
+                             std::function<void(bool, const QString&)> onDoneCallback,
+                             const QString& filePath)
+{
+    // If there is already a download in progress, return.
+    auto reply = downloadReplies_[replyId];
+    if ((reply != NULL || !(replyId == 0)) && reply->isRunning()) {
+        qWarning() << Q_FUNC_INFO << "Download already in progress";
+        return replyId;
+    }
+
+    // Clean up any previous download.
+    resetDownload(downloadReplies_[replyId]);
+
+    // If the url is invalid, return.
+    if (!url.isValid()) {
+        Q_EMIT errorOccured(GetError::NETWORK_ERROR, "Invalid url");
+        return 0;
+    }
+
+    // If the file path is empty, return.
+    if (filePath.isEmpty()) {
+        Q_EMIT errorOccured(GetError::NETWORK_ERROR, "Invalid file path");
+        return 0;
+    }
+
+    // Create the file. Return if it cannot be created.
+    QFileInfo fileInfo(url.path());
+    QString fileName = fileInfo.fileName();
+    file_.reset(new QFile(filePath + "/" + fileName));
+    if (!file_->open(QIODevice::WriteOnly)) {
+        Q_EMIT errorOccured(GetError::ACCESS_DENIED);
+        file_.reset();
+        qWarning() << Q_FUNC_INFO << "Could not open file for writing";
+        return 0;
+    }
+
+    // Start the download.
+    QNetworkRequest request(url);
+
+    // set the id for the request
+    std::mt19937 rng(std::random_device {}());
+    std::uniform_int_distribution<unsigned int> dist(1, std::numeric_limits<unsigned int>::max());
+    unsigned int uuid = dist(rng);
+
+    downloadReplies_[uuid] = manager_->get(request);
+
+    connect(downloadReplies_[uuid], &QNetworkReply::readyRead, this, [=]() {
+        if (file_ && file_->isOpen()) {
+            file_->write(downloadReplies_[uuid]->readAll());
+        }
+    });
+
+    connect(downloadReplies_[uuid],
+            &QNetworkReply::downloadProgress,
+            this,
+            [this](qint64 bytesReceived, qint64 bytesTotal) {
+                Q_EMIT downloadProgressChanged(bytesReceived, bytesTotal);
+            });
+
+    connect(downloadReplies_[uuid],
+            QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::errorOccurred),
+            this,
+            [this, uuid](QNetworkReply::NetworkError error) {
+                downloadReplies_[uuid]->disconnect();
+                resetDownload(downloadReplies_[uuid]);
+                qWarning() << Q_FUNC_INFO
+                           << QMetaEnum::fromType<QNetworkReply::NetworkError>().valueToKey(error);
+                Q_EMIT errorOccured(GetError::NETWORK_ERROR);
+            });
+
+    connect(downloadReplies_[uuid], &QNetworkReply::finished, this, [this, uuid, onDoneCallback]() {
+        bool success = false;
+        QString errorMessage;
+        if (this->downloadReplies_[uuid]->error() == QNetworkReply::NoError) {
+            resetDownload(downloadReplies_[uuid]);
+            success = true;
+        } else {
+            errorMessage = downloadReplies_[uuid]->errorString();
+            resetDownload(downloadReplies_[uuid]);
+        }
+        onDoneCallback(success, errorMessage);
+        Q_EMIT downloadFinished(uuid);
+    });
+    Q_EMIT downloadStarted(uuid);
+    return uuid;
+}
+
+void
+NetworkManager::cancelDownload(unsigned int replyId)
+{
+    auto reply = downloadReplies_[replyId];
+    if (reply != NULL) {
+        Q_EMIT errorOccured(GetError::CANCELED);
+        downloadReplies_[replyId]->abort();
+        resetDownload(downloadReplies_[replyId]);
+    }
+}
+
+void
+NetworkManager::resetDownload(QNetworkReply* reply)
+{
+    if (reply) {
+        reply->deleteLater();
+        reply = nullptr;
+    }
+    if (file_) {
+        if (file_->isOpen()) {
+            file_->flush();
+            file_->close();
+        }
+        file_->deleteLater();
+        file_.reset();
+    }
 }

@@ -235,8 +235,8 @@ ApplicationWindow {
             // Quiet check for updates on start if set to.
             if (Qt.platform.os.toString() === "windows") {
                 if (UtilsAdapter.getAppValue(Settings.AutoUpdate)) {
-                    UpdateManager.checkForUpdates(true);
-                    UpdateManager.setAutoUpdateCheck(true);
+                    AppVersionManager.checkForUpdates(true);
+                    AppVersionManager.setAutoUpdateCheck(true);
                 }
             }
 
@@ -289,7 +289,7 @@ ApplicationWindow {
 
     function presentUpdateInfoDialog(infoText) {
         viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                "title": JamiStrings.updateDialogTitle,
+                "title": JamiStrings.update,
                 "infoText": infoText,
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
@@ -298,11 +298,11 @@ ApplicationWindow {
     }
 
     Connections {
-        target: UpdateManager
+        target: AppVersionManager
 
         function onUpdateDownloadStarted() {
             viewCoordinator.presentDialog(appWindow, "settingsview/components/UpdateDownloadDialog.qml", {
-                    "title": JamiStrings.updateDialogTitle
+                    "title": JamiStrings.update
                 });
         }
 
@@ -315,12 +315,12 @@ ApplicationWindow {
                 presentUpdateInfoDialog(JamiStrings.updateNotFound);
             } else {
                 viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                        "title": JamiStrings.updateDialogTitle,
+                        "title": JamiStrings.update,
                         "infoText": JamiStrings.updateFound,
                         "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
                         "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
                         "buttonCallBacks": [function () {
-                                UpdateManager.applyUpdates();
+                                AppVersionManager.applyUpdates();
                             }]
                     });
             }
