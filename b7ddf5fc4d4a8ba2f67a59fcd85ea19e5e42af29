@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ffe3efe_5a53ca65",
+        "filename": "src/app/settingsview/components/AudioSettingsPage.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-13T13:05:57Z",
+      "side": 1,
+      "message": "On GNU/Linux, if I plug my camera I see it in the microphone section, but removing it seems not the case",
+      "range": {
+        "startLine": 76,
+        "startChar": 23,
+        "endLine": 76,
+        "endChar": 41
+      },
+      "revId": "b7ddf5fc4d4a8ba2f67a59fcd85ea19e5e42af29",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
