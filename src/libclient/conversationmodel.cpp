@@ -832,12 +832,19 @@ ConversationModel::removeConversation(const QString& uid, bool banned)
         return;
     }
     if (conversation.isSwarm() && !banned && !conversation.isCoreDialog()) {
-        if (conversation.isRequest)
+        if (conversation.isRequest) {
             ConfigurationManager::instance().declineConversationRequest(owner.id, uid);
-        else
+        } else {
             ConfigurationManager::instance().removeConversation(owner.id, uid);
+        }
     } else {
-        owner.contactModel->removeContact(peers.front(), banned);
+        try {
+            auto& contact = owner.contactModel->getContact(peers.front());
+            owner.contactModel->removeContact(peers.front(), banned);
+        } catch (const std::out_of_range&) {
+            qWarning() << "Contact not found: " << peers.front();
+            ConfigurationManager::instance().removeConversation(owner.id, uid);
+        }
     }
 }
 

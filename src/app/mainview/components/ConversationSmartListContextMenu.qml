@@ -91,7 +91,7 @@ ContextMenuAutoLoader {
                         "confirmLabel": JamiStrings.optionRemove
                     });
                 dlg.accepted.connect(function () {
-                        if (!isCoreDialog)
+                        if (mode !== Conversation.Mode.NON_SWARM)
                             MessagesAdapter.removeConversation(responsibleConvUid);
                         else
                             MessagesAdapter.removeContact(responsibleConvUid);
