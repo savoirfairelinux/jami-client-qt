@@ -764,7 +764,7 @@ MessagesAdapter::startSearch(const QString& text, bool isMedia)
 }
 
 int
-MessagesAdapter::getMessageIndexFromId(QString& id)
+MessagesAdapter::getMessageIndexFromId(const QString& id)
 {
     const QString& convId = lrcInstance_->get_selectedConvUid();
     const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
