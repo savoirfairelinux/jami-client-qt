@@ -308,7 +308,7 @@ parts:
     - libexpat1-dev
     - libjsoncpp-dev
     - libnm-dev # connectivityChanged()
-    - libdbus-1-dev # dbus
+    - libsystemd-dev # sdbus-cpp
     - libpulse-dev # pulse
     - libudev-dev
     - libopus-dev # Avoid to build opus from contrib
