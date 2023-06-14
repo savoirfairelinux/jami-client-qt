@@ -723,7 +723,7 @@ ColumnLayout {
                             property var iconSrc: JamiResources.localisation_sharing_send_pin_svg
                             property var toolTip: JamiStrings.shareLocation
                             property bool show: false
-                            property bool needWebEngine: false
+                            property bool needWebEngine: true
                             property bool needVideoDevice: false
                             property bool noSip: false
                             onTriggered: function clickAction() {
