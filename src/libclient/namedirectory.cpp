@@ -78,13 +78,13 @@ NameDirectoryPrivate::slotRegisteredNameFound(const QString& accountId,
 {
     switch (static_cast<NameDirectory::LookupStatus>(status)) {
     case NameDirectory::LookupStatus::INVALID_NAME:
-        qDebug() << "lookup name is INVALID:" << name << accountId;
+        qDebug() << "lookup name is INVALID: address: " << address << " name: " << name << " accountId: " << accountId;
         break;
     case NameDirectory::LookupStatus::NOT_FOUND:
-        qDebug() << "lookup name NOT FOUND:" << name << accountId;
+        qDebug() << "lookup name NOT FOUND: address: " << address << " name: " << name << " accountId: " << accountId;
         break;
     case NameDirectory::LookupStatus::ERROR:
-        qDebug() << "lookup name ERROR:" << name << accountId;
+        qDebug() << "lookup name ERROR: address: " << address << " name: " << name << " accountId: " << accountId;
         break;
     case NameDirectory::LookupStatus::SUCCESS:
         break;
