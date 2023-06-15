@@ -347,7 +347,7 @@ SettingsPageBase {
                     width: 255
                     height: 60
 
-                    text: JamiStrings.verticalViewOpt
+                    text: JamiStrings.horizontalViewOpt
                     ButtonGroup.group: optionsB
                     iconSource: JamiResources.horizontal_view_svg
 
@@ -364,7 +364,7 @@ SettingsPageBase {
                     width: 255
                     height: 60
 
-                    text: JamiStrings.horizontalViewOpt
+                    text: JamiStrings.verticalViewOpt
                     ButtonGroup.group: optionsB
                     //color: JamiTheme.blackColor
                     iconSource: JamiResources.vertical_view_svg
