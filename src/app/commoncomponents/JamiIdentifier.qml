@@ -33,7 +33,7 @@ Item {
     // Background rounded rectangle.
     Rectangle {
         id: outerRect
-        anchors.fill: parent
+        anchors.fill: columnLayout
         radius: 20
         color: JamiTheme.secondaryBackgroundColor
     }
