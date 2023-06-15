@@ -343,35 +343,35 @@ SettingsPageBase {
                 }
 
                 MaterialRadioButton {
-                    id: verticalRadio
+                    id: horizontalRadio
                     width: 255
                     height: 60
 
-                    text: JamiStrings.verticalViewOpt
+                    text: JamiStrings.horizontalViewOpt
                     ButtonGroup.group: optionsB
                     iconSource: JamiResources.horizontal_view_svg
 
                     onCheckedChanged: {
                         if (checked) {
-                            UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, false);
+                            UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, true);
                         }
                     }
                 }
 
                 MaterialRadioButton {
-                    id: horizontalRadio
+                    id: verticalRadio
 
                     width: 255
                     height: 60
 
-                    text: JamiStrings.horizontalViewOpt
+                    text: JamiStrings.verticalViewOpt
                     ButtonGroup.group: optionsB
                     //color: JamiTheme.blackColor
                     iconSource: JamiResources.vertical_view_svg
 
                     onCheckedChanged: {
                         if (checked) {
-                            UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, true);
+                            UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, false);
                         }
                     }
                 }

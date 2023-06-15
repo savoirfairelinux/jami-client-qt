@@ -74,7 +74,7 @@ RadioButton {
         spacing: 10
 
         anchors.left: root.indicator.right
-        anchors.leftMargin: root.spacing
+        anchors.leftMargin: 10
 
         ResponsiveImage {
             color: borderColor
@@ -89,6 +89,8 @@ RadioButton {
             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
             text: root.text
             wrapMode: Text.WordWrap
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
         }
     }
 
