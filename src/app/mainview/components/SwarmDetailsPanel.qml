@@ -540,8 +540,6 @@ Rectangle {
 
             JamiListView {
                 id: members
-                anchors.topMargin: JamiTheme.preferredMarginSize
-                anchors.bottomMargin: JamiTheme.preferredMarginSize
                 anchors.fill: parent
 
                 visible: tabBar.currentItemName === "members"
