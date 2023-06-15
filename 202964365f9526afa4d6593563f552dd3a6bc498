@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4ff9609_f11ba406",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-06-15T21:55:45Z",
+      "side": 1,
+      "message": "Should this be `horizontal`? Or a note added why it is different to the `text`? Thank you",
+      "range": {
+        "startLine": 346,
+        "startChar": 24,
+        "endLine": 346,
+        "endChar": 32
+      },
+      "revId": "202964365f9526afa4d6593563f552dd3a6bc498",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca8c47c_5e8087d4",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-06-15T21:55:45Z",
+      "side": 1,
+      "message": "Should `ShowChatviewHorizontally` be `ShowChatviewVertically`\n\nor\n\n`false` changed to `true`?\n\nThank you",
+      "range": {
+        "startLine": 356,
+        "startChar": 66,
+        "endLine": 356,
+        "endChar": 97
+      },
+      "revId": "202964365f9526afa4d6593563f552dd3a6bc498",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e202bc9e_8e487c2f",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-06-15T21:55:45Z",
+      "side": 1,
+      "message": "Should this be `vertical` or a note added why it is different to the `text` and `iconSource`? Thank you",
+      "range": {
+        "startLine": 362,
+        "startChar": 24,
+        "endLine": 362,
+        "endChar": 34
+      },
+      "revId": "202964365f9526afa4d6593563f552dd3a6bc498",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b705288c_3f6e9e40",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-06-15T21:55:45Z",
+      "side": 1,
+      "message": "Or should `true` be `false`?",
+      "range": {
+        "startLine": 374,
+        "startChar": 92,
+        "endLine": 374,
+        "endChar": 96
+      },
+      "revId": "202964365f9526afa4d6593563f552dd3a6bc498",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "361f48d0_eb9e4dc1",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-06-15T21:55:45Z",
+      "side": 1,
+      "message": "Should this be `Vertically`? Thank you",
+      "range": {
+        "startLine": 374,
+        "startChar": 78,
+        "endLine": 374,
+        "endChar": 90
+      },
+      "revId": "202964365f9526afa4d6593563f552dd3a6bc498",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
