@@ -30,6 +30,15 @@ Item {
     width: childrenRect.width
     height: controlsLayout.height + usernameTextEdit.height + 2 * JamiTheme.preferredMarginSize
 
+    Connections {
+        target: CurrentAccount
+        function onIdChanged(id) {
+            if (!usernameTextEdit.readOnly) {
+                usernameTextEdit.readOnly = true;
+            }
+        }
+    }
+
     // Background rounded rectangle.
     Rectangle {
         id: outerRect
