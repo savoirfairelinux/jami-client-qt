@@ -161,6 +161,7 @@ endif
 #
 DISTRIBUTIONS := \
 	debian_11 \
+	debian_12 \
 	debian_testing \
 	debian_unstable \
 	ubuntu_20.04 \
