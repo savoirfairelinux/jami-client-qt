@@ -93,7 +93,7 @@ PositionManager::isConvSharingPosition(const QString& accountId, const QString& 
 }
 
 void
-PositionManager::loadPreviousLocations(QString& accountId)
+PositionManager::loadPreviousLocations(const QString& accountId)
 {
     for (auto it = objectListSharingUris_.begin(); it != objectListSharingUris_.end(); it++) {
         if (it.key().first != accountId) {
@@ -112,7 +112,7 @@ PositionManager::loadPreviousLocations(QString& accountId)
 }
 
 QString
-PositionManager::getmapTitle(QString& accountId, QString convId)
+PositionManager::getmapTitle(const QString& accountId, const QString& convId)
 {
     if (!convId.isEmpty() && !accountId.isEmpty()) {
         return lrcInstance_->getAccountInfo(accountId).conversationModel->title(convId);
@@ -180,7 +180,7 @@ PositionManager::onWatchdogTimeout()
 }
 
 void
-PositionManager::sharePosition(int maximumTime, QString accountId, QString convId)
+PositionManager::sharePosition(int maximumTime, const QString& accountId, const QString& convId)
 {
     try {
         if (settingsManager_->getValue(Settings::Key::PositionShareDuration) != 0)
@@ -193,7 +193,7 @@ PositionManager::sharePosition(int maximumTime, QString accountId, QString convI
 }
 
 void
-PositionManager::stopSharingPosition(QString accountId, const QString convId)
+PositionManager::stopSharingPosition(const QString& accountId, const QString& convId)
 {
     QString stopMsg;
     PositionKey key = qMakePair(accountId, convId);
@@ -249,7 +249,7 @@ PositionManager::sendStopMessage(QString accountId, const QString convId)
 }
 
 void
-PositionManager::unPinMap(QString key)
+PositionManager::unPinMap(const QString& key)
 {
     QMutexLocker lk(&mapStatusMutex_);
     if (mapStatus_.find(key) != mapStatus_.end()) {
@@ -262,7 +262,7 @@ PositionManager::unPinMap(QString key)
 }
 
 void
-PositionManager::pinMap(QString key)
+PositionManager::pinMap(const QString& key)
 {
     QMutexLocker lk(&mapStatusMutex_);
     if (mapStatus_.find(key) != mapStatus_.end()) {
@@ -280,7 +280,7 @@ PositionManager::pinMap(QString key)
 }
 
 void
-PositionManager::setMapInactive(const QString key)
+PositionManager::setMapInactive(const QString& key)
 {
     QMutexLocker lk(&mapStatusMutex_);
     if (mapStatus_.find(key) != mapStatus_.end()) {
@@ -296,7 +296,7 @@ PositionManager::setMapInactive(const QString key)
 }
 
 void
-PositionManager::setMapActive(QString key)
+PositionManager::setMapActive(const QString& key)
 {
     if (mapStatus_.find(key) == mapStatus_.end()) {
         mapStatus_.insert(key, false);
