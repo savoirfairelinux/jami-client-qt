@@ -125,18 +125,18 @@ Rectangle {
         anchors.fill: parent
 
         property bool isHorizontal: false // Calculated when showing the stack view
-        orientation: isHorizontal ? Qt.Horizontal : Qt.Vertical
+        orientation: isHorizontal ? Qt.Vertical : Qt.Horizontal // Chatview is horizontal if split is vertical (so chatview takes full width)
 
         handle: Rectangle {
-            implicitWidth: mainColumnLayout.isHorizontal ? JamiTheme.splitViewHandlePreferredWidth : root.width
-            implicitHeight: mainColumnLayout.isHorizontal ? root.height : JamiTheme.splitViewHandlePreferredWidth
+            implicitWidth: mainColumnLayout.isHorizontal ? root.width : JamiTheme.splitViewHandlePreferredWidth
+            implicitHeight: mainColumnLayout.isHorizontal ? JamiTheme.splitViewHandlePreferredWidth : root.height
             color: SplitHandle.pressed ? JamiTheme.pressColor : (SplitHandle.hovered ? JamiTheme.hoverColor : JamiTheme.tabbarBorderColor)
         }
 
         Rectangle {
             id: callPageMainRect
 
-            SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : (root.height / 3) * 2
+            SplitView.preferredHeight: mainColumnLayout.isHorizontal ? (root.height / 3) * 2 : root.height
             SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
             SplitView.fillWidth: true
 
