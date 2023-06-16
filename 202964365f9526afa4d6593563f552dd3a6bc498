@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "382ec57e_55b64118",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-16T14:59:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4ff9609_f11ba406",
+      "range": {
+        "startLine": 346,
+        "startChar": 24,
+        "endLine": 346,
+        "endChar": 32
+      },
+      "revId": "202964365f9526afa4d6593563f552dd3a6bc498",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ca8c47c_5e8087d4",
@@ -71,6 +95,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f918153d_f8d9c4c0",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-16T14:59:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f34b98f9_8769b3ba",
+      "range": {
+        "startLine": 356,
+        "startChar": 66,
+        "endLine": 356,
+        "endChar": 97
+      },
+      "revId": "202964365f9526afa4d6593563f552dd3a6bc498",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e202bc9e_8e487c2f",
@@ -84,6 +132,30 @@
       "writtenOn": "2023-06-15T21:55:45Z",
       "side": 1,
       "message": "Should this be `vertical` or a note added why it is different to the `text` and `iconSource`? Thank you",
+      "range": {
+        "startLine": 362,
+        "startChar": 24,
+        "endLine": 362,
+        "endChar": 34
+      },
+      "revId": "202964365f9526afa4d6593563f552dd3a6bc498",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e0034b1_655c3322",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-16T14:59:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e202bc9e_8e487c2f",
       "range": {
         "startLine": 362,
         "startChar": 24,
@@ -178,6 +250,54 @@
       "side": 1,
       "message": "this will break current user preferences. as it will be resetted",
       "parentUuid": "361f48d0_eb9e4dc1",
+      "range": {
+        "startLine": 374,
+        "startChar": 78,
+        "endLine": 374,
+        "endChar": 90
+      },
+      "revId": "202964365f9526afa4d6593563f552dd3a6bc498",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0277ff6a_6ccfbfdc",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-16T14:59:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b224244_fb9750aa",
+      "range": {
+        "startLine": 374,
+        "startChar": 92,
+        "endLine": 374,
+        "endChar": 96
+      },
+      "revId": "202964365f9526afa4d6593563f552dd3a6bc498",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37bce512_16fbffb9",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-16T14:59:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16bd4623_292bf646",
       "range": {
         "startLine": 374,
         "startChar": 78,
