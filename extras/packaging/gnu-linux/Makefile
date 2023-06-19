@@ -168,7 +168,6 @@ DISTRIBUTIONS := \
 	ubuntu_22.04 \
 	ubuntu_22.10 \
 	ubuntu_23.04 \
-	fedora_36 \
 	fedora_37 \
 	fedora_38 \
 	opensuse-leap_15.4 \
