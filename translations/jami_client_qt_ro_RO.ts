@@ -916,7 +916,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
         <source> replied to</source>
-        <translation> a răspuns la</translation>
+        <translation> a răspuns pentru</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
@@ -1755,7 +1755,7 @@ Poza și pseudonimul tău pot fi schimbate din reglările contului tău.</transl
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
         <source>Link</source>
-        <translation>Asociază</translation>
+        <translation>Legătură</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
@@ -2229,7 +2229,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
         <source>In reply to</source>
-        <translation>Ca răspuns la</translation>
+        <translation>Răspuns pentru</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
@@ -2663,7 +2663,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="829"/>
         <source>%1 has sent you a request for a conversation.</source>
-        <translation>%1 ți-a trimis o invitație la o conversație.</translation>
+        <translation>%1 ți-a trimis o invitație la conversație.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="830"/>
@@ -2859,7 +2859,7 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="417"/>
         <source>Display Name</source>
-        <translation>Arată numele</translation>
+        <translation>Nume afișat</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="421"/>

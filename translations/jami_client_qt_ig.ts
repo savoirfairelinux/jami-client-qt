@@ -4,32 +4,32 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="151"/>
         <source>Missed call</source>
-        <translation type="unfinished"/>
+        <translation>N&apos; ihi na a kpọghị gị</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="152"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>Ịkpọ oku na %1</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="454"/>
         <source>Incoming call</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;ọhịa</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="455"/>
         <source>%1 is calling you</source>
-        <translation type="unfinished"/>
+        <translation>%1 na-akpọ gị</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="466"/>
         <source>is calling you</source>
-        <translation type="unfinished"/>
+        <translation>na-akpọ gị</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="961"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ihe nkiri ihuenyo</translation>
     </message>
 </context>
 <context>
@@ -37,12 +37,12 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="183"/>
         <source>%1 received a new message</source>
-        <translation type="unfinished"/>
+        <translation>% 1 natara ozi ọhụrụ</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="243"/>
         <source>%1 received a new trust request</source>
-        <translation type="unfinished"/>
+        <translation>%1 natara arịrịọ ọhụrụ maka ntụkwasị obi</translation>
     </message>
 </context>
 <context>
@@ -58,7 +58,7 @@
     <message>
         <location filename="../src/app/currentcall.cpp" line="178"/>
         <source>Me</source>
-        <translation type="unfinished"/>
+        <translation>Mụ onwe m</translation>
     </message>
 </context>
 <context>
@@ -66,42 +66,42 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="136"/>
         <source>Private</source>
-        <translation type="unfinished"/>
+        <translation>Ndị mmadụ n&apos;onwe ha</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="138"/>
         <source>Private group (restricted invites)</source>
-        <translation type="unfinished"/>
+        <translation>Otu ndị mmadụ n&apos;otu n&apos;otu (n&apos;ụdị ịkpọ òkù)</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="140"/>
         <source>Private group</source>
-        <translation type="unfinished"/>
+        <translation>Otu ndị na-ahụ maka ndị mmadụ</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="142"/>
         <source>Public group</source>
-        <translation type="unfinished"/>
+        <translation>Ndị otu ọha</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="323"/>
         <source>An error occurred while fetching this repository</source>
-        <translation type="unfinished"/>
+        <translation>Njehie mere mgbe ị na-akpọta a nchekwa</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="325"/>
         <source>The conversation&apos;s mode is un-recognized</source>
-        <translation type="unfinished"/>
+        <translation>A naghị amata otú e si ekwu okwu</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="327"/>
         <source>An invalid message was detected</source>
-        <translation type="unfinished"/>
+        <translation>A chọpụtara ozi na-adịghị mma</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="330"/>
         <source>Not enough authorization for updating conversation&apos;s infos</source>
-        <translation type="unfinished"/>
+        <translation>Enweghị ikike zuru ezu iji melite ozi mkparịta ụka</translation>
     </message>
 </context>
 <context>
@@ -109,7 +109,7 @@
     <message>
         <location filename="../src/app/mainview/components/DevicesListPopup.qml" line="162"/>
         <source>Device Id</source>
-        <translation type="unfinished"/>
+        <translation>ID Ngwaọrụ</translation>
     </message>
 </context>
 <context>
@@ -117,247 +117,247 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="39"/>
         <source>Invitations</source>
-        <translation type="unfinished"/>
+        <translation>Akwụkwọ ịkpọ òkù</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="49"/>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Version</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="55"/>
         <source>Credits</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị e ji akwụ ụgwọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="58"/>
         <source>Display QR code</source>
-        <translation type="unfinished"/>
+        <translation>Gosi koodu QR</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="59"/>
         <source>Open settings</source>
-        <translation type="unfinished"/>
+        <translation>Mbido oghere</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Close settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala imechi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="70"/>
         <source>Authentication required</source>
-        <translation type="unfinished"/>
+        <translation>A chọrọ nkwenye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="71"/>
         <source>Your session has expired or been revoked on this device. Please enter your password.</source>
-        <translation type="unfinished"/>
+        <translation>Oge nnọkọ gị agwụla maọbụ a kagbuo ya na ngwaọrụ a. Biko tinye paswọọdụ gị.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="72"/>
         <source>JAMS server</source>
-        <translation type="unfinished"/>
+        <translation>Ihe nkesa JAMS</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="73"/>
         <source>Authenticate</source>
-        <translation type="unfinished"/>
+        <translation>Gosi na ọ bụ eziokwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="74"/>
         <source>Delete account</source>
-        <translation type="unfinished"/>
+        <translation>Ihichapụ akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="76"/>
         <source>Authentication failed</source>
-        <translation type="unfinished"/>
+        <translation>Aghọrọla ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="77"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Paswọdu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="78"/>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Aha njirimara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="79"/>
         <source>Alias</source>
-        <translation type="unfinished"/>
+        <translation>Ndị a na-akpọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="82"/>
         <source>Allow incoming calls from unknown contacts</source>
-        <translation type="unfinished"/>
+        <translation>Kwe ka oku na-abata site na kọntaktị ndị a na-amaghị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
         <source>In progress…</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;ime usoro...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="29"/>
         <source>Accept</source>
-        <translation type="unfinished"/>
+        <translation>Nabata Ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
         <source>Refuse</source>
-        <translation type="unfinished"/>
+        <translation>Ịjụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
         <source>Incoming audio call from {}</source>
-        <translation type="unfinished"/>
+        <translation>Ọkpụkpọ oku na-abata site na {}</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
         <source>Incoming video call from {}</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;ime ime video oku site {}</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="42"/>
         <source>Migrate conversation</source>
-        <translation type="unfinished"/>
+        <translation>Mbanye mkparịta ụka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="83"/>
         <source>Convert your account into a rendezvous point</source>
-        <translation type="unfinished"/>
+        <translation>Mee ka akaụntụ gị bụrụ ebe ị ga-ezukọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="84"/>
         <source>Automatically answer calls</source>
-        <translation type="unfinished"/>
+        <translation>Na-azaghachi oku na-akpaghị aka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="85"/>
         <source>Enable custom ringtone</source>
-        <translation type="unfinished"/>
+        <translation>Gbaa ụdaolu omenala</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="86"/>
         <source>Select custom ringtone</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ omenala ringtone</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="87"/>
         <source>Add a custom ringtone</source>
-        <translation type="unfinished"/>
+        <translation>Tinye ụdaolu omenala</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="88"/>
         <source>Select a new ringtone</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ụdaolu ọhụrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
         <source>Voicemail</source>
-        <translation type="unfinished"/>
+        <translation>Ozi olu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="98"/>
         <source>Voicemail dial code</source>
-        <translation type="unfinished"/>
+        <translation>Koodu oku olu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="101"/>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>Nchebe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="102"/>
         <source>Enable SDES key exchange</source>
-        <translation type="unfinished"/>
+        <translation>Mee ka SDES igodo mgbanwe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="103"/>
         <source>Allow fallback on RTP</source>
-        <translation type="unfinished"/>
+        <translation>Kwe ka RTP laghachi azụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="104"/>
         <source>Encrypt negotiation (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Nkwurịta okwu nzuzo (TLS)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="105"/>
         <source>CA certificate</source>
-        <translation type="unfinished"/>
+        <translation>Akwụkwọ ikike ikike</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="106"/>
         <source>User certificate</source>
-        <translation type="unfinished"/>
+        <translation>Akwụkwọ onye ọrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="107"/>
         <source>Private key</source>
-        <translation type="unfinished"/>
+        <translation>Isi ihe nzuzo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="108"/>
         <source>Private key password</source>
-        <translation type="unfinished"/>
+        <translation>Paswọdu isi nzuzo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="109"/>
         <source>Verify certificates for incoming TLS connections</source>
-        <translation type="unfinished"/>
+        <translation>Nyochaa asambodo maka njikọ TLS na-abata</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="110"/>
         <source>Verify server TLS certificates</source>
-        <translation type="unfinished"/>
+        <translation>Nyochaa akwụkwọ TLS nke ihe nkesa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="111"/>
         <source>Require certificate for incoming TLS connections</source>
-        <translation type="unfinished"/>
+        <translation>Chọrọ asambodo maka njikọ TLS na-abata</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="113"/>
         <source>Audio input device selector</source>
-        <translation type="unfinished"/>
+        <translation>Ntinye ngwaọrụ ntinye olu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="114"/>
         <source>Select a private key</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ igodo nzuzo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="115"/>
         <source>Select a user certificate</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ onye ọrụ akwụkwọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
         <source>Registration expiration time (seconds)</source>
-        <translation type="unfinished"/>
+        <translation>Oge ngwụcha ndebanye aha (sekọnd)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
         <source>Use custom address and port</source>
-        <translation type="unfinished"/>
+        <translation>Jiri adreesị omenala na ọdụ ụgbọ mmiri</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
         <source>Enable local peer discovery</source>
-        <translation type="unfinished"/>
+        <translation>Mee ka nchọpụta ndị ọgbọ dị n&apos;ógbè ahụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
         <source>Frames per second</source>
-        <translation type="unfinished"/>
+        <translation>Ihe osise kwa nke abụọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
         <source>Select video frame rate (frames per second)</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ video etiti ọsọ (okirikiri kwa nke abụọ)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
@@ -367,75 +367,75 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
         <source>Pause call</source>
-        <translation type="unfinished"/>
+        <translation>Nkwupụta nkwụsịtụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
         <source>Resume call</source>
-        <translation type="unfinished"/>
+        <translation>Nchịkọta oku</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
         <source>Creating account…</source>
-        <translation type="unfinished"/>
+        <translation>Ịmepụta akaụntụ...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
         <source>Encrypt account with password</source>
-        <translation type="unfinished"/>
+        <translation>Encrypt akaụntụ na paswọọdụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
         <source>Create a rendezvous point</source>
-        <translation type="unfinished"/>
+        <translation>Mepụta ebe a ga-anọ na-ezukọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="389"/>
         <source>Choose a name for your rendezvous point</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ aha ebe ị ga-aga</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
         <source>Launch at startup</source>
-        <translation type="unfinished"/>
+        <translation>Launch na mmalite</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
         <source>Network error</source>
-        <translation type="unfinished"/>
+        <translation>Njehie netwọk</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>SSL error</source>
-        <translation type="unfinished"/>
+        <translation>Njehie SSL</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN.</source>
-        <translation type="unfinished"/>
+        <translation>Tinye PIN site na akaụntụ Jami ọzọ ahaziri. Jiri njirimara &quot;Jikọ Ngwaọrụ Ọzọ&quot; iji nweta PIN.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
         <source>Link device</source>
-        <translation type="unfinished"/>
+        <translation>Ngwaọrụ njikọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
         <source>Conversations</source>
-        <translation type="unfinished"/>
+        <translation>Mkparịta ụka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
         <source>Enable</source>
-        <translation type="unfinished"/>
+        <translation>Mee ka ọ dị irè</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
         <source>Are you sure you would like to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
-        <translation type="unfinished"/>
+        <translation>Ọ bụrụ na ị chọrọ, ọ bụ naanị ihe e ji mara ihe odide iri anọ ka a ga-enye aka na akaụntụ a.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="396"/>
@@ -443,98 +443,98 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
 - Special characters allowed: dash (-)</source>
-        <translation type="unfinished"/>
+        <translation>- Ihe kachasị akara 32 - Akara mkpụrụedemede (A ruo Z na a ruo z) - Akara ọnụọgụ (0 ruo 9) - Akara pụrụ iche a na-ekwe ka ha bụrụ: dash (-)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
         <source>Your account will be created and stored locally.</source>
-        <translation type="unfinished"/>
+        <translation>A ga-ekepụta akaụntụ gị ma chekwaa ya n&apos;ógbè gị.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
-        <translation type="unfinished"/>
+        <translation>A na-atụ aro ịhọrọ aha njirimara, a PỤRỤGHỊ ịgbanwe aha njirimara a họọrọ mgbe e mesịrị.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation type="unfinished"/>
+        <translation>Ịnye paswọọdụ na-eme ka akaụntụ gị bụrụ nke a na-ahọrọ, ọ bụrụkwa na e mefuo paswọọdụ ahụ, a PỤRỤGHỊ iweghachite ya mgbe e mesịrị.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
         <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
-        <translation type="unfinished"/>
+        <translation>Ịtọ foto profaịlụ na aha njirimara bụ nhọrọ, ma nwekwara ike gbanwere mgbe e mesịrị na ntọala.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
         <source>Back up account to a .gz file</source>
-        <translation type="unfinished"/>
+        <translation>Ndabere akaụntụ ka a.gz faịlụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="669"/>
         <source>Display or hide preferences</source>
-        <translation type="unfinished"/>
+        <translation>Gosi ma ọ bụ zoo mmasị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
         <source>Add new plugin</source>
-        <translation type="unfinished"/>
+        <translation>Tinye ọhụrụ ngwa mgbakwunye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
         <source>Select a file</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ faịlụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="117"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="673"/>
         <source>Select</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="674"/>
         <source>Choose image file</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ faịlụ oyiyi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
         <source>Enter the rendezvous point&apos;s name</source>
-        <translation type="unfinished"/>
+        <translation>Tinye aha ebe ị ga-ezukọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="690"/>
         <source>Creating rendezvous point…</source>
-        <translation type="unfinished"/>
+        <translation>Ịmepụta ebe a ga-ezukọ...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
         <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation type="unfinished"/>
+        <translation>Mepụta akaụntụ site na Jami Account Management Server (JAMS)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
         <source>Create a Jami account</source>
-        <translation type="unfinished"/>
+        <translation>Mepụta akaụntụ Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
         <source>About Jami</source>
-        <translation type="unfinished"/>
+        <translation>Banyere Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
         <source>Decline contact request</source>
-        <translation type="unfinished"/>
+        <translation>Ịjụ arịrịọ ịkpọtụrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
         <source>Accept contact request</source>
-        <translation type="unfinished"/>
+        <translation>Nabata arịrịọ ịkpọtụrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Akpaghị aka nyochaa maka mmelite</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
@@ -550,317 +550,317 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
         <source>Accept in audio</source>
-        <translation type="unfinished"/>
+        <translation>Ịnakwere na ọdịyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="31"/>
         <source>Accept in video</source>
-        <translation type="unfinished"/>
+        <translation>Nweta na video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation type="unfinished"/>
+        <translation>Jami bụ usoro nkwukọrịta zuru ụwa ọnụ, na nzuzo dị ka ntọala ya, nke dabere na netwọkụ na-ekesa n&apos;efu maka mmadụ niile.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation type="unfinished"/>
+        <translation>Ịkwaga na teknụzụ Swarm ga-eme ka ọ dị mfe ịmekọrịta mkparịta ụka a n&apos;ofe ọtụtụ ngwaọrụ ma melite ntụkwasị obi. A ga-ehichapụ akụkọ ihe mere eme mkparịta ụka ochie na usoro ahụ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
         <source>Jami is a free universal communication software that respects the freedom and privacy of its users.</source>
-        <translation type="unfinished"/>
+        <translation>Jami bụ ngwanrọ nkwukọrịta zuru ụwa ọnụ na-akwadoghị nke na-akwanyere nnwere onwe na nzuzo nke ndị ọrụ ya ùgwù.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
         <source>Add Account</source>
-        <translation type="unfinished"/>
+        <translation>Tinye Akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="64"/>
         <source>Add to conference</source>
-        <translation type="unfinished"/>
+        <translation>Tinye na ogbako</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="65"/>
         <source>Add to conversation</source>
-        <translation type="unfinished"/>
+        <translation>Tinye ya ná mkparịta ụka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="66"/>
         <source>Transfer this call</source>
-        <translation type="unfinished"/>
+        <translation>Nyefee oku a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
         <source>Certificate File (*.crt)</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndekọ akwụkwọ (*.crt)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="90"/>
         <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation type="unfinished"/>
+        <translation>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
         <source>Enable read receipts</source>
-        <translation type="unfinished"/>
+        <translation>Gbaa mbọ hụ na ị na-agụ akwụkwọ ndị e nyere gị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
         <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation type="unfinished"/>
+        <translation>Ziga ma nata akwụkwọ nnata nke na-egosi na egosila ozi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="116"/>
         <source>Select a CA certificate</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ akwụkwọ ikike CA</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="118"/>
         <source>Key File (*.key)</source>
-        <translation type="unfinished"/>
+        <translation>Isi Ihe Njirimara (*.key)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="121"/>
         <source>Connectivity</source>
-        <translation type="unfinished"/>
+        <translation>Njikọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="122"/>
         <source>Auto Registration After Expired</source>
-        <translation type="unfinished"/>
+        <translation>Ịdebanye aha na-akpaghị aka mgbe ọ gwụchara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="124"/>
         <source>Network interface</source>
-        <translation type="unfinished"/>
+        <translation>Ntanetị netwọk</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="125"/>
         <source>Use UPnP</source>
-        <translation type="unfinished"/>
+        <translation>Jiri UPnP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="126"/>
         <source>Use TURN</source>
-        <translation type="unfinished"/>
+        <translation>Jiri TURN</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="127"/>
         <source>TURN address</source>
-        <translation type="unfinished"/>
+        <translation>Adreesị TURN</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="128"/>
         <source>TURN username</source>
-        <translation type="unfinished"/>
+        <translation>Aha njirimara TURN</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
         <source>TURN password</source>
-        <translation type="unfinished"/>
+        <translation>Paswọdu TURN</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
         <source>TURN Realm</source>
-        <translation type="unfinished"/>
+        <translation>Achịcha Ụwa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="131"/>
         <source>Use STUN</source>
-        <translation type="unfinished"/>
+        <translation>Jiri STUN</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="132"/>
         <source>STUN address</source>
-        <translation type="unfinished"/>
+        <translation>Adreesị STUN</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="135"/>
         <source>Allow IP Auto Rewrite</source>
-        <translation type="unfinished"/>
+        <translation>Hapụ Auto Rewrite IP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="136"/>
         <source>Public address</source>
-        <translation type="unfinished"/>
+        <translation>Okwu ihu ọha</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="138"/>
         <source>Address</source>
-        <translation type="unfinished"/>
+        <translation>Adreesị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="139"/>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Port</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="142"/>
         <source>Media</source>
-        <translation type="unfinished"/>
+        <translation>Ndị mgbasa ozi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="143"/>
         <source>Enable video</source>
-        <translation type="unfinished"/>
+        <translation>Gbaa vidiyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="151"/>
         <source>SDP Session Negotiation (ICE Fallback)</source>
-        <translation type="unfinished"/>
+        <translation>Nkwurịta Okwu Oge SDP (ICE Fallback)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="152"/>
         <source>Only used during negotiation in case ICE is not supported</source>
-        <translation type="unfinished"/>
+        <translation>Naanị eji n&apos;oge mkparịta ụka ma ọ bụrụ na anaghị akwado ICE</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="153"/>
         <source>Audio RTP minimum Port</source>
-        <translation type="unfinished"/>
+        <translation>Audio RTP kacha nta Port</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="154"/>
         <source>Audio RTP maximum Port</source>
-        <translation type="unfinished"/>
+        <translation>Audio RTP kacha Port</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="155"/>
         <source>Video RTP minimum Port</source>
-        <translation type="unfinished"/>
+        <translation>Video RTP kacha nta Port</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="156"/>
         <source>Video RTP maximum port</source>
-        <translation type="unfinished"/>
+        <translation>Video RTP kacha ọdụ ụgbọ mmiri</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
         <source>Connect to other DHT nodes advertising on your local network.</source>
-        <translation type="unfinished"/>
+        <translation>Jikọọ na ndị ọzọ DHT ọnụ mgbasa ozi na gị na mpaghara netwọk.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
         <source>Enable proxy</source>
-        <translation type="unfinished"/>
+        <translation>Gbaa proxy</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
         <source>Proxy address</source>
-        <translation type="unfinished"/>
+        <translation>Adreesị nnọchiteanya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="164"/>
         <source>Bootstrap</source>
-        <translation type="unfinished"/>
+        <translation>Akpụkpọ ụkwụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="167"/>
         <source>Back</source>
-        <translation type="unfinished"/>
+        <translation>Ịlaghachi azụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
         <source>Account Settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
         <source>Account</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndekọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>General</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="181"/>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Ihe a na-anụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="182"/>
         <source>Microphone</source>
-        <translation type="unfinished"/>
+        <translation>Igwe okwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="183"/>
         <source>Select audio input device</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ngwaọrụ ntinye ọdịyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="184"/>
         <source>Output device</source>
-        <translation type="unfinished"/>
+        <translation>Ngwaọrụ mmepụta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="185"/>
         <source>Select audio output device</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ngwaọrụ mmepụta ọdịyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
         <source>Ringtone device</source>
-        <translation type="unfinished"/>
+        <translation>Ihe eji eme ka ụdaolu dị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="187"/>
         <source>Select ringtone output device</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ringtone mmepụta ngwaọrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="188"/>
         <source>Audio manager</source>
-        <translation type="unfinished"/>
+        <translation>Onye njikwa ọdịyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="192"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>Vidio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="193"/>
         <source>Select video device</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ngwaọrụ vidiyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="194"/>
         <source>Device</source>
-        <translation type="unfinished"/>
+        <translation>Ngwaọrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="195"/>
         <source>Resolution</source>
-        <translation type="unfinished"/>
+        <translation>Mkpebi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="196"/>
         <source>Select video resolution</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ mkpebi vidiyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
         <source>Enable hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Mee ka ngwaike ngwaike</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="201"/>
         <source>Preview unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Nlele anya adịghị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="202"/>
         <source>Screen Sharing</source>
-        <translation type="unfinished"/>
+        <translation>Ịkekọrịta Ihuenyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="203"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ihuenyo nkekọrịta ọnụego (frame kwa nke abụọ)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="204"/>
@@ -870,381 +870,381 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="539"/>
         <source>Toggle automatic updates</source>
-        <translation type="unfinished"/>
+        <translation>Gbanwee mmelite akpaaka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="542"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation type="unfinished"/>
+        <translation>A chọtara nsụgharị ọhụrụ nke Jami. Ị̀ ga-achọ imelite ya ugbu a?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="564"/>
         <source>Save recordings to</source>
-        <translation type="unfinished"/>
+        <translation>Chekwaa ndekọ na</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="565"/>
         <source>Save screenshots to</source>
-        <translation type="unfinished"/>
+        <translation>Chekwaa screenshots ka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
         <source>Create account from backup</source>
-        <translation type="unfinished"/>
+        <translation>Mepụta akaụntụ site na ndabere</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
         <source>You can obtain an archive by clicking on &quot;Back up account&quot; in the Account Settings. This will create a .gz file on your device.</source>
-        <translation type="unfinished"/>
+        <translation>Ị nwere ike inweta ihe ndekọ site na ịpị &quot;Debere akaụntụ&quot; na Ntọala Akaụntụ. Nke a ga-emepụta faịlụ.gz na ngwaọrụ gị.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
         <source>Restore account from backup</source>
-        <translation type="unfinished"/>
+        <translation>Weghachi akaụntụ site na ndabere</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
         <source>Import Jami account from local archive file.</source>
-        <translation type="unfinished"/>
+        <translation>Bubata akaụntụ Jami site na faịlụ ihe ndekọ mpaghara.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
         <source> replied to</source>
-        <translation type="unfinished"/>
+        <translation>zara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
         <source>Mute conversation</source>
-        <translation type="unfinished"/>
+        <translation>Mkparịta ụka nkịtị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
         <source>Default host (calls)</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala ndabara (kpọọ)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="850"/>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Ọ dịghị nke ọ bụla</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
         <source>Tip</source>
-        <translation type="unfinished"/>
+        <translation>Ihe Ị Ga-eji Akpa Gị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
         <source>Add a profile picture and nickname to complete your profile</source>
-        <translation type="unfinished"/>
+        <translation>Tinye foto profaịlụ na aha njirimara iji mezue profaịlụ gị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="868"/>
         <source>This profile is only shared with this account&apos;s contacts</source>
-        <translation type="unfinished"/>
+        <translation>A na-ekenye profaịlụ a naanị na kọntaktị nke akaụntụ a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
         <source>Why should I save my account?</source>
-        <translation type="unfinished"/>
+        <translation>Gịnị mere m ga-eji chekwaa akaụntụ m?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
         <source>Skip</source>
-        <translation type="unfinished"/>
+        <translation>Ịpụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
         <source>Call settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala oku</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="112"/>
         <source>Disable secure dialog check for incoming TLS data</source>
-        <translation type="unfinished"/>
+        <translation>Gbanyụọ nchọpụta nkata nchekwa maka data TLS na-abata</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="144"/>
         <source>Video codecs</source>
-        <translation type="unfinished"/>
+        <translation>Usoro vidio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="145"/>
         <source>Audio codecs</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị e ji edepụta ihe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="148"/>
         <source>Name server</source>
-        <translation type="unfinished"/>
+        <translation>Aha ihe nkesa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
         <source>OpenDHT configuration</source>
-        <translation type="unfinished"/>
+        <translation>Nhazi OpenDHT</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="200"/>
         <source>Mirror local video</source>
-        <translation type="unfinished"/>
+        <translation>Mirror video obodo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
         <source>Why should I back-up this account?</source>
-        <translation type="unfinished"/>
+        <translation>Gịnị mere m ga-eji kwado akaụntụ a?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later (in the Account Settings).</source>
-        <translation type="unfinished"/>
+        <translation>Akaụntụ gị dị naanị na ngwaọrụ a. Ọ bụrụ na ị hapụ ngwaọrụ gị ma ọ bụ wepụ ngwa ahụ, a ga-ehichapụ akaụntụ gị ma enweghị ike iweghachite ya. Ị nwere ike ịkwado akaụntụ gị ugbu a ma ọ bụ mgbe e mesịrị (na Ntọala Akaụntụ).</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
         <source>Success</source>
-        <translation type="unfinished"/>
+        <translation>Ihe Ịga nke Ọma</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Njehie</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
         <source>Never show me this again</source>
-        <translation type="unfinished"/>
+        <translation>Emela ka m hụ nke a ọzọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
         <source>Recommended</source>
-        <translation type="unfinished"/>
+        <translation>A Na-atụ aro ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
         <source>Reinstate as contact</source>
-        <translation type="unfinished"/>
+        <translation>Weghachi dị ka kọntaktị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="221"/>
         <source>name</source>
-        <translation type="unfinished"/>
+        <translation>aha</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="222"/>
         <source>Identifier</source>
-        <translation type="unfinished"/>
+        <translation>Ihe Nkọwapụta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="225"/>
         <source>is recording</source>
-        <translation type="unfinished"/>
+        <translation>na-edekọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="226"/>
         <source>are recording</source>
-        <translation type="unfinished"/>
+        <translation>na-edekọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="227"/>
         <source>Peer stopped recording</source>
-        <translation type="unfinished"/>
+        <translation>Peer kwụsịrị idekọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="228"/>
         <source>is calling you</source>
-        <translation type="unfinished"/>
+        <translation>na-akpọ gị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="229"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
         <source>Mute</source>
-        <translation type="unfinished"/>
+        <translation>Ndị na-adịghị ekwu okwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="230"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
         <source>Unmute</source>
-        <translation type="unfinished"/>
+        <translation>Ndị na-adịghị ekwu okwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
         <source>Add participant</source>
-        <translation type="unfinished"/>
+        <translation>Tinye onye so</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
         <source>Add participants</source>
-        <translation type="unfinished"/>
+        <translation>Tinye ndị sonyere</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="238"/>
         <source>Chat</source>
-        <translation type="unfinished"/>
+        <translation>Kparịtanụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Ihe mgbakwunye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="173"/>
         <source>Manage account</source>
-        <translation type="unfinished"/>
+        <translation>Jikwaa akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="174"/>
         <source>Linked devices</source>
-        <translation type="unfinished"/>
+        <translation>Ngwaọrụ jikọtara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="177"/>
         <source>Advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala dị elu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
         <source>Audio and Video</source>
-        <translation type="unfinished"/>
+        <translation>Ihe Ndị A Na-anụ na Ihe Ndị A Na-ahụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="189"/>
         <source>Sound test</source>
-        <translation type="unfinished"/>
+        <translation>Nnwale ụda</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
         <source>More options</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị ọzọ ị ga-eme</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="240"/>
         <source>Mosaic</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị e ji eme ihe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
         <source>You are still muted by moderator</source>
-        <translation type="unfinished"/>
+        <translation>Onye na-eduzi gị ka na-eme ka ị ghara ikwu okwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
         <source>You are muted by a moderator</source>
-        <translation type="unfinished"/>
+        <translation>Onye na-eduzi gị na-eme ka ị ghara ikwu okwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
         <source>Moderator</source>
-        <translation type="unfinished"/>
+        <translation>Onye na-eduzi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="246"/>
         <source>Host</source>
-        <translation type="unfinished"/>
+        <translation>Onye ọbịa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="247"/>
         <source>Local and Moderator muted</source>
-        <translation type="unfinished"/>
+        <translation>Ndị na-elekọta obodo na ndị na-elekọta ndị mmadụ na-emechi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="248"/>
         <source>Moderator muted</source>
-        <translation type="unfinished"/>
+        <translation>Onye na-eduzi ihe na-eme ka ọ ghara ịdị irè</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="249"/>
         <source>Not muted</source>
-        <translation type="unfinished"/>
+        <translation>Ọ bụghị ihe a na-apụghị imebi emebi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
         <source>On the side</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;akụkụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
         <source>On the top</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;elu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="252"/>
         <source>Hide self</source>
-        <translation type="unfinished"/>
+        <translation>Zọpụtanụ onwe unu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="253"/>
         <source>Hide spectators</source>
-        <translation type="unfinished"/>
+        <translation>Zọpụtakwa ndị na-ekiri ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="258"/>
         <source>Cut</source>
-        <translation type="unfinished"/>
+        <translation>Echebe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="259"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Ihe a ga-eji na-ekpuchi ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
         <source>Start video call</source>
-        <translation type="unfinished"/>
+        <translation>Malite ịkpọ oku vidiyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="263"/>
         <source>Start audio call</source>
-        <translation type="unfinished"/>
+        <translation>Malite oku ọdịyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="264"/>
         <source>Clear conversation</source>
-        <translation type="unfinished"/>
+        <translation>Mkparịta ụka doro anya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="266"/>
         <source>Remove conversation</source>
-        <translation type="unfinished"/>
+        <translation>Wepụ mkparịta ụka ahụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
         <source>Remove contact</source>
-        <translation type="unfinished"/>
+        <translation>Wepụ njikọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
         <source>Block contact</source>
-        <translation type="unfinished"/>
+        <translation>Njikọ na-ekpuchi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="273"/>
         <source>Contact details</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị a ga-eji kparịta ụka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
         <source>Hold</source>
-        <translation type="unfinished"/>
+        <translation>Nọrọ na nche</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="277"/>
         <source>Sip input panel</source>
-        <translation type="unfinished"/>
+        <translation>Ntinye ntinye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="278"/>
         <source>Transfer call</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;ịkpọ oku maka nnyefe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="279"/>
         <source>Stop recording</source>
-        <translation type="unfinished"/>
+        <translation>Kwụsị ndekọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="280"/>
         <source>Start recording</source>
-        <translation type="unfinished"/>
+        <translation>Malite ndekọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
@@ -1269,460 +1269,460 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
         <source>Share file</source>
-        <translation type="unfinished"/>
+        <translation>Share faịlụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
         <source>Select sharing method</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ usoro ịkekọrịta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
         <source>View plugin</source>
-        <translation type="unfinished"/>
+        <translation>Lelee ngwa mgbakwunye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
         <source>Advanced information</source>
-        <translation type="unfinished"/>
+        <translation>Ozi dị elu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
         <source>No video device</source>
-        <translation type="unfinished"/>
+        <translation>Enweghị ngwaọrụ vidiyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
         <source>Lower hand</source>
-        <translation type="unfinished"/>
+        <translation>Aka ala</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="294"/>
         <source>Raise hand</source>
-        <translation type="unfinished"/>
+        <translation>Welie aka gị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="295"/>
         <source>Layout settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala nhazi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Were nseta ihuenyo tile</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="297"/>
         <source>Screenshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Screenshot echekwara na % 1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
         <source>Renderers information</source>
-        <translation type="unfinished"/>
+        <translation>Ozi ndị na-enye onyinye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Call information</source>
-        <translation type="unfinished"/>
+        <translation>Ozi ịkpọ oku</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Peer number</source>
-        <translation type="unfinished"/>
+        <translation>Ọnụ ọgụgụ ndị ọgbọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="303"/>
         <source>Call id</source>
-        <translation type="unfinished"/>
+        <translation>Nkọwa oku</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
         <source>Sockets</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị a na-agbanye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Video codec</source>
-        <translation type="unfinished"/>
+        <translation>Usoro vidiyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Ngwaọrụ ngwaike</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
         <source>Video bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Bitrate vidiyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
         <source>Audio codec</source>
-        <translation type="unfinished"/>
+        <translation>Audio codec</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
         <source>Renderer id</source>
-        <translation type="unfinished"/>
+        <translation>Nkọwapụta onye na-enye onyinye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
         <source>Fps</source>
-        <translation type="unfinished"/>
+        <translation>Fps</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source>Share location</source>
-        <translation type="unfinished"/>
+        <translation>Ebe a na-ekenye ndị mmadụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="314"/>
         <source>Stop sharing</source>
-        <translation type="unfinished"/>
+        <translation>Kwụsị ịkekọrịta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
         <source>10 minutes</source>
-        <translation type="unfinished"/>
+        <translation>Nkeji 10</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
         <source>One hour</source>
-        <translation type="unfinished"/>
+        <translation>Otu awa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <source>%1 minutes left</source>
-        <translation type="unfinished"/>
+        <translation>% 1 nkeji fọdụrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
         <source>%1 minute left</source>
-        <translation type="unfinished"/>
+        <translation>% 1 nkeji ekpe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
         <source>Your precise location could not be determined.
 In Device Settings, please turn on &quot;Location Services&quot;.
 Other participants&apos; location can still be received.</source>
-        <translation type="unfinished"/>
+        <translation>Enweghi ike ịchọpụta ebe ị nọ kpọmkwem. N&apos;ime Ntọala Ngwaọrụ, biko gbanye &quot;Nhazi Ọrụ&quot;. Enwere ike ịnweta ebe ndị ọzọ sonyere.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
         <source>Your precise location could not be determined. Please check your Internet connection.</source>
-        <translation type="unfinished"/>
+        <translation>A pụghị ịmata ebe ị nọ kpọmkwem. Biko chọpụta njikọ Ịntanetị gị.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="321"/>
         <source>Turn off location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Gbanyụọ ebe ịkekọrịta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="324"/>
         <source>Location is shared in several conversations</source>
-        <translation type="unfinished"/>
+        <translation>Ebe a na-anọ eme ihe n&apos;ọtụtụ mkparịta ụka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
-        <translation type="unfinished"/>
+        <translation>Pin map iji nwee ike ịkekọrịta ọnọdụ ma ọ bụ gbanyụọ ọnọdụ na mkparịta ụka akọwapụtara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Ebe a na-akọrọ na ọtụtụ mkparịta ụka, pịa ịhọrọ otu esi gbanyụọ nkekọrịta ebe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="327"/>
         <source>Share location to participants of this conversation (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Kesaa ebe ndị sonyere na mkparịta ụka a (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
         <source>Reduce</source>
-        <translation type="unfinished"/>
+        <translation>Belata</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
         <source>Extend</source>
-        <translation type="unfinished"/>
+        <translation>Oge</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
         <source>Drag</source>
-        <translation type="unfinished"/>
+        <translation>Dọrọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
         <source>Center</source>
-        <translation type="unfinished"/>
+        <translation>Ebe etiti</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
         <source>Unpin</source>
-        <translation type="unfinished"/>
+        <translation>Ịkwụsị ịpị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
         <source>Pin</source>
-        <translation type="unfinished"/>
+        <translation>Pin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="337"/>
         <source>Position share duration</source>
-        <translation type="unfinished"/>
+        <translation>Oge nke òkè ọnọdụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
         <source>Limit the duration of location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Kwụsị oge nke ịkekọrịta ebe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
         <source>Location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Ịkekọrịta ebe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
         <source>Unlimited</source>
-        <translation type="unfinished"/>
+        <translation>Enweghị njedebe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
         <source>1 min</source>
-        <translation type="unfinished"/>
+        <translation>1 min</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="345"/>
         <source>Place audio call</source>
-        <translation type="unfinished"/>
+        <translation>Mee oku oku</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="346"/>
         <source>Place video call</source>
-        <translation type="unfinished"/>
+        <translation>Mee oku vidiyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="347"/>
         <source>Show available plugins</source>
-        <translation type="unfinished"/>
+        <translation>Gosi plugins dịnụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
         <source>Add to conversations</source>
-        <translation type="unfinished"/>
+        <translation>Tinye aka n&apos;okwu ndị a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="349"/>
         <source>This is the error from the backend: %0</source>
-        <translation type="unfinished"/>
+        <translation>Nke a bụ njehie site na backend: %0</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
         <source>The account is disabled</source>
-        <translation type="unfinished"/>
+        <translation>E mebiela akaụntụ ahụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
         <source>No network connectivity</source>
-        <translation type="unfinished"/>
+        <translation>Enweghị njikọ netwọk</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
         <source>Deleted message</source>
-        <translation type="unfinished"/>
+        <translation>Ehichapụ ozi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
         <source>Back to Call</source>
-        <translation type="unfinished"/>
+        <translation>Ịkpọghachi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="356"/>
         <source>Jump to</source>
-        <translation type="unfinished"/>
+        <translation>Pụọ n&apos; ebe ahụ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="357"/>
         <source>Messages</source>
-        <translation type="unfinished"/>
+        <translation>Ozi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndekọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="359"/>
         <source>Search</source>
-        <translation type="unfinished"/>
+        <translation>Ịchọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="363"/>
         <source>{} is typing…</source>
-        <translation type="unfinished"/>
+        <translation>{} na-ede...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="364"/>
         <source>{} are typing…</source>
-        <translation type="unfinished"/>
+        <translation>{} na-ede...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="365"/>
         <source>Several people are typing…</source>
-        <translation type="unfinished"/>
+        <translation>Ọtụtụ ndị na-ede...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="366"/>
         <source> and </source>
-        <translation type="unfinished"/>
+        <translation>na </translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Ihe a chọrọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="371"/>
         <source>Jami Account Management Server URL</source>
-        <translation type="unfinished"/>
+        <translation>Jami Account Management Server URL</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
         <source>Connect</source>
-        <translation type="unfinished"/>
+        <translation>Jikọọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
         <source>Back to welcome page</source>
-        <translation type="unfinished"/>
+        <translation>Laghachi na peeji nke nnabata</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="378"/>
         <source>Choose name</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ aha</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
         <source>Choose username</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ aha njirimara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
         <source>Create account</source>
-        <translation type="unfinished"/>
+        <translation>Mepụta akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
         <source>Confirm password</source>
-        <translation type="unfinished"/>
+        <translation>Nyochaa paswọọdụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
         <source>Choose a password to encrypt your account on this device. Note that the password CANNOT be recovered.</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ paswọọdụ iji mepee akaụntụ gị na ngwaọrụ a. Rịba ama na a PỤRỤGHỊ iweghachite paswọọdụ ahụ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="387"/>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;enweghị Mmasị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="388"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation type="unfinished"/>
+        <translation>Ị nwere ike ịhọrọ aha njirimara iji nyere ndị ọzọ aka ịchọta gị na Jami.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="390"/>
         <source>Choose a name</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ aha</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="391"/>
         <source>Invalid name</source>
-        <translation type="unfinished"/>
+        <translation>Aha na-adịghị mma</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="392"/>
         <source>Invalid username</source>
-        <translation type="unfinished"/>
+        <translation>Aha njirimara na-ezighi ezi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="393"/>
         <source>Name already taken</source>
-        <translation type="unfinished"/>
+        <translation>Aha e dere ede</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="394"/>
         <source>Username already taken</source>
-        <translation type="unfinished"/>
+        <translation>Aha njirimara e nwetara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="399"/>
         <source>Good to know</source>
-        <translation type="unfinished"/>
+        <translation>Ọ dị mma ịmara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="400"/>
         <source>Local</source>
-        <translation type="unfinished"/>
+        <translation>Ebe a na-anọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="401"/>
         <source>Encrypt</source>
-        <translation type="unfinished"/>
+        <translation>Ejiri ya mee ihe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
         <source>SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Akụ̀ SIP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Onye nnọchianya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
         <source>Server</source>
-        <translation type="unfinished"/>
+        <translation>Ihe nkesa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="411"/>
         <source>Create SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Mepụta akaụntụ SIP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="412"/>
         <source>Configure an existing SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Hazie akaụntụ SIP dị adị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="413"/>
         <source>Personalize account</source>
-        <translation type="unfinished"/>
+        <translation>Hazie akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="414"/>
         <source>Add SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Tinye akaụntụ SIP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="420"/>
         <source>Your profile is only shared with your contacts.
 Your picture and your nickname can be changed at all time in the settings of your account.</source>
-        <translation type="unfinished"/>
+        <translation>A na-ekenye profaịlụ gị naanị na kọntaktị gị. Enwere ike ịgbanwe foto gị na aha njirimara gị n&apos;oge ọ bụla na ntọala akaụntụ gị.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
         <source>Show more</source>
-        <translation type="unfinished"/>
+        <translation>Gosi ihe ndị ọzọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
         <source>Show less</source>
-        <translation type="unfinished"/>
+        <translation>Gosi ihe na-erughị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
@@ -1737,273 +1737,273 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
         <source>Barre</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị e ji emepụta ihe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Isiokwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Njikọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
         <source>Code</source>
-        <translation type="unfinished"/>
+        <translation>Usoro</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
         <source>Quote</source>
-        <translation type="unfinished"/>
+        <translation>Ihe e dere n&apos;akwụkwọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
         <source>Bullet Point</source>
-        <translation type="unfinished"/>
+        <translation>Ebe E Ji Bọlt Tụgharịa Ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
         <source>Bullet Number</source>
-        <translation type="unfinished"/>
+        <translation>Ọnụ ọgụgụ Ọgbọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
         <source>Show Formating</source>
-        <translation type="unfinished"/>
+        <translation>Gosi nhazi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
         <source>Hide Formating</source>
-        <translation type="unfinished"/>
+        <translation>Ịkpọchi Ụdị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="888"/>
         <source>Appearance</source>
-        <translation type="unfinished"/>
+        <translation>Otú Ọ Dị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="422"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.</source>
-        <translation type="unfinished"/>
+        <translation>Akaụntụ Jami gị edebanye aha naanị na ngwaọrụ a dị ka ihe nchekwa nke nwere igodo nke akaụntụ gị. Enwere ike iji paswọọdụ chebe ohere na ihe nchekwa a.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="423"/>
         <source>Backup account</source>
-        <translation type="unfinished"/>
+        <translation>Akaụntụ ndabere</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="425"/>
         <source>Delete your account</source>
-        <translation type="unfinished"/>
+        <translation>Hichapụ akaụntụ gị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
         <source>If your account has not been backed up or added to another device, your account and registered name will be irrevocably lost.</source>
-        <translation type="unfinished"/>
+        <translation>Ọ bụrụ na e mebeghị nkwado ndabere ma ọ bụ tinye akaụntụ gị na ngwaọrụ ọzọ, a ga-efunahụ akaụntụ gị na aha aha gị.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
         <source>List of the devices that are linked to this account:</source>
-        <translation type="unfinished"/>
+        <translation>Ndepụta nke ngwaọrụ ndị jikọtara na akaụntụ a:</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="428"/>
         <source>This device</source>
-        <translation type="unfinished"/>
+        <translation>Ngwaọrụ a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="429"/>
         <source>Other linked devices</source>
-        <translation type="unfinished"/>
+        <translation>Ngwaọrụ ndị ọzọ jikọtara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="433"/>
         <source>Backup successful</source>
-        <translation type="unfinished"/>
+        <translation>Ndabere na-aga nke ọma</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="434"/>
         <source>Backup failed</source>
-        <translation type="unfinished"/>
+        <translation>Ndabere akụda</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="435"/>
         <source>Password changed successfully</source>
-        <translation type="unfinished"/>
+        <translation>Paswọdu gbanwere nke ọma</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="436"/>
         <source>Password change failed</source>
-        <translation type="unfinished"/>
+        <translation>Mgbanwe paswọọdụ dara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="437"/>
         <source>Password set successfully</source>
-        <translation type="unfinished"/>
+        <translation>Paswọdu setịpụrụ nke ọma</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="438"/>
         <source>Password set failed</source>
-        <translation type="unfinished"/>
+        <translation>Paswọdu setịpụrụ na-emezughị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
         <source>Change password</source>
-        <translation type="unfinished"/>
+        <translation>Gbanwee paswọọdụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="880"/>
         <source>Jami identity</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ọmụma Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="881"/>
         <source>Show fingerprint</source>
-        <translation type="unfinished"/>
+        <translation>Gosi mkpịsị aka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="882"/>
         <source>Show registered name</source>
-        <translation type="unfinished"/>
+        <translation>Gosi aha edebanyere aha</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="885"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
-        <translation type="unfinished"/>
+        <translation>Ịnye akaụntụ gị na-enye gị ohere ịkpọtụrụ na Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="891"/>
         <source>Experimental</source>
-        <translation type="unfinished"/>
+        <translation>Ihe a na-eme na-eme ka a na-ahụ ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="894"/>
         <source>Ringtone</source>
-        <translation type="unfinished"/>
+        <translation>Ụda ụdaolu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="897"/>
         <source>Rendezvous point</source>
-        <translation type="unfinished"/>
+        <translation>Ebe a ga-anọ na-aga nzukọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="900"/>
         <source>Moderation</source>
-        <translation type="unfinished"/>
+        <translation>Ịdị nwayọọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="903"/>
         <source>Theme</source>
-        <translation type="unfinished"/>
+        <translation>Isiokwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="904"/>
         <source>Text zoom level</source>
-        <translation type="unfinished"/>
+        <translation>Nkọwa nke ederede</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="441"/>
         <source>Set a password</source>
-        <translation type="unfinished"/>
+        <translation>Tinye paswọọdụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="442"/>
         <source>Change current password</source>
-        <translation type="unfinished"/>
+        <translation>Gbanwee paswọọdụ dị ugbu a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="172"/>
         <source>Enable account</source>
-        <translation type="unfinished"/>
+        <translation>Nweta akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="446"/>
         <source>Advanced account settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala akaụntụ dị elu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="448"/>
         <source>Customize profile</source>
-        <translation type="unfinished"/>
+        <translation>Hazie profaịlụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="453"/>
         <source>Enter a nickname, surname...</source>
-        <translation type="unfinished"/>
+        <translation>Tinye aha otutu, aha nna...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="456"/>
         <source>Set username</source>
-        <translation type="unfinished"/>
+        <translation>Tọọ aha njirimara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="457"/>
         <source>Registering name</source>
-        <translation type="unfinished"/>
+        <translation>Aha ịdebanye aha</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="460"/>
         <source>Register a username</source>
-        <translation type="unfinished"/>
+        <translation>Debanye aha njirimara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="461"/>
         <source>Register username</source>
-        <translation type="unfinished"/>
+        <translation>Debanye aha njirimara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="462"/>
         <source>Identity</source>
-        <translation type="unfinished"/>
+        <translation>Ihe Ndị A Kpọrọ Mmadụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="465"/>
         <source>Link a new device to this account</source>
-        <translation type="unfinished"/>
+        <translation>Jikọọ ngwaọrụ ọhụrụ na akaụntụ a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="467"/>
         <source>Exporting account…</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndekọ mbupụ...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="468"/>
         <source>Remove Device</source>
-        <translation type="unfinished"/>
+        <translation>Wepụ Ngwaọrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="469"/>
         <source>Are you sure you wish to remove this device?</source>
-        <translation type="unfinished"/>
+        <translation>Ì ji n&apos;aka na ị chọrọ iwepụ ihe a?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="470"/>
         <source>Your PIN is:</source>
-        <translation type="unfinished"/>
+        <translation>Nkọwa njirimara gị bụ:</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="471"/>
         <source>Error connecting to the network.
 Please try again later.</source>
-        <translation type="unfinished"/>
+        <translation>Njehie na-ejikọta na netwọk. Biko gbalịa ọzọ mgbe e mesịrị.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="475"/>
         <source>Banned</source>
-        <translation type="unfinished"/>
+        <translation>A machibidoro ya iwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="477"/>
         <source>Banned contacts</source>
-        <translation type="unfinished"/>
+        <translation>Ndị a machibidoro iwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="487"/>
         <source>Device Id</source>
-        <translation type="unfinished"/>
+        <translation>ID Ngwaọrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="490"/>
@@ -2013,28 +2013,28 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="493"/>
         <source>Select a folder</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ nchekwa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="494"/>
         <source>Enable notifications</source>
-        <translation type="unfinished"/>
+        <translation>Mee ka ọkwa dị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="500"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="501"/>
         <source>Choose download directory</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ndekọ nbudata</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="503"/>
         <source>Text zoom</source>
-        <translation type="unfinished"/>
+        <translation>Ibuli ederede</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="504"/>
         <source>Change text size (%)</source>
-        <translation type="unfinished"/>
+        <translation>Gbanwee nha ederede (%)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="514"/>
@@ -2044,78 +2044,78 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="519"/>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Nyefe faịlụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="520"/>
         <source>Automatically accept incoming files</source>
-        <translation type="unfinished"/>
+        <translation>Akpọrọ faịlụ na-abata na akpaghị aka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="522"/>
         <source>in MB, 0 = unlimited</source>
-        <translation type="unfinished"/>
+        <translation>na MB, 0 = na-akparaghị ókè</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="525"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>Debanye aha</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="526"/>
         <source>Incorrect password</source>
-        <translation type="unfinished"/>
+        <translation>Paswọọdụ ezighi ezi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="531"/>
         <source>Save file</source>
-        <translation type="unfinished"/>
+        <translation>Chekwaa faịlụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="532"/>
         <source>Open location</source>
-        <translation type="unfinished"/>
+        <translation>Ebe a na-emeghe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="533"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
         <source>Me</source>
-        <translation type="unfinished"/>
+        <translation>Mụ onwe m</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="536"/>
         <source>Install beta version</source>
-        <translation type="unfinished"/>
+        <translation>Wụnye beta version</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="537"/>
         <source>Check for updates now</source>
-        <translation type="unfinished"/>
+        <translation>Lelee maka mmelite ugbu a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="538"/>
         <source>Enable/Disable automatic updates</source>
-        <translation type="unfinished"/>
+        <translation>Gbanye / Gbanyụọ mmelite akpaghị aka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="540"/>
         <source>Updates</source>
-        <translation type="unfinished"/>
+        <translation>Mmelite</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="541"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Melite</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="543"/>
         <source>No new version of Jami was found</source>
-        <translation type="unfinished"/>
+        <translation>A hụghị nsụgharị ọhụrụ nke Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="544"/>
         <source>An error occured when checking for a new version</source>
-        <translation type="unfinished"/>
+        <translation>Njehie mere mgbe ị na-enyocha maka nsụgharị ọhụrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="547"/>
@@ -2125,498 +2125,498 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="549"/>
         <source>This will uninstall your current Release version and you can always download the latest Release version on our website</source>
-        <translation type="unfinished"/>
+        <translation>Nke a ga-ewepụ gị ugbu a Release version na ị nwere ike mgbe niile ibudata ọhụrụ Release version na anyị website</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="550"/>
         <source>Network disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Njikọ netwọk akwụsị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
         <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation type="unfinished"/>
+        <translation>Njirimara a ga-enyere bọtịnụ oku na ìgwè nwere ọtụtụ ndị sonyere.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
         <source>Call recording</source>
-        <translation type="unfinished"/>
+        <translation>Nkọwa oku</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>If the account is encrypted with a password, please fill the following field.</source>
-        <translation type="unfinished"/>
+        <translation>Ọ bụrụ na e jiri paswọọdụ mee ka akaụntụ ahụ bụrụ nke e debere, biko dejupụta mpaghara na-esonụ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
         <source>Enter the PIN code</source>
-        <translation type="unfinished"/>
+        <translation>Tinye koodu PIN</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
         <source>Step 01</source>
-        <translation type="unfinished"/>
+        <translation>Nzọụkwụ 01</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
         <source>Step 02</source>
-        <translation type="unfinished"/>
+        <translation>Nzọụkwụ 02</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
         <source>Step 03</source>
-        <translation type="unfinished"/>
+        <translation>Nzọụkwụ 03</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
         <source>Step 04</source>
-        <translation type="unfinished"/>
+        <translation>Nzọụkwụ 04</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
         <source>Go to the account management settings of a previous device</source>
-        <translation type="unfinished"/>
+        <translation>Gaa na ntọala njikwa akaụntụ nke ngwaọrụ gara aga</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
         <source>Select &quot;Link another device&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ &quot;Jikọọ ngwaọrụ ọzọ&quot;</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="650"/>
         <source>Choose a picture as your avatar</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ foto dị ka avatar gị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
         <source>Choose a picture</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ foto</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
         <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
         <source>Share freely and privately with Jami</source>
-        <translation type="unfinished"/>
+        <translation>Gị na Jami na-ekerịta onwe unu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Tinye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
         <source>more emojis</source>
-        <translation type="unfinished"/>
+        <translation>emojis ndị ọzọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
         <source>Reply to</source>
-        <translation type="unfinished"/>
+        <translation>Zaa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
         <source>In reply to</source>
-        <translation type="unfinished"/>
+        <translation>Na nzaghachi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
         <source>Reply</source>
-        <translation type="unfinished"/>
+        <translation>Zaa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="485"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="816"/>
         <source>Edit</source>
-        <translation type="unfinished"/>
+        <translation>Dezie</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="817"/>
         <source>Edited</source>
-        <translation type="unfinished"/>
+        <translation>E Deziiri Ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="818"/>
         <source>Join call</source>
-        <translation type="unfinished"/>
+        <translation>Jikọọ oku</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
         <source>A call is in progress. Do you want to join the call?</source>
-        <translation type="unfinished"/>
+        <translation>A na-akpọ oku na-aga n&apos;ihu. Ị chọrọ isonyere oku ahụ?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
         <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
-        <translation type="unfinished"/>
+        <translation>Onye na-elekọta ụlọ a na-eme ka ọ ghara iru ya.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="821"/>
         <source>Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ngwaọrụ a raara nye maka ịnabata oku n&apos;ọdịnihu na ìgwè a. Ọ bụrụ na a naghị ahazi ya, ngwaọrụ ahụ na-amalite oku ga-anabata ya.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="822"/>
         <source>Choose this device</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ngwaọrụ a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="823"/>
         <source>Remove current device</source>
-        <translation type="unfinished"/>
+        <translation>Wepụ ihe eji arụ ọrụ ugbu a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
         <source>Host only this call</source>
-        <translation type="unfinished"/>
+        <translation>Naanị kpọọ oku a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="825"/>
         <source>Host this call</source>
-        <translation type="unfinished"/>
+        <translation>Nweta oku a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="826"/>
         <source>Make me the default host for future calls</source>
-        <translation type="unfinished"/>
+        <translation>Mee ka m bụrụ onye ọbịa ndabara maka oku ọdịnihu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="835"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Banyere</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="836"/>
         <source>%1 Members</source>
-        <translation type="unfinished"/>
+        <translation>Ndị otu %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="837"/>
         <source>Member</source>
-        <translation type="unfinished"/>
+        <translation>Onye so na ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>Ihe odide</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
         <source>Swarm&apos;s name</source>
-        <translation type="unfinished"/>
+        <translation>Aha Swarm</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="840"/>
         <source>Contact&apos;s name</source>
-        <translation type="unfinished"/>
+        <translation>Aha onye ahụ na-akpọtụrụ gị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="841"/>
         <source>Add a description</source>
-        <translation type="unfinished"/>
+        <translation>Tinye nkọwa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
         <source>Ignore all notifications from this conversation</source>
-        <translation type="unfinished"/>
+        <translation>Echefula ihe niile a gwara gị n&apos; oge a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
         <source>Choose a color</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ agba</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="847"/>
         <source>Leave conversation</source>
-        <translation type="unfinished"/>
+        <translation>Hapụ mkparịta ụka ahụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="848"/>
         <source>Leave</source>
-        <translation type="unfinished"/>
+        <translation>Hapụ ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
         <source>Type of swarm</source>
-        <translation type="unfinished"/>
+        <translation>Ụdị ụyọkọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="853"/>
         <source>Create the swarm</source>
-        <translation type="unfinished"/>
+        <translation>Mepụta ìgwè mmadụ ahụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
         <source>Go to conversation</source>
-        <translation type="unfinished"/>
+        <translation>Gaa n&apos;ihu na-akparịta ụka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="855"/>
         <source>Promote to administrator</source>
-        <translation type="unfinished"/>
+        <translation>Kwalite onye nchịkwa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="856"/>
         <source>Kick member</source>
-        <translation type="unfinished"/>
+        <translation>Onye òtù Kick</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="857"/>
         <source>Reinstate member</source>
-        <translation type="unfinished"/>
+        <translation>Nweghachi onye so na ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
         <source>Administrator</source>
-        <translation type="unfinished"/>
+        <translation>Onye nchịkwa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
         <source>Invited</source>
-        <translation type="unfinished"/>
+        <translation>A Kpọọrọ Ha</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
         <source>Remove member</source>
-        <translation type="unfinished"/>
+        <translation>Wepụ onye so</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
         <source>To:</source>
-        <translation type="unfinished"/>
+        <translation>Iji:</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="864"/>
         <source>Customize</source>
-        <translation type="unfinished"/>
+        <translation>Nhazi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
         <source>Dismiss</source>
-        <translation type="unfinished"/>
+        <translation>Ịkwụsị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
         <source>Your profile is only shared with your contacts</source>
-        <translation type="unfinished"/>
+        <translation>A na-ekenye profaịlụ gị naanị na kọntaktị gị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="873"/>
         <source>Delete message</source>
-        <translation type="unfinished"/>
+        <translation>Ihichapụ ozi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
         <source>*(Deleted Message)*</source>
-        <translation type="unfinished"/>
+        <translation>*(Ehichapụ Ozi) *</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="875"/>
         <source>Edit message</source>
-        <translation type="unfinished"/>
+        <translation>Dezie ozi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="551"/>
         <source>Something went wrong</source>
-        <translation type="unfinished"/>
+        <translation>E nwere ihe mere ka ihe ghara ịdị mma.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="554"/>
         <source>Troubleshoot</source>
-        <translation type="unfinished"/>
+        <translation>Ngwọta nsogbu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="555"/>
         <source>Open logs</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndekọ ndị mepere emepe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="556"/>
         <source>Get logs</source>
-        <translation type="unfinished"/>
+        <translation>Nweta akwụkwọ ndekọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
         <source>Select a record directory</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ndekọ ndekọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
         <source>Debug</source>
-        <translation type="unfinished"/>
+        <translation>Debug</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
         <source>Show Stats</source>
-        <translation type="unfinished"/>
+        <translation>Gosi ọnụ ọgụgụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Malite</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Kwụsị ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
         <source>Generating account…</source>
-        <translation type="unfinished"/>
+        <translation>Ịmepụta akaụntụ...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
         <source>Import from backup</source>
-        <translation type="unfinished"/>
+        <translation>Import si ndabere</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="636"/>
         <source>Enter account&apos;s password</source>
-        <translation type="unfinished"/>
+        <translation>Tinye paswọọdụ akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
         <source>Stop taking photo</source>
-        <translation type="unfinished"/>
+        <translation>Kwụsị ịse foto.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="654"/>
         <source>Clear avatar image</source>
-        <translation type="unfinished"/>
+        <translation>Clear avatar oyiyi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="671"/>
         <source>Go back to plugins list</source>
-        <translation type="unfinished"/>
+        <translation>Laghachi na ndepụta plugins</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="686"/>
         <source>Profile is only shared with contacts</source>
-        <translation type="unfinished"/>
+        <translation>Profaịlụ na-akọrọ naanị na kọntaktị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
         <source>Enter your name</source>
-        <translation type="unfinished"/>
+        <translation>Tinye aha gị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="718"/>
         <source>Hide advanced features</source>
-        <translation type="unfinished"/>
+        <translation>Zọpụtaghachi atụmatụ ndị dị elu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
         <source>Create new Jami account</source>
-        <translation type="unfinished"/>
+        <translation>Mepụta akaụntụ ọhụrụ na Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="727"/>
         <source>Create new SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Mepụta akaụntụ SIP ọhụrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
         <source>Welcome to</source>
-        <translation type="unfinished"/>
+        <translation>Mmadụ Bịa na</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
         <source>Upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Nwelite</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
         <source>Later</source>
-        <translation type="unfinished"/>
+        <translation>Mgbe e mesịrị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
         <source>Local muted</source>
-        <translation type="unfinished"/>
+        <translation>Ndị obodo na-emechi ọnụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="46"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="779"/>
         <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation type="unfinished"/>
+        <translation>Na-agbalị iji jikọọ na Jami daemon (jamid)...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
         <source>Could not re-connect to the Jami daemon (jamid).
 Jami will now quit.</source>
-        <translation type="unfinished"/>
+        <translation>Enweghị ike ijikọghachi na Jami daemon (jamid).</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
         <source>Configure a SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Hazie akaụntụ SIP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
         <source>Join Jami</source>
-        <translation type="unfinished"/>
+        <translation>Soro Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
         <source>I already have an account</source>
-        <translation type="unfinished"/>
+        <translation>Enwere m akaụntụ m.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
         <source>Use existing Jami account</source>
-        <translation type="unfinished"/>
+        <translation>Jiri akaụntụ Jami dị ugbu a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
         <source>Welcome to Jami</source>
-        <translation type="unfinished"/>
+        <translation>Mmadụ Bịa na Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="878"/>
         <source>Share this Jami identifier to be contacted on this account!</source>
-        <translation type="unfinished"/>
+        <translation>Kesaa ihe a Jami njirimara ka a kpọtụrụ na akaụntụ a!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="879"/>
         <source>Here is your Jami identifier, don&apos;t hesitate to share it in order to be contacted more easily!</source>
-        <translation type="unfinished"/>
+        <translation>Lee ihe nchọpụta Jami gị, egbula oge ịkekọrịta ya ka ị wee nwee ike ịkpọtụrụ ya ngwa ngwa!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>Chekwaa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
         <source>Block</source>
-        <translation type="unfinished"/>
+        <translation>Ihe mgbochi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
         <source>Is swarm:</source>
-        <translation type="unfinished"/>
+        <translation>Ọ bụ ụyọkọ:</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
         <source>True</source>
-        <translation type="unfinished"/>
+        <translation>Eziokwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="785"/>
         <source>False</source>
-        <translation type="unfinished"/>
+        <translation>Ụgha</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="788"/>
         <source>Add emoji</source>
-        <translation type="unfinished"/>
+        <translation>Tinye emoji</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
@@ -2626,12 +2626,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="791"/>
         <source>Leave audio message</source>
-        <translation type="unfinished"/>
+        <translation>Hapụ ozi ọdịyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="792"/>
         <source>Leave video message</source>
-        <translation type="unfinished"/>
+        <translation>Hapụ ozi vidiyo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
@@ -2643,136 +2643,136 @@ Jami will now quit.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="809"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Wepụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
         <source>Write to %1</source>
-        <translation type="unfinished"/>
+        <translation>Dee na %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="829"/>
         <source>%1 has sent you a request for a conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ezitela gị arịrịọ maka mkparịta ụka.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="830"/>
         <source>Hello,
 Would you like to join the conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Ndewo, ị̀ ga-achọ isonyere anyị ná mkparịta ụka ahụ?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="831"/>
         <source>You have accepted
 the conversation request</source>
-        <translation type="unfinished"/>
+        <translation>Ị nabatawo arịrịọ maka mkparịta ụka ahụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
         <source>Waiting until %1
 connects to synchronize the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>Na-eche ruo mgbe %1 jikọọ iji mekọrịta mkparịta ụka ahụ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Nkọwa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
         <source>Start swarm</source>
-        <translation type="unfinished"/>
+        <translation>Malite ìgwè</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
         <source>Create swarm</source>
-        <translation type="unfinished"/>
+        <translation>Mepụta ìgwè</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
         <source>Show invitations</source>
-        <translation type="unfinished"/>
+        <translation>Gosi ndị mmadụ akwụkwọ ịkpọ òkù</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="67"/>
         <source>Transfer to</source>
-        <translation type="unfinished"/>
+        <translation>Nyefe na</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="209"/>
         <source>Back up account here</source>
-        <translation type="unfinished"/>
+        <translation>Ndabere akaụntụ ebe a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
         <source>Back up account</source>
-        <translation type="unfinished"/>
+        <translation>Nkwụnye ego</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
         <source>Jami archive files (*.gz)</source>
-        <translation type="unfinished"/>
+        <translation>Jami Archives faịlụ (*.gz)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="217"/>
         <source>All files (*)</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndekọ niile (*)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
         <source>Mute camera</source>
-        <translation type="unfinished"/>
+        <translation>Igwefoto na-adịghị arụ ọrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
         <source>Unmute camera</source>
-        <translation type="unfinished"/>
+        <translation>Igwefoto na-adịghị emechi emechi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
         <source>Details</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị ọzọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
         <source>Participant is still muted on their device</source>
-        <translation type="unfinished"/>
+        <translation>Onye so na ya ka na-emechi ihe na ngwaọrụ ha</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
         <source>You are still muted on your device</source>
-        <translation type="unfinished"/>
+        <translation>Ị ka na-agbachi nkịtị na ngwaọrụ gị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Ịkekọrịta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="265"/>
         <source>Confirm action</source>
-        <translation type="unfinished"/>
+        <translation>Nkwado</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
         <source>Would you really like to remove this conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Ị̀ ga-achọ n&apos;ezie iwepụ mkparịta ụka a?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
         <source>Would you really like to block this conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Ị̀ ga-achọ n&apos;ezie igbochi mkparịta ụka a?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
         <source>Block swarm</source>
-        <translation type="unfinished"/>
+        <translation>Ndị na-eme mkpọchi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
         <source>Conversation details</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị e kwuru n&apos;okwu ahụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
@@ -2782,175 +2782,175 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
         <source>Stop sharing screen or file</source>
-        <translation type="unfinished"/>
+        <translation>Kwụsị ịkekọrịta ihuenyo ma ọ bụ faịlụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
         <source>Unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Enweghị ike ịchọta ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="322"/>
         <source>Turn off sharing</source>
-        <translation type="unfinished"/>
+        <translation>Gbanyụọ ịkekọrịta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="323"/>
         <source>Stop location sharing in this conversation (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Kwụsị ịkekọrịta ọnọdụ na mkparịta ụka a (%1)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="344"/>
         <source>Hide chat</source>
-        <translation type="unfinished"/>
+        <translation>Zọpụtanụ mkparịta ụka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
         <source>Scroll to end of conversation</source>
-        <translation type="unfinished"/>
+        <translation>Pịgharịa gaa ná ngwụsị nke mkparịta ụka ahụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="369"/>
         <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation type="unfinished"/>
+        <translation>Tinye URL nke Jami Account Management Server (JAMS)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="372"/>
         <source>Enter JAMS credentials</source>
-        <translation type="unfinished"/>
+        <translation>Tinye akwụkwọ JAMS</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="380"/>
         <source>Choose a username</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ aha njirimara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
         <source>Choose an identifier</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ihe nchọpụta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
         <source>The identifier is not available</source>
-        <translation type="unfinished"/>
+        <translation>Ihe nchọgharị ahụ adịghị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
         <source>UDP</source>
-        <translation type="unfinished"/>
+        <translation>UDP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="417"/>
         <source>Display Name</source>
-        <translation type="unfinished"/>
+        <translation>Aha Ngosipụta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation type="unfinished"/>
+        <translation>Aha njirimara ahọpụtara nwere ike inyere aka ịchọta ya ngwa ngwa na Jami. Ọ bụrụ na ahọghị aha njirimara, a ga-enye ihe nchọpụta njirimara 40 na-akpaghị aka na akaụntụ a dị ka aha njirimara. Ọ na-esiri ike ịchọta ma rute ya na njirimara a.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="424"/>
         <source>This Jami account exists only on this device.
 The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation type="unfinished"/>
+        <translation>Akaụntụ Jami a dị naanị na ngwaọrụ a. Akaụntụ a ga-efu ma ọ bụrụ na ngwaọrụ a furu efu ma ọ bụ wepụ ngwa ahụ. A na-atụ aro ka ị nweta nkwado ndabere nke akaụntụ a.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="430"/>
         <source>Linking this account to other devices enables it to be used on other devices.</source>
-        <translation type="unfinished"/>
+        <translation>Ịgwakọta akaụntụ a na ngwaọrụ ndị ọzọ na-eme ka o kwe omume iji ya na ngwaọrụ ndị ọzọ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
         <source>Display advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>Gosi ntọala dị elu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
         <source>Hide advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>Zọpụta ntọala ndị dị elu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="449"/>
         <source>This profile is only shared with this account's contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation type="unfinished"/>
+        <translation>A na-ekerịta profaịlụ a naanị na kọntaktị nke akaụntụ a. Enwere ike ịgbanwe profaịlụ ahụ n&apos;oge ọ bụla site na ntọala akaụntụ ahụ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation type="unfinished"/>
+        <translation>A na-eke ma chekwaa akaụntụ Jami na mpaghara naanị na ngwaọrụ a, dị ka ihe nchekwa nke nwere igodo akaụntụ gị. Enwere ike ịnweta ihe nchekwa a site na paswọọdụ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="452"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
-        <translation type="unfinished"/>
+        <translation>Biko mara na ọ bụrụ na ị hapụ paswọọdụ gị, a PỤRỤGHỊ iweghachite ya!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="474"/>
         <source>Display banned contacts</source>
-        <translation type="unfinished"/>
+        <translation>Gosi kọntaktị amachibidoro</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="476"/>
         <source>Hide banned contacts</source>
-        <translation type="unfinished"/>
+        <translation>Zọpụtaghachi ndị a machibidoro iwu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="480"/>
         <source>Would you really like to delete this account?</source>
-        <translation type="unfinished"/>
+        <translation>Ị̀ ga-achọ n&apos;ezie ihichapụ akaụntụ a?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="481"/>
         <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation type="unfinished"/>
+        <translation>Ọ bụrụ na e meghị akaụntụ gị nkwado ma ọ bụ tinye ya na ngwaọrụ ọzọ, akaụntụ gị na aha njirimara edebanyere aha ga-efu efu.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="491"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Ọchịchịrị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="492"/>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Ìhè</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
         <source>Application theme</source>
-        <translation type="unfinished"/>
+        <translation>Isiokwu nke ngwa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="496"/>
         <source>Show notifications</source>
-        <translation type="unfinished"/>
+        <translation>Gosi ọkwa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="497"/>
         <source>Minimize on close</source>
-        <translation type="unfinished"/>
+        <translation>Mee ka ọ dịkarịa ala na nso</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="498"/>
         <source>Run at system startup</source>
-        <translation type="unfinished"/>
+        <translation>Na-agba ọsọ na usoro mmalite</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="502"/>
         <source>Include local video in recording</source>
-        <translation type="unfinished"/>
+        <translation>Gụnye vidio dị n&apos;ógbè ahụ n&apos;ime ndekọ ahụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
         <source>Preview requires downloading content from third-party servers.</source>
-        <translation type="unfinished"/>
+        <translation>Nlele anya chọrọ ibudata ọdịnaya site na sava ndị ọzọ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="513"/>
@@ -2970,73 +2970,73 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
         <source>(Experimental) Enable call support for swarm</source>
-        <translation type="unfinished"/>
+        <translation>(Nnyocha) Kwado oku nkwado maka swarm</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
         <source>Quality</source>
-        <translation type="unfinished"/>
+        <translation>Ọdịdị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="567"/>
         <source>Always record calls</source>
-        <translation type="unfinished"/>
+        <translation>Na-edekọ oku mgbe niile</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="570"/>
         <source>Keyboard Shortcut Table</source>
-        <translation type="unfinished"/>
+        <translation>Tebụl ụzọ mkpirisi keyboard</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="571"/>
         <source>Keyboard Shortcuts</source>
-        <translation type="unfinished"/>
+        <translation>Ụzọ mkpirisi keyboard</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="572"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="738"/>
         <source>Conversation</source>
-        <translation type="unfinished"/>
+        <translation>Mkparịta ụka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="573"/>
         <source>Call</source>
-        <translation type="unfinished"/>
+        <translation>Kpọọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="574"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="575"/>
         <source>Open account list</source>
-        <translation type="unfinished"/>
+        <translation>Ndepụta akaụntụ mepere emepe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="576"/>
         <source>Focus conversations list</source>
-        <translation type="unfinished"/>
+        <translation>Ndepụta mkparịta ụka ndị e lekwasịrị anya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="577"/>
         <source>Requests list</source>
-        <translation type="unfinished"/>
+        <translation>Ndepụta arịrịọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
         <source>Previous conversation</source>
-        <translation type="unfinished"/>
+        <translation>Mkparịta ụka gara aga</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
         <source>Next conversation</source>
-        <translation type="unfinished"/>
+        <translation>Mkparịta ụka ọzọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
         <source>Search bar</source>
-        <translation type="unfinished"/>
+        <translation>Ogwe nchọta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="581"/>
@@ -3046,328 +3046,328 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="582"/>
         <source>Clear history</source>
-        <translation type="unfinished"/>
+        <translation>Akụkọ ihe mere eme doro anya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
         <source>Media settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala mgbasa ozi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
         <source>General settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala niile</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
         <source>Plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala Plugin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
         <source>Answer an incoming call</source>
-        <translation type="unfinished"/>
+        <translation>Zaa oku na-abata</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
         <source>Decline the call request</source>
-        <translation type="unfinished"/>
+        <translation>Gọnahụ arịrịọ oku</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Open account creation wizard</source>
-        <translation type="unfinished"/>
+        <translation>Ogwe aka na-emepe akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="589"/>
         <source>Open keyboard shortcut table</source>
-        <translation type="unfinished"/>
+        <translation>Mepee tebụl keyboard</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="597"/>
         <source>Report Bug</source>
-        <translation type="unfinished"/>
+        <translation>Akụkọ ahụhụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="598"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Ọ dị ọcha</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="600"/>
         <source>Copied to clipboard!</source>
-        <translation type="unfinished"/>
+        <translation>E depụtaghachiri ya na bọọdụ mkpuchi!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="601"/>
         <source>Receive Logs</source>
-        <translation type="unfinished"/>
+        <translation>Nweta Ihe Ndị E Dere n&apos;Ụlọ Akwụkwọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="604"/>
         <source>Archive</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndekọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="605"/>
         <source>Open file</source>
-        <translation type="unfinished"/>
+        <translation>Mepee faịlụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="611"/>
         <source>Import from archive backup</source>
-        <translation type="unfinished"/>
+        <translation>Import si ndabere nchekwa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
         <source>Select archive file</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ faịlụ nchekwa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="617"/>
         <source>Enter Jami account password</source>
-        <translation type="unfinished"/>
+        <translation>Tinye paswọọdụ akaụntụ Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="620"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>Ịba n&apos;ime</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="622"/>
         <source>A PIN is required to use an existing Jami account on this device.</source>
-        <translation type="unfinished"/>
+        <translation>A chọrọ PIN iji jiri akaụntụ Jami dị ugbu a na ngwaọrụ a.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="628"/>
         <source>Choose the account to link</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ akaụntụ iji jikọọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="634"/>
         <source>The PIN and the account password should be entered in your device within 10 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>A ghaghị itinye PIN na paswọọdụ akaụntụ na ngwaọrụ gị n&apos;ime minit 10.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="635"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Ọ ga-abụ na ọ dị nso.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="440"/>
         <source>Encrypt account</source>
-        <translation type="unfinished"/>
+        <translation>Akụkọ e debere</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="450"/>
         <source>Encrypt account with a password</source>
-        <translation type="unfinished"/>
+        <translation>Encrypt akaụntụ na paswọọdụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
         <source>Link a new device</source>
-        <translation type="unfinished"/>
+        <translation>Jikọọ ngwaọrụ ọhụrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
         <source>Default settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala ndabara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="508"/>
         <source>Enable typing indicators</source>
-        <translation type="unfinished"/>
+        <translation>Gbaa mbọ hụ na e nwere ihe ndị a na-eme.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="509"/>
         <source>Send and receive typing indicators showing that a message is being typed.</source>
-        <translation type="unfinished"/>
+        <translation>Ziga ma nata akara ederede nke na-egosi na a na-ede ozi.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="510"/>
         <source>Show link preview in conversations</source>
-        <translation type="unfinished"/>
+        <translation>Gosi njikọ nlele na mkparịta ụka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
         <source>Accept transfer limit (in Mb)</source>
-        <translation type="unfinished"/>
+        <translation>Nweta oke nnyefe (na Mb)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
         <source>The PIN code will be available for 10 minutes</source>
-        <translation type="unfinished"/>
+        <translation>Koodu PIN ahụ ga-adịru nkeji iri</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
         <source>Fill if the account is password-encrypted.</source>
-        <translation type="unfinished"/>
+        <translation>Mejupụta ma ọ bụrụ na akaụntụ ahụ nwere paswọọdụ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="637"/>
         <source>Add Device</source>
-        <translation type="unfinished"/>
+        <translation>Tinye Ngwaọrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="640"/>
         <source>Enter the password</source>
-        <translation type="unfinished"/>
+        <translation>Tinye paswọọdụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="641"/>
         <source>Enter current password</source>
-        <translation type="unfinished"/>
+        <translation>Tinye paswọọdụ ugbu a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="642"/>
         <source>Enter this account&apos;s password to confirm the removal of this device</source>
-        <translation type="unfinished"/>
+        <translation>Tinye paswọọdụ akaụntụ a iji kwado mwepụ nke ngwaọrụ a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="643"/>
         <source>Enter new password</source>
-        <translation type="unfinished"/>
+        <translation>Tinye paswọọdụ ọhụrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="644"/>
         <source>Confirm new password</source>
-        <translation type="unfinished"/>
+        <translation>Nyochaa paswọọdụ ọhụrụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="645"/>
         <source>Change</source>
-        <translation type="unfinished"/>
+        <translation>Mgbanwe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="646"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Kwado</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="647"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị a na-ebupụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="652"/>
         <source>Import avatar from image file</source>
-        <translation type="unfinished"/>
+        <translation>Import avatar si oyiyi faịlụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="655"/>
         <source>Take photo</source>
-        <translation type="unfinished"/>
+        <translation>Were foto</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="660"/>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị a na-ahọrọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="661"/>
         <source>Reset</source>
-        <translation type="unfinished"/>
+        <translation>Tọgharia</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="662"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Wepụ ihe nrụnye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="663"/>
         <source>Reset Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala Ntọala</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="664"/>
         <source>Select a plugin to install</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ ngwa mgbakwunye iji wụnye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="665"/>
         <source>Install plugin</source>
-        <translation type="unfinished"/>
+        <translation>Wụnye ngwa mgbakwunye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="666"/>
         <source>Uninstall plugin</source>
-        <translation type="unfinished"/>
+        <translation>Wepu ngwa mgbakwunye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="667"/>
         <source>Are you sure you wish to reset %1 preferences?</source>
-        <translation type="unfinished"/>
+        <translation>Ị̀ maara na ị chọrọ ịtọgharịa %1 mmasị?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="668"/>
         <source>Are you sure you wish to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Ị̀ bụ onye n&apos;aka na ị chọrọ iwepụ %1?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="675"/>
         <source>Display or hide General plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Gosi ma ọ bụ zoo General ngwa mgbakwunye ntọala</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="676"/>
         <source>Display or hide Account plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Gosi ma ọ bụ zoo Ntọala Plugin Akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="677"/>
         <source>Installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Ntinye plugins</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="678"/>
         <source>Plugin Files (*.jpl)</source>
-        <translation type="unfinished"/>
+        <translation>Plugin Files (*.jpl)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="679"/>
         <source>Load/Unload</source>
-        <translation type="unfinished"/>
+        <translation>Ibu Ibu / Ịtọpụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="680"/>
         <source>Select An Image to %1</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ Ihe oyiyi na % 1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="681"/>
         <source>Edit preference</source>
-        <translation type="unfinished"/>
+        <translation>Dezie mmasị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="682"/>
         <source>On/Off</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;ime / Gbanyụọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="683"/>
         <source>Choose Plugin</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ Plugin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="687"/>
         <source>Save profile</source>
-        <translation type="unfinished"/>
+        <translation>Chekwaa profaịlụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="691"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ọmụma</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="692"/>
         <source>Profile</source>
-        <translation type="unfinished"/>
+        <translation>Ihe gbasara ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="695"/>
         <source>Enter the account password to confirm the removal of this device</source>
-        <translation type="unfinished"/>
+        <translation>Tinye paswọọdụ akaụntụ iji gosi na e wepụrụ ngwaọrụ a</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="698"/>
@@ -3377,155 +3377,155 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="699"/>
         <source>Select a window to share</source>
-        <translation type="unfinished"/>
+        <translation>Họrọ windo ị ga-ekekekọrịta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="700"/>
         <source>All Screens</source>
-        <translation type="unfinished"/>
+        <translation>Ihe Ngosi Niile</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="701"/>
         <source>Screens</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ngosi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="702"/>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="703"/>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>Ihuenyo %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="706"/>
         <source>QR code</source>
-        <translation type="unfinished"/>
+        <translation>Usoro QR</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="709"/>
         <source>Account QR</source>
-        <translation type="unfinished"/>
+        <translation>Nkọwa QR</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="712"/>
         <source>This is your Jami username.
 Copy and share it with your friends!</source>
-        <translation type="unfinished"/>
+        <translation>Nke a bụ aha njirimara gị Jami, detuo ya ma kesaa ya na ndị enyi gị!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="713"/>
         <source>Link this device to an existing account</source>
-        <translation type="unfinished"/>
+        <translation>Jikọọ ngwaọrụ a na akaụntụ dị adị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="714"/>
         <source>Import from another device</source>
-        <translation type="unfinished"/>
+        <translation>Ịbubata site na ngwaọrụ ọzọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="715"/>
         <source>Import from an archive backup</source>
-        <translation type="unfinished"/>
+        <translation>Import si nchekwa data ndabere</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="716"/>
         <source>Advanced features</source>
-        <translation type="unfinished"/>
+        <translation>Ihe ndị dị elu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="717"/>
         <source>Show advanced features</source>
-        <translation type="unfinished"/>
+        <translation>Gosi atụmatụ ndị dị elu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="719"/>
         <source>Connect to a JAMS server</source>
-        <translation type="unfinished"/>
+        <translation>Jikọọ na ihe nkesa JAMS</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
         <source>Error while creating your account. Check your credentials.</source>
-        <translation type="unfinished"/>
+        <translation>Njehie mgbe ị na-eke akaụntụ gị.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="736"/>
         <source>Clear Text</source>
-        <translation type="unfinished"/>
+        <translation>Ihe odide doro anya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
         <source>Search Results</source>
-        <translation type="unfinished"/>
+        <translation>Nsonaazụ Ọchụchọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Ihichapụ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
         <source>Unban</source>
-        <translation type="unfinished"/>
+        <translation>Ịkwụsị</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="760"/>
         <source>Set moderator</source>
-        <translation type="unfinished"/>
+        <translation>Set moderator</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
         <source>Unset moderator</source>
-        <translation type="unfinished"/>
+        <translation>Ịkwụsị ịhazi ihe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>Mee Ka Ihe Dịkwuo Mma</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
         <source>Minimize</source>
-        <translation type="unfinished"/>
+        <translation>Mee ka ihe dịkwuo ala</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="766"/>
         <source>Hangup</source>
-        <translation type="unfinished"/>
+        <translation>Kpọgide ya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="770"/>
         <source>Conference moderation</source>
-        <translation type="unfinished"/>
+        <translation>Nchịkọta nke nzukọ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="771"/>
         <source>Default moderators</source>
-        <translation type="unfinished"/>
+        <translation>Nchịkọta ndị na-edozi ihe</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
         <source>Enable local moderators</source>
-        <translation type="unfinished"/>
+        <translation>Gbaa ndị na-eduzi mpaghara aka</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="773"/>
         <source>Make all participants moderators</source>
-        <translation type="unfinished"/>
+        <translation>Mee ka ndị nile sonyere bụrụ ndị nhazi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="774"/>
         <source>Add default moderator</source>
-        <translation type="unfinished"/>
+        <translation>Tinye ndabara moderator</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
         <source>Remove default moderator</source>
-        <translation type="unfinished"/>
+        <translation>Wepụ ndabara moderator</translation>
     </message>
 </context>
 <context>
@@ -3533,32 +3533,32 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="41"/>
         <source>Open account list</source>
-        <translation type="unfinished"/>
+        <translation>Ndepụta akaụntụ mepere emepe</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="46"/>
         <source>Focus conversations list</source>
-        <translation type="unfinished"/>
+        <translation>Ndepụta mkparịta ụka ndị e lekwasịrị anya</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="51"/>
         <source>Requests list</source>
-        <translation type="unfinished"/>
+        <translation>Ndepụta arịrịọ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="56"/>
         <source>Previous conversation</source>
-        <translation type="unfinished"/>
+        <translation>Mkparịta ụka gara aga</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="61"/>
         <source>Next conversation</source>
-        <translation type="unfinished"/>
+        <translation>Mkparịta ụka ọzọ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="66"/>
         <source>Search bar</source>
-        <translation type="unfinished"/>
+        <translation>Ogwe nchọta</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="71"/>
@@ -3568,97 +3568,97 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="76"/>
         <source>Increase font size</source>
-        <translation type="unfinished"/>
+        <translation>Mee ka font size dịkwuo elu</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="81"/>
         <source>Decrease font size</source>
-        <translation type="unfinished"/>
+        <translation>Belata font size</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="86"/>
         <source>Reset font size</source>
-        <translation type="unfinished"/>
+        <translation>Tọgharịa font size</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Start an audio call</source>
-        <translation type="unfinished"/>
+        <translation>Malite oku ọdịyo</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="101"/>
         <source>Start a video call</source>
-        <translation type="unfinished"/>
+        <translation>Malite ịkpọtụrụ vidiyo</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="106"/>
         <source>Clear history</source>
-        <translation type="unfinished"/>
+        <translation>Akụkọ ihe mere eme doro anya</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="111"/>
         <source>Search messages/files</source>
-        <translation type="unfinished"/>
+        <translation>Nchọgharị ozi/faịlụ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Block contact</source>
-        <translation type="unfinished"/>
+        <translation>Njikọ na-ekpuchi</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="121"/>
         <source>Remove conversation</source>
-        <translation type="unfinished"/>
+        <translation>Wepụ mkparịta ụka ahụ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="126"/>
         <source>Accept contact request</source>
-        <translation type="unfinished"/>
+        <translation>Nabata arịrịọ ịkpọtụrụ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="131"/>
         <source>Edit last message</source>
-        <translation type="unfinished"/>
+        <translation>Dezie ozi ikpeazụ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
         <source>Cancel message edition</source>
-        <translation type="unfinished"/>
+        <translation>Hapụ mbipụta ozi</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="146"/>
         <source>Media settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala mgbasa ozi</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="151"/>
         <source>General settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala niile</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="156"/>
         <source>Account settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="161"/>
         <source>Plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Ntọala Plugin</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="166"/>
         <source>Open account creation wizard</source>
-        <translation type="unfinished"/>
+        <translation>Ogwe aka na-emepe akaụntụ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="171"/>
         <source>Open keyboard shortcut table</source>
-        <translation type="unfinished"/>
+        <translation>Mepee tebụl keyboard</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="181"/>
         <source>Answer an incoming call</source>
-        <translation type="unfinished"/>
+        <translation>Zaa oku na-abata</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="186"/>
@@ -3668,27 +3668,27 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="191"/>
         <source>Decline the call request</source>
-        <translation type="unfinished"/>
+        <translation>Gọnahụ arịrịọ oku</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="196"/>
         <source>Mute microphone</source>
-        <translation type="unfinished"/>
+        <translation>Igwe okwu na-adịghị arụ ọrụ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="201"/>
         <source>Stop camera</source>
-        <translation type="unfinished"/>
+        <translation>Kwụsị igwefoto</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="205"/>
         <source>Mouse middle click</source>
-        <translation type="unfinished"/>
+        <translation>Mouse etiti click</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="206"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Were nseta ihuenyo tile</translation>
     </message>
 </context>
 <context>
@@ -3696,17 +3696,17 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettingsPage.qml" line="56"/>
         <source>%1h%2min</source>
-        <translation type="unfinished"/>
+        <translation>% 1h% 2min</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettingsPage.qml" line="58"/>
         <source>%1h</source>
-        <translation type="unfinished"/>
+        <translation>% 1h</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/LocationSharingSettingsPage.qml" line="60"/>
         <source>%1min</source>
-        <translation type="unfinished"/>
+        <translation>% 1min</translation>
     </message>
 </context>
 <context>
@@ -3714,17 +3714,17 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="361"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>E&amp;xit</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="363"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp; Hapụ</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="369"/>
         <source>&amp;Show Jami</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Show Jami</translation>
     </message>
 </context>
 <context>
@@ -3732,27 +3732,27 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="56"/>
         <source>%1h%2min</source>
-        <translation type="unfinished"/>
+        <translation>% 1h% 2min</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="58"/>
         <source>%1h</source>
-        <translation type="unfinished"/>
+        <translation>% 1h</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="62"/>
         <source>%1m%2sec</source>
-        <translation type="unfinished"/>
+        <translation>% 1m% 2sec</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="64"/>
         <source>%1m</source>
-        <translation type="unfinished"/>
+        <translation>% 1m</translation>
     </message>
     <message>
         <location filename="../src/app/webengine/map/MapPositionSharingControl.qml" line="66"/>
         <source>%1sec</source>
-        <translation type="unfinished"/>
+        <translation>% 1sec</translation>
     </message>
 </context>
 <context>
@@ -3760,12 +3760,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="409"/>
         <source>%1 is sharing it&apos;s location</source>
-        <translation type="unfinished"/>
+        <translation>%1 na-ekenye ebe ọ dị</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="414"/>
         <source>Location sharing</source>
-        <translation type="unfinished"/>
+        <translation>Ịkekọrịta ebe</translation>
     </message>
 </context>
 <context>
@@ -3773,28 +3773,28 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="355"/>
         <source>Sending</source>
-        <translation type="unfinished"/>
+        <translation>Izipu</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="357"/>
         <source>Failure</source>
-        <translation type="unfinished"/>
+        <translation>Ihe na-emenụ</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="359"/>
         <source>Sent</source>
-        <translation type="unfinished"/>
+        <translation>E zigara ha</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="361"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Njikọ</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="363"/>
         <source>Accept</source>
-        <translation type="unfinished"/>
+        <translation>Nabata Ya</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="365"/>
@@ -3804,111 +3804,111 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="368"/>
         <source>Unable to make contact</source>
-        <translation type="unfinished"/>
+        <translation>Enweghị ike ịkpọtụrụ ya</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="370"/>
         <source>Ongoing</source>
-        <translation type="unfinished"/>
+        <translation>Ihe na-aga n&apos;ihu</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="372"/>
         <source>Waiting for contact</source>
-        <translation type="unfinished"/>
+        <translation>Na-eche maka kọntaktị</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="374"/>
         <source>Incoming transfer</source>
-        <translation type="unfinished"/>
+        <translation>Ntinye ego na-abata</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="376"/>
         <source>Timed out waiting for contact</source>
-        <translation type="unfinished"/>
+        <translation>Oge na-echere kọntaktị</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="378"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
-        <translation type="unfinished"/>
+        <translation>E mechaala</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="722"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Taa</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="724"/>
         <source>Yesterday</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;ụbọchị gara aga</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="703"/>
         <source>just now</source>
-        <translation type="unfinished"/>
+        <translation>Ọ dịbeghị anya</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
         <source>Hold</source>
-        <translation type="unfinished"/>
+        <translation>Nọrọ na nche</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="64"/>
         <source>Talking</source>
-        <translation type="unfinished"/>
+        <translation>Ịgwa ha okwu</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="66"/>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;IHI ihe ọjọọ</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="68"/>
         <source>Incoming</source>
-        <translation type="unfinished"/>
+        <translation>Ihe na-abata</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="70"/>
         <source>Calling</source>
-        <translation type="unfinished"/>
+        <translation>Ịkpọ oku</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="74"/>
         <source>Searching</source>
-        <translation type="unfinished"/>
+        <translation>Ịchọgharị</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="76"/>
         <source>Inactive</source>
-        <translation type="unfinished"/>
+        <translation>Ọ naghị arụ ọrụ</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
         <source>Timeout</source>
-        <translation type="unfinished"/>
+        <translation>Oge a ga-eji na-eme ihe</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="82"/>
         <source>Peer busy</source>
-        <translation type="unfinished"/>
+        <translation>Ndị ọgbọ na - arụsi ọrụ ike</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="86"/>
         <source>Communication established</source>
-        <translation type="unfinished"/>
+        <translation>Nkwupụta e guzobere</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="260"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="208"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1002"/>
         <source>Contact added</source>
-        <translation type="unfinished"/>
+        <translation>E gbakwunyere kọntaktị</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="262"/>
         <source>%1 was invited to join</source>
-        <translation type="unfinished"/>
+        <translation>A kpọrọ %1 ka ọ bịa soro</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="264"/>
@@ -3918,63 +3918,63 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="266"/>
         <source>%1 left</source>
-        <translation type="unfinished"/>
+        <translation>% 1 ekpe</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="268"/>
         <source>%1 was kicked</source>
-        <translation type="unfinished"/>
+        <translation>A kụrụ %1</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="270"/>
         <source>%1 was re-added</source>
-        <translation type="unfinished"/>
+        <translation>%1 e-agbakwunyere</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="358"/>
         <source>Swarm created</source>
-        <translation type="unfinished"/>
+        <translation>A na-emepụta ụyọkọ</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="174"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="180"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1000"/>
         <source>Outgoing call</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;imepụta oku</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="176"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="186"/>
         <source>Incoming call</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;ọhịa</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="182"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="998"/>
         <source>Missed outgoing call</source>
-        <translation type="unfinished"/>
+        <translation>Ọ dịghị onye na-akpọ gị</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="188"/>
         <source>Missed incoming call</source>
-        <translation type="unfinished"/>
+        <translation>Ọ dịghị onye na-akpọ gị</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="198"/>
         <source>Join call</source>
-        <translation type="unfinished"/>
+        <translation>Jikọọ oku</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1004"/>
         <source>Invitation received</source>
-        <translation type="unfinished"/>
+        <translation>Òkù a kpọrọ</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="213"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1006"/>
         <source>Invitation accepted</source>
-        <translation type="unfinished"/>
+        <translation>A nabatara òkù ahụ</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="386"/>
@@ -3985,32 +3985,32 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
-        <translation type="unfinished"/>
+        <translation>Ọ dịghị ihe ọ bụla</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Trying</source>
-        <translation type="unfinished"/>
+        <translation>Ị na-agbalị</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
-        <translation type="unfinished"/>
+        <translation>Ịkpọ oku</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
-        <translation type="unfinished"/>
+        <translation>A Na-eziga Ha</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Queued</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;usoro</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>Ọganihu</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="78"/>
@@ -4020,263 +4020,263 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Accepted</source>
-        <translation type="unfinished"/>
+        <translation>A nabatara ya</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
-        <translation type="unfinished"/>
+        <translation>Ọtụtụ Ihe Ị Ga-ahọrọ Ime</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
-        <translation type="unfinished"/>
+        <translation>A Na-akpali Ya Ruo Mgbe Ebighị Ebi</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
-        <translation type="unfinished"/>
+        <translation>A Gafere M Ruo Oge</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Jiri proxy</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
-        <translation type="unfinished"/>
+        <translation>Ọrụ ọzọ</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
-        <translation type="unfinished"/>
+        <translation>Ihe Ọjọọ A Chọrọ</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
-        <translation type="unfinished"/>
+        <translation>Enweghị ikike</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
-        <translation type="unfinished"/>
+        <translation>Ịkwụ Ụgwọ A Chọrọ</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
-        <translation type="unfinished"/>
+        <translation>A machibidoro ya iwu</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
-        <translation type="unfinished"/>
+        <translation>A Hụghị Ya</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
-        <translation type="unfinished"/>
+        <translation>A Na-ekweghị Ka Ụzọ A Na-eme</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
         <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
-        <translation type="unfinished"/>
+        <translation>A Pụghị Ịnakwere Ya</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
-        <translation type="unfinished"/>
+        <translation>A Chọrọ Nyocha Nkwado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
-        <translation type="unfinished"/>
+        <translation>Ịrịọ Oge</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Gone</source>
-        <translation type="unfinished"/>
+        <translation>Ha apụla.</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
-        <translation type="unfinished"/>
+        <translation>Ihe Ndị A Na-arịọ Maka Ha</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
-        <translation type="unfinished"/>
+        <translation>Ịrịọ URI Ogologo Oge</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
-        <translation type="unfinished"/>
+        <translation>Ụdị mgbasa ozi na-akwadoghị</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
-        <translation type="unfinished"/>
+        <translation>Usoro URI a na-akwadoghị</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
-        <translation type="unfinished"/>
+        <translation>Mgbasa Ozi Na-adịghị Mma</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
-        <translation type="unfinished"/>
+        <translation>A Ga-eme Ka E Nwee Mgbasa Ozi</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
-        <translation type="unfinished"/>
+        <translation>Oge Oge Oge Dị Obere</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
-        <translation type="unfinished"/>
+        <translation>Oge Dị Mfe</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Enweghị m ya ruo nwa oge</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
-        <translation type="unfinished"/>
+        <translation>Ịkpọ TSX Enweghị</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
-        <translation type="unfinished"/>
+        <translation>A Chọpụta Okirikiri</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
-        <translation type="unfinished"/>
+        <translation>Ọtụtụ Ihe Ndị Na-eme Ka A Kpọọ Mmadụ</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
-        <translation type="unfinished"/>
+        <translation>Adreesị A Zughị ezu</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
-        <translation type="unfinished"/>
+        <translation>Ihe a na-ekwu abụghị eziokwu</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
-        <translation type="unfinished"/>
+        <translation>Ọrụ juru m anya</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
-        <translation type="unfinished"/>
+        <translation>A Kwụsịrị Arịrịọ Ahụ</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
-        <translation type="unfinished"/>
+        <translation>Ihe Ọjọọ Mere</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
-        <translation type="unfinished"/>
+        <translation>A Na-emelite Arịrịọ</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
-        <translation type="unfinished"/>
+        <translation>Arịrịọ Na-echere</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
-        <translation type="unfinished"/>
+        <translation>A pụghị ịkọwa ya</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
-        <translation type="unfinished"/>
+        <translation>Njehie Nhazi Nhazi</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
-        <translation type="unfinished"/>
+        <translation>E Mejughị Ya</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Ọnụ Ụzọ Ámá Ọjọọ</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Ọrụ A Na-adịghị Enweta</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
-        <translation type="unfinished"/>
+        <translation>Oge a na-eji eme ihe na ihe nkesa</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
-        <translation type="unfinished"/>
+        <translation>Version Akwadoghị</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
-        <translation type="unfinished"/>
+        <translation>Ozi Dị Ukwuu</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
-        <translation type="unfinished"/>
+        <translation>Ihe Ndị E Kwere n&apos;Aka Ndị Mmadụ</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
-        <translation type="unfinished"/>
+        <translation>Ebe Niile E Ji Ọrụ n&apos;Aka</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
-        <translation type="unfinished"/>
+        <translation>A jụrụ ịkpọ òkù</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
-        <translation type="unfinished"/>
+        <translation>Ọ Dịghị Ebe Ọ Bụla</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
-        <translation type="unfinished"/>
+        <translation>A Na-anabataghị Ya n&apos;Ebe Ọ Bụla</translation>
     </message>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="473"/>
         <source>Me</source>
-        <translation type="unfinished"/>
+        <translation>Mụ onwe m</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="109"/>
         <source>locationServicesError</source>
-        <translation type="unfinished"/>
+        <translation>ọnọdụ ServicesError</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="112"/>
         <source>locationServicesClosedError</source>
-        <translation type="unfinished"/>
+        <translation>ọnọdụServiceClosedError</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="114"/>
         <source>locationServicesUnknownError</source>
-        <translation type="unfinished"/>
+        <translation>ọnọdụNhaziAmaghịError</translation>
     </message>
 </context>
 <context>
@@ -4297,7 +4297,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/app/smartlistmodel.cpp" line="174"/>
         <location filename="../src/app/smartlistmodel.cpp" line="175"/>
         <source>Calls</source>
-        <translation type="unfinished"/>
+        <translation>Ọ na-akpọ</translation>
     </message>
     <message>
         <location filename="../src/app/smartlistmodel.cpp" line="63"/>
@@ -4307,7 +4307,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/app/smartlistmodel.cpp" line="176"/>
         <location filename="../src/app/smartlistmodel.cpp" line="177"/>
         <source>Contacts</source>
-        <translation type="unfinished"/>
+        <translation>Ndị a na-akpọtụrụ</translation>
     </message>
 </context>
 <context>
@@ -4315,27 +4315,27 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="219"/>
         <source>Answer</source>
-        <translation type="unfinished"/>
+        <translation>Azịza Ya</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="220"/>
         <source>Decline</source>
-        <translation type="unfinished"/>
+        <translation>Ọdịda</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="222"/>
         <source>Open conversation</source>
-        <translation type="unfinished"/>
+        <translation>Mkparịta ụka e meghere</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>
         <source>Accept</source>
-        <translation type="unfinished"/>
+        <translation>Nabata Ya</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="225"/>
         <source>Refuse</source>
-        <translation type="unfinished"/>
+        <translation>Ịjụ</translation>
     </message>
 </context>
 <context>
@@ -4343,122 +4343,122 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="78"/>
         <source>Customize</source>
-        <translation type="unfinished"/>
+        <translation>Nhazi</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
         <source>What does Jami mean?</source>
-        <translation type="unfinished"/>
+        <translation>Gịnị ka Jami pụtara?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="87"/>
         <source>What is the green dot next to my account?</source>
-        <translation type="unfinished"/>
+        <translation>Gịnị bụ ntụpọ ndụ akwụkwọ ndụ dị n&apos;akụkụ akaụntụ m?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="83"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
-        <translation type="unfinished"/>
+        <translation>A na-eji okwu Swahili bụ́ &apos;jamii&apos; eme nhọrọ nke aha Jami, nke pụtara &apos;obodo&apos; dị ka aha na &apos;kọkọkọtara&apos; dị ka okwu.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="79"/>
         <source>Backup account</source>
-        <translation type="unfinished"/>
+        <translation>Akaụntụ ndabere</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
-        <translation type="unfinished"/>
+        <translation>Ebe uhie pụtara na e wepụla akaụntụ gị na netwọk; ọ na-acha akwụkwọ ndụ mgbe e jikọtara ya.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="94"/>
         <source>Why should I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>Gịnị mere m ga-eji kwado akaụntụ m?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="96"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation type="unfinished"/>
+        <translation>Jami na-ekesa ma akaụntụ gị na-echekwa naanị n&apos;ógbè gị na ngwaọrụ gị. Ọ bụrụ na ị hapụ paswọọdụ gị ma ọ bụ data akaụntụ gị, ị gaghị enwe ike weghachite akaụntụ gị ma ọ bụrụ na ị backed ya tupu.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="102"/>
         <source>Can I make a conference call?</source>
-        <translation type="unfinished"/>
+        <translation>Enwere m ike ịkpọtụrụ gị?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="107"/>
         <source>What is a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>Gịnị bụ akaụntụ Jami?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="109"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation type="unfinished"/>
+        <translation>Akaụntụ Jami bụ igodo nzuzo na-enweghị atụ. A na-amata akaụntụ gị site na ID Jami, nke bụ akara mkpịsị aka nke igodo ọha gị.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="113"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>Ozi dị aṅaa ka m ga-enye iji mepụta akaụntụ Jami?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="115"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation type="unfinished"/>
+        <translation>Mgbe ị mepụtara akaụntụ Jami ọhụrụ, ọ dịghị mkpa ka ị nye ozi nzuzo dịka email, adreesị, ma ọ bụ nọmba ekwentị.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation type="unfinished"/>
+        <translation>Na Jami, a na-echekwa akaụntụ gị na ndekọ na ngwaọrụ gị. A na-eji paswọọdụ ahụ naanị iji mepee akaụntụ gị iji chebe gị pụọ n&apos;aka onye nwere ohere ịnweta ngwaọrụ gị.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="142"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation type="unfinished"/>
+        <translation>Ọ bụrụ na ihichapụ akaụntụ gị na ngwaọrụ gị nile, akaụntụ ahụ apụghị ịdị adị ruo mgbe ebighị ebi, ị PỤRỤGHỊ iweghachi ya.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="146"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation type="unfinished"/>
+        <translation>Enwere m ike iji akaụntụ m na ọtụtụ ngwaọrụ?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="148"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation type="unfinished"/>
+        <translation>Ee, ị nwere ike jikọọ akaụntụ gị site na ntọala, ma ọ bụ ị nwere ike mbubata nkwado ndabere na mpaghara gị na ngwaọrụ ọzọ.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="120"/>
         <source>Why don&apos;t I have to use a password?</source>
-        <translation type="unfinished"/>
+        <translation>Gịnị mere na agaghị m eji paswọọdụ?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="104"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;ime oku, ị nwere ike pịa &quot;Tinye ndị sonyere&quot; iji tinye kọntaktị na oku.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="128"/>
         <source>Why don&apos;t I have to register a username?</source>
-        <translation type="unfinished"/>
+        <translation>Gịnị mere na agaghị m edebanye aha njirimara?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="130"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation type="unfinished"/>
+        <translation>Ihe njirimara kachasị adịgide adịgide, nke kachasị echekwa bụ ID Jami gị, mana ebe ọ bụ na ndị mmadụ ụfọdụ na-esiri ike iji ha, ị nwekwara nhọrọ ịdebanye aha njirimara.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="135"/>
         <source>How can I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>Olee otú m ga-esi kwado akaụntụ m?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation type="unfinished"/>
+        <translation>Na Ntọala Akaụntụ, a button dị ka ịmepụta ndabere nke akaụntụ gị.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="140"/>
         <source>What happens when I delete my account?</source>
-        <translation type="unfinished"/>
+        <translation>Gịnị na-eme mgbe m kpochapụrụ akaụntụ m?</translation>
     </message>
 </context>
 <context>
@@ -4484,22 +4484,22 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="478"/>
         <source>Searching…</source>
-        <translation type="unfinished"/>
+        <translation>Ị na-achọ...</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1017"/>
         <source>Invalid ID</source>
-        <translation type="unfinished"/>
+        <translation>Ihe Nlereanya Na-adịghị Mma</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
         <source>Username not found</source>
-        <translation type="unfinished"/>
+        <translation>Aha njirimara ahụghị</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1023"/>
         <source>Couldn&apos;t lookup…</source>
-        <translation type="unfinished"/>
+        <translation>Enweghị m ike ịchọ...</translation>
     </message>
 </context>
 <context>
@@ -4507,7 +4507,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="439"/>
         <source>Bad URI scheme</source>
-        <translation type="unfinished"/>
+        <translation>Usoro URI na-adịghị mma</translation>
     </message>
 </context>
 </TS>

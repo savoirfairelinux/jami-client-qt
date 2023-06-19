@@ -1755,7 +1755,7 @@ La foto e il soprannome possono essere cambiate nelle impostazioni dell&apos;acc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
         <source>Link</source>
-        <translation>Associa</translation>
+        <translation>Collegamento</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="801"/>

@@ -4,32 +4,32 @@
 <context>
     <name>CallAdapter</name>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="151"/>
+        <location filename="../src/app/calladapter.cpp" line="153"/>
         <source>Missed call</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="152"/>
+        <location filename="../src/app/calladapter.cpp" line="154"/>
         <source>Missed call with %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="454"/>
+        <location filename="../src/app/calladapter.cpp" line="456"/>
         <source>Incoming call</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="455"/>
+        <location filename="../src/app/calladapter.cpp" line="457"/>
         <source>%1 is calling you</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="466"/>
+        <location filename="../src/app/calladapter.cpp" line="468"/>
         <source>is calling you</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="961"/>
+        <location filename="../src/app/calladapter.cpp" line="945"/>
         <source>Screenshot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -37,12 +37,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="189"/>
         <source>%1 received a new message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="243"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="244"/>
         <source>%1 received a new trust request</source>
         <translation type="unfinished"></translation>
     </message>
@@ -50,7 +50,7 @@
 <context>
     <name>CurrentCall</name>
     <message>
-        <location filename="../src/app/currentcall.cpp" line="178"/>
+        <location filename="../src/app/currentcall.cpp" line="185"/>
         <source>Me</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3761,17 +3761,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="361"/>
+        <location filename="../src/app/mainapplication.cpp" line="365"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="363"/>
+        <location filename="../src/app/mainapplication.cpp" line="367"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="369"/>
+        <location filename="../src/app/mainapplication.cpp" line="373"/>
         <source>&amp;Show Jami</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3807,12 +3807,12 @@ connects to synchronize the conversation.</source>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="409"/>
-        <source>%1 is sharing it&apos;s location</source>
+        <location filename="../src/app/positionmanager.cpp" line="407"/>
+        <source>%1 is sharing their location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="414"/>
+        <location filename="../src/app/positionmanager.cpp" line="412"/>
         <source>Location sharing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3966,8 +3966,8 @@ connects to synchronize the conversation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="389"/>
-        <location filename="../src/libclient/avmodel.cpp" line="408"/>
+        <location filename="../src/libclient/avmodel.cpp" line="391"/>
+        <location filename="../src/libclient/avmodel.cpp" line="410"/>
         <source>default</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4283,12 +4283,12 @@ connects to synchronize the conversation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="728"/>
+        <location filename="../src/app/messagesadapter.cpp" line="731"/>
         <source>Today</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="730"/>
+        <location filename="../src/app/messagesadapter.cpp" line="733"/>
         <source>Yesterday</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4303,7 +4303,7 @@ connects to synchronize the conversation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="709"/>
+        <location filename="../src/app/messagesadapter.cpp" line="712"/>
         <source>just now</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4354,27 +4354,27 @@ connects to synchronize the conversation.</source>
 <context>
     <name>SystemTray</name>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="219"/>
+        <location filename="../src/app/systemtray.cpp" line="216"/>
         <source>Answer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="220"/>
+        <location filename="../src/app/systemtray.cpp" line="217"/>
         <source>Decline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="222"/>
+        <location filename="../src/app/systemtray.cpp" line="219"/>
         <source>Open conversation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="224"/>
+        <location filename="../src/app/systemtray.cpp" line="221"/>
         <source>Accept</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="225"/>
+        <location filename="../src/app/systemtray.cpp" line="222"/>
         <source>Refuse</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4505,17 +4505,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="342"/>
+        <location filename="../src/app/utilsadapter.cpp" line="326"/>
         <source>%1 Mbps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="342"/>
+        <location filename="../src/app/utilsadapter.cpp" line="326"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="547"/>
+        <location filename="../src/app/utilsadapter.cpp" line="531"/>
         <source>System</source>
         <translation>System</translation>
     </message>
