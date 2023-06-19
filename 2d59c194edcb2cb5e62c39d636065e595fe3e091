@@ -16,6 +16,24 @@
       "message": "LGTM, but i think such change should be approved by charlotte",
       "revId": "2d59c194edcb2cb5e62c39d636065e595fe3e091",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "737b6c59_8da2a7b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-19T12:19:11Z",
+      "side": 1,
+      "message": "yeah asked. But for this it\u0027s more a terminology error",
+      "parentUuid": "1a709801_e22caf8c",
+      "revId": "2d59c194edcb2cb5e62c39d636065e595fe3e091",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
