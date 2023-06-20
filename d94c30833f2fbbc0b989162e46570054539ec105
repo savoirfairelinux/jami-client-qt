@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c29867e_3fd5d9c5",
+        "filename": "src/libclient/api/account.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-20T19:39:48Z",
+      "side": 0,
+      "message": "remove line 28, you can group Qt\u0027s headers",
+      "revId": "d94c30833f2fbbc0b989162e46570054539ec105",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
