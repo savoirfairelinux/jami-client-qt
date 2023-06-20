@@ -259,6 +259,7 @@ AccountAdapter::deleteCurrentAccount()
                               Q_EMIT accountRemoved(accountId);
                               Q_EMIT lrcInstance_->accountListChanged();
                           });
+    auto accountId = lrcInstance_->get_currentAccountId();
 
     lrcInstance_->accountModel().removeAccount(lrcInstance_->get_currentAccountId());
 }
