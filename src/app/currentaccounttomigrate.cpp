@@ -125,6 +125,8 @@ CurrentAccountToMigrate::slotAccountStatusChanged(const QString& accountId)
 void
 CurrentAccountToMigrate::slotAccountRemoved(const QString& accountId)
 {
+    if (accountToMigrateList_.isEmpty() || accountToMigrateList_.indexOf(accountId) < 0)
+        return;
     if (accountToMigrateList_.removeOne(accountId))
         updateData();
     if (accountToMigrateList_.isEmpty())
