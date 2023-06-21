@@ -73,8 +73,9 @@ PluginAdapter::getPluginDetails(const QString& pluginId)
 void
 PluginAdapter::installRemotePlugin(const QString& pluginId)
 {
-    networkManager_->download(
+    networkManager_->downloadFile(
         QUrl(BASE_URL + "/download/" + pluginId + ".jpl"),
+        0,
         [this, pluginId](bool success, const QString& error) {
             if (!success) {
                 qDebug() << "Download Plugin error: " << error;

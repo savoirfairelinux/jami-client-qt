@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "updatemanager.h"
+#include "appversionmanager.h"
 
 #include "lrcinstance.h"
 #include "version.h"
@@ -37,9 +37,9 @@ static constexpr char betaVersionSubUrl[] = "/beta/version";
 static constexpr char msiSubUrl[] = "/jami.release.x64.msi";
 static constexpr char betaMsiSubUrl[] = "/beta/jami.beta.x64.msi";
 
-struct UpdateManager::Impl : public QObject
+struct AppVersionManager::Impl : public QObject
 {
-    Impl(const QString& url, LRCInstance* instance, UpdateManager& parent)
+    Impl(const QString& url, LRCInstance* instance, AppVersionManager& parent)
         : QObject(nullptr)
         , parent_(parent)
         , lrcInstance_(instance)
@@ -62,7 +62,7 @@ struct UpdateManager::Impl : public QObject
             connect(&parent_,
                     &NetworkManager::errorOccured,
                     &parent_,
-                    &UpdateManager::updateErrorOccurred);
+                    &AppVersionManager::updateErrorOccurred);
 
         cleanUpdateFiles();
         QUrl versionUrl {isBeta ? QUrl::fromUserInput(baseUrlString_ + betaVersionSubUrl)
@@ -94,14 +94,14 @@ struct UpdateManager::Impl : public QObject
         connect(&parent_,
                 &NetworkManager::errorOccured,
                 &parent_,
-                &UpdateManager::updateErrorOccurred);
-        connect(&parent_, &UpdateManager::statusChanged, this, [this](Status status) {
-            switch (status) {
+                &AppVersionManager::updateErrorOccurred);
+        connect(&parent_, &NetworkManager::statusChanged, this, [this](int status) {
+            switch (static_cast<Status>(status)) {
             case Status::STARTED:
-                Q_EMIT parent_.updateDownloadStarted();
+                Q_EMIT parent_.downloadStarted();
                 break;
             case Status::FINISHED:
-                Q_EMIT parent_.updateDownloadFinished();
+                Q_EMIT parent_.downloadFinished();
                 break;
             default:
                 break;
@@ -111,8 +111,9 @@ struct UpdateManager::Impl : public QObject
         QUrl downloadUrl {(beta || isBeta) ? QUrl::fromUserInput(baseUrlString_ + betaMsiSubUrl)
                                            : QUrl::fromUserInput(baseUrlString_ + msiSubUrl)};
 
-        parent_.downloadFile(
+        unsigned int uuid = parent_.downloadFile(
             downloadUrl,
+            *parent_.replyId,
             [this, downloadUrl](bool success, const QString& errorMessage) {
                 Q_UNUSED(success)
                 Q_UNUSED(errorMessage)
@@ -127,11 +128,13 @@ struct UpdateManager::Impl : public QObject
                                                     << "/L*V" << logPath);
             },
             tempPath_);
+        parent_.replyId.reset(&uuid);
     };
 
     void cancelUpdate()
     {
-        parent_.cancelDownload();
+        // TODO: should check with Andreas
+        parent_.cancelDownload(*(parent_.replyId));
     };
 
     void setAutoUpdateCheck(bool state)
@@ -162,7 +165,7 @@ struct UpdateManager::Impl : public QObject
         }
     };
 
-    UpdateManager& parent_;
+    AppVersionManager& parent_;
 
     LRCInstance* lrcInstance_ {nullptr};
     QString baseUrlString_;
@@ -170,51 +173,52 @@ struct UpdateManager::Impl : public QObject
     QTimer* updateTimer_;
 };
 
-UpdateManager::UpdateManager(const QString& url,
-                             ConnectivityMonitor* cm,
-                             LRCInstance* instance,
-                             QObject* parent)
+AppVersionManager::AppVersionManager(const QString& url,
+                                     ConnectivityMonitor* cm,
+                                     LRCInstance* instance,
+                                     QObject* parent)
     : NetworkManager(cm, parent)
     , pimpl_(std::make_unique<Impl>(url, instance, *this))
+    , replyId(QScopedPointer<unsigned int>(0))
 {}
 
-UpdateManager::~UpdateManager()
+AppVersionManager::~AppVersionManager()
 {
-    cancelDownload();
+    cancelDownload(*replyId);
 }
 
 void
-UpdateManager::checkForUpdates(bool quiet)
+AppVersionManager::checkForUpdates(bool quiet)
 {
     pimpl_->checkForUpdates(quiet);
 }
 
 void
-UpdateManager::applyUpdates(bool beta)
+AppVersionManager::applyUpdates(bool beta)
 {
     pimpl_->applyUpdates(beta);
 }
 
 void
-UpdateManager::cancelUpdate()
+AppVersionManager::cancelUpdate()
 {
     pimpl_->cancelUpdate();
 }
 
 void
-UpdateManager::setAutoUpdateCheck(bool state)
+AppVersionManager::setAutoUpdateCheck(bool state)
 {
     pimpl_->setAutoUpdateCheck(state);
 }
 
 bool
-UpdateManager::isCurrentVersionBeta()
+AppVersionManager::isCurrentVersionBeta()
 {
     return isBeta;
 }
 
 bool
-UpdateManager::isUpdaterEnabled()
+AppVersionManager::isUpdaterEnabled()
 {
 #ifdef Q_OS_WIN
     return true;
@@ -223,116 +227,7 @@ UpdateManager::isUpdaterEnabled()
 }
 
 bool
-UpdateManager::isAutoUpdaterEnabled()
+AppVersionManager::isAutoUpdaterEnabled()
 {
     return false;
-}
-
-void
-UpdateManager::cancelDownload()
-{
-    if (downloadReply_) {
-        Q_EMIT errorOccured(GetError::CANCELED);
-        downloadReply_->abort();
-        resetDownload();
-    }
-}
-
-void
-UpdateManager::downloadFile(const QUrl& url,
-                            std::function<void(bool, const QString&)> onDoneCallback,
-                            const QString& filePath)
-{
-    // If there is already a download in progress, return.
-    if (downloadReply_ && downloadReply_->isRunning()) {
-        qWarning() << Q_FUNC_INFO << "Download already in progress";
-        return;
-    }
-
-    // Clean up any previous download.
-    resetDownload();
-
-    // If the url is invalid, return.
-    if (!url.isValid()) {
-        Q_EMIT errorOccured(GetError::NETWORK_ERROR, "Invalid url");
-        return;
-    }
-
-    // If the file path is empty, return.
-    if (filePath.isEmpty()) {
-        Q_EMIT errorOccured(GetError::NETWORK_ERROR, "Invalid file path");
-        return;
-    }
-
-    // Create the file. Return if it cannot be created.
-    QFileInfo fileInfo(url.path());
-    QString fileName = fileInfo.fileName();
-    file_.reset(new QFile(filePath + "/" + fileName));
-    if (!file_->open(QIODevice::WriteOnly)) {
-        Q_EMIT errorOccured(GetError::ACCESS_DENIED);
-        file_.reset();
-        qWarning() << Q_FUNC_INFO << "Could not open file for writing";
-        return;
-    }
-
-    // Start the download.
-    QNetworkRequest request(url);
-    downloadReply_ = manager_->get(request);
-
-    connect(downloadReply_, &QNetworkReply::readyRead, this, [=]() {
-        if (file_ && file_->isOpen()) {
-            file_->write(downloadReply_->readAll());
-        }
-    });
-
-    connect(downloadReply_,
-            &QNetworkReply::downloadProgress,
-            this,
-            [=](qint64 bytesReceived, qint64 bytesTotal) {
-                Q_EMIT downloadProgressChanged(bytesReceived, bytesTotal);
-            });
-
-    connect(downloadReply_,
-            QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::errorOccurred),
-            this,
-            [this](QNetworkReply::NetworkError error) {
-                downloadReply_->disconnect();
-                resetDownload();
-                qWarning() << Q_FUNC_INFO
-                           << QMetaEnum::fromType<QNetworkReply::NetworkError>().valueToKey(error);
-                Q_EMIT errorOccured(GetError::NETWORK_ERROR);
-            });
-
-    connect(downloadReply_, &QNetworkReply::finished, this, [this, onDoneCallback]() {
-        bool success = false;
-        QString errorMessage;
-        if (downloadReply_->error() == QNetworkReply::NoError) {
-            resetDownload();
-            success = true;
-        } else {
-            errorMessage = downloadReply_->errorString();
-            resetDownload();
-        }
-        onDoneCallback(success, errorMessage);
-        Q_EMIT statusChanged(Status::FINISHED);
-    });
-
-    Q_EMIT statusChanged(Status::STARTED);
-}
-
-void
-UpdateManager::resetDownload()
-{
-    if (downloadReply_) {
-        downloadReply_->deleteLater();
-        downloadReply_ = nullptr;
-    }
-    if (file_) {
-        if (file_->isOpen()) {
-            file_->flush();
-            file_->close();
-        }
-        file_->deleteLater();
-        file_.reset();
-    }
 }

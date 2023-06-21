@@ -25,16 +25,16 @@
 class LRCInstance;
 class ConnectivityMonitor;
 
-class UpdateManager final : public NetworkManager
+class AppVersionManager final : public NetworkManager
 {
     Q_OBJECT
-    Q_DISABLE_COPY(UpdateManager)
+    Q_DISABLE_COPY(AppVersionManager)
 public:
-    explicit UpdateManager(const QString& url,
-                           ConnectivityMonitor* cm,
-                           LRCInstance* instance = nullptr,
-                           QObject* parent = nullptr);
-    ~UpdateManager();
+    explicit AppVersionManager(const QString& url,
+                               ConnectivityMonitor* cm,
+                               LRCInstance* instance = nullptr,
+                               QObject* parent = nullptr);
+    ~AppVersionManager();
 
     enum Status { STARTED, FINISHED };
     Q_ENUM(Status)
@@ -46,30 +46,19 @@ public:
     Q_INVOKABLE bool isCurrentVersionBeta();
     Q_INVOKABLE bool isUpdaterEnabled();
     Q_INVOKABLE bool isAutoUpdaterEnabled();
-    Q_INVOKABLE void cancelDownload();
-
-    void downloadFile(const QUrl& url,
-                      std::function<void(bool, const QString&)> onDoneCallback,
-                      const QString& filePath);
+    QScopedPointer<unsigned int> replyId;
 
 Q_SIGNALS:
-    void statusChanged(UpdateManager::Status status);
-    void downloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
-
-    void updateCheckReplyReceived(bool ok, bool found = false);
-    void updateErrorOccurred(const NetworkManager::GetError& error);
-    void updateDownloadStarted();
-    void updateDownloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
-    void updateDownloadFinished();
     void appCloseRequested();
+    void updateCheckReplyReceived(bool ok, bool found = false);
+    void updateDownloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
+    void updateErrorOccurred(const NetworkManager::GetError& error);
 
 private:
-    void resetDownload();
-    QNetworkReply* downloadReply_ {nullptr};
     QScopedPointer<QFile> file_;
 
 private:
     struct Impl;
     std::unique_ptr<Impl> pimpl_;
 };
-Q_DECLARE_METATYPE(UpdateManager*)
+Q_DECLARE_METATYPE(AppVersionManager*)
