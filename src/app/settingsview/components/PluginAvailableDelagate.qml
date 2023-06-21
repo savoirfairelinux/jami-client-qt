@@ -19,14 +19,14 @@ ItemDelegate {
     property string pluginShortDescription: ""
     property var pluginStatus: PluginAdapter.INSTALLABLE
     property bool isDownloading: false
-    Connections{
+    Connections {
         target: PluginAdapter
         function onChangedStatus(pluginId, status) {
-            if(pluginId !== root.pluginId){
+            if (pluginId !== root.pluginId) {
                 return;
             }
-            pluginStatus = status
-            print(this, "should be call when status changed", root.pluginId, pluginStatus)
+            pluginStatus = status;
+            print(this, "should be call when status changed", root.pluginId, pluginStatus);
         }
     }
     Rectangle {
@@ -149,7 +149,7 @@ ItemDelegate {
         }
     }
     function installPlugin() {
-        if(isDownloading){
+        if (isDownloading) {
             return;
         }
         PluginAdapter.installRemotePlugin(pluginId);
