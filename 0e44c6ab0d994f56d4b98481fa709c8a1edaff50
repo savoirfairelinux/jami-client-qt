@@ -39,6 +39,23 @@
       "message": "However I have crashes when I create accounts too",
       "revId": "0e44c6ab0d994f56d4b98481fa709c8a1edaff50",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22f7f66d_8b4963b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-21T16:14:33Z",
+      "side": 1,
+      "message": "as per our discussion, there must be some underlying cause and the client should be robust enough to delete an account without special precautions",
+      "revId": "0e44c6ab0d994f56d4b98481fa709c8a1edaff50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
