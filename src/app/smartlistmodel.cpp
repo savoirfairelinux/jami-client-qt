@@ -21,13 +21,10 @@
 #include "smartlistmodel.h"
 
 #include "lrcinstance.h"
-#include "utils.h"
 
 #include "api/account.h"
-#include "api/contact.h"
 #include "api/conversation.h"
 #include "api/conversationmodel.h"
-#include "api/contactmodel.h"
 
 #include <QDateTime>
 
@@ -37,11 +34,20 @@ SmartListModel::SmartListModel(QObject* parent,
     : ConversationListModelBase(instance, parent)
     , listModelType_(listModelType)
 {
-    if (listModelType_ == Type::CONFERENCE) {
-        setConferenceableFilter();
-    } else if (listModelType_ == Type::CONVERSATION || listModelType_ == Type::ADDCONVMEMBER) {
-        fillConversationsList();
-    }
+    connect(
+        model_,
+        &ConversationModel::newConversation,
+        this,
+        [this] { updateModels(); },
+        Qt::DirectConnection);
+    connect(
+        model_,
+        &ConversationModel::conversationRemoved,
+        this,
+        [this] { updateModels(); },
+        Qt::DirectConnection);
+
+    updateModels();
 }
 
 int
@@ -63,8 +69,9 @@ SmartListModel::rowCount(const QModelIndex& parent) const
                 rowCount += sectionState_[tr("Contacts")] ? contacts.size() : 0;
             }
             return rowCount;
+        } else {
+            return conversations_.size();
         }
-        return conversations_.size();
     }
     return 0;
 }
@@ -165,6 +172,16 @@ SmartListModel::fillConversationsList()
     conversations_ = ConversationList(convModel->getAllSearchResults())
                      + convModel->allFilteredConversations();
     endResetModel();
+}
+
+void
+SmartListModel::updateModels()
+{
+    if (listModelType_ == Type::CONFERENCE) {
+        setConferenceableFilter();
+    } else if (listModelType_ == Type::CONVERSATION || listModelType_ == Type::ADDCONVMEMBER) {
+        fillConversationsList();
+    }
 }
 
 void

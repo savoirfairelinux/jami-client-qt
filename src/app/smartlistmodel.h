@@ -58,4 +58,6 @@ private:
     QMap<QString, bool> sectionState_;
     QMap<ConferenceableItem, ConferenceableValue> conferenceables_;
     ConversationModel::ConversationQueueProxy conversations_;
+
+    void updateModels();
 };
