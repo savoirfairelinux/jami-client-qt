@@ -53,6 +53,10 @@ Q_SIGNALS:
 
 protected:
     QNetworkAccessManager* manager_;
+    NetworkManager* getNetworkManager()
+    {
+        return this;
+    };
 
 private:
     ConnectivityMonitor* connectivityMonitor_;
