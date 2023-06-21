@@ -56,12 +56,12 @@ NetworkManager::sendGetRequest(const QUrl& url,
                                std::function<void(const QByteArray&)> onDoneCallback)
 {
     auto reply = manager_->get(QNetworkRequest(url));
-    QObject::connect(reply, &QNetworkReply::finished, this, [reply, onDoneCallback]() {
+    QObject::connect(reply, &QNetworkReply::finished, this, [reply, onDoneCallback, this]() {
         if (reply->error() == QNetworkReply::NoError) {
             onDoneCallback(reply->readAll());
-        } else {
-            onDoneCallback(reply->errorString().toUtf8());
-        }
+        } else{
+            Q_EMIT errorOccured(GetError::NETWORK_ERROR, reply->errorString());
+        }      
         reply->deleteLater();
     });
 }
