@@ -92,6 +92,9 @@ ListSelectionView {
 
                         text: JamiStrings.welcomeToJami
                         color: JamiTheme.textColor
+
+                        Accessible.role: Accessible.StaticText
+                        Accessible.name: this.text
                     }
 
                     Label {
@@ -110,6 +113,9 @@ ListSelectionView {
 
                         text: JamiStrings.description
                         color: JamiTheme.textColor
+
+                        Accessible.role: Accessible.StaticText
+                        Accessible.name: this.text
                     }
 
                     Label {

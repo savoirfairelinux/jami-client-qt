@@ -74,6 +74,9 @@ Item {
                 font.pixelSize: JamiTheme.tipBoxTitleFontSize
                 horizontalAlignment: Text.AlignLeft
                 elide: Qt.ElideRight
+
+                Accessible.role: Accessible.StaticText
+                Accessible.name: this.text
             }
         }
 
@@ -89,6 +92,9 @@ Item {
             text: JamiStrings.whyBackupAccount
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignLeft
+
+            Accessible.role: Accessible.StaticText
+            Accessible.name: this.text
         }
 
         Text {
@@ -101,6 +107,9 @@ Item {
             text: JamiStrings.backupAccountInfos
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignLeft
+
+            Accessible.role: Accessible.StaticText
+            Accessible.name: this.text
         }
 
         MaterialButton {

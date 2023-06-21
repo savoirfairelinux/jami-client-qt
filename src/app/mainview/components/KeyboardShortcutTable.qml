@@ -299,6 +299,9 @@ Window {
                     }
                 }
                 color: JamiTheme.textColor
+
+                Accessible.role: Accessible.StaticText
+                Accessible.name: titleName
             }
         }
 

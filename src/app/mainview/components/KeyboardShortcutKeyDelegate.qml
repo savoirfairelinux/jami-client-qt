@@ -45,6 +45,7 @@ RowLayout {
             font.pointSize: JamiTheme.textFontSize
             font.weight: Font.Bold
             color: JamiTheme.textColor
+            Accessible.ignored: true
         }
     }
 
@@ -69,6 +70,10 @@ RowLayout {
             font.pointSize: JamiTheme.textFontSize + 3
             font.weight: Font.DemiBold
             color: JamiTheme.textColor
+            Accessible.ignored: true
         }
     }
+
+    Accessible.role: Accessible.StaticText
+    Accessible.name: description + " " + shortcutText.text
 }

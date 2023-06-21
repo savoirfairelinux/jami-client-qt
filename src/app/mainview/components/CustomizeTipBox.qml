@@ -64,6 +64,9 @@ ColumnLayout {
             horizontalAlignment: Text.AlignLeft
             font.pixelSize: JamiTheme.tipBoxTitleFontSize
             elide: Qt.ElideRight
+
+            Accessible.role: Accessible.StaticText
+            Accessible.name: this.text
         }
     }
 
@@ -79,6 +82,9 @@ ColumnLayout {
         font.weight: Font.Normal
         text: JamiStrings.customizeText
         color: JamiTheme.textColor
+
+        Accessible.role: Accessible.StaticText
+        Accessible.name: this.text
     }
 
     PhotoboothView {
@@ -118,5 +124,8 @@ ColumnLayout {
         wrapMode: Text.WordWrap
         text: JamiStrings.customizationDescription2
         color: JamiTheme.textColor
+
+        Accessible.role: Accessible.StaticText
+        Accessible.name: this.text
     }
 }

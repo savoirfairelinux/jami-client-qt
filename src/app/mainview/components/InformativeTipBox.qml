@@ -64,6 +64,9 @@ ColumnLayout {
             font.pixelSize: JamiTheme.tipBoxTitleFontSize
             horizontalAlignment: Text.AlignLeft
             elide: Qt.ElideRight
+
+            Accessible.role: Accessible.StaticText
+            Accessible.name: this.text
         }
     }
 
@@ -78,6 +81,9 @@ ColumnLayout {
         text: root.title
         horizontalAlignment: Text.AlignLeft
         color: JamiTheme.textColor
+
+        Accessible.role: Accessible.StaticText
+        Accessible.name: this.text
     }
 
     Text {
@@ -89,5 +95,8 @@ ColumnLayout {
         text: root.description
         horizontalAlignment: Text.AlignLeft
         color: JamiTheme.textColor
+
+        Accessible.role: Accessible.StaticText
+        Accessible.name: this.text
     }
 }
