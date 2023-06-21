@@ -53,7 +53,7 @@
 #include "appsettingsmanager.h"
 #include "mainapplication.h"
 #include "namedirectory.h"
-#include "updatemanager.h"
+#include "appversionmanager.h"
 #include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
 #include "wizardviewstepmodel.h"
@@ -150,7 +150,7 @@ registerTypes(QQmlEngine* engine,
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, PluginModel, &lrcInstance->pluginModel())
-    QML_REGISTERSINGLETONTYPE_CUSTOM(NS_HELPERS, UpdateManager, lrcInstance->getUpdateManager())
+    QML_REGISTERSINGLETONTYPE_CUSTOM(NS_HELPERS, AppVersionManager, lrcInstance->getAppVersionManager())
 
     // Hack for QtCreator autocomplete (part 2)
     // https://bugreports.qt.io/browse/QTCREATORBUG-20569
@@ -237,7 +237,7 @@ registerTypes(QQmlEngine* engine,
 
     engine->setObjectOwnership(&lrcInstance->avModel(), QQmlEngine::CppOwnership);
     engine->setObjectOwnership(&lrcInstance->pluginModel(), QQmlEngine::CppOwnership);
-    engine->setObjectOwnership(lrcInstance->getUpdateManager(), QQmlEngine::CppOwnership);
+    engine->setObjectOwnership(lrcInstance->getAppVersionManager(), QQmlEngine::CppOwnership);
     engine->setObjectOwnership(&NameDirectory::instance(), QQmlEngine::CppOwnership);
 }
 // clang-format on

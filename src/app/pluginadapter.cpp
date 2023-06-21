@@ -19,7 +19,7 @@
 #include "pluginadapter.h"
 
 #include "lrcinstance.h"
-#include "networkmanager.h"
+#include "pluginversionmanager.h"
 #include "qmlregister.h"
 #include "pluginstorelistmodel.h"
 
@@ -31,7 +31,7 @@ QString BASE_URL = "http://127.0.0.1:3000";
 
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
-    , networkManager_(new NetworkManager(NULL, this))
+    , pluginVersionManager_(new PluginVersionManager(NULL, this))
     , pluginStoreListModel_(new PluginStoreListModel(this))
     , pluginListModel_(new PluginListModel(instance, this))
 
@@ -46,12 +46,28 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
             &PluginAdapter::updateHandlersListCount);
     connect(this, &PluginAdapter::isEnabledChanged, this, &PluginAdapter::updateHandlersListCount);
     getPluginsFromStore();
+
+    connect(pluginVersionManager_,
+            &PluginVersionManager::downloadStarted,
+            this,
+            [this](const QString& pluginId) {
+                qWarning() << "Download started";
+                Q_EMIT changedStatus(pluginId, PluginStatus::DOWNLOADING);
+            });
+
+    connect(pluginVersionManager_,
+            &PluginVersionManager::downloadFinished,
+            this,
+            [this](const QString& pluginId) {
+                qWarning() << "Download finished";
+                Q_EMIT changedStatus(pluginId, PluginStatus::DOWNLOADED);
+            });
 }
 
 void
 PluginAdapter::getPluginsFromStore()
 {
-    networkManager_->sendGetRequest(QUrl(BASE_URL), [this](const QByteArray& data) {
+    pluginVersionManager_->sendGetRequest(QUrl(BASE_URL), [this](const QByteArray& data) {
         auto result = QJsonDocument::fromJson(data).array();
         QList<QVariantMap> plugins;
         for (const auto& plugin : result) {
@@ -64,17 +80,18 @@ PluginAdapter::getPluginsFromStore()
 void
 PluginAdapter::getPluginDetails(const QString& pluginId)
 {
-    networkManager_->sendGetRequest(QUrl(BASE_URL + "/details/" + pluginId),
-                                    [](const QByteArray& plugin) {
-                                        qDebug() << "Plugin: " << plugin;
-                                    });
+    pluginVersionManager_->sendGetRequest(QUrl(BASE_URL + "/details/" + pluginId),
+                                          [](const QByteArray& plugin) {
+                                              qDebug() << "Plugin: " << plugin;
+                                          });
 }
 
 void
 PluginAdapter::installRemotePlugin(const QString& pluginId)
 {
-    networkManager_->download(
+    pluginVersionManager_->downloadFile(
         QUrl(BASE_URL + "/download/" + pluginId + ".jpl"),
+        0,
         [this, pluginId](bool success, const QString& error) {
             if (!success) {
                 qDebug() << "Download Plugin error: " << error;

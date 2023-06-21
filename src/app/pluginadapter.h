@@ -28,7 +28,7 @@
 #include <QSortFilterProxyModel>
 #include <QString>
 
-class NetworkManager;
+class PluginVersionManager;
 class PluginStoreListModel;
 
 class PluginAdapter final : public QmlAdapterBase
@@ -39,11 +39,24 @@ class PluginAdapter final : public QmlAdapterBase
     QML_PROPERTY(bool, isEnabled)
 
 public:
+    enum PluginStatus {
+        INSTALLABLE,
+        DOWNLOADING,
+        DOWNLOADED,
+        INSTALLING,
+        INSTALLED,
+        FAILED,
+        UPDATABLE
+    };
+    Q_ENUM(PluginStatus)
     explicit PluginAdapter(LRCInstance* instance, QObject* parent = nullptr);
     Q_INVOKABLE void getPluginsFromStore();
     Q_INVOKABLE void getPluginDetails(const QString& pluginId);
     Q_INVOKABLE void installRemotePlugin(const QString& pluginId);
     ~PluginAdapter() = default;
+
+Q_SIGNALS:
+    void changedStatus(QString pluginId, PluginStatus status);
 
 protected:
     Q_INVOKABLE QVariant getMediaHandlerSelectableModel(const QString& callId);
@@ -56,7 +69,7 @@ protected:
 private:
     void updateHandlersListCount();
 
-    NetworkManager* networkManager_;
+    PluginVersionManager* pluginVersionManager_;
     std::unique_ptr<PluginHandlerListModel> pluginHandlerListModel_;
     PluginStoreListModel* pluginStoreListModel_;
     PluginListModel* pluginListModel_;
