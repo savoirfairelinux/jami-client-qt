@@ -57,20 +57,8 @@ Rectangle {
             Layout.leftMargin: 4
             Layout.rightMargin: 4
 
-            model: ContactAdapter.getContactSelectableModel(type)
-
-            Connections {
-                target: CurrentConversationMembers
-
-                function onCountChanged() {
-                    contactPickerListView.model = ContactAdapter.getContactSelectableModel(type);
-                }
-            }
-
-            onVisibleChanged: {
-                if (visible)
-                    model = ContactAdapter.getContactSelectableModel(type);
-            }
+            // Reset the model if visible or the CurrentConversationMembers.count changes (0 or greater)
+            model: visible && CurrentConversationMembers.count >= 0 ? ContactAdapter.getContactSelectableModel(type) : null
 
             delegate: ContactPickerItemDelegate {
                 id: contactPickerItemDelegate
