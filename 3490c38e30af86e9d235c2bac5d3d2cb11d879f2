@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08f1ca2c_0414a4d0",
+        "filename": "build.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2023-06-22T20:02:26Z",
+      "side": 0,
+      "message": "?",
+      "range": {
+        "startLine": 332,
+        "startChar": 38,
+        "endLine": 332,
+        "endChar": 57
+      },
+      "revId": "3490c38e30af86e9d235c2bac5d3d2cb11d879f2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
