@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9c6b049_c264d0be",
+        "filename": "src/app/settingsview/components/UpdateDownloadDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-22T12:44:35Z",
+      "side": 1,
+      "message": "Note: For plugin, we want \"Auto Update\" to be a different preference in plugin and in the general panel. Because updating jami !\u003d updating a plugin.",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 29
+      },
+      "revId": "f97c7944521df45793dc5c45bf6cc6954952ae73",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
