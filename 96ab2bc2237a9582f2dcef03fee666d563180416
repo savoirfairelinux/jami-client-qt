@@ -16,6 +16,24 @@
       "message": "because Thomas",
       "revId": "96ab2bc2237a9582f2dcef03fee666d563180416",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e35ab8ed_46483f44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2023-06-22T18:02:31Z",
+      "side": 1,
+      "message": "doesnt change the logic",
+      "parentUuid": "5300afc4_7125d84d",
+      "revId": "96ab2bc2237a9582f2dcef03fee666d563180416",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
