@@ -22,7 +22,7 @@ import shutil
 from platform import uname
 
 CFVERSION = "9"
-CLANGFORMAT = ""
+CLANGFORMAT = None
 
 QMLFORMAT = None
 
@@ -138,27 +138,29 @@ def main():
     args = parser.parse_args()
 
     if args.type in ["cpp", "both"]:
-        if not command_exists("clang-format-" + CFVERSION):
-            if not command_exists("clang-format"):
-                print("Required version of clang-format not found")
-                sys.exit(1)
-            else:
-                CLANGFORMAT = "clang-format"
-        else:
-            CLANGFORMAT = "clang-format-" + CFVERSION
+        if command_exists("clang-format-" + CFVERSION):
+            CLANGFORMAT = "clang-format-" + CFVERSION   
+        elif command_exists("clang-format"):
+            CLANGFORMAT = "clang-format"     
+
+    if CLANGFORMAT is not None:
         print("Using source formatter: " + CLANGFORMAT)
+    else:
+        print("clang-format not found. can't format source files")
 
     if args.qt is not None and args.type in ["qml", "both"]:
         global QMLFORMAT  # pylint: disable=global-statement
         QMLFORMAT = find_qmlformat(args.qt)
-
-    if QMLFORMAT is not None:
-        print("Using qmlformatter: " + QMLFORMAT)
-    else:
-        print("No qmlformat found, can't format QML files")
+        if QMLFORMAT is not None:
+            print("Using qmlformatter: " + QMLFORMAT)
+        else:
+            print("qmlformat not found, can't format QML files")
 
     if args.install:
-        install_hook(args.install, args.qt)
+        if CLANGFORMAT is not None or QMLFORMAT is not None:
+            install_hook(args.install, args.qt)
+        else:
+            print("No formatters found, skipping hook install")
         sys.exit(0)
 
     src_files = get_files([".cpp", ".cxx", ".cc", ".h", ".hpp"],
