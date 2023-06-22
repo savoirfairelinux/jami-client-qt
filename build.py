@@ -329,7 +329,7 @@ def run_init(args):
     # The client submodule has QML files, so we need to run qmlformat on it,
     # and thus need to supply the Qt path.
     execute_script([f'{format_script} --install {client_hooks_dir}'
-                    f' --qt {args.qt}' if args.qt else ''],
+                    f' --qt {args.qt}'],
                    {"path": client_hooks_dir})
 
     # The daemon submodule has no QML files, so we don't need to run
