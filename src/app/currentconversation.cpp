@@ -258,9 +258,8 @@ CurrentConversation::updateConversationPreferences(const QString& convId)
             color = convInfo.preferences["color"];
         }
         set_color(color);
-        if (convInfo.preferences.contains("ignoreNotifications")) {
-            set_ignoreNotifications(convInfo.preferences["ignoreNotifications"] == "true");
-        }
+        set_ignoreNotifications(convInfo.preferences.contains("ignoreNotifications")
+                                && convInfo.preferences["ignoreNotifications"] == "true");
     }
 }
 
