@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b41e57fc_7ee4fb90",
+        "filename": "src/app/settingsview/components/PluginListView.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-22T12:43:35Z",
+      "side": 1,
+      "message": "Typo in component name",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 30
+      },
+      "revId": "91378a559705568b657ff372d31078925f267d05",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77b9a245_f33744b2",
+        "filename": "src/app/settingsview/components/PluginSettingsPage.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-22T12:43:35Z",
+      "side": 1,
+      "message": "Slow to load. Should be dynamic",
+      "range": {
+        "startLine": 48,
+        "startChar": 21,
+        "endLine": 48,
+        "endChar": 34
+      },
+      "revId": "91378a559705568b657ff372d31078925f267d05",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
