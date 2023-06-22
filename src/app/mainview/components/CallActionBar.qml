@@ -490,7 +490,7 @@ Control {
                 interactive: false
 
                 model: SortFilterProxyModel {
-                    sourceModel: CallOverlayModel.primaryModel()
+                    sourceModel: root.visible ? CallOverlayModel.primaryModel() : null
                     filters: ValueFilter {
                         roleName: "Enabled"
                         value: true
@@ -542,7 +542,7 @@ Control {
                     CallOverlayModel.overflowIndex = effectiveOverflowIndex;
                 }
 
-                model: CallOverlayModel.overflowModel()
+                model: root.visible ? CallOverlayModel.overflowModel() : null
                 delegate: buttonDelegate
             }
 
@@ -553,7 +553,7 @@ Control {
                 width: root.height
                 height: width
 
-                model: CallOverlayModel.overflowHiddenModel()
+                model: root.visible ? CallOverlayModel.overflowHiddenModel() : null
 
                 delegate: buttonDelegate
 
