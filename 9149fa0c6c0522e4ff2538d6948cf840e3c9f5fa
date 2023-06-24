@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ee22094_57af9ebe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-06-24T12:46:08Z",
+      "side": 1,
+      "message": "Does this fix https://git.jami.net/savoirfairelinux/jami-daemon/-/issues/816?\n\n",
+      "revId": "9149fa0c6c0522e4ff2538d6948cf840e3c9f5fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
