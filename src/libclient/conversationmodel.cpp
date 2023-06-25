@@ -1755,14 +1755,12 @@ void
 ConversationModel::acceptConversationRequest(const QString& conversationId)
 {
     auto conversationOpt = getConversationForUid(conversationId);
-    if (!conversationOpt.has_value()) {
+    if (!conversationOpt.has_value())
         return;
-    }
     auto& conversation = conversationOpt->get();
     auto& peers = pimpl_->peersForConversation(conversation);
-    if (peers.isEmpty()) {
+    if (peers.isEmpty())
         return;
-    }
 
     if (conversation.isSwarm()) {
         conversation.needsSyncing = true;
@@ -1772,8 +1770,6 @@ ConversationModel::acceptConversationRequest(const QString& conversationId)
         ConfigurationManager::instance().acceptConversationRequest(owner.id, conversationId);
     } else {
         pimpl_->sendContactRequest(peers.front());
-    }
-    if (conversation.isCoreDialog()) {
         try {
             auto contact = owner.contactModel->getContact(peers.front());
             auto notAdded = contact.profileInfo.type == profile::Type::TEMPORARY
@@ -1783,6 +1779,7 @@ ConversationModel::acceptConversationRequest(const QString& conversationId)
                 return;
             }
         } catch (std::out_of_range& e) {
+            qWarning() << e.what();
         }
     }
 }
@@ -2731,9 +2728,8 @@ ConversationModelPimpl::slotConversationRequestReceived(const QString& accountId
                                                         const QString&,
                                                         const MapStringString& metadatas)
 {
-    if (accountId != linked.owner.id) {
+    if (accountId != linked.owner.id)
         return;
-    }
     addConversationRequest(metadatas, true);
 }
 
