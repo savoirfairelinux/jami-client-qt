@@ -239,7 +239,6 @@ void
 ContactModel::addContact(contact::Info contactInfo)
 {
     auto& profile = contactInfo.profileInfo;
-
     // If passed contact is a banned contact, call the daemon to unban it
     auto it = std::find(pimpl_->bannedContacts.begin(), pimpl_->bannedContacts.end(), profile.uri);
     if (it != pimpl_->bannedContacts.end()) {
