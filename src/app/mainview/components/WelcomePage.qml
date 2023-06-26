@@ -69,7 +69,7 @@ ListSelectionView {
                     height: childrenRect.height + 10
                     opacity: 1
 
-                    Behavior on width  {
+                    Behavior on width {
                         NumberAnimation {
                             duration: JamiTheme.shortFadeDuration
                         }
