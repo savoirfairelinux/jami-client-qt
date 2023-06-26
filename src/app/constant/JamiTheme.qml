@@ -72,11 +72,11 @@ Item {
     property color greyBorderColor: "#333"
     property color selectionBlue: darkTheme ? "#0061a5" : "#109ede"
 
-    property color hoverColor: darkTheme ? "#515151" : "#c7c7c7"
+    property color hoverColor: darkTheme ? "#303030" : "#c7c7c7"
     property color pressColor: darkTheme ? "#777" : "#c0c0c0"
     property color selectedColor: darkTheme ? "#0e81c5" : "#e0e0e0"
-    property color smartListHoveredColor: darkTheme ? "#444444" : "#dedede"
-    property color smartListSelectedColor: darkTheme ? "#515151" : "#d1d1d1"
+    property color smartListHoveredColor: darkTheme ? "#303030" : "#dedede"
+    property color smartListSelectedColor: darkTheme ? "#303030" : "#dbdbdb"
     property color editBackgroundColor: darkTheme ? "#373737" : lightGrey_
     property color textColor: primaryForegroundColor
     property color textColorHovered: darkTheme ? "#cccccc" : "#333333"
@@ -212,7 +212,7 @@ Item {
     property color timestampColor: darkTheme ? "#bbb" : "#777"
     property color messageReplyColor: darkTheme ? "#bbb" : "#A7A7A7"
     property color messageOutTxtColor: "#000000"
-    property color messageInBgColor: "#e5e5e5"
+    property color messageInBgColor: darkTheme ? "#303030" : "#dbdbdb"
     property color messageOutBgColor: darkTheme ? "#616161" : "#005699"
     property color messageInTxtColor: "#FFFFFF"
     property color fileOutTimestampColor: darkTheme ? "#eee" : "#555"
@@ -617,7 +617,7 @@ Item {
 
     // MaterialRadioButton
     property int radioImageSize: 30
-    property color radioBackgroundColor: darkTheme ? "#515151" : "#F0EFEF"
+    property color radioBackgroundColor: darkTheme ? "#303030" : "#F0EFEF"
     property color radioBorderColor: darkTheme ? "#03B9E9" : "#005699"
     property color lightThemeBackgroundColor: JamiTheme.whiteColor
     property color lightThemeCheckedColor: "#005699"
