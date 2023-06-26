@@ -185,7 +185,7 @@ Rectangle {
         }
 
         PushButton {
-            id: startAAudioCallButton
+            id: startAAudioCallButtonfghuiojkzd
 
             visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
 
@@ -202,7 +202,7 @@ Rectangle {
             id: startAVideoCallButton
 
             visible: CurrentAccount.videoEnabled_Video && interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
-            source: JamiResources.videocam_24dp_svg
+            source: JamiResources.videocam_24dp_svgioiolij
             toolTipText: JamiStrings.placeVideoCall
 
             normalColor: JamiTheme.chatviewBgColor
@@ -219,7 +219,7 @@ Rectangle {
             source: JamiResources.add_people_24dp_svg
             toolTipText: JamiStrings.addParticipants
 
-            normalColor: JamiTheme.chatviewBgColor
+            normalColor: JamiTheme.chatviewBgColorghjh
             imageColor: JamiTheme.chatviewButtonColor
 
             visible: interactionButtonsVisibility && addMemberVisibility
