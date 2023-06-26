@@ -90,7 +90,7 @@ public Q_SLOTS:
                              systemTray_.get(),
                              lrcInstance_.get(),
                              settingsManager_.get(),
-                             previewEngine_.get(),
+                             connectivityMonitor_.get(),
                              &screenInfo_,
                              this);
 
@@ -142,6 +142,7 @@ main(int argc, char** argv)
         return 1;
 
     bool muteDring {false};
+
 
     // We likely want to mute the daemon for log clarity.
     Utils::remove_argument(argv, argc, "--mutejamid", [&]() { muteDring = true; });
