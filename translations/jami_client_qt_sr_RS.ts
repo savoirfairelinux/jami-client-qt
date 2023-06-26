@@ -78,27 +78,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="325"/>
+        <location filename="../src/app/currentconversation.cpp" line="324"/>
         <source>An error occurred while fetching this repository</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="327"/>
+        <location filename="../src/app/currentconversation.cpp" line="326"/>
         <source>Unrecognized conversation mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="331"/>
+        <location filename="../src/app/currentconversation.cpp" line="330"/>
         <source>Not authorized to update conversation information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="333"/>
+        <location filename="../src/app/currentconversation.cpp" line="332"/>
         <source>An error occurred while committing a new message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="329"/>
+        <location filename="../src/app/currentconversation.cpp" line="328"/>
         <source>An invalid message was detected</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4331,22 +4331,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>SmartListModel</name>
     <message>
-        <location filename="../src/app/smartlistmodel.cpp" line="62"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="100"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="108"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="154"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="174"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="175"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="68"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="107"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="115"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="161"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="191"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="192"/>
         <source>Calls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/smartlistmodel.cpp" line="63"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="101"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="118"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="155"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="176"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="177"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="69"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="108"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="125"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="162"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="193"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="194"/>
         <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
