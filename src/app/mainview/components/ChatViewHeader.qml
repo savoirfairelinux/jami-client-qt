@@ -155,10 +155,10 @@ Rectangle {
 
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.preferredHeight: 30
-            Layout.preferredWidth: 40 + (isOpen? JamiTheme.searchbarSize : 0)
+            Layout.preferredWidth: 40 + (isOpen ? JamiTheme.searchbarSize : 0)
             colorSearchBar: JamiTheme.backgroundColor
 
-            Behavior on Layout.preferredWidth {
+            Behavior on Layout.preferredWidth  {
                 NumberAnimation {
                     duration: 150
                 }
@@ -166,7 +166,7 @@ Rectangle {
 
             visible: root.swarmDetailsVisibility
 
-            onSearchBarTextChanged: function(text){
+            onSearchBarTextChanged: function (text) {
                 MessagesAdapter.searchbarPrompt = text;
             }
 
