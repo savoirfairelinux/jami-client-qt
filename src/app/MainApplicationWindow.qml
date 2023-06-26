@@ -300,7 +300,7 @@ ApplicationWindow {
     Connections {
         target: UpdateManager
 
-        function onUpdateDownloadStarted() {
+        function onDownloadStarted() {
             viewCoordinator.presentDialog(appWindow, "settingsview/components/UpdateDownloadDialog.qml", {
                     "title": JamiStrings.updateDialogTitle
                 });
