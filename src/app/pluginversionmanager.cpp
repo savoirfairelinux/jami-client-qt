@@ -20,9 +20,9 @@ struct PluginVersionManager::Impl : public QObject
             parent_.checkForUpdates(true);
         });
 
-        connect(parent.getNetworkManager(),
+        connect(parent_,
                 &NetworkManager::downloadStarted,
-                this,
+                parent_,
                 [this](int replyId) {
                     auto pluginsId = parent_.pluginRepliesId.keys(replyId);
                     if (pluginsId.size() == 0) {
@@ -34,9 +34,9 @@ struct PluginVersionManager::Impl : public QObject
                     }
                 });
 
-        connect(parent.getNetworkManager(),
+        connect(parent_,
                 &NetworkManager::downloadFinished,
-                this,
+                parent_,
                 [this](int replyId) {
                     auto pluginsId = parent_.pluginRepliesId.keys(replyId);
                     if (pluginsId.size() == 0) {

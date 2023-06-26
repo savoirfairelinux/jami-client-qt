@@ -43,9 +43,6 @@ public:
     Q_INVOKABLE void cancelUpdate();
     Q_INVOKABLE bool isCurrentVersionBeta();
 
-    void downloadFile(const QUrl& url,
-                      std::function<void(bool, const QString&)> onDoneCallback,
-                      const QString& filePath);
     QScopedPointer<unsigned int> replyId;
 
 Q_SIGNALS:

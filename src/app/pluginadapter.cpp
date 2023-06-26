@@ -18,8 +18,9 @@
 
 #include "pluginadapter.h"
 
-#include "lrcinstance.h"
 #include "pluginversionmanager.h"
+#include "networkmanager.h"
+#include "lrcinstance.h"
 #include "qmlregister.h"
 #include "pluginstorelistmodel.h"
 
@@ -52,7 +53,7 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
             this,
             [this](const QString& pluginId) {
                 qWarning() << "Download started";
-                Q_EMIT changedStatus(pluginId, PluginStatus::DOWNLOADING);
+                // Q_EMIT changedStatus(pluginId, PluginStatus::DOWNLOADING);
             });
 
     connect(pluginVersionManager_,
@@ -60,7 +61,7 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
             this,
             [this](const QString& pluginId) {
                 qWarning() << "Download finished";
-                Q_EMIT changedStatus(pluginId, PluginStatus::DOWNLOADED);
+                // Q_EMIT changedStatus(pluginId, PluginStatus::DOWNLOADED);
             });
 }
 

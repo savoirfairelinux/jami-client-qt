@@ -101,7 +101,7 @@ struct AppVersionManager::Impl : public QObject
 
         unsigned int uuid = parent_.downloadFile(
             downloadUrl,
-            *parent_.replyId,
+            *(parent_.replyId),
             [this, downloadUrl](bool success, const QString& errorMessage) {
                 Q_UNUSED(success)
                 Q_UNUSED(errorMessage)
