@@ -33,6 +33,9 @@ Rectangle {
     property alias textContent: textArea.text
     property alias placeHolderText: textArea.placeholderText
 
+    property real hoverButtonRadius : JamiTheme.chatViewHeaderButtonRectangleRadius
+    property color hoverButtonColor : JamiTheme.hoveredButtonColor
+
     property var colorSearchBar: JamiTheme.secondaryBackgroundColor
 
     property string currentConversationId: CurrentConversation.id
@@ -71,8 +74,8 @@ Rectangle {
         anchors.leftMargin: 10
         hoverEnabled: reductionEnabled
         enabled: reductionEnabled
-
-
+        radius: hoverButtonRadius
+        hoveredColor: hoverButtonColor
         source: JamiResources.ic_baseline_search_24dp_svg
         normalColor: "transparent"
         imageColor: JamiTheme.chatviewButtonColor
