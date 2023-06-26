@@ -157,6 +157,9 @@ Rectangle {
             Layout.preferredHeight: 30
             Layout.preferredWidth: 40 + (isOpen? JamiTheme.searchbarSize : 0)
             colorSearchBar: JamiTheme.backgroundColor
+            
+            hoverButtonRadius: JamiTheme.chatViewHeaderButtonRectangleRadius
+            hoverButtonColor: JamiTheme.chatViewHeaderHoveredButtonColor
 
             Behavior on Layout.preferredWidth {
                 NumberAnimation {
@@ -191,7 +194,11 @@ Rectangle {
 
             source: JamiResources.place_audiocall_24dp_svg
             toolTipText: JamiStrings.placeAudioCall
-
+            
+            pressedColor: JamiTheme.chatViewHeaderPressedButtonColor
+            hoveredColor: JamiTheme.chatViewHeaderHoveredButtonColor
+            radius: JamiTheme.chatViewHeaderButtonRectangleRadius
+            
             normalColor: JamiTheme.chatviewBgColor
             imageColor: JamiTheme.chatviewButtonColor
 
@@ -204,6 +211,10 @@ Rectangle {
             visible: CurrentAccount.videoEnabled_Video && interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
             source: JamiResources.videocam_24dp_svg
             toolTipText: JamiStrings.placeVideoCall
+
+            pressedColor: JamiTheme.chatViewHeaderPressedButtonColor
+            hoveredColor: JamiTheme.chatViewHeaderHoveredButtonColor
+            radius: JamiTheme.chatViewHeaderButtonRectangleRadius
 
             normalColor: JamiTheme.chatviewBgColor
             imageColor: JamiTheme.chatviewButtonColor
@@ -219,6 +230,10 @@ Rectangle {
             source: JamiResources.add_people_24dp_svg
             toolTipText: JamiStrings.addParticipants
 
+            pressedColor: JamiTheme.chatViewHeaderPressedButtonColor
+            hoveredColor: JamiTheme.chatViewHeaderHoveredButtonColor
+            radius: JamiTheme.chatViewHeaderButtonRectangleRadius
+            
             normalColor: JamiTheme.chatviewBgColor
             imageColor: JamiTheme.chatviewButtonColor
 
@@ -235,6 +250,10 @@ Rectangle {
             source: JamiResources.plugins_24dp_svg
             toolTipText: JamiStrings.showPlugins
 
+            pressedColor: JamiTheme.chatViewHeaderPressedButtonColor
+            hoveredColor: JamiTheme.chatViewHeaderHoveredButtonColor
+            radius: JamiTheme.chatViewHeaderButtonRectangleRadius
+
             normalColor: JamiTheme.chatviewBgColor
             imageColor: JamiTheme.chatviewButtonColor
 
@@ -249,6 +268,10 @@ Rectangle {
             source: JamiResources.add_people_24dp_svg
             toolTipText: JamiStrings.addToConversations
 
+            pressedColor: JamiTheme.chatViewHeaderPressedButtonColor
+            hoveredColor: JamiTheme.chatViewHeaderHoveredButtonColor
+            radius: JamiTheme.chatViewHeaderButtonRectangleRadius
+            
             normalColor: JamiTheme.chatviewBgColor
             imageColor: JamiTheme.chatviewButtonColor
 
@@ -262,6 +285,10 @@ Rectangle {
 
             source: JamiResources.swarm_details_panel_svg
             toolTipText: JamiStrings.details
+
+            pressedColor: JamiTheme.chatViewHeaderPressedButtonColor
+            hoveredColor: JamiTheme.chatViewHeaderHoveredButtonColor
+            radius: JamiTheme.chatViewHeaderButtonRectangleRadius
 
             normalColor: JamiTheme.chatviewBgColor
             imageColor: JamiTheme.chatviewButtonColor
