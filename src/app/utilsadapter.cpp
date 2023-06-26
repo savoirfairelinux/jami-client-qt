@@ -142,9 +142,17 @@ UtilsAdapter::getStyleSheet(const QString& name, const QString& source)
 }
 
 const QString
-UtilsAdapter::getCachePath()
+UtilsAdapter::getLocalDataPath()
 {
     QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
+    dataDir.cdUp();
+    return dataDir.absolutePath() + "/jami";
+}
+
+const QString
+UtilsAdapter::getCachePath()
+{
+    QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
     dataDir.cdUp();
     return dataDir.absolutePath() + "/jami";
 }
@@ -809,4 +817,45 @@ UtilsAdapter::isSystemTrayIconVisible()
     if (!systemTray_)
         return false;
     return systemTray_->geometry() != QRect();
+}
+
+QString
+UtilsAdapter::base64Encode(const QString& input)
+{
+    QByteArray byteArray = input.toUtf8();
+    return byteArray.toBase64();
+}
+
+bool
+UtilsAdapter::fileExists(const QString& filePath)
+{
+    return QFile::exists(filePath);
+}
+
+QString
+UtilsAdapter::getStandarsTempLocation() {
+    return QStandardPaths::writableLocation(static_cast<QStandardPaths::StandardLocation>(QStandardPaths::TempLocation));
+}
+
+QString
+UtilsAdapter::createDummyImage() const {
+    // Create an QImage
+    QImage image(256, 256, QImage::Format_ARGB32);
+    image.fill(QColor(255, 255, 255, 255));
+
+    QByteArray ba;
+    QBuffer bu(&ba);
+    image.save(&bu, "PNG");
+
+    // Save the image to a file
+    QFile file(QDir::tempPath() + "/dummy.png");
+    if (file.open(QIODevice::WriteOnly)) {
+        file.write(ba);
+        file.close();
+        qInfo() << "Dummy image created" << QDir::tempPath() + "/dummy.png";
+        return QDir::tempPath() + "/dummy.png";
+    } else {
+        qWarning() << "Could not create dummy image";
+        return "";
+    }
 }
