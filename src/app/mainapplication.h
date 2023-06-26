@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include "imagedownloader.h"
 #include "lrcinstance.h"
 #include "qtutils.h"
 
@@ -36,7 +37,6 @@ class ConnectivityMonitor;
 class AppSettingsManager;
 class SystemTray;
 class CallAdapter;
-class PreviewEngine;
 
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
@@ -115,7 +115,7 @@ private:
     QScopedPointer<ConnectivityMonitor> connectivityMonitor_;
     QScopedPointer<AppSettingsManager> settingsManager_;
     QScopedPointer<SystemTray> systemTray_;
-    QScopedPointer<PreviewEngine> previewEngine_;
+    QScopedPointer<ImageDownloader> imageDownloader_;
 
     ScreenInfo screenInfo_;
 };
