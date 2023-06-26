@@ -49,72 +49,67 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     getPluginsFromStore();
 
     connect(pluginVersionManager_,
-            &PluginVersionManager::downloadStarted,
+            &PluginVersionManager::downloadFinished,
             this,
             [this](const QString& pluginId) {
-        qWarning() << "Download started";
-        // Q_EMIT changedStatus(pluginId, PluginStatus::DOWNLOADING);
-            [this](const QString& pluginId) {
-            qWarning() << "Download finished";
-            // Q_EMIT changedStatus(pluginId, PluginStatus::DOWNLOADED);
+                qWarning() << "Download finished";
+                // Q_EMIT changedStatus(pluginId, PluginStatus::DOWNLOADED);
             });
 }
 
 void
 PluginAdapter::getPluginsFromStore()
 {
-        pluginVersionManager_->sendGetRequest(QUrl(BASE_URL), [this](const QByteArray& data) {
-            auto result = QJsonDocument::fromJson(data).array();
-            QList<QVariantMap> plugins;
-            for (const auto& plugin : result) {
-                plugins.append(plugin.toVariant().toMap());
-            }
-            pluginStoreListModel_->setPlugins(plugins);
-        });
+    pluginVersionManager_->sendGetRequest(QUrl(BASE_URL), [this](const QByteArray& data) {
+        auto result = QJsonDocument::fromJson(data).array();
+        QList<QVariantMap> plugins;
+        for (const auto& plugin : result) {
+            plugins.append(plugin.toVariant().toMap());
+        }
+        pluginStoreListModel_->setPlugins(plugins);
+    });
 }
 
 void
 PluginAdapter::getPluginDetails(const QString& pluginId)
 {
-        pluginVersionManager_->sendGetRequest(QUrl(BASE_URL + "/details/" + pluginId),
-                                              [](const QByteArray& plugin) {
-                                                  qDebug() << "Plugin: " << plugin;
-                                              });
+    pluginVersionManager_->sendGetRequest(QUrl(BASE_URL + "/details/" + pluginId),
+                                          [](const QByteArray& plugin) {
+                                              qDebug() << "Plugin: " << plugin;
+                                          });
 }
 
 void
 PluginAdapter::installRemotePlugin(const QString& pluginId)
 {
-        pluginVersionManager_->downloadFile(
-            QUrl(BASE_URL + "/download/" + pluginId + ".jpl"),
-            0,
-            [this, pluginId](bool success, const QString& error) {
-                if (!success) {
-                    qDebug() << "Download Plugin error: " << error;
-                    return;
-                }
-                auto res = lrcInstance_->pluginModel().installPlugin("/tmp/" + pluginId + ".jpl",
-                                                                     false);
+    pluginVersionManager_->downloadFile(
+        QUrl(BASE_URL + "/download/" + pluginId + ".jpl"),
+        0,
+        [this, pluginId](bool success, const QString& error) {
+            if (!success) {
+                qDebug() << "Download Plugin error: " << error;
+                return;
+            }
+            auto res = lrcInstance_->pluginModel().installPlugin("/tmp/" + pluginId + ".jpl", false);
 
-                // pluginListModel_->addPlugin(plugin);
-            },
-            "/tmp/");
+            // pluginListModel_->addPlugin(plugin);
+        },
+        "/tmp/");
 }
 
 QVariant
 PluginAdapter::getMediaHandlerSelectableModel(const QString& callId)
 {
-        pluginHandlerListModel_.reset(
-            new PluginHandlerListModel(this, callId, QString(""), lrcInstance_));
-        return QVariant::fromValue(pluginHandlerListModel_.get());
+    pluginHandlerListModel_.reset(
+        new PluginHandlerListModel(this, callId, QString(""), lrcInstance_));
+    return QVariant::fromValue(pluginHandlerListModel_.get());
 }
 
 QVariant
 PluginAdapter::getChatHandlerSelectableModel(const QString& accountId, const QString& peerId)
 {
-        pluginHandlerListModel_.reset(
-            new PluginHandlerListModel(this, accountId, peerId, lrcInstance_));
-        return QVariant::fromValue(pluginHandlerListModel_.get());
+    pluginHandlerListModel_.reset(new PluginHandlerListModel(this, accountId, peerId, lrcInstance_));
+    return QVariant::fromValue(pluginHandlerListModel_.get());
 }
 
 QVariant
@@ -122,27 +117,26 @@ PluginAdapter::getPluginPreferencesCategories(const QString& pluginId,
                                               const QString& accountId,
                                               bool removeLast)
 {
-        QStringList categories;
-        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId, accountId);
-        for (auto& preference : preferences) {
-            if (!preference["category"].isEmpty())
-                categories.push_back(preference["category"]);
-        }
-        categories.removeDuplicates();
-        if (removeLast)
-            categories.pop_back();
-        return categories;
+    QStringList categories;
+    auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId, accountId);
+    for (auto& preference : preferences) {
+        if (!preference["category"].isEmpty())
+            categories.push_back(preference["category"]);
+    }
+    categories.removeDuplicates();
+    if (removeLast)
+        categories.pop_back();
+    return categories;
 }
 
 void
 PluginAdapter::updateHandlersListCount()
 {
-        if (isEnabled_) {
-            set_callMediaHandlersListCount(
-                lrcInstance_->pluginModel().getCallMediaHandlers().size());
-            set_chatHandlersListCount(lrcInstance_->pluginModel().getChatHandlers().size());
-        } else {
-            set_callMediaHandlersListCount(0);
-            set_chatHandlersListCount(0);
-        }
+    if (isEnabled_) {
+        set_callMediaHandlersListCount(lrcInstance_->pluginModel().getCallMediaHandlers().size());
+        set_chatHandlersListCount(lrcInstance_->pluginModel().getChatHandlers().size());
+    } else {
+        set_callMediaHandlersListCount(0);
+        set_chatHandlersListCount(0);
+    }
 }
