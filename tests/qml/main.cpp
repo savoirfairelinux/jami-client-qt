@@ -90,7 +90,7 @@ public Q_SLOTS:
                              systemTray_.get(),
                              lrcInstance_.get(),
                              settingsManager_.get(),
-                             previewEngine_.get(),
+                             connectivityMonitor_.get(),
                              &screenInfo_,
                              this);
 
