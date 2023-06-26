@@ -19,6 +19,8 @@ import QtQuick
 import QtQuick.Controls
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 import "../../commoncomponents"
 
 JamiFlickable {
@@ -121,7 +123,10 @@ JamiFlickable {
                 MessagesAdapter.editId = CurrentConversation.lastSelfMessageId;
                 keyEvent.accepted = true;
             } else if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
-                if (!(keyEvent.modifiers & Qt.ShiftModifier)) {
+                const isEnterNewLine = UtilsAdapter.getAppValue(Settings.Key.ChatviewEnterIsNewLine);
+                const isShiftPressed = (keyEvent.modifiers & Qt.ShiftModifier);
+                if ((isEnterNewLine && isShiftPressed)
+                    || (!isEnterNewLine && !isShiftPressed)) {
                     root.sendMessagesRequired();
                     keyEvent.accepted = true;
                 }

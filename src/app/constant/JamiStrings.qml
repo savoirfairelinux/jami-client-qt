@@ -805,6 +805,8 @@ Item {
     property string orderedList: qsTr("Ordered list")
     property string showFormating: qsTr("Show Formating")
     property string hideFormating: qsTr("Hide Formating")
+    property string shitEnterNewLine: qsTr("Press Shift+Enter to insert a new line")
+    property string enterNewLine: qsTr("Press Enter to insert a new line")
 
     property string send: qsTr("Send")
     property string remove: qsTr("Remove")

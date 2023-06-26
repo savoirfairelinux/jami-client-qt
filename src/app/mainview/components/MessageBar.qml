@@ -35,6 +35,7 @@ ColumnLayout {
     property bool animate: false
     property bool showDefault: !UtilsAdapter.getAppValue(Settings.Key.ShowSendOption)
     property bool showTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
+    property bool chatviewEnterIsNewLine: UtilsAdapter.getAppValue(Settings.Key.ChatviewEnterIsNewLine)
     property bool showTypoSecond: false
 
     property int messageBarLayoutMaximumWidth: 486
@@ -638,6 +639,39 @@ ColumnLayout {
 
                             action: modelData
                         }
+                    }
+                }
+
+                PushButton {
+                    id: shiftEnterButton
+
+                    preferredSize: JamiTheme.chatViewFooterButtonSize
+                    imageContainerWidth: 24
+                    imageContainerHeight: 24
+
+                    radius: JamiTheme.chatViewFooterButtonRadius
+
+                    toolTipText: chatviewEnterIsNewLine ? JamiStrings.shitEnterNewLine : JamiStrings.enterNewLine
+                    source: JamiResources.text_edit_black_24dp_svg
+
+                    normalColor: !chatviewEnterIsNewLine ? JamiTheme.chatViewFooterListColor : JamiTheme.showMoreButtonOpenColor
+                    imageColor: JamiTheme.chatViewFooterImgColor
+                    pressedColor: JamiTheme.showMoreButtonOpenColor
+                    hoveredColor: JamiTheme.showMoreButtonOpenColor
+
+                    onClicked: {
+                        root.chatviewEnterIsNewLine = !root.chatviewEnterIsNewLine;
+                        UtilsAdapter.setAppValue(Settings.Key.ChatviewEnterIsNewLine, chatviewEnterIsNewLine);
+                    }
+
+                    Rectangle {
+                        visible: chatviewEnterIsNewLine
+
+                        anchors.fill: parent
+                        anchors.leftMargin: 3
+                        anchors.rightMargin: -5
+                        color: JamiTheme.showMoreButtonOpenColor
+                        z: -2
                     }
                 }
             }

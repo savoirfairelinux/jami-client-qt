@@ -60,6 +60,7 @@ extern const QString defaultDownloadPath;
     X(PositionShareLimit, true) \
     X(FlipSelf, true) \
     X(ShowMardownOption, false) \
+    X(ChatviewEnterIsNewLine, false) \
     X(ShowSendOption, false)
 
 /*
