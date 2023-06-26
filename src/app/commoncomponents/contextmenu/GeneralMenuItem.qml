@@ -135,7 +135,7 @@ MenuItem {
 
         border.width: 0
 
-        CustomBorder {
+        ty {
             commonBorder: false
             lBorderwidth: leftBorderWidth
             rBorderwidth: rightBorderWidth
