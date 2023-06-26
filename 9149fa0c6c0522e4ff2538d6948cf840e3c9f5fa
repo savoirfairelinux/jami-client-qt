@@ -16,6 +16,24 @@
       "message": "Does this fix https://git.jami.net/savoirfairelinux/jami-daemon/-/issues/816?\n\n",
       "revId": "9149fa0c6c0522e4ff2538d6948cf840e3c9f5fa",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc7fd92b_1659635b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-26T14:13:52Z",
+      "side": 1,
+      "message": "I don\u0027t believe so.",
+      "parentUuid": "1ee22094_57af9ebe",
+      "revId": "9149fa0c6c0522e4ff2538d6948cf840e3c9f5fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
