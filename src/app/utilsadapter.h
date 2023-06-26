@@ -86,6 +86,7 @@ public:
     Q_INVOKABLE void setClipboardText(QString text);
     Q_INVOKABLE const QString qStringFromFile(const QString& filename);
     Q_INVOKABLE const QString getStyleSheet(const QString& name, const QString& source);
+    Q_INVOKABLE const QString getLocalDataPath();
     Q_INVOKABLE const QString getCachePath();
     Q_INVOKABLE bool createStartupLink();
     Q_INVOKABLE QString GetRingtonePath();
@@ -152,6 +153,14 @@ public:
     Q_INVOKABLE bool isRTL();
     Q_INVOKABLE bool isSystemTrayIconVisible();
 
+    Q_INVOKABLE QString base64Encode(const QString& input);
+    Q_INVOKABLE bool fileExists(const QString& filePath);
+    Q_INVOKABLE QString getStandardTempLocation();
+    Q_INVOKABLE QString getMimeName(const QString& filePath) const;
+
+#ifdef ENABLE_TESTS
+    Q_INVOKABLE QString createDummyImage() const;
+#endif
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
     void changeFontSize();
