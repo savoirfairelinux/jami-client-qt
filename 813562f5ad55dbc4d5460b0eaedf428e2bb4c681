@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bae16932_4a28c634",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-06-26T21:52:43Z",
+      "side": 1,
+      "message": "What is the SFL convention with:\n1. uppercase/lowercase `ENTER`, `Enter`, `SHIFT`, `Shift`?\n2. What is the SFL convention with/without having spaces ` ` before and after the `+` when adding `Shift + Enter` or `Shift+Enter`?\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dshift%2Benter\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined\n\nThank you",
+      "range": {
+        "startLine": 808,
+        "startChar": 50,
+        "endLine": 808,
+        "endChar": 61
+      },
+      "revId": "813562f5ad55dbc4d5460b0eaedf428e2bb4c681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79f714b4_178b3198",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-06-26T21:52:43Z",
+      "side": 1,
+      "message": "1. Should `ENTER` be in capitals?\n2. Should `insert` be changed to `start`?\n\nen: `Press Shift+ENTER to start a new line.`\nhu: `A Shift+ENTER billentyűt lenyomva új sort kezdhet.`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dto%20start%20a%20new%20line\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 808,
+        "startChar": 44,
+        "endLine": 808,
+        "endChar": 82
+      },
+      "revId": "813562f5ad55dbc4d5460b0eaedf428e2bb4c681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a539e60_2aa4a917",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-06-26T21:52:43Z",
+      "side": 1,
+      "message": "1. Should `ENTER` be in capitals?\n2. Should `insert` be changed to `start`?\n\nen: `Press ENTER to start a new line.`\nhu: `Az ENTER billentyűt lenyomva új sort kezdhet.`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dto%20start%20a%20new%20line\u0026langID\u003d382\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 809,
+        "startChar": 40,
+        "endLine": 809,
+        "endChar": 72
+      },
+      "revId": "813562f5ad55dbc4d5460b0eaedf428e2bb4c681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
