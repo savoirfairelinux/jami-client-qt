@@ -77,7 +77,7 @@ Rectangle {
         anchors.rightMargin: 8
         spacing: 16
 
-        PushButton {
+        HeaderPushButton {
             id: backToWelcomeViewButton
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
@@ -158,6 +158,8 @@ Rectangle {
             Layout.preferredWidth: 40 + (isOpen? JamiTheme.searchbarSize : 0)
             colorSearchBar: JamiTheme.backgroundColor
 
+            hoverButtonRadius: JamiTheme.chatViewHeaderButtonRadius
+
             Behavior on Layout.preferredWidth {
                 NumberAnimation {
                     duration: 150
@@ -184,87 +186,62 @@ Rectangle {
             }
         }
 
-        PushButton {
+        HeaderPushButton {
             id: startAAudioCallButton
 
             visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
-
             source: JamiResources.place_audiocall_24dp_svg
             toolTipText: JamiStrings.placeAudioCall
-
-            normalColor: JamiTheme.chatviewBgColor
-            imageColor: JamiTheme.chatviewButtonColor
 
             onClicked: CallAdapter.placeAudioOnlyCall()
         }
 
-        PushButton {
+        HeaderPushButton {
             id: startAVideoCallButton
 
             visible: CurrentAccount.videoEnabled_Video && interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
             source: JamiResources.videocam_24dp_svg
             toolTipText: JamiStrings.placeVideoCall
 
-            normalColor: JamiTheme.chatviewBgColor
-            imageColor: JamiTheme.chatviewButtonColor
-
-            onClicked: {
-                CallAdapter.placeCall();
-            }
+            onClicked: CallAdapter.placeCall()
         }
 
-        PushButton {
+        HeaderPushButton {
             id: addParticipantsButton
 
+            visible: interactionButtonsVisibility && addMemberVisibility
             source: JamiResources.add_people_24dp_svg
             toolTipText: JamiStrings.addParticipants
-
-            normalColor: JamiTheme.chatviewBgColor
-            imageColor: JamiTheme.chatviewButtonColor
-
-            visible: interactionButtonsVisibility && addMemberVisibility
 
             onClicked: addToConversationClicked()
         }
 
-        PushButton {
+        HeaderPushButton {
             id: selectPluginButton
 
             visible: PluginAdapter.isEnabled && PluginAdapter.chatHandlersListCount && interactionButtonsVisibility
-
             source: JamiResources.plugins_24dp_svg
             toolTipText: JamiStrings.showPlugins
-
-            normalColor: JamiTheme.chatviewBgColor
-            imageColor: JamiTheme.chatviewButtonColor
 
             onClicked: pluginSelector()
         }
 
-        PushButton {
+        HeaderPushButton {
             id: sendContactRequestButton
 
             visible: CurrentConversation.isTemporary || CurrentConversation.isBanned
-
             source: JamiResources.add_people_24dp_svg
             toolTipText: JamiStrings.addToConversations
-
-            normalColor: JamiTheme.chatviewBgColor
-            imageColor: JamiTheme.chatviewButtonColor
 
             onClicked: CurrentConversation.isBanned ? MessagesAdapter.unbanConversation(CurrentConversation.id) : MessagesAdapter.sendConversationRequest()
         }
 
-        PushButton {
+        HeaderPushButton {
             id: detailsButton
 
             visible: interactionButtonsVisibility && (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP) // TODO if SIP not a request
-
             source: JamiResources.swarm_details_panel_svg
             toolTipText: JamiStrings.details
-
-            normalColor: JamiTheme.chatviewBgColor
-            imageColor: JamiTheme.chatviewButtonColor
 
             onClicked: showDetailsClicked()
         }
