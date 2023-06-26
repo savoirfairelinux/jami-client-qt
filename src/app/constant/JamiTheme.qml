@@ -239,6 +239,11 @@ Item {
     property color chatViewFooterSendButtonColor: darkTheme ? "#03B9E9" : "#005699"
     property color chatViewFooterSendButtonImgColor: darkTheme ? blackColor : whiteColor
 
+    // ChatView Header
+    property color chatViewHeaderPressedButtonColor: darkTheme ? "#E5EEF5" : "#E5EEF5"
+    property color chatViewHeaderHoveredButtonColor: darkTheme ? "#E5E5E5" : "#E5E5E5"
+    property real chatViewHeaderButtonRectangleRadius : 5
+
     // mapPosition
     property color mapButtonsOverlayColor: darkTheme ? "#000000" : "#f0f0f0"
     property color mapButtonColor: darkTheme ? "#f0f0f0" : "#000000"
