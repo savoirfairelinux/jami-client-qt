@@ -16,6 +16,24 @@
       "message": "The contact picker is not centered in the callview, imho it looks odd this way",
       "revId": "e3ddb013934cc8a0f5b74ec587878b64eab41d97",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62b9e633_4800adc0",
+        "filename": "src/app/mainview/components/ContactPicker.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-26T15:22:27Z",
+      "side": 1,
+      "message": "indeed. Parent was forced to overlay. Done.",
+      "parentUuid": "27ab9fca_6b4fb72b",
+      "revId": "e3ddb013934cc8a0f5b74ec587878b64eab41d97",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
