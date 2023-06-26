@@ -381,7 +381,7 @@ ColumnLayout {
                         visible: width > 0
                         width: showTypo ? contentWidth + 2 * leftMargin : 0
 
-                        Behavior on width  {
+                        Behavior on width {
                             NumberAnimation {
                                 duration: JamiTheme.longFadeDuration / 2
                             }
@@ -473,7 +473,7 @@ ColumnLayout {
                         visible: width > 0
                         width: showTypo && showTypoSecond ? 2 : 0
 
-                        Behavior on width  {
+                        Behavior on width {
                             NumberAnimation {
                                 duration: JamiTheme.longFadeDuration / 2
                             }
@@ -548,7 +548,7 @@ ColumnLayout {
                         visible: width > 0
                         width: showTypo && showTypoSecond ? contentWidth + 2 * leftMargin : 0
 
-                        Behavior on width  {
+                        Behavior on width {
                             NumberAnimation {
                                 duration: JamiTheme.longFadeDuration / 2
                             }
@@ -649,7 +649,7 @@ ColumnLayout {
 
                     width: contentWidth + 2 * leftMargin
 
-                    Behavior on width  {
+                    Behavior on width {
                         NumberAnimation {
                             duration: JamiTheme.longFadeDuration / 2
                         }

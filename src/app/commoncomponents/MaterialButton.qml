@@ -51,12 +51,12 @@ AbstractButton {
     height: buttontextHeightMargin + textButton.height
     Layout.preferredHeight: height
 
-    Binding on width  {
+    Binding on width {
         when: root.preferredWidth !== undefined || root.Layout.fillWidth
         value: root.preferredWidth
     }
 
-    Binding on Layout.preferredWidth  {
+    Binding on Layout.preferredWidth {
         when: root.preferredWidth !== undefined || root.Layout.fillWidth
         value: width
     }
@@ -96,7 +96,7 @@ AbstractButton {
     contentItem: Item {
         id: item
 
-        Binding on implicitWidth  {
+        Binding on implicitWidth {
             when: root.preferredWidth === undefined || !root.Layout.fillWidth
             value: item.childrenRect.width
         }
@@ -105,7 +105,7 @@ AbstractButton {
 
         RowLayout {
             anchors.verticalCenter: parent.verticalCenter
-            Binding on width  {
+            Binding on width {
                 when: root.preferredWidth !== undefined || root.Layout.fillWidth
                 value: root.availableWidth
             }
