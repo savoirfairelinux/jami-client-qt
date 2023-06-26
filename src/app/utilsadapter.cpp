@@ -142,9 +142,17 @@ UtilsAdapter::getStyleSheet(const QString& name, const QString& source)
 }
 
 const QString
-UtilsAdapter::getCachePath()
+UtilsAdapter::getLocalDataPath()
 {
     QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
+    dataDir.cdUp();
+    return dataDir.absolutePath() + "/jami";
+}
+
+const QString
+UtilsAdapter::getCachePath()
+{
+    QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
     dataDir.cdUp();
     return dataDir.absolutePath() + "/jami";
 }
@@ -809,4 +817,17 @@ UtilsAdapter::isSystemTrayIconVisible()
     if (!systemTray_)
         return false;
     return systemTray_->geometry() != QRect();
+}
+
+QString
+UtilsAdapter::base64Encode(const QString& input)
+{
+    QByteArray byteArray = input.toUtf8();
+    return byteArray.toBase64();
+}
+
+bool
+UtilsAdapter::fileExists(const QString& filePath)
+{
+    return QFile::exists(filePath);
 }
