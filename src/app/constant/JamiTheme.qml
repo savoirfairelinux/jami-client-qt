@@ -72,11 +72,11 @@ Item {
     property color greyBorderColor: "#333"
     property color selectionBlue: darkTheme ? "#0061a5" : "#109ede"
 
-    property color hoverColor: darkTheme ? "#303030" : "#c7c7c7"
+    property color hoverColor: darkTheme ? "#4D4D4D" : "#c7c7c7"
     property color pressColor: darkTheme ? "#777" : "#c0c0c0"
     property color selectedColor: darkTheme ? "#0e81c5" : "#e0e0e0"
-    property color smartListHoveredColor: darkTheme ? "#303030" : "#dedede"
-    property color smartListSelectedColor: darkTheme ? "#303030" : "#dbdbdb"
+    property color smartListHoveredColor: darkTheme ? "#4D4D4D" : "#dedede"
+    property color smartListSelectedColor: darkTheme ? "#4D4D4D" : "#dedede"
     property color editBackgroundColor: darkTheme ? "#373737" : lightGrey_
     property color textColor: primaryForegroundColor
     property color textColorHovered: darkTheme ? "#cccccc" : "#333333"
@@ -96,8 +96,8 @@ Item {
 
     // General buttons
     property color pressedButtonColor: darkTheme ? pressColor : "#a0a0a0"
-    property color hoveredButtonColor: darkTheme ? hoverColor : "#c7c7c7"
-    property color hoveredButtonColorWizard: darkTheme ? "#123F4A" : "#E5EEF5"
+    property color hoveredButtonColor: darkTheme ? "#4D4D4D" : "#dedede"
+    property color hoveredButtonColorWizard: darkTheme ? "#4D4D4D" : "#dedede"
     property color normalButtonColor: darkTheme ? backgroundColor : "#e0e0e0"
 
     property color invertedPressedButtonColor: Qt.rgba(0, 0, 0, 0.5)
@@ -238,6 +238,9 @@ Item {
     property color chatViewFooterSeparateLineColor: darkTheme ? "#5c5c5c" : "#929292"
     property color chatViewFooterSendButtonColor: darkTheme ? "#03B9E9" : "#005699"
     property color chatViewFooterSendButtonImgColor: darkTheme ? blackColor : whiteColor
+
+    // ChatView Header
+    property real chatViewHeaderButtonRadius: 5
 
     // mapPosition
     property color mapButtonsOverlayColor: darkTheme ? "#000000" : "#f0f0f0"
