@@ -36,6 +36,7 @@ class AppSettingsManager;
 class PreviewEngine;
 class ScreenInfo;
 class MainApplication;
+class ConnectivityMonitor;
 
 // Hack for QtCreator autocomplete (part 1)
 // https://bugreports.qt.io/browse/QTCREATORBUG-20569
@@ -65,7 +66,7 @@ void registerTypes(QQmlEngine* engine,
                    SystemTray* systemTray,
                    LRCInstance* lrcInstance,
                    AppSettingsManager* appSettingsManager,
-                   PreviewEngine* previewEngine,
+                   ConnectivityMonitor* connectivityMonitor,
                    ScreenInfo* screenInfo,
                    QObject* parent);
 }
