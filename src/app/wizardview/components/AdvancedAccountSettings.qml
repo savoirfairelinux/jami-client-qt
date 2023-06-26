@@ -121,7 +121,7 @@ Rectangle {
                         return Math.max(cornerIcon1.height, labelEncrypt.height + 2 * JamiTheme.advancedAccountSettingsHeightMargin);
                     }
 
-                    Behavior on Layout.preferredWidth  {
+                    Behavior on Layout.preferredwidth {
                         NumberAnimation {
                             duration: 100
                         }
@@ -374,7 +374,7 @@ Rectangle {
                 Item {
                     Layout.alignment: Qt.AlignRight | Qt.AlignTop
 
-                    Behavior on Layout.preferredWidth  {
+                    Behavior on Layout.preferredwidth {
                         NumberAnimation {
                             duration: 100
                         }

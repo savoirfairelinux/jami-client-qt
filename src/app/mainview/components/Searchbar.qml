@@ -24,7 +24,6 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-
     signal searchBarTextChanged(string text)
     signal returnPressedWhileSearching
     signal searchClicked
@@ -33,6 +32,8 @@ Rectangle {
     property alias textContent: textArea.text
     property alias placeHolderText: textArea.placeholderText
 
+    property real hoverButtonRadius: JamiTheme.chatViewHeaderButtonRadius
+
     property var colorSearchBar: JamiTheme.secondaryBackgroundColor
 
     property string currentConversationId: CurrentConversation.id
@@ -40,7 +41,7 @@ Rectangle {
     property bool isOpen: reductionEnabled ? extrasPanel.isOpen(ChatView.MessagesResearchPanel) : true
     onIsOpenChanged: {
         if (isOpen)
-            textArea.forceActiveFocus()
+            textArea.forceActiveFocus();
     }
 
     function clearText() {
@@ -71,8 +72,8 @@ Rectangle {
         anchors.leftMargin: 10
         hoverEnabled: reductionEnabled
         enabled: reductionEnabled
-
-
+        radius: hoverButtonRadius
+        hoveredColor: JamiTheme.hoveredButtonColor
         source: JamiResources.ic_baseline_search_24dp_svg
         normalColor: "transparent"
         imageColor: JamiTheme.chatviewButtonColor
@@ -83,7 +84,7 @@ Rectangle {
     Rectangle {
         id: rectTextArea
 
-        height: root.height-5
+        height: root.height - 5
         anchors.left: startSearch.right
         anchors.right: root.right
         anchors.verticalCenter: root.verticalCenter
@@ -111,7 +112,6 @@ Rectangle {
 
             background.visible: false
 
-
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.right: textArea.text.length ? clearTextButton.left : parent.right
@@ -135,7 +135,6 @@ Rectangle {
 
         PushButton {
             id: clearTextButton
-
 
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
