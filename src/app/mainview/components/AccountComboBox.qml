@@ -181,7 +181,7 @@ Label {
                 source: !root.popup.opened ? JamiResources.expand_more_24dp_svg : JamiResources.expand_less_24dp_svg
             }
 
-            PushButton {
+            JamiPushButton {
                 id: shareButton
 
                 width: visible ? preferredSize : 0
@@ -199,7 +199,7 @@ Label {
                 onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
 
-            PushButton {
+            JamiPushButton {
                 id: settingsButton
 
                 anchors.verticalCenter: parent.verticalCenter

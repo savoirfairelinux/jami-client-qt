@@ -168,7 +168,7 @@ Rectangle {
 
                             visible: false
 
-                            Behavior on width  {
+                            Behavior on width {
                                 NumberAnimation {
                                     duration: JamiTheme.shortFadeDuration
                                 }
@@ -441,7 +441,7 @@ Rectangle {
 
         visible: false
 
-        Behavior on width  {
+        Behavior on width {
             NumberAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
