@@ -46,7 +46,7 @@ class Setup : public QObject
 
 public:
     Setup(bool muteDring = false)
-        : muteDring_(muteDring)
+        : muteDaemon_(muteDring)
     {}
 
 public Q_SLOTS:
@@ -64,7 +64,7 @@ public Q_SLOTS:
         QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
 
         lrcInstance_.reset(
-            new LRCInstance(nullptr, nullptr, "", connectivityMonitor_.get(), muteDring_));
+            new LRCInstance(nullptr, nullptr, "", connectivityMonitor_.get(), muteDaemon_));
         lrcInstance_->subscribeToDebugReceived();
 
         auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
@@ -118,7 +118,7 @@ private:
     QScopedPointer<PreviewEngine> previewEngine_;
     ScreenInfo screenInfo_;
 
-    bool muteDring_ {false};
+    bool muteDaemon_ {false};
 };
 
 int
