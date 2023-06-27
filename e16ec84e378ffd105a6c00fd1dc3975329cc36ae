@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "344608c3_2c5c1d55",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-27T16:17:45Z",
+      "side": 1,
+      "message": "same color wanted?",
+      "range": {
+        "startLine": 243,
+        "startChar": 67,
+        "endLine": 243,
+        "endChar": 73
+      },
+      "revId": "e16ec84e378ffd105a6c00fd1dc3975329cc36ae",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7605f110_a34fedac",
         "filename": "src/app/mainview/components/ChatViewHeader.qml",
         "patchSetId": 3
