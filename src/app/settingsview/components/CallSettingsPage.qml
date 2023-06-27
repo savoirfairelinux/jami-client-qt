@@ -31,7 +31,7 @@ import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 SettingsPageBase {
     id: root
 
-    property bool isSIP
+    property bool isSIP: CurrentAccount.type === Profile.Type.SIP
     property int itemWidth: 132
     title: JamiStrings.callSettingsTitle
 
