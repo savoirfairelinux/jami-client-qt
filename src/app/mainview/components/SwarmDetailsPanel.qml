@@ -509,14 +509,12 @@ Rectangle {
                     RowLayout {
                         Layout.leftMargin: JamiTheme.preferredMarginSize
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
-                        Layout.maximumWidth: parent.width
                         visible: LRCInstance.debugMode()
 
                         Text {
-                            id: idLabel
+                            Layout.fillWidth: true
                             Layout.preferredHeight: 30
                             Layout.rightMargin: JamiTheme.preferredMarginSize
-                            Layout.maximumWidth: parent.width / 2
 
                             text: JamiStrings.identifier
                             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
@@ -530,12 +528,11 @@ Rectangle {
 
                         Text {
                             Layout.alignment: Qt.AlignRight
-                            Layout.rightMargin: JamiTheme.settingsMarginSize
-
-                            Layout.maximumWidth: parent.width / 2
+                            Layout.rightMargin: JamiTheme.preferredMarginSize
 
                             color: JamiTheme.textColor
                             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                            font.weight: Font.Medium
 
                             text: CurrentConversation.id
                             elide: Text.ElideRight
