@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffc41c90_6a7784b5",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-06-27T21:49:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bdfe92f_57c3a901",
+      "range": {
+        "startLine": 19,
+        "startChar": 13,
+        "endLine": 21,
+        "endChar": 1
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c1bcea6_3ec34034",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-27T16:10:29Z",
       "side": 1,
       "message": "check with Xavier, he is also touching this class",
+      "range": {
+        "startLine": 6,
+        "startChar": 31,
+        "endLine": 6,
+        "endChar": 45
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2176205c_504b98c3",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-06-27T21:49:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c1bcea6_3ec34034",
       "range": {
         "startLine": 6,
         "startChar": 31,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26f5c250_46e0f070",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-06-27T21:49:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ea8220b_6f53659d",
+      "range": {
+        "startLine": 17,
+        "startChar": 27,
+        "endLine": 19,
+        "endChar": 26
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "daac7099_ea411154",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-06-27T16:10:29Z",
       "side": 1,
       "message": "no",
+      "range": {
+        "startLine": 816,
+        "startChar": 1,
+        "endLine": 817,
+        "endChar": 16
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b550b656_15ecddb7",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-06-27T21:49:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daac7099_ea411154",
       "range": {
         "startLine": 816,
         "startChar": 1,
@@ -129,6 +225,30 @@
       "writtenOn": "2023-06-27T16:10:29Z",
       "side": 1,
       "message": "configure your IDE to remove this",
+      "range": {
+        "startLine": 824,
+        "startChar": 47,
+        "endLine": 824,
+        "endChar": 49
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ff80358_231e7e93",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-06-27T21:49:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93089e14_99c72f9e",
       "range": {
         "startLine": 824,
         "startChar": 47,
