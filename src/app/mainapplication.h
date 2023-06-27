@@ -99,7 +99,7 @@ Q_SIGNALS:
     void searchAndSelect(const QString& request);
 
 private:
-    void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool logDaemon);
+    void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool debugMode, bool muteDaemon);
     void parseArguments();
     void setApplicationFont();
     void initQmlLayer();
