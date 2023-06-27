@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7605f110_a34fedac",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-27T16:17:16Z",
+      "side": 1,
+      "message": "we can create a JamiPushButton to group all definitions and avoid to forget this in the future",
+      "range": {
+        "startLine": 245,
+        "startChar": 8,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "e16ec84e378ffd105a6c00fd1dc3975329cc36ae",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
