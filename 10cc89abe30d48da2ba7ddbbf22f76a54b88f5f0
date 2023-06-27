@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bdfe92f_57c3a901",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-27T16:10:29Z",
+      "side": 1,
+      "message": "formatting hook? seems a weird format",
+      "range": {
+        "startLine": 19,
+        "startChar": 13,
+        "endLine": 21,
+        "endChar": 1
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c1bcea6_3ec34034",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-27T16:10:29Z",
+      "side": 1,
+      "message": "check with Xavier, he is also touching this class",
+      "range": {
+        "startLine": 6,
+        "startChar": 31,
+        "endLine": 6,
+        "endChar": 45
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ea8220b_6f53659d",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-27T16:10:29Z",
+      "side": 1,
+      "message": "group under SIGNALS: like other things",
+      "range": {
+        "startLine": 17,
+        "startChar": 27,
+        "endLine": 19,
+        "endChar": 26
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daac7099_ea411154",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-27T16:10:29Z",
+      "side": 1,
+      "message": "no",
+      "range": {
+        "startLine": 816,
+        "startChar": 1,
+        "endLine": 817,
+        "endChar": 16
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e30ba93_b263673f",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-27T16:10:29Z",
+      "side": 1,
+      "message": "unused, seems a part is missing",
+      "range": {
+        "startLine": 824,
+        "startChar": 14,
+        "endLine": 824,
+        "endChar": 26
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93089e14_99c72f9e",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-27T16:10:29Z",
+      "side": 1,
+      "message": "configure your IDE to remove this",
+      "range": {
+        "startLine": 824,
+        "startChar": 47,
+        "endLine": 824,
+        "endChar": 49
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
