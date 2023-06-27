@@ -48,7 +48,7 @@ public:
 
         std::atomic_bool isMigrating(false);
         lrcInstance.reset(
-            new LRCInstance(nullptr, nullptr, "", connectivityMonitor.get(), muteDring));
+            new LRCInstance(nullptr, nullptr, "", connectivityMonitor.get(), debugMode, muteDaemon));
         lrcInstance->subscribeToDebugReceived();
 
         // setup the adapters (their lifetimes are that of MainApplication)
@@ -71,7 +71,8 @@ public:
         connectivityMonitor.reset();
     }
 
-    bool muteDring {false};
+    bool debugMode {false};
+    bool muteDaemon {false};
 
     QScopedPointer<AccountAdapter> accountAdapter;
 

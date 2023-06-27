@@ -65,7 +65,8 @@ public:
                          migrateCallback didMigrateCb,
                          const QString& updateUrl,
                          ConnectivityMonitor* connectivityMonitor,
-                         bool muteDring);
+                         bool debugMode,
+                         bool muteDaemon);
     ~LRCInstance() = default;
 
     void finish();
@@ -153,6 +154,7 @@ private:
     conversation::Info invalid {};
 
     bool debugMode_ {false};
+    bool muteDaemon_ {true};
 
     QThreadPool* threadPool_;
 };

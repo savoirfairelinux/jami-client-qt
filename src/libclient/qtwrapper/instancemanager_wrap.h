@@ -38,7 +38,7 @@ class InstanceManagerInterface : public QObject
 {
     Q_OBJECT
 public:
-    InstanceManagerInterface(bool muteDring = false);
+    InstanceManagerInterface(bool muteDaemon = false);
     ~InstanceManagerInterface();
 
     // TODO: These are not present in jami.h

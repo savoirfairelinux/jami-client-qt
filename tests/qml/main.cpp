@@ -45,8 +45,8 @@ class Setup : public QObject
     Q_OBJECT
 
 public:
-    Setup(bool muteDring = false)
-        : muteDring_(muteDring)
+    Setup(bool muteDaemon = false)
+        : muteDaemon_(muteDaemon)
     {}
 
 public Q_SLOTS:
@@ -64,7 +64,7 @@ public Q_SLOTS:
         QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
 
         lrcInstance_.reset(
-            new LRCInstance(nullptr, nullptr, "", connectivityMonitor_.get(), muteDring_));
+            new LRCInstance(nullptr, nullptr, "", connectivityMonitor_.get(), true, muteDaemon_));
         lrcInstance_->subscribeToDebugReceived();
 
         auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
@@ -118,7 +118,7 @@ private:
     QScopedPointer<PreviewEngine> previewEngine_;
     ScreenInfo screenInfo_;
 
-    bool muteDring_ {false};
+    bool muteDaemon_ {false};
 };
 
 int
@@ -141,10 +141,10 @@ main(int argc, char** argv)
     if (!envSet)
         return 1;
 
-    bool muteDring {false};
+    bool muteDaemon {false};
 
     // We likely want to mute the daemon for log clarity.
-    Utils::remove_argument(argv, argc, "--mutejamid", [&]() { muteDring = true; });
+    Utils::remove_argument(argv, argc, "--mutejamid", [&]() { muteDaemon = true; });
 
     // Allow the user to enable fatal warnings for certain tests.
     Utils::remove_argument(argv, argc, "--failonwarn", [&]() { qputenv("QT_FATAL_WARNINGS", "1"); });
@@ -153,7 +153,7 @@ main(int argc, char** argv)
     QtWebEngineQuick::initialize();
 #endif
     QTEST_SET_MAIN_SOURCE_PATH
-    Setup setup(muteDring);
+    Setup setup(muteDaemon);
     return quick_test_main_with_setup(argc, argv, "qml_test", nullptr, &setup);
 }
 
