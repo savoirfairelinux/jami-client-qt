@@ -27,7 +27,7 @@
 
 static int ringFlags = 0;
 
-InstanceManagerInterface::InstanceManagerInterface(bool muteDring)
+InstanceManagerInterface::InstanceManagerInterface(bool muteDaemon)
 {
     using namespace std::placeholders;
 
@@ -44,7 +44,7 @@ InstanceManagerInterface::InstanceManagerInterface(bool muteDring)
 #endif
 
 #ifndef MUTE_LIBJAMI
-    if (!muteDring) {
+    if (!muteDaemon) {
         ringFlags |= libjami::LIBJAMI_FLAG_DEBUG;
         ringFlags |= libjami::LIBJAMI_FLAG_CONSOLE_LOG;
     }

@@ -149,7 +149,8 @@ MainApplication::init()
 
     initLrc(runOptions_[Option::UpdateUrl].toString(),
             connectivityMonitor_.get(),
-            runOptions_[Option::Debug].toBool() && !runOptions_[Option::MuteJamid].toBool());
+            runOptions_[Option::Debug].toBool(),
+            runOptions_[Option::MuteJamid].toBool());
 
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     using namespace Interfaces;
@@ -227,7 +228,10 @@ MainApplication::handleUriAction(const QString& arg)
 }
 
 void
-MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool logDaemon)
+MainApplication::initLrc(const QString& downloadUrl,
+                         ConnectivityMonitor* cm,
+                         bool debugMode,
+                         bool muteDaemon)
 {
     lrc::api::Lrc::cacheAvatars.store(false);
     /*
@@ -252,7 +256,8 @@ MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bo
         },
         downloadUrl,
         cm,
-        !logDaemon));
+        debugMode,
+        muteDaemon));
     lrcInstance_->subscribeToDebugReceived();
 }
 

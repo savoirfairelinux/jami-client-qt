@@ -31,12 +31,14 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
                          migrateCallback didMigrateCb,
                          const QString& updateUrl,
                          ConnectivityMonitor* connectivityMonitor,
-                         bool muteDring)
-    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, muteDring))
+                         bool debugMode,
+                         bool muteDaemon)
+    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, !debugMode || muteDaemon))
     , updateManager_(std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this))
     , threadPool_(new QThreadPool(this))
 {
-    debugMode_ = !muteDring;
+    debugMode_ = debugMode;
+    muteDaemon_ = muteDaemon;
     threadPool_->setMaxThreadCount(1);
 
     connect(this, &LRCInstance::currentAccountIdChanged, [this] {
