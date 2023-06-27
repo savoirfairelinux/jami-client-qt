@@ -40,7 +40,7 @@ main(int argc, char* argv[])
         return 1;
 
     // We likely want to mute the daemon for log clarity.
-    Utils::remove_argument(argv, argc, "--mutejamid", [&]() { globalEnv.muteDring = true; });
+    Utils::remove_argument(argv, argc, "--mutejamid", [&]() { globalEnv.muteDaemon = true; });
 
     // Allow the user to enable fatal warnings for certain tests.
     Utils::remove_argument(argv, argc, "--failonwarn", [&]() { qputenv("QT_FATAL_WARNINGS", "1"); });
