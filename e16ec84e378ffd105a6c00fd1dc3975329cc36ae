@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95c7fac6_cbd772a6",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-06-27T17:20:45Z",
+      "side": 1,
+      "message": "I don\u0027t know what color used in darktheme, i\u0027m waiting an anser from Charlotte",
+      "parentUuid": "344608c3_2c5c1d55",
+      "range": {
+        "startLine": 243,
+        "startChar": 67,
+        "endLine": 243,
+        "endChar": 73
+      },
+      "revId": "e16ec84e378ffd105a6c00fd1dc3975329cc36ae",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7605f110_a34fedac",
         "filename": "src/app/mainview/components/ChatViewHeader.qml",
         "patchSetId": 3
