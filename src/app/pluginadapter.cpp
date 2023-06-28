@@ -23,6 +23,11 @@
 
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
+    , pluginVersionManager_(new PluginVersionManager(instance, baseUrl, this))
+    , pluginStoreListModel_(new PluginStoreListModel(this))
+    , pluginListModel_(new PluginListModel(instance, this))
+    , tempPath_(QDir::tempPath())
+    , baseUrl(baseUrl)
 
 {
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
@@ -32,6 +37,69 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
             this,
             &PluginAdapter::updateHandlersListCount);
     connect(this, &PluginAdapter::isEnabledChanged, this, &PluginAdapter::updateHandlersListCount);
+    connect(pluginVersionManager_,
+            &PluginVersionManager::versionStatusChanged,
+            pluginListModel_,
+            &PluginListModel::onVersionStatusChanged);
+    connect(pluginVersionManager_,
+            &PluginVersionManager::versionStatusChanged,
+            pluginStoreListModel_,
+            &PluginStoreListModel::onVersionStatusChanged);
+    connect(pluginStoreListModel_,
+            &PluginStoreListModel::pluginAdded,
+            this,
+            &PluginAdapter::getPluginDetails);
+    connect(pluginListModel_,
+            &PluginListModel::versionCheckRequested,
+            pluginVersionManager_,
+            &PluginVersionManager::checkVersionStatus);
+    connect(pluginListModel_,
+            &PluginListModel::autoUpdateChanged,
+            pluginVersionManager_,
+            &PluginVersionManager::setAutoUpdate);
+    connect(pluginListModel_,
+            &PluginListModel::setVersionStatus,
+            pluginStoreListModel_,
+            &PluginStoreListModel::onVersionStatusChanged);
+    getPluginsFromStore();
+}
+
+void
+PluginAdapter::getPluginsFromStore()
+{
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl), [this](const QByteArray& data) {
+        auto result = QJsonDocument::fromJson(data).array();
+        QList<QVariantMap> plugins;
+        for (const auto& plugin : result) {
+            plugins.append(plugin.toVariant().toMap());
+        }
+        pluginStoreListModel_->setPlugins(plugins);
+    });
+}
+
+void
+PluginAdapter::getPluginDetails(const QString& pluginId)
+{
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl + "/details/" + pluginId),
+                                          [this](const QByteArray& data) {
+                                              auto result = QJsonDocument::fromJson(data).object();
+                                              // my response is a json object and I want to convert
+                                              // it to a QVariantMap
+                                              pluginStoreListModel_->addPlugin(
+                                                  result.toVariantMap());
+                                          });
+}
+
+void
+PluginAdapter::installRemotePlugin(const QString& pluginId)
+{
+    pluginVersionManager_->installRemotePlugin(pluginId);
+}
+
+bool
+PluginAdapter::isAutoUpdaterEnabled()
+{
+    return pluginVersionManager_->isAutoUpdaterEnabled();
 }
 
 QVariant
@@ -76,4 +144,10 @@ PluginAdapter::updateHandlersListCount()
         set_callMediaHandlersListCount(0);
         set_chatHandlersListCount(0);
     }
+}
+
+void
+PluginAdapter::checkVersionStatus(const QString& pluginId)
+{
+    pluginVersionManager_->checkVersionStatus(pluginId);
 }
