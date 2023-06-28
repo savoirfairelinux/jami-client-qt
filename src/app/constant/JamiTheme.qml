@@ -539,6 +539,7 @@ Item {
     property real infoBoxDescFontSize: calcSize(12)
 
     // Tipbox
+    property real tipBoxWidth: 200
     property real tipBoxTitleFontSize: calcSize(13)
     property real tipBoxContentFontSize: calcSize(12)
     property color tipBoxBackgroundColor: darkTheme ? blackColor : whiteColor
