@@ -79,6 +79,7 @@ public:
     ContactModel* getCurrentContactModel();
     AVModel& avModel();
     PluginModel& pluginModel();
+    ConnectivityMonitor* connectivityMonitor();
     BehaviorController& behaviorController();
 
     void subscribeToDebugReceived();
@@ -146,6 +147,7 @@ Q_SIGNALS:
 private:
     std::unique_ptr<Lrc> lrc_;
     std::unique_ptr<AppVersionManager> updateManager_;
+    std::unique_ptr<ConnectivityMonitor> connectivityMonitor_;
 
     QString selectedConvUid_;
     MapStringString contentDrafts_;
