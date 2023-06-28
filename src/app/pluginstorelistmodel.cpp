@@ -152,7 +152,7 @@ PluginStoreListModel::computeAverageColorOfImage(const QString& file)
                 blue += pixelColor.blue();
             }
         }
-        return QColor(red / nPixels, green / nPixels, blue / nPixels, 70);
+        return QColor(red / nPixels, green / nPixels, blue / nPixels);
     } else {
         // Return an invalid color.
         return QColor();
@@ -183,7 +183,7 @@ PluginStoreListModel::onVersionStatusChanged(const QString& pluginId, PluginStat
         return;
     }
     plugin["status"] = status;
-
+    Q_EMIT statusChanged(pluginId, status);
     switch (status) {
     case PluginStatus::INSTALLED:
         removePlugin(pluginId);

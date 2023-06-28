@@ -26,7 +26,7 @@ import "../../commoncomponents"
 
 Rectangle {
     id: root
-
+    property alias count: pluginList.count
     property string activePlugin: ""
 
     visible: false
@@ -36,15 +36,18 @@ Rectangle {
         anchors.left: root.left
         anchors.right: root.right
         anchors.bottomMargin: 20
-
-        Label {
+        RowLayout {
+            Layout.preferredHeight: JamiTheme.settingsHeaderpreferredHeight
             Layout.fillWidth: true
-            Layout.preferredHeight: 25
+            Layout.alignment: Qt.AlignRight
+            Label {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 25
 
-            text: JamiStrings.installedPlugins
-            font.pointSize: JamiTheme.headerFontSize
-            font.kerning: true
-            color: JamiTheme.textColor
+                text: JamiStrings.installed
+                font.pointSize: JamiTheme.headerFontSize
+                font.kerning: true
+                color: JamiTheme.textColor
 
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -52,66 +55,35 @@ Rectangle {
             HeaderToggleSwitch {
                 labelText: "auto update"
                 tooltipText: "auto update"
-                checked: PluginAdapter.isAutoUpdaterEnabled()
+                checked: true
                 onSwitchToggled: {
-                    print(this, "switch toggled ", checked);
-                    PluginListModel.autoUpdateChanged(checked);
                 }
             }
             MaterialButton {
                 id: disableAll
 
-        MaterialButton {
-            id: installButton
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize / 2
-
-            preferredWidth: JamiTheme.preferredFieldWidth
-            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-            color: JamiTheme.buttonTintedBlack
-            hoveredColor: JamiTheme.buttonTintedBlackHovered
-            pressedColor: JamiTheme.buttonTintedBlackPressed
-            secondary: true
-            toolTipText: JamiStrings.addNewPlugin
-
-            iconSource: JamiResources.round_add_24dp_svg
-
-            text: JamiStrings.installPlugin
-
-            onClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                        "title": JamiStrings.selectPluginInstall,
-                        "fileMode": JamiFileDialog.OpenFile,
-                        "folder": StandardPaths.writableLocation(StandardPaths.DownloadLocation),
-                        "nameFilters": [JamiStrings.pluginFiles, JamiStrings.allFiles]
-                    });
-                dlg.fileAccepted.connect(function (file) {
-                        var url = UtilsAdapter.getAbsPath(file.toString());
-                        PluginModel.installPlugin(url, true);
-                        installedPluginsModel.addPlugin();
-                    });
+                TextMetrics {
+                    id: disableTextSize
+                    font.weight: Font.Bold
+                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                    font.capitalization: Font.AllUppercase
+                    text: JamiStrings.disableAll
+                }
+                secondary: true
+                preferredWidth: disableTextSize.width + JamiTheme.buttontextWizzardPadding
+                text: JamiStrings.disableAll
+                fontSize: JamiTheme.wizardViewButtonFontPixelSize
+                onClicked: PluginListModel.disableAllPlugins()
             }
         }
-
         ListView {
             id: pluginList
-
             Layout.fillWidth: true
-            Layout.minimumHeight: 0
-            Layout.bottomMargin: 10
-            Layout.preferredHeight: childrenRect.height
+            Layout.preferredHeight: contentHeight
+            Layout.topMargin: 10
             clip: true
 
-            model: PluginListModel {
-                id: installedPluginsModel
-
-                lrcInstance: LRCInstance
-                onLrcInstanceChanged: {
-                    this.reset();
-                }
-            }
+            model: PluginListModel
 
             delegate: PluginItemDelegate {
                 id: pluginItemDelegate
@@ -127,7 +99,7 @@ Rectangle {
 
                 background: Rectangle {
                     anchors.fill: parent
-                    color: "transparent"
+                    color: "transpa rent"
                 }
 
                 onSettingsClicked: {
