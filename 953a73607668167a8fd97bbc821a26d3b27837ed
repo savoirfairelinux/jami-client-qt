@@ -22,6 +22,30 @@
       },
       "revId": "953a73607668167a8fd97bbc821a26d3b27837ed",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7967a97b_56221e67",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-06-28T17:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b37594a_aba98a45",
+      "range": {
+        "startLine": 162,
+        "startChar": 12,
+        "endLine": 162,
+        "endChar": 28
+      },
+      "revId": "953a73607668167a8fd97bbc821a26d3b27837ed",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
