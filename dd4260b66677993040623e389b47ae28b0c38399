@@ -22,6 +22,30 @@
       },
       "revId": "dd4260b66677993040623e389b47ae28b0c38399",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24f71f3a_20f81661",
+        "filename": "src/app/mainview/components/RecordBox.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-06-28T19:38:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "395c1228_702e21d6",
+      "range": {
+        "startLine": 53,
+        "startChar": 11,
+        "endLine": 53,
+        "endChar": 17
+      },
+      "revId": "dd4260b66677993040623e389b47ae28b0c38399",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
