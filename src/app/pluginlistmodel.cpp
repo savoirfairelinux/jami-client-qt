@@ -22,9 +22,12 @@
 
 #include "api/pluginmodel.h"
 
-PluginListModel::PluginListModel(QObject* parent)
+PluginListModel::PluginListModel(LRCInstance* lrcInstance, QObject* parent)
     : AbstractListModelBase(parent)
-{}
+{
+    lrcInstance_ = lrcInstance;
+    reset();
+}
 
 PluginListModel::~PluginListModel() {}
 
@@ -55,16 +58,20 @@ PluginListModel::data(const QModelIndex& index, int role) const
     }
 
     auto details = lrcInstance_->pluginModel().getPluginDetails(installedPlugins_.at(index.row()));
-
+    installedPlugins_.at(index.row());
     switch (role) {
     case Role::PluginName:
         return QVariant(details.name);
+    case Role::PluginDescription:
+        return QVariant(details.description);
     case Role::PluginId:
         return QVariant(installedPlugins_.at(index.row()));
     case Role::PluginIcon:
         return QVariant(details.iconPath);
     case Role::IsLoaded:
         return QVariant(details.loaded);
+    case Role::Status:
+        return QVariant(pluginStatus_.value(installedPlugins_.at(index.row())));
     }
     return QVariant();
 }
@@ -77,7 +84,8 @@ PluginListModel::roleNames() const
     roles[PluginId] = "PluginId";
     roles[PluginIcon] = "PluginIcon";
     roles[IsLoaded] = "IsLoaded";
-
+    roles[Status] = "Status";
+    roles[PluginDescription] = "PluginDescription";
     return roles;
 }
 
@@ -87,6 +95,9 @@ PluginListModel::reset()
     beginResetModel();
     installedPlugins_.clear();
     installedPlugins_ = lrcInstance_->pluginModel().getInstalledPlugins();
+    for (auto plugin : installedPlugins_) {
+        pluginStatus_[plugin] = PluginStatus::INSTALLED;
+    }
     filterPlugins(installedPlugins_);
     endResetModel();
 }
@@ -123,6 +134,17 @@ PluginListModel::addPlugin()
     beginInsertRows(QModelIndex(), index, index);
     installedPlugins_ = newList;
     endInsertRows();
+}
+
+void
+PluginListModel::disableAllPlugins()
+{
+    for (auto& plugin : installedPlugins_) {
+        auto& pluginModel = lrcInstance_->pluginModel();
+        const auto& details = pluginModel.getPluginDetails(plugin);
+        pluginModel.unloadPlugin(details.path);
+        disabled(details.path);
+    }
 }
 
 void
@@ -165,13 +187,10 @@ PluginListModel::onVersionStatusChanged(const QString& pluginId, PluginStatus::R
     if (pluginIndex == -1) {
         return;
     }
-
+    pluginStatus_[pluginId] = status;
     switch (status) {
     case PluginStatus::INSTALLABLE:
         removePlugin(pluginIndex);
-        break;
-    case PluginStatus::FAILED:
-        qWarning() << "Failed to install plugin" << pluginId;
         break;
     default:
         break;
