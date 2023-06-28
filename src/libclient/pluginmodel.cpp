@@ -50,6 +50,15 @@ namespace lrc {
 
 using namespace api;
 
+enum pluginInstallResult {
+    SUCCESS = 0,
+    PLUGIN_ALREADY_INSTALLED = 100,      /* Plugin already installed with the same version */
+    PLUGIN_OLD_VERSION = 200,            /* Plugin already installed with a newer version */
+    SIGNATURE_VERIFICATION_FAILED = 300, /* Signature verification failed */
+    CERTIFICATE_VERIFICATION_FAILED = 400,
+    INVALID_PLUGIN = 500,
+};
+
 PluginModel::PluginModel()
     : QObject()
 {
@@ -99,6 +108,7 @@ PluginModel::getPluginDetails(const QString& path)
     if (!details.empty()) {
         result.id = details["id"];
         result.name = details["name"];
+        result.description = details["description"];
         result.path = path;
         result.iconPath = details["iconPath"];
         result.version = details["version"];
@@ -311,5 +321,4 @@ PluginModel::resetPluginPreferencesValues(const QString& path, const QString& ac
     Q_EMIT modelUpdated();
     return result;
 }
-
 } // namespace lrc
