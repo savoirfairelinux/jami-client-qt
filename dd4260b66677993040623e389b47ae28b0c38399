@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "395c1228_702e21d6",
+        "filename": "src/app/mainview/components/RecordBox.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-28T19:15:33Z",
+      "side": 1,
+      "message": "There seems to already be a property in Popup with the name of this signal\nhttps://doc.qt.io/qt-5/qml-qtquick-controls2-popup.html#opened-prop",
+      "range": {
+        "startLine": 53,
+        "startChar": 11,
+        "endLine": 53,
+        "endChar": 17
+      },
+      "revId": "dd4260b66677993040623e389b47ae28b0c38399",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
