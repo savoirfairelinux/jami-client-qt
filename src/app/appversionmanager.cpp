@@ -166,8 +166,8 @@ AppVersionManager::AppVersionManager(const QString& url,
                                      LRCInstance* instance,
                                      QObject* parent)
     : NetworkManager(cm, parent)
-    , pimpl_(std::make_unique<Impl>(url, instance, *this))
     , replyId_(new unsigned int(0))
+    , pimpl_(std::make_unique<Impl>(url, instance, *this))
 {}
 
 AppVersionManager::~AppVersionManager()

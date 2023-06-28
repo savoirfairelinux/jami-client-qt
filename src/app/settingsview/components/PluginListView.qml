@@ -51,6 +51,21 @@ Rectangle {
         }
 
         MaterialButton {
+            id: disableAll
+            TextMetrics {
+                id: disableTextSize
+                font.weight: Font.Bold
+                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                font.capitalization: Font.AllUppercase
+                text: JamiStrings.disableAll
+            }
+            secondary: true
+            preferredWidth: disableTextSize.width
+            text: JamiStrings.disableAll
+            fontSize: 15
+        }
+
+        MaterialButton {
             id: installButton
 
             Layout.alignment: Qt.AlignCenter
@@ -88,7 +103,6 @@ Rectangle {
             id: pluginList
 
             Layout.fillWidth: true
-            Layout.minimumHeight: 0
             Layout.bottomMargin: 10
             Layout.preferredHeight: childrenRect.height
             clip: true
