@@ -75,8 +75,8 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
     }
 };
 
-UpdateManager*
-LRCInstance::getUpdateManager()
+AppVersionManager*
+LRCInstance::getAppVersionManager()
 {
     return updateManager_.get();
 }

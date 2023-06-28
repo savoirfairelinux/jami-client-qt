@@ -24,7 +24,7 @@
 #undef ERROR
 #endif
 
-#include "updatemanager.h"
+#include "appversionmanager.h"
 #include "qtutils.h"
 #include "utils.h"
 
@@ -71,7 +71,7 @@ public:
 
     void finish();
 
-    UpdateManager* getUpdateManager();
+    AppVersionManager* getAppVersionManager();
 
     AccountModel& accountModel();
     ConversationModel* getCurrentConversationModel();
@@ -145,7 +145,7 @@ Q_SIGNALS:
 
 private:
     std::unique_ptr<Lrc> lrc_;
-    std::unique_ptr<UpdateManager> updateManager_;
+    std::unique_ptr<AppVersionManager> updateManager_;
 
     QString selectedConvUid_;
     MapStringString contentDrafts_;
