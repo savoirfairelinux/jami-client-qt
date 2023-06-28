@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "updatemanager.h"
+#include "appversionmanager.h"
 
 #ifdef ENABLE_SPARKLE
 #include <Sparkle/Sparkle.h>
@@ -29,7 +29,7 @@ static constexpr bool isBeta = false;
 #endif
 
 #ifdef ENABLE_SPARKLE
- struct UpdateManager::Impl
+ struct AppVersionManager::Impl
 {
 
     Impl()
@@ -63,7 +63,7 @@ static constexpr bool isBeta = false;
 
 };
 #else
-struct UpdateManager::Impl
+struct AppVersionManager::Impl
 {
     void checkForUpdates() {};
 
@@ -80,7 +80,7 @@ struct UpdateManager::Impl
 };
 #endif
 
-UpdateManager::UpdateManager(const QString& url,
+AppVersionManager::AppVersionManager(const QString& url,
                              ConnectivityMonitor* cm,
                              LRCInstance* instance,
                              QObject* parent)
@@ -88,51 +88,51 @@ UpdateManager::UpdateManager(const QString& url,
     , pimpl_(std::make_unique<Impl>())
 {}
 
-UpdateManager::~UpdateManager()
+AppVersionManager::~AppVersionManager()
 {}
 
 void
-UpdateManager::checkForUpdates(bool quiet)
+AppVersionManager::checkForUpdates(bool quiet)
 {
     Q_UNUSED(quiet)
     pimpl_->checkForUpdates();
 }
 
 void
-UpdateManager::applyUpdates(bool beta)
+AppVersionManager::applyUpdates(bool beta)
 {
     Q_UNUSED(beta)
 }
 
 void
-UpdateManager::cancelUpdate()
+AppVersionManager::cancelUpdate()
 {}
 
 
 void
-UpdateManager::cancelDownload()
+AppVersionManager::cancelDownload()
 {}
 
 void
-UpdateManager::setAutoUpdateCheck(bool state)
+AppVersionManager::setAutoUpdateCheck(bool state)
 {
     pimpl_->setAutoUpdateCheck(state);
 }
 
 bool
-UpdateManager::isCurrentVersionBeta()
+AppVersionManager::isCurrentVersionBeta()
 {
     return isBeta;
 }
 
 bool
-UpdateManager::isUpdaterEnabled()
+AppVersionManager::isUpdaterEnabled()
 {
     return pimpl_->isUpdaterEnabled();
 }
 
 bool
-UpdateManager::isAutoUpdaterEnabled()
+AppVersionManager::isAutoUpdaterEnabled()
 {
     return pimpl_->isAutoUpdaterEnabled();
 }
