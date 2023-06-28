@@ -165,10 +165,12 @@ NetworkManager::downloadFile(const QUrl& url,
 }
 
 void
-NetworkManager::cancelDownload(unsigned int replyId)
+NetworkManager::cancelDownload(unsigned int replyId, bool force)
 {
     if (downloadReplies_.value(replyId) != NULL) {
-        Q_EMIT errorOccured(GetError::CANCELED);
+        if (force) {
+            Q_EMIT errorOccured(GetError::CANCELED);
+        }
         downloadReplies_[replyId]->abort();
         resetDownload(replyId);
     }
