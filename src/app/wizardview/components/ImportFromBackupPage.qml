@@ -43,7 +43,7 @@ Rectangle {
         fileImportBtnText = JamiStrings.selectArchiveFile;
     }
 
-    function errorOccured(errorMessage) {
+    function errorOccurred(errorMessage) {
         errorText = errorMessage;
         connectBtn.spinnerTriggered = false;
     }
