@@ -50,7 +50,7 @@ Q_SIGNALS:
     void updateErrorOccurred(const NetworkManager::GetError& error);
 
 private:
-    QScopedPointer<unsigned int> replyId_;
+    QScopedPointer<int> replyId_;
     struct Impl;
     friend struct Impl;
     std::unique_ptr<Impl> pimpl_;

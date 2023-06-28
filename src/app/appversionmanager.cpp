@@ -100,7 +100,7 @@ struct AppVersionManager::Impl : public QObject
                                     ? QUrl::fromUserInput(baseUrlString_ + betaMsiSubUrl)
                                     : QUrl::fromUserInput(baseUrlString_ + msiSubUrl)};
 
-        unsigned int uuid = parent_.downloadFile(
+        int uuid = parent_.downloadFile(
             downloadUrl,
             *(parent_.replyId_),
             [this, downloadUrl](bool success, const QString& errorMessage) {
@@ -166,8 +166,8 @@ AppVersionManager::AppVersionManager(const QString& url,
                                      LRCInstance* instance,
                                      QObject* parent)
     : NetworkManager(cm, parent)
+    , replyId_(new int(0))
     , pimpl_(std::make_unique<Impl>(url, instance, *this))
-    , replyId_(new unsigned int(0))
 {}
 
 AppVersionManager::~AppVersionManager()
