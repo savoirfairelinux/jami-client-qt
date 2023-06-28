@@ -43,7 +43,7 @@ BaseView {
             var errorMessage = JamiStrings.errorCreateAccount;
             for (var i = 0; i < controlPanelStackView.children.length; i++) {
                 if (i === controlPanelStackView.currentIndex) {
-                    controlPanelStackView.children[i].errorOccured(errorMessage);
+                    controlPanelStackView.children[i].errorOccurred(errorMessage);
                     return;
                 }
             }
