@@ -178,7 +178,9 @@ Rectangle {
                     "buttonCallBacks": [function () {
                             pluginPreferencesView.visible = false;
                             PluginModel.uninstallPlugin(pluginId);
-                            installedPluginsModel.removePlugin(index);
+                            PluginListModel.removePlugin(index);
+                            var pluginPath = pluginId.split('/');
+                            PluginAdapter.getPluginDetails(pluginPath[pluginPath.length - 1]);
                         }]
                 })
         }
