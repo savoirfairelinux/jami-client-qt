@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30ae6f11_ad4517aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-28T17:26:11Z",
+      "side": 1,
+      "message": "escape",
+      "range": {
+        "startLine": 7,
+        "startChar": 21,
+        "endLine": 7,
+        "endChar": 28
+      },
+      "revId": "eb7d277c025e01668c497af51b1f2f56613aa917",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc3e58b8_f0370212",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-28T17:26:11Z",
+      "side": 1,
+      "message": "positionmanager changes should be in a separate change",
+      "revId": "eb7d277c025e01668c497af51b1f2f56613aa917",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31f6ee17_9b6ae6f6",
         "filename": "src/app/mainview/components/ChatViewFooter.qml",
         "patchSetId": 1
