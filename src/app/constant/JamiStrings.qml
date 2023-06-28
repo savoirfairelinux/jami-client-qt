@@ -658,6 +658,13 @@ Item {
 
     // Plugins
     property string enable: qsTr("Enable")
+    property string autoUpdate: qsTr("Auto update")
+    property string updatePlugin: qsTr("Update")
+    property string disableAll: qsTr("Disable all")
+    property string installed: qsTr("Installed")
+    property string install: qsTr("Install")
+    property string installManually: qsTr("Install manually")
+    property string pluginStoreTitle: qsTr("Available")
     property string pluginPreferences: qsTr("Preferences")
     property string reset: qsTr("Reset")
     property string uninstall: qsTr("Uninstall")
@@ -675,7 +682,6 @@ Item {
     property string chooseImageFile: qsTr("Choose image file")
     property string tipGeneralPluginSettingsDisplay: qsTr("Display or hide General plugin settings")
     property string tipAccountPluginSettingsDisplay: qsTr("Display or hide Account plugin settings")
-    property string installedPlugins: qsTr("Installed plugins")
     property string pluginFiles: qsTr("Plugin Files (*.jpl)")
     property string loadUnload: qsTr("Load/Unload")
     property string selectAnImage: qsTr("Select An Image to %1")

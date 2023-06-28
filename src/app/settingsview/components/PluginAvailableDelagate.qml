@@ -22,8 +22,6 @@ ItemDelegate {
 
     Rectangle {
         id: rect
-        Scaffold {
-        }
         color: Qt.rgba(0, 0, 0, 1)
         anchors.fill: parent
         radius: 15
