@@ -195,7 +195,6 @@ public:
      * @return true if preference was succesfully reset
      */
     Q_INVOKABLE bool resetPluginPreferencesValues(const QString& path, const QString& accountId);
-
 Q_SIGNALS:
     void chatHandlerStatusUpdated(bool isVisible);
     void modelUpdated();

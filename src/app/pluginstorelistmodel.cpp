@@ -152,7 +152,7 @@ PluginStoreListModel::computeAverageColorOfImage(const QString& file)
                 blue += pixelColor.blue();
             }
         }
-        return QColor(red / nPixels, green / nPixels, blue / nPixels, 70);
+        return QColor(red / nPixels, green / nPixels, blue / nPixels);
     } else {
         // Return an invalid color.
         return QColor();
