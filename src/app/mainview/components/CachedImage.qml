@@ -42,15 +42,11 @@ Item {
         antialiasing: true
         property bool isGif: getIsGif(this)
 
-        Image {
-            id: default_img
-            objectName: "default_img"
-            anchors.fill: parent
-            source: defaultImage
-            visible: image.status != Image.Ready
-            smooth: true
-            antialiasing: true
-            property bool isGif: getIsGif(this)
+        source: defaultImage
+        onStatusChanged: {
+            if (status === Image.Error) {
+                source = defaultImage;
+            }
         }
     }
 
@@ -70,13 +66,6 @@ Item {
         function onDownloadImageSuccessful(localPath) {
             if (localPath === cachedImage.localPath) {
                 image.source = "file://" + localPath;
-                print("onDownloadImageSuccessful", localPath);
-            }
-        }
-        function onDownloadImageFailed(localPath) {
-            if (localPath === cachedImage.localPath) {
-                print("Failed to download image: " + downloadUrl);
-                image.source = defaultImage;
             }
         }
     }
@@ -99,7 +88,6 @@ Item {
         }
         if (downloadUrl && downloadUrl !== "" && localPath !== "") {
             if (!UtilsAdapter.fileExists(localPath)) {
-                print("ImageDownloader.downloadImage", downloadUrl, localPath);
                 ImageDownloader.downloadImage(downloadUrl, localPath);
             } else {
                 image.source = "file://" + localPath;
