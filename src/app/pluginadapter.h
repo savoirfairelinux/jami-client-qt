@@ -22,11 +22,15 @@
 #include "pluginlistmodel.h"
 #include "pluginhandlerlistmodel.h"
 #include "pluginlistpreferencemodel.h"
+#include "pluginversionmanager.h"
 #include "preferenceitemlistmodel.h"
 
 #include <QObject>
 #include <QSortFilterProxyModel>
 #include <QString>
+
+class PluginVersionManager;
+class PluginStoreListModel;
 
 class PluginAdapter final : public QmlAdapterBase
 {
@@ -36,8 +40,16 @@ class PluginAdapter final : public QmlAdapterBase
     QML_PROPERTY(bool, isEnabled)
 
 public:
-    explicit PluginAdapter(LRCInstance* instance, QObject* parent = nullptr);
+    explicit PluginAdapter(LRCInstance* instance,
+                           QObject* parent = nullptr,
+                           QString baseUrl = "http://127.0.0.1:3000");
+    Q_INVOKABLE void getPluginsFromStore();
+    Q_INVOKABLE void getPluginDetails(const QString& pluginId);
+    Q_INVOKABLE void installRemotePlugin(const QString& pluginId);
     ~PluginAdapter() = default;
+    Q_INVOKABLE QString baseUrl;
+    Q_INVOKABLE void checkVersionStatus(const QString& pluginId);
+    Q_INVOKABLE bool isAutoUpdaterEnabled();
 
 protected:
     Q_INVOKABLE QVariant getMediaHandlerSelectableModel(const QString& callId);
@@ -50,7 +62,10 @@ protected:
 private:
     void updateHandlersListCount();
 
+    PluginVersionManager* pluginVersionManager_;
     std::unique_ptr<PluginHandlerListModel> pluginHandlerListModel_;
-
+    PluginStoreListModel* pluginStoreListModel_;
+    PluginListModel* pluginListModel_;
     std::mutex mtx_;
+    QString tempPath_;
 };

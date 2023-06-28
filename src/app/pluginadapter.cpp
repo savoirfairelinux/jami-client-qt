@@ -18,11 +18,40 @@
 
 #include "pluginadapter.h"
 
+#include "pluginversionmanager.h"
+#include "networkmanager.h"
 #include "lrcinstance.h"
+#include "qmlregister.h"
+#include "pluginstorelistmodel.h"
 
-PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
+#include <QJsonDocument>
+#include <utilsadapter.h>
+#include <QJsonObject>
+#include <QDir>
+#include <QString>
+#include <QJsonArray>
+
+enum PluginInstallStatus {
+    SUCCESS = 0,
+    PLUGIN_ALREADY_INSTALLED = 100,
+    PLUGIN_OLD_VERSION = 200,
+    SIGNATURE_VERIFICATION_FAILED = 300,
+    CERTIFICATE_VERIFICATION_FAILED = 400,
+    INVALID_PLUGIN = 500,
+} PluginInstallStatus;
+
+PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString baseUrl)
     : QmlAdapterBase(instance, parent)
+    , pluginVersionManager_(new PluginVersionManager(instance, baseUrl, this))
+    , pluginStoreListModel_(new PluginStoreListModel(this))
+    , pluginListModel_(new PluginListModel(instance, this))
+    , tempPath_(QDir::tempPath())
+    , baseUrl(baseUrl)
+
 {
+    qWarning() << tempPath_;
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
@@ -30,6 +59,69 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
             this,
             &PluginAdapter::updateHandlersListCount);
     connect(this, &PluginAdapter::isEnabledChanged, this, &PluginAdapter::updateHandlersListCount);
+    connect(pluginVersionManager_,
+            &PluginVersionManager::versionStatusChanged,
+            pluginListModel_,
+            &PluginListModel::onVersionStatusChanged);
+    connect(pluginVersionManager_,
+            &PluginVersionManager::versionStatusChanged,
+            pluginStoreListModel_,
+            &PluginStoreListModel::onVersionStatusChanged);
+    connect(pluginStoreListModel_,
+            &PluginStoreListModel::pluginAdded,
+            this,
+            &PluginAdapter::getPluginDetails);
+    connect(pluginListModel_,
+            &PluginListModel::versionCheckRequested,
+            pluginVersionManager_,
+            &PluginVersionManager::checkVersionStatus);
+    connect(pluginListModel_,
+            &PluginListModel::autoUpdateChanged,
+            pluginVersionManager_,
+            &PluginVersionManager::setAutoUpdate);
+    connect(pluginListModel_,
+            &PluginListModel::setVersionStatus,
+            pluginStoreListModel_,
+            &PluginStoreListModel::onVersionStatusChanged);
+    getPluginsFromStore();
+}
+
+void
+PluginAdapter::getPluginsFromStore()
+{
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl), [this](const QByteArray& data) {
+        auto result = QJsonDocument::fromJson(data).array();
+        QList<QVariantMap> plugins;
+        for (const auto& plugin : result) {
+            plugins.append(plugin.toVariant().toMap());
+        }
+        pluginStoreListModel_->setPlugins(plugins);
+    });
+}
+
+void
+PluginAdapter::getPluginDetails(const QString& pluginId)
+{
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl + "/details/" + pluginId),
+                                          [this](const QByteArray& data) {
+                                              auto result = QJsonDocument::fromJson(data).object();
+                                              // my response is a json object and I want to convert
+                                              // it to a QVariantMap
+                                              pluginStoreListModel_->addPlugin(
+                                                  result.toVariantMap());
+                                          });
+}
+
+void
+PluginAdapter::installRemotePlugin(const QString& pluginId)
+{
+    pluginVersionManager_->installRemotePlugin(pluginId);
+}
+
+bool
+PluginAdapter::isAutoUpdaterEnabled()
+{
+    return pluginVersionManager_->isAutoUpdaterEnabled();
 }
 
 QVariant
@@ -74,4 +166,10 @@ PluginAdapter::updateHandlersListCount()
         set_callMediaHandlersListCount(0);
         set_chatHandlersListCount(0);
     }
+}
+
+void
+PluginAdapter::checkVersionStatus(const QString& pluginId)
+{
+    pluginVersionManager_->checkVersionStatus(pluginId);
 }

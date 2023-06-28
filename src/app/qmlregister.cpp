@@ -55,7 +55,8 @@
 #include "appsettingsmanager.h"
 #include "mainapplication.h"
 #include "namedirectory.h"
-#include "updatemanager.h"
+#include "pluginversionmanager.h"
+#include "appversionmanager.h"
 #include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
 #include "wizardviewstepmodel.h"
@@ -155,7 +156,7 @@ registerTypes(QQmlEngine* engine,
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, PluginModel, &lrcInstance->pluginModel())
-    QML_REGISTERSINGLETONTYPE_CUSTOM(NS_HELPERS, UpdateManager, lrcInstance->getUpdateManager())
+    QML_REGISTERSINGLETONTYPE_CUSTOM(NS_HELPERS, AppVersionManager, lrcInstance->getAppVersionManager())
 
     // Hack for QtCreator autocomplete (part 2)
     // https://bugreports.qt.io/browse/QTCREATORBUG-20569
@@ -187,6 +188,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_MODELS, ContactList::staticMetaObject, "ContactList");
     QML_REGISTERNAMESPACE(NS_MODELS, FilesToSend::staticMetaObject, "FilesToSend");
     QML_REGISTERNAMESPACE(NS_MODELS, MessageList::staticMetaObject, "MessageList");
+    QML_REGISTERNAMESPACE(NS_MODELS, PluginStatus::staticMetaObject, "PluginStatus");
 
     // Qml singleton components
     QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/JamiTheme.qml", JamiTheme);
@@ -242,7 +244,7 @@ registerTypes(QQmlEngine* engine,
 
     engine->setObjectOwnership(&lrcInstance->avModel(), QQmlEngine::CppOwnership);
     engine->setObjectOwnership(&lrcInstance->pluginModel(), QQmlEngine::CppOwnership);
-    engine->setObjectOwnership(lrcInstance->getUpdateManager(), QQmlEngine::CppOwnership);
+    engine->setObjectOwnership(lrcInstance->getAppVersionManager(), QQmlEngine::CppOwnership);
     engine->setObjectOwnership(&NameDirectory::instance(), QQmlEngine::CppOwnership);
 }
 // clang-format on
