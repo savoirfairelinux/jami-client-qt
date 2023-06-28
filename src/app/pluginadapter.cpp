@@ -18,9 +18,13 @@
 
 #include "pluginadapter.h"
 
+#include "pluginversionmanager.h"
+#include "pluginlistmodel.h"
+#include "pluginstorelistmodel.h"
 #include "networkmanager.h"
 #include "lrcinstance.h"
 #include "utilsadapter.h"
+#include "qmlregister.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -30,14 +34,16 @@
 
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString baseUrl)
     : QmlAdapterBase(instance, parent)
-    , pluginStoreListModel_(new PluginStoreListModel(this))
+    , pluginStoreListModel_(new PluginStoreListModel(instance, this))
     , pluginVersionManager_(new PluginVersionManager(instance, baseUrl, this))
-    , pluginListModel_(new PluginListModel(this))
+    , pluginListModel_(new PluginListModel(instance, this))
     , lrcInstance_(instance)
     , tempPath_(QDir::tempPath())
     , baseUrl_(baseUrl)
 
 {
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
@@ -75,24 +81,34 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString bas
 void
 PluginAdapter::getPluginsFromStore()
 {
-    pluginVersionManager_->sendGetRequest(QUrl(baseUrl_), [this](const QByteArray& data) {
-        auto result = QJsonDocument::fromJson(data).array();
-        auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
-        QList<QVariantMap> plugins;
-        for (const auto& plugin : result) {
-            auto qPlugin = plugin.toVariant().toMap();
-            if (!pluginsInstalled.contains(qPlugin["id"].toString())) {
-                plugins.append(qPlugin);
-            }
-        }
-        pluginStoreListModel_->setPlugins(plugins);
-    });
+    const auto& errorHandler = connect(pluginVersionManager_,
+                                       &PluginVersionManager::errorOccurred,
+                                       this,
+                                       [this](NetworkManager::GetError error, const QString& msg) {
+                                           Q_EMIT storeNotAvailable();
+                                       });
+    pluginVersionManager_
+        ->sendGetRequest(QUrl(baseUrl_ + "?arch=" + Utils::getPlatformString()),
+                         [this, errorHandler](const QByteArray& data) {
+                             auto result = QJsonDocument::fromJson(data).array();
+                             auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
+                             QList<QVariantMap> plugins;
+                             for (const auto& plugin : result) {
+                                 auto qPlugin = plugin.toVariant().toMap();
+                                 if (!pluginsInstalled.contains(qPlugin["name"].toString())) {
+                                     plugins.append(qPlugin);
+                                 }
+                             }
+                             pluginStoreListModel_->setPlugins(plugins);
+                             disconnect(errorHandler);
+                         });
 }
 
 void
 PluginAdapter::getPluginDetails(const QString& pluginId)
 {
-    pluginVersionManager_->sendGetRequest(QUrl(baseUrl_ + "/details/" + pluginId),
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl_ + "/details/" + pluginId
+                                               + "?arch=" + Utils::getPlatformString()),
                                           [this](const QByteArray& data) {
                                               auto result = QJsonDocument::fromJson(data).object();
                                               // my response is a json object and I want to convert
@@ -112,6 +128,18 @@ bool
 PluginAdapter::isAutoUpdaterEnabled()
 {
     return pluginVersionManager_->isAutoUpdaterEnabled();
+}
+
+void
+PluginAdapter::setAutoUpdate(bool state)
+{
+    pluginVersionManager_->setAutoUpdate(state);
+}
+
+void
+PluginAdapter::cancelDownload(const QString& pluginId)
+{
+    pluginVersionManager_->cancelUpdate(pluginId);
 }
 
 QVariant
