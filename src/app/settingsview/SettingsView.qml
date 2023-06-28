@@ -60,6 +60,7 @@ ListSelectionView {
 
     Component.onCompleted: {
         leftPaneItem.updateModel()
+        leftPaneItem.select(16)
     }
 
     Connections {

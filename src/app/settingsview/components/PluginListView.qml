@@ -22,12 +22,23 @@ import Qt.labs.platform
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import Qt5Compat.GraphicalEffects
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
-    property string activePlugin: ""
+    property int count: pluginLoader.item !== undefined ? pluginLoader.item.count : 0
+    property int currentIndex: {
+        if (pluginLoader.item !== undefined) {
+            return -1;
+        }
+        else {
+            if(pluginListView.currentIndex === null) {
+                return -1;
+            }
+            return pluginListView.currentIndex
+        }
+    }
 
     visible: false
     color: JamiTheme.secondaryBackgroundColor
@@ -36,15 +47,18 @@ Rectangle {
         anchors.left: root.left
         anchors.right: root.right
         anchors.bottomMargin: 20
-
-        Label {
+        RowLayout {
+            Layout.preferredHeight: JamiTheme.settingsHeaderpreferredHeight
             Layout.fillWidth: true
-            Layout.preferredHeight: 25
+            Layout.alignment: Qt.AlignRight
+            Label {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 25
 
-            text: JamiStrings.installedPlugins
-            font.pointSize: JamiTheme.headerFontSize
-            font.kerning: true
-            color: JamiTheme.textColor
+                text: JamiStrings.installed
+                font.pointSize: JamiTheme.headerFontSize
+                font.kerning: true
+                color: JamiTheme.textColor
 
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -52,88 +66,63 @@ Rectangle {
             HeaderToggleSwitch {
                 labelText: "auto update"
                 tooltipText: "auto update"
-                checked: PluginAdapter.isAutoUpdaterEnabled()
+                checked: true
                 onSwitchToggled: {
-                    print(this, "switch toggled ", checked);
-                    PluginListModel.autoUpdateChanged(checked);
                 }
             }
             MaterialButton {
                 id: disableAll
-
-        MaterialButton {
-            id: installButton
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize / 2
-
-            preferredWidth: JamiTheme.preferredFieldWidth
-            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-            color: JamiTheme.buttonTintedBlack
-            hoveredColor: JamiTheme.buttonTintedBlackHovered
-            pressedColor: JamiTheme.buttonTintedBlackPressed
-            secondary: true
-            toolTipText: JamiStrings.addNewPlugin
-
-            iconSource: JamiResources.round_add_24dp_svg
-
-            text: JamiStrings.installPlugin
-
-            onClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                        "title": JamiStrings.selectPluginInstall,
-                        "fileMode": JamiFileDialog.OpenFile,
-                        "folder": StandardPaths.writableLocation(StandardPaths.DownloadLocation),
-                        "nameFilters": [JamiStrings.pluginFiles, JamiStrings.allFiles]
-                    });
-                dlg.fileAccepted.connect(function (file) {
-                        var url = UtilsAdapter.getAbsPath(file.toString());
-                        PluginModel.installPlugin(url, true);
-                        installedPluginsModel.addPlugin();
-                    });
+                radius: JamiTheme.chatViewHeaderButtonRadius
+                buttontextHeightMargin: JamiTheme.pushButtonMargin
+                TextMetrics {
+                    id: disableTextSize
+                    font.weight: Font.Bold
+                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                    font.capitalization: Font.AllUppercase
+                    text: JamiStrings.disableAll
+                }
+                secondary: true
+                preferredWidth: disableTextSize.width + JamiTheme.buttontextWizzardPadding
+                text: JamiStrings.disableAll
+                fontSize: JamiTheme.wizardViewButtonFontPixelSize
+                onClicked: PluginListModel.disableAllPlugins()
             }
         }
-
-        ListView {
-            id: pluginList
-
+        Loader {
+            id: pluginLoader
             Layout.fillWidth: true
-            Layout.minimumHeight: 0
-            Layout.bottomMargin: 10
-            Layout.preferredHeight: childrenRect.height
-            clip: true
+            Layout.preferredHeight: pluginLoader.item.contentHeight
+            Layout.topMargin: 10
+            active: true
+            asynchronous: true
 
-            model: PluginListModel {
-                id: installedPluginsModel
+            sourceComponent: ListView {
+                id: pluginListView
+                clip: true
+                model: PluginListModel
+                spacing: 10
+                currentIndex: -1
+                onCurrentIndexChanged: {
+                    root.currentIndex = currentIndex
+                }
+                delegate: PluginItemDelegate {
+                    id: pluginItemDelegate
+                    width: pluginLoader.width
+                    implicitHeight: 50
 
-                lrcInstance: LRCInstance
-                onLrcInstanceChanged: {
-                    this.reset();
+                    pluginName: PluginName
+                    pluginId: PluginId
+                    pluginIcon: PluginIcon
+                    pluginStatus: Status
+                    isLoaded: IsLoaded
+                    HoverHandler {
+                        id: pluginHover
+                        target: parent
+                        enabled: true
+                    }
                 }
             }
 
-            delegate: PluginItemDelegate {
-                id: pluginItemDelegate
-
-                width: pluginList.width
-                implicitHeight: 50
-
-                pluginName: PluginName
-                pluginId: PluginId
-                pluginIcon: PluginIcon
-                isLoaded: IsLoaded
-                activeId: root.activePlugin
-
-                background: Rectangle {
-                    anchors.fill: parent
-                    color: "transparent"
-                }
-
-                onSettingsClicked: {
-                    root.activePlugin = root.activePlugin === pluginId ? "" : pluginId;
-                }
-            }
         }
     }
 }

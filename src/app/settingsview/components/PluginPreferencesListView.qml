@@ -25,9 +25,9 @@ import "../../commoncomponents"
 
 Rectangle {
     id: root
-
     property string accountId: ""
     required property string pluginId
+    width: parent.width
 
     property int count: pluginPreferenceView.count + pluginPreferenceViewCategory.count
 
@@ -40,7 +40,8 @@ Rectangle {
     }
 
     color: "transparent"
-
+    border.width: 30
+    border.color: JamiTheme.pluginViewBackgroundColor
     Connections {
         target: LRCInstance
 

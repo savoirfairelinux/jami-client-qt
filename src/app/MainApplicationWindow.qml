@@ -188,6 +188,7 @@ ApplicationWindow {
                         viewCoordinator.preload("SettingsSidePanel");
                         viewCoordinator.present("WelcomePage");
                         viewCoordinator.preload("ConversationView");
+                        viewCoordinator.present("SettingsView")
                     });
                 if (!viewCoordinator.rootView)
                     // Set the viewCoordinator's root item.

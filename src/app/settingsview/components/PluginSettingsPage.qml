@@ -25,38 +25,82 @@ import "../../commoncomponents"
 
 SettingsPageBase {
     id: root
-    contentFlickableWidth: Math.min(root.width, root.width - 2 * JamiTheme.preferredSettingsMarginSize)
     title: JamiStrings.pluginSettingsTitle
-
     flickableContent: ColumnLayout {
-        id: pluginSettingsColumnLayout
-
-        width: contentFlickableWidth
-        spacing: JamiTheme.settingsBlockSpacing
-        anchors.left: parent.left
-        anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
-
-        ColumnLayout {
             id: generalSettings
-            Layout.preferredWidth: root.width
-            spacing: JamiTheme.settingsCategorySpacing
+            anchors.left: parent.left
+            anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
+            width: 3 * (JamiTheme.remotePluginWidthDelegate + 20)
+            spacing: JamiTheme.settingsBlockSpacing
+            // View of installed plugins
+            PluginListView {
+                id: pluginListView
+                visible: PluginAdapter.isEnabled && count
+                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+                Layout.fillWidth: true
+                Layout.preferredHeight: childrenRect.height
+                Connections {
+                    target: pluginPreferencesView
+                    function onClosed() {
+                        pluginListView.currentIndex = -1
+                    }
+                }
+            }
+            // View of available plugins in the store
+            PluginStoreListView {
+                Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+            InstallManuallyView {
+                Layout.fillWidth: true
+                spacing: 10
+            }
+    }
+    property real previousDetailsWidth: pluginPreferencesView ? pluginPreferencesView.width : 0
+    property real previousWidth: width
+    onWidthChanged: resolvePanes()
+    // This function governs the visibility of the plugin content and tracks the
+    // the width of the SplitView and the details panel. This function should be
+    // called when the width of the SplitView changes, when the SplitView is shown,
+    // and when the details panel is shown. When called with force=true, it is being
+    // called from a visibleChanged event, and we should not update the previous widths.
+    function resolvePanes(force = false) {
+        // If the details panel is not visible, then show the generalSettings.
+        if (!pluginPreferencesView.visible) {
+            root.visible = true;
+            return;
         }
-        // View of installed plugins
-        PluginListView {
-            id: pluginListView
 
-            visible: PluginAdapter.isEnabled
+        // Next we compute whether the SplitView is expanding or shrinking.
+        const isExpanding = width > previousWidth;
 
-            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            Layout.preferredWidth: parent.width
-            Layout.minimumHeight: 0
-            Layout.preferredHeight: childrenRect.height
+        // If the SplitView is not wide enough to show both the generalSettings
+        // and the details panel, then hide the generalSettings.
+        if (width < JamiTheme.mainViewPaneMinWidth + pluginPreferencesView.width && (!isExpanding || force) && root.visible) {
+            if (!force)
+                previousDetailsWidth = pluginPreferencesView.width;
+            root.visible = false;
+        } else if (width >= JamiTheme.mainViewPaneMinWidth + previousDetailsWidth && (isExpanding || force) && !root.visible) {
+            root.visible = true;
         }
-        // View of available plugins in the store
-        PluginStoreListView {
-            Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
+        if (!force)
+            previousWidth = width;
+    }
+    onResizingChanged: if (root.visible)
+                           pluginPreferencesView.previousWidth = pluginPreferencesView.width
+    PluginPreferencesView {
+        id: pluginPreferencesView
+        anchors.top: parent.top
+        anchors.right: parent.right
+        SplitView.maximumWidth: root.width
+        SplitView.minimumWidth: 300
+        SplitView.preferredWidth: 300
+        SplitView.fillHeight: true
+        property int previousWidth: 300
+        currentIndex: pluginListView.currentIndex
+        visible: pluginListView.currentIndex != -1
+        onVisibleChanged: root.resolvePanes(true)
+        Component.onCompleted: print(this, pluginPreferencesView.height, root.height)
     }
 }
