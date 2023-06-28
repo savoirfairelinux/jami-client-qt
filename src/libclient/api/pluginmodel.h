@@ -38,8 +38,10 @@ namespace plugin {
  */
 struct PluginDetails
 {
+    QString id = "";
     QString name = "";
     QString path = "";
+    QString version = "";
     QString iconPath = "";
     bool loaded = false;
 };
@@ -102,6 +104,24 @@ public:
      */
     Q_INVOKABLE bool uninstallPlugin(const QString& rootPath);
 
+    /**
+     * @brief get the plugin path
+     * @param pluginId
+     * @return plugin path
+     */
+    QString getPluginPath(const QString& pluginId);
+
+    /**
+     * @brief fetch all plugins path and id
+     *
+     */
+    void getPluginsPath();
+
+    /**
+     * @brief get all plugins id
+     * @return plugins id
+     */
+    VectorString getPluginsId();
     /**
      * Load plugin
      * @return true if plugin was succesfully loaded
@@ -184,6 +204,9 @@ public:
 Q_SIGNALS:
     void chatHandlerStatusUpdated(bool isVisible);
     void modelUpdated();
+
+private:
+    MapStringString pluginsPath_ = {};
 };
 
 } // namespace api
