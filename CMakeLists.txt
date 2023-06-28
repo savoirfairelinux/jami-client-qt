@@ -206,6 +206,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/pluginadapter.cpp
   ${APP_SRC_DIR}/deviceitemlistmodel.cpp
   ${APP_SRC_DIR}/pluginlistmodel.cpp
+  ${APP_SRC_DIR}/pluginstorelistmodel.cpp
   ${APP_SRC_DIR}/pluginhandlerlistmodel.cpp
   ${APP_SRC_DIR}/preferenceitemlistmodel.cpp
   ${APP_SRC_DIR}/mediacodeclistmodel.cpp
@@ -240,7 +241,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/messageparser.cpp
   ${APP_SRC_DIR}/previewengine.cpp
   ${APP_SRC_DIR}/imagedownloader.cpp
-  ${APP_SRC_DIR}/abstractupdatemanager.cpp)
+  ${APP_SRC_DIR}/pluginversionmanager.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
@@ -268,6 +269,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/pluginadapter.h
   ${APP_SRC_DIR}/deviceitemlistmodel.h
   ${APP_SRC_DIR}/pluginlistmodel.h
+  ${APP_SRC_DIR}/pluginstorelistmodel.h
   ${APP_SRC_DIR}/pluginhandlerlistmodel.h
   ${APP_SRC_DIR}/preferenceitemlistmodel.h
   ${APP_SRC_DIR}/mediacodeclistmodel.h
@@ -305,7 +307,7 @@ ${APP_SRC_DIR}/videodevices.h
   ${APP_SRC_DIR}/messageparser.h
   ${APP_SRC_DIR}/htmlparser.h
   ${APP_SRC_DIR}/imagedownloader.h
-  ${APP_SRC_DIR}/abstractupdatemanager.h)
+  ${APP_SRC_DIR}/pluginversionmanager.h)
 
 
 # For libavutil/avframe.
