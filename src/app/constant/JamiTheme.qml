@@ -491,6 +491,7 @@ Item {
     property color welcomeViewBackgroundColor: darkTheme ? lightGrey_ : secondaryBackgroundColor
     property real welcomeRectSideMargins: 45
     property real welcomeRectTopMargin: 90
+    property real welcomPageSpacing: 13
     property color rectColor: darkTheme ? blackColor : "#e5eef5"
     property color welcomeText: darkTheme ? "#0071c9" : "#002B4A"
     property real illustrationWidth: 212
@@ -539,6 +540,7 @@ Item {
     property real infoBoxDescFontSize: calcSize(12)
 
     // Tipbox
+    property real tipBoxWidth: 200
     property real tipBoxTitleFontSize: calcSize(13)
     property real tipBoxContentFontSize: calcSize(12)
     property color tipBoxBackgroundColor: darkTheme ? blackColor : whiteColor
@@ -591,7 +593,7 @@ Item {
     property real mainViewPreferredWidth: 730
     property real mainViewPreferredHeight: 600
 
-    property real mainViewMargin: 30
+    property real mainViewMargin: 25
 
     // Extras panel
     property real extrasPanelMinWidth: 300
