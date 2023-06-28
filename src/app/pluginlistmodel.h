@@ -31,7 +31,7 @@ public:
     enum Role { PluginName = Qt::UserRole + 1, PluginId, PluginIcon, IsLoaded };
     Q_ENUM(Role)
 
-    explicit PluginListModel(QObject* parent = nullptr);
+    explicit PluginListModel(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~PluginListModel();
 
     /*
@@ -52,12 +52,13 @@ public:
     Q_INVOKABLE void removePlugin(int index);
     Q_INVOKABLE void pluginChanged(int index);
     Q_INVOKABLE void addPlugin();
+    Q_INVOKABLE void disableAllPlugins();
 
 Q_SIGNALS:
     void versionCheckRequested(const QString& pluginId);
     void setVersionStatus(const QString& pluginId, PluginStatus::Role status);
     void autoUpdateChanged(bool state);
-
+    void disabled(const QString& pluginId);
 public Q_SLOTS:
     void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
 
