@@ -33,7 +33,7 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
                          ConnectivityMonitor* connectivityMonitor,
                          bool muteDring)
     : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, muteDring))
-    , updateManager_(std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this))
+    , updateManager_(std::make_unique<AppVersionManager>(updateUrl, connectivityMonitor, this))
     , threadPool_(new QThreadPool(this))
 {
     debugMode_ = !muteDring;
@@ -73,8 +73,8 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
     }
 };
 
-UpdateManager*
-LRCInstance::getUpdateManager()
+AppVersionManager*
+LRCInstance::getAppVersionManager()
 {
     return updateManager_.get();
 }
