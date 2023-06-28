@@ -37,9 +37,7 @@ PluginStoreListModel::data(const QModelIndex& index, int role) const
     if (!index.isValid()) {
         return QVariant();
     }
-
     auto plugin = plugins_.at(index.row());
-
     switch (role) {
     case Role::Id:
         return QVariant(plugin["id"].toString());
@@ -53,6 +51,8 @@ PluginStoreListModel::data(const QModelIndex& index, int role) const
         return QVariant(plugin["description"].toString());
     case Role::Author:
         return QVariant(plugin["author"].toString());
+    case Role::Status:
+        return QVariant(plugin.value("status", PluginStatus::INSTALLABLE).toString());
     }
     return QVariant();
 }
@@ -119,5 +119,77 @@ PluginStoreListModel::updatePlugin(const QVariantMap& plugin)
             return;
         }
         index++;
+    }
+}
+
+QColor
+PluginStoreListModel::computeAverageColorOfImage(const QString& file)
+{
+    auto fileUrl = QUrl(file);
+    // Return an invalid color if the file URL is invalid.
+    if (!fileUrl.isValid()) {
+        return QColor();
+    }
+    // Load the image.
+    QImage image(fileUrl.toLocalFile());
+    // If the image is valid...
+    if (!image.isNull()) {
+        static const QSize size(3, 3);
+        static const int nPixels = size.width() * size.height();
+        // Scale the image to 3x3 pixels.
+        image = image.scaled(size, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+        // Return the average color of the image's pixels.
+        double red = 0;
+        double green = 0;
+        double blue = 0;
+        for (int i = 0; i < size.width(); i++) {
+            for (int j = 0; j < size.height(); j++) {
+                auto pixelColor = image.pixelColor(i, j);
+                red += pixelColor.red();
+                green += pixelColor.green();
+                blue += pixelColor.blue();
+            }
+        }
+        return QColor(red / nPixels, green / nPixels, blue / nPixels, 70);
+    } else {
+        // Return an invalid color.
+        return QColor();
+    }
+}
+
+void
+PluginStoreListModel::onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status)
+{
+    auto plugin = QVariantMap();
+    for (auto& p : plugins_) {
+        if (p["id"].toString() == pluginId) {
+            plugin = p;
+            break;
+        }
+    }
+    switch (status) {
+    case PluginStatus::INSTALLABLE:
+        if (!plugin.isEmpty())
+            break;
+        pluginAdded(pluginId);
+        break;
+
+    default:
+        break;
+    }
+    if (plugin.isEmpty()) {
+        return;
+    }
+    plugin["status"] = status;
+
+    switch (status) {
+    case PluginStatus::INSTALLED:
+        removePlugin(pluginId);
+        break;
+    case PluginStatus::FAILED:
+        qWarning() << "Failed to install plugin" << pluginId;
+        break;
+    default:
+        break;
     }
 }

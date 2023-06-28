@@ -32,29 +32,7 @@ public:
     {}
 
     ~AbstractUpdateManager() = default;
-    /**
-     * @brief call by the update routine, this compare the version of local and remote
-     * @param quiet if true, the auto update is triggered
-     */
-    virtual Q_INVOKABLE void checkForUpdates(bool quiet = false) = 0;
-    /**
-     * @brief call by the update routine, this apply the update
-     * @param beta if true, the beta version is applied
-     */
-    virtual Q_INVOKABLE void applyUpdates(bool beta = false) = 0;
-    /**
-     * @brief return true if the updater is enabled
-     */
-    virtual Q_INVOKABLE bool isUpdaterEnabled() = 0;
-    /**
-     * @brief return true if the auto updater is enabled
-     */
     virtual Q_INVOKABLE bool isAutoUpdaterEnabled() = 0;
-    /**
-     * @brief set the auto updater state
-     * @param state the new state
-     */
-    virtual Q_INVOKABLE void setAutoUpdateCheck(bool state) = 0;
 };
 
 Q_DECLARE_METATYPE(AbstractUpdateManager*)

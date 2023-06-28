@@ -18,6 +18,7 @@
 #pragma once
 
 #include "abstractlistmodelbase.h"
+#include "pluginversionmanager.h"
 
 #define PLUGINSTORE_ROLES \
     X(Id) \
@@ -25,6 +26,7 @@
     X(IconPath) \
     X(Background) \
     X(Description) \
+    X(Status) \
     X(Author)
 
 namespace PluginStoreList {
@@ -55,6 +57,12 @@ public:
     void setPlugins(const QList<QVariantMap>& plugins);
     void removePlugin(const QString& pluginId);
     void updatePlugin(const QVariantMap& plugin);
+
+Q_SIGNALS:
+    void pluginAdded(const QString& pluginId);
+
+public Q_SLOTS:
+    void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
 
 private:
     using Role = PluginStoreList::Role;

@@ -32,7 +32,7 @@ QString BASE_URL = "http://127.0.0.1:3000";
 
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
-    , pluginVersionManager_(new PluginVersionManager(NULL, this))
+    , pluginVersionManager_(new PluginVersionManager(instance, baseUrl, this))
     , pluginStoreListModel_(new PluginStoreListModel(this))
     , pluginListModel_(new PluginListModel(instance, this))
 
@@ -46,6 +46,30 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
             this,
             &PluginAdapter::updateHandlersListCount);
     connect(this, &PluginAdapter::isEnabledChanged, this, &PluginAdapter::updateHandlersListCount);
+    connect(pluginVersionManager_,
+            &PluginVersionManager::versionStatusChanged,
+            pluginListModel_,
+            &PluginListModel::onVersionStatusChanged);
+    connect(pluginVersionManager_,
+            &PluginVersionManager::versionStatusChanged,
+            pluginStoreListModel_,
+            &PluginStoreListModel::onVersionStatusChanged);
+    connect(pluginStoreListModel_,
+            &PluginStoreListModel::pluginAdded,
+            this,
+            &PluginAdapter::getPluginDetails);
+    connect(pluginListModel_,
+            &PluginListModel::versionCheckRequested,
+            pluginVersionManager_,
+            &PluginVersionManager::checkVersionStatus);
+    connect(pluginListModel_,
+            &PluginListModel::autoUpdateChanged,
+            pluginVersionManager_,
+            &PluginVersionManager::setAutoUpdate);
+    connect(pluginListModel_,
+            &PluginListModel::setVersionStatus,
+            pluginStoreListModel_,
+            &PluginStoreListModel::onVersionStatusChanged);
     getPluginsFromStore();
 
     connect(pluginVersionManager_,
@@ -82,19 +106,13 @@ PluginAdapter::getPluginDetails(const QString& pluginId)
 void
 PluginAdapter::installRemotePlugin(const QString& pluginId)
 {
-    pluginVersionManager_->downloadFile(
-        QUrl(BASE_URL + "/download/" + pluginId + ".jpl"),
-        0,
-        [this, pluginId](bool success, const QString& error) {
-            if (!success) {
-                qDebug() << "Download Plugin error: " << error;
-                return;
-            }
-            auto res = lrcInstance_->pluginModel().installPlugin("/tmp/" + pluginId + ".jpl", false);
+    pluginVersionManager_->installRemotePlugin(pluginId);
+}
 
-            // pluginListModel_->addPlugin(plugin);
-        },
-        "/tmp/");
+bool
+PluginAdapter::isAutoUpdaterEnabled()
+{
+    return pluginVersionManager_->isAutoUpdaterEnabled();
 }
 
 QVariant
@@ -139,4 +157,10 @@ PluginAdapter::updateHandlersListCount()
         set_callMediaHandlersListCount(0);
         set_chatHandlersListCount(0);
     }
+}
+
+void
+PluginAdapter::checkVersionStatus(const QString& pluginId)
+{
+    pluginVersionManager_->checkVersionStatus(pluginId);
 }

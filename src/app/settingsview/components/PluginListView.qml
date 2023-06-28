@@ -52,12 +52,13 @@ Rectangle {
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
             }
-            HeaderToggleSwitch {
-                Layout.alignment: Qt.AlignRight
-                labelText: JamiStrings.autoUpdate
-                tooltipText: JamiStrings.autoUpdate
-                checked: true
+            HeaderToogleSwitch {
+                labelText: "auto update"
+                tooltipText: "auto update"
+                checked: PluginAdapter.isAutoUpdaterEnabled()
                 onSwitchToggled: {
+                    print(this, "switch toggled ", checked);
+                    PluginListModel.autoUpdateChanged(checked);
                 }
             }
             MaterialButton {

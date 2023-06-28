@@ -10,23 +10,15 @@ import "../../commoncomponents"
 ItemDelegate {
     id: root
     // Ici qu'on doit mettre les propriétés du plugin avec l'API?
-    property string pluginId: ""
-    property string pluginTitle: ""
-    property string pluginIcon: ""
-    property string pluginBackground: 'blue'
-    property string pluginDescription: ""
-    property string pluginAuthor: ""
-    property string pluginShortDescription: ""
-    property var pluginStatus: PluginAdapter.INSTALLABLE
-    Connections {
-        target: PluginAdapter
-        function onChangedStatus(pluginId, status) {
-            if (pluginId !== root.pluginId) {
-                return;
-            }
-            pluginStatus = status;
-        }
-    }
+    property string pluginId
+    property string pluginTitle
+    property string pluginIcon
+    property string pluginBackground
+    property string pluginDescription
+    property string pluginAuthor
+    property string pluginShortDescription
+    property int pluginStatus
+
     Rectangle {
         id: mask
         color: Qt.rgba(0, 0, 0, 1)
@@ -144,6 +136,6 @@ ItemDelegate {
         PluginAdapter.installRemotePlugin(pluginId);
     }
     function isDownloading() {
-        return pluginStatus === PluginAdapter.DOWNLOADING;
+        return pluginStatus === PluginStatus.DOWNLOADING;
     }
 }
