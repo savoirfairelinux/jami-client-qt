@@ -33,14 +33,14 @@ Item {
     property string localPath: ""
     property int imageFillMode: 0
 
-    Image {
+    AnimatedImage {
         id: image
         objectName: "image"
         anchors.fill: parent
         fillMode: imageFillMode
         smooth: true
         antialiasing: true
-        property bool isSvg: getIsSvg(this)
+        property bool isGif: getIsGif(this)
 
         Image {
             id: default_img
@@ -50,31 +50,21 @@ Item {
             visible: image.status != Image.Ready
             smooth: true
             antialiasing: true
-            property bool isSvg: getIsSvg(this)
+            property bool isGif: getIsGif(this)
 
-            Component.onCompleted: setSourceSize(default_img)
         }
 
-        Component.onCompleted: setSourceSize(image)
     }
 
-    function setSourceSize(img) {
-        img.sourceSize = undefined;
-        if (img.isSvg) {
-            img.sourceSize = Qt.size(cachedImage.width, cachedImage.height);
-        }
-    }
-
-    function getIsSvg(img) {
-        if (img.source && img.source!=""){
-            var localPath = img.source.toString()
+    function getIsGif(img) {
+        if (img.source && img.source != "") {
+            var localPath = img.source.toString();
             if (localPath.startsWith("file://")) {
                 localPath = localPath.substring(7);
             }
-            return UtilsAdapter.getMimeName(localPath) === "image/svg+xml";
+            return UtilsAdapter.getMimeName(localPath) === "image/gif";
         }
-        return false
-
+        return false;
     }
 
     Connections {
@@ -82,11 +72,12 @@ Item {
         function onDownloadImageSuccessful(localPath) {
             if (localPath === cachedImage.localPath) {
                 image.source = "file://" + localPath;
+                print("onDownloadImageSuccessful", localPath)
             }
         }
-        function onDownloadImageFailed(localPath) {
-            print("Failed to download image: " + downloadUrl);
+        function onDownloadImageFailed(localPath) {            
             if (localPath === cachedImage.localPath) {
+                print("Failed to download image: " + downloadUrl);
                 image.source = defaultImage;
             }
         }
@@ -96,24 +87,11 @@ Item {
         target: cachedImage
         function onDownloadUrlChanged() {
             updateImageSource(downloadUrl, localPath, defaultImage);
-            setSourceSize(image);
-            setSourceSize(default_img);
         }
     }
 
     Component.onCompleted: {
         updateImageSource(downloadUrl, localPath, defaultImage);
-        setSourceSize(image);
-        setSourceSize(default_img);
-    }
-
-    Connections {
-        target: CurrentScreenInfo
-
-        function onDevicePixelRatioChanged() {
-            setSourceSize(image);
-            setSourceSize(default_img);
-        }
     }
 
     function updateImageSource(downloadUrl, localPath, defaultImage) {
@@ -121,11 +99,15 @@ Item {
             image.source = defaultImage;
             return;
         }
-        if (downloadUrl !== "" && localPath !== "") {
+        if (downloadUrl && downloadUrl !== "" && localPath !== "") {
             if (!UtilsAdapter.fileExists(localPath)) {
+                print("ImageDownloader.downloadImage", downloadUrl, localPath)
                 ImageDownloader.downloadImage(downloadUrl, localPath);
             } else {
                 image.source = "file://" + localPath;
+                if (image.isGif) {
+                    image.playing = true;
+                }
             }
         }
     }
