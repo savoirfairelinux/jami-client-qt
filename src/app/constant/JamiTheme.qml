@@ -487,13 +487,11 @@ Item {
     property real jamiIdMargins: 36
     property real jamiIdLogoWidth: 70
     property real jamiIdLogoHeight: 24
-    property real jamiIdFontSize: calcSize(13)
+    property real jamiIdFontSize: calcSize(19)
+    property real jamiIdSmallFontSize: calcSize(11)
     property color jamiIdColor: darkTheme ? blackColor : sysColor
 
     // MainView
-    property color welcomeViewBackgroundColor: darkTheme ? lightGrey_ : secondaryBackgroundColor
-    property real welcomeRectSideMargins: 45
-    property real welcomeRectTopMargin: 90
     property color rectColor: darkTheme ? blackColor : "#e5eef5"
     property color welcomeText: darkTheme ? "#0071c9" : "#002B4A"
     property real illustrationWidth: 212
@@ -521,6 +519,15 @@ Item {
     property real welcomeLogoHeight: 100
     property real wizardButtonWidth: 400
     property real wizardButtonHeightMargin: 31
+    property color welcomeViewBackgroundColor: darkTheme ? lightGrey_ : secondaryBackgroundColor
+    property real welcomeRectSideMargins: 45
+    property real welcomeRectTopMargin: 90
+    property real welcomePageSpacing: 13
+    property real welcomeGridWidth: 3 * JamiTheme.tipBoxWidth + 2 * JamiTheme.welcomePageSpacing
+    property real welcomeHalfGridWidth: (welcomeGridWidth - JamiTheme.welcomePageSpacing) / 2
+    property real welcomeShortGridWidth: 2 * JamiTheme.tipBoxWidth + JamiTheme.welcomePageSpacing
+    readonly property string welcomeBg: darkTheme ? JamiResources.bg_darkmode_id_jami_png : JamiResources.bg_lightmode_id_jami_png
+    property color welcomeBlockColor: darkTheme ? "#4D000000" : "#4DFFFFFF"
 
     // WizardView Advanced Account Settings
     property color lightBlue_: darkTheme ? "#03B9E9" : "#e5eef5"
@@ -542,6 +549,7 @@ Item {
     property real infoBoxDescFontSize: calcSize(12)
 
     // Tipbox
+    property real tipBoxWidth: 200
     property real tipBoxTitleFontSize: calcSize(13)
     property real tipBoxContentFontSize: calcSize(12)
     property color tipBoxBackgroundColor: darkTheme ? blackColor : whiteColor
@@ -594,7 +602,7 @@ Item {
     property real mainViewPreferredWidth: 730
     property real mainViewPreferredHeight: 600
 
-    property real mainViewMargin: 30
+    property real mainViewMargin: 25
 
     // Extras panel
     property real extrasPanelMinWidth: 300

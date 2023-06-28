@@ -32,6 +32,8 @@ Item {
     property var margin: 5
     property var prefWidth: 170
 
+    property real maxHeight: 250
+
     signal ignore
 
     ColumnLayout {
@@ -41,6 +43,7 @@ Item {
         width: parent.width
 
         RowLayout {
+            id: rowlayout
 
             Layout.leftMargin: 15
             Layout.alignment: Qt.AlignLeft
@@ -58,16 +61,16 @@ Item {
                 containerHeight: Layout.preferredHeight
                 containerWidth: Layout.preferredWidth
 
-                source: JamiResources.noun_paint_svg
+                source: JamiResources.backup_svg
                 color: JamiTheme.buttonTintedBlue
             }
 
             Text {
+                id: title
                 text: JamiStrings.backupAccountBtn
                 color: JamiTheme.textColor
                 font.weight: Font.Medium
                 Layout.topMargin: root.margin
-                visible: !opened
                 Layout.alignment: Qt.AlignLeft
                 Layout.leftMargin: root.margin
                 Layout.preferredWidth: root.prefWidth - 2 * root.margin - root.iconSize
@@ -81,7 +84,7 @@ Item {
             Layout.preferredWidth: root.prefWidth
             Layout.leftMargin: 20
             Layout.topMargin: 8
-            Layout.bottomMargin: 15
+            Layout.bottomMargin: 8
             font.pixelSize: JamiTheme.tipBoxContentFontSize
             visible: !opened
             wrapMode: Text.WordWrap
@@ -91,59 +94,50 @@ Item {
             horizontalAlignment: Text.AlignLeft
         }
 
-        Text {
+        JamiFlickable {
             Layout.preferredWidth: root.width - 32
             Layout.leftMargin: 20
-            Layout.topMargin: 20
-            font.pixelSize: JamiTheme.tipBoxContentFontSize
-            visible: opened
-            wrapMode: Text.WordWrap
-            text: JamiStrings.backupAccountInfos
-            color: JamiTheme.textColor
-            horizontalAlignment: Text.AlignLeft
-        }
+            property real maxDescriptionHeight: maxHeight - rowlayout.Layout.preferredHeight - title.Layout.preferredHeight - 3 * JamiTheme.preferredMarginSize
+            Layout.preferredHeight: opened ? Math.min(contentHeight, maxDescriptionHeight) : 0
+            contentHeight: description.height
+            Text {
+                id: description
+                width: parent.width
+                font.pixelSize: JamiTheme.tipBoxContentFontSize
+                visible: opened
+                wrapMode: Text.WordWrap
+                text: JamiStrings.backupAccountInfos
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                linkColor: JamiTheme.buttonTintedBlue
 
-        MaterialButton {
-            id: backupBtn
-
-            Layout.alignment: Qt.AlignCenter
-
-            preferredWidth: parent.width - 32
-            height: 32
-            visible: opened
-
-            text: JamiStrings.backupAccountBtn
-            autoAccelerator: true
-            color: JamiTheme.buttonTintedGrey
-            hoveredColor: JamiTheme.buttonTintedGreyHovered
-            pressedColor: JamiTheme.buttonTintedGreyPressed
-
-            onClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                        "title": JamiStrings.backupAccountHere,
-                        "fileMode": JamiFileDialog.SaveFile,
-                        "folder": StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop",
-                        "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
-                    });
-                dlg.fileAccepted.connect(function (file) {
-                        // Is there password? If so, go to password dialog, else, go to following directly
-                        if (CurrentAccount.hasArchivePassword) {
-                            var pwdDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
-                                    "path": UtilsAdapter.getAbsPath(file),
-                                    "purpose": PasswordDialog.ExportAccount
-                                });
-                            pwdDlg.done.connect(function () {
+                onLinkActivated: {
+                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                            "title": JamiStrings.backupAccountHere,
+                            "fileMode": JamiFileDialog.SaveFile,
+                            "folder": StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop",
+                            "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+                        });
+                    dlg.fileAccepted.connect(function (file) {
+                            // Is there password? If so, go to password dialog, else, go to following directly
+                            if (CurrentAccount.hasArchivePassword) {
+                                var pwdDlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                                        "path": UtilsAdapter.getAbsPath(file),
+                                        "purpose": PasswordDialog.ExportAccount
+                                    });
+                                pwdDlg.done.connect(function () {
+                                        root.ignore();
+                                    });
+                            } else {
+                                if (file.toString().length > 0) {
                                     root.ignore();
-                                });
-                        } else {
-                            if (file.toString().length > 0) {
-                                root.ignore();
+                                }
                             }
-                        }
-                    });
-                dlg.rejected.connect(function () {
-                        backupBtn.forceActiveFocus();
-                    });
+                        });
+                    dlg.rejected.connect(function () {
+                            backupBtn.forceActiveFocus();
+                        });
+                }
             }
         }
     }

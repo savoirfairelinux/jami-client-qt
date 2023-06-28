@@ -26,6 +26,7 @@ import "../js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
 ListSelectionView {
     id: viewNode
+
     objectName: "WelcomePage"
 
     splitViewStateKey: "Main"
@@ -35,8 +36,78 @@ ListSelectionView {
 
     onPresented: LRCInstance.deselectConversation()
     leftPaneItem: viewCoordinator.getView("SidePanel")
+
+    property variant uiCustomization: CurrentAccount.uiCustomization
+
+    onUiCustomizationChanged: {
+        updateUiFlags();
+    }
+
+    Component.onCompleted: {
+        updateUiFlags();
+    }
+
+    property bool hasCustomUi: false
+
+    property bool hasTitle: true
+    property bool hasDescription: true
+
+    property bool hasCustomTitle: false
+    property string title: JamiStrings.welcomeToJami
+
+    property bool hasCustomDescription: false
+    property string description: JamiStrings.hereIsIdentifier
+
+    property bool hasLogo: true
+    property bool hasTips: true
+
+    //logoSize has to be between 0 and 1
+    property real logoSize: 1
+
+    property bool hasCustomBgImage: false
+    property string customBgUrl: ""
+
+    property bool hasCustomBgColor: false
+    property string customBgColor: ""
+
+    property bool hasCustomLogo: false
+    property string customLogoUrl: ""
+
+    property bool hasWelcomeInfo: true
+    property bool hasBottomId: false
+    property bool hasTopId: false
+
+    property color tipBoxAndIdColor: JamiTheme.welcomeBlockColor
+
+    property color mainBoxColor: "transparent"
+
+    function updateUiFlags() {
+        hasCustomUi = Object.keys(uiCustomization).length > 0;
+        hasTitle = hasCustomUi ? uiCustomization.title !== "" : true;
+        hasDescription = hasCustomUi ? uiCustomization.description !== "" : true;
+        title = hasCustomUi && uiCustomization.title !== undefined ? uiCustomization.title : JamiStrings.welcomeToJami;
+        description = hasCustomUi && uiCustomization.description !== undefined ? uiCustomization.description : JamiStrings.hereIsIdentifier;
+        hasLogo = hasCustomUi ? uiCustomization.logoUrl !== "" : true;
+        hasTips = hasCustomUi ? uiCustomization.areTipsEnabled : true;
+        hasCustomBgImage = (hasCustomUi && uiCustomization.backgroundType === "image");
+        customBgUrl = hasCustomBgImage ? (CurrentAccount.managerUri + uiCustomization.backgroundColorOrUrl) : "";
+        hasCustomBgColor = (hasCustomUi && uiCustomization.backgroundType === "color");
+        customBgColor = hasCustomBgColor ? uiCustomization.backgroundColorOrUrl : "";
+        hasCustomLogo = (hasCustomUi && hasLogo && uiCustomization.logoUrl !== undefined);
+        customLogoUrl = hasCustomLogo ? CurrentAccount.managerUri + uiCustomization.logoUrl : "";
+        hasWelcomeInfo = hasTitle || hasDescription;
+        hasBottomId = !hasWelcomeInfo && !hasTips && hasLogo;
+        hasTopId = !hasWelcomeInfo && (!hasLogo || hasTips);
+        logoSize = (hasCustomUi && uiCustomization.logoSize !== undefined) ? uiCustomization.logoSize / 100 : 1;
+        tipBoxAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? uiCustomization.tipBoxAndIdColor : JamiTheme.welcomeBlockColor;
+        mainBoxColor = (hasCustomUi && uiCustomization.mainBoxColor !== undefined) ? uiCustomization.mainBoxColor : "transparent";
+    }
+
     rightPaneItem: JamiFlickable {
         id: root
+        anchors.fill: parent
+        property int thresholdSize: 700
+        property int thresholdHeight: 570
 
         MouseArea {
             anchors.fill: parent
@@ -44,169 +115,92 @@ ListSelectionView {
             onClicked: root.forceActiveFocus()
         }
 
-        anchors.fill: parent
-
         contentHeight: Math.max(root.height, welcomePageLayout.implicitHeight)
         contentWidth: Math.max(300, root.width)
 
-        Item {
+        Rectangle {
+            id: bgRect
+            anchors.fill: parent
+            color: hasCustomBgColor ? customBgColor : "transparent"
+        }
+
+        CachedImage {
+            id: cachedImgLogo
+            downloadUrl: hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg
+            anchors.fill: parent
+            opacity: visible ? 1 : 0
+            localPath: UtilsAdapter.getCachePath() + "/" + CurrentAccount.id + "/welcomeview/" + UtilsAdapter.base64Encode(downloadUrl) + fileExtension
+            imageFillMode: Image.PreserveAspectCrop
+
+            Connections {
+                target: JamiTheme
+                function onDarkThemeChanged() {
+                    cachedImgLogo.downloadUrl = hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg;
+                }
+            }
+        }
+
+        ColumnLayout {
             id: welcomePageLayout
             width: Math.max(300, root.width)
             height: parent.height
 
             Item {
-                anchors.centerIn: parent
-                height: childrenRect.height
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.alignment: Qt.AlignHCenter
 
-                Rectangle {
-                    id: welcomeInfo
+                ColumnLayout {
+                    anchors.centerIn: parent
 
-                    radius: 30
-                    color: JamiTheme.rectColor
-                    anchors.topMargin: 25
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    width: identifier.width + 2 * JamiTheme.mainViewMargin + (welcomeLogo.visible ? welcomeLogo.width : 0)
-                    height: childrenRect.height + 10
-                    opacity: 1
-
-                    Behavior on width {
-                        NumberAnimation {
-                            duration: JamiTheme.shortFadeDuration
+                    Loader {
+                        id: loader_welcomeLogo
+                        objectName: "loader_welcomeLogo"
+                        active: viewNode.hasLogo
+                        sourceComponent: WelcomeLogo {
+                            logoSize: viewNode.logoSize
                         }
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.preferredWidth: active ? item.getWidth() : 0
+                        Layout.preferredHeight: active ? item.getHeight() : 0
+                        Layout.topMargin: 20
                     }
 
-                    Label {
-                        id: welcome
-
-                        anchors.top: parent.top
-                        anchors.left: parent.left
-                        anchors.topMargin: JamiTheme.mainViewMargin
-                        anchors.leftMargin: JamiTheme.mainViewMargin
-                        width: 300
-
-                        font.pixelSize: JamiTheme.bigFontSize
-
-                        wrapMode: Text.WordWrap
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-
-                        text: JamiStrings.welcomeToJami
-                        color: JamiTheme.textColor
-                    }
-
-                    Label {
-                        id: descriptionLabel
-                        visible: CurrentAccount.type === Profile.Type.SIP
-
-                        anchors.top: welcome.bottom
-                        anchors.left: parent.left
-                        anchors.topMargin: JamiTheme.preferredMarginSize * 2
-                        anchors.leftMargin: JamiTheme.mainViewMargin
-                        width: 300
-
-                        font.pixelSize: JamiTheme.headerFontSize
-
-                        wrapMode: Text.WordWrap
-
-                        text: JamiStrings.description
-                        color: JamiTheme.textColor
-                    }
-
-                    Label {
-                        id: identifierDescription
-                        visible: CurrentAccount.type !== Profile.Type.SIP
-
-                        anchors.top: welcome.bottom
-                        anchors.left: parent.left
-                        anchors.topMargin: JamiTheme.preferredMarginSize
-                        anchors.leftMargin: JamiTheme.mainViewMargin
-                        width: 330
-
-                        font.pixelSize: JamiTheme.headerFontSize
-
-                        wrapMode: Text.WordWrap
-
-                        text: JamiStrings.hereIsIdentifier
-                        lineHeight: 1.25
-                        color: JamiTheme.textColor
-                    }
-
-                    JamiIdentifier {
-                        id: identifier
-
-                        visible: CurrentAccount.type !== Profile.Type.SIP
-                        anchors.top: identifierDescription.bottom
-                        anchors.left: parent.left
-                        anchors.topMargin: JamiTheme.preferredMarginSize
-                        anchors.rightMargin: JamiTheme.preferredMarginSize
-                        anchors.leftMargin: JamiTheme.mainViewMargin
-                    }
-
-                    Image {
-                        id: welcomeLogo
-
-                        visible: root.width > 630
-                        width: 212
-                        height: 244
-                        anchors.top: parent.top
-                        anchors.right: parent.right
-                        anchors.margins: JamiTheme.preferredMarginSize
-                        anchors.topMargin: -20
-                        opacity: visible
-
-                        source: JamiResources.welcome_illustration_2_svg
-
-                        Behavior on opacity  {
-                            NumberAnimation {
-                                duration: JamiTheme.shortFadeDuration
-                            }
+                    Loader {
+                        id: loader_welcomeInfo
+                        objectName: "loader_welcomeInfo"
+                        sourceComponent: WelcomeInfo {
+                            backgroundColor: viewNode.mainBoxColor
+                            hasTitle: viewNode.hasTitle
+                            hasDescription: viewNode.hasDescription
+                            title: viewNode.title
+                            description: viewNode.description
+                            idColor: viewNode.tipBoxAndIdColor
                         }
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.preferredHeight: item.getHeight()
+                        Layout.preferredWidth: 500
                     }
                 }
+            }
 
-                JamiFlickable {
-                    id: tipsFlow
-
-                    anchors.top: welcomeInfo.bottom
-                    anchors.topMargin: JamiTheme.preferredMarginSize * 2
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    width: welcomeInfo.width
-                    height: flow.height + JamiTheme.preferredMarginSize * 2
-
-                    clip: true
-
-                    Flow {
-                        id: flow
-                        spacing: 13
-                        layoutDirection: UtilsAdapter.isRTL ? Qt.RightToLeft : Qt.LeftToRight
-
-                        Repeater {
-                            id: tipsRepeater
-                            model: TipsModel
-                            Layout.alignment: Qt.AlignCenter
-
-                            delegate: TipBox {
-                                tipId: TipId
-                                title: Title
-                                description: Description
-                                type: Type
-                                property bool hideTipBox: false
-
-                                visible: {
-                                    if (hideTipBox)
-                                        return false;
-                                    if (type === "backup") {
-                                        return LRCInstance.currentAccountType !== Profile.Type.SIP && CurrentAccount.managerUri.length === 0;
-                                    } else if (type === "customize") {
-                                        return CurrentAccount.alias.length === 0;
-                                    }
-                                    return true;
-                                }
-
-                                onIgnoreClicked: {
-                                    hideTipBox = true;
-                                }
-                            }
+            Loader {
+                id: loader_tipsRow
+                objectName: "loader_tipsRow"
+                active: viewNode.hasTips && root.height > root.thresholdHeight
+                sourceComponent: TipsRow {
+                    tipsColor: viewNode.tipBoxAndIdColor
+                }
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredHeight: active ? item.getHeight() : 0
+                Layout.preferredWidth: {
+                    if (!active) {
+                        return 0;
+                    } else {
+                        if (root.width > root.thresholdSize) {
+                            return JamiTheme.welcomeGridWidth;
+                        } else {
+                            return JamiTheme.welcomeShortGridWidth;
                         }
                     }
                 }
@@ -214,9 +208,10 @@ ListSelectionView {
 
             Item {
                 id: bottomRow
-                width: Math.max(300, root.width)
-                height: aboutJami.height + JamiTheme.preferredMarginSize
-                anchors.bottom: parent.bottom
+                Layout.preferredWidth: Math.max(300, root.width)
+                Layout.preferredHeight: aboutJami.height
+                Layout.margins: JamiTheme.welcomePageSpacing / 2
+                Layout.alignment: Qt.AlignHCenter
 
                 MaterialButton {
                     id: aboutJami
@@ -224,15 +219,16 @@ ListSelectionView {
                     TextMetrics {
                         id: textSize
                         font.weight: Font.Bold
-                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        font.pixelSize: 20
                         font.capitalization: Font.AllUppercase
                         text: aboutJami.text
                     }
 
                     tertiary: true
                     anchors.horizontalCenter: parent.horizontalCenter
-                    preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
+                    preferredWidth: textSize.width
                     text: JamiStrings.aboutJami
+                    fontSize: 12
 
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
                 }
@@ -261,14 +257,5 @@ ListSelectionView {
                 }
             }
         }
-    }
-
-    CustomBorder {
-        commonBorder: false
-        lBorderwidth: 1
-        rBorderwidth: 0
-        tBorderwidth: 0
-        bBorderwidth: 0
-        borderColor: JamiTheme.tabbarBorderColor
     }
 }
