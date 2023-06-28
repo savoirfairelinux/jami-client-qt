@@ -24,8 +24,7 @@ class QColor;
 class QString;
 
 #define PLUGINSTORE_ROLES \
-    X(Id) \
-    X(Title) \
+    X(Name) \
     X(IconPath) \
     X(Background) \
     X(Description) \
@@ -69,6 +68,8 @@ public Q_SLOTS:
     void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
 
 private:
+    int rowFromPluginId(const QString& pluginId) const;
+    void sort();
     using Role = PluginStoreList::Role;
     QList<QVariantMap> plugins_;
 };
