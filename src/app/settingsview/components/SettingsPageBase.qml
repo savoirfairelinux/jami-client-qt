@@ -23,41 +23,44 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
 
-Page {
+JamiSplitView {
     id: root
-
     required property Item flickableContent
 
-    property real contentFlickableWidth: Math.min(JamiTheme.maximumWidthSettingsView, root.width - 2 * JamiTheme.preferredSettingsMarginSize)
-
+    property real contentFlickableWidth: Math.min(JamiTheme.maximumWidthSettingsView, settingsPage.width - 2 * JamiTheme.preferredSettingsMarginSize)
+    property alias title: settingsPage.title
     property color backgroundColor: JamiTheme.secondaryBackgroundColor
-
-    Rectangle {
-        width: parent.width
-        height: parent.height
-        color: backgroundColor
-    }
-
-    header: Rectangle {
-        height: JamiTheme.settingsHeaderpreferredHeight
-        width: root.preferredWidth
-        color: backgroundColor
-
-        SettingsHeader {
-            id: settingsHeader
-            title: root.title
-            anchors.fill: parent
-            onBackArrowClicked: viewNode.dismiss()
+    Page {
+        id: settingsPage
+        SplitView.maximumWidth: root.width
+        SplitView.minimumWidth: 0
+        SplitView.fillWidth: true
+        Rectangle {
+            width: parent.width
+            height: parent.height
+            color: backgroundColor
         }
-    }
+        header: Rectangle {
+            height: JamiTheme.settingsHeaderpreferredHeight
+            width: root.preferredWidth
+            color: backgroundColor
 
-    JamiFlickable {
-        id: flickable
-        anchors.fill: parent
-        contentHeight: contentItem.childrenRect.height
-        contentItem.children: [flickableContent]
-        topMargin: JamiTheme.preferredSettingsBottomMarginSize
-        bottomMargin: JamiTheme.preferredSettingsBottomMarginSize
-        ScrollBar.horizontal.visible: false
+            SettingsHeader {
+                id: settingsHeader
+                title: root.title
+                anchors.fill: parent
+                onBackArrowClicked: viewNode.dismiss()
+            }
+        }
+
+        JamiFlickable {
+            id: flickable
+            anchors.fill: parent
+            contentHeight: contentItem.childrenRect.height
+            contentItem.children: [flickableContent]
+            topMargin: JamiTheme.preferredSettingsBottomMarginSize
+            bottomMargin: JamiTheme.preferredSettingsBottomMarginSize
+            ScrollBar.horizontal.visible: false
+        }
     }
 }
