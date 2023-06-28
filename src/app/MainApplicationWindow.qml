@@ -235,8 +235,8 @@ ApplicationWindow {
             // Quiet check for updates on start if set to.
             if (Qt.platform.os.toString() === "windows") {
                 if (UtilsAdapter.getAppValue(Settings.AutoUpdate)) {
-                    UpdateManager.checkForUpdates(true);
-                    UpdateManager.setAutoUpdateCheck(true);
+                    AppVersionManager.checkForUpdates(true);
+                    AppVersionManager.setAutoUpdateCheck(true);
                 }
             }
 
@@ -298,7 +298,7 @@ ApplicationWindow {
     }
 
     Connections {
-        target: UpdateManager
+        target: AppVersionManager
 
         function onDownloadStarted() {
             viewCoordinator.presentDialog(appWindow, "settingsview/components/UpdateDownloadDialog.qml", {
@@ -320,7 +320,7 @@ ApplicationWindow {
                         "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
                         "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
                         "buttonCallBacks": [function () {
-                                UpdateManager.applyUpdates();
+                                AppVersionManager.applyUpdates();
                             }]
                     });
             }
