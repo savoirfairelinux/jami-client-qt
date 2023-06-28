@@ -140,6 +140,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
                 Layout.topMargin: 10
                 Layout.preferredWidth: Math.min(360, manageAccountColumnLayout.width - JamiTheme.preferredSettingsMarginSize)
+                isLong: false
 
                 backgroundColor: JamiTheme.jamiIdColor
             }
