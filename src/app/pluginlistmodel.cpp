@@ -22,9 +22,12 @@
 
 #include "api/pluginmodel.h"
 
-PluginListModel::PluginListModel(QObject* parent)
+PluginListModel::PluginListModel(LRCInstance* lrcInstance, QObject* parent)
     : AbstractListModelBase(parent)
-{}
+{
+    lrcInstance_ = lrcInstance;
+    reset();
+}
 
 PluginListModel::~PluginListModel() {}
 
