@@ -180,7 +180,7 @@ Rectangle {
                             PluginModel.uninstallPlugin(pluginId);
                             PluginListModel.removePlugin(index);
                             var pluginPath = pluginId.split('/');
-                            PluginAdapter.getPluginDetails(pluginPath[pluginPath.length - 1]);
+                            PluginListModel.setVersionStatus(pluginPath[pluginPath.length - 1], PluginStatus.INSTALLABLE);
                         }]
                 })
         }

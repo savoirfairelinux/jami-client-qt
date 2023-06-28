@@ -35,11 +35,11 @@ public:
                                QObject* parent = nullptr);
     ~AppVersionManager();
 
-    Q_INVOKABLE void checkForUpdates(bool quiet = false) override;
-    Q_INVOKABLE void applyUpdates(bool beta = false) override;
-    Q_INVOKABLE bool isUpdaterEnabled() override;
+    Q_INVOKABLE void checkForUpdates(bool quiet = false);
+    Q_INVOKABLE void applyUpdates(bool beta = false);
+    Q_INVOKABLE bool isUpdaterEnabled();
     Q_INVOKABLE bool isAutoUpdaterEnabled() override;
-    Q_INVOKABLE void setAutoUpdateCheck(bool state) override;
+    Q_INVOKABLE void setAutoUpdateCheck(bool state);
     Q_INVOKABLE void cancelUpdate();
     Q_INVOKABLE bool isCurrentVersionBeta();
 
