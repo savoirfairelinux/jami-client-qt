@@ -1,12 +1,16 @@
 #include "pluginversionmanager.h"
 #include "networkmanager.h"
+#include "appsettingsmanager.h"
 #include "lrcinstance.h"
+#include "api/pluginmodel.h"
 
 #include <QMap>
 #include <QTimer>
 #include <QDir>
 
-class PluginVersionManager::Impl : public QObject
+static constexpr int updatePeriod = 1000 * 60 * 60 * 24; // one day in millis
+
+struct PluginVersionManager::Impl : public QObject
 {
 public:
     Impl(LRCInstance* instance, PluginVersionManager& parent)
@@ -15,34 +19,36 @@ public:
         , lrcInstance_(instance)
         , tempPath_(QDir::tempPath())
         , updateTimer_(new QTimer(this))
+        , appSettingsManager_(new AppSettingsManager(this))
     {
-        connect(updateTimer_, &QTimer::timeout, this, [this] {
-            // Quiet period update check.
-            parent_.checkForUpdates(true);
-        });
-
+        connect(updateTimer_, &QTimer::timeout, this, [this] { checkForUpdates(); });
         connect(&parent_, &NetworkManager::downloadFinished, this, [this](int replyId) {
             auto pluginsId = parent_.pluginRepliesId.keys(replyId);
             if (pluginsId.size() == 0) {
                 return;
             }
             for (auto pluginId : pluginsId) {
-                Q_EMIT parent_.downloadFinished(pluginId);
+                Q_EMIT parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLING);
                 parent_.pluginRepliesId.remove(pluginId);
             }
         });
+        checkForUpdates();
+        setAutoUpdateCheck(true);
     }
 
-    ~Impl() = default;
-
-    void checkForUpdates(bool quiet)
+    ~Impl()
     {
-        return;
+        setAutoUpdateCheck(false);
     }
 
-    void applyUpdates(bool beta = false)
+    void checkForUpdates()
     {
-        // TODO: should download the last version of all plugins and install
+        if (!lrcInstance_) {
+            return;
+        }
+        for (const auto& plugin : lrcInstance_->pluginModel().getInstalledPlugins()) {
+            checkVersionStatusFromPath(plugin);
+        }
     }
 
     void cancelUpdate(QString pluginId)
@@ -55,30 +61,106 @@ public:
 
     bool isAutoUpdaterEnabled()
     {
-        // TODO: should be trigger when the user enable the auto update
-        return false;
+        return appSettingsManager_->getValue(Settings::Key::PluginAutoUpdate).toBool();
     }
 
-    bool isUpdaterEnabled()
+    void setAutoUpdate(bool state)
     {
-        // TODO: should check state of the updater
-        return false;
+        appSettingsManager_->setValue(Settings::Key::PluginAutoUpdate, state);
+    }
+
+    void checkVersionStatus(const QString& pluginId)
+    {
+        checkVersionStatusFromPath(lrcInstance_->pluginModel().getPluginPath(pluginId));
+    }
+
+    void checkVersionStatusFromPath(const QString& pluginPath)
+    {
+        if (!lrcInstance_) {
+            parent_.versionStatusChanged(plugin.name, PluginStatus::Role::FAILED);
+            return;
+        }
+
+        auto plugin = lrcInstance_->pluginModel().getPluginDetails(pluginPath);
+        if (plugin.version == "" || plugin.id == "") {
+            parent_.versionStatusChanged(plugin.id, PluginStatus::Role::FAILED);
+            return;
+        }
+
+        parent_.sendGetRequest(QUrl(parent_.baseUrl + "/versions/" + plugin.id),
+                               [this, plugin](const QByteArray& data) {
+                                   const auto version = data;
+                                   if (plugin.version < version) {
+                                       if (isAutoUpdaterEnabled()) {
+                                           installRemotePlugin(plugin.name);
+                                           return;
+                                       }
+                                   }
+                                   parent_.versionStatusChanged(plugin.id,
+                                                                PluginStatus::Role::UPDATABLE);
+                               });
+    }
+
+    void installRemotePlugin(const QString& pluginId)
+    {
+        parent_.downloadFile(
+            QUrl(parent_.baseUrl + "/download/" + pluginId),
+            pluginId,
+            0,
+            [this, pluginId](bool success, const QString& error) {
+                if (!success) {
+                    qDebug() << "Download Plugin error: " << error;
+                    parent_.versionStatusChanged(pluginId, PluginStatus::Role::FAILED);
+                    return;
+                }
+                auto res = lrcInstance_->pluginModel().installPlugin(tempPath_ + '/' + pluginId
+                                                                         + ".jpl",
+                                                                     true);
+                if (res) {
+                    parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLED);
+                } else {
+                    parent_.versionStatusChanged(pluginId, PluginStatus::Role::FAILED);
+                }
+            },
+            tempPath_ + '/');
+        parent_.versionStatusChanged(pluginId, PluginStatus::Role::DOWNLOADING);
+    }
+
+    QString getPluginPath(const QString& pluginId)
+    {
+        if (!lrcInstance_) {
+            return QString();
+        }
+        auto pluginPaths = lrcInstance_->pluginModel().getInstalledPlugins();
+        for (auto pluginPath : pluginPaths) {
+            if (pluginPath.contains(pluginId)) {
+                return pluginPath;
+            }
+        }
+        return QString();
     }
 
     void setAutoUpdateCheck(bool state)
     {
-        // TODO: should call the api to fetch the new version of all plugins
-    }
-    PluginVersionManager& parent_;
+        // Quiet check for updates periodically, if set to.
+        if (!state) {
+            updateTimer_->stop();
+            return;
+        }
+        updateTimer_->start(updatePeriod);
+    };
 
+    PluginVersionManager& parent_;
+    AppSettingsManager* appSettingsManager_ {nullptr};
     LRCInstance* lrcInstance_ {nullptr};
     QString tempPath_;
     QTimer* updateTimer_;
 };
 
-PluginVersionManager::PluginVersionManager(LRCInstance* instance, QObject* parent)
+PluginVersionManager::PluginVersionManager(LRCInstance* instance, QString& baseUrl, QObject* parent)
     : NetworkManager(NULL, parent)
     , pimpl_(std::make_unique<Impl>(instance, *this))
+    , baseUrl(baseUrl)
 {}
 
 PluginVersionManager::~PluginVersionManager()
@@ -90,27 +172,9 @@ PluginVersionManager::~PluginVersionManager()
 }
 
 void
-PluginVersionManager::checkForUpdates(bool quiet)
-{
-    pimpl_->checkForUpdates(quiet);
-}
-
-void
-PluginVersionManager::applyUpdates(bool beta)
-{
-    pimpl_->applyUpdates(beta);
-}
-
-void
 PluginVersionManager::cancelUpdate(QString pluginId)
 {
     pimpl_->cancelUpdate(pluginId);
-}
-
-bool
-PluginVersionManager::isUpdaterEnabled()
-{
-    return pimpl_->isAutoUpdaterEnabled();
 }
 
 bool
@@ -120,9 +184,9 @@ PluginVersionManager::isAutoUpdaterEnabled()
 }
 
 void
-PluginVersionManager::setAutoUpdateCheck(bool state)
+PluginVersionManager::setAutoUpdate(bool state)
 {
-    pimpl_->setAutoUpdateCheck(state);
+    pimpl_->setAutoUpdate(state);
 }
 
 unsigned int
@@ -135,4 +199,16 @@ PluginVersionManager::downloadFile(const QUrl& url,
     auto reply = NetworkManager::downloadFile(url, replyId, onDoneCallback, filePath);
     pluginRepliesId[pluginId] = reply;
     return reply;
+}
+
+void
+PluginVersionManager::checkVersionStatus(const QString& pluginId)
+{
+    pimpl_->checkVersionStatus(pluginId);
+}
+
+void
+PluginVersionManager::installRemotePlugin(const QString& pluginId)
+{
+    pimpl_->installRemotePlugin(pluginId);
 }

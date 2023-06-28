@@ -11,30 +11,25 @@ import "../../mainview/components"
 ItemDelegate {
     id: root
     // Ici qu'on doit mettre les propriétés du plugin avec l'API?
-    property string pluginId: ""
-    property string pluginTitle: ""
-    property string pluginIcon: ""
-    property string pluginBackground: 'blue'
-    property string pluginDescription: ""
-    property string pluginAuthor: ""
-    property string pluginShortDescription: ""
-    property var pluginStatus: PluginAdapter.INSTALLABLE
-    Connections {
-        target: PluginAdapter
-        function onChangedStatus(pluginId, status) {
-            if (pluginId !== root.pluginId) {
-                return;
-            }
-            pluginStatus = status;
-        }
-    }
+    property string pluginId
+    property string pluginTitle
+    property string pluginIcon
+    property string pluginBackground
+    property string pluginDescription
+    property string pluginAuthor
+    property string pluginShortDescription
+    property int pluginStatus
+
     Rectangle {
-        id: mask
+        id: rect
+        Scaffold {
+        }
         color: Qt.rgba(0, 0, 0, 1)
         anchors.fill: parent
         radius: 15
     }
     Page {
+        id: plugin
         anchors.fill: parent
         header: Control {
             padding: 10
@@ -97,12 +92,10 @@ ItemDelegate {
                 }
             }
         }
-
         Rectangle {
-            color: JamiTheme.pluginViewBackgroundColor
             anchors.fill: parent
+            color: JamiTheme.pluginViewBackgroundColor
         }
-
         Flickable {
             anchors.fill: parent
             anchors.margins: 10
@@ -140,11 +133,18 @@ ItemDelegate {
                 verticalAlignment: Text.AlignVCenter
             }
         }
-        layer {
-            enabled: true
-            effect: OpacityMask {
-                maskSource: mask
-            }
+
+        DropShadow {
+            z: 2
+            visible: hovered
+            width: root.width
+            height: root.height
+            radius: 16
+            color: Qt.rgba(0, 0.34, 0.6, 0.16)
+            source: root
+            transparentBorder: true
+            samples: radius + 1
+            cached: true
         }
     }
     function installPlugin() {
@@ -155,6 +155,6 @@ ItemDelegate {
     }
 
     function isDownloading() {
-        return pluginStatus === PluginAdapter.DOWNLOADING;
+        return pluginStatus === PluginStatus.DOWNLOADING;
     }
 }

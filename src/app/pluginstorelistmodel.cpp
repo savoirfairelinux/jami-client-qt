@@ -39,9 +39,7 @@ PluginStoreListModel::data(const QModelIndex& index, int role) const
     if (!index.isValid()) {
         return QVariant();
     }
-
     auto plugin = plugins_.at(index.row());
-
     switch (role) {
     case Role::Id:
         return QVariant(plugin["id"].toString());
@@ -55,6 +53,8 @@ PluginStoreListModel::data(const QModelIndex& index, int role) const
         return QVariant(plugin["description"].toString());
     case Role::Author:
         return QVariant(plugin["author"].toString());
+    case Role::Status:
+        return QVariant(plugin.value("status", PluginStatus::INSTALLABLE).toString());
     }
     return QVariant();
 }
@@ -156,5 +156,42 @@ PluginStoreListModel::computeAverageColorOfImage(const QString& file)
     } else {
         // Return an invalid color.
         return QColor();
+    }
+}
+
+void
+PluginStoreListModel::onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status)
+{
+    auto plugin = QVariantMap();
+    for (auto& p : plugins_) {
+        if (p["id"].toString() == pluginId) {
+            plugin = p;
+            break;
+        }
+    }
+    switch (status) {
+    case PluginStatus::INSTALLABLE:
+        if (!plugin.isEmpty())
+            break;
+        pluginAdded(pluginId);
+        break;
+
+    default:
+        break;
+    }
+    if (plugin.isEmpty()) {
+        return;
+    }
+    plugin["status"] = status;
+
+    switch (status) {
+    case PluginStatus::INSTALLED:
+        removePlugin(pluginId);
+        break;
+    case PluginStatus::FAILED:
+        qWarning() << "Failed to install plugin" << pluginId;
+        break;
+    default:
+        break;
     }
 }

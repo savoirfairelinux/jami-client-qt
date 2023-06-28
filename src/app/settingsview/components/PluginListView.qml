@@ -55,8 +55,10 @@ Rectangle {
             HeaderToggleSwitch {
                 labelText: "auto update"
                 tooltipText: "auto update"
-                checked: true
+                checked: PluginAdapter.isAutoUpdaterEnabled()
                 onSwitchToggled: {
+                    print(this, "switch toggled ", checked);
+                    PluginListModel.autoUpdateChanged(checked);
                 }
             }
             MaterialButton {
