@@ -53,7 +53,9 @@ enum pluginInstallResult {
 
 PluginModel::PluginModel()
     : QObject()
-{}
+{
+    getPluginsPath();
+}
 
 PluginModel::~PluginModel() {}
 
@@ -96,11 +98,14 @@ PluginModel::getPluginDetails(const QString& path)
     MapStringString details = PluginManager::instance().getPluginDetails(path);
     plugin::PluginDetails result;
     if (!details.empty()) {
-        result.name = details["name"];
+        result.id = details["id"] result.name = details["name"];
         result.path = path;
         result.iconPath = details["iconPath"];
+        result.version = details["version"];
     }
-
+    if (!pluginsPath_.contains(result.id)) {
+        pluginsPath_[result.id] = path;
+    }
     VectorString loadedPlugins = getLoadedPlugins();
     if (std::find(loadedPlugins.begin(), loadedPlugins.end(), result.path) != loadedPlugins.end()) {
         result.loaded = true;
@@ -134,6 +139,7 @@ PluginModel::installPlugin(const QString& jplPath, bool force)
                 break;
             }
         }
+        pluginsPath_[getPluginDetails(jplPath).id] = jplPath;
         return result == 0;
     }
     return false;
@@ -143,8 +149,26 @@ bool
 PluginModel::uninstallPlugin(const QString& rootPath)
 {
     auto result = PluginManager::instance().uninstallPlugin(rootPath);
+    for (auto plugin : pluginsPath_.keys(rootPath)) {
+        pluginsPath_.remove(plugin);
+    }
     Q_EMIT modelUpdated();
     return result;
+}
+
+QString
+getPluginPath(const QString& pluginId)
+{
+    return pluginsPath_[pluginId];
+}
+
+void
+PluginModel::getPluginsPath()
+{
+    for (auto plugin : getInstalledPlugins()) {
+        auto details = getPluginDetails(plugin);
+        pluginsPath_[details.id] = details.path;
+    }
 }
 
 bool

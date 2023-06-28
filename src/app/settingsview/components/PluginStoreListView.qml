@@ -80,6 +80,7 @@ ColumnLayout {
                 pluginDescription: Description
                 pluginAuthor: Author
                 pluginShortDescription: ""
+                pluginStatus: Status
             }
         }
     }
