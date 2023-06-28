@@ -49,7 +49,6 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString bas
     , baseUrl(baseUrl)
 
 {
-    qWarning() << tempPath_;
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());

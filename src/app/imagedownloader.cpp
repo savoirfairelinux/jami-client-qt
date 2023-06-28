@@ -48,7 +48,6 @@ ImageDownloader::onDownloadImageFinished(const QByteArray& data, const QString& 
         if (file.open(QIODevice::WriteOnly)) {
             file.write(data);
             file.close();
-            qWarning() << Q_FUNC_INFO;
             Q_EMIT downloadImageSuccessful(localPath);
             return;
         }
