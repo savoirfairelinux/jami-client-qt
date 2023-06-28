@@ -19,12 +19,12 @@
 #pragma once
 
 #include <memory>
-#include "abstractupdatemanager.h"
+#include "networkmanager.h"
 
 class LRCInstance;
 class ConnectivityMonitor;
 
-class AppVersionManager final : public AbstractAppVersionManager
+class AppVersionManager final : public NetworkManager
 {
     Q_OBJECT
     Q_DISABLE_COPY(AppVersionManager)
@@ -35,11 +35,11 @@ public:
                                QObject* parent = nullptr);
     ~AppVersionManager();
 
-    Q_INVOKABLE void checkForUpdates(bool quiet = false) override;
-    Q_INVOKABLE void applyUpdates(bool beta = false) override;
-    Q_INVOKABLE bool isUpdaterEnabled() override;
-    Q_INVOKABLE bool isAutoUpdaterEnabled() override;
-    Q_INVOKABLE void setAutoUpdateCheck(bool state) override;
+    Q_INVOKABLE void checkForUpdates(bool quiet = false);
+    Q_INVOKABLE void applyUpdates(bool beta = false);
+    Q_INVOKABLE bool isUpdaterEnabled();
+    Q_INVOKABLE bool isAutoUpdaterEnabled();
+    Q_INVOKABLE void setAutoUpdateCheck(bool state);
     Q_INVOKABLE void cancelUpdate();
     Q_INVOKABLE bool isCurrentVersionBeta();
 
