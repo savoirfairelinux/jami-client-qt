@@ -18,8 +18,11 @@
 
 #include "pluginadapter.h"
 
+#include "pluginversionmanager.h"
 #include "networkmanager.h"
 #include "lrcinstance.h"
+#include "qmlregister.h"
+#include "pluginstorelistmodel.h"
 
 #include <QJsonDocument>
 #include <utilsadapter.h>
@@ -51,6 +54,9 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString bas
     , baseUrl(baseUrl)
 
 {
+    qWarning() << tempPath_;
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
@@ -95,7 +101,7 @@ PluginAdapter::~PluginAdapter()
 void
 PluginAdapter::getPluginsFromStore()
 {
-    pluginVersionManager_->sendGetRequest(QUrl(baseUrl), [this](const QByteArray& data) {
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl + "?arch=" + Utils::getPlatformString()), [this](const QByteArray& data) {
         auto result = QJsonDocument::fromJson(data).array();
         auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
         QList<QVariantMap> plugins;
@@ -113,7 +119,7 @@ PluginAdapter::getPluginsFromStore()
 void
 PluginAdapter::getPluginDetails(const QString& pluginId)
 {
-    pluginVersionManager_->sendGetRequest(QUrl(baseUrl + "/details/" + pluginId),
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl + "/details/" + pluginId + "?arch=" + Utils::getPlatformString()),
                                           [this](const QByteArray& data) {
                                               auto result = QJsonDocument::fromJson(data).object();
                                               // my response is a json object and I want to convert

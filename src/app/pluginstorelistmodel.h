@@ -64,7 +64,7 @@ public:
 
 Q_SIGNALS:
     void pluginAdded(const QString& pluginId);
-
+    void statusChanged(const QString& pluginId, PluginStatus::Role status);
 public Q_SLOTS:
     void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
 
