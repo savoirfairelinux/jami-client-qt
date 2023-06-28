@@ -34,7 +34,7 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
                          bool debugMode,
                          bool muteDaemon)
     : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, !debugMode || muteDaemon))
-    , updateManager_(std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this))
+    , updateManager_(std::make_unique<AppVersionManager>(updateUrl, connectivityMonitor, this))
     , threadPool_(new QThreadPool(this))
 {
     debugMode_ = debugMode;
