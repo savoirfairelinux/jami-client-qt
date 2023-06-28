@@ -24,7 +24,7 @@ import net.jami.Constants 1.1
 import Qt5Compat.GraphicalEffects
 import "../../commoncomponents"
 
-Item {
+FocusScope {
     id: root
     property string title: ""
     property string description: ""
@@ -32,7 +32,8 @@ Item {
     property string type: ""
     property bool hovered: false
     property bool clicked: false
-    property bool opened: false
+    property bool opened: activeFocus
+    property color backgroundColor: JamiTheme.welcomeBlockColor
 
     property string customizeTip: "CustomizeTipBox {}"
 
@@ -40,18 +41,26 @@ Item {
 
     property string infoTip: "InformativeTipBox {}"
 
-    width: 200
-    height: tipColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
+    width: JamiTheme.tipBoxWidth
+
+    property real minimumHeight: 150
+    property real maximumHeight: 250
+
+    height: Math.max(minimumHeight, Math.min(maximumHeight, tipColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize))
 
     signal ignoreClicked
+
+    focus: true
 
     Rectangle {
         id: rect
         anchors.fill: parent
 
-        color: opened || hovered ? JamiTheme.tipBoxBackgroundColor : "transparent"
-        border.color: JamiTheme.tipBoxBorderColor
-        radius: 20
+        color: root.backgroundColor
+
+        radius: 5
+
+        focus: true
 
         Column {
             id: tipColumnLayout
@@ -59,14 +68,32 @@ Item {
             width: parent.width
             anchors.topMargin: 10
 
-            Component.onCompleted: {
-                if (type === "customize") {
-                    Qt.createQmlObject(customizeTip, this, 'tip');
-                } else if (type === "backup") {
-                    Qt.createQmlObject(backupTip, this, 'tip');
-                } else {
-                    Qt.createQmlObject(infoTip, this, 'tip');
+            Loader {
+                id: loader_backupTip
+                active: type === "backup"
+                sourceComponent: BackupTipBox {
+                    onIgnore: {
+                        root.ignoreClicked();
+                    }
+                    maxHeight: root.maximumHeight
                 }
+                width: parent.width
+            }
+            Loader {
+                id: loader_customizeTip
+                active: type === "customize"
+                sourceComponent: CustomizeTipBox {
+                }
+                width: parent.width
+                focus: true
+            }
+            Loader {
+                id: loader_infoTip
+                active: type === "tip"
+                sourceComponent: InformativeTipBox {
+                    maxHeight: root.maximumHeight
+                }
+                width: parent.width
             }
         }
     }
@@ -79,7 +106,9 @@ Item {
 
     TapHandler {
         target: rect
-        onTapped: opened = !opened
+        onTapped: {
+            return opened ? focus = false : root.forceActiveFocus();
+        }
     }
 
     DropShadow {
@@ -96,25 +125,35 @@ Item {
         samples: radius + 1
     }
 
-    PushButton {
-        id: btnClose
+    Loader {
+        id: loader_btnClose
+        active: type === "tip"
+        sourceComponent: component_btnClose
+        anchors.margins: 8
+        anchors.bottom: root.top
+        anchors.horizontalCenter: root.horizontalCenter
+    }
 
-        width: 20
-        height: 20
-        imageContainerWidth: 20
-        imageContainerHeight: 20
-        anchors.margins: 14
-        anchors.top: parent.top
-        anchors.right: parent.right
-        visible: opened
-        circled: true
+    Component {
+        id: component_btnClose
+        PushButton {
+            id: btnClose
 
-        imageColor: Qt.rgba(0, 86 / 255, 153 / 255, 1)
-        normalColor: "transparent"
-        toolTipText: JamiStrings.dismiss
+            width: 20
+            height: 20
+            imageContainerWidth: 20
+            imageContainerHeight: 20
 
-        source: JamiResources.round_close_24dp_svg
+            visible: opened
+            circled: true
 
-        onClicked: root.ignoreClicked()
+            imageColor: Qt.rgba(0, 86 / 255, 153 / 255, 1)
+            normalColor: "transparent"
+            toolTipText: JamiStrings.dismiss
+
+            source: JamiResources.trash_black_24dp_svg
+
+            onClicked: root.ignoreClicked()
+        }
     }
 }

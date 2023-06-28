@@ -33,7 +33,7 @@ Item {
     property string localPath: ""
     property int imageFillMode: 0
 
-    Image {
+    AnimatedImage {
         id: image
         objectName: "image"
         anchors.fill: parent
@@ -41,6 +41,7 @@ Item {
         smooth: true
         antialiasing: true
         property bool isSvg: getIsSvg(this)
+        property bool isGif: getIsGif(this)
 
         Image {
             id: default_img
@@ -51,6 +52,7 @@ Item {
             smooth: true
             antialiasing: true
             property bool isSvg: getIsSvg(this)
+            property bool isGif: getIsGif(this)
 
             Component.onCompleted: setSourceSize(default_img)
         }
@@ -59,22 +61,31 @@ Item {
     }
 
     function setSourceSize(img) {
-        img.sourceSize = undefined;
         if (img.isSvg) {
             img.sourceSize = Qt.size(cachedImage.width, cachedImage.height);
         }
     }
 
     function getIsSvg(img) {
-        if (img.source && img.source!=""){
-            var localPath = img.source.toString()
+        if (img.source && img.source != "") {
+            var localPath = img.source.toString();
             if (localPath.startsWith("file://")) {
                 localPath = localPath.substring(7);
             }
             return UtilsAdapter.getMimeName(localPath) === "image/svg+xml";
         }
-        return false
+        return false;
+    }
 
+    function getIsGif(img) {
+        if (img.source && img.source != "") {
+            var localPath = img.source.toString();
+            if (localPath.startsWith("file://")) {
+                localPath = localPath.substring(7);
+            }
+            return UtilsAdapter.getMimeName(localPath) === "image/gif";
+        }
+        return false;
     }
 
     Connections {
@@ -126,6 +137,9 @@ Item {
                 ImageDownloader.downloadImage(downloadUrl, localPath);
             } else {
                 image.source = "file://" + localPath;
+                if(image.isGif){
+                    image.playing = true
+                }
             }
         }
     }
