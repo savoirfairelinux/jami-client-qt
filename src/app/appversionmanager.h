@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,51 +24,35 @@
 class LRCInstance;
 class ConnectivityMonitor;
 
-class UpdateManager final : public NetworkManager
+class AppVersionManager final : public NetworkManager
 {
     Q_OBJECT
-    Q_DISABLE_COPY(UpdateManager)
+    Q_DISABLE_COPY(AppVersionManager)
 public:
-    explicit UpdateManager(const QString& url,
-                           ConnectivityMonitor* cm,
-                           LRCInstance* instance = nullptr,
-                           QObject* parent = nullptr);
-    ~UpdateManager();
-
-    enum Status { STARTED, FINISHED };
-    Q_ENUM(Status)
+    explicit AppVersionManager(const QString& url,
+                               ConnectivityMonitor* cm,
+                               LRCInstance* instance = nullptr,
+                               QObject* parent = nullptr);
+    ~AppVersionManager();
 
     Q_INVOKABLE void checkForUpdates(bool quiet = false);
     Q_INVOKABLE void applyUpdates(bool beta = false);
-    Q_INVOKABLE void cancelUpdate();
-    Q_INVOKABLE void setAutoUpdateCheck(bool state);
-    Q_INVOKABLE bool isCurrentVersionBeta();
     Q_INVOKABLE bool isUpdaterEnabled();
     Q_INVOKABLE bool isAutoUpdaterEnabled();
-    Q_INVOKABLE void cancelDownload();
-
-    void downloadFile(const QUrl& url,
-                      std::function<void(bool, const QString&)> onDoneCallback,
-                      const QString& filePath);
+    Q_INVOKABLE void setAutoUpdateCheck(bool state);
+    Q_INVOKABLE void cancelUpdate();
+    Q_INVOKABLE bool isCurrentVersionBeta();
 
 Q_SIGNALS:
-    void statusChanged(UpdateManager::Status status);
-    void downloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
-
-    void updateCheckReplyReceived(bool ok, bool found = false);
-    void updateErrorOccurred(const NetworkManager::GetError& error);
-    void updateDownloadStarted();
-    void updateDownloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
-    void updateDownloadFinished();
     void appCloseRequested();
+    void updateCheckReplyReceived(bool ok, bool found = false);
+    void updateDownloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
+    void updateErrorOccurred(const NetworkManager::GetError& error);
 
 private:
-    void resetDownload();
-    QNetworkReply* downloadReply_ {nullptr};
-    QScopedPointer<QFile> file_;
-
-private:
+    QScopedPointer<unsigned int> replyId_;
     struct Impl;
+    friend struct Impl;
     std::unique_ptr<Impl> pimpl_;
 };
-Q_DECLARE_METATYPE(UpdateManager*)
+Q_DECLARE_METATYPE(AppVersionManager*)
