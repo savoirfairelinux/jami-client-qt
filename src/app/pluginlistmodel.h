@@ -31,7 +31,7 @@ public:
     enum Role { PluginName = Qt::UserRole + 1, PluginId, PluginIcon, IsLoaded };
     Q_ENUM(Role)
 
-    explicit PluginListModel(QObject* parent = nullptr);
+    explicit PluginListModel(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~PluginListModel();
 
     /*
