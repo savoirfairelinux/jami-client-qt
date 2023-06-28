@@ -19,22 +19,58 @@ ItemDelegate {
     property string pluginAuthor
     property string pluginShortDescription
     property int pluginStatus
+    property string installButtonStatus: JamiStrings.install
 
-    Rectangle {
-        id: rect
-        Scaffold {
+    background: null
+    Connections {
+        target: PluginStoreListModel
+        function onStatusChanged(id, status) {
+            if (root.pluginId !== id) {
+                return;
+            }
+            switch (status) {
+            case PluginStatus.INSTALLABLE:
+                installButtonStatus = JamiStrings.install;
+                break;
+            case PluginStatus.DOWNLOADING:
+                installButtonStatus = JamiStrings.cancel;
+                break;
+            case PluginStatus.FAILED:
+                installButtonStatus = JamiStrings.install;
+                break;
+            }
         }
-        color: Qt.rgba(0, 0, 0, 1)
+    }
+    layer {
+        enabled: hovered
+        effect: DropShadow {
+            z: -1
+            radius: 16
+            color: Qt.rgba(0, 0.34, 0.6, 0.16)
+            transparentBorder: true
+            samples: radius + 1
+            cached: true
+        }
+    }
+    Rectangle {
+        id: mask
         anchors.fill: parent
         radius: 15
     }
     Page {
         id: plugin
         anchors.fill: parent
+
+        layer {
+            enabled: true
+            effect: OpacityMask {
+                maskSource: mask
+            }
+        }
         header: Control {
             padding: 10
             background: Rectangle {
-                color: pluginBackground
+                color: Qt.lighter(pluginBackground, 2)
             }
             contentItem: ColumnLayout {
                 RowLayout {
@@ -44,19 +80,19 @@ ItemDelegate {
                         Layout.alignment: Qt.AlignRight
                         Layout.rightMargin: 8
                         Layout.topMargin: 8
-                        Layout.preferredHeight: 20
+                        Layout.preferredHeight: 35
                         TextMetrics {
                             id: installTextSize
                             font.weight: Font.Black
                             font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
                             font.capitalization: Font.Medium
-                            text: isDownloading() ? JamiStrings.cancel : JamiStrings.install
+                            text: installButtonStatus
                         }
+                        contentColorProvider: "black"
                         onClicked: installPlugin()
                         secondary: true
                         preferredWidth: installTextSize.width + JamiTheme.buttontextWizzardPadding
-                        text: isDownloading() ? JamiStrings.cancel : JamiStrings.install
-                        fontSize: 15
+                        text: installButtonStatus
                     }
                 }
                 RowLayout {
@@ -69,7 +105,7 @@ ItemDelegate {
                         }
                         width: 50
                         height: 50
-                        downloadUrl: PluginAdapter.baseUrl + "/icon/" + pluginId // TODO: check if the extension is an extension exist
+                        downloadUrl: PluginAdapter.baseUrl + "/icon/" + pluginId
                         fileExtension: '.svg'
                         localPath: UtilsAdapter.getCachePath() + '/plugins/' + pluginId + '.svg'
                     }
@@ -77,12 +113,12 @@ ItemDelegate {
                         Label {
                             text: pluginTitle
                             font.kerning: true
-                            color: JamiTheme.textColor
+                            color: "black"
                             font.pointSize: JamiTheme.settingsFontSize
                             verticalAlignment: Text.AlignVCenter
                         }
                         Label {
-                            color: JamiTheme.textColor
+                            color: "black"
                             text: pluginShortDescription
                             font.kerning: true
                             font.pointSize: JamiTheme.settingsFontSize
@@ -93,26 +129,36 @@ ItemDelegate {
             }
         }
         Rectangle {
+            id: contentContainer
             anchors.fill: parent
             color: JamiTheme.pluginViewBackgroundColor
         }
-        Flickable {
+        JamiFlickable {
             anchors.fill: parent
             anchors.margins: 10
-            contentWidth: description.width
             contentHeight: description.height
             clip: true
             flickableDirection: Flickable.VerticalFlick
-            ScrollBar.vertical: ScrollBar {
+            ScrollBar.vertical: JamiScrollBar {
                 id: scrollBar
                 policy: ScrollBar.AsNeeded
             }
-            Text {
-                id: description
+            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+            ColumnLayout {
                 width: parent.width
-                color: JamiTheme.textColor
-                text: pluginDescription
-                wrapMode: Text.WordWrap
+                Text {
+                    id: description
+                    Layout.preferredWidth: contentContainer.width
+                    font.pixelSize: JamiTheme.popuptextSize
+                    color: JamiTheme.textColor
+                    text: pluginDescription
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Qt.AlignLeft
+                    lineHeight: 1.5
+                    textFormat: Text.PlainText
+                    leftPadding: 40
+                    rightPadding: 40
+                }
             }
         }
         footer: Control {
@@ -129,32 +175,17 @@ ItemDelegate {
 
                 font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
+                font.italic: true
                 text: "By " + pluginAuthor
                 verticalAlignment: Text.AlignVCenter
             }
         }
-
-        DropShadow {
-            z: 2
-            visible: hovered
-            width: root.width
-            height: root.height
-            radius: 16
-            color: Qt.rgba(0, 0.34, 0.6, 0.16)
-            source: root
-            transparentBorder: true
-            samples: radius + 1
-            cached: true
-        }
     }
     function installPlugin() {
-        if (isDownloading()) {
+        if (pluginStatus === PluginStatus.DOWNLOADING) {
+            PluginAdapter.cancelDownload(pluginId);
             return;
         }
         PluginAdapter.installRemotePlugin(pluginId);
-    }
-
-    function isDownloading() {
-        return pluginStatus === PluginStatus.DOWNLOADING;
     }
 }
