@@ -19,6 +19,8 @@
 
 #include "connectivitymonitor.h"
 
+#include <QMap>
+#include <QDir>
 #include <QMetaEnum>
 #include <QtNetwork>
 
@@ -27,6 +29,7 @@ NetworkManager::NetworkManager(ConnectivityMonitor* cm, QObject* parent)
     , manager_(new QNetworkAccessManager(this))
     , connectivityMonitor_(cm)
     , lastConnectionState_(cm->isOnline())
+    , rng_(std::random_device {}())
 {
 #if QT_CONFIG(ssl)
     connect(manager_,
@@ -59,9 +62,120 @@ NetworkManager::sendGetRequest(const QUrl& url,
     QObject::connect(reply, &QNetworkReply::finished, this, [reply, onDoneCallback, this]() {
         if (reply->error() == QNetworkReply::NoError) {
             onDoneCallback(reply->readAll());
-        } else{
+        } else {
             Q_EMIT errorOccured(GetError::NETWORK_ERROR, reply->errorString());
-        }      
+        }
         reply->deleteLater();
     });
+}
+
+unsigned int
+NetworkManager::downloadFile(const QUrl& url,
+                             unsigned int replyId,
+                             std::function<void(bool, const QString&)> onDoneCallback,
+                             const QString& filePath)
+{
+    // If there is already a download in progress, return.
+    if ((downloadReplies_.value(replyId) != NULL || !(replyId == 0))
+        && downloadReplies_[replyId]->isRunning()) {
+        qWarning() << Q_FUNC_INFO << "Download already in progress";
+        return replyId;
+    }
+
+    // Clean up any previous download.
+    resetDownload(replyId);
+
+    // If the url is invalid, return.
+    if (!url.isValid()) {
+        Q_EMIT errorOccured(GetError::NETWORK_ERROR, "Invalid url");
+        return 0;
+    }
+
+    // If the file path is empty, return.
+    if (filePath.isEmpty()) {
+        Q_EMIT errorOccured(GetError::NETWORK_ERROR, "Invalid file path");
+        return 0;
+    }
+
+    // set the id for the request
+    std::uniform_int_distribution<unsigned int> dist(1, std::numeric_limits<unsigned int>::max());
+    unsigned int uuid = dist(rng_);
+
+    QDir dir;
+    if (!dir.exists(filePath)) {
+        dir.mkpath(filePath);
+    }
+
+    // Create the file. Return if it cannot be created.
+    QFileInfo fileInfo(url.path());
+    QString fileName = fileInfo.fileName();
+    files_[uuid] = new QFile(filePath + fileName + ".jpl");
+    if (!files_[uuid]->open(QIODevice::WriteOnly)) {
+        Q_EMIT errorOccured(GetError::ACCESS_DENIED);
+        files_.remove(uuid);
+        qWarning() << Q_FUNC_INFO << "Could not open file for writing";
+        return 0;
+    }
+
+    // Start the download.
+    QNetworkRequest request(url);
+
+    downloadReplies_[uuid] = manager_->get(request);
+
+    connect(downloadReplies_[uuid], &QNetworkReply::readyRead, this, [=]() {
+        if (files_[uuid] && files_[uuid]->isOpen()) {
+            files_[uuid]->write(downloadReplies_[uuid]->readAll());
+        }
+    });
+
+    connect(downloadReplies_[uuid],
+            &QNetworkReply::downloadProgress,
+            this,
+            [=](qint64 bytesReceived, qint64 bytesTotal) {
+                Q_EMIT downloadProgressChanged(bytesReceived, bytesTotal);
+            });
+
+    connect(downloadReplies_[uuid],
+            QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::errorOccurred),
+            this,
+            [this, uuid](QNetworkReply::NetworkError error) {
+                downloadReplies_[uuid]->disconnect();
+                resetDownload(uuid);
+                qWarning() << Q_FUNC_INFO
+                           << QMetaEnum::fromType<QNetworkReply::NetworkError>().valueToKey(error);
+                Q_EMIT errorOccured(GetError::NETWORK_ERROR);
+            });
+
+    connect(downloadReplies_[uuid], &QNetworkReply::finished, this, [this, uuid, onDoneCallback]() {
+        bool success = false;
+        QString errorMessage;
+        if (this->downloadReplies_[uuid]->error() == QNetworkReply::NoError) {
+            resetDownload(uuid);
+            success = true;
+        } else {
+            errorMessage = downloadReplies_[uuid]->errorString();
+            resetDownload(uuid);
+        }
+        onDoneCallback(success, errorMessage);
+        Q_EMIT downloadFinished(uuid);
+    });
+    Q_EMIT downloadStarted(uuid);
+    return uuid;
+}
+
+void
+NetworkManager::cancelDownload(unsigned int replyId)
+{
+    if (downloadReplies_.value(replyId) != NULL) {
+        Q_EMIT errorOccured(GetError::CANCELED);
+        downloadReplies_[replyId]->abort();
+        resetDownload(replyId);
+    }
+}
+
+void
+NetworkManager::resetDownload(unsigned int replyId)
+{
+    files_.remove(replyId);
+    downloadReplies_.remove(replyId);
 }
