@@ -430,7 +430,7 @@ Rectangle {
                                         }
                                         maxWidth: settingsSwarmItem.width / 2 - JamiTheme.contactMessageAvatarSize
 
-                                        font.pointSize: eText === JamiStrings.none ? JamiTheme.settingsFontSize : JamiTheme.smartlistItemInfoFontSize
+                                        font.pointSize: eText === JamiStrings.none ? JamiTheme.settingsFontSize : JamiTheme.smallFontSize
                                         font.weight: eText === JamiStrings.none ? Font.Medium : Font.Normal
                                         color: JamiTheme.primaryForegroundColor
                                         font.kerning: true

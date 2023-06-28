@@ -169,7 +169,7 @@ Rectangle {
             Layout.preferredWidth: root.width
             Layout.topMargin: 8
 
-            font.pointSize: JamiTheme.smartlistItemFontSize
+            font.pointSize: JamiTheme.mediumFontSize
 
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -238,7 +238,7 @@ Rectangle {
                         Layout.preferredWidth: JamiTheme.callButtonPreferredSize
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                        font.pointSize: JamiTheme.smartlistItemInfoFontSize
+                        font.pointSize: JamiTheme.smallFontSize
                         font.kerning: true
                         color: actionButton.hovered ? JamiTheme.whiteColor : JamiTheme.whiteColorTransparent
 

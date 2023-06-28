@@ -139,7 +139,7 @@ ItemDelegate {
                 elide: Text.ElideMiddle
                 text: Title === undefined ? "" : Title
                 textFormat: TextEdit.PlainText
-                font.pointSize: JamiTheme.smartlistItemFontSize
+                font.pointSize: JamiTheme.mediumFontSize
                 font.weight: UnreadMessagesCount ? Font.Bold : Font.Normal
                 color: JamiTheme.textColor
             }
@@ -157,7 +157,7 @@ ItemDelegate {
                     Layout.alignment: Qt.AlignVCenter
                     text: lastInteractionFormattedDate === undefined ? "" : lastInteractionFormattedDate
                     textFormat: TextEdit.PlainText
-                    font.pointSize: JamiTheme.smartlistItemInfoFontSize
+                    font.pointSize: JamiTheme.smallFontSize
                     font.weight: UnreadMessagesCount ? Font.DemiBold : Font.Normal
                     color: JamiTheme.textColor
                 }
@@ -172,7 +172,7 @@ ItemDelegate {
                               Draft :
                               (LastInteraction === undefined ? "" : LastInteraction)
                     textFormat: TextEdit.PlainText
-                    font.pointSize: JamiTheme.smartlistItemInfoFontSize
+                    font.pointSize: JamiTheme.smallFontSize
                     font.weight: UnreadMessagesCount ? Font.Normal : Font.Light
                     font.hintingPreference: Font.PreferNoHinting
                     maximumLineCount: 1
@@ -186,7 +186,7 @@ ItemDelegate {
                 text: JamiStrings.banned
                 textFormat: TextEdit.PlainText
                 visible: IsBanned
-                font.pointSize: JamiTheme.smartlistItemFontSize
+                font.pointSize: JamiTheme.mediumFontSize
                 font.weight: Font.Bold
                 color: JamiTheme.textColor
             }
@@ -232,7 +232,7 @@ ItemDelegate {
                 Layout.alignment: Qt.AlignRight
                 text: InCall ? UtilsAdapter.getCallStatusStr(CallState) : ""
                 textFormat: TextEdit.PlainText
-                font.pointSize: JamiTheme.smartlistItemInfoFontSize
+                font.pointSize: JamiTheme.smallFontSize
                 font.weight: Font.Medium
                 color: JamiTheme.textColor
             }
