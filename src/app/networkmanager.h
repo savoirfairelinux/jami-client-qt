@@ -41,9 +41,10 @@ public:
     void sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)>&& onDoneCallback);
 
     int downloadFile(const QUrl& url,
-                     unsigned int replyId,
+                     int replyId,
                      std::function<void(bool, const QString&)>&& onDoneCallback,
-                     const QString& filePath);
+                     const QString& filePath,
+                     const QString& extension = "");
     void resetDownload(int replyId);
     void cancelDownload(int replyId);
 Q_SIGNALS:
