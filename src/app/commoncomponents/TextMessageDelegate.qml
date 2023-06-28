@@ -86,7 +86,7 @@ SBSMessageBase {
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
-            font.pixelSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.emojiBubbleSize
+            font.pointSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.smartlistItemFontSize
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
             textFormat: Text.RichText

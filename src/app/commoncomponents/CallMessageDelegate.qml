@@ -84,7 +84,7 @@ SBSMessageBase {
                 }
                 horizontalAlignment: Qt.AlignHCenter
 
-                font.pixelSize: JamiTheme.emojiBubbleSize
+                font.pointSize: JamiTheme.smartlistItemFontSize
                 font.hintingPreference: Font.PreferNoHinting
                 font.bold: true
                 renderType: Text.NativeRendering

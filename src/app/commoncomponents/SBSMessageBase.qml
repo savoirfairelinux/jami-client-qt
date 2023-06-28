@@ -90,13 +90,14 @@ Control {
             id: usernameblock
             Layout.preferredHeight: (seq === MsgSeq.first || seq === MsgSeq.single) ? 10 : 0
             visible: !isReply
+            Layout.topMargin: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing ? 20 : 0
 
             Label {
                 id: username
                 text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
                 font.bold: true
                 visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
-                font.pixelSize: JamiTheme.usernameBlockFontSize
+                font.pointSize: JamiTheme.smartlistItemInfoFontSize
                 color: JamiTheme.chatviewUsernameColor
                 lineHeight: JamiTheme.usernameBlockLineHeight
                 leftPadding: JamiTheme.usernameBlockPadding
