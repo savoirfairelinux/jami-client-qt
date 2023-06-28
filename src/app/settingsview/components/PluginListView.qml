@@ -22,119 +22,109 @@ import Qt.labs.platform
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import Qt5Compat.GraphicalEffects
 import "../../commoncomponents"
 
 Rectangle {
     id: root
-
-    property string activePlugin: ""
-
-    visible: false
+    property int count: pluginLoader.item !== undefined ? pluginLoader.item.count : 0
+    property int currentIndex: {
+        if (pluginLoader.item !== undefined) {
+            return -1;
+        } else {
+            if (pluginListView.currentIndex === null) {
+                return -1;
+            }
+            return pluginListView.currentIndex;
+        }
+    }
+    visible: PluginAdapter.isEnabled && count
     color: JamiTheme.secondaryBackgroundColor
 
     ColumnLayout {
         anchors.left: root.left
         anchors.right: root.right
         anchors.bottomMargin: 20
-
-        Label {
+        RowLayout {
+            Layout.preferredHeight: JamiTheme.settingsHeaderpreferredHeight
             Layout.fillWidth: true
-            Layout.preferredHeight: 25
+            Layout.alignment: Qt.AlignRight
+            Label {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 25
 
-            text: JamiStrings.installedPlugins
-            font.pointSize: JamiTheme.headerFontSize
-            font.kerning: true
-            color: JamiTheme.textColor
+                text: JamiStrings.installed
+                font.pointSize: JamiTheme.headerFontSize
+                font.kerning: true
+                color: JamiTheme.textColor
 
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-        }
-
-        MaterialButton {
-            id: disableAll
-            TextMetrics {
-                id: disableTextSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                font.capitalization: Font.AllUppercase
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+            }
+            HeaderToggleSwitch {
+                labelText: "auto update"
+                tooltipText: "auto update"
+                checked: true
+                onSwitchToggled: {
+                    PluginAdapter.setAutoUpdate(checked);
+                }
+            }
+            MaterialButton {
+                id: disableAll
+                radius: JamiTheme.chatViewHeaderButtonRadius
+                buttontextHeightMargin: 0.0
+                TextMetrics {
+                    id: disableTextSize
+                    font.weight: Font.Bold
+                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                    font.capitalization: Font.AllUppercase
+                    text: JamiStrings.disableAll
+                }
+                secondary: true
+                preferredWidth: disableTextSize.width + JamiTheme.buttontextWizzardPadding
                 text: JamiStrings.disableAll
-            }
-            secondary: true
-            preferredWidth: disableTextSize.width
-            text: JamiStrings.disableAll
-            fontSize: 15
-        }
-
-        MaterialButton {
-            id: installButton
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize / 2
-
-            preferredWidth: JamiTheme.preferredFieldWidth
-            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-            color: JamiTheme.buttonTintedBlack
-            hoveredColor: JamiTheme.buttonTintedBlackHovered
-            pressedColor: JamiTheme.buttonTintedBlackPressed
-            secondary: true
-            toolTipText: JamiStrings.addNewPlugin
-
-            iconSource: JamiResources.round_add_24dp_svg
-
-            text: JamiStrings.installPlugin
-
-            onClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                        "title": JamiStrings.selectPluginInstall,
-                        "fileMode": JamiFileDialog.OpenFile,
-                        "folder": StandardPaths.writableLocation(StandardPaths.DownloadLocation),
-                        "nameFilters": [JamiStrings.pluginFiles, JamiStrings.allFiles]
-                    });
-                dlg.fileAccepted.connect(function (file) {
-                        var url = UtilsAdapter.getAbsPath(file.toString());
-                        PluginModel.installPlugin(url, true);
-                        installedPluginsModel.addPlugin();
-                    });
+                fontSize: JamiTheme.wizardViewButtonFontPixelSize
+                onClicked: PluginListModel.disableAllPlugins()
             }
         }
-
-        ListView {
-            id: pluginList
-
+        Loader {
+            id: pluginLoader
             Layout.fillWidth: true
-            Layout.bottomMargin: 10
-            Layout.preferredHeight: childrenRect.height
-            clip: true
+            Layout.preferredHeight: pluginLoader.item.contentHeight
+            Layout.topMargin: 10
+            active: true
+            asynchronous: true
 
-            model: PluginListModel {
-                id: installedPluginsModel
-
-                lrcInstance: LRCInstance
-                onLrcInstanceChanged: {
-                    this.reset();
+            sourceComponent: ListView {
+                id: pluginListView
+                clip: true
+                model: PluginListModel
+                spacing: 10
+                currentIndex: -1
+                onCurrentIndexChanged: {
+                    root.currentIndex = currentIndex;
                 }
-            }
+                delegate: PluginItemDelegate {
+                    id: pluginItemDelegate
+                    width: pluginLoader.width
+                    implicitHeight: 50
 
-            delegate: PluginItemDelegate {
-                id: pluginItemDelegate
-
-                width: pluginList.width
-                implicitHeight: 50
-
-                pluginName: PluginName
-                pluginId: PluginId
-                pluginIcon: PluginIcon
-                isLoaded: IsLoaded
-                activeId: root.activePlugin
-
-                background: Rectangle {
-                    anchors.fill: parent
-                    color: "transparent"
+                    pluginName: PluginName
+                    pluginId: PluginId
+                    pluginIcon: PluginIcon
+                    pluginStatus: Status
+                    isLoaded: IsLoaded
+                    HoverHandler {
+                        id: pluginHover
+                        target: parent
+                        enabled: true
+                    }
                 }
-
-                onSettingsClicked: {
-                    root.activePlugin = root.activePlugin === pluginId ? "" : pluginId;
+                Connections {
+                    target: pluginPreferencesView
+                    function onClosed() {
+                        pluginListView.currentIndex = -1;
+                    }
                 }
             }
         }
