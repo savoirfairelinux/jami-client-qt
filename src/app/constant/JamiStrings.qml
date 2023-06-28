@@ -660,6 +660,7 @@ Item {
     property string enable: qsTr("Enable")
     property string pluginPreferences: qsTr("Preferences")
     property string reset: qsTr("Reset")
+    property string disableAll: qsTr("Disable all")
     property string uninstall: qsTr("Uninstall")
     property string resetPreferences: qsTr("Reset Preferences")
     property string selectPluginInstall: qsTr("Select a plugin to install")
