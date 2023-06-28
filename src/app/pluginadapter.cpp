@@ -18,10 +18,12 @@
 
 #include "pluginadapter.h"
 
+#include "networkmanager.h"
 #include "lrcinstance.h"
 
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
+
 {
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
