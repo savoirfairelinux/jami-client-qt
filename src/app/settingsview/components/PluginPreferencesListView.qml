@@ -25,9 +25,9 @@ import "../../commoncomponents"
 
 Rectangle {
     id: root
-
     property string accountId: ""
     required property string pluginId
+    width: parent.width
 
     property int count: pluginPreferenceView.count + pluginPreferenceViewCategory.count
 
@@ -40,7 +40,6 @@ Rectangle {
     }
 
     color: "transparent"
-
     Connections {
         target: LRCInstance
 
@@ -56,8 +55,6 @@ Rectangle {
     property var categories: PluginAdapter.getPluginPreferencesCategories(pluginId, accountId)
     property string generalCategory: categories.length <= 1 ? "all" : ""
 
-    visible: false
-
     function setPreference(pluginId, preferenceKey, preferenceNewValue) {
         PluginModel.setPluginPreference(pluginId, accountId, preferenceKey, preferenceNewValue);
     }
@@ -66,7 +63,7 @@ Rectangle {
         anchors.left: root.left
         anchors.right: root.right
 
-        Rectangle {
+        Item {
             id: prefsByCategory
 
             visible: categories.length > 1
@@ -74,7 +71,6 @@ Rectangle {
             Layout.topMargin: 24
             Layout.fillWidth: true
             implicitHeight: childrenRect.height
-            color: JamiTheme.backgroundColor
 
             ColumnLayout {
                 anchors.left: parent.left
@@ -263,7 +259,7 @@ Rectangle {
 
         MaterialButton {
             id: resetButton
-
+            visible: count > 0
             Layout.alignment: Qt.AlignCenter
 
             preferredWidth: JamiTheme.preferredFieldWidth
@@ -273,8 +269,6 @@ Rectangle {
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
             secondary: true
-
-            iconSource: JamiResources.settings_backup_restore_24dp_svg
 
             text: JamiStrings.reset
 
