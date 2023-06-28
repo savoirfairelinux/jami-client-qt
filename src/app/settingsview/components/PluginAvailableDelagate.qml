@@ -28,114 +28,191 @@ import "../../mainview/components"
 ItemDelegate {
     id: root
     // Ici qu'on doit mettre les propriétés du plugin avec l'API?
-    property string pluginId
-    property string pluginTitle
+    property string pluginName
     property string pluginIcon
     property string pluginBackground
     property string pluginDescription
     property string pluginAuthor
     property string pluginShortDescription
     property int pluginStatus
+    property string installButtonStatus: {
+        switch (pluginStatus) {
+        case PluginStatus.DOWNLOADING:
+            return JamiStrings.cancel;
+        case PluginStatus.INSTALLABLE:
+            return JamiStrings.install;
+        case PluginStatus.INSTALLING:
+            return JamiStrings.installing;
+        default:
+            return JamiStrings.install;
+        }
+    }
+    onPluginStatusChanged: {
+        if (pluginStatus === PluginStatus.FAILED) {
+            presentErrorMessage();
+        }
+    }
+
+    background: null
+
+    function presentErrorMessage() {
+        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                "title": JamiStrings.installationFailed,
+                "infoText": JamiStrings.pluginInstallationFailed,
+                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonTitles": [JamiStrings.optionOk],
+                "buttonCallBacks": []
+            });
+    }
 
     Rectangle {
-        id: rect
-        Scaffold {
-        }
-        color: Qt.rgba(0, 0, 0, 1)
+        id: mask
         anchors.fill: parent
-        radius: 15
+        radius: 5
     }
     Page {
         id: plugin
         anchors.fill: parent
+        layer {
+            enabled: true
+            effect: OpacityMask {
+                maskSource: mask
+            }
+        }
         header: Control {
-            padding: 10
+            leftPadding: 20
+            rightPadding: 5
+            bottomPadding: 20
+            topPadding: 5
             background: Rectangle {
-                color: pluginBackground
+                id: headerBackground
+                color: hovered ? Qt.lighter(pluginBackground, 1.9) : Qt.lighter(pluginBackground, 2)
             }
             contentItem: ColumnLayout {
-                RowLayout {
+                SpinningAnimation {
+                    id: buttonContainer
+                    visible: true
                     Layout.alignment: Qt.AlignTop | Qt.AlignRight
+                    Layout.rightMargin: 8
+                    Layout.topMargin: 2
+                    Layout.preferredHeight: install.height
+                    Layout.preferredWidth: install.width
+                    color: "black"
+                    outerCutRadius: install.radius
+                    spinningAnimationDuration: 5000
+                    mode: {
+                        if (pluginStatus === PluginStatus.INSTALLABLE || pluginStatus === PluginStatus.FAILED) {
+                            SpinningAnimation.Mode.Disabled;
+                        } else {
+                            SpinningAnimation.Mode.Radial;
+                        }
+                    }
+
                     MaterialButton {
                         id: install
-                        Layout.alignment: Qt.AlignRight
-                        Layout.rightMargin: 8
-                        Layout.topMargin: 8
-                        Layout.preferredHeight: 20
+                        hoverEnabled: pluginStatus !== PluginStatus.INSTALLING
+                        secHoveredColor: Qt.darker(headerBackground.color, 1.1)
+                        buttontextHeightMargin: 10.0
+                        radius: JamiTheme.chatViewHeaderButtonRadius
                         TextMetrics {
                             id: installTextSize
                             font.weight: Font.Black
                             font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
                             font.capitalization: Font.Medium
-                            text: isDownloading() ? JamiStrings.cancel : JamiStrings.install
+                            text: install.text
                         }
+                        contentColorProvider: "black"
                         onClicked: installPlugin()
                         secondary: true
                         preferredWidth: installTextSize.width + JamiTheme.buttontextWizzardPadding
-                        text: isDownloading() ? JamiStrings.cancel : JamiStrings.install
-                        fontSize: 15
+                        text: {
+                            switch (pluginStatus) {
+                            case PluginStatus.DOWNLOADING:
+                                return JamiStrings.cancel;
+                            case PluginStatus.INSTALLABLE:
+                                return JamiStrings.install;
+                            case PluginStatus.INSTALLING:
+                                return JamiStrings.installing;
+                            default:
+                                return JamiStrings.install;
+                            }
+                        }
                     }
                 }
                 RowLayout {
                     spacing: 10
-
                     CachedImage {
                         id: icon
                         Component.onCompleted: {
-                            pluginBackground = PluginStoreListModel.computeAverageColorOfImage("file://" + UtilsAdapter.getCachePath() + '/plugins/' + pluginId + '.svg');
+                            pluginBackground = PluginStoreListModel.computeAverageColorOfImage("file://" + UtilsAdapter.getCachePath() + '/plugins/' + pluginName + '.svg');
                         }
-                        width: 50
-                        height: 50
-                        downloadUrl: PluginAdapter.baseUrl + "/icon/" + pluginId // TODO: check if the extension is an extension exist
+                        width: 55
+                        height: 55
+                        downloadUrl: PluginAdapter.baseUrl + "/icon/" + pluginName
                         fileExtension: '.svg'
-                        localPath: UtilsAdapter.getCachePath() + '/plugins/' + pluginId + '.svg'
+                        localPath: UtilsAdapter.getCachePath() + '/plugins/' + pluginName + '.svg'
                     }
                     ColumnLayout {
+                        width: parent.width
                         Label {
-                            text: pluginTitle
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignHCenter
+                            text: pluginName
                             font.kerning: true
-                            color: JamiTheme.textColor
-                            font.pointSize: JamiTheme.settingsFontSize
-                            verticalAlignment: Text.AlignVCenter
+                            color: "black"
+                            font.pointSize: JamiTheme.tinyCreditsTextSize
+                            textFormat: Text.PlainText
+                            wrapMode: Text.WrapAnywhere
                         }
-                        Label {
-                            color: JamiTheme.textColor
-                            text: pluginShortDescription
-                            font.kerning: true
-                            font.pointSize: JamiTheme.settingsFontSize
-                            verticalAlignment: Text.AlignVCenter
-                        }
+                        //                        TODO: add short description for each plugin
+                        //                        Label {
+                        //                            Layout.fillWidth: true
+                        //                            color: "black"
+                        //                            text: pluginShortDescription
+                        //                            font.pointSize: JamiTheme.settingsFontSize
+                        //                            textFormat: Text.PlainText
+                        //                            wrapMode: Text.WordWrap
+                        //                        }
                     }
                 }
             }
         }
         Rectangle {
+            id: contentContainer
             anchors.fill: parent
-            color: JamiTheme.pluginViewBackgroundColor
+            color: hovered ? JamiTheme.smartListHoveredColor : JamiTheme.pluginViewBackgroundColor
         }
-        Flickable {
+        JamiFlickable {
             anchors.fill: parent
-            anchors.margins: 10
-            contentWidth: description.width
+            anchors.margins: 20
             contentHeight: description.height
             clip: true
             flickableDirection: Flickable.VerticalFlick
-            ScrollBar.vertical: ScrollBar {
+            ScrollBar.vertical: JamiScrollBar {
                 id: scrollBar
                 policy: ScrollBar.AsNeeded
             }
-            Text {
-                id: description
+            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+            ColumnLayout {
                 width: parent.width
-                color: JamiTheme.textColor
-                text: pluginDescription
-                wrapMode: Text.WordWrap
+                Text {
+                    id: description
+                    Layout.preferredWidth: contentContainer.width
+                    font.pixelSize: JamiTheme.popuptextSize
+                    color: JamiTheme.textColor
+                    text: pluginDescription
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Qt.AlignLeft
+                    lineHeight: 1.5
+                    textFormat: Text.PlainText
+                    rightPadding: 40
+                }
             }
         }
         footer: Control {
-            padding: 10
+            padding: 20
             background: Rectangle {
-                color: JamiTheme.pluginViewBackgroundColor
+                color: hovered ? JamiTheme.smartListHoveredColor : JamiTheme.pluginViewBackgroundColor
             }
             contentItem: Text {
                 Layout.fillWidth: true
@@ -146,32 +223,26 @@ ItemDelegate {
 
                 font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
+                font.italic: true
                 text: "By " + pluginAuthor
+                wrapMode: Text.WordWrap
                 verticalAlignment: Text.AlignVCenter
             }
         }
-
-        DropShadow {
-            z: 2
-            visible: hovered
-            width: root.width
-            height: root.height
-            radius: 16
-            color: Qt.rgba(0, 0.34, 0.6, 0.16)
-            source: root
-            transparentBorder: true
-            samples: radius + 1
-            cached: true
-        }
     }
     function installPlugin() {
-        if (isDownloading()) {
-            return;
+        switch (pluginStatus) {
+        case PluginStatus.DOWNLOADING:
+            PluginAdapter.cancelDownload(pluginName);
+            break;
+        case PluginStatus.INSTALLABLE:
+            PluginAdapter.installRemotePlugin(pluginName);
+            break;
+        case PluginStatus.FAILED:
+            PluginAdapter.installRemotePlugin(pluginName);
+            break;
+        case PluginStatus.INSTALLING:
+            break;
         }
-        PluginAdapter.installRemotePlugin(pluginId);
-    }
-
-    function isDownloading() {
-        return pluginStatus === PluginStatus.DOWNLOADING;
     }
 }
