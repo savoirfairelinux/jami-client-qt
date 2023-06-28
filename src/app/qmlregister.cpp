@@ -56,6 +56,7 @@
 #include "mainapplication.h"
 #include "namedirectory.h"
 #include "pluginlistmodel.h"
+#include "pluginversionmanager.h"
 #include "appversionmanager.h"
 #include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
@@ -188,6 +189,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_MODELS, ContactList::staticMetaObject, "ContactList");
     QML_REGISTERNAMESPACE(NS_MODELS, FilesToSend::staticMetaObject, "FilesToSend");
     QML_REGISTERNAMESPACE(NS_MODELS, MessageList::staticMetaObject, "MessageList");
+    QML_REGISTERNAMESPACE(NS_MODELS, PluginStatus::staticMetaObject, "PluginStatus");
 
     // Qml singleton components
     QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/JamiTheme.qml", JamiTheme);
