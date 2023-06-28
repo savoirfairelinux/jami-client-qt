@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fb6dde1_619d7dac",
+        "filename": "src/libclient/api/lrc.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-28T17:34:00Z",
+      "side": 1,
+      "message": "MuteJamid is used elsewhere :grimacing:",
+      "range": {
+        "startLine": 50,
+        "startChar": 76,
+        "endLine": 50,
+        "endChar": 87
+      },
+      "revId": "8dbd5b4f3e064db0765a685aeb7e1b35351ae9b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
