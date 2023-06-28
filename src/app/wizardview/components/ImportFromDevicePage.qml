@@ -39,7 +39,7 @@ Rectangle {
         connectBtn.spinnerTriggered = false;
     }
 
-    function errorOccured(errorMessage) {
+    function errorOccurred(errorMessage) {
         errorText = errorMessage;
         connectBtn.spinnerTriggered = false;
     }

@@ -26,7 +26,7 @@ ImageDownloader::ImageDownloader(ConnectivityMonitor* cm, QObject* parent)
 void
 ImageDownloader::downloadImage(const QUrl& url, const QString& localPath)
 {
-    Utils::oneShotConnect(this, &NetworkManager::errorOccured, this, [this, localPath]() {
+    Utils::oneShotConnect(this, &NetworkManager::errorOccurred, this, [this, localPath]() {
         onDownloadImageFinished({}, localPath);
     });
 
