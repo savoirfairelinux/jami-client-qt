@@ -29,7 +29,6 @@ Rectangle {
 
     property string activePlugin: ""
 
-    visible: false
     color: JamiTheme.secondaryBackgroundColor
 
     ColumnLayout {
@@ -48,6 +47,21 @@ Rectangle {
 
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
+        }
+
+        MaterialButton {
+            id: disableAll
+            TextMetrics {
+                id: disableTextSize
+                font.weight: Font.Bold
+                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                font.capitalization: Font.AllUppercase
+                text: JamiStrings.disableAll
+            }
+            secondary: true
+            preferredWidth: disableTextSize.width
+            text: JamiStrings.disableAll
+            fontSize: 15
         }
 
         MaterialButton {
@@ -88,7 +102,6 @@ Rectangle {
             id: pluginList
 
             Layout.fillWidth: true
-            Layout.minimumHeight: 0
             Layout.bottomMargin: 10
             Layout.preferredHeight: childrenRect.height
             clip: true
