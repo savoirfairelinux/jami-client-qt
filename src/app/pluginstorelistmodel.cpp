@@ -41,14 +41,10 @@ PluginStoreListModel::data(const QModelIndex& index, int role) const
     }
     auto plugin = plugins_.at(index.row());
     switch (role) {
-    case Role::Id:
-        return QVariant(plugin["id"].toString());
-    case Role::Title:
+    case Role::Name:
         return QVariant(plugin["name"].toString());
     case Role::IconPath:
         return QVariant(plugin["iconPath"].toString());
-    case Role::Background:
-        return QVariant(plugin["background"].toString());
     case Role::Description:
         return QVariant(plugin["description"].toString());
     case Role::Author:
@@ -100,7 +96,7 @@ PluginStoreListModel::removePlugin(const QString& pluginId)
 {
     auto index = 0;
     for (auto& plugin : plugins_) {
-        if (plugin["id"].toString() == pluginId) {
+        if (plugin["name"].toString() == pluginId) {
             beginRemoveRows(QModelIndex(), index, index);
             plugins_.removeAt(index);
             endRemoveRows();
@@ -115,7 +111,7 @@ PluginStoreListModel::updatePlugin(const QVariantMap& plugin)
 {
     auto index = 0;
     for (auto& p : plugins_) {
-        if (p["id"].toString() == plugin["id"].toString()) {
+        if (p["name"].toString() == plugin["name"].toString()) {
             p = plugin;
             Q_EMIT dataChanged(createIndex(index, 0), createIndex(index, 0));
             return;
@@ -152,7 +148,7 @@ PluginStoreListModel::computeAverageColorOfImage(const QString& file)
                 blue += pixelColor.blue();
             }
         }
-        return QColor(red / nPixels, green / nPixels, blue / nPixels, 70);
+        return QColor(red / nPixels, green / nPixels, blue / nPixels);
     } else {
         // Return an invalid color.
         return QColor();
@@ -164,7 +160,7 @@ PluginStoreListModel::onVersionStatusChanged(const QString& pluginId, PluginStat
 {
     auto plugin = QVariantMap();
     for (auto& p : plugins_) {
-        if (p["id"].toString() == pluginId) {
+        if (p["name"].toString() == pluginId) {
             plugin = p;
             break;
         }
@@ -183,7 +179,7 @@ PluginStoreListModel::onVersionStatusChanged(const QString& pluginId, PluginStat
         return;
     }
     plugin["status"] = status;
-
+    Q_EMIT statusChanged(pluginId, status);
     switch (status) {
     case PluginStatus::INSTALLED:
         removePlugin(pluginId);

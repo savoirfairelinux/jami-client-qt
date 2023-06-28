@@ -103,7 +103,7 @@ public:
     void installRemotePlugin(const QString& pluginId)
     {
         parent_.downloadFile(
-            QUrl(parent_.baseUrl + "/download/" + pluginId),
+            QUrl(parent_.baseUrl + "/download/" + Utils::getPlatformString() + "/" + pluginId),
             pluginId,
             0,
             [this, pluginId](bool success, const QString& error) {

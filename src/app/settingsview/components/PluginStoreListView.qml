@@ -8,6 +8,7 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 ColumnLayout {
+    property bool storeAvailable: true
     function installPlugin() {
         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
                 "title": JamiStrings.selectPluginInstall,
@@ -21,7 +22,15 @@ ColumnLayout {
                 PluginListModel.addPlugin();
             });
     }
+    Component.onCompleted: PluginAdapter.getPluginsFromStore()
+    Connections {
+        target: PluginAdapter
+        function onStoreNotAvailable() {
+            storeAvailable = false;
+        }
+    }
     RowLayout {
+        Layout.bottomMargin: 10
         Layout.fillWidth: true
         Layout.fillHeight: true
         Label {
@@ -49,39 +58,52 @@ ColumnLayout {
                     text: JamiStrings.installManually
                 }
                 secondary: true
-                preferredWidth: installManuallyTextSize.width
+                preferredWidth: installManuallyTextSize.width + JamiTheme.buttontextWizzardPadding
                 text: JamiStrings.installManually
                 toolTipText: JamiStrings.installManually
-                fontSize: 15
+                fontSize: JamiTheme.popuptextSize
                 onClicked: installPlugin()
             }
         }
     }
-
-    Flow {
-        id: pluginStoreList
-
+    Loader {
+        active: storeAvailable
+        asynchronous: true
         Layout.fillWidth: true
-        spacing: 20
-        Layout.preferredHeight: childrenRect.height
-        clip: true
-        Repeater {
-            model: PluginStoreListModel
+        Layout.alignment: Qt.AlignHCenter
+        Layout.preferredHeight: active ? childrenRect.height : 0
+        sourceComponent: Flow {
+            id: pluginStoreList
+            spacing: 20
+            Repeater {
+                model: PluginStoreListModel
 
-            delegate: PluginAvailableDelagate {
-                id: pluginItemDelegate
-
-                width: 350
-                height: 400
-                pluginId: Id
-                pluginTitle: Title
-                pluginIcon: IconPath
-                pluginBackground: Background === '' ? JamiTheme.backgroundColor : Background
-                pluginDescription: Description
-                pluginAuthor: Author
-                pluginShortDescription: ""
-                pluginStatus: Status
+                delegate: PluginAvailableDelagate {
+                    id: pluginItemDelegate
+                    width: 350
+                    height: 400
+                    pluginName: Name
+                    pluginIcon: IconPath
+                    pluginBackground: Background === '' ? JamiTheme.backgroundColor : Background
+                    pluginDescription: Description
+                    pluginAuthor: Author
+                    pluginShortDescription: ""
+                    pluginStatus: Status
+                }
             }
+        }
+    }
+    Loader {
+        Layout.fillWidth: true
+        asynchronous: true
+        Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        Layout.preferredHeight: active ? JamiTheme.bigFontSize : 0
+        active: !storeAvailable
+        sourceComponent: Text {
+            font.bold: true
+            font.pixelSize: JamiTheme.bigFontSize
+            horizontalAlignment: Text.AlignHCenter
+            text: JamiStrings.pluginStoreNotAvailable
         }
     }
 }

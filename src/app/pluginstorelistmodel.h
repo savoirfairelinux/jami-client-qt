@@ -24,8 +24,7 @@ class QColor;
 class QString;
 
 #define PLUGINSTORE_ROLES \
-    X(Id) \
-    X(Title) \
+    X(Name) \
     X(IconPath) \
     X(Background) \
     X(Description) \
@@ -64,7 +63,7 @@ public:
 
 Q_SIGNALS:
     void pluginAdded(const QString& pluginId);
-
+    void statusChanged(const QString& pluginId, PluginStatus::Role status);
 public Q_SLOTS:
     void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
 
