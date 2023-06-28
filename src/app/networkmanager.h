@@ -20,7 +20,10 @@
 #include <QObject>
 #include <QFile>
 #include <QSslError>
+#include <QMap>
+#include <QString>
 #include <QNetworkReply>
+#include <random>
 
 class QNetworkAccessManager;
 class ConnectivityMonitor;
@@ -35,10 +38,19 @@ public:
     enum GetError { DISCONNECTED, NETWORK_ERROR, ACCESS_DENIED, SSL_ERROR, CANCELED };
     Q_ENUM(GetError)
 
-    void sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)> onDoneCallback);
+    void sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)>&& onDoneCallback);
 
+    int downloadFile(const QUrl& url,
+                     unsigned int replyId,
+                     std::function<void(bool, const QString&)>&& onDoneCallback,
+                     const QString& filePath);
+    void resetDownload(int replyId);
+    void cancelDownload(int replyId);
 Q_SIGNALS:
-    void errorOccured(GetError error, const QString& msg = {});
+    void errorOccurred(GetError error, const QString& msg = {});
+    void downloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
+    void downloadFinished(int replyId);
+    void downloadStarted(int replyId);
 
 protected:
     QNetworkAccessManager* manager_;
@@ -46,5 +58,8 @@ protected:
 private:
     ConnectivityMonitor* connectivityMonitor_;
     bool lastConnectionState_;
+    QMap<int, QNetworkReply*> downloadReplies_ {};
+    QMap<int, QFile*> files_ {};
+    std::mt19937 rng_;
 };
 Q_DECLARE_METATYPE(NetworkManager*)
