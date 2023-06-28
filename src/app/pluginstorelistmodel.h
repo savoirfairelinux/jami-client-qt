@@ -18,6 +18,7 @@
 #pragma once
 
 #include "abstractlistmodelbase.h"
+#include "pluginversionmanager.h"
 
 class QColor;
 class QString;
@@ -28,6 +29,7 @@ class QString;
     X(IconPath) \
     X(Background) \
     X(Description) \
+    X(Status) \
     X(Author)
 
 namespace PluginStoreList {
@@ -59,6 +61,12 @@ public:
     void removePlugin(const QString& pluginId);
     void updatePlugin(const QVariantMap& plugin);
     Q_INVOKABLE QColor computeAverageColorOfImage(const QString& fileUrl);
+
+Q_SIGNALS:
+    void pluginAdded(const QString& pluginId);
+
+public Q_SLOTS:
+    void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
 
 private:
     using Role = PluginStoreList::Role;

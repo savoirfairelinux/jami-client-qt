@@ -22,13 +22,13 @@
 #include "pluginlistmodel.h"
 #include "pluginhandlerlistmodel.h"
 #include "pluginlistpreferencemodel.h"
+#include "pluginversionmanager.h"
 #include "preferenceitemlistmodel.h"
 
 #include <QObject>
 #include <QSortFilterProxyModel>
 #include <QString>
 
-class PluginVersionManager;
 class PluginStoreListModel;
 
 class PluginAdapter final : public QmlAdapterBase
@@ -39,16 +39,6 @@ class PluginAdapter final : public QmlAdapterBase
     QML_PROPERTY(bool, isEnabled)
 
 public:
-    enum PluginStatus {
-        INSTALLABLE,
-        DOWNLOADING,
-        DOWNLOADED,
-        INSTALLING,
-        INSTALLED,
-        FAILED,
-        UPDATABLE
-    };
-    Q_ENUM(PluginStatus)
     explicit PluginAdapter(LRCInstance* instance,
                            QObject* parent = nullptr,
                            QString baseUrl = "http://127.0.0.1:3000");
@@ -57,9 +47,8 @@ public:
     Q_INVOKABLE void installRemotePlugin(const QString& pluginId);
     ~PluginAdapter() = default;
     Q_INVOKABLE QString baseUrl;
-
-Q_SIGNALS:
-    void changedStatus(QString pluginId, PluginStatus status);
+    Q_INVOKABLE void checkVersionStatus(const QString& pluginId);
+    Q_INVOKABLE bool isAutoUpdaterEnabled();
 
 protected:
     Q_INVOKABLE QVariant getMediaHandlerSelectableModel(const QString& callId);
