@@ -142,3 +142,39 @@ PluginListModel::filterPlugins(VectorString& list) const
                               }),
                list.cend());
 }
+
+void
+PluginListModel::onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status)
+{
+    auto pluginIndex = -1;
+    for (auto& p : installedPlugins_) {
+        auto details = lrcInstance_->pluginModel().getPluginDetails(p);
+        if (details.name == pluginId) {
+            pluginIndex = installedPlugins_.indexOf(p, -1);
+            break;
+        }
+    }
+    switch (status) {
+    case PluginStatus::INSTALLED:
+        addPlugin();
+        break;
+    default:
+        break;
+    }
+
+    if (pluginIndex == -1) {
+        return;
+    }
+
+    switch (status) {
+    case PluginStatus::INSTALLABLE:
+        removePlugin(pluginIndex);
+        break;
+    case PluginStatus::FAILED:
+        qWarning() << "Failed to install plugin" << pluginId;
+        break;
+    default:
+        break;
+    }
+    return;
+}
