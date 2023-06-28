@@ -22,9 +22,12 @@
 
 #include "api/pluginmodel.h"
 
-PluginListModel::PluginListModel(QObject* parent)
+PluginListModel::PluginListModel(LRCInstance* lrcInstance, QObject* parent)
     : AbstractListModelBase(parent)
-{}
+{
+    lrcInstance_ = lrcInstance;
+    reset();
+}
 
 PluginListModel::~PluginListModel() {}
 
@@ -123,6 +126,17 @@ PluginListModel::addPlugin()
     beginInsertRows(QModelIndex(), index, index);
     installedPlugins_ = newList;
     endInsertRows();
+}
+
+void
+PluginListModel::disableAllPlugins()
+{
+    for (auto& plugin : installedPlugins_) {
+        auto& pluginModel = lrcInstance_->pluginModel();
+        const auto& details = pluginModel.getPluginDetails(plugin);
+        pluginModel.unloadPlugin(details.path);
+        disabled(details.path);
+    }
 }
 
 void
