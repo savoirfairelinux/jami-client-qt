@@ -50,6 +50,7 @@ Popup {
     property string photo: ""
 
     signal validatePhoto(string photo)
+    signal opened
 
     function openRecorder(vid) {
         isVideo = vid;

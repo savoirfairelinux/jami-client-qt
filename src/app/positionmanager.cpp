@@ -261,6 +261,13 @@ PositionManager::unPinMap(const QString& key)
     }
 }
 
+bool
+PositionManager::isMapActive(const QString& key)
+{
+    QMutexLocker lk(&mapStatusMutex_);
+    return (mapStatus_.find(key) != mapStatus_.end());
+}
+
 void
 PositionManager::pinMap(const QString& key)
 {
