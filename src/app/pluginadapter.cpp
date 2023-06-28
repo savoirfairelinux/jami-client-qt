@@ -18,8 +18,11 @@
 
 #include "pluginadapter.h"
 
+#include "pluginversionmanager.h"
 #include "networkmanager.h"
 #include "lrcinstance.h"
+#include "qmlregister.h"
+#include "pluginstorelistmodel.h"
 
 #include <QJsonDocument>
 #include <utilsadapter.h>
@@ -29,7 +32,7 @@
 #include <QString>
 #include <QJsonArray>
 
-static constexpr int updatePeriod = 1000 * 60 * 15; // fifteen minutes
+static constexpr int updatePeriod = 1000 * 60 * 60 * 12; // 12 hours
 
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString baseUrl)
     : QmlAdapterBase(instance, parent)
@@ -42,6 +45,8 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString bas
     , baseUrl(baseUrl)
 
 {
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
@@ -74,7 +79,6 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString bas
             pluginStoreListModel_,
             &PluginStoreListModel::onVersionStatusChanged);
     connect(pluginsStoreTimer_, &QTimer::timeout, this, [this] { getPluginsFromStore(); });
-    getPluginsFromStore();
     setPluginsStoreAutoRefresh(true);
 }
 
@@ -86,25 +90,30 @@ PluginAdapter::~PluginAdapter()
 void
 PluginAdapter::getPluginsFromStore()
 {
-    pluginVersionManager_->sendGetRequest(QUrl(baseUrl), [this](const QByteArray& data) {
-        auto result = QJsonDocument::fromJson(data).array();
-        auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
-        QList<QVariantMap> plugins;
-        for (const auto& plugin : result) {
-            auto qPlugin = plugin.toVariant().toMap();
-            if (!pluginsInstalled.contains(qPlugin["id"].toString())) {
-                qWarning() << qPlugin["id"];
-                plugins.append(qPlugin);
-            }
-        }
-        pluginStoreListModel_->setPlugins(plugins);
+    Utils::oneShotConnect(pluginVersionManager_, &PluginVersionManager::errorOccured, this, [this] {
+        storeNotAvailable();
     });
+    pluginVersionManager_
+        ->sendGetRequest(QUrl(baseUrl + "?arch=" + Utils::getPlatformString()),
+                         [this](const QByteArray& data) {
+                             auto result = QJsonDocument::fromJson(data).array();
+                             auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
+                             QList<QVariantMap> plugins;
+                             for (const auto& plugin : result) {
+                                 auto qPlugin = plugin.toVariant().toMap();
+                                 if (!pluginsInstalled.contains(qPlugin["name"].toString())) {
+                                     plugins.append(qPlugin);
+                                 }
+                             }
+                             pluginStoreListModel_->setPlugins(plugins);
+                         });
 }
 
 void
 PluginAdapter::getPluginDetails(const QString& pluginId)
 {
-    pluginVersionManager_->sendGetRequest(QUrl(baseUrl + "/details/" + pluginId),
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl + "/details/" + pluginId
+                                               + "?arch=" + Utils::getPlatformString()),
                                           [this](const QByteArray& data) {
                                               auto result = QJsonDocument::fromJson(data).object();
                                               // my response is a json object and I want to convert

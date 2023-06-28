@@ -46,7 +46,6 @@ enum PluginInstallStatus {
     CERTIFICATE_VERIFICATION_FAILED = 400,
     INVALID_PLUGIN = 500,
 } PluginInstallStatus;
-
 namespace lrc {
 
 using namespace api;

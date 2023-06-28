@@ -19,6 +19,8 @@
 
 #include <QUrl>
 
+#include <algorithm>
+
 PluginStoreListModel::PluginStoreListModel(QObject* parent)
     : AbstractListModelBase(parent)
 {}
@@ -41,20 +43,17 @@ PluginStoreListModel::data(const QModelIndex& index, int role) const
     }
     auto plugin = plugins_.at(index.row());
     switch (role) {
-    case Role::Id:
-        return QVariant(plugin["id"].toString());
-    case Role::Title:
+    case Role::Name:
         return QVariant(plugin["name"].toString());
     case Role::IconPath:
         return QVariant(plugin["iconPath"].toString());
-    case Role::Background:
-        return QVariant(plugin["background"].toString());
     case Role::Description:
         return QVariant(plugin["description"].toString());
     case Role::Author:
         return QVariant(plugin["author"].toString());
     case Role::Status:
-        return QVariant(plugin.value("status", PluginStatus::INSTALLABLE).toString());
+        return QVariant(plugin.value("status", PluginStatus::INSTALLABLE));
+        // return QVariant(plugin.value("status", PluginStatus::INSTALLABLE).toString());
     }
     return QVariant();
 }
@@ -85,6 +84,7 @@ PluginStoreListModel::addPlugin(const QVariantMap& plugin)
     beginInsertRows(QModelIndex(), plugins_.size(), plugins_.size());
     plugins_.append(plugin);
     endInsertRows();
+    sort();
 }
 
 void
@@ -93,6 +93,7 @@ PluginStoreListModel::setPlugins(const QList<QVariantMap>& plugins)
     beginResetModel();
     plugins_ = plugins;
     endResetModel();
+    sort();
 }
 
 void
@@ -100,7 +101,7 @@ PluginStoreListModel::removePlugin(const QString& pluginId)
 {
     auto index = 0;
     for (auto& plugin : plugins_) {
-        if (plugin["id"].toString() == pluginId) {
+        if (plugin["name"].toString() == pluginId) {
             beginRemoveRows(QModelIndex(), index, index);
             plugins_.removeAt(index);
             endRemoveRows();
@@ -108,6 +109,7 @@ PluginStoreListModel::removePlugin(const QString& pluginId)
         }
         index++;
     }
+    sort();
 }
 
 void
@@ -115,13 +117,14 @@ PluginStoreListModel::updatePlugin(const QVariantMap& plugin)
 {
     auto index = 0;
     for (auto& p : plugins_) {
-        if (p["id"].toString() == plugin["id"].toString()) {
+        if (p["name"].toString() == plugin["name"].toString()) {
             p = plugin;
             Q_EMIT dataChanged(createIndex(index, 0), createIndex(index, 0));
             return;
         }
         index++;
     }
+    sort();
 }
 
 QColor
@@ -152,7 +155,7 @@ PluginStoreListModel::computeAverageColorOfImage(const QString& file)
                 blue += pixelColor.blue();
             }
         }
-        return QColor(red / nPixels, green / nPixels, blue / nPixels, 70);
+        return QColor(red / nPixels, green / nPixels, blue / nPixels);
     } else {
         // Return an invalid color.
         return QColor();
@@ -162,36 +165,57 @@ PluginStoreListModel::computeAverageColorOfImage(const QString& file)
 void
 PluginStoreListModel::onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status)
 {
-    auto plugin = QVariantMap();
-    for (auto& p : plugins_) {
-        if (p["id"].toString() == pluginId) {
-            plugin = p;
-            break;
-        }
-    }
+    auto it = std::find_if(plugins_.begin(), plugins_.end(), [&pluginId](const QVariantMap& p) {
+        return p["name"].toString() == pluginId;
+    });
+
     switch (status) {
     case PluginStatus::INSTALLABLE:
-        if (!plugin.isEmpty())
-            break;
         pluginAdded(pluginId);
         break;
-
     default:
         break;
     }
-    if (plugin.isEmpty()) {
+
+    if (it == plugins_.end()) {
         return;
     }
-    plugin["status"] = status;
+    auto& plugin = *it;
 
+    plugin["status"] = status;
+    auto index = createIndex(rowFromPluginId(pluginId), 0);
+    if (index.isValid()) {
+        Q_EMIT dataChanged(index, index, {PluginStoreList::Role::Status});
+    }
     switch (status) {
     case PluginStatus::INSTALLED:
         removePlugin(pluginId);
         break;
-    case PluginStatus::FAILED:
-        qWarning() << "Failed to install plugin" << pluginId;
-        break;
     default:
         break;
     }
+}
+
+int
+PluginStoreListModel::rowFromPluginId(const QString& pluginId) const
+{
+    const auto it = std::find_if(plugins_.begin(),
+                                 plugins_.end(),
+                                 [&pluginId](const QVariantMap& p) {
+                                     return p["name"].toString() == pluginId;
+                                 });
+    if (it != plugins_.end()) {
+        return std::distance(plugins_.begin(), it);
+    }
+    return -1;
+}
+
+void
+PluginStoreListModel::sort()
+{
+    beginResetModel();
+    std::sort(plugins_.begin(), plugins_.end(), [](const QVariantMap& a, const QVariantMap& b) {
+        return a["timestamp"].toString() < b["timestamp"].toString();
+    });
+    endResetModel();
 }
