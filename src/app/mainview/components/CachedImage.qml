@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -78,7 +77,7 @@ Item {
             }
         }
         function onDownloadImageFailed() {
-            console.debug("Failed to download image: " + downloadUrl);
+            console.warning("Failed to download image: " + downloadUrl);
             image.source = defaultImage;
         }
     }
