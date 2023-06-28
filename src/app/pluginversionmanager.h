@@ -71,7 +71,7 @@ Q_SIGNALS:
 private:
     QString baseUrl;
     bool autoUpdateCheck = false;
-    QMap<QString, unsigned int> pluginRepliesId {};
+    QMap<QString, int> pluginRepliesId {};
     struct Impl;
     friend struct Impl;
     std::unique_ptr<Impl> pimpl_;

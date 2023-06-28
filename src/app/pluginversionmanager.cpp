@@ -45,7 +45,6 @@ public:
                 return;
             }
             for (const auto& pluginId : qAsConst(pluginsId)) {
-                Q_EMIT parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLING);
                 parent_.pluginRepliesId.remove(pluginId);
             }
         });
@@ -74,6 +73,7 @@ public:
             return;
         }
         parent_.cancelDownload(parent_.pluginRepliesId[pluginId]);
+        parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLABLE);
     };
 
     bool isAutoUpdaterEnabled()
@@ -120,7 +120,7 @@ public:
     void installRemotePlugin(const QString& pluginId)
     {
         parent_.downloadFile(
-            QUrl(parent_.baseUrl + "/download/" + pluginId),
+            QUrl(parent_.baseUrl + "/download/" + Utils::getPlatformString() + "/" + pluginId),
             pluginId,
             0,
             [this, pluginId](bool success, const QString& error) {
@@ -129,14 +129,17 @@ public:
                     parent_.versionStatusChanged(pluginId, PluginStatus::Role::FAILED);
                     return;
                 }
-                auto res = lrcInstance_->pluginModel().installPlugin(QDir(tempPath_).filePath(
-                                                                         pluginId + ".jpl"),
-                                                                     true);
-                if (res) {
-                    parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLED);
-                } else {
-                    parent_.versionStatusChanged(pluginId, PluginStatus::Role::FAILED);
-                }
+                QThreadPool::globalInstance()->start([this, pluginId] {
+                    auto res = lrcInstance_->pluginModel().installPlugin(QDir(tempPath_).filePath(
+                                                                             pluginId + ".jpl"),
+                                                                         true);
+                    if (res) {
+                        parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLED);
+                    } else {
+                        parent_.versionStatusChanged(pluginId, PluginStatus::Role::FAILED);
+                    }
+                });
+                parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLING);
             },
             tempPath_ + '/');
         Q_EMIT parent_.versionStatusChanged(pluginId, PluginStatus::Role::DOWNLOADING);
@@ -167,7 +170,7 @@ PluginVersionManager::PluginVersionManager(LRCInstance* instance, QString& baseU
 
 PluginVersionManager::~PluginVersionManager()
 {
-    for (const auto& pluginReplyId : qAsConst(pluginRepliesId)) {
+    for (const auto& pluginReplyId : pluginRepliesId.values()) {
         cancelDownload(pluginReplyId);
     }
     pluginRepliesId.clear();
