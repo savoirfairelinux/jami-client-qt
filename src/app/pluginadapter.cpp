@@ -23,6 +23,8 @@
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
 {
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
