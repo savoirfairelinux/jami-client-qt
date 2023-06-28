@@ -171,7 +171,9 @@ AppVersionManager::AppVersionManager(const QString& url,
 
 AppVersionManager::~AppVersionManager()
 {
-    cancelDownload(*replyId_);
+    if (replyId_) {
+        cancelDownload(*replyId_);
+    }
 }
 
 void
