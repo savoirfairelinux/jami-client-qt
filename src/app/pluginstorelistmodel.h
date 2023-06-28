@@ -24,8 +24,7 @@ class QColor;
 class QString;
 
 #define PLUGINSTORE_ROLES \
-    X(Id) \
-    X(Title) \
+    X(Name) \
     X(IconPath) \
     X(Background) \
     X(Description) \
@@ -48,7 +47,7 @@ class PluginStoreListModel : public AbstractListModelBase
     Q_OBJECT
 
 public:
-    explicit PluginStoreListModel(QObject* parent = nullptr);
+    explicit PluginStoreListModel(LRCInstance* lrcInstance, QObject* parent = nullptr);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
@@ -69,6 +68,10 @@ public Q_SLOTS:
     void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
 
 private:
+    QList<QVariantMap> filterPlugins(const QList<QVariantMap>& plugins);
+    int rowFromPluginId(const QString& pluginId) const;
+    void sort();
     using Role = PluginStoreList::Role;
     QList<QVariantMap> plugins_;
+    LRCInstance* lrcInstance_ {};
 };
