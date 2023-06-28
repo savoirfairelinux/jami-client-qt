@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "085f43a8_73afc99c",
+        "filename": "src/app/mainview/components/HeaderPushButton.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-28T17:29:36Z",
+      "side": 1,
+      "message": "surely, all these modules are not needed",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 31
+      },
+      "revId": "a239e30698506730699f421ba49d0c38f43219eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c79bf64_e8f89daf",
+        "filename": "src/app/mainview/components/HeaderPushButton.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-28T17:29:36Z",
+      "side": 1,
+      "message": "chatViewHeaderButtonRadius ?? (radius almost exclusively applies to Rectangles in QML + these theme element names are so long already)",
+      "range": {
+        "startLine": 13,
+        "startChar": 22,
+        "endLine": 13,
+        "endChar": 57
+      },
+      "revId": "a239e30698506730699f421ba49d0c38f43219eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

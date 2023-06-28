@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bb2ce3a_f82b6f49",
+        "filename": "src/app/mainview/components/HeaderPushButton.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-06-28T17:29:36Z",
+      "side": 0,
+      "message": "copyright header",
+      "revId": "3383f43688d5367f4d39c0b21712571bc8e6b007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
