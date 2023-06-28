@@ -23,12 +23,17 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 Item {
-    id: root
-
+    id: jamiId
     property alias backgroundColor: outerRect.color
+    property bool slimDisplay: true
+    height: getHeight()
+    width: getWidth()
 
-    width: childrenRect.width
-    height: controlsLayout.height + usernameTextEdit.height + 2 * JamiTheme.preferredMarginSize
+    property var getWidth: function(){}
+
+    function getHeight() {
+        return usernameTextEdit.height + (slimDisplay ? 0 : controlsLayout.height);
+    }
 
     Connections {
         target: CurrentAccount
@@ -39,57 +44,37 @@ Item {
         }
     }
 
-    // Background rounded rectangle.
     Rectangle {
         id: outerRect
-        anchors.fill: columnLayout
         radius: 20
         color: JamiTheme.secondaryBackgroundColor
-    }
+        width: parent.width
+        height: childrenRect.height
 
-    // Logo masked by outerRect.
-    Item {
-        anchors.fill: outerRect
-        layer.enabled: true
-        layer.effect: OpacityMask {
-            maskSource: outerRect
-        }
-
-        Rectangle {
-            id: logoRect
-            width: 97 + radius
+        JamiIdLogo {
+            id: jamiIdLogo
+            fillColor: JamiTheme.mainColor
+            width: 97
             height: 40
-            color: JamiTheme.mainColor
-            radius: 20
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.leftMargin: -radius
-
-            ResponsiveImage {
-                id: jamiIdLogo
-                anchors.horizontalCenter: parent.horizontalCenter
-                // Adjust offset for parent masking margin.
-                anchors.horizontalCenterOffset: parent.radius / 2
-                anchors.verticalCenter: parent.verticalCenter
-                width: JamiTheme.jamiIdLogoWidth
-                height: JamiTheme.jamiIdLogoHeight
-                source: JamiResources.jamiid_svg
+            anchors.top: outerRect.top
+            anchors.left: outerRect.left
+            radius: {
+                "tl": outerRect.radius,
+                "tr": outerRect.radius,
+                "br": outerRect.radius,
+                "bl": slimDisplay ? outerRect.radius : 0
             }
         }
-    }
-
-    ColumnLayout {
-        id: columnLayout
-
-        spacing: JamiTheme.preferredMarginSize
 
         RowLayout {
             id: controlsLayout
 
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            Layout.topMargin: JamiTheme.pushButtonMargin / 2
-            Layout.rightMargin: JamiTheme.pushButtonMargin
-            Layout.preferredHeight: childrenRect.height
+            anchors.top: outerRect.top
+            anchors.right: outerRect.right
+            anchors.rightMargin: JamiTheme.pushButtonMargin
+            anchors.topMargin: JamiTheme.pushButtonMargin / 2
+            height: childrenRect.height
+            width: childrenRect.width
 
             JamiIdControlButton {
                 id: btnEdit
@@ -124,6 +109,7 @@ Item {
             JamiIdControlButton {
                 id: btnCopy
                 source: JamiResources.content_copy_24dp_svg
+                border.color: "transparent"
                 toolTipText: JamiStrings.copy
                 onClicked: UtilsAdapter.setClipboardText(usernameTextEdit.staticText)
             }
@@ -131,6 +117,7 @@ Item {
             JamiIdControlButton {
                 id: btnShare
                 source: JamiResources.share_24dp_svg
+                border.color: "transparent"
                 toolTipText: JamiStrings.share
                 onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
@@ -139,6 +126,7 @@ Item {
                 id: btnId
                 source: JamiResources.key_black_24dp_svg
                 visible: CurrentAccount.registeredName !== ""
+                border.color: "transparent"
                 toolTipText: JamiStrings.identifierURI
                 onClicked: {
                     if (clicked) {
@@ -156,11 +144,15 @@ Item {
         UsernameTextEdit {
             id: usernameTextEdit
 
-            Layout.preferredWidth: 330
-            Layout.preferredHeight: implicitHeight + JamiTheme.preferredMarginSize
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
+            width: jamiId.width - ((slimDisplay ? controlsLayout.width + jamiIdLogo.width : 0) + 2 * JamiTheme.preferredMarginSize)
+
+            height: implicitHeight + JamiTheme.preferredMarginSize
+
+            anchors.top: jamiId.slimDisplay ? parent.top : controlsLayout.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            anchors.leftMargin: JamiTheme.preferredMarginSize
+            anchors.rightMargin: JamiTheme.preferredMarginSize
             fontPixelSize: JamiTheme.jamiIdFontSize
             editMode: false
             isPersistent: false
@@ -190,5 +182,67 @@ Item {
         imageContainerHeight: JamiTheme.pushButtonSize
         border.color: JamiTheme.tintedBlue
         imageColor: JamiTheme.buttonTintedBlue
+    }
+
+    component JamiIdLogo: Canvas {
+
+        property var radius
+        property string fillColor: Style.colorBGPrimary
+
+        onRadiusChanged: requestPaint()
+        onFillColorChanged: requestPaint()
+
+        //Draw rounded rectangle.
+        onPaint: {
+            var ctx = getContext("2d");
+            var r = {};
+            Object.assign(r, radius);
+            if (typeof r === 'undefined')
+                r = 0;
+            if (typeof r === 'number')
+                r = {
+                    "tl": r,
+                    "tr": r,
+                    "br": r,
+                    "bl": r
+                };
+            else {
+                var defaultRadius = {
+                    "tl": 0,
+                    "tr": 0,
+                    "br": 0,
+                    "bl": 0
+                };
+                for (var side in defaultRadius)
+                    r[side] = r[side] || defaultRadius[side];
+            }
+            var x0 = 0;
+            var y0 = x0;
+            var x1 = width;
+            var y1 = height;
+            ctx.reset();
+            ctx.beginPath();
+            ctx.moveTo(x0 + r.tl, y0);
+            ctx.lineTo(x1 - r.tr, y0);
+            ctx.quadraticCurveTo(x1, y0, x1, y0 + r.tr);
+            ctx.lineTo(x1, y1 - r.br);
+            ctx.quadraticCurveTo(x1, y1, x1 - r.br, y1);
+            ctx.lineTo(x0 + r.bl, y1);
+            ctx.quadraticCurveTo(x0, y1, x0, y1 - r.bl);
+            ctx.lineTo(x0, y0 + r.tl);
+            ctx.quadraticCurveTo(x0, y0, x0 + r.tl, y0);
+            ctx.closePath();
+            ctx.fillStyle = fillColor;
+            ctx.fill();
+        }
+
+        ResponsiveImage {
+            id: jamiIdLogoImage
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            width: JamiTheme.jamiIdLogoWidth
+            height: JamiTheme.jamiIdLogoHeight
+            source: JamiResources.jamiid_svg
+        }
     }
 }
