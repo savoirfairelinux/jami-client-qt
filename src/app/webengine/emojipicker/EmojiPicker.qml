@@ -30,7 +30,6 @@ Popup {
     id: root
 
     required property ListView listView
-
     signal emojiIsPicked(string content)
 
     // Close the picker when attached to a listView that receives height/scroll

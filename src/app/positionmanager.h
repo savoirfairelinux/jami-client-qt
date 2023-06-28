@@ -77,6 +77,7 @@ protected:
     Q_INVOKABLE void unPinMap(const QString& key);
     Q_INVOKABLE void setMapActive(const QString& key);
     Q_INVOKABLE void setMapInactive(const QString& key);
+    Q_INVOKABLE bool isMapActive(const QString& key);
     Q_INVOKABLE void sharePosition(int maximumTime, const QString& accountId, const QString& convId);
     Q_INVOKABLE void stopSharingPosition(const QString& accountId = "", const QString& convId = "");
 
