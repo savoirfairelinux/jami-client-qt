@@ -16,6 +16,24 @@
       "message": "remove line 28, you can group Qt\u0027s headers",
       "revId": "d94c30833f2fbbc0b989162e46570054539ec105",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0088b892_f0f53c39",
+        "filename": "src/libclient/api/account.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-06-28T18:35:04Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "5c29867e_3fd5d9c5",
+      "revId": "d94c30833f2fbbc0b989162e46570054539ec105",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

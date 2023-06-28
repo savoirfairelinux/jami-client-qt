@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "333f0b70_be8e3a08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-06-28T18:35:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "236f2af0_87895616",
+      "range": {
+        "startLine": 7,
+        "startChar": 28,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "165475635d3e3be0119a6369f0b1f07d2e4b4e5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "090238e1_2281fa59",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f808089_7403ee4a",
+        "filename": "src/app/currentaccount.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-06-28T18:35:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "090238e1_2281fa59",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 8
+      },
+      "revId": "165475635d3e3be0119a6369f0b1f07d2e4b4e5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45bf4c58_f9503c2d",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-06-20T19:39:48Z",
       "side": 1,
       "message": "configure your IDE to remove trailing",
+      "range": {
+        "startLine": 1045,
+        "startChar": 18,
+        "endLine": 1045,
+        "endChar": 24
+      },
+      "revId": "165475635d3e3be0119a6369f0b1f07d2e4b4e5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffe48fac_220d2e32",
+        "filename": "src/libclient/accountmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-06-28T18:35:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45bf4c58_f9503c2d",
       "range": {
         "startLine": 1045,
         "startChar": 18,
