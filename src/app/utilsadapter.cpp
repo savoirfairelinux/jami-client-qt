@@ -814,6 +814,7 @@ UtilsAdapter::isRTL()
 bool
 UtilsAdapter::isSystemTrayIconVisible()
 {
+    return true;
     if (!systemTray_)
         return false;
     return systemTray_->geometry() != QRect();
