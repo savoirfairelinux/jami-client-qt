@@ -53,7 +53,7 @@ JamiListView {
                 verticalCenter: parent.verticalCenter
             }
             text: headerLabel + " (" + root.count + ")"
-            font.pointSize: JamiTheme.smartlistItemFontSize
+            font.pointSize: JamiTheme.mediumFontSize
             font.weight: Font.DemiBold
             color: JamiTheme.textColor
         }
