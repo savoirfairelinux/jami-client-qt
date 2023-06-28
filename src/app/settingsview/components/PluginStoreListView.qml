@@ -8,80 +8,64 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 ColumnLayout {
-    function installPlugin() {
-        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                "title": JamiStrings.selectPluginInstall,
-                "fileMode": JamiFileDialog.OpenFile,
-                "folder": StandardPaths.writableLocation(StandardPaths.DownloadLocation),
-                "nameFilters": [JamiStrings.pluginFiles, JamiStrings.allFiles]
-            });
-        dlg.fileAccepted.connect(function (file) {
-                var url = UtilsAdapter.getAbsPath(file.toString());
-                PluginModel.installPlugin(url, true);
-                PluginListModel.addPlugin();
-            });
-    }
-    RowLayout {
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        Label {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 25
-
-            text: JamiStrings.pluginStoreTitle
-            font.pointSize: JamiTheme.headerFontSize
-            font.kerning: true
-            color: JamiTheme.textColor
-
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
+    property bool storeAvailable: true
+    Component.onCompleted: PluginAdapter.getPluginsFromStore()
+    Connections {
+        target: PluginAdapter
+        function onStoreNotAvailable() {
+            storeAvailable = false;
         }
-        RowLayout {
-            Layout.alignment: Qt.AlignRight
-            MaterialButton {
-                id: installManually
+    }
+    Label {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 25
 
-                TextMetrics {
-                    id: installManuallyTextSize
-                    font.weight: Font.Black
-                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    font.capitalization: Font.Capitalize
-                    text: JamiStrings.installManually
+        text: JamiStrings.pluginStoreTitle
+        font.pointSize: JamiTheme.headerFontSize
+        font.kerning: true
+        color: JamiTheme.textColor
+
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+    }
+    Loader {
+        Component.onCompleted: print(this, width, height)
+        active: storeAvailable
+        Layout.fillWidth: true
+        Layout.alignment: Qt.AlignHCenter
+        Layout.preferredHeight: active ? item.height : 0
+        sourceComponent: Flow {
+            id: pluginStoreList
+            height: childrenRect.height
+            spacing: 20
+            Repeater {
+                model: PluginStoreListModel
+
+                delegate: PluginAvailableDelagate {
+                    id: pluginItemDelegate
+                    width: JamiTheme.remotePluginWidthDelegate
+                    height: JamiTheme.remotePluginHeightDelegate
+                    pluginName: Name
+                    pluginIcon: IconPath
+                    pluginBackground: Background === '' ? JamiTheme.backgroundColor : Background
+                    pluginDescription: Description
+                    pluginAuthor: Author
+                    pluginShortDescription: ""
+                    pluginStatus: Status
                 }
-                secondary: true
-                preferredWidth: installManuallyTextSize.width
-                text: JamiStrings.installManually
-                toolTipText: JamiStrings.installManually
-                fontSize: 15
-                onClicked: installPlugin()
             }
         }
     }
-
-    Flow {
-        id: pluginStoreList
-
+    Loader {
         Layout.fillWidth: true
-        spacing: 20
-        Layout.preferredHeight: childrenRect.height
-        clip: true
-        Repeater {
-            model: PluginStoreListModel
-
-            delegate: PluginAvailableDelagate {
-                id: pluginItemDelegate
-
-                width: 350
-                height: 400
-                pluginId: Id
-                pluginTitle: Title
-                pluginIcon: IconPath
-                pluginBackground: Background === '' ? JamiTheme.backgroundColor : Background
-                pluginDescription: Description
-                pluginAuthor: Author
-                pluginShortDescription: ""
-                pluginStatus: Status
-            }
+        Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        Layout.preferredHeight: active ? JamiTheme.bigFontSize : 0
+        active: !storeAvailable
+        sourceComponent: Text {
+            font.bold: true
+            font.pixelSize: JamiTheme.bigFontSize
+            horizontalAlignment: Text.AlignHCenter
+            text: JamiStrings.pluginStoreNotAvailable
         }
     }
 }
