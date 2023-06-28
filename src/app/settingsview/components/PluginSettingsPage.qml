@@ -44,8 +44,7 @@ SettingsPageBase {
         // View of installed plugins
         PluginListView {
             id: pluginListView
-
-            visible: PluginAdapter.isEnabled
+            visible: PluginAdapter.isEnabled && count
 
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             Layout.preferredWidth: parent.width
