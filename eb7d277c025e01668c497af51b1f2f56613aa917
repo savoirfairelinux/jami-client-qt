@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31f6ee17_9b6ae6f6",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-28T15:48:02Z",
+      "side": 1,
+      "message": "why not use: https://doc.qt.io/qt-5/qml-qtquick-controls2-popup.html#closePolicy-prop",
+      "range": {
+        "startLine": 221,
+        "startChar": 17,
+        "endLine": 221,
+        "endChar": 35
+      },
+      "revId": "eb7d277c025e01668c497af51b1f2f56613aa917",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3404a426_2a600757",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-28T15:48:02Z",
+      "side": 1,
+      "message": "No need to add that if \"opened\" already exists (cf Popup documentation)",
+      "range": {
+        "startLine": 223,
+        "startChar": 59,
+        "endLine": 223,
+        "endChar": 65
+      },
+      "revId": "eb7d277c025e01668c497af51b1f2f56613aa917",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
