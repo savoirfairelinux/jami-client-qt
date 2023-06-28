@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2019-2023 Savoir-faire Linux Inc.
  *
@@ -20,6 +21,9 @@
 #include <QObject>
 #include <QFile>
 #include <QSslError>
+#include <QScopedPointer>
+#include <QMap>
+#include <QString>
 #include <QNetworkReply>
 
 class QNetworkAccessManager;
@@ -37,8 +41,17 @@ public:
 
     void sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)> onDoneCallback);
 
+    unsigned int downloadFile(const QUrl& url,
+                              unsigned int replyId,
+                              std::function<void(bool, const QString&)> onDoneCallback,
+                              const QString& filePath);
+    void resetDownload(unsigned int replyId);
+    void cancelDownload(unsigned int replyId);
 Q_SIGNALS:
     void errorOccured(GetError error, const QString& msg = {});
+    void downloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
+    void downloadFinished(int replyId);
+    void downloadStarted(int replyId);
 
 protected:
     QNetworkAccessManager* manager_;
@@ -46,5 +59,7 @@ protected:
 private:
     ConnectivityMonitor* connectivityMonitor_;
     bool lastConnectionState_;
+    QMap<unsigned int, QNetworkReply*> downloadReplies_ {};
+    QMap<unsigned int, QFile*> files_ {};
 };
 Q_DECLARE_METATYPE(NetworkManager*)

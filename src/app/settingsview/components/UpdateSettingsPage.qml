@@ -49,7 +49,7 @@ SettingsPageBase {
                 "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonCallBacks": [function () {
-                        UpdateManager.applyUpdates(beta);
+                        AppVersionManager.applyUpdates(beta);
                     }]
             });
     }
@@ -66,14 +66,14 @@ SettingsPageBase {
 
             Layout.fillWidth: true
 
-            checked: Qt.platform.os.toString() === "windows" ? UtilsAdapter.getAppValue(Settings.Key.AutoUpdate) : UpdateManager.isAutoUpdaterEnabled()
+            checked: Qt.platform.os.toString() === "windows" ? UtilsAdapter.getAppValue(Settings.Key.AutoUpdate) : AppVersionManager.isAutoUpdaterEnabled()
 
             labelText: JamiStrings.update
             tooltipText: JamiStrings.enableAutoUpdates
 
             onSwitchToggled: {
                 UtilsAdapter.setAppValue(Settings.Key.AutoUpdate, checked);
-                UpdateManager.setAutoUpdateCheck(checked);
+                AppVersionManager.setAutoUpdateCheck(checked);
             }
         }
 
@@ -98,13 +98,13 @@ SettingsPageBase {
             toolTipText: JamiStrings.checkForUpdates
             text: JamiStrings.checkForUpdates
 
-            onClicked: UpdateManager.checkForUpdates()
+            onClicked: AppVersionManager.checkForUpdates()
         }
 
         MaterialButton {
             id: installBetaButton
 
-            visible: !UpdateManager.isCurrentVersionBeta() && Qt.platform.os.toString() === "windows"
+            visible: !AppVersionManager.isCurrentVersionBeta() && Qt.platform.os.toString() === "windows"
 
             Layout.alignment: Qt.AlignHCenter
 
@@ -125,7 +125,7 @@ SettingsPageBase {
                     "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
                     "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
                     "buttonCallBacks": [function () {
-                            UpdateManager.applyUpdates(true);
+                            AppVersionManager.applyUpdates(true);
                         }]
                 })
         }
