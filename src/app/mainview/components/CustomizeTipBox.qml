@@ -29,6 +29,13 @@ ColumnLayout {
     property var iconSize: 26
     property var margin: 5
     property var prefWidth: 170
+    property bool opened: root.opened
+    focus: true
+
+    onOpenedChanged: {
+        if (opened)
+            displayNameLineEdit.forceActiveFocus();
+    }
 
     RowLayout {
 
@@ -50,6 +57,7 @@ ColumnLayout {
 
             source: JamiResources.noun_paint_svg
             color: JamiTheme.buttonTintedBlue
+            focus: activeFocus
         }
 
         Label {
@@ -58,7 +66,6 @@ ColumnLayout {
             font.weight: Font.Medium
             Layout.topMargin: column.margin
             Layout.preferredWidth: column.prefWidth - 2 * column.margin - column.iconSize
-            visible: !opened
             Layout.alignment: Qt.AlignLeft
             Layout.leftMargin: column.margin
             horizontalAlignment: Text.AlignLeft
@@ -106,13 +113,14 @@ ColumnLayout {
         placeholderText: JamiStrings.enterNickname
 
         onAccepted: AccountAdapter.setCurrAccDisplayName(dynamicText)
+        focus: activeFocus
     }
 
     Text {
 
         Layout.preferredWidth: root.width - 32
         Layout.leftMargin: 20
-        Layout.topMargin: 6
+        Layout.topMargin: 15
         font.pixelSize: JamiTheme.tipBoxContentFontSize
         visible: opened
         wrapMode: Text.WordWrap
