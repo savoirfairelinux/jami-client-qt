@@ -49,6 +49,7 @@ extern const QString defaultDownloadPath;
     X(HideSelf, false) \
     X(HideSpectators, false) \
     X(AutoUpdate, true) \
+    X(PluginAutoUpdate, false) \
     X(StartMinimized, false) \
     X(ShowChatviewHorizontally, true) \
     X(NeverShowMeAgain, false) \
