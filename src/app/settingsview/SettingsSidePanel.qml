@@ -83,7 +83,7 @@ SidePanelBase {
                     }, {
                         "id": 11,
                         "title": JamiStrings.updatesTitle,
-                        "visible": UpdateManager.isUpdaterEnabled()
+                        "visible": AppVersionManager.isUpdaterEnabled()
                     }]
             }, {
                 "title": JamiStrings.audioVideoSettingsTitle,

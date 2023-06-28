@@ -18,11 +18,40 @@
 
 #include "pluginadapter.h"
 
+#include "pluginversionmanager.h"
+#include "networkmanager.h"
 #include "lrcinstance.h"
+#include "qmlregister.h"
+#include "pluginstorelistmodel.h"
 
-PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
+#include <QJsonDocument>
+#include <utilsadapter.h>
+#include <QJsonObject>
+#include <QDir>
+#include <QString>
+#include <QJsonArray>
+
+enum PluginInstallStatus {
+    SUCCESS = 0,
+    PLUGIN_ALREADY_INSTALLED = 100,
+    PLUGIN_OLD_VERSION = 200,
+    SIGNATURE_VERIFICATION_FAILED = 300,
+    CERTIFICATE_VERIFICATION_FAILED = 400,
+    INVALID_PLUGIN = 500,
+} PluginInstallStatus;
+
+PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString baseUrl)
     : QmlAdapterBase(instance, parent)
+    , pluginVersionManager_(new PluginVersionManager(NULL, this))
+    , pluginStoreListModel_(new PluginStoreListModel(this))
+    , pluginListModel_(new PluginListModel(instance, this))
+    , tempPath_(QDir::tempPath())
+    , baseUrl(baseUrl)
+
 {
+    qWarning() << tempPath_;
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
@@ -30,6 +59,59 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
             this,
             &PluginAdapter::updateHandlersListCount);
     connect(this, &PluginAdapter::isEnabledChanged, this, &PluginAdapter::updateHandlersListCount);
+    getPluginsFromStore();
+}
+
+void
+PluginAdapter::getPluginsFromStore()
+{
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl), [this](const QByteArray& data) {
+        auto result = QJsonDocument::fromJson(data).array();
+        QList<QVariantMap> plugins;
+        for (const auto& plugin : result) {
+            plugins.append(plugin.toVariant().toMap());
+        }
+        pluginStoreListModel_->setPlugins(plugins);
+    });
+}
+
+void
+PluginAdapter::getPluginDetails(const QString& pluginId)
+{
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl + "/details/" + pluginId),
+                                          [this](const QByteArray& data) {
+                                              auto result = QJsonDocument::fromJson(data).object();
+                                              // my response is a json object and I want to convert
+                                              // it to a QVariantMap
+                                              pluginStoreListModel_->addPlugin(
+                                                  result.toVariantMap());
+                                          });
+}
+
+void
+PluginAdapter::installRemotePlugin(const QString& pluginId)
+{
+    pluginVersionManager_->downloadFile(
+        QUrl(baseUrl + "/download/" + pluginId),
+        pluginId,
+        0,
+        [this, pluginId](bool success, const QString& error) {
+            if (!success) {
+                qDebug() << "Download Plugin error: " << error;
+                changedStatus(pluginId, PluginStatus::FAILED);
+                return;
+            }
+            auto res = lrcInstance_->pluginModel().installPlugin(tempPath_ + '/' + pluginId + ".jpl",
+                                                                 true);
+            if (res) {
+                pluginStoreListModel_->removePlugin(pluginId);
+                changedStatus(pluginId, PluginStatus::INSTALLED);
+                pluginListModel_->addPlugin();
+            } else {
+                changedStatus(pluginId, PluginStatus::FAILED);
+            }
+        },
+        tempPath_ + '/');
 }
 
 QVariant
