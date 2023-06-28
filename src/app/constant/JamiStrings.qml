@@ -204,7 +204,7 @@ Item {
 
     // BackupKeyPage
     property string whyBackupAccount: qsTr("Why should I back-up this account?")
-    property string backupAccountInfos: qsTr("Your account only exists on this device. " + "If you lose your device or uninstall the application, " + "your account will be deleted and CANNOT be recovered. " + "You can back up your account now or later (in the Account Settings).")
+    property string backupAccountInfos: qsTr("Your account only exists on this device. " + "If you lose your device or uninstall the application, " + "your account will be deleted and CANNOT be recovered. " + "You can <a href='blank'> back up your account </a> now or later (in the Account Settings).")
     property string backupAccountHere: qsTr("Back up account here")
     property string backupAccountBtn: qsTr("Back up account")
     property string skip: qsTr("Skip")
@@ -877,7 +877,7 @@ Item {
 
     // Jami identifier
     property string identifierDescription: qsTr("Share this Jami identifier to be contacted on this account!")
-    property string hereIsIdentifier: qsTr("Here is your Jami identifier, don't hesitate to share it in order to be contacted more easily!")
+    property string hereIsIdentifier: qsTr("Share your Jami identifier in order to be contacted more easily!")
     property string jamiIdentity: qsTr("Jami identity")
     property string identifierURI: qsTr("Show fingerprint")
     property string identifierRegisterName: qsTr("Show registered name")
