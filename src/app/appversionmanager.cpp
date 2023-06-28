@@ -164,7 +164,7 @@ AppVersionManager::AppVersionManager(const QString& url,
                                      ConnectivityMonitor* cm,
                                      LRCInstance* instance,
                                      QObject* parent)
-    : AbstractAppVersionManager(cm, parent)
+    : NetworkManager(cm, parent)
     , pimpl_(std::make_unique<Impl>(url, instance, *this))
     , replyId(QScopedPointer<unsigned int>(0))
 {}
