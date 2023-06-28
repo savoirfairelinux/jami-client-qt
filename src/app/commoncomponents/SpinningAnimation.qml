@@ -32,9 +32,8 @@ Item {
     property int spinningAnimationWidth: 4
     property real outerCutRadius: root.height / 2
     property int spinningAnimationDuration: 1000
-
+    property color color: "white"
     visible: mode !== SpinningAnimation.Mode.Disabled
-
     ConicalGradient {
         id: conicalGradientOne
 
@@ -48,7 +47,7 @@ Item {
             }
             GradientStop {
                 position: 1.0
-                color: "white"
+                color: mode === SpinningAnimation.Mode.Disabled ? "transparent" : root.color
             }
         }
 
@@ -90,7 +89,7 @@ Item {
             }
             GradientStop {
                 position: 1.0
-                color: "white"
+                color: mode === SpinningAnimation.Mode.Disabled ? "transparent" : root.color
             }
         }
 
