@@ -64,11 +64,6 @@ public:
 
 Q_SIGNALS:
     void pluginAdded(const QString& pluginId);
-
 public Q_SLOTS:
     void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
-
-private:
-    using Role = PluginStoreList::Role;
-    QList<QVariantMap> plugins_;
 };
