@@ -29,6 +29,9 @@
 #include <QSortFilterProxyModel>
 #include <QString>
 
+class PluginVersionManager;
+class PluginStoreListModel;
+
 class PluginAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
@@ -60,6 +63,7 @@ private:
     void updateHandlersListCount();
     void setPluginsStoreAutoRefresh(bool enabled);
 
+    PluginVersionManager* pluginVersionManager_;
     std::unique_ptr<PluginHandlerListModel> pluginHandlerListModel_;
     PluginStoreListModel* pluginStoreListModel_;
     PluginListModel* pluginListModel_;
