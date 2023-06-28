@@ -40,17 +40,17 @@ public:
 
     void sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)>&& onDoneCallback);
 
-    unsigned int downloadFile(const QUrl& url,
-                              unsigned int replyId,
-                              std::function<void(bool, const QString&)>&& onDoneCallback,
-                              const QString& filePath);
-    void resetDownload(unsigned int replyId);
-    void cancelDownload(unsigned int replyId);
+    int downloadFile(const QUrl& url,
+                     int replyId,
+                     std::function<void(bool, const QString&)>&& onDoneCallback,
+                     const QString& filePath);
+    void resetDownload(int replyId);
+    void cancelDownload(int replyId);
 Q_SIGNALS:
     void errorOccurred(GetError error, const QString& msg = {});
     void downloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
-    void downloadFinished(unsigned int replyId);
-    void downloadStarted(unsigned int replyId);
+    void downloadFinished(int replyId);
+    void downloadStarted(int replyId);
 
 protected:
     QNetworkAccessManager* manager_;
@@ -58,8 +58,8 @@ protected:
 private:
     ConnectivityMonitor* connectivityMonitor_;
     bool lastConnectionState_;
-    QMap<unsigned int, QNetworkReply*> downloadReplies_ {};
-    QMap<unsigned int, QFile*> files_ {};
+    QMap<int, QNetworkReply*> downloadReplies_ {};
+    QMap<int, QFile*> files_ {};
     std::mt19937 rng_;
 };
 Q_DECLARE_METATYPE(NetworkManager*)

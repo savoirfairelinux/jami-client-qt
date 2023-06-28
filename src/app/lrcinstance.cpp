@@ -19,6 +19,7 @@
  */
 
 #include "lrcinstance.h"
+#include "connectivitymonitor.h"
 
 #include <QBuffer>
 #include <QMutex>
@@ -35,6 +36,7 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
                          bool muteDaemon)
     : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, !debugMode || muteDaemon))
     , updateManager_(std::make_unique<AppVersionManager>(updateUrl, connectivityMonitor, this))
+    , connectivityMonitor_(*connectivityMonitor)
     , threadPool_(new QThreadPool(this))
 {
     debugMode_ = debugMode;
@@ -109,6 +111,12 @@ PluginModel&
 LRCInstance::pluginModel()
 {
     return lrc_->getPluginModel();
+}
+
+ConnectivityMonitor&
+LRCInstance::connectivityMonitor()
+{
+    return connectivityMonitor_;
 }
 
 bool
