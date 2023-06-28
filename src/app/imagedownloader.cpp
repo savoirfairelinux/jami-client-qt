@@ -10,7 +10,6 @@ ImageDownloader::downloadImageToCache(const QUrl& url, const QString& localPath)
 {
     Utils::oneShotConnect(this, &NetworkManager::errorOccured, this, [this, localPath]() {
         onDownloadImageFinished({}, localPath);
-        qWarning() << "wtf append";
     });
 
     sendGetRequest(url, [this, localPath](const QByteArray& imageData) {
