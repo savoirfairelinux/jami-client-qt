@@ -36,7 +36,15 @@ ItemDelegate {
     signal settingsClicked
 
     onActiveIdChanged: pluginPreferencesView.visible = activeId != pluginId ? false : !pluginPreferencesView.visible
-
+    Connections {
+        target: PluginListModel
+        function onDisabled(id) {
+            if (root.pluginId === id) {
+                isLoaded = false;
+                loadSwitch.checked = false;
+            }
+        }
+    }
     ColumnLayout {
         width: parent.width
 
@@ -108,7 +116,7 @@ ItemDelegate {
                         PluginModel.unloadPlugin(pluginId);
                     else
                         PluginModel.loadPlugin(pluginId);
-                    installedPluginsModel.pluginChanged(index);
+                    PluginListModel.pluginChanged(index);
                 }
             }
 
