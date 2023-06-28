@@ -19,6 +19,7 @@
 #pragma once
 
 #include "abstractlistmodelbase.h"
+#include "pluginversionmanager.h"
 
 class LRCInstance;
 
@@ -27,10 +28,17 @@ class PluginListModel : public AbstractListModelBase
     Q_OBJECT
     QML_PROPERTY(bool, filterAccount)
 public:
-    enum Role { PluginName = Qt::UserRole + 1, PluginId, PluginIcon, IsLoaded };
+    enum Role {
+        PluginName = Qt::UserRole + 1,
+        PluginDescription,
+        PluginId,
+        PluginIcon,
+        IsLoaded,
+        Status
+    };
     Q_ENUM(Role)
 
-    explicit PluginListModel(QObject* parent = nullptr);
+    explicit PluginListModel(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~PluginListModel();
 
     /*
@@ -51,8 +59,19 @@ public:
     Q_INVOKABLE void removePlugin(int index);
     Q_INVOKABLE void pluginChanged(int index);
     Q_INVOKABLE void addPlugin();
+    Q_INVOKABLE void disableAllPlugins();
+
+Q_SIGNALS:
+    void versionCheckRequested(const QString& pluginId);
+    void setVersionStatus(const QString& pluginId, PluginStatus::Role status);
+    void autoUpdateChanged(bool state);
+    void disabled(const QString& pluginId);
+public Q_SLOTS:
+    void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
 
 private:
+    LRCInstance* lrcInstance_ = nullptr;
     void filterPlugins(VectorString& list) const;
     VectorString installedPlugins_ {};
+    QMap<QString, PluginStatus::Role> pluginStatus_ {};
 };

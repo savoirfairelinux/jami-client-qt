@@ -22,11 +22,16 @@
 #include "pluginlistmodel.h"
 #include "pluginhandlerlistmodel.h"
 #include "pluginlistpreferencemodel.h"
+#include "pluginversionmanager.h"
+#include "pluginstorelistmodel.h"
 #include "preferenceitemlistmodel.h"
 
 #include <QObject>
 #include <QSortFilterProxyModel>
 #include <QString>
+
+class PluginVersionManager;
+class PluginStoreListModel;
 
 class PluginAdapter final : public QmlAdapterBase
 {
@@ -36,8 +41,18 @@ class PluginAdapter final : public QmlAdapterBase
     QML_PROPERTY(bool, isEnabled)
 
 public:
-    explicit PluginAdapter(LRCInstance* instance, QObject* parent = nullptr);
-    ~PluginAdapter() = default;
+    explicit PluginAdapter(LRCInstance* instance,
+                           QObject* parent = nullptr,
+                           QString baseUrl = "https://plugins.jami.net");
+    ~PluginAdapter();
+    Q_INVOKABLE void getPluginsFromStore();
+    Q_INVOKABLE void getPluginDetails(const QString& pluginId);
+    Q_INVOKABLE void installRemotePlugin(const QString& pluginId);
+    Q_INVOKABLE QString baseUrl() const;
+    Q_INVOKABLE void checkVersionStatus(const QString& pluginId);
+    Q_INVOKABLE bool isAutoUpdaterEnabled();
+    Q_INVOKABLE void setPluginsStoreAutoRefresh(bool enabled);
+    Q_INVOKABLE void setAutoUpdate(bool state);
 
 protected:
     Q_INVOKABLE QVariant getMediaHandlerSelectableModel(const QString& callId);
@@ -46,11 +61,21 @@ protected:
     Q_INVOKABLE QVariant getPluginPreferencesCategories(const QString& pluginId,
                                                         const QString& accountId,
                                                         bool removeLast = false);
+Q_SIGNALS:
+    void storeNotAvailable();
 
 private:
     void updateHandlersListCount();
 
+    PluginStoreListModel* pluginStoreListModel_;
+    PluginVersionManager* pluginVersionManager_;
+    PluginListModel* pluginListModel_;
+
     std::unique_ptr<PluginHandlerListModel> pluginHandlerListModel_;
 
+    LRCInstance* lrcInstance_;
     std::mutex mtx_;
+    QString tempPath_;
+    QTimer* pluginsStoreTimer_;
+    QString baseUrl_;
 };
