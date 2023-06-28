@@ -34,7 +34,7 @@ SimpleMessageDialog {
     property alias progressBarValue: progressBar.value
 
     Connections {
-        target: UpdateManager
+        target: AppVersionManager
 
         function onUpdateErrorOccurred(error) {
             downloadDialog.close();
@@ -98,10 +98,10 @@ SimpleMessageDialog {
     buttonTitles: [JamiStrings.optionCancel]
     buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
     buttonCallBacks: [function () {
-            UpdateManager.cancelDownload();
+            AppVersionManager.cancelDownload();
         }]
     onVisibleChanged: {
         if (!visible)
-            UpdateManager.cancelDownload();
+            AppVersionManager.cancelDownload();
     }
 }

@@ -245,7 +245,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
   ${APP_SRC_DIR}/networkmanager.h
   ${APP_SRC_DIR}/smartlistmodel.h
-  ${APP_SRC_DIR}/updatemanager.h
+  ${APP_SRC_DIR}/appversionmanager.h
   ${APP_SRC_DIR}/utils.h
   ${APP_SRC_DIR}/bannedlistmodel.h
   ${APP_SRC_DIR}/version.h
@@ -336,7 +336,7 @@ if(MSVC)
 
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/connectivitymonitor.cpp
-    ${APP_SRC_DIR}/updatemanager.cpp)
+    ${APP_SRC_DIR}/appversionmanager.cpp)
   # preprocessor defines
   add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
 
@@ -388,7 +388,7 @@ elseif (NOT APPLE)
     ${APP_SRC_DIR}/xrectsel.c
     ${APP_SRC_DIR}/connectivitymonitor.cpp
     ${APP_SRC_DIR}/dbuserrorhandler.cpp
-    ${APP_SRC_DIR}/updatemanager.cpp)
+    ${APP_SRC_DIR}/appversionmanager.cpp)
   list(APPEND COMMON_HEADERS
     ${APP_SRC_DIR}/xrectsel.h
     ${APP_SRC_DIR}/dbuserrorhandler.h)
@@ -440,7 +440,7 @@ elseif (NOT APPLE)
   find_library(X11 X11)
 else() # APPLE
   list(APPEND COMMON_SOURCES
-    ${APP_SRC_DIR}/os/macos/updatemanager.mm
+    ${APP_SRC_DIR}/os/macos/appversionmanager.mm
     ${APP_SRC_DIR}/os/macos/connectivitymonitor.mm
     ${APP_SRC_DIR}/os/macos/macutils.mm)
   list(APPEND COMMON_HEADERS
