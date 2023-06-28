@@ -23,12 +23,14 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 Item {
-    id: root
+    id: jamiId
+    property bool slimDisplay: true
+    property color backgroundColor: JamiTheme.welcomeBlockColor
+    height: getHeight()
 
-    property alias backgroundColor: outerRect.color
-
-    width: childrenRect.width
-    height: controlsLayout.height + usernameTextEdit.height + 2 * JamiTheme.preferredMarginSize
+    function getHeight() {
+        return outerRow.height;
+    }
 
     Connections {
         target: CurrentAccount
@@ -39,144 +41,167 @@ Item {
         }
     }
 
-    // Background rounded rectangle.
     Rectangle {
-        id: outerRect
-        anchors.fill: columnLayout
-        radius: 20
-        color: JamiTheme.secondaryBackgroundColor
-    }
-
-    // Logo masked by outerRect.
-    Item {
-        anchors.fill: outerRect
-        layer.enabled: true
-        layer.effect: OpacityMask {
-            maskSource: outerRect
-        }
-
-        Rectangle {
-            id: logoRect
-            width: 97 + radius
-            height: 40
-            color: JamiTheme.mainColor
-            radius: 20
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.leftMargin: -radius
-
-            ResponsiveImage {
-                id: jamiIdLogo
-                anchors.horizontalCenter: parent.horizontalCenter
-                // Adjust offset for parent masking margin.
-                anchors.horizontalCenterOffset: parent.radius / 2
-                anchors.verticalCenter: parent.verticalCenter
-                width: JamiTheme.jamiIdLogoWidth
-                height: JamiTheme.jamiIdLogoHeight
-                source: JamiResources.jamiid_svg
-            }
+        id: mask
+        anchors.fill: outerRow
+        radius: 5
+        visible: false
+        Scaffold {
         }
     }
 
-    ColumnLayout {
-        id: columnLayout
+    RowLayout {
+        id: outerRow
+        width: parent.width
 
-        spacing: JamiTheme.preferredMarginSize
-
-        RowLayout {
-            id: controlsLayout
-
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            Layout.topMargin: JamiTheme.pushButtonMargin / 2
-            Layout.rightMargin: JamiTheme.pushButtonMargin
+        RoundedBorderRectangle {
+            id: leftRect
+            fillColor: jamiId.backgroundColor
+            Layout.fillWidth: true
             Layout.preferredHeight: childrenRect.height
+            radius: {
+                "tl": 5,
+                "tr": 0,
+                "br": 0,
+                "bl": 5
+            }
 
-            JamiIdControlButton {
-                id: btnEdit
-                visible: CurrentAccount.registeredName === ""
-                border.color: enabled ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedBlack
-                imageColor: enabled ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedBlack
-                enabled: {
-                    if (!usernameTextEdit.editMode)
-                        return true;
-                    switch (usernameTextEdit.nameRegistrationState) {
-                    case UsernameTextEdit.NameRegistrationState.BLANK:
-                    case UsernameTextEdit.NameRegistrationState.FREE:
-                        return true;
-                    case UsernameTextEdit.NameRegistrationState.SEARCHING:
-                    case UsernameTextEdit.NameRegistrationState.INVALID:
-                    case UsernameTextEdit.NameRegistrationState.TAKEN:
-                        return false;
-                    }
-                }
-                source: usernameTextEdit.editMode ? JamiResources.check_black_24dp_svg : JamiResources.round_edit_24dp_svg
-                toolTipText: JamiStrings.chooseUsername
-                onClicked: {
-                    if (usernameTextEdit.readOnly) {
-                        usernameTextEdit.startEditing();
-                        usernameTextEdit.readOnly = false;
-                    } else {
-                        usernameTextEdit.accepted();
-                    }
+            layer {
+                enabled: true
+                effect: OpacityMask {
+                    maskSource: mask
                 }
             }
 
-            JamiIdControlButton {
-                id: btnCopy
-                source: JamiResources.content_copy_24dp_svg
-                toolTipText: JamiStrings.copy
-                onClicked: UtilsAdapter.setClipboardText(usernameTextEdit.staticText)
-            }
+            RowLayout {
+                width: parent.width
+                anchors.verticalCenter: parent.verticalCenter
 
-            JamiIdControlButton {
-                id: btnShare
-                source: JamiResources.share_24dp_svg
-                toolTipText: JamiStrings.share
-                onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
-            }
+                ResponsiveImage {
+                    id: jamiIdLogoImage
+                    Layout.preferredHeight: 40
+                    containerHeight: 40
+                    containerWidth: 40
+                    Layout.leftMargin: JamiTheme.pushButtonMargins
+                    source: JamiResources.jami_id_logo_svg
+                    color: JamiTheme.tintedBlue
+                }
 
-            JamiIdControlButton {
-                id: btnId
-                source: JamiResources.key_black_24dp_svg
-                visible: CurrentAccount.registeredName !== ""
-                toolTipText: JamiStrings.identifierURI
-                onClicked: {
-                    if (clicked) {
-                        usernameTextEdit.staticText = CurrentAccount.uri;
-                        btnId.toolTipText = JamiStrings.identifierRegisterName;
-                    } else {
-                        usernameTextEdit.staticText = CurrentAccount.registeredName;
-                        btnId.toolTipText = JamiStrings.identifierURI;
+                UsernameTextEdit {
+                    id: usernameTextEdit
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 40
+                    Layout.alignment: Qt.AlignVCenter
+                    textColor: JamiTheme.tintedBlue
+                    fontPixelSize: staticText.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.jamiIdFontSize
+                    editMode: false
+                    isPersistent: false
+                    readOnly: true
+
+                    onAccepted: {
+                        usernameTextEdit.readOnly = true;
+                        if (dynamicText === '') {
+                            return;
+                        }
+                        var dlg = viewCoordinator.presentDialog(appWindow, "settingsview/components/NameRegistrationDialog.qml", {
+                                "registeredName": dynamicText
+                            });
+                        dlg.accepted.connect(function () {
+                                usernameTextEdit.nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
+                            });
                     }
-                    clicked = !clicked;
                 }
             }
         }
 
-        UsernameTextEdit {
-            id: usernameTextEdit
+        RoundedBorderRectangle {
+            id: rightRect
+            fillColor: jamiId.backgroundColor
+            Layout.preferredWidth: childrenRect.width + 2 * JamiTheme.pushButtonMargins
 
-            Layout.preferredWidth: 330
-            Layout.preferredHeight: implicitHeight + JamiTheme.preferredMarginSize
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-            fontPixelSize: JamiTheme.jamiIdFontSize
-            editMode: false
-            isPersistent: false
-            readOnly: true
+            Layout.preferredHeight: leftRect.height
+            radius: {
+                "tl": 0,
+                "tr": 5,
+                "br": 5,
+                "bl": 0
+            }
 
-            onAccepted: {
-                usernameTextEdit.readOnly = true;
-                if (dynamicText === '') {
-                    return;
+            RowLayout {
+                id: controlsLayout
+
+                height: childrenRect.height
+                width: childrenRect.width
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.rightMargin: JamiTheme.pushButtonMargins
+                anchors.leftMargin: JamiTheme.pushButtonMargins
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                JamiIdControlButton {
+                    id: btnEdit
+                    anchors.leftMargin: JamiTheme.pushButtonMargins
+                    visible: CurrentAccount.registeredName === ""
+                    border.color: enabled ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedBlack
+                    imageColor: enabled ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedBlack
+                    enabled: {
+                        if (!usernameTextEdit.editMode)
+                            return true;
+                        switch (usernameTextEdit.nameRegistrationState) {
+                        case UsernameTextEdit.NameRegistrationState.BLANK:
+                        case UsernameTextEdit.NameRegistrationState.FREE:
+                            return true;
+                        case UsernameTextEdit.NameRegistrationState.SEARCHING:
+                        case UsernameTextEdit.NameRegistrationState.INVALID:
+                        case UsernameTextEdit.NameRegistrationState.TAKEN:
+                            return false;
+                        }
+                    }
+                    source: usernameTextEdit.editMode ? JamiResources.check_black_24dp_svg : JamiResources.round_edit_24dp_svg
+                    toolTipText: JamiStrings.chooseUsername
+                    onClicked: {
+                        if (usernameTextEdit.readOnly) {
+                            usernameTextEdit.startEditing();
+                            usernameTextEdit.readOnly = false;
+                        } else {
+                            usernameTextEdit.accepted();
+                        }
+                    }
                 }
-                var dlg = viewCoordinator.presentDialog(appWindow, "settingsview/components/NameRegistrationDialog.qml", {
-                        "registeredName": dynamicText
-                    });
-                dlg.accepted.connect(function () {
-                        usernameTextEdit.nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
-                    });
+
+                JamiIdControlButton {
+                    id: btnCopy
+                    anchors.leftMargin: JamiTheme.pushButtonMargins
+                    source: JamiResources.content_copy_24dp_svg
+                    border.color: "transparent"
+                    toolTipText: JamiStrings.copy
+                    onClicked: UtilsAdapter.setClipboardText(usernameTextEdit.staticText)
+                }
+
+                JamiIdControlButton {
+                    id: btnShare
+                    source: JamiResources.share_24dp_svg
+                    border.color: "transparent"
+                    toolTipText: JamiStrings.share
+                    onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
+                }
+
+                JamiIdControlButton {
+                    id: btnId
+                    source: JamiResources.key_black_24dp_svg
+                    visible: CurrentAccount.registeredName !== ""
+                    border.color: "transparent"
+                    toolTipText: JamiStrings.identifierURI
+                    onClicked: {
+                        if (clicked) {
+                            usernameTextEdit.staticText = CurrentAccount.uri;
+                            btnId.toolTipText = JamiStrings.identifierRegisterName;
+                        } else {
+                            usernameTextEdit.staticText = CurrentAccount.registeredName;
+                            btnId.toolTipText = JamiStrings.identifierURI;
+                        }
+                        clicked = !clicked;
+                    }
+                }
             }
         }
     }
@@ -184,11 +209,13 @@ Item {
     component JamiIdControlButton: PushButton {
         property bool clicked: true
         preferredSize: 30
+        radius: 5
         normalColor: JamiTheme.transparentColor
-        hoveredColor: JamiTheme.hoveredButtonColorWizard
+        //hoveredColor: JamiTheme.hoveredButtonColorWizard
         imageContainerWidth: JamiTheme.pushButtonSize
         imageContainerHeight: JamiTheme.pushButtonSize
         border.color: JamiTheme.tintedBlue
         imageColor: JamiTheme.buttonTintedBlue
+        duration: 0
     }
 }

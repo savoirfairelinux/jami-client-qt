@@ -26,12 +26,15 @@ ColumnLayout {
     id: column
     width: parent.width
 
+    property real maxHeight: 250
+
     property var iconSize: 26
     property var margin: 5
     property var prefWidth: 170
 
     RowLayout {
-
+        id: rowlayout
+        Layout.preferredHeight: opened ? 0 : childrenRect.height
         Layout.leftMargin: 15
         Layout.alignment: Qt.AlignLeft
 
@@ -68,10 +71,12 @@ ColumnLayout {
     }
 
     Text {
+        id: title
+        Layout.preferredHeight: contentHeight
         Layout.preferredWidth: opened ? 140 : 150
         Layout.leftMargin: 20
         Layout.topMargin: opened ? 0 : 8
-        Layout.bottomMargin: 15
+        Layout.bottomMargin: 8
         font.pixelSize: JamiTheme.tipBoxContentFontSize
         wrapMode: Text.WordWrap
         font.weight: opened ? Font.Medium : Font.Normal
@@ -80,14 +85,21 @@ ColumnLayout {
         color: JamiTheme.textColor
     }
 
-    Text {
+    JamiFlickable {
         Layout.preferredWidth: root.width - 32
         Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
-        font.pixelSize: JamiTheme.tipBoxContentFontSize
-        visible: opened
-        wrapMode: Text.WordWrap
-        text: root.description
-        horizontalAlignment: Text.AlignLeft
-        color: JamiTheme.textColor
+        property real maxDescriptionHeight: maxHeight - rowlayout.Layout.preferredHeight - title.Layout.preferredHeight - 2 * JamiTheme.preferredMarginSize
+        Layout.preferredHeight: opened ? Math.min(contentHeight, maxDescriptionHeight) : 0
+        contentHeight: description.height
+        Text {
+            id: description
+            width: parent.width
+            font.pixelSize: JamiTheme.tipBoxContentFontSize
+            visible: opened
+            wrapMode: Text.WordWrap
+            text: root.description
+            horizontalAlignment: Text.AlignLeft
+            color: JamiTheme.textColor
+        }
     }
 }
