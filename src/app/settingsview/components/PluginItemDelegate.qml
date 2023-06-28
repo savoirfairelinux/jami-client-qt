@@ -20,23 +20,59 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
+import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 ItemDelegate {
     id: root
-
     property string pluginName: ""
     property string pluginId: ""
     property string pluginIcon: ""
+    property int pluginStatus
     property bool isLoaded: false
-    property string activeId: ""
-    height: pluginPreferencesView.visible ? implicitHeight + pluginPreferencesView.childrenRect.height : implicitHeight
+    height: implicitHeight
 
-    signal settingsClicked
+    Connections {
+        target: PluginListModel
+        function onDisabled(id) {
+            if (root.pluginId === id) {
+                isLoaded = false;
+                loadSwitch.checked = false;
+            }
+        }
+    }
 
-    onActiveIdChanged: pluginPreferencesView.visible = activeId != pluginId ? false : !pluginPreferencesView.visible
+    onClicked: {
+        pluginListView.currentIndex = index;
+    }
 
+    Rectangle {
+        id: mask
+        anchors.fill: parent
+        color: {
+            if (pluginHover.hovered && pluginListView.currentIndex !== index) {
+                return Qt.darker(JamiTheme.pluginViewBackgroundColor, 1.1);
+            } else {
+                return JamiTheme.pluginViewBackgroundColor;
+            }
+        }
+        border.width: 2
+        border.color: {
+            if (pluginListView.currentIndex === index) {
+                return JamiTheme.switchHandleCheckedBorderColor;
+            }
+            return "transparent";
+        }
+        radius: 5
+    }
+
+    layer {
+        enabled: true
+        effect: OpacityMask {
+            maskSource: mask
+        }
+    }
     ColumnLayout {
         width: parent.width
 
@@ -54,13 +90,11 @@ ItemDelegate {
 
                 background: Rectangle {
                     color: "transparent"
-                    Image {
+                    ResponsiveImage {
                         anchors.centerIn: parent
                         source: "file:" + pluginIcon
-                        sourceSize: Qt.size(256, 256)
-                        mipmap: true
-                        width: JamiTheme.preferredFieldHeight
-                        height: JamiTheme.preferredFieldHeight
+                        containerWidth: JamiTheme.preferredFieldHeight
+                        containerHeight: JamiTheme.preferredFieldHeight
                     }
                 }
             }
@@ -77,7 +111,21 @@ ItemDelegate {
                 text: pluginName === "" ? pluginId : pluginName
                 verticalAlignment: Text.AlignVCenter
             }
-
+            MaterialButton {
+                id: update
+                TextMetrics {
+                    id: updateTextSize
+                    font.weight: Font.Bold
+                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                    font.capitalization: Font.AllUppercase
+                    text: JamiStrings.updatePlugin
+                }
+                visible: pluginStatus === PluginStatus.UPDATABLE
+                secondary: true
+                preferredWidth: updateTextSize.width
+                text: JamiStrings.updatePlugin
+                fontSize: 15
+            }
             ToggleSwitch {
                 id: loadSwitch
                 Layout.fillHeight: true
@@ -94,35 +142,9 @@ ItemDelegate {
                         PluginModel.unloadPlugin(pluginId);
                     else
                         PluginModel.loadPlugin(pluginId);
-                    installedPluginsModel.pluginChanged(index);
+                    PluginListModel.pluginChanged(index);
                 }
             }
-
-            PushButton {
-                id: btnPreferencesPlugin
-
-                Layout.alignment: Qt.AlingVCenter | Qt.AlignRight
-                Layout.topMargin: 8
-                Layout.rightMargin: 8
-
-                source: JamiResources.round_settings_24dp_svg
-                normalColor: JamiTheme.primaryBackgroundColor
-                imageColor: JamiTheme.textColor
-                toolTipText: JamiStrings.showHidePrefs
-
-                onClicked: settingsClicked()
-            }
-        }
-
-        PluginPreferencesView {
-            id: pluginPreferencesView
-
-            pluginId: root.pluginId
-
-            Layout.fillWidth: true
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-            Layout.preferredHeight: pluginPreferencesView.childrenRect.height
         }
     }
 }
