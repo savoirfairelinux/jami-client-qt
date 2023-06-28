@@ -40,7 +40,7 @@ Item {
 
     property string infoTip: "InformativeTipBox {}"
 
-    width: 200
+    width: JamiTheme.tipBoxWidth
     height: tipColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
     signal ignoreClicked
@@ -49,8 +49,8 @@ Item {
         id: rect
         anchors.fill: parent
 
-        color: opened || hovered ? JamiTheme.tipBoxBackgroundColor : "transparent"
-        border.color: JamiTheme.tipBoxBorderColor
+        color: opened || hovered ? JamiTheme.primaryBackgroundColor : JamiTheme.backgroundColor
+        border.color: opened || hovered ? JamiTheme.tipBoxBorderColor: "transparent"
         radius: 20
 
         Column {
