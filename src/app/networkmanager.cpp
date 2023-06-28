@@ -70,9 +70,9 @@ NetworkManager::sendGetRequest(const QUrl& url,
     });
 }
 
-unsigned int
+int
 NetworkManager::downloadFile(const QUrl& url,
-                             unsigned int replyId,
+                             int replyId,
                              std::function<void(bool, const QString&)>&& onDoneCallback,
                              const QString& filePath)
 {
@@ -99,9 +99,8 @@ NetworkManager::downloadFile(const QUrl& url,
     }
 
     // set the id for the request
-    const std::uniform_int_distribution<unsigned int> dist(1,
-                                                           std::numeric_limits<unsigned int>::max());
-    const unsigned int uuid = dist(rng_);
+    std::uniform_int_distribution<unsigned int> dist(1, std::numeric_limits<unsigned int>::max());
+    const auto uuid = dist(rng_);
 
     const QDir dir;
     if (!dir.exists(filePath)) {
@@ -167,7 +166,7 @@ NetworkManager::downloadFile(const QUrl& url,
 }
 
 void
-NetworkManager::cancelDownload(unsigned int replyId)
+NetworkManager::cancelDownload(int replyId)
 {
     if (downloadReplies_.value(replyId) != NULL) {
         Q_EMIT errorOccurred(GetError::CANCELED);
@@ -177,7 +176,7 @@ NetworkManager::cancelDownload(unsigned int replyId)
 }
 
 void
-NetworkManager::resetDownload(unsigned int replyId)
+NetworkManager::resetDownload(int replyId)
 {
     files_.remove(replyId);
     downloadReplies_.remove(replyId);
