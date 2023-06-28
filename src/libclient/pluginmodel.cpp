@@ -99,6 +99,7 @@ PluginModel::getPluginDetails(const QString& path)
         result.name = details["name"];
         result.path = path;
         result.iconPath = details["iconPath"];
+        result.version = details["version"];
     }
 
     VectorString loadedPlugins = getLoadedPlugins();

@@ -40,6 +40,7 @@ struct PluginDetails
 {
     QString name = "";
     QString path = "";
+    QString version = "";
     QString iconPath = "";
     bool loaded = false;
 };
