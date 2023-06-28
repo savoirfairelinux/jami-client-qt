@@ -22,6 +22,7 @@ ColumnLayout {
             });
     }
     RowLayout {
+        Layout.bottomMargin: 10
         Layout.fillWidth: true
         Layout.fillHeight: true
         Label {
@@ -49,10 +50,10 @@ ColumnLayout {
                     text: JamiStrings.installManually
                 }
                 secondary: true
-                preferredWidth: installManuallyTextSize.width
+                preferredWidth: installManuallyTextSize.width + JamiTheme.buttontextWizzardPadding
                 text: JamiStrings.installManually
                 toolTipText: JamiStrings.installManually
-                fontSize: 15
+                fontSize: JamiTheme.popuptextSize
                 onClicked: installPlugin()
             }
         }
@@ -63,14 +64,13 @@ ColumnLayout {
 
         Layout.fillWidth: true
         spacing: 20
+        Layout.alignment: Qt.AlignHCenter
         Layout.preferredHeight: childrenRect.height
-        clip: true
         Repeater {
             model: PluginStoreListModel
 
             delegate: PluginAvailableDelagate {
                 id: pluginItemDelegate
-
                 width: 350
                 height: 400
                 pluginId: Id

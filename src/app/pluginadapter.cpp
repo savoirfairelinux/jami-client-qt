@@ -18,10 +18,29 @@
 
 #include "pluginadapter.h"
 
+#include "pluginversionmanager.h"
 #include "networkmanager.h"
 #include "lrcinstance.h"
+#include "qmlregister.h"
+#include "pluginstorelistmodel.h"
 
-PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
+#include <QJsonDocument>
+#include <utilsadapter.h>
+#include <QJsonObject>
+#include <QDir>
+#include <QString>
+#include <QJsonArray>
+
+enum PluginInstallStatus {
+    SUCCESS = 0,
+    PLUGIN_ALREADY_INSTALLED = 100,
+    PLUGIN_OLD_VERSION = 200,
+    SIGNATURE_VERIFICATION_FAILED = 300,
+    CERTIFICATE_VERIFICATION_FAILED = 400,
+    INVALID_PLUGIN = 500,
+} PluginInstallStatus;
+
+PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString baseUrl)
     : QmlAdapterBase(instance, parent)
     , pluginVersionManager_(new PluginVersionManager(instance, baseUrl, this))
     , pluginStoreListModel_(new PluginStoreListModel(this))
@@ -30,6 +49,9 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     , baseUrl(baseUrl)
 
 {
+    qWarning() << tempPath_;
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
