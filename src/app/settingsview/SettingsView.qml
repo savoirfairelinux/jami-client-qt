@@ -59,14 +59,15 @@ ListSelectionView {
     leftPaneItem: viewCoordinator.getView("SettingsSidePanel")
 
     Component.onCompleted: {
-        leftPaneItem.updateModel()
+        leftPaneItem.updateModel();
+        leftPaneItem.select(16);
     }
 
     Connections {
         target: viewNode
 
         function onIsSinglePaneChanged() {
-            leftPaneItem.isSinglePane = viewNode.isSinglePane
+            leftPaneItem.isSinglePane = viewNode.isSinglePane;
         }
     }
 

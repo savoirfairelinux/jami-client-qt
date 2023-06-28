@@ -29,6 +29,9 @@
 #include <QSortFilterProxyModel>
 #include <QString>
 
+class PluginVersionManager;
+class PluginStoreListModel;
+
 class PluginAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
@@ -47,6 +50,7 @@ public:
     Q_INVOKABLE QString baseUrl;
     Q_INVOKABLE void checkVersionStatus(const QString& pluginId);
     Q_INVOKABLE bool isAutoUpdaterEnabled();
+    Q_INVOKABLE void setPluginsStoreAutoRefresh(bool enabled);
 
 protected:
     Q_INVOKABLE QVariant getMediaHandlerSelectableModel(const QString& callId);
@@ -55,14 +59,18 @@ protected:
     Q_INVOKABLE QVariant getPluginPreferencesCategories(const QString& pluginId,
                                                         const QString& accountId,
                                                         bool removeLast = false);
+Q_SIGNALS:
+    void storeNotAvailable();
 
 private:
     void updateHandlersListCount();
-    void setPluginsStoreAutoRefresh(bool enabled);
 
-    std::unique_ptr<PluginHandlerListModel> pluginHandlerListModel_;
+    PluginVersionManager* pluginVersionManager_;
     PluginStoreListModel* pluginStoreListModel_;
     PluginListModel* pluginListModel_;
+
+    std::unique_ptr<PluginHandlerListModel> pluginHandlerListModel_;
+
     LRCInstance* lrcInstance_;
     std::mutex mtx_;
     QString tempPath_;
