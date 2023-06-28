@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8169f11_3f19c520",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-06-28T14:19:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71bbe4a6_9a2c13eb",
+      "range": {
+        "startLine": 100,
+        "startChar": 42,
+        "endLine": 100,
+        "endChar": 67
+      },
+      "revId": "54be4ed991c519d3b374eb9dd4611f6905823d97",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d21bcec7_d614b0df",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-28T13:45:45Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 89,
+        "startChar": 82,
+        "endLine": 89,
+        "endChar": 100
+      },
+      "revId": "54be4ed991c519d3b374eb9dd4611f6905823d97",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdfeb049_c3d29dda",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-06-28T14:19:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d21bcec7_d614b0df",
       "range": {
         "startLine": 89,
         "startChar": 82,
