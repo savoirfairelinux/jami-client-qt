@@ -42,6 +42,15 @@ namespace lrc {
 
 using namespace api;
 
+enum pluginInstallResult {
+    SUCCESS = 0,
+    PLUGIN_ALREADY_INSTALLED = 100,      /* Plugin already installed with the same version */
+    PLUGIN_OLD_VERSION = 200,            /* Plugin already installed with a newer version */
+    SIGNATURE_VERIFICATION_FAILED = 300, /* Signature verification failed */
+    CERTIFICATE_VERIFICATION_FAILED = 400,
+    INVALID_PLUGIN = 500,
+};
+
 PluginModel::PluginModel()
     : QObject()
 {}
@@ -105,8 +114,28 @@ PluginModel::installPlugin(const QString& jplPath, bool force)
 {
     if (getPluginsEnabled()) {
         auto result = PluginManager::instance().installPlugin(jplPath, force);
+        qWarning() << "what is the fucking result" << result;
         Q_EMIT modelUpdated();
-        return result;
+        if (result != 0) {
+            switch (result) {
+            case pluginInstallResult::PLUGIN_ALREADY_INSTALLED:
+                qWarning() << "Plugin already installed";
+                break;
+            case pluginInstallResult::PLUGIN_OLD_VERSION:
+                qWarning() << "Plugin already installed with a newer version";
+                break;
+            case pluginInstallResult::SIGNATURE_VERIFICATION_FAILED:
+                qWarning() << "Signature verification failed";
+                break;
+            case pluginInstallResult::CERTIFICATE_VERIFICATION_FAILED:
+                qWarning() << "Certificate verification failed";
+                break;
+            case pluginInstallResult::INVALID_PLUGIN:
+                qWarning() << "Invalid plugin";
+                break;
+            }
+        }
+        return result == 0;
     }
     return false;
 }
@@ -250,5 +279,4 @@ PluginModel::resetPluginPreferencesValues(const QString& path, const QString& ac
     Q_EMIT modelUpdated();
     return result;
 }
-
 } // namespace lrc
