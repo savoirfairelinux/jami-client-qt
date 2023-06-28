@@ -70,9 +70,9 @@ NetworkManager::sendGetRequest(const QUrl& url,
     });
 }
 
-unsigned int
+int
 NetworkManager::downloadFile(const QUrl& url,
-                             unsigned int replyId,
+                             int replyId,
                              std::function<void(bool, const QString&)>&& onDoneCallback,
                              const QString& filePath)
 {
@@ -99,9 +99,8 @@ NetworkManager::downloadFile(const QUrl& url,
     }
 
     // set the id for the request
-    const std::uniform_int_distribution<unsigned int> dist(1,
-                                                           std::numeric_limits<unsigned int>::max());
-    const unsigned int uuid = dist(rng_);
+    std::uniform_int_distribution<unsigned int> dist(1, std::numeric_limits<unsigned int>::max());
+    const auto uuid = dist(rng_);
 
     const QDir dir;
     if (!dir.exists(filePath)) {
@@ -112,7 +111,7 @@ NetworkManager::downloadFile(const QUrl& url,
     const QFileInfo fileInfo(url.path());
     const QString fileName = fileInfo.fileName();
     auto& file = files_[uuid];
-    file = new QFile(filePath + fileName + ".jpl");
+    file = new QFile(filePath + fileName);
     if (!file->open(QIODevice::WriteOnly)) {
         Q_EMIT errorOccurred(GetError::ACCESS_DENIED);
         files_.remove(uuid);
@@ -123,8 +122,8 @@ NetworkManager::downloadFile(const QUrl& url,
     // Start the download.
     const QNetworkRequest request(url);
 
-    downloadReplies_[uuid] = manager_->get(request);
-    auto* const reply = downloadReplies_[uuid];
+    auto* const reply = manager_->get(request);
+    downloadReplies_[uuid] = reply;
     connect(reply, &QNetworkReply::readyRead, this, [file, reply]() {
         if (file && file->isOpen()) {
             file->write(reply->readAll());
@@ -149,8 +148,10 @@ NetworkManager::downloadFile(const QUrl& url,
                 Q_EMIT errorOccurred(GetError::NETWORK_ERROR);
             });
 
-    connect(reply, &QNetworkReply::finished, this, [this, uuid, onDoneCallback, reply]() {
+    connect(reply, &QNetworkReply::finished, this, [this, uuid, onDoneCallback, reply, file]() {
         bool success = false;
+        file->close();
+        reply->deleteLater();
         QString errorMessage;
         if (reply->error() == QNetworkReply::NoError) {
             resetDownload(uuid);
@@ -167,7 +168,7 @@ NetworkManager::downloadFile(const QUrl& url,
 }
 
 void
-NetworkManager::cancelDownload(unsigned int replyId)
+NetworkManager::cancelDownload(int replyId)
 {
     if (downloadReplies_.value(replyId) != NULL) {
         Q_EMIT errorOccurred(GetError::CANCELED);
@@ -177,7 +178,7 @@ NetworkManager::cancelDownload(unsigned int replyId)
 }
 
 void
-NetworkManager::resetDownload(unsigned int replyId)
+NetworkManager::resetDownload(int replyId)
 {
     files_.remove(replyId);
     downloadReplies_.remove(replyId);

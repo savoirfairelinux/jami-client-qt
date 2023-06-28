@@ -22,6 +22,8 @@
 #include "pluginlistmodel.h"
 #include "pluginhandlerlistmodel.h"
 #include "pluginlistpreferencemodel.h"
+#include "pluginversionmanager.h"
+#include "pluginstorelistmodel.h"
 #include "preferenceitemlistmodel.h"
 
 #include <QObject>
@@ -36,8 +38,17 @@ class PluginAdapter final : public QmlAdapterBase
     QML_PROPERTY(bool, isEnabled)
 
 public:
-    explicit PluginAdapter(LRCInstance* instance, QObject* parent = nullptr);
+    explicit PluginAdapter(LRCInstance* instance,
+                           QObject* parent = nullptr,
+                           QString baseUrl = "https://plugins.jami.net");
     ~PluginAdapter() = default;
+
+    Q_INVOKABLE void getPluginsFromStore();
+    Q_INVOKABLE void getPluginDetails(const QString& pluginId);
+    Q_INVOKABLE void installRemotePlugin(const QString& pluginId);
+    Q_INVOKABLE QString baseUrl() const;
+    Q_INVOKABLE void checkVersionStatus(const QString& pluginId);
+    Q_INVOKABLE bool isAutoUpdaterEnabled();
 
 protected:
     Q_INVOKABLE QVariant getMediaHandlerSelectableModel(const QString& callId);
@@ -51,6 +62,11 @@ private:
     void updateHandlersListCount();
 
     std::unique_ptr<PluginHandlerListModel> pluginHandlerListModel_;
-
+    PluginStoreListModel* pluginStoreListModel_;
+    PluginVersionManager* pluginVersionManager_;
+    PluginListModel* pluginListModel_;
+    LRCInstance* lrcInstance_;
     std::mutex mtx_;
+    QString tempPath_;
+    QString baseUrl_;
 };
