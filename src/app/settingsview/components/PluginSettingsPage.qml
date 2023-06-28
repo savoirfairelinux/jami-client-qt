@@ -38,25 +38,27 @@ SettingsPageBase {
 
         ColumnLayout {
             id: generalSettings
-            Layout.preferredWidth: root.width
-            spacing: JamiTheme.settingsCategorySpacing
-        }
-        // View of installed plugins
-        PluginListView {
-            id: pluginListView
+            Layout.maximumWidth: 3 * (JamiTheme.remotePluginWidthDelegate + 20)
+            spacing: JamiTheme.settingsBlockSpacing
+            // View of installed plugins
+            PluginListView {
+                id: pluginListView
+                visible: PluginAdapter.isEnabled && count
 
-            visible: PluginAdapter.isEnabled
-
-            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            Layout.preferredWidth: parent.width
-            Layout.minimumHeight: 0
-            Layout.preferredHeight: childrenRect.height
-        }
-        // View of available plugins in the store
-        PluginStoreListView {
-            Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+                Layout.fillWidth: true
+                Layout.preferredHeight: childrenRect.height
+            }
+            // View of available plugins in the store
+            PluginStoreListView {
+                Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+            InstallManuallyView {
+                Layout.fillWidth: true
+                spacing: 10
+            }
         }
     }
 }

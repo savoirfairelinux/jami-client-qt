@@ -28,7 +28,6 @@ public:
                 return;
             }
             for (auto pluginId : pluginsId) {
-                Q_EMIT parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLING);
                 parent_.pluginRepliesId.remove(pluginId);
             }
         });
@@ -103,7 +102,7 @@ public:
     void installRemotePlugin(const QString& pluginId)
     {
         parent_.downloadFile(
-            QUrl(parent_.baseUrl + "/download/" + pluginId),
+            QUrl(parent_.baseUrl + "/download/" + Utils::getPlatformString() + "/" + pluginId),
             pluginId,
             0,
             [this, pluginId](bool success, const QString& error) {
@@ -112,14 +111,17 @@ public:
                     parent_.versionStatusChanged(pluginId, PluginStatus::Role::FAILED);
                     return;
                 }
-                auto res = lrcInstance_->pluginModel().installPlugin(tempPath_ + '/' + pluginId
-                                                                         + ".jpl",
-                                                                     true);
-                if (res) {
-                    parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLED);
-                } else {
-                    parent_.versionStatusChanged(pluginId, PluginStatus::Role::FAILED);
-                }
+                QThreadPool::globalInstance()->start([this, pluginId] {
+                    auto res = lrcInstance_->pluginModel().installPlugin(tempPath_ + '/' + pluginId
+                                                                             + ".jpl",
+                                                                         true);
+                    if (res) {
+                        parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLED);
+                    } else {
+                        parent_.versionStatusChanged(pluginId, PluginStatus::Role::FAILED);
+                    }
+                });
+                parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLING);
             },
             tempPath_ + '/');
         parent_.versionStatusChanged(pluginId, PluginStatus::Role::DOWNLOADING);
