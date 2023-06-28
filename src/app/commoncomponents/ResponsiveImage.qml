@@ -68,6 +68,7 @@ Item {
         antialiasing: true
         asynchronous: true
         visible: false
+        mipmap: true
 
         function setSourceSize() {
             sourceSize = undefined;
