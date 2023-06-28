@@ -30,7 +30,7 @@ Popup {
     id: root
 
     required property ListView listView
-
+    property bool isOpen: false
     signal emojiIsPicked(string content)
 
     // Close the picker when attached to a listView that receives height/scroll
@@ -42,11 +42,13 @@ Popup {
 
     function openEmojiPicker() {
         root.open();
+        isOpen = true;
         emojiPickerWebView.runJavaScript("prepare_to_show(" + JamiTheme.darkTheme + ");");
     }
 
     function closeEmojiPicker() {
         emojiPickerWebView.runJavaScript("prepare_to_hide();");
+        isOpen = false;
         close();
     }
     padding: 0

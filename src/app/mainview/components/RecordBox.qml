@@ -38,6 +38,7 @@ Popup {
     property int state: RecordBox.States.INIT
     property bool isVideo: false
     property bool isPhoto: false
+    property bool isOpen: false
     property bool showVideo: (root.isVideo && VideoDevices.listSize !== 0)
     property int preferredWidth: 320
     property int preferredHeight: 240
@@ -53,6 +54,7 @@ Popup {
 
     function openRecorder(vid) {
         isVideo = vid;
+        isOpen = true;
         updateState(RecordBox.States.INIT);
         if (isVideo) {
             localVideo.startWithId(VideoDevices.getDefaultDevice());
@@ -61,6 +63,7 @@ Popup {
     }
 
     function closeRecorder() {
+        isOpen = false;
         if (isVideo) {
             localVideo.startWithId("");
         }
