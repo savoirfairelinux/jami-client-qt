@@ -44,7 +44,9 @@ using namespace api;
 
 PluginModel::PluginModel()
     : QObject()
-{}
+{
+    getPluginsPath();
+}
 
 PluginModel::~PluginModel() {}
 
@@ -87,11 +89,15 @@ PluginModel::getPluginDetails(const QString& path)
     MapStringString details = PluginManager::instance().getPluginDetails(path);
     plugin::PluginDetails result;
     if (!details.empty()) {
+        result.id = details["id"];
         result.name = details["name"];
         result.path = path;
         result.iconPath = details["iconPath"];
+        result.version = details["version"];
     }
-
+    if (!pluginsPath_.contains(result.id)) {
+        pluginsPath_[result.id] = path;
+    }
     VectorString loadedPlugins = getLoadedPlugins();
     if (std::find(loadedPlugins.begin(), loadedPlugins.end(), result.path) != loadedPlugins.end()) {
         result.loaded = true;
@@ -106,7 +112,27 @@ PluginModel::installPlugin(const QString& jplPath, bool force)
     if (getPluginsEnabled()) {
         auto result = PluginManager::instance().installPlugin(jplPath, force);
         Q_EMIT modelUpdated();
-        return result;
+        if (result != 0) {
+            switch (result) {
+            case pluginInstallResult::PLUGIN_ALREADY_INSTALLED:
+                qWarning() << "Plugin already installed";
+                break;
+            case pluginInstallResult::PLUGIN_OLD_VERSION:
+                qWarning() << "Plugin already installed with a newer version";
+                break;
+            case pluginInstallResult::SIGNATURE_VERIFICATION_FAILED:
+                qWarning() << "Signature verification failed";
+                break;
+            case pluginInstallResult::CERTIFICATE_VERIFICATION_FAILED:
+                qWarning() << "Certificate verification failed";
+                break;
+            case pluginInstallResult::INVALID_PLUGIN:
+                qWarning() << "Invalid plugin";
+                break;
+            }
+        }
+        pluginsPath_[getPluginDetails(jplPath).id] = jplPath;
+        return result == 0;
     }
     return false;
 }
@@ -115,8 +141,26 @@ bool
 PluginModel::uninstallPlugin(const QString& rootPath)
 {
     auto result = PluginManager::instance().uninstallPlugin(rootPath);
+    for (auto plugin : pluginsPath_.keys(rootPath)) {
+        pluginsPath_.remove(plugin);
+    }
     Q_EMIT modelUpdated();
     return result;
+}
+
+QString
+PluginModel::getPluginPath(const QString& pluginId)
+{
+    return pluginsPath_[pluginId];
+}
+
+void
+PluginModel::getPluginsPath()
+{
+    for (auto plugin : getInstalledPlugins()) {
+        auto details = getPluginDetails(plugin);
+        pluginsPath_[details.id] = details.path;
+    }
 }
 
 bool

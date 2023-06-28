@@ -46,9 +46,20 @@ Rectangle {
             font.kerning: true
             color: JamiTheme.textColor
 
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-        }
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+            }
+            HeaderToggleSwitch {
+                labelText: "auto update"
+                tooltipText: "auto update"
+                checked: PluginAdapter.isAutoUpdaterEnabled()
+                onSwitchToggled: {
+                    print(this, "switch toggled ", checked);
+                    PluginListModel.autoUpdateChanged(checked);
+                }
+            }
+            MaterialButton {
+                id: disableAll
 
         MaterialButton {
             id: installButton
