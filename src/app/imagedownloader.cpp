@@ -49,7 +49,7 @@ ImageDownloader::onDownloadImageFinished(const QByteArray& data, const QString& 
             file.write(data);
             file.close();
             qWarning() << Q_FUNC_INFO;
-            Q_EMIT downloadImageSuccessfull(localPath);
+            Q_EMIT downloadImageSuccessful(localPath);
             return;
         }
     }

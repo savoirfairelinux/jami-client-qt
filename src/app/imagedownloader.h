@@ -32,9 +32,9 @@ public:
 
     Q_INVOKABLE void downloadImageToCache(const QUrl& url, const QString& localPath);
 
-    Q_SIGNALS:
-        void downloadImageSuccessfull(const QString& localPath);
-        void downloadImageFailed(const QString& localPath);
+Q_SIGNALS:
+    void downloadImageSuccessful(const QString& localPath);
+    void downloadImageFailed(const QString& localPath);
 
 private Q_SLOTS:
     void onDownloadImageFinished(const QByteArray& reply, const QString& localPath);
