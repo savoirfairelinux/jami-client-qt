@@ -19,6 +19,7 @@
 #pragma once
 
 #include "abstractlistmodelbase.h"
+#include "pluginversionmanager.h"
 
 class LRCInstance;
 
@@ -51,6 +52,14 @@ public:
     Q_INVOKABLE void removePlugin(int index);
     Q_INVOKABLE void pluginChanged(int index);
     Q_INVOKABLE void addPlugin();
+
+Q_SIGNALS:
+    void versionCheckRequested(const QString& pluginId);
+    void setVersionStatus(const QString& pluginId, PluginStatus::Role status);
+    void autoUpdateChanged(bool state);
+
+public Q_SLOTS:
+    void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
 
 private:
     void filterPlugins(VectorString& list) const;
