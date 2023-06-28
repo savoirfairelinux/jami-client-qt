@@ -19,179 +19,162 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Adapters 1.1
+import SortFilterProxyModel 0.2
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 Rectangle {
     id: root
+    required property int currentIndex
+    signal closed
+    color: JamiTheme.secondaryBackgroundColor
+    ListView {
+        id: pluginPreferenceListView
+        height: parent.height
+        width: parent.width
+        model: SortFilterProxyModel {
+            sourceModel: PluginListModel
+            filters: [
+                ExpressionFilter {
+                    expression: index === currentIndex
+                    enabled: true
+                }
+            ]
+        }
+        delegate: Page {
+            id: settings
+            width: parent ? parent.width : 0
+            height: parent ? parent.height : 0
 
-    required property string pluginId
+            header: Control {
+                padding: 10
+                background: Rectangle {
+                    color: JamiTheme.pluginViewBackgroundColor
+                }
+                contentItem: ColumnLayout {
+                    width: parent.width
+                    PushButton {
+                        id: closeButton
+                        Layout.alignment: Qt.AlignRight
+                        Layout.preferredWidth: JamiTheme.preferredFieldHeight
+                        Layout.preferredHeight: childrenRect.height
 
-    color: "transparent"
+                        imageColor: JamiTheme.textColor
+                        toolTipText: JamiStrings.closeSettings
 
-    visible: false
+                        preferredSize: 32
+                        source: JamiResources.round_close_24dp_svg
+                        onClicked: {
+                            closed();
+                        }
+                    }
 
-    ColumnLayout {
-        anchors.left: root.left
-        anchors.right: root.right
-        anchors.bottomMargin: 10
+                    RowLayout {
+                        Layout.preferredWidth: parent.width
+                        ResponsiveImage {
+                            containerWidth: 64
+                            containerHeight: 64
+                            source: PluginIcon === "" ? JamiResources.plugins_24dp_svg : "file:" + PluginIcon
+                        }
+                        Label {
+                            text: PluginName
+                            font.pointSize: JamiTheme.headerFontSize
+                            font.kerning: true
+                            color: JamiTheme.textColor
+                        }
 
-        Label {
-            Layout.topMargin: 34
-            Layout.alignment: Qt.AlignHCenter
-            height: 64
-            background: Rectangle {
-                Image {
-                    anchors.centerIn: parent
-                    source: pluginIcon === "" ? JamiResources.plugins_24dp_svg : "file:" + pluginIcon
-                    sourceSize: Qt.size(256, 256)
-                    height: 64
-                    width: 64
-                    mipmap: true
+                        Item {
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+                            MaterialButton {
+                                id: update
+                                anchors.right: parent.right
+                                buttontextHeightMargin: 0.0
+                                TextMetrics {
+                                    id: updateTextSize
+                                    font.weight: Font.Bold
+                                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                                    font.capitalization: Font.AllUppercase
+                                    text: JamiStrings.updatePlugin
+                                }
+                                visible: Status === PluginStatus.UPDATABLE
+                                secondary: true
+                                preferredWidth: updateTextSize.width
+                                text: JamiStrings.updatePlugin
+                                fontSize: 15
+                            }
+                        }
+                    }
+
+                    JamiFlickable {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: childrenRect.height
+                        Layout.minimumHeight: childrenRect.height
+                        Layout.maximumHeight: 88
+                        contentWidth: description.width
+                        contentHeight: description.height
+                        clip: true
+                        flickableDirection: Flickable.VerticalFlick
+                        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                        ScrollBar.vertical: ScrollBar {
+                            id: scrollBar
+                            policy: ScrollBar.AsNeeded
+                        }
+                        Text {
+                            id: description
+                            width: settings.width - 2 * scrollBar.width
+                            text: PluginDescription
+                            font.pointSize: JamiTheme.textFontSize
+                            wrapMode: Text.WordWrap
+                        }
+                    }
                 }
             }
-        }
+            ColumnLayout {
+                width: root.width
+                PluginPreferencesListView {
+                    id: pluginGeneralSettingsView
+                    Layout.fillWidth: true
+                    pluginId: PluginId
+                }
+                PluginPreferencesListView {
+                    id: pluginAccountSettingsView
+                    Layout.fillWidth: true
+                    accountId: LRCInstance.currentAccountId
+                    pluginId: PluginId
+                }
+                MaterialButton {
+                    id: uninstallButton
 
-        Label {
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: 24
-            height: JamiTheme.preferredFieldHeight
+                    Layout.alignment: Qt.AlignCenter
 
-            text: "%1\n%2".arg(pluginName).arg(JamiStrings.pluginPreferences)
-            font.pointSize: JamiTheme.headerFontSize
-            font.kerning: true
-            color: JamiTheme.textColor
+                    preferredWidth: JamiTheme.preferredFieldWidth
+                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+                    contentColorProvider: JamiTheme.buttonTintedRed
+                    color: JamiTheme.buttonTintedBlack
+                    hoveredColor: JamiTheme.buttonTintedBlackHovered
+                    pressedColor: JamiTheme.buttonTintedBlackPressed
+                    tertiary: true
+                    toolTipText: JamiStrings.pluginUninstallConfirmation.arg(PluginId)
 
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-        }
+                    text: JamiStrings.uninstall
 
-        RowLayout {
-            Layout.fillWidth: true
-
-            Text {
-                Layout.fillWidth: true
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                font.pointSize: JamiTheme.headerFontSize
-                font.kerning: true
-
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                color: JamiTheme.textColor
-
-                text: JamiStrings.generalSettingsTitle
-                elide: Text.ElideRight
-            }
-
-            PushButton {
-                Layout.preferredWidth: JamiTheme.preferredFieldHeight
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.alignment: Qt.AlignHCenter
-
-                imageColor: JamiTheme.textColor
-                toolTipText: JamiStrings.tipGeneralPluginSettingsDisplay
-
-                preferredSize: 32
-                source: pluginGeneralSettingsView.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
-
-                onClicked: {
-                    pluginGeneralSettingsView.visible = !pluginGeneralSettingsView.visible;
+                    onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                            "title": JamiStrings.uninstallPlugin,
+                            "infoText": JamiStrings.pluginUninstallConfirmation.arg(PluginName),
+                            "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
+                            "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
+                            "buttonCallBacks": [function () {
+                                    PluginListModel.setVersionStatus(PluginName, PluginStatus.INSTALLABLE);
+                                    PluginModel.uninstallPlugin(PluginId);
+                                    PluginListModel.removePlugin(index);
+                                    // could not call root from here
+                                    settings.ListView.view.parent.closed();
+                                }]
+                        })
                 }
             }
-        }
-
-        PluginPreferencesListView {
-            id: pluginGeneralSettingsView
-            visible: false
-            Layout.fillWidth: true
-            pluginId: root.pluginId
-        }
-
-        RowLayout {
-            Layout.fillWidth: true
-            visible: pluginAccountSettingsView.count > 0
-
-            Text {
-                Layout.fillWidth: true
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                font.pointSize: JamiTheme.headerFontSize
-                font.kerning: true
-
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                color: JamiTheme.textColor
-
-                text: JamiStrings.accountSettingsMenuTitle
-                elide: Text.ElideRight
-            }
-
-            PushButton {
-                Layout.preferredWidth: JamiTheme.preferredFieldHeight
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.alignment: Qt.AlignHCenter
-
-                imageColor: JamiTheme.textColor
-                toolTipText: JamiStrings.tipAccountPluginSettingsDisplay
-
-                preferredSize: 32
-                source: pluginAccountSettingsView.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
-
-                onClicked: {
-                    pluginAccountSettingsView.visible = !pluginAccountSettingsView.visible;
-                }
-            }
-        }
-
-        PluginPreferencesListView {
-            id: pluginAccountSettingsView
-            visible: false
-            Layout.fillWidth: true
-            accountId: LRCInstance.currentAccountId
-            pluginId: root.pluginId
-        }
-
-        MaterialButton {
-            id: uninstallButton
-
-            Layout.alignment: Qt.AlignCenter
-
-            preferredWidth: JamiTheme.preferredFieldWidth
-            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-            color: JamiTheme.buttonTintedBlack
-            hoveredColor: JamiTheme.buttonTintedBlackHovered
-            pressedColor: JamiTheme.buttonTintedBlackPressed
-            secondary: true
-            toolTipText: JamiStrings.pluginUninstallConfirmation.arg(pluginName)
-            iconSource: JamiResources.delete_24dp_svg
-
-            text: JamiStrings.uninstall
-
-            onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                    "title": JamiStrings.uninstallPlugin,
-                    "infoText": JamiStrings.pluginUninstallConfirmation.arg(pluginName),
-                    "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
-                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
-                    "buttonCallBacks": [function () {
-                            pluginPreferencesView.visible = false;
-                            PluginModel.uninstallPlugin(pluginId);
-                            PluginListModel.removePlugin(index);
-                            var pluginPath = pluginId.split('/');
-                            PluginListModel.setVersionStatus(pluginPath[pluginPath.length - 1], PluginStatus.INSTALLABLE);
-                        }]
-                })
-        }
-
-        Rectangle {
-            Layout.bottomMargin: 10
-            height: 2
-            Layout.fillWidth: true
-            color: "transparent"
-            border.width: 1
-            border.color: JamiTheme.separationLine
         }
     }
 }
