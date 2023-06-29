@@ -356,7 +356,7 @@ Control {
             icon.source: JamiResources.phone_forwarded_24dp_svg
             icon.color: "white"
             text: JamiStrings.transferCall
-            enabled: CurrentCall.isSIP
+            //enabled: CurrentCall.isSIP
             onEnabledChanged: CallOverlayModel.setEnabled(this, callTransferAction.enabled)
         },
         Action {
