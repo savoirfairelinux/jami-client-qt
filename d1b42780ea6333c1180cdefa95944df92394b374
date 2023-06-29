@@ -16,6 +16,144 @@
       "message": "related gerrit review: https://review.jami.net/c/jami-client-qt/+/25051",
       "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34911631_4ffe47d5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:39:14Z",
+      "side": 1,
+      "message": "there is already an \"Update\" string in the same file. Please check if any duplicate exists and if so, group the strings ;)",
+      "range": {
+        "startLine": 662,
+        "startChar": 20,
+        "endLine": 662,
+        "endChar": 32
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88958e4b_97adba64",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:39:14Z",
+      "side": 1,
+      "message": "avoid to push this in review",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 35
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f075a33_b27016c5",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:39:14Z",
+      "side": 1,
+      "message": "missing copyright header, docstrings and ideally homogeneize coding style (spaces",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 7
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea787667_f532c228",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:39:14Z",
+      "side": 1,
+      "message": "\"Successful\"",
+      "range": {
+        "startLine": 17,
+        "startChar": 18,
+        "endLine": 17,
+        "endChar": 42
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75c48adb_28037338",
+        "filename": "src/app/mainview/components/CachedImage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:39:14Z",
+      "side": 1,
+      "message": "copyright, and check if headers are necessary",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "127d16ff_299642dd",
+        "filename": "src/app/mainview/components/CachedImage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:39:14Z",
+      "side": 1,
+      "message": "should be a warning probably",
+      "range": {
+        "startLine": 47,
+        "startChar": 20,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
