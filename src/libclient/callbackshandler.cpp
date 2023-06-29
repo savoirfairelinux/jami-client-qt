@@ -154,18 +154,6 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             Qt::QueuedConnection);
 
     connect(&CallManager::instance(),
-            &CallManagerInterface::incomingCall,
-            this,
-            &CallbacksHandler::slotIncomingCall,
-            Qt::QueuedConnection);
-
-    connect(&CallManager::instance(),
-            &CallManagerInterface::incomingCallWithMedia,
-            this,
-            &CallbacksHandler::slotIncomingCallWithMedia,
-            Qt::QueuedConnection);
-
-    connect(&CallManager::instance(),
             &CallManagerInterface::mediaChangeRequested,
             this,
             &CallbacksHandler::slotMediaChangeRequested,
@@ -446,38 +434,6 @@ CallbacksHandler::slotContactRemoved(const QString& accountId,
                                      bool banned)
 {
     Q_EMIT contactRemoved(accountId, contactUri, banned);
-}
-
-void
-CallbacksHandler::slotIncomingCall(const QString& accountId,
-                                   const QString& callId,
-                                   const QString& fromUri)
-{
-    slotIncomingCallWithMedia(accountId, callId, fromUri, {});
-}
-
-void
-CallbacksHandler::slotIncomingCallWithMedia(const QString& accountId,
-                                            const QString& callId,
-                                            const QString& fromUri,
-                                            const VectorMapStringString& mediaList)
-{
-    QString displayname;
-    QString fromQString;
-    if (fromUri.contains("ring.dht")) {
-        auto qDisplayname = fromUri.left(fromUri.indexOf("<") + 1);
-        if (qDisplayname.size() > 2) {
-            displayname = qDisplayname.left(qDisplayname.indexOf("<") - 1);
-        }
-        fromQString = fromUri.right(50);
-        fromQString = fromQString.left(40);
-    } else {
-        auto left = fromUri.indexOf("<") + 1;
-        auto right = fromUri.indexOf("@");
-        fromQString = fromUri.mid(left, right - left);
-        displayname = fromUri.left(fromUri.indexOf("<") - 1);
-    }
-    Q_EMIT incomingCallWithMedia(accountId, callId, fromQString, displayname, mediaList);
 }
 
 void

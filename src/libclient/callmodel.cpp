@@ -189,19 +189,6 @@ public:
 
 public Q_SLOTS:
     /**
-     * Listen from CallbacksHandler when a call is incoming
-     * @param accountId account which receives the call
-     * @param callId
-     * @param fromId peer uri
-     * @param displayname
-     * @param mediaList media received
-     */
-    void slotIncomingCallWithMedia(const QString& accountId,
-                                   const QString& callId,
-                                   const QString& fromId,
-                                   const QString& displayname,
-                                   const VectorMapStringString& mediaList);
-    /**
      * Connect this signal to know when a call arrives
      * @param accountId the one who receives the call
      * @param callId the call id
@@ -987,10 +974,6 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
     , behaviorController(behaviorController)
 {
     connect(&callbacksHandler,
-            &CallbacksHandler::incomingCallWithMedia,
-            this,
-            &CallModelPimpl::slotIncomingCallWithMedia);
-    connect(&callbacksHandler,
             &CallbacksHandler::mediaChangeRequested,
             this,
             &CallModelPimpl::slotMediaChangeRequested);
@@ -1368,56 +1351,6 @@ CallModel::isConferenceHost(const QString& callId)
 }
 
 void
-CallModelPimpl::slotIncomingCallWithMedia(const QString& accountId,
-                                          const QString& callId,
-                                          const QString& fromId,
-                                          const QString& displayname,
-                                          const VectorMapStringString& mediaList)
-{
-    if (linked.owner.id != accountId) {
-        return;
-    }
-    // TODO: uncomment this. For now, the rendez-vous account is showing calls
-    // if (linked.owner.confProperties.isRendezVous) {
-    //    // Do not notify for calls if rendez vous because it's in a detached
-    //    // mode and auto answer is managed by the daemon
-    //    return;
-    //}
-
-    auto callInfo = std::make_shared<call::Info>();
-    callInfo->id = callId;
-    // peer uri = ring:<jami_id> or sip number
-    auto uri = (linked.owner.profileInfo.type != profile::Type::SIP && !fromId.contains("ring:"))
-                   ? "ring:" + fromId
-                   : fromId;
-    callInfo->peerUri = uri;
-    callInfo->isOutgoing = false;
-    callInfo->status = call::Status::INCOMING_RINGING;
-    callInfo->type = call::Type::DIALOG;
-    callInfo->isAudioOnly = true;
-    callInfo->videoMuted = true;
-    for (const auto& item : mediaList) {
-        if (item[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO) {
-            callInfo->isAudioOnly = false;
-            if (!checkMediaDeviceMuted(item)) {
-                callInfo->videoMuted = false;
-                break;
-            }
-        }
-    }
-    callInfo->mediaList = mediaList;
-    calls.emplace(callId, std::move(callInfo));
-
-    if (!linked.owner.confProperties.allowIncoming
-        && linked.owner.profileInfo.type == profile::Type::JAMI) {
-        linked.refuse(callId);
-        return;
-    }
-
-    Q_EMIT linked.newIncomingCall(fromId, callId, displayname);
-}
-
-void
 CallModelPimpl::slotMediaChangeRequested(const QString& accountId,
                                          const QString& callId,
                                          const VectorMapStringString& mediaList)
@@ -1461,8 +1394,57 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
                                      const QString& state,
                                      int code)
 {
-    if (accountId != linked.owner.id || !linked.hasCall(callId))
+    if (accountId != linked.owner.id)
         return;
+
+    if (!linked.hasCall(callId)) {
+        auto callInfo = std::make_shared<call::Info>();
+        callInfo->id = callId;
+        MapStringString details = CallManager::instance().getCallDetails(linked.owner.id, callId);
+        qDebug() << details;
+
+        auto endId = details["PEER_NUMBER"].indexOf("@");
+        callInfo->peerUri = details["PEER_NUMBER"].left(endId);
+        callInfo->isOutgoing = details["CALL_TYPE"] == "1";
+        callInfo->status = call::to_status(state);
+        callInfo->type = call::Type::DIALOG;
+        callInfo->isAudioOnly = details["AUDIO_ONLY"] == TRUE_STR;
+        callInfo->videoMuted = details["VIDEO_MUTED"] == TRUE_STR;
+        callInfo->mediaList = {};
+        calls.emplace(callId, std::move(callInfo));
+
+        if (!(details["CALL_TYPE"] == "1")
+            && !linked.owner.confProperties.allowIncoming
+            && linked.owner.profileInfo.type == profile::Type::JAMI) {
+            linked.refuse(callId);
+            return;
+        }
+
+        QString displayname = details["DISPLAY_NAME"];
+        QString peerId;
+        QString peerUri = details["PEER_NUMBER"];
+        if (peerUri.contains("ring.dht")) {
+            peerId = peerUri.right(50);
+            peerId = peerId.left(40);
+            if (displayname.isEmpty())
+                displayname = details["REGISTERED_NAME"];
+        } else {
+            auto left = std::max(peerUri.indexOf("<"), peerUri.indexOf(":")) + 1;
+            auto right = peerUri.indexOf("@");
+            right = std::max(right, peerUri.indexOf(">"));
+            peerId = peerUri.mid(left, right - left);
+            if (displayname.isEmpty())
+                displayname = peerId;
+        }
+        qDebug() << displayname;
+        qDebug() << peerId;
+
+        Q_EMIT linked.newCall(peerId, callId, displayname, details["CALL_TYPE"] == "1");
+
+        // NOTE: signal emission order matters, always emit CallStatusChanged before CallEnded
+        Q_EMIT linked.callStatusChanged(callId, code);
+        Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
+    }
 
     auto status = call::to_status(state);
     auto& call = calls[callId];
