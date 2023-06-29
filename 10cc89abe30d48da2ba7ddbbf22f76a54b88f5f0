@@ -257,6 +257,30 @@
       },
       "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7897dc85_7eea4f16",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-06-29T13:44:53Z",
+      "side": 1,
+      "message": "Yes, it used in the commit above in the relation chain",
+      "parentUuid": "9e30ba93_b263673f",
+      "range": {
+        "startLine": 824,
+        "startChar": 14,
+        "endLine": 824,
+        "endChar": 26
+      },
+      "revId": "10cc89abe30d48da2ba7ddbbf22f76a54b88f5f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
