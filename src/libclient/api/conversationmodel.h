@@ -241,6 +241,7 @@ public:
      * @param filter the new filter
      */
     void setFilter(const QString& filter);
+    void setFilterString(const QString& filter);
     /**
      * Modify the current filter (will change the result of getFilteredConversations)
      * @param filter the new filter (example: SIP,  RING,  REQUEST)
