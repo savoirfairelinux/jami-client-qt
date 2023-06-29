@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "688a8546_d16d8b85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:40:53Z",
+      "side": 1,
+      "message": "remove \"refactor\"\n\nalso I\u0027d add some details about what is updated in the long description part.",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4f684e4_8ad5bc67",
         "filename": "src/app/abstractupdatemanager.cpp",
         "patchSetId": 1
