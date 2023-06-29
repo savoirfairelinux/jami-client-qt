@@ -154,9 +154,10 @@ Q_SIGNALS:
     /**
      * Connect this signal to know when a call is incoming.
      * @param fromId peer profile uri
-     * @param callId incoming call id
+     * @param callId call id
+     * @param isOutgoing
      */
-    void incomingCall(const QString& from, const QString& callId) const;
+    void newCall(const QString& from, const QString& callId, bool isOutgoing) const;
     /**
      * Connect this signal to know when a text message arrives for this account
      * @param accountId
