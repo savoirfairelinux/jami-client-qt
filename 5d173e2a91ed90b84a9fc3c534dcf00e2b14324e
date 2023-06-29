@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23f97ee5_16233c2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-06-29T12:46:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d971f36_bd838aa5",
+      "revId": "5d173e2a91ed90b84a9fc3c534dcf00e2b14324e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec17efdc_40bcd16b",
@@ -41,6 +59,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9b681f9_9ededaf4",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-06-29T12:46:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec17efdc_40bcd16b",
+      "range": {
+        "startLine": 79,
+        "startChar": 57,
+        "endLine": 79,
+        "endChar": 63
+      },
+      "revId": "5d173e2a91ed90b84a9fc3c534dcf00e2b14324e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a419be7c_1399e48e",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-06-29T12:13:12Z",
       "side": 1,
       "message": "rename to JamiPushButton I guess, because it\u0027s not only for header at the end (the search bar is also in the side panel for example)",
+      "range": {
+        "startLine": 2,
+        "startChar": 27,
+        "endLine": 2,
+        "endChar": 33
+      },
+      "revId": "5d173e2a91ed90b84a9fc3c534dcf00e2b14324e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "064d072d_81114747",
+        "filename": "src/app/mainview/components/HeaderPushButton.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-06-29T12:46:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a419be7c_1399e48e",
       "range": {
         "startLine": 2,
         "startChar": 27,
