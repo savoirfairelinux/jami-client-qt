@@ -446,14 +446,16 @@ Q_SIGNALS:
      */
     void callEnded(const QString& callId) const;
     /**
-     * Emitted when a call is incoming
+     * Emitted when a new call is available
+     * @param peerId the peer uri
      * @param callId
-     * @param fromId the peer uri
      * @param displayname
+     * @param isOutgoing
      */
-    void newIncomingCall(const QString& fromId,
-                         const QString& callId,
-                         const QString& displayname) const;
+    void newCall(const QString& peerId,
+                 const QString& callId,
+                 const QString& displayname,
+                 bool isOutgoing) const;
     /**
      * Emitted when a call is added to a conference
      * @param callId

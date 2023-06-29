@@ -94,19 +94,6 @@ Q_SIGNALS:
      * Connect this signal to know when a call arrives
      * @param accountId the one who receives the call
      * @param callId the call id
-     * @param fromUri the caller uri
-     * @param displayName the display name of incoming call
-     * @param mediaList media received
-     */
-    void incomingCallWithMedia(const QString& accountId,
-                               const QString& callId,
-                               const QString& fromUri,
-                               const QString& displayName,
-                               const VectorMapStringString& mediaList);
-    /**
-     * Connect this signal to know when a call arrives
-     * @param accountId the one who receives the call
-     * @param callId the call id
      * @param mediaList new media received
      */
     void mediaChangeRequested(const QString& accountId,
@@ -452,25 +439,6 @@ private Q_SLOTS:
                                       const QString& registration_state,
                                       unsigned detail_code,
                                       const QString& detail_str);
-    /**
-     * @deprecated Use slotIncomingCallWithMedia instead
-     * Get the URI of the peer and emit incomingCall
-     * @param accountId account linked
-     * @param callId the incoming call id
-     * @param fromUri the uri of the peer
-     */
-    void slotIncomingCall(const QString& accountId, const QString& callId, const QString& fromUri);
-    /**
-     * Get the URI of the peer and emit incomingCallWithMedia
-     * @param accountId account linked
-     * @param callId the incoming call id
-     * @param fromUri the uri of the peer
-     * @param mediaList the mediaList received
-     */
-    void slotIncomingCallWithMedia(const QString& accountId,
-                                   const QString& callId,
-                                   const QString& fromUri,
-                                   const VectorMapStringString& mediaList);
     /**
      * Get the URI of the peer and emit mediaChangeRequested
      * @param accountId account linked
