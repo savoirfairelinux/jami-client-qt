@@ -29,6 +29,9 @@ import "../../commoncomponents"
 JamiListView {
     id: root
 
+    property var scrollTo: undefined
+    property var maxIdxLoaded: undefined
+
     function getDistanceToBottom() {
         const scrollDiff = ScrollBar.vertical.position -
                          (1.0 - ScrollBar.vertical.size)
@@ -95,6 +98,12 @@ JamiListView {
         if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
             item.showTime = true
             item.showDay = true
+        }
+        var idx = MessagesAdapter.getMessageIndexFromId(item.id)
+        maxIdxLoaded = idx > maxIdxLoaded || !maxIdxLoaded ? idx : maxIdxLoaded
+        if (item.id == root.scrollTo && item.id != undefined) {
+            root.scrollTo = undefined
+            Qt.callLater(CurrentConversation.scrollToMsg, item.id)
         }
     }
 
@@ -169,8 +178,25 @@ JamiListView {
     Connections {
         target: CurrentConversation
         function onScrollTo(id) {
-            var idx = MessagesAdapter.getMessageIndexFromId(id)
-            positionViewAtIndex(idx, ListView.Visible)
+            root.scrollTo = id
+            Qt.callLater(() => {
+                var idx = MessagesAdapter.getMessageIndexFromId(id)
+                // If idx not found, scroll up to load more msg components
+                if (idx < 0 || idx > root.maxIdxLoaded) {
+                    verticalScrollBar.position = 0
+                    Qt.callLater(CurrentConversation.scrollToMsg, id)
+                    return
+                }
+                var item = itemAtIndex(idx)
+                // try to jump to item
+                Qt.callLater(positionViewAtIndex, idx, ListView.Center)
+                if (item != null) {
+                    // only invalidade root.scrollTo if item already exists, else
+                    // leave it to be invalidated after component.onCompleted call
+                    // of the scrollToMsg
+                    root.scrollTo = undefined
+                }
+            })
         }
     }
 
