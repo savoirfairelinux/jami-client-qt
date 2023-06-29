@@ -159,12 +159,13 @@ public Q_SLOTS:
                                  const QString& registeredName);
 
     /**
-     * Listen from callModel when an incoming call arrives.
+     * Listen from callModel when an new call is available.
      * @param fromId
      * @param callId
      * @param displayName
+     * @param isOutgoing
      */
-    void slotIncomingCall(const QString& fromId, const QString& callId, const QString& displayname);
+    void slotNewCall(const QString& fromId, const QString& callId, const QString& displayname, bool isOutgoing);
 
     /**
      * Listen from callbacksHandler for new account interaction and add pending contact if not present
@@ -413,6 +414,7 @@ ContactModel::getSearchResults() const
 void
 ContactModel::searchContact(const QString& query)
 {
+    qDebug() << "query! " << query;
     // always reset temporary contact
     pimpl_->searchResult.clear();
 
@@ -626,9 +628,9 @@ ContactModelPimpl::ContactModelPimpl(const ContactModel& linked,
             this,
             &ContactModelPimpl::slotRegisteredNameFound);
     connect(&*linked.owner.callModel,
-            &CallModel::newIncomingCall,
+            &CallModel::newCall,
             this,
-            &ContactModelPimpl::slotIncomingCall);
+            &ContactModelPimpl::slotNewCall);
     connect(&callbacksHandler,
             &lrc::CallbacksHandler::newAccountMessage,
             this,
@@ -666,9 +668,9 @@ ContactModelPimpl::~ContactModelPimpl()
                this,
                &ContactModelPimpl::slotRegisteredNameFound);
     disconnect(&*linked.owner.callModel,
-               &CallModel::newIncomingCall,
+               &CallModel::newCall,
                this,
-               &ContactModelPimpl::slotIncomingCall);
+               &ContactModelPimpl::slotNewCall);
     disconnect(&callbacksHandler,
                &lrc::CallbacksHandler::newAccountMessage,
                this,
@@ -1027,39 +1029,41 @@ ContactModelPimpl::slotRegisteredNameFound(const QString& accountId,
 }
 
 void
-ContactModelPimpl::slotIncomingCall(const QString& fromId,
-                                    const QString& callId,
-                                    const QString& displayname)
+ContactModelPimpl::slotNewCall(const QString& fromId,
+                               const QString& callId,
+                               const QString& displayname,
+                               bool isOutgoing)
 {
-    bool emitContactAdded = false;
-    {
-        std::lock_guard<std::mutex> lk(contactsMtx_);
-        auto it = contacts.find(fromId);
-        if (it == contacts.end()) {
-            // Contact not found, load profile from database.
-            // The conversation model will create an entry and link the incomingCall.
-            auto type = (linked.owner.profileInfo.type == profile::Type::JAMI)
-                            ? profile::Type::PENDING
-                            : profile::Type::SIP;
-            addToContacts(fromId, type, displayname, false);
-            emitContactAdded = true;
-        } else {
-            // Update the display name
-            if (!displayname.isEmpty()) {
-                it->profileInfo.alias = displayname;
-                storage::createOrUpdateProfile(linked.owner.id, it->profileInfo, true);
+    if (!isOutgoing) {
+        bool emitContactAdded = false;
+        {
+            std::lock_guard<std::mutex> lk(contactsMtx_);
+            auto it = contacts.find(fromId);
+            if (it == contacts.end()) {
+                // Contact not found, load profile from database.
+                // The conversation model will create an entry and link the incomingCall.
+                auto type = (linked.owner.profileInfo.type == profile::Type::JAMI)
+                                ? profile::Type::PENDING
+                                : profile::Type::SIP;
+                addToContacts(fromId, type, displayname, false);
+                emitContactAdded = true;
+            } else {
+                // Update the display name
+                if (!displayname.isEmpty()) {
+                    it->profileInfo.alias = displayname;
+                    storage::createOrUpdateProfile(linked.owner.id, it->profileInfo, true);
+                }
             }
         }
+        if (emitContactAdded) {
+            if (linked.owner.profileInfo.type == profile::Type::SIP)
+                Q_EMIT linked.contactAdded(fromId);
+            else if (linked.owner.profileInfo.type == profile::Type::JAMI)
+                Q_EMIT behaviorController.newTrustRequest(linked.owner.id, "", fromId);
+        } else
+            Q_EMIT linked.profileUpdated(fromId);
     }
-    if (emitContactAdded) {
-        if (linked.owner.profileInfo.type == profile::Type::SIP)
-            Q_EMIT linked.contactAdded(fromId);
-        else if (linked.owner.profileInfo.type == profile::Type::JAMI)
-            Q_EMIT behaviorController.newTrustRequest(linked.owner.id, "", fromId);
-    } else
-        Q_EMIT linked.profileUpdated(fromId);
-
-    Q_EMIT linked.incomingCall(fromId, callId);
+    Q_EMIT linked.newCall(fromId, callId, isOutgoing);
 }
 
 void
