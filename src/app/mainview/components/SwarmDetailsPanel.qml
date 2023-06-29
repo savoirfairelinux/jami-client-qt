@@ -669,7 +669,7 @@ Rectangle {
         hoverColor: CurrentConversation.color
         borderWidth: 4
         bottomMargin: JamiTheme.settingsMarginSize
-        fontSize: JamiTheme.menuFontSize
+        fontSize: JamiTheme.smallFontSize
         underlineContentOnly: true
         textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
         textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
