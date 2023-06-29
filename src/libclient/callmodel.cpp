@@ -1461,8 +1461,31 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
                                      const QString& state,
                                      int code)
 {
-    if (accountId != linked.owner.id || !linked.hasCall(callId))
+    if (accountId != linked.owner.id)
         return;
+
+    if (!linked.hasCall(callId)) {
+        // TODO proper way
+        // Here, it's just for the UI to work for forwarded call
+
+        auto callInfo = std::make_shared<call::Info>();
+        callInfo->id = callId;
+        MapStringString details = CallManager::instance().getCallDetails(linked.owner.id, callId);
+        auto endId = details["PEER_NUMBER"].indexOf("@");
+        callInfo->peerUri = details["PEER_NUMBER"].left(endId);
+        callInfo->isOutgoing = true;
+        callInfo->status = call::to_status(state);
+        callInfo->type = call::Type::DIALOG;
+        callInfo->isAudioOnly = false;
+        callInfo->videoMuted = false;
+        callInfo->mediaList = {};
+        calls.emplace(callId, std::move(callInfo));
+
+        // NOTE: signal emission order matters, always emit CallStatusChanged before CallEnded
+        Q_EMIT linked.callStatusChanged(callId, code);
+        Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
+        return;
+    }
 
     auto status = call::to_status(state);
     auto& call = calls[callId];
