@@ -167,11 +167,11 @@ Rectangle {
                 function addRemoveButtons() {
                     if (CurrentConversation.isCoreDialog) {
                         if (tabBar.contentChildren.length === 3)
-                            tabBar.removeItem(tabBar.itemAt(1));
+                            tabBar.removeItem(tabBar.itemAt(0));
                     } else {
                         if (tabBar.contentChildren.length === 2) {
                             const obj = membersTabButtonComp.createObject(tabBar);
-                            tabBar.insertItem(1, obj);
+                            tabBar.insertItem(0, obj);
                         }
                     }
                 }
@@ -201,9 +201,9 @@ Rectangle {
                 }
 
                 DetailsTabButton {
-                    id: documentsTabButton
-                    objectName: "documents"
-                    labelText: JamiStrings.documents
+                    id: filesTabButton
+                    objectName: "files"
+                    labelText: JamiStrings.files
                 }
 
                 DetailsTabButton {
@@ -658,7 +658,7 @@ Rectangle {
             DocumentsScrollview {
                 id: documents
 
-                visible: tabBar.currentItemName === "documents"
+                visible: tabBar.currentItemName === "files"
                 anchors.fill: parent
             }
         }
