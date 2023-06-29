@@ -1,0 +1,429 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4f684e4_8ad5bc67",
+        "filename": "src/app/abstractupdatemanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "no need for cpp, can be in .h as it\u0027s an interface",
+      "range": {
+        "startLine": 4,
+        "startChar": 25,
+        "endLine": 4,
+        "endChar": 31
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a949749_9ebe6753",
+        "filename": "src/app/abstractupdatemanager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "missing copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 8,
+        "endLine": 1,
+        "endChar": 12
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc89ee29_24a07616",
+        "filename": "src/app/abstractupdatemanager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "add spaces between forward declarations/class and imports",
+      "range": {
+        "startLine": 4,
+        "startChar": 6,
+        "endLine": 4,
+        "endChar": 17
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53f2ecda_336c4147",
+        "filename": "src/app/abstractupdatemanager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "ideally add docstrings",
+      "range": {
+        "startLine": 12,
+        "startChar": 29,
+        "endLine": 12,
+        "endChar": 44
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11d0bd7c_0d043555",
+        "filename": "src/app/appversionmanager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "public? So can be written by user",
+      "range": {
+        "startLine": 46,
+        "startChar": 33,
+        "endLine": 46,
+        "endChar": 40
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da40d7a3_755bfaca",
+        "filename": "src/app/appversionmanager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "keep one private",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 7
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39407803_5f773f3e",
+        "filename": "src/app/commoncomponents/HeaderToogleSwitch.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "rename files \"Toogle\"\u003d\u003e\"Toggle\"",
+      "range": {
+        "startLine": 5,
+        "startChar": 16,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2fbd610_8908f57a",
+        "filename": "src/app/commoncomponents/HeaderToogleSwitch.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "alignment should be higher, because if the switch is used with an anchor, it will be a warning",
+      "range": {
+        "startLine": 22,
+        "startChar": 25,
+        "endLine": 22,
+        "endChar": 35
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53fadc2c_f060e0ba",
+        "filename": "src/app/commoncomponents/HeaderToogleSwitch.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "remove comment if unused",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 20
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1beef56_9d782260",
+        "filename": "src/app/commoncomponents/HeaderToogleSwitch.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "this seems not generic. HeaderToggleSwitch should not be related to autoupdate",
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bb27940_b7306324",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "double access on dodwnloadReplies_[replyId], you can just do it once",
+      "range": {
+        "startLine": 79,
+        "startChar": 32,
+        "endLine": 80,
+        "endChar": 33
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81045cbb_2108f5e5",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "you doesn\u0027t want to init the rng there. You should move this as a member and init in the constructor",
+      "range": {
+        "startLine": 101,
+        "startChar": 11,
+        "endLine": 101,
+        "endChar": 42
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b49faf75_3cfa09c0",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "keep ref to avoid access for every other files[uuid]",
+      "range": {
+        "startLine": 113,
+        "startChar": 4,
+        "endLine": 113,
+        "endChar": 15
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e7f5a09_12c7aad1",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "this, uuid",
+      "range": {
+        "startLine": 126,
+        "startChar": 69,
+        "endLine": 126,
+        "endChar": 74
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a14cd1_3539cb54",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "this, no need for any copy",
+      "range": {
+        "startLine": 135,
+        "startChar": 12,
+        "endLine": 135,
+        "endChar": 14
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a43ae61_7a61b497",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "same, avoid multiple access on same element. Also nullptr",
+      "range": {
+        "startLine": 169,
+        "startChar": 1,
+        "endLine": 172,
+        "endChar": 27
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cc1e368_199ad589",
+        "filename": "src/app/networkmanager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "remove new line",
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee2ce737_383cf8d8",
+        "filename": "src/app/pluginadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "remove comment",
+      "range": {
+        "startLine": 52,
+        "startChar": 18,
+        "endLine": 52,
+        "endChar": 27
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97246f23_53cc0723",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-06-29T12:33:37Z",
+      "side": 1,
+      "message": "seems some changes are from Matheo\u0027s patch, please rebase on it to avoid mixing patches",
+      "range": {
+        "startLine": 89,
+        "startChar": 30,
+        "endLine": 89,
+        "endChar": 46
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
