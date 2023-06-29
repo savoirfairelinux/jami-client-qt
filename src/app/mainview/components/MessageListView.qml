@@ -29,6 +29,8 @@ import "../../commoncomponents"
 JamiListView {
     id: root
 
+    property var scrollTo: undefined
+
     function getDistanceToBottom() {
         const scrollDiff = ScrollBar.vertical.position -
                          (1.0 - ScrollBar.vertical.size)
@@ -169,8 +171,20 @@ JamiListView {
     Connections {
         target: CurrentConversation
         function onScrollTo(id) {
-            var idx = MessagesAdapter.getMessageIndexFromId(id)
-            positionViewAtIndex(idx, ListView.Visible)
+            root.scrollTo = id
+            Qt.callLater(() => {
+                var idx = MessagesAdapter.getMessageIndexFromId(id)
+                if (idx >= 0) {
+                    var item = itemAtIndex(idx)
+                    root.scrollTo = undefined
+                    Qt.callLater(positionViewAtIndex, idx, ListView.Center)
+                    if (item == null)
+                        Qt.callLater(CurrentConversation.scrollToMsg, id)
+                } else {
+                    verticalScrollBar.position = 0
+                    Qt.callLater(CurrentConversation.scrollToMsg, id)
+                }
+            })
         }
     }
 
@@ -199,6 +213,10 @@ JamiListView {
             TextMessageDelegate {
                 Component.onCompleted:  {
                     computeChatview(this, index)
+                    if (id == root.scrollTo && id != undefined) {
+                        root.scrollTo = undefined
+                        Qt.callLater(CurrentConversation.scrollToMsg, id)
+                    }
                 }
             }
         }
