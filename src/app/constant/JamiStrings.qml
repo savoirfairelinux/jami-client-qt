@@ -836,7 +836,6 @@ Item {
     property string about: qsTr("About")
     property string members: qsTr("%1 Members")
     property string member: qsTr("Member")
-    property string documents: qsTr("Documents")
     property string swarmName: qsTr("Swarm's name")
     property string contactName: qsTr("Contact's name")
     property string addADescription: qsTr("Add a description")
