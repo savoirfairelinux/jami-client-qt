@@ -270,8 +270,9 @@ public Q_SLOTS:
      * Listen from callmodel for new calls.
      * @param fromId caller uri
      * @param callId
+     * @param isOutgoing
      */
-    void slotIncomingCall(const QString& fromId, const QString& callId);
+    void slotNewCall(const QString& fromId, const QString& callId, bool isOutgoing = false);
     /**
      * Listen from callmodel for calls status changed.
      * @param callId
@@ -1817,9 +1818,9 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
 
     // Call related
     connect(&*linked.owner.contactModel,
-            &ContactModel::incomingCall,
+            &ContactModel::newCall,
             this,
-            &ConversationModelPimpl::slotIncomingCall);
+            &ConversationModelPimpl::slotNewCall);
     connect(&*linked.owner.callModel,
             &lrc::api::CallModel::callStatusChanged,
             this,
@@ -1972,9 +1973,9 @@ ConversationModelPimpl::~ConversationModelPimpl()
 
     // Call related
     disconnect(&*linked.owner.contactModel,
-               &ContactModel::incomingCall,
+               &ContactModel::newCall,
                this,
-               &ConversationModelPimpl::slotIncomingCall);
+               &ConversationModelPimpl::slotNewCall);
     disconnect(&*linked.owner.callModel,
                &lrc::api::CallModel::callStatusChanged,
                this,
@@ -3366,16 +3367,29 @@ ConversationModelPimpl::getIndicesForContact(const QString& uri) const
 }
 
 void
-ConversationModelPimpl::slotIncomingCall(const QString& fromId, const QString& callId)
+ConversationModelPimpl::slotNewCall(const QString& fromId, const QString& callId, bool isOutgoing)
 {
+    if (isOutgoing) {
+        // search contact
+        currentFilter = fromId;
+        invalidateModel();
+        searchResults.clear();
+        Q_EMIT linked.searchResultUpdated();
+        linked.owner.contactModel->searchContact(currentFilter);
+        Q_EMIT linked.filterChanged();
+    }
+
     auto convIds = storage::getConversationsWithPeer(db, fromId);
     if (convIds.empty()) {
         // in case if we receive call after removing contact add conversation request;
         try {
             auto contact = linked.owner.contactModel->getContact(fromId);
-            if (contact.profileInfo.type == profile::Type::PENDING && !contact.isBanned
+            if (!isOutgoing && !contact.isBanned
                 && fromId != linked.owner.profileInfo.uri) {
                 addContactRequest(fromId);
+            }
+            if (isOutgoing && contact.profileInfo.type == profile::Type::TEMPORARY) {
+                linked.owner.contactModel->addContact(contact);
             }
         } catch (const std::out_of_range&) {
         }
@@ -3383,7 +3397,7 @@ ConversationModelPimpl::slotIncomingCall(const QString& fromId, const QString& c
 
     auto conversationIndices = getIndicesForContact(fromId);
     if (conversationIndices.empty()) {
-        qDebug() << "ConversationModelPimpl::slotIncomingCall, but conversation not found";
+        qDebug() << "ConversationModelPimpl::slotNewCall, but conversation not found";
         return; // Not a contact
     }
 

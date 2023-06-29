@@ -123,21 +123,6 @@ public:
                                     QString(callId.c_str()),
                                     QString(from.c_str()));
             }),
-            exportable_callback<CallSignal::IncomingCallWithMedia>(
-                [this](const std::string& accountId,
-                       const std::string& callId,
-                       const std::string& from,
-                       const std::vector<std::map<std::string, std::string>>& mediaList) {
-                    LOG_LIBJAMI_SIGNAL4("incomingCallWithMedia",
-                                        QString(accountId.c_str()),
-                                        QString(callId.c_str()),
-                                        QString(from.c_str()),
-                                        convertVecMap(mediaList));
-                    Q_EMIT incomingCallWithMedia(QString(accountId.c_str()),
-                                                 QString(callId.c_str()),
-                                                 QString(from.c_str()),
-                                                 convertVecMap(mediaList));
-                }),
             exportable_callback<CallSignal::MediaChangeRequested>(
                 [this](const std::string& accountId,
                        const std::string& callId,
@@ -639,10 +624,6 @@ Q_SIGNALS: // SIGNALS
                          const QString& from,
                          const MapStringString& message);
     void incomingCall(const QString& accountId, const QString& callId, const QString& from);
-    void incomingCallWithMedia(const QString& accountId,
-                               const QString& callId,
-                               const QString& from,
-                               const VectorMapStringString& mediaList);
     void mediaChangeRequested(const QString& accountId,
                               const QString& callId,
                               const VectorMapStringString& mediaList);
