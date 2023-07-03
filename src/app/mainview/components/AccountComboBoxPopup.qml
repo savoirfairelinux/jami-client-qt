@@ -40,6 +40,9 @@ Popup {
         color: JamiTheme.transparentColor
     }
 
+    focus: true
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
     contentItem: ColumnLayout {
         spacing: 0
 

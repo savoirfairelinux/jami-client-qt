@@ -220,10 +220,7 @@ Rectangle {
 
             Keys.onShortcutOverride: function (keyEvent) {
                 if (keyEvent.key === Qt.Key_Escape) {
-                    if (emojiPicker != null && emojiPicker.opened) {
-                        emojiPicker.closeEmojiPicker();
-                    }
-                    else if (recordBox != null && recordBox.opened) {
+                    if (recordBox != null && recordBox.opened) {
                         recordBox.closeRecorder();
                     }
                     else if (PositionManager.isMapActive(CurrentAccount.id)){
