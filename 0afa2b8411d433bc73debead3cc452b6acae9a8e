@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83f2e3e0_1a56124c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-03T16:08:07Z",
+      "side": 1,
+      "message": "For leaving location sharing i left what i had done last week in ChatViewFooter",
+      "parentUuid": "cd8d4e41_3b2bc73d",
+      "revId": "0afa2b8411d433bc73debead3cc452b6acae9a8e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca506215_fa061fb9",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
