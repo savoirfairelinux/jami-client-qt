@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="455"/>
         <source>%1 is calling you</source>
-        <translation>Το %1 σε καλεί</translation>
+        <translation>Ο χρήστης %1 σας καλεί</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="466"/>
@@ -109,7 +109,7 @@
     <message>
         <location filename="../src/app/mainview/components/DevicesListPopup.qml" line="162"/>
         <source>Device Id</source>
-        <translation>Ιδ. συσκευής</translation>
+        <translation>ID συσκευής</translation>
     </message>
 </context>
 <context>
@@ -157,7 +157,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="72"/>
         <source>JAMS server</source>
-        <translation>Διοικητής JAMS</translation>
+        <translation>Διακομιστής JAMS</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="73"/>
@@ -217,7 +217,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
         <source>Incoming video call from {}</source>
-        <translation>Ερχόμενο τηλεφώνημα από {}</translation>
+        <translation>Ερχόμενη βιντεοκλήση από {}</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="42"/>
@@ -237,32 +237,32 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="85"/>
         <source>Enable custom ringtone</source>
-        <translation>Ενεργοποιήστε προσαρμοσμένο χτυπήμα</translation>
+        <translation>Ενεργοποιήστε προσαρμοσμένο ήχο κλήσης</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="86"/>
         <source>Select custom ringtone</source>
-        <translation>Επιλέξτε εξατομικευμένο χτυπήμα</translation>
+        <translation>Επιλέξτε προσαρμοσμένο ήχο κλήσης</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="87"/>
         <source>Add a custom ringtone</source>
-        <translation>Προσθέστε ένα εξατομικευμένο χτυπήμα</translation>
+        <translation>Προσθέστε έναν προσαρμοσμένο ήχο κλήσης</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="88"/>
         <source>Select a new ringtone</source>
-        <translation>Επιλέξτε έναν νέο χτυπήμα</translation>
+        <translation>Επιλέξτε έναν νέο ήχο κλήσης</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
         <source>Voicemail</source>
-        <translation>Ηχητικό μήνυμα</translation>
+        <translation>Τηλεφωνητής</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="98"/>
         <source>Voicemail dial code</source>
-        <translation>Κώδικας κλήσης φωνητικής ταχυδρομείου</translation>
+        <translation>Κωδικός κλήσης τηλεφωνητή</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="101"/>
@@ -312,22 +312,22 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="110"/>
         <source>Verify server TLS certificates</source>
-        <translation>Επαληθεύστε τα πιστοποιητικά TLS του διακομιστή</translation>
+        <translation>Να επαληθεύονται τα πιστοποιητικά TLS του διακομιστή</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="111"/>
         <source>Require certificate for incoming TLS connections</source>
-        <translation>Απαιτείται πιστοποιητικό για εισερχόμενες συνδέσεις TLS</translation>
+        <translation>Να απαιτείται πιστοποιητικό για εισερχόμενες συνδέσεις TLS</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="113"/>
         <source>Audio input device selector</source>
-        <translation>Επιλέκτη συσκευής εισαγωγής ήχου</translation>
+        <translation>Επιλογέας συσκευών εισόδου ήχου</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="114"/>
         <source>Select a private key</source>
-        <translation>Επιλογή ενός ιδιωτικού κλειδιού</translation>
+        <translation>Επιλέξτε ένα ιδιωτικό κλειδί</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="115"/>
@@ -342,7 +342,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
         <source>Use custom address and port</source>
-        <translation>Χρησιμοποιήστε προσαρμοσμένη διεύθυνση και λιμάνι</translation>
+        <translation>Χρησιμοποιήστε προσαρμοσμένη διεύθυνση και θύρα</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
@@ -352,12 +352,12 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
         <source>Frames per second</source>
-        <translation>Φάμες ανά δευτερόλεπτο</translation>
+        <translation>Καρέ ανά δευτερόλεπτο</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
         <source>Select video frame rate (frames per second)</source>
-        <translation>Επιλέξτε ταχύτητα πλάνα βίντεο (σφαιρικά ανά δευτερόλεπτο)</translation>
+        <translation>Επιλέξτε ρυθμό καρέ βίντεο (καρέ ανά δευτερόλεπτο)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
@@ -372,12 +372,12 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
         <source>Resume call</source>
-        <translation>Επαναλαμβάνετε την κλήση</translation>
+        <translation>Επαναφέρετε την κλήση</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
         <source>Creating account…</source>
-        <translation>Δημιουργώντας λογαριασμό...</translation>
+        <translation>Δημιουργείται λογαριασμός...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
@@ -398,7 +398,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
         <source>Launch at startup</source>
-        <translation>Εκτόξευση στην εκκίνηση</translation>
+        <translation>Άνοιγμα κατά την εκκίνηση</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
@@ -409,7 +409,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>SSL error</source>
-        <translation>σφάλμα SSL</translation>
+        <translation>Σφάλμα SSL</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
@@ -435,7 +435,8 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
         <source>Are you sure you would like to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
-        <translation>Αν ναι, μόνο ένας τυχαία δημιουργημένος αναγνωριστικός κωδικός 40 χαρακτήρων θα ανατεθεί σε αυτό το λογαριασμό.</translation>
+        <translation>Είστε σίγουροι ότι θα θέλατε δημιουργήσετε λογαριασμό Jami χωρίς όνομα χρήστη;
+Αν ναι, μόνο ένας τυχαία δημιουργημένος αναγνωριστικός κωδικός 40 χαρακτήρων θα ανατεθεί σε αυτό το λογαριασμό.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="396"/>
@@ -443,7 +444,10 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
 - Special characters allowed: dash (-)</source>
-        <translation>- 32 χαρακτήρες το πολύ - Αλφαβητικά χαρακτήρα (α έως Ζ και α έως ζ) - Αριθμητικά χαρακτήρα (0 έως 9) - Επιτρέπονται ειδικά χαρακτήρα: χεράκι (-)</translation>
+        <translation>- 32 χαρακτήρες το πολύ
+- Αλφαβητικοί χαρακτήρες (A έως Z και a έως z)
+- Αριθμητικοί χαρακτήρες (0 έως 9)
+- Επιτρεπόμενοι ειδικοί χαρακτήρες: παύλα (-)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
@@ -453,22 +457,22 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
-        <translation>Συνιστάται να επιλέξετε όνομα χρήστη και το επιλεγμένο όνομα χρήστη ΑΠΟΙΝΑΝ να αλλάξει αργότερα.</translation>
+        <translation>Συνιστάται να επιλέξετε όνομα χρήστη, το οποίο όμως ΔΕΝ θα μπορεί να αλλαχθεί αργότερα.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation>Η κρυπτογράφηση του λογαριασμού σας με κωδικό πρόσβασης είναι προαιρετική και αν το κωδικό χάσει, δεν μπορεί να ανακτήσει αργότερα.</translation>
+        <translation>Η κρυπτογράφηση του λογαριασμού σας με κωδικό πρόσβασης είναι προαιρετική, και αν ο κωδικός σας χαθεί, ΔΕΝ μπορεί να ανακτηθεί αργότερα.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
         <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
-        <translation>Η ρύθμιση μιας εικόνας προφίλ και ενός παρατσούκλου είναι προαιρετική και μπορεί επίσης να αλλάξει αργότερα στις ρυθμίσεις.</translation>
+        <translation>Η ρύθμιση εικόνας προφίλ και ψευδωνύμου είναι προαιρετική, και μπορεί να αλλαχθεί αργότερα στις ρυθμίσεις.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
         <source>Back up account to a .gz file</source>
-        <translation>Επισκευή λογαριασμού σε αρχείο.gz</translation>
+        <translation>Δημιουργία αντίγραφου ασφαλείας λογαριασμού σε αρχείο .gz</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="669"/>
@@ -483,7 +487,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
         <source>Select a file</source>
-        <translation>επιλογή ενός αρχείου</translation>
+        <translation>Επιλέξτε αρχείο</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="117"/>
@@ -504,17 +508,17 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="690"/>
         <source>Creating rendezvous point…</source>
-        <translation>Δημιουργώντας σημείο συνάντησης...</translation>
+        <translation>Δημιουργείται σημείο συνάντησης...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
         <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>Δημιουργήστε λογαριασμό από τον Υπηρετητή Διαχείρισης Λογαριασμών Jami (JAMS)</translation>
+        <translation>Δημιουργήστε λογαριασμό από τον Διακομιστή Διαχείρισης Λογαριασμών Jami (JAMS)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
         <source>Create a Jami account</source>
-        <translation>Δημιουργία λογαριασμού Jami</translation>
+        <translation>Δημιουργήστε λογαριασμό Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
@@ -524,17 +528,17 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
         <source>Decline contact request</source>
-        <translation>Απέρνηση αιτήματος επικοινωνίας</translation>
+        <translation>Άρνηση αιτήματος επικοινωνίας</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
         <source>Accept contact request</source>
-        <translation>Αποδέχεται αίτηση επικοινωνίας</translation>
+        <translation>Αποδοχή αιτήματος επικοινωνίας</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
         <source>Automatically check for updates</source>
-        <translation>Έλεγξε αυτόματα για ενημερώσεις</translation>
+        <translation>Να γίνεται αυτόματα έλεγχος για ενημερώσεις</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
@@ -560,12 +564,12 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>Η Jami είναι μια παγκόσμια πλατφόρμα επικοινωνίας, με την ιδιωτικότητα ως βάση της, που βασίζεται σε ένα δωρεάν διανεμημένο δίκτυο για όλους.</translation>
+        <translation>Το Jami είναι μια παγκόσμια πλατφόρμα επικοινωνίας, με την ιδιωτικότητα ως βάση της, που βασίζεται σε ένα δωρεάν διανεμημένο δίκτυο για όλους.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>Η μετάβαση στην τεχνολογία Swarm θα επιτρέψει την συγχρονισμό αυτής της συζήτησης σε πολλές συσκευές και θα βελτιώσει την αξιοπιστία.</translation>
+        <translation>Η μετάβαση στην τεχνολογία Swarm θα επιτρέψει τον συγχρονισμό αυτής της συζήτησης σε πολλές συσκευές και θα βελτιώσει την αξιοπιστία. Το παλιό ιστορικό συζητήσεων θα καθαριστεί.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
@@ -595,12 +599,12 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
         <source>Certificate File (*.crt)</source>
-        <translation>Πλαίσιο πιστοποιητικού (*.crt)</translation>
+        <translation>Αρχείο πιστοποιητικού (*.crt)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="90"/>
         <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation>Ακομα αρχείο (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
+        <translation>Αρχείο ήχου (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
@@ -620,7 +624,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="118"/>
         <source>Key File (*.key)</source>
-        <translation>Κλειδί αρχείο (*.key)</translation>
+        <translation>Αρχείο κλειδιού (*.key)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="121"/>
@@ -720,22 +724,22 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="153"/>
         <source>Audio RTP minimum Port</source>
-        <translation>Λεπτομέτρηση RTP ήχου</translation>
+        <translation>Ελάχιστη θύρα Audio RTP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="154"/>
         <source>Audio RTP maximum Port</source>
-        <translation>Άκουσα RTP μέγιστη πύλη</translation>
+        <translation>Μέγιστη θύρα Audio RTP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="155"/>
         <source>Video RTP minimum Port</source>
-        <translation>Λεπτομέτρηση RTP βίντεο</translation>
+        <translation>Ελάχιστη θύρα Video RTP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="156"/>
         <source>Video RTP maximum port</source>
-        <translation>Μεγιστική πύλη RTP βίντεο</translation>
+        <translation>Μέγιστη θύρα Video RTP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
@@ -750,7 +754,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
         <source>Proxy address</source>
-        <translation>Δικαστική διεύθυνση</translation>
+        <translation>Διεύθυνση proxy</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="164"/>
@@ -790,7 +794,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="183"/>
         <source>Select audio input device</source>
-        <translation>Επιλέξτε συσκευή εισαγωγής ήχου</translation>
+        <translation>Επιλογή συσκευής εισόδου ήχου</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="184"/>
@@ -805,12 +809,12 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
         <source>Ringtone device</source>
-        <translation>Μηχανή χτυπήματος</translation>
+        <translation>Συσκευή ήχου κλήσης</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="187"/>
         <source>Select ringtone output device</source>
-        <translation>Επιλέξτε συσκευή εξόδου χωνητών</translation>
+        <translation>Επιλέξτε συσκευή εξόδου ήχου κλήσης</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="188"/>
@@ -931,7 +935,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
         <source>Tip</source>
-        <translation>Τσιμπή</translation>
+        <translation>Συμβουλή</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
@@ -2241,12 +2245,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="818"/>
         <source>Join call</source>
-        <translation>Συμπληρώστε την κλήση</translation>
+        <translation>Συμμετάσχετε στην κλήση</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
         <source>A call is in progress. Do you want to join the call?</source>
-        <translation>Υπάρχει ένα τηλεφώνημα.</translation>
+        <translation>Υπάρχει μια κλήση σε εξέλιξη. Θα θέλατε να συμμετάσχετε σε αυτήν;</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
@@ -2560,7 +2564,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
         <source>Join Jami</source>
-        <translation>Ελάτε μαζί μου.</translation>
+        <translation>Δημιουργήστε λογαριασμό Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
@@ -3714,7 +3718,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="361"/>
         <source>E&amp;xit</source>
-        <translation>Ε&amp;ξιτ</translation>
+        <translation>Έ&amp;ξοδος</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="363"/>
@@ -3908,7 +3912,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="262"/>
         <source>%1 was invited to join</source>
-        <translation>%1 προσκλήθηκε να συμμετάσχει</translation>
+        <translation>Ο χρήστης %1 προσκλήθηκε να συμμετάσχει</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="264"/>
@@ -3918,17 +3922,17 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="266"/>
         <source>%1 left</source>
-        <translation>Αριστερά %1</translation>
+        <translation>Ο χρήστης %1 έφυγε</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="268"/>
         <source>%1 was kicked</source>
-        <translation>%1 κλωτσήθηκε</translation>
+        <translation>Ο χρήστης %1 εδιώχθη</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="270"/>
         <source>%1 was re-added</source>
-        <translation>%1 προστέθηκε ξανά</translation>
+        <translation>Ο χρήστης %1 προστέθηκε ξανά</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="358"/>
@@ -3962,7 +3966,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="198"/>
         <source>Join call</source>
-        <translation>Συμπληρώστε την κλήση</translation>
+        <translation>Συμμετάσχετε στην κλήση</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
@@ -4216,7 +4220,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
-        <translation>Υπηρεσία Απατάθετη</translation>
+        <translation>Υπηρεσία μη διαθέσιμη</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="120"/>
@@ -4226,7 +4230,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
-        <translation>Επιστολή:</translation>
+        <translation>Η έκδοση δεν υποστηρίζεται</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="122"/>
@@ -4246,7 +4250,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
-        <translation>Αρνηθεί η κλήση</translation>
+        <translation>Απορρίφθηκε η κλήση</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
@@ -4256,7 +4260,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
-        <translation>Δεν είναι αποδεκτό οπουδήποτε</translation>
+        <translation>Δεν είναι αποδεκτό πουθενά</translation>
     </message>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="473"/>
@@ -4266,7 +4270,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/positioning.cpp" line="109"/>
         <source>locationServicesError</source>
-        <translation>ΤοποθεσίαServicesΕπιταγμα</translation>
+        <translation>Σφάλμα υπηρεσιών τοποθεσίας</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="112"/>
@@ -4368,7 +4372,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
-        <translation>Μια κόκκινη κουκίδα σημαίνει ότι το λογαριασμό σας είναι αποσυνδεδεμένο από το δίκτυο. Γίνεται πράσινο όταν είναι συνδεδεμένο.</translation>
+        <translation>Μια κόκκινη κουκίδα σημαίνει ότι ο λογαριασμός σας είναι αποσυνδεδεμένος από το δίκτυο. Γίνεται πράσινη όταν είναι συνδεδεμένος.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="94"/>
@@ -4378,7 +4382,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="96"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation>Αν χάσετε το κωδικό πρόσβασης ή τα δεδομένα του τοπικού λογαριασμού σας, δεν θα μπορείτε να ανακτήσετε το λογαριασμό σας αν δεν το κάνετε πριν.</translation>
+        <translation>Ο λογαριασμός σας είναι αποθηκευμένος μόνο στη συσκευή σας. Αν χάσετε το κωδικό πρόσβασης ή τα δεδομένα του τοπικού λογαριασμού σας, δεν θα μπορείτε να ανακτήσετε το λογαριασμό σας αν δεν το κάνετε από πριν.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="102"/>
@@ -4393,7 +4397,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="109"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation>Το λογαριασμό του Τζάμι είναι ένα ασυμετρικό κλειδί κρυπτογράφησης.</translation>
+        <translation>Ένας λογαριασμός Jami είναι ένα ασσυμετρικό κλειδί κρυπτογράφησης.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="113"/>
@@ -4408,7 +4412,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation>Με το Jami, το λογαριασμό σας αποθηκεύεται σε κατάλογο στην συσκευή σας.</translation>
+        <translation>Με το Jami, το λογαριασμό σας αποθηκεύεται σε κατάλογο στην συσκευή σας. Ο κωδικός πρόσβασής σας χρησιμοποιείται μόνο για την κρυπτογράφηση του λογαριασμού σας, ώστε να μείνετε προστατευμένοι από κάποιον που έχει φυσική πρόσβαση στη συσκευή σας.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="142"/>
@@ -4428,7 +4432,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="120"/>
         <source>Why don&apos;t I have to use a password?</source>
-        <translation>Γιατί δεν πρέπει να χρησιμοποιήσω κωδικό πρόσβασης;</translation>
+        <translation>Γιατί δεν χρειάζεται να χρησιμοποιήσω κωδικό πρόσβασης;</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="104"/>
@@ -4438,12 +4442,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="128"/>
         <source>Why don&apos;t I have to register a username?</source>
-        <translation>Γιατί δεν πρέπει να καταχωρήσω ένα όνομα χρήστη;</translation>
+        <translation>Γιατί δεν χρειάζεται να καταχωρήσω ένα όνομα χρήστη;</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="130"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation>Ο πιο μόνιμος, ασφαλής αναγνωριστικός κωδικός είναι ο αναγνωριστικός σας αριθμός Jami, αλλά καθώς είναι δύσκολο να χρησιμοποιηθούν για μερικούς ανθρώπους, έχετε επίσης την επιλογή να εγγράψετε ένα όνομα χρήστη.</translation>
+        <translation>Ο πιο μόνιμος, ασφαλής αναγνωριστικός κωδικός είναι το Jami ID σας, αλλά καθώς είναι δύσκολο να χρησιμοποιηθούν για μερικούς ανθρώπους, έχετε επίσης την επιλογή να χρησιμοποιήσετε ένα όνομα χρήστη.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="135"/>

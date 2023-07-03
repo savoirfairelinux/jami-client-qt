@@ -3808,12 +3808,12 @@ connects to synchronize the conversation.</source>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="407"/>
+        <location filename="../src/app/positionmanager.cpp" line="414"/>
         <source>%1 is sharing their location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="412"/>
+        <location filename="../src/app/positionmanager.cpp" line="419"/>
         <source>Location sharing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4524,22 +4524,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="476"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="475"/>
         <source>Searching…</source>
         <translation>Bezig met zoeken…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1015"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1014"/>
         <source>Invalid ID</source>
         <translation>Ongeldige ID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1018"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1017"/>
         <source>Username not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1021"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
         <source>Couldn&apos;t lookup…</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4547,7 +4547,7 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="439"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="438"/>
         <source>Bad URI scheme</source>
         <translation>Verkeerd URI-schema</translation>
     </message>
