@@ -149,13 +149,12 @@ Rectangle {
         onActivated: layoutManager.toggleWindowFullScreen()
     }
 
-    Shortcut {
-        sequence: "Escape"
-        context: Qt.ApplicationShortcut
-        onActivated: {
-            MessagesAdapter.replyToId = ""
-            MessagesAdapter.editId = ""
-            layoutManager.popFullScreenItem()
+    Keys.onPressed: function (keyEvent) {
+        if (keyEvent.key === Qt.Key_Escape) {
+            MessagesAdapter.replyToId = "";
+            MessagesAdapter.editId = "";
+            layoutManager.popFullScreenItem();
+            keyEvent.accepted = true;
         }
     }
 

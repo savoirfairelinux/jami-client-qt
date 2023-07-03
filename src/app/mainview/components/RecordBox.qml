@@ -51,6 +51,9 @@ Popup {
 
     signal validatePhoto(string photo)
 
+    modal: true
+    closePolicy: Popup.CloseOnPressOutsideParent
+
     function openRecorder(vid) {
         isVideo = vid;
         updateState(RecordBox.States.INIT);
@@ -120,9 +123,6 @@ Popup {
         var sec = (s < 10) ? "0" + String(s) : String(s);
         time.text = min + ":" + sec;
     }
-
-    modal: true
-    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
     onActiveFocusChanged: {
         if (visible) {

@@ -42,6 +42,7 @@ Popup {
     padding: 0
 
     visible: false
+    focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
     Rectangle {
