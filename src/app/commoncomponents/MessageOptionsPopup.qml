@@ -49,6 +49,9 @@ Popup {
     property bool closeWithoutAnimation: false
     property var emojiPicker
 
+    focus: true
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
     function xPositionProvider(width) {
         // Use the width at function scope to retrigger property evaluation.
         const listViewWidth = listView.width

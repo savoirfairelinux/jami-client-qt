@@ -30,6 +30,9 @@ Popup {
     padding: 0
     property list<Action> menuTypoActionsSecond
 
+    focus: true
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
     contentItem: ListView {
         id: listViewTypoSecond
 

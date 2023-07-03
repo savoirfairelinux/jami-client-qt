@@ -47,6 +47,7 @@ Popup {
 
     // A popup is invisible until opened.
     visible: false
+    focus: true
     closePolicy: autoClose ? (Popup.CloseOnEscape | Popup.CloseOnPressOutside) : Popup.NoAutoClose
 
     Rectangle {
