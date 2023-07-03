@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2d89fd6_388abc32",
+        "filename": "src/app/settingsview/components/PluginListView.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-03T13:01:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b41e57fc_7ee4fb90",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 30
+      },
+      "revId": "91378a559705568b657ff372d31078925f267d05",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77b9a245_f33744b2",
