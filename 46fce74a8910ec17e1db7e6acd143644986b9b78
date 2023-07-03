@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "279bf475_6f7b8268",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-07-03T16:01:59Z",
+      "side": 1,
+      "message": "nav to a message, scroll down, nav to same message",
+      "parentUuid": "7b514aae_0a690b44",
+      "revId": "46fce74a8910ec17e1db7e6acd143644986b9b78",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1375736_381ce371",
         "filename": "src/app/mainview/components/MessageListView.qml",
         "patchSetId": 3
