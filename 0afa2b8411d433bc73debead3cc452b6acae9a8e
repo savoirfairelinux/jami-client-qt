@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6f2add2_ecf425e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-03T19:06:47Z",
+      "side": 1,
+      "message": "it was already the case before but i can try to patch it",
+      "parentUuid": "ff428542_cdc8fbb1",
+      "revId": "0afa2b8411d433bc73debead3cc452b6acae9a8e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca506215_fa061fb9",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
