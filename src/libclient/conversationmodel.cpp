@@ -2467,7 +2467,7 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
         conversation.lastMessageUid = conversation.interactions->lastMessageUid();
         conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
             linked.owner.profileInfo.uri);
-        if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
+        /*if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
             && messages.size() != 0) {
             if (conversation.interactions->size() > 0) {
                 QString newLast, newBegin;
@@ -2489,7 +2489,7 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                                                                           "id"),
                                                                       2);
             return;
-        }
+        }*/
         invalidateModel();
         Q_EMIT linked.modelChanged();
         Q_EMIT linked.newMessagesAvailable(linked.owner.id, conversationId);
