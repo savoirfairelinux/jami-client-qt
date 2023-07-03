@@ -22,6 +22,30 @@
       },
       "revId": "8dbd5b4f3e064db0765a685aeb7e1b35351ae9b2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c7c9312_d020229c",
+        "filename": "src/libclient/api/lrc.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-03T15:02:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fb6dde1_619d7dac",
+      "range": {
+        "startLine": 50,
+        "startChar": 76,
+        "endLine": 50,
+        "endChar": 87
+      },
+      "revId": "8dbd5b4f3e064db0765a685aeb7e1b35351ae9b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
