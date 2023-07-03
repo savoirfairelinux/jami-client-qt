@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abf3fd5b_6002ccf9",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34911631_4ffe47d5",
+      "range": {
+        "startLine": 662,
+        "startChar": 20,
+        "endLine": 662,
+        "endChar": 32
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88958e4b_97adba64",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-06-29T12:39:14Z",
       "side": 1,
       "message": "avoid to push this in review",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 35
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e539bad_7b298173",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88958e4b_97adba64",
       "range": {
         "startLine": 13,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d085555_c48189ca",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f075a33_b27016c5",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 7
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea787667_f532c228",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-06-29T12:39:14Z",
       "side": 1,
       "message": "\"Successful\"",
+      "range": {
+        "startLine": 17,
+        "startChar": 18,
+        "endLine": 17,
+        "endChar": 42
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c192ab2_6978193d",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea787667_f532c228",
       "range": {
         "startLine": 17,
         "startChar": 18,
@@ -133,6 +229,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "143007f2_dec34cf2",
+        "filename": "src/app/mainview/components/CachedImage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75c48adb_28037338",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "127d16ff_299642dd",
@@ -146,6 +266,30 @@
       "writtenOn": "2023-06-29T12:39:14Z",
       "side": 1,
       "message": "should be a warning probably",
+      "range": {
+        "startLine": 47,
+        "startChar": 20,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "d1b42780ea6333c1180cdefa95944df92394b374",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4b0f91d_22a3af46",
+        "filename": "src/app/mainview/components/CachedImage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "127d16ff_299642dd",
       "range": {
         "startLine": 47,
         "startChar": 20,
