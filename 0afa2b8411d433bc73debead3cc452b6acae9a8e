@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff428542_cdc8fbb1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-03T18:02:30Z",
+      "side": 1,
+      "message": "actually now you can open the location sharing popup but not close it anymore unless you relaunch jami",
+      "parentUuid": "83f2e3e0_1a56124c",
+      "revId": "0afa2b8411d433bc73debead3cc452b6acae9a8e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca506215_fa061fb9",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
