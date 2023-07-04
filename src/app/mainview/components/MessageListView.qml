@@ -29,9 +29,6 @@ import "../../commoncomponents"
 JamiListView {
     id: root
 
-    property var scrollTo: undefined
-    property var maxIdxLoaded: undefined
-
     function getDistanceToBottom() {
         const scrollDiff = ScrollBar.vertical.position -
                          (1.0 - ScrollBar.vertical.size)
@@ -98,12 +95,6 @@ JamiListView {
         if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
             item.showTime = true
             item.showDay = true
-        }
-        var idx = MessagesAdapter.getMessageIndexFromId(item.id)
-        maxIdxLoaded = idx > maxIdxLoaded || !maxIdxLoaded ? idx : maxIdxLoaded
-        if (item.id == root.scrollTo && item.id != undefined) {
-            root.scrollTo = undefined
-            Qt.callLater(CurrentConversation.scrollToMsg, item.id)
         }
     }
 
@@ -175,32 +166,62 @@ JamiListView {
         }
     }
 
+    // This wrapper will handle positioning to indexes that are not yet loaded.
+    // We will store the appropriate callback into positioningCallback
+    // and call it, and call it again once the once index is loaded.
+    function positionViewAtIndexWrapper(index) {
+        print("positionViewAtIndexWrapper", index)
+
+        // Hand over positioning to the highlight item.
+        highlightRangeMode = ListView.StrictlyEnforceRange;
+        currentIndex = index;
+        scrollHandler.start();
+    }
+
+    function positionViewAtEndWrapper() {
+        // Actually position at the beginning, since our listview is inverted.
+        positionViewAtIndexWrapper(0);
+    }
+
+    preferredHighlightBegin: height / 2
+    highlightMoveDuration: 250
+    highlightMoveVelocity: -1
+    highlightRangeMode: ListView.NoHighlightRange
+
+    // Used to reset the currentIndex once the highlight has moved.
+    SequentialAnimation {
+        id: scrollHandler
+        alwaysRunToEnd: true
+        PauseAnimation { duration: highlightMoveDuration }
+        ScriptAction {
+            script: {
+                highlightRangeMode = ListView.NoHighlightRange;
+                currentIndex = -1;
+            }
+        }
+    }
+
     Connections {
         target: CurrentConversation
         function onScrollTo(id) {
-            root.scrollTo = id
-            Qt.callLater(() => {
-                var idx = MessagesAdapter.getMessageIndexFromId(id)
-                // If idx not found, scroll up to load more msg components
-                if (idx < 0 || idx > root.maxIdxLoaded) {
-                    verticalScrollBar.position = 0
-                    Qt.callLater(CurrentConversation.scrollToMsg, id)
-                    return
-                }
-                var item = itemAtIndex(idx)
-                // try to jump to item
-                Qt.callLater(positionViewAtIndex, idx, ListView.Center)
-                if (item != null) {
-                    // only invalidade root.scrollTo if item already exists, else
-                    // leave it to be invalidated after component.onCompleted call
-                    // of the scrollToMsg
-                    root.scrollTo = undefined
-                }
-            })
+            // Make sure the message is loaded in the model.
+            const idx = MessagesAdapter.getMessageIndexFromId(id);
+            // If idx not found, scroll up to load more msg components.
+            if (idx < 0) {
+                print("scrollToMsg: idx not found, scrolling up to force load the model");
+                verticalScrollBar.position = 0;
+                Qt.callLater(CurrentConversation.scrollToMsg, id);
+                return;
+            }
+
+            // If item is found, scroll to the message.
+            Qt.callLater(positionViewAtIndexWrapper, idx);
         }
     }
 
     topMargin: 12
+    verticalLayoutDirection: ListView.BottomToTop
+
     spacing: 2
 
     // The offscreen buffer is set to a reasonable value to avoid flickering
@@ -209,7 +230,6 @@ JamiListView {
     displayMarginEnd: 2048
 
     maximumFlickVelocity: 2048
-    verticalLayoutDirection: ListView.BottomToTop
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
 
@@ -278,15 +298,15 @@ JamiListView {
         target: MessagesAdapter
 
         function onNewInteraction() {
-            if (root.getDistanceToBottom() < 80 &&
-                    !root.atYEnd) {
-                Qt.callLater(root.positionViewAtBeginning)
+            if (getDistanceToBottom() < 80 && !atYEnd) {
+                positionViewAtEndWrapper()
             }
         }
 
         function onMoreMessagesLoaded(loadingRequestId) {
-            if (root.contentHeight < root.height || root.atYBeginning) {
-                root.loadMoreMsgsIfNeeded()
+            print("onMoreMessagesLoaded")
+            if (contentHeight < height || atYBeginning) {
+                loadMoreMsgsIfNeeded();
             }
         }
 
@@ -303,7 +323,7 @@ JamiListView {
         anchors.horizontalCenter: root.horizontalCenter
         visible:  1 - verticalScrollBar.position >= verticalScrollBar.size * 2
 
-        onClicked: verticalScrollBar.position = 1 - verticalScrollBar.size
+        onClicked: positionViewAtEndWrapper()
     }
 
     header: Control {

@@ -352,6 +352,16 @@ Control {
                 SequentialAnimation {
                     id: selectAnimation
 
+//                    // Start this animation once the ListView currentItem
+//                    // is set to this delegate.
+//                    property bool isCurrentItem: messageListView.currentIndex == index
+//                    onIsCurrentItemChanged: {
+//                        if (isCurrentItem) {
+//                            start();
+//                        }
+//                    }
+
+                    PauseAnimation { duration: highlightMoveDuration }
                     PropertyAnimation {
                         properties: "opacity"
                         target: opacityMask
