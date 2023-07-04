@@ -29,8 +29,8 @@ import "../../commoncomponents"
 JamiListView {
     id: root
 
-    property var scrollTo: undefined
-    property var maxIdxLoaded: undefined
+    property bool initialized: false
+    readonly property int defaultPositionMode: ListView.Center
 
     function getDistanceToBottom() {
         const scrollDiff = ScrollBar.vertical.position -
@@ -58,6 +58,8 @@ JamiListView {
     }
 
     function computeChatview(item, itemIndex) {
+        // print("computeChatview", itemIndex, item)
+
         if (!root) return
         var rootItem = root.itemAtIndex(0)
         var pItem = root.itemAtIndex(itemIndex - 1)
@@ -99,11 +101,11 @@ JamiListView {
             item.showTime = true
             item.showDay = true
         }
-        var idx = MessagesAdapter.getMessageIndexFromId(item.id)
-        maxIdxLoaded = idx > maxIdxLoaded || !maxIdxLoaded ? idx : maxIdxLoaded
-        if (item.id == root.scrollTo && item.id != undefined) {
-            root.scrollTo = undefined
-            Qt.callLater(CurrentConversation.scrollToMsg, item.id)
+
+        if (positioningCallback !== undefined && positioningTargetIndex === itemIndex) {
+            Qt.callLater(positioningCallback)
+            positioningCallback = undefined
+            positioningTargetIndex = undefined
         }
     }
 
@@ -146,7 +148,9 @@ JamiListView {
     }
 
     // fade-in mechanism
-    Component.onCompleted: fadeAnimation.start()
+    Component.onCompleted: {
+        fadeAnimation.start()
+    }
     Rectangle {
         id: overlay
         anchors.fill: parent
@@ -175,41 +179,77 @@ JamiListView {
         }
     }
 
+    property var positioningTargetIndex
+    property var positioningCallback
+    // This wrapper will handle positioning to indexes that are not yet loaded.
+    // We will store the appropriate callback into positioningCallback
+    // and call it, and call it again once the once index is loaded.
+    function positionViewAtIndexWrapper(index, mode = defaultPositionMode) {
+        print("positionViewAtIndexWrapper", index, mode)
+        // If the item is already loaded, we can position to it right away.
+        if (itemAtIndex(index)) {
+            positionViewAtIndex(index, mode);
+            return;
+        }
+        // We will need to wait for the item to be loaded.
+        positioningTargetIndex = index;
+        positioningCallback = function() {
+            print("positioningCallback", index, mode)
+            positionViewAtIndex(index, mode);
+        }
+        positioningCallback();
+    }
+
+    function positionViewAtEndWrapper() {
+        // Actually position at the beginning, since our listview is inverted.
+        // positionViewAtIndexWrapper(0, ListView.End)
+
+        positionViewAtIndexWrapper(count - 1, ListView.Beginning)
+    }
+
+//    property var visibleIndexRange
+//    onContentYChanged: {
+//        const start = Math.max(0, indexAt(0, y + contentY + topMargin))
+//        const end = Math.min(indexAt(0, y + contentY + height - bottomMargin), count - 1)
+//        if (start != -1 && end < count && end != -1) {
+//            visibleIndexRange = [start, end]
+//        }
+//    }
+//    onVisibleIndexRangeChanged: {
+//        print("visibleIndexRange", visibleIndexRange)
+//    }
+
     Connections {
         target: CurrentConversation
         function onScrollTo(id) {
-            root.scrollTo = id
-            Qt.callLater(() => {
-                var idx = MessagesAdapter.getMessageIndexFromId(id)
-                // If idx not found, scroll up to load more msg components
-                if (idx < 0 || idx > root.maxIdxLoaded) {
-                    verticalScrollBar.position = 0
-                    Qt.callLater(CurrentConversation.scrollToMsg, id)
-                    return
-                }
-                var item = itemAtIndex(idx)
-                // try to jump to item
-                Qt.callLater(positionViewAtIndex, idx, ListView.Center)
-                if (item != null) {
-                    // only invalidade root.scrollTo if item already exists, else
-                    // leave it to be invalidated after component.onCompleted call
-                    // of the scrollToMsg
-                    root.scrollTo = undefined
-                }
-            })
+            // Make sure the message is loaded in the model.
+            const idx = MessagesAdapter.getMessageIndexFromId(id);
+            // If idx not found, scroll up to load more msg components.
+            if (idx < 0) {
+                print("scrollToMsg: idx not found, scrolling up to load more msg components");
+                verticalScrollBar.position = 0;
+                Qt.callLater(CurrentConversation.scrollToMsg, id);
+                return;
+            }
+            // If idx is found, use the wrapper to scroll to it.
+            // positionViewAtIndex may be called twice if the msg is not
+            // visually loaded yet.
+            Qt.callLater(positionViewAtIndexWrapper, idx);
         }
     }
 
-    topMargin: 12
+    // topMargin: 12
+    // verticalLayoutDirection: ListView.BottomToTop
+
+    bottomMargin: 12
+
     spacing: 2
 
     // The offscreen buffer is set to a reasonable value to avoid flickering
     // when scrolling up and down in a list with items of different heights.
     displayMarginBeginning: 2048
     displayMarginEnd: 2048
-
     maximumFlickVelocity: 2048
-    verticalLayoutDirection: ListView.BottomToTop
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
 
@@ -272,21 +312,31 @@ JamiListView {
 
     }
 
-    onAtYBeginningChanged: loadMoreMsgsIfNeeded()
+    onAtYBeginningChanged: {
+        if (!initialized) {
+            return;
+        }
+        loadMoreMsgsIfNeeded();
+    }
 
     Connections {
         target: MessagesAdapter
 
         function onNewInteraction() {
-            if (root.getDistanceToBottom() < 80 &&
-                    !root.atYEnd) {
-                Qt.callLater(root.positionViewAtBeginning)
+            if (getDistanceToBottom() < 80 && !atYEnd) {
+                positionViewAtEndWrapper()
             }
         }
 
         function onMoreMessagesLoaded(loadingRequestId) {
-            if (root.contentHeight < root.height || root.atYBeginning) {
-                root.loadMoreMsgsIfNeeded()
+            print("onMoreMessagesLoaded", loadingRequestId)
+            if (!initialized) {
+                positionViewAtEndWrapper();
+                initialized = true;
+                return;
+            }
+            if (contentHeight < height || atYBeginning) {
+                loadMoreMsgsIfNeeded();
             }
         }
 
@@ -303,7 +353,7 @@ JamiListView {
         anchors.horizontalCenter: root.horizontalCenter
         visible:  1 - verticalScrollBar.position >= verticalScrollBar.size * 2
 
-        onClicked: verticalScrollBar.position = 1 - verticalScrollBar.size
+        onClicked: positionViewAtEndWrapper()
     }
 
     header: Control {
