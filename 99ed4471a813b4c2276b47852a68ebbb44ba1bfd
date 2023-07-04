@@ -891,6 +891,30 @@
       },
       "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d1b93c4_4fb63287",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-04T20:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97246f23_53cc0723",
+      "range": {
+        "startLine": 89,
+        "startChar": 30,
+        "endLine": 89,
+        "endChar": 46
+      },
+      "revId": "99ed4471a813b4c2276b47852a68ebbb44ba1bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
