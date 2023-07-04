@@ -32,8 +32,13 @@ endif()
 option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" OFF)
 option(ENABLE_TESTS "Build with tests" OFF)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
+option(WITH_X11 "Build with x11" ON)
 if(WITH_WEBENGINE)
   add_definitions(-DWITH_WEBENGINE)
+endif()
+
+if(WITH_X11)
+  add_definitions(-DWITH_X11)
 endif()
 
 # init some variables for includes, libs, etc.
@@ -382,14 +387,18 @@ if(MSVC)
     ${QRENCODE_DIR})
 elseif (NOT APPLE)
   list(APPEND COMMON_SOURCES
-    ${APP_SRC_DIR}/xrectsel.c
     ${APP_SRC_DIR}/connectivitymonitor.cpp
     ${APP_SRC_DIR}/dbuserrorhandler.cpp
     ${APP_SRC_DIR}/updatemanager.cpp)
   list(APPEND COMMON_HEADERS
-    ${APP_SRC_DIR}/xrectsel.h
     ${APP_SRC_DIR}/dbuserrorhandler.h)
   list(APPEND QT_MODULES DBus)
+  if(WITH_X11)
+    list(APPEND COMMON_SOURCES
+      ${APP_SRC_DIR}/xrectsel.c)
+    list(APPEND COMMON_HEADERS
+      ${APP_SRC_DIR}/xrectsel.h)
+  endif()
 
   find_package(PkgConfig REQUIRED)
 
@@ -434,7 +443,9 @@ elseif (NOT APPLE)
 
   find_library(${LIBCLIENT_NAME} ${LIBCLIENT_NAME} NO_DEFAULT_PATH)
   find_library(qrencode qrencode)
-  find_library(X11 X11)
+  if (WITH_X11)
+    find_library(X11 X11)
+  endif()
 else() # APPLE
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/os/macos/updatemanager.mm
@@ -576,12 +587,15 @@ elseif (NOT APPLE)
     ${QT_LIBS}
     ${LIBCLIENT_NAME}
     ${qrencode}
-    ${X11}
     ${LIBNM_LIBRARIES}
     ${LIBNOTIFY_LIBRARIES}
     ${LIBGDKPIXBUF_LIBRARIES}
     ${GLIB_LIBRARIES}
     ${GIO_LIBRARIES})
+  if (WITH_X11)
+    list(APPEND CLIENT_LIBS
+    ${X11})
+  endif()
 
   # Installation rules
   install(

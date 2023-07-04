@@ -482,7 +482,7 @@ foreach(QT_LIB ${QT_LIBS})
   target_link_libraries(${LIBCLIENT_NAME} ${QT_LIB})
 endforeach()
 
-if(NOT(APPLE OR MSVC))
+if(NOT(APPLE OR MSVC) AND WITH_X11)
   pkg_check_modules(XCB xcb IMPORTED_TARGET)
   target_link_libraries(${LIBCLIENT_NAME} PkgConfig::XCB)
 endif()
