@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -29,15 +28,22 @@ import "../../commoncomponents"
 JamiListView {
     id: root
 
+    signal indexHighlighted(int idx)
+
     function getDistanceToBottom() {
-        const scrollDiff = ScrollBar.vertical.position -
-                         (1.0 - ScrollBar.vertical.size)
+        const scrollDiff = ScrollBar.vertical.position - (1.0 - ScrollBar.vertical.size)
         return Math.abs(scrollDiff) * contentHeight
     }
 
+    interactive: highlightRangeMode === ListView.NoHighlightRange
+    // Incase we are at the top after positioning the view, we want to load more messages.
+    onInteractiveChanged: loadMoreMsgsIfNeeded()
+
     function loadMoreMsgsIfNeeded() {
-        if (atYBeginning && !CurrentConversation.allMessagesLoaded)
+        if (atYBeginning && !CurrentConversation.allMessagesLoaded
+                && interactive) {
             MessagesAdapter.loadMoreMessages()
+        }
     }
 
     function computeTimestampVisibility(item1, item1Index, item2, item2Index) {
@@ -54,8 +60,10 @@ JamiListView {
         return false
     }
 
-    function computeChatview(item, itemIndex) {
-        if (!root) return
+    function onMessageLoaded(item, itemIndex) {
+        if (!root)
+            return
+
         var rootItem = root.itemAtIndex(0)
         var pItem = root.itemAtIndex(itemIndex - 1)
         var pItemIndex = itemIndex - 1
@@ -83,16 +91,18 @@ JamiListView {
             // This needs to be done in a delayed fashion because the new message is inserted
             // at the top of the list and the list is not yet updated.
             Qt.callLater(() => {
-                var fItem = root.itemAtIndex(1)
-                if (fItem) {
-                    computeTimestampVisibility(item, 0, fItem, 1)
-                    computeSequencing(null, item, fItem)
-                    computeSequencing(item, fItem, root.itemAtIndex(2))
-                }
-            })
+                             var fItem = root.itemAtIndex(1)
+                             if (fItem) {
+                                 computeTimestampVisibility(item, 0, fItem, 1)
+                                 computeSequencing(null, item, fItem)
+                                 computeSequencing(item, fItem,
+                                                   root.itemAtIndex(2))
+                             }
+                         })
         }
         // top element
-        if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
+        if (itemIndex === root.count - 1
+                && CurrentConversation.allMessagesLoaded) {
             item.showTime = true
             item.showDay = true
         }
@@ -103,9 +113,10 @@ JamiListView {
             return
 
         function isFirst() {
-            if (!nItem) return true
-            else {
-                if (item.showTime || item.isReply  ) {
+            if (!nItem) {
+                return true
+            } else {
+                if (item.showTime || item.isReply) {
                     return true
                 } else if (nItem.author !== item.author) {
                     return true
@@ -115,8 +126,9 @@ JamiListView {
         }
 
         function isLast() {
-            if (!pItem) return true
-            else {
+            if (!pItem) {
+                return true
+            } else {
                 if (pItem.showTime || pItem.isReply) {
                     return true
                 } else if (pItem.author !== item.author) {
@@ -146,12 +158,16 @@ JamiListView {
         SequentialAnimation {
             id: fadeAnimation
             NumberAnimation {
-                target: overlay; property: "opacity"
-                to: 1; duration: 0
+                target: overlay
+                property: "opacity"
+                to: 1
+                duration: 0
             }
             NumberAnimation {
-                target: overlay; property: "opacity"
-                to: 0; duration: 240
+                target: overlay
+                property: "opacity"
+                to: 0
+                duration: 240
             }
         }
     }
@@ -166,15 +182,68 @@ JamiListView {
         }
     }
 
+    function positionViewAtIndexWrapper(index, animate = true) {
+        // Reset the current index.
+        currentIndex = -1
+        // We need to set the highlight range mode to StrictlyEnforceRange.
+        highlightRangeMode = ListView.StrictlyEnforceRange
+        currentIndex = index
+
+        // Queue up the scroll animation and get ready to reset the highlightRangeMode.
+        if (animate) {
+            scrollHandler.start()
+        }
+    }
+
+    function positionViewAtEndWrapper() {
+        // Actually position at the beginning, since our listview is inverted.
+        positionViewAtIndexWrapper(0, false)
+    }
+
+    preferredHighlightBegin: height / 2
+    highlightMoveDuration: 250
+    highlightMoveVelocity: -1
+    highlightRangeMode: ListView.NoHighlightRange
+
+    // Used to animate the current index once the highlight has moved.
+    SequentialAnimation {
+        id: scrollHandler
+        alwaysRunToEnd: true
+        PauseAnimation {
+            duration: highlightMoveDuration
+        }
+        ScriptAction {
+            script: {
+                indexHighlighted(currentIndex)
+            }
+        }
+        PauseAnimation {
+            duration: 50
+        } // Delay before resetting highlightRangeMode.
+        ScriptAction {
+            script: {
+                highlightRangeMode = ListView.NoHighlightRange
+            }
+        }
+    }
+
     Connections {
         target: CurrentConversation
         function onScrollTo(id) {
-            var idx = MessagesAdapter.getMessageIndexFromId(id)
-            positionViewAtIndex(idx, ListView.Visible)
+            const idx = MessagesAdapter.getMessageIndexFromId(id)
+            if (idx < 0) {
+                // If idx not found, load the conversation up to the message.
+                MessagesAdapter.loadConversationUntil(id)
+            }
+
+            // If item is found, scroll to the message.
+            positionViewAtIndexWrapper(idx)
         }
     }
 
     topMargin: 12
+    verticalLayoutDirection: ListView.BottomToTop
+
     spacing: 2
 
     // The offscreen buffer is set to a reasonable value to avoid flickering
@@ -183,7 +252,6 @@ JamiListView {
     displayMarginEnd: 2048
 
     maximumFlickVelocity: 2048
-    verticalLayoutDirection: ListView.BottomToTop
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
 
@@ -197,9 +265,7 @@ JamiListView {
             roleValue: Interaction.Type.TEXT
 
             TextMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
+                Component.onCompleted: onMessageLoaded(this, index)
             }
         }
 
@@ -207,9 +273,7 @@ JamiListView {
             roleValue: Interaction.Type.CALL
 
             CallMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
+                Component.onCompleted: onMessageLoaded(this, index)
             }
         }
 
@@ -217,9 +281,7 @@ JamiListView {
             roleValue: Interaction.Type.CONTACT
 
             ContactMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
+                Component.onCompleted: onMessageLoaded(this, index)
             }
         }
 
@@ -227,10 +289,7 @@ JamiListView {
             roleValue: Interaction.Type.INITIAL
 
             GeneratedMessageDelegate {
-                font.bold: true
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
+                Component.onCompleted: onMessageLoaded(this, index)
             }
         }
 
@@ -238,12 +297,9 @@ JamiListView {
             roleValue: Interaction.Type.DATA_TRANSFER
 
             DataTransferMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
+                Component.onCompleted: onMessageLoaded(this, index)
             }
         }
-
     }
 
     onAtYBeginningChanged: loadMoreMsgsIfNeeded()
@@ -252,15 +308,14 @@ JamiListView {
         target: MessagesAdapter
 
         function onNewInteraction() {
-            if (root.getDistanceToBottom() < 80 &&
-                    !root.atYEnd) {
-                Qt.callLater(root.positionViewAtBeginning)
+            if (getDistanceToBottom() < 80 && !atYEnd) {
+                positionViewAtEndWrapper()
             }
         }
 
         function onMoreMessagesLoaded(loadingRequestId) {
-            if (root.contentHeight < root.height || root.atYBeginning) {
-                root.loadMoreMsgsIfNeeded()
+            if (contentHeight < height || atYBeginning) {
+                loadMoreMsgsIfNeeded()
             }
         }
 
@@ -275,9 +330,9 @@ JamiListView {
         anchors.bottom: root.bottom
         anchors.bottomMargin: JamiTheme.chatViewScrollToBottomButtonBottomMargin
         anchors.horizontalCenter: root.horizontalCenter
-        visible:  1 - verticalScrollBar.position >= verticalScrollBar.size * 2
+        visible: 1 - verticalScrollBar.position >= verticalScrollBar.size * 2
 
-        onClicked: verticalScrollBar.position = 1 - verticalScrollBar.size
+        onClicked: positionViewAtEndWrapper()
     }
 
     header: Control {
@@ -307,7 +362,7 @@ JamiListView {
             Connections {
                 target: MessagesAdapter
 
-                function onCurrentConvComposingListChanged () {
+                function onCurrentConvComposingListChanged() {
                     var typeIndicatorNameTextString = ""
                     var nameList = MessagesAdapter.currentConvComposingList
 
@@ -319,8 +374,8 @@ JamiListView {
                     }
                     if (nameList.length === 1) {
                         typeIndicatorNameText.text = nameList[0]
-                        typeIndicatorEndingText.text =
-                                JamiStrings.typeIndicatorSingle.replace("{}", "")
+                        typeIndicatorEndingText.text = JamiStrings.typeIndicatorSingle.replace(
+                                    "{}", "")
                         typeIndicatorNameText.calculateWidth()
                         return
                     }
@@ -334,8 +389,8 @@ JamiListView {
                             typeIndicatorNameTextString += ", "
                     }
                     typeIndicatorNameText.text = typeIndicatorNameTextString
-                    typeIndicatorEndingText.text =
-                            JamiStrings.typeIndicatorPlural.replace("{}", "")
+                    typeIndicatorEndingText.text = JamiStrings.typeIndicatorPlural.replace(
+                                "{}", "")
                     typeIndicatorNameText.calculateWidth()
                 }
             }
@@ -345,17 +400,18 @@ JamiListView {
 
                 property int textWidth: 0
 
-                function calculateWidth () {
+                function calculateWidth() {
                     if (!text)
                         return 0
                     else {
-                        var textSize = JamiQmlUtils.getTextBoundingRect(font, text).width
+                        var textSize = JamiQmlUtils.getTextBoundingRect(
+                                    font, text).width
                         var typingContentWidth = typingDots.width + typingDots.anchors.leftMargin
                                 + typeIndicatorNameText.anchors.leftMargin
                                 + typeIndicatorEndingText.contentWidth
-                        typeIndicatorNameText.Layout.preferredWidth =
-                                Math.min(typeIndicatorContainer.width - 5 - typingContentWidth,
-                                         textSize)
+                        typeIndicatorNameText.Layout.preferredWidth = Math.min(
+                                    typeIndicatorContainer.width - 5 - typingContentWidth,
+                                    textSize)
                     }
                 }
 

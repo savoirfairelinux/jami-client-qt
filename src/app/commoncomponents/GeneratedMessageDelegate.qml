@@ -34,6 +34,7 @@ Column {
     property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     width: ListView.view ? ListView.view.width : 0
+    font.bold: true
     spacing: 2
     topPadding: 12
     bottomPadding: 12
