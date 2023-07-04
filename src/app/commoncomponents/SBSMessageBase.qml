@@ -352,6 +352,16 @@ Control {
                 SequentialAnimation {
                     id: selectAnimation
 
+//                    // Start this animation once the ListView currentItem
+//                    // is set to this delegate.
+//                    property bool isCurrentItem: messageListView.currentIndex == index
+//                    onIsCurrentItemChanged: {
+//                        if (isCurrentItem) {
+//                            start();
+//                        }
+//                    }
+
+
                     PropertyAnimation {
                         properties: "opacity"
                         target: opacityMask
@@ -392,11 +402,11 @@ Control {
                 }
 
                 Connections {
-                    target: CurrentConversation
-                    function onScrollTo(id) {
-                        if (id !== root.id)
-                            return;
-                        selectAnimation.start();
+                    target: messageListView
+                    function onIndexHighlighted(idx) {
+                        if (index === idx) {
+                            selectAnimation.start();
+                        }
                     }
                 }
             }
