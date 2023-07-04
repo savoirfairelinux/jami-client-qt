@@ -50,7 +50,7 @@
 #include <string>
 #include <sstream>
 
-#if defined(Q_OS_UNIX) && !defined(__APPLE__)
+#if defined(Q_OS_UNIX) && !defined(__APPLE__) && defined(WITH_X11)
 #include <xcb/xcb.h>
 #endif
 #ifdef WIN32
