@@ -38,7 +38,7 @@ public:
     explicit FilteredMsgListModel(QObject* parent = nullptr)
         : QSortFilterProxyModel(parent)
     {
-        sort(0, Qt::AscendingOrder);
+        //sort(0, Qt::AscendingOrder);
     }
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
     {
@@ -47,10 +47,10 @@ public:
             sourceModel()->data(index, MessageList::Role::Type).toInt());
         return interaction::isDisplayedInChatview(type);
     };
-    bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
-    {
-        return left.row() > right.row();
-    };
+//    bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
+//    {
+//        return left.row() < right.row();
+//    };
 };
 
 class MessagesAdapter final : public QmlAdapterBase

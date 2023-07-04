@@ -99,11 +99,17 @@ JamiListView {
             item.showTime = true
             item.showDay = true
         }
-        var idx = MessagesAdapter.getMessageIndexFromId(item.id)
-        maxIdxLoaded = idx > maxIdxLoaded || !maxIdxLoaded ? idx : maxIdxLoaded
-        if (item.id == root.scrollTo && item.id != undefined) {
-            root.scrollTo = undefined
-            Qt.callLater(CurrentConversation.scrollToMsg, item.id)
+
+//        var idx = MessagesAdapter.getMessageIndexFromId(item.id)
+//        maxIdxLoaded = idx > maxIdxLoaded || !maxIdxLoaded ? idx : maxIdxLoaded
+//        if (item.id == root.scrollTo && item.id != undefined) {
+//            root.scrollTo = undefined
+//            Qt.callLater(CurrentConversation.scrollToMsg, item.id)
+//        }
+        if (positioningCallback !== undefined && positioningTargetIndex === itemIndex) {
+            Qt.callLater(positioningCallback)
+            positioningCallback = undefined
+            positioningTargetIndex = undefined
         }
     }
 
@@ -175,28 +181,51 @@ JamiListView {
         }
     }
 
+    property var positioningTargetIndex
+    property var positioningCallback
+    // This wrapper will handle positioning to indexes that are not yet loaded.
+    // We will store the appropriate callback into positioningCallback
+    // and call it, and call it again once the once index is loaded.
+    function postitionViewAtIndexWrapper(index, mode = ListView.Center) {
+        print("postitionViewAtIndexWrapper", index, mode)
+        positioningTargetIndex = index
+        positioningCallback = function() {
+            positionViewAtIndex(index, mode)
+        }
+        positioningCallback()
+    }
+
+    function postitionViewAtBeginningWrapper() {
+        postitionViewAtIndexWrapper(0, ListView.End)
+    }
+
+    function postitionViewAtEndWrapper() {
+        postitionViewAtIndexWrapper(count - 1, ListView.Beginning)
+    }
+
     Connections {
         target: CurrentConversation
         function onScrollTo(id) {
-            root.scrollTo = id
-            Qt.callLater(() => {
-                var idx = MessagesAdapter.getMessageIndexFromId(id)
-                // If idx not found, scroll up to load more msg components
-                if (idx < 0 || idx > root.maxIdxLoaded) {
-                    verticalScrollBar.position = 0
-                    Qt.callLater(CurrentConversation.scrollToMsg, id)
-                    return
-                }
-                var item = itemAtIndex(idx)
-                // try to jump to item
-                Qt.callLater(positionViewAtIndex, idx, ListView.Center)
-                if (item != null) {
-                    // only invalidade root.scrollTo if item already exists, else
-                    // leave it to be invalidated after component.onCompleted call
-                    // of the scrollToMsg
-                    root.scrollTo = undefined
-                }
-            })
+//            root.scrollTo = id
+//            Qt.callLater(() => {
+//                var idx = MessagesAdapter.getMessageIndexFromId(id)
+//                // If idx not found, scroll up to load more msg components
+//                if (idx < 0 || idx > root.maxIdxLoaded) {
+//                    verticalScrollBar.position = 0
+//                    forceLayout()
+//                    Qt.callLater(CurrentConversation.scrollToMsg, id)
+//                    return
+//                }
+//                var item = itemAtIndex(idx)
+//                // try to jump to item
+//                Qt.callLater(positionViewAtIndex, idx, ListView.Center)
+//                if (item != null) {
+//                    // only invalidade root.scrollTo if item already exists, else
+//                    // leave it to be invalidated after component.onCompleted call
+//                    // of the scrollToMsg
+//                    root.scrollTo = undefined
+//                }
+//            })
         }
     }
 
@@ -205,11 +234,11 @@ JamiListView {
 
     // The offscreen buffer is set to a reasonable value to avoid flickering
     // when scrolling up and down in a list with items of different heights.
-    displayMarginBeginning: 2048
-    displayMarginEnd: 2048
+//    displayMarginBeginning: 2048
+//    displayMarginEnd: 2048
 
     maximumFlickVelocity: 2048
-    verticalLayoutDirection: ListView.BottomToTop
+    // verticalLayoutDirection: ListView.BottomToTop
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
 
@@ -280,7 +309,7 @@ JamiListView {
         function onNewInteraction() {
             if (root.getDistanceToBottom() < 80 &&
                     !root.atYEnd) {
-                Qt.callLater(root.positionViewAtBeginning)
+                Qt.callLater(positionViewAtBeginning)
             }
         }
 
@@ -303,7 +332,8 @@ JamiListView {
         anchors.horizontalCenter: root.horizontalCenter
         visible:  1 - verticalScrollBar.position >= verticalScrollBar.size * 2
 
-        onClicked: verticalScrollBar.position = 1 - verticalScrollBar.size
+        //onClicked: verticalScrollBar.position = 1 - verticalScrollBar.size
+        onClicked: postitionViewAtEndWrapper()
     }
 
     header: Control {

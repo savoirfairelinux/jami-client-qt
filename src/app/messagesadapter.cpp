@@ -770,7 +770,7 @@ MessagesAdapter::getMessageIndexFromId(const QString& id)
     const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
     auto allInteractions = conversation.interactions.get();
     int index = 0;
-    for (auto it = allInteractions->rbegin(); it != allInteractions->rend(); it++) {
+    for (auto it = allInteractions->begin(); it != allInteractions->end(); it++) {
         if (interaction::isDisplayedInChatview(it->second.type)) {
             if (it->first == id)
                 return index;

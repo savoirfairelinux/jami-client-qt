@@ -261,11 +261,16 @@ Rectangle {
 
                     Loader {
                         active: CurrentConversation.id !== ""
-                        sourceComponent: MessageListView {
-                            DropArea {
-                                anchors.fill: parent
-                                onDropped: function (drop) {
-                                    chatViewFooter.setFilePathsToSend(drop.urls);
+                        sourceComponent: Item {
+                            MessageListView {
+                                anchors.bottom: parent.bottom
+                                width: parent.width
+                                height: Math.min(contentHeight + 12, parent.height)
+                                DropArea {
+                                    anchors.fill: parent
+                                    onDropped: function (drop) {
+                                        chatViewFooter.setFilePathsToSend(drop.urls);
+                                    }
                                 }
                             }
                         }
