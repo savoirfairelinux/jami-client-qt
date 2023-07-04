@@ -50,7 +50,7 @@
 #include <string>
 #include <sstream>
 
-#if defined(Q_OS_UNIX) && !defined(__APPLE__)
+#if defined(Q_OS_UNIX) && !defined(__APPLE__) && defined(WITH_X11)
 #include <xcb/xcb.h>
 #endif
 #ifdef WIN32
@@ -638,7 +638,7 @@ CbEnumAltTab(HWND hwnd, LPARAM lParam)
 }
 #endif
 
-#if defined(Q_OS_UNIX) && !defined(__APPLE__)
+#if defined(Q_OS_UNIX) && !defined(__APPLE__) && defined(WITH_X11)
 static xcb_atom_t
 getAtom(xcb_connection_t* c, const std::string& atomName)
 {
@@ -657,7 +657,7 @@ AVModel::getListWindows() const
 {
     QMap<QString, QVariant> ret {};
 
-#if defined(Q_OS_UNIX) && !defined(__APPLE__)
+#if defined(Q_OS_UNIX) && !defined(__APPLE__) && defined(WITH_X11)
     std::unique_ptr<xcb_connection_t, void (*)(xcb_connection_t*)> c(xcb_connect(nullptr, nullptr),
                                                                      [](xcb_connection_t* ptr) {
                                                                          xcb_disconnect(ptr);
