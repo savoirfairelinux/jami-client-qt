@@ -16,6 +16,24 @@
       "message": "1:   /foo/tests/qml/src/tst_WizardView.qml produced 4 error(s):\n1:     /foo/tests/qml/src/tst_WizardView.qml:31,1: Type WizardView unavailable\n1:     /foo/src/app/wizardview/WizardView.qml:93,13: Type WelcomePage unavailable\n1:     /foo/src/app/wizardview/components/WelcomePage.qml:161,9: Type MaterialButton unavailable\n1:     /foo/src/app/commoncomponents/MaterialButton.qml:99,20: Cannot assign to non-existent property \"implicitwidth\"",
       "revId": "98cbdd6cfe28b43963abdd674f7401807a2df11c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef4d1ade_e2145218",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-04T18:53:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3030abf_fe5593ba",
+      "revId": "98cbdd6cfe28b43963abdd674f7401807a2df11c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
