@@ -1132,6 +1132,9 @@ ConversationModel::notificationsCount() const
     std::for_each(pimpl_->conversations.begin(),
                   pimpl_->conversations.end(),
                   [&notificationsCount](const auto& c) {
+                      if (c.preferences["ignoreNotifications"] == "true") {
+                          return;
+                      }
                       if (c.isRequest)
                           notificationsCount += 1;
                       else {
