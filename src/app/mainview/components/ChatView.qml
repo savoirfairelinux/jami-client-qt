@@ -262,6 +262,7 @@ Rectangle {
                     Loader {
                         active: CurrentConversation.id !== ""
                         sourceComponent: MessageListView {
+                            id: messageListView
                             DropArea {
                                 anchors.fill: parent
                                 onDropped: function (drop) {
