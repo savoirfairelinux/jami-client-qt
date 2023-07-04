@@ -24,7 +24,7 @@
 #include "api/codecmodel.h"
 #include "api/devicemodel.h"
 
-#ifdef Q_OS_LINUX
+#ifdef defined(Q_OS_LINUX) && defined(QT_X11EXTRAS_LIB)
 #include "xrectsel.h"
 #endif
 
@@ -204,7 +204,7 @@ void
 AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height)
 {
     muteCamera_ = !isCapturing();
-#ifdef Q_OS_LINUX
+#ifdef defined(Q_OS_LINUX) && defined(QT_X11EXTRAS_LIB)
     // xrectsel will freeze all displays too fast so that the call
     // context menu will not be closed even closed signal is emitted
     // use timer to wait until popup is closed
