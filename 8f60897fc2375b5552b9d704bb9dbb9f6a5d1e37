@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbd89c9c_2f06102d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 968
+      },
+      "writtenOn": "2023-07-05T21:29:35Z",
+      "side": 1,
+      "message": "- add `cmake:` or `build:` at the beginning of the line (seen with `git log --oneline CMakeLists.txt`)\n- lowercase `Added`\n- use infinitive verb `add`",
+      "revId": "8f60897fc2375b5552b9d704bb9dbb9f6a5d1e37",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fee67360_6a33080e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 968
+      },
+      "writtenOn": "2023-07-05T21:29:35Z",
+      "side": 1,
+      "message": "which ones? (`like embedded systems that does not include an X server`)",
+      "range": {
+        "startLine": 9,
+        "startChar": 37,
+        "endLine": 9,
+        "endChar": 51
+      },
+      "revId": "8f60897fc2375b5552b9d704bb9dbb9f6a5d1e37",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "375ecad9_3e77a757",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 968
+      },
+      "writtenOn": "2023-07-05T21:29:35Z",
+      "side": 1,
+      "message": "Etnaviv EGLFS is something specific to the board you are using I believe.",
+      "range": {
+        "startLine": 12,
+        "startChar": 45,
+        "endLine": 13,
+        "endChar": 7
+      },
+      "revId": "8f60897fc2375b5552b9d704bb9dbb9f6a5d1e37",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
