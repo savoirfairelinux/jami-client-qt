@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef59a19b_e8e144cd",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-05T19:10:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1bd124a1_029074a9",
+      "range": {
+        "startLine": 43,
+        "startChar": 14,
+        "endLine": 43,
+        "endChar": 68
+      },
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "770fbd03_23a9a978",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-05T13:01:59Z",
       "side": 1,
       "message": "you probably want to lock the file to avoid multiple operations on same dirrectory",
+      "range": {
+        "startLine": 47,
+        "startChar": 14,
+        "endLine": 47,
+        "endChar": 18
+      },
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0af91157_314821d7",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-05T19:10:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "770fbd03_23a9a978",
       "range": {
         "startLine": 47,
         "startChar": 14,
@@ -64,6 +112,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a35a1eb5_ed93c9e2",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-05T19:10:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fb8d401_9b5fafcd",
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75845066_65c580f2",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-07-05T13:01:59Z",
       "side": 1,
       "message": "please install clang-format to format code",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 13
+      },
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db3f19d7_871858af",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-05T19:10:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75845066_65c580f2",
       "range": {
         "startLine": 35,
         "startChar": 4,
@@ -110,6 +200,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3b08c2b_ddfc8b4f",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-05T19:10:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a537dc80_6a172939",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 21
+      },
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03261404_39099664",
@@ -123,6 +237,24 @@
       "writtenOn": "2023-07-05T13:01:59Z",
       "side": 1,
       "message": "remove newline",
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ee5086f_4cc73db3",
+        "filename": "tests/qml/main.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-05T19:10:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03261404_39099664",
       "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
