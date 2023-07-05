@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "154618f8_d63bb7d4",
+        "filename": "src/app/abstractupdatemanager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d8a896d_eca46a2d",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 25
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d4fa038_5f1188fd",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-05T13:19:11Z",
       "side": 1,
       "message": "missing copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 8,
+        "endLine": 1,
+        "endChar": 12
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a40ae14_c3b56f1b",
+        "filename": "src/app/abstractupdatemanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d4fa038_5f1188fd",
       "range": {
         "startLine": 1,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "016ff0dd_9fd1174c",
+        "filename": "src/app/abstractupdatemanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70037cd3_1c6d3287",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe68a702_331178fe",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-07-05T13:19:11Z",
       "side": 1,
       "message": "ideally add docstrings",
+      "range": {
+        "startLine": 13,
+        "startChar": 29,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17e8b2fc_c68ae1f4",
+        "filename": "src/app/abstractupdatemanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe68a702_331178fe",
       "range": {
         "startLine": 13,
         "startChar": 29,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ccd8ccb_4f1f20de",
+        "filename": "src/app/appversionmanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49b38806_1fcbdaba",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 18
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f40857a4_259ef78e",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-07-05T13:19:11Z",
       "side": 1,
       "message": "should not be public and probably in pimpl",
+      "range": {
+        "startLine": 46,
+        "startChar": 33,
+        "endLine": 46,
+        "endChar": 40
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fefeb813_51435ba2",
+        "filename": "src/app/appversionmanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f40857a4_259ef78e",
       "range": {
         "startLine": 46,
         "startChar": 33,
@@ -162,6 +306,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44e11fbc_a93bc175",
+        "filename": "src/app/appversionmanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "883793cd_34a0d16e",
+      "range": {
+        "startLine": 55,
+        "startChar": 26,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95e48c23_319bdd06",
@@ -175,6 +343,30 @@
       "writtenOn": "2023-07-05T13:19:11Z",
       "side": 1,
       "message": "missing copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a345b018_6d4b37e5",
+        "filename": "src/app/commoncomponents/HeaderToogleSwitch.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95e48c23_319bdd06",
       "range": {
         "startLine": 1,
         "startChar": 7,
@@ -208,6 +400,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ced8ee7_c0172e99",
+        "filename": "src/app/commoncomponents/HeaderToogleSwitch.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f97a43bf_2d84857a",
+      "range": {
+        "startLine": 8,
+        "startChar": 5,
+        "endLine": 8,
+        "endChar": 11
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "feaad6f9_3e246792",
@@ -221,6 +437,30 @@
       "writtenOn": "2023-07-05T13:19:11Z",
       "side": 1,
       "message": "clean comments",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 34
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8d53401_f6d0f218",
+        "filename": "src/app/commoncomponents/HeaderToogleSwitch.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feaad6f9_3e246792",
       "range": {
         "startLine": 23,
         "startChar": 22,
@@ -254,6 +494,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80546777_3d7d9514",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ad3f640_f0b57de2",
+      "range": {
+        "startLine": 101,
+        "startChar": 26,
+        "endLine": 101,
+        "endChar": 46
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65cb0100_a751fb88",
@@ -267,6 +531,30 @@
       "writtenOn": "2023-07-05T13:19:11Z",
       "side": 1,
       "message": "keep iterator in a var to avoid multiple access",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 15
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b5a8386_164f3a62",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65cb0100_a751fb88",
       "range": {
         "startLine": 113,
         "startChar": 8,
@@ -300,6 +588,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "483c7c13_b1d6f0b4",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41c72394_c8713569",
+      "range": {
+        "startLine": 132,
+        "startChar": 23,
+        "endLine": 132,
+        "endChar": 30
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "169c2e53_6d5478b4",
@@ -317,6 +629,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74e5e0a9_a064fa92",
+        "filename": "src/app/networkmanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "169c2e53_6d5478b4",
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a7954e1_720f5fee",
@@ -330,6 +660,30 @@
       "writtenOn": "2023-07-05T13:19:11Z",
       "side": 1,
       "message": "no",
+      "range": {
+        "startLine": 816,
+        "startChar": 1,
+        "endLine": 817,
+        "endChar": 16
+      },
+      "revId": "01f0553a581d5412bf49bcddaa1b98c895a2aa62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4723943b_ae74851f",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T15:02:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a7954e1_720f5fee",
       "range": {
         "startLine": 816,
         "startChar": 1,
