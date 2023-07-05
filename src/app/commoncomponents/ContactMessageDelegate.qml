@@ -30,17 +30,16 @@ Column {
     property int timestamp: Timestamp
     property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
-    property int seq: MsgSeq.single//a changer par textlabel
+    property int seq: MsgSeq.single
     property alias messageToSend: textLabel.text
 
     width: ListView.view ? ListView.view.width : 0
-    spacing: 2
-    topPadding: 12
-    bottomPadding: 12
+    spacing: 0
 
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width
+        spacing: 0
 
         TimestampInfo {
             id: timestampItem
@@ -52,43 +51,16 @@ Column {
             Layout.alignment: Qt.AlignHCenter
         }
 
-        Rectangle {
-            id: msg
+        Label {
+            id: textLabel
 
-            width: childrenRect.width
-            height: JamiTheme.contactMessageAvatarSize + 12
-            radius: JamiTheme.contactMessageAvatarSize / 2 + 6
             Layout.alignment: Qt.AlignCenter
-            color: "transparent"
-            border.width: 1
-            border.color: CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : CurrentConversation.color
-
-            RowLayout {
-                anchors.verticalCenter: parent.verticalCenter
-
-                Avatar {
-                    Layout.leftMargin: 6
-                    width: JamiTheme.contactMessageAvatarSize
-                    height: JamiTheme.contactMessageAvatarSize
-                    visible: ActionUri !== ""
-                    imageId: ActionUri !== CurrentAccount.uri ? ActionUri : CurrentAccount.id
-                    showPresenceIndicator: false
-                    mode: ActionUri !== CurrentAccount.uri ? Avatar.Mode.Contact : Avatar.Mode.Account
-                }
-
-                Label {
-                    id: textLabel
-
-                    Layout.rightMargin: 6
-                    width: parent.width
-                    text: Body
-                    horizontalAlignment: Qt.AlignHCenter
-                    font.pointSize: JamiTheme.contactEventPointSize
-                    font.bold: true
-                    color: JamiTheme.chatviewTextColor
-                    textFormat: TextEdit.PlainText
-                }
-            }
+            width: parent.width
+            text: Body
+            horizontalAlignment: Qt.AlignHCenter
+            font.pointSize: JamiTheme.smallFontSize
+            color: JamiTheme.chatviewSecondaryInformationColor
+            textFormat: TextEdit.PlainText
         }
     }
     opacity: 0

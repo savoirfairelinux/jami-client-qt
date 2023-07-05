@@ -49,8 +49,7 @@ ColumnLayout {
 
         Layout.preferredHeight: childrenRect.height
         Layout.fillWidth: true
-        Layout.topMargin: JamiTheme.dayTimestampTopMargin
-        Layout.bottomMargin: formattedTimeLabel.visible ? 0 : JamiTheme.dayTimestampBottomMargin
+        Layout.topMargin: 30
 
         Rectangle {
             id: line
@@ -95,12 +94,12 @@ ColumnLayout {
         id: formattedTimeLabel
 
         text: formattedTime
-        Layout.bottomMargin: JamiTheme.timestampBottomMargin
-        Layout.topMargin: JamiTheme.timestampTopMargin
+        Layout.topMargin: 30
+        Layout.bottomMargin: 30
         Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
         color: JamiTheme.timestampColor
         visible: showTime || showDay
         Layout.preferredHeight: visible * implicitHeight
-        font.pointSize: JamiTheme.timestampFont
+        font.pointSize: JamiTheme.smallFontSize
     }
 }

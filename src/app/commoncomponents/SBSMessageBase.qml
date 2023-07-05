@@ -90,7 +90,7 @@ Control {
             id: usernameblock
             Layout.preferredHeight: (seq === MsgSeq.first || seq === MsgSeq.single) ? 10 : 0
             visible: !isReply
-            Layout.topMargin: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing ? 20 : 0
+            Layout.topMargin: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing && !root.showTime ? 20 : 0
 
             Label {
                 id: username
@@ -98,7 +98,7 @@ Control {
                 font.bold: true
                 visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
                 font.pointSize: JamiTheme.smallFontSize
-                color: JamiTheme.chatviewUsernameColor
+                color: JamiTheme.chatviewSecondaryInformationColor
                 lineHeight: JamiTheme.usernameBlockLineHeight
                 leftPadding: JamiTheme.usernameBlockPadding
                 textFormat: TextEdit.PlainText
@@ -115,7 +115,7 @@ Control {
             Layout.fillWidth: true
             Layout.preferredHeight: childrenRect.height
 
-            Layout.topMargin: JamiTheme.sbsMessageBaseReplyTopMargin
+            Layout.topMargin: visible? JamiTheme.sbsMessageBaseReplyTopMargin : 0
             Layout.leftMargin: isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
             Layout.rightMargin: !isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
 

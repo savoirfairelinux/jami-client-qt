@@ -28,7 +28,7 @@ SBSMessageBase {
     component JoinCallButton: PushButton {
         visible: root.isActive
         toolTipText: JamiStrings.joinCall
-        preferredSize: 40
+        preferredSize: visible ? 40 : 0
         imageColor: callLabel.color
         normalColor: "transparent"
         hoveredColor: Qt.rgba(255, 255, 255, 0.2)

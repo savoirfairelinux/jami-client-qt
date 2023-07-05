@@ -229,7 +229,7 @@ Item {
     property color previewCardContainerColor: darkTheme ? blackColor : whiteColor
     property color previewUrlColor: darkTheme ? "#eeeeee" : "#333"
     property color messageWebViewFooterButtonImageColor: darkTheme ? "#838383" : "#656565"
-    property color chatviewUsernameColor: "#A7A7A7"
+    property color chatviewSecondaryInformationColor: "#A7A7A7"
 
     // ChatView Footer
     property color chatViewFooterListColor: darkTheme ? blackColor : "#E5E5E5"
@@ -387,10 +387,6 @@ Item {
 
     // TimestampInfo
     property int timestampLinePadding: 40
-    property int dayTimestampTopMargin: 8
-    property int dayTimestampBottomMargin: 8
-    property int timestampBottomMargin: 16
-    property int timestampTopMargin: 16
     property int dayTimestampHPadding: 16
     property real dayTimestampVPadding: 32
     property real timestampFont: calcSize(12)

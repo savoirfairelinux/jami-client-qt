@@ -40,6 +40,7 @@ Column {
     ColumnLayout {
 
         width: parent.width
+        spacing: 0
 
         TimestampInfo {
             id: timestampItem
