@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bd124a1_029074a9",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T13:01:59Z",
+      "side": 1,
+      "message": "cdUp() on a QDir gives the parent directory",
+      "range": {
+        "startLine": 43,
+        "startChar": 14,
+        "endLine": 43,
+        "endChar": 68
+      },
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770fbd03_23a9a978",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T13:01:59Z",
+      "side": 1,
+      "message": "you probably want to lock the file to avoid multiple operations on same dirrectory",
+      "range": {
+        "startLine": 47,
+        "startChar": 14,
+        "endLine": 47,
+        "endChar": 18
+      },
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fb8d401_9b5fafcd",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T13:01:59Z",
+      "side": 1,
+      "message": "ideally add docstrings",
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75845066_65c580f2",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T13:01:59Z",
+      "side": 1,
+      "message": "please install clang-format to format code",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 13
+      },
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a537dc80_6a172939",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T13:01:59Z",
+      "side": 1,
+      "message": "unused?",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 21
+      },
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03261404_39099664",
+        "filename": "tests/qml/main.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T13:01:59Z",
+      "side": 1,
+      "message": "remove newline",
+      "revId": "1ed9fef5ed614bf0d62a189904f793feb5e683b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
