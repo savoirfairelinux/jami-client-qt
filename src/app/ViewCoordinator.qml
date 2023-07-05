@@ -27,7 +27,10 @@ QtObject {
     required property QtObject viewManager
 
     signal initialized
-    signal requestAppWindowWizardView
+
+    function requestAppWindowWizardView() {
+        viewCoordinator.present("WizardView");
+    }
 
     // A map of view names to file paths for QML files that define each view.
     property variant resources: {
