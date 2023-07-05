@@ -209,7 +209,7 @@ SidePanelBase {
                     buttonTextFont.weight: isChildSelected ? Font.Medium : Font.Normal
                     buttonTextEnableElide: true
 
-                    normalColor: isChildSelected ? JamiTheme.smartListSelectedColor : "transparent"
+                    normalColor: "transparent"
                     hoveredColor: JamiTheme.smartListHoveredColor
                     imageColor: JamiTheme.tintedBlue
 
@@ -244,9 +244,8 @@ SidePanelBase {
                             radius: 0
 
                             alignement: Text.AlignLeft
-                            Layout.preferredWidth: parent.width - 28
-                            Layout.leftMargin: 28
-                            preferredLeftMargin: 47
+                            Layout.fillWidth: true
+                            preferredLeftMargin: 74
 
                             imageContainerWidth: 0
                             height: JamiTheme.settingsMenuChildrenButtonHeight
@@ -256,7 +255,7 @@ SidePanelBase {
                             buttonTextFont.weight: isSelected ? Font.Medium : Font.Normal
                             buttonTextEnableElide: true
 
-                            normalColor: "transparent"
+                            normalColor: isSelected ? JamiTheme.smartListSelectedColor : "transparent"
                             hoveredColor: JamiTheme.smartListHoveredColor
 
                             onClicked: open(modelData.id)
