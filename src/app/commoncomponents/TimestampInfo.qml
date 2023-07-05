@@ -101,6 +101,6 @@ ColumnLayout {
         color: JamiTheme.timestampColor
         visible: showTime || showDay
         Layout.preferredHeight: visible * implicitHeight
-        font.pointSize: JamiTheme.timestampFont
+        font.pointSize: JamiTheme.smallFontSize
     }
 }

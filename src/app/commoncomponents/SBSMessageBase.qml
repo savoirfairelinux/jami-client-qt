@@ -98,7 +98,7 @@ Control {
                 font.bold: true
                 visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
                 font.pointSize: JamiTheme.smallFontSize
-                color: JamiTheme.chatviewUsernameColor
+                color: JamiTheme.chatviewSecondaryInformationColor
                 lineHeight: JamiTheme.usernameBlockLineHeight
                 leftPadding: JamiTheme.usernameBlockPadding
                 textFormat: TextEdit.PlainText
