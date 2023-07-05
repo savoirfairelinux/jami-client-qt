@@ -33,9 +33,6 @@ BaseView {
 
     inhibits: ["ConversationView"]
 
-    // signal to redirect the page to main view
-    signal loaderSourceChangeRequested(int sourceToLoad)
-
     color: JamiTheme.backgroundColor
 
     Connections {
@@ -57,8 +54,11 @@ BaseView {
         target: WizardViewStepModel
 
         function onCloseWizardView() {
-            loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView);
             root.dismiss();
+            viewCoordinator.preload("SidePanel");
+            viewCoordinator.preload("SettingsSidePanel");
+            viewCoordinator.present("WelcomePage");
+            viewCoordinator.preload("ConversationView");
         }
     }
 
@@ -70,6 +70,7 @@ BaseView {
         anchors.fill: parent
 
         contentHeight: controlPanelStackView.height
+        boundsBehavior: Flickable.StopAtBounds
 
         StackLayout {
             id: controlPanelStackView
