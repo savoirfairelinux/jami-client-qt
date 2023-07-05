@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82955674_64d8eb4e",
+        "filename": "src/app/pluginstorelistmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T14:02:51Z",
+      "side": 1,
+      "message": "no it can\u0027t be because the data is for the model",
+      "parentUuid": "3f7f0d80_ca5105a8",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 27
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df2e7838_682e97f2",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-05T12:52:00Z",
       "side": 1,
       "message": "for (const auto\u0026 plugin: lrcInstance_-\u003epluginModel().getInstalledPlugins())\n\nto avoid un-necessary copy",
+      "range": {
+        "startLine": 50,
+        "startChar": 13,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7016c2d_57c82f99",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T14:02:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df2e7838_682e97f2",
       "range": {
         "startLine": 50,
         "startChar": 13,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e8f009a_e52b5028",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T14:02:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f69aace6_c4568fdd",
+      "range": {
+        "startLine": 70,
+        "startChar": 23,
+        "endLine": 70,
+        "endChar": 41
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e89e0d34_3c460847",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-07-05T12:52:00Z",
       "side": 1,
       "message": "no need for lrcInstance_ in this method",
+      "range": {
+        "startLine": 76,
+        "startChar": 13,
+        "endLine": 76,
+        "endChar": 25
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3b6ae53_76ebf4b5",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T14:02:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e89e0d34_3c460847",
       "range": {
         "startLine": 76,
         "startChar": 13,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3752b71_79734cd6",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T14:02:51Z",
+      "side": 1,
+      "message": "It\u0027s the job of the os. The archive is stored in /tmp, so the os is going to cleanup its memory.",
+      "parentUuid": "340235f0_70853548",
+      "range": {
+        "startLine": 117,
+        "startChar": 55,
+        "endLine": 117,
+        "endChar": 68
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19c71f26_e9f6dd97",
@@ -139,6 +259,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef81b14b_44ae3550",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T14:02:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19c71f26_e9f6dd97",
+      "range": {
+        "startLine": 121,
+        "startChar": 46,
+        "endLine": 121,
+        "endChar": 58
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2be8ffdf_182aae2c",
@@ -152,6 +296,30 @@
       "writtenOn": "2023-07-05T12:52:00Z",
       "side": 1,
       "message": "ideally I\u0027d store a list built from daemon\u0027s information in the pluginModel constructor (and update with dedicated signals to remove/re-add a plugin) and store the id/path list to avoid the different for loops in order to retrieve the id or the path.",
+      "range": {
+        "startLine": 137,
+        "startChar": 55,
+        "endLine": 137,
+        "endChar": 74
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8b5c7c6_aa61cede",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-05T14:02:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2be8ffdf_182aae2c",
       "range": {
         "startLine": 137,
         "startChar": 55,
