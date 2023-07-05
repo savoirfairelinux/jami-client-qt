@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f7f0d80_ca5105a8",
+        "filename": "src/app/pluginstorelistmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T12:52:00Z",
+      "side": 1,
+      "message": "if plugins_ can be a map\u003cid, plugin\u003e, the for loop can be avoided",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 27
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df2e7838_682e97f2",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T12:52:00Z",
+      "side": 1,
+      "message": "for (const auto\u0026 plugin: lrcInstance_-\u003epluginModel().getInstalledPlugins())\n\nto avoid un-necessary copy",
+      "range": {
+        "startLine": 50,
+        "startChar": 13,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f69aace6_c4568fdd",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T12:52:00Z",
+      "side": 1,
+      "message": "cleanup comments",
+      "range": {
+        "startLine": 70,
+        "startChar": 23,
+        "endLine": 70,
+        "endChar": 41
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e89e0d34_3c460847",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T12:52:00Z",
+      "side": 1,
+      "message": "no need for lrcInstance_ in this method",
+      "range": {
+        "startLine": 76,
+        "startChar": 13,
+        "endLine": 76,
+        "endChar": 25
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "340235f0_70853548",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T12:52:00Z",
+      "side": 1,
+      "message": "you also want to remove from tempPath_ when installed, or it\u0027s the role of the daemon?",
+      "range": {
+        "startLine": 117,
+        "startChar": 55,
+        "endLine": 117,
+        "endChar": 68
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c71f26_e9f6dd97",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T12:52:00Z",
+      "side": 1,
+      "message": "clean commented code",
+      "range": {
+        "startLine": 121,
+        "startChar": 46,
+        "endLine": 121,
+        "endChar": 58
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2be8ffdf_182aae2c",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T12:52:00Z",
+      "side": 1,
+      "message": "ideally I\u0027d store a list built from daemon\u0027s information in the pluginModel constructor (and update with dedicated signals to remove/re-add a plugin) and store the id/path list to avoid the different for loops in order to retrieve the id or the path.",
+      "range": {
+        "startLine": 137,
+        "startChar": 55,
+        "endLine": 137,
+        "endChar": 74
+      },
+      "revId": "7b53831258749411e8fac27698f429381783c207",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
