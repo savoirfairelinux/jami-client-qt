@@ -43,7 +43,6 @@ ApplicationWindow {
     LayoutMirroring.childrenInherit: isRTL
 
     enum LoadedSource {
-        WizardView,
         MainView,
         AccountMigrationView,
         None
@@ -95,19 +94,13 @@ ApplicationWindow {
 
     function checkLoadedSource() {
         var sourceString = mainApplicationLoader.source.toString();
-        if (sourceString === JamiQmlUtils.wizardViewLoadPath)
-            return MainApplicationWindow.LoadedSource.WizardView;
-        else if (sourceString === JamiQmlUtils.mainViewLoadPath)
+        if (sourceString === JamiQmlUtils.mainViewLoadPath)
             return MainApplicationWindow.LoadedSource.MainView;
         return MainApplicationWindow.LoadedSource.None;
     }
 
     function startClient() {
-        if (UtilsAdapter.getAccountListSize() !== 0) {
-            setMainLoaderSource(JamiQmlUtils.mainViewLoadPath);
-        } else {
-            setMainLoaderSource(JamiQmlUtils.wizardViewLoadPath);
-        }
+        setMainLoaderSource(JamiQmlUtils.mainViewLoadPath);
     }
 
     function setMainLoaderSource(source) {
@@ -160,14 +153,6 @@ ApplicationWindow {
         visible: status == Loader.Ready
 
         Connections {
-            target: viewCoordinator
-
-            function onRequestAppWindowWizardView() {
-                setMainLoaderSource(JamiQmlUtils.wizardViewLoadPath);
-            }
-        }
-
-        Connections {
             id: connectionMigrationEnded
 
             target: CurrentAccountToMigrate
@@ -182,32 +167,16 @@ ApplicationWindow {
             }
         }
 
-        Connections {
-            target: mainApplicationLoader.item
-
-            function onLoaderSourceChangeRequested(sourceToLoad) {
-                if (sourceToLoad === MainApplicationWindow.LoadedSource.WizardView)
-                    setMainLoaderSource(JamiQmlUtils.wizardViewLoadPath);
-                else if (sourceToLoad === MainApplicationWindow.LoadedSource.AccountMigrationView)
-                    setMainLoaderSource(JamiQmlUtils.accountMigrationViewLoadPath);
-                else
-                    setMainLoaderSource(JamiQmlUtils.mainViewLoadPath);
-            }
-        }
-
         // Set `visible = false` when loading a new QML file.
         onSourceChanged: windowSettingsLoaded = false
 
         onLoaded: {
-            if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView) {
-                // Onboarding wizard window, these settings are fixed.
-                // - window screen will default to the primary
-                // - the window will showNormal once windowSettingsLoaded is
-                //   set to true(then forcing visible to true)
-                appWindow.width = JamiTheme.wizardViewMinWidth;
-                appWindow.height = JamiTheme.wizardViewMinHeight;
-                appWindow.minimumWidth = JamiTheme.wizardViewMinWidth;
-                appWindow.minimumHeight = JamiTheme.wizardViewMinHeight;
+            if (UtilsAdapter.getAccountListSize() === 0) {
+                layoutManager.restoreWindowSettings();
+                if (!viewCoordinator.rootView)
+                    // Set the viewCoordinator's root item.
+                    viewCoordinator.init(item);
+                viewCoordinator.present("WizardView");
             } else {
                 // Main window, load any valid app settings, and allow the
                 // layoutManager to handle as much as possible.
@@ -220,8 +189,9 @@ ApplicationWindow {
                         viewCoordinator.present("WelcomePage");
                         viewCoordinator.preload("ConversationView");
                     });
-                // Set the viewCoordinator's root item.
-                viewCoordinator.init(item);
+                if (!viewCoordinator.rootView)
+                    // Set the viewCoordinator's root item.
+                    viewCoordinator.init(item);
                 if (CurrentAccountToMigrate.accountToMigrateListSize > 0)
                     viewCoordinator.present("AccountMigrationView");
             }

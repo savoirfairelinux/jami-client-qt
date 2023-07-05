@@ -35,9 +35,6 @@ BaseView {
 
     property bool successState: true
 
-    // signal to redirect the page to main view
-    signal loaderSourceChangeRequested(int sourceToLoad)
-
     function slotMigrationButtonClicked() {
         stackedWidget.currentIndex = AccountMigrationView.AccountMigrationStep.Synching;
         AccountAdapter.setArchivePasswordAsync(CurrentAccountToMigrate.accountId, passwordInputLineEdit.text);

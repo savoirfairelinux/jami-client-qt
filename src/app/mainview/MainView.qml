@@ -43,8 +43,6 @@ Rectangle {
     property int tabBarLeftMargin: 8
     property int tabButtonShrinkSize: 8
 
-    signal loaderSourceChangeRequested(int sourceToLoad)
-
     property string currentConvId: CurrentConversation.id
     onCurrentConvIdChanged: {
         if (currentConvId !== '') {
