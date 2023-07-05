@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d80a6b9d_39261843",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T13:05:58Z",
+      "side": 1,
+      "message": "squash with previous commits (same for format changes)",
+      "range": {
+        "startLine": 303,
+        "startChar": 17,
+        "endLine": 303,
+        "endChar": 34
+      },
+      "revId": "46a6cd0bb902b76ab4cc4530ec035f8eb2452c70",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38dca214_3cc236a5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T13:05:58Z",
+      "side": 1,
+      "message": "seems the commit is not related to the commit message",
+      "range": {
+        "startLine": 664,
+        "startChar": 31,
+        "endLine": 664,
+        "endChar": 35
+      },
+      "revId": "46a6cd0bb902b76ab4cc4530ec035f8eb2452c70",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
