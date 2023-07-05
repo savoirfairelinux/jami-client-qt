@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "636ec1d2_4eae7845",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T18:48:34Z",
+      "side": 1,
+      "message": "necessary? Why not just item.height",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 22
+      },
+      "revId": "b768b76411f6c3099588f66a8304d1b4f158d148",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a51ea176_a790aaae",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T18:48:34Z",
+      "side": 1,
+      "message": "remove commented lines",
+      "range": {
+        "startLine": 144,
+        "startChar": 14,
+        "endLine": 144,
+        "endChar": 19
+      },
+      "revId": "b768b76411f6c3099588f66a8304d1b4f158d148",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08b44077_aa16e4c9",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T18:48:34Z",
+      "side": 1,
+      "message": "1*99 \u003d 99",
+      "range": {
+        "startLine": 147,
+        "startChar": 36,
+        "endLine": 147,
+        "endChar": 47
+      },
+      "revId": "b768b76411f6c3099588f66a8304d1b4f158d148",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "048b12ef_c5555ac8",
+        "filename": "src/app/mainview/components/WelcomeInfo.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T18:48:34Z",
+      "side": 1,
+      "message": "what does this means? \"isLong\"?",
+      "range": {
+        "startLine": 118,
+        "startChar": 27,
+        "endLine": 118,
+        "endChar": 33
+      },
+      "revId": "b768b76411f6c3099588f66a8304d1b4f158d148",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "383e0551_c9d7d747",
+        "filename": "src/app/mainview/components/WelcomePage.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-05T18:48:34Z",
+      "side": 1,
+      "message": "why, instead defaulting on \"\", we\u0027re not using the default title?\n\nHence, you can avoid \"hasCustomUi \u0026\u0026 hasTitle\" in the previous line. Because by default the title will contains a value.",
+      "range": {
+        "startLine": 82,
+        "startChar": 55,
+        "endLine": 82,
+        "endChar": 66
+      },
+      "revId": "b768b76411f6c3099588f66a8304d1b4f158d148",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
