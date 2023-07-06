@@ -65,6 +65,15 @@ ApplicationWindow {
         }
     }
 
+    header: Loader {
+        active: true
+        sourceComponent: GenericErrorsRow {
+            id: genericError
+            text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
+            height: visible? JamiTheme.chatViewHeaderPreferredHeight : 0
+        }
+    }
+
     Rectangle {
         id: focusOverlay
         objectName: "focusOverlay"
