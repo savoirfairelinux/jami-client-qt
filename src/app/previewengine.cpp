@@ -19,15 +19,6 @@
 
 #include <QRegularExpression>
 
-static QString
-getInnerHtml(const QString& tag)
-{
-    static const QRegularExpression re(">([^<]+)<");
-    const auto match = re.match(tag);
-    return match.hasMatch() ? match.captured(1) : QString {};
-};
-
-// Portable newline regex.
 const QRegularExpression PreviewEngine::newlineRe("\\r?\\n");
 
 PreviewEngine::PreviewEngine(ConnectivityMonitor* cm, QObject* parent)
@@ -39,12 +30,11 @@ PreviewEngine::PreviewEngine(ConnectivityMonitor* cm, QObject* parent)
 }
 
 QString
-PreviewEngine::getTagContent(QList<QString>& tags, const QString& value)
+PreviewEngine::getTagContent(const QList<QString>& tags, const QString& value)
 {
     Q_FOREACH (auto tag, tags) {
         const QRegularExpression re("(property|name)=\"(og:|twitter:|)" + value
                                     + "\".*?content=\"([^\"]+)\"");
-
         const auto match = re.match(tag.remove(newlineRe));
         if (match.hasMatch()) {
             return match.captured(3);
@@ -54,45 +44,44 @@ PreviewEngine::getTagContent(QList<QString>& tags, const QString& value)
 }
 
 QString
-PreviewEngine::getTitle(HtmlParser::TagInfoList& metaTags)
+PreviewEngine::getTitle(const QList<QString>& metaTags)
 {
     // Try with opengraph/twitter props
-    QString title = getTagContent(metaTags[TidyTag_META], "title");
+    QString title = getTagContent(metaTags, "title");
     if (title.isEmpty()) { // Try with title tag
-        title = getInnerHtml(htmlParser_->getFirstTagValue(TidyTag_TITLE));
+        title = htmlParser_->getTagInnerHtml(TidyTag_TITLE);
     }
     if (title.isEmpty()) { // Try with h1 tag
-        title = getInnerHtml(htmlParser_->getFirstTagValue(TidyTag_H1));
+        title = htmlParser_->getTagInnerHtml(TidyTag_H1);
     }
     if (title.isEmpty()) { // Try with h2 tag
-        title = getInnerHtml(htmlParser_->getFirstTagValue(TidyTag_H2));
+        title = htmlParser_->getTagInnerHtml(TidyTag_H2);
     }
     return title;
 }
 
 QString
-PreviewEngine::getDescription(HtmlParser::TagInfoList& metaTags)
+PreviewEngine::getDescription(const QList<QString>& metaTags)
 {
     // Try with og/twitter props
-    QString d = getTagContent(metaTags[TidyTag_META], "description");
-    if (d.isEmpty()) { // Try with first paragraph
-        d = getInnerHtml(htmlParser_->getFirstTagValue(TidyTag_P));
+    QString desc = getTagContent(metaTags, "description");
+    if (desc.isEmpty()) { // Try with first paragraph
+        desc = htmlParser_->getTagInnerHtml(TidyTag_P);
     }
-    return d;
+    return desc;
 }
 
 QString
-PreviewEngine::getImage(HtmlParser::TagInfoList& metaTags)
+PreviewEngine::getImage(const QList<QString>& metaTags)
 {
     // Try with og/twitter props
-    QString image = getTagContent(metaTags[TidyTag_META], "image");
+    QString image = getTagContent(metaTags, "image");
     if (image.isEmpty()) { // Try with href of link tag (rel="image_src")
-        auto tags = htmlParser_->getTags({TidyTag_LINK});
-        Q_FOREACH (auto tag, tags[TidyTag_LINK]) {
-            static const QRegularExpression re("rel=\"image_src\".*?href=\"([^\"]+)\"");
-            const auto match = re.match(tag.remove(newlineRe));
-            if (match.hasMatch()) {
-                return match.captured(1);
+        auto tagsNodes = htmlParser_->getTagsNodes({TidyTag_LINK});
+        Q_FOREACH (auto tag, tagsNodes[TidyTag_LINK]) {
+            QString href = htmlParser_->getNodeAttr(tag, TidyAttr_HREF);
+            if (!href.isEmpty()) {
+                return href;
             }
         }
     }
@@ -104,7 +93,12 @@ PreviewEngine::onParseLink(const QString& messageId, const QString& link)
 {
     sendGetRequest(QUrl(link), [this, messageId, link](const QByteArray& html) {
         htmlParser_->parseHtmlString(html);
-        auto metaTags = htmlParser_->getTags({TidyTag_META});
+        auto tagsNodes = htmlParser_->getTagsNodes({TidyTag_META});
+        auto metaTagNodes = tagsNodes[TidyTag_META];
+        QList<QString> metaTags;
+        Q_FOREACH (auto tag, metaTagNodes) {
+            metaTags.append(htmlParser_->getNodeText(tag));
+        }
         QString domain = QUrl(link).host();
         if (domain.isEmpty()) {
             domain = link;
