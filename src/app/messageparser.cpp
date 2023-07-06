@@ -25,6 +25,18 @@
 
 #include "md4c-html.h"
 
+namespace {
+// A callback function that will be called by the md4c library (`md_html`) to output the HTML.
+void
+htmlChunkCb(const MD_CHAR* data, MD_SIZE data_size, void* userData)
+{
+    QByteArray* array = static_cast<QByteArray*>(userData);
+    if (data_size > 0) {
+        array->append(data, int(data_size));
+    }
+};
+}
+
 MessageParser::MessageParser(PreviewEngine* previewEngine, QObject* parent)
     : QObject(parent)
     , previewEngine_(previewEngine)
@@ -53,7 +65,7 @@ MessageParser::parseMessage(const QString& messageId,
             htmlParser_->parseHtmlString(html);
             auto tagsMap = htmlParser_->getTags({TidyTag_A, TidyTag_DEL, TidyTag_PRE});
 
-            static QString styleTag("<style>%1</style>");
+            static const QString styleTag("<style>%1</style>");
             QString style;
 
             // Check for any <pre> tags. If there are any, we need to:
@@ -90,7 +102,7 @@ MessageParser::parseMessage(const QString& messageId,
                 if (previewLinks) {
                     // Get the first link in the message.
                     auto anchorTag = tagsMap[TidyTag_A].first();
-                    static QRegularExpression hrefRegex("href=\"(.*?)\"");
+                    static const QRegularExpression hrefRegex("href\\s*=\\s*[\"']([^\"']*)[\"']");
                     auto match = hrefRegex.match(anchorTag);
                     if (match.hasMatch()) {
                         Q_EMIT previewEngine_->parseLink(messageId, match.captured(1));
@@ -110,13 +122,13 @@ void
 MessageParser::preprocessMarkdown(QString& markdown)
 {
     // Match all instances of the linefeed character.
-    static QRegularExpression newlineRegex("\n");
+    static const QRegularExpression newlineRegex("\n");
     static const QString newline = "  \n";
 
     // Replace all instances of the linefeed character with 2 spaces + a linefeed character
     // in order to force a line break in the HTML.
     // Note: we should only do this for non-code fenced blocks.
-    static QRegularExpression codeFenceRe("`{1,3}([\\s\\S]*?)`{1,3}");
+    static const QRegularExpression codeFenceRe("`{1,3}([\\s\\S]*?)`{1,3}");
     auto match = codeFenceRe.globalMatch(markdown);
 
     // If there are no code blocks, then we can just replace all linefeeds with 2 spaces
@@ -132,7 +144,7 @@ MessageParser::preprocessMarkdown(QString& markdown)
     enum BlockType { Text, Code };
     QVector<QPair<BlockType, QString>> codeBlocks;
 
-    int start = 0;
+    qsizetype start = 0;
     while (match.hasNext()) {
         auto m = match.next();
         auto nonCodelength = m.capturedStart() - start;
@@ -158,27 +170,16 @@ MessageParser::preprocessMarkdown(QString& markdown)
     }
 }
 
-// A callback function that will be called by the md4c library (`md_html`) to output the HTML.
-static void
-htmlChunkCb(const MD_CHAR* data, MD_SIZE data_size, void* userData)
-{
-    QByteArray* array = static_cast<QByteArray*>(userData);
-    if (data_size > 0) {
-        array->append(data, int(data_size));
-    }
-};
-
 QString
 MessageParser::markdownToHtml(const char* markdown)
 {
     static auto md_flags = MD_FLAG_PERMISSIVEAUTOLINKS | MD_FLAG_NOINDENTEDCODEBLOCKS
                            | MD_FLAG_TASKLISTS | MD_FLAG_STRIKETHROUGH | MD_FLAG_UNDERLINE;
-    size_t data_len = strlen(markdown);
+    const size_t data_len = strlen(markdown);
     if (data_len <= 0) {
         return QString();
-    } else {
-        QByteArray array;
-        int result = md_html(markdown, MD_SIZE(data_len), &htmlChunkCb, &array, md_flags, 0);
-        return result == 0 ? QString::fromUtf8(array) : QString();
     }
+    QByteArray array;
+    const int result = md_html(markdown, MD_SIZE(data_len), &htmlChunkCb, &array, md_flags, 0);
+    return result == 0 ? QString::fromUtf8(array) : QString();
 }

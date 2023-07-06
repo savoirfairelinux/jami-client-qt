@@ -39,6 +39,7 @@ public:
         doc_ = tidyCreate();
         tidyOptSetBool(doc_, TidyQuiet, yes);
         tidyOptSetBool(doc_, TidyShowWarnings, no);
+        tidyOptSetBool(doc_, TidyUseCustomTags, yes);
     }
 
     ~HtmlParser()
@@ -58,7 +59,7 @@ public:
     // {tagId1: ["tagValue1", "tagValue2", ...],
     //  tagId: ["tagValue1", "tagValue2", ...],
     //  ... }
-    TagInfoList getTags(QList<TidyTagId> tags, int maxDepth = -1)
+    TagInfoList getTags(const QList<TidyTagId>& tags, int maxDepth = -1)
     {
         TagInfoList result;
         traverseNode(
@@ -82,8 +83,9 @@ public:
     }
 
 private:
+    // NOLINTNEXTLINE(misc-no-recursion)
     void traverseNode(TidyNode node,
-                      QList<TidyTagId> tags,
+                      const QList<TidyTagId>& tags,
                       const std::function<void(const QString&, TidyTagId)>& cb,
                       int depth = -1)
     {
