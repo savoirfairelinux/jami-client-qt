@@ -219,6 +219,7 @@ Item {
     property color fileInTimestampColor: darkTheme ? "#999" : "#555"
     property color chatviewBgColor: darkTheme ? bgDarkMode_ : whiteColor
     property color bgInvitationRectColor: darkTheme ? "#222222" : whiteColor
+    property color messageBarPlaceholderTextColor: darkTheme ? "#909090" : "#7e7e7e"
     property color placeholderTextColor: darkTheme ? "#7a7a7a" : "black" //Qt.rgba(0, 0, 0, 0.2)
     property color placeholderTextColorWhite: "#cccccc"
     property color inviteHoverColor: darkTheme ? blackColor : whiteColor
@@ -233,11 +234,14 @@ Item {
 
     // ChatView Footer
     property color chatViewFooterListColor: darkTheme ? blackColor : "#E5E5E5"
-    property color chatViewFooterImgColor: darkTheme ? whiteColor : blackColor
-    property color showMoreButtonOpenColor: darkTheme ? "#123F4A" : "#CCCCCC"
+    property color chatViewFooterImgHoverColor: darkTheme ? whiteColor : blackColor
+    property color chatViewFooterImgColor: darkTheme ? "#909090" : "#7e7e7e"
+    property color chatViewFooterImgDisableColor: darkTheme ? "#4d4d4d" : "#cbcbcb"
+    property color showMoreButtonOpenColor: darkTheme ? "#4d4d4d" : "#e5e5e5"
     property color chatViewFooterSeparateLineColor: darkTheme ? "#5c5c5c" : "#929292"
     property color chatViewFooterSendButtonColor: darkTheme ? "#03B9E9" : "#005699"
     property color chatViewFooterSendButtonImgColor: darkTheme ? blackColor : whiteColor
+    property color chatViewFooterRectangleBorderColor: darkTheme ? "#4d4d4d" : "#e5e5e5"
 
     // ChatView Header
     property real chatViewHeaderButtonRadius: 5
@@ -299,7 +303,7 @@ Item {
 
     // Sizes
     property real mainViewLeftPaneMinWidth: 300
-    property real mainViewPaneMinWidth: 430
+    property real mainViewPaneMinWidth: 490
     property real qrCodeImageSize: 256
     property real splitViewHandlePreferredWidth: 4
     property real indicatorFontSize: calcSize(6)
@@ -437,14 +441,14 @@ Item {
     property real chatViewHairLineSize: 1
     property real chatViewMaximumWidth: 900
     property real chatViewHeaderPreferredHeight: 64
-    property real chatViewFooterPreferredHeight: 50
-    property real chatViewFooterMaximumHeight: 280
+    property real chatViewFooterPreferredHeight: 35
+    property real chatViewFooterMaximumHeight: 315
     property real chatViewFooterRowSpacing: 4
     property real chatViewFooterButtonSize: 36
     property real chatViewFooterRealButtonSize: 26
     property real chatViewFooterButtonIconSize: 48
     property real chatViewFooterButtonRadius: 5
-    property real chatViewFooterTextAreaMaximumHeight: 130
+    property real chatViewFooterTextAreaMaximumHeight: 260
     property real chatViewScrollToBottomButtonBottomMargin: 8
 
     property real usernameBlockFontSize: calcSize(12)
@@ -585,7 +589,7 @@ Item {
     property int keyboardShortcutDelegateSize: 50
 
     // Main application spec
-    property real mainViewMinWidth: 430
+    property real mainViewMinWidth: 490
     property real mainViewMinHeight: 500
 
     property real wizardViewMinWidth: 500
