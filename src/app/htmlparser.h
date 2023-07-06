@@ -39,6 +39,7 @@ public:
         doc_ = tidyCreate();
         tidyOptSetBool(doc_, TidyQuiet, yes);
         tidyOptSetBool(doc_, TidyShowWarnings, no);
+        tidyOptSetBool(doc_, TidyUseCustomTags, yes);
     }
 
     ~HtmlParser()
@@ -51,46 +52,88 @@ public:
         return tidyParseString(doc_, html.toLocal8Bit().data()) >= 0;
     }
 
-    using TagInfoList = QMap<TidyTagId, QList<QString>>;
+    using TagNodeList = QMap<TidyTagId, QList<TidyNode>>;
 
     // A function that traverses the DOM tree and fills a QVariantMap with a list
-    // of the tags and their values. The result is structured as follows:
-    // {tagId1: ["tagValue1", "tagValue2", ...],
-    //  tagId: ["tagValue1", "tagValue2", ...],
+    // of the tags and their nodes. The result is structured as follows:
+    // {tagId1: [tagNode1, tagNode2, ...],
+    //  tagId2: [tagNode3, tagNode4, ...],
     //  ... }
-    TagInfoList getTags(QList<TidyTagId> tags, int maxDepth = -1)
+    TagNodeList getTagsNodes(const QList<TidyTagId>& tags, int maxDepth = -1)
     {
-        TagInfoList result;
+        TagNodeList result;
         traverseNode(
             tidyGetRoot(doc_),
             tags,
-            [&result](const QString& value, TidyTagId tag) { result[tag].append(value); },
+            [&result](TidyNode node, TidyTagId tag) { result[tag].append(node); },
             maxDepth);
 
         return result;
     }
 
-    QString getFirstTagValue(TidyTagId tag, int maxDepth = -1)
+    // The same as the above function, only it returns the first node for a single tag.
+    TidyNode getFirstTagNode(TidyTagId tag, int maxDepth = -1)
     {
-        QString result;
+        TidyNode result = nullptr;
         traverseNode(
             tidyGetRoot(doc_),
             {tag},
-            [&result](const QString& value, TidyTagId) { result = value; },
+            [&result](TidyNode node, TidyTagId) { result = node; },
             maxDepth);
         return result;
     }
 
-private:
-    void traverseNode(TidyNode node,
-                      QList<TidyTagId> tags,
-                      const std::function<void(const QString&, TidyTagId)>& cb,
-                      int depth = -1)
+    // Extract the text value from a node.
+    QString getNodeText(TidyNode node)
     {
         TidyBuffer nodeValue = {};
+        if (!node || tidyNodeGetText(doc_, node, &nodeValue) != yes) {
+            return QString();
+        }
+        QString result = QString::fromUtf8((char*) nodeValue.bp, nodeValue.size);
+        tidyBufFree(&nodeValue);
+        return result;
+    }
+
+    // Extract the attribute value from a node.
+    QString getNodeAttr(TidyNode node, TidyAttrId attrId)
+    {
+        TidyAttr attr = tidyAttrGetById(node, attrId);
+        if (!attr) {
+            return QString();
+        }
+        const auto* attrValue = tidyAttrValue(attr);
+        if (!attrValue) {
+            return QString();
+        }
+        return QString::fromLocal8Bit(attrValue);
+    }
+
+    // Extract the inner HTML of a node.
+    QString getNodeInnerHtml(TidyNode node)
+    {
+        if (!node) {
+            return QString();
+        }
+        const auto* child = tidyGetChild(node);
+        return child ? getNodeText(child) : QString();
+    }
+
+    QString getTagInnerHtml(TidyTagId tag)
+    {
+        return getNodeInnerHtml(getFirstTagNode(tag));
+    }
+
+private:
+    // NOLINTNEXTLINE(misc-no-recursion)
+    void traverseNode(TidyNode node,
+                      const QList<TidyTagId>& tags,
+                      const std::function<void(TidyNode, TidyTagId)>& cb,
+                      int depth = -1)
+    {
         for (auto tag : tags) {
-            if (tidyNodeGetId(node) == tag && tidyNodeGetText(doc_, node, &nodeValue) == yes && cb) {
-                cb(QString::fromLocal8Bit(nodeValue.bp), tag);
+            if (tidyNodeGetId(node) == tag && cb) {
+                cb(node, tag);
                 if (depth != -1 && --depth == 0) {
                     return;
                 }
