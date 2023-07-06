@@ -136,10 +136,6 @@ public:
     void emitDataChanged(const QString& msgId, VectorInt roles = {});
     bool isOnlyEmoji(const QString& text) const;
 
-    void addEdition(const QString& msgId, const interaction::Info& info, bool end);
-    void addReaction(const QString& messageId, const QString& reactionId);
-    void editMessage(const QString& msgId, interaction::Info& info);
-    void reactToMessage(const QString& msgId, interaction::Info& info);
     QVariantMap convertReactMessagetoQVariant(const QSet<QString>&);
     QString lastMessageUid() const;
     QString lastSelfMessageId(const QString& id) const;
