@@ -21,6 +21,8 @@
 #include <QString>
 #include <QObject>
 
+#include <conversation_interface.h>
+
 #include <ctime>
 #include "typedefs.h"
 
@@ -287,6 +289,17 @@ public:
     std::time_t timestamp;
 };
 
+struct Emoji
+{
+    Q_GADGET
+
+    Q_PROPERTY(QString commitId MEMBER commitId)
+    Q_PROPERTY(QString body MEMBER body)
+public:
+    QString commitId;
+    QString body;
+};
+
 /**
  * @var authorUri
  * @var body
@@ -336,7 +349,7 @@ struct Info
         this->isRead = isRead;
     }
 
-    Info(const MapStringString& message, const QString& accountURI)
+    void init(const MapStringString& message, const QString& accountURI)
     {
         type = to_type(message["type"]);
         if (message.contains("react-to") && type == Type::TEXT) {
@@ -345,7 +358,7 @@ struct Info
         }
         authorUri = message["author"];
 
-        if (type == Type::TEXT || type == Type::EDITED || type == Type::REACTION) {
+        if (type == Type::TEXT) {
             body = message["body"];
         }
         timestamp = message["timestamp"].toInt();
@@ -362,6 +375,35 @@ struct Info
                 confId = message["confId"];
         }
         commit = message;
+    }
+
+    Info(const MapStringString& message, const QString& accountURI)
+    {
+        init(message, accountURI);
+    }
+
+    Info(const libjami::SwarmMessage& msg, const QString& accountUri)
+    {
+        MapStringString msgBody;
+        for (const auto& [key, value] : msg.body)
+            msgBody.insert(QString::fromStdString(key), QString::fromStdString(value));
+        init(msgBody, accountUri);
+        parentId = msg.linearizedParent.c_str();
+        type = to_type(msg.type.c_str());
+        for (const auto& edition : msg.editions)
+            previousBodies.append(Body {edition.at("id").c_str(),
+                                        edition.at("body").c_str(),
+                                        QString(edition.at("timestamp").c_str()).toInt()});
+        QMap<QString, QVariantList> mapStringEmoji;
+        for (const auto& reaction : msg.reactions) {
+            auto author = reaction.at("author");
+            auto body = reaction.at("body");
+            auto emoji = Emoji {reaction.at("id").c_str(), body.c_str()};
+            QVariant variant = QVariant::fromValue(emoji);
+            mapStringEmoji[author.c_str()].append(variant);
+        }
+        for (auto i = mapStringEmoji.begin(); i != mapStringEmoji.end(); i++)
+            reactions.insert(i.key(), i.value());
     }
 };
 

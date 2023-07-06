@@ -79,7 +79,7 @@ public:
     typedef QList<QPair<QString, interaction::Info>>::Iterator iterator;
     typedef QList<QPair<QString, interaction::Info>>::reverse_iterator reverseIterator;
 
-    explicit MessageListModel(QObject* parent = nullptr);
+    explicit MessageListModel(const QString& accountUri_, QObject* parent = nullptr);
     ~MessageListModel() = default;
 
     // map functions
@@ -123,6 +123,8 @@ public:
     bool contains(const QString& msgId);
     int getIndexOfMessage(const QString& messageId) const;
     void addHyperlinkInfo(const QString& messageId, const QVariantMap& info);
+    void addReaction(const QString& messageId, const MapStringString& reaction);
+    void rmReaction(const QString& messageId, const QString& reactionId);
     void setParsedMessage(const QString& messageId, const QString& parsed);
 
     void setRead(const QString& peer, const QString& messageId);
@@ -136,17 +138,9 @@ public:
     void emitDataChanged(const QString& msgId, VectorInt roles = {});
     bool isOnlyEmoji(const QString& text) const;
 
-    void addEdition(const QString& msgId, const interaction::Info& info, bool end);
-    void addReaction(const QString& messageId, const QString& reactionId);
-    void editMessage(const QString& msgId, interaction::Info& info);
-    void reactToMessage(const QString& msgId, interaction::Info& info);
     QVariantMap convertReactMessagetoQVariant(const QSet<QString>&);
     QString lastMessageUid() const;
     QString lastSelfMessageId(const QString& id) const;
-
-    QString findEmojiReaction(const QString& emoji,
-                              const QString& authorURI,
-                              const QString& messageId);
 
 protected:
     using Role = MessageList::Role;
@@ -161,11 +155,8 @@ private:
     QMap<QString, QString> lastDisplayedMessageUid_;
     QMap<QString, QStringList> messageToReaders_;
     QMap<QString, QSet<QString>> replyTo_;
+    QString accountUri_;
     void updateReplies(item_t& message);
-    QMap<QString, QVector<interaction::Body>> editedBodies_;
-
-    // key = messageId and values = QSet of reactionIds
-    QMap<QString, QSet<QString>> reactedMessages_;
 
     void moveMessage(const QString& msgId, const QString& parentId);
     void insertMessage(int index, item_t& message);
