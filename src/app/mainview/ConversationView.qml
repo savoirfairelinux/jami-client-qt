@@ -35,14 +35,6 @@ ListSelectionView {
     visible: false
     onPresented: visible = true
 
-    Connections {
-        target: CurrentConversation
-        function onReloadInteractions() {
-            UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id);
-            MessagesAdapter.loadMoreMessages();
-        }
-    }
-
     onDismissed: {
         callStackView.needToCloseInCallConversationAndPotentialWindow();
         LRCInstance.deselectConversation();
@@ -50,12 +42,6 @@ ListSelectionView {
 
     property string currentAccountId: CurrentAccount.id
     onCurrentAccountIdChanged: dismiss()
-
-    onVisibleChanged: {
-        if (visible)
-            return;
-        UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id);
-    }
 
     color: JamiTheme.transparentColor
 
