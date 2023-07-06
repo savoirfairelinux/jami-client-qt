@@ -219,6 +219,7 @@ Item {
     property color fileInTimestampColor: darkTheme ? "#999" : "#555"
     property color chatviewBgColor: darkTheme ? bgDarkMode_ : whiteColor
     property color bgInvitationRectColor: darkTheme ? "#222222" : whiteColor
+    property color messageBarPlaceholderTextColor: darkTheme ? "#7a7a7a" : "#919191"
     property color placeholderTextColor: darkTheme ? "#7a7a7a" : "black" //Qt.rgba(0, 0, 0, 0.2)
     property color placeholderTextColorWhite: "#cccccc"
     property color inviteHoverColor: darkTheme ? blackColor : whiteColor

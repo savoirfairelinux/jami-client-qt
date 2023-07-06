@@ -86,7 +86,7 @@ JamiFlickable {
         wrapMode: TextEdit.Wrap
         selectByMouse: true
         textFormat: TextEdit.PlainText
-        placeholderTextColor: JamiTheme.placeholderTextColor
+        placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
         horizontalAlignment: Text.AlignLeft
 
         background: Rectangle {

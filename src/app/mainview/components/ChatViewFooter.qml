@@ -29,6 +29,7 @@ Rectangle {
     property alias textInput: messageBar.textAreaObj
     property string previousConvId
     property string previousAccountId
+    property bool showTypo: messageBar.showTypo
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
@@ -130,6 +131,8 @@ Rectangle {
 
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
+            Layout.preferredHeight: height
+
             property var emojiPicker
 
             Connections {
