@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76e9bc8f_7de3ff1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-06T15:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfb9b116_d9774547",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "fafd8bc2642fd5f2c84e61e849c3fb81d44b2170",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "962600e3_bf48a838",
@@ -64,6 +88,48 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9d75eed_2cf4acd8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-06T15:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "962600e3_bf48a838",
+      "revId": "fafd8bc2642fd5f2c84e61e849c3fb81d44b2170",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17c381ef_6abdd055",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-06T15:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f47c6fdd_014eada5",
+      "range": {
+        "startLine": 9,
+        "startChar": 38,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "fafd8bc2642fd5f2c84e61e849c3fb81d44b2170",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56976312_87e3d98d",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-07-06T14:49:00Z",
       "side": 1,
       "message": "is this correct indentation? (Ctrl+Shift+I on VSCode)",
+      "range": {
+        "startLine": 175,
+        "startChar": 16,
+        "endLine": 176,
+        "endChar": 22
+      },
+      "revId": "fafd8bc2642fd5f2c84e61e849c3fb81d44b2170",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25d38efe_ba2237b8",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-06T15:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56976312_87e3d98d",
       "range": {
         "startLine": 175,
         "startChar": 16,
