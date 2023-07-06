@@ -449,6 +449,10 @@ MessagesAdapter::onNewInteraction(const QString& convUid,
 void
 MessagesAdapter::onMessageParsed(const QString& messageId, const QString& parsed)
 {
+    if (messageId.isEmpty()) {
+        Q_EMIT messageParsed(messageId, parsed);
+        return;
+    }
     const QString& convId = lrcInstance_->get_selectedConvUid();
     const QString& accId = lrcInstance_->get_currentAccountId();
     auto& conversation = lrcInstance_->getConversationFromConvUid(convId, accId);
