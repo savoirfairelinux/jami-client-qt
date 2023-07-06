@@ -42,6 +42,7 @@ Q_DECLARE_METATYPE(VectorString)
 Q_DECLARE_METATYPE(MapStringVectorString)
 Q_DECLARE_METATYPE(VectorVectorByte)
 Q_DECLARE_METATYPE(DataTransferInfo)
+Q_DECLARE_METATYPE(SwarmMessage)
 Q_DECLARE_METATYPE(uint64_t)
 Q_DECLARE_METATYPE(Message)
 
@@ -81,6 +82,36 @@ operator>>(const QDBusArgument& argument, DataTransferInfo& info)
     argument >> info.displayName;
     argument >> info.path;
     argument >> info.mimetype;
+    argument.endStructure();
+
+    return argument;
+}
+
+static inline QDBusArgument&
+operator<<(QDBusArgument& argument, const SwarmMessage& m)
+{
+    argument.beginStructure();
+    argument << m.id;
+    argument << m.type;
+    argument << m.linearizedParent;
+    argument << m.body;
+    argument << m.reactions;
+    argument << m.editions;
+    argument.endStructure();
+
+    return argument;
+}
+
+static inline const QDBusArgument&
+operator>>(const QDBusArgument& argument, SwarmMessage& m)
+{
+    argument.beginStructure();
+    argument >> m.id;
+    argument >> m.type;
+    argument >> m.linearizedParent;
+    argument >> m.body;
+    argument >> m.reactions;
+    argument >> m.editions;
     argument.endStructure();
 
     return argument;
@@ -140,6 +171,10 @@ registerCommTypes()
     qDBusRegisterMetaType<VectorVectorByte>();
     qRegisterMetaType<DataTransferInfo>("DataTransferInfo");
     qDBusRegisterMetaType<DataTransferInfo>();
+    qRegisterMetaType<SwarmMessage>("SwarmMessage");
+    qDBusRegisterMetaType<SwarmMessage>();
+    qRegisterMetaType<VectorSwarmMessage>("VectorSwarmMessage");
+    qDBusRegisterMetaType<VectorSwarmMessage>();
     qRegisterMetaType<Message>("Message");
     qDBusRegisterMetaType<Message>();
     qRegisterMetaType<QVector<Message>>("QVector<Message>");
