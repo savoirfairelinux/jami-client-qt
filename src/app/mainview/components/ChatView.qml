@@ -304,7 +304,8 @@ Rectangle {
                     }
 
                     onHeightChanged: {
-                        Qt.callLater(loader.item.scrollToBottom);
+                        if (loader.item)
+                            Qt.callLater(loader.item.scrollToBottom);
                     }
 
                     Layout.alignment: Qt.AlignHCenter
