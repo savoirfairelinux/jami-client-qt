@@ -1205,6 +1205,14 @@ AccountModel::notificationsCount() const
     return total;
 }
 
+void
+AccountModel::reloadHistory()
+{
+    for (const auto& [_id, account] : pimpl_->accounts) {
+        account.first.conversationModel->reloadHistory();
+    }
+}
+
 QString
 AccountModel::avatar(const QString& accountId) const
 {
