@@ -59,17 +59,26 @@ to_mode(const int intMode)
 
 struct Info
 {
-    Info()
-        : interactions(std::make_unique<MessageListModel>(nullptr))
-    {}
+    explicit Info(const QString& uid, const account::Info* acc)
+        : uid(uid)
+        , interactions(std::make_unique<MessageListModel>(acc, nullptr))
+    {
+        account = acc;
+        if (acc) {
+            accountId = acc->id;
+            accountUri = acc->profileInfo.uri;
+        }
+    }
     Info(const Info& other) = delete;
     Info(Info&& other) = default;
     Info& operator=(const Info& other) = delete;
     Info& operator=(Info&& other) = default;
 
     bool allMessagesLoaded = false;
-    QString uid = "";
+    QString uid;
     QString accountId;
+    const account::Info* account {nullptr};
+    QString accountUri;
     QVector<member::Member> participants;
     VectorMapStringString activeCalls;
     VectorMapStringString ignoredActiveCalls;

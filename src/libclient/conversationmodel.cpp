@@ -215,11 +215,6 @@ public:
 
     // filter out ourself from conversation participants.
     const VectorString peersForConversation(const conversation::Info& conversation) const;
-    // insert swarm interactions. Return false if interaction already exists.
-    bool insertSwarmInteraction(const QString& interactionId,
-                                interaction::Info& interaction,
-                                conversation::Info& conversation,
-                                bool insertAtBegin);
     void invalidateModel();
     void emplaceBackConversation(conversation::Info&& conversation);
     void eraseConversation(const QString& convId);
@@ -345,10 +340,10 @@ public Q_SLOTS:
                               datatransfer::Info info,
                               interaction::Status newStatus,
                               bool& updated);
-    void slotConversationLoaded(uint32_t requestId,
-                                const QString& accountId,
-                                const QString& conversationId,
-                                const VectorMapStringString& messages);
+    void slotSwarmLoaded(uint32_t requestId,
+                         const QString& accountId,
+                         const QString& conversationId,
+                         const std::vector<libjami::SwarmMessage>& messages);
     /**
      * Listen messageFound signal.
      * Is the search response from MessagesAdapter::getConvMedias()
@@ -363,7 +358,18 @@ public Q_SLOTS:
                            const VectorMapStringString& messages);
     void slotMessageReceived(const QString& accountId,
                              const QString& conversationId,
-                             const MapStringString& message);
+                             const libjami::SwarmMessage& message);
+    void slotMessageUpdated(const QString& accountId,
+                            const QString& conversationId,
+                            const libjami::SwarmMessage& message);
+    void slotReactionAdded(const QString& accountId,
+                           const QString& conversationId,
+                           const QString& messageId,
+                           const MapStringString& reaction);
+    void slotReactionRemoved(const QString& accountId,
+                             const QString& conversationId,
+                             const QString& messageId,
+                             const QString& reactionId);
     void slotConversationProfileUpdated(const QString& accountId,
                                         const QString& conversationId,
                                         const MapStringString& profile);
@@ -1581,7 +1587,7 @@ ConversationModel::clearInteractionsCache(const QString& convId)
             conversation.allMessagesLoaded = false;
             conversation.lastMessageUid = "";
             conversation.lastSelfMessageId = "";
-            ConfigurationManager::instance().loadConversationMessages(owner.id, convId, "", 1);
+            ConfigurationManager::instance().loadConversation(owner.id, convId, "", 1);
         }
     } catch (const std::out_of_range& e) {
         qDebug() << "can't find interaction from conversation: " << e.what();
@@ -1682,10 +1688,10 @@ ConversationModel::loadConversationMessages(const QString& conversationId, const
     }
     auto lastMsgId = conversation.interactions->empty() ? ""
                                                         : conversation.interactions->front().first;
-    return ConfigurationManager::instance().loadConversationMessages(owner.id,
-                                                                     conversationId,
-                                                                     lastMsgId,
-                                                                     size);
+    return ConfigurationManager::instance().loadConversation(owner.id,
+                                                             conversationId,
+                                                             lastMsgId,
+                                                             size);
 }
 
 int
@@ -1885,9 +1891,9 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &ConversationModelPimpl::slotTransferStatusUnjoinable);
     // swarm conversations
     connect(&callbacksHandler,
-            &CallbacksHandler::conversationLoaded,
+            &CallbacksHandler::swarmLoaded,
             this,
-            &ConversationModelPimpl::slotConversationLoaded);
+            &ConversationModelPimpl::slotSwarmLoaded);
     connect(&callbacksHandler,
             &CallbacksHandler::messagesFound,
             this,
@@ -1896,6 +1902,18 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &CallbacksHandler::messageReceived,
             this,
             &ConversationModelPimpl::slotMessageReceived);
+    connect(&callbacksHandler,
+            &CallbacksHandler::messageUpdated,
+            this,
+            &ConversationModelPimpl::slotMessageUpdated);
+    connect(&callbacksHandler,
+            &CallbacksHandler::reactionAdded,
+            this,
+            &ConversationModelPimpl::slotReactionAdded);
+    connect(&callbacksHandler,
+            &CallbacksHandler::reactionRemoved,
+            this,
+            &ConversationModelPimpl::slotReactionRemoved);
     connect(&callbacksHandler,
             &CallbacksHandler::conversationProfileUpdated,
             this,
@@ -2037,9 +2055,9 @@ ConversationModelPimpl::~ConversationModelPimpl()
                &ConversationModelPimpl::slotTransferStatusUnjoinable);
     // swarm conversations
     disconnect(&callbacksHandler,
-               &CallbacksHandler::conversationLoaded,
+               &CallbacksHandler::swarmLoaded,
                this,
-               &ConversationModelPimpl::slotConversationLoaded);
+               &ConversationModelPimpl::slotSwarmLoaded);
     disconnect(&callbacksHandler,
                &CallbacksHandler::messagesFound,
                this,
@@ -2048,6 +2066,18 @@ ConversationModelPimpl::~ConversationModelPimpl()
                &CallbacksHandler::messageReceived,
                this,
                &ConversationModelPimpl::slotMessageReceived);
+    disconnect(&callbacksHandler,
+               &CallbacksHandler::messageUpdated,
+               this,
+               &ConversationModelPimpl::slotMessageUpdated);
+    disconnect(&callbacksHandler,
+               &CallbacksHandler::reactionAdded,
+               this,
+               &ConversationModelPimpl::slotReactionAdded);
+    disconnect(&callbacksHandler,
+               &CallbacksHandler::reactionRemoved,
+               this,
+               &ConversationModelPimpl::slotReactionRemoved);
     disconnect(&callbacksHandler,
                &CallbacksHandler::conversationProfileUpdated,
                this,
@@ -2346,38 +2376,26 @@ ConversationModelPimpl::sendContactRequest(const QString& contactUri)
     } catch (std::out_of_range& e) {
     }
 }
+
 void
-ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
-                                               const QString& accountId,
-                                               const QString& conversationId,
-                                               const VectorMapStringString& messages)
+ConversationModelPimpl::slotSwarmLoaded(uint32_t requestId,
+                                        const QString& accountId,
+                                        const QString& conversationId,
+                                        const std::vector<libjami::SwarmMessage>& messages)
 {
-    if (accountId != linked.owner.id) {
+    if (accountId != linked.owner.id)
         return;
-    }
-
-    auto allLoaded = messages.size() == 0;
-
+    auto allLoaded = false;
     try {
         auto& conversation = getConversationForUid(conversationId).get();
-        QString oldLast, oldBegin; // Used to detect loading loops just in case.
-        if (conversation.interactions->size() != 0) {
-            oldBegin = conversation.interactions->begin()->first;
-            oldLast = conversation.interactions->rbegin()->first;
-        }
         for (const auto& message : messages) {
-            if (message["type"].isEmpty()) {
-                continue;
-            }
-            auto msgId = message["id"];
+            QString msgId = message.id.c_str();
             auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
-            conversation.interactions->editMessage(msgId, msg);
-            conversation.interactions->reactToMessage(msgId, msg);
             auto downloadFile = false;
             if (msg.type == interaction::Type::INITIAL) {
                 allLoaded = true;
             } else if (msg.type == interaction::Type::DATA_TRANSFER) {
-                auto fileId = message["fileId"];
+                QString fileId = message.body.at("fileId").c_str();
                 QString path;
                 qlonglong bytesProgress, totalSize;
                 linked.owner.dataTransferModel->fileTransferInfo(accountId,
@@ -2398,67 +2416,57 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                 linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
                 downloadFile = (bytesProgress == 0);
             } else if (msg.type == interaction::Type::CALL) {
+                // TODO remove
                 msg.body = storage::getCallInteractionString(msg.authorUri
                                                                  == linked.owner.profileInfo.uri,
                                                              msg);
             } else if (msg.type == interaction::Type::CONTACT) {
+                // TODO remove
                 auto bestName = msg.authorUri == linked.owner.profileInfo.uri
                                     ? linked.owner.accountModel->bestNameForAccount(linked.owner.id)
                                     : linked.owner.contactModel->bestNameForContact(msg.authorUri);
-                msg.body = interaction::getContactInteractionString(bestName,
-                                                                    interaction::to_action(
-                                                                        message["action"]));
-            } else if (msg.type == interaction::Type::EDITED) {
-                conversation.interactions->addEdition(msgId, msg, false);
-            } else if (msg.type == interaction::Type::REACTION) {
-                conversation.interactions->addReaction(msg.react_to, msgId);
+                msg.body = interaction::getContactInteractionString(
+                    bestName, interaction::to_action(message.body.at("action").c_str()));
             }
-            insertSwarmInteraction(msgId, msg, conversation, true);
+
+            {
+                // If message is loaded, insert message at beginning
+                std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
+                auto itExists = conversation.interactions->find(msgId);
+                // If found, nothing to do.
+                if (itExists != conversation.interactions->end())
+                    continue;
+
+                auto result = conversation.interactions->insert(std::make_pair(msgId, msg), true);
+                if (!result.second) {
+                    qWarning() << "Message " << msgId << " insertion failed";
+                    continue;
+                }
+                qWarning() << "Message " << msgId << " inserted at beginning";
+            }
+
             if (downloadFile) {
-                // Note, we must do this after insertSwarmInteraction to find the interaction
-                handleIncomingFile(conversationId, msgId, message["totalSize"].toInt());
+                handleIncomingFile(conversationId,
+                                   msgId,
+                                   QString(message.body.at("totalSize").c_str()).toInt());
             }
         }
 
         conversation.lastMessageUid = conversation.interactions->lastMessageUid();
         conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
             linked.owner.profileInfo.uri);
-        if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
-            && messages.size() != 0) {
-            if (conversation.interactions->size() > 0) {
-                QString newLast, newBegin;
-                if (conversation.interactions->size() > 0) {
-                    newBegin = conversation.interactions->begin()->first;
-                    newLast = conversation.interactions->rbegin()->first;
-                }
-                if (newLast == oldLast && !newLast.isEmpty() && newBegin == oldBegin
-                    && !newBegin.isEmpty()) { // [[unlikely]] in c++20
-                    qCritical() << "Loading loop detected for " << conversationId << "(" << newBegin
-                                << " ; " << newLast << ")";
-                    return;
-                }
-            }
-            // In this case, we only have loaded merge commits. Load more messages
-            ConfigurationManager::instance().loadConversationMessages(linked.owner.id,
-                                                                      conversationId,
-                                                                      messages.rbegin()->value(
-                                                                          "id"),
-                                                                      2);
-            return;
-        }
         invalidateModel();
         Q_EMIT linked.modelChanged();
         Q_EMIT linked.newMessagesAvailable(linked.owner.id, conversationId);
         auto conversationIdx = indexOf(conversationId);
         Q_EMIT linked.dataChanged(conversationIdx);
         Q_EMIT linked.conversationMessagesLoaded(requestId, conversationId);
-
         if (allLoaded) {
             conversation.allMessagesLoaded = true;
             Q_EMIT linked.conversationUpdated(conversationId);
         }
     } catch (const std::exception& e) {
-        qDebug() << "messages loaded for not existing conversation";
+        qWarning() << e.what();
     }
 }
 
@@ -2501,35 +2509,29 @@ ConversationModelPimpl::slotMessagesFound(uint32_t requestId,
 void
 ConversationModelPimpl::slotMessageReceived(const QString& accountId,
                                             const QString& conversationId,
-                                            const MapStringString& message)
+                                            const libjami::SwarmMessage& message)
 {
-    if (accountId != linked.owner.id) {
+    if (accountId != linked.owner.id)
         return;
-    }
+    qWarning() << "Message received: " << message.id.c_str();
     try {
         auto& conversation = getConversationForUid(conversationId).get();
-        if (message["type"].isEmpty() || message["type"] == "application/update-profile") {
-            return;
-        }
-        if (message["type"] == "initial") {
+        if (message.type == "initial") {
             conversation.allMessagesLoaded = true;
             Q_EMIT linked.conversationUpdated(conversationId);
-            if (message.find("invited") == message.end()) {
+            if (message.body.find("invited") == message.body.end()) {
                 return;
             }
         }
-        auto msgId = message["id"];
+        QString msgId = message.id.c_str();
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
-        conversation.interactions->editMessage(msgId, msg);
         api::datatransfer::Info info;
         QString fileId;
-
-        auto updateUnread = false;
 
         if (msg.type == interaction::Type::DATA_TRANSFER) {
             // save data transfer interaction to db and assosiate daemon id with interaction id,
             // conversation id and db id
-            QString fileId = message["fileId"];
+            QString fileId = message.body.at("fileId").c_str();
             QString path;
             qlonglong bytesProgress, totalSize;
             linked.owner.dataTransferModel->fileTransferInfo(accountId,
@@ -2548,60 +2550,45 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
                          : bytesProgress == totalSize ? interaction::Status::TRANSFER_FINISHED
                                                       : interaction::Status::TRANSFER_ONGOING;
             linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
-            if (msg.authorUri != linked.owner.profileInfo.uri) {
-                updateUnread = true;
-            }
-        } else if (msg.type == interaction::Type::CALL) {
-            // If we're a call in a swarm
-            if (msg.authorUri != linked.owner.profileInfo.uri)
-                updateUnread = true;
-            msg.body = storage::getCallInteractionString(msg.authorUri
-                                                             == linked.owner.profileInfo.uri,
-                                                         msg);
         } else if (msg.type == interaction::Type::CONTACT) {
+            // TODO remove
             auto bestName = msg.authorUri == linked.owner.profileInfo.uri
                                 ? linked.owner.accountModel->bestNameForAccount(linked.owner.id)
                                 : linked.owner.contactModel->bestNameForContact(msg.authorUri);
-            msg.body = interaction::getContactInteractionString(bestName,
-                                                                interaction::to_action(
-                                                                    message["action"]));
-            if (msg.authorUri != linked.owner.profileInfo.uri) {
-                updateUnread = true;
-            }
-        } else if (msg.type == interaction::Type::TEXT) {
-            if (msg.authorUri != linked.owner.profileInfo.uri) {
-                updateUnread = true;
-            }
-        } else if (msg.type == interaction::Type::REACTION) {
-            conversation.interactions->addReaction(msg.react_to, msgId);
-        } else if (msg.type == interaction::Type::EDITED) {
-            conversation.interactions->addEdition(msgId, msg, true);
+            msg.body
+                = interaction::getContactInteractionString(bestName,
+                                                           interaction::to_action(
+                                                               message.body.at("action").c_str()));
         }
 
-        if (!insertSwarmInteraction(msgId, msg, conversation, false)) {
-            // message already exists
-            return;
-        }
-        // once the reaction is added to interactions, we can update the reacted
-        // message
-        if (msg.type == interaction::Type::REACTION) {
-            auto reactInteraction = conversation.interactions->find(msg.react_to);
-            if (reactInteraction != conversation.interactions->end()) {
-                conversation.interactions->reactToMessage(msg.react_to, reactInteraction->second);
+        {
+            // If message is received, insert message after its parent.
+            std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
+            auto itExists = conversation.interactions->find(msgId);
+            // If found, nothing to do.
+            if (itExists != conversation.interactions->end())
+                return;
+            int index = conversation.interactions->indexOfMessage(msg.parentId);
+            if (index >= 0) {
+                auto result = conversation.interactions->insert(index + 1, qMakePair(msgId, msg));
+                if (!result.second) {
+                    qWarning() << "Message " << msgId << " insertion failed";
+                    return;
+                }
+                qWarning() << "Message " << msgId << " inserted after " << msg.parentId;
+            } else {
+                qWarning() << "Message " << msgId << " not inserted because parent is not found";
+                return;
             }
         }
-        if (updateUnread) {
+        auto updateUnread = msg.authorUri != linked.owner.profileInfo.uri;
+        if (updateUnread)
             conversation.unreadMessages++;
-        }
-        if (msg.type == interaction::Type::MERGE) {
-            invalidateModel();
-            return;
-        }
         conversation.lastMessageUid = conversation.interactions->lastMessageUid();
         conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
             linked.owner.profileInfo.uri);
         invalidateModel();
-        if (!interaction::isOutgoing(msg)) {
+        if (!interaction::isOutgoing(msg) && updateUnread) {
             Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,
                                                            conversationId,
                                                            msgId,
@@ -2609,12 +2596,96 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         }
         Q_EMIT linked.newInteraction(conversationId, msgId, msg);
         Q_EMIT linked.modelChanged();
-        if (msg.status == interaction::Status::TRANSFER_AWAITING_HOST) {
-            handleIncomingFile(conversationId, msgId, message["totalSize"].toInt());
+        if (msg.status == interaction::Status::TRANSFER_AWAITING_HOST && updateUnread) {
+            handleIncomingFile(conversationId,
+                               msgId,
+                               QString(message.body.at("totalSize").c_str()).toInt());
         }
         Q_EMIT linked.dataChanged(indexOf(conversationId));
     } catch (const std::exception& e) {
         qDebug() << "messages received for not existing conversation";
+    }
+}
+
+void
+ConversationModelPimpl::slotMessageUpdated(const QString& accountId,
+                                           const QString& conversationId,
+                                           const libjami::SwarmMessage& message)
+{
+    if (accountId != linked.owner.id)
+        return;
+    qWarning() << "Message updated: " << message.id.c_str();
+    try {
+        auto& conversation = getConversationForUid(conversationId).get();
+        QString msgId = message.id.c_str();
+        auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+
+        {
+            std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
+            auto itExists = conversation.interactions->find(msgId);
+            // If not found, nothing to do.
+            if (itExists == conversation.interactions->end())
+                return;
+            // Now there is two cases:
+            // ParentId changed, in this case, remove previous message and re-insert at new place
+            // Else, just update body
+            conversation.interactions->erase(itExists);
+            int index = conversation.interactions->indexOfMessage(msg.parentId);
+            if (index >= 0) {
+                auto result = conversation.interactions->insert(index + 1, qMakePair(msgId, msg));
+                if (!result.second) {
+                    qWarning() << "Message " << msgId << " insertion failed";
+                    return;
+                }
+                qWarning() << "Message " << msgId << " updated";
+            } else {
+                qWarning() << "Message " << msgId << " not updated because parent is not found";
+                return;
+            }
+        }
+        conversation.lastMessageUid = conversation.interactions->lastMessageUid();
+        invalidateModel();
+        Q_EMIT linked.modelChanged();
+        Q_EMIT linked.dataChanged(indexOf(conversationId));
+    } catch (const std::exception& e) {
+        qDebug() << "messages received for not existing conversation";
+    }
+}
+
+void
+ConversationModelPimpl::slotReactionAdded(const QString& accountId,
+                                          const QString& conversationId,
+                                          const QString& messageId,
+                                          const MapStringString& reaction)
+{
+    if (accountId != linked.owner.id) {
+        return;
+    }
+    try {
+        qWarning() << "Add Reaction to " << messageId << " in " << conversationId;
+        auto& conversation = getConversationForUid(conversationId).get();
+        conversation.interactions->addReaction(messageId, reaction);
+        // TODO notification!
+    } catch (const std::exception& e) {
+        qWarning() << e.what();
+    }
+}
+
+void
+ConversationModelPimpl::slotReactionRemoved(const QString& accountId,
+                                            const QString& conversationId,
+                                            const QString& messageId,
+                                            const QString& reactionId)
+{
+    if (accountId != linked.owner.id) {
+        return;
+    }
+    try {
+        qWarning() << "Remove Reaction from " << messageId << " in " << conversationId;
+        auto& conversation = getConversationForUid(conversationId).get();
+        conversation.interactions->rmReaction(messageId, reactionId);
+    } catch (const std::exception& e) {
+        qWarning() << e.what();
     }
 }
 
@@ -2632,51 +2703,6 @@ ConversationModelPimpl::slotConversationProfileUpdated(const QString& accountId,
         Q_EMIT linked.profileUpdated(conversationId);
     } catch (...) {
     }
-}
-
-bool
-ConversationModelPimpl::insertSwarmInteraction(const QString& interactionId,
-                                               interaction::Info& interaction,
-                                               conversation::Info& conversation,
-                                               bool insertAtBegin)
-{
-    std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
-    auto itExists = conversation.interactions->find(interactionId);
-    if (itExists != conversation.interactions->end()) {
-        // Erase interaction if exists, as it will be updated via a re-insertion
-        if (itExists->second.previousBodies.size() != 0) {
-            // If the message was edited, we should keep this state
-            interaction.body = itExists->second.body;
-            interaction.previousBodies = itExists->second.previousBodies;
-        }
-        itExists = conversation.interactions->erase(itExists);
-        if (itExists != conversation.interactions->end()) {
-            // next interaction doesn't have parent anymore.
-            conversation.parentsId[itExists->first] = interactionId;
-        }
-    }
-    int index = conversation.interactions->indexOfMessage(interaction.parentId);
-    if (index >= 0) {
-        auto result = conversation.interactions->insert(index + 1,
-                                                        qMakePair(interactionId, interaction));
-        if (!result.second)
-            return false;
-    } else {
-        auto result = conversation.interactions->insert(std::make_pair(interactionId, interaction),
-                                                        insertAtBegin);
-        if (!result.second)
-            return false;
-        if (!interaction.parentId.isEmpty())
-            conversation.parentsId[interactionId] = interaction.parentId;
-    }
-    if (!conversation.parentsId.values().contains(interactionId)) {
-        return true;
-    }
-    auto msgIds = conversation.parentsId.keys(interactionId);
-    conversation.interactions->moveMessages(msgIds, interactionId);
-    for (auto& msg : msgIds)
-        conversation.parentsId.remove(msg);
-    return true;
 }
 
 void
@@ -2742,10 +2768,7 @@ ConversationModelPimpl::slotConversationReady(const QString& accountId,
         conversation.needsSyncing = false;
         Q_EMIT linked.conversationUpdated(conversationId);
         Q_EMIT linked.dataChanged(conversationIdx);
-        ConfigurationManager::instance().loadConversationMessages(linked.owner.id,
-                                                                  conversationId,
-                                                                  "",
-                                                                  0);
+        ConfigurationManager::instance().loadConversation(linked.owner.id, conversationId, "", 0);
         auto& peers = peersForConversation(conversation);
         if (peers.size() == 1)
             Q_EMIT linked.conversationReady(conversationId, peers.front());
@@ -2959,9 +2982,7 @@ ConversationModelPimpl::addContactRequest(const QString& contactUri)
         return;
     } catch (std::out_of_range&) {
         // no conversation exists. Add contact request
-        conversation::Info conversation;
-        conversation.uid = contactUri;
-        conversation.accountId = linked.owner.id;
+        conversation::Info conversation(contactUri, &linked.owner);
         conversation.participants = {{contactUri, member::Role::INVITED}};
         conversation.mode = conversation::Mode::NON_SWARM;
         conversation.isRequest = true;
@@ -2985,12 +3006,10 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
     QString callId, confId;
     const MapStringString& details = ConfigurationManager::instance()
                                          .conversationInfos(linked.owner.id, convId);
-    conversation::Info conversation;
-    conversation.uid = convId;
+    conversation::Info conversation(convId, &linked.owner);
     conversation.infos = details;
     conversation.callId = callId;
     conversation.confId = confId;
-    conversation.accountId = linked.owner.id;
     conversation.participants = {{linked.owner.profileInfo.uri, member::Role::INVITED},
                                  {peerUri, member::Role::MEMBER}};
     conversation.mode = mode;
@@ -3004,7 +3023,11 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
     };
     auto msg = interaction::Info(messageMap, linked.owner.profileInfo.uri);
 
-    insertSwarmInteraction(convId, msg, conversation, true);
+    {
+        std::lock_guard<std::mutex> lk(interactionsLocks[convId]);
+        conversation.interactions->insert(std::make_pair(convId, msg), true);
+    }
+
     conversation.lastMessageUid = convId;
 
     // add the author to the contact model's contact list as a PENDING
@@ -3121,16 +3144,14 @@ ConversationModelPimpl::slotContactModelUpdated(const QString& uri)
     searchResults.clear();
     auto users = linked.owner.contactModel->getSearchResults();
     for (auto& user : users) {
-        conversation::Info conversationInfo;
+        auto uid = linked.owner.profileInfo.type == profile::Type::SIP ? "SEARCHSIP"
+                                                                       : user.profileInfo.uri;
+        conversation::Info conversationInfo(uid, &linked.owner);
         // For SIP, we always got one search result, so "" is ok as there is no empty uri
         // For Jami accounts, the nameserver can return several results, so we use the uniqueness of
         // the id as id for a temporary conversation.
-        conversationInfo.uid = linked.owner.profileInfo.type == profile::Type::SIP
-                                   ? "SEARCHSIP"
-                                   : user.profileInfo.uri;
         conversationInfo.participants.append(
             member::Member {user.profileInfo.uri, member::Role::MEMBER});
-        conversationInfo.accountId = linked.owner.id;
         searchResults.emplace_front(std::move(conversationInfo));
     }
     Q_EMIT linked.searchResultUpdated();
@@ -3148,10 +3169,8 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
     const MapStringString& details = ConfigurationManager::instance()
                                          .conversationInfos(linked.owner.id, convId);
     auto mode = conversation::to_mode(details["mode"].toInt());
-    conversation::Info conversation;
+    conversation::Info conversation(convId, &linked.owner);
     conversation.infos = details;
-    conversation.uid = convId;
-    conversation.accountId = linked.owner.id;
     VectorMapStringString activeCalls = ConfigurationManager::instance()
                                             .getActiveCalls(linked.owner.id, convId);
     conversation.activeCalls = activeCalls;
@@ -3223,14 +3242,17 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
         };
         auto msg = interaction::Info(messageMap, linked.owner.profileInfo.uri);
 
-        insertSwarmInteraction(convId, msg, conversation, true);
+        {
+            std::lock_guard<std::mutex> lk(interactionsLocks[convId]);
+            conversation.interactions->insert(std::make_pair(convId, msg), true);
+        }
         conversation.lastMessageUid = convId;
         conversation.needsSyncing = true;
         Q_EMIT linked.conversationUpdated(conversation.uid);
         Q_EMIT linked.dataChanged(indexOf(conversation.uid));
     }
     emplaceBackConversation(std::move(conversation));
-    ConfigurationManager::instance().loadConversationMessages(linked.owner.id, convId, "", 1);
+    ConfigurationManager::instance().loadConversation(linked.owner.id, convId, "", 1);
 }
 
 void
@@ -3238,9 +3260,7 @@ ConversationModelPimpl::addConversationWith(const QString& convId,
                                             const QString& contactUri,
                                             bool isRequest)
 {
-    conversation::Info conversation;
-    conversation.uid = convId;
-    conversation.accountId = linked.owner.id;
+    conversation::Info conversation(convId, &linked.owner);
     conversation.participants = {{contactUri, member::Role::MEMBER}};
     conversation.mode = conversation::Mode::NON_SWARM;
     conversation.needsSyncing = false;
@@ -3532,7 +3552,8 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
     // update the db
     auto msgId = storage::addOrUpdateMessage(db, conv_it->uid, msg, callId);
     // now set the formatted call message string in memory only
-    msg.body = storage::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri, msg);
+    msg.body = storage::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri,
+                                                 msg); // TODO remove
     bool newInteraction = false;
     {
         std::lock_guard<std::mutex> lk(interactionsLocks[conv_it->uid]);
