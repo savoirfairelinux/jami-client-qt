@@ -22,6 +22,8 @@
 #include "api/datatransfer.h"
 #include "qtwrapper/conversions_wrap.hpp"
 
+#include <conversation_interface.h>
+
 #include <QObject>
 
 #include <memory>
@@ -335,17 +337,28 @@ Q_SIGNALS:
      * @param code
      */
     void remoteRecordingChanged(const QString& callId, const QString& peerNumber, bool state);
-    void conversationLoaded(uint32_t requestId,
-                            const QString& accountId,
-                            const QString& conversationId,
-                            const VectorMapStringString& messages);
+    void swarmLoaded(uint32_t requestId,
+                     const QString& accountId,
+                     const QString& conversationId,
+                     const VectorSwarmMessage& messages);
     void messagesFound(uint32_t requestId,
                        const QString& accountId,
                        const QString& conversationId,
                        const VectorMapStringString& messages);
     void messageReceived(const QString& accountId,
                          const QString& conversationId,
-                         const MapStringString& message);
+                         const SwarmMessage& message);
+    void messageUpdated(const QString& accountId,
+                        const QString& conversationId,
+                        const SwarmMessage& message);
+    void reactionAdded(const QString& accountId,
+                       const QString& conversationId,
+                       const QString& messageId,
+                       const MapStringString& reaction);
+    void reactionRemoved(const QString& accountId,
+                         const QString& conversationId,
+                         const QString& messageId,
+                         const QString& reactionId);
     void conversationProfileUpdated(const QString& accountId,
                                     const QString& conversationId,
                                     const MapStringString& profile);
@@ -643,17 +656,28 @@ private Q_SLOTS:
      * @param state, new state
      */
     void slotRemoteRecordingChanged(const QString& callId, const QString& contactId, bool state);
-    void slotConversationLoaded(uint32_t requestId,
-                                const QString& accountId,
-                                const QString& conversationId,
-                                const VectorMapStringString& messages);
+    void slotSwarmLoaded(uint32_t requestId,
+                         const QString& accountId,
+                         const QString& conversationId,
+                         const VectorSwarmMessage& messages);
     void slotMessagesFound(uint32_t requestId,
                            const QString& accountId,
                            const QString& conversationId,
                            const VectorMapStringString& messages);
     void slotMessageReceived(const QString& accountId,
                              const QString& conversationId,
-                             const MapStringString& message);
+                             const SwarmMessage& message);
+    void slotMessageUpdated(const QString& accountId,
+                            const QString& conversationId,
+                            const SwarmMessage& message);
+    void slotReactionAdded(const QString& accountId,
+                           const QString& conversationId,
+                           const QString& messageId,
+                           const MapStringString& reaction);
+    void slotReactionRemoved(const QString& accountId,
+                             const QString& conversationId,
+                             const QString& messageId,
+                             const QString& reactionId);
     void slotConversationProfileUpdated(const QString& accountId,
                                         const QString& conversationId,
                                         const MapStringString& message);

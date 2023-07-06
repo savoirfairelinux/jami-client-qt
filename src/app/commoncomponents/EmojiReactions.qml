@@ -43,7 +43,7 @@ Item {
         for (const reaction of Object.entries(reactions)) {
             var authorEmojiList = reaction[1];
             for (var emojiIndex in authorEmojiList) {
-                var emoji = authorEmojiList[emojiIndex];
+                var emoji = authorEmojiList[emojiIndex].body;
                 if (emojiList.includes(emoji)) {
                     var findIndex = emojiList.indexOf(emoji);
                     if (findIndex != -1)
