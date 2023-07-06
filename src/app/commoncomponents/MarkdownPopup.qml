@@ -67,7 +67,7 @@ Popup {
             focusPolicy: Qt.TabFocus
 
             normalColor: JamiTheme.chatViewFooterListColor
-            imageColor: JamiTheme.chatViewFooterImgColor
+            imageColor: JamiTheme.chatViewFooterImgHoverColor
             hoveredColor: JamiTheme.showMoreButtonOpenColor
             pressedColor: hoveredColor
 
