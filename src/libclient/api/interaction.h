@@ -269,9 +269,61 @@ getContactInteractionString(const QString& authorUri, const ContactAction& actio
     case ContactAction::UNBANNED:
         return QObject::tr("%1 was re-added").arg(authorUri);
     case ContactAction::INVALID:
-        return {};
+        return QObject::tr("Contact added");
     }
-    return {};
+    return QObject::tr("Contact added");
+}
+
+static inline QString
+getFormattedCallDuration(const std::time_t duration)
+{
+    if (duration == 0)
+        return {};
+    std::string formattedString;
+    auto minutes = duration / 60;
+    auto seconds = duration % 60;
+    if (minutes > 0) {
+        formattedString += std::to_string(minutes) + ":";
+        if (formattedString.length() == 2) {
+            formattedString = "0" + formattedString;
+        }
+    } else {
+        formattedString += "00:";
+    }
+    if (seconds < 10)
+        formattedString += "0";
+    formattedString += std::to_string(seconds);
+    return QString::fromStdString(formattedString);
+}
+
+/**
+ * Get a formatted string for a call interaction's body
+ * @param isSelf
+ * @param info
+ * @return the formatted and translated call message string
+ */
+static inline QString
+getCallInteractionStringNonSwarm(bool isSelf, const std::time_t& duration)
+{
+    if (duration < 0) {
+        if (isSelf) {
+            return QObject::tr("Outgoing call");
+        } else {
+            return QObject::tr("Incoming call");
+        }
+    } else if (isSelf) {
+        if (duration) {
+            return QObject::tr("Outgoing call") + " - " + getFormattedCallDuration(duration);
+        } else {
+            return QObject::tr("Missed outgoing call");
+        }
+    } else {
+        if (duration) {
+            return QObject::tr("Incoming call") + " - " + getFormattedCallDuration(duration);
+        } else {
+            return QObject::tr("Missed incoming call");
+        }
+    }
 }
 
 struct Body
@@ -285,6 +337,17 @@ public:
     QString commitId;
     QString body;
     std::time_t timestamp;
+};
+
+struct Emoji
+{
+    Q_GADGET
+
+    Q_PROPERTY(QString commitId MEMBER commitId)
+    Q_PROPERTY(QString body MEMBER body)
+public:
+    QString commitId;
+    QString body;
 };
 
 /**
@@ -336,7 +399,7 @@ struct Info
         this->isRead = isRead;
     }
 
-    Info(const MapStringString& message, const QString& accountURI)
+    void init(const MapStringString& message, const QString& accountURI)
     {
         type = to_type(message["type"]);
         if (message.contains("react-to") && type == Type::TEXT) {
@@ -345,7 +408,7 @@ struct Info
         }
         authorUri = message["author"];
 
-        if (type == Type::TEXT || type == Type::EDITED || type == Type::REACTION) {
+        if (type == Type::TEXT) {
             body = message["body"];
         }
         timestamp = message["timestamp"].toInt();
@@ -367,12 +430,53 @@ struct Info
         }
         commit = message;
     }
+
+    Info(const MapStringString& message, const QString& accountURI)
+    {
+        init(message, accountURI);
+    }
+
+    Info(const SwarmMessage& msg, const QString& accountUri)
+    {
+        MapStringString msgBody;
+        for (const auto& key : msg.body.keys()) {
+            msgBody.insert(key, msg.body.value(key));
+        }
+        init(msgBody, accountUri);
+        parentId = msg.linearizedParent;
+        type = to_type(msg.type);
+        for (const auto& edition : msg.editions)
+            previousBodies.append(Body {edition.value("id"),
+                                        edition.value("body"),
+                                        QString(edition.value("timestamp")).toInt()});
+        QMap<QString, QVariantList> mapStringEmoji;
+        for (const auto& reaction : msg.reactions) {
+            auto author = reaction.value("author");
+            auto body = reaction.value("body");
+            auto emoji = Emoji {reaction.value("id"), body};
+            QVariant variant = QVariant::fromValue(emoji);
+            mapStringEmoji[author].append(variant);
+        }
+        for (auto i = mapStringEmoji.begin(); i != mapStringEmoji.end(); i++)
+            reactions.insert(i.key(), i.value());
+    }
 };
 
 static inline bool
 isOutgoing(const Info& interaction)
 {
     return interaction.authorUri.isEmpty();
+}
+
+static inline QString
+getCallInteractionString(bool isSelf, const Info& info)
+{
+    if (!info.confId.isEmpty()) {
+        if (info.duration <= 0) {
+            return QObject::tr("Join call");
+        }
+    }
+    return getCallInteractionStringNonSwarm(isSelf, info.duration);
 }
 
 } // namespace interaction
