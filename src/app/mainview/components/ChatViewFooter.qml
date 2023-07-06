@@ -170,7 +170,12 @@ Rectangle {
             sendButtonVisibility: text || dataTransferSendContainer.filesToSendCount
 
             onEmojiButtonClicked: {
-                openEmojiPicker();
+                if (emojiPicker != null && emojiPicker.opened) {
+                    emojiPicker.closeEmojiPicker();
+                }
+                else {
+                    openEmojiPicker();
+                }
             }
 
             onShowMapClicked: {
