@@ -78,6 +78,7 @@ Q_SIGNALS:
     void moreMessagesLoaded(qint32 loadingRequestId);
     void timestampUpdated();
     void fileCopied(const QString& dest);
+    void messageParsed(const QString& msgId, const QString& msg);
 
 protected:
     Q_INVOKABLE bool isDocument(const interaction::Type& type);
