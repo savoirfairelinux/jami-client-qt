@@ -86,8 +86,8 @@ Item {
 
             // Add some emoji reactions (one from current account uri, one from another uri)
             emojiReactions.reactions = {
-                "currentAccountUsername": ["🌭"],
-                "notCurrentAccountUri": ["🌮"]
+                "currentAccountUsername": [{"commitId":"hotdog", "body":"🌭"}],
+                "notCurrentAccountUri": [{"commitId":"tacos", "body":"🌮"}]
             };
 
             var optionsPopup = getOptionsPopup(true, getId(), "test", 0, "test");

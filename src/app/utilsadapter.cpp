@@ -86,6 +86,8 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         set_isRTL(isRTL());
     } else if (key == Settings::Key::BaseZoom)
         Q_EMIT changeFontSize();
+    else if (key == Settings::Key::DisplayHyperlinkPreviews)
+        settingsManager_->loadHistory();
     else if (key == Settings::Key::EnableExperimentalSwarm)
         Q_EMIT showExperimentalCallSwarm();
     else if (key == Settings::Key::ShowChatviewHorizontally)
@@ -515,17 +517,6 @@ UtilsAdapter::monitor(const bool& continuous)
                                    Q_EMIT debugMessageReceived(data);
                                });
     lrcInstance_->monitor(continuous);
-}
-
-void
-UtilsAdapter::clearInteractionsCache(const QString& accountId, const QString& convId)
-{
-    try {
-        auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
-        auto& convModel = accInfo.conversationModel;
-        convModel->clearInteractionsCache(convId);
-    } catch (...) {
-    }
 }
 
 QVariantMap

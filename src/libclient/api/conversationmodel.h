@@ -269,17 +269,6 @@ public:
      */
     void clearAllHistory();
     /**
-     * Clear one interaction from the history
-     * @param convId
-     * @param interactionId
-     */
-    void clearInteractionFromConversation(const QString& convId, const QString& interactionId);
-    /**
-     * Clear the cache for interactions in the conversation
-     * @param convId
-     */
-    void clearInteractionsCache(const QString& convId);
-    /**
      * @param convId
      * @param interactionId
      * @param participant uri
@@ -335,7 +324,6 @@ public:
      * @return id for loading request. -1 if not loaded
      */
     int loadConversationMessages(const QString& conversationId, const int size = 1);
-    int loadConversationUntil(const QString& conversationId, const QString& to);
     /**
      * accept request for conversation
      * @param conversationId conversation's id
@@ -413,6 +401,7 @@ public:
      * @return number of conversations requests + unread
      */
     int notificationsCount() const;
+    void reloadHistory() const;
     const VectorString peersForConversation(const QString& conversationId);
 
     // Presentation

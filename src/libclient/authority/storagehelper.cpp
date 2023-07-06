@@ -144,78 +144,6 @@ prepareUri(const QString& uri, api::profile::Type type)
     }
 }
 
-QString
-getFormattedCallDuration(const std::time_t duration)
-{
-    if (duration == 0)
-        return {};
-    std::string formattedString;
-    auto minutes = duration / 60;
-    auto seconds = duration % 60;
-    if (minutes > 0) {
-        formattedString += std::to_string(minutes) + ":";
-        if (formattedString.length() == 2) {
-            formattedString = "0" + formattedString;
-        }
-    } else {
-        formattedString += "00:";
-    }
-    if (seconds < 10)
-        formattedString += "0";
-    formattedString += std::to_string(seconds);
-    return QString::fromStdString(formattedString);
-}
-
-QString
-getCallInteractionStringNonSwarm(bool isSelf, const std::time_t& duration)
-{
-    if (duration < 0) {
-        if (isSelf) {
-            return QObject::tr("Outgoing call");
-        } else {
-            return QObject::tr("Incoming call");
-        }
-    } else if (isSelf) {
-        if (duration) {
-            return QObject::tr("Outgoing call") + " - " + getFormattedCallDuration(duration);
-        } else {
-            return QObject::tr("Missed outgoing call");
-        }
-    } else {
-        if (duration) {
-            return QObject::tr("Incoming call") + " - " + getFormattedCallDuration(duration);
-        } else {
-            return QObject::tr("Missed incoming call");
-        }
-    }
-}
-
-QString
-getCallInteractionString(bool isSelf, const api::interaction::Info& info)
-{
-    if (!info.confId.isEmpty()) {
-        if (info.duration <= 0) {
-            return QObject::tr("Join call");
-        }
-    }
-    return getCallInteractionStringNonSwarm(isSelf, info.duration);
-}
-
-QString
-getContactInteractionString(const QString& authorUri, const api::interaction::Status& status)
-{
-    if (authorUri.isEmpty()) {
-        return QObject::tr("Contact added");
-    } else {
-        if (status == api::interaction::Status::UNKNOWN) {
-            return QObject::tr("Invitation received");
-        } else if (status == api::interaction::Status::SUCCESS) {
-            return QObject::tr("Invitation accepted");
-        }
-    }
-    return {};
-}
-
 namespace vcard {
 QString
 compressedAvatar(const QString& image)
@@ -515,6 +443,21 @@ beginConversationWithPeer(Database& db,
     return newConversationsId;
 }
 
+QString
+getContactInteractionString(const QString& authorUri, const api::interaction::Status& status)
+{
+    if (authorUri.isEmpty()) {
+        return QObject::tr("Contact added");
+    } else {
+        if (status == api::interaction::Status::UNKNOWN) {
+            return QObject::tr("Invitation received");
+        } else if (status == api::interaction::Status::SUCCESS) {
+            return QObject::tr("Invitation accepted");
+        }
+    }
+    return {};
+}
+
 void
 getHistory(Database& db, api::conversation::Info& conversation, const QString& localUri)
 {
@@ -540,9 +483,11 @@ getHistory(Database& db, api::conversation::Info& conversation, const QString& l
                                        : std::stoi(durationString.toStdString());
             auto status = api::interaction::to_status(payloads[i + 5]);
             if (type == api::interaction::Type::CALL) {
-                body = getCallInteractionStringNonSwarm(payloads[i + 1] == localUri, duration);
+                body = api::interaction::getCallInteractionStringNonSwarm(payloads[i + 1]
+                                                                              == localUri,
+                                                                          duration);
             } else if (type == api::interaction::Type::CONTACT) {
-                body = getContactInteractionString(payloads[i + 1], status);
+                body = storage::getContactInteractionString(payloads[i + 1], status);
             }
             auto msg = api::interaction::Info({payloads[i + 1],
                                                body,
@@ -552,7 +497,6 @@ getHistory(Database& db, api::conversation::Info& conversation, const QString& l
                                                status,
                                                (payloads[i + 6] == "1" ? true : false)});
             conversation.interactions->emplace(payloads[i], std::move(msg));
-            conversation.lastMessageUid = payloads[i];
             if (status != api::interaction::Status::DISPLAYED || !payloads[i + 1].isEmpty()) {
                 continue;
             }
@@ -759,20 +703,6 @@ clearHistory(Database& db, const QString& conversationId)
         db.deleteFrom("interactions",
                       "conversation=:conversation",
                       {{":conversation", conversationId}});
-    } catch (Database::QueryDeleteError& e) {
-        qWarning() << "deleteFrom error: " << e.details();
-    }
-}
-
-void
-clearInteractionFromConversation(Database& db,
-                                 const QString& conversationId,
-                                 const QString& interactionId)
-{
-    try {
-        db.deleteFrom("interactions",
-                      "conversation=:conversation AND id=:id",
-                      {{":conversation", conversationId}, {":id", interactionId}});
     } catch (Database::QueryDeleteError& e) {
         qWarning() << "deleteFrom error: " << e.details();
     }
