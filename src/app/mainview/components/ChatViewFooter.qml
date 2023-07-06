@@ -170,7 +170,11 @@ Rectangle {
             sendButtonVisibility: text || dataTransferSendContainer.filesToSendCount
 
             onEmojiButtonClicked: {
-                openEmojiPicker();
+                if (emojiPicker != null && emojiPicker.opened) {
+                    emojiPicker.closeEmojiPicker();
+                } else {
+                    openEmojiPicker();
+                }
             }
 
             onShowMapClicked: {
@@ -222,9 +226,8 @@ Rectangle {
                 if (keyEvent.key === Qt.Key_Escape) {
                     if (recordBox != null && recordBox.opened) {
                         recordBox.closeRecorder();
-                    }
-                    else if (PositionManager.isMapActive(CurrentAccount.id)){
-                        PositionManager.setMapInactive(CurrentAccount.id)
+                    } else if (PositionManager.isMapActive(CurrentAccount.id)) {
+                        PositionManager.setMapInactive(CurrentAccount.id);
                     }
                 }
             }
