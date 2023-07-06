@@ -128,7 +128,6 @@ public:
     Q_INVOKABLE void setDownloadPath(QString dir);
     Q_INVOKABLE void setScreenshotPath(QString dir);
     Q_INVOKABLE void monitor(const bool& continuous);
-    Q_INVOKABLE void clearInteractionsCache(const QString& accountId, const QString& convUid);
     Q_INVOKABLE QVariantMap supportedLang();
     Q_INVOKABLE QString tempCreationImage(const QString& imageId = "temp") const;
     Q_INVOKABLE void setTempCreationImageFromString(const QString& image = "",

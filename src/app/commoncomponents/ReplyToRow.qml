@@ -31,16 +31,6 @@ Item {
     property int requestId: -1
     property var replyTransferName: MessagesAdapter.dataForInteraction(ReplyTo, MessageList.TransferName)
 
-    Component.onCompleted: {
-        // Make sure we show the original post
-        // In the future, we may just want to load the previous interaction of the thread
-        // and not show it, but for now we can simplify.
-        if (ReplyTo !== "") {
-            // Store the request Id for later filtering.
-            requestId = MessagesAdapter.loadConversationUntil(ReplyTo);
-        }
-    }
-
     Connections {
         target: MessagesAdapter
 
