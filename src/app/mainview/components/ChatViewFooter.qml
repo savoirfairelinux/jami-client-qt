@@ -25,10 +25,10 @@ import "../../commoncomponents"
 
 Rectangle {
     id: root
-
     property alias textInput: messageBar.textAreaObj
     property string previousConvId
     property string previousAccountId
+    property bool showTypo: messageBar.showTypo
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
@@ -96,7 +96,6 @@ Rectangle {
 
     ColumnLayout {
         id: footerColumnLayout
-
         anchors.centerIn: root
 
         width: root.width
@@ -130,6 +129,8 @@ Rectangle {
 
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
+            Layout.preferredHeight: height
+
             property var emojiPicker
 
             Connections {
@@ -156,11 +157,7 @@ Rectangle {
             }
 
             function setXposition() {
-                if (UtilsAdapter.isRTL) {
-                    return messageBar.width - JamiTheme.emojiPickerWidth;
-                } else {
-                    return 0;
-                }
+                return messageBar.width - JamiTheme.emojiPickerWidth;
             }
 
             function setYposition() {
