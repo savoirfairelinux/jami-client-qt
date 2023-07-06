@@ -19,11 +19,17 @@ import QtQuick
 import QtQuick.Controls
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 import "../../commoncomponents"
 
 JamiFlickable {
     id: root
 
+    property int maxWidth: 330
+    property bool tooMuch: {
+        return textArea.contentWidth > maxWidth;
+    }
     property alias text: textArea.text
     property var textAreaObj: textArea
     property alias placeholderText: textArea.placeholderText
@@ -86,7 +92,7 @@ JamiFlickable {
         wrapMode: TextEdit.Wrap
         selectByMouse: true
         textFormat: TextEdit.PlainText
-        placeholderTextColor: JamiTheme.placeholderTextColor
+        placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
         horizontalAlignment: Text.AlignLeft
 
         background: Rectangle {
@@ -121,7 +127,9 @@ JamiFlickable {
                 MessagesAdapter.editId = CurrentConversation.lastSelfMessageId;
                 keyEvent.accepted = true;
             } else if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
-                if (!(keyEvent.modifiers & Qt.ShiftModifier)) {
+                const isEnterNewLine = UtilsAdapter.getAppValue(Settings.Key.ChatViewEnterIsNewLine);
+                const isShiftPressed = (keyEvent.modifiers & Qt.ShiftModifier);
+                if ((isEnterNewLine && isShiftPressed) || (!isEnterNewLine && !isShiftPressed)) {
                     root.sendMessagesRequired();
                     keyEvent.accepted = true;
                 }
