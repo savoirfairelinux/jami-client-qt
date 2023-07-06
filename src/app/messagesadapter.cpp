@@ -100,7 +100,7 @@ MessagesAdapter::loadMoreMessages()
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
         if (convInfo.isSwarm()) {
             auto* convModel = lrcInstance_->getCurrentConversationModel();
-            convModel->loadConversationMessages(convId, loadChunkSize_);
+            convModel->loadConversationMessages(convId, loadChunkSize_); // TODO
         }
     } catch (const std::exception& e) {
         qWarning() << e.what();
@@ -200,11 +200,8 @@ MessagesAdapter::removeEmojiReaction(const QString& convId,
                                      const QString& messageId)
 {
     try {
-        const auto authorUri = lrcInstance_->getCurrentAccountInfo().profileInfo.uri;
         // check if this emoji has already been added by this author
-        auto emojiId = lrcInstance_->getConversationFromConvUid(convId)
-                           .interactions->findEmojiReaction(emoji, authorUri, messageId);
-        editMessage(convId, "", emojiId);
+        editMessage(convId, "", messageId);
     } catch (...) {
         qDebug() << "Exception during removeEmojiReaction():" << messageId;
     }

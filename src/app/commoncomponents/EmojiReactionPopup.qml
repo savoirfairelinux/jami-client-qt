@@ -131,7 +131,7 @@ Popup {
                         Repeater {
                             model: emojiArray.length < 15 ? emojiArray.length : 15
                             delegate: Text {
-                                text: emojiArray[index]
+                                text: emojiArray[index].body
                                 horizontalAlignment: Text.AlignRight
                                 font.pointSize: JamiTheme.emojiPopupFontsize
                             }
@@ -147,7 +147,7 @@ Popup {
                             delegate: Button {
                                 id: emojiButton
 
-                                text: emojiArray[index]
+                                text: emojiArray[index].body
                                 font.pointSize: JamiTheme.emojiPopupFontsize
                                 background.visible: false
                                 padding: 0
@@ -155,13 +155,13 @@ Popup {
                                 Text {
                                     visible: emojiButton.hovered
                                     anchors.centerIn: parent
-                                    text: emojiArray[index]
+                                    text: emojiArray[index].body
                                     font.pointSize: JamiTheme.emojiPopupFontsizeBig
                                     z: 1
                                 }
 
                                 onClicked: {
-                                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id, emojiButton.text, msgId);
+                                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id, emojiButton.text, emojiArray[index].commitId);
                                     if (emojiArray.length === 1)
                                         close();
                                 }
