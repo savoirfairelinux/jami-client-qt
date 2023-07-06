@@ -25,10 +25,11 @@ import "../../commoncomponents"
 
 Rectangle {
     id: root
-
+    onHeightChanged: console.log(this, height)
     property alias textInput: messageBar.textAreaObj
     property string previousConvId
     property string previousAccountId
+    property bool showTypo: messageBar.showTypo
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
@@ -96,7 +97,7 @@ Rectangle {
 
     ColumnLayout {
         id: footerColumnLayout
-
+        onHeightChanged: console.log(this, height)
         anchors.centerIn: root
 
         width: root.width
@@ -130,6 +131,9 @@ Rectangle {
 
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
+            Layout.preferredHeight: height
+            onHeightChanged: console.log(this, height)
+
             property var emojiPicker
 
             Connections {
