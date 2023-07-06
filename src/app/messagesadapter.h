@@ -83,7 +83,6 @@ Q_SIGNALS:
 protected:
     Q_INVOKABLE bool isDocument(const interaction::Type& type);
     Q_INVOKABLE void loadMoreMessages();
-    Q_INVOKABLE qint32 loadConversationUntil(const QString& to);
     Q_INVOKABLE void connectConversationModel();
     Q_INVOKABLE void sendConversationRequest();
     Q_INVOKABLE void removeConversation(const QString& convUid);
@@ -112,7 +111,6 @@ protected:
     Q_INVOKABLE void openUrl(const QString& url);
     Q_INVOKABLE void openDirectory(const QString& arg);
     Q_INVOKABLE void removeFile(const QString& interactionId, const QString& path);
-    Q_INVOKABLE void deleteInteraction(const QString& interactionId);
     Q_INVOKABLE void joinCall(const QString& uri,
                               const QString& deviceId,
                               const QString& confId,

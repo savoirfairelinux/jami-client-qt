@@ -85,11 +85,13 @@ Popup {
                     Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml")
         emojiPicker = component.createObject(root.parent, { listView: listView })
         emojiPicker.emojiIsPicked.connect(function(content) {
-            if (emojiReplied.includes(content)) {
-                MessagesAdapter.removeEmojiReaction(CurrentConversation.id, content, msgId)
-            } else {
-                MessagesAdapter.addEmojiReaction(CurrentConversation.id, content, msgId)
+            for (var emoji in emojiReplied) {
+                if (emoji.body === content) {
+                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id, content, emoji.commitId)
+                    return
+                }
             }
+            MessagesAdapter.addEmojiReaction(CurrentConversation.id, content, msgId)
         })
         if (emojiPicker !== null) {
             root.opacity = 0
@@ -114,7 +116,12 @@ Popup {
     function getModel() {
         const defaultModel = ["👍", "👎", "😂"]
         const reactedEmojis = Array.isArray(emojiReplied) ? emojiReplied.slice(0, defaultModel.length) : []
-        const uniqueEmojis = Array.from(new Set(reactedEmojis))
+        var remojis = []
+        for (const emoji in reactedEmojis) {
+            if (emoji && emoji.body)
+                remojis += emoji.body
+        }
+        const uniqueEmojis = Array.from(new Set(remojis))
         const missingEmojis = defaultModel.filter(emoji => !uniqueEmojis.includes(emoji))
         return uniqueEmojis.concat(missingEmojis)
     }
@@ -156,16 +163,31 @@ Popup {
 
                         background: Rectangle {
                             anchors.fill: parent
-                            opacity: emojiReplied ? (emojiReplied.includes(modelData) ? 1 : 0) : 0
+                            opacity: {
+                                if (!root.emojiReplied)
+                                    return 0
+                                for (var emojiIdx in root.emojiReplied) {
+                                    var body = root.emojiReplied[emojiIdx].body
+                                    if (body === modelData)
+                                        return 1
+                                }
+                                return 0
+                            }
                             color: JamiTheme.emojiReactPushButtonColor
                             radius: 10
                         }
 
                         onClicked: {
-                            if (emojiReplied.includes(modelData))
-                                MessagesAdapter.removeEmojiReaction(CurrentConversation.id,text,msgId)
-                            else
-                                MessagesAdapter.addEmojiReaction(CurrentConversation.id,text,msgId)
+                            for (var emojiIdx in root.emojiReplied) {
+                                var emoji = root.emojiReplied[emojiIdx]
+                                if (emoji.body === modelData) {
+                                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id,text,emoji.commitId)
+                                    close()
+                                    return
+                                }
+                            }
+
+                            MessagesAdapter.addEmojiReaction(CurrentConversation.id,text,msgId)
                             close()
                         }
                     }

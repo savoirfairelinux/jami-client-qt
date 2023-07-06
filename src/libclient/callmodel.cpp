@@ -873,7 +873,7 @@ CallModel::getFormattedCallDuration(const QString& callId) const
     auto d = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch()
                                                               - startTime.time_since_epoch())
                  .count();
-    return authority::storage::getFormattedCallDuration(d);
+    return interaction::getFormattedCallDuration(d);
 }
 
 bool
@@ -1413,8 +1413,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
         callInfo->mediaList = {};
         calls.emplace(callId, std::move(callInfo));
 
-        if (!(details["CALL_TYPE"] == "1")
-            && !linked.owner.confProperties.allowIncoming
+        if (!(details["CALL_TYPE"] == "1") && !linked.owner.confProperties.allowIncoming
             && linked.owner.profileInfo.type == profile::Type::JAMI) {
             linked.refuse(callId);
             return;

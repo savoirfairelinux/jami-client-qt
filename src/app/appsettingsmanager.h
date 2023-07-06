@@ -125,9 +125,11 @@ public:
     QString getLanguage();
 
     void loadTranslations();
+    void loadHistory();
 
 Q_SIGNALS:
     void retranslate();
+    void reloadHistory();
 
 private:
     QSettings* settings_;
