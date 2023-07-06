@@ -151,7 +151,7 @@ private:
     MapStringString contentDrafts_;
     MapStringString lastConferences_;
 
-    conversation::Info invalid {};
+    conversation::Info invalid {"", "", ""};
 
     bool debugMode_ {false};
     bool muteDaemon_ {true};
