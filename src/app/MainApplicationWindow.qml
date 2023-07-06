@@ -80,6 +80,14 @@ ApplicationWindow {
         border.color: JamiTheme.tintedBlue
     }
 
+    footer: Loader {
+        active: true
+        sourceComponent: GenericErrorsRow {
+            id: genericError
+            text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
+            height: JamiTheme.chatViewHeaderPreferredHeight
+        }
+    }
     property ApplicationWindow appWindow: root
     property LayoutManager layoutManager: LayoutManager {
         appContainer: appContainer

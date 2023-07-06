@@ -41,7 +41,6 @@ Rectangle {
             id: errorLabel
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
-            text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
             color: JamiTheme.filterBadgeTextColor
             font.pixelSize: JamiTheme.headerFontSize
             elide: Text.ElideRight
