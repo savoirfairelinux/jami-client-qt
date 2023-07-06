@@ -137,4 +137,11 @@ AppSettingsManager::loadTranslations()
     }
 
     Q_EMIT retranslate();
+    loadHistory();
+}
+
+void
+AppSettingsManager::loadHistory()
+{
+    Q_EMIT reloadHistory();
 }

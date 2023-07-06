@@ -259,15 +259,15 @@ public:
                 }),
         };
         conversationsHandlers
-            = {exportable_callback<ConversationSignal::ConversationLoaded>(
+            = {exportable_callback<ConversationSignal::SwarmLoaded>(
                    [this](uint32_t id,
                           const std::string& accountId,
                           const std::string& conversationId,
-                          const std::vector<std::map<std::string, std::string>>& messages) {
-                       Q_EMIT conversationLoaded(id,
-                                                 QString(accountId.c_str()),
-                                                 QString(conversationId.c_str()),
-                                                 convertVecMap(messages));
+                          const std::vector<libjami::SwarmMessage>& messages) {
+                       Q_EMIT swarmLoaded(id,
+                                          QString(accountId.c_str()),
+                                          QString(conversationId.c_str()),
+                                          messages);
                    }),
                exportable_callback<ConversationSignal::MessagesFound>(
                    [this](uint32_t id,
@@ -279,13 +279,41 @@ public:
                                             QString(conversationId.c_str()),
                                             convertVecMap(messages));
                    }),
-               exportable_callback<ConversationSignal::MessageReceived>(
+               exportable_callback<ConversationSignal::SwarmMessageReceived>(
                    [this](const std::string& accountId,
                           const std::string& conversationId,
-                          const std::map<std::string, std::string>& message) {
+                          const libjami::SwarmMessage& message) {
                        Q_EMIT messageReceived(QString(accountId.c_str()),
                                               QString(conversationId.c_str()),
-                                              convertMap(message));
+                                              message);
+                   }),
+               exportable_callback<ConversationSignal::SwarmMessageUpdated>(
+                   [this](const std::string& accountId,
+                          const std::string& conversationId,
+                          const libjami::SwarmMessage& message) {
+                       Q_EMIT messageUpdated(QString(accountId.c_str()),
+                                             QString(conversationId.c_str()),
+                                             message);
+                   }),
+               exportable_callback<ConversationSignal::ReactionAdded>(
+                   [this](const std::string& accountId,
+                          const std::string& conversationId,
+                          const std::string& messageId,
+                          const std::map<std::string, std::string>& reaction) {
+                       Q_EMIT reactionAdded(QString(accountId.c_str()),
+                                            QString(conversationId.c_str()),
+                                            QString(messageId.c_str()),
+                                            convertMap(reaction));
+                   }),
+               exportable_callback<ConversationSignal::ReactionRemoved>(
+                   [this](const std::string& accountId,
+                          const std::string& conversationId,
+                          const std::string& messageId,
+                          const std::string& reactionId) {
+                       Q_EMIT reactionRemoved(QString(accountId.c_str()),
+                                              QString(conversationId.c_str()),
+                                              QString(messageId.c_str()),
+                                              QString(reactionId.c_str()));
                    }),
                exportable_callback<ConversationSignal::ConversationProfileUpdated>(
                    [this](const std::string& accountId,
@@ -970,25 +998,15 @@ public Q_SLOTS: // METHODS
                              flags);
     }
 
-    uint32_t loadConversationMessages(const QString& accountId,
-                                      const QString& conversationId,
-                                      const QString& fromId,
-                                      const int size)
+    uint32_t loadConversation(const QString& accountId,
+                              const QString& conversationId,
+                              const QString& fromId,
+                              const int size)
     {
-        return libjami::loadConversationMessages(accountId.toStdString(),
-                                                 conversationId.toStdString(),
-                                                 fromId.toStdString(),
-                                                 size);
-    }
-    uint32_t loadConversationUntil(const QString& accountId,
-                                   const QString& conversationId,
-                                   const QString& fromId,
-                                   const QString& toId)
-    {
-        return libjami::loadConversationUntil(accountId.toStdString(),
-                                              conversationId.toStdString(),
-                                              fromId.toStdString(),
-                                              toId.toStdString());
+        return libjami::loadConversation(accountId.toStdString(),
+                                         conversationId.toStdString(),
+                                         fromId.toStdString(),
+                                         size);
     }
 
     void setDefaultModerator(const QString& accountID, const QString& peerURI, const bool& state)
@@ -1151,9 +1169,24 @@ Q_SIGNALS: // SIGNALS
                             const QString& accountId,
                             const QString& conversationId,
                             const VectorMapStringString& messages);
+    void swarmLoaded(uint32_t requestId,
+                     const QString& accountId,
+                     const QString& conversationId,
+                     const std::vector<libjami::SwarmMessage>& messages);
     void messageReceived(const QString& accountId,
                          const QString& conversationId,
-                         const MapStringString& message);
+                         const libjami::SwarmMessage& message);
+    void messageUpdated(const QString& accountId,
+                        const QString& conversationId,
+                        const libjami::SwarmMessage& message);
+    void reactionAdded(const QString& accountId,
+                       const QString& conversationId,
+                       const QString& messageId,
+                       const MapStringString& message);
+    void reactionRemoved(const QString& accountId,
+                         const QString& conversationId,
+                         const QString& messageId,
+                         const QString& reactionId);
     void messagesFound(uint32_t requestId,
                        const QString& accountId,
                        const QString& conversationId,
