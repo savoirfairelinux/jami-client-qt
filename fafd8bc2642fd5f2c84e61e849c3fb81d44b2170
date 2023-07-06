@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfb9b116_d9774547",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 968
+      },
+      "writtenOn": "2023-07-06T14:49:00Z",
+      "side": 1,
+      "message": "lowercase + infinitive",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "fafd8bc2642fd5f2c84e61e849c3fb81d44b2170",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "962600e3_bf48a838",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 968
+      },
+      "writtenOn": "2023-07-06T14:49:00Z",
+      "side": 1,
+      "message": "split into multiple lines (\u003c 70 chars)",
+      "revId": "fafd8bc2642fd5f2c84e61e849c3fb81d44b2170",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f47c6fdd_014eada5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 968
+      },
+      "writtenOn": "2023-07-06T14:49:00Z",
+      "side": 1,
+      "message": "time",
+      "range": {
+        "startLine": 9,
+        "startChar": 38,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "fafd8bc2642fd5f2c84e61e849c3fb81d44b2170",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56976312_87e3d98d",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 968
+      },
+      "writtenOn": "2023-07-06T14:49:00Z",
+      "side": 1,
+      "message": "is this correct indentation? (Ctrl+Shift+I on VSCode)",
+      "range": {
+        "startLine": 175,
+        "startChar": 16,
+        "endLine": 176,
+        "endChar": 22
+      },
+      "revId": "fafd8bc2642fd5f2c84e61e849c3fb81d44b2170",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
