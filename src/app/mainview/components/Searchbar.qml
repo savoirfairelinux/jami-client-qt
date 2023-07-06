@@ -76,7 +76,7 @@ Rectangle {
         hoveredColor: JamiTheme.hoveredButtonColor
         source: JamiResources.ic_baseline_search_24dp_svg
         normalColor: "transparent"
-        imageColor: JamiTheme.chatviewButtonColor
+        imageColor: reductionEnabled ? (hovered ? JamiTheme.chatviewButtonColor : JamiTheme.chatViewFooterImgColor) : JamiTheme.chatviewButtonColor
 
         onClicked: root.searchClicked()
     }

@@ -28,56 +28,70 @@ import "../mainview/components"
 Popup {
     id: root
     padding: 0
-    property list<Action> menuTypoActionsSecond
+    property list<Action> menuMoreButton
 
-    focus: true
+    height: 3 * JamiTheme.messageBarMarginSize + 3 * (JamiTheme.chatViewFooterRealButtonSize + 10)
+    width: 150 + 2 * JamiTheme.messageBarMarginSize
+
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
     contentItem: ListView {
-        id: listViewTypoSecond
+        id: listViewMoreButton
 
         width: contentWidth + leftMargin
-        height: JamiTheme.chatViewFooterButtonSize
-        orientation: ListView.Horizontal
+        height: contentWidth + 2 * leftMargin
+        orientation: ListView.Vertical
         interactive: false
-        leftMargin: 10
-        spacing: 10
+        leftMargin: JamiTheme.messageBarMarginSize
+        rightMargin: JamiTheme.messageBarMarginSize
+        bottomMargin: JamiTheme.messageBarMarginSize
+        topMargin: JamiTheme.messageBarMarginSize
+        spacing: 5
 
         Rectangle {
             anchors.fill: parent
-            color: JamiTheme.chatViewFooterListColor
+            color: JamiTheme.whiteColor
+            border.color: "#e5e5e5"
+            border.width: 2
             radius: 5
             z: -1
         }
 
-        model: menuTypoActionsSecond
+        model: menuMoreButton
 
-        delegate: PushButton {
-            anchors.verticalCenter: parent.verticalCenter
+        delegate: Item {
 
-            preferredSize: JamiTheme.chatViewFooterRealButtonSize
-            imageContainerWidth: 20
-            imageContainerHeight: 20
-            radius: 5
+            height: JamiTheme.chatViewFooterRealButtonSize + JamiTheme.messageBarMarginSize
+            width: JamiTheme.chatViewFooterRealButtonSize + 2 * JamiTheme.messageBarMarginSize + 100
 
-            toolTipText: modelData.shortcutText
-            shortcutKey: modelData.shortcutKey
-            hasShortcut: true
-            source: modelData.iconSrc
-            focusPolicy: Qt.TabFocus
+            PushButton {
 
-            normalColor: JamiTheme.chatViewFooterListColor
-            imageColor: JamiTheme.chatViewFooterImgHoverColor
-            hoveredColor: JamiTheme.showMoreButtonOpenColor
-            pressedColor: hoveredColor
+                anchors.fill: parent
+                height: JamiTheme.chatViewFooterRealButtonSize
+                width: imageContainerWidth + modelData.toolTip.length * 8
+                imageContainerWidth: 25
+                imageContainerHeight: 25
+                radius: 5
 
-            action: modelData
+                source: modelData.iconSrc
+                buttonText: modelData.toolTip
+                focusPolicy: Qt.TabFocus
+
+                normalColor: JamiTheme.whiteColor
+                imageColor: hovered ? JamiTheme.chatViewFooterImgHoverColor : "#7f7f7f"
+                hoveredColor: JamiTheme.showMoreButtonOpenColor
+                pressedColor: hoveredColor
+
+                action: modelData
+            }
         }
     }
 
     background: Rectangle {
         anchors.fill: parent
-        color: JamiTheme.chatViewFooterListColor
+        color: JamiTheme.whiteColor
+        border.color: "#e5e5e5"
+        border.width: 2
         radius: 5
         z: -1
     }
