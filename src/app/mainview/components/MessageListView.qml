@@ -36,8 +36,10 @@ JamiListView {
     }
 
     function loadMoreMsgsIfNeeded() {
-        if (atYBeginning && !CurrentConversation.allMessagesLoaded)
+        if (atYBeginning && !CurrentConversation.allMessagesLoaded) {
+            print("load more messages", atYBeginning, CurrentConversation.allMessagesLoaded)
             MessagesAdapter.loadMoreMessages()
+        }
     }
 
     function computeTimestampVisibility(item1, item1Index, item2, item2Index) {
@@ -252,6 +254,19 @@ JamiListView {
 
     onAtYBeginningChanged: loadMoreMsgsIfNeeded()
 
+    Timer {
+        id: chunkLoadDebounceTimer
+
+        interval: 100
+        repeat: false
+        running: false
+        onTriggered: {
+            if (root.contentHeight < root.height) {
+                root.loadMoreMsgsIfNeeded();
+            }
+        }
+    }
+
     Connections {
         target: MessagesAdapter
 
@@ -263,9 +278,9 @@ JamiListView {
         }
 
         function onMoreMessagesLoaded(loadingRequestId) {
-            if (root.contentHeight < root.height || root.atYBeginning) {
-                root.loadMoreMsgsIfNeeded()
-            }
+            // This needs to be throttled, otherwise we will continue to load more messages
+            // prior to the loaded chunk being rendered and changing the contentHeight.
+            chunkLoadDebounceTimer.restart();
         }
 
         function onFileCopied(dest) {
