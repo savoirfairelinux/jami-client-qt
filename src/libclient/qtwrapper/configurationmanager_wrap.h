@@ -259,15 +259,15 @@ public:
                 }),
         };
         conversationsHandlers
-            = {exportable_callback<ConversationSignal::ConversationLoaded>(
+            = {exportable_callback<ConversationSignal::SwarmLoaded>(
                    [this](uint32_t id,
                           const std::string& accountId,
                           const std::string& conversationId,
-                          const std::vector<std::map<std::string, std::string>>& messages) {
-                       Q_EMIT conversationLoaded(id,
+                          const std::vector<libjami::SwarmMessage>& messages) {
+                       Q_EMIT swarmLoaded(id,
                                                  QString(accountId.c_str()),
                                                  QString(conversationId.c_str()),
-                                                 convertVecMap(messages));
+                                                 messages);
                    }),
                exportable_callback<ConversationSignal::MessagesFound>(
                    [this](uint32_t id,
@@ -970,16 +970,17 @@ public Q_SLOTS: // METHODS
                              flags);
     }
 
-    uint32_t loadConversationMessages(const QString& accountId,
+    uint32_t loadConversation(const QString& accountId,
                                       const QString& conversationId,
                                       const QString& fromId,
                                       const int size)
     {
-        return libjami::loadConversationMessages(accountId.toStdString(),
+        return libjami::loadConversation(accountId.toStdString(),
                                                  conversationId.toStdString(),
                                                  fromId.toStdString(),
                                                  size);
     }
+
     uint32_t loadConversationUntil(const QString& accountId,
                                    const QString& conversationId,
                                    const QString& fromId,
@@ -1151,6 +1152,10 @@ Q_SIGNALS: // SIGNALS
                             const QString& accountId,
                             const QString& conversationId,
                             const VectorMapStringString& messages);
+    void swarmLoaded(uint32_t requestId,
+                            const QString& accountId,
+                            const QString& conversationId,
+                            const std::vector<libjami::SwarmMessage>& messages);
     void messageReceived(const QString& accountId,
                          const QString& conversationId,
                          const MapStringString& message);

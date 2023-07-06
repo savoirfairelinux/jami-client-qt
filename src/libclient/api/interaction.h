@@ -21,6 +21,8 @@
 #include <QString>
 #include <QObject>
 
+#include <conversation_interface.h>
+
 #include <ctime>
 #include "typedefs.h"
 
@@ -336,7 +338,7 @@ struct Info
         this->isRead = isRead;
     }
 
-    Info(const MapStringString& message, const QString& accountURI)
+    void init(const MapStringString& message, const QString& accountURI)
     {
         type = to_type(message["type"]);
         if (message.contains("react-to") && type == Type::TEXT) {
@@ -362,6 +364,34 @@ struct Info
                 confId = message["confId"];
         }
         commit = message;
+    }
+
+    Info(const MapStringString& message, const QString& accountURI)
+    {
+        init(message, accountURI);
+    }
+
+    Info(const libjami::SwarmMessage& msg, const QString& accountUri) {
+        MapStringString msgBody;
+        for (const auto& [key, value]: msg.body)
+            msgBody.insert(QString::fromStdString(key), QString::fromStdString(value));
+        init(msgBody, accountUri);
+        type = to_type(msg.type.c_str());
+        QVector<Body> previousBodies;
+        for (const auto& edition: msg.editions) {
+            previousBodies.append(Body{edition.at("id").c_str(), edition.at("body").c_str(), QString(edition.at("timestamp").c_str()).toInt()});
+        }
+        QVariantMap convertedMap;
+        QMap<QString, QStringList> mapStringEmoji;
+        for (const auto& reaction: msg.reactions) {
+            auto author = reaction.at("author");
+            auto body = reaction.at("body");
+            mapStringEmoji[author.c_str()].append(body.c_str());
+        }
+        for (auto i = mapStringEmoji.begin(); i != mapStringEmoji.end(); i++)
+            convertedMap.insert(i.key(), i.value());
+        reactions = convertedMap;
+
     }
 };
 

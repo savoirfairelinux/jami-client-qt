@@ -22,6 +22,8 @@
 #include "api/datatransfer.h"
 #include "qtwrapper/conversions_wrap.hpp"
 
+#include <conversation_interface.h>
+
 #include <QObject>
 
 #include <memory>
@@ -343,10 +345,10 @@ Q_SIGNALS:
      * @param code
      */
     void remoteRecordingChanged(const QString& callId, const QString& peerNumber, bool state);
-    void conversationLoaded(uint32_t requestId,
+    void swarmLoaded(uint32_t requestId,
                             const QString& accountId,
                             const QString& conversationId,
-                            const VectorMapStringString& messages);
+                            const std::vector<libjami::SwarmMessage>& messages);
     void messagesFound(uint32_t requestId,
                        const QString& accountId,
                        const QString& conversationId,
@@ -671,10 +673,10 @@ private Q_SLOTS:
      * @param state, new state
      */
     void slotRemoteRecordingChanged(const QString& callId, const QString& contactId, bool state);
-    void slotConversationLoaded(uint32_t requestId,
+    void slotSwarmLoaded(uint32_t requestId,
                                 const QString& accountId,
                                 const QString& conversationId,
-                                const VectorMapStringString& messages);
+                                const std::vector<libjami::SwarmMessage>& messages);
     void slotMessagesFound(uint32_t requestId,
                            const QString& accountId,
                            const QString& conversationId,

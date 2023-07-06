@@ -100,7 +100,7 @@ MessagesAdapter::loadMoreMessages()
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
         if (convInfo.isSwarm()) {
             auto* convModel = lrcInstance_->getCurrentConversationModel();
-            convModel->loadConversationMessages(convId, loadChunkSize_);
+            convModel->loadConversationMessages(convId, loadChunkSize_); // TODO
         }
     } catch (const std::exception& e) {
         qWarning() << e.what();
