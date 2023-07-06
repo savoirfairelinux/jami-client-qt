@@ -109,19 +109,32 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         return QVariant(item.unreadMessages);
     case Role::LastInteractionTimeStamp: {
         if (!item.interactions->empty()) {
-            auto ts = static_cast<qint32>(item.interactions->at(item.lastMessageUid).timestamp);
+            auto ts = static_cast<qint32>(item.interactions->rbegin()->second.timestamp);
             return QVariant(ts);
         }
         break;
     }
     case Role::LastInteraction: {
         if (!item.interactions->empty()) {
-            auto interaction = item.interactions->at(item.lastMessageUid);
-            auto body_ = interaction.body;
+            auto interaction = item.interactions->rbegin()->second;
+            auto& accInfo = lrcInstance_->getCurrentAccountInfo();
             if (interaction.type == interaction::Type::DATA_TRANSFER) {
-                body_ = interaction.commit.value("displayName");
+                return QVariant(interaction.commit.value("displayName"));
+            } else if (interaction.type == lrc::api::interaction::Type::CALL) {
+                return QVariant(interaction::getCallInteractionString(interaction.authorUri
+                                                                          == accInfo.profileInfo.uri,
+                                                                      interaction));
+            } else if (interaction.type == lrc::api::interaction::Type::CONTACT) {
+                auto bestName = interaction.authorUri == accInfo.profileInfo.uri
+                                    ? accInfo.accountModel->bestNameForAccount(accInfo.id)
+                                    : accInfo.contactModel->bestNameForContact(
+                                        interaction.authorUri);
+                return QVariant(
+                    interaction::getContactInteractionString(bestName,
+                                                             interaction::to_action(
+                                                                 interaction.commit["action"])));
             }
-            return QVariant(body_);
+            return QVariant(interaction.body);
         }
         break;
     }
