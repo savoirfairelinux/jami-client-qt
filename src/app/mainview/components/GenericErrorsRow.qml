@@ -31,7 +31,11 @@ Rectangle {
     property alias text: errorLabel.text
 
     color: JamiTheme.filterBadgeColor
-    visible: CurrentAccount.status === Account.Status.UNREGISTERED
+    visible: CurrentAccount.id !== ""
+             && CurrentAccount.status !== Account.Status.REGISTERED
+             && CurrentAccount.status !== Account.Status.READY
+             && CurrentAccount.status !== Account.Status.TRYING
+             && CurrentAccount.status !== Account.Status.INITIALIZING
 
     RowLayout {
         anchors.fill: parent
@@ -41,7 +45,6 @@ Rectangle {
             id: errorLabel
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
-            text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
             color: JamiTheme.filterBadgeTextColor
             font.pixelSize: JamiTheme.headerFontSize
             elide: Text.ElideRight
