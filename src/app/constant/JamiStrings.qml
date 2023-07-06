@@ -789,8 +789,8 @@ Item {
     property string addEmoji: qsTr("Add emoji")
     property string moreEmojis: qsTr("more emojis")
     property string sendFile: qsTr("Send file")
-    property string leaveAudioMessage: qsTr("Leave audio message")
-    property string leaveVideoMessage: qsTr("Leave video message")
+    property string leaveAudioMessage: qsTr("Audio message")
+    property string leaveVideoMessage: qsTr("Video message")
     property string showMore: qsTr("Show more")
     property string showLess: qsTr("Show less")
 
@@ -805,7 +805,8 @@ Item {
     property string orderedList: qsTr("Ordered list")
     property string showFormating: qsTr("Show Formating")
     property string hideFormating: qsTr("Hide Formating")
-
+    property string shiftEnterNewLine: qsTr("Press Shift+Enter to insert a new line")
+    property string enterNewLine: qsTr("Press Enter to insert a new line")
     property string send: qsTr("Send")
     property string remove: qsTr("Remove")
     property string replyTo: qsTr("Reply to")
