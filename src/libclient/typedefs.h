@@ -72,6 +72,17 @@ struct DataTransferInfo
     QString mimetype;
 };
 
+struct SwarmMessage
+{
+    QString id;
+    QString type;
+    QString linearizedParent;
+    MapStringString body;
+    VectorMapStringString reactions;
+    VectorMapStringString editions;
+};
+typedef QVector<SwarmMessage> VectorSwarmMessage;
+
 struct Message
 {
     QString from;

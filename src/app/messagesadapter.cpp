@@ -51,12 +51,17 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , settingsManager_(settingsManager)
     , messageParser_(new MessageParser(previewEngine, this))
     , filteredMsgListModel_(new FilteredMsgListModel(this))
-    , mediaInteractions_(std::make_unique<MessageListModel>())
+    , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
     , timestampTimer_(new QTimer(this))
 {
     setObjectName(typeid(*this).name());
 
     set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
+
+    connect(settingsManager_,
+            &AppSettingsManager::reloadHistory,
+            &lrcInstance_->accountModel(),
+            &AccountModel::reloadHistory);
 
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, [this]() {
         set_replyToId("");
@@ -68,7 +73,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         filteredMsgListModel_->setSourceModel(conversation.interactions.get());
 
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
-        mediaInteractions_.reset(new MessageListModel(this));
+        mediaInteractions_.reset(new MessageListModel(&lrcInstance_->getCurrentAccountInfo(), this));
         set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
     });
 
@@ -98,35 +103,12 @@ MessagesAdapter::loadMoreMessages()
     auto convId = lrcInstance_->get_selectedConvUid();
     try {
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
-        if (convInfo.isSwarm()) {
-            auto* convModel = lrcInstance_->getCurrentConversationModel();
-            convModel->loadConversationMessages(convId, loadChunkSize_);
-        }
+        if (convInfo.isSwarm())
+            lrcInstance_->getCurrentConversationModel()->loadConversationMessages(convId,
+                                                                                  loadChunkSize_);
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
-}
-
-int
-MessagesAdapter::loadConversationUntil(const QString& to)
-{
-    try {
-        if (auto* model = getMsgListSourceModel()) {
-            auto idx = model->indexOfMessage(to);
-            if (idx == -1) {
-                auto accountId = lrcInstance_->get_currentAccountId();
-                auto convId = lrcInstance_->get_selectedConvUid();
-                const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
-                if (convInfo.isSwarm()) {
-                    auto* convModel = lrcInstance_->getCurrentConversationModel();
-                    return convModel->loadConversationUntil(convId, to);
-                }
-            }
-        }
-    } catch (const std::exception& e) {
-        qWarning() << e.what();
-    }
-    return 0;
 }
 
 void
@@ -200,11 +182,8 @@ MessagesAdapter::removeEmojiReaction(const QString& convId,
                                      const QString& messageId)
 {
     try {
-        const auto authorUri = lrcInstance_->getCurrentAccountInfo().profileInfo.uri;
         // check if this emoji has already been added by this author
-        auto emojiId = lrcInstance_->getConversationFromConvUid(convId)
-                           .interactions->findEmojiReaction(emoji, authorUri, messageId);
-        editMessage(convId, "", emojiId);
+        editMessage(convId, "", messageId);
     } catch (...) {
         qDebug() << "Exception during removeEmojiReaction():" << messageId;
     }
@@ -265,13 +244,6 @@ MessagesAdapter::copyToDownloads(const QString& interactionId, const QString& di
             Q_EMIT fileCopied(dest);
         }
     }
-}
-
-void
-MessagesAdapter::deleteInteraction(const QString& interactionId)
-{
-    lrcInstance_->getCurrentConversationModel()
-        ->clearInteractionFromConversation(lrcInstance_->get_selectedConvUid(), interactionId);
 }
 
 void
@@ -754,13 +726,13 @@ MessagesAdapter::getFormattedDay(const quint64 timestamp)
 void
 MessagesAdapter::startSearch(const QString& text, bool isMedia)
 {
-    mediaInteractions_.reset(new MessageListModel(this));
+    auto accountId = lrcInstance_->get_currentAccountId();
+    mediaInteractions_.reset(new MessageListModel(&lrcInstance_->getCurrentAccountInfo(), this));
     set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
 
     if (text.isEmpty() && !isMedia)
         return;
 
-    auto accountId = lrcInstance_->get_currentAccountId();
     auto convId = lrcInstance_->get_selectedConvUid();
 
     try {
