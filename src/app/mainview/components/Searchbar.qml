@@ -76,7 +76,17 @@ Rectangle {
         hoveredColor: JamiTheme.hoveredButtonColor
         source: JamiResources.ic_baseline_search_24dp_svg
         normalColor: "transparent"
-        imageColor: JamiTheme.chatviewButtonColor
+        imageColor: {
+            if (reductionEnabled) {
+                if (hovered) {
+                    JamiTheme.chatviewButtonColor;
+                } else {
+                    JamiTheme.chatViewFooterImgColor;
+                }
+            } else {
+                JamiTheme.chatviewButtonColor;
+            }
+        }
 
         onClicked: root.searchClicked()
     }
@@ -99,7 +109,7 @@ Rectangle {
         }
 
         width: isOpen ? JamiTheme.searchbarSize : 0
-        Behavior on width {
+        Behavior on width  {
             NumberAnimation {
                 duration: 150
             }
