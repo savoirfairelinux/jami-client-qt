@@ -21,6 +21,9 @@
 
 #include "messagelistmodel.h"
 
+#include "authority/storagehelper.h"
+#include "api/accountmodel.h"
+#include "api/contactmodel.h"
 #include "api/conversationmodel.h"
 #include "api/interaction.h"
 #include "qtwrapper/conversions_wrap.hpp"
@@ -36,9 +39,9 @@ using constIterator = MessageListModel::constIterator;
 using iterator = MessageListModel::iterator;
 using reverseIterator = MessageListModel::reverseIterator;
 
-MessageListModel::MessageListModel(QObject* parent)
+MessageListModel::MessageListModel(const account::Info* account, QObject* parent)
     : QAbstractListModel(parent)
-
+    , account_(account)
 {}
 
 QPair<iterator, bool>
@@ -195,8 +198,16 @@ MessageListModel::clear()
     Q_EMIT beginResetModel();
     interactions_.clear();
     replyTo_.clear();
-    editedBodies_.clear();
-    reactedMessages_.clear();
+    Q_EMIT endResetModel();
+}
+
+void
+MessageListModel::reloadHistory()
+{
+    Q_EMIT beginResetModel();
+    for (auto& interaction : interactions_) {
+        interaction.second.linkPreviewInfo.clear();
+    }
     Q_EMIT endResetModel();
 }
 
@@ -267,54 +278,6 @@ MessageListModel::indexOfMessage(const QString& msgId, bool reverse) const
 }
 
 void
-MessageListModel::moveMessages(QList<QString> msgIds, const QString& parentId)
-{
-    for (auto msgId : msgIds) {
-        moveMessage(msgId, parentId);
-    }
-}
-
-void
-MessageListModel::moveMessage(const QString& msgId, const QString& parentId)
-{
-    int currentIndex = indexOfMessage(msgId);
-    if (currentIndex == -1) {
-        qWarning() << "Incorrect index detected in MessageListModel::moveMessage";
-        return;
-    }
-
-    // if we have a next element check if it is a child interaction
-    QString childMessageIdToMove;
-    if (currentIndex < (interactions_.size() - 1)) {
-        const auto& next = interactions_.at(currentIndex + 1);
-        if (next.second.parentId == msgId) {
-            childMessageIdToMove = next.first;
-        }
-    }
-
-    auto endIdx = currentIndex;
-    auto pId = msgId;
-
-    // move a message
-    int newIndex = indexOfMessage(parentId) + 1;
-    if (newIndex >= interactions_.size()) {
-        newIndex = interactions_.size() - 1;
-        // If we can move all the messages after the current one, we can do it directly
-        childMessageIdToMove.clear();
-        endIdx = std::max(endIdx, newIndex - 1);
-    }
-
-    if (currentIndex == newIndex || newIndex == -1)
-        return;
-
-    // Pretty every messages is moved
-    moveMessages(currentIndex, endIdx, newIndex);
-    // move a child message
-    if (!childMessageIdToMove.isEmpty())
-        moveMessage(childMessageIdToMove, msgId);
-}
-
-void
 MessageListModel::updateReplies(item_t& message)
 {
     auto replyId = message.second.commit["reply-to"];
@@ -357,19 +320,6 @@ MessageListModel::removeMessage(int index, iterator it)
     Q_EMIT beginRemoveRows(QModelIndex(), index, index);
     interactions_.erase(it);
     Q_EMIT endRemoveRows();
-}
-
-void
-MessageListModel::moveMessages(int from, int last, int to)
-{
-    if (last < from)
-        return;
-    QModelIndex sourceIndex = QAbstractListModel::index(from, 0);
-    QModelIndex destinationIndex = QAbstractListModel::index(to, 0);
-    Q_EMIT beginMoveRows(sourceIndex, from, last, destinationIndex, to);
-    for (int i = 0; i < (last - from); ++i)
-        interactions_.move(last, to);
-    Q_EMIT endMoveRows();
 }
 
 bool
@@ -433,8 +383,26 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(item.first);
     case Role::Author:
         return QVariant(item.second.authorUri);
-    case Role::Body:
+    case Role::Body: {
+        if (account_) {
+            if (item.second.type == lrc::api::interaction::Type::CALL) {
+                return QVariant(
+                    interaction::getCallInteractionString(item.second.authorUri
+                                                              == account_->profileInfo.uri,
+                                                          item.second));
+            } else if (item.second.type == lrc::api::interaction::Type::CONTACT) {
+                auto bestName = item.second.authorUri == account_->profileInfo.uri
+                                    ? account_->accountModel->bestNameForAccount(account_->id)
+                                    : account_->contactModel->bestNameForContact(
+                                        item.second.authorUri);
+                return QVariant(
+                    interaction::getContactInteractionString(bestName,
+                                                             interaction::to_action(
+                                                                 item.second.commit["action"])));
+            }
+        }
         return QVariant(item.second.body);
+    }
     case Role::Timestamp:
         return QVariant::fromValue(item.second.timestamp);
     case Role::Duration:
@@ -545,6 +513,45 @@ MessageListModel::addHyperlinkInfo(const QString& messageId, const QVariantMap& 
 }
 
 void
+MessageListModel::addReaction(const QString& messageId, const MapStringString& reaction)
+{
+    int index = getIndexOfMessage(messageId);
+    if (index == -1)
+        return;
+    QModelIndex modelIndex = QAbstractListModel::index(index, 0);
+
+    auto emoji = api::interaction::Emoji {reaction["id"], reaction["body"]};
+    auto& pList = interactions_[index].second.reactions[reaction["author"]];
+    QList<QVariant> newList = pList.toList();
+    newList.emplace_back(QVariant::fromValue(emoji));
+    pList = QVariantList::fromVector(newList);
+    Q_EMIT dataChanged(modelIndex, modelIndex, {Role::Reactions});
+}
+
+void
+MessageListModel::rmReaction(const QString& messageId, const QString& reactionId)
+{
+    int index = getIndexOfMessage(messageId);
+    if (index == -1)
+        return;
+    QModelIndex modelIndex = QAbstractListModel::index(index, 0);
+
+    auto& reactions = interactions_[index].second.reactions;
+    for (const auto& key : reactions.keys()) {
+        QList<QVariant> emojis = reactions[key].toList();
+        for (auto it = emojis.begin(); it != emojis.end(); ++it) {
+            auto emoji = it->value<api::interaction::Emoji>();
+            if (emoji.commitId == reactionId) {
+                emojis.erase(it);
+                reactions[key] = emojis;
+                Q_EMIT dataChanged(modelIndex, modelIndex, {Role::Reactions});
+                return;
+            }
+        }
+    }
+}
+
+void
 MessageListModel::setParsedMessage(const QString& messageId, const QString& parsed)
 {
     int index = getIndexOfMessage(messageId);
@@ -610,147 +617,6 @@ MessageListModel::emitDataChanged(const QString& msgId, VectorInt roles)
     Q_EMIT dataChanged(modelIndex, modelIndex, roles);
 }
 
-void
-MessageListModel::addEdition(const QString& msgId, const interaction::Info& info, bool end)
-{
-    auto editedId = info.commit["edit"];
-    if (editedId.isEmpty())
-        return;
-    auto& edited = editedBodies_[editedId];
-    auto editedMsgIt = std::find_if(edited.begin(), edited.end(), [&](const auto& v) {
-        return msgId == v.commitId;
-    });
-    if (editedMsgIt != edited.end())
-        return; // Already added
-    auto value = interaction::Body {msgId, info.body, info.timestamp};
-    if (end)
-        edited.push_back(value);
-    else
-        edited.push_front(value);
-    auto editedIt = find(editedId);
-    if (editedIt != interactions_.end()) {
-        // If already there, we can update the content
-        editMessage(editedId, editedIt->second);
-        if (!editedIt->second.react_to.isEmpty()) {
-            auto reactToIt = find(editedIt->second.react_to);
-            if (reactToIt != interactions_.end())
-                reactToMessage(editedIt->second.react_to, reactToIt->second);
-        }
-    }
-}
-
-void
-MessageListModel::addReaction(const QString& messageId, const QString& reactionId)
-{
-    auto itReacted = reactedMessages_.find(messageId);
-    if (itReacted != reactedMessages_.end()) {
-        itReacted->insert(reactionId);
-    } else {
-        QSet<QString> emojiList;
-        emojiList.insert(reactionId);
-        reactedMessages_.insert(messageId, emojiList);
-    }
-    auto interaction = find(reactionId);
-    if (interaction != interactions_.end()) {
-        // Edit reaction if needed
-        editMessage(reactionId, interaction->second);
-    }
-}
-
-QVariantMap
-MessageListModel::convertReactMessagetoQVariant(const QSet<QString>& emojiIdList)
-{
-    QVariantMap convertedMap;
-    QMap<QString, QStringList> mapStringEmoji;
-    for (auto emojiId = emojiIdList.begin(); emojiId != emojiIdList.end(); emojiId++) {
-        auto interaction = find(*emojiId);
-        if (interaction != interactions_.end()) {
-            auto author = interaction->second.authorUri;
-            auto body = interaction->second.body;
-            if (!body.isEmpty()) {
-                auto itAuthor = mapStringEmoji.find(author);
-                if (itAuthor != mapStringEmoji.end()) {
-                    mapStringEmoji[author].append(body);
-                } else {
-                    QStringList emojiList;
-                    emojiList.append(body);
-                    mapStringEmoji.insert(author, emojiList);
-                }
-            }
-        }
-    }
-    for (auto i = mapStringEmoji.begin(); i != mapStringEmoji.end(); i++) {
-        convertedMap.insert(i.key(), i.value());
-    }
-    return convertedMap;
-}
-
-void
-MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
-{
-    auto it = editedBodies_.find(msgId);
-    if (it != editedBodies_.end()) {
-        if (info.previousBodies.isEmpty()) {
-            info.previousBodies.push_back(interaction::Body {msgId, info.body, info.timestamp});
-        }
-        // Find if already added (because MessageReceived can be triggered
-        // multiple times for same message)
-        for (const auto& editedBody : *it) {
-            auto itCommit = std::find_if(info.previousBodies.begin(),
-                                         info.previousBodies.end(),
-                                         [&](const auto& element) {
-                                             return element.commitId == editedBody.commitId;
-                                         });
-            if (itCommit == info.previousBodies.end()) {
-                info.previousBodies.push_back(editedBody);
-            }
-        }
-        info.body = it->rbegin()->body;
-        info.parsedBody.clear();
-        editedBodies_.erase(it);
-        emitDataChanged(msgId,
-                        {MessageList::Role::Body,
-                         MessageList::Role::ParsedBody,
-                         MessageList::Role::PreviousBodies,
-                         MessageList::Role::IsEmojiOnly});
-
-        // Body changed, replies should update
-        for (const auto& replyId : replyTo_[msgId]) {
-            int index = getIndexOfMessage(replyId);
-            if (index == -1)
-                continue;
-            QModelIndex modelIndex = QAbstractListModel::index(index, 0);
-            Q_EMIT dataChanged(modelIndex, modelIndex, {Role::ReplyToBody});
-        }
-    }
-}
-
-void
-MessageListModel::reactToMessage(const QString& msgId, interaction::Info& info)
-{
-    // If already there, we can update the content
-    auto itReact = reactedMessages_.find(msgId);
-
-    if (itReact != reactedMessages_.end()) {
-        auto convertedMap = convertReactMessagetoQVariant(reactedMessages_[msgId]);
-        info.reactions = convertedMap;
-        emitDataChanged(find(msgId), {Role::Reactions});
-    }
-}
-
-QString
-MessageListModel::lastMessageUid() const
-{
-    for (auto it = interactions_.rbegin(); it != interactions_.rend(); ++it) {
-        auto lastType = it->second.type;
-        if (lastType != interaction::Type::MERGE and lastType != interaction::Type::EDITED
-            and !it->second.body.isEmpty()) {
-            return it->first;
-        }
-    }
-    return {};
-}
-
 QString
 MessageListModel::lastSelfMessageId(const QString& id) const
 {
@@ -759,22 +625,6 @@ MessageListModel::lastSelfMessageId(const QString& id) const
         if (lastType == interaction::Type::TEXT and !it->second.body.isEmpty()
             and (it->second.authorUri.isEmpty() || it->second.authorUri == id)) {
             return it->first;
-        }
-    }
-    return {};
-}
-
-QString
-MessageListModel::findEmojiReaction(const QString& emoji,
-                                    const QString& authorURI,
-                                    const QString& messageId)
-{
-    auto& messageReactions = reactedMessages_[messageId];
-    for (auto it = messageReactions.begin(); it != messageReactions.end(); it++) {
-        auto interaction = find(*it);
-        if (interaction != interactions_.end() && interaction->second.body == emoji
-            && interaction->second.authorUri == authorURI) {
-            return *it;
         }
     }
     return {};

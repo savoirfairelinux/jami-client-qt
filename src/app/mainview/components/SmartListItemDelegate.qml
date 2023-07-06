@@ -46,13 +46,6 @@ ItemDelegate {
 
     property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionDate)
 
-    Connections {
-        target: UtilsAdapter
-        function onChangeLanguage() {
-            UtilsAdapter.clearInteractionsCache(root.accountId, root.convId)
-        }
-    }
-
     property bool showSharePositionIndicator: PositionManager.isPositionSharedToConv(accountId, UID)
     property bool showSharedPositionIndicator: PositionManager.isConvSharingPosition(accountId, UID)
 
