@@ -90,9 +90,6 @@ Rectangle {
             source: JamiResources.back_24dp_svg
             toolTipText: CurrentConversation.inCall ? JamiStrings.backCall : JamiStrings.hideChat
 
-            normalColor: JamiTheme.chatviewBgColor
-            imageColor: JamiTheme.chatviewButtonColor
-
             onClicked: root.backClicked()
         }
 
