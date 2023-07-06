@@ -301,9 +301,9 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             &CallbacksHandler::slotAudioMeterReceived,
             Qt::QueuedConnection);
     connect(&ConfigurationManager::instance(),
-            &ConfigurationManagerInterface::conversationLoaded,
+            &ConfigurationManagerInterface::swarmLoaded,
             this,
-            &CallbacksHandler::slotConversationLoaded,
+            &CallbacksHandler::slotSwarmLoaded,
             Qt::QueuedConnection);
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::messagesFound,
@@ -311,9 +311,24 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             &CallbacksHandler::slotMessagesFound,
             Qt::QueuedConnection);
     connect(&ConfigurationManager::instance(),
-            &ConfigurationManagerInterface::messageReceived,
+            &ConfigurationManagerInterface::swarmMessageReceived,
             this,
             &CallbacksHandler::slotMessageReceived,
+            Qt::QueuedConnection);
+    connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::swarmMessageUpdated,
+            this,
+            &CallbacksHandler::slotMessageUpdated,
+            Qt::QueuedConnection);
+    connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::reactionAdded,
+            this,
+            &CallbacksHandler::slotReactionAdded,
+            Qt::QueuedConnection);
+    connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::reactionRemoved,
+            this,
+            &CallbacksHandler::slotReactionRemoved,
             Qt::QueuedConnection);
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::conversationProfileUpdated,
@@ -721,13 +736,14 @@ CallbacksHandler::slotRemoteRecordingChanged(const QString& callId,
 }
 
 void
-CallbacksHandler::slotConversationLoaded(uint32_t requestId,
-                                         const QString& accountId,
-                                         const QString& conversationId,
-                                         const VectorMapStringString& messages)
+CallbacksHandler::slotSwarmLoaded(uint32_t requestId,
+                                  const QString& accountId,
+                                  const QString& conversationId,
+                                  const VectorSwarmMessage& messages)
 {
-    Q_EMIT conversationLoaded(requestId, accountId, conversationId, messages);
+    Q_EMIT swarmLoaded(requestId, accountId, conversationId, messages);
 }
+
 void
 CallbacksHandler::slotMessagesFound(uint32_t requestId,
                                     const QString& accountId,
@@ -740,9 +756,35 @@ CallbacksHandler::slotMessagesFound(uint32_t requestId,
 void
 CallbacksHandler::slotMessageReceived(const QString& accountId,
                                       const QString& conversationId,
-                                      const MapStringString& message)
+                                      const SwarmMessage& message)
 {
     Q_EMIT messageReceived(accountId, conversationId, message);
+}
+
+void
+CallbacksHandler::slotMessageUpdated(const QString& accountId,
+                                     const QString& conversationId,
+                                     const SwarmMessage& message)
+{
+    Q_EMIT messageUpdated(accountId, conversationId, message);
+}
+
+void
+CallbacksHandler::slotReactionAdded(const QString& accountId,
+                                    const QString& conversationId,
+                                    const QString& messageId,
+                                    const MapStringString& reaction)
+{
+    Q_EMIT reactionAdded(accountId, conversationId, messageId, reaction);
+}
+
+void
+CallbacksHandler::slotReactionRemoved(const QString& accountId,
+                                      const QString& conversationId,
+                                      const QString& messageId,
+                                      const QString& reactionId)
+{
+    Q_EMIT reactionRemoved(accountId, conversationId, messageId, reactionId);
 }
 
 void

@@ -93,19 +93,20 @@ BaseContextMenu {
     onClosed: if (emojiPicker)
         emojiPicker.closeEmojiPicker()
 
-    function getModel() {
+    function getQuickEmojiListModel() {
         const defaultModel = ["👍", "👎", "😂"];
         const reactedEmojis = Array.isArray(emojiReplied) ? emojiReplied.slice(0, defaultModel.length) : [];
         const uniqueEmojis = Array.from(new Set(reactedEmojis));
         const missingEmojis = defaultModel.filter(emoji => !uniqueEmojis.includes(emoji));
-        return uniqueEmojis.concat(missingEmojis);
+        const result = uniqueEmojis.concat(missingEmojis);
+        return result;
     }
 
     property list<MenuItem> menuItems: [
         GeneralMenuItemList {
-            id: audioMessage
+            id: emojiQuickReactions
 
-            modelList: getModel()
+            modelList: getQuickEmojiListModel()
             canTrigger: true
             iconSource: JamiResources.add_reaction_svg
             itemName: JamiStrings.copy

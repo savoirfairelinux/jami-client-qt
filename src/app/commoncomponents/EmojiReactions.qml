@@ -43,7 +43,7 @@ Item {
         for (const reaction of Object.entries(reactions)) {
             var authorEmojiList = reaction[1];
             for (var emojiIndex in authorEmojiList) {
-                var emoji = authorEmojiList[emojiIndex];
+                var emoji = authorEmojiList[emojiIndex].body;
                 if (emojiList.includes(emoji)) {
                     var findIndex = emojiList.indexOf(emoji);
                     if (findIndex != -1)
@@ -75,7 +75,7 @@ Item {
             var authorEmojiList = reaction[1];
             if (CurrentAccount.uri === authorUri) {
                 for (var emojiIndex in authorEmojiList) {
-                    list[index] = authorEmojiList[emojiIndex];
+                    list[index] = authorEmojiList[emojiIndex].body;
                     index++;
                 }
                 return list;
