@@ -24,5 +24,5 @@ PushButton {
     radius: JamiTheme.chatViewHeaderButtonRadius
 
     normalColor: JamiTheme.chatviewBgColor
-    imageColor: JamiTheme.chatviewButtonColor
+    imageColor: hovered ? JamiTheme.chatviewButtonColor : JamiTheme.chatViewFooterImgColor
 }
