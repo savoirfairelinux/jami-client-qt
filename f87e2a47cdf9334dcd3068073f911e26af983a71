@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ed2b398_7f89c36b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-07-06T13:11:45Z",
+      "side": 1,
+      "message": "edit the CMakeLists.txt for the client to build/include the added cpp sources",
+      "revId": "f87e2a47cdf9334dcd3068073f911e26af983a71",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
