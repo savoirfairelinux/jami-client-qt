@@ -219,6 +219,7 @@ Item {
     property color fileInTimestampColor: darkTheme ? "#999" : "#555"
     property color chatviewBgColor: darkTheme ? bgDarkMode_ : whiteColor
     property color bgInvitationRectColor: darkTheme ? "#222222" : whiteColor
+    property color messageBarPlaceholderTextColor: darkTheme ? "#7a7a7a" : "#919191"
     property color placeholderTextColor: darkTheme ? "#7a7a7a" : "black" //Qt.rgba(0, 0, 0, 0.2)
     property color placeholderTextColorWhite: "#cccccc"
     property color inviteHoverColor: darkTheme ? blackColor : whiteColor
@@ -299,7 +300,7 @@ Item {
 
     // Sizes
     property real mainViewLeftPaneMinWidth: 300
-    property real mainViewPaneMinWidth: 430
+    property real mainViewPaneMinWidth: 460
     property real qrCodeImageSize: 256
     property real splitViewHandlePreferredWidth: 4
     property real indicatorFontSize: calcSize(6)
@@ -437,7 +438,7 @@ Item {
     property real chatViewHairLineSize: 1
     property real chatViewMaximumWidth: 900
     property real chatViewHeaderPreferredHeight: 64
-    property real chatViewFooterPreferredHeight: 50
+    property real chatViewFooterPreferredHeight: 35
     property real chatViewFooterMaximumHeight: 280
     property real chatViewFooterRowSpacing: 4
     property real chatViewFooterButtonSize: 36
