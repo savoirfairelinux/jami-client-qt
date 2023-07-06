@@ -169,12 +169,6 @@ Rectangle {
             }
         }
 
-        GenericErrorsRow {
-            id: genericError
-            Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
-        }
-
         ConversationErrorsRow {
             id: errorRect
             Layout.fillWidth: true
