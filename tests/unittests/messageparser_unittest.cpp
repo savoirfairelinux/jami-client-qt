@@ -117,7 +117,6 @@ TEST_F(MessageParserFixture, EndOfLineCharactersAreParsedCorrectly)
     auto backgroundColor = QColor::fromRgb(0, 0, 255);
 
     QSignalSpy messageParsedSpy(globalEnv.messageParser.data(), &MessageParser::messageParsed);
-    QSignalSpy linkInfoReadySpy(globalEnv.messageParser.data(), &MessageParser::linkInfoReady);
 
     // Parse a message with a link.
     globalEnv.messageParser->parseMessage("msgId_03",
@@ -148,7 +147,6 @@ TEST_F(MessageParserFixture, FencedCodeIsParsedCorrectly)
     auto backgroundColor = QColor::fromRgb(0, 0, 255);
 
     QSignalSpy messageParsedSpy(globalEnv.messageParser.data(), &MessageParser::messageParsed);
-    QSignalSpy linkInfoReadySpy(globalEnv.messageParser.data(), &MessageParser::linkInfoReady);
 
     // Parse a message with a link.
     globalEnv.messageParser->parseMessage("msgId_04",
@@ -168,4 +166,42 @@ TEST_F(MessageParserFixture, FencedCodeIsParsedCorrectly)
     EXPECT_EQ(messageParserArguments.at(1).toString(),
               "<style>pre,code{background-color:#0000ff;color:#ffffff;white-space:pre-wrap;"
               "}</style><p>Text with</p>\n<pre><code>code\n</code></pre>\n");
+}
+
+/*!
+ * WHEN  We parse a text body with a youtube link.
+ * THEN  PreviewEngine::parseLink should be called with the correct arguments.
+ */
+TEST_F(MessageParserFixture, YoutubeLinkIsParsedCorrectly)
+{
+    auto url = "https://www.youtube.com/watch?v=1234567890";
+    auto msg = "blah blah " + QString(url) + " blah blah";
+
+    QSignalSpy messageParsedSpy(globalEnv.messageParser.data(), &MessageParser::messageParsed);
+    QSignalSpy linkInfoReadySpy(globalEnv.messageParser.data(), &MessageParser::linkInfoReady);
+
+    // Parse a message with a link.
+    globalEnv.messageParser->parseMessage("msgId_05",
+                                          msg,
+                                          true,
+                                          QColor::fromRgb(0, 0, 255),
+                                          QColor::fromRgb(0, 0, 255));
+
+    // Wait for the messageParsed signal which should be emitted once.
+    messageParsedSpy.wait();
+    EXPECT_EQ(messageParsedSpy.count(), 1);
+
+    QList<QVariant> messageParserArguments = messageParsedSpy.takeFirst();
+    EXPECT_TRUE(messageParserArguments.at(0).typeId() == qMetaTypeId<QString>());
+
+    // Wait for the linkInfoReady signal which should be emitted once.
+    linkInfoReadySpy.wait();
+    EXPECT_EQ(linkInfoReadySpy.count(), 1);
+
+    QList<QVariant> linkInfoReadyArguments = linkInfoReadySpy.takeFirst();
+    EXPECT_TRUE(linkInfoReadyArguments.at(0).typeId() == qMetaTypeId<QString>());
+    EXPECT_EQ(linkInfoReadyArguments.at(0).toString(), "msgId_05");
+    EXPECT_TRUE(linkInfoReadyArguments.at(1).typeId() == qMetaTypeId<QVariantMap>());
+    QVariantMap linkInfo = linkInfoReadyArguments.at(1).toMap();
+    EXPECT_EQ(linkInfo["url"].toString(), url);
 }

@@ -39,10 +39,10 @@ private:
     // An instance of HtmlParser used to parse HTML.
     HtmlParser* htmlParser_;
 
-    QString getTagContent(QList<QString>& tags, const QString& value);
-    QString getTitle(HtmlParser::TagInfoList& metaTags);
-    QString getDescription(HtmlParser::TagInfoList& metaTags);
-    QString getImage(HtmlParser::TagInfoList& metaTags);
+    QString getTagContent(const QList<QString>& tags, const QString& value);
+    QString getTitle(const QList<QString>& metaTags);
+    QString getDescription(const QList<QString>& metaTags);
+    QString getImage(const QList<QString>& metaTags);
 
     static const QRegularExpression newlineRe;
 };
