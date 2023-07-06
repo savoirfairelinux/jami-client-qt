@@ -54,6 +54,10 @@ JamiListView {
         return false
     }
 
+    function scrollToBottom() {
+        verticalScrollBar.position = 1 - verticalScrollBar.size;
+    }
+
     function computeChatview(item, itemIndex) {
         if (!root) return
         var rootItem = root.itemAtIndex(0)
@@ -277,7 +281,7 @@ JamiListView {
         anchors.horizontalCenter: root.horizontalCenter
         visible:  1 - verticalScrollBar.position >= verticalScrollBar.size * 2
 
-        onClicked: verticalScrollBar.position = 1 - verticalScrollBar.size
+        onClicked: scrollToBottom()
     }
 
     header: Control {

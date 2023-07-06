@@ -263,6 +263,7 @@ Rectangle {
                     currentIndex: CurrentConversation.isRequest || CurrentConversation.needsSyncing
 
                     Loader {
+                        id: loader
                         active: CurrentConversation.id !== ""
                         sourceComponent: MessageListView {
                             DropArea {
@@ -300,6 +301,10 @@ Rectangle {
                         else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
                             return false;
                         return CurrentConversation.isSwarm || CurrentConversation.isTemporary;
+                    }
+
+                    onHeightChanged: {
+                        Qt.callLater(loader.item.scrollToBottom);
                     }
 
                     Layout.alignment: Qt.AlignHCenter
