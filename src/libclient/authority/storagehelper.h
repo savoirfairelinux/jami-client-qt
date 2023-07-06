@@ -55,15 +55,6 @@ QString getPath();
 QString prepareUri(const QString& uri, api::profile::Type type);
 
 /**
- * Get a formatted string for a call interaction's body
- * @param isSelf
- * @param info
- * @return the formatted and translated call message string
- */
-QString getCallInteractionString(bool isSelf, const api::interaction::Info& info);
-QString getCallInteractionStringNonSwarm(bool isSelf, const std::time_t& duration);
-
-/**
  * Get a formatted string for a contact interaction's body
  * @param author_uri
  * @param status
@@ -98,12 +89,6 @@ void setProfile(const QString& accountId,
                 bool ov = false);
 
 } // namespace vcard
-
-/**
- * @param  duration
- * @return a human readable call duration (M:ss)
- */
-QString getFormattedCallDuration(const std::time_t duration);
 
 /**
  * Get all conversations with a given participant's URI
@@ -310,16 +295,6 @@ void setInteractionRead(Database& db, const QString& id);
  * @param  conversationId
  */
 void clearHistory(Database& db, const QString& conversationId);
-
-/**
- * Clear interaction from history
- * @param  db
- * @param  conversationId
- * @param  interactionId
- */
-void clearInteractionFromConversation(Database& db,
-                                      const QString& conversationId,
-                                      const QString& interactionId);
 
 /**
  * Clear all history stored in the interactions table of the database
