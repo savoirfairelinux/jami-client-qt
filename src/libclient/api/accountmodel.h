@@ -252,6 +252,7 @@ public:
      * Get notifications count across accounts
      */
     int notificationsCount() const;
+    void reloadHistory();
     /**
      * Retrieve account's avatar
      */
