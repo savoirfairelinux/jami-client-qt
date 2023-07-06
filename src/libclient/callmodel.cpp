@@ -914,7 +914,7 @@ CallModel::getFormattedCallDuration(const QString& callId) const
     auto d = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch()
                                                               - startTime.time_since_epoch())
                  .count();
-    return authority::storage::getFormattedCallDuration(d);
+    return interaction::getFormattedCallDuration(d);
 }
 
 bool
