@@ -86,6 +86,8 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         set_isRTL(isRTL());
     } else if (key == Settings::Key::BaseZoom)
         Q_EMIT changeFontSize();
+    else if (key == Settings::Key::DisplayHyperlinkPreviews)
+        settingsManager_->loadHistory();
     else if (key == Settings::Key::EnableExperimentalSwarm)
         Q_EMIT showExperimentalCallSwarm();
     else if (key == Settings::Key::ShowChatviewHorizontally)
@@ -512,17 +514,6 @@ UtilsAdapter::monitor(const bool& continuous)
     lrcInstance_->monitor(continuous);
 }
 
-void
-UtilsAdapter::clearInteractionsCache(const QString& accountId, const QString& convId)
-{
-    try {
-        auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
-        auto& convModel = accInfo.conversationModel;
-        convModel->clearInteractionsCache(convId);
-    } catch (...) {
-    }
-}
-
 QVariantMap
 UtilsAdapter::supportedLang()
 {
@@ -857,7 +848,7 @@ UtilsAdapter::getStandardTempLocation()
 }
 
 QString
-UtilsAdapter::getMimeName(const QString &filePath) const
+UtilsAdapter::getMimeName(const QString& filePath) const
 {
     QMimeDatabase db;
     QMimeType mime = db.mimeTypeForFile(filePath);
@@ -865,7 +856,7 @@ UtilsAdapter::getMimeName(const QString &filePath) const
 }
 
 #ifdef ENABLE_TESTS
-//Must only be used for testing purposes
+// Must only be used for testing purposes
 QString
 UtilsAdapter::createDummyImage() const
 {
