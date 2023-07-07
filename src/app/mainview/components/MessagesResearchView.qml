@@ -105,7 +105,7 @@ ListView {
                         Layout.rightMargin: 10
                         Layout.leftMargin: 10
                         font.pixelSize: 0
-                        color: JamiTheme.chatviewUsernameColor
+                        color: JamiTheme.chatviewInfoColor
                         font.bold: true
                     }
 
@@ -145,7 +145,7 @@ ListView {
                 id: buttonJumpText
 
                 text: JamiStrings.jumpTo
-                color: buttonJumpTo.hovered ? JamiTheme.blueLinkColor : JamiTheme.chatviewUsernameColor
+                color: buttonJumpTo.hovered ? JamiTheme.blueLinkColor : JamiTheme.chatviewInfoColor
                 font.underline: buttonJumpTo.hovered
                 anchors.centerIn: parent
                 font.pointSize: JamiTheme.jumpToFontSize
