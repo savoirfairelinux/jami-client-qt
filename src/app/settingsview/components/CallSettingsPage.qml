@@ -276,11 +276,8 @@ SettingsPageBase {
                 Layout.preferredHeight: 160
                 spacing: JamiTheme.settingsListViewsSpacing
 
-                visible: model.rowCount() > 0
-
-                model: ModeratorListModel {
-                    lrcInstance: LRCInstance
-                }
+                visible: count > 0
+                model: ModeratorListModel
 
                 delegate: ContactItemDelegate {
                     id: moderatorListDelegate

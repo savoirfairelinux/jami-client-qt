@@ -22,6 +22,7 @@
 
 #include "accountlistmodel.h"
 #include "deviceitemlistmodel.h"
+#include "moderatorlistmodel.h"
 #include "systemtray.h"
 #include "lrcinstance.h"
 #include "utils.h"
@@ -102,5 +103,6 @@ private:
 
     QScopedPointer<AccountListModel> accountListModel_;
     QScopedPointer<DeviceItemListModel> deviceItemListModel_;
+    QScopedPointer<ModeratorListModel> moderatorListModel_;
 };
 Q_DECLARE_METATYPE(AccountAdapter*)

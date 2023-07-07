@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2019-2023 Savoir-faire Linux Inc.
- * Author: Albert Babí Oller <albert.babi@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,9 +19,17 @@
 
 #include "lrcinstance.h"
 
-ModeratorListModel::ModeratorListModel(QObject* parent)
+ModeratorListModel::ModeratorListModel(LRCInstance* instance, QObject* parent)
     : AbstractListModelBase(parent)
-{}
+{
+    lrcInstance_ = instance;
+    connect(lrcInstance_,
+            &LRCInstance::currentAccountIdChanged,
+            this,
+            &ModeratorListModel::connectAccount,
+            Qt::UniqueConnection);
+    connectAccount();
+}
 
 ModeratorListModel::~ModeratorListModel() {}
 
@@ -52,7 +59,7 @@ ModeratorListModel::data(const QModelIndex& index, int role) const
 {
     try {
         QStringList list = lrcInstance_->accountModel().getDefaultModerators(
-                    lrcInstance_->get_currentAccountId());
+            lrcInstance_->get_currentAccountId());
         if (!index.isValid() || list.size() <= index.row()) {
             return QVariant();
         }
@@ -61,8 +68,8 @@ ModeratorListModel::data(const QModelIndex& index, int role) const
 
         switch (role) {
         case Role::ContactName: {
-            QString str = lrcInstance_->getCurrentAccountInfo().contactModel->
-                    bestNameForContact(list.at(index.row()));
+            QString str = lrcInstance_->getCurrentAccountInfo().contactModel->bestNameForContact(
+                list.at(index.row()));
             return QVariant(str);
         }
         case Role::ContactID:
@@ -119,4 +126,11 @@ ModeratorListModel::reset()
 {
     beginResetModel();
     endResetModel();
+}
+
+void
+ModeratorListModel::connectAccount()
+{
+    if (!lrcInstance_->get_currentAccountId().isEmpty())
+        reset();
 }
