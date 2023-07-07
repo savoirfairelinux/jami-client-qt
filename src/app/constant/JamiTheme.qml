@@ -209,7 +209,7 @@ Item {
     property color chatviewLinkColorDark: "#353637"
     property real chatviewFontSize: calcSize(15)
     property real chatviewEmojiSize: calcSize(60)
-    property color timestampColor: darkTheme ? "#bbb" : "#777"
+    property color timestampColor: darkTheme ? "#515151" : "#E5E5E5"
     property color messageReplyColor: darkTheme ? "#bbb" : "#A7A7A7"
     property color messageOutTxtColor: "#000000"
     property color messageInBgColor: darkTheme ? "#303030" : "#dbdbdb"

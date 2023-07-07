@@ -97,7 +97,7 @@ ColumnLayout {
         Layout.topMargin: 30
         Layout.bottomMargin: 30
         Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-        color: JamiTheme.timestampColor
+        color: JamiTheme.chatviewSecondaryInformationColor
         visible: showTime || showDay
         Layout.preferredHeight: visible * implicitHeight
         font.pointSize: JamiTheme.smallFontSize
