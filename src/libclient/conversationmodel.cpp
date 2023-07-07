@@ -1157,6 +1157,8 @@ ConversationModel::title(const QString& conversationId) const
         if (peer.isEmpty())
             return {};
         // In this case, we can just display contact name
+        if (peer.at(0) == owner.profileInfo.uri)
+            return QObject::tr("%1 (you)").arg(owner.accountModel->bestNameForAccount(owner.id));
         return owner.contactModel->bestNameForContact(peer.at(0));
     }
     if (conversation.infos["title"] != "") {
@@ -1169,7 +1171,7 @@ ConversationModel::title(const QString& conversationId) const
     for (const auto& member : conversation.participants) {
         QString name;
         if (member.uri == owner.profileInfo.uri) {
-            name = owner.accountModel->bestNameForAccount(owner.id);
+            name = QObject::tr("%1 (you)").arg(owner.accountModel->bestNameForAccount(owner.id));
         } else {
             name = owner.contactModel->bestNameForContact(member.uri);
         }
