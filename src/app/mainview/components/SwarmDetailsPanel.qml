@@ -38,15 +38,18 @@ Rectangle {
 
     property string textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
-    ColumnLayout {
+    Item {
         id: swarmProfileDetails
         anchors.fill: parent
-        spacing: 0
 
         ColumnLayout {
             id: header
-            Layout.topMargin: JamiTheme.swarmDetailsPageTopMargin
-            Layout.fillWidth: true
+
+            anchors.top: parent.top
+            anchors.topMargin: JamiTheme.swarmDetailsPageTopMargin
+            anchors.left: parent.left
+            anchors.right: parent.right
+
             spacing: JamiTheme.preferredMarginSize
 
             RowLayout {
@@ -230,8 +233,11 @@ Rectangle {
 
         Rectangle {
             id: details
-            Layout.fillWidth: true
-            Layout.preferredHeight: root.height - header.height - 2 * JamiTheme.preferredMarginSize
+            anchors.top: header.bottom
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+
             color: JamiTheme.secondaryBackgroundColor
 
             JamiFlickable {
