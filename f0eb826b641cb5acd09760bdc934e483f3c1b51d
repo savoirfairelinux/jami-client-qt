@@ -22,6 +22,30 @@
       },
       "revId": "f0eb826b641cb5acd09760bdc934e483f3c1b51d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3adf344_6d4e6c88",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-07T13:12:47Z",
+      "side": 1,
+      "message": "For the day there is no design change yet and from design provided it\u0027s bigger than the time.",
+      "parentUuid": "bb3b5852_3085a90c",
+      "range": {
+        "startLine": 88,
+        "startChar": 42,
+        "endLine": 88,
+        "endChar": 55
+      },
+      "revId": "f0eb826b641cb5acd09760bdc934e483f3c1b51d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
