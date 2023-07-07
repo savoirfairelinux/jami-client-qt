@@ -102,7 +102,7 @@ RadioButton {
         color: "transparent"
         implicitHeight: 20
         implicitWidth: 20
-        radius: JamiTheme.settingsBoxRadius
+        radius: 10
         z: 1
 
         border {
@@ -116,7 +116,7 @@ RadioButton {
             anchors.verticalCenter: parent.verticalCenter
             color: checkedColor
             height: 12
-            radius: JamiTheme.settingsBoxRadius
+            radius: 10
             visible: checked || hovered
             width: 12
 
