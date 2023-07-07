@@ -101,7 +101,7 @@ Control {
     }
 
     background: Rectangle {
-        radius: 20
+        radius: 5
         color: CurrentConversation.color
 
         MouseArea {
@@ -117,7 +117,7 @@ Control {
                 z: -1
                 horizontalOffset: 3.0
                 verticalOffset: 3.0
-                radius: 8.0
+                radius: 5.0
                 color: JamiTheme.shadowColor
                 transparentBorder: true
                 samples: radius + 1
