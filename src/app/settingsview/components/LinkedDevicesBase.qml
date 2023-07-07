@@ -107,7 +107,7 @@ ColumnLayout {
             Layout.fillWidth: true
             implicitWidth: root.width
             height: 70
-            deviceName: root.isCurrent ? DeviceName : "Device name: " + DeviceName
+            deviceName: root.isCurrent ? DeviceName : JamiStrings.deviceName + " " + DeviceName
             deviceId: DeviceID
             onBtnRemoveDeviceClicked: removeDeviceSlot(index)
             isCurrent: root.isCurrent
