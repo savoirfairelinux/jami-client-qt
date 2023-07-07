@@ -165,7 +165,6 @@ registerTypes(QQmlEngine* engine,
 
     // QAbstractListModels
     QML_REGISTERTYPE(NS_MODELS, BannedListModel);
-    QML_REGISTERTYPE(NS_MODELS, ModeratorListModel);
     QML_REGISTERTYPE(NS_MODELS, MediaCodecListModel);
     QML_REGISTERTYPE(NS_MODELS, AudioDeviceModel);
     QML_REGISTERTYPE(NS_MODELS, AudioManagerListModel);
@@ -229,6 +228,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERUNCREATABLE(NS_ENUMS, NetworkManager)
     QML_REGISTERUNCREATABLE(NS_ENUMS, WizardViewStepModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, DeviceItemListModel)
+    QML_REGISTERUNCREATABLE(NS_ENUMS, ModeratorListModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoInputDeviceModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoFormatResolutionModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoFormatFpsModel)

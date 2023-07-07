@@ -34,10 +34,12 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
     , settingsManager_(settingsManager)
     , systemTray_(systemTray)
     , accountListModel_(new AccountListModel(instance))
-    , deviceItemListModel_(new DeviceItemListModel(instance))
+    , deviceItemListModel_(new DeviceItemListModel(instance, parent))
+    , moderatorListModel_(new ModeratorListModel(instance, parent))
 {
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, accountListModel_.get(), "AccountListModel");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, deviceItemListModel_.get(), "DeviceItemListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, moderatorListModel_.get(), "ModeratorListModel");
 
     connect(&lrcInstance_->accountModel(),
             &AccountModel::accountStatusChanged,

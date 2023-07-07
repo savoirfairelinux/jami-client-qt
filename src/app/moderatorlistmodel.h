@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2019-2023 Savoir-faire Linux Inc.
- * Author: Albert Babí Oller <albert.babi@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,14 +19,14 @@
 
 #include "abstractlistmodelbase.h"
 
-class ModeratorListModel : public AbstractListModelBase
+class ModeratorListModel final : public AbstractListModelBase
 {
     Q_OBJECT
 public:
     enum Role { ContactName = Qt::UserRole + 1, ContactID };
     Q_ENUM(Role)
 
-    explicit ModeratorListModel(QObject* parent = nullptr);
+    explicit ModeratorListModel(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~ModeratorListModel();
 
     /*
@@ -48,4 +47,10 @@ public:
      * This function is to reset the model when there's new account added.
      */
     Q_INVOKABLE void reset();
+
+public Q_SLOTS:
+    void connectAccount();
+
+private:
+    LRCInstance* lrcInstance_;
 };
