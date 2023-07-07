@@ -99,6 +99,9 @@ Rectangle {
         ChatViewHeader {
             id: chatViewHeader
 
+            addParticipantOpened: extrasPanel.currentIndex === ChatView.AddMemberPanel
+            swarmDetailsOpened: extrasPanel.currentIndex === ChatView.SwarmDetailsPanel
+
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight

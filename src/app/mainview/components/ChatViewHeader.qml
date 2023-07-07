@@ -60,6 +60,9 @@ Rectangle {
         return true;
     }
 
+    property bool addParticipantOpened: false
+    property bool swarmDetailsOpened: false
+
     property bool addMemberVisibility: {
         return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.isRequest;
     }
@@ -209,6 +212,8 @@ Rectangle {
         JamiPushButton {
             id: addParticipantsButton
 
+            checkable: true
+            checked: root.addParticipantOpened
             visible: interactionButtonsVisibility && addMemberVisibility
             source: JamiResources.add_people_24dp_svg
             toolTipText: JamiStrings.addParticipants
@@ -239,6 +244,8 @@ Rectangle {
         JamiPushButton {
             id: detailsButton
 
+            checkable: true
+            checked: root.swarmDetailsOpened
             visible: interactionButtonsVisibility && (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP) // TODO if SIP not a request
             source: JamiResources.swarm_details_panel_svg
             toolTipText: JamiStrings.details
