@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66edfc61_cc5b6f55",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 27
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-07T11:12:55Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7df9a910_9058090f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-07T11:12:55Z",
+      "side": 1,
+      "message": "Some small things",
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bb3a95c_63afff4a",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-07T11:12:55Z",
+      "side": 1,
+      "message": "date is only 2023, also no need for author as it\u0027s generally incorrect/not updated",
+      "range": {
+        "startLine": 2,
+        "startChar": 24,
+        "endLine": 3,
+        "endChar": 24
+      },
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39fe9a95_eeb897e3",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-07T11:12:55Z",
+      "side": 1,
+      "message": "downloadImage() is enough, user don\u0027t care about location, moreover we pass localpath as an argument, so it can technically be elsewhere, not in cache",
+      "range": {
+        "startLine": 34,
+        "startChar": 21,
+        "endLine": 34,
+        "endChar": 41
+      },
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09958cf8_96db0609",
+        "filename": "src/app/mainview/components/CachedImage.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-07T11:12:55Z",
+      "side": 1,
+      "message": "mmh if several images are downloaded at the same time, you can have an error for another image. I think we should have an id to check for both success/error to avoid weird states",
+      "range": {
+        "startLine": 79,
+        "startChar": 38,
+        "endLine": 79,
+        "endChar": 40
+      },
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae6e0f63_7549ed15",
+        "filename": "src/app/mainview/components/CachedImage.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-07T11:12:55Z",
+      "side": 1,
+      "message": "Finally, a unit-test should be created. you can use a file:/// instead a URL for the test, but at least it will test error/success if image exists or not.",
+      "range": {
+        "startLine": 86,
+        "startChar": 16,
+        "endLine": 86,
+        "endChar": 27
+      },
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
