@@ -483,6 +483,7 @@ Item {
     // DeviceItemDelegate
     property string saveNewDeviceName: qsTr("Save")
     property string editDeviceName: qsTr("Edit")
+    property string deviceName: qsTr("Device name:")
     property string unlinkDevice: qsTr("Remove")
     property string deviceId: qsTr("Device Id")
 
