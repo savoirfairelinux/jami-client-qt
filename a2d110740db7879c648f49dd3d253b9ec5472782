@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d696d4e4_49000aab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-07-07T12:12:10Z",
+      "side": 1,
+      "message": "LGTM, but I could not reproduce the bug in the first place",
+      "revId": "a2d110740db7879c648f49dd3d253b9ec5472782",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
