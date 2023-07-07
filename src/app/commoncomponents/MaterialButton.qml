@@ -66,7 +66,6 @@ AbstractButton {
         value: height
     }
 
-    hoverEnabled: true
     focusPolicy: Qt.StrongFocus
 
     Accessible.role: Accessible.Button
@@ -168,7 +167,7 @@ AbstractButton {
                 leftPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textLeftPadding
                 rightPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textRightPadding
                 text: root.text
-                font.weight: (root.hovered && root.hoverEnabled) || boldFont ? Font.Bold : Font.Medium
+                font.weight: (root.hovered && root.enabled) || boldFont ? Font.Bold : Font.Medium
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: root.textAlignment
@@ -183,18 +182,18 @@ AbstractButton {
         color: {
             var baseColor = root.color;
             if (root.primary) {
-                if (root.hovered && root.hoverEnabled)
+                if (root.hovered && root.enabled)
                     return root.hoveredColor;
                 return baseColor;
             }
             if (root.secondary || root.tertiary) {
-                if (root.hovered && root.hoverEnabled)
+                if (root.hovered && root.enabled)
                     return root.secHoveredColor;
                 return JamiTheme.transparentColor;
             }
             if (root.down)
                 return root.pressedColor;
-            if (root.hovered && root.hoverEnabled)
+            if (root.hovered && root.enabled)
                 return root.hoveredColor;
             return baseColor;
         }
@@ -202,7 +201,7 @@ AbstractButton {
         border.color: {
             if (root.primary || root.tertiary)
                 return JamiTheme.transparentColor;
-            if (root.secondary && root.hovered && root.hoverEnabled)
+            if (root.secondary && root.hovered && root.enabled)
                 return JamiTheme.secondaryButtonHoveredBorderColor;
             if (root.secondary)
                 return JamiTheme.secondaryButtonBorderColor;
@@ -226,7 +225,7 @@ AbstractButton {
 
         // We don't want to eat clicks on the Text.
         acceptedButtons: Qt.NoButton
-        cursorShape: (root.hovered && root.hoverEnabled) ? Qt.PointingHandCursor : Qt.ArrowCursor
+        cursorShape: (root.hovered && root.enabled) ? Qt.PointingHandCursor : Qt.ArrowCursor
     }
 
     Shortcut {
