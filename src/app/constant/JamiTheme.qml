@@ -608,7 +608,7 @@ Item {
     property int settingsDescriptionPixelSize: calcSize(15)
     property int settingsCategorySpacing: 15
     property int settingsCategoryAudioVideoSpacing: 6
-    property int settingsBoxRadius: 10
+    property int settingsBoxRadius: 5
     property int settingsBlockSpacing: 40
     property int settingsMenuChildrenButtonHeight: 30
     property int settingsMenuHeaderButtonHeight: 50
