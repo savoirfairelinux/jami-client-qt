@@ -68,6 +68,29 @@
       },
       "revId": "319d1194e6f4e87fe1b2a73f13a417550c407368",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5155ff9b_1582cfe0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-09T10:58:48Z",
+      "side": 1,
+      "message": "text editor may be multiline (shift+enter) cf mattermost",
+      "range": {
+        "startLine": 12,
+        "startChar": 25,
+        "endLine": 12,
+        "endChar": 30
+      },
+      "revId": "319d1194e6f4e87fe1b2a73f13a417550c407368",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
