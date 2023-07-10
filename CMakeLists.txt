@@ -291,6 +291,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/connectioninfolistmodel.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp)
+  ${APP_SRC_DIR}/treemodel.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
@@ -359,6 +360,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/pluginversionmanager.h
   ${APP_SRC_DIR}/connectioninfolistmodel.h
   ${APP_SRC_DIR}/pttlistener.h)
+  ${APP_SRC_DIR}/treemodel.h)
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")

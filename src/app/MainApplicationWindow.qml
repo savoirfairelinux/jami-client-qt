@@ -49,6 +49,110 @@ ApplicationWindow {
     // This needs to be set from the start.
     readonly property bool useFrameless: UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
 
+    Window {
+        id: testWindow
+        visible: true
+        width: 600
+        height: 400
+
+        Action {
+            id: otherAction
+            text: "Other"
+            onTriggered: testWindow.close();
+        }
+
+        Action {
+            id: more1Action
+            text: "More1"
+            onTriggered: testWindow.close();
+        }
+
+        Action {
+            id: more2Action
+            text: "More2"
+            onTriggered: testWindow.close();
+        }
+
+        Action {
+            id: more3Action
+            text: "More3"
+            onTriggered: testWindow.close();
+        }
+
+        Action {
+            id: rootAction
+            text: "Quit"
+            onTriggered: testWindow.close();
+            property list<Action> children: [
+//                Action {
+//                    text: "Other"
+//                    onTriggered: testWindow.close();
+//                },
+//                Action {
+//                    text: "More1"
+//                    onTriggered: testWindow.close();
+//                },
+//                Action {
+//                    text: "More2"
+//                    onTriggered: testWindow.close();
+//                }
+            ]
+        }
+
+        TreeView {
+            anchors.fill: parent
+            model: TreeModel {
+                id: treeModel
+                Component.onCompleted: {
+                    treeModel.addItem(rootAction);
+                    treeModel.addItem(otherAction, rootAction);
+                    treeModel.addItem(more1Action, rootAction);
+                    //treeModel.addItem(more2Action, rootAction);
+                    //treeModel.addItem(more3Action, rootAction);
+                }
+            }
+
+            delegate: Item {
+                id: treeDelegate
+
+                implicitWidth: padding + label.x + label.implicitWidth + padding
+                implicitHeight: label.implicitHeight * 1.5
+
+                readonly property real indent: 20
+                readonly property real padding: 5
+
+                // Assigned to by TreeView:
+                required property TreeView treeView
+                required property bool isTreeNode
+                required property bool expanded
+                required property int hasChildren
+                required property int depth
+
+                TapHandler {
+                    onTapped: treeView.toggleExpanded(row)
+                }
+
+                Text {
+                    id: indicator
+                    visible: treeDelegate.isTreeNode && treeDelegate.hasChildren
+                    x: padding + (treeDelegate.depth * treeDelegate.indent)
+                    anchors.verticalCenter: label.verticalCenter
+                    text: "▸"
+                    rotation: treeDelegate.expanded ? 90 : 0
+                }
+
+                Text {
+                    id: label
+                    x: padding + (treeDelegate.isTreeNode ? (treeDelegate.depth + 1) * treeDelegate.indent : 0)
+                    width: treeDelegate.width - treeDelegate.padding - x
+                    clip: true
+                    text: model.display.text
+                    Component.onCompleted: print(model.display)
+                }
+            }
+        }
+    }
+
     onActiveFocusItemChanged: {
         focusOverlay.margin = -5;
         if (activeFocusItem && ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason))) {
