@@ -16,6 +16,24 @@
       "message": "doesn\u0027t start: jami: /home/amarok/Projects/jami/client-qt/3rdparty/tidy-html5/src/config.c:498: prvTidySetOptionBool: Assertion `option_defs[ optId ].type \u003d\u003d TidyBoolean\u0027 failed",
       "revId": "7c778f8b6608ce3b156cbe66a8fd4cdba2c74760",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f2097bf_b51b8f2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-07-10T20:07:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6842115_9ed989c7",
+      "revId": "7c778f8b6608ce3b156cbe66a8fd4cdba2c74760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
