@@ -799,8 +799,23 @@ bool
 UtilsAdapter::isRTL()
 {
     auto pref = getAppValue(Settings::Key::LANG).toString();
-    pref == "SYSTEM" ? QLocale::system().name() : pref;
-    return pref == "ar" || pref == "he" || pref == "fa" || pref == "ur";
+    pref = pref == "SYSTEM" ? QLocale::system().name() : pref;
+    static const QStringList rtlLanguages {
+        // as defined by ISO 639-1
+        "ar", // Arabic
+        "he", // Hebrew
+        "fa", // Persian (Farsi)
+        "ur", // Urdu
+        "ps", // Pashto
+        "ku", // Kurdish
+        "sd", // Sindhi
+        "dv", // Dhivehi (Maldivian)
+        "yi", // Yiddish
+        "am", // Amharic
+        "ti", // Tigrinya
+        "kk"  // Kazakh (in Arabic script)
+    };
+    return rtlLanguages.contains(pref);
 }
 
 bool
