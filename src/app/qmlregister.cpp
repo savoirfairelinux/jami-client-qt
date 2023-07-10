@@ -34,6 +34,7 @@
 #include "currentaccount.h"
 #include "videodevices.h"
 #include "currentaccounttomigrate.h"
+#include "treemodel.h"
 
 #include "accountlistmodel.h"
 #include "mediacodeclistmodel.h"
@@ -176,6 +177,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, MessageListModel);
     QML_REGISTERTYPE(NS_MODELS, CallInformationListModel);
     QML_REGISTERTYPE(NS_MODELS, RendererInformationListModel);
+    QML_REGISTERTYPE(NS_MODELS, TreeModel);
 
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");

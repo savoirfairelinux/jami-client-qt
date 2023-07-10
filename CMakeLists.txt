@@ -164,23 +164,23 @@ set(PYTHON_EXEC ${Python3_EXECUTABLE})
 if(WITH_WEBENGINE)
   set(GEN_QRC_ARGS "--with-webengine")
 endif()
-file(GLOB_RECURSE
-  QML_FILES CONFIGURE_DEPENDS
-  ${APP_SRC_DIR}/*)
-execute_process(
-  COMMAND
-  ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_qml_qrc.py ${GEN_QRC_ARGS}
-  WORKING_DIRECTORY ${APP_SRC_DIR})
+#file(GLOB_RECURSE
+#  QML_FILES CONFIGURE_DEPENDS
+#  ${APP_SRC_DIR}/*)
+#execute_process(
+#  COMMAND
+#  ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_qml_qrc.py ${GEN_QRC_ARGS}
+#  WORKING_DIRECTORY ${APP_SRC_DIR})
 set(QML_RESOURCES_QML ${APP_SRC_DIR}/qml.qrc)
 # Image and misc. resources
 # check files in the resources directory and force a reconfigure if it
 # changes
-file(GLOB_RECURSE
-  RES_FILES CONFIGURE_DEPENDS
-  ${PROJECT_SOURCE_DIR}/resources/*)
-execute_process(
-  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py ${GEN_QRC_ARGS}
-  WORKING_DIRECTORY ${APP_SRC_DIR})
+#file(GLOB_RECURSE
+#  RES_FILES CONFIGURE_DEPENDS
+#  ${PROJECT_SOURCE_DIR}/resources/*)
+#execute_process(
+#  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py ${GEN_QRC_ARGS}
+#  WORKING_DIRECTORY ${APP_SRC_DIR})
 set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
 
 # library compatibility (boost, libnotify, etc.)
@@ -238,7 +238,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/positioning.cpp
   ${APP_SRC_DIR}/currentcall.cpp
   ${APP_SRC_DIR}/messageparser.cpp
-  ${APP_SRC_DIR}/previewengine.cpp)
+  ${APP_SRC_DIR}/previewengine.cpp
+  ${APP_SRC_DIR}/treemodel.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
@@ -301,7 +302,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/positioning.h
   ${APP_SRC_DIR}/currentcall.h
   ${APP_SRC_DIR}/messageparser.h
-  ${APP_SRC_DIR}/htmlparser.h)
+  ${APP_SRC_DIR}/htmlparser.h
+  ${APP_SRC_DIR}/treemodel.h)
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
