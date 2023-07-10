@@ -574,7 +574,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
         <source>Jami is a free universal communication software that respects the freedom and privacy of its users.</source>
-        <translation>Jami 是一个普遍通信平台，尊重用户的自由与隐私。</translation>
+        <translation>Jami 是一个通用通信程序，尊重用户的自由与隐私。</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
@@ -1635,7 +1635,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="388"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation>您可以选择一个用户名,以帮助其他人更容易地找到和联系您在Jami.</translation>
+        <translation>您可以选择一个用户名，以便他人在 Jami 上找到并联系您。</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="390"/>
@@ -1736,7 +1736,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
         <source>Italic</source>
-        <translation>倾斜</translation>
+        <translation>斜体</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
@@ -1811,7 +1811,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
         <source>List of the devices that are linked to this account:</source>
-        <translation>连接到本帐户的设备列表:</translation>
+        <translation>关联到本账户的设备列表：</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="428"/>
@@ -1876,7 +1876,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="885"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
-        <translation>启用你的账户让你在Jami上联系</translation>
+        <translation>启用账户后，可让他人通过 Jami 联系到您</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="891"/>
@@ -2140,7 +2140,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
         <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation>这种功能将使多个参与者组成的群群中调用按.</translation>
+        <translation>此功能将在有多个参与者的群聊中启用呼叫按钮。</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
@@ -2591,7 +2591,7 @@ Jami 将立即退出。</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="879"/>
         <source>Here is your Jami identifier, don&apos;t hesitate to share it in order to be contacted more easily!</source>
-        <translation>这里是你的 Jami 标识符。不要犹豫，分享它，让通讯更方便！</translation>
+        <translation>这是您的 Jami 标识符。为了更容易地联系到您，赶快分享它吧！</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
@@ -2654,7 +2654,7 @@ Jami 将立即退出。</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
         <source>Write to %1</source>
-        <translation>写入至 %1</translation>
+        <translation>写给 %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="829"/>
@@ -2862,7 +2862,8 @@ connects to synchronize the conversation.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>选择一个用户名可以帮助在 Jami 找到更容易.如果没有选择一个用户名,则将随机生成的40字符识别符被分配给这个帐户作为用户名.使用这个识别符更难找到和达到.</translation>
+        <translation>使用用户名可让他人更容易在 Jami 找到您。
+如果不使用用户名，则会使用随机生成的 40 位字符长的标识符作为此账户的用户名。使用标识符会使得找到并联系您变得更困难。</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="424"/>
@@ -2979,7 +2980,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
         <source>(Experimental) Enable call support for swarm</source>
-        <translation>启用对群众的呼叫支持</translation>
+        <translation>启用群的呼叫支持（试验功能）</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
@@ -3201,7 +3202,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
         <source>Accept transfer limit (in Mb)</source>
-        <translation>接受转让限额 (Mb)</translation>
+        <translation>接收传输上限 (Mb)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>

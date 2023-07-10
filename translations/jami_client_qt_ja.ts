@@ -109,7 +109,7 @@
     <message>
         <location filename="../src/app/mainview/components/DevicesListPopup.qml" line="162"/>
         <source>Device Id</source>
-        <translation>機器識別子</translation>
+        <translation>デバイスID</translation>
     </message>
 </context>
 <context>
@@ -137,12 +137,12 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="59"/>
         <source>Open settings</source>
-        <translation>オープン設定</translation>
+        <translation>設定を開く</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Close settings</source>
-        <translation>閉じる設定</translation>
+        <translation>設定を閉じる</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="70"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
         <source>In progress…</source>
-        <translation>進行中です</translation>
+        <translation>進行中…</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="29"/>
@@ -227,7 +227,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="83"/>
         <source>Convert your account into a rendezvous point</source>
-        <translation>アカウントを待合室に変換</translation>
+        <translation>アカウントをrendezvous pointに変換</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="84"/>
@@ -237,12 +237,12 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="85"/>
         <source>Enable custom ringtone</source>
-        <translation>定番の鳴き声を有効にする</translation>
+        <translation>カスタム着信音</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="86"/>
         <source>Select custom ringtone</source>
-        <translation>定番の鳴き声を選択</translation>
+        <translation>カスタム着信音を選択</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="87"/>
@@ -252,7 +252,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="88"/>
         <source>Select a new ringtone</source>
-        <translation>新しい鈴声を選択</translation>
+        <translation>新しい着信音を選択</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
@@ -262,7 +262,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="98"/>
         <source>Voicemail dial code</source>
-        <translation>音声メールダイヤルコード</translation>
+        <translation>ボイスメールダイヤルコード</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="101"/>
@@ -272,12 +272,12 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="102"/>
         <source>Enable SDES key exchange</source>
-        <translation>SDES 鍵交換を有効にする</translation>
+        <translation>SDES 鍵交換</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="103"/>
         <source>Allow fallback on RTP</source>
-        <translation>RTPに逆転を許す</translation>
+        <translation>RTPフォールバック</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="104"/>
@@ -297,12 +297,12 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="107"/>
         <source>Private key</source>
-        <translation>秘密鍵</translation>
+        <translation>プライベートキー</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="108"/>
         <source>Private key password</source>
-        <translation>秘密鍵のパスワード</translation>
+        <translation>プライベートキーのパスワード</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="109"/>
@@ -367,17 +367,17 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
         <source>Pause call</source>
-        <translation>休憩電話</translation>
+        <translation>通話を一時停止</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
         <source>Resume call</source>
-        <translation>呼び出しを再開</translation>
+        <translation>通話を再開</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
         <source>Creating account…</source>
-        <translation>口座を作成する</translation>
+        <translation>アカウント作成中…</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
@@ -388,17 +388,17 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
         <source>Create a rendezvous point</source>
-        <translation>待合室を作成</translation>
+        <translation>rendezvous pointを作成</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="389"/>
         <source>Choose a name for your rendezvous point</source>
-        <translation>会議地点に名前を選択する</translation>
+        <translation>rendezvous pointの名前を入力してください</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
         <source>Launch at startup</source>
-        <translation>起動時に打ち上げ</translation>
+        <translation>ブート時に起動</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
@@ -448,7 +448,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
         <source>Your account will be created and stored locally.</source>
-        <translation>口座は本地的に作成され保存されます.</translation>
+        <translation>アカウントが作成されローカルに保存されます</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
@@ -473,7 +473,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="669"/>
         <source>Display or hide preferences</source>
-        <translation>表示または隠す選択</translation>
+        <translation>設定の表示／非表示</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
@@ -494,7 +494,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="674"/>
         <source>Choose image file</source>
-        <translation>画像ファイルを選択</translation>
+        <translation>画像を選択</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
@@ -504,7 +504,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="690"/>
         <source>Creating rendezvous point…</source>
-        <translation>会議地点を作って...</translation>
+        <translation>rendezvous pointを作成中...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
@@ -539,7 +539,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
         <source>Ok</source>
-        <translation>わかった</translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
@@ -550,27 +550,27 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
         <source>Accept in audio</source>
-        <translation>音声で受け入れる</translation>
+        <translation>音声通話</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="31"/>
         <source>Accept in video</source>
-        <translation>ビデオで受け入れる</translation>
+        <translation>ビデオ通話</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>ジュミはプライバシーを基盤とする 普遍的なコミュニケーションプラットフォームで 誰もが利用できる無料のネットワークに依存しています</translation>
+        <translation>Jamiはプライバシーを基盤とする 普遍的なコミュニケーションプラットフォームで 誰もが利用できる無料のネットワークに依存しています</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>Swarm テクノロジーを移行することで,複数のデバイスでこの会話を同期させ,信頼性を向上させることができます.この過程で,古い会話履歴がクリアされます.</translation>
+        <translation>Swarm テクノロジーを移行することで、複数のデバイスでこの会話を同期させ、信頼性を向上させることができます。この過程で、古い会話履歴が消去されます。</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
         <source>Jami is a free universal communication software that respects the freedom and privacy of its users.</source>
-        <translation>ジャーミは,利用者の自由とプライバシーを尊重する無料の普遍的な通信ソフトウェアです.</translation>
+        <translation>Jamiは世界中の利用者と繋がることができる自由ソフトウェアであり，利用者の自由と私事権とを尊重しています。</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
@@ -605,7 +605,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
         <source>Enable read receipts</source>
-        <translation>既読表示を有効化</translation>
+        <translation>既読表示</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
@@ -775,7 +775,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
         <source>General</source>
-        <translation>全般</translation>
+        <translation>一般</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="181"/>
@@ -876,7 +876,8 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
         <location filename="../src/app/constant/JamiStrings.qml" line="542"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation>ジャミの新しいバージョンが発見された 今更新したいですか?</translation>
+        <translation>Jamiの新しいバージョンが発見されました
+更新しますか?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="564"/>
@@ -906,7 +907,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
         <source>Import Jami account from local archive file.</source>
-        <translation>地域アーカイブからジャミアカウントを輸入する.</translation>
+        <translation>ローカルアーカイブからJamiアカウントをインポート</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
@@ -916,7 +917,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
         <source>Mute conversation</source>
-        <translation>沈黙の会話</translation>
+        <translation>会話をミュートする</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
@@ -946,7 +947,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
         <source>Why should I save my account?</source>
-        <translation>なぜ口座を保存すべきか?</translation>
+        <translation>なぜアカウントを保存すべきか?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
@@ -991,7 +992,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
         <source>Why should I back-up this account?</source>
-        <translation>なぜこの口座をバックアップすべきか?</translation>
+        <translation>なぜこのアカウントをバックアップすべきか?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
@@ -1031,7 +1032,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="222"/>
         <source>Identifier</source>
-        <translation>識別子</translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="225"/>
@@ -1084,7 +1085,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
         <source>Plugins</source>
-        <translation>拡張機能</translation>
+        <translation>プラグイン</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="173"/>
@@ -1124,17 +1125,17 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
         <source>You are still muted by moderator</source>
-        <translation>監督はまだ黙ってる</translation>
+        <translation>まだモデレーターによって消音されています</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
         <source>You are muted by a moderator</source>
-        <translation>調節者によって 黙示された</translation>
+        <translation>モデレーターによって消音されています</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
         <source>Moderator</source>
-        <translation>モデレータ</translation>
+        <translation>モデレーター</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="246"/>
@@ -1144,17 +1145,17 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="247"/>
         <source>Local and Moderator muted</source>
-        <translation>ローカルとモデレーターが沈黙した</translation>
+        <translation>ローカルとモデレーターが消音</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="248"/>
         <source>Moderator muted</source>
-        <translation>調節器が静止</translation>
+        <translation>モデレーター消音</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="249"/>
         <source>Not muted</source>
-        <translation>静かでない</translation>
+        <translation>消音されていない</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
@@ -1164,12 +1165,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
         <source>On the top</source>
-        <translation>頂上</translation>
+        <translation>上に</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="252"/>
         <source>Hide self</source>
-        <translation>隠れ</translation>
+        <translation>自分を隠す</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="253"/>
@@ -1179,12 +1180,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="258"/>
         <source>Cut</source>
-        <translation>切り取り</translation>
+        <translation>カット</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="259"/>
         <source>Paste</source>
-        <translation>貼り付け</translation>
+        <translation>ペースト</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
@@ -1229,7 +1230,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="277"/>
         <source>Sip input panel</source>
-        <translation>入力パネル</translation>
+        <translation>SIP入力パネル</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="278"/>
@@ -1239,7 +1240,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="279"/>
         <source>Stop recording</source>
-        <translation>録音を停止</translation>
+        <translation>録画停止</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="280"/>
@@ -1284,7 +1285,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
         <source>Advanced information</source>
-        <translation>進歩情報</translation>
+        <translation>詳細情報</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
@@ -1294,7 +1295,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
         <source>Lower hand</source>
-        <translation>下手</translation>
+        <translation>手を下げる</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="294"/>
@@ -1369,7 +1370,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
         <source>Fps</source>
-        <translation type="unfinished"/>
+        <translation>Fps</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
@@ -1506,7 +1507,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="347"/>
         <source>Show available plugins</source>
-        <translation>可能なプラグインを表示する</translation>
+        <translation>利用可能なプラグインを表示</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
@@ -1521,7 +1522,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
         <source>The account is disabled</source>
-        <translation>アカウントが無効</translation>
+        <translation>このアカウントは無効です</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
@@ -1661,12 +1662,12 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="399"/>
         <source>Good to know</source>
-        <translation>嬉しいわ</translation>
+        <translation>ちなみに</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="400"/>
         <source>Local</source>
-        <translation>地方</translation>
+        <translation>ローカル</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="401"/>
@@ -1676,12 +1677,12 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
         <source>SIP account</source>
-        <translation>SIP口座</translation>
+        <translation>SIPアカウント</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
         <source>Proxy</source>
-        <translation>プロキシ</translation>
+        <translation>プロキシー</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
@@ -1717,12 +1718,12 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
         <source>Show more</source>
-        <translation>増やして</translation>
+        <translation>もっと見る</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
         <source>Show less</source>
-        <translation>少ない表示</translation>
+        <translation>一部を表示</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
@@ -1782,7 +1783,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="888"/>
         <source>Appearance</source>
-        <translation>顔</translation>
+        <translation>着せかえ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="422"/>
@@ -1802,7 +1803,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
         <source>If your account has not been backed up or added to another device, your account and registered name will be irrevocably lost.</source>
-        <translation>口座がバックアップまたは他のデバイスに追加されていない場合,アカウントと登録された名前が不可逆的に失われます.</translation>
+        <translation>アカウントがバックアップまたは他のデバイスに追加されていない場合、アカウントと登録された名前は永久に失われます</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
@@ -1857,7 +1858,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="880"/>
         <source>Jami identity</source>
-        <translation>ジャミの身分</translation>
+        <translation>Jami identity</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="881"/>
@@ -1872,12 +1873,12 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="885"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
-        <translation>口座を有効にすることで,Jamiで連絡ができます.</translation>
+        <translation>アカウントを有効にすると、Jamiで連絡を受けることができます</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="891"/>
         <source>Experimental</source>
-        <translation>実験</translation>
+        <translation>エクスペリメンタル</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="894"/>
@@ -1887,7 +1888,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="897"/>
         <source>Rendezvous point</source>
-        <translation>レンデブポイント</translation>
+        <translation>Rendezvous point</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="900"/>
@@ -1922,7 +1923,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="446"/>
         <source>Advanced account settings</source>
-        <translation>アップグレードのアカウント設定</translation>
+        <translation>アカウント詳細設定</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="448"/>
@@ -2003,7 +2004,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="487"/>
         <source>Device Id</source>
-        <translation>機器識別子</translation>
+        <translation>デバイスID</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="490"/>
@@ -2074,7 +2075,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="532"/>
         <source>Open location</source>
-        <translation>オープン地点</translation>
+        <translation>フォルダーを開く</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="533"/>
@@ -2110,7 +2111,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="543"/>
         <source>No new version of Jami was found</source>
-        <translation>ジュミの新しいバージョンは見つかりませんでした</translation>
+        <translation>Jamiの新しいバージョンは見つかりませんでした</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="544"/>
@@ -2135,7 +2136,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
         <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation>この機能は複数の参加者がいる群れでコールボタンを有効にする.</translation>
+        <translation>この機能は複数の参加者がいるSwarmでコールボタンを有効にする.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
@@ -2155,12 +2156,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
         <source>Step 01</source>
-        <translation>ステップ1</translation>
+        <translation>ステップ 01</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
         <source>Step 02</source>
-        <translation>ステップ2</translation>
+        <translation>ステップ 02</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
@@ -2190,7 +2191,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
         <source>Choose a picture</source>
-        <translation>絵を選び</translation>
+        <translation>画像を選ぶ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
@@ -2200,7 +2201,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
         <source>Share freely and privately with Jami</source>
-        <translation>ジュミと自由に私的に共有する</translation>
+        <translation>自由に私的に共有するJami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
@@ -2210,7 +2211,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
         <source>more emojis</source>
-        <translation>エモジを追加</translation>
+        <translation>その他の絵文字</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
@@ -2220,7 +2221,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
         <source>In reply to</source>
-        <translation>返答として</translation>
+        <translation>メッセージへの返信</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
@@ -2251,12 +2252,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
         <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
-        <translation>呼叫をホストしたいですか?</translation>
+        <translation>通話をホストしたいですか?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="821"/>
         <source>Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.</source>
-        <translation>この群れで将来の電話をホストする専用デバイスを選択します.設定されていない場合は,電話を起動するデバイスがホストします.</translation>
+        <translation>このSwarmで将来の電話をホストする専用デバイスを選択します.設定されていない場合は,電話を起動するデバイスがホストします.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="822"/>
@@ -2306,7 +2307,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
         <source>Swarm&apos;s name</source>
-        <translation>スワームの名前</translation>
+        <translation>Swarmの名前</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="840"/>
@@ -2341,12 +2342,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
         <source>Type of swarm</source>
-        <translation>群れの種類</translation>
+        <translation>Swarmの種類</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="853"/>
         <source>Create the swarm</source>
-        <translation>群れを作れ</translation>
+        <translation>Swarmを作る</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
@@ -2507,7 +2508,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="718"/>
         <source>Hide advanced features</source>
-        <translation>進歩した機能を隠す</translation>
+        <translation>隠す</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
@@ -2537,35 +2538,36 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
         <source>Local muted</source>
-        <translation>地方の静止</translation>
+        <translation>ローカル消音</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="46"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="779"/>
         <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation>ジャミデモンと再接続しようと...</translation>
+        <translation>Jamiデーモンと再接続しようとしています...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
         <source>Could not re-connect to the Jami daemon (jamid).
 Jami will now quit.</source>
-        <translation>ジャミデモンと再接続できませんでした ジャミは辞めます</translation>
+        <translation>Jamiデーモンと再接続できませんでした
+Jamiは終了します</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
         <source>Configure a SIP account</source>
-        <translation>SIPアカウントを設定する</translation>
+        <translation>SIPアカウントを作成する</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
         <source>Join Jami</source>
-        <translation>ジャミに会える</translation>
+        <translation>Jamiに登録</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
         <source>I already have an account</source>
-        <translation>口座がある</translation>
+        <translation>すでにアカウントを持っている</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
@@ -2585,7 +2587,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="879"/>
         <source>Here is your Jami identifier, don&apos;t hesitate to share it in order to be contacted more easily!</source>
-        <translation>ジュミの身分証明書です 簡単に連絡できるように 共有してください!</translation>
+        <translation>これがあなたのJami IDです。簡単に連絡できるように共有してください!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
@@ -2601,7 +2603,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
         <source>Is swarm:</source>
-        <translation>群れです</translation>
+        <translation>Swarm?:</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
@@ -2616,7 +2618,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="788"/>
         <source>Add emoji</source>
-        <translation>エモジを追加</translation>
+        <translation>絵文字</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
@@ -2683,12 +2685,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
         <source>Start swarm</source>
-        <translation>群れを動かす</translation>
+        <translation>Swarmを動かす</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
         <source>Create swarm</source>
-        <translation>群れを作ろう</translation>
+        <translation>Swarmを作る</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
@@ -2703,7 +2705,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="209"/>
         <source>Back up account here</source>
-        <translation>口座をバックアップする</translation>
+        <translation>アカウントをバックアップする</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
@@ -2713,7 +2715,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
         <source>Jami archive files (*.gz)</source>
-        <translation>ジャーミアーカイブファイル (*.gz)</translation>
+        <translation>Jamiアーカイブファイル (*.gz)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="217"/>
@@ -2723,12 +2725,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
         <source>Mute camera</source>
-        <translation>静かなカメラ</translation>
+        <translation>カメラを無効にする</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
         <source>Unmute camera</source>
-        <translation>静かカメラ</translation>
+        <translation>カメラを有効にする</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
@@ -2738,12 +2740,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
         <source>Participant is still muted on their device</source>
-        <translation>参与者はまだデバイスで沈黙している</translation>
+        <translation>参加者がミュートしたままになっている</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
         <source>You are still muted on your device</source>
-        <translation>デバイスはまだ静かだ</translation>
+        <translation>まだミュートされています</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
@@ -2763,12 +2765,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
         <source>Would you really like to block this conversation?</source>
-        <translation>本当にこの会話を 阻止したいですか?</translation>
+        <translation>本当にこの会話をブロックしますか？</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
         <source>Block swarm</source>
-        <translation>ブロック群</translation>
+        <translation>Swarmをブロック</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
@@ -2854,7 +2856,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>選択したユーザー名は,ジャミで簡単に見つけられる.ユーザー名は選択されていない場合,ランダムに生成された40文字の識別子は,このアカウントにユーザー名として割り当てられます.この識別子で見つけられ,アクセスすることがより困難です.</translation>
+        <translation>選択したユーザー名は,Jamiで簡単に見つけられる.ユーザー名は選択されていない場合,ランダムに生成された40文字の識別子は,このアカウントにユーザー名として割り当てられます.この識別子で見つけられ,アクセスすることがより困難です.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="424"/>
@@ -2870,12 +2872,12 @@ The account will be lost if this device is lost or the application is uninstalle
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
         <source>Display advanced settings</source>
-        <translation>進階設定を表示する</translation>
+        <translation>表示</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
         <source>Hide advanced settings</source>
-        <translation>進階設定を隠す</translation>
+        <translation>隠す</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="449"/>
@@ -2916,7 +2918,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="491"/>
         <source>Dark</source>
-        <translation>暗闇</translation>
+        <translation>ダーク</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="492"/>
@@ -2971,7 +2973,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
         <source>(Experimental) Enable call support for swarm</source>
-        <translation>(実験) 群れの呼び出しサポートを有効にする</translation>
+        <translation>(エクスペリメンタル) Swarmの通話サポート</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
@@ -3067,7 +3069,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
         <source>Answer an incoming call</source>
-        <translation>受信電話に答え</translation>
+        <translation>着信に答える</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
@@ -3318,7 +3320,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="677"/>
         <source>Installed plugins</source>
-        <translation>プラグインをインストール</translation>
+        <translation>インストールしたプラグイン</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="678"/>
@@ -3408,7 +3410,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="709"/>
         <source>Account QR</source>
-        <translation>口座QR</translation>
+        <translation>アカウントQR</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="712"/>
@@ -3435,12 +3437,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="716"/>
         <source>Advanced features</source>
-        <translation>高度な機能</translation>
+        <translation>その他の接続方法</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="717"/>
         <source>Show advanced features</source>
-        <translation>進歩した機能を表示する</translation>
+        <translation>詳細設定を表示する</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="719"/>
@@ -3540,7 +3542,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="46"/>
         <source>Focus conversations list</source>
-        <translation>集中する会話のリスト</translation>
+        <translation>会話のリストを集中する</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="51"/>
@@ -3660,7 +3662,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="181"/>
         <source>Answer an incoming call</source>
-        <translation>受信電話に答え</translation>
+        <translation>着信に答える</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="186"/>
@@ -3680,7 +3682,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="201"/>
         <source>Stop camera</source>
-        <translation>ストップカメラ</translation>
+        <translation>カメラを止める</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="205"/>
@@ -3726,7 +3728,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="369"/>
         <source>&amp;Show Jami</source>
-        <translation>ジュミを表示</translation>
+        <translation>Jamiを表示</translation>
     </message>
 </context>
 <context>
@@ -3821,7 +3823,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="374"/>
         <source>Incoming transfer</source>
-        <translation>到着する転送</translation>
+        <translation>受信転送</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="376"/>
@@ -3848,7 +3850,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="703"/>
         <source>just now</source>
-        <translation>ちょうど今</translation>
+        <translation>たった今</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
@@ -3935,7 +3937,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="358"/>
         <source>Swarm created</source>
-        <translation>群れが生まれました</translation>
+        <translation>Swarmを作りました</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="174"/>
@@ -4350,17 +4352,17 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
         <source>What does Jami mean?</source>
-        <translation>ジャミってどういう意味?</translation>
+        <translation>Jamiってどういう意味?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="87"/>
         <source>What is the green dot next to my account?</source>
-        <translation>私の口座の隣にある緑の点は何ですか?</translation>
+        <translation>私のアカウントの隣にある緑の点は何ですか?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="83"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
-        <translation>名前&quot;ジャミ&quot;は,名詞として&quot;コミュニティ&quot;と&quot;一緒に&quot;は&quot;代詞&quot;という意味のスワヒリ語&quot;ジャミ&quot;から生まれました.</translation>
+        <translation>名前&quot;Jami&quot;は,名詞として&quot;コミュニティ&quot;と&quot;一緒に&quot;は&quot;代詞&quot;という意味のスワヒリ語&quot;jamii&quot;から生まれました.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="79"/>
@@ -4375,7 +4377,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="94"/>
         <source>Why should I back up my account?</source>
-        <translation>なぜ自分の口座をバックアップすべきか?</translation>
+        <translation>なぜ自分のアカウントをバックアップすべきか?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="96"/>
@@ -4390,17 +4392,17 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="107"/>
         <source>What is a Jami account?</source>
-        <translation>ジャミ口座とは?</translation>
+        <translation>Jamiアカウントとは?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="109"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation>ジャーミアカウントは非対称な暗号鍵です. あなたのアカウントは,あなたの公開鍵の指紋であるジャーミIDによって識別されます.</translation>
+        <translation>Jamiアカウントは非対称な暗号鍵です. あなたのアカウントは,あなたの公開鍵の指紋であるJami IDによって識別されます.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="113"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation>ジュミアカウントを作成するにはどのような情報が必要ですか?</translation>
+        <translation>Jamiアカウントを作成するにはどのような情報が必要ですか?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="115"/>
@@ -4450,17 +4452,17 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="135"/>
         <source>How can I back up my account?</source>
-        <translation>口座をバックアップするには?</translation>
+        <translation>アカウントをバックアップするには?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation>アカウント設定では,アカウントのバックアップを作成するボタンが表示されます.</translation>
+        <translation>アカウント設定では、アカウントのバックアップを作成するボタンが表示されます</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="140"/>
         <source>What happens when I delete my account?</source>
-        <translation>アカウントを削除するとどうなるか?</translation>
+        <translation>アカウントを削除するとどうなるの?</translation>
     </message>
 </context>
 <context>
