@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43745403_3bb055ed",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 29
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T17:35:49Z",
+      "side": 1,
+      "message": "not related to this patch",
+      "range": {
+        "startLine": 378,
+        "startChar": 19,
+        "endLine": 378,
+        "endChar": 44
+      },
+      "revId": "17f65af97bfa09edb55f3dce46e1f5ce5e252e61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f285c485_bbbb291e",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T17:35:49Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 56,
+        "startChar": 15,
+        "endLine": 56,
+        "endChar": 21
+      },
+      "revId": "17f65af97bfa09edb55f3dce46e1f5ce5e252e61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1885e1af_b7bd7a86",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T17:35:49Z",
+      "side": 1,
+      "message": "un-needed because of the return, automatically done",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 20
+      },
+      "revId": "17f65af97bfa09edb55f3dce46e1f5ce5e252e61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1823a71c_584d0c35",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 29
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T17:35:49Z",
+      "side": 1,
+      "message": "2023",
+      "range": {
+        "startLine": 2,
+        "startChar": 15,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "17f65af97bfa09edb55f3dce46e1f5ce5e252e61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b52aae6_f1258f41",
+        "filename": "src/app/mainview/components/CachedImage.qml",
+        "patchSetId": 29
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T17:35:49Z",
+      "side": 1,
+      "message": "avoid this. Because if a svg is renamed as .png this will not work.\n\nOne way to do this (if image is downloaded) is to get the mimetype like MessagesAdapter::getMediaInfo",
+      "range": {
+        "startLine": 69,
+        "startChar": 14,
+        "endLine": 71,
+        "endChar": 5
+      },
+      "revId": "17f65af97bfa09edb55f3dce46e1f5ce5e252e61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "153f91a1_a48219a4",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 29
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T17:35:49Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 158,
+        "startChar": 24,
+        "endLine": 158,
+        "endChar": 47
+      },
+      "revId": "17f65af97bfa09edb55f3dce46e1f5ce5e252e61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a299287_1bda2d59",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 29
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T17:35:49Z",
+      "side": 1,
+      "message": "used only for testing purpose, this should at least be documented. And please, install the clang-format hook, const is mis-placed.",
+      "range": {
+        "startLine": 159,
+        "startChar": 24,
+        "endLine": 159,
+        "endChar": 40
+      },
+      "revId": "17f65af97bfa09edb55f3dce46e1f5ce5e252e61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
