@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3395676d_5b6f5a13",
+        "filename": "src/app/mainview/components/WelcomePage.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T19:45:54Z",
+      "side": 1,
+      "message": "hasTitle?",
+      "range": {
+        "startLine": 81,
+        "startChar": 15,
+        "endLine": 81,
+        "endChar": 66
+      },
+      "revId": "07778e74be5db8648fd5d9e166bdb37871dba986",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dd8972d_efd771ff",
+        "filename": "src/app/mainview/components/WelcomePage.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T19:45:54Z",
+      "side": 1,
+      "message": "hasDescription?",
+      "range": {
+        "startLine": 82,
+        "startChar": 22,
+        "endLine": 82,
+        "endChar": 78
+      },
+      "revId": "07778e74be5db8648fd5d9e166bdb37871dba986",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0d31459_17fc562b",
+        "filename": "src/app/settingsview/components/ManageAccountPage.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T19:45:54Z",
+      "side": 1,
+      "message": "wrong name",
+      "range": {
+        "startLine": 143,
+        "startChar": 16,
+        "endLine": 143,
+        "endChar": 22
+      },
+      "revId": "07778e74be5db8648fd5d9e166bdb37871dba986",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

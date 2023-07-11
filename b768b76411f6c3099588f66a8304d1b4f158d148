@@ -213,6 +213,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29e3c588_e6ec1527",
+        "filename": "src/app/mainview/components/WelcomeInfo.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T19:45:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d19e03ea_87bc34b8",
+      "range": {
+        "startLine": 118,
+        "startChar": 27,
+        "endLine": 118,
+        "endChar": 33
+      },
+      "revId": "b768b76411f6c3099588f66a8304d1b4f158d148",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "383e0551_c9d7d747",
