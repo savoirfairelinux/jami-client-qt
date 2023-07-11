@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e1a3f0c_f002e42b",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-11T18:41:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef348632_122e7d7e",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 22
+      },
+      "revId": "b768b76411f6c3099588f66a8304d1b4f158d148",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a51ea176_a790aaae",
