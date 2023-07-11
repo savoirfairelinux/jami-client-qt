@@ -42,19 +42,23 @@ Rectangle {
         id: swarmProfileDetails
         anchors.fill: parent
 
-        ColumnLayout {
+        Item {
             id: header
 
             anchors.top: parent.top
             anchors.topMargin: JamiTheme.swarmDetailsPageTopMargin
             anchors.left: parent.left
             anchors.right: parent.right
+            height: headerRow.implicitHeight + JamiTheme.preferredMarginSize + settingsTabButton.height
 
-            spacing: JamiTheme.preferredMarginSize
 
             RowLayout {
+                id: headerRow
                 spacing: 15
-                Layout.leftMargin: 15
+                anchors.top: parent.top
+                anchors.leftMargin: 15
+                anchors.left: parent.left
+                anchors.right: parent.right
 
                 PhotoboothView {
                     id: currentAccountAvatar
@@ -162,8 +166,11 @@ Rectangle {
 
                 currentIndex: 0
 
-                Layout.preferredWidth: root.width
-                Layout.preferredHeight: settingsTabButton.height
+                anchors.top: headerRow.bottom
+                anchors.topMargin: JamiTheme.preferredMarginSize
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: settingsTabButton.height
 
                 property string currentItemName: itemAt(currentIndex).objectName
 
