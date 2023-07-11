@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b681676a_f17d1615",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 27
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-11T14:31:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66edfc61_cc5b6f55",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7df9a910_9058090f",
@@ -41,6 +65,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82090375_a73eb7cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-11T14:31:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7df9a910_9058090f",
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8bb3a95c_63afff4a",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-07-07T11:12:55Z",
       "side": 1,
       "message": "date is only 2023, also no need for author as it\u0027s generally incorrect/not updated",
+      "range": {
+        "startLine": 2,
+        "startChar": 24,
+        "endLine": 3,
+        "endChar": 24
+      },
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f822b57_dc62dad5",
+        "filename": "src/app/imagedownloader.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-11T14:31:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bb3a95c_63afff4a",
       "range": {
         "startLine": 2,
         "startChar": 24,
@@ -87,6 +153,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "340bb78c_50efcc4b",
+        "filename": "src/app/imagedownloader.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-11T14:31:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39fe9a95_eeb897e3",
+      "range": {
+        "startLine": 34,
+        "startChar": 21,
+        "endLine": 34,
+        "endChar": 41
+      },
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09958cf8_96db0609",
@@ -110,6 +200,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae4cec5a_5d00d86d",
+        "filename": "src/app/mainview/components/CachedImage.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-11T14:31:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09958cf8_96db0609",
+      "range": {
+        "startLine": 79,
+        "startChar": 38,
+        "endLine": 79,
+        "endChar": 40
+      },
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae6e0f63_7549ed15",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-07-07T11:12:55Z",
       "side": 1,
       "message": "Finally, a unit-test should be created. you can use a file:/// instead a URL for the test, but at least it will test error/success if image exists or not.",
+      "range": {
+        "startLine": 86,
+        "startChar": 16,
+        "endLine": 86,
+        "endChar": 27
+      },
+      "revId": "0b00bad96a0da561f912be8e2765cf5eccafe8a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "330a7b29_3d805887",
+        "filename": "src/app/mainview/components/CachedImage.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-11T14:31:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae6e0f63_7549ed15",
       "range": {
         "startLine": 86,
         "startChar": 16,
