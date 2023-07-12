@@ -125,6 +125,30 @@
       },
       "revId": "f269ffb6974da4d5c64149643645654e74ee6bb6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f04fcf68_ffa4853c",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-12T13:10:26Z",
+      "side": 1,
+      "message": "it\u0027s Andreas who did that",
+      "parentUuid": "4190cf7c_5d3ab31c",
+      "range": {
+        "startLine": 452,
+        "startChar": 18,
+        "endLine": 454,
+        "endChar": 15
+      },
+      "revId": "f269ffb6974da4d5c64149643645654e74ee6bb6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

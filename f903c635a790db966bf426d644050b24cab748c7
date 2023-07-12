@@ -22,6 +22,30 @@
       },
       "revId": "f903c635a790db966bf426d644050b24cab748c7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc22b580_a0418fe3",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-12T13:10:26Z",
+      "side": 0,
+      "message": "it\u0027s to homogenize all the colors, otherwise i need to make another review for this ?",
+      "parentUuid": "3372538f_14f3a9ed",
+      "range": {
+        "startLine": 93,
+        "startChar": 25,
+        "endLine": 93,
+        "endChar": 34
+      },
+      "revId": "f903c635a790db966bf426d644050b24cab748c7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
