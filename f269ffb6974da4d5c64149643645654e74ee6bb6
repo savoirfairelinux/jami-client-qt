@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "76ed97a5_c426c0b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-12T12:24:58Z",
+      "side": 1,
+      "message": "hide preview button if not implemented (it can be done on another patch)",
+      "revId": "f269ffb6974da4d5c64149643645654e74ee6bb6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1629918d_4453e68e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-12T12:24:58Z",
+      "side": 1,
+      "message": "Tooltip for switching between Enter/Shift+Enter got an empty shortcut",
+      "range": {
+        "startLine": 7,
+        "startChar": 20,
+        "endLine": 7,
+        "endChar": 27
+      },
+      "revId": "f269ffb6974da4d5c64149643645654e74ee6bb6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "10ee4c7f_0e8e2f99",
@@ -14,6 +54,75 @@
       "writtenOn": "2023-07-11T21:23:49Z",
       "side": 1,
       "message": "Do not implement preview for the moment",
+      "revId": "f269ffb6974da4d5c64149643645654e74ee6bb6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9399c9d_a96bc9d8",
+        "filename": "src/app/commoncomponents/SharePopup.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-12T12:24:58Z",
+      "side": 1,
+      "message": "Franck Laurent !\u003d Nicolas Vengeon !\u003d you",
+      "range": {
+        "startLine": 3,
+        "startChar": 8,
+        "endLine": 3,
+        "endChar": 64
+      },
+      "revId": "f269ffb6974da4d5c64149643645654e74ee6bb6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28ed19e4_39483c4c",
+        "filename": "src/app/mainview/components/Searchbar.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-12T12:24:58Z",
+      "side": 1,
+      "message": "can be splitted in multiple lines to avoid multiple ternary operations on same line",
+      "range": {
+        "startLine": 79,
+        "startChar": 20,
+        "endLine": 79,
+        "endChar": 36
+      },
+      "revId": "f269ffb6974da4d5c64149643645654e74ee6bb6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4190cf7c_5d3ab31c",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-12T12:24:58Z",
+      "side": 1,
+      "message": "needed?",
+      "range": {
+        "startLine": 452,
+        "startChar": 18,
+        "endLine": 454,
+        "endChar": 15
+      },
       "revId": "f269ffb6974da4d5c64149643645654e74ee6bb6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

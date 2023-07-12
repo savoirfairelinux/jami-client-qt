@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3372538f_14f3a9ed",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-12T12:24:58Z",
+      "side": 0,
+      "message": "not related to messagebar",
+      "range": {
+        "startLine": 93,
+        "startChar": 25,
+        "endLine": 93,
+        "endChar": 34
+      },
+      "revId": "f903c635a790db966bf426d644050b24cab748c7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
