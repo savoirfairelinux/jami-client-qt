@@ -120,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2653198_f5c2ec9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-12T13:54:33Z",
+      "side": 1,
+      "message": "i can fix it but, if we want to do things properly, we need to rethink the way we manage these pop-ups. maybe we should do it in an other patch",
+      "parentUuid": "a66bf3e0_70cb38a0",
+      "range": {
+        "startLine": 10,
+        "startChar": 31,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "319d1194e6f4e87fe1b2a73f13a417550c407368",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5155ff9b_1582cfe0",
         "filename": "/COMMIT_MSG",
         "patchSetId": 8
