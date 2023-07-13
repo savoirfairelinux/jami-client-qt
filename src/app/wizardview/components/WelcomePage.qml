@@ -201,7 +201,6 @@ Rectangle {
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: {
-                boldFont = !boldFont;
                 showAlreadyHave = !showAlreadyHave;
                 showAdvanced = false;
                 fromDeviceButton.visible = showAlreadyHave;
@@ -278,7 +277,6 @@ Rectangle {
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: {
-                boldFont = !boldFont;
                 showAdvanced = !showAdvanced;
                 showAlreadyHave = false;
                 newRdvButton.visible = showAdvanced;
