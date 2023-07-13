@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "378352c0_f6f572fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 24
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-13T15:36:22Z",
+      "side": 1,
+      "message": "in multiline mode when text  formatting is off, it should be shown like mattermost (the 3 buttons on a separate line at the bottom, like formatting is on, but only 3 logos) to avoid to loose the space",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 20
+      },
+      "revId": "74777aea87ed81882887bb03af7737f5974173c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
