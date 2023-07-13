@@ -27,7 +27,6 @@ AbstractButton {
     id: root
 
     property bool autoAccelerator: false
-    property bool boldFont: false
     property bool primary: false
     property bool secondary: false
     property bool tertiary: false
@@ -167,7 +166,6 @@ AbstractButton {
                 leftPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textLeftPadding
                 rightPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textRightPadding
                 text: root.text
-                font.weight: (root.hovered && root.enabled) || boldFont ? Font.Bold : Font.Medium
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: root.textAlignment
