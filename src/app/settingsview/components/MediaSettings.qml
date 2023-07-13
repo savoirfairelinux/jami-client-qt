@@ -118,7 +118,7 @@ ColumnLayout {
                 mediaListWidget.currentIndex = index;
             }
 
-            onMediaCodecStateChange: {
+            onMediaCodecStateChange: function(idToSet, isToBeEnabled) {
                 AvAdapter.enableCodec(idToSet, isToBeEnabled);
                 updateCodecs();
             }
