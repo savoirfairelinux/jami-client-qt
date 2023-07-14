@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8165a401_11c60ed3",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 3427,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-14T12:57:27Z",
+      "side": 1,
+      "message": "Ideally we shouldn\u0027t search anything. Maybe add to contactModel directly. Because this is a bit ugly (moreover the signal is from contactModel)",
+      "range": {
+        "startLine": 3419,
+        "startChar": 8,
+        "endLine": 3427,
+        "endChar": 5
+      },
+      "revId": "d500790ea00d0f706a45c0f09370611017320dec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
