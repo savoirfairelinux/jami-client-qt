@@ -277,7 +277,7 @@ def build(config_str, qt_dir, tests):
         "-DLIBJAMI_INCLUDE_DIR=" + daemon_dir + "\\src\\jami",
         "-DCMAKE_SYSTEM_VERSION=" + WIN_SDK_VERSION,
         "-DCMAKE_BUILD_TYPE=" + "Release",
-        "-DENABLE_TESTS=" + str(tests).lower(),
+        "-DBUILD_TESTING=" + str(tests).lower(),
         "-DBETA=" + str((0, 1)[config_str == "Beta"]),
     ]
 

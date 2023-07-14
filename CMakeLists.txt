@@ -30,7 +30,7 @@ else()
 endif()
 
 option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" OFF)
-option(ENABLE_TESTS "Build with tests" OFF)
+option(BUILD_TESTING "Build with tests" OFF)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
 if(WITH_WEBENGINE)
   add_definitions(-DWITH_WEBENGINE)
@@ -305,12 +305,18 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/htmlparser.h
   ${APP_SRC_DIR}/imagedownloader.h)
 
+set(TARGET ${CMAKE_LIBRARY_ARCHITECTURE})
+if (NOT TARGET)
+    execute_process(COMMAND gcc -dumpmachine  COMMAND tr -d '\n' OUTPUT_VARIABLE TARGET)
+endif()
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
+  /usr/include/ffmpeg
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR}/native-${TARGET}/ffmpeg
   ${LIBJAMI_CONTRIB_DIR}/apple-darwin/include/
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
@@ -784,7 +790,7 @@ qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})
 
 # tests
-if(ENABLE_TESTS)
+if(BUILD_TESTING)
   message("Add Jami tests")
   add_subdirectory(${TESTS_DIR})
 endif()

@@ -39,7 +39,7 @@
 
 #include <clocale>
 
-#ifndef ENABLE_TESTS
+#ifndef BUILD_TESTING
 
 static char**
 parseInputArgument(int& argc, char* argv[], QList<char*> argsToParse)

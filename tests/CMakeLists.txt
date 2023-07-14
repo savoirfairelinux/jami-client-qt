@@ -48,7 +48,7 @@ target_include_directories(test_common_obj PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 target_link_directories(test_common_obj PRIVATE ${CLIENT_LINK_DIRS})
 target_link_libraries(test_common_obj ${QML_TEST_LIBS})
-target_compile_definitions(test_common_obj PRIVATE ENABLE_TESTS="ON")
+target_compile_definitions(test_common_obj PRIVATE BUILD_TESTING="ON")
 
 set(COMMON_TESTS_SOURCES
     ${QML_RESOURCES}
@@ -99,7 +99,7 @@ set(ALL_TESTS_INCLUDES
 function(setup_test TEST_NAME TEST_SOURCES TEST_INPUT)
     string(TOLOWER ${TEST_NAME} TEST_BINARY_NAME)
     add_executable(${TEST_BINARY_NAME} ${TEST_SOURCES})
-    target_compile_definitions(${TEST_BINARY_NAME} PRIVATE ENABLE_TESTS="ON")
+    target_compile_definitions(${TEST_BINARY_NAME} PRIVATE BUILD_TESTING="ON")
     target_link_libraries(${TEST_BINARY_NAME} ${ALL_TESTS_LIBS})
     target_include_directories(${TEST_BINARY_NAME} PUBLIC ${ALL_TESTS_INCLUDES})
     if(MSVC)

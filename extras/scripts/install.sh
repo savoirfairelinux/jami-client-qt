@@ -29,6 +29,7 @@ export OSTYPE
   # -W: disable libwrap and shared library
   # -w: do not use Qt WebEngine
   # -a: arch to build
+  # -t: Enable testing
 
 set -ex
 
@@ -43,9 +44,10 @@ proc='1'
 priv_install=true
 enable_libwrap=true
 enable_webengine=true
+enable_testing=false
 arch=''
 
-while getopts gsc:dQ:P:p:uWwa: OPT; do
+while getopts gsc:dQ:P:p:uWwta: OPT; do
   case "$OPT" in
     g)
       global='true'
@@ -73,6 +75,9 @@ while getopts gsc:dQ:P:p:uWwa: OPT; do
     ;;
     w)
       enable_webengine='false'
+    ;;
+    t)
+      enable_testing='true'
     ;;
     a)
       arch="${OPTARG}"
@@ -111,36 +116,21 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     sh "${TOP}"/extras/scripts/build_daemon_macos.sh -a "$arch" -d "$debug"
 else
     cd "$DAEMON"
+    mkdir -p "${BUILD_DIR}"
+    cd "${BUILD_DIR}"
 
-    # Build the contribs.
-    mkdir -p contrib/native
-    (
-        cd contrib/native
-        ../bootstrap ${prefix:+"--prefix=$prefix"}
-        make -j"${proc}"
-    )
-
-    if [[ "${enable_libwrap}" != "true" ]]; then
-      # Disable shared if requested
-      if [[ "$OSTYPE" != "darwin"* ]]; then
-        CONFIGURE_FLAGS+=" --disable-shared"
-      fi
+    # TODO dbus / testing
+    daemon_cmake_flags=(-DCMAKE_BUILD_TYPE="${BUILD_TYPE}"
+                        -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}")
+    if [ "${enable_libwrap}" = "false" ]; then
+        daemon_cmake_flags+=(-DJAMI_DBUS=On)
     fi
-
-    BUILD_TYPE="Release"
-    if [ "${debug}" = "true" ]; then
-      BUILD_TYPE="Debug"
-      CONFIGURE_FLAGS+=" --enable-debug"
-    fi
-
-    # Build the daemon itself.
-    test -f configure || ./autogen.sh
-
-    if [ "${global}" = "true" ]; then
-        ./configure ${CONFIGURE_FLAGS} ${prefix:+"--prefix=$prefix"}
+    if [ "${enable_testing}" = "true" ]; then
+        daemon_cmake_flags+=(-DBUILD_TESTING=On)
     else
-        ./configure ${CONFIGURE_FLAGS} --prefix="${INSTALL_DIR}"
+        daemon_cmake_flags+=(-DBUILD_TESTING=Off)
     fi
+    cmake .. "${daemon_cmake_flags[@]}"
     make -j"${proc}" V=1
     make_install "${global}" "${priv_install}"
 
@@ -203,6 +193,11 @@ if [ "${global}" = "true" ]; then
 else
     client_cmake_flags+=(-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}"
                          -DWITH_DAEMON_SUBMODULE=true)
+fi
+if [ "${enable_testing}" = "true" ]; then
+    client_cmake_flags+=(-DBUILD_TESTING=On)
+else
+    client_cmake_flags+=(-DBUILD_TESTING=Off)
 fi
 
 echo "info: Configuring $client client with flags: ${client_cmake_flags[*]}"

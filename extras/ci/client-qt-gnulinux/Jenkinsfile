@@ -113,7 +113,7 @@ pipeline {
                                     cd ${dockerTopDir}
                                     ./build.py --install --qt /usr/lib/libqt-jami/
                                     cd build
-                                    cmake .. -DENABLE_TESTS=True
+                                    cmake .. -DBUILD_TESTING=True
                                     make -j${cpuCount}
                                 """)
                                 // Run tests

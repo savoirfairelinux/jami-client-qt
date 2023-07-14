@@ -158,7 +158,7 @@ public:
     Q_INVOKABLE QString getStandardTempLocation();
     Q_INVOKABLE QString getMimeName(const QString& filePath) const;
 
-#ifdef ENABLE_TESTS
+#ifdef BUILD_TESTING
     Q_INVOKABLE QString createDummyImage() const;
 #endif
 Q_SIGNALS:
