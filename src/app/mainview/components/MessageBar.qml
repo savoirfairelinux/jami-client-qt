@@ -61,7 +61,8 @@ Rectangle {
 
     ComboBox {
         id: showMoreButton
-        width: JamiTheme.chatViewFooterButtonSize
+        visible: !CurrentConversation.isSip
+        width: CurrentConversation.isSip? 0 : JamiTheme.chatViewFooterButtonSize
         height: JamiTheme.chatViewFooterButtonSize
 
         anchors.leftMargin: marginSize
