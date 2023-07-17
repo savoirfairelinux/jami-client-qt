@@ -304,6 +304,9 @@ Rectangle {
                     }
 
                     onHeightChanged: {
+                        if (loader.item === null) {
+                            return;
+                        }
                         Qt.callLater(loader.item.scrollToBottom);
                     }
 
