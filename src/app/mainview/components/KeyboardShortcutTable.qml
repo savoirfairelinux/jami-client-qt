@@ -255,6 +255,16 @@ Window {
             shortcut2: ""
             description: qsTr("Ordered list")
         }
+        ListElement {
+            shortcut: "Shift + Alt + T"
+            shortcut2: ""
+            description: qsTr("Show Formatting")
+        }
+        ListElement {
+            shortcut: "Shift + Alt + P"
+            shortcut2: ""
+            description: qsTr("Show Preview")
+        }
     }
 
     Rectangle {
