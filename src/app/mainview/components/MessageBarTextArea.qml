@@ -22,6 +22,8 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
+import QtQuick.Layouts
+import SortFilterProxyModel 0.2
 
 JamiFlickable {
     id: root
@@ -36,6 +38,7 @@ JamiFlickable {
     property alias selectedText: textArea.selectedText
     property alias selectionStart: textArea.selectionStart
     property alias selectionEnd: textArea.selectionEnd
+    property bool showPreview: false
 
     ScrollBar.vertical.visible: textArea.text
     ScrollBar.horizontal.visible: textArea.text
@@ -73,8 +76,61 @@ JamiFlickable {
     interactive: true
     attachedFlickableMoving: contentHeight > height || root.moving
 
+    TextArea {
+        id: textAreaPreview
+
+        overwriteMode: false
+        readOnly: true
+
+        height: this.paintedHeight < textArea.height ? textArea.height : this.paintedHeight
+        width: textArea.width
+
+        onPressAndHold: console.log("?????")
+
+        visible: showPreview
+        leftPadding: JamiTheme.scrollBarHandleSize
+        rightPadding: JamiTheme.scrollBarHandleSize
+        topPadding: 0
+        bottomPadding: 0
+
+        //text: textArea.text
+        Connections {
+            target: textArea
+            function onTextChanged() {
+                MessagesAdapter.parseMessage("", textArea.text, false, "", "");
+            }
+        }
+
+        Connections {
+            target: MessagesAdapter
+            function onMessageParsed(messageId, messageText) {
+                if (messageId === "") {
+                    textAreaPreview.text = messageText;
+                }
+            }
+        }
+
+        verticalAlignment: TextEdit.AlignVCenter
+
+        font.pointSize: JamiTheme.textFontSize + 2
+        font.hintingPreference: Font.PreferNoHinting
+
+        color: JamiTheme.textColor
+        wrapMode: TextEdit.Wrap
+        textFormat: TextEdit.RichText
+        placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
+        horizontalAlignment: Text.AlignLeft
+
+        background: Rectangle {
+            border.width: 0
+            color: "transparent"
+        }
+    }
+
     TextArea.flickable: TextArea {
         id: textArea
+
+        visible: !showPreview
 
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
@@ -97,7 +153,7 @@ JamiFlickable {
 
         background: Rectangle {
             border.width: 0
-            color: JamiTheme.transparentColor
+            color: "transparent"
         }
 
         onReleased: function (event) {
