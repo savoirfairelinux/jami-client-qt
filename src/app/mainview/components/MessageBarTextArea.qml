@@ -22,6 +22,8 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
+import QtQuick.Layouts
+import SortFilterProxyModel 0.2
 
 JamiFlickable {
     id: root
@@ -36,11 +38,16 @@ JamiFlickable {
     property alias selectedText: textArea.selectedText
     property alias selectionStart: textArea.selectionStart
     property alias selectionEnd: textArea.selectionEnd
+    property bool showPreview: false
 
     ScrollBar.vertical.visible: textArea.text
     ScrollBar.horizontal.visible: textArea.text
 
     signal sendMessagesRequired
+
+    function heightBinding() {
+        textArea.height = Qt.binding(() => textArea.paintedHeight);
+    }
 
     function selectText(start, end) {
         textArea.select(start, end);
@@ -71,10 +78,71 @@ JamiFlickable {
     }
 
     interactive: true
-    attachedFlickableMoving: contentHeight > height || root.moving
+    attachedFlickableMoving: textAreaPreview.height > height || textArea.height > height || root.moving
+
+    contentHeight: showPreview ? textAreaPreview.height : textArea.height
+
+    onShowPreviewChanged: {
+        if (showPreview) {
+            textAreaPreview.height = textArea.lineCount === 1 ? textArea.height : textAreaPreview.paintedHeight;
+        }
+        heightBinding();
+    }
+
+    TextArea {
+        id: textAreaPreview
+
+        onWidthChanged: root.height = this.height
+
+        overwriteMode: false
+        readOnly: true
+
+        height: textArea.lineCount === 1 ? textArea.height : this.paintedHeight
+        width: textArea.width
+
+        visible: showPreview
+        leftPadding: JamiTheme.scrollBarHandleSize
+        rightPadding: JamiTheme.scrollBarHandleSize
+        topPadding: 0
+        bottomPadding: 0
+
+        Connections {
+            target: textArea
+            function onTextChanged() {
+                MessagesAdapter.parseMessage("", textArea.text, false, "", "");
+            }
+        }
+
+        Connections {
+            target: MessagesAdapter
+            function onMessageParsed(messageId, messageText) {
+                if (messageId === "") {
+                    textAreaPreview.text = messageText;
+                }
+            }
+        }
+
+        verticalAlignment: TextEdit.AlignVCenter
+
+        font.pointSize: JamiTheme.textFontSize + 2
+        font.hintingPreference: Font.PreferNoHinting
+
+        color: JamiTheme.textColor
+        wrapMode: TextEdit.Wrap
+        textFormat: TextEdit.RichText
+        placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
+        horizontalAlignment: Text.AlignLeft
+
+        background: Rectangle {
+            border.width: 0
+            color: "transparent"
+        }
+    }
 
     TextArea.flickable: TextArea {
         id: textArea
+
+        visible: !showPreview
 
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
@@ -82,6 +150,8 @@ JamiFlickable {
         bottomPadding: 0
 
         persistentSelection: true
+
+        height: this.paintedHeight
 
         verticalAlignment: TextEdit.AlignVCenter
 
@@ -97,7 +167,7 @@ JamiFlickable {
 
         background: Rectangle {
             border.width: 0
-            color: JamiTheme.transparentColor
+            color: "transparent"
         }
 
         onReleased: function (event) {
@@ -129,7 +199,8 @@ JamiFlickable {
             } else if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
                 const isEnterNewLine = UtilsAdapter.getAppValue(Settings.Key.ChatViewEnterIsNewLine);
                 const isShiftPressed = (keyEvent.modifiers & Qt.ShiftModifier);
-                if ((isEnterNewLine && isShiftPressed) || (!isEnterNewLine && !isShiftPressed)) {
+                const isCtrlPressed = (keyEvent.modifiers & Qt.ControlModifier);
+                if (!isEnterNewLine && !isShiftPressed || isCtrlPressed) {
                     root.sendMessagesRequired();
                     keyEvent.accepted = true;
                 }
