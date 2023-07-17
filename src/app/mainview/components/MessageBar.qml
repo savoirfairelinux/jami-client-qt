@@ -57,12 +57,12 @@ Rectangle {
     signal emojiButtonClicked
 
     color: JamiTheme.transparentColor
-    height: showTypo || multiLine ? textArea.height + 25 + 3 * marginSize : textArea.height + marginSize
+    height: showTypo || multiLine ? textArea.height + 25 + 3 * marginSize + 1 : textArea.height + marginSize + 1
 
     ComboBox {
         id: showMoreButton
         visible: !CurrentConversation.isSip
-        width: CurrentConversation.isSip? 0 : JamiTheme.chatViewFooterButtonSize
+        width: CurrentConversation.isSip ? 0 : JamiTheme.chatViewFooterButtonSize
         height: JamiTheme.chatViewFooterButtonSize
 
         anchors.leftMargin: marginSize
@@ -107,7 +107,7 @@ Rectangle {
 
         popup: SharePopup {
             id: sharePopup
-            y: -150
+            y: -180
             x: -20
 
             menuMoreButton: listViewMoreButton.menuMoreButton
@@ -161,13 +161,12 @@ Rectangle {
                 id: textArea
 
                 objectName: "messageBarTextArea"
-                maxWidth: rectangle.width - messageBarRowLayout.width - 31
+                maxWidth: rectangle.width - messageBarRowLayout.width - 35
 
-                enabled: !showPreview
-
+                //enabled: !showPreview
                 Layout.row: showTypo || multiLine ? 0 : 1
                 Layout.column: showTypo || multiLine ? 0 : 0
-                Layout.columnSpan: showTypo || multiLine ? 2 : 1
+                //Layout.columnSpan: showTypo || multiLine ? 2 : 1
 
                 // forward activeFocus to the actual text area object
                 onActiveFocusChanged: {
@@ -193,34 +192,54 @@ Rectangle {
 
                 property var markdownShortCut: {
                     "Bold": function () {
-                        listViewTypoFirst.itemAtIndex(0).action.triggered();
+                        if (!showPreview) {
+                            listViewTypoFirst.itemAtIndex(0).action.triggered();
+                        }
                     },
                     "Italic": function () {
-                        listViewTypoFirst.itemAtIndex(1).action.triggered();
+                        if (!showPreview) {
+                            listViewTypoFirst.itemAtIndex(1).action.triggered();
+                        }
                     },
                     "Barre": function () {
-                        listViewTypoFirst.itemAtIndex(2).action.triggered();
+                        if (!showPreview) {
+                            listViewTypoFirst.itemAtIndex(2).action.triggered();
+                        }
                     },
                     "Heading": function () {
-                        listViewTypoFirst.itemAtIndex(3).action.triggered();
+                        if (!showPreview) {
+                            listViewTypoFirst.itemAtIndex(3).action.triggered();
+                        }
                     },
                     "Link": function () {
-                        listViewTypoSecond.itemAtIndex(0).action.triggered();
+                        if (!showPreview) {
+                            listViewTypoSecond.itemAtIndex(0).action.triggered();
+                        }
                     },
                     "Code": function () {
-                        listViewTypoSecond.itemAtIndex(1).action.triggered();
+                        if (!showPreview) {
+                            listViewTypoSecond.itemAtIndex(1).action.triggered();
+                        }
                     },
                     "Quote": function () {
-                        listViewTypoSecond.itemAtIndex(2).action.triggered();
+                        if (!showPreview) {
+                            listViewTypoSecond.itemAtIndex(2).action.triggered();
+                        }
                     },
                     "Unordered list": function () {
-                        listViewTypoSecond.itemAtIndex(3).action.triggered();
+                        if (!showPreview) {
+                            listViewTypoSecond.itemAtIndex(3).action.triggered();
+                        }
                     },
                     "Ordered list": function () {
-                        listViewTypoSecond.itemAtIndex(4).action.triggered();
+                        if (!showPreview) {
+                            listViewTypoSecond.itemAtIndex(4).action.triggered();
+                        }
                     },
                     "Enter is new line": function () {
-                        listViewTypoSecond.itemAtIndex(5).action.triggered();
+                        if (!showPreview) {
+                            listViewTypoSecond.itemAtIndex(5).action.triggered();
+                        }
                     }
                 }
 
@@ -287,7 +306,7 @@ Rectangle {
                 Layout.alignment: showTypo || multiLine ? Qt.AlignRight : Qt.AlignBottom
                 Layout.columnSpan: showTypo || multiLine ? 2 : 1
                 Layout.topMargin: marginSize / 2
-                Layout.rightMargin: marginSize / 2
+                Layout.rightMargin: 0
 
                 Row {
 
@@ -298,10 +317,45 @@ Rectangle {
                         id: listViewTypo
                         height: JamiTheme.chatViewFooterButtonSize
 
-                        function addStyle(text, start, end, char1, char2) {
+                        function isStyle(text, start, end, char1, char2, regex) {
+                            if (char1 === "*") {
+                                return isItalicStyle(text, start, end);
+                            }
+                            // var selectedText = text.substring(start - char1.length, end + char2.length);
+                            // if (char1 === "*" && selectedText.startsWith(char1) && selectedText.endsWith(char2)){
+                            //     console.log("ici");
+                            //     var counter = 1;
+                            //     var selectedTextMore = text.substring(start - counter, end + counter);
+                            //     while (selectedTextMore.startsWith(char1) && selectedTextMore.endsWith(char2)) {
+                            //         console.log("boucle :",counter)
+                            //         counter += 1;
+                            //         selectedTextMore = text.substring(start - counter, end + counter);
+                            //     }
+                            //     return (counter === 1 || counter === 3) && selectedText.startsWith(char1) && selectedText.endsWith(char2);
+                            // }
+                            // return selectedText.startsWith(char1) && selectedText.endsWith(char2);
+                            // return /\[.+\]\(.+\)/.test(text.substring(start - char1.length, end + char2.length));
+                            var res = regex.test(text.substring(start - char1.length, end + char2.length));
+                            return res && start - char1.length >= 0 && end + char2.length <= text.length;
+                        }
+
+                        function isItalicStyle(text, selectionStart, selectionEnd) {
+                            let start = selectionStart;
+                            while (start > 0 && text[start - 1] === "*") {
+                                start--;
+                            }
+                            let end = selectionEnd;
+                            while (end < text.length && text[end] === "*") {
+                                end++;
+                            }
+                            const starCount = Math.min(selectionStart - start, end - selectionEnd);
+                            return starCount === 1 || starCount === 3;
+                        }
+
+                        function addStyle(text, start, end, char1, char2, regex) {
                             // get the selected text with markdown effect
                             var selectedText = text.substring(start - char1.length, end + char2.length);
-                            if (selectedText.startsWith(char1) && selectedText.endsWith(char2)) {
+                            if (isStyle(text, start, end, char1, char2, regex)) {
                                 // If the selected text is already formatted with the given characters, remove them
                                 selectedText = text.substring(start, end);
                                 root.text = text.substring(0, start - char1.length) + selectedText + text.substring(end + char2.length);
@@ -313,8 +367,68 @@ Rectangle {
                             }
                         }
 
-                        function addPrefixStyle(message, selectionStart, selectionEnd, delimiter, isOrderedList) {
+                        function isPrefixSyle(message, selectionStart, selectionEnd, delimiter, isOrderedList) {
+                            //represents all the selected lines
+                            var multilineSelection;
+                            var newPrefix;
+                            var newSuffix;
+                            var newStartPos;
+                            var newEndPos;
+                            function nextIndexOf(text, char1, startPos) {
+                                return text.indexOf(char1, startPos + 1);
+                            }
 
+                            //get the previous index of the multilineSelection text
+                            if (message[selectionStart] === "\n")
+                                newStartPos = message.lastIndexOf('\n', selectionStart - 1);
+                            else
+                                newStartPos = message.lastIndexOf('\n', selectionStart);
+
+                            //get the next index of the multilineSelection text
+                            if (message[selectionEnd] === "\n" || message[selectionEnd] === undefined)
+                                newEndPos = selectionEnd;
+                            else
+                                newEndPos = nextIndexOf(message, "\n", selectionEnd);
+
+                            //if the text is empty
+                            if (newStartPos === -1)
+                                newStartPos = 0;
+                            newPrefix = message.slice(0, newStartPos);
+                            multilineSelection = message.slice(newStartPos, newEndPos);
+                            newSuffix = message.slice(newEndPos);
+                            var isFirstLineSelected = !multilineSelection.startsWith('\n') || newPrefix === "";
+                            var getDelimiter_counter = 1;
+                            function getDelimiter() {
+                                return `${getDelimiter_counter++}. `;
+                            }
+                            function getHasCurrentMarkdown() {
+                                const linesQuantity = (multilineSelection.match(/\n/g) || []).length;
+                                const newLinesWithDelimitersQuantity = (multilineSelection.match(new RegExp(`\n${delimiter}`, 'g')) || []).length;
+                                if (newLinesWithDelimitersQuantity === linesQuantity && !isFirstLineSelected)
+                                    return true;
+                                return linesQuantity === newLinesWithDelimitersQuantity && multilineSelection.startsWith(delimiter);
+                            }
+                            function getHasCurrentMarkdownBullet() {
+                                const linesQuantity = (multilineSelection.match(/\n/g) || []).length;
+                                const newLinesWithDelimitersQuantity = (multilineSelection.match(/\n\d+\. /g) || []).length;
+                                if (newLinesWithDelimitersQuantity === linesQuantity && !isFirstLineSelected)
+                                    return true;
+                                return linesQuantity === newLinesWithDelimitersQuantity && (/^\d\. /).test(multilineSelection);
+                            }
+                            var newValue;
+                            var newStart;
+                            var newEnd;
+                            var count;
+                            var startPos;
+                            var multilineSelectionLength;
+                            if (!isOrderedList) {
+                                return getHasCurrentMarkdown();
+                            } else {
+                                return getHasCurrentMarkdownBullet();
+                            }
+                        }
+
+                        function addPrefixStyle(message, selectionStart, selectionEnd, delimiter, isOrderedList) {
                             //represents all the selected lines
                             var multilineSelection;
                             var newPrefix;
@@ -463,8 +577,9 @@ Rectangle {
                                     property var iconSrc: JamiResources.bold_black_24dp_svg
                                     property var shortcutText: JamiStrings.bold
                                     property string shortcutKey: "Ctrl+B"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "**", "**", /\\*\*.+\\*\*/)
                                     onTriggered: function clickAction() {
-                                        listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "**", "**");
+                                        listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "**", "**", /\\*\*.+\\*\*/);
                                     }
                                 },
                                 Action {
@@ -472,8 +587,9 @@ Rectangle {
                                     property var iconSrc: JamiResources.italic_black_24dp_svg
                                     property var shortcutText: JamiStrings.italic
                                     property string shortcutKey: "Ctrl+I"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "*", "*", /(?:\*.+\*|\*\*\*.+\*\*\*)/)
                                     onTriggered: function clickAction() {
-                                        listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "*", "*");
+                                        listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "*", "*", /(?:\*.+\*|\*\*\*.+\*\*\*)/);
                                     }
                                 },
                                 Action {
@@ -481,8 +597,9 @@ Rectangle {
                                     property var iconSrc: JamiResources.s_barre_black_24dp_svg
                                     property var shortcutText: JamiStrings.strikethrough
                                     property string shortcutKey: "Shift+Alt+X"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "~~", "~~", /\~\~.+\~\~/)
                                     onTriggered: function clickAction() {
-                                        listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "~~", "~~");
+                                        listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "~~", "~~", /\~\~.+\~\~/);
                                     }
                                 },
                                 Action {
@@ -490,6 +607,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.title_black_24dp_svg
                                     property var shortcutText: JamiStrings.title
                                     property string shortcutKey: "Ctrl+Alt+H"
+                                    property bool isStyle: listViewTypo.isPrefixSyle(root.text, textArea.selectionStart, textArea.selectionEnd, "### ", false)
                                     onTriggered: function clickAction() {
                                         listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "### ", false);
                                     }
@@ -499,8 +617,9 @@ Rectangle {
                                     property var iconSrc: JamiResources.link_web_black_24dp_svg
                                     property var shortcutText: JamiStrings.link
                                     property string shortcutKey: "Ctrl+Alt+K"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "[", "](url)", /\[.+\]\(.+\)/)
                                     onTriggered: function clickAction() {
-                                        listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "[", "](url)");
+                                        listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "[", "](url)", /\[.+\]\(.+\)/);
                                     }
                                 },
                                 Action {
@@ -508,8 +627,9 @@ Rectangle {
                                     property var iconSrc: JamiResources.code_black_24dp_svg
                                     property var shortcutText: JamiStrings.code
                                     property string shortcutKey: "Ctrl+Alt+C"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "```", "```", /\`\`\`.+\`\`\`/)
                                     onTriggered: function clickAction() {
-                                        listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "```", "```");
+                                        listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "```", "```", /\`\`\`.+\`\`\`/);
                                     }
                                 }
                             ]
@@ -534,8 +654,26 @@ Rectangle {
                                 source: modelData.iconSrc
                                 focusPolicy: Qt.TabFocus
 
-                                normalColor: JamiTheme.transparentColor
-                                imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
+                                normalColor: {
+                                    if (showPreview) {
+                                        return JamiTheme.transparentColor;
+                                    } else if (modelData.isStyle) {
+                                        return JamiTheme.hoveredButtonColor;
+                                    } else {
+                                        return JamiTheme.transparentColor;
+                                    }
+                                }
+                                imageColor: {
+                                    if (showPreview) {
+                                        return JamiTheme.chatViewFooterImgDisableColor;
+                                    } else if (hovered) {
+                                        return JamiTheme.chatViewFooterImgHoverColor;
+                                    } else if (modelData.isStyle) {
+                                        return JamiTheme.chatViewFooterImgHoverColor;
+                                    } else {
+                                        return JamiTheme.chatViewFooterImgColor;
+                                    }
+                                }
                                 hoveredColor: JamiTheme.hoveredButtonColor
                                 pressedColor: hoveredColor
 
@@ -646,6 +784,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.quote_black_24dp_svg
                                     property var shortcutText: JamiStrings.quote
                                     property string shortcutKey: "Shift+Alt+9"
+                                    property bool isStyle: listViewTypo.isPrefixSyle(root.text, textArea.selectionStart, textArea.selectionEnd, "> ", false)
                                     onTriggered: function clickAction() {
                                         listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "> ", false);
                                     }
@@ -655,6 +794,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.bullet_point_black_24dp_svg
                                     property var shortcutText: JamiStrings.unorderedList
                                     property string shortcutKey: "Shift+Alt+8"
+                                    property bool isStyle: listViewTypo.isPrefixSyle(root.text, textArea.selectionStart, textArea.selectionEnd, "- ", false)
                                     onTriggered: function clickAction() {
                                         listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "- ", false);
                                     }
@@ -664,6 +804,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.bullet_number_black_24dp_svg
                                     property var shortcutText: JamiStrings.orderedList
                                     property string shortcutKey: "Shift+Alt+7"
+                                    property bool isStyle: listViewTypo.isPrefixSyle(root.text, textArea.selectionStart, textArea.selectionEnd, "", true)
                                     onTriggered: function clickAction() {
                                         listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "", true);
                                     }
@@ -676,6 +817,7 @@ Rectangle {
                                     property var normalColor: chatViewEnterIsNewLine ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
                                     property var hasShortcut: false
                                     property var shortcutKey: null
+                                    property bool isStyle: false
                                     onTriggered: function clickAction() {
                                         root.chatViewEnterIsNewLine = !root.chatViewEnterIsNewLine;
                                         UtilsAdapter.setAppValue(Settings.Key.ChatViewEnterIsNewLine, chatViewEnterIsNewLine);
@@ -702,8 +844,30 @@ Rectangle {
                                 source: modelData.iconSrc
                                 focusPolicy: Qt.TabFocus
 
-                                normalColor: showPreview ? JamiTheme.transparentColor : (modelData.normalColor != null ? modelData.normalColor : JamiTheme.transparentColor)
-                                imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered ? JamiTheme.chatViewFooterImgHoverColor : (modelData.imageColor != null ? modelData.imageColor : JamiTheme.chatViewFooterImgColor))
+                                normalColor: {
+                                    if (showPreview) {
+                                        return JamiTheme.transparentColor;
+                                    } else if (modelData.normalColor != null) {
+                                        return modelData.normalColor;
+                                    } else if (modelData.isStyle) {
+                                        return JamiTheme.hoveredButtonColor;
+                                    } else {
+                                        return JamiTheme.transparentColor;
+                                    }
+                                }
+                                imageColor: {
+                                    if (showPreview) {
+                                        return JamiTheme.chatViewFooterImgDisableColor;
+                                    } else if (hovered) {
+                                        return JamiTheme.chatViewFooterImgHoverColor;
+                                    } else if (modelData.imageColor != null) {
+                                        return modelData.imageColor;
+                                    } else if (modelData.isStyle) {
+                                        return JamiTheme.chatViewFooterImgHoverColor;
+                                    } else {
+                                        return JamiTheme.chatViewFooterImgColor;
+                                    }
+                                }
                                 hoveredColor: JamiTheme.hoveredButtonColor
                                 pressedColor: hoveredColor
 
@@ -972,7 +1136,7 @@ Rectangle {
 
             Rectangle {
                 color: JamiTheme.transparentColor
-                visible: false //showTypo
+                visible: showTypo
                 height: 50
                 width: previewButton.width + marginSize
                 Layout.row: showTypo ? 0 : 0
@@ -995,6 +1159,7 @@ Rectangle {
 
                     onClicked: {
                         showPreview = !showPreview;
+                        textArea.showPreview = showPreview;
                     }
                 }
             }
@@ -1008,7 +1173,7 @@ Rectangle {
 
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        anchors.rightMargin: sendMessageButton.visible ? marginSize : 0
+        anchors.rightMargin: sendMessageButton.visible ? marginSize / 2 : 0
         anchors.bottomMargin: marginSize / 2
 
         PushButton {
