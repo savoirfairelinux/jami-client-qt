@@ -160,7 +160,6 @@ class CurrentAccount final : public QObject
 
     // SRTP settings
     QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(bool, enable, SRTP)
-    QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(bool, rtpFallback, SRTP)
     QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(lrc::api::account::KeyExchangeProtocol,
                                                   keyExchange,
                                                   SRTP)
