@@ -106,7 +106,7 @@ Rectangle {
 
         popup: SharePopup {
             id: sharePopup
-            y: -150
+            y: -180
             x: -20
 
             menuMoreButton: listViewMoreButton.menuMoreButton
@@ -160,7 +160,7 @@ Rectangle {
                 id: textArea
 
                 objectName: "messageBarTextArea"
-                maxWidth: rectangle.width - messageBarRowLayout.width - 31
+                maxWidth: rectangle.width - messageBarRowLayout.width - 35
 
                 enabled: !showPreview
 
@@ -296,6 +296,11 @@ Rectangle {
                     Row {
                         id: listViewTypo
                         height: JamiTheme.chatViewFooterButtonSize
+
+                        function isStyle(text, start, end, char1, char2) {
+                            var selectedText = text.substring(start - char1.length, end + char2.length);
+                            return selectedText.startsWith(char1) && selectedText.endsWith(char2);
+                        }
 
                         function addStyle(text, start, end, char1, char2) {
                             // get the selected text with markdown effect
@@ -462,6 +467,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.bold_black_24dp_svg
                                     property var shortcutText: JamiStrings.bold
                                     property string shortcutKey: "Ctrl+B"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "**", "**")
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "**", "**");
                                     }
@@ -471,6 +477,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.italic_black_24dp_svg
                                     property var shortcutText: JamiStrings.italic
                                     property string shortcutKey: "Ctrl+I"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "*", "*")
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "*", "*");
                                     }
@@ -480,6 +487,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.s_barre_black_24dp_svg
                                     property var shortcutText: JamiStrings.strikethrough
                                     property string shortcutKey: "Shift+Alt+X"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "~~", "~~")
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "~~", "~~");
                                     }
@@ -489,6 +497,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.title_black_24dp_svg
                                     property var shortcutText: JamiStrings.title
                                     property string shortcutKey: "Ctrl+Alt+H"
+                                    property bool isStyle: false
                                     onTriggered: function clickAction() {
                                         listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "### ", false);
                                     }
@@ -498,6 +507,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.link_web_black_24dp_svg
                                     property var shortcutText: JamiStrings.link
                                     property string shortcutKey: "Ctrl+Alt+K"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "[", "](url)")
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "[", "](url)");
                                     }
@@ -507,6 +517,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.code_black_24dp_svg
                                     property var shortcutText: JamiStrings.code
                                     property string shortcutKey: "Ctrl+Alt+C"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "```", "```")
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "```", "```");
                                     }
@@ -533,8 +544,8 @@ Rectangle {
                                 source: modelData.iconSrc
                                 focusPolicy: Qt.TabFocus
 
-                                normalColor: JamiTheme.transparentColor
-                                imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
+                                normalColor: modelData.isStyle ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
+                                imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered || modelData.isStyle ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
                                 hoveredColor: JamiTheme.hoveredButtonColor
                                 pressedColor: hoveredColor
 
