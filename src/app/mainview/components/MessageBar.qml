@@ -56,13 +56,13 @@ Rectangle {
     signal showMapClicked
     signal emojiButtonClicked
 
-    color: JamiTheme.transparentColor
-    height: showTypo || multiLine ? textArea.height + 25 + 3 * marginSize : textArea.height + marginSize
+    color: JamiResources.transparentColor
+    height: showTypo || multiLine ? textArea.height + 25 + 3 * marginSize : textArea.height + marginSize + 1
 
     ComboBox {
         id: showMoreButton
         visible: !CurrentConversation.isSip
-        width: CurrentConversation.isSip? 0 : JamiTheme.chatViewFooterButtonSize
+        width: CurrentConversation.isSip ? 0 : JamiTheme.chatViewFooterButtonSize
         height: JamiTheme.chatViewFooterButtonSize
 
         anchors.leftMargin: marginSize
@@ -107,7 +107,7 @@ Rectangle {
 
         popup: SharePopup {
             id: sharePopup
-            y: -150
+            y: -180
             x: -20
 
             menuMoreButton: listViewMoreButton.menuMoreButton
@@ -161,7 +161,7 @@ Rectangle {
                 id: textArea
 
                 objectName: "messageBarTextArea"
-                maxWidth: rectangle.width - messageBarRowLayout.width - 31
+                maxWidth: rectangle.width - messageBarRowLayout.width - 35
 
                 enabled: !showPreview
 
@@ -287,7 +287,7 @@ Rectangle {
                 Layout.alignment: showTypo || multiLine ? Qt.AlignRight : Qt.AlignBottom
                 Layout.columnSpan: showTypo || multiLine ? 2 : 1
                 Layout.topMargin: marginSize / 2
-                Layout.rightMargin: marginSize / 2
+                Layout.rightMargin: 0
 
                 Row {
 
@@ -297,6 +297,11 @@ Rectangle {
                     Row {
                         id: listViewTypo
                         height: JamiTheme.chatViewFooterButtonSize
+
+                        function isStyle(text, start, end, char1, char2) {
+                            var selectedText = text.substring(start - char1.length, end + char2.length);
+                            return selectedText.startsWith(char1) && selectedText.endsWith(char2);
+                        }
 
                         function addStyle(text, start, end, char1, char2) {
                             // get the selected text with markdown effect
@@ -463,6 +468,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.bold_black_24dp_svg
                                     property var shortcutText: JamiStrings.bold
                                     property string shortcutKey: "Ctrl+B"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "**", "**")
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "**", "**");
                                     }
@@ -472,6 +478,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.italic_black_24dp_svg
                                     property var shortcutText: JamiStrings.italic
                                     property string shortcutKey: "Ctrl+I"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "*", "*")
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "*", "*");
                                     }
@@ -481,6 +488,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.s_barre_black_24dp_svg
                                     property var shortcutText: JamiStrings.strikethrough
                                     property string shortcutKey: "Shift+Alt+X"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "~~", "~~")
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "~~", "~~");
                                     }
@@ -490,6 +498,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.title_black_24dp_svg
                                     property var shortcutText: JamiStrings.title
                                     property string shortcutKey: "Ctrl+Alt+H"
+                                    property bool isStyle: false
                                     onTriggered: function clickAction() {
                                         listViewTypo.addPrefixStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "### ", false);
                                     }
@@ -499,6 +508,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.link_web_black_24dp_svg
                                     property var shortcutText: JamiStrings.link
                                     property string shortcutKey: "Ctrl+Alt+K"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "[", "](url)")
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "[", "](url)");
                                     }
@@ -508,6 +518,7 @@ Rectangle {
                                     property var iconSrc: JamiResources.code_black_24dp_svg
                                     property var shortcutText: JamiStrings.code
                                     property string shortcutKey: "Ctrl+Alt+C"
+                                    property bool isStyle: listViewTypo.isStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "```", "```")
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, textArea.selectionStart, textArea.selectionEnd, "```", "```");
                                     }
@@ -534,8 +545,8 @@ Rectangle {
                                 source: modelData.iconSrc
                                 focusPolicy: Qt.TabFocus
 
-                                normalColor: JamiTheme.transparentColor
-                                imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
+                                normalColor: modelData.isStyle ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
+                                imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered || modelData.isStyle ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
                                 hoveredColor: JamiTheme.hoveredButtonColor
                                 pressedColor: hoveredColor
 
@@ -1008,7 +1019,7 @@ Rectangle {
 
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        anchors.rightMargin: sendMessageButton.visible ? marginSize : 0
+        anchors.rightMargin: sendMessageButton.visible ? marginSize / 2 : 0
         anchors.bottomMargin: marginSize / 2
 
         PushButton {
