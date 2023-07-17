@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0032b12d_cf84df2e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-07-17T21:39:28Z",
+      "side": 1,
+      "message": "Should it have a double `t`, i.e. `Formatting`? Thank you",
+      "range": {
+        "startLine": 807,
+        "startChar": 24,
+        "endLine": 807,
+        "endChar": 33
+      },
+      "revId": "6a1a9b60aaf0e883ae1073ba624f7d3ce07f8c45",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f9ec84cf_b807ed72",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 3
@@ -54,6 +77,29 @@
       "writtenOn": "2023-07-17T20:53:52Z",
       "side": 1,
       "message": "Should it have a double `t`, i.e. `formatting`? Thank you",
+      "revId": "6a1a9b60aaf0e883ae1073ba624f7d3ce07f8c45",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa0227b1_cc02f66f",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-07-17T21:39:28Z",
+      "side": 1,
+      "message": "Should it have a double `t`, i.e. `Formatting`? Thank you",
+      "range": {
+        "startLine": 808,
+        "startChar": 24,
+        "endLine": 808,
+        "endChar": 33
+      },
       "revId": "6a1a9b60aaf0e883ae1073ba624f7d3ce07f8c45",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
