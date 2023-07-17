@@ -849,7 +849,7 @@ Dacă da, acestui cont îi va fi atribuit doar un identificator de 40 de caracte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
         <source>Enable hardware acceleration</source>
-        <translation>Activează accelerarea hardware</translation>
+        <translation>Activează accelerarea aparatului</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="201"/>
@@ -1354,7 +1354,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Hardware acceleration</source>
-        <translation>Accelerare hardware</translation>
+        <translation>Accelerarea aparatului</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
