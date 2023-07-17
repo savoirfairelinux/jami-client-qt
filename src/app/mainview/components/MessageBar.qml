@@ -167,7 +167,7 @@ Rectangle {
 
                 Layout.row: showTypo || multiLine ? 0 : 1
                 Layout.column: showTypo || multiLine ? 0 : 0
-                Layout.columnSpan: showTypo || multiLine ? 2 : 1
+                //Layout.columnSpan: showTypo || multiLine ? 2 : 1
 
                 // forward activeFocus to the actual text area object
                 onActiveFocusChanged: {
@@ -983,7 +983,7 @@ Rectangle {
 
             Rectangle {
                 color: JamiTheme.transparentColor
-                visible: false //showTypo
+                visible: showTypo
                 height: 50
                 width: previewButton.width + marginSize
                 Layout.row: showTypo ? 0 : 0
@@ -1006,6 +1006,7 @@ Rectangle {
 
                     onClicked: {
                         showPreview = !showPreview;
+                        textArea.showPreview = showPreview;
                     }
                 }
             }

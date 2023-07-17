@@ -36,6 +36,7 @@ JamiFlickable {
     property alias selectedText: textArea.selectedText
     property alias selectionStart: textArea.selectionStart
     property alias selectionEnd: textArea.selectionEnd
+    property bool showPreview: false
 
     ScrollBar.vertical.visible: textArea.text
     ScrollBar.horizontal.visible: textArea.text
@@ -73,8 +74,40 @@ JamiFlickable {
     interactive: true
     attachedFlickableMoving: contentHeight > height || root.moving
 
+    TextArea {
+        id: textAreaPreview
+
+        height: textArea.height
+
+        visible: showPreview
+        leftPadding: JamiTheme.scrollBarHandleSize
+        rightPadding: JamiTheme.scrollBarHandleSize
+        topPadding: 0
+        bottomPadding: 0
+
+        text: textArea.text
+
+        verticalAlignment: TextEdit.AlignVCenter
+
+        font.pointSize: JamiTheme.textFontSize + 2
+        font.hintingPreference: Font.PreferNoHinting
+
+        color: JamiTheme.textColor
+        wrapMode: TextEdit.Wrap
+        textFormat: TextEdit.PlainText
+        placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
+        horizontalAlignment: Text.AlignLeft
+
+        background: Rectangle {
+            border.width: 0
+            color: "lightgreen"
+        }
+    }
+
     TextArea.flickable: TextArea {
         id: textArea
+
+        visible: !showPreview
 
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
@@ -97,7 +130,7 @@ JamiFlickable {
 
         background: Rectangle {
             border.width: 0
-            color: JamiTheme.transparentColor
+            color: "lightblue"
         }
 
         onReleased: function (event) {
