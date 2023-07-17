@@ -179,7 +179,6 @@ CurrentAccount::updateData()
 
         // SRTP
         set_enableSRTP(accConfig.SRTP.enable, true);
-        set_rtpFallbackSRTP(accConfig.SRTP.rtpFallback, true);
         set_keyExchangeSRTP(accConfig.SRTP.keyExchange, true);
 
         // TURN

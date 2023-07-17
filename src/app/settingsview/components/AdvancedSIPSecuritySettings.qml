@@ -68,14 +68,6 @@ ColumnLayout {
         }
 
         ToggleSwitch {
-            id: fallbackRTPToggle
-
-            labelText: JamiStrings.fallbackRTP
-            checked: CurrentAccount.rtpFallback_SRTP
-            onSwitchToggled: CurrentAccount.rtpFallback_SRTP = checked
-        }
-
-        ToggleSwitch {
             id: encryptNegotitationToggle
 
             labelText: JamiStrings.encryptNegotiation

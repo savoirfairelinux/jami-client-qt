@@ -100,7 +100,6 @@ Item {
     // AdvancedSIPSecuritySettings && AdvancedJamiSecuritySettings
     property string security: qsTr("Security")
     property string enableSDES: qsTr("Enable SDES key exchange")
-    property string fallbackRTP: qsTr("Allow fallback on RTP")
     property string encryptNegotiation: qsTr("Encrypt negotiation (TLS)")
     property string caCertificate: qsTr("CA certificate")
     property string userCertificate: qsTr("User certificate")
