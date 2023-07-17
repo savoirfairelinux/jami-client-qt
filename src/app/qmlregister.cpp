@@ -56,6 +56,7 @@
 #include "mainapplication.h"
 #include "namedirectory.h"
 #include "updatemanager.h"
+#include "pluginlistmodel.h"
 #include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
 #include "wizardviewstepmodel.h"
@@ -172,6 +173,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, MediaCodecListModel);
     QML_REGISTERTYPE(NS_MODELS, AudioDeviceModel);
     QML_REGISTERTYPE(NS_MODELS, AudioManagerListModel);
+    QML_REGISTERTYPE(NS_MODELS, PluginListModel);
     QML_REGISTERTYPE(NS_MODELS, PreferenceItemListModel);
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
     QML_REGISTERTYPE(NS_MODELS, FilesToSendListModel);
