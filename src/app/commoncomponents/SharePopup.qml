@@ -51,7 +51,7 @@ Popup {
             anchors.centerIn: parent
             orientation: ListView.Vertical
 
-            spacing: 5
+            spacing: 0
 
             width: contentItem.childrenRect.width
             height: contentHeight
@@ -64,45 +64,45 @@ Popup {
                 color: "transparent"
             }
 
+            onCountChanged: {
+                for (var i = 0; i < count; i++) {
+                    var item = listViewMoreButton.itemAtIndex(i);
+                    item.width = listViewMoreButton.width;
+                }
+            }
+
             delegate: ItemDelegate {
-                width: control.width
-                height: control.height
+                id: control
 
-                AbstractButton {
-                    id: control
+                text: modelData.toolTip
 
-                    anchors.centerIn: parent
-                    height: JamiTheme.chatViewFooterRealButtonSize + 10
-
-                    text: modelData.toolTip
-
-                    contentItem: RowLayout {
-                        Rectangle {
-                            id: image
-                            width: 26
-                            height: 26
-                            radius: 5
-                            color: JamiTheme.transparentColor
-                            ResponsiveImage {
-                                anchors.fill: parent
-                                source: modelData.iconSrc
-                                color: control.hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
-                            }
-                        }
-                        Text {
-                            text: control.text
-                            color: control.hovered ? JamiTheme.chatViewFooterImgHoverColor : "#7f7f7f"
+                contentItem: RowLayout {
+                    Rectangle {
+                        id: image
+                        width: 26
+                        height: 26
+                        radius: 5
+                        color: JamiTheme.transparentColor
+                        ResponsiveImage {
+                            anchors.fill: parent
+                            source: modelData.iconSrc
+                            color: control.hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
                         }
                     }
-                    background: Rectangle {
-                        color: control.hovered ? JamiTheme.showMoreButtonOpenColor : JamiTheme.transparentColor
+                    Text {
+                        Layout.alignment: Qt.AlignLeft
+                        text: control.text
+                        color: control.hovered ? JamiTheme.chatViewFooterImgHoverColor : "#7f7f7f"
                     }
+                }
+                background: Rectangle {
+                    color: control.hovered ? JamiTheme.showMoreButtonOpenColor : JamiTheme.transparentColor
+                }
 
-                    action: modelData
+                action: modelData
 
-                    onClicked: {
-                        root.close();
-                    }
+                onClicked: {
+                    root.close();
                 }
             }
         }
