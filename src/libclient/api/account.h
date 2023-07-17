@@ -159,7 +159,6 @@ struct ConfProperties_t
     {
         KeyExchangeProtocol keyExchange;
         bool enable;
-        bool rtpFallback;
     } SRTP;
     struct TLS_t
     {

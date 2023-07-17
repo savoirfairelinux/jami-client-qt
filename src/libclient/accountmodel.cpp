@@ -902,7 +902,6 @@ account::Info::fromDetails(const MapStringString& details)
                                           ? account::KeyExchangeProtocol::NONE
                                           : account::KeyExchangeProtocol::SDES;
     confProperties.SRTP.enable = toBool(details[ConfProperties::SRTP::ENABLED]);
-    confProperties.SRTP.rtpFallback = toBool(details[ConfProperties::SRTP::RTP_FALLBACK]);
     // TLS
     confProperties.TLS.listenerPort = toInt(details[ConfProperties::TLS::LISTENER_PORT]);
     confProperties.TLS.enable = details[ConfProperties::TYPE] == QString(ProtocolNames::RING)
@@ -1014,7 +1013,6 @@ account::ConfProperties_t::toDetails() const
                                                       ? ""
                                                       : "sdes";
     details[ConfProperties::SRTP::ENABLED] = toQString(this->SRTP.enable);
-    details[ConfProperties::SRTP::RTP_FALLBACK] = toQString(this->SRTP.rtpFallback);
     // TLS
     details[ConfProperties::TLS::LISTENER_PORT] = toQString(this->TLS.listenerPort);
     details[ConfProperties::TLS::ENABLED] = toQString(this->TLS.enable);
