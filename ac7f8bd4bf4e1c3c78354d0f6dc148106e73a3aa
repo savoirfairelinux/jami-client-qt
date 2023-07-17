@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00337bad_6f0e9a7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-07-17T20:49:33Z",
+      "side": 1,
+      "message": "The commit message is a bit vague and the same as the previous text editor change.\nPerhaps something more descriptive (and using the imperative mood) like: \"chatview: improve text editor widget\".",
+      "revId": "ac7f8bd4bf4e1c3c78354d0f6dc148106e73a3aa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
