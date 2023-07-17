@@ -22,6 +22,30 @@
       },
       "revId": "d500790ea00d0f706a45c0f09370611017320dec",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b576994_04cfd879",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 3427,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-07-17T13:10:42Z",
+      "side": 1,
+      "message": "only adding to the model does not show the outgoing call after the transfer.\nIn the current client structure we need a contact to be added to show the call, else conversationindices is empty and we return. ALso, to be able to add the contact we first need to search for it. Changes in that structure might not be trivial and being so i would prefer to leave it to another issue/patches",
+      "parentUuid": "8165a401_11c60ed3",
+      "range": {
+        "startLine": 3419,
+        "startChar": 8,
+        "endLine": 3427,
+        "endChar": 5
+      },
+      "revId": "d500790ea00d0f706a45c0f09370611017320dec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
