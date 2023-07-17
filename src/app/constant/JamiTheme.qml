@@ -242,7 +242,9 @@ Item {
     property color showMoreButtonOpenColor: darkTheme ? "#4d4d4d" : "#e5e5e5"
     property color chatViewFooterSeparateLineColor: darkTheme ? "#5c5c5c" : "#929292"
     property color chatViewFooterSendButtonColor: darkTheme ? "#03B9E9" : "#005699"
+    property color chatViewFooterSendButtonDisableColor: darkTheme ? "#191a1c" : "#f0f0f1"
     property color chatViewFooterSendButtonImgColor: darkTheme ? blackColor : whiteColor
+    property color chatViewFooterSendButtonImgColorDisable: darkTheme ? "#4d4d4d" : "#cbcbcb"
     property color chatViewFooterRectangleBorderColor: darkTheme ? "#4d4d4d" : "#e5e5e5"
 
     // ChatView Header
