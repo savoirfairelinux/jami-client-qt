@@ -27,6 +27,7 @@ Item {
     property var reactions
     property real contentHeight: bubble.height
     property real contentWidth: bubble.width
+    property var borderColor: undefined
 
     visible: emojis.length && Body !== ""
 
@@ -86,7 +87,9 @@ Item {
         color: JamiTheme.emojiReactBubbleBgColor
         width: textEmojis.width + 6
         height: textEmojis.height + 6
-        radius: 10
+        radius: 5
+        border.color: root.borderColor
+        border.width: 1
 
         Text {
             id: textEmojis
@@ -97,19 +100,5 @@ Item {
             color: JamiTheme.chatviewTextColor
             text: root.emojis
         }
-    }
-
-    DropShadow {
-        z: -1
-
-        width: bubble.width
-        height: bubble.height
-        horizontalOffset: 3.0
-        verticalOffset: 3.0
-        radius: bubble.radius * 4
-        color: JamiTheme.shadowColor
-        source: bubble
-        transparentBorder: true
-        samples: radius + 1
     }
 }
