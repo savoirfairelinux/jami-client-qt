@@ -265,12 +265,13 @@ Item {
     property real namePopupFontsize: calcSize(15)
     property real avatarSize: 30
     property int emojiPushButtonSize: 30
-    property int emojiMargins: 20
+    property int emojiMargins: 16
     property color emojiReactBubbleBgColor: darkTheme ? darkGreyColor : whiteColor
     property color emojiReactPushButtonColor: darkTheme ? "#bbb" : "#003b4e"
     property real messageOptionTextFontSize: calcSize(15)
     property int emojiPickerWidth: 400
     property int emojiPickerHeight: 425
+    property int defaulMaxWidthReaction : 350
 
     // Files To Send Container
     property color removeFileButtonColor: Qt.rgba(96, 95, 97, 0.5)

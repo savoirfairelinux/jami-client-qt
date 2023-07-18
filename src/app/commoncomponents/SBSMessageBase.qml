@@ -64,6 +64,15 @@ Control {
     // then the root delegate is likely a Loader.
     readonly property ListView listView: ListView.view ? ListView.view : parent.ListView.view
 
+    function getBaseColor() {
+        var baseColor = isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor;
+        if (Id === MessagesAdapter.replyToId || Id === MessagesAdapter.editId) {
+            // If we are replying to or editing the message
+            return Qt.darker(baseColor, 1.5);
+        }
+        return baseColor;
+    }
+
     rightPadding: hPadding
     leftPadding: hPadding
 
@@ -115,7 +124,7 @@ Control {
             Layout.fillWidth: true
             Layout.preferredHeight: childrenRect.height
 
-            Layout.topMargin: visible? JamiTheme.sbsMessageBaseReplyTopMargin : 0
+            Layout.topMargin: visible ? JamiTheme.sbsMessageBaseReplyTopMargin : 0
             Layout.leftMargin: isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
             Layout.rightMargin: !isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
 
@@ -201,7 +210,7 @@ Control {
         RowLayout {
             id: msgRowlayout
 
-            Layout.preferredHeight: innerContent.height + root.extraHeight
+            Layout.preferredHeight: innerContent.height + root.extraHeight + (emojiReactions.emojis === "" ? 0 : emojiReactions.height - 8)
             Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply) ? 6 : 0
 
             Item {
@@ -323,23 +332,62 @@ Control {
                     out: isOutgoing
                     type: seq
                     isReply: root.isReply
-
-                    function getBaseColor() {
-                        var baseColor = isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor;
-                        if (Id === MessagesAdapter.replyToId || Id === MessagesAdapter.editId) {
-                            // If we are replying to or editing the message
-                            return Qt.darker(baseColor, 1.5);
-                        }
-                        return baseColor;
-                    }
-
-                    color: getBaseColor()
+                    color: root.getBaseColor()
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
 
                     width: Type === Interaction.Type.TEXT && !isEdited ? root.textContentWidth : innerContent.childrenRect.width
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
+                }
+
+                EmojiReactions {
+                    id: emojiReactions
+
+                    anchors.top: bubble.bottom
+                    anchors.topMargin: -8
+
+                    height: contentHeight + 5
+                    reactions: Reactions
+                    borderColor: root.getBaseColor()
+                    maxWidth: 2/3 * maxMsgWidth - JamiTheme.emojiMargins
+
+                    state: root.isOutgoing ? "anchorsRight" : (emojiReactions.width > bubble.width - JamiTheme.emojiMargins ? "anchorsLeft" : "anchorsRight")
+
+                    TapHandler {
+                        onTapped: {
+                            reactionPopup.open();
+                        }
+                    }
+
+                    states: [
+                        State {
+                            name: "anchorsRight"
+                            AnchorChanges {
+                                target: emojiReactions;
+                                anchors.right: bubble.right
+                                anchors.left: undefined
+                            }
+                            PropertyChanges {
+                                target: emojiReactions;
+                                anchors.rightMargin: JamiTheme.emojiMargins
+                                anchors.leftMargin: 0
+                            }
+                        },
+                        State {
+                            name: "anchorsLeft"
+                            AnchorChanges {
+                                target: emojiReactions;
+                                anchors.right: undefined
+                                anchors.left:  bubble.left
+                            }
+                            PropertyChanges {
+                                target: emojiReactions;
+                                anchors.rightMargin: 0
+                                anchors.leftMargin: JamiTheme.emojiMargins
+                            }
+                        }
+                    ]
                 }
 
                 Rectangle {
@@ -436,25 +484,6 @@ Control {
 
                     anchors.bottom: parent.bottom
                     readers: root.readers
-                }
-            }
-        }
-
-        EmojiReactions {
-            id: emojiReactions
-
-            property bool isOutgoing: Author === CurrentAccount.uri
-            Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
-            Layout.rightMargin: isOutgoing ? status.width : undefined
-            Layout.leftMargin: !isOutgoing ? avatarBlock.width : undefined
-            Layout.topMargin: -contentHeight / 4
-            Layout.preferredHeight: contentHeight + 5
-            Layout.preferredWidth: contentWidth
-            reactions: Reactions
-
-            TapHandler {
-                onTapped: {
-                    reactionPopup.open();
                 }
             }
         }
