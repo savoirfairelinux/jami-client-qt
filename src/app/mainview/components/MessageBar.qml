@@ -724,7 +724,7 @@ Rectangle {
                         hoverEnabled: !showPreview
                         enabled: !showPreview
 
-                        toolTipText: showTypo ? JamiStrings.hideFormating : JamiStrings.showFormating
+                        toolTipText: showTypo ? JamiStrings.hideFormatting : JamiStrings.showFormatting
                         source: JamiResources.text_edit_black_24dp_svg
 
                         normalColor: showPreview ? JamiTheme.transparentColor : (showTypo ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor)
