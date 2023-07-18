@@ -265,7 +265,7 @@ Item {
     property real namePopupFontsize: calcSize(15)
     property real avatarSize: 30
     property int emojiPushButtonSize: 30
-    property int emojiMargins: 20
+    property int emojiMargins: 16
     property color emojiReactBubbleBgColor: darkTheme ? darkGreyColor : whiteColor
     property color emojiReactPushButtonColor: darkTheme ? "#bbb" : "#003b4e"
     property real messageOptionTextFontSize: calcSize(15)

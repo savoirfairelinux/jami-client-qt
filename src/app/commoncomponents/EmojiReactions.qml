@@ -24,9 +24,13 @@ import net.jami.Constants 1.1
 Item {
     id: root
 
+    width: reactionBubble.width
+
     property var reactions
-    property real contentHeight: bubble.height
-    property real contentWidth: bubble.width
+    property real contentHeight: reactionBubble.height
+    property real contentWidth: reactionBubble.width
+    property var borderColor: undefined
+    property var maxWidth: 350
 
     visible: emojis.length && Body !== ""
 
@@ -80,36 +84,30 @@ Item {
         return [];
     }
 
+    // TODO:
+
+    // -order emojis based on the timestamp of the reaction and/or the quantity of emojis
     Rectangle {
-        id: bubble
+        id: reactionBubble
 
         color: JamiTheme.emojiReactBubbleBgColor
-        width: textEmojis.width + 6
-        height: textEmojis.height + 6
-        radius: 10
-
-        Text {
-            id: textEmojis
-
-            anchors.margins: 10
-            anchors.centerIn: bubble
-            font.pointSize: JamiTheme.emojiReactSize
-            color: JamiTheme.chatviewTextColor
-            text: root.emojis
-        }
+        width: textEmojis.width + 10
+        height: textEmojis.height + 10
+        anchors.centerIn: textEmojis
+        radius: 5
+        border.color: root.borderColor
+        border.width: 1
     }
 
-    DropShadow {
-        z: -1
+    Text {
+        id: textEmojis
+        anchors.margins: 10
+        anchors.centerIn: root
 
-        width: bubble.width
-        height: bubble.height
-        horizontalOffset: 3.0
-        verticalOffset: 3.0
-        radius: bubble.radius * 4
-        color: JamiTheme.shadowColor
-        source: bubble
-        transparentBorder: true
-        samples: radius + 1
+        font.pointSize: JamiTheme.emojiReactSize
+        color: JamiTheme.chatviewTextColor
+        text: root.emojis
+        width: Math.min(implicitWidth,root.maxWidth)
+        wrapMode: Text.Wrap
     }
 }
