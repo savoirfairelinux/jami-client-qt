@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccd7041a_d98c0700",
+        "filename": "resources/icons/Trash_Black_24dp.svg",
+        "patchSetId": 26
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-18T19:51:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d89e41d_622ffe2c",
+      "range": {
+        "startLine": 5,
+        "startChar": 121,
+        "endLine": 5,
+        "endChar": 122
+      },
+      "revId": "96f205a8db770cc4e0c225e880b2afd7dd79d305",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34062bf2_ec496093",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-18T16:56:28Z",
       "side": 1,
       "message": "generally buttons got a weird hover animations in white theme",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 30
+      },
+      "revId": "96f205a8db770cc4e0c225e880b2afd7dd79d305",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b801672_bcc1abd8",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-18T19:51:56Z",
+      "side": 1,
+      "message": "yes it is a known feature for push button, maybe we should change it",
+      "parentUuid": "34062bf2_ec496093",
       "range": {
         "startLine": 117,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a6cfe6a_2284ac89",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-18T19:51:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de6c1095_3c478354",
+      "range": {
+        "startLine": 120,
+        "startChar": 70,
+        "endLine": 120,
+        "endChar": 86
+      },
+      "revId": "96f205a8db770cc4e0c225e880b2afd7dd79d305",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a155b3b_598b742f",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-07-18T16:56:28Z",
       "side": 1,
       "message": "missing copyright on added files",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 6
+      },
+      "revId": "96f205a8db770cc4e0c225e880b2afd7dd79d305",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3e714cc_2a06aa3f",
+        "filename": "src/app/commoncomponents/RoundedBorderRectangle.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-18T19:51:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a155b3b_598b742f",
       "range": {
         "startLine": 1,
         "startChar": 0,
@@ -118,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98bff0f7_a41996f5",
+        "filename": "src/app/mainview/components/TipBox.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-18T19:51:56Z",
+      "side": 1,
+      "message": "I dont seem to have this issue on ubuntu+gnome+awayland",
+      "parentUuid": "e694dc8a_07c3bd33",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "96f205a8db770cc4e0c225e880b2afd7dd79d305",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbcafd54_fb50e6e6",
         "filename": "src/app/mainview/components/WelcomeInfo.qml",
         "patchSetId": 26
@@ -129,6 +249,30 @@
       "writtenOn": "2023-07-18T16:56:28Z",
       "side": 1,
       "message": "Switching to a SIP account shows incorrect notifications",
+      "range": {
+        "startLine": 2,
+        "startChar": 27,
+        "endLine": 2,
+        "endChar": 33
+      },
+      "revId": "96f205a8db770cc4e0c225e880b2afd7dd79d305",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47d078f0_a98894a9",
+        "filename": "src/app/mainview/components/WelcomeInfo.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-18T19:51:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbcafd54_fb50e6e6",
       "range": {
         "startLine": 2,
         "startChar": 27,
@@ -162,6 +306,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15839203_de2c971f",
+        "filename": "src/app/mainview/components/WelcomeLogo.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-18T19:51:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3887adae_f7c4b8a3",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "96f205a8db770cc4e0c225e880b2afd7dd79d305",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7655a3bd_e0461704",
@@ -175,6 +343,30 @@
       "writtenOn": "2023-07-18T16:56:28Z",
       "side": 1,
       "message": "ideally should be focusable",
+      "range": {
+        "startLine": 191,
+        "startChar": 33,
+        "endLine": 191,
+        "endChar": 40
+      },
+      "revId": "96f205a8db770cc4e0c225e880b2afd7dd79d305",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6629d5f_a3f07b54",
+        "filename": "src/app/mainview/components/WelcomePage.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 994
+      },
+      "writtenOn": "2023-07-18T19:51:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7655a3bd_e0461704",
       "range": {
         "startLine": 191,
         "startChar": 33,
