@@ -1624,55 +1624,6 @@ ConversationModel::clearAllHistory()
 }
 
 void
-ConversationModel::setInteractionRead(const QString& convId, const QString& interactionId)
-{
-    auto conversationIdx = pimpl_->indexOf(convId);
-    if (conversationIdx == -1) {
-        return;
-    }
-    bool emitUpdated = false;
-    {
-        std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[convId]);
-        auto& interactions = pimpl_->conversations[conversationIdx].interactions;
-        auto it = interactions->find(interactionId);
-        if (it != interactions->end()) {
-            emitUpdated = true;
-            if (it->second.isRead) {
-                return;
-            }
-            it->second.isRead = true;
-            interactions->emitDataChanged(it, {MessageList::Role::IsRead});
-            if (pimpl_->conversations[conversationIdx].unreadMessages != 0)
-                pimpl_->conversations[conversationIdx].unreadMessages -= 1;
-        }
-    }
-    if (emitUpdated) {
-        pimpl_->invalidateModel();
-        if (pimpl_->conversations[conversationIdx].isSwarm()) {
-            ConfigurationManager::instance().setMessageDisplayed(owner.id,
-                                                                 "swarm:" + convId,
-                                                                 interactionId,
-                                                                 3);
-        } else {
-            auto daemonId = storage::getDaemonIdByInteractionId(pimpl_->db, interactionId);
-            if (owner.profileInfo.type != profile::Type::SIP) {
-                ConfigurationManager::instance()
-                    .setMessageDisplayed(owner.id,
-                                         "jami:"
-                                             + pimpl_
-                                                   ->peersForConversation(
-                                                       pimpl_->conversations[conversationIdx])
-                                                   .front(),
-                                         daemonId,
-                                         3);
-            }
-            storage::setInteractionRead(pimpl_->db, interactionId);
-        }
-        Q_EMIT pimpl_->behaviorController.newReadInteraction(owner.id, convId, interactionId);
-    }
-}
-
-void
 ConversationModel::clearUnreadInteractions(const QString& convId)
 {
     auto conversationOpt = getConversationForUid(convId);
