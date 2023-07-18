@@ -64,6 +64,15 @@ Control {
     // then the root delegate is likely a Loader.
     readonly property ListView listView: ListView.view ? ListView.view : parent.ListView.view
 
+    function getBaseColor() {
+        var baseColor = isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor;
+        if (Id === MessagesAdapter.replyToId || Id === MessagesAdapter.editId) {
+            // If we are replying to or editing the message
+            return Qt.darker(baseColor, 1.5);
+        }
+        return baseColor;
+    }
+
     rightPadding: hPadding
     leftPadding: hPadding
 
@@ -201,7 +210,7 @@ Control {
         RowLayout {
             id: msgRowlayout
 
-            Layout.preferredHeight: innerContent.height + root.extraHeight
+            Layout.preferredHeight: innerContent.height + root.extraHeight + (emojiReactions.emojis === "" ? 0 : emojiReactions.height - 8);
             Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply) ? 6 : 0
 
             Item {
@@ -323,23 +332,32 @@ Control {
                     out: isOutgoing
                     type: seq
                     isReply: root.isReply
-
-                    function getBaseColor() {
-                        var baseColor = isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor;
-                        if (Id === MessagesAdapter.replyToId || Id === MessagesAdapter.editId) {
-                            // If we are replying to or editing the message
-                            return Qt.darker(baseColor, 1.5);
-                        }
-                        return baseColor;
-                    }
-
-                    color: getBaseColor()
+                    color: root.getBaseColor()
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
 
                     width: Type === Interaction.Type.TEXT && !isEdited ? root.textContentWidth : innerContent.childrenRect.width
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
+                }
+
+                EmojiReactions {
+                    id: emojiReactions
+
+                    anchors.right: bubble.right
+                    anchors.top: bubble.bottom
+                    anchors.topMargin: -8
+                    anchors.rightMargin: 16
+                    width: contentWidth
+                    height: contentHeight + 5
+                    reactions: Reactions
+                    borderColor: root.getBaseColor()
+
+                    TapHandler {
+                        onTapped: {
+                            reactionPopup.open();
+                        }
+                    }
                 }
 
                 Rectangle {
@@ -436,25 +454,6 @@ Control {
 
                     anchors.bottom: parent.bottom
                     readers: root.readers
-                }
-            }
-        }
-
-        EmojiReactions {
-            id: emojiReactions
-
-            property bool isOutgoing: Author === CurrentAccount.uri
-            Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
-            Layout.rightMargin: isOutgoing ? status.width : undefined
-            Layout.leftMargin: !isOutgoing ? avatarBlock.width : undefined
-            Layout.topMargin: -contentHeight / 4
-            Layout.preferredHeight: contentHeight + 5
-            Layout.preferredWidth: contentWidth
-            reactions: Reactions
-
-            TapHandler {
-                onTapped: {
-                    reactionPopup.open();
                 }
             }
         }
