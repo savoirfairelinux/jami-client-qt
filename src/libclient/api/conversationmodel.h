@@ -259,12 +259,6 @@ public:
      */
     void clearHistory(const QString& uid);
     /**
-     * change the status of the interaction from UNREAD to READ
-     * @param convId, id of the conversation
-     * @param msgId, id of the interaction
-     */
-    void setInteractionRead(const QString& convId, const QString& msgId);
-    /**
      * Clears the unread text messages of a conversation
      * @param convId, uid of the conversation
      */
