@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "590f7ec2_52ec6795",
+        "filename": "src/app/mainview/components/WelcomeInfo.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-19T14:52:45Z",
+      "side": 1,
+      "message": "We should just remove this on a SIP account, Share \u0026 choose username will not work.\n\nCompare with current welcome view om master",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 47
+      },
+      "revId": "79a09c940b436675a00e6771d554d6ae24b63d79",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
