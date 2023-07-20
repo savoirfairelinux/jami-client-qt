@@ -46,8 +46,6 @@ Item {
         anchors.fill: outerRow
         radius: 5
         visible: false
-        Scaffold {
-        }
     }
 
     RowLayout {
