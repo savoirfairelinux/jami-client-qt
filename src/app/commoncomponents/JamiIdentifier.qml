@@ -41,15 +41,6 @@ Item {
         }
     }
 
-    Rectangle {
-        id: mask
-        anchors.fill: outerRow
-        radius: 5
-        visible: false
-        Scaffold {
-        }
-    }
-
     RowLayout {
         id: outerRow
         width: parent.width
@@ -64,13 +55,6 @@ Item {
                 "tr": 0,
                 "br": 0,
                 "bl": 5
-            }
-
-            layer {
-                enabled: true
-                effect: OpacityMask {
-                    maskSource: mask
-                }
             }
 
             RowLayout {
