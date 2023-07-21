@@ -93,7 +93,7 @@ ListSelectionView {
         customBgUrl = hasCustomBgImage ? (CurrentAccount.managerUri + uiCustomization.backgroundColorOrUrl) : "";
         hasCustomBgColor = (hasCustomUi && uiCustomization.backgroundType === "color");
         customBgColor = hasCustomBgColor ? uiCustomization.backgroundColorOrUrl : "";
-        hasCustomLogo = (hasCustomUi && hasLogo && uiCustomization.logoUrl);
+        hasCustomLogo = (hasCustomUi && hasLogo && uiCustomization.logoUrl!== undefined);
         customLogoUrl = hasCustomLogo ? CurrentAccount.managerUri + uiCustomization.logoUrl : "";
         hasWelcomeInfo = hasTitle || hasDescription;
         hasBottomId = !hasWelcomeInfo && !hasTips && hasLogo;
