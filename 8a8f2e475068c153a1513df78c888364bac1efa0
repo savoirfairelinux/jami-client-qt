@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3df3f283_58cfbd33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 47
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-21T19:20:58Z",
+      "side": 1,
+      "message": "Need to correct binding loop and stack overflow",
+      "revId": "8a8f2e475068c153a1513df78c888364bac1efa0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
