@@ -34,6 +34,9 @@ Item {
 
     property real maxHeight: 250
 
+    property color textColor: JamiTheme.textColor
+    property color iconColor: JamiTheme.tintedBlue
+
     signal ignore
 
     ColumnLayout {
@@ -62,13 +65,13 @@ Item {
                 containerWidth: Layout.preferredWidth
 
                 source: JamiResources.backup_svg
-                color: JamiTheme.buttonTintedBlue
+                color: root.iconColor
             }
 
             Text {
                 id: title
                 text: JamiStrings.backupAccountBtn
-                color: JamiTheme.textColor
+                color: root.textColor
                 font.weight: Font.Medium
                 Layout.topMargin: root.margin
                 Layout.alignment: Qt.AlignLeft
@@ -90,7 +93,7 @@ Item {
             wrapMode: Text.WordWrap
             font.weight: Font.Normal
             text: JamiStrings.whyBackupAccount
-            color: JamiTheme.textColor
+            color: root.textColor
             horizontalAlignment: Text.AlignLeft
         }
 
@@ -107,7 +110,7 @@ Item {
                 visible: opened
                 wrapMode: Text.WordWrap
                 text: JamiStrings.backupAccountInfos
-                color: JamiTheme.textColor
+                color: root.textColor
                 horizontalAlignment: Text.AlignLeft
                 linkColor: JamiTheme.buttonTintedBlue
 

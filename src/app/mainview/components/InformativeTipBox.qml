@@ -32,6 +32,9 @@ ColumnLayout {
     property var margin: 5
     property var prefWidth: 170
 
+    property color textColor: JamiTheme.textColor
+    property color iconColor: JamiTheme.tintedBlue
+
     RowLayout {
         id: rowlayout
         Layout.preferredHeight: opened ? 0 : childrenRect.height
@@ -52,12 +55,12 @@ ColumnLayout {
             containerWidth: Layout.preferredWidth
 
             source: JamiResources.glasses_tips_svg
-            color: JamiTheme.buttonTintedBlue
+            color: column.iconColor
         }
 
         Label {
             text: JamiStrings.tip
-            color: JamiTheme.textColor
+            color: column.textColor
             font.weight: Font.Medium
             Layout.topMargin: column.margin
             visible: !opened
@@ -82,7 +85,7 @@ ColumnLayout {
         font.weight: opened ? Font.Medium : Font.Normal
         text: root.title
         horizontalAlignment: Text.AlignLeft
-        color: JamiTheme.textColor
+        color: column.textColor
     }
 
     JamiFlickable {
@@ -99,7 +102,7 @@ ColumnLayout {
             wrapMode: Text.WordWrap
             text: root.description
             horizontalAlignment: Text.AlignLeft
-            color: JamiTheme.textColor
+            color: column.textColor
         }
     }
 }

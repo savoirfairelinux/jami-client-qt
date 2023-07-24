@@ -26,6 +26,7 @@ Item {
     id: jamiId
     property bool slimDisplay: true
     property color backgroundColor: JamiTheme.welcomeBlockColor
+    property color contentColor: JamiTheme.tintedBlue
     height: getHeight()
 
     function getHeight() {
@@ -84,7 +85,7 @@ Item {
                     containerWidth: 40
                     Layout.leftMargin: JamiTheme.pushButtonMargins
                     source: JamiResources.jami_id_logo_svg
-                    color: JamiTheme.tintedBlue
+                    color: jamiId.contentColor
                 }
 
                 UsernameTextEdit {
@@ -92,7 +93,7 @@ Item {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 40
                     Layout.alignment: Qt.AlignVCenter
-                    textColor: JamiTheme.tintedBlue
+                    textColor: jamiId.contentColor
                     fontPixelSize: staticText.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.jamiIdFontSize
                     editMode: false
                     isPersistent: false
@@ -141,8 +142,8 @@ Item {
                     id: btnEdit
                     anchors.leftMargin: JamiTheme.pushButtonMargins
                     visible: CurrentAccount.registeredName === ""
-                    border.color: enabled ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedBlack
-                    imageColor: enabled ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedBlack
+                    border.color: enabled ? jamiId.contentColor : JamiTheme.buttonTintedBlack
+                    imageColor: enabled ? jamiId.contentColor : JamiTheme.buttonTintedBlack
                     enabled: {
                         if (!usernameTextEdit.editMode)
                             return true;
@@ -214,8 +215,8 @@ Item {
         //hoveredColor: JamiTheme.hoveredButtonColorWizard
         imageContainerWidth: JamiTheme.pushButtonSize
         imageContainerHeight: JamiTheme.pushButtonSize
-        border.color: JamiTheme.tintedBlue
-        imageColor: JamiTheme.buttonTintedBlue
+        border.color: jamiId.contentColor
+        imageColor: jamiId.contentColor
         duration: 0
     }
 }
