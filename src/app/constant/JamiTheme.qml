@@ -60,7 +60,9 @@ Item {
     property color whiteColor: "#ffffff"
     property color darkGreyColor: "#272727"
     property color darkGreyColorOpacity: "#be272727" // 77%
-    property color tintedBlue: darkTheme ? "#03B9E9" : "#005699"
+    property color tintedBlue: darkTheme ? lightTintedBlue : darkTintedBlue
+    property color lightTintedBlue:"#03B9E9"
+    property color darkTintedBlue: "#005699"
     property color sysColor: "#F0EFEF"
 
     property color transparentColor: "transparent"

@@ -81,6 +81,11 @@ ListSelectionView {
 
     property color mainBoxColor: "transparent"
 
+    property color tipsTextColor: JamiTheme.textColor
+    property color mainBoxTextColor: JamiTheme.textColor
+    property color contentTipAndIdColor: JamiTheme.tintedBlue
+
+
     function updateUiFlags() {
         hasCustomUi = Object.keys(uiCustomization).length > 0;
         hasTitle = hasCustomUi ? uiCustomization.title !== "" : true;
@@ -101,6 +106,9 @@ ListSelectionView {
         logoSize = (hasCustomUi && uiCustomization.logoSize !== undefined) ? uiCustomization.logoSize / 100 : 1;
         tipBoxAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? uiCustomization.tipBoxAndIdColor : JamiTheme.welcomeBlockColor;
         mainBoxColor = (hasCustomUi && uiCustomization.mainBoxColor !== undefined) ? uiCustomization.mainBoxColor : "transparent";
+        tipsTextColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor)? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
+        mainBoxTextColor = (hasCustomUi && uiCustomization.mainBoxColor !== undefined) ? (UtilsAdapter.luma(mainBoxColor)? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
+        contentTipAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor)? JamiTheme.lightTintedBlue : JamiTheme.darkTintedBlue) : JamiTheme.tintedBlue;
     }
 
     rightPaneItem: JamiFlickable {
@@ -135,8 +143,11 @@ ListSelectionView {
             Connections {
                 target: JamiTheme
                 function onDarkThemeChanged() {
-                    cachedImgLogo.downloadUrl = hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg;
+                    customBgUrl = hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg;
                     tipBoxAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? uiCustomization.tipBoxAndIdColor : JamiTheme.welcomeBlockColor;
+                    tipsTextColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor)? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
+                    mainBoxTextColor = (hasCustomUi && uiCustomization.mainBoxColor !== undefined) ? (UtilsAdapter.luma(mainBoxColor)? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
+                    contentTipAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor)? JamiTheme.lightTintedBlue : JamiTheme.darkTintedBlue) : JamiTheme.tintedBlue;
                 }
             }
         }
@@ -177,6 +188,8 @@ ListSelectionView {
                             title: viewNode.title
                             description: viewNode.description
                             idColor: viewNode.tipBoxAndIdColor
+                            textColor: mainBoxTextColor
+                            contentIdColor: viewNode.contentTipAndIdColor
                         }
                         Layout.alignment: Qt.AlignHCenter
                         Layout.preferredHeight: item.getHeight()
@@ -191,6 +204,8 @@ ListSelectionView {
                 active: viewNode.hasTips && root.height > root.thresholdHeight
                 sourceComponent: TipsRow {
                     tipsColor: viewNode.tipBoxAndIdColor
+                    tipsTextColor: viewNode.tipsTextColor
+                    iconColor: viewNode.contentTipAndIdColor
                 }
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: active ? item.getHeight() : 0

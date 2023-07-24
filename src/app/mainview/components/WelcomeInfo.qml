@@ -28,7 +28,9 @@ Item {
     id: welcomeInfo
 
     property color backgroundColor: "transparent"
+    property color textColor: JamiTheme.textColor
     property color idColor: JamiTheme.welcomeBlockColor
+    property color contentIdColor: JamiTheme.tintedBlue
     property bool hasTitle: true
     property bool hasDescription: true
 
@@ -36,6 +38,8 @@ Item {
     property string description: JamiStrings.hereIsIdentifier
 
     property real contentWidth: welcomeInfo.width - 2 * JamiTheme.mainViewMargin
+
+
 
     function getHeight() {
         return bgRect.height;
@@ -88,6 +92,8 @@ Item {
                 objectName: "loader_bottomIdentifier"
                 sourceComponent: JamiIdentifier {
                     backgroundColor: welcomeInfo.idColor
+                    contentColor: contentIdColor
+
                 }
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: active ? item.getHeight() : 0
@@ -113,7 +119,7 @@ Item {
             font.pixelSize: JamiTheme.bigFontSize
             wrapMode: Text.WordWrap
             text: welcomeInfo.title
-            color: JamiTheme.textColor
+            color: welcomeInfo.textColor
             textFormat: TextEdit.PlainText
             horizontalAlignment: Text.AlignHCenter
         }
@@ -133,7 +139,7 @@ Item {
 
             text: welcomeInfo.description
             lineHeight: 1.25
-            color: JamiTheme.textColor
+            color: welcomeInfo.textColor
             textFormat: TextEdit.PlainText
             horizontalAlignment: Text.AlignHCenter
         }
@@ -151,7 +157,7 @@ Item {
             wrapMode: Text.WordWrap
 
             text: JamiStrings.description
-            color: JamiTheme.textColor
+            color: welcomeInfo.textColor
             textFormat: TextEdit.PlainText
             horizontalAlignment: Text.AlignHCenter
         }
