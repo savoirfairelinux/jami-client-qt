@@ -30,6 +30,10 @@ ColumnLayout {
     property var margin: 5
     property var prefWidth: 170
     property bool opened: root.opened
+
+    property color textColor: JamiTheme.textColor
+    property color iconColor: JamiTheme.tintedBlue
+
     focus: true
 
     onOpenedChanged: {
@@ -56,13 +60,13 @@ ColumnLayout {
             containerWidth: Layout.preferredWidth
 
             source: JamiResources.noun_paint_svg
-            color: JamiTheme.buttonTintedBlue
+            color: column.iconColor
             focus: activeFocus
         }
 
         Label {
             text: JamiStrings.customize
-            color: JamiTheme.textColor
+            color: column.textColor
             font.weight: Font.Medium
             Layout.topMargin: column.margin
             Layout.preferredWidth: column.prefWidth - 2 * column.margin - column.iconSize
@@ -85,7 +89,7 @@ ColumnLayout {
         wrapMode: Text.WordWrap
         font.weight: Font.Normal
         text: JamiStrings.customizeText
-        color: JamiTheme.textColor
+        color: column.textColor
     }
 
     PhotoboothView {
@@ -125,6 +129,6 @@ ColumnLayout {
         visible: opened
         wrapMode: Text.WordWrap
         text: JamiStrings.customizationDescription2
-        color: JamiTheme.textColor
+        color: column.textColor
     }
 }

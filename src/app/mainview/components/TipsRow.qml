@@ -29,6 +29,9 @@ JamiFlickable {
     clip: false
 
     property color tipsColor: JamiTheme.welcomeBlockColor
+    property color tipsTextColor: JamiTheme.textColor
+    property color iconColor: JamiTheme.tintedBlue
+
     width: JamiTheme.welcomeGridWidth
     height: getHeight()
     function getHeight() {
@@ -56,6 +59,8 @@ JamiFlickable {
                 type: Type
                 property bool hideTipBox: false
                 anchors.bottom: row.bottom
+                textColor:tipsTextColor
+                iconColor: tipsRow.iconColor
 
                 visible: {
                     if (hideTipBox)

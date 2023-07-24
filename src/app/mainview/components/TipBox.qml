@@ -34,6 +34,9 @@ FocusScope {
     property bool clicked: false
     property bool opened: activeFocus
     property color backgroundColor: JamiTheme.welcomeBlockColor
+    property color textColor: JamiTheme.textColor
+    property color iconColor: JamiTheme.tintedBlue
+
 
     property string customizeTip: "CustomizeTipBox {}"
 
@@ -52,6 +55,7 @@ FocusScope {
 
     focus: true
     activeFocusOnTab: true
+
 
     Rectangle {
         id: rect
@@ -77,6 +81,8 @@ FocusScope {
                         root.ignoreClicked();
                     }
                     maxHeight: root.maximumHeight
+                    textColor: root.textColor
+                    iconColor: root.iconColor
                 }
                 width: parent.width
             }
@@ -84,17 +90,23 @@ FocusScope {
                 id: loader_customizeTip
                 active: type === "customize"
                 sourceComponent: CustomizeTipBox {
+                    textColor: root.textColor
+                    iconColor: root.iconColor
                 }
                 width: parent.width
                 focus: true
+
             }
             Loader {
                 id: loader_infoTip
                 active: type === "tip"
                 sourceComponent: InformativeTipBox {
                     maxHeight: root.maximumHeight
+                    textColor: root.textColor
+                    iconColor: root.iconColor
                 }
                 width: parent.width
+
             }
         }
     }
@@ -148,7 +160,7 @@ FocusScope {
             visible: opened
             circled: true
 
-            imageColor: JamiTheme.tintedBlue
+            imageColor: root.iconColor
             normalColor: "transparent"
             toolTipText: JamiStrings.dismiss
 
