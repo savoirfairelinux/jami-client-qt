@@ -107,6 +107,7 @@ Rectangle {
 
                         editMode: false
                         isPersistent: false
+                        placeholderText: JamiStrings.title
 
                         onActiveFocusChanged: {
                             if (!activeFocus) {

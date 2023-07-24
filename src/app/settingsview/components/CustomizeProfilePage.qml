@@ -77,6 +77,7 @@ SettingsPageBase {
                 }
 
                 maxCharacters: JamiTheme.maximumCharacters
+                placeholderText: JamiStrings.displayName
 
                 editMode: false
                 isPersistent: false
