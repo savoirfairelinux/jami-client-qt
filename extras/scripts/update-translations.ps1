@@ -10,4 +10,4 @@ if (-not(Test-Path -Path $QtDir)) {
 $lupdate = "$QtDir\bin\lupdate.exe"
 
 $tsFileNames = Get-ChildItem -Path "$clientDir\translations" -Recurse -Include *.ts
-Invoke-Expression("$lupdate $clientDir\src -ts $tsFileNames -no-obsolete")
+Invoke-Expression("$lupdate -extensions cpp,h,qml,qrc $clientDir\src\app\webengine\map -ts $tsFileNames -no-obsolete")
