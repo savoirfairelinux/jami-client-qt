@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c84cb965_7be26cef",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:12:57Z",
+      "side": 1,
+      "message": "remove commented lines",
+      "range": {
+        "startLine": 166,
+        "startChar": 18,
+        "endLine": 166,
+        "endChar": 25
+      },
+      "revId": "7c77c08bd8b811e57ee7b4f5882d8e6df0abb780",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e72ec6b5_45ae954a",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:12:57Z",
+      "side": 1,
+      "message": "doesn\u0027t work with strikethorough and some lists",
+      "range": {
+        "startLine": 320,
+        "startChar": 33,
+        "endLine": 320,
+        "endChar": 40
+      },
+      "revId": "7c77c08bd8b811e57ee7b4f5882d8e6df0abb780",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e9e950b_f2e60392",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:12:57Z",
+      "side": 1,
+      "message": "Preview doesn\u0027t work well when a title is present in a multi line message",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 27
+      },
+      "revId": "7c77c08bd8b811e57ee7b4f5882d8e6df0abb780",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "133d8e88_0adf2a1b",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:12:57Z",
+      "side": 1,
+      "message": "Same with:\n\n```\nThis is a test\n\n**b** *i*\n__s__\n\n_b_\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndasdsa\n```\n\nA large space is added at the beginning of the preview",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 21
+      },
+      "revId": "7c77c08bd8b811e57ee7b4f5882d8e6df0abb780",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55b38df3_70db558f",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:12:57Z",
+      "side": 1,
+      "message": "needed?",
+      "range": {
+        "startLine": 453,
+        "startChar": 15,
+        "endLine": 453,
+        "endChar": 28
+      },
+      "revId": "7c77c08bd8b811e57ee7b4f5882d8e6df0abb780",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
