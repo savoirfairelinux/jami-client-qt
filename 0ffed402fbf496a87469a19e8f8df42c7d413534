@@ -39,6 +39,30 @@
       },
       "revId": "0ffed402fbf496a87469a19e8f8df42c7d413534",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2505809_c56b49b0",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-26T12:46:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d792173c_2edb81e4",
+      "range": {
+        "startLine": 112,
+        "startChar": 11,
+        "endLine": 114,
+        "endChar": 10
+      },
+      "revId": "0ffed402fbf496a87469a19e8f8df42c7d413534",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
