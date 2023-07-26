@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "add1f191_e189b20e",
+        "filename": "src/app/mainview/components/WelcomePage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T11:30:16Z",
+      "side": 1,
+      "message": "logoUrl !\u003d\u003d undefined",
+      "range": {
+        "startLine": 96,
+        "startChar": 69,
+        "endLine": 96,
+        "endChar": 79
+      },
+      "revId": "d2d3a5d0f8ccf54deef06cab5497820de5ecc808",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
