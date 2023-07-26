@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ca39d83_bac4f992",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 54
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T11:56:41Z",
+      "side": 1,
+      "message": "preferences in dark theme are broken",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a15e88f_138ed2e5",
+        "filename": "src/app/appversionmanager.cpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T11:56:41Z",
+      "side": 1,
+      "message": "should not be a problem if nullptr is accepted, else this change should be in the patch where you add replyId_",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 16
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5e3dc1c_aa7e6026",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 54
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T11:56:41Z",
+      "side": 1,
+      "message": "in dark theme, this is shown in dark on dark",
+      "range": {
+        "startLine": 670,
+        "startChar": 20,
+        "endLine": 670,
+        "endChar": 43
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b19206c5_61212c75",
+        "filename": "src/app/pluginadapter.cpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T11:56:41Z",
+      "side": 1,
+      "message": "Manually installing a unsigned plugin will show \"Store not available\" as it\u0027s the same signal",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 25
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac4d914c_97f033bb",
+        "filename": "src/app/pluginadapter.cpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T11:56:41Z",
+      "side": 1,
+      "message": "This should not be done whenever we open the extensions store, only the first time then every X hours. Probably cache result for X hours",
+      "range": {
+        "startLine": 98,
+        "startChar": 10,
+        "endLine": 98,
+        "endChar": 24
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00d4300e_2f206bab",
+        "filename": "src/app/pluginstorelistmodel.cpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T11:56:41Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 61,
+        "startChar": 41,
+        "endLine": 61,
+        "endChar": 47
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2ba556d_4387b46d",
+        "filename": "src/app/settingsview/components/PluginAvailableDelagate.qml",
+        "patchSetId": 54
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T11:56:41Z",
+      "side": 1,
+      "message": "darktheme is broken",
+      "range": {
+        "startLine": 21,
+        "startChar": 20,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79c2ca31_769486d7",
+        "filename": "src/app/settingsview/components/PluginAvailableDelagate.qml",
+        "patchSetId": 54
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T11:56:41Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 150,
+        "startChar": 66,
+        "endLine": 150,
+        "endChar": 77
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb8d2a7d_a9e90327",
+        "filename": "src/app/settingsview/components/PluginListView.qml",
+        "patchSetId": 54
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T11:56:41Z",
+      "side": 1,
+      "message": "not sure if necessary",
+      "range": {
+        "startLine": 25,
+        "startChar": 17,
+        "endLine": 25,
+        "endChar": 33
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "618f4fbc_0b7cd54c",
+        "filename": "src/app/settingsview/components/PluginPreferencesListView.qml",
+        "patchSetId": 54
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T11:56:41Z",
+      "side": 1,
+      "message": "You can create an \"Item\" instead a transparent Rectangle",
+      "range": {
+        "startLine": 66,
+        "startChar": 8,
+        "endLine": 66,
+        "endChar": 17
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
