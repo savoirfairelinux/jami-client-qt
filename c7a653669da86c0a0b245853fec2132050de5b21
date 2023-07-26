@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ba12f6e_17702d8b",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:02:11Z",
+      "side": 1,
+      "message": "Disabling the AutoUpdate preferences doesn\u0027t work",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 22
+      },
+      "revId": "c7a653669da86c0a0b245853fec2132050de5b21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c53c4985_f52ce54f",
+        "filename": "src/app/pluginadapter.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:02:11Z",
+      "side": 1,
+      "message": "remove debug logs used during development",
+      "revId": "c7a653669da86c0a0b245853fec2132050de5b21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0790962b_1cf1515e",
+        "filename": "src/app/pluginadapter.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:02:11Z",
+      "side": 1,
+      "message": "plugins.jami.net",
+      "range": {
+        "startLine": 43,
+        "startChar": 45,
+        "endLine": 43,
+        "endChar": 70
+      },
+      "revId": "c7a653669da86c0a0b245853fec2132050de5b21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95461e0d_166940f6",
+        "filename": "src/app/pluginadapter.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:02:11Z",
+      "side": 1,
+      "message": "should be a const and only with a getter as it\u0027s init by the constructor",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "c7a653669da86c0a0b245853fec2132050de5b21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94e4bff1_a4e00f57",
+        "filename": "src/app/settingsview/components/PluginAvailableDelagate.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:02:11Z",
+      "side": 1,
+      "message": "missing copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "c7a653669da86c0a0b245853fec2132050de5b21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e35d395_6e50f555",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:02:11Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 2,
+        "startChar": 7,
+        "endLine": 2,
+        "endChar": 14
+      },
+      "revId": "c7a653669da86c0a0b245853fec2132050de5b21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8417bf7_0aea7666",
+        "filename": "src/libclient/pluginmodel.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-26T12:02:11Z",
+      "side": 1,
+      "message": "weird logic where getPluginsPath() actually modify pluginsPath_ and getPluginPath(String) return without modifying anything",
+      "range": {
+        "startLine": 166,
+        "startChar": 13,
+        "endLine": 166,
+        "endChar": 27
+      },
+      "revId": "c7a653669da86c0a0b245853fec2132050de5b21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
