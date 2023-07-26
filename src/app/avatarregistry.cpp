@@ -77,6 +77,7 @@ void
 AvatarRegistry::onProfileUpdated(const QString& uri)
 {
     auto& convInfo = lrcInstance_->getConversationFromPeerUri(uri);
+    addOrUpdateImage(uri);
     if (convInfo.uid.isEmpty())
         return;
 
