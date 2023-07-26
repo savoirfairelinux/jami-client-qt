@@ -47,6 +47,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56a59d76_d7e64b89",
+        "filename": "src/app/appversionmanager.cpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-26T14:59:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a15e88f_138ed2e5",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 16
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5e3dc1c_aa7e6026",
@@ -139,6 +163,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4173ad6_6e6a9139",
+        "filename": "src/app/pluginstorelistmodel.cpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-26T14:59:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00d4300e_2f206bab",
+      "range": {
+        "startLine": 61,
+        "startChar": 41,
+        "endLine": 61,
+        "endChar": 47
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2ba556d_4387b46d",
@@ -208,6 +256,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c5a9ca6_5ab06599",
+        "filename": "src/app/settingsview/components/PluginListView.qml",
+        "patchSetId": 54
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-26T14:59:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb8d2a7d_a9e90327",
+      "range": {
+        "startLine": 25,
+        "startChar": 17,
+        "endLine": 25,
+        "endChar": 33
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "618f4fbc_0b7cd54c",
@@ -221,6 +293,30 @@
       "writtenOn": "2023-07-26T11:56:41Z",
       "side": 1,
       "message": "You can create an \"Item\" instead a transparent Rectangle",
+      "range": {
+        "startLine": 66,
+        "startChar": 8,
+        "endLine": 66,
+        "endChar": 17
+      },
+      "revId": "23bd01d3f0e4573d62544c55541f9b94c8981a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ce350bc_be95c59c",
+        "filename": "src/app/settingsview/components/PluginPreferencesListView.qml",
+        "patchSetId": 54
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-26T14:59:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "618f4fbc_0b7cd54c",
       "range": {
         "startLine": 66,
         "startChar": 8,
