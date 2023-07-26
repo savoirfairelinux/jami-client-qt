@@ -3,6 +3,5 @@ host = https://www.transifex.com
 
 [o:savoirfairelinux:p:jami:r:jami_client_qt]
 file_filter = translations/jami_client_qt_<lang>.ts
-source_file = translations/jami_client_qt.ts
-source_lang = en
+source_file = translations/jami_client_qt_en.ts
 type        = TS
