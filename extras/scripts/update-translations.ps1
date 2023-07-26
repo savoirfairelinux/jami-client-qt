@@ -2,6 +2,7 @@
 param ([string]$qtver);
 
 $clientDir = Get-Location
+cd src
 $qtver = If ($qtver) { $qtver } Else { "5.15.0" }
 $QtDir = "C:\Qt\$qtver\msvc2019_64"
 if (-not(Test-Path -Path $QtDir)) {
@@ -10,4 +11,5 @@ if (-not(Test-Path -Path $QtDir)) {
 $lupdate = "$QtDir\bin\lupdate.exe"
 
 $tsFileNames = Get-ChildItem -Path "$clientDir\translations" -Recurse -Include *.ts
-Invoke-Expression("$lupdate $clientDir\src -ts $tsFileNames -no-obsolete")
+Invoke-Expression("$lupdate -extensions cpp,h,qml,qrc -ts $tsFileNames -no-obsolete")
+cd ..
