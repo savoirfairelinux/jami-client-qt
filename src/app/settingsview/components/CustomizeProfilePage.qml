@@ -87,7 +87,6 @@ SettingsPageBase {
                 Layout.fillWidth: true
 
                 staticText: CurrentAccount.alias
-                placeholderText: JamiStrings.enterNickname
                 elidedText: displayNameLineEditTextSize.elidedText
 
                 onAccepted: AccountAdapter.setCurrAccDisplayName(dynamicText)
