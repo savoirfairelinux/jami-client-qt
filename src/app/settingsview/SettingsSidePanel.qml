@@ -209,7 +209,7 @@ SidePanelBase {
                     buttonTextFont.weight: isChildSelected ? Font.Medium : Font.Normal
                     buttonTextEnableElide: true
 
-                    normalColor: "transparent"
+                    normalColor: JamiTheme.backgroundColor
                     hoveredColor: JamiTheme.smartListHoveredColor
                     imageColor: JamiTheme.tintedBlue
 
@@ -255,7 +255,7 @@ SidePanelBase {
                             buttonTextFont.weight: isSelected ? Font.Medium : Font.Normal
                             buttonTextEnableElide: true
 
-                            normalColor: isSelected ? JamiTheme.smartListSelectedColor : "transparent"
+                            normalColor: isSelected ? JamiTheme.smartListSelectedColor : JamiTheme.backgroundColor
                             hoveredColor: JamiTheme.smartListHoveredColor
 
                             onClicked: open(modelData.id)
