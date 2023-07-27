@@ -1,33 +1,33 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ta">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ta" sourcelanguage="en">
 <context>
     <name>CallAdapter</name>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="151"/>
+        <location filename="../src/app/calladapter.cpp" line="153"/>
         <source>Missed call</source>
         <translation>தொலைபேசி அழைப்பு தவறியது</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="152"/>
+        <location filename="../src/app/calladapter.cpp" line="154"/>
         <source>Missed call with %1</source>
         <translation>%1 உடன் தொலைபேசி அழைப்பு தவறியது</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="454"/>
+        <location filename="../src/app/calladapter.cpp" line="456"/>
         <source>Incoming call</source>
         <translation>வருகின்ற அழைப்பு</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="455"/>
+        <location filename="../src/app/calladapter.cpp" line="457"/>
         <source>%1 is calling you</source>
         <translation>%1 உங்களை அழைக்கிறது</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="466"/>
+        <location filename="../src/app/calladapter.cpp" line="468"/>
         <source>is calling you</source>
         <translation>உன்னை அழைக்கிறது</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="961"/>
+        <location filename="../src/app/calladapter.cpp" line="945"/>
         <source>Screenshot</source>
         <translation>திரைப்படம்</translation>
     </message>
@@ -35,28 +35,20 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="189"/>
         <source>%1 received a new message</source>
         <translation>%1 புதிய செய்தியைப் பெற்றது</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="243"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="244"/>
         <source>%1 received a new trust request</source>
         <translation>%1 புதிய நம்பிக்கை கோரிக்கை பெற்றது</translation>
     </message>
 </context>
 <context>
-    <name>CurrentAccountSettingsScrollPage</name>
-    <message>
-        <location filename="../src/app/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="816"/>
-        <source/>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>CurrentCall</name>
     <message>
-        <location filename="../src/app/currentcall.cpp" line="178"/>
+        <location filename="../src/app/currentcall.cpp" line="185"/>
         <source>Me</source>
         <translation>நான்</translation>
     </message>
@@ -64,44 +56,49 @@
 <context>
     <name>CurrentConversation</name>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="136"/>
+        <location filename="../src/app/currentconversation.cpp" line="137"/>
         <source>Private</source>
         <translation>தனியார்</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="138"/>
+        <location filename="../src/app/currentconversation.cpp" line="139"/>
         <source>Private group (restricted invites)</source>
         <translation>தனியார் குழு (குறைந்த அழைப்பு)</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="140"/>
+        <location filename="../src/app/currentconversation.cpp" line="141"/>
         <source>Private group</source>
         <translation>தனியார் குழு</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="142"/>
+        <location filename="../src/app/currentconversation.cpp" line="143"/>
         <source>Public group</source>
         <translation>பொது குழு</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="323"/>
+        <location filename="../src/app/currentconversation.cpp" line="324"/>
         <source>An error occurred while fetching this repository</source>
         <translation>இந்த களஞ்சியத்தை அழைத்து வருகையில் ஒரு தவறு ஏற்பட்டது</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="325"/>
-        <source>The conversation&apos;s mode is un-recognized</source>
-        <translation>உரையாடலின் முறை அங்கீகரிக்கப்படாதது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="327"/>
-        <source>An invalid message was detected</source>
-        <translation>ஒரு தவறான செய்தி கண்டறியப்பட்டது</translation>
+        <location filename="../src/app/currentconversation.cpp" line="326"/>
+        <source>Unrecognized conversation mode</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="330"/>
-        <source>Not enough authorization for updating conversation&apos;s infos</source>
-        <translation>உரையாடலின் தகவலைப் புதுப்பிக்க போதுமான அனுமதி இல்லை</translation>
+        <source>Not authorized to update conversation information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="332"/>
+        <source>An error occurred while committing a new message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="328"/>
+        <source>An invalid message was detected</source>
+        <translation>ஒரு தவறான செய்தி கண்டறியப்பட்டது</translation>
     </message>
 </context>
 <context>
@@ -115,14 +112,77 @@
 <context>
     <name>JamiStrings</name>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="29"/>
+        <source>Accept</source>
+        <translation>ஏற்றுக்கொள்ளுங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
+        <source>Accept in audio</source>
+        <translation>ஆடியோவில் ஏற்றுக்கொள்ளவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="31"/>
+        <source>Accept in video</source>
+        <translation>வீடியோவில் ஏற்றுக்கொள்ளவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
+        <source>Refuse</source>
+        <translation>மறுத்தல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
+        <source>End call</source>
+        <translation>அழைப்பை முடித்திடுக</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
+        <source>Incoming audio call from {}</source>
+        <translation>{}இலிருந்து வரும் ஆடியோ அழைப்பு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
+        <source>Incoming video call from {}</source>
+        <translation>{} இருந்து வரும் வீடியோ அழைப்பு</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="39"/>
         <source>Invitations</source>
         <translation>அழைப்பிதழ்கள்</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
+        <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
+        <translation>ஜாமி என்பது ஒரு உலகளாவிய தகவல் தொடர்பு தளமாகும், தனியுரிமை அதன் அடித்தளமாக உள்ளது, இது அனைவருக்கும் இலவசமாக விநியோகிக்கப்பட்ட நெட்வொர்க்கை நம்பியுள்ளது.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
+        <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
+        <translation>ஸ்வார்ம் தொழில்நுட்பத்திற்கு இடம்பெயர்வது இந்த உரையாடலை பல சாதனங்களில் ஒத்திசைக்கவும் நம்பகத்தன்மையை மேம்படுத்தவும் உதவும். இந்த செயல்பாட்டில் மரபுவழி உரையாடல் வரலாறு அழிக்கப்படும்.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="781"/>
+        <source>Could not re-connect to the Jami daemon (jamid).
+Jami will now quit.</source>
+        <translation>ஜாமி டேமன் (ஜாமிட்) உடன் மீண்டும் இணைக்க முடியவில்லை. ஜாமி இப்போது விலகினார்.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="46"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
+        <source>Trying to reconnect to the Jami daemon (jamid)…</source>
+        <translation>ஜாமி டேமன் (ஜாமிட்) உடன் மீண்டும் இணைக்க முயற்சிக்கிறேன்.</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="49"/>
         <source>Version</source>
         <translation>பதிப்பு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
+        <source>Jami is a free universal communication software that respects the freedom and privacy of its users.</source>
+        <translation>ஜாமி என்பது ஒரு இலவச சர்வ சாதாரண தகவல் தொடர்பு மென்பொருள் ஆகும், இது பயனர்களின் சுதந்திரத்தையும் தனியுரிமையையும் மதிக்கிறது.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="55"/>
@@ -143,6 +203,31 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Close settings</source>
         <translation>நெருக்கமான அமைப்புகள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
+        <source>Add Account</source>
+        <translation>கணக்கைச் சேர்க்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="64"/>
+        <source>Add to conference</source>
+        <translation>மாநாட்டில் சேர்க்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="65"/>
+        <source>Add to conversation</source>
+        <translation>உரையாடலுக்கு சேர்க்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="66"/>
+        <source>Transfer this call</source>
+        <translation>இந்த அழைப்பை மாற்றவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="67"/>
+        <source>Transfer to</source>
+        <translation>பரிமாற்றம்</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="70"/>
@@ -170,6 +255,11 @@
         <translation>கணக்கை நீக்கு</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
+        <source>In progress…</source>
+        <translation>முன்னேற்றம்.</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="76"/>
         <source>Authentication failed</source>
         <translation>சரிபார்ப்பு தோல்வியுற்றது</translation>
@@ -193,36 +283,6 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="82"/>
         <source>Allow incoming calls from unknown contacts</source>
         <translation>அறியப்படாத தொடர்புகளிலிருந்து வரும் அழைப்புகளை அனுமதிக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
-        <source>In progress…</source>
-        <translation>முன்னேற்றம்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="29"/>
-        <source>Accept</source>
-        <translation>ஏற்றுக்கொள்ளுங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
-        <source>Refuse</source>
-        <translation>மறுத்தல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
-        <source>Incoming audio call from {}</source>
-        <translation>{}இலிருந்து வரும் ஆடியோ அழைப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
-        <source>Incoming video call from {}</source>
-        <translation>{} இருந்து வரும் வீடியோ அழைப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="42"/>
-        <source>Migrate conversation</source>
-        <translation>உரையாடலை நகர்த்தவும்</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="83"/>
@@ -255,6 +315,26 @@
         <translation>புதிய ரிங்டோனைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
+        <source>Certificate File (*.crt)</source>
+        <translation>சான்றிதழ் கோப்பு (*.crt)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="90"/>
+        <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
+        <translation>ஆடியோ கோப்பு (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
+        <source>Enable read receipts</source>
+        <translation>படிப்பு ரசீதுகளை இயக்கு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
+        <source>Send and receive receipts indicating that a message have been displayed</source>
+        <translation>ஒரு செய்தியைக் காண்பிக்கப்பட்டுள்ளதாகக் குறிக்கும் ரசீதுகளை அனுப்புதல் மற்றும் பெறுதல்</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
         <source>Voicemail</source>
         <translation>குரல் அஞ்சல்</translation>
@@ -276,169 +356,387 @@
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="103"/>
-        <source>Allow fallback on RTP</source>
-        <translation>RTP-இல் பின்னடைவை அனுமதித்தல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="104"/>
         <source>Encrypt negotiation (TLS)</source>
         <translation>குறியாக்க பேச்சுவார்த்தை (TLS)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="105"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="104"/>
         <source>CA certificate</source>
         <translation>CA சான்றிதழ்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="106"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="105"/>
         <source>User certificate</source>
         <translation>பயனர் சான்றிதழ்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="107"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="106"/>
         <source>Private key</source>
         <translation>தனியார் திறவுகோல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="108"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="107"/>
         <source>Private key password</source>
         <translation>தனியார் திறவுகோல் கடவுச்சொல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="109"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="108"/>
         <source>Verify certificates for incoming TLS connections</source>
         <translation>உள்வரும் TLS இணைப்புகளுக்கான சான்றிதழ்களை சரிபார்க்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="110"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="109"/>
         <source>Verify server TLS certificates</source>
         <translation>சேவையக TLS சான்றிதழ்களை சரிபார்க்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="111"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="110"/>
         <source>Require certificate for incoming TLS connections</source>
         <translation>உள்வரும் TLS இணைப்புகளுக்கு சான்றிதழ் தேவை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="113"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="112"/>
         <source>Audio input device selector</source>
         <translation>ஆடியோ உள்ளீட்டு சாதனத் தேர்ந்தெடுப்பான்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="114"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="113"/>
         <source>Select a private key</source>
         <translation>தனியார் திறனைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="115"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="114"/>
         <source>Select a user certificate</source>
         <translation>பயனர் சான்றிதழைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="115"/>
+        <source>Select a CA certificate</source>
+        <translation>CA சான்றிதழைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="117"/>
+        <source>Key File (*.key)</source>
+        <translation>விசை கோப்பு (*.key)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="120"/>
+        <source>Connectivity</source>
+        <translation>இணைப்பு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="121"/>
+        <source>Auto Registration After Expired</source>
+        <translation>காலாவதி முடிந்த பிறகு தானியங்கி பதிவு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="122"/>
         <source>Registration expiration time (seconds)</source>
         <translation>பதிவு கால அவகாசம் (விநாடிகள்)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
+        <source>Network interface</source>
+        <translation>நெட்வொர்க் இடைமுகம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="124"/>
+        <source>Use UPnP</source>
+        <translation>UPnP ஐப் பயன்படுத்தவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="125"/>
+        <source>Use TURN</source>
+        <translation>TURN ஐப் பயன்படுத்தவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="126"/>
+        <source>TURN address</source>
+        <translation>திருப்பு முகவரி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="127"/>
+        <source>TURN username</source>
+        <translation>பயனர் பெயர் TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="128"/>
+        <source>TURN password</source>
+        <translation>TURN கடவுச்சொல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
+        <source>TURN Realm</source>
+        <translation>TURN சாம்ராஜ்யம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
+        <source>Use STUN</source>
+        <translation>STUN ஐ பயன்படுத்தவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="131"/>
+        <source>STUN address</source>
+        <translation>STUN முகவரி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="134"/>
+        <source>Allow IP Auto Rewrite</source>
+        <translation>ஐபி தானியங்கி மறுபதிப்பு அனுமதி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="135"/>
+        <source>Public address</source>
+        <translation>பொது முகவரி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="136"/>
         <source>Use custom address and port</source>
         <translation>தனிப்பயன் முகவரி மற்றும் போர்ட்டை பயன்படுத்தவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
+        <source>Address</source>
+        <translation>முகவரி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="138"/>
+        <source>Port</source>
+        <translation>துறைமுகம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="141"/>
+        <source>Media</source>
+        <translation>ஊடகங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="142"/>
+        <source>Enable video</source>
+        <translation>வீடியோவை இயக்கு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="150"/>
+        <source>SDP Session Negotiation (ICE Fallback)</source>
+        <translation>SDP கூட்டத் தொடர் பேச்சுவார்த்தை (ICE Fallback)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="151"/>
+        <source>Only used during negotiation in case ICE is not supported</source>
+        <translation>ICE ஆதரவு இல்லாத சந்தர்ப்பத்தில் மட்டுமே பேச்சுவார்த்தைகளின் போது பயன்படுத்தப்படுகிறது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="152"/>
+        <source>Audio RTP minimum Port</source>
+        <translation>ஆடியோ RTP குறைந்தபட்ச போர்ட்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="153"/>
+        <source>Audio RTP maximum Port</source>
+        <translation>ஆடியோ RTP அதிகபட்ச போர்ட்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="154"/>
+        <source>Video RTP minimum Port</source>
+        <translation>வீடியோ RTP குறைந்தபட்ச போர்ட்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="155"/>
+        <source>Video RTP maximum port</source>
+        <translation>வீடியோ RTP அதிகபட்ச போர்ட்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="158"/>
         <source>Enable local peer discovery</source>
         <translation>உள்ளூர் சகாக்களைக் கண்டறிவதை இயக்குதல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
+        <source>Connect to other DHT nodes advertising on your local network.</source>
+        <translation>உங்கள் உள்ளூர் நெட்வொர்க்கில் விளம்பரப்படுத்தும் மற்ற DHT முனைகளுடன் இணைக்கவும்.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
+        <source>Enable proxy</source>
+        <translation>ப்ராக்ஸி செயல்படுத்தவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
+        <source>Proxy address</source>
+        <translation>பிரதிநிதி முகவரி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
+        <source>Bootstrap</source>
+        <translation>துவக்கப் பட்டியல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="166"/>
+        <source>Back</source>
+        <translation>திரும்பி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="167"/>
+        <source>Account</source>
+        <translation>கணக்கு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
+        <source>General</source>
+        <translation>பொது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="179"/>
+        <source>Audio</source>
+        <translation>கேள்விமாற்றி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="180"/>
+        <source>Microphone</source>
+        <translation>மைக்ரோஃபோன்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="181"/>
+        <source>Select audio input device</source>
+        <translation>ஆடியோ உள்ளீட்டு சாதனத்தைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="182"/>
+        <source>Output device</source>
+        <translation>வெளியீட்டு சாதனம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="183"/>
+        <source>Select audio output device</source>
+        <translation>ஆடியோ வெளியீட்டு சாதனத்தைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="184"/>
+        <source>Ringtone device</source>
+        <translation>ரிங்க்டோன் சாதனம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="185"/>
+        <source>Select ringtone output device</source>
+        <translation>ரிங்டோன் வெளியீட்டு சாதனத்தைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
+        <source>Audio manager</source>
+        <translation>ஆடியோ மேலாளர்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="190"/>
+        <source>Video</source>
+        <translation>காணொளி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="191"/>
+        <source>Select video device</source>
+        <translation>வீடியோ சாதனத்தைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="192"/>
+        <source>Device</source>
+        <translation>சாதனம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="193"/>
+        <source>Resolution</source>
+        <translation>தீர்மானம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="194"/>
+        <source>Select video resolution</source>
+        <translation>வீடியோ தீர்மானத்தை தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="195"/>
         <source>Frames per second</source>
         <translation>வினாடிக்கு பிரேம்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="196"/>
         <source>Select video frame rate (frames per second)</source>
         <translation>வீடியோ ஃப்ரேம் வேகத்தை (வினாடிக்கு ஃப்ரேம்கள்) தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
-        <source>End call</source>
-        <translation>அழைப்பை முடித்திடுக</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
+        <source>Enable hardware acceleration</source>
+        <translation>வன்பொருள் துரிதப்படுத்தல் செயல்படுத்தவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
-        <source>Pause call</source>
-        <translation>இடைநிறுத்த அழைப்பு</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
+        <source>Preview unavailable</source>
+        <translation>முன்னோட்ட கிடைக்கவில்லை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
-        <source>Resume call</source>
-        <translation>அழைப்பைத் தொடங்குதல்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="201"/>
+        <source>Select screen sharing frame rate (frames per second)</source>
+        <translation>திரையில் பகிர்வு புகைப்பட வீதத்தை (வினாடிக்கு புகைப்படங்கள்) தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
-        <source>Creating account…</source>
-        <translation>கணக்கை உருவாக்குதல்...</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="202"/>
+        <source>no video</source>
+        <translation>வீடியோ இல்லை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
-        <source>Encrypt account with password</source>
-        <translation>கடவுச்சொல் கொண்ட கணக்கை குறியாக்கம் செய்யவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
+        <source>Back up account here</source>
+        <translation>இங்கே கணக்கு காப்பு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
-        <source>Create a rendezvous point</source>
-        <translation>ஒரு சந்திப்பு இடத்தை உருவாக்குங்கள்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
+        <source>Back up account</source>
+        <translation>காப்புப்பிரதி கணக்கு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="389"/>
-        <source>Choose a name for your rendezvous point</source>
-        <translation>உங்கள் சந்திப்பு இடத்திற்கு ஒரு பெயரைத் தேர்ந்தெடுக்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
+        <source>Unavailable</source>
+        <translation>கிடைக்கவில்லை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
-        <source>Launch at startup</source>
-        <translation>தொடக்கத்தில் துவக்கம்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="321"/>
+        <source>Turn off sharing</source>
+        <translation>பகிர்வு செயலிழக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
-        <source>Network error</source>
-        <translation>நெட்வொர்க் தவறு</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="322"/>
+        <source>Stop location sharing in this conversation (%1)</source>
+        <translation>இந்த உரையாடலில் இருப்பிட பகிர்வை நிறுத்து (%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
-        <source>SSL error</source>
-        <translation>SSL பிழை</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="343"/>
+        <source>Hide chat</source>
+        <translation>மறை சட்டை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
-        <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN.</source>
-        <translation>மற்றொரு ஜாமி கணக்கிலிருந்து PIN ஐ உள்ளிடவும். PIN ஐப் பெற &quot;இணைக்க மற்றொரு சாதனம்&quot; அம்சத்தைப் பயன்படுத்தவும்.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
+        <source>Back to Call</source>
+        <translation>மீண்டும் அழைப்பு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
-        <source>Link device</source>
-        <translation>இணைப்பு சாதனம்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="361"/>
+        <source>Scroll to end of conversation</source>
+        <translation>உரையாடலின் முடிவுக்கு சுருள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
-        <source>Conversations</source>
-        <translation>உரையாடல்கள்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
+        <source>Choose a password to encrypt your account on this device. Note that the password CANNOT be recovered.</source>
+        <translation>இந்த சாதனத்தில் உங்கள் கணக்கை குறியாக்க கடவுச்சொல்லைத் தேர்ந்தெடுக்கவும். கடவுச்சொல்லை மீட்டெடுக்க முடியாது என்பதை நினைவில் கொள்க.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
-        <source>Enable</source>
-        <translation>இயக்குதல்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="387"/>
+        <source>You can choose a username to help others more easily find and reach you on Jami.</source>
+        <translation>ஜாமி மீது உங்களை எளிதாகக் கண்டுபிடித்து அடைய உதவும் பயனர் பெயரை நீங்கள் தேர்வு செய்யலாம்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="394"/>
         <source>Are you sure you would like to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
         <translation>நீங்கள் ஒரு பயனர்பெயர் இல்லாமல் ஜாமி சேர விரும்புகிறீர்களா? ஆம் என்றால், இந்த கணக்கிற்கு 40 எழுத்துக்கள் கொண்ட தோராயமாக உருவாக்கப்பட்ட அடையாளங்காட்டி மட்டுமே ஒதுக்கப்படும்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="396"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
         <source>- 32 characters maximum
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
@@ -446,426 +744,177 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
         <translation>- அதிகபட்சம் 32 எழுத்துக்கள் - எழுத்துக்கள் (A முதல் Z மற்றும் a முதல் z) - எண் எழுத்துக்கள் (0 முதல் 9) - சிறப்பு எழுத்துக்கள் அனுமதிக்கப்படுகின்றனஃ dash (-)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="401"/>
         <source>Your account will be created and stored locally.</source>
         <translation>உங்கள் கணக்கு உருவாக்கப்பட்டு உள்ளூர் அளவில் சேமிக்கப்படும்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
         <translation>ஒரு பயனர்பெயரைத் தேர்ந்தெடுப்பது பரிந்துரைக்கப்படுகிறது, மேலும் தேர்ந்தெடுக்கப்பட்ட பயனர்பெயரை பின்னர் மாற்ற முடியாது.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
         <translation>உங்கள் கணக்கை கடவுச்சொல்லுடன் குறியாக்கம் செய்வது விருப்பமானது, கடவுச்சொல் இழந்தால் அதை பின்னர் மீட்டெடுக்க முடியாது.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
         <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
         <translation>ஒரு சுயவிவரப் படத்தையும் புனைப்பெயரையும் அமைப்பது விருப்பமானது, மேலும் அமைப்பில் பின்னர் மாற்றப்படலாம்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="414"/>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
+        <source>UDP</source>
+        <translation>UDP</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
+        <source>Display Name</source>
+        <translation>காட்சி பெயர்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="420"/>
+        <source>A chosen username can help to be found more easily on Jami.
+If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
+        <translation>தேர்ந்தெடுக்கப்பட்ட பயனர்பெயர் ஜாமி இல் எளிதாகக் கண்டுபிடிக்க உதவும். பயனர்பெயர் தேர்ந்தெடுக்கப்படாவிட்டால், இந்த கணக்கிற்கு ஒரு சீரற்ற 40 எழுத்து அடையாளங்காட்டி பயனர்பெயராக ஒதுக்கப்படும். இந்த அடையாளங்காட்டி மூலம் அதைக் கண்டுபிடிப்பது மற்றும் அடைய கடினமாக இருக்கும்.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="423"/>
+        <source>This Jami account exists only on this device.
+The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
+        <translation>இந்த ஜாமி கணக்கு இந்த சாதனத்தில் மட்டுமே உள்ளது. இந்த சாதனம் இழந்தால் அல்லது பயன்பாடு நிறுவப்படாவிட்டால் கணக்கு இழக்கப்படும். இந்த கணக்கின் காப்புப்பிரதியைச் செய்ய பரிந்துரைக்கப்படுகிறது.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="429"/>
+        <source>Linking this account to other devices enables it to be used on other devices.</source>
+        <translation>இந்த கணக்கை மற்ற சாதனங்களுடன் இணைப்பது மற்ற சாதனங்களில் பயன்படுத்த அனுமதிக்கிறது.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
+        <source>Encrypt account</source>
+        <translation>குறியாக்கம் கணக்கு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="442"/>
         <source>Back up account to a .gz file</source>
         <translation>. gz கோப்பில் கணக்கை காப்புப் பிரதி எடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="669"/>
-        <source>Display or hide preferences</source>
-        <translation>விருப்பங்களை காண்பித்தல் அல்லது மறைத்தல்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="448"/>
+        <source>This profile is only shared with this account's contacts.
+The profile can be changed at all times from the account&apos;s settings.</source>
+        <translation>இந்த சுயவிவரம் இந்த கணக்கின் தொடர்புகளுடன் மட்டுமே பகிரப்படுகிறது. கணக்கின் அமைப்புகளில் இருந்து எந்த நேரத்திலும் சுயவிவரத்தை மாற்றலாம்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
-        <source>Add new plugin</source>
-        <translation>புதிய செருகுநிரலைச் சேர்க்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="449"/>
+        <source>Encrypt account with a password</source>
+        <translation>கடவுச்சொல்லுடன் கணக்கை குறியாக்கம் செய்யவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
-        <source>Select a file</source>
-        <translation>ஒரு கோப்பைத் தேர்ந்தெடுக்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="450"/>
+        <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
+        <translation>இந்த சாதனத்தில் மட்டுமே ஒரு ஜாமி கணக்கு உருவாக்கப்பட்டு சேமிக்கப்படுகிறது, உங்கள் கணக்கு விசைகளைக் கொண்ட ஒரு காப்பகமாக. இந்த காப்பகத்திற்கான அணுகலை விருப்பமாக கடவுச்சொல் மூலம் பாதுகாக்கலாம்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="117"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="673"/>
-        <source>Select</source>
-        <translation>தேர்ந்தெடுக்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
+        <source>Please note that if you lose your password, it CANNOT be recovered!</source>
+        <translation>உங்கள் கடவுச்சொல்லை இழந்துவிட்டால், அதை மீட்டெடுக்க முடியாது என்பதை நினைவில் கொள்க!</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="674"/>
-        <source>Choose image file</source>
-        <translation>பட கோப்பைத் தேர்ந்தெடுக்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="465"/>
+        <source>Link a new device</source>
+        <translation>புதிய சாதனத்தை இணைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
-        <source>Enter the rendezvous point&apos;s name</source>
-        <translation>சந்திப்பு இடத்தின் பெயரை உள்ளிடவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="479"/>
+        <source>Would you really like to delete this account?</source>
+        <translation>இந்த கணக்கை நீக்க விரும்புகிறீர்களா?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="690"/>
-        <source>Creating rendezvous point…</source>
-        <translation>சந்திப்பு புள்ளியை உருவாக்குதல்...</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="480"/>
+        <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
+        <translation>உங்கள் கணக்கு காப்புப்பிரதி எடுக்கப்படவில்லை அல்லது மற்றொரு சாதனத்தில் சேர்க்கப்படவில்லை என்றால், உங்கள் கணக்கு மற்றும் பதிவு செய்யப்பட்ட பயனர்பெயர் IRREVOCABLE LOST ஆக இருக்கும்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
-        <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>ஜாமி கணக்கு மேலாண்மை சேவையகத்தில் (JAMS) கணக்கை உருவாக்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="491"/>
+        <source>Dark</source>
+        <translation>இருண்ட</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
-        <source>Create a Jami account</source>
-        <translation>ஜாமி கணக்கை உருவாக்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="492"/>
+        <source>Light</source>
+        <translation>ஒளி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
-        <source>About Jami</source>
-        <translation>ஜாமி பற்றி</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
+        <source>Application theme</source>
+        <translation>பயன்பாட்டுத் தீம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
-        <source>Decline contact request</source>
-        <translation>தொடர்பு கோரிக்கையை நிராகரிக்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="502"/>
+        <source>Include local video in recording</source>
+        <translation>உள்ளூர் வீடியோவை பதிவு செய்யவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
-        <source>Accept contact request</source>
-        <translation>தொடர்பு கோரிக்கையை ஏற்றுக்கொள்ளுங்கள்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
+        <source>Default settings</source>
+        <translation>முன்னிருப்பு அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
-        <source>Automatically check for updates</source>
-        <translation>புதுப்பிப்புகளை தானாக சரிபார்க்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="508"/>
+        <source>Enable typing indicators</source>
+        <translation>வகைப்படுத்தல் குறிகாட்டிகளை இயக்குதல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
-        <source>Ok</source>
-        <translation>சரி</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="509"/>
+        <source>Send and receive typing indicators showing that a message is being typed.</source>
+        <translation>ஒரு செய்தியை தட்டச்சு செய்கிறார்கள் என்பதைக் காட்டும் தட்டச்சு குறிகாட்டிகளை அனுப்புங்கள் மற்றும் பெறுங்கள்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
-        <source>Cancel</source>
-        <translation>ரத்துசெய்க</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="510"/>
+        <source>Show link preview in conversations</source>
+        <translation>உரையாடல்களில் இணைப்பு முன்னோட்டத்தைக் காண்பி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
-        <source>Accept in audio</source>
-        <translation>ஆடியோவில் ஏற்றுக்கொள்ளவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
+        <source>Strikethrough</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="31"/>
-        <source>Accept in video</source>
-        <translation>வீடியோவில் ஏற்றுக்கொள்ளவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
+        <source>Unordered list</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
-        <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>ஜாமி என்பது ஒரு உலகளாவிய தகவல் தொடர்பு தளமாகும், தனியுரிமை அதன் அடித்தளமாக உள்ளது, இது அனைவருக்கும் இலவசமாக விநியோகிக்கப்பட்ட நெட்வொர்க்கை நம்பியுள்ளது.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
+        <source>Ordered list</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
-        <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>ஸ்வார்ம் தொழில்நுட்பத்திற்கு இடம்பெயர்வது இந்த உரையாடலை பல சாதனங்களில் ஒத்திசைக்கவும் நம்பகத்தன்மையை மேம்படுத்தவும் உதவும். இந்த செயல்பாட்டில் மரபுவழி உரையாடல் வரலாறு அழிக்கப்படும்.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
+        <source>Press Shift+Enter to insert a new line</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
-        <source>Jami is a free universal communication software that respects the freedom and privacy of its users.</source>
-        <translation>ஜாமி என்பது ஒரு இலவச சர்வ சாதாரண தகவல் தொடர்பு மென்பொருள் ஆகும், இது பயனர்களின் சுதந்திரத்தையும் தனியுரிமையையும் மதிக்கிறது.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="809"/>
+        <source>Press Enter to insert a new line</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
-        <source>Add Account</source>
-        <translation>கணக்கைச் சேர்க்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="889"/>
+        <source>Appearance</source>
+        <translation>தோற்றம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="64"/>
-        <source>Add to conference</source>
-        <translation>மாநாட்டில் சேர்க்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="65"/>
-        <source>Add to conversation</source>
-        <translation>உரையாடலுக்கு சேர்க்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="66"/>
-        <source>Transfer this call</source>
-        <translation>இந்த அழைப்பை மாற்றவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
-        <source>Certificate File (*.crt)</source>
-        <translation>சான்றிதழ் கோப்பு (*.crt)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="90"/>
-        <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation>ஆடியோ கோப்பு (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
-        <source>Enable read receipts</source>
-        <translation>படிப்பு ரசீதுகளை இயக்கு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
-        <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation>ஒரு செய்தியைக் காண்பிக்கப்பட்டுள்ளதாகக் குறிக்கும் ரசீதுகளை அனுப்புதல் மற்றும் பெறுதல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="116"/>
-        <source>Select a CA certificate</source>
-        <translation>CA சான்றிதழைத் தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="118"/>
-        <source>Key File (*.key)</source>
-        <translation>விசை கோப்பு (*.key)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="121"/>
-        <source>Connectivity</source>
-        <translation>இணைப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="122"/>
-        <source>Auto Registration After Expired</source>
-        <translation>காலாவதி முடிந்த பிறகு தானியங்கி பதிவு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="124"/>
-        <source>Network interface</source>
-        <translation>நெட்வொர்க் இடைமுகம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="125"/>
-        <source>Use UPnP</source>
-        <translation>UPnP ஐப் பயன்படுத்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="126"/>
-        <source>Use TURN</source>
-        <translation>TURN ஐப் பயன்படுத்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="127"/>
-        <source>TURN address</source>
-        <translation>திருப்பு முகவரி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="128"/>
-        <source>TURN username</source>
-        <translation>பயனர் பெயர் TURN</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
-        <source>TURN password</source>
-        <translation>TURN கடவுச்சொல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
-        <source>TURN Realm</source>
-        <translation>TURN சாம்ராஜ்யம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="131"/>
-        <source>Use STUN</source>
-        <translation>STUN ஐ பயன்படுத்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="132"/>
-        <source>STUN address</source>
-        <translation>STUN முகவரி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="135"/>
-        <source>Allow IP Auto Rewrite</source>
-        <translation>ஐபி தானியங்கி மறுபதிப்பு அனுமதி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="136"/>
-        <source>Public address</source>
-        <translation>பொது முகவரி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="138"/>
-        <source>Address</source>
-        <translation>முகவரி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="139"/>
-        <source>Port</source>
-        <translation>துறைமுகம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="142"/>
-        <source>Media</source>
-        <translation>ஊடகங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="143"/>
-        <source>Enable video</source>
-        <translation>வீடியோவை இயக்கு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="151"/>
-        <source>SDP Session Negotiation (ICE Fallback)</source>
-        <translation>SDP கூட்டத் தொடர் பேச்சுவார்த்தை (ICE Fallback)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="152"/>
-        <source>Only used during negotiation in case ICE is not supported</source>
-        <translation>ICE ஆதரவு இல்லாத சந்தர்ப்பத்தில் மட்டுமே பேச்சுவார்த்தைகளின் போது பயன்படுத்தப்படுகிறது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="153"/>
-        <source>Audio RTP minimum Port</source>
-        <translation>ஆடியோ RTP குறைந்தபட்ச போர்ட்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="154"/>
-        <source>Audio RTP maximum Port</source>
-        <translation>ஆடியோ RTP அதிகபட்ச போர்ட்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="155"/>
-        <source>Video RTP minimum Port</source>
-        <translation>வீடியோ RTP குறைந்தபட்ச போர்ட்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="156"/>
-        <source>Video RTP maximum port</source>
-        <translation>வீடியோ RTP அதிகபட்ச போர்ட்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
-        <source>Connect to other DHT nodes advertising on your local network.</source>
-        <translation>உங்கள் உள்ளூர் நெட்வொர்க்கில் விளம்பரப்படுத்தும் மற்ற DHT முனைகளுடன் இணைக்கவும்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
-        <source>Enable proxy</source>
-        <translation>ப்ராக்ஸி செயல்படுத்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
-        <source>Proxy address</source>
-        <translation>பிரதிநிதி முகவரி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="164"/>
-        <source>Bootstrap</source>
-        <translation>துவக்கப் பட்டியல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="167"/>
-        <source>Back</source>
-        <translation>திரும்பி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
-        <source>Account Settings</source>
-        <translation>கணக்கு அமைப்புகள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
-        <source>Account</source>
-        <translation>கணக்கு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
-        <source>General</source>
-        <translation>பொது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="181"/>
-        <source>Audio</source>
-        <translation>கேள்விமாற்றி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="182"/>
-        <source>Microphone</source>
-        <translation>மைக்ரோஃபோன்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="183"/>
-        <source>Select audio input device</source>
-        <translation>ஆடியோ உள்ளீட்டு சாதனத்தைத் தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="184"/>
-        <source>Output device</source>
-        <translation>வெளியீட்டு சாதனம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="185"/>
-        <source>Select audio output device</source>
-        <translation>ஆடியோ வெளியீட்டு சாதனத்தைத் தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
-        <source>Ringtone device</source>
-        <translation>ரிங்க்டோன் சாதனம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="187"/>
-        <source>Select ringtone output device</source>
-        <translation>ரிங்டோன் வெளியீட்டு சாதனத்தைத் தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="188"/>
-        <source>Audio manager</source>
-        <translation>ஆடியோ மேலாளர்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="192"/>
-        <source>Video</source>
-        <translation>காணொளி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="193"/>
-        <source>Select video device</source>
-        <translation>வீடியோ சாதனத்தைத் தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="194"/>
-        <source>Device</source>
-        <translation>சாதனம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="195"/>
-        <source>Resolution</source>
-        <translation>தீர்மானம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="196"/>
-        <source>Select video resolution</source>
-        <translation>வீடியோ தீர்மானத்தை தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
-        <source>Enable hardware acceleration</source>
-        <translation>வன்பொருள் துரிதப்படுத்தல் செயல்படுத்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="201"/>
-        <source>Preview unavailable</source>
-        <translation>முன்னோட்ட கிடைக்கவில்லை</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="202"/>
-        <source>Screen Sharing</source>
-        <translation>திரை பகிர்வு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="203"/>
-        <source>Select screen sharing frame rate (frames per second)</source>
-        <translation>திரையில் பகிர்வு புகைப்பட வீதத்தை (வினாடிக்கு புகைப்படங்கள்) தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="204"/>
-        <source>no video</source>
-        <translation>வீடியோ இல்லை</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
+        <source>Accept transfer limit (in Mb)</source>
+        <translation>ஏற்றுக்கொள்ளும் பரிமாற்ற வரம்பு (Mb)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="539"/>
@@ -889,1114 +938,1362 @@ Would you like to update now?</source>
         <translation>திரை படங்களை சேமிக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
-        <source>Create account from backup</source>
-        <translation>காப்புப்பிரதி இருந்து கணக்கை உருவாக்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
+        <source>Select &quot;Link another device&quot;</source>
+        <translation>&quot;இணைக்க மற்றொரு சாதனம்&quot; என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
-        <source>You can obtain an archive by clicking on &quot;Back up account&quot; in the Account Settings. This will create a .gz file on your device.</source>
-        <translation>கணக்கு அமைப்புகளில் &quot;கணக்கை காப்புப் பிரதி எடுக்கவும்&quot; என்பதைக் கிளிக் செய்வதன் மூலம் நீங்கள் ஒரு காப்பகத்தைப் பெறலாம். இது உங்கள் சாதனத்தில் ஒரு.gz கோப்பை உருவாக்கும்.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
+        <source>Choose a picture as your avatar</source>
+        <translation>உங்கள் அவதாரமாக ஒரு படத்தை தேர்வு செய்யவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
-        <source>Restore account from backup</source>
-        <translation>காப்புப்பிரதி கணக்கை மீட்டமை</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
+        <source>Share freely and privately with Jami</source>
+        <translation>ஜாமிக்கு சுதந்திரமாகவும் தனிப்பட்ட முறையில் பகிர்ந்து கொள்ளுங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
-        <source>Import Jami account from local archive file.</source>
-        <translation>உள்ளூர் காப்பக கோப்பிலிருந்து ஜாமி கணக்கை இறக்குமதி செய்யுங்கள்.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="758"/>
+        <source>Unban</source>
+        <translation>தடை செய்யப்பட்டது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
+        <source>Add</source>
+        <translation>சேர்க்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
+        <source>more emojis</source>
+        <translation>மேலும் ஈமோஜிகள்</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
+        <source>Reply to</source>
+        <translation>பதில்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
+        <source>In reply to</source>
+        <translation>பதில்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
         <source> replied to</source>
         <translation>பதில்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="816"/>
+        <source>Reply</source>
+        <translation>பதில்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="818"/>
+        <source>Edit</source>
+        <translation>திருத்தவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
+        <source>Edited</source>
+        <translation>தொகுப்பு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
+        <source>Join call</source>
+        <translation>சேர அழைப்பு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="821"/>
+        <source>A call is in progress. Do you want to join the call?</source>
+        <translation>ஒரு அழைப்பு நடந்து வருகிறது. நீங்கள் அழைப்பு சேர விரும்புகிறீர்களா?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="822"/>
+        <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
+        <translation>இந்த குளத்தின் தற்போதைய புரவலன் அணுக முடியாததாகத் தெரிகிறது. அழைப்பை நடத்த விரும்புகிறீர்களா?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="823"/>
+        <source>Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.</source>
+        <translation>இந்த குளத்தில் எதிர்கால அழைப்புகளை ஹோஸ்ட் செய்ய ஒரு பிரத்யேக சாதனத்தைத் தேர்ந்தெடுக்கவும். அமைக்கப்படாவிட்டால், அழைப்பைத் தொடங்கும் சாதனம் அதை ஹோஸ்ட் செய்யும்.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
+        <source>Choose this device</source>
+        <translation>இந்த சாதனத்தைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="825"/>
+        <source>Remove current device</source>
+        <translation>தற்போதைய சாதனத்தை அகற்றவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="826"/>
+        <source>Host only this call</source>
+        <translation>இந்த அழைப்பை மட்டும் நடத்தவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="827"/>
+        <source>Host this call</source>
+        <translation>இந்த அழைப்பை நடத்த</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="828"/>
+        <source>Make me the default host for future calls</source>
+        <translation>எதிர்கால அழைப்புகளுக்கு இயல்புநிலை ஹோஸ்டாக என்னை மாற்றவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
         <source>Mute conversation</source>
         <translation>மௌனமான உரையாடல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="847"/>
         <source>Default host (calls)</source>
         <translation>முன்னிருப்பு ஹோஸ்ட் (கால்)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="850"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="851"/>
         <source>None</source>
         <translation>ஒன்றும் இல்லை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
         <source>Tip</source>
         <translation>குறிப்பு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="868"/>
         <source>Add a profile picture and nickname to complete your profile</source>
         <translation>உங்கள் சுயவிவரத்தை முடிக்க ஒரு சுயவிவரப் படத்தையும் புனைப்பெயரையும் சேர்க்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="868"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
         <source>This profile is only shared with this account&apos;s contacts</source>
         <translation>இந்த சுயவிவரம் இந்த கணக்கின் தொடர்புகளுடன் மட்டுமே பகிரப்படுகிறது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="871"/>
         <source>Why should I save my account?</source>
         <translation>நான் ஏன் என் கணக்கை சேமிக்க வேண்டும்?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="209"/>
         <source>Skip</source>
         <translation>தப்பி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
+        <source>Start swarm</source>
+        <translation>தொடக்க குளத்தில்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
+        <source>Create swarm</source>
+        <translation>ஒரு குளத்தை உருவாக்குங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
+        <source>Show invitations</source>
+        <translation>அழைப்பிதழ்களைக் காண்பி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="173"/>
         <source>Call settings</source>
         <translation>அழைப்பு அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="112"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="111"/>
         <source>Disable secure dialog check for incoming TLS data</source>
         <translation>உள்வரும் TLS தரவுகளுக்கான பாதுகாப்பான உரையாடல் சோதனையை முடக்கு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="144"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="143"/>
         <source>Video codecs</source>
         <translation>வீடியோ கோடெக்குகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="145"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="144"/>
         <source>Audio codecs</source>
         <translation>ஆடியோ கோடெக்குகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="148"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="147"/>
         <source>Name server</source>
         <translation>பெயர் சேவையகம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
         <source>OpenDHT configuration</source>
         <translation>OpenDHT அமைவு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="200"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
         <source>Mirror local video</source>
         <translation>உள்ளூர் வீடியோ கண்ணாடி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="205"/>
         <source>Why should I back-up this account?</source>
         <translation>நான் ஏன் இந்த கணக்கை காப்புப் பிரதி எடுக்க வேண்டும்?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
-        <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later (in the Account Settings).</source>
-        <translation>உங்கள் கணக்கு இந்த சாதனத்தில் மட்டுமே உள்ளது. நீங்கள் உங்கள் சாதனத்தை இழந்துவிட்டால் அல்லது பயன்பாட்டை நீக்கினால், உங்கள் கணக்கு நீக்கப்படும் மற்றும் மீட்டெடுக்க முடியாது. நீங்கள் இப்போது அல்லது பின்னர் (கணக்கு அமைப்புகளில்) உங்கள் கணக்கை காப்புப் பிரதி எடுக்கலாம்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
         <source>Success</source>
         <translation>வெற்றி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
         <source>Error</source>
         <translation>தவறு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
         <source>Never show me this again</source>
         <translation>இதை மீண்டும் எனக்குக் காட்டாதே</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
         <source>Recommended</source>
         <translation>பரிந்துரைக்கப்படுகிறது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
+        <source>Jami archive files (*.gz)</source>
+        <translation>ஜாமி ஆவணக் கோப்புகள் (*. gz)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
+        <source>All files (*)</source>
+        <translation>அனைத்து கோப்புகளும் (*)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="218"/>
         <source>Reinstate as contact</source>
         <translation>தொடர்பு என மீட்டெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="221"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="219"/>
         <source>name</source>
         <translation>பெயர்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="222"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
         <source>Identifier</source>
         <translation>அடையாளங்காட்டி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="225"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="223"/>
         <source>is recording</source>
         <translation>பதிவு செய்கிறது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="226"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="224"/>
         <source>are recording</source>
         <translation>பதிவு செய்கிறது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="227"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="225"/>
         <source>Peer stopped recording</source>
         <translation>பியர் பதிவு நிறுத்தப்பட்டது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="228"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="226"/>
         <source>is calling you</source>
         <translation>உன்னை அழைக்கிறது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="229"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="227"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
         <source>Mute</source>
         <translation>முடக்க</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="230"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="228"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
         <source>Unmute</source>
         <translation>முடக்கப்படாத</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="229"/>
+        <source>Pause call</source>
+        <translation>இடைநிறுத்த அழைப்பு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="230"/>
+        <source>Resume call</source>
+        <translation>அழைப்பைத் தொடங்குதல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
+        <source>Mute camera</source>
+        <translation>முடக்கப்பட்ட கேமரா</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
+        <source>Unmute camera</source>
+        <translation>முடக்கப்படாத கேமரா</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
         <source>Add participant</source>
         <translation>பங்கேற்பாளரை சேர்க்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
         <source>Add participants</source>
         <translation>பங்கேற்பாளர்களை சேர்க்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="238"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
+        <source>Details</source>
+        <translation>விவரங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="174"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
         <source>Chat</source>
         <translation>அரட்டை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
         <source>Plugins</source>
         <translation>செருகுநிரல்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="173"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
         <source>Manage account</source>
         <translation>கணக்கை நிர்வகிக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="174"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="172"/>
         <source>Linked devices</source>
         <translation>இணைக்கப்பட்ட சாதனங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="177"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
         <source>Advanced settings</source>
         <translation>மேம்பட்ட அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
         <source>Audio and Video</source>
         <translation>ஆடியோ மற்றும் வீடியோ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="189"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="187"/>
         <source>Sound test</source>
         <translation>ஒலி சோதனை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="200"/>
+        <source>Screen sharing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="206"/>
+        <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
         <source>More options</source>
         <translation>மேலும் விருப்பங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="240"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="238"/>
         <source>Mosaic</source>
         <translation>மொசைக்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
+        <source>Participant is still muted on their device</source>
+        <translation>பங்கேற்பாளர் இன்னும் தங்கள் சாதனத்தில் மௌனமாக உள்ளது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="240"/>
+        <source>You are still muted on your device</source>
+        <translation>நீங்கள் இன்னும் உங்கள் சாதனத்தில் மௌனமாக உள்ளன</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
         <source>You are still muted by moderator</source>
         <translation>நீங்கள் இன்னும் moderator மூலம் மௌனப்படுத்தப்பட்ட</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
         <source>You are muted by a moderator</source>
         <translation>நீங்கள் ஒரு மாடரேட்டர் மூலம் மௌனப்படுத்தப்பட்ட</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
         <source>Moderator</source>
         <translation>நடுவர்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="246"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
         <source>Host</source>
         <translation>புரவலன்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="247"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
         <source>Local and Moderator muted</source>
         <translation>உள்ளூர் மற்றும் Moderator அமைதி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="248"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="246"/>
         <source>Moderator muted</source>
         <translation>நடுவர் மவுண்ட்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="249"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="247"/>
         <source>Not muted</source>
         <translation>மௌனமடையாதது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="248"/>
         <source>On the side</source>
         <translation>பக்கத்தில்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="249"/>
         <source>On the top</source>
         <translation>மேலே</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="252"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
         <source>Hide self</source>
         <translation>மறைத்துக்கொள்ளுங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="253"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
         <source>Hide spectators</source>
         <translation>பார்வையாளர்களை மறைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="258"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="254"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="597"/>
+        <source>Copy</source>
+        <translation>பதிப்பு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="255"/>
+        <source>Share</source>
+        <translation>பகிர்வு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
         <source>Cut</source>
         <translation>வெட்டு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="259"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
         <source>Paste</source>
         <translation>பசை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="260"/>
         <source>Start video call</source>
         <translation>வீடியோ அழைப்பைத் தொடங்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="263"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="261"/>
         <source>Start audio call</source>
         <translation>ஆடியோ அழைப்பைத் தொடங்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="264"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
         <source>Clear conversation</source>
         <translation>தெளிவான உரையாடல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="266"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="263"/>
+        <source>Confirm action</source>
+        <translation>நடவடிக்கை உறுதிப்படுத்தல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="264"/>
         <source>Remove conversation</source>
         <translation>உரையாடலை நீக்கு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="265"/>
+        <source>Would you really like to remove this conversation?</source>
+        <translation>இந்த உரையாடலை நீக்க விரும்புகிறீர்களா?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="266"/>
+        <source>Would you really like to block this conversation?</source>
+        <translation>இந்த உரையாடலை நீங்கள் தடுக்க விரும்புகிறீர்களா?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
         <source>Remove contact</source>
         <translation>தொடர்புகளை அகற்றவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
         <source>Block contact</source>
         <translation>பிளாக் தொடர்பு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="273"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
+        <source>Block swarm</source>
+        <translation>தொகுதித் தொகுதி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
+        <source>Conversation details</source>
+        <translation>உரையாடலின் விவரங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
         <source>Contact details</source>
         <translation>தொடர்பு விவரங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="274"/>
         <source>Hold</source>
         <translation>காத்திருங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="277"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="275"/>
         <source>Sip input panel</source>
         <translation>நுழைவு குழு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="278"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
         <source>Transfer call</source>
         <translation>பரிமாற்ற அழைப்பு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="279"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="277"/>
         <source>Stop recording</source>
         <translation>பதிவு செய்வதை நிறுத்து</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="280"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="278"/>
         <source>Start recording</source>
         <translation>பதிவு செய்யத் தொடங்கு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="279"/>
         <source>Exit full screen</source>
         <translation>முழுத்திரையிலிருந்து வெளியேறு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="283"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="280"/>
+        <source>View full screen</source>
+        <translation>முழுத் திரை காட்சி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
         <source>Share screen</source>
         <translation>திரையைப் பகிர்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="284"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
         <source>Share window</source>
         <translation>பகிரும் சாளரம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="283"/>
+        <source>Stop sharing screen or file</source>
+        <translation>திரையுலகம் அல்லது கோப்பு பகிர்வு நிறுத்தவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="284"/>
         <source>Share screen area</source>
         <translation>திரைப் பகுதியைப் பகிரவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
         <source>Share file</source>
         <translation>பகிர்தல் கோப்பு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
         <source>Select sharing method</source>
         <translation>பகிர்வு முறையைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
         <source>View plugin</source>
         <translation>பார்வை சொருகி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
         <source>Advanced information</source>
         <translation>மேம்பட்ட தகவல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
         <source>No video device</source>
         <translation>வீடியோ சாதனம் இல்லை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
         <source>Lower hand</source>
         <translation>கீழ் கை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="294"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
         <source>Raise hand</source>
         <translation>கை உயர்த்தி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="295"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
         <source>Layout settings</source>
         <translation>அமைப்பை அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="294"/>
         <source>Take tile screenshot</source>
         <translation>தட்டு திரை படத்தை எடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="297"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="295"/>
         <source>Screenshot saved to %1</source>
         <translation>% 1 இல் சேமிக்கப்பட்ட திரைப்படம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
+        <source>File saved to %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="299"/>
         <source>Renderers information</source>
         <translation>வழங்கும் தகவல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
         <source>Call information</source>
         <translation>அழைப்பு தகவல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Peer number</source>
         <translation>சமநிலை எண்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="303"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Call id</source>
         <translation>அழைப்பு அடையாள</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="303"/>
         <source>Sockets</source>
         <translation>சாக்கெட்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
         <source>Video codec</source>
         <translation>வீடியோ கோடெக்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Hardware acceleration</source>
         <translation>வன்பொருள் துரிதப்படுத்தல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Video bitrate</source>
         <translation>வீடியோ பிட்ரேட்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
         <source>Audio codec</source>
         <translation>ஆடியோ கோடெக்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
         <source>Renderer id</source>
         <translation>வழங்கும் அடையாள</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
         <source>Fps</source>
         <translation>FPS</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
         <source>Share location</source>
         <translation>பகிர்வு இடம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="314"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source>Stop sharing</source>
         <translation>பகிர்வதை நிறுத்து</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="314"/>
         <source>10 minutes</source>
         <translation>10 நிமிடங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
         <source>One hour</source>
         <translation>ஒரு மணி நேரம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
         <source>%1 minutes left</source>
         <translation>%1 நிமிடங்கள் மீதமுள்ளவை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <source>%1 minute left</source>
         <translation>%1 நிமிடம் மீதமுள்ள</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
         <source>Your precise location could not be determined.
 In Device Settings, please turn on &quot;Location Services&quot;.
 Other participants&apos; location can still be received.</source>
         <translation>உங்கள் சரியான இருப்பிடத்தை தீர்மானிக்க முடியவில்லை. சாதன அமைப்புகளில், &quot;இருப்பிட சேவைகள்&quot; என்பதை இயக்கவும். மற்ற பங்கேற்பாளர்களின் இருப்பிடத்தை இன்னும் பெறலாம்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
         <source>Your precise location could not be determined. Please check your Internet connection.</source>
         <translation>உங்கள் சரியான இருப்பிடத்தை அறிய முடியவில்லை. தயவுசெய்து உங்கள் இணைய இணைப்பை சரிபார்க்கவும்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="321"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
         <source>Turn off location sharing</source>
         <translation>இருப்பிட பகிர்வு முடக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="324"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="323"/>
         <source>Location is shared in several conversations</source>
         <translation>பல உரையாடல்களில் இடம் பகிரப்படுகிறது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="324"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
         <translation>குறிப்பிட்ட உரையாடல்களில் இருப்பிடத்தை பகிர்ந்து கொள்ள அல்லது முடக்கக்கூடிய பின் வரைபடம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
         <translation>பல உரையாடல்களில் இடம் பகிரப்படுகிறது, இருப்பிட பகிர்வை எவ்வாறு முடக்குவது என்பதைத் தேர்ந்தெடுக்க கிளிக் செய்க</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="327"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
         <source>Share location to participants of this conversation (%1)</source>
         <translation>இந்த உரையாடலின் பங்கேற்பாளர்களுடன் இருப்பிடத்தை பகிர்ந்து கொள்ளுங்கள் (%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
         <source>Reduce</source>
         <translation>குறைத்தல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
         <source>Extend</source>
         <translation>நீட்டிப்பு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
         <source>Drag</source>
         <translation>இழுத்து</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
         <source>Center</source>
         <translation>மையம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
         <source>Unpin</source>
         <translation>அறுவடை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
         <source>Pin</source>
         <translation>பீன்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="337"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
         <source>Position share duration</source>
         <translation>நிலை பங்கு காலம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="337"/>
         <source>Limit the duration of location sharing</source>
         <translation>இருப்பிட பகிர்வு காலத்தை குறைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
         <source>Location sharing</source>
         <translation>இருப்பிட பகிர்வு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
         <source>Unlimited</source>
         <translation>வரம்பற்ற</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
         <source>1 min</source>
         <translation>1 நிமிடம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="345"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="344"/>
         <source>Place audio call</source>
         <translation>ஆடியோ அழைப்புகளை அமைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="346"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="345"/>
         <source>Place video call</source>
         <translation>வீடியோ அழைப்புகளை மேற்கொள்ளவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="347"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="346"/>
         <source>Show available plugins</source>
         <translation>கிடைக்கும் கூடுதல் நிரல்களைக் காண்பி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="347"/>
         <source>Add to conversations</source>
         <translation>உரையாடல்களில் சேர்க்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="349"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
         <source>This is the error from the backend: %0</source>
         <translation>இது பின்புறத்தில் இருந்து பிழைஃ %0</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="349"/>
         <source>The account is disabled</source>
         <translation>கணக்கு முடக்கப்பட்டுள்ளது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
         <source>No network connectivity</source>
         <translation>நெட்வொர்க் இணைப்பு இல்லை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
         <source>Deleted message</source>
         <translation>நீக்கப்பட்ட செய்தி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
-        <source>Back to Call</source>
-        <translation>மீண்டும் அழைப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="356"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="355"/>
         <source>Jump to</source>
         <translation>குதித்து</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="357"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="356"/>
         <source>Messages</source>
         <translation>செய்திகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="357"/>
         <source>Files</source>
         <translation>கோப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="359"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
         <source>Search</source>
         <translation>தேடல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="363"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
         <source>{} is typing…</source>
         <translation>{} typing உள்ளது...</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="364"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="363"/>
         <source>{} are typing…</source>
         <translation>{} அவர்கள் தட்டச்சு...</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="365"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="364"/>
         <source>Several people are typing…</source>
         <translation>பலர் தட்டச்சு செய்கிறார்கள்...</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="366"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="365"/>
         <source> and </source>
         <translation>மற்றும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="368"/>
+        <source>Enter the Jami Account Management Server (JAMS) URL</source>
+        <translation>Jami கணக்கு மேலாண்மை சேவையக (JAMS) URL ஐ உள்ளிடவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="369"/>
         <source>Required</source>
         <translation>தேவை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="371"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
         <source>Jami Account Management Server URL</source>
         <translation>ஜாமி கணக்கு மேலாண்மை சேவையக URL</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="371"/>
+        <source>Enter JAMS credentials</source>
+        <translation>JAMS சான்றிதழ்களை உள்ளிடவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="372"/>
         <source>Connect</source>
         <translation>இணைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
+        <source>Creating account…</source>
+        <translation>கணக்கை உருவாக்குதல்...</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
         <source>Back to welcome page</source>
         <translation>வரவேற்பு பக்கத்திற்குத் திரும்பு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="378"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="377"/>
         <source>Choose name</source>
         <translation>பெயர் தேர்வு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="378"/>
         <source>Choose username</source>
         <translation>பயனர்பெயரைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
+        <source>Choose a username</source>
+        <translation>ஒரு பயனர்பெயரைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="380"/>
+        <source>Choose an identifier</source>
+        <translation>அடையாளங்காட்டி ஒன்றைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
+        <source>The identifier is not available</source>
+        <translation>அடையாளங்காட்டி கிடைக்கவில்லை</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="446"/>
+        <source>Encrypt account with password</source>
+        <translation>கடவுச்சொல் கொண்ட கணக்கை குறியாக்கம் செய்யவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
         <source>Create account</source>
         <translation>கணக்கை உருவாக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
         <source>Confirm password</source>
         <translation>கடவுச்சொல்லை உறுதிப்படுத்தவும்</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
-        <source>Choose a password to encrypt your account on this device. Note that the password CANNOT be recovered.</source>
-        <translation>இந்த சாதனத்தில் உங்கள் கணக்கை குறியாக்க கடவுச்சொல்லைத் தேர்ந்தெடுக்கவும். கடவுச்சொல்லை மீட்டெடுக்க முடியாது என்பதை நினைவில் கொள்க.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="387"/>
         <source>Optional</source>
         <translation>விருப்பம்</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="388"/>
-        <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation>ஜாமி மீது உங்களை எளிதாகக் கண்டுபிடித்து அடைய உதவும் பயனர் பெயரை நீங்கள் தேர்வு செய்யலாம்.</translation>
+        <source>Choose a name for your rendezvous point</source>
+        <translation>உங்கள் சந்திப்பு இடத்திற்கு ஒரு பெயரைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="390"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="389"/>
         <source>Choose a name</source>
         <translation>ஒரு பெயரைத் தேர்ந்தெடு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="391"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="390"/>
         <source>Invalid name</source>
         <translation>செல்லுபடியற்ற பெயர்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="392"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="391"/>
         <source>Invalid username</source>
         <translation>செல்லுபடியற்ற பயனர் பெயர்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="393"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="392"/>
         <source>Name already taken</source>
         <translation>ஏற்கனவே எடுக்கப்பட்ட பெயர்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="394"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="393"/>
         <source>Username already taken</source>
         <translation>ஏற்கனவே எடுக்கப்பட்ட பயனர் பெயர்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="399"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="398"/>
         <source>Good to know</source>
         <translation>அறிந்து மகிழ்ச்சி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="400"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="399"/>
         <source>Local</source>
         <translation>உள்ளூர்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="401"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="400"/>
         <source>Encrypt</source>
         <translation>குறியாக்கம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="407"/>
         <source>SIP account</source>
         <translation>SIP கணக்கு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
         <source>Proxy</source>
         <translation>பிரதிநிதி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
         <source>Server</source>
         <translation>சேவையகம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="411"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
         <source>Create SIP account</source>
         <translation>SIP கணக்கை உருவாக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="412"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="411"/>
         <source>Configure an existing SIP account</source>
         <translation>ஏற்கனவே உள்ள SIP கணக்கை உள்ளமைத்தல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="413"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="412"/>
         <source>Personalize account</source>
         <translation>கணக்கை தனிப்பயனாக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="414"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="413"/>
         <source>Add SIP account</source>
         <translation>SIP கணக்கை சேர்க்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="420"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="419"/>
         <source>Your profile is only shared with your contacts.
 Your picture and your nickname can be changed at all time in the settings of your account.</source>
         <translation>உங்கள் சுயவிவரம் உங்கள் தொடர்புகளுடன் மட்டுமே பகிரப்படுகிறது. உங்கள் புகைப்படத்தையும் உங்கள் புனைப்பெயரையும் உங்கள் கணக்கின் அமைப்புகளில் எந்த நேரத்திலும் மாற்றலாம்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
-        <source>Show more</source>
-        <translation>மேலும் காட்டு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
-        <source>Show less</source>
-        <translation>குறைவாக காட்டவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
-        <source>Bold</source>
-        <translation>தடித்த</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
-        <source>Italic</source>
-        <translation>சாய்ந்த</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
-        <source>Barre</source>
-        <translation>பீல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
-        <source>Title</source>
-        <translation>தலைப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
-        <source>Link</source>
-        <translation>இணைப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
-        <source>Code</source>
-        <translation>குறியீடு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
-        <source>Quote</source>
-        <translation>மேற்கோள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
-        <source>Bullet Point</source>
-        <translation>புல்லட் புள்ளி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
-        <source>Bullet Number</source>
-        <translation>துப்பாக்கி எண்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
-        <source>Show Formating</source>
-        <translation>காட்சி வடிவமைப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
-        <source>Hide Formating</source>
-        <translation>மறைத்தல் வடிவமைப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="888"/>
-        <source>Appearance</source>
-        <translation>தோற்றம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="422"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.</source>
         <translation>உங்கள் ஜாமி கணக்கு இந்த சாதனத்தில் மட்டுமே பதிவு செய்யப்பட்டுள்ளது. உங்கள் கணக்கின் விசைகளை உள்ளடக்கிய ஒரு காப்பகமாக. இந்த காப்பகத்திற்கான அணுகலை கடவுச்சொல் மூலம் பாதுகாக்க முடியும்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="423"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="422"/>
         <source>Backup account</source>
         <translation>காப்பு கணக்கு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="425"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="424"/>
         <source>Delete your account</source>
         <translation>உங்கள் கணக்கை நீக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="425"/>
         <source>If your account has not been backed up or added to another device, your account and registered name will be irrevocably lost.</source>
         <translation>உங்கள் கணக்கு காப்புப்பிரதி எடுக்கப்படவில்லை அல்லது மற்றொரு சாதனத்தில் சேர்க்கப்படவில்லை என்றால், உங்கள் கணக்கு மற்றும் பதிவு செய்யப்பட்ட பெயர் திரும்பப்பெற முடியாத வகையில் இழக்கப்படும்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
         <source>List of the devices that are linked to this account:</source>
         <translation>இந்த கணக்குடன் இணைக்கப்பட்ட சாதனங்களின் பட்டியல்ஃ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="428"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
         <source>This device</source>
         <translation>இந்த சாதனம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="429"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="428"/>
         <source>Other linked devices</source>
         <translation>இணைக்கப்பட்ட பிற சாதனங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="433"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="432"/>
         <source>Backup successful</source>
         <translation>காப்புப்பிரதி வெற்றிகரமாக</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="434"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="433"/>
         <source>Backup failed</source>
         <translation>காப்புப்பிரதி தோல்வியுற்றது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="435"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="434"/>
         <source>Password changed successfully</source>
         <translation>கடவுச்சொல் வெற்றிகரமாக மாற்றப்பட்டது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="436"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="435"/>
         <source>Password change failed</source>
         <translation>கடவுச்சொல் மாற்றம் தோல்வியுற்றது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="437"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="436"/>
         <source>Password set successfully</source>
         <translation>கடவுச்சொல் வெற்றிகரமாக அமைக்கப்பட்டது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="438"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="437"/>
         <source>Password set failed</source>
         <translation>கடவுச்சொல் தொகுப்பு தோல்வியுற்றது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="438"/>
         <source>Change password</source>
         <translation>கடவுச்சொல்லை மாற்றவும்</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="485"/>
+        <source>Device name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="575"/>
+        <source>Markdown</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="792"/>
+        <source>Audio message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
+        <source>Video message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
+        <source>Show more</source>
+        <translation>மேலும் காட்டு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="795"/>
+        <source>Show less</source>
+        <translation>குறைவாக காட்டவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
+        <source>Bold</source>
+        <translation>தடித்த</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
+        <source>Italic</source>
+        <translation>சாய்ந்த</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
+        <source>Title</source>
+        <translation>தலைப்பு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
+        <source>Link</source>
+        <translation>இணைப்பு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
+        <source>Code</source>
+        <translation>குறியீடு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
+        <source>Quote</source>
+        <translation>மேற்கோள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
+        <source>Show formatting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="807"/>
+        <source>Hide formatting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="880"/>
+        <source>Share your Jami identifier in order to be contacted more easily!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="881"/>
         <source>Jami identity</source>
         <translation>ஜாமி அடையாளம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="881"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="882"/>
         <source>Show fingerprint</source>
         <translation>கைரேகை காண்பி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="882"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="883"/>
         <source>Show registered name</source>
         <translation>பதிவு செய்யப்பட்ட பெயரைக் காண்பி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="885"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="886"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
         <translation>உங்கள் கணக்கை இயக்குவது உங்களை Jami இல் தொடர்பு கொள்ள அனுமதிக்கிறது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="891"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="892"/>
         <source>Experimental</source>
         <translation>பரிசோதனை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="894"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="895"/>
         <source>Ringtone</source>
         <translation>ரிங் டோன்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="897"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="898"/>
         <source>Rendezvous point</source>
         <translation>சந்திப்பு புள்ளி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="900"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="901"/>
         <source>Moderation</source>
         <translation>மிதமான தன்மை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="903"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="904"/>
         <source>Theme</source>
         <translation>தலைப்பு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="904"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="905"/>
         <source>Text zoom level</source>
         <translation>உரை பெரிதாக்குதல் நிலை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="441"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="440"/>
         <source>Set a password</source>
         <translation>கடவுச்சொல்லை அமைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="442"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="441"/>
         <source>Change current password</source>
         <translation>தற்போதைய கடவுச்சொல்லை மாற்றவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="172"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
+        <source>Display advanced settings</source>
+        <translation>மேம்பட்ட அமைப்புகள் காட்சி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
+        <source>Hide advanced settings</source>
+        <translation>மேம்பட்ட அமைப்புகளை மறைக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
         <source>Enable account</source>
         <translation>கணக்கை இயக்கு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="446"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
         <source>Advanced account settings</source>
         <translation>மேம்பட்ட கணக்கு அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="448"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
         <source>Customize profile</source>
         <translation>சுயவிவரத்தை தனிப்பயனாக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="453"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="452"/>
         <source>Enter a nickname, surname...</source>
         <translation>ஒரு புனைப்பெயர், குடும்பப்பெயர்...</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="456"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="455"/>
         <source>Set username</source>
         <translation>பயனர்பெயரை அமைத்தல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="457"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="456"/>
         <source>Registering name</source>
         <translation>பதிவு பெயர்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="460"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="459"/>
         <source>Register a username</source>
         <translation>பயனர்பெயரை பதிவு செய்யவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="461"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="460"/>
         <source>Register username</source>
         <translation>பயனர்பெயரை பதிவு செய்யவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="462"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="461"/>
         <source>Identity</source>
         <translation>அடையாளம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="465"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="464"/>
         <source>Link a new device to this account</source>
         <translation>புதிய சாதனத்தை இந்த கணக்கில் இணைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="467"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
         <source>Exporting account…</source>
         <translation>ஏற்றுமதி கணக்கு...</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="468"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="467"/>
         <source>Remove Device</source>
         <translation>சாதனத்தை அகற்றவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="469"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="468"/>
         <source>Are you sure you wish to remove this device?</source>
         <translation>நீங்கள் இந்த சாதனத்தை நீக்க விரும்புகிறீர்கள் என்று உறுதியாக உள்ளீர்களா?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="470"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="469"/>
         <source>Your PIN is:</source>
         <translation>உங்கள் PIN உள்ளதுஃ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="471"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="470"/>
         <source>Error connecting to the network.
 Please try again later.</source>
         <translation>நெட்வொர்க்கு இணைப்பு பிழை. தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="475"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="473"/>
+        <source>Display banned contacts</source>
+        <translation>தடைசெய்யப்பட்ட தொடர்புகளை காண்பிக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="474"/>
         <source>Banned</source>
         <translation>தடை செய்யப்பட்டது</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="477"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="475"/>
+        <source>Hide banned contacts</source>
+        <translation>தடைசெய்யப்பட்ட தொடர்புகளை மறைக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="476"/>
         <source>Banned contacts</source>
         <translation>தடைசெய்யப்பட்ட தொடர்புகள்</translation>
     </message>
@@ -2021,6 +2318,11 @@ Please try again later.</source>
         <translation>அறிவிப்புகளை இயக்குதல்</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
+        <source>Launch at startup</source>
+        <translation>தொடக்கத்தில் துவக்கம்</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="500"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="501"/>
         <source>Choose download directory</source>
@@ -2037,9 +2339,29 @@ Please try again later.</source>
         <translation>உரை அளவை மாற்றவும் (%)</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
+        <source>Preview requires downloading content from third-party servers.</source>
+        <translation>முன்னோட்டமானது மூன்றாம் தரப்பு சேவையகங்களிலிருந்து உள்ளடக்கத்தை பதிவிறக்குவதைக் குறிக்கிறது.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="513"/>
+        <source>Layout</source>
+        <translation>தளவமைப்பு</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="514"/>
         <source>User interface language</source>
         <translation>பயனர் இடைமுக மொழி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
+        <source>Vertical view</source>
+        <translation>செங்குத்து பார்வை</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
+        <source>Horizontal view</source>
+        <translation>கிடைமட்ட காட்சி</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="519"/>
@@ -2067,6 +2389,18 @@ Please try again later.</source>
         <translation>தவறான கடவுச்சொல்</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
+        <source>Network error</source>
+        <translation>நெட்வொர்க் தவறு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="551"/>
+        <source>Something went wrong</source>
+        <translation>ஏதோ தவறு நடந்தது</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="531"/>
         <source>Save file</source>
         <translation>கோப்பு சேமிப்பு</translation>
@@ -2078,7 +2412,7 @@ Please try again later.</source>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="533"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
         <source>Me</source>
         <translation>நான்</translation>
     </message>
@@ -2118,6 +2452,11 @@ Please try again later.</source>
         <translation>புதிய பதிப்பை சரிபார்க்கும் போது ஒரு பிழை ஏற்பட்டது</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
+        <source>SSL error</source>
+        <translation>SSL பிழை</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="547"/>
         <source>Installer download canceled</source>
         <translation>நிறுவி பதிவிறக்கம் ரத்து</translation>
@@ -2131,298 +2470,6 @@ Please try again later.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="550"/>
         <source>Network disconnected</source>
         <translation>நெட்வொர்க் இணைப்பு துண்டிக்கப்பட்டது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
-        <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation>இந்த அம்சம் பல பங்கேற்பாளர்களுடன் கூட்டங்களில் அழைப்பு பொத்தான்களை செயல்படுத்தும்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
-        <source>Call recording</source>
-        <translation>அழைப்பு பதிவு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
-        <source>If the account is encrypted with a password, please fill the following field.</source>
-        <translation>கணக்கு ஒரு கடவுச்சொல்லுடன் குறியாக்கம் செய்யப்பட்டிருந்தால், பின்வரும் புலத்தை நிரப்பவும்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
-        <source>Enter the PIN code</source>
-        <translation>PIN குறியீட்டை உள்ளிடவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
-        <source>Step 01</source>
-        <translation>படி 01</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
-        <source>Step 02</source>
-        <translation>படி 02</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
-        <source>Step 03</source>
-        <translation>படி 03</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
-        <source>Step 04</source>
-        <translation>படி 04</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
-        <source>Go to the account management settings of a previous device</source>
-        <translation>முந்தைய சாதனத்தின் கணக்கு மேலாண்மை அமைப்புகளுக்குச் செல்லவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
-        <source>Select &quot;Link another device&quot;</source>
-        <translation>&quot;இணைக்க மற்றொரு சாதனம்&quot; என்பதைத் தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="650"/>
-        <source>Choose a picture as your avatar</source>
-        <translation>உங்கள் அவதாரமாக ஒரு படத்தை தேர்வு செய்யவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
-        <source>Choose a picture</source>
-        <translation>ஒரு படத்தை தேர்வு செய்யவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
-        <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation>பட கோப்புகள் (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
-        <source>Share freely and privately with Jami</source>
-        <translation>ஜாமிக்கு சுதந்திரமாகவும் தனிப்பட்ட முறையில் பகிர்ந்து கொள்ளுங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
-        <source>Add</source>
-        <translation>சேர்க்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
-        <source>more emojis</source>
-        <translation>மேலும் ஈமோஜிகள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
-        <source>Reply to</source>
-        <translation>பதில்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
-        <source>In reply to</source>
-        <translation>பதில்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
-        <source>Reply</source>
-        <translation>பதில்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="485"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="816"/>
-        <source>Edit</source>
-        <translation>திருத்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="817"/>
-        <source>Edited</source>
-        <translation>தொகுப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="818"/>
-        <source>Join call</source>
-        <translation>சேர அழைப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
-        <source>A call is in progress. Do you want to join the call?</source>
-        <translation>ஒரு அழைப்பு நடந்து வருகிறது. நீங்கள் அழைப்பு சேர விரும்புகிறீர்களா?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
-        <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
-        <translation>இந்த குளத்தின் தற்போதைய புரவலன் அணுக முடியாததாகத் தெரிகிறது. அழைப்பை நடத்த விரும்புகிறீர்களா?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="821"/>
-        <source>Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.</source>
-        <translation>இந்த குளத்தில் எதிர்கால அழைப்புகளை ஹோஸ்ட் செய்ய ஒரு பிரத்யேக சாதனத்தைத் தேர்ந்தெடுக்கவும். அமைக்கப்படாவிட்டால், அழைப்பைத் தொடங்கும் சாதனம் அதை ஹோஸ்ட் செய்யும்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="822"/>
-        <source>Choose this device</source>
-        <translation>இந்த சாதனத்தைத் தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="823"/>
-        <source>Remove current device</source>
-        <translation>தற்போதைய சாதனத்தை அகற்றவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
-        <source>Host only this call</source>
-        <translation>இந்த அழைப்பை மட்டும் நடத்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="825"/>
-        <source>Host this call</source>
-        <translation>இந்த அழைப்பை நடத்த</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="826"/>
-        <source>Make me the default host for future calls</source>
-        <translation>எதிர்கால அழைப்புகளுக்கு இயல்புநிலை ஹோஸ்டாக என்னை மாற்றவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="835"/>
-        <source>About</source>
-        <translation>பற்றி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="836"/>
-        <source>%1 Members</source>
-        <translation>%1 உறுப்பினர்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="837"/>
-        <source>Member</source>
-        <translation>உறுப்பினர்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
-        <source>Documents</source>
-        <translation>ஆவணங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
-        <source>Swarm&apos;s name</source>
-        <translation>ஸ்வாமின் பெயர்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="840"/>
-        <source>Contact&apos;s name</source>
-        <translation>தொடர்புடையவரின் பெயர்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="841"/>
-        <source>Add a description</source>
-        <translation>ஒரு விவரத்தை சேர்க்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
-        <source>Ignore all notifications from this conversation</source>
-        <translation>இந்த உரையாடலில் இருந்து அனைத்து அறிவிப்புகளை புறக்கணிக்க</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
-        <source>Choose a color</source>
-        <translation>ஒரு நிறத்தை தேர்வு செய்யவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="847"/>
-        <source>Leave conversation</source>
-        <translation>உரையாடலை விட்டுவிடுங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="848"/>
-        <source>Leave</source>
-        <translation>வெளியேறு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
-        <source>Type of swarm</source>
-        <translation>வகையான கும்பல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="853"/>
-        <source>Create the swarm</source>
-        <translation>கொட்டையை உருவாக்குங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
-        <source>Go to conversation</source>
-        <translation>உரையாடலுக்குச் செல்லுங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="855"/>
-        <source>Promote to administrator</source>
-        <translation>நிர்வாகிக்கு மேம்படுத்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="856"/>
-        <source>Kick member</source>
-        <translation>கிக் உறுப்பினர்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="857"/>
-        <source>Reinstate member</source>
-        <translation>உறுப்பினர் மீளுருவாக்கம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
-        <source>Administrator</source>
-        <translation>நிர்வாகி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
-        <source>Invited</source>
-        <translation>அழைக்கப்பட்டவர்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
-        <source>Remove member</source>
-        <translation>உறுப்பினர் நீக்க</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
-        <source>To:</source>
-        <translation>பின்வருவனவற்றிற்குஃ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="864"/>
-        <source>Customize</source>
-        <translation>தனிப்பயனாக்க</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
-        <source>Dismiss</source>
-        <translation>விலக்கு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
-        <source>Your profile is only shared with your contacts</source>
-        <translation>உங்கள் சுயவிவரம் உங்கள் தொடர்புகளுடன் மட்டுமே பகிரப்படுகிறது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="873"/>
-        <source>Delete message</source>
-        <translation>செய்தி நீக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
-        <source>*(Deleted Message)*</source>
-        <translation>*(நீக்கப்பட்ட செய்தி) *</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="875"/>
-        <source>Edit message</source>
-        <translation>செய்தி திருத்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="551"/>
-        <source>Something went wrong</source>
-        <translation>ஏதோ தவறு நடந்தது</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="554"/>
@@ -2440,537 +2487,19 @@ Please try again later.</source>
         <translation>பதிவுகள் பெற</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
-        <source>Select a record directory</source>
-        <translation>பதிவு அடைவு தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
-        <source>Debug</source>
-        <translation>பிழைத்திருத்தம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
-        <source>Show Stats</source>
-        <translation>புள்ளிவிவரங்களை காட்டு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
-        <source>Start</source>
-        <translation>தொடங்கு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
-        <source>Stop</source>
-        <translation>நிறுத்து</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
-        <source>Generating account…</source>
-        <translation>கணக்கை உருவாக்குதல்...</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
-        <source>Import from backup</source>
-        <translation>காப்புரிமை இருந்து இறக்குமதி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="636"/>
-        <source>Enter account&apos;s password</source>
-        <translation>கணக்கின் கடவுச்சொல்லை உள்ளிடவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
-        <source>Stop taking photo</source>
-        <translation>புகைப்படம் எடுப்பதை நிறுத்து</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="654"/>
-        <source>Clear avatar image</source>
-        <translation>தெளிவான அவதார படத்தை</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="671"/>
-        <source>Go back to plugins list</source>
-        <translation>செருகுநிரல்கள் பட்டியலில் திரும்பவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="686"/>
-        <source>Profile is only shared with contacts</source>
-        <translation>சுயவிவரம் தொடர்புகளுடன் மட்டுமே பகிரப்படுகிறது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
-        <source>Enter your name</source>
-        <translation>உங்கள் பெயரை உள்ளிடவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="718"/>
-        <source>Hide advanced features</source>
-        <translation>மேம்பட்ட அம்சங்களை மறைக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
-        <source>Create new Jami account</source>
-        <translation>புதிய ஜாமி கணக்கை உருவாக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="727"/>
-        <source>Create new SIP account</source>
-        <translation>புதிய SIP கணக்கை உருவாக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
-        <source>Welcome to</source>
-        <translation>வரவேற்கிறோம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
-        <source>Upgrade</source>
-        <translation>மேம்படுத்தல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
-        <source>Later</source>
-        <translation>பின்னர்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
-        <source>Local muted</source>
-        <translation>உள்ளூர் மௌனமான</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="46"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="779"/>
-        <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation>ஜாமி டேமன் (ஜாமிட்) உடன் மீண்டும் இணைக்க முயற்சிக்கிறேன்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
-        <source>Could not re-connect to the Jami daemon (jamid).
-Jami will now quit.</source>
-        <translation>ஜாமி டேமன் (ஜாமிட்) உடன் மீண்டும் இணைக்க முடியவில்லை. ஜாமி இப்போது விலகினார்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
-        <source>Configure a SIP account</source>
-        <translation>SIP கணக்கை அமைத்தல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
-        <source>Join Jami</source>
-        <translation>ஜாமிக்கு சேரவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
-        <source>I already have an account</source>
-        <translation>எனக்கு ஏற்கனவே ஒரு கணக்கு இருக்கிறது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
-        <source>Use existing Jami account</source>
-        <translation>ஏற்கனவே உள்ள Jami கணக்கைப் பயன்படுத்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
-        <source>Welcome to Jami</source>
-        <translation>ஜாமிக்கு வரவேற்கிறோம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="878"/>
-        <source>Share this Jami identifier to be contacted on this account!</source>
-        <translation>இந்த கணக்கில் தொடர்பு கொள்ள இந்த ஜாமி அடையாளங்காட்டி பகிர்ந்து!</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="879"/>
-        <source>Here is your Jami identifier, don&apos;t hesitate to share it in order to be contacted more easily!</source>
-        <translation>இங்கே உங்கள் ஜாமி அடையாள அட்டை உள்ளது, அதை பகிர்ந்து கொள்ள தயங்க வேண்டாம் எளிதாக தொடர்பு கொள்ள முடியும் பொருட்டு!</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
-        <source>Save</source>
-        <translation>சேமி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
-        <source>Block</source>
-        <translation>தொகுதி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
-        <source>Is swarm:</source>
-        <translation>ஒரு குதிரைஃ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
-        <source>True</source>
-        <translation>உண்மை</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="785"/>
-        <source>False</source>
-        <translation>பொய்யான</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="788"/>
-        <source>Add emoji</source>
-        <translation>ஈமோஜி சேர்க்க</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
-        <source>Send file</source>
-        <translation>கோப்பை அனுப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="791"/>
-        <source>Leave audio message</source>
-        <translation>ஒலி செய்தியை விட்டு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="792"/>
-        <source>Leave video message</source>
-        <translation>வீடியோ செய்தியை விட்டு விடுங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
-        <source>Send</source>
-        <translation>அனுப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="486"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="809"/>
-        <source>Remove</source>
-        <translation>நீக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
-        <source>Write to %1</source>
-        <translation>%1 க்கு எழுது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="829"/>
-        <source>%1 has sent you a request for a conversation.</source>
-        <translation>%1 உங்களுக்கு ஒரு உரையாடல் கோரிக்கையை அனுப்பியுள்ளது.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="830"/>
-        <source>Hello,
-Would you like to join the conversation?</source>
-        <translation>வணக்கம், நீங்கள் உரையாடலில் சேர விரும்புகிறீர்களா?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="831"/>
-        <source>You have accepted
-the conversation request</source>
-        <translation>நீங்கள் உரையாடல் கோரிக்கையை ஏற்றுக்கொண்டீர்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
-        <source>Waiting until %1
-connects to synchronize the conversation.</source>
-        <translation>%1 உரையாடலை ஒத்திசைக்க இணைக்கும் வரை காத்திருத்தல்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
-        <source>Copy</source>
-        <translation>பதிப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
-        <source>Start swarm</source>
-        <translation>தொடக்க குளத்தில்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
-        <source>Create swarm</source>
-        <translation>ஒரு குளத்தை உருவாக்குங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
-        <source>Show invitations</source>
-        <translation>அழைப்பிதழ்களைக் காண்பி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="67"/>
-        <source>Transfer to</source>
-        <translation>பரிமாற்றம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="209"/>
-        <source>Back up account here</source>
-        <translation>இங்கே கணக்கு காப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
-        <source>Back up account</source>
-        <translation>காப்புப்பிரதி கணக்கு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
-        <source>Jami archive files (*.gz)</source>
-        <translation>ஜாமி ஆவணக் கோப்புகள் (*. gz)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="217"/>
-        <source>All files (*)</source>
-        <translation>அனைத்து கோப்புகளும் (*)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
-        <source>Mute camera</source>
-        <translation>முடக்கப்பட்ட கேமரா</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
-        <source>Unmute camera</source>
-        <translation>முடக்கப்படாத கேமரா</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
-        <source>Details</source>
-        <translation>விவரங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
-        <source>Participant is still muted on their device</source>
-        <translation>பங்கேற்பாளர் இன்னும் தங்கள் சாதனத்தில் மௌனமாக உள்ளது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
-        <source>You are still muted on your device</source>
-        <translation>நீங்கள் இன்னும் உங்கள் சாதனத்தில் மௌனமாக உள்ளன</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
-        <source>Share</source>
-        <translation>பகிர்வு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="265"/>
-        <source>Confirm action</source>
-        <translation>நடவடிக்கை உறுதிப்படுத்தல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
-        <source>Would you really like to remove this conversation?</source>
-        <translation>இந்த உரையாடலை நீக்க விரும்புகிறீர்களா?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
-        <source>Would you really like to block this conversation?</source>
-        <translation>இந்த உரையாடலை நீங்கள் தடுக்க விரும்புகிறீர்களா?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
-        <source>Block swarm</source>
-        <translation>தொகுதித் தொகுதி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
-        <source>Conversation details</source>
-        <translation>உரையாடலின் விவரங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
-        <source>View full screen</source>
-        <translation>முழுத் திரை காட்சி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
-        <source>Stop sharing screen or file</source>
-        <translation>திரையுலகம் அல்லது கோப்பு பகிர்வு நிறுத்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
-        <source>Unavailable</source>
-        <translation>கிடைக்கவில்லை</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="322"/>
-        <source>Turn off sharing</source>
-        <translation>பகிர்வு செயலிழக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="323"/>
-        <source>Stop location sharing in this conversation (%1)</source>
-        <translation>இந்த உரையாடலில் இருப்பிட பகிர்வை நிறுத்து (%1)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="344"/>
-        <source>Hide chat</source>
-        <translation>மறை சட்டை</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
-        <source>Scroll to end of conversation</source>
-        <translation>உரையாடலின் முடிவுக்கு சுருள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="369"/>
-        <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation>Jami கணக்கு மேலாண்மை சேவையக (JAMS) URL ஐ உள்ளிடவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="372"/>
-        <source>Enter JAMS credentials</source>
-        <translation>JAMS சான்றிதழ்களை உள்ளிடவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="380"/>
-        <source>Choose a username</source>
-        <translation>ஒரு பயனர்பெயரைத் தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
-        <source>Choose an identifier</source>
-        <translation>அடையாளங்காட்டி ஒன்றைத் தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
-        <source>The identifier is not available</source>
-        <translation>அடையாளங்காட்டி கிடைக்கவில்லை</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
-        <source>UDP</source>
-        <translation>UDP</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="417"/>
-        <source>Display Name</source>
-        <translation>காட்சி பெயர்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
-        <source>A chosen username can help to be found more easily on Jami.
-If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>தேர்ந்தெடுக்கப்பட்ட பயனர்பெயர் ஜாமி இல் எளிதாகக் கண்டுபிடிக்க உதவும். பயனர்பெயர் தேர்ந்தெடுக்கப்படாவிட்டால், இந்த கணக்கிற்கு ஒரு சீரற்ற 40 எழுத்து அடையாளங்காட்டி பயனர்பெயராக ஒதுக்கப்படும். இந்த அடையாளங்காட்டி மூலம் அதைக் கண்டுபிடிப்பது மற்றும் அடைய கடினமாக இருக்கும்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="424"/>
-        <source>This Jami account exists only on this device.
-The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation>இந்த ஜாமி கணக்கு இந்த சாதனத்தில் மட்டுமே உள்ளது. இந்த சாதனம் இழந்தால் அல்லது பயன்பாடு நிறுவப்படாவிட்டால் கணக்கு இழக்கப்படும். இந்த கணக்கின் காப்புப்பிரதியைச் செய்ய பரிந்துரைக்கப்படுகிறது.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="430"/>
-        <source>Linking this account to other devices enables it to be used on other devices.</source>
-        <translation>இந்த கணக்கை மற்ற சாதனங்களுடன் இணைப்பது மற்ற சாதனங்களில் பயன்படுத்த அனுமதிக்கிறது.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
-        <source>Display advanced settings</source>
-        <translation>மேம்பட்ட அமைப்புகள் காட்சி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
-        <source>Hide advanced settings</source>
-        <translation>மேம்பட்ட அமைப்புகளை மறைக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="449"/>
-        <source>This profile is only shared with this account's contacts.
-The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation>இந்த சுயவிவரம் இந்த கணக்கின் தொடர்புகளுடன் மட்டுமே பகிரப்படுகிறது. கணக்கின் அமைப்புகளில் இருந்து எந்த நேரத்திலும் சுயவிவரத்தை மாற்றலாம்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
-        <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation>இந்த சாதனத்தில் மட்டுமே ஒரு ஜாமி கணக்கு உருவாக்கப்பட்டு சேமிக்கப்படுகிறது, உங்கள் கணக்கு விசைகளைக் கொண்ட ஒரு காப்பகமாக. இந்த காப்பகத்திற்கான அணுகலை விருப்பமாக கடவுச்சொல் மூலம் பாதுகாக்கலாம்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="452"/>
-        <source>Please note that if you lose your password, it CANNOT be recovered!</source>
-        <translation>உங்கள் கடவுச்சொல்லை இழந்துவிட்டால், அதை மீட்டெடுக்க முடியாது என்பதை நினைவில் கொள்க!</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="474"/>
-        <source>Display banned contacts</source>
-        <translation>தடைசெய்யப்பட்ட தொடர்புகளை காண்பிக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="476"/>
-        <source>Hide banned contacts</source>
-        <translation>தடைசெய்யப்பட்ட தொடர்புகளை மறைக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="480"/>
-        <source>Would you really like to delete this account?</source>
-        <translation>இந்த கணக்கை நீக்க விரும்புகிறீர்களா?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="481"/>
-        <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation>உங்கள் கணக்கு காப்புப்பிரதி எடுக்கப்படவில்லை அல்லது மற்றொரு சாதனத்தில் சேர்க்கப்படவில்லை என்றால், உங்கள் கணக்கு மற்றும் பதிவு செய்யப்பட்ட பயனர்பெயர் IRREVOCABLE LOST ஆக இருக்கும்.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="491"/>
-        <source>Dark</source>
-        <translation>இருண்ட</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="492"/>
-        <source>Light</source>
-        <translation>ஒளி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
-        <source>Application theme</source>
-        <translation>பயன்பாட்டுத் தீம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="496"/>
-        <source>Show notifications</source>
-        <translation>அறிவிப்புகளை காண்பி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="497"/>
-        <source>Minimize on close</source>
-        <translation>நெருக்கமான குறைக்க</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="498"/>
-        <source>Run at system startup</source>
-        <translation>கணினி துவக்கத்தில் இயக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="502"/>
-        <source>Include local video in recording</source>
-        <translation>உள்ளூர் வீடியோவை பதிவு செய்யவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
-        <source>Preview requires downloading content from third-party servers.</source>
-        <translation>முன்னோட்டமானது மூன்றாம் தரப்பு சேவையகங்களிலிருந்து உள்ளடக்கத்தை பதிவிறக்குவதைக் குறிக்கிறது.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="513"/>
-        <source>Layout</source>
-        <translation>தளவமைப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
-        <source>Vertical view</source>
-        <translation>செங்குத்து பார்வை</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
-        <source>Horizontal view</source>
-        <translation>கிடைமட்ட காட்சி</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
         <source>(Experimental) Enable call support for swarm</source>
         <translation>(ஆய்வக) குளத்தில் அழைப்பு ஆதரவு செயல்படுத்த</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
+        <source>This feature will enable call buttons in swarms with multiple participants.</source>
+        <translation>இந்த அம்சம் பல பங்கேற்பாளர்களுடன் கூட்டங்களில் அழைப்பு பொத்தான்களை செயல்படுத்தும்.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
+        <source>Select a record directory</source>
+        <translation>பதிவு அடைவு தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
@@ -2994,7 +2523,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="572"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="738"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
         <source>Conversation</source>
         <translation>உரையாடல்</translation>
     </message>
@@ -3009,523 +2538,1001 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
         <translation>அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="575"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="576"/>
         <source>Open account list</source>
         <translation>திறந்த கணக்கு பட்டியல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="576"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="577"/>
         <source>Focus conversations list</source>
         <translation>கவனம் செலுத்துதல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="577"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
         <source>Requests list</source>
         <translation>கோரிக்கைகள் பட்டியல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
         <source>Previous conversation</source>
         <translation>முந்தைய உரையாடல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
         <source>Next conversation</source>
         <translation>அடுத்த உரையாடல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="581"/>
         <source>Search bar</source>
         <translation>தேடல் பட்டியில்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="581"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="582"/>
         <source>Full screen</source>
         <translation>முழுத் திரை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="582"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
         <source>Clear history</source>
         <translation>தெளிவான வரலாறு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
         <source>Media settings</source>
         <translation>ஊடக அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
         <source>General settings</source>
         <translation>பொது அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
         <source>Plugin settings</source>
         <translation>செருகுநிரல் அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
         <source>Answer an incoming call</source>
         <translation>ஒரு வருகிற அழைப்பிற்கு பதிலளிக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Decline the call request</source>
         <translation>அழைப்பு கோரிக்கையை நிராகரிக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="589"/>
         <source>Open account creation wizard</source>
         <translation>கணக்குகளை திறக்க உதவியாளர்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="589"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="590"/>
         <source>Open keyboard shortcut table</source>
         <translation>திறந்த விசைப்பலகை குறுக்குவழி அட்டவணை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="597"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
+        <source>Debug</source>
+        <translation>பிழைத்திருத்தம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
+        <source>Show Stats</source>
+        <translation>புள்ளிவிவரங்களை காட்டு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
+        <source>Start</source>
+        <translation>தொடங்கு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
+        <source>Stop</source>
+        <translation>நிறுத்து</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="598"/>
         <source>Report Bug</source>
         <translation>அறிக்கை புழு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="598"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
         <source>Clear</source>
         <translation>தெளிவு</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="600"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
+        <source>Cancel</source>
+        <translation>ரத்துசெய்க</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="601"/>
         <source>Copied to clipboard!</source>
         <translation>கிளிப்போர்டில் நகலெடுக்கப்பட்டது!</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="601"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="602"/>
         <source>Receive Logs</source>
         <translation>பதிவுகளைப் பெறுங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="604"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="605"/>
         <source>Archive</source>
         <translation>காப்பகங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="605"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
         <source>Open file</source>
         <translation>திறந்த கோப்பு</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
+        <source>Generating account…</source>
+        <translation>கணக்கை உருவாக்குதல்...</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="611"/>
+        <source>Import from backup</source>
+        <translation>காப்புரிமை இருந்து இறக்குமதி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
         <source>Import from archive backup</source>
         <translation>காப்புரிமை காப்புரிமை இருந்து இறக்குமதி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>Select archive file</source>
         <translation>காப்பக கோப்புகளைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="617"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Enter Jami account password</source>
         <translation>ஜாமி கணக்கு கடவுச்சொல்லை உள்ளிடவும்</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
+        <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN.</source>
+        <translation>மற்றொரு ஜாமி கணக்கிலிருந்து PIN ஐ உள்ளிடவும். PIN ஐப் பெற &quot;இணைக்க மற்றொரு சாதனம்&quot; அம்சத்தைப் பயன்படுத்தவும்.</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="620"/>
+        <source>Link device</source>
+        <translation>இணைப்பு சாதனம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
         <source>Import</source>
         <translation>இறக்குமதி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="622"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
         <source>A PIN is required to use an existing Jami account on this device.</source>
         <translation>இந்த சாதனத்தில் இருக்கும் ஜாமி கணக்கைப் பயன்படுத்த ஒரு PIN தேவைப்படுகிறது.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="628"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
         <source>Choose the account to link</source>
         <translation>இணைக்க கணக்கைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="634"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="635"/>
         <source>The PIN and the account password should be entered in your device within 10 minutes.</source>
         <translation>உங்கள் சாதனத்தில் PIN மற்றும் கணக்கு கடவுச்சொல்லை 10 நிமிடங்களுக்குள் உள்ளிட வேண்டும்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="635"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="652"/>
+        <source>Choose a picture</source>
+        <translation>ஒரு படத்தை தேர்வு செய்யவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="841"/>
+        <source>Contact&apos;s name</source>
+        <translation>தொடர்புடையவரின் பெயர்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
+        <source>Reinstate member</source>
+        <translation>உறுப்பினர் மீளுருவாக்கம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
+        <source>Delete message</source>
+        <translation>செய்தி நீக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="875"/>
+        <source>*(Deleted Message)*</source>
+        <translation>*(நீக்கப்பட்ட செய்தி) *</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="876"/>
+        <source>Edit message</source>
+        <translation>செய்தி திருத்தவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="636"/>
         <source>Close</source>
         <translation>நெருக்கமாக</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="440"/>
-        <source>Encrypt account</source>
-        <translation>குறியாக்கம் கணக்கு</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
+        <source>Call recording</source>
+        <translation>அழைப்பு பதிவு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="450"/>
-        <source>Encrypt account with a password</source>
-        <translation>கடவுச்சொல்லுடன் கணக்கை குறியாக்கம் செய்யவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="615"/>
+        <source>If the account is encrypted with a password, please fill the following field.</source>
+        <translation>கணக்கு ஒரு கடவுச்சொல்லுடன் குறியாக்கம் செய்யப்பட்டிருந்தால், பின்வரும் புலத்தை நிரப்பவும்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
-        <source>Link a new device</source>
-        <translation>புதிய சாதனத்தை இணைக்கவும்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="622"/>
+        <source>Enter the PIN code</source>
+        <translation>PIN குறியீட்டை உள்ளிடவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
-        <source>Default settings</source>
-        <translation>முன்னிருப்பு அமைப்புகள்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
+        <source>Step 01</source>
+        <translation>படி 01</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="508"/>
-        <source>Enable typing indicators</source>
-        <translation>வகைப்படுத்தல் குறிகாட்டிகளை இயக்குதல்</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
+        <source>Step 02</source>
+        <translation>படி 02</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="509"/>
-        <source>Send and receive typing indicators showing that a message is being typed.</source>
-        <translation>ஒரு செய்தியை தட்டச்சு செய்கிறார்கள் என்பதைக் காட்டும் தட்டச்சு குறிகாட்டிகளை அனுப்புங்கள் மற்றும் பெறுங்கள்.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
+        <source>Step 03</source>
+        <translation>படி 03</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="510"/>
-        <source>Show link preview in conversations</source>
-        <translation>உரையாடல்களில் இணைப்பு முன்னோட்டத்தைக் காண்பி</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
+        <source>Step 04</source>
+        <translation>படி 04</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
-        <source>Accept transfer limit (in Mb)</source>
-        <translation>ஏற்றுக்கொள்ளும் பரிமாற்ற வரம்பு (Mb)</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="628"/>
+        <source>Go to the account management settings of a previous device</source>
+        <translation>முந்தைய சாதனத்தின் கணக்கு மேலாண்மை அமைப்புகளுக்குச் செல்லவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
         <source>The PIN code will be available for 10 minutes</source>
         <translation>PIN குறியீடு 10 நிமிடங்கள் கிடைக்கும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="632"/>
         <source>Fill if the account is password-encrypted.</source>
         <translation>கணக்கு கடவுச்சொல் குறியாக்கம் செய்யப்பட்டிருந்தால் நிரப்பவும்.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="637"/>
+        <source>Enter account&apos;s password</source>
+        <translation>கணக்கின் கடவுச்சொல்லை உள்ளிடவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="638"/>
         <source>Add Device</source>
         <translation>சாதனத்தை சேர்க்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="640"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="641"/>
         <source>Enter the password</source>
         <translation>கடவுச்சொல்லை உள்ளிடவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="641"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="642"/>
         <source>Enter current password</source>
         <translation>தற்போதைய கடவுச்சொல்லை உள்ளிடவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="642"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="643"/>
         <source>Enter this account&apos;s password to confirm the removal of this device</source>
         <translation>இந்த சாதனத்தை நீக்குவதை உறுதிப்படுத்த இந்த கணக்கின் கடவுச்சொல்லை உள்ளிடவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="643"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="644"/>
         <source>Enter new password</source>
         <translation>புதிய கடவுச்சொல்லை உள்ளிடவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="644"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="645"/>
         <source>Confirm new password</source>
         <translation>புதிய கடவுச்சொல்லை உறுதிப்படுத்தவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="645"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="646"/>
         <source>Change</source>
         <translation>மாற்றம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="646"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="647"/>
         <source>Confirm</source>
         <translation>உறுதிப்படுத்தவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="647"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="648"/>
         <source>Export</source>
         <translation>ஏற்றுமதி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="652"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
         <source>Import avatar from image file</source>
         <translation>பட கோப்பில் இருந்து அவதாரத்தை இறக்குமதி செய்யவும்</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="654"/>
+        <source>Stop taking photo</source>
+        <translation>புகைப்படம் எடுப்பதை நிறுத்து</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="655"/>
+        <source>Clear avatar image</source>
+        <translation>தெளிவான அவதார படத்தை</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
         <source>Take photo</source>
         <translation>புகைப்படம் எடு</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="660"/>
+        <source>Enable</source>
+        <translation>இயக்குதல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="661"/>
         <source>Preferences</source>
         <translation>விருப்பங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="661"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="662"/>
         <source>Reset</source>
         <translation>மீட்டமை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="662"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="663"/>
         <source>Uninstall</source>
         <translation>நிறுவல் நீக்கு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="663"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="664"/>
         <source>Reset Preferences</source>
         <translation>மீட்டமை விருப்பத்தேர்வுகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="664"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="665"/>
         <source>Select a plugin to install</source>
         <translation>நிறுவ ஒரு செருகுநிரலைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="665"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="666"/>
         <source>Install plugin</source>
         <translation>செருகுநிரலை நிறுவவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="666"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="667"/>
         <source>Uninstall plugin</source>
         <translation>கூடுதல் நிறுவலை அகற்றவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="667"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="668"/>
         <source>Are you sure you wish to reset %1 preferences?</source>
         <translation>%1 விருப்பங்களை மீட்டமைக்க விரும்புகிறீர்களா?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="668"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="669"/>
         <source>Are you sure you wish to uninstall %1?</source>
         <translation>நீங்கள் %1 ஐ அகற்ற விரும்புகிறீர்களா?</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
+        <source>Display or hide preferences</source>
+        <translation>விருப்பங்களை காண்பித்தல் அல்லது மறைத்தல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="671"/>
+        <source>Add new plugin</source>
+        <translation>புதிய செருகுநிரலைச் சேர்க்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
+        <source>Go back to plugins list</source>
+        <translation>செருகுநிரல்கள் பட்டியலில் திரும்பவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="673"/>
+        <source>Select a file</source>
+        <translation>ஒரு கோப்பைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="116"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="674"/>
+        <source>Select</source>
+        <translation>தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="675"/>
+        <source>Choose image file</source>
+        <translation>பட கோப்பைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="676"/>
         <source>Display or hide General plugin settings</source>
         <translation>காட்சி அல்லது மறை பொது சொருகி அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="676"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="677"/>
         <source>Display or hide Account plugin settings</source>
         <translation>கணக்கு சொருகி அமைப்புகள் காண்பிக்க அல்லது மறைக்க</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="677"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="678"/>
         <source>Installed plugins</source>
         <translation>நிறுவப்பட்ட செருகுநிரல்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="678"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="679"/>
         <source>Plugin Files (*.jpl)</source>
         <translation>சொருகி கோப்புகள் (*. jpl)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="679"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="680"/>
         <source>Load/Unload</source>
         <translation>சுமை/அழுத்துதல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="680"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="681"/>
         <source>Select An Image to %1</source>
         <translation>% 1 இல் ஒரு படத்தைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="681"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="682"/>
         <source>Edit preference</source>
         <translation>விருப்பத்தேர்வுகளை திருத்தவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="682"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="683"/>
         <source>On/Off</source>
         <translation>இயங்குதல்/இணைத்தல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="683"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="684"/>
         <source>Choose Plugin</source>
         <translation>செருகுநிரலைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="687"/>
+        <source>Profile is only shared with contacts</source>
+        <translation>சுயவிவரம் தொடர்புகளுடன் மட்டுமே பகிரப்படுகிறது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
         <source>Save profile</source>
         <translation>சுயவிவரத்தை சேமிக்கவும்</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
+        <source>Enter your name</source>
+        <translation>உங்கள் பெயரை உள்ளிடவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="690"/>
+        <source>Enter the rendezvous point&apos;s name</source>
+        <translation>சந்திப்பு இடத்தின் பெயரை உள்ளிடவும்</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="691"/>
+        <source>Creating rendezvous point…</source>
+        <translation>சந்திப்பு புள்ளியை உருவாக்குதல்...</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="692"/>
         <source>Information</source>
         <translation>தகவல்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="692"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="693"/>
         <source>Profile</source>
         <translation>சுயவிவரம்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="695"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="696"/>
         <source>Enter the account password to confirm the removal of this device</source>
         <translation>இந்த சாதனத்தை நீக்க உறுதிப்படுத்த கணக்கு கடவுச்சொல்லை உள்ளிடவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="698"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="699"/>
         <source>Select a screen to share</source>
         <translation>பகிர ஒரு திரையைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="699"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="700"/>
         <source>Select a window to share</source>
         <translation>பகிர விரும்பும் விண்டோவைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="700"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="701"/>
         <source>All Screens</source>
         <translation>அனைத்து திரைகளும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="701"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="702"/>
         <source>Screens</source>
         <translation>திரைகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="702"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="703"/>
         <source>Windows</source>
         <translation>ஜன்னல்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="703"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="704"/>
         <source>Screen %1</source>
         <translation>திரை %1</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="706"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="707"/>
         <source>QR code</source>
         <translation>QR குறியீடு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="709"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="710"/>
         <source>Account QR</source>
         <translation>கணக்கு QR</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="712"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="713"/>
         <source>This is your Jami username.
 Copy and share it with your friends!</source>
         <translation>இது உங்கள் ஜாமி பயனர்பெயர். அதை நகலெடுத்து உங்கள் நண்பர்களுடன் பகிர்ந்து கொள்ளுங்கள்!</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="713"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="714"/>
         <source>Link this device to an existing account</source>
         <translation>இந்த சாதனத்தை ஏற்கனவே உள்ள கணக்குடன் இணைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="714"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="715"/>
         <source>Import from another device</source>
         <translation>மற்றொரு சாதனத்திலிருந்து இறக்குமதி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="715"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="716"/>
         <source>Import from an archive backup</source>
         <translation>ஒரு காப்புரிமை காப்புரிமை இருந்து இறக்குமதி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="716"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="717"/>
         <source>Advanced features</source>
         <translation>மேம்பட்ட அம்சங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="717"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="718"/>
         <source>Show advanced features</source>
         <translation>மேம்பட்ட அம்சங்களை காண்பி</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="719"/>
+        <source>Hide advanced features</source>
+        <translation>மேம்பட்ட அம்சங்களை மறைக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
         <source>Connect to a JAMS server</source>
         <translation>ஒரு JAMS சேவையகத்துடன் இணைக்கவும்</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
+        <source>Create account from Jami Account Management Server (JAMS)</source>
+        <translation>ஜாமி கணக்கு மேலாண்மை சேவையகத்தில் (JAMS) கணக்கை உருவாக்கவும்</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
+        <source>Configure a SIP account</source>
+        <translation>SIP கணக்கை அமைத்தல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
         <source>Error while creating your account. Check your credentials.</source>
         <translation>உங்கள் கணக்கை உருவாக்கும் போது தவறு. உங்கள் சான்றிதழ்களை சரிபார்க்கவும்.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="736"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
+        <source>Create a rendezvous point</source>
+        <translation>ஒரு சந்திப்பு இடத்தை உருவாக்குங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
+        <source>Create a Jami account</source>
+        <translation>ஜாமி கணக்கை உருவாக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
+        <source>Join Jami</source>
+        <translation>ஜாமிக்கு சேரவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="727"/>
+        <source>Create new Jami account</source>
+        <translation>புதிய ஜாமி கணக்கை உருவாக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
+        <source>Create new SIP account</source>
+        <translation>புதிய SIP கணக்கை உருவாக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
+        <source>About Jami</source>
+        <translation>ஜாமி பற்றி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
+        <source>Welcome to</source>
+        <translation>வரவேற்கிறோம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
+        <source>I already have an account</source>
+        <translation>எனக்கு ஏற்கனவே ஒரு கணக்கு இருக்கிறது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
+        <source>Use existing Jami account</source>
+        <translation>ஏற்கனவே உள்ள Jami கணக்கைப் பயன்படுத்தவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="734"/>
+        <source>Welcome to Jami</source>
+        <translation>ஜாமிக்கு வரவேற்கிறோம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="879"/>
+        <source>Share this Jami identifier to be contacted on this account!</source>
+        <translation>இந்த கணக்கில் தொடர்பு கொள்ள இந்த ஜாமி அடையாளங்காட்டி பகிர்ந்து!</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
         <source>Clear Text</source>
         <translation>தெளிவான உரை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="738"/>
+        <source>Conversations</source>
+        <translation>உரையாடல்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="740"/>
         <source>Search Results</source>
         <translation>தேடல் முடிவுகள்</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
+        <source>Decline contact request</source>
+        <translation>தொடர்பு கோரிக்கையை நிராகரிக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="744"/>
+        <source>Accept contact request</source>
+        <translation>தொடர்பு கோரிக்கையை ஏற்றுக்கொள்ளுங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
+        <source>Automatically check for updates</source>
+        <translation>புதுப்பிப்புகளை தானாக சரிபார்க்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
+        <source>Ok</source>
+        <translation>சரி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="483"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
+        <source>Save</source>
+        <translation>சேமி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
+        <source>Upgrade</source>
+        <translation>மேம்படுத்தல்</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
+        <source>Later</source>
+        <translation>பின்னர்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
         <source>Delete</source>
         <translation>நீக்கவும்</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
-        <source>Unban</source>
-        <translation>தடை செய்யப்பட்டது</translation>
+        <source>Block</source>
+        <translation>தொகுதி</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="760"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
         <source>Set moderator</source>
         <translation>அமை அமை அமைப்பான்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
         <source>Unset moderator</source>
         <translation>அமைக்கப்படாத மாடரேட்டர்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
         <source>Maximize</source>
         <translation>அதிகபட்சமாக</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="327"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="766"/>
         <source>Minimize</source>
         <translation>குறைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="766"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
         <source>Hangup</source>
         <translation>தொங்க</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="770"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="768"/>
+        <source>Local muted</source>
+        <translation>உள்ளூர் மௌனமான</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="771"/>
         <source>Conference moderation</source>
         <translation>மாநாட்டின் தணிக்கை</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="771"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
         <source>Default moderators</source>
         <translation>இயல்புநிலை மாடரேட்டர்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="773"/>
         <source>Enable local moderators</source>
         <translation>உள்ளூர் மாடரேட்டர்களை இயக்கு</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="773"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="774"/>
         <source>Make all participants moderators</source>
         <translation>அனைத்து பங்கேற்பாளர்களையும் மாடரேட்டர்களாக ஆக்குங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="774"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
         <source>Add default moderator</source>
         <translation>இயல்புநிலை மாடரேட்டரை சேர்க்கவும்</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
         <source>Remove default moderator</source>
         <translation>இயல்புநிலை மாடரேட்டரை அகற்றவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
+        <source>Is swarm:</source>
+        <translation>ஒரு குதிரைஃ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="785"/>
+        <source>True</source>
+        <translation>உண்மை</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="786"/>
+        <source>False</source>
+        <translation>பொய்யான</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
+        <source>Add emoji</source>
+        <translation>ஈமோஜி சேர்க்க</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="791"/>
+        <source>Send file</source>
+        <translation>கோப்பை அனுப்பு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
+        <source>Send</source>
+        <translation>அனுப்பு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="486"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
+        <source>Remove</source>
+        <translation>நீக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="42"/>
+        <source>Migrate conversation</source>
+        <translation>உரையாடலை நகர்த்தவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="496"/>
+        <source>Show notifications</source>
+        <translation>அறிவிப்புகளை காண்பி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="497"/>
+        <source>Minimize on close</source>
+        <translation>நெருக்கமான குறைக்க</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="498"/>
+        <source>Run at system startup</source>
+        <translation>கணினி துவக்கத்தில் இயக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
+        <source>Create account from backup</source>
+        <translation>காப்புப்பிரதி இருந்து கணக்கை உருவாக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
+        <source>You can obtain an archive by clicking on &quot;Back up account&quot; in the Account Settings. This will create a .gz file on your device.</source>
+        <translation>கணக்கு அமைப்புகளில் &quot;கணக்கை காப்புப் பிரதி எடுக்கவும்&quot; என்பதைக் கிளிக் செய்வதன் மூலம் நீங்கள் ஒரு காப்பகத்தைப் பெறலாம். இது உங்கள் சாதனத்தில் ஒரு.gz கோப்பை உருவாக்கும்.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
+        <source>Restore account from backup</source>
+        <translation>காப்புப்பிரதி கணக்கை மீட்டமை</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
+        <source>Import Jami account from local archive file.</source>
+        <translation>உள்ளூர் காப்பக கோப்பிலிருந்து ஜாமி கணக்கை இறக்குமதி செய்யுங்கள்.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="657"/>
+        <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
+        <translation>பட கோப்புகள் (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="817"/>
+        <source>Write to %1</source>
+        <translation>%1 க்கு எழுது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="831"/>
+        <source>%1 has sent you a request for a conversation.</source>
+        <translation>%1 உங்களுக்கு ஒரு உரையாடல் கோரிக்கையை அனுப்பியுள்ளது.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
+        <source>Hello,
+Would you like to join the conversation?</source>
+        <translation>வணக்கம், நீங்கள் உரையாடலில் சேர விரும்புகிறீர்களா?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="833"/>
+        <source>You have accepted
+the conversation request</source>
+        <translation>நீங்கள் உரையாடல் கோரிக்கையை ஏற்றுக்கொண்டீர்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="834"/>
+        <source>Waiting until %1
+connects to synchronize the conversation.</source>
+        <translation>%1 உரையாடலை ஒத்திசைக்க இணைக்கும் வரை காத்திருத்தல்.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="837"/>
+        <source>About</source>
+        <translation>பற்றி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
+        <source>%1 Members</source>
+        <translation>%1 உறுப்பினர்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
+        <source>Member</source>
+        <translation>உறுப்பினர்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="840"/>
+        <source>Swarm&apos;s name</source>
+        <translation>ஸ்வாமின் பெயர்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
+        <source>Add a description</source>
+        <translation>ஒரு விவரத்தை சேர்க்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
+        <source>Ignore all notifications from this conversation</source>
+        <translation>இந்த உரையாடலில் இருந்து அனைத்து அறிவிப்புகளை புறக்கணிக்க</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
+        <source>Choose a color</source>
+        <translation>ஒரு நிறத்தை தேர்வு செய்யவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="848"/>
+        <source>Leave conversation</source>
+        <translation>உரையாடலை விட்டுவிடுங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
+        <source>Leave</source>
+        <translation>வெளியேறு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="850"/>
+        <source>Type of swarm</source>
+        <translation>வகையான கும்பல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
+        <source>Create the swarm</source>
+        <translation>கொட்டையை உருவாக்குங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="855"/>
+        <source>Go to conversation</source>
+        <translation>உரையாடலுக்குச் செல்லுங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="856"/>
+        <source>Promote to administrator</source>
+        <translation>நிர்வாகிக்கு மேம்படுத்தவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="857"/>
+        <source>Kick member</source>
+        <translation>கிக் உறுப்பினர்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
+        <source>Administrator</source>
+        <translation>நிர்வாகி</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
+        <source>Invited</source>
+        <translation>அழைக்கப்பட்டவர்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
+        <source>Remove member</source>
+        <translation>உறுப்பினர் நீக்க</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="862"/>
+        <source>To:</source>
+        <translation>பின்வருவனவற்றிற்குஃ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
+        <source>Customize</source>
+        <translation>தனிப்பயனாக்க</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
+        <source>Dismiss</source>
+        <translation>விலக்கு</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
+        <source>Your profile is only shared with your contacts</source>
+        <translation>உங்கள் சுயவிவரம் உங்கள் தொடர்புகளுடன் மட்டுமே பகிரப்படுகிறது</translation>
     </message>
 </context>
 <context>
@@ -3690,6 +3697,51 @@ Copy and share it with your friends!</source>
         <source>Take tile screenshot</source>
         <translation>தட்டு திரை படத்தை எடுக்கவும்</translation>
     </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="216"/>
+        <source>Bold</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="221"/>
+        <source>Italic</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="226"/>
+        <source>Strikethrough</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="231"/>
+        <source>Heading</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="236"/>
+        <source>Link</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="241"/>
+        <source>Code</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="246"/>
+        <source>Quote</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="251"/>
+        <source>Unordered list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="256"/>
+        <source>Ordered list</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LocationSharingSettingsPage</name>
@@ -3712,17 +3764,17 @@ Copy and share it with your friends!</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="361"/>
+        <location filename="../src/app/mainapplication.cpp" line="368"/>
         <source>E&amp;xit</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="363"/>
+        <location filename="../src/app/mainapplication.cpp" line="370"/>
         <source>&amp;Quit</source>
         <translation>&amp; விலகல்</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="369"/>
+        <location filename="../src/app/mainapplication.cpp" line="376"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Show Jami</translation>
     </message>
@@ -3758,12 +3810,12 @@ Copy and share it with your friends!</source>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="409"/>
-        <source>%1 is sharing it&apos;s location</source>
-        <translation>%1 அதன் இருப்பிடத்தை பகிர்ந்துகொள்கிறது</translation>
+        <location filename="../src/app/positionmanager.cpp" line="414"/>
+        <source>%1 is sharing their location</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="414"/>
+        <location filename="../src/app/positionmanager.cpp" line="419"/>
         <source>Location sharing</source>
         <translation>இருப்பிட பகிர்வு</translation>
     </message>
@@ -3771,82 +3823,9 @@ Copy and share it with your friends!</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="355"/>
-        <source>Sending</source>
-        <translation>அனுப்புதல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="357"/>
-        <source>Failure</source>
-        <translation>தோல்வி</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="359"/>
-        <source>Sent</source>
-        <translation>அனுப்பி வைத்தது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="361"/>
-        <location filename="../src/libclient/api/call.h" line="72"/>
-        <source>Connecting</source>
-        <translation>இணைப்பு</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="363"/>
-        <source>Accept</source>
-        <translation>ஏற்றுக்கொள்ளுங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="365"/>
-        <source>Canceled</source>
-        <translation>ரத்து செய்யப்பட்டது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="368"/>
-        <source>Unable to make contact</source>
-        <translation>தொடர்பு கொள்ள முடியவில்லை</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="370"/>
-        <source>Ongoing</source>
-        <translation>நடக்கிறது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="372"/>
-        <source>Waiting for contact</source>
-        <translation>தொடர்புக்காக காத்திருத்தல்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="374"/>
-        <source>Incoming transfer</source>
-        <translation>வருகின்ற பரிமாற்றம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="376"/>
-        <source>Timed out waiting for contact</source>
-        <translation>தொடர்புக்காக காத்திருக்கும் நேரம்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="378"/>
-        <location filename="../src/libclient/api/call.h" line="78"/>
-        <location filename="../src/libclient/api/call.h" line="84"/>
-        <source>Finished</source>
-        <translation>முடிந்தது</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="722"/>
-        <source>Today</source>
-        <translation>இன்று</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="724"/>
-        <source>Yesterday</source>
-        <translation>நேற்று</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="703"/>
-        <source>just now</source>
-        <translation>இப்போது</translation>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="473"/>
+        <source>Me</source>
+        <translation>நான்</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
@@ -3874,6 +3853,12 @@ Copy and share it with your friends!</source>
         <translation>அழைப்பு</translation>
     </message>
     <message>
+        <location filename="../src/app/messagesadapter.cpp" line="366"/>
+        <location filename="../src/libclient/api/call.h" line="72"/>
+        <source>Connecting</source>
+        <translation>இணைப்பு</translation>
+    </message>
+    <message>
         <location filename="../src/libclient/api/call.h" line="74"/>
         <source>Searching</source>
         <translation>தேடுதல்</translation>
@@ -3882,6 +3867,13 @@ Copy and share it with your friends!</source>
         <location filename="../src/libclient/api/call.h" line="76"/>
         <source>Inactive</source>
         <translation>செயலற்றது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="383"/>
+        <location filename="../src/libclient/api/call.h" line="78"/>
+        <location filename="../src/libclient/api/call.h" line="84"/>
+        <source>Finished</source>
+        <translation>முடிந்தது</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
@@ -3897,6 +3889,12 @@ Copy and share it with your friends!</source>
         <location filename="../src/libclient/api/call.h" line="86"/>
         <source>Communication established</source>
         <translation>நிறுவப்பட்ட தகவல்</translation>
+    </message>
+    <message>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="1004"/>
+        <source>Invitation received</source>
+        <translation>அழைப்பு</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="260"/>
@@ -3965,20 +3963,14 @@ Copy and share it with your friends!</source>
         <translation>சேர அழைப்பு</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="1004"/>
-        <source>Invitation received</source>
-        <translation>அழைப்பு</translation>
-    </message>
-    <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="213"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1006"/>
         <source>Invitation accepted</source>
         <translation>அழைப்பு ஏற்றுக்கொள்ளப்பட்டது</translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="386"/>
-        <location filename="../src/libclient/avmodel.cpp" line="405"/>
+        <location filename="../src/libclient/avmodel.cpp" line="391"/>
+        <location filename="../src/libclient/avmodel.cpp" line="410"/>
         <source>default</source>
         <translation>இயல்புநிலை</translation>
     </message>
@@ -4259,9 +4251,69 @@ Copy and share it with your friends!</source>
         <translation>எங்கும் ஏற்றுக்கொள்ள முடியாதது</translation>
     </message>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="473"/>
-        <source>Me</source>
-        <translation>நான்</translation>
+        <location filename="../src/app/messagesadapter.cpp" line="368"/>
+        <source>Accept</source>
+        <translation>ஏற்றுக்கொள்ளுங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="360"/>
+        <source>Sending</source>
+        <translation>அனுப்புதல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="364"/>
+        <source>Sent</source>
+        <translation>அனுப்பி வைத்தது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="373"/>
+        <source>Unable to make contact</source>
+        <translation>தொடர்பு கொள்ள முடியவில்லை</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="377"/>
+        <source>Waiting for contact</source>
+        <translation>தொடர்புக்காக காத்திருத்தல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="379"/>
+        <source>Incoming transfer</source>
+        <translation>வருகின்ற பரிமாற்றம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="381"/>
+        <source>Timed out waiting for contact</source>
+        <translation>தொடர்புக்காக காத்திருக்கும் நேரம்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="731"/>
+        <source>Today</source>
+        <translation>இன்று</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="733"/>
+        <source>Yesterday</source>
+        <translation>நேற்று</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="370"/>
+        <source>Canceled</source>
+        <translation>ரத்து செய்யப்பட்டது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="375"/>
+        <source>Ongoing</source>
+        <translation>நடக்கிறது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="712"/>
+        <source>just now</source>
+        <translation>இப்போது</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="362"/>
+        <source>Failure</source>
+        <translation>தோல்வி</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="109"/>
@@ -4278,34 +4330,32 @@ Copy and share it with your friends!</source>
         <source>locationServicesUnknownError</source>
         <translation>இருப்பிடம் சேவைகள்அறிவிக்கப்படாததுதீர்க்கு</translation>
     </message>
-</context>
-<context>
-    <name>SettingParaCombobox</name>
     <message>
-        <location filename="../src/app/commoncomponents/SettingParaCombobox.qml" line="42"/>
-        <source/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1161"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1174"/>
+        <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SmartListModel</name>
     <message>
-        <location filename="../src/app/smartlistmodel.cpp" line="62"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="100"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="108"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="154"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="174"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="175"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="68"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="107"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="115"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="161"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="191"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="192"/>
         <source>Calls</source>
         <translation>அழைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../src/app/smartlistmodel.cpp" line="63"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="101"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="118"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="155"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="176"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="177"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="69"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="108"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="125"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="162"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="193"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="194"/>
         <source>Contacts</source>
         <translation>தொடர்புகள்</translation>
     </message>
@@ -4313,27 +4363,27 @@ Copy and share it with your friends!</source>
 <context>
     <name>SystemTray</name>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="219"/>
+        <location filename="../src/app/systemtray.cpp" line="216"/>
         <source>Answer</source>
         <translation>பதில்</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="220"/>
+        <location filename="../src/app/systemtray.cpp" line="217"/>
         <source>Decline</source>
         <translation>குறைவு</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="222"/>
+        <location filename="../src/app/systemtray.cpp" line="219"/>
         <source>Open conversation</source>
         <translation>திறந்த உரையாடல்</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="224"/>
+        <location filename="../src/app/systemtray.cpp" line="221"/>
         <source>Accept</source>
         <translation>ஏற்றுக்கொள்ளுங்கள்</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="225"/>
+        <location filename="../src/app/systemtray.cpp" line="222"/>
         <source>Refuse</source>
         <translation>மறுத்தல்</translation>
     </message>
@@ -4464,17 +4514,17 @@ Copy and share it with your friends!</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="340"/>
+        <location filename="../src/app/utilsadapter.cpp" line="336"/>
         <source>%1 Mbps</source>
         <translation>வினாடிக்கு %1 மெகாபிட்</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="340"/>
+        <location filename="../src/app/utilsadapter.cpp" line="336"/>
         <source>Default</source>
         <translation>இயல்புநிலை</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="545"/>
+        <location filename="../src/app/utilsadapter.cpp" line="541"/>
         <source>System</source>
         <translation>அமைப்பு</translation>
     </message>
@@ -4482,22 +4532,22 @@ Copy and share it with your friends!</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="478"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="475"/>
         <source>Searching…</source>
         <translation>தேடுவது.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1017"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1014"/>
         <source>Invalid ID</source>
         <translation>செல்லுபடியற்ற அடையாளங்காட்டி</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1017"/>
         <source>Username not found</source>
         <translation>பயனர் பெயர் காணப்படவில்லை</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1023"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>என்னால் பார்க்க முடியவில்லை.</translation>
     </message>
@@ -4505,7 +4555,7 @@ Copy and share it with your friends!</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="439"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="438"/>
         <source>Bad URI scheme</source>
         <translation>மோசமான URI திட்டம்</translation>
     </message>
