@@ -118,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "677e1bb6_6136a5dc",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-27T22:12:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03f1dc26_a61907c3",
+      "range": {
+        "startLine": 115,
+        "startChar": 81,
+        "endLine": 115,
+        "endChar": 84
+      },
+      "revId": "156c06d4d208808bc172de29d92aeeffe46691d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb63171f_75cb087d",
