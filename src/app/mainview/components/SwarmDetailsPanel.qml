@@ -184,8 +184,12 @@ Rectangle {
                             const obj = membersTabButtonComp.createObject(tabBar);
                             tabBar.insertItem(0, obj);
                         }
+                        tabBar.setCurrentIndex(0)
                     }
                 }
+
+                // Always open on the first tab option
+                onVisibleChanged: tabBar.setCurrentIndex(0)
 
                 Component.onCompleted: addRemoveButtons()
 
