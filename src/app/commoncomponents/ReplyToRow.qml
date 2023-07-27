@@ -64,7 +64,7 @@ Item {
 
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         selectByMouse: true
-        font.pixelSize: IsEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.mediumFontSize
+        font.pointSize: IsEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.mediumFontSize
         font.hintingPreference: Font.PreferNoHinting
         renderType: Text.NativeRendering
         textFormat: Text.MarkdownText
