@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5d94059_3b671bd8",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-27T17:35:00Z",
+      "side": 1,
+      "message": "Add to KeyboardShortcutTable.qml",
+      "range": {
+        "startLine": 309,
+        "startChar": 30,
+        "endLine": 309,
+        "endChar": 43
+      },
+      "revId": "ceb977c316b16585fe5dd840f07dd6db3ccb0816",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
