@@ -177,13 +177,16 @@ Rectangle {
 
                 function addRemoveButtons() {
                     if (CurrentConversation.isCoreDialog) {
-                        if (tabBar.contentChildren.length === 3)
+                        if (tabBar.contentChildren.length === 3) {
+                            tabBar.setCurrentIndex(1);
                             tabBar.removeItem(tabBar.itemAt(0));
+                        }
                     } else {
                         if (tabBar.contentChildren.length === 2) {
                             const obj = membersTabButtonComp.createObject(tabBar);
                             tabBar.insertItem(0, obj);
                         }
+                        tabBar.setCurrentIndex(0);
                     }
                 }
 
