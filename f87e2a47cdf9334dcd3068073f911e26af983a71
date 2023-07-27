@@ -16,6 +16,29 @@
       "message": "edit the CMakeLists.txt for the client to build/include the added cpp sources",
       "revId": "f87e2a47cdf9334dcd3068073f911e26af983a71",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb16d423_20bff571",
+        "filename": "src/app/pluginadapter.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-07-27T18:11:51Z",
+      "side": 1,
+      "message": "keep the constructors and destructor adjacent",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 31
+      },
+      "revId": "f87e2a47cdf9334dcd3068073f911e26af983a71",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
