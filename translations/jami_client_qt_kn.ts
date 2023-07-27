@@ -1,33 +1,33 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="kn">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="kn" sourcelanguage="en">
 <context>
     <name>CallAdapter</name>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="151"/>
+        <location filename="../src/app/calladapter.cpp" line="153"/>
         <source>Missed call</source>
         <translation>ತಪ್ಪಿಸಿಕೊಂಡ ಕರೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="152"/>
+        <location filename="../src/app/calladapter.cpp" line="154"/>
         <source>Missed call with %1</source>
         <translation>%1 ನೊಂದಿಗೆ ತಪ್ಪಿದ ಕರೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="454"/>
+        <location filename="../src/app/calladapter.cpp" line="456"/>
         <source>Incoming call</source>
         <translation>ಒಳಬರುವ ಕರೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="455"/>
+        <location filename="../src/app/calladapter.cpp" line="457"/>
         <source>%1 is calling you</source>
         <translation>%1 ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="466"/>
+        <location filename="../src/app/calladapter.cpp" line="468"/>
         <source>is calling you</source>
         <translation>ನಿಮ್ಮನ್ನು ಕರೆತರುತ್ತಾನೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="961"/>
+        <location filename="../src/app/calladapter.cpp" line="945"/>
         <source>Screenshot</source>
         <translation>ಸ್ಕ್ರೀನ್ಶಾಟ್</translation>
     </message>
@@ -35,28 +35,20 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="189"/>
         <source>%1 received a new message</source>
         <translation>% 1 ಹೊಸ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="243"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="244"/>
         <source>%1 received a new trust request</source>
         <translation>%1 ಹೊಸ ಟ್ರಸ್ಟ್ ವಿನಂತಿಯನ್ನು ಸ್ವೀಕರಿಸಿದೆ</translation>
     </message>
 </context>
 <context>
-    <name>CurrentAccountSettingsScrollPage</name>
-    <message>
-        <location filename="../src/app/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="816"/>
-        <source/>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>CurrentCall</name>
     <message>
-        <location filename="../src/app/currentcall.cpp" line="178"/>
+        <location filename="../src/app/currentcall.cpp" line="185"/>
         <source>Me</source>
         <translation>ನಾನು</translation>
     </message>
@@ -64,44 +56,49 @@
 <context>
     <name>CurrentConversation</name>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="136"/>
+        <location filename="../src/app/currentconversation.cpp" line="137"/>
         <source>Private</source>
         <translation>ಖಾಸಗಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="138"/>
+        <location filename="../src/app/currentconversation.cpp" line="139"/>
         <source>Private group (restricted invites)</source>
         <translation>ಖಾಸಗಿ ಗುಂಪು (ಸೀಮಿತ ಆಹ್ವಾನ)</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="140"/>
+        <location filename="../src/app/currentconversation.cpp" line="141"/>
         <source>Private group</source>
         <translation>ಖಾಸಗಿ ಗುಂಪು</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="142"/>
+        <location filename="../src/app/currentconversation.cpp" line="143"/>
         <source>Public group</source>
         <translation>ಸಾರ್ವಜನಿಕ ಗುಂಪು</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="323"/>
+        <location filename="../src/app/currentconversation.cpp" line="324"/>
         <source>An error occurred while fetching this repository</source>
         <translation>ಈ ಸಂಗ್ರಹಣೆಯನ್ನು ಪಡೆಯುವಾಗ ದೋಷ ಸಂಭವಿಸಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="325"/>
-        <source>The conversation&apos;s mode is un-recognized</source>
-        <translation>ಸಂಭಾಷಣೆಯ ವಿಧಾನವನ್ನು ಗುರುತಿಸಲಾಗುವುದಿಲ್ಲ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="327"/>
-        <source>An invalid message was detected</source>
-        <translation>ಅಮಾನ್ಯ ಸಂದೇಶವನ್ನು ಪತ್ತೆ ಮಾಡಲಾಗಿದೆ</translation>
+        <location filename="../src/app/currentconversation.cpp" line="326"/>
+        <source>Unrecognized conversation mode</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="330"/>
-        <source>Not enough authorization for updating conversation&apos;s infos</source>
-        <translation>ಸಂಭಾಷಣೆಯ ಮಾಹಿತಿಯನ್ನು ನವೀಕರಿಸಲು ಸಾಕಷ್ಟು ಅನುಮತಿ ಇಲ್ಲ</translation>
+        <source>Not authorized to update conversation information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="332"/>
+        <source>An error occurred while committing a new message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="328"/>
+        <source>An invalid message was detected</source>
+        <translation>ಅಮಾನ್ಯ ಸಂದೇಶವನ್ನು ಪತ್ತೆ ಮಾಡಲಾಗಿದೆ</translation>
     </message>
 </context>
 <context>
@@ -115,14 +112,77 @@
 <context>
     <name>JamiStrings</name>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="29"/>
+        <source>Accept</source>
+        <translation>ಒಪ್ಪಿಕೊಳ್ಳು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
+        <source>Accept in audio</source>
+        <translation>ಆಡಿಯೋ ಸ್ವೀಕರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="31"/>
+        <source>Accept in video</source>
+        <translation>ವೀಡಿಯೊದಲ್ಲಿ ಸ್ವೀಕರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
+        <source>Refuse</source>
+        <translation>ನಿರಾಕರಣೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
+        <source>End call</source>
+        <translation>ಕರೆ ಅಂತ್ಯಗೊಳಿಸು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
+        <source>Incoming audio call from {}</source>
+        <translation>{} ನಿಂದ ಬರುವ ಆಡಿಯೋ ಕರೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
+        <source>Incoming video call from {}</source>
+        <translation>{}ನಿಂದ ಬರುವ ವೀಡಿಯೊ ಕರೆ</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="39"/>
         <source>Invitations</source>
         <translation>ಆಹ್ವಾನಗಳು</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
+        <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
+        <translation>ಜಾಮಿ ಸಾರ್ವತ್ರಿಕ ಸಂವಹನ ವೇದಿಕೆಯಾಗಿದ್ದು, ಅದರ ಅಡಿಪಾಯವಾಗಿ ಗೌಪ್ಯತೆ ಇದೆ, ಅದು ಎಲ್ಲರಿಗೂ ಉಚಿತವಾಗಿ ವಿತರಿಸಲಾದ ನೆಟ್ವರ್ಕ್ ಅನ್ನು ಅವಲಂಬಿಸಿದೆ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
+        <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
+        <translation>ಸ್ವಾರ್ಮ್ ತಂತ್ರಜ್ಞಾನಕ್ಕೆ ವಲಸೆ ಹೋಗುವ ಮೂಲಕ ಈ ಸಂಭಾಷಣೆಯನ್ನು ಅನೇಕ ಸಾಧನಗಳಲ್ಲಿ ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಲು ಮತ್ತು ವಿಶ್ವಾಸಾರ್ಹತೆಯನ್ನು ಸುಧಾರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ. ಈ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಹಳೆಯ ಸಂಭಾಷಣೆ ಇತಿಹಾಸವನ್ನು ತೆರವುಗೊಳಿಸಲಾಗುತ್ತದೆ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="781"/>
+        <source>Could not re-connect to the Jami daemon (jamid).
+Jami will now quit.</source>
+        <translation>ಜಾಮಿ ಡೈಮನ್ (ಜಮಿಡ್) ಗೆ ಮರು ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಜಾಮಿ ಈಗ ರಾಜೀನಾಮೆ ನೀಡಲಿದ್ದಾರೆ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="46"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
+        <source>Trying to reconnect to the Jami daemon (jamid)…</source>
+        <translation>ಜಾಮಿ ಡೈಮನ್ (ಜಾಮಿಡ್) ಗೆ ಮತ್ತೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದೇನೆ.</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="49"/>
         <source>Version</source>
         <translation>ಆವೃತ್ತಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
+        <source>Jami is a free universal communication software that respects the freedom and privacy of its users.</source>
+        <translation>ಜಾಮಿ ಒಂದು ಉಚಿತ ಸಾರ್ವತ್ರಿಕ ಸಂವಹನ ಸಾಫ್ಟ್ವೇರ್ ಆಗಿದ್ದು ಅದು ಬಳಕೆದಾರರ ಸ್ವಾತಂತ್ರ್ಯ ಮತ್ತು ಗೌಪ್ಯತೆಯನ್ನು ಗೌರವಿಸುತ್ತದೆ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="55"/>
@@ -143,6 +203,31 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Close settings</source>
         <translation>ಮುಚ್ಚುವ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
+        <source>Add Account</source>
+        <translation>ಖಾತೆಯನ್ನು ಸೇರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="64"/>
+        <source>Add to conference</source>
+        <translation>ಸಮಾವೇಶಕ್ಕೆ ಸೇರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="65"/>
+        <source>Add to conversation</source>
+        <translation>ಸಂಭಾಷಣೆಗೆ ಸೇರಿಸು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="66"/>
+        <source>Transfer this call</source>
+        <translation>ಈ ಕರೆ ವರ್ಗಾಯಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="67"/>
+        <source>Transfer to</source>
+        <translation>ವರ್ಗಾವಣೆ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="70"/>
@@ -170,6 +255,11 @@
         <translation>ಖಾತೆಯನ್ನು ಅಳಿಸಿ</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
+        <source>In progress…</source>
+        <translation>ಪ್ರಗತಿಯಲ್ಲಿ.</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="76"/>
         <source>Authentication failed</source>
         <translation>ದೃಢೀಕರಣ ವಿಫಲವಾಗಿದೆ</translation>
@@ -193,36 +283,6 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="82"/>
         <source>Allow incoming calls from unknown contacts</source>
         <translation>ಅಪರಿಚಿತ ಸಂಪರ್ಕಗಳಿಂದ ಬರುವ ಕರೆಗಳನ್ನು ಅನುಮತಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
-        <source>In progress…</source>
-        <translation>ಪ್ರಗತಿಯಲ್ಲಿ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="29"/>
-        <source>Accept</source>
-        <translation>ಒಪ್ಪಿಕೊಳ್ಳು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
-        <source>Refuse</source>
-        <translation>ನಿರಾಕರಣೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
-        <source>Incoming audio call from {}</source>
-        <translation>{} ನಿಂದ ಬರುವ ಆಡಿಯೋ ಕರೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
-        <source>Incoming video call from {}</source>
-        <translation>{}ನಿಂದ ಬರುವ ವೀಡಿಯೊ ಕರೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="42"/>
-        <source>Migrate conversation</source>
-        <translation>ವಲಸೆ ಸಂಭಾಷಣೆ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="83"/>
@@ -255,6 +315,26 @@
         <translation>ಹೊಸ ರಿಂಗ್ಟೋನ್ ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
+        <source>Certificate File (*.crt)</source>
+        <translation>ಪ್ರಮಾಣಪತ್ರ ಫೈಲ್ (*. crt)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="90"/>
+        <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
+        <translation>ಆಡಿಯೋ ಫೈಲ್ (*. wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
+        <source>Enable read receipts</source>
+        <translation>ಓದುವ ರಸೀದಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
+        <source>Send and receive receipts indicating that a message have been displayed</source>
+        <translation>ಸಂದೇಶವನ್ನು ತೋರಿಸಲಾಗಿದೆ ಎಂದು ಸೂಚಿಸುವ ರಸೀದಿಗಳನ್ನು ಕಳುಹಿಸಿ ಮತ್ತು ಸ್ವೀಕರಿಸಿ</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
         <source>Voicemail</source>
         <translation>ಧ್ವನಿಪತ್ರಿಕೆ</translation>
@@ -276,169 +356,387 @@
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="103"/>
-        <source>Allow fallback on RTP</source>
-        <translation>ಆರ್ಟಿಪಿ ಯಲ್ಲಿ ಹಿಂಜರಿತವನ್ನು ಅನುಮತಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="104"/>
         <source>Encrypt negotiation (TLS)</source>
         <translation>ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾತುಕತೆ (ಟಿಎಲ್ಎಸ್)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="105"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="104"/>
         <source>CA certificate</source>
         <translation>ಸಿಎ ಪ್ರಮಾಣಪತ್ರ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="106"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="105"/>
         <source>User certificate</source>
         <translation>ಬಳಕೆದಾರರ ಪ್ರಮಾಣಪತ್ರ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="107"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="106"/>
         <source>Private key</source>
         <translation>ಖಾಸಗಿ ಕೀಲಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="108"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="107"/>
         <source>Private key password</source>
         <translation>ಖಾಸಗಿ ಕೀಲಿ ಪಾಸ್ವರ್ಡ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="109"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="108"/>
         <source>Verify certificates for incoming TLS connections</source>
         <translation>ಒಳಬರುವ TLS ಸಂಪರ್ಕಗಳಿಗೆ ಪ್ರಮಾಣಪತ್ರಗಳನ್ನು ಪರಿಶೀಲಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="110"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="109"/>
         <source>Verify server TLS certificates</source>
         <translation>ಸರ್ವರ್ TLS ಪ್ರಮಾಣಪತ್ರಗಳನ್ನು ಪರಿಶೀಲಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="111"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="110"/>
         <source>Require certificate for incoming TLS connections</source>
         <translation>ಒಳಬರುವ TLS ಸಂಪರ್ಕಗಳಿಗೆ ಪ್ರಮಾಣಪತ್ರವನ್ನು ಅಗತ್ಯವಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="113"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="112"/>
         <source>Audio input device selector</source>
         <translation>ಆಡಿಯೋ ಇನ್ಪುಟ್ ಸಾಧನ ಆಯ್ಕೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="114"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="113"/>
         <source>Select a private key</source>
         <translation>ಖಾಸಗಿ ಕೀಲಿ ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="115"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="114"/>
         <source>Select a user certificate</source>
         <translation>ಬಳಕೆದಾರ ಪ್ರಮಾಣಪತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="115"/>
+        <source>Select a CA certificate</source>
+        <translation>CA ಪ್ರಮಾಣಪತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="117"/>
+        <source>Key File (*.key)</source>
+        <translation>ಕೀ ಫೈಲ್ (*.key)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="120"/>
+        <source>Connectivity</source>
+        <translation>ಸಂಪರ್ಕ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="121"/>
+        <source>Auto Registration After Expired</source>
+        <translation>ಸ್ವಯಂ ನೋಂದಣಿ ಅವಧಿ ಮುಗಿದ ನಂತರ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="122"/>
         <source>Registration expiration time (seconds)</source>
         <translation>ನೋಂದಣಿ ಅವಧಿ (ಸೆಕೆಂಡುಗಳು)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
+        <source>Network interface</source>
+        <translation>ನೆಟ್ವರ್ಕ್ ಇಂಟರ್ಫೇಸ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="124"/>
+        <source>Use UPnP</source>
+        <translation>UPnP ಅನ್ನು ಬಳಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="125"/>
+        <source>Use TURN</source>
+        <translation>TURN ಬಳಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="126"/>
+        <source>TURN address</source>
+        <translation>ಟರ್ನ್ ವಿಳಾಸ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="127"/>
+        <source>TURN username</source>
+        <translation>TURN ಬಳಕೆದಾರ ಹೆಸರು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="128"/>
+        <source>TURN password</source>
+        <translation>ಟರ್ನ್ ಪಾಸ್ವರ್ಡ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
+        <source>TURN Realm</source>
+        <translation>ಟರ್ನ್ ಲೋಕ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
+        <source>Use STUN</source>
+        <translation>STUN ಬಳಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="131"/>
+        <source>STUN address</source>
+        <translation>STUN ವಿಳಾಸ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="134"/>
+        <source>Allow IP Auto Rewrite</source>
+        <translation>ಐಪಿ ಸ್ವಯಂಚಾಲಿತ ಮರುಬಳಕೆ ಅನುಮತಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="135"/>
+        <source>Public address</source>
+        <translation>ಸಾರ್ವಜನಿಕ ಭಾಷಣ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="136"/>
         <source>Use custom address and port</source>
         <translation>ಕಸ್ಟಮ್ ವಿಳಾಸ ಮತ್ತು ಪೋರ್ಟ್ ಬಳಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
+        <source>Address</source>
+        <translation>ವಿಳಾಸ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="138"/>
+        <source>Port</source>
+        <translation>ಬಂದರು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="141"/>
+        <source>Media</source>
+        <translation>ಮಾಧ್ಯಮಗಳು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="142"/>
+        <source>Enable video</source>
+        <translation>ವೀಡಿಯೊವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="150"/>
+        <source>SDP Session Negotiation (ICE Fallback)</source>
+        <translation>ಎಸ್ಡಿಪಿ ಅಧಿವೇಶನ ಮಾತುಕತೆ (ಐಸಿಇ ಪತನ)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="151"/>
+        <source>Only used during negotiation in case ICE is not supported</source>
+        <translation>ಐಸಿಇ ಬೆಂಬಲಿಸದಿದ್ದಲ್ಲಿ ಮಾತ್ರ ಮಾತುಕತೆ ಸಮಯದಲ್ಲಿ ಬಳಸಲಾಗುತ್ತದೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="152"/>
+        <source>Audio RTP minimum Port</source>
+        <translation>ಆಡಿಯೋ RTP ಕನಿಷ್ಠ ಪೋರ್ಟ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="153"/>
+        <source>Audio RTP maximum Port</source>
+        <translation>ಆಡಿಯೋ RTP ಗರಿಷ್ಠ ಪೋರ್ಟ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="154"/>
+        <source>Video RTP minimum Port</source>
+        <translation>ವೀಡಿಯೊ RTP ಕನಿಷ್ಠ ಪೋರ್ಟ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="155"/>
+        <source>Video RTP maximum port</source>
+        <translation>ವೀಡಿಯೊ RTP ಗರಿಷ್ಠ ಪೋರ್ಟ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="158"/>
         <source>Enable local peer discovery</source>
         <translation>ಸ್ಥಳೀಯ ಸಹವರ್ತಿಗಳ ಪತ್ತೆ ಸಾಧ್ಯವಾಗುತ್ತದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
+        <source>Connect to other DHT nodes advertising on your local network.</source>
+        <translation>ನಿಮ್ಮ ಸ್ಥಳೀಯ ನೆಟ್ವರ್ಕ್ನಲ್ಲಿ ಜಾಹೀರಾತು ನೀಡುವ ಇತರ DHT ನೋಡ್ಗಳಿಗೆ ಸಂಪರ್ಕಿಸಿ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
+        <source>Enable proxy</source>
+        <translation>ಪ್ರಾಕ್ಸಿ ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
+        <source>Proxy address</source>
+        <translation>ಪ್ರಾಕ್ಸಿ ವಿಳಾಸ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
+        <source>Bootstrap</source>
+        <translation>ಬೂಟ್ ಸ್ಟ್ರಾಪ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="166"/>
+        <source>Back</source>
+        <translation>ಹಿಂದಕ್ಕೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="167"/>
+        <source>Account</source>
+        <translation>ಖಾತೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
+        <source>General</source>
+        <translation>ಸಾಮಾನ್ಯ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="179"/>
+        <source>Audio</source>
+        <translation>ಆಡಿಯೋ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="180"/>
+        <source>Microphone</source>
+        <translation>ಮೈಕ್ರೊಫೋನ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="181"/>
+        <source>Select audio input device</source>
+        <translation>ಆಡಿಯೋ ಇನ್ಪುಟ್ ಸಾಧನವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="182"/>
+        <source>Output device</source>
+        <translation>ಔಟ್ಪುಟ್ ಸಾಧನ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="183"/>
+        <source>Select audio output device</source>
+        <translation>ಆಡಿಯೋ ಔಟ್ಪುಟ್ ಸಾಧನವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="184"/>
+        <source>Ringtone device</source>
+        <translation>ರಿಂಗ್ಟೋನ್ ಸಾಧನ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="185"/>
+        <source>Select ringtone output device</source>
+        <translation>ರಿಂಗ್ಟೋನ್ ಔಟ್ಪುಟ್ ಸಾಧನವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
+        <source>Audio manager</source>
+        <translation>ಆಡಿಯೋ ಮ್ಯಾನೇಜರ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="190"/>
+        <source>Video</source>
+        <translation>ವಿಡಿಯೋ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="191"/>
+        <source>Select video device</source>
+        <translation>ವೀಡಿಯೊ ಸಾಧನವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="192"/>
+        <source>Device</source>
+        <translation>ಸಾಧನ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="193"/>
+        <source>Resolution</source>
+        <translation>ನಿರ್ಣಯ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="194"/>
+        <source>Select video resolution</source>
+        <translation>ವೀಡಿಯೊ ರೆಸಲ್ಯೂಶನ್ ಆಯ್ಕೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="195"/>
         <source>Frames per second</source>
         <translation>ಸೆಕೆಂಡಿಗೆ ಫ್ರೇಮ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="196"/>
         <source>Select video frame rate (frames per second)</source>
         <translation>ವೀಡಿಯೊ ಫ್ರೇಮ್ ವೇಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ (ಸೆಕೆಂಡಿಗೆ ಫ್ರೇಮ್ಗಳು)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
-        <source>End call</source>
-        <translation>ಕರೆ ಅಂತ್ಯಗೊಳಿಸು</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
+        <source>Enable hardware acceleration</source>
+        <translation>ಹಾರ್ಡ್ವೇರ್ ವೇಗವರ್ಧನೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
-        <source>Pause call</source>
-        <translation>ವಿರಾಮ ಕರೆ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
+        <source>Preview unavailable</source>
+        <translation>ಪೂರ್ವವೀಕ್ಷಣೆ ಲಭ್ಯವಿಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
-        <source>Resume call</source>
-        <translation>ಪುನರಾರಂಭ ಕರೆ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="201"/>
+        <source>Select screen sharing frame rate (frames per second)</source>
+        <translation>ಸ್ಕ್ರೀನ್ ಹಂಚಿಕೆ ಫ್ರೇಮ್ ದರವನ್ನು ಆಯ್ಕೆಮಾಡಿ (ಸೆಕೆಂಡಿಗೆ ಫ್ರೇಮ್ಗಳು)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
-        <source>Creating account…</source>
-        <translation>ಖಾತೆ ರಚಿಸುವುದು.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="202"/>
+        <source>no video</source>
+        <translation>ವೀಡಿಯೋ ಇಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
-        <source>Encrypt account with password</source>
-        <translation>ಪಾಸ್ವರ್ಡ್ನೊಂದಿಗೆ ಖಾತೆಯನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
+        <source>Back up account here</source>
+        <translation>ಬ್ಯಾಕ್ಅಪ್ ಖಾತೆ ಇಲ್ಲಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
-        <source>Create a rendezvous point</source>
-        <translation>ಒಂದು ಸಭೆ ಸ್ಥಳವನ್ನು ರಚಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
+        <source>Back up account</source>
+        <translation>ಬ್ಯಾಕ್ಅಪ್ ಖಾತೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="389"/>
-        <source>Choose a name for your rendezvous point</source>
-        <translation>ನಿಮ್ಮ ಭೇಟಿಯ ಸ್ಥಳಕ್ಕೆ ಹೆಸರನ್ನು ಆರಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
+        <source>Unavailable</source>
+        <translation>ಲಭ್ಯವಿಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
-        <source>Launch at startup</source>
-        <translation>ಆರಂಭಿಕ ಹಂತದಲ್ಲಿ ಉಡಾವಣೆ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="321"/>
+        <source>Turn off sharing</source>
+        <translation>ಹಂಚಿಕೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
-        <source>Network error</source>
-        <translation>ನೆಟ್ವರ್ಕ್ ದೋಷ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="322"/>
+        <source>Stop location sharing in this conversation (%1)</source>
+        <translation>ಈ ಸಂಭಾಷಣೆಯಲ್ಲಿ ಸ್ಥಳ ಹಂಚಿಕೆಯನ್ನು ನಿಲ್ಲಿಸಿ (%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
-        <source>SSL error</source>
-        <translation>ಎಸ್ಎಸ್ಎಲ್ ದೋಷ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="343"/>
+        <source>Hide chat</source>
+        <translation>ಗುಪ್ತ ಚಾಟ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
-        <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN.</source>
-        <translation>ಮತ್ತೊಂದು ಸಂರಚಿತ ಜಾಮಿ ಖಾತೆಯಿಂದ ಪಿನ್ ನಮೂದಿಸಿ. ಪಿನ್ ಪಡೆಯಲು &quot;ಇನ್ನೊಂದು ಸಾಧನವನ್ನು ಲಿಂಕ್ ಮಾಡಿ&quot; ವೈಶಿಷ್ಟ್ಯವನ್ನು ಬಳಸಿ.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
+        <source>Back to Call</source>
+        <translation>ಮತ್ತೆ ಕರೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
-        <source>Link device</source>
-        <translation>ಲಿಂಕ್ ಸಾಧನ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="361"/>
+        <source>Scroll to end of conversation</source>
+        <translation>ಸಂಭಾಷಣೆಯ ಅಂತ್ಯಕ್ಕೆ ಸ್ಕ್ರಾಲ್ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
-        <source>Conversations</source>
-        <translation>ಸಂಭಾಷಣೆ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
+        <source>Choose a password to encrypt your account on this device. Note that the password CANNOT be recovered.</source>
+        <translation>ಈ ಸಾಧನದಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲು ಪಾಸ್ವರ್ಡ್ ಆಯ್ಕೆಮಾಡಿ. ಪಾಸ್ವರ್ಡ್ ಅನ್ನು ಮರುಪಡೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ ಎಂಬುದನ್ನು ಗಮನಿಸಿ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
-        <source>Enable</source>
-        <translation>ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="387"/>
+        <source>You can choose a username to help others more easily find and reach you on Jami.</source>
+        <translation>ಜಾಮಿಯಲ್ಲಿ ನಿಮ್ಮನ್ನು ಸುಲಭವಾಗಿ ಹುಡುಕಲು ಮತ್ತು ತಲುಪಲು ಸಹಾಯ ಮಾಡಲು ನೀವು ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡಬಹುದು.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="394"/>
         <source>Are you sure you would like to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
         <translation>ನೀವು ಬಳಕೆದಾರಹೆಸರು ಇಲ್ಲದೆ ಜಾಮಿಗೆ ಸೇರಲು ಬಯಸುತ್ತೀರಾ? ಹೌದು, ಹಾಗಿದ್ದರೆ, ಈ ಖಾತೆಗೆ ಕೇವಲ ಯಾದೃಚ್ಛಿಕವಾಗಿ ರಚಿಸಲಾದ 40 ಅಕ್ಷರಗಳ ಗುರುತಿಸುವಿಕೆ ಮಾತ್ರ ನಿಯೋಜಿಸಲಾಗುವುದು.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="396"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
         <source>- 32 characters maximum
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
@@ -446,426 +744,177 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
         <translation>- ಗರಿಷ್ಠ 32 ಅಕ್ಷರಗಳು - ಅಕ್ಷರಶಃ ಅಕ್ಷರಗಳು (A ನಿಂದ Z ಮತ್ತು a ನಿಂದ z) - ಸಂಖ್ಯಾತ್ಮಕ ಅಕ್ಷರಗಳು (0 ನಿಂದ 9) - ವಿಶೇಷ ಅಕ್ಷರಗಳು ಅನುಮತಿಸಲಾಗಿದೆಃ dash (-)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="401"/>
         <source>Your account will be created and stored locally.</source>
         <translation>ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸ್ಥಳೀಯವಾಗಿ ರಚಿಸಲಾಗುವುದು ಮತ್ತು ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
         <translation>ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡುವುದು ಸೂಕ್ತವಾಗಿದೆ, ಮತ್ತು ಆಯ್ಕೆ ಮಾಡಿದ ಬಳಕೆದಾರ ಹೆಸರನ್ನು ನಂತರ ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
         <translation>ಪಾಸ್ವರ್ಡ್ನೊಂದಿಗೆ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡುವುದು ಐಚ್ಛಿಕವಾಗಿದೆ, ಮತ್ತು ಪಾಸ್ವರ್ಡ್ ಕಳೆದುಹೋದರೆ ಅದನ್ನು ನಂತರ ಮರುಪಡೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
         <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
         <translation>ಪ್ರೊಫೈಲ್ ಚಿತ್ರ ಮತ್ತು ಅಡ್ಡಹೆಸರುಗಳನ್ನು ಹೊಂದಿಸುವುದು ಐಚ್ಛಿಕವಾಗಿದೆ, ಮತ್ತು ನಂತರ ಸೆಟ್ಟಿಂಗ್ಗಳಲ್ಲಿ ಇದನ್ನು ಬದಲಾಯಿಸಬಹುದು.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="414"/>
+        <source>TLS</source>
+        <translation>ಟಿಎಲ್ಎಸ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
+        <source>UDP</source>
+        <translation>ಯುಡಿಪಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
+        <source>Display Name</source>
+        <translation>ಪ್ರದರ್ಶನ ಹೆಸರು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="420"/>
+        <source>A chosen username can help to be found more easily on Jami.
+If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
+        <translation>ಜಾಮಿಯಲ್ಲಿ ಆಯ್ಕೆಮಾಡಿದ ಬಳಕೆದಾರಹೆಸರು ಸುಲಭವಾಗಿ ಹುಡುಕಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ಬಳಕೆದಾರಹೆಸರು ಆಯ್ಕೆ ಮಾಡದಿದ್ದರೆ, ಈ ಖಾತೆಗೆ ಯಾದೃಚ್ಛಿಕವಾಗಿ ರಚಿಸಲಾದ 40 ಅಕ್ಷರಗಳ ಗುರುತಿಸುವಿಕೆ ಬಳಕೆದಾರಹೆಸರಾಗಿ ನಿಯೋಜಿಸಲ್ಪಡುತ್ತದೆ. ಈ ಗುರುತಿಸುವಿಕೆಯೊಂದಿಗೆ ಕಂಡುಹಿಡಿಯುವುದು ಮತ್ತು ತಲುಪುವುದು ಹೆಚ್ಚು ಕಷ್ಟ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="423"/>
+        <source>This Jami account exists only on this device.
+The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
+        <translation>ಈ ಜಾಮಿ ಖಾತೆ ಈ ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ. ಈ ಸಾಧನ ಕಳೆದುಹೋದರೆ ಅಥವಾ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಅಸ್ಥಾಪಿಸಿದ್ದರೆ ಖಾತೆ ಕಳೆದುಹೋಗುತ್ತದೆ. ಈ ಖಾತೆಯ ಬ್ಯಾಕಪ್ ಮಾಡಲು ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="429"/>
+        <source>Linking this account to other devices enables it to be used on other devices.</source>
+        <translation>ಈ ಖಾತೆಯನ್ನು ಇತರ ಸಾಧನಗಳಿಗೆ ಲಿಂಕ್ ಮಾಡುವುದರಿಂದ ಅದನ್ನು ಇತರ ಸಾಧನಗಳಲ್ಲಿ ಬಳಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
+        <source>Encrypt account</source>
+        <translation>ಎನ್ಕ್ರಿಪ್ಟ್ ಖಾತೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="442"/>
         <source>Back up account to a .gz file</source>
         <translation>. gz ಫೈಲ್ ಗೆ ಖಾತೆಯನ್ನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="669"/>
-        <source>Display or hide preferences</source>
-        <translation>ಪ್ರದರ್ಶನ ಅಥವಾ ಮರೆಮಾಚುವಿಕೆ ಆದ್ಯತೆಗಳು</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="448"/>
+        <source>This profile is only shared with this account's contacts.
+The profile can be changed at all times from the account&apos;s settings.</source>
+        <translation>ಈ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಈ ಖಾತೆಯ ಸಂಪರ್ಕಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ. ಖಾತೆಯ ಸೆಟ್ಟಿಂಗ್ಗಳಿಂದ ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಬದಲಾಯಿಸಬಹುದು.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
-        <source>Add new plugin</source>
-        <translation>ಹೊಸ ಪ್ಲಗಿನ್ ಸೇರಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="449"/>
+        <source>Encrypt account with a password</source>
+        <translation>ಪಾಸ್ವರ್ಡ್ನೊಂದಿಗೆ ಖಾತೆಯನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
-        <source>Select a file</source>
-        <translation>ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="450"/>
+        <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
+        <translation>ಈ ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ಜಾಮಿ ಖಾತೆಯನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ, ನಿಮ್ಮ ಖಾತೆಯ ಕೀಲಿಗಳನ್ನು ಹೊಂದಿರುವ ಆರ್ಕೈವ್ ಆಗಿ. ಈ ಆರ್ಕೈವ್ಗೆ ಪ್ರವೇಶವನ್ನು ಪರ್ಯಾಯವಾಗಿ ಪಾಸ್ವರ್ಡ್ ಮೂಲಕ ರಕ್ಷಿಸಬಹುದು.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="117"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="673"/>
-        <source>Select</source>
-        <translation>ಆಯ್ಕೆಮಾಡಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
+        <source>Please note that if you lose your password, it CANNOT be recovered!</source>
+        <translation>ನಿಮ್ಮ ಪಾಸ್ವರ್ಡ್ ಕಳೆದು ಹೋದರೆ ಅದನ್ನು ಮರುಪಡೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ ಎಂಬುದನ್ನು ದಯವಿಟ್ಟು ಗಮನಿಸಿ!</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="674"/>
-        <source>Choose image file</source>
-        <translation>ಚಿತ್ರ ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="465"/>
+        <source>Link a new device</source>
+        <translation>ಹೊಸ ಸಾಧನವನ್ನು ಸಂಪರ್ಕಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
-        <source>Enter the rendezvous point&apos;s name</source>
-        <translation>ಸಭೆ ಸ್ಥಳದ ಹೆಸರನ್ನು ನಮೂದಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="479"/>
+        <source>Would you really like to delete this account?</source>
+        <translation>ಈ ಖಾತೆಯನ್ನು ನೀವು ಅಳಿಸಲು ನಿಜವಾಗಿಯೂ ಬಯಸುವಿರಾ?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="690"/>
-        <source>Creating rendezvous point…</source>
-        <translation>ಸಭೆ ಸ್ಥಳವನ್ನು ಸೃಷ್ಟಿಸುವುದು.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="480"/>
+        <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
+        <translation>ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡದಿದ್ದರೆ ಅಥವಾ ಇನ್ನೊಂದು ಸಾಧನಕ್ಕೆ ಸೇರಿಸದಿದ್ದರೆ, ನಿಮ್ಮ ಖಾತೆ ಮತ್ತು ನೋಂದಾಯಿತ ಬಳಕೆದಾರ ಹೆಸರುಗಳು ಪುನಃಸ್ಥಾಪನೆಯಿಲ್ಲದೆ ಕಳೆದುಹೋಗುತ್ತವೆ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
-        <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>ಜಾಮಿ ಖಾತೆ ನಿರ್ವಹಣಾ ಸರ್ವರ್ (JAMS) ನಿಂದ ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="491"/>
+        <source>Dark</source>
+        <translation>ಕತ್ತಲೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
-        <source>Create a Jami account</source>
-        <translation>ಜಾಮಿ ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="492"/>
+        <source>Light</source>
+        <translation>ಬೆಳಕು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
-        <source>About Jami</source>
-        <translation>ಜಾಮಿ ಬಗ್ಗೆ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
+        <source>Application theme</source>
+        <translation>ಅಪ್ಲಿಕೇಶನ್ ಥೀಮ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
-        <source>Decline contact request</source>
-        <translation>ಸಂಪರ್ಕ ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="502"/>
+        <source>Include local video in recording</source>
+        <translation>ಸ್ಥಳೀಯ ವೀಡಿಯೊವನ್ನು ರೆಕಾರ್ಡಿಂಗ್ನಲ್ಲಿ ಸೇರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
-        <source>Accept contact request</source>
-        <translation>ಸಂಪರ್ಕ ವಿನಂತಿಯನ್ನು ಸ್ವೀಕರಿಸು</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
+        <source>Default settings</source>
+        <translation>ಡೀಫಾಲ್ಟ್ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
-        <source>Automatically check for updates</source>
-        <translation>ನವೀಕರಣಗಳಿಗಾಗಿ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪರಿಶೀಲಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="508"/>
+        <source>Enable typing indicators</source>
+        <translation>ಟೈಪಿಂಗ್ ಸೂಚಕಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
-        <source>Ok</source>
-        <translation>ಸರಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="509"/>
+        <source>Send and receive typing indicators showing that a message is being typed.</source>
+        <translation>ಸಂದೇಶವನ್ನು ಟೈಪ್ ಮಾಡಲಾಗುತ್ತಿದೆ ಎಂಬುದನ್ನು ತೋರಿಸುವ ಟೈಪಿಂಗ್ ಸೂಚಕಗಳನ್ನು ಕಳುಹಿಸಿ ಮತ್ತು ಸ್ವೀಕರಿಸಿ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
-        <source>Cancel</source>
-        <translation>ರದ್ದು</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="510"/>
+        <source>Show link preview in conversations</source>
+        <translation>ಸಂಭಾಷಣೆಗಳಲ್ಲಿ ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆ ತೋರಿಸು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
-        <source>Accept in audio</source>
-        <translation>ಆಡಿಯೋ ಸ್ವೀಕರಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
+        <source>Strikethrough</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="31"/>
-        <source>Accept in video</source>
-        <translation>ವೀಡಿಯೊದಲ್ಲಿ ಸ್ವೀಕರಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
+        <source>Unordered list</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
-        <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>ಜಾಮಿ ಸಾರ್ವತ್ರಿಕ ಸಂವಹನ ವೇದಿಕೆಯಾಗಿದ್ದು, ಅದರ ಅಡಿಪಾಯವಾಗಿ ಗೌಪ್ಯತೆ ಇದೆ, ಅದು ಎಲ್ಲರಿಗೂ ಉಚಿತವಾಗಿ ವಿತರಿಸಲಾದ ನೆಟ್ವರ್ಕ್ ಅನ್ನು ಅವಲಂಬಿಸಿದೆ.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
+        <source>Ordered list</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
-        <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>ಸ್ವಾರ್ಮ್ ತಂತ್ರಜ್ಞಾನಕ್ಕೆ ವಲಸೆ ಹೋಗುವ ಮೂಲಕ ಈ ಸಂಭಾಷಣೆಯನ್ನು ಅನೇಕ ಸಾಧನಗಳಲ್ಲಿ ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಲು ಮತ್ತು ವಿಶ್ವಾಸಾರ್ಹತೆಯನ್ನು ಸುಧಾರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ. ಈ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಹಳೆಯ ಸಂಭಾಷಣೆ ಇತಿಹಾಸವನ್ನು ತೆರವುಗೊಳಿಸಲಾಗುತ್ತದೆ.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
+        <source>Press Shift+Enter to insert a new line</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
-        <source>Jami is a free universal communication software that respects the freedom and privacy of its users.</source>
-        <translation>ಜಾಮಿ ಒಂದು ಉಚಿತ ಸಾರ್ವತ್ರಿಕ ಸಂವಹನ ಸಾಫ್ಟ್ವೇರ್ ಆಗಿದ್ದು ಅದು ಬಳಕೆದಾರರ ಸ್ವಾತಂತ್ರ್ಯ ಮತ್ತು ಗೌಪ್ಯತೆಯನ್ನು ಗೌರವಿಸುತ್ತದೆ.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="809"/>
+        <source>Press Enter to insert a new line</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
-        <source>Add Account</source>
-        <translation>ಖಾತೆಯನ್ನು ಸೇರಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="889"/>
+        <source>Appearance</source>
+        <translation>ನೋಟ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="64"/>
-        <source>Add to conference</source>
-        <translation>ಸಮಾವೇಶಕ್ಕೆ ಸೇರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="65"/>
-        <source>Add to conversation</source>
-        <translation>ಸಂಭಾಷಣೆಗೆ ಸೇರಿಸು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="66"/>
-        <source>Transfer this call</source>
-        <translation>ಈ ಕರೆ ವರ್ಗಾಯಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
-        <source>Certificate File (*.crt)</source>
-        <translation>ಪ್ರಮಾಣಪತ್ರ ಫೈಲ್ (*. crt)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="90"/>
-        <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation>ಆಡಿಯೋ ಫೈಲ್ (*. wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
-        <source>Enable read receipts</source>
-        <translation>ಓದುವ ರಸೀದಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
-        <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation>ಸಂದೇಶವನ್ನು ತೋರಿಸಲಾಗಿದೆ ಎಂದು ಸೂಚಿಸುವ ರಸೀದಿಗಳನ್ನು ಕಳುಹಿಸಿ ಮತ್ತು ಸ್ವೀಕರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="116"/>
-        <source>Select a CA certificate</source>
-        <translation>CA ಪ್ರಮಾಣಪತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="118"/>
-        <source>Key File (*.key)</source>
-        <translation>ಕೀ ಫೈಲ್ (*.key)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="121"/>
-        <source>Connectivity</source>
-        <translation>ಸಂಪರ್ಕ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="122"/>
-        <source>Auto Registration After Expired</source>
-        <translation>ಸ್ವಯಂ ನೋಂದಣಿ ಅವಧಿ ಮುಗಿದ ನಂತರ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="124"/>
-        <source>Network interface</source>
-        <translation>ನೆಟ್ವರ್ಕ್ ಇಂಟರ್ಫೇಸ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="125"/>
-        <source>Use UPnP</source>
-        <translation>UPnP ಅನ್ನು ಬಳಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="126"/>
-        <source>Use TURN</source>
-        <translation>TURN ಬಳಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="127"/>
-        <source>TURN address</source>
-        <translation>ಟರ್ನ್ ವಿಳಾಸ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="128"/>
-        <source>TURN username</source>
-        <translation>TURN ಬಳಕೆದಾರ ಹೆಸರು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
-        <source>TURN password</source>
-        <translation>ಟರ್ನ್ ಪಾಸ್ವರ್ಡ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
-        <source>TURN Realm</source>
-        <translation>ಟರ್ನ್ ಲೋಕ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="131"/>
-        <source>Use STUN</source>
-        <translation>STUN ಬಳಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="132"/>
-        <source>STUN address</source>
-        <translation>STUN ವಿಳಾಸ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="135"/>
-        <source>Allow IP Auto Rewrite</source>
-        <translation>ಐಪಿ ಸ್ವಯಂಚಾಲಿತ ಮರುಬಳಕೆ ಅನುಮತಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="136"/>
-        <source>Public address</source>
-        <translation>ಸಾರ್ವಜನಿಕ ಭಾಷಣ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="138"/>
-        <source>Address</source>
-        <translation>ವಿಳಾಸ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="139"/>
-        <source>Port</source>
-        <translation>ಬಂದರು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="142"/>
-        <source>Media</source>
-        <translation>ಮಾಧ್ಯಮಗಳು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="143"/>
-        <source>Enable video</source>
-        <translation>ವೀಡಿಯೊವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="151"/>
-        <source>SDP Session Negotiation (ICE Fallback)</source>
-        <translation>ಎಸ್ಡಿಪಿ ಅಧಿವೇಶನ ಮಾತುಕತೆ (ಐಸಿಇ ಪತನ)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="152"/>
-        <source>Only used during negotiation in case ICE is not supported</source>
-        <translation>ಐಸಿಇ ಬೆಂಬಲಿಸದಿದ್ದಲ್ಲಿ ಮಾತ್ರ ಮಾತುಕತೆ ಸಮಯದಲ್ಲಿ ಬಳಸಲಾಗುತ್ತದೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="153"/>
-        <source>Audio RTP minimum Port</source>
-        <translation>ಆಡಿಯೋ RTP ಕನಿಷ್ಠ ಪೋರ್ಟ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="154"/>
-        <source>Audio RTP maximum Port</source>
-        <translation>ಆಡಿಯೋ RTP ಗರಿಷ್ಠ ಪೋರ್ಟ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="155"/>
-        <source>Video RTP minimum Port</source>
-        <translation>ವೀಡಿಯೊ RTP ಕನಿಷ್ಠ ಪೋರ್ಟ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="156"/>
-        <source>Video RTP maximum port</source>
-        <translation>ವೀಡಿಯೊ RTP ಗರಿಷ್ಠ ಪೋರ್ಟ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
-        <source>Connect to other DHT nodes advertising on your local network.</source>
-        <translation>ನಿಮ್ಮ ಸ್ಥಳೀಯ ನೆಟ್ವರ್ಕ್ನಲ್ಲಿ ಜಾಹೀರಾತು ನೀಡುವ ಇತರ DHT ನೋಡ್ಗಳಿಗೆ ಸಂಪರ್ಕಿಸಿ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
-        <source>Enable proxy</source>
-        <translation>ಪ್ರಾಕ್ಸಿ ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
-        <source>Proxy address</source>
-        <translation>ಪ್ರಾಕ್ಸಿ ವಿಳಾಸ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="164"/>
-        <source>Bootstrap</source>
-        <translation>ಬೂಟ್ ಸ್ಟ್ರಾಪ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="167"/>
-        <source>Back</source>
-        <translation>ಹಿಂದಕ್ಕೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
-        <source>Account Settings</source>
-        <translation>ಖಾತೆ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
-        <source>Account</source>
-        <translation>ಖಾತೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
-        <source>General</source>
-        <translation>ಸಾಮಾನ್ಯ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="181"/>
-        <source>Audio</source>
-        <translation>ಆಡಿಯೋ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="182"/>
-        <source>Microphone</source>
-        <translation>ಮೈಕ್ರೊಫೋನ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="183"/>
-        <source>Select audio input device</source>
-        <translation>ಆಡಿಯೋ ಇನ್ಪುಟ್ ಸಾಧನವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="184"/>
-        <source>Output device</source>
-        <translation>ಔಟ್ಪುಟ್ ಸಾಧನ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="185"/>
-        <source>Select audio output device</source>
-        <translation>ಆಡಿಯೋ ಔಟ್ಪುಟ್ ಸಾಧನವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
-        <source>Ringtone device</source>
-        <translation>ರಿಂಗ್ಟೋನ್ ಸಾಧನ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="187"/>
-        <source>Select ringtone output device</source>
-        <translation>ರಿಂಗ್ಟೋನ್ ಔಟ್ಪುಟ್ ಸಾಧನವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="188"/>
-        <source>Audio manager</source>
-        <translation>ಆಡಿಯೋ ಮ್ಯಾನೇಜರ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="192"/>
-        <source>Video</source>
-        <translation>ವಿಡಿಯೋ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="193"/>
-        <source>Select video device</source>
-        <translation>ವೀಡಿಯೊ ಸಾಧನವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="194"/>
-        <source>Device</source>
-        <translation>ಸಾಧನ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="195"/>
-        <source>Resolution</source>
-        <translation>ನಿರ್ಣಯ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="196"/>
-        <source>Select video resolution</source>
-        <translation>ವೀಡಿಯೊ ರೆಸಲ್ಯೂಶನ್ ಆಯ್ಕೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
-        <source>Enable hardware acceleration</source>
-        <translation>ಹಾರ್ಡ್ವೇರ್ ವೇಗವರ್ಧನೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="201"/>
-        <source>Preview unavailable</source>
-        <translation>ಪೂರ್ವವೀಕ್ಷಣೆ ಲಭ್ಯವಿಲ್ಲ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="202"/>
-        <source>Screen Sharing</source>
-        <translation>ಸ್ಕ್ರೀನ್ ಹಂಚಿಕೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="203"/>
-        <source>Select screen sharing frame rate (frames per second)</source>
-        <translation>ಸ್ಕ್ರೀನ್ ಹಂಚಿಕೆ ಫ್ರೇಮ್ ದರವನ್ನು ಆಯ್ಕೆಮಾಡಿ (ಸೆಕೆಂಡಿಗೆ ಫ್ರೇಮ್ಗಳು)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="204"/>
-        <source>no video</source>
-        <translation>ವೀಡಿಯೋ ಇಲ್ಲ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
+        <source>Accept transfer limit (in Mb)</source>
+        <translation>ವರ್ಗಾವಣೆ ಮಿತಿಯನ್ನು ಸ್ವೀಕರಿಸಿ (Mb ನಲ್ಲಿ)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="539"/>
@@ -889,1114 +938,1362 @@ Would you like to update now?</source>
         <translation>ಸ್ಕ್ರೀನ್ಶಾಟ್ಗಳನ್ನು ಉಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
-        <source>Create account from backup</source>
-        <translation>ಬ್ಯಾಕಪ್ನಿಂದ ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
+        <source>Select &quot;Link another device&quot;</source>
+        <translation>&quot;ಇನ್ನೊಂದು ಸಾಧನವನ್ನು ಸಂಪರ್ಕಿಸಿ&quot; ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
-        <source>You can obtain an archive by clicking on &quot;Back up account&quot; in the Account Settings. This will create a .gz file on your device.</source>
-        <translation>ಖಾತೆ ಸೆಟ್ಟಿಂಗ್ಗಳಲ್ಲಿ &quot;ಕೌಂಟ್ ಬ್ಯಾಕ್ ಅಪ್&quot; ಕ್ಲಿಕ್ ಮಾಡುವುದರ ಮೂಲಕ ನೀವು ಆರ್ಕೈವ್ ಅನ್ನು ಪಡೆಯಬಹುದು. ಇದು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ.gz ಫೈಲ್ ಅನ್ನು ರಚಿಸುತ್ತದೆ.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
+        <source>Choose a picture as your avatar</source>
+        <translation>ನಿಮ್ಮ ಅವತಾರವಾಗಿ ಚಿತ್ರವನ್ನು ಆರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
-        <source>Restore account from backup</source>
-        <translation>ಬ್ಯಾಕಪ್ನಿಂದ ಖಾತೆಯನ್ನು ಮರುಸ್ಥಾಪಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
+        <source>Share freely and privately with Jami</source>
+        <translation>ಜಾಮಿಯೊಂದಿಗೆ ಮುಕ್ತವಾಗಿ ಮತ್ತು ಖಾಸಗಿಯಾಗಿ ಹಂಚಿಕೊಳ್ಳಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
-        <source>Import Jami account from local archive file.</source>
-        <translation>ಜಾಮಿ ಖಾತೆಯನ್ನು ಸ್ಥಳೀಯ ಆರ್ಕೈವ್ ಫೈಲ್ನಿಂದ ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="758"/>
+        <source>Unban</source>
+        <translation>ಅನಿರ್ಬಂಧ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
+        <source>Add</source>
+        <translation>ಸೇರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
+        <source>more emojis</source>
+        <translation>ಇನ್ನಷ್ಟು ಎಮೋಜಿಗಳು</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
+        <source>Reply to</source>
+        <translation>ಉತ್ತರ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
+        <source>In reply to</source>
+        <translation>ಇದಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯೆಯಾಗಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
         <source> replied to</source>
         <translation>ಉತ್ತರ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="816"/>
+        <source>Reply</source>
+        <translation>ಉತ್ತರ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="818"/>
+        <source>Edit</source>
+        <translation>ಸಂಪಾದಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
+        <source>Edited</source>
+        <translation>ಸಂಪಾದನೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
+        <source>Join call</source>
+        <translation>ಸೇರಿ ಕರೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="821"/>
+        <source>A call is in progress. Do you want to join the call?</source>
+        <translation>ಕರೆ ನಡೆಯುತ್ತಿದೆ. ನೀವು ಕರೆ ಸೇರಲು ಬಯಸುವಿರಾ?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="822"/>
+        <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
+        <translation>ಈ ರಾಶಿಯ ಪ್ರಸ್ತುತ ಆತಿಥೇಯರು ತಲುಪಲಾಗುವುದಿಲ್ಲ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="823"/>
+        <source>Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.</source>
+        <translation>ಈ ರಾಶಿಯಲ್ಲಿ ಭವಿಷ್ಯದ ಕರೆಗಳನ್ನು ಹೋಸ್ಟ್ ಮಾಡಲು ಮೀಸಲಾದ ಸಾಧನವನ್ನು ಆರಿಸಿ. ಹೊಂದಿಸದಿದ್ದರೆ, ಕರೆ ಪ್ರಾರಂಭಿಸುವ ಸಾಧನವು ಅದನ್ನು ಹೋಸ್ಟ್ ಮಾಡುತ್ತದೆ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
+        <source>Choose this device</source>
+        <translation>ಈ ಸಾಧನವನ್ನು ಆರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="825"/>
+        <source>Remove current device</source>
+        <translation>ಪ್ರಸ್ತುತ ಸಾಧನವನ್ನು ತೆಗೆದುಹಾಕಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="826"/>
+        <source>Host only this call</source>
+        <translation>ಈ ಕರೆ ಮಾತ್ರ ಆತಿಥ್ಯ ವಹಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="827"/>
+        <source>Host this call</source>
+        <translation>ಈ ಕರೆಗೆ ಹೋಸ್ಟ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="828"/>
+        <source>Make me the default host for future calls</source>
+        <translation>ಭವಿಷ್ಯದ ಕರೆಗಳಿಗೆ ನನ್ನನ್ನು ಡೀಫಾಲ್ಟ್ ಹೋಸ್ಟ್ ಆಗಿ ಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
         <source>Mute conversation</source>
         <translation>ಮೂಕ ಸಂಭಾಷಣೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="847"/>
         <source>Default host (calls)</source>
         <translation>ಡೀಫಾಲ್ಟ್ ಹೋಸ್ಟ್ (ಕರೆಗಳು)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="850"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="851"/>
         <source>None</source>
         <translation>ಯಾವುದೂ ಇಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
         <source>Tip</source>
         <translation>ಸುಳಿವು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="868"/>
         <source>Add a profile picture and nickname to complete your profile</source>
         <translation>ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಪ್ರೊಫೈಲ್ ಚಿತ್ರ ಮತ್ತು ಅಡ್ಡಹೆಸರನ್ನು ಸೇರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="868"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
         <source>This profile is only shared with this account&apos;s contacts</source>
         <translation>ಈ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಈ ಖಾತೆಯ ಸಂಪರ್ಕಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="871"/>
         <source>Why should I save my account?</source>
         <translation>ನನ್ನ ಖಾತೆಯನ್ನು ನಾನು ಯಾಕೆ ಉಳಿಸಬೇಕು?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="209"/>
         <source>Skip</source>
         <translation>ಸ್ಕಿಪ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
+        <source>Start swarm</source>
+        <translation>ಆರಂಭದ ರಾಶಿಯನ್ನು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
+        <source>Create swarm</source>
+        <translation>ಒಂದು ಗುಂಪನ್ನು ರಚಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
+        <source>Show invitations</source>
+        <translation>ಆಮಂತ್ರಣಗಳನ್ನು ತೋರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="173"/>
         <source>Call settings</source>
         <translation>ಕರೆ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="112"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="111"/>
         <source>Disable secure dialog check for incoming TLS data</source>
         <translation>ಒಳಬರುವ TLS ಡೇಟಾವನ್ನು ಸುರಕ್ಷಿತ ಸಂವಾದ ಪರಿಶೀಲನೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="144"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="143"/>
         <source>Video codecs</source>
         <translation>ವೀಡಿಯೊ ಕೋಡೆಕ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="145"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="144"/>
         <source>Audio codecs</source>
         <translation>ಆಡಿಯೋ ಕೋಡೆಕ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="148"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="147"/>
         <source>Name server</source>
         <translation>ಹೆಸರು ಸರ್ವರ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
         <source>OpenDHT configuration</source>
         <translation>OpenDHT ಸಂರಚನೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="200"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
         <source>Mirror local video</source>
         <translation>ಸ್ಥಳೀಯ ವೀಡಿಯೊವನ್ನು ಪ್ರತಿಬಿಂಬಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="205"/>
         <source>Why should I back-up this account?</source>
         <translation>ನಾನು ಈ ಖಾತೆಯನ್ನು ಏಕೆ ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಬೇಕು?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
-        <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later (in the Account Settings).</source>
-        <translation>ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಈ ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ. ನಿಮ್ಮ ಸಾಧನವನ್ನು ನೀವು ಕಳೆದುಕೊಂಡರೆ ಅಥವಾ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಅಸ್ಥಾಪಿಸಿದರೆ, ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಮರುಪಡೆಯಲಾಗುವುದಿಲ್ಲ. ನೀವು ಈಗ ಅಥವಾ ನಂತರ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಬ್ಯಾಕ್ಅಪ್ ಮಾಡಬಹುದು (ಖಾತೆ ಸೆಟ್ಟಿಂಗ್ಗಳಲ್ಲಿ).</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
         <source>Success</source>
         <translation>ಯಶಸ್ಸು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
         <source>Error</source>
         <translation>ದೋಷ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
         <source>Never show me this again</source>
         <translation>ಈ ರೀತಿ ನನಗೆ ಮತ್ತೆ ತೋರಿಸಬೇಡ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
         <source>Recommended</source>
         <translation>ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
+        <source>Jami archive files (*.gz)</source>
+        <translation>ಜಾಮಿ ಆರ್ಕೈವ್ ಫೈಲ್ಗಳು (*. gz)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
+        <source>All files (*)</source>
+        <translation>ಎಲ್ಲಾ ಫೈಲ್ಗಳು (*)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="218"/>
         <source>Reinstate as contact</source>
         <translation>ಸಂಪರ್ಕವಾಗಿ ಮರುಸ್ಥಾಪಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="221"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="219"/>
         <source>name</source>
         <translation>ಹೆಸರು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="222"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
         <source>Identifier</source>
         <translation>ಗುರುತಿನ ಚೀಟಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="225"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="223"/>
         <source>is recording</source>
         <translation>ದಾಖಲಿಸುತ್ತಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="226"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="224"/>
         <source>are recording</source>
         <translation>ದಾಖಲಿಸುತ್ತಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="227"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="225"/>
         <source>Peer stopped recording</source>
         <translation>ಪೀರ್ ರೆಕಾರ್ಡಿಂಗ್ ನಿಲ್ಲಿಸಿತು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="228"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="226"/>
         <source>is calling you</source>
         <translation>ನಿಮ್ಮನ್ನು ಕರೆತರುತ್ತಾನೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="229"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="227"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
         <source>Mute</source>
         <translation>ಮೂಕ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="230"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="228"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
         <source>Unmute</source>
         <translation>ನಿಷ್ಕಪಟ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="229"/>
+        <source>Pause call</source>
+        <translation>ವಿರಾಮ ಕರೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="230"/>
+        <source>Resume call</source>
+        <translation>ಪುನರಾರಂಭ ಕರೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
+        <source>Mute camera</source>
+        <translation>ಮೂಕ ಕ್ಯಾಮೆರಾ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
+        <source>Unmute camera</source>
+        <translation>ನಿಷ್ಕ್ರಿಯ ಕ್ಯಾಮೆರಾ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
         <source>Add participant</source>
         <translation>ಭಾಗವಹಿಸುವವರನ್ನು ಸೇರಿಸುವುದು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
         <source>Add participants</source>
         <translation>ಭಾಗವಹಿಸುವವರನ್ನು ಸೇರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="238"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
+        <source>Details</source>
+        <translation>ವಿವರಗಳು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="174"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
         <source>Chat</source>
         <translation>ಚಾಟ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
         <source>Plugins</source>
         <translation>ಪ್ಲಗ್ಇನ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="173"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
         <source>Manage account</source>
         <translation>ಖಾತೆಯನ್ನು ನಿರ್ವಹಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="174"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="172"/>
         <source>Linked devices</source>
         <translation>ಸಂಪರ್ಕಿತ ಸಾಧನಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="177"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
         <source>Advanced settings</source>
         <translation>ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
         <source>Audio and Video</source>
         <translation>ಆಡಿಯೋ ಮತ್ತು ವಿಡಿಯೋ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="189"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="187"/>
         <source>Sound test</source>
         <translation>ಧ್ವನಿ ಪರೀಕ್ಷೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="200"/>
+        <source>Screen sharing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="206"/>
+        <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
         <source>More options</source>
         <translation>ಹೆಚ್ಚಿನ ಆಯ್ಕೆಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="240"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="238"/>
         <source>Mosaic</source>
         <translation>ಮೊಸಾಯಿಕ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
+        <source>Participant is still muted on their device</source>
+        <translation>ಭಾಗವಹಿಸುವವರು ತಮ್ಮ ಸಾಧನದಲ್ಲಿ ಇನ್ನೂ ಮೌನವಾಗಿದೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="240"/>
+        <source>You are still muted on your device</source>
+        <translation>ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ನೀವು ಇನ್ನೂ ಮೂಕ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
         <source>You are still muted by moderator</source>
         <translation>ನೀವು ಇನ್ನೂ ಮಾಡರೇಟರ್ ನಿಂತು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
         <source>You are muted by a moderator</source>
         <translation>ನೀವು ಒಂದು ಸಂಚಾರಿ ನಿಂತು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
         <source>Moderator</source>
         <translation>ಸಂರಚಕ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="246"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
         <source>Host</source>
         <translation>ಆತಿಥೇಯರು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="247"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
         <source>Local and Moderator muted</source>
         <translation>ಸ್ಥಳೀಯ ಮತ್ತು ಮಾಡರೇಟರ್ ಮೌನ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="248"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="246"/>
         <source>Moderator muted</source>
         <translation>ಮಾಡರೇಟರ್ ನಿಶ್ಯಬ್ದ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="249"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="247"/>
         <source>Not muted</source>
         <translation>ಅಶಬ್ದವಾಗಿಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="248"/>
         <source>On the side</source>
         <translation>ಬದಿಯಲ್ಲಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="249"/>
         <source>On the top</source>
         <translation>ಮೇಲಕ್ಕೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="252"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
         <source>Hide self</source>
         <translation>ನಿಮ್ಮನ್ನು ಮರೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="253"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
         <source>Hide spectators</source>
         <translation>ವೀಕ್ಷಕರನ್ನು ಮರೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="258"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="254"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="597"/>
+        <source>Copy</source>
+        <translation>ನಕಲು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="255"/>
+        <source>Share</source>
+        <translation>ಹಂಚಿಕೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
         <source>Cut</source>
         <translation>ಕತ್ತರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="259"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
         <source>Paste</source>
         <translation>ಪೇಸ್ಟ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="260"/>
         <source>Start video call</source>
         <translation>ವೀಡಿಯೊ ಕರೆ ಆರಂಭಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="263"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="261"/>
         <source>Start audio call</source>
         <translation>ಆಡಿಯೋ ಕರೆ ಆರಂಭಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="264"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
         <source>Clear conversation</source>
         <translation>ಸ್ಪಷ್ಟವಾದ ಸಂಭಾಷಣೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="266"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="263"/>
+        <source>Confirm action</source>
+        <translation>ಕ್ರಮವನ್ನು ದೃಢೀಕರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="264"/>
         <source>Remove conversation</source>
         <translation>ಸಂಭಾಷಣೆಯನ್ನು ತೆಗೆದುಹಾಕಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="265"/>
+        <source>Would you really like to remove this conversation?</source>
+        <translation>ಈ ಸಂಭಾಷಣೆಯನ್ನು ತೆಗೆದುಹಾಕಲು ನೀವು ನಿಜವಾಗಿಯೂ ಬಯಸುತ್ತೀರಾ?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="266"/>
+        <source>Would you really like to block this conversation?</source>
+        <translation>ಈ ಸಂಭಾಷಣೆಯನ್ನು ತಡೆಯಲು ನೀವು ನಿಜವಾಗಿಯೂ ಬಯಸುತ್ತೀರಾ?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
         <source>Remove contact</source>
         <translation>ಸಂಪರ್ಕವನ್ನು ತೆಗೆದುಹಾಕಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
         <source>Block contact</source>
         <translation>ಬ್ಲಾಕ್ ಸಂಪರ್ಕ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="273"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
+        <source>Block swarm</source>
+        <translation>ಬ್ಲಾಕ್ ಸಮೂಹ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
+        <source>Conversation details</source>
+        <translation>ಸಂಭಾಷಣೆಯ ವಿವರಗಳು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
         <source>Contact details</source>
         <translation>ಸಂಪರ್ಕ ವಿವರಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="274"/>
         <source>Hold</source>
         <translation>ಕಾಯಿರಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="277"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="275"/>
         <source>Sip input panel</source>
         <translation>ಸಿಪ್ ಇನ್ಪುಟ್ ಪ್ಯಾನೆಲ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="278"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
         <source>Transfer call</source>
         <translation>ವರ್ಗಾವಣೆ ಕರೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="279"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="277"/>
         <source>Stop recording</source>
         <translation>ರೆಕಾರ್ಡಿಂಗ್ ನಿಲ್ಲಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="280"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="278"/>
         <source>Start recording</source>
         <translation>ರೆಕಾರ್ಡಿಂಗ್ ಆರಂಭಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="279"/>
         <source>Exit full screen</source>
         <translation>ಪೂರ್ಣ ಪರದೆಯನ್ನು ಹೊರಹಾಕಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="283"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="280"/>
+        <source>View full screen</source>
+        <translation>ಪೂರ್ಣ ಪರದೆ ವೀಕ್ಷಿಸು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
         <source>Share screen</source>
         <translation>ಸ್ಕ್ರೀನ್ ಹಂಚಿಕೊಳ್ಳಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="284"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
         <source>Share window</source>
         <translation>ಹಂಚಿಕೆ ವಿಂಡೋ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="283"/>
+        <source>Stop sharing screen or file</source>
+        <translation>ಪರದೆಯ ಅಥವಾ ಫೈಲ್ ಹಂಚಿಕೆಯನ್ನು ನಿಲ್ಲಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="284"/>
         <source>Share screen area</source>
         <translation>ಪರದೆಯ ಪ್ರದೇಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
         <source>Share file</source>
         <translation>ಫೈಲ್ ಹಂಚಿಕೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
         <source>Select sharing method</source>
         <translation>ಹಂಚಿಕೆ ವಿಧಾನವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
         <source>View plugin</source>
         <translation>ಪ್ಲಗಿನ್ ವೀಕ್ಷಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
         <source>Advanced information</source>
         <translation>ಮುಂದುವರಿದ ಮಾಹಿತಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
         <source>No video device</source>
         <translation>ವೀಡಿಯೊ ಸಾಧನ ಇಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
         <source>Lower hand</source>
         <translation>ಕೆಳ ಕೈ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="294"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
         <source>Raise hand</source>
         <translation>ಕೈ ಎತ್ತಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="295"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
         <source>Layout settings</source>
         <translation>ಲೇಔಟ್ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="294"/>
         <source>Take tile screenshot</source>
         <translation>ಟೈಲ್ ಸ್ಕ್ರೀನ್ಶಾಟ್ ತೆಗೆದುಕೊಳ್ಳಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="297"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="295"/>
         <source>Screenshot saved to %1</source>
         <translation>% 1 ಗೆ ಉಳಿಸಲಾದ ಸ್ಕ್ರೀನ್ಶಾಟ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
+        <source>File saved to %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="299"/>
         <source>Renderers information</source>
         <translation>ವಿತರಕರ ಮಾಹಿತಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
         <source>Call information</source>
         <translation>ಕರೆ ಮಾಹಿತಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Peer number</source>
         <translation>ಪೀರ್ ಸಂಖ್ಯೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="303"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Call id</source>
         <translation>ಕರೆ ಐಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="303"/>
         <source>Sockets</source>
         <translation>ಸಾಕೆಟ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
         <source>Video codec</source>
         <translation>ವೀಡಿಯೊ ಕೋಡೆಕ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Hardware acceleration</source>
         <translation>ಹಾರ್ಡ್ವೇರ್ ವೇಗವರ್ಧನೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Video bitrate</source>
         <translation>ವೀಡಿಯೊ ಬಿಟ್ ದರ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
         <source>Audio codec</source>
         <translation>ಆಡಿಯೋ ಕೋಡೆಕ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
         <source>Renderer id</source>
         <translation>ರಿಸೆಂಡರ್ ಐಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
         <source>Fps</source>
         <translation>ಎಫ್ಪಿಎಸ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
         <source>Share location</source>
         <translation>ಹಂಚಿಕೆ ಸ್ಥಳ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="314"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source>Stop sharing</source>
         <translation>ಹಂಚಿಕೆ ನಿಲ್ಲಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="314"/>
         <source>10 minutes</source>
         <translation>10 ನಿಮಿಷಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
         <source>One hour</source>
         <translation>ಒಂದು ಗಂಟೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
         <source>%1 minutes left</source>
         <translation>%1 ನಿಮಿಷಗಳು ಉಳಿದಿವೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <source>%1 minute left</source>
         <translation>%1 ನಿಮಿಷ ಉಳಿದಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
         <source>Your precise location could not be determined.
 In Device Settings, please turn on &quot;Location Services&quot;.
 Other participants&apos; location can still be received.</source>
         <translation>ನಿಮ್ಮ ನಿಖರವಾದ ಸ್ಥಳವನ್ನು ನಿರ್ಧರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಸಾಧನ ಸೆಟ್ಟಿಂಗ್ಗಳಲ್ಲಿ, ದಯವಿಟ್ಟು &quot;ಸ್ಥಳ ಸೇವೆಗಳು&quot; ಅನ್ನು ಆನ್ ಮಾಡಿ. ಇತರ ಭಾಗವಹಿಸುವವರ ಸ್ಥಳವನ್ನು ಇನ್ನೂ ಸ್ವೀಕರಿಸಬಹುದು.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
         <source>Your precise location could not be determined. Please check your Internet connection.</source>
         <translation>ನಿಮ್ಮ ನಿಖರವಾದ ಸ್ಥಳವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="321"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
         <source>Turn off location sharing</source>
         <translation>ಸ್ಥಳ ಹಂಚಿಕೆಯನ್ನು ಆಫ್ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="324"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="323"/>
         <source>Location is shared in several conversations</source>
         <translation>ಹಲವಾರು ಸಂಭಾಷಣೆಗಳಲ್ಲಿ ಸ್ಥಳ ಹಂಚಿಕೊಳ್ಳಲಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="324"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
         <translation>ನಿರ್ದಿಷ್ಟ ಸಂಭಾಷಣೆಗಳಲ್ಲಿ ಸ್ಥಳವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಅಥವಾ ಸ್ಥಳವನ್ನು ಆಫ್ ಮಾಡಲು ಪಿನ್ ನಕ್ಷೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
         <translation>ಹಲವಾರು ಸಂಭಾಷಣೆಗಳಲ್ಲಿ ಸ್ಥಳ ಹಂಚಿಕೆ ಮಾಡಲಾಗಿದೆ, ಸ್ಥಳ ಹಂಚಿಕೆಯನ್ನು ಹೇಗೆ ಆಫ್ ಮಾಡುವುದು ಎಂಬುದನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ಕ್ಲಿಕ್ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="327"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
         <source>Share location to participants of this conversation (%1)</source>
         <translation>ಈ ಸಂಭಾಷಣೆಯಲ್ಲಿ ಭಾಗವಹಿಸುವವರಿಗೆ ಸ್ಥಳ ಹಂಚಿಕೊಳ್ಳಿ (%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
         <source>Reduce</source>
         <translation>ಕಡಿಮೆ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
         <source>Extend</source>
         <translation>ವಿಸ್ತರಣೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
         <source>Drag</source>
         <translation>ಎಳೆಯಿರಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
         <source>Center</source>
         <translation>ಕೇಂದ್ರ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
         <source>Unpin</source>
         <translation>ಅಂಟಿಸು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
         <source>Pin</source>
         <translation>ಪಿನ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="337"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
         <source>Position share duration</source>
         <translation>ಸ್ಥಾನದ ಪಾಲಿನ ಅವಧಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="337"/>
         <source>Limit the duration of location sharing</source>
         <translation>ಸ್ಥಳ ಹಂಚಿಕೆಯ ಅವಧಿಯನ್ನು ಮಿತಿಗೊಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
         <source>Location sharing</source>
         <translation>ಸ್ಥಳ ಹಂಚಿಕೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
         <source>Unlimited</source>
         <translation>ಅನಿಯಮಿತ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
         <source>1 min</source>
         <translation>1 ನಿಮಿಷ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="345"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="344"/>
         <source>Place audio call</source>
         <translation>ಆಡಿಯೋ ಕರೆ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="346"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="345"/>
         <source>Place video call</source>
         <translation>ವಿಡಿಯೋ ಕರೆ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="347"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="346"/>
         <source>Show available plugins</source>
         <translation>ಲಭ್ಯವಿರುವ ಪ್ಲಗಿನ್ಗಳನ್ನು ತೋರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="347"/>
         <source>Add to conversations</source>
         <translation>ಸಂಭಾಷಣೆಗೆ ಸೇರಿಸು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="349"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
         <source>This is the error from the backend: %0</source>
         <translation>ಈ ಬ್ಯಾಕ್ ಎಂಡ್ ದೋಷಃ %0</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="349"/>
         <source>The account is disabled</source>
         <translation>ಖಾತೆಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
         <source>No network connectivity</source>
         <translation>ನೆಟ್ವರ್ಕ್ ಸಂಪರ್ಕವಿಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
         <source>Deleted message</source>
         <translation>ಅಳಿಸಿದ ಸಂದೇಶ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
-        <source>Back to Call</source>
-        <translation>ಮತ್ತೆ ಕರೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="356"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="355"/>
         <source>Jump to</source>
         <translation>ಜಂಪ್ ಗೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="357"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="356"/>
         <source>Messages</source>
         <translation>ಸಂದೇಶಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="357"/>
         <source>Files</source>
         <translation>ಫೈಲ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="359"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
         <source>Search</source>
         <translation>ಹುಡುಕಾಟ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="363"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
         <source>{} is typing…</source>
         <translation>{} ಟೈಪ್ ಮಾಡುತ್ತಿದೆ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="364"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="363"/>
         <source>{} are typing…</source>
         <translation>{} ಟೈಪ್ ಮಾಡುತ್ತಿದ್ದಾರೆ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="365"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="364"/>
         <source>Several people are typing…</source>
         <translation>ಹಲವಾರು ಜನರು ಟೈಪ್ ಮಾಡುತ್ತಿದ್ದಾರೆ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="366"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="365"/>
         <source> and </source>
         <translation>ಮತ್ತು </translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="368"/>
+        <source>Enter the Jami Account Management Server (JAMS) URL</source>
+        <translation>ಜಾಮಿ ಖಾತೆ ನಿರ್ವಹಣಾ ಸರ್ವರ್ (JAMS) URL ಅನ್ನು ನಮೂದಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="369"/>
         <source>Required</source>
         <translation>ಅಗತ್ಯ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="371"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
         <source>Jami Account Management Server URL</source>
         <translation>ಜಾಮಿ ಖಾತೆ ನಿರ್ವಹಣೆ ಸರ್ವರ್ URL</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="371"/>
+        <source>Enter JAMS credentials</source>
+        <translation>JAMS ರುಜುವಾತುಗಳನ್ನು ನಮೂದಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="372"/>
         <source>Connect</source>
         <translation>ಸಂಪರ್ಕ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
+        <source>Creating account…</source>
+        <translation>ಖಾತೆ ರಚಿಸುವುದು.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
         <source>Back to welcome page</source>
         <translation>ಸ್ವಾಗತ ಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="378"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="377"/>
         <source>Choose name</source>
         <translation>ಹೆಸರು ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="378"/>
         <source>Choose username</source>
         <translation>ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
+        <source>Choose a username</source>
+        <translation>ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಆರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="380"/>
+        <source>Choose an identifier</source>
+        <translation>ಗುರುತಿಸುವಿಕೆ ಆಯ್ಕೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
+        <source>The identifier is not available</source>
+        <translation>ಗುರುತಿನ ಚೀಟಿ ಲಭ್ಯವಿಲ್ಲ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="446"/>
+        <source>Encrypt account with password</source>
+        <translation>ಪಾಸ್ವರ್ಡ್ನೊಂದಿಗೆ ಖಾತೆಯನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
         <source>Create account</source>
         <translation>ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
         <source>Confirm password</source>
         <translation>ಪಾಸ್ವರ್ಡ್ ದೃಢೀಕರಿಸಿ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
-        <source>Choose a password to encrypt your account on this device. Note that the password CANNOT be recovered.</source>
-        <translation>ಈ ಸಾಧನದಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲು ಪಾಸ್ವರ್ಡ್ ಆಯ್ಕೆಮಾಡಿ. ಪಾಸ್ವರ್ಡ್ ಅನ್ನು ಮರುಪಡೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ ಎಂಬುದನ್ನು ಗಮನಿಸಿ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="387"/>
         <source>Optional</source>
         <translation>ಐಚ್ಛಿಕ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="388"/>
-        <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation>ಜಾಮಿಯಲ್ಲಿ ನಿಮ್ಮನ್ನು ಸುಲಭವಾಗಿ ಹುಡುಕಲು ಮತ್ತು ತಲುಪಲು ಸಹಾಯ ಮಾಡಲು ನೀವು ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡಬಹುದು.</translation>
+        <source>Choose a name for your rendezvous point</source>
+        <translation>ನಿಮ್ಮ ಭೇಟಿಯ ಸ್ಥಳಕ್ಕೆ ಹೆಸರನ್ನು ಆರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="390"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="389"/>
         <source>Choose a name</source>
         <translation>ಒಂದು ಹೆಸರನ್ನು ಆರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="391"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="390"/>
         <source>Invalid name</source>
         <translation>ಅಮಾನ್ಯ ಹೆಸರು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="392"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="391"/>
         <source>Invalid username</source>
         <translation>ಅಮಾನ್ಯ ಬಳಕೆದಾರ ಹೆಸರು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="393"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="392"/>
         <source>Name already taken</source>
         <translation>ಈಗಾಗಲೇ ಹೆಸರಿಸಲಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="394"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="393"/>
         <source>Username already taken</source>
         <translation>ಈಗಾಗಲೇ ತೆಗೆದ ಬಳಕೆದಾರ ಹೆಸರು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="399"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="398"/>
         <source>Good to know</source>
         <translation>ತಿಳಿಯುವುದು ಸಂತೋಷವಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="400"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="399"/>
         <source>Local</source>
         <translation>ಸ್ಥಳೀಯ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="401"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="400"/>
         <source>Encrypt</source>
         <translation>ಎನ್ಕ್ರಿಪ್ಟ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="407"/>
         <source>SIP account</source>
         <translation>ಎಸ್ಐಪಿ ಖಾತೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
         <source>Proxy</source>
         <translation>ಪ್ರಾಕ್ಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
         <source>Server</source>
         <translation>ಸರ್ವರ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="411"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
         <source>Create SIP account</source>
         <translation>SIP ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="412"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="411"/>
         <source>Configure an existing SIP account</source>
         <translation>ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ SIP ಖಾತೆಯನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="413"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="412"/>
         <source>Personalize account</source>
         <translation>ಖಾತೆಯನ್ನು ವೈಯಕ್ತೀಕರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="414"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="413"/>
         <source>Add SIP account</source>
         <translation>SIP ಖಾತೆಯನ್ನು ಸೇರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="420"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="419"/>
         <source>Your profile is only shared with your contacts.
 Your picture and your nickname can be changed at all time in the settings of your account.</source>
         <translation>ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಅನ್ನು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ. ನಿಮ್ಮ ಖಾತೆಯ ಸೆಟ್ಟಿಂಗ್ಗಳಲ್ಲಿ ನಿಮ್ಮ ಫೋಟೋ ಮತ್ತು ನಿಮ್ಮ ಅಡ್ಡಹೆಸರನ್ನು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಬದಲಾಯಿಸಬಹುದು.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
-        <source>Show more</source>
-        <translation>ಇನ್ನಷ್ಟು ತೋರಿಸು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
-        <source>Show less</source>
-        <translation>ಕಡಿಮೆ ತೋರಿಸು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
-        <source>Bold</source>
-        <translation>ದಟ್ಟ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
-        <source>Italic</source>
-        <translation>ಓರೆಯಾದ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
-        <source>Barre</source>
-        <translation>ಬಾರ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
-        <source>Title</source>
-        <translation>ಶೀರ್ಷಿಕೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
-        <source>Link</source>
-        <translation>ಲಿಂಕ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
-        <source>Code</source>
-        <translation>ಕೋಡ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
-        <source>Quote</source>
-        <translation>ಉಲ್ಲೇಖ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
-        <source>Bullet Point</source>
-        <translation>ಗುಂಡಿನ ಪಾಯಿಂಟ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
-        <source>Bullet Number</source>
-        <translation>ಗುಂಡಿನ ಸಂಖ್ಯೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
-        <source>Show Formating</source>
-        <translation>ಪ್ರದರ್ಶನ ಫಾರ್ಮ್ಯಾಟಿಂಗ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
-        <source>Hide Formating</source>
-        <translation>ಅಡಗಿಸು ಫಾರ್ಮ್ಯಾಟಿಂಗ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="888"/>
-        <source>Appearance</source>
-        <translation>ನೋಟ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="422"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.</source>
         <translation>ನಿಮ್ಮ ಜಾಮಿ ಖಾತೆಯನ್ನು ಈ ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ನಿಮ್ಮ ಖಾತೆಯ ಕೀಲಿಗಳನ್ನು ಒಳಗೊಂಡಿರುವ ಆರ್ಕೈವ್ ಆಗಿ ನೋಂದಾಯಿಸಲಾಗಿದೆ. ಈ ಆರ್ಕೈವ್ಗೆ ಪ್ರವೇಶವನ್ನು ಪಾಸ್ವರ್ಡ್ ಮೂಲಕ ರಕ್ಷಿಸಬಹುದು.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="423"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="422"/>
         <source>Backup account</source>
         <translation>ಬ್ಯಾಕಪ್ ಖಾತೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="425"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="424"/>
         <source>Delete your account</source>
         <translation>ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="425"/>
         <source>If your account has not been backed up or added to another device, your account and registered name will be irrevocably lost.</source>
         <translation>ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡದಿದ್ದರೆ ಅಥವಾ ಇನ್ನೊಂದು ಸಾಧನಕ್ಕೆ ಸೇರಿಸದಿದ್ದರೆ, ನಿಮ್ಮ ಖಾತೆ ಮತ್ತು ನೋಂದಾಯಿತ ಹೆಸರು ಹಿಂತೆಗೆದುಕೊಳ್ಳಲಾಗದಷ್ಟು ಕಳೆದುಹೋಗುತ್ತದೆ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
         <source>List of the devices that are linked to this account:</source>
         <translation>ಈ ಖಾತೆಗೆ ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳ ಪಟ್ಟಿಃ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="428"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
         <source>This device</source>
         <translation>ಈ ಸಾಧನ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="429"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="428"/>
         <source>Other linked devices</source>
         <translation>ಇತರ ಸಂಪರ್ಕಿತ ಸಾಧನಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="433"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="432"/>
         <source>Backup successful</source>
         <translation>ಬ್ಯಾಕಪ್ ಯಶಸ್ವಿಯಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="434"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="433"/>
         <source>Backup failed</source>
         <translation>ಬ್ಯಾಕಪ್ ವಿಫಲವಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="435"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="434"/>
         <source>Password changed successfully</source>
         <translation>ಪಾಸ್ವರ್ಡ್ ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾಯಿಸಲಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="436"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="435"/>
         <source>Password change failed</source>
         <translation>ಪಾಸ್ವರ್ಡ್ ಬದಲಾವಣೆ ವಿಫಲವಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="437"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="436"/>
         <source>Password set successfully</source>
         <translation>ಪಾಸ್ವರ್ಡ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಹೊಂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="438"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="437"/>
         <source>Password set failed</source>
         <translation>ಪಾಸ್ವರ್ಡ್ ಸೆಟ್ ವಿಫಲವಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="438"/>
         <source>Change password</source>
         <translation>ಪಾಸ್ವರ್ಡ್ ಬದಲಾಯಿಸಿ</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="485"/>
+        <source>Device name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="575"/>
+        <source>Markdown</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="792"/>
+        <source>Audio message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
+        <source>Video message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
+        <source>Show more</source>
+        <translation>ಇನ್ನಷ್ಟು ತೋರಿಸು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="795"/>
+        <source>Show less</source>
+        <translation>ಕಡಿಮೆ ತೋರಿಸು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
+        <source>Bold</source>
+        <translation>ದಟ್ಟ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
+        <source>Italic</source>
+        <translation>ಓರೆಯಾದ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
+        <source>Title</source>
+        <translation>ಶೀರ್ಷಿಕೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
+        <source>Link</source>
+        <translation>ಲಿಂಕ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
+        <source>Code</source>
+        <translation>ಕೋಡ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
+        <source>Quote</source>
+        <translation>ಉಲ್ಲೇಖ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
+        <source>Show formatting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="807"/>
+        <source>Hide formatting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="880"/>
+        <source>Share your Jami identifier in order to be contacted more easily!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="881"/>
         <source>Jami identity</source>
         <translation>ಜಾಮಿ ಗುರುತಿನ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="881"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="882"/>
         <source>Show fingerprint</source>
         <translation>ಬೆರಳಚ್ಚುಗಳನ್ನು ತೋರಿಸು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="882"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="883"/>
         <source>Show registered name</source>
         <translation>ನೋಂದಾಯಿತ ಹೆಸರನ್ನು ತೋರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="885"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="886"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
         <translation>ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುವುದರಿಂದ ಜಾಮಿಯಲ್ಲಿ ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="891"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="892"/>
         <source>Experimental</source>
         <translation>ಪ್ರಯೋಗ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="894"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="895"/>
         <source>Ringtone</source>
         <translation>ರಿಂಗ್ಟೋನ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="897"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="898"/>
         <source>Rendezvous point</source>
         <translation>ಭೇಟಿ ಕೇಂದ್ರ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="900"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="901"/>
         <source>Moderation</source>
         <translation>ಮಿತವಾಗಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="903"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="904"/>
         <source>Theme</source>
         <translation>ವಿಷಯ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="904"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="905"/>
         <source>Text zoom level</source>
         <translation>ಪಠ್ಯ ವರ್ಧನೆ ಮಟ್ಟ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="441"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="440"/>
         <source>Set a password</source>
         <translation>ಪಾಸ್ವರ್ಡ್ ಅನ್ನು ಹೊಂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="442"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="441"/>
         <source>Change current password</source>
         <translation>ಪ್ರಸ್ತುತ ಪಾಸ್ವರ್ಡ್ ಬದಲಾಯಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="172"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
+        <source>Display advanced settings</source>
+        <translation>ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
+        <source>Hide advanced settings</source>
+        <translation>ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಮರೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
         <source>Enable account</source>
         <translation>ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="446"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
         <source>Advanced account settings</source>
         <translation>ಸುಧಾರಿತ ಖಾತೆ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="448"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
         <source>Customize profile</source>
         <translation>ಪ್ರೊಫೈಲ್ ಅನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="453"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="452"/>
         <source>Enter a nickname, surname...</source>
         <translation>ಒಂದು ಉಪನಾಮ, ಉಪನಾಮ ನಮೂದಿಸಿ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="456"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="455"/>
         <source>Set username</source>
         <translation>ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಹೊಂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="457"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="456"/>
         <source>Registering name</source>
         <translation>ನೋಂದಣಿ ಹೆಸರು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="460"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="459"/>
         <source>Register a username</source>
         <translation>ಬಳಕೆದಾರ ಹೆಸರನ್ನು ನೋಂದಾಯಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="461"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="460"/>
         <source>Register username</source>
         <translation>ಬಳಕೆದಾರ ಹೆಸರನ್ನು ನೋಂದಾಯಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="462"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="461"/>
         <source>Identity</source>
         <translation>ಗುರುತಿನ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="465"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="464"/>
         <source>Link a new device to this account</source>
         <translation>ಹೊಸ ಸಾಧನವನ್ನು ಈ ಖಾತೆಗೆ ಲಿಂಕ್ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="467"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
         <source>Exporting account…</source>
         <translation>ರಫ್ತು ಖಾತೆ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="468"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="467"/>
         <source>Remove Device</source>
         <translation>ಸಾಧನವನ್ನು ತೆಗೆದುಹಾಕಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="469"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="468"/>
         <source>Are you sure you wish to remove this device?</source>
         <translation>ಈ ಸಾಧನವನ್ನು ತೆಗೆದುಹಾಕಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="470"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="469"/>
         <source>Your PIN is:</source>
         <translation>ನಿಮ್ಮ ಪಿನ್ ಸಂಖ್ಯೆ ಹೀಗಿದೆಃ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="471"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="470"/>
         <source>Error connecting to the network.
 Please try again later.</source>
         <translation>ನೆಟ್ವರ್ಕ್ಗೆ ಸಂಪರ್ಕಿಸುವಲ್ಲಿ ದೋಷ. ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="475"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="473"/>
+        <source>Display banned contacts</source>
+        <translation>ನಿಷೇಧಿತ ಸಂಪರ್ಕಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="474"/>
         <source>Banned</source>
         <translation>ನಿಷೇಧಿಸಲಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="477"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="475"/>
+        <source>Hide banned contacts</source>
+        <translation>ನಿಷೇಧಿತ ಸಂಪರ್ಕಗಳನ್ನು ಮರೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="476"/>
         <source>Banned contacts</source>
         <translation>ನಿಷೇಧಿತ ಸಂಪರ್ಕಗಳು</translation>
     </message>
@@ -2021,6 +2318,11 @@ Please try again later.</source>
         <translation>ಅಧಿಸೂಚನೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
+        <source>Launch at startup</source>
+        <translation>ಆರಂಭಿಕ ಹಂತದಲ್ಲಿ ಉಡಾವಣೆ</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="500"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="501"/>
         <source>Choose download directory</source>
@@ -2037,9 +2339,29 @@ Please try again later.</source>
         <translation>ಪಠ್ಯ ಗಾತ್ರವನ್ನು ಬದಲಾಯಿಸಿ (%)</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
+        <source>Preview requires downloading content from third-party servers.</source>
+        <translation>ಪೂರ್ವವೀಕ್ಷಣೆ ಮೂರನೇ ವ್ಯಕ್ತಿಯ ಸರ್ವರ್ಗಳಿಂದ ವಿಷಯವನ್ನು ಡೌನ್ಲೋಡ್ ಮಾಡುವ ಅಗತ್ಯವಿದೆ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="513"/>
+        <source>Layout</source>
+        <translation>ಲೇಔಟ್</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="514"/>
         <source>User interface language</source>
         <translation>ಬಳಕೆದಾರ ಇಂಟರ್ಫೇಸ್ ಭಾಷೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
+        <source>Vertical view</source>
+        <translation>ಲಂಬ ನೋಟ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
+        <source>Horizontal view</source>
+        <translation>ಸಮತಲ ನೋಟ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="519"/>
@@ -2067,6 +2389,18 @@ Please try again later.</source>
         <translation>ತಪ್ಪಾದ ಪಾಸ್ವರ್ಡ್</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
+        <source>Network error</source>
+        <translation>ನೆಟ್ವರ್ಕ್ ದೋಷ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="551"/>
+        <source>Something went wrong</source>
+        <translation>ಏನೋ ತಪ್ಪಾಗಿದೆ</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="531"/>
         <source>Save file</source>
         <translation>ಫೈಲ್ ಉಳಿಸಿ</translation>
@@ -2078,7 +2412,7 @@ Please try again later.</source>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="533"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
         <source>Me</source>
         <translation>ನಾನು</translation>
     </message>
@@ -2118,6 +2452,11 @@ Please try again later.</source>
         <translation>ಹೊಸ ಆವೃತ್ತಿಯನ್ನು ಪರಿಶೀಲಿಸುವಾಗ ದೋಷ ಸಂಭವಿಸಿದೆ</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
+        <source>SSL error</source>
+        <translation>ಎಸ್ಎಸ್ಎಲ್ ದೋಷ</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="547"/>
         <source>Installer download canceled</source>
         <translation>ಸ್ಥಾಪಕ ಡೌನ್‌ಲೋಡ್ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ</translation>
@@ -2131,298 +2470,6 @@ Please try again later.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="550"/>
         <source>Network disconnected</source>
         <translation>ನೆಟ್ವರ್ಕ್ ಸಂಪರ್ಕ ಕಡಿತ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
-        <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation>ಈ ವೈಶಿಷ್ಟ್ಯವು ಬಹು ಭಾಗವಹಿಸುವವರೊಂದಿಗೆ ಗುಂಪುಗಳಲ್ಲಿ ಕರೆ ಬಟನ್ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
-        <source>Call recording</source>
-        <translation>ಕರೆ ರೆಕಾರ್ಡಿಂಗ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
-        <source>If the account is encrypted with a password, please fill the following field.</source>
-        <translation>ಖಾತೆಯನ್ನು ಪಾಸ್ವರ್ಡ್ನೊಂದಿಗೆ ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ್ದರೆ, ದಯವಿಟ್ಟು ಈ ಕೆಳಗಿನ ಕ್ಷೇತ್ರವನ್ನು ಭರ್ತಿ ಮಾಡಿ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
-        <source>Enter the PIN code</source>
-        <translation>ಪಿನ್ ಕೋಡ್ ನಮೂದಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
-        <source>Step 01</source>
-        <translation>ಹಂತ 01</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
-        <source>Step 02</source>
-        <translation>ಹಂತ 02</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
-        <source>Step 03</source>
-        <translation>ಹಂತ 03</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
-        <source>Step 04</source>
-        <translation>ಹಂತ 04</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
-        <source>Go to the account management settings of a previous device</source>
-        <translation>ಹಿಂದಿನ ಸಾಧನದ ಖಾತೆ ನಿರ್ವಹಣೆ ಸೆಟ್ಟಿಂಗ್ಗಳಿಗೆ ಹೋಗಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
-        <source>Select &quot;Link another device&quot;</source>
-        <translation>&quot;ಇನ್ನೊಂದು ಸಾಧನವನ್ನು ಸಂಪರ್ಕಿಸಿ&quot; ಆಯ್ಕೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="650"/>
-        <source>Choose a picture as your avatar</source>
-        <translation>ನಿಮ್ಮ ಅವತಾರವಾಗಿ ಚಿತ್ರವನ್ನು ಆರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
-        <source>Choose a picture</source>
-        <translation>ಚಿತ್ರವನ್ನು ಆರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
-        <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation>ಚಿತ್ರ ಫೈಲ್ಗಳು (*. png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
-        <source>Share freely and privately with Jami</source>
-        <translation>ಜಾಮಿಯೊಂದಿಗೆ ಮುಕ್ತವಾಗಿ ಮತ್ತು ಖಾಸಗಿಯಾಗಿ ಹಂಚಿಕೊಳ್ಳಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
-        <source>Add</source>
-        <translation>ಸೇರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
-        <source>more emojis</source>
-        <translation>ಇನ್ನಷ್ಟು ಎಮೋಜಿಗಳು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
-        <source>Reply to</source>
-        <translation>ಉತ್ತರ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
-        <source>In reply to</source>
-        <translation>ಇದಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯೆಯಾಗಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
-        <source>Reply</source>
-        <translation>ಉತ್ತರ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="485"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="816"/>
-        <source>Edit</source>
-        <translation>ಸಂಪಾದಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="817"/>
-        <source>Edited</source>
-        <translation>ಸಂಪಾದನೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="818"/>
-        <source>Join call</source>
-        <translation>ಸೇರಿ ಕರೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
-        <source>A call is in progress. Do you want to join the call?</source>
-        <translation>ಕರೆ ನಡೆಯುತ್ತಿದೆ. ನೀವು ಕರೆ ಸೇರಲು ಬಯಸುವಿರಾ?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
-        <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
-        <translation>ಈ ರಾಶಿಯ ಪ್ರಸ್ತುತ ಆತಿಥೇಯರು ತಲುಪಲಾಗುವುದಿಲ್ಲ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="821"/>
-        <source>Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.</source>
-        <translation>ಈ ರಾಶಿಯಲ್ಲಿ ಭವಿಷ್ಯದ ಕರೆಗಳನ್ನು ಹೋಸ್ಟ್ ಮಾಡಲು ಮೀಸಲಾದ ಸಾಧನವನ್ನು ಆರಿಸಿ. ಹೊಂದಿಸದಿದ್ದರೆ, ಕರೆ ಪ್ರಾರಂಭಿಸುವ ಸಾಧನವು ಅದನ್ನು ಹೋಸ್ಟ್ ಮಾಡುತ್ತದೆ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="822"/>
-        <source>Choose this device</source>
-        <translation>ಈ ಸಾಧನವನ್ನು ಆರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="823"/>
-        <source>Remove current device</source>
-        <translation>ಪ್ರಸ್ತುತ ಸಾಧನವನ್ನು ತೆಗೆದುಹಾಕಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
-        <source>Host only this call</source>
-        <translation>ಈ ಕರೆ ಮಾತ್ರ ಆತಿಥ್ಯ ವಹಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="825"/>
-        <source>Host this call</source>
-        <translation>ಈ ಕರೆಗೆ ಹೋಸ್ಟ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="826"/>
-        <source>Make me the default host for future calls</source>
-        <translation>ಭವಿಷ್ಯದ ಕರೆಗಳಿಗೆ ನನ್ನನ್ನು ಡೀಫಾಲ್ಟ್ ಹೋಸ್ಟ್ ಆಗಿ ಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="835"/>
-        <source>About</source>
-        <translation>ಬಗ್ಗೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="836"/>
-        <source>%1 Members</source>
-        <translation>%1 ಸದಸ್ಯರು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="837"/>
-        <source>Member</source>
-        <translation>ಸದಸ್ಯ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
-        <source>Documents</source>
-        <translation>ದಾಖಲೆಗಳು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
-        <source>Swarm&apos;s name</source>
-        <translation>ಸ್ವಾಮ್ ಹೆಸರು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="840"/>
-        <source>Contact&apos;s name</source>
-        <translation>ಸಂಪರ್ಕದ ಹೆಸರು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="841"/>
-        <source>Add a description</source>
-        <translation>ವಿವರಣೆಯನ್ನು ಸೇರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
-        <source>Ignore all notifications from this conversation</source>
-        <translation>ಈ ಸಂಭಾಷಣೆಯಿಂದ ಬರುವ ಎಲ್ಲಾ ಅಧಿಸೂಚನೆಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
-        <source>Choose a color</source>
-        <translation>ಬಣ್ಣವನ್ನು ಆರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="847"/>
-        <source>Leave conversation</source>
-        <translation>ಸಂಭಾಷಣೆಯನ್ನು ಬಿಟ್ಟುಬಿಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="848"/>
-        <source>Leave</source>
-        <translation>ಹೊರಟುಹೋಗು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
-        <source>Type of swarm</source>
-        <translation>ರಾಶಿಯ ಪ್ರಕಾರ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="853"/>
-        <source>Create the swarm</source>
-        <translation>ರಾಶಿಯನ್ನು ರಚಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
-        <source>Go to conversation</source>
-        <translation>ಸಂಭಾಷಣೆಗೆ ಹೋಗು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="855"/>
-        <source>Promote to administrator</source>
-        <translation>ನಿರ್ವಾಹಕರಿಗೆ ಪ್ರಚಾರ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="856"/>
-        <source>Kick member</source>
-        <translation>ಕಿಕ್ ಸದಸ್ಯ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="857"/>
-        <source>Reinstate member</source>
-        <translation>ಸದಸ್ಯರನ್ನು ಪುನಃಸ್ಥಾಪಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
-        <source>Administrator</source>
-        <translation>ನಿರ್ವಾಹಕ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
-        <source>Invited</source>
-        <translation>ಆಹ್ವಾನಿತರು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
-        <source>Remove member</source>
-        <translation>ಸದಸ್ಯರನ್ನು ತೆಗೆದುಹಾಕಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
-        <source>To:</source>
-        <translation>ಈ ಕೆಳಗಿನವುಗಳಿಗೆಃ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="864"/>
-        <source>Customize</source>
-        <translation>ಕಸ್ಟಮೈಸ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
-        <source>Dismiss</source>
-        <translation>ವಜಾಗೊಳಿಸುವುದು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
-        <source>Your profile is only shared with your contacts</source>
-        <translation>ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ನಿಮ್ಮ ಸಂಪರ್ಕಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="873"/>
-        <source>Delete message</source>
-        <translation>ಸಂದೇಶವನ್ನು ಅಳಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
-        <source>*(Deleted Message)*</source>
-        <translation>* * ಅಳಿಸಿದ ಸಂದೇಶ *</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="875"/>
-        <source>Edit message</source>
-        <translation>ಸಂದೇಶವನ್ನು ಸಂಪಾದಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="551"/>
-        <source>Something went wrong</source>
-        <translation>ಏನೋ ತಪ್ಪಾಗಿದೆ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="554"/>
@@ -2440,537 +2487,19 @@ Please try again later.</source>
         <translation>ದಾಖಲೆಗಳನ್ನು ಪಡೆಯಿರಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
-        <source>Select a record directory</source>
-        <translation>ರೆಕಾರ್ಡ್ ಡೈರೆಕ್ಟರಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
-        <source>Debug</source>
-        <translation>ಡೀಬಗ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
-        <source>Show Stats</source>
-        <translation>ಅಂಕಿಅಂಶಗಳನ್ನು ತೋರಿಸು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
-        <source>Start</source>
-        <translation>ಪ್ರಾರಂಭಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
-        <source>Stop</source>
-        <translation>ನಿಲ್ಲಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
-        <source>Generating account…</source>
-        <translation>ಖಾತೆ ರಚನೆ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
-        <source>Import from backup</source>
-        <translation>ಬ್ಯಾಕ್ಅಪ್ನಿಂದ ಆಮದು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="636"/>
-        <source>Enter account&apos;s password</source>
-        <translation>ಖಾತೆಯ ಪಾಸ್ವರ್ಡ್ ನಮೂದಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
-        <source>Stop taking photo</source>
-        <translation>ಫೋಟೋ ತೆಗೆಯುವುದನ್ನು ನಿಲ್ಲಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="654"/>
-        <source>Clear avatar image</source>
-        <translation>ಸ್ಪಷ್ಟ ಅವತಾರ್ ಚಿತ್ರ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="671"/>
-        <source>Go back to plugins list</source>
-        <translation>ಪ್ಲಗಿನ್ಗಳ ಪಟ್ಟಿಗೆ ಹಿಂತಿರುಗಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="686"/>
-        <source>Profile is only shared with contacts</source>
-        <translation>ಪ್ರೊಫೈಲ್ ಅನ್ನು ಸಂಪರ್ಕಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
-        <source>Enter your name</source>
-        <translation>ನಿಮ್ಮ ಹೆಸರನ್ನು ನಮೂದಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="718"/>
-        <source>Hide advanced features</source>
-        <translation>ಸುಧಾರಿತ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಮರೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
-        <source>Create new Jami account</source>
-        <translation>ಹೊಸ ಜಾಮಿ ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="727"/>
-        <source>Create new SIP account</source>
-        <translation>ಹೊಸ SIP ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
-        <source>Welcome to</source>
-        <translation>ಸ್ವಾಗತ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
-        <source>Upgrade</source>
-        <translation>ಅಪ್ಗ್ರೇಡ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
-        <source>Later</source>
-        <translation>ನಂತರ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
-        <source>Local muted</source>
-        <translation>ಸ್ಥಳೀಯವಾಗಿ ಮೂಕ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="46"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="779"/>
-        <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation>ಜಾಮಿ ಡೈಮನ್ (ಜಾಮಿಡ್) ಗೆ ಮತ್ತೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದೇನೆ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
-        <source>Could not re-connect to the Jami daemon (jamid).
-Jami will now quit.</source>
-        <translation>ಜಾಮಿ ಡೈಮನ್ (ಜಮಿಡ್) ಗೆ ಮರು ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಜಾಮಿ ಈಗ ರಾಜೀನಾಮೆ ನೀಡಲಿದ್ದಾರೆ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
-        <source>Configure a SIP account</source>
-        <translation>SIP ಖಾತೆಯನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
-        <source>Join Jami</source>
-        <translation>ಜಾಮಿಗೆ ಸೇರಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
-        <source>I already have an account</source>
-        <translation>ನನ್ನ ಬಳಿ ಈಗಾಗಲೇ ಖಾತೆ ಇದೆ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
-        <source>Use existing Jami account</source>
-        <translation>ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಜಾಮಿ ಖಾತೆಯನ್ನು ಬಳಸುವುದು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
-        <source>Welcome to Jami</source>
-        <translation>ಜಾಮಿಗೆ ಸ್ವಾಗತ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="878"/>
-        <source>Share this Jami identifier to be contacted on this account!</source>
-        <translation>ಈ ಖಾತೆಯ ಮೂಲಕ ಸಂಪರ್ಕಿಸಲು ಈ ಜಾಮಿ ಗುರುತನ್ನು ಹಂಚಿಕೊಳ್ಳಿ!</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="879"/>
-        <source>Here is your Jami identifier, don&apos;t hesitate to share it in order to be contacted more easily!</source>
-        <translation>ಇಲ್ಲಿ ನಿಮ್ಮ ಜಾಮಿ ಗುರುತಿನ ಚೀಟಿ ಇದೆ, ಅದನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಹಿಂಜರಿಯಬೇಡಿ ಇದರಿಂದ ಸುಲಭವಾಗಿ ಸಂಪರ್ಕಿಸಬಹುದು!</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
-        <source>Save</source>
-        <translation>ಉಳಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
-        <source>Block</source>
-        <translation>ಬ್ಲಾಕ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
-        <source>Is swarm:</source>
-        <translation>ಇದು ರಾಶಿಯಾಗಿದೆಃ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
-        <source>True</source>
-        <translation>ಸತ್ಯ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="785"/>
-        <source>False</source>
-        <translation>ಸುಳ್ಳು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="788"/>
-        <source>Add emoji</source>
-        <translation>ಎಮೋಜಿಯನ್ನು ಸೇರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
-        <source>Send file</source>
-        <translation>ಫೈಲ್ ಕಳುಹಿಸು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="791"/>
-        <source>Leave audio message</source>
-        <translation>ಆಡಿಯೋ ಸಂದೇಶವನ್ನು ಬಿಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="792"/>
-        <source>Leave video message</source>
-        <translation>ವೀಡಿಯೊ ಸಂದೇಶವನ್ನು ಬಿಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
-        <source>Send</source>
-        <translation>ಕಳುಹಿಸು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="486"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="809"/>
-        <source>Remove</source>
-        <translation>ತೆಗೆದುಹಾಕಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
-        <source>Write to %1</source>
-        <translation>%1 ಗೆ ಬರೆಯಿರಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="829"/>
-        <source>%1 has sent you a request for a conversation.</source>
-        <translation>%1 ನಿಮಗೆ ಸಂಭಾಷಣೆಗಾಗಿ ವಿನಂತಿಯನ್ನು ಕಳುಹಿಸಿದೆ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="830"/>
-        <source>Hello,
-Would you like to join the conversation?</source>
-        <translation>ಹಲೋ, ನೀವು ಸಂಭಾಷಣೆಗೆ ಸೇರಲು ಬಯಸುವಿರಾ?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="831"/>
-        <source>You have accepted
-the conversation request</source>
-        <translation>ನೀವು ಸಂಭಾಷಣೆ ವಿನಂತಿಯನ್ನು ಸ್ವೀಕರಿಸಿದ್ದೀರಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
-        <source>Waiting until %1
-connects to synchronize the conversation.</source>
-        <translation>%1 ಸಂವಾದವನ್ನು ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಲು ಸಂಪರ್ಕಿಸುವವರೆಗೆ ಕಾಯುವುದು.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
-        <source>Copy</source>
-        <translation>ನಕಲು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
-        <source>Start swarm</source>
-        <translation>ಆರಂಭದ ರಾಶಿಯನ್ನು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
-        <source>Create swarm</source>
-        <translation>ಒಂದು ಗುಂಪನ್ನು ರಚಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
-        <source>Show invitations</source>
-        <translation>ಆಮಂತ್ರಣಗಳನ್ನು ತೋರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="67"/>
-        <source>Transfer to</source>
-        <translation>ವರ್ಗಾವಣೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="209"/>
-        <source>Back up account here</source>
-        <translation>ಬ್ಯಾಕ್ಅಪ್ ಖಾತೆ ಇಲ್ಲಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
-        <source>Back up account</source>
-        <translation>ಬ್ಯಾಕ್ಅಪ್ ಖಾತೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
-        <source>Jami archive files (*.gz)</source>
-        <translation>ಜಾಮಿ ಆರ್ಕೈವ್ ಫೈಲ್ಗಳು (*. gz)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="217"/>
-        <source>All files (*)</source>
-        <translation>ಎಲ್ಲಾ ಫೈಲ್ಗಳು (*)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
-        <source>Mute camera</source>
-        <translation>ಮೂಕ ಕ್ಯಾಮೆರಾ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
-        <source>Unmute camera</source>
-        <translation>ನಿಷ್ಕ್ರಿಯ ಕ್ಯಾಮೆರಾ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
-        <source>Details</source>
-        <translation>ವಿವರಗಳು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
-        <source>Participant is still muted on their device</source>
-        <translation>ಭಾಗವಹಿಸುವವರು ತಮ್ಮ ಸಾಧನದಲ್ಲಿ ಇನ್ನೂ ಮೌನವಾಗಿದೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
-        <source>You are still muted on your device</source>
-        <translation>ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ನೀವು ಇನ್ನೂ ಮೂಕ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
-        <source>Share</source>
-        <translation>ಹಂಚಿಕೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="265"/>
-        <source>Confirm action</source>
-        <translation>ಕ್ರಮವನ್ನು ದೃಢೀಕರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
-        <source>Would you really like to remove this conversation?</source>
-        <translation>ಈ ಸಂಭಾಷಣೆಯನ್ನು ತೆಗೆದುಹಾಕಲು ನೀವು ನಿಜವಾಗಿಯೂ ಬಯಸುತ್ತೀರಾ?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
-        <source>Would you really like to block this conversation?</source>
-        <translation>ಈ ಸಂಭಾಷಣೆಯನ್ನು ತಡೆಯಲು ನೀವು ನಿಜವಾಗಿಯೂ ಬಯಸುತ್ತೀರಾ?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
-        <source>Block swarm</source>
-        <translation>ಬ್ಲಾಕ್ ಸಮೂಹ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
-        <source>Conversation details</source>
-        <translation>ಸಂಭಾಷಣೆಯ ವಿವರಗಳು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
-        <source>View full screen</source>
-        <translation>ಪೂರ್ಣ ಪರದೆ ವೀಕ್ಷಿಸು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
-        <source>Stop sharing screen or file</source>
-        <translation>ಪರದೆಯ ಅಥವಾ ಫೈಲ್ ಹಂಚಿಕೆಯನ್ನು ನಿಲ್ಲಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
-        <source>Unavailable</source>
-        <translation>ಲಭ್ಯವಿಲ್ಲ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="322"/>
-        <source>Turn off sharing</source>
-        <translation>ಹಂಚಿಕೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="323"/>
-        <source>Stop location sharing in this conversation (%1)</source>
-        <translation>ಈ ಸಂಭಾಷಣೆಯಲ್ಲಿ ಸ್ಥಳ ಹಂಚಿಕೆಯನ್ನು ನಿಲ್ಲಿಸಿ (%1)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="344"/>
-        <source>Hide chat</source>
-        <translation>ಗುಪ್ತ ಚಾಟ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
-        <source>Scroll to end of conversation</source>
-        <translation>ಸಂಭಾಷಣೆಯ ಅಂತ್ಯಕ್ಕೆ ಸ್ಕ್ರಾಲ್ ಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="369"/>
-        <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation>ಜಾಮಿ ಖಾತೆ ನಿರ್ವಹಣಾ ಸರ್ವರ್ (JAMS) URL ಅನ್ನು ನಮೂದಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="372"/>
-        <source>Enter JAMS credentials</source>
-        <translation>JAMS ರುಜುವಾತುಗಳನ್ನು ನಮೂದಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="380"/>
-        <source>Choose a username</source>
-        <translation>ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಆರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
-        <source>Choose an identifier</source>
-        <translation>ಗುರುತಿಸುವಿಕೆ ಆಯ್ಕೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
-        <source>The identifier is not available</source>
-        <translation>ಗುರುತಿನ ಚೀಟಿ ಲಭ್ಯವಿಲ್ಲ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
-        <source>TLS</source>
-        <translation>ಟಿಎಲ್ಎಸ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
-        <source>UDP</source>
-        <translation>ಯುಡಿಪಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="417"/>
-        <source>Display Name</source>
-        <translation>ಪ್ರದರ್ಶನ ಹೆಸರು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
-        <source>A chosen username can help to be found more easily on Jami.
-If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>ಜಾಮಿಯಲ್ಲಿ ಆಯ್ಕೆಮಾಡಿದ ಬಳಕೆದಾರಹೆಸರು ಸುಲಭವಾಗಿ ಹುಡುಕಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ಬಳಕೆದಾರಹೆಸರು ಆಯ್ಕೆ ಮಾಡದಿದ್ದರೆ, ಈ ಖಾತೆಗೆ ಯಾದೃಚ್ಛಿಕವಾಗಿ ರಚಿಸಲಾದ 40 ಅಕ್ಷರಗಳ ಗುರುತಿಸುವಿಕೆ ಬಳಕೆದಾರಹೆಸರಾಗಿ ನಿಯೋಜಿಸಲ್ಪಡುತ್ತದೆ. ಈ ಗುರುತಿಸುವಿಕೆಯೊಂದಿಗೆ ಕಂಡುಹಿಡಿಯುವುದು ಮತ್ತು ತಲುಪುವುದು ಹೆಚ್ಚು ಕಷ್ಟ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="424"/>
-        <source>This Jami account exists only on this device.
-The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation>ಈ ಜಾಮಿ ಖಾತೆ ಈ ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ. ಈ ಸಾಧನ ಕಳೆದುಹೋದರೆ ಅಥವಾ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಅಸ್ಥಾಪಿಸಿದ್ದರೆ ಖಾತೆ ಕಳೆದುಹೋಗುತ್ತದೆ. ಈ ಖಾತೆಯ ಬ್ಯಾಕಪ್ ಮಾಡಲು ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="430"/>
-        <source>Linking this account to other devices enables it to be used on other devices.</source>
-        <translation>ಈ ಖಾತೆಯನ್ನು ಇತರ ಸಾಧನಗಳಿಗೆ ಲಿಂಕ್ ಮಾಡುವುದರಿಂದ ಅದನ್ನು ಇತರ ಸಾಧನಗಳಲ್ಲಿ ಬಳಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
-        <source>Display advanced settings</source>
-        <translation>ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
-        <source>Hide advanced settings</source>
-        <translation>ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಮರೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="449"/>
-        <source>This profile is only shared with this account's contacts.
-The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation>ಈ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಈ ಖಾತೆಯ ಸಂಪರ್ಕಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ. ಖಾತೆಯ ಸೆಟ್ಟಿಂಗ್ಗಳಿಂದ ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಬದಲಾಯಿಸಬಹುದು.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
-        <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation>ಈ ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ಜಾಮಿ ಖಾತೆಯನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ, ನಿಮ್ಮ ಖಾತೆಯ ಕೀಲಿಗಳನ್ನು ಹೊಂದಿರುವ ಆರ್ಕೈವ್ ಆಗಿ. ಈ ಆರ್ಕೈವ್ಗೆ ಪ್ರವೇಶವನ್ನು ಪರ್ಯಾಯವಾಗಿ ಪಾಸ್ವರ್ಡ್ ಮೂಲಕ ರಕ್ಷಿಸಬಹುದು.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="452"/>
-        <source>Please note that if you lose your password, it CANNOT be recovered!</source>
-        <translation>ನಿಮ್ಮ ಪಾಸ್ವರ್ಡ್ ಕಳೆದು ಹೋದರೆ ಅದನ್ನು ಮರುಪಡೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ ಎಂಬುದನ್ನು ದಯವಿಟ್ಟು ಗಮನಿಸಿ!</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="474"/>
-        <source>Display banned contacts</source>
-        <translation>ನಿಷೇಧಿತ ಸಂಪರ್ಕಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="476"/>
-        <source>Hide banned contacts</source>
-        <translation>ನಿಷೇಧಿತ ಸಂಪರ್ಕಗಳನ್ನು ಮರೆಮಾಡಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="480"/>
-        <source>Would you really like to delete this account?</source>
-        <translation>ಈ ಖಾತೆಯನ್ನು ನೀವು ಅಳಿಸಲು ನಿಜವಾಗಿಯೂ ಬಯಸುವಿರಾ?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="481"/>
-        <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation>ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡದಿದ್ದರೆ ಅಥವಾ ಇನ್ನೊಂದು ಸಾಧನಕ್ಕೆ ಸೇರಿಸದಿದ್ದರೆ, ನಿಮ್ಮ ಖಾತೆ ಮತ್ತು ನೋಂದಾಯಿತ ಬಳಕೆದಾರ ಹೆಸರುಗಳು ಪುನಃಸ್ಥಾಪನೆಯಿಲ್ಲದೆ ಕಳೆದುಹೋಗುತ್ತವೆ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="491"/>
-        <source>Dark</source>
-        <translation>ಕತ್ತಲೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="492"/>
-        <source>Light</source>
-        <translation>ಬೆಳಕು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
-        <source>Application theme</source>
-        <translation>ಅಪ್ಲಿಕೇಶನ್ ಥೀಮ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="496"/>
-        <source>Show notifications</source>
-        <translation>ಅಧಿಸೂಚನೆಗಳನ್ನು ತೋರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="497"/>
-        <source>Minimize on close</source>
-        <translation>ಹತ್ತಿರದ ಮೇಲೆ ಕನಿಷ್ಠ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="498"/>
-        <source>Run at system startup</source>
-        <translation>ಸಿಸ್ಟಮ್ ಆರಂಭದಲ್ಲಿ ರನ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="502"/>
-        <source>Include local video in recording</source>
-        <translation>ಸ್ಥಳೀಯ ವೀಡಿಯೊವನ್ನು ರೆಕಾರ್ಡಿಂಗ್ನಲ್ಲಿ ಸೇರಿಸಿ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
-        <source>Preview requires downloading content from third-party servers.</source>
-        <translation>ಪೂರ್ವವೀಕ್ಷಣೆ ಮೂರನೇ ವ್ಯಕ್ತಿಯ ಸರ್ವರ್ಗಳಿಂದ ವಿಷಯವನ್ನು ಡೌನ್ಲೋಡ್ ಮಾಡುವ ಅಗತ್ಯವಿದೆ.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="513"/>
-        <source>Layout</source>
-        <translation>ಲೇಔಟ್</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
-        <source>Vertical view</source>
-        <translation>ಲಂಬ ನೋಟ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
-        <source>Horizontal view</source>
-        <translation>ಸಮತಲ ನೋಟ</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
         <source>(Experimental) Enable call support for swarm</source>
         <translation>(ಪರೀಕ್ಷಾ) ಸ್ವಾಮ್ ಕರೆ ಬೆಂಬಲವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
+        <source>This feature will enable call buttons in swarms with multiple participants.</source>
+        <translation>ಈ ವೈಶಿಷ್ಟ್ಯವು ಬಹು ಭಾಗವಹಿಸುವವರೊಂದಿಗೆ ಗುಂಪುಗಳಲ್ಲಿ ಕರೆ ಬಟನ್ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
+        <source>Select a record directory</source>
+        <translation>ರೆಕಾರ್ಡ್ ಡೈರೆಕ್ಟರಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
@@ -2994,7 +2523,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="572"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="738"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
         <source>Conversation</source>
         <translation>ಸಂಭಾಷಣೆ</translation>
     </message>
@@ -3009,523 +2538,1001 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
         <translation>ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="575"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="576"/>
         <source>Open account list</source>
         <translation>ತೆರೆದ ಖಾತೆಗಳ ಪಟ್ಟಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="576"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="577"/>
         <source>Focus conversations list</source>
         <translation>ಗಮನ ಸೆಳೆಯುವ ಸಂಭಾಷಣೆಗಳ ಪಟ್ಟಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="577"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
         <source>Requests list</source>
         <translation>ವಿನಂತಿಗಳ ಪಟ್ಟಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
         <source>Previous conversation</source>
         <translation>ಹಿಂದಿನ ಸಂಭಾಷಣೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
         <source>Next conversation</source>
         <translation>ಮುಂದಿನ ಸಂಭಾಷಣೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="581"/>
         <source>Search bar</source>
         <translation>ಹುಡುಕಾಟ ಪಟ್ಟಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="581"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="582"/>
         <source>Full screen</source>
         <translation>ಪೂರ್ಣ ಪರದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="582"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
         <source>Clear history</source>
         <translation>ಸ್ಪಷ್ಟ ಇತಿಹಾಸ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
         <source>Media settings</source>
         <translation>ಮಾಧ್ಯಮ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
         <source>General settings</source>
         <translation>ಸಾಮಾನ್ಯ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
         <source>Plugin settings</source>
         <translation>ಪ್ಲಗಿನ್ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
         <source>Answer an incoming call</source>
         <translation>ಒಳಬರುವ ಕರೆಗೆ ಉತ್ತರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Decline the call request</source>
         <translation>ಕರೆ ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="589"/>
         <source>Open account creation wizard</source>
         <translation>ಖಾತೆಗಳನ್ನು ತೆರೆಯುವ ಮಾಂತ್ರಿಕ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="589"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="590"/>
         <source>Open keyboard shortcut table</source>
         <translation>ತೆರೆದ ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್ಕಟ್ ಟೇಬಲ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="597"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
+        <source>Debug</source>
+        <translation>ಡೀಬಗ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
+        <source>Show Stats</source>
+        <translation>ಅಂಕಿಅಂಶಗಳನ್ನು ತೋರಿಸು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
+        <source>Start</source>
+        <translation>ಪ್ರಾರಂಭಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
+        <source>Stop</source>
+        <translation>ನಿಲ್ಲಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="598"/>
         <source>Report Bug</source>
         <translation>ದೋಷ ವರದಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="598"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
         <source>Clear</source>
         <translation>ಸ್ಪಷ್ಟ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="600"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
+        <source>Cancel</source>
+        <translation>ರದ್ದು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="601"/>
         <source>Copied to clipboard!</source>
         <translation>ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಿ!</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="601"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="602"/>
         <source>Receive Logs</source>
         <translation>ದಾಖಲೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="604"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="605"/>
         <source>Archive</source>
         <translation>ಆರ್ಕೈವ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="605"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
         <source>Open file</source>
         <translation>ತೆರೆದ ಕಡತ</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
+        <source>Generating account…</source>
+        <translation>ಖಾತೆ ರಚನೆ.</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="611"/>
+        <source>Import from backup</source>
+        <translation>ಬ್ಯಾಕ್ಅಪ್ನಿಂದ ಆಮದು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
         <source>Import from archive backup</source>
         <translation>ಆರ್ಕೈವ್ ಬ್ಯಾಕಪ್ನಿಂದ ಆಮದು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>Select archive file</source>
         <translation>ಆರ್ಕೈವ್ ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="617"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Enter Jami account password</source>
         <translation>ಜಾಮಿ ಖಾತೆ ಪಾಸ್ವರ್ಡ್ ನಮೂದಿಸಿ</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
+        <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN.</source>
+        <translation>ಮತ್ತೊಂದು ಸಂರಚಿತ ಜಾಮಿ ಖಾತೆಯಿಂದ ಪಿನ್ ನಮೂದಿಸಿ. ಪಿನ್ ಪಡೆಯಲು &quot;ಇನ್ನೊಂದು ಸಾಧನವನ್ನು ಲಿಂಕ್ ಮಾಡಿ&quot; ವೈಶಿಷ್ಟ್ಯವನ್ನು ಬಳಸಿ.</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="620"/>
+        <source>Link device</source>
+        <translation>ಲಿಂಕ್ ಸಾಧನ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
         <source>Import</source>
         <translation>ಆಮದು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="622"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
         <source>A PIN is required to use an existing Jami account on this device.</source>
         <translation>ಈ ಸಾಧನದಲ್ಲಿ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಜಾಮಿ ಖಾತೆಯನ್ನು ಬಳಸಲು ಪಿನ್ ಅಗತ್ಯವಿದೆ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="628"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
         <source>Choose the account to link</source>
         <translation>ಲಿಂಕ್ ಮಾಡಲು ಖಾತೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="634"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="635"/>
         <source>The PIN and the account password should be entered in your device within 10 minutes.</source>
         <translation>ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ PIN ಮತ್ತು ಖಾತೆಯ ಪಾಸ್ವರ್ಡ್ ಅನ್ನು 10 ನಿಮಿಷಗಳಲ್ಲಿ ನಮೂದಿಸಬೇಕು.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="635"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="652"/>
+        <source>Choose a picture</source>
+        <translation>ಚಿತ್ರವನ್ನು ಆರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="841"/>
+        <source>Contact&apos;s name</source>
+        <translation>ಸಂಪರ್ಕದ ಹೆಸರು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
+        <source>Reinstate member</source>
+        <translation>ಸದಸ್ಯರನ್ನು ಪುನಃಸ್ಥಾಪಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
+        <source>Delete message</source>
+        <translation>ಸಂದೇಶವನ್ನು ಅಳಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="875"/>
+        <source>*(Deleted Message)*</source>
+        <translation>* * ಅಳಿಸಿದ ಸಂದೇಶ *</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="876"/>
+        <source>Edit message</source>
+        <translation>ಸಂದೇಶವನ್ನು ಸಂಪಾದಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="636"/>
         <source>Close</source>
         <translation>ಹತ್ತಿರ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="440"/>
-        <source>Encrypt account</source>
-        <translation>ಎನ್ಕ್ರಿಪ್ಟ್ ಖಾತೆ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
+        <source>Call recording</source>
+        <translation>ಕರೆ ರೆಕಾರ್ಡಿಂಗ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="450"/>
-        <source>Encrypt account with a password</source>
-        <translation>ಪಾಸ್ವರ್ಡ್ನೊಂದಿಗೆ ಖಾತೆಯನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="615"/>
+        <source>If the account is encrypted with a password, please fill the following field.</source>
+        <translation>ಖಾತೆಯನ್ನು ಪಾಸ್ವರ್ಡ್ನೊಂದಿಗೆ ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ್ದರೆ, ದಯವಿಟ್ಟು ಈ ಕೆಳಗಿನ ಕ್ಷೇತ್ರವನ್ನು ಭರ್ತಿ ಮಾಡಿ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
-        <source>Link a new device</source>
-        <translation>ಹೊಸ ಸಾಧನವನ್ನು ಸಂಪರ್ಕಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="622"/>
+        <source>Enter the PIN code</source>
+        <translation>ಪಿನ್ ಕೋಡ್ ನಮೂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
-        <source>Default settings</source>
-        <translation>ಡೀಫಾಲ್ಟ್ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
+        <source>Step 01</source>
+        <translation>ಹಂತ 01</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="508"/>
-        <source>Enable typing indicators</source>
-        <translation>ಟೈಪಿಂಗ್ ಸೂಚಕಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
+        <source>Step 02</source>
+        <translation>ಹಂತ 02</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="509"/>
-        <source>Send and receive typing indicators showing that a message is being typed.</source>
-        <translation>ಸಂದೇಶವನ್ನು ಟೈಪ್ ಮಾಡಲಾಗುತ್ತಿದೆ ಎಂಬುದನ್ನು ತೋರಿಸುವ ಟೈಪಿಂಗ್ ಸೂಚಕಗಳನ್ನು ಕಳುಹಿಸಿ ಮತ್ತು ಸ್ವೀಕರಿಸಿ.</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
+        <source>Step 03</source>
+        <translation>ಹಂತ 03</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="510"/>
-        <source>Show link preview in conversations</source>
-        <translation>ಸಂಭಾಷಣೆಗಳಲ್ಲಿ ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆ ತೋರಿಸು</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
+        <source>Step 04</source>
+        <translation>ಹಂತ 04</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
-        <source>Accept transfer limit (in Mb)</source>
-        <translation>ವರ್ಗಾವಣೆ ಮಿತಿಯನ್ನು ಸ್ವೀಕರಿಸಿ (Mb ನಲ್ಲಿ)</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="628"/>
+        <source>Go to the account management settings of a previous device</source>
+        <translation>ಹಿಂದಿನ ಸಾಧನದ ಖಾತೆ ನಿರ್ವಹಣೆ ಸೆಟ್ಟಿಂಗ್ಗಳಿಗೆ ಹೋಗಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
         <source>The PIN code will be available for 10 minutes</source>
         <translation>ಪಿನ್ ಕೋಡ್ 10 ನಿಮಿಷಗಳ ಕಾಲ ಲಭ್ಯವಿರುತ್ತದೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="632"/>
         <source>Fill if the account is password-encrypted.</source>
         <translation>ಖಾತೆಯು ಪಾಸ್ವರ್ಡ್ ಮೂಲಕ ಕ್ರಿಪ್ಟೋಡ್ ಆಗಿದ್ದರೆ ಭರ್ತಿ ಮಾಡಿ.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="637"/>
+        <source>Enter account&apos;s password</source>
+        <translation>ಖಾತೆಯ ಪಾಸ್ವರ್ಡ್ ನಮೂದಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="638"/>
         <source>Add Device</source>
         <translation>ಸಾಧನ ಸೇರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="640"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="641"/>
         <source>Enter the password</source>
         <translation>ಪಾಸ್ವರ್ಡ್ ನಮೂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="641"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="642"/>
         <source>Enter current password</source>
         <translation>ಪ್ರಸ್ತುತ ಪಾಸ್ವರ್ಡ್ ನಮೂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="642"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="643"/>
         <source>Enter this account&apos;s password to confirm the removal of this device</source>
         <translation>ಈ ಸಾಧನವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಲು ಈ ಖಾತೆಯ ಪಾಸ್ವರ್ಡ್ ಅನ್ನು ನಮೂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="643"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="644"/>
         <source>Enter new password</source>
         <translation>ಹೊಸ ಪಾಸ್ವರ್ಡ್ ನಮೂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="644"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="645"/>
         <source>Confirm new password</source>
         <translation>ಹೊಸ ಪಾಸ್ವರ್ಡ್ ಅನ್ನು ದೃಢೀಕರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="645"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="646"/>
         <source>Change</source>
         <translation>ಬದಲಾವಣೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="646"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="647"/>
         <source>Confirm</source>
         <translation>ದೃಢೀಕರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="647"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="648"/>
         <source>Export</source>
         <translation>ರಫ್ತು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="652"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
         <source>Import avatar from image file</source>
         <translation>ಚಿತ್ರ ಫೈಲ್ನಿಂದ ಅವತಾರ್ ಆಮದು</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="654"/>
+        <source>Stop taking photo</source>
+        <translation>ಫೋಟೋ ತೆಗೆಯುವುದನ್ನು ನಿಲ್ಲಿಸಿ</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="655"/>
+        <source>Clear avatar image</source>
+        <translation>ಸ್ಪಷ್ಟ ಅವತಾರ್ ಚಿತ್ರ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
         <source>Take photo</source>
         <translation>ಫೋಟೋ ತೆಗೆದುಕೊ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="660"/>
+        <source>Enable</source>
+        <translation>ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="661"/>
         <source>Preferences</source>
         <translation>ಆದ್ಯತೆಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="661"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="662"/>
         <source>Reset</source>
         <translation>ಮರುಹೊಂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="662"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="663"/>
         <source>Uninstall</source>
         <translation>ಅಳವಡಿಕೆ ತೆಗೆದುಹಾಕಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="663"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="664"/>
         <source>Reset Preferences</source>
         <translation>ಮರುಹೊಂದಿಸುವ ಆದ್ಯತೆಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="664"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="665"/>
         <source>Select a plugin to install</source>
         <translation>ಸ್ಥಾಪಿಸಲು ಪ್ಲಗಿನ್ ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="665"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="666"/>
         <source>Install plugin</source>
         <translation>ಪ್ಲಗಿನ್ ಅನ್ನು ಸ್ಥಾಪಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="666"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="667"/>
         <source>Uninstall plugin</source>
         <translation>ಪ್ಲಗಿನ್ ಅನ್ನು ಅಸ್ಥಾಪಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="667"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="668"/>
         <source>Are you sure you wish to reset %1 preferences?</source>
         <translation>%1 ಆದ್ಯತೆಗಳನ್ನು ಮರುಹೊಂದಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="668"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="669"/>
         <source>Are you sure you wish to uninstall %1?</source>
         <translation>%1 ಅನ್ನು ಅಸ್ಥಾಪಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
+        <source>Display or hide preferences</source>
+        <translation>ಪ್ರದರ್ಶನ ಅಥವಾ ಮರೆಮಾಚುವಿಕೆ ಆದ್ಯತೆಗಳು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="671"/>
+        <source>Add new plugin</source>
+        <translation>ಹೊಸ ಪ್ಲಗಿನ್ ಸೇರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
+        <source>Go back to plugins list</source>
+        <translation>ಪ್ಲಗಿನ್ಗಳ ಪಟ್ಟಿಗೆ ಹಿಂತಿರುಗಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="673"/>
+        <source>Select a file</source>
+        <translation>ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="116"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="674"/>
+        <source>Select</source>
+        <translation>ಆಯ್ಕೆಮಾಡಿ</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="675"/>
+        <source>Choose image file</source>
+        <translation>ಚಿತ್ರ ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="676"/>
         <source>Display or hide General plugin settings</source>
         <translation>ಪ್ರದರ್ಶಿಸಿ ಅಥವಾ ಮರೆಮಾಡಿ ಸಾಮಾನ್ಯ ಪ್ಲಗಿನ್ ಸೆಟ್ಟಿಂಗ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="676"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="677"/>
         <source>Display or hide Account plugin settings</source>
         <translation>ಖಾತೆ ಪ್ಲಗಿನ್ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ ಅಥವಾ ಮರೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="677"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="678"/>
         <source>Installed plugins</source>
         <translation>ಸ್ಥಾಪಿತ ಪ್ಲಗಿನ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="678"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="679"/>
         <source>Plugin Files (*.jpl)</source>
         <translation>ಪ್ಲಗಿನ್ ಫೈಲ್ಗಳು (*. jpl)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="679"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="680"/>
         <source>Load/Unload</source>
         <translation>ಲೋಡ್/ಅನ್ಲೋಡ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="680"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="681"/>
         <source>Select An Image to %1</source>
         <translation>% 1 ಗೆ ಒಂದು ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="681"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="682"/>
         <source>Edit preference</source>
         <translation>ಆದ್ಯತೆಗಳನ್ನು ಸಂಪಾದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="682"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="683"/>
         <source>On/Off</source>
         <translation>ಆನ್/ಆಫ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="683"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="684"/>
         <source>Choose Plugin</source>
         <translation>ಪ್ಲಗಿನ್ ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="687"/>
+        <source>Profile is only shared with contacts</source>
+        <translation>ಪ್ರೊಫೈಲ್ ಅನ್ನು ಸಂಪರ್ಕಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
         <source>Save profile</source>
         <translation>ಪ್ರೊಫೈಲ್ ಉಳಿಸಿ</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
+        <source>Enter your name</source>
+        <translation>ನಿಮ್ಮ ಹೆಸರನ್ನು ನಮೂದಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="690"/>
+        <source>Enter the rendezvous point&apos;s name</source>
+        <translation>ಸಭೆ ಸ್ಥಳದ ಹೆಸರನ್ನು ನಮೂದಿಸಿ</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="691"/>
+        <source>Creating rendezvous point…</source>
+        <translation>ಸಭೆ ಸ್ಥಳವನ್ನು ಸೃಷ್ಟಿಸುವುದು.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="692"/>
         <source>Information</source>
         <translation>ಮಾಹಿತಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="692"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="693"/>
         <source>Profile</source>
         <translation>ಪ್ರೊಫೈಲ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="695"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="696"/>
         <source>Enter the account password to confirm the removal of this device</source>
         <translation>ಈ ಸಾಧನವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಲು ಖಾತೆಯ ಪಾಸ್ವರ್ಡ್ ನಮೂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="698"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="699"/>
         <source>Select a screen to share</source>
         <translation>ಹಂಚಿಕೊಳ್ಳಲು ಪರದೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="699"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="700"/>
         <source>Select a window to share</source>
         <translation>ಹಂಚಿಕೊಳ್ಳಲು ವಿಂಡೋವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="700"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="701"/>
         <source>All Screens</source>
         <translation>ಎಲ್ಲಾ ಪರದೆಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="701"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="702"/>
         <source>Screens</source>
         <translation>ಪರದೆಯ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="702"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="703"/>
         <source>Windows</source>
         <translation>ವಿಂಡೋಸ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="703"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="704"/>
         <source>Screen %1</source>
         <translation>ಪರದೆಯ %1</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="706"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="707"/>
         <source>QR code</source>
         <translation>ಕ್ಯೂಆರ್ ಕೋಡ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="709"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="710"/>
         <source>Account QR</source>
         <translation>ಖಾತೆ QR</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="712"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="713"/>
         <source>This is your Jami username.
 Copy and share it with your friends!</source>
         <translation>ಇದು ನಿಮ್ಮ ಜಾಮಿ ಬಳಕೆದಾರ ಹೆಸರು. ಅದನ್ನು ನಿಮ್ಮ ಸ್ನೇಹಿತರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ!</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="713"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="714"/>
         <source>Link this device to an existing account</source>
         <translation>ಈ ಸಾಧನವನ್ನು ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಖಾತೆಗೆ ಲಿಂಕ್ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="714"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="715"/>
         <source>Import from another device</source>
         <translation>ಮತ್ತೊಂದು ಸಾಧನದಿಂದ ಆಮದು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="715"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="716"/>
         <source>Import from an archive backup</source>
         <translation>ಆರ್ಕೈವ್ ಬ್ಯಾಕಪ್ನಿಂದ ಆಮದು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="716"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="717"/>
         <source>Advanced features</source>
         <translation>ಸುಧಾರಿತ ವೈಶಿಷ್ಟ್ಯಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="717"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="718"/>
         <source>Show advanced features</source>
         <translation>ಸುಧಾರಿತ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ತೋರಿಸಿ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="719"/>
+        <source>Hide advanced features</source>
+        <translation>ಸುಧಾರಿತ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಮರೆಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
         <source>Connect to a JAMS server</source>
         <translation>JAMS ಸರ್ವರ್ಗೆ ಸಂಪರ್ಕ</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
+        <source>Create account from Jami Account Management Server (JAMS)</source>
+        <translation>ಜಾಮಿ ಖಾತೆ ನಿರ್ವಹಣಾ ಸರ್ವರ್ (JAMS) ನಿಂದ ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
+        <source>Configure a SIP account</source>
+        <translation>SIP ಖಾತೆಯನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
         <source>Error while creating your account. Check your credentials.</source>
         <translation>ನಿಮ್ಮ ಖಾತೆಯನ್ನು ರಚಿಸುವಾಗ ದೋಷ. ನಿಮ್ಮ ರುಜುವಾತುಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="736"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
+        <source>Create a rendezvous point</source>
+        <translation>ಒಂದು ಸಭೆ ಸ್ಥಳವನ್ನು ರಚಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
+        <source>Create a Jami account</source>
+        <translation>ಜಾಮಿ ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
+        <source>Join Jami</source>
+        <translation>ಜಾಮಿಗೆ ಸೇರಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="727"/>
+        <source>Create new Jami account</source>
+        <translation>ಹೊಸ ಜಾಮಿ ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
+        <source>Create new SIP account</source>
+        <translation>ಹೊಸ SIP ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
+        <source>About Jami</source>
+        <translation>ಜಾಮಿ ಬಗ್ಗೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
+        <source>Welcome to</source>
+        <translation>ಸ್ವಾಗತ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
+        <source>I already have an account</source>
+        <translation>ನನ್ನ ಬಳಿ ಈಗಾಗಲೇ ಖಾತೆ ಇದೆ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
+        <source>Use existing Jami account</source>
+        <translation>ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಜಾಮಿ ಖಾತೆಯನ್ನು ಬಳಸುವುದು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="734"/>
+        <source>Welcome to Jami</source>
+        <translation>ಜಾಮಿಗೆ ಸ್ವಾಗತ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="879"/>
+        <source>Share this Jami identifier to be contacted on this account!</source>
+        <translation>ಈ ಖಾತೆಯ ಮೂಲಕ ಸಂಪರ್ಕಿಸಲು ಈ ಜಾಮಿ ಗುರುತನ್ನು ಹಂಚಿಕೊಳ್ಳಿ!</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
         <source>Clear Text</source>
         <translation>ಸ್ಪಷ್ಟ ಪಠ್ಯ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="738"/>
+        <source>Conversations</source>
+        <translation>ಸಂಭಾಷಣೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="740"/>
         <source>Search Results</source>
         <translation>ಹುಡುಕಾಟ ಫಲಿತಾಂಶಗಳು</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
+        <source>Decline contact request</source>
+        <translation>ಸಂಪರ್ಕ ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="744"/>
+        <source>Accept contact request</source>
+        <translation>ಸಂಪರ್ಕ ವಿನಂತಿಯನ್ನು ಸ್ವೀಕರಿಸು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
+        <source>Automatically check for updates</source>
+        <translation>ನವೀಕರಣಗಳಿಗಾಗಿ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪರಿಶೀಲಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
+        <source>Ok</source>
+        <translation>ಸರಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="483"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
+        <source>Save</source>
+        <translation>ಉಳಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
+        <source>Upgrade</source>
+        <translation>ಅಪ್ಗ್ರೇಡ್</translation>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
+        <source>Later</source>
+        <translation>ನಂತರ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
         <source>Delete</source>
         <translation>ಅಳಿಸು</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
-        <source>Unban</source>
-        <translation>ಅನಿರ್ಬಂಧ</translation>
+        <source>Block</source>
+        <translation>ಬ್ಲಾಕ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="760"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
         <source>Set moderator</source>
         <translation>ಮಾಡರೇಟರ್ ಅನ್ನು ಹೊಂದಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
         <source>Unset moderator</source>
         <translation>ಡಿಸ್ಇನ್ಸೆಟ್ ಮಾಡರೇಟರ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
         <source>Maximize</source>
         <translation>ಗರಿಷ್ಠ ಮಟ್ಟದಲ್ಲಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="327"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="766"/>
         <source>Minimize</source>
         <translation>ಕಡಿಮೆ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="766"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
         <source>Hangup</source>
         <translation>ಹ್ಯಾಂಗ್ ಅಪ್</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="770"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="768"/>
+        <source>Local muted</source>
+        <translation>ಸ್ಥಳೀಯವಾಗಿ ಮೂಕ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="771"/>
         <source>Conference moderation</source>
         <translation>ಸಮಾವೇಶದ ಮಧ್ಯಸ್ಥಿಕೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="771"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
         <source>Default moderators</source>
         <translation>ಡೀಫಾಲ್ಟ್ ಮಾಡರೇಟರ್ಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="773"/>
         <source>Enable local moderators</source>
         <translation>ಸ್ಥಳೀಯ ಮಾಡರೇಟರ್ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="773"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="774"/>
         <source>Make all participants moderators</source>
         <translation>ಎಲ್ಲಾ ಭಾಗವಹಿಸುವವರನ್ನು ಮಾಡರೇಟರ್ಗಳನ್ನಾಗಿ ಮಾಡಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="774"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
         <source>Add default moderator</source>
         <translation>ಡೀಫಾಲ್ಟ್ ಮಾಡರೇಟರ್ ಅನ್ನು ಸೇರಿಸಿ</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
         <source>Remove default moderator</source>
         <translation>ಡೀಫಾಲ್ಟ್ ಮಾಡರೇಟರ್ ಅನ್ನು ತೆಗೆದುಹಾಕಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
+        <source>Is swarm:</source>
+        <translation>ಇದು ರಾಶಿಯಾಗಿದೆಃ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="785"/>
+        <source>True</source>
+        <translation>ಸತ್ಯ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="786"/>
+        <source>False</source>
+        <translation>ಸುಳ್ಳು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
+        <source>Add emoji</source>
+        <translation>ಎಮೋಜಿಯನ್ನು ಸೇರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="791"/>
+        <source>Send file</source>
+        <translation>ಫೈಲ್ ಕಳುಹಿಸು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
+        <source>Send</source>
+        <translation>ಕಳುಹಿಸು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="486"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
+        <source>Remove</source>
+        <translation>ತೆಗೆದುಹಾಕಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="42"/>
+        <source>Migrate conversation</source>
+        <translation>ವಲಸೆ ಸಂಭಾಷಣೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="496"/>
+        <source>Show notifications</source>
+        <translation>ಅಧಿಸೂಚನೆಗಳನ್ನು ತೋರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="497"/>
+        <source>Minimize on close</source>
+        <translation>ಹತ್ತಿರದ ಮೇಲೆ ಕನಿಷ್ಠ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="498"/>
+        <source>Run at system startup</source>
+        <translation>ಸಿಸ್ಟಮ್ ಆರಂಭದಲ್ಲಿ ರನ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
+        <source>Create account from backup</source>
+        <translation>ಬ್ಯಾಕಪ್ನಿಂದ ಖಾತೆಯನ್ನು ರಚಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
+        <source>You can obtain an archive by clicking on &quot;Back up account&quot; in the Account Settings. This will create a .gz file on your device.</source>
+        <translation>ಖಾತೆ ಸೆಟ್ಟಿಂಗ್ಗಳಲ್ಲಿ &quot;ಕೌಂಟ್ ಬ್ಯಾಕ್ ಅಪ್&quot; ಕ್ಲಿಕ್ ಮಾಡುವುದರ ಮೂಲಕ ನೀವು ಆರ್ಕೈವ್ ಅನ್ನು ಪಡೆಯಬಹುದು. ಇದು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ.gz ಫೈಲ್ ಅನ್ನು ರಚಿಸುತ್ತದೆ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
+        <source>Restore account from backup</source>
+        <translation>ಬ್ಯಾಕಪ್ನಿಂದ ಖಾತೆಯನ್ನು ಮರುಸ್ಥಾಪಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
+        <source>Import Jami account from local archive file.</source>
+        <translation>ಜಾಮಿ ಖಾತೆಯನ್ನು ಸ್ಥಳೀಯ ಆರ್ಕೈವ್ ಫೈಲ್ನಿಂದ ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="657"/>
+        <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
+        <translation>ಚಿತ್ರ ಫೈಲ್ಗಳು (*. png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="817"/>
+        <source>Write to %1</source>
+        <translation>%1 ಗೆ ಬರೆಯಿರಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="831"/>
+        <source>%1 has sent you a request for a conversation.</source>
+        <translation>%1 ನಿಮಗೆ ಸಂಭಾಷಣೆಗಾಗಿ ವಿನಂತಿಯನ್ನು ಕಳುಹಿಸಿದೆ.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
+        <source>Hello,
+Would you like to join the conversation?</source>
+        <translation>ಹಲೋ, ನೀವು ಸಂಭಾಷಣೆಗೆ ಸೇರಲು ಬಯಸುವಿರಾ?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="833"/>
+        <source>You have accepted
+the conversation request</source>
+        <translation>ನೀವು ಸಂಭಾಷಣೆ ವಿನಂತಿಯನ್ನು ಸ್ವೀಕರಿಸಿದ್ದೀರಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="834"/>
+        <source>Waiting until %1
+connects to synchronize the conversation.</source>
+        <translation>%1 ಸಂವಾದವನ್ನು ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಲು ಸಂಪರ್ಕಿಸುವವರೆಗೆ ಕಾಯುವುದು.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="837"/>
+        <source>About</source>
+        <translation>ಬಗ್ಗೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
+        <source>%1 Members</source>
+        <translation>%1 ಸದಸ್ಯರು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
+        <source>Member</source>
+        <translation>ಸದಸ್ಯ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="840"/>
+        <source>Swarm&apos;s name</source>
+        <translation>ಸ್ವಾಮ್ ಹೆಸರು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
+        <source>Add a description</source>
+        <translation>ವಿವರಣೆಯನ್ನು ಸೇರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
+        <source>Ignore all notifications from this conversation</source>
+        <translation>ಈ ಸಂಭಾಷಣೆಯಿಂದ ಬರುವ ಎಲ್ಲಾ ಅಧಿಸೂಚನೆಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
+        <source>Choose a color</source>
+        <translation>ಬಣ್ಣವನ್ನು ಆರಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="848"/>
+        <source>Leave conversation</source>
+        <translation>ಸಂಭಾಷಣೆಯನ್ನು ಬಿಟ್ಟುಬಿಡಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
+        <source>Leave</source>
+        <translation>ಹೊರಟುಹೋಗು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="850"/>
+        <source>Type of swarm</source>
+        <translation>ರಾಶಿಯ ಪ್ರಕಾರ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
+        <source>Create the swarm</source>
+        <translation>ರಾಶಿಯನ್ನು ರಚಿಸಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="855"/>
+        <source>Go to conversation</source>
+        <translation>ಸಂಭಾಷಣೆಗೆ ಹೋಗು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="856"/>
+        <source>Promote to administrator</source>
+        <translation>ನಿರ್ವಾಹಕರಿಗೆ ಪ್ರಚಾರ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="857"/>
+        <source>Kick member</source>
+        <translation>ಕಿಕ್ ಸದಸ್ಯ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
+        <source>Administrator</source>
+        <translation>ನಿರ್ವಾಹಕ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
+        <source>Invited</source>
+        <translation>ಆಹ್ವಾನಿತರು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
+        <source>Remove member</source>
+        <translation>ಸದಸ್ಯರನ್ನು ತೆಗೆದುಹಾಕಿ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="862"/>
+        <source>To:</source>
+        <translation>ಈ ಕೆಳಗಿನವುಗಳಿಗೆಃ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
+        <source>Customize</source>
+        <translation>ಕಸ್ಟಮೈಸ್</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
+        <source>Dismiss</source>
+        <translation>ವಜಾಗೊಳಿಸುವುದು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
+        <source>Your profile is only shared with your contacts</source>
+        <translation>ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ನಿಮ್ಮ ಸಂಪರ್ಕಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ</translation>
     </message>
 </context>
 <context>
@@ -3690,6 +3697,51 @@ Copy and share it with your friends!</source>
         <source>Take tile screenshot</source>
         <translation>ಟೈಲ್ ಸ್ಕ್ರೀನ್ಶಾಟ್ ತೆಗೆದುಕೊಳ್ಳಿ</translation>
     </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="216"/>
+        <source>Bold</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="221"/>
+        <source>Italic</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="226"/>
+        <source>Strikethrough</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="231"/>
+        <source>Heading</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="236"/>
+        <source>Link</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="241"/>
+        <source>Code</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="246"/>
+        <source>Quote</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="251"/>
+        <source>Unordered list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="256"/>
+        <source>Ordered list</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LocationSharingSettingsPage</name>
@@ -3712,17 +3764,17 @@ Copy and share it with your friends!</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="361"/>
+        <location filename="../src/app/mainapplication.cpp" line="368"/>
         <source>E&amp;xit</source>
         <translation>ಇ&amp;ಕ್ಸಿಟ್</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="363"/>
+        <location filename="../src/app/mainapplication.cpp" line="370"/>
         <source>&amp;Quit</source>
         <translation>&amp; ಬಿಡು</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="369"/>
+        <location filename="../src/app/mainapplication.cpp" line="376"/>
         <source>&amp;Show Jami</source>
         <translation>&amp; ಶೋ ಜಾಮಿ</translation>
     </message>
@@ -3758,12 +3810,12 @@ Copy and share it with your friends!</source>
 <context>
     <name>PositionManager</name>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="409"/>
-        <source>%1 is sharing it&apos;s location</source>
-        <translation>%1 ತನ್ನ ಸ್ಥಳವನ್ನು ಹಂಚಿಕೊಳ್ಳುತ್ತಿದೆ</translation>
+        <location filename="../src/app/positionmanager.cpp" line="414"/>
+        <source>%1 is sharing their location</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/positionmanager.cpp" line="414"/>
+        <location filename="../src/app/positionmanager.cpp" line="419"/>
         <source>Location sharing</source>
         <translation>ಸ್ಥಳ ಹಂಚಿಕೆ</translation>
     </message>
@@ -3771,82 +3823,9 @@ Copy and share it with your friends!</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="355"/>
-        <source>Sending</source>
-        <translation>ಕಳುಹಿಸುವಿಕೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="357"/>
-        <source>Failure</source>
-        <translation>ವಿಫಲತೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="359"/>
-        <source>Sent</source>
-        <translation>ಕಳುಹಿಸಲಾಗಿದೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="361"/>
-        <location filename="../src/libclient/api/call.h" line="72"/>
-        <source>Connecting</source>
-        <translation>ಸಂಪರ್ಕ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="363"/>
-        <source>Accept</source>
-        <translation>ಒಪ್ಪಿಕೊಳ್ಳು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="365"/>
-        <source>Canceled</source>
-        <translation>ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="368"/>
-        <source>Unable to make contact</source>
-        <translation>ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="370"/>
-        <source>Ongoing</source>
-        <translation>ನಡೆಯುತ್ತಿರುವ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="372"/>
-        <source>Waiting for contact</source>
-        <translation>ಸಂಪರ್ಕಕ್ಕಾಗಿ ಕಾಯುತ್ತಿರುವುದು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="374"/>
-        <source>Incoming transfer</source>
-        <translation>ಒಳಬರುವ ವರ್ಗಾವಣೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="376"/>
-        <source>Timed out waiting for contact</source>
-        <translation>ಸಂಪರ್ಕಕ್ಕಾಗಿ ಕಾಯುವ ಸಮಯ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="378"/>
-        <location filename="../src/libclient/api/call.h" line="78"/>
-        <location filename="../src/libclient/api/call.h" line="84"/>
-        <source>Finished</source>
-        <translation>ಪೂರ್ಣಗೊಂಡ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="722"/>
-        <source>Today</source>
-        <translation>ಇಂದು</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="724"/>
-        <source>Yesterday</source>
-        <translation>ನಿನ್ನೆ</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="703"/>
-        <source>just now</source>
-        <translation>ಈಗಲೇ</translation>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="473"/>
+        <source>Me</source>
+        <translation>ನಾನು</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
@@ -3874,6 +3853,12 @@ Copy and share it with your friends!</source>
         <translation>ಕರೆ</translation>
     </message>
     <message>
+        <location filename="../src/app/messagesadapter.cpp" line="366"/>
+        <location filename="../src/libclient/api/call.h" line="72"/>
+        <source>Connecting</source>
+        <translation>ಸಂಪರ್ಕ</translation>
+    </message>
+    <message>
         <location filename="../src/libclient/api/call.h" line="74"/>
         <source>Searching</source>
         <translation>ಹುಡುಕಾಟ</translation>
@@ -3882,6 +3867,13 @@ Copy and share it with your friends!</source>
         <location filename="../src/libclient/api/call.h" line="76"/>
         <source>Inactive</source>
         <translation>ನಿಷ್ಕ್ರಿಯ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="383"/>
+        <location filename="../src/libclient/api/call.h" line="78"/>
+        <location filename="../src/libclient/api/call.h" line="84"/>
+        <source>Finished</source>
+        <translation>ಪೂರ್ಣಗೊಂಡ</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
@@ -3897,6 +3889,12 @@ Copy and share it with your friends!</source>
         <location filename="../src/libclient/api/call.h" line="86"/>
         <source>Communication established</source>
         <translation>ಸ್ಥಾಪಿತ ಪ್ರಕಟಣೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="1004"/>
+        <source>Invitation received</source>
+        <translation>ಸ್ವೀಕರಿಸಿದ ಆಹ್ವಾನ</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="260"/>
@@ -3965,20 +3963,14 @@ Copy and share it with your friends!</source>
         <translation>ಸೇರಿ ಕರೆ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="1004"/>
-        <source>Invitation received</source>
-        <translation>ಸ್ವೀಕರಿಸಿದ ಆಹ್ವಾನ</translation>
-    </message>
-    <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="213"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1006"/>
         <source>Invitation accepted</source>
         <translation>ಆಹ್ವಾನ ಸ್ವೀಕರಿಸಲಾಗಿದೆ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/avmodel.cpp" line="386"/>
-        <location filename="../src/libclient/avmodel.cpp" line="405"/>
+        <location filename="../src/libclient/avmodel.cpp" line="391"/>
+        <location filename="../src/libclient/avmodel.cpp" line="410"/>
         <source>default</source>
         <translation>ಡೀಫಾಲ್ಟ್</translation>
     </message>
@@ -4259,9 +4251,69 @@ Copy and share it with your friends!</source>
         <translation>ಎಲ್ಲಿಯಾದರೂ ಸ್ವೀಕಾರಾರ್ಹವಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="473"/>
-        <source>Me</source>
-        <translation>ನಾನು</translation>
+        <location filename="../src/app/messagesadapter.cpp" line="368"/>
+        <source>Accept</source>
+        <translation>ಒಪ್ಪಿಕೊಳ್ಳು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="360"/>
+        <source>Sending</source>
+        <translation>ಕಳುಹಿಸುವಿಕೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="364"/>
+        <source>Sent</source>
+        <translation>ಕಳುಹಿಸಲಾಗಿದೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="373"/>
+        <source>Unable to make contact</source>
+        <translation>ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="377"/>
+        <source>Waiting for contact</source>
+        <translation>ಸಂಪರ್ಕಕ್ಕಾಗಿ ಕಾಯುತ್ತಿರುವುದು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="379"/>
+        <source>Incoming transfer</source>
+        <translation>ಒಳಬರುವ ವರ್ಗಾವಣೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="381"/>
+        <source>Timed out waiting for contact</source>
+        <translation>ಸಂಪರ್ಕಕ್ಕಾಗಿ ಕಾಯುವ ಸಮಯ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="731"/>
+        <source>Today</source>
+        <translation>ಇಂದು</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="733"/>
+        <source>Yesterday</source>
+        <translation>ನಿನ್ನೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="370"/>
+        <source>Canceled</source>
+        <translation>ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="375"/>
+        <source>Ongoing</source>
+        <translation>ನಡೆಯುತ್ತಿರುವ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="712"/>
+        <source>just now</source>
+        <translation>ಈಗಲೇ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="362"/>
+        <source>Failure</source>
+        <translation>ವಿಫಲತೆ</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="109"/>
@@ -4278,34 +4330,32 @@ Copy and share it with your friends!</source>
         <source>locationServicesUnknownError</source>
         <translation>ಸ್ಥಳಸೇವೆಗಳುಅಜ್ಞಾತಪರಿಣಾಮ</translation>
     </message>
-</context>
-<context>
-    <name>SettingParaCombobox</name>
     <message>
-        <location filename="../src/app/commoncomponents/SettingParaCombobox.qml" line="42"/>
-        <source/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1161"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1174"/>
+        <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SmartListModel</name>
     <message>
-        <location filename="../src/app/smartlistmodel.cpp" line="62"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="100"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="108"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="154"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="174"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="175"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="68"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="107"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="115"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="161"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="191"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="192"/>
         <source>Calls</source>
         <translation>ಕರೆಗಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/smartlistmodel.cpp" line="63"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="101"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="118"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="155"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="176"/>
-        <location filename="../src/app/smartlistmodel.cpp" line="177"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="69"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="108"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="125"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="162"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="193"/>
+        <location filename="../src/app/smartlistmodel.cpp" line="194"/>
         <source>Contacts</source>
         <translation>ಸಂಪರ್ಕಗಳು</translation>
     </message>
@@ -4313,27 +4363,27 @@ Copy and share it with your friends!</source>
 <context>
     <name>SystemTray</name>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="219"/>
+        <location filename="../src/app/systemtray.cpp" line="216"/>
         <source>Answer</source>
         <translation>ಉತ್ತರ</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="220"/>
+        <location filename="../src/app/systemtray.cpp" line="217"/>
         <source>Decline</source>
         <translation>ಕುಸಿತ</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="222"/>
+        <location filename="../src/app/systemtray.cpp" line="219"/>
         <source>Open conversation</source>
         <translation>ಮುಕ್ತ ಸಂಭಾಷಣೆ</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="224"/>
+        <location filename="../src/app/systemtray.cpp" line="221"/>
         <source>Accept</source>
         <translation>ಒಪ್ಪಿಕೊಳ್ಳು</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="225"/>
+        <location filename="../src/app/systemtray.cpp" line="222"/>
         <source>Refuse</source>
         <translation>ನಿರಾಕರಣೆ</translation>
     </message>
@@ -4464,17 +4514,17 @@ Copy and share it with your friends!</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="340"/>
+        <location filename="../src/app/utilsadapter.cpp" line="336"/>
         <source>%1 Mbps</source>
         <translation>%1 ಮೆಗಾಬಿಟ್ / ಸೆಕೆಂಡ್</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="340"/>
+        <location filename="../src/app/utilsadapter.cpp" line="336"/>
         <source>Default</source>
         <translation>ಡೀಫಾಲ್ಟ್</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="545"/>
+        <location filename="../src/app/utilsadapter.cpp" line="541"/>
         <source>System</source>
         <translation>ಸಿಸ್ಟಮ್</translation>
     </message>
@@ -4482,22 +4532,22 @@ Copy and share it with your friends!</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="478"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="475"/>
         <source>Searching…</source>
         <translation>ಹುಡುಕುತ್ತಿರುವ.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1017"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1014"/>
         <source>Invalid ID</source>
         <translation>ಅಮಾನ್ಯ ಗುರುತಿನ ಚೀಟಿ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1017"/>
         <source>Username not found</source>
         <translation>ಬಳಕೆದಾರ ಹೆಸರು ಕಂಡುಬಂದಿಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1023"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>ನಾನು ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</translation>
     </message>
@@ -4505,7 +4555,7 @@ Copy and share it with your friends!</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="439"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="438"/>
         <source>Bad URI scheme</source>
         <translation>ಕೆಟ್ಟ URI ಯೋಜನೆ</translation>
     </message>
