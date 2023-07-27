@@ -35,9 +35,9 @@ JamiListView {
     }
     currentIndex: model.currentFilteredRow
 
-    // highlight selection
-    // down and hover states are done within the delegate
-    highlightMoveDuration: 60
+    // Disable highlight on current item; we do this ourselves with the
+    // SmartListItemDelegate.
+    highlightFollowsCurrentItem: false
 
     headerPositioning: ListView.OverlayHeader
     header: Rectangle {
