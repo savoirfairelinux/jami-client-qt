@@ -22,6 +22,30 @@
       },
       "revId": "f982b49b4d8c42d435cd6cde0c16d7f10137f12c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b173177_54c7c4c4",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-07-27T15:09:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d65c4a66_168173e1",
+      "range": {
+        "startLine": 191,
+        "startChar": 41,
+        "endLine": 191,
+        "endChar": 56
+      },
+      "revId": "f982b49b4d8c42d435cd6cde0c16d7f10137f12c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
