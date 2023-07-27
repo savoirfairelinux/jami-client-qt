@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12ffee64_3882cbc8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 65
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-27T18:29:43Z",
+      "side": 1,
+      "message": "qml: ImageDownloader.downloadImage function() { [native code] }/icon/AudioFilter /home/sblin/.cache/jami/plugins/AudioFilter.svg\nqml: ImageDownloader.downloadImage function() { [native code] }/icon/AutoAnswer /home/sblin/.cache/jami/plugins/AutoAnswer.svg\nqml: ImageDownloader.downloadImage function() { [native code] }/icon/AudioFilter /home/sblin/.cache/jami/plugins/AudioFilter.svg\nqml: ImageDownloader.downloadImage function() { [native code] }/icon/AutoAnswer /home/sblin/.cache/jami/plugins/AutoAnswer.svg\nqml: Failed to download image: function() { [native code] }/icon/AudioFilter\nqml: Failed to download image: function() { [native code] }/icon/AutoAnswer\nqml: Failed to download image: function() { [native code] }/icon/AudioFilter\nqml: Failed to download image: function() { [native code] }/icon/AutoAnswer",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "c3f83a44830dfeb144a9ce95f90e4fb03376157a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
