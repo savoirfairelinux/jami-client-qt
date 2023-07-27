@@ -1237,7 +1237,9 @@ ConversationModel::avatar(const QString& conversationId) const
         // In this case, we can just display contact name
         return owner.contactModel->avatar(peer.at(0));
     }
-    return conversation.infos["avatar"];
+    // We need to strip the whitespace characters for the avatar
+    // when it comes from the conversation info.
+    return conversation.infos["avatar"].simplified();
 }
 
 void
