@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d65c4a66_168173e1",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-07-27T14:56:32Z",
+      "side": 1,
+      "message": "if CurrentConversation changed, I\u0027m not sure if we need to do this too (here, if we go from group, the 1:1, then group again it will open files instead of members)",
+      "range": {
+        "startLine": 191,
+        "startChar": 41,
+        "endLine": 191,
+        "endChar": 56
+      },
+      "revId": "f982b49b4d8c42d435cd6cde0c16d7f10137f12c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
