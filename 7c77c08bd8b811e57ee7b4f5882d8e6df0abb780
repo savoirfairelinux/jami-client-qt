@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f812edc9_5532f3bf",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-27T16:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c84cb965_7be26cef",
+      "range": {
+        "startLine": 166,
+        "startChar": 18,
+        "endLine": 166,
+        "endChar": 25
+      },
+      "revId": "7c77c08bd8b811e57ee7b4f5882d8e6df0abb780",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e72ec6b5_45ae954a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-26T12:12:57Z",
       "side": 1,
       "message": "doesn\u0027t work with strikethorough and some lists",
+      "range": {
+        "startLine": 320,
+        "startChar": 33,
+        "endLine": 320,
+        "endChar": 40
+      },
+      "revId": "7c77c08bd8b811e57ee7b4f5882d8e6df0abb780",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbab9a76_1053fa4e",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-27T16:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e72ec6b5_45ae954a",
       "range": {
         "startLine": 320,
         "startChar": 33,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df57c84c_9cce8a77",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-27T16:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e9e950b_f2e60392",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 27
+      },
+      "revId": "7c77c08bd8b811e57ee7b4f5882d8e6df0abb780",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "133d8e88_0adf2a1b",
@@ -93,6 +165,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e923997b_1e8eaab8",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-27T16:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "133d8e88_0adf2a1b",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 21
+      },
+      "revId": "7c77c08bd8b811e57ee7b4f5882d8e6df0abb780",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55b38df3_70db558f",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-07-26T12:12:57Z",
       "side": 1,
       "message": "needed?",
+      "range": {
+        "startLine": 453,
+        "startChar": 15,
+        "endLine": 453,
+        "endChar": 28
+      },
+      "revId": "7c77c08bd8b811e57ee7b4f5882d8e6df0abb780",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c527f33f_6bad3c86",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-07-27T16:02:17Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "55b38df3_70db558f",
       "range": {
         "startLine": 453,
         "startChar": 15,
