@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b2b5b1e_1662e652",
+        "filename": "src/app/pluginstorelistmodel.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-07-27T19:15:31Z",
+      "side": 1,
+      "message": "header",
+      "revId": "156c06d4d208808bc172de29d92aeeffe46691d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d32f3c8_ab591bdd",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-07-27T19:15:31Z",
+      "side": 1,
+      "message": "header",
+      "revId": "156c06d4d208808bc172de29d92aeeffe46691d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03f1dc26_a61907c3",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-07-27T19:15:31Z",
+      "side": 1,
+      "message": "check, might be better to use native separators",
+      "range": {
+        "startLine": 115,
+        "startChar": 81,
+        "endLine": 115,
+        "endChar": 84
+      },
+      "revId": "156c06d4d208808bc172de29d92aeeffe46691d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb63171f_75cb087d",
+        "filename": "src/app/pluginversionmanager.h",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-07-27T19:15:31Z",
+      "side": 1,
+      "message": "header",
+      "revId": "156c06d4d208808bc172de29d92aeeffe46691d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b09149f_87af791c",
+        "filename": "src/app/settingsview/components/PluginAvailableDelagate.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-07-27T19:15:31Z",
+      "side": 1,
+      "message": "huh?",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 65
+      },
+      "revId": "156c06d4d208808bc172de29d92aeeffe46691d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
