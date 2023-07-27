@@ -187,6 +187,9 @@ Rectangle {
                     }
                 }
 
+                // Always open on the first tab option
+                onVisibleChanged: tabBar.setCurrentIndex(0)
+
                 Component.onCompleted: addRemoveButtons()
 
                 Connections {
