@@ -266,7 +266,6 @@ Item {
     property string confirmBlockConversation: qsTr("Would you really like to block this conversation?")
     property string removeContact: qsTr("Remove contact")
     property string blockContact: qsTr("Block contact")
-    property string blockSwarm: qsTr("Block swarm")
     property string convDetails: qsTr("Conversation details")
     property string contactDetails: qsTr("Contact details")
 
