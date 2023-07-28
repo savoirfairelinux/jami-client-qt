@@ -245,8 +245,7 @@ AccountModel::setAccountConfig(const QString& accountId,
     // TODO: move these into the ConfProperties_t struct ?
     using namespace libjami::Account;
     details[ConfProperties::ENABLED] = accountInfo.enabled ? QString("true") : QString("false");
-    details[ConfProperties::ALIAS] = accountInfo.profileInfo.alias;
-    details[ConfProperties::DISPLAYNAME] = accountInfo.profileInfo.alias;
+    details[ConfProperties::DISPLAYNAME] = accountInfo.profileInfo.displayName;
     details[ConfProperties::TYPE] = (accountInfo.profileInfo.type == profile::Type::JAMI)
                                         ? QString(ProtocolNames::RING)
                                         : QString(ProtocolNames::SIP);
@@ -291,12 +290,12 @@ AccountModel::getAccountConfig(const QString& accountId) const
 }
 
 void
-AccountModel::setAlias(const QString& accountId, const QString& alias, bool save)
+AccountModel::setDisplayName(const QString& accountId, const QString& displayName, bool save)
 {
     auto& accountInfo = pimpl_->getAccountInfo(accountId);
-    if (accountInfo.profileInfo.alias == alias)
+    if (accountInfo.profileInfo.displayName == displayName)
         return;
-    accountInfo.profileInfo.alias = alias;
+    accountInfo.profileInfo.displayName = displayName;
 
     if (save)
         authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
@@ -711,7 +710,7 @@ AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
         return;
     auto& accountInfo = account->second.first;
     accountInfo.profileInfo.avatar = userPhoto;
-    accountInfo.profileInfo.alias = displayName;
+    accountInfo.profileInfo.displayName = displayName;
 
     authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
 
@@ -822,7 +821,7 @@ account::Info::fromDetails(const MapStringString& details)
     registeredName = profileInfo.type == profile::Type::JAMI
                          ? volatileDetails[VolatileProperties::REGISTERED_NAME]
                          : "";
-    profileInfo.alias = details[ConfProperties::DISPLAYNAME];
+    profileInfo.displayName = details[ConfProperties::DISPLAYNAME];
     enabled = toBool(details[ConfProperties::ENABLED]);
     status = lrc::api::account::to_status(
         volatileDetails[libjami::Account::ConfProperties::Registration::STATUS]);
@@ -1059,7 +1058,6 @@ AccountModel::createNewAccount(profile::Type type,
     using namespace libjami::Account;
     details[ConfProperties::TYPE] = type == profile::Type::SIP ? "SIP" : "RING";
     details[ConfProperties::DISPLAYNAME] = displayName;
-    details[ConfProperties::ALIAS] = displayName;
     details[ConfProperties::UPNP_ENABLED] = "true";
     details[ConfProperties::ARCHIVE_PASSWORD] = password;
     details[ConfProperties::ARCHIVE_PIN] = pin;
@@ -1128,20 +1126,20 @@ AccountModel::accountVCard(const QString& accountId, bool compressImage) const
 const QString
 AccountModel::bestNameForAccount(const QString& accountID)
 {
-    // Order: Alias, registeredName, uri
+    // Order: DisplayName, registeredName, uri
     auto& accountInfo = getAccountInfo(accountID);
 
-    auto alias = accountInfo.profileInfo.alias.simplified();
+    auto displayName = accountInfo.profileInfo.displayName.simplified();
     auto registeredName = accountInfo.registeredName.simplified();
     auto infoHash = accountInfo.profileInfo.uri.simplified();
 
-    if (alias.isEmpty()) {
+    if (displayName.isEmpty()) {
         if (registeredName.isEmpty())
             return infoHash;
         else
             return registeredName;
     }
-    return alias;
+    return displayName;
 }
 
 const QString
