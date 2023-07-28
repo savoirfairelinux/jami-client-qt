@@ -126,7 +126,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: blockContact
 
-            canTrigger: !hasCall && contactType !== Profile.Type.SIP && !root.isBanned && isCoreDialog
+            canTrigger: !hasCall && contactType !== Profile.Type.SIP && !root.isBanned && isCoreDialog && root.idText !== CurrentAccount.uri
             itemName: JamiStrings.blockContact
             iconSource: JamiResources.block_black_24dp_svg
             addMenuSeparatorAfter: canTrigger
