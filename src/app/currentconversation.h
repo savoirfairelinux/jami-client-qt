@@ -32,6 +32,7 @@ class CurrentConversation final : public QObject
     Q_OBJECT
     QML_PROPERTY(QString, id)
     QML_PROPERTY(QString, title)
+    QML_PROPERTY(QString, alias)
     QML_PROPERTY(QString, description)
     QML_PROPERTY(bool, isSwarm)
     QML_PROPERTY(bool, isLegacy)
@@ -54,6 +55,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QVariantList, activeCalls)
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
+    QML_PROPERTY(QStringList, participantUris)
     QML_PROPERTY(QString, lastSelfMessageId)
     QML_RO_PROPERTY(bool, hasCall)
 

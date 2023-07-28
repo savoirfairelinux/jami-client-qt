@@ -61,7 +61,7 @@ Item {
     property color darkGreyColor: "#272727"
     property color darkGreyColorOpacity: "#be272727" // 77%
     property color tintedBlue: darkTheme ? lightTintedBlue : darkTintedBlue
-    property color lightTintedBlue:"#03B9E9"
+    property color lightTintedBlue: "#03B9E9"
     property color darkTintedBlue: "#005699"
     property color sysColor: "#F0EFEF"
 
@@ -413,6 +413,7 @@ Item {
     property real swarmDetailsPageDocumentsMediaSize: 150
     property real swarmDetailsPageDocumentsHeight: 40 * baseZoom
     property real swarmDetailsPageDocumentsMinHeight: 40
+    property color leaveSwarnColor: darkTheme ? "#FF3B5C" : "#d50022"
 
     // Call information
     property real textFontPointSize: calcSize(10)

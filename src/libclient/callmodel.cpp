@@ -1577,7 +1577,7 @@ CallModelPimpl::slotincomingVCardChunk(const QString& accountId,
                 if (e.contains("PHOTO"))
                     profileInfo.avatar = e.split(":")[1];
                 else if (e.contains("FN"))
-                    profileInfo.alias = e.split(":")[1];
+                    profileInfo.displayName = e.split(":")[1];
 
             contact::Info contactInfo;
             contactInfo.profileInfo = profileInfo;

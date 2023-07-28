@@ -81,7 +81,7 @@ CurrentAccountToMigrate::updateData()
     set_managerUsername(avatarInfo.confProperties.managerUsername);
     set_managerUri(avatarInfo.confProperties.managerUri);
     set_username(avatarInfo.confProperties.username);
-    set_alias(lrcInstance_->accountModel().getAccountInfo(accountId).profileInfo.alias);
+    set_alias(lrcInstance_->accountModel().getAccountInfo(accountId).profileInfo.displayName);
 }
 
 void

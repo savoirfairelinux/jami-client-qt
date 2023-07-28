@@ -765,6 +765,7 @@ Item {
     property string addADescription: qsTr("Add a description")
 
     property string muteConversation: qsTr("Mute conversation")
+    property string enableAlias: qsTr("Add an alias to the contact")
     property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
     property string chooseAColor: qsTr("Choose a color")
     property string defaultCallHost: qsTr("Default host (calls)")
