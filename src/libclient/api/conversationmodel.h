@@ -361,7 +361,7 @@ public:
      * @param conversationId conversation's id
      * @return conversation preferences
      */
-    MapStringString getConversationPreferences(const QString& conversationId);
+    MapStringString getConversationPreferences(const QString& conversationId) const;
     /**
      * create a new swarm conversation
      * @param participants  conversation's participants
