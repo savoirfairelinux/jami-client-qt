@@ -189,6 +189,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_MODELS, FilesToSend::staticMetaObject, "FilesToSend");
     QML_REGISTERNAMESPACE(NS_MODELS, MessageList::staticMetaObject, "MessageList");
     QML_REGISTERNAMESPACE(NS_MODELS, PluginStatus::staticMetaObject, "PluginStatus");
+    QML_REGISTERNAMESPACE(NS_MODELS, Members::staticMetaObject, "Members");
 
     // Qml singleton components
     QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/JamiTheme.qml", JamiTheme);

@@ -262,7 +262,7 @@ profileToVcard(const api::profile::Info& profileInfo, bool compressImage)
     vCardStr += vCard::Delimiter::END_LINE_TOKEN;
     vCardStr += vCard::Property::FORMATTED_NAME;
     vCardStr += ":";
-    vCardStr += profileInfo.alias;
+    vCardStr += profileInfo.displayName;
     vCardStr += vCard::Delimiter::END_LINE_TOKEN;
     if (profileInfo.type == profile::Type::JAMI) {
         vCardStr += vCard::Property::TELEPHONE;
@@ -354,10 +354,12 @@ createOrUpdateProfile(const QString& accountId,
         auto contact = storage::buildContactFromProfile(accountId,
                                                         profileInfo.uri,
                                                         profileInfo.type);
-        if (!profileInfo.alias.isEmpty())
-            contact.profileInfo.alias = profileInfo.alias;
-        if (!profileInfo.avatar.isEmpty())
+        if (!profileInfo.displayName.isEmpty())
+            contact.profileInfo.displayName = profileInfo.displayName;
+        if (!profileInfo.avatar.isEmpty()) {
             contact.profileInfo.avatar = profileInfo.avatar;
+        }
+
         vcard::setProfile(accountId, contact.profileInfo, isPeer, ov);
         return;
     }
@@ -439,18 +441,15 @@ buildContactFromProfile(const QString& accountId,
     auto [overridenAlias, overridenAvatar] = getOverridenInfos(accountId, peerUri);
 
     const auto vCard = lrc::vCard::utils::toHashMap(file.readAll());
-    const auto alias = vCard[vCard::Property::FORMATTED_NAME];
+    const auto displayName = vCard[vCard::Property::FORMATTED_NAME];
     if (lrc::api::Lrc::cacheAvatars.load()) {
-        if (overridenAvatar.isEmpty()) {
-            for (const auto& key : vCard.keys()) {
-                if (key.contains("PHOTO"))
-                    profileInfo.avatar = vCard[key];
-            }
-        } else {
-            profileInfo.avatar = overridenAvatar;
+        for (const auto& key : vCard.keys()) {
+            if (key.contains("PHOTO"))
+                profileInfo.avatar = vCard[key];
         }
     }
-    profileInfo.alias = overridenAlias.isEmpty() ? alias : overridenAlias;
+    profileInfo.displayName = displayName;
+    profileInfo.alias = overridenAlias.isEmpty() ? "" : overridenAlias;
     return {profileInfo, "", type == api::profile::Type::JAMI, false};
 }
 
@@ -459,10 +458,6 @@ avatar(const QString& accountId, const QString& peerUri)
 {
     if (peerUri.isEmpty())
         return getAccountAvatar(accountId);
-
-    auto [_overridenAlias, overridenAvatar] = getOverridenInfos(accountId, peerUri);
-    if (!overridenAvatar.isEmpty())
-        return overridenAvatar;
 
     QString b64filePath;
     b64filePath = profileVcardPath(accountId, peerUri);
@@ -947,7 +942,7 @@ profileToVcard(const api::profile::Info& profileInfo, const QString& accountId =
     }
     vCardStr += vCard::Property::FORMATTED_NAME;
     vCardStr += ":";
-    vCardStr += profileInfo.alias;
+    vCardStr += profileInfo.displayName;
     vCardStr += vCard::Delimiter::END_LINE_TOKEN;
     if (profileInfo.type == profile::Type::JAMI) {
         vCardStr += vCard::Property::TELEPHONE;
@@ -1069,7 +1064,7 @@ migrateAccountDb(const QString& accountId,
     QString accountProfileId;
 
     // 1. profiles_accounts
-    // migrate account's avatar/alias from profiles table to {data_dir}/profile.vcf
+    // migrate account's avatar/displayName from profiles table to {data_dir}/profile.vcf
     QString accountUri;
     if (isRingAccount) {
         accountUri = accountDetails[libjami::Account::ConfProperties::USERNAME].contains("ring:")
@@ -1101,6 +1096,7 @@ migrateAccountDb(const QString& accountId,
         accountProfileInfo = {accountUri,
                               accountProfile[0],
                               accountProfile[1],
+                              accountProfile[2],
                               isRingAccount ? profile::Type::JAMI : profile::Type::SIP};
     }
     auto accountVcard = profileToVcard(accountProfileInfo, accountId);
@@ -1139,7 +1135,7 @@ migrateAccountDb(const QString& accountId,
         if (profile.empty()) {
             continue;
         }
-        profile::Info profileInfo {profile[0], profile[2], profile[1]};
+        profile::Info profileInfo {profile[0], profile[2], "", profile[1]};
         auto uri = URI(profile[0]);
         auto profileUri = uri.userinfo();
         if (!isRingAccount && uri.hasHostname()) {
