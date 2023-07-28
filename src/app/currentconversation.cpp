@@ -164,6 +164,10 @@ CurrentConversation::setPreference(const QString& key, const QString& value)
 {
     if (key == "color")
         set_color(value);
+    else if (key == "alias")
+        set_alias(value);
+
+
     auto preferences = getPreferences();
     preferences[key] = value;
     auto accountId = lrcInstance_->get_currentAccountId();
@@ -257,7 +261,19 @@ CurrentConversation::updateConversationPreferences(const QString& convId)
         if (convInfo.preferences.contains("color")) {
             color = convInfo.preferences["color"];
         }
+        QString alias;
+        if (convInfo.preferences.contains("alias")) {
+            alias = convInfo.preferences["alias"];
+            qWarning() << "Updating2 conversation preferences for" << convId << "alias:" << alias;
+        }
+
+        qWarning() << "Updating3 conversation preferences for" << convId << "color:" << color
+                   << "alias:" << alias << "preferences:" << convInfo.preferences;
+
         set_color(color);
+        set_alias(alias);
+        const auto& convModel = lrcInstance_->getCurrentConversationModel();
+        set_title(convModel->title(convId));
         set_ignoreNotifications(convInfo.preferences.contains("ignoreNotifications")
                                 && convInfo.preferences["ignoreNotifications"] == "true");
     }

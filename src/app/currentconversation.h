@@ -32,6 +32,7 @@ class CurrentConversation final : public QObject
     Q_OBJECT
     QML_PROPERTY(QString, id)
     QML_PROPERTY(QString, title)
+    QML_PROPERTY(QString, alias)
     QML_PROPERTY(QString, description)
     QML_PROPERTY(bool, isSwarm)
     QML_PROPERTY(bool, isLegacy)

@@ -76,7 +76,8 @@ struct Info
 {
     QString uri = "";
     QString avatar = "";
-    QString alias = "";
+    //QString alias = "";
+    QString displayName = "";
     Type type = Type::INVALID;
 };
 

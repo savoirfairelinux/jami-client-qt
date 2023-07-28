@@ -547,6 +547,7 @@ ConversationsAdapter::updateConversationTitle(const QString& convId, const QStri
     auto convModel = lrcInstance_->getCurrentConversationModel();
     QMap<QString, QString> details;
     details["title"] = newTitle;
+    qWarning() << "updateConversationTitle test" << convId << newTitle;
     convModel->updateConversationInfos(convId, details);
 }
 
