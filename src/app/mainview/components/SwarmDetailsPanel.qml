@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2022-2023 Savoir-faire Linux Inc.
  * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
  *
@@ -91,7 +91,7 @@ Rectangle {
                         fontPixelSize: JamiTheme.materialLineEditPixelSize
 
                         isSwarmDetail: true
-                        readOnly: !isAdmin
+                        readOnly: !isAdmin || CurrentConversation.isCoreDialog
 
                         Layout.preferredWidth: Math.min(217, swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
 
@@ -102,7 +102,10 @@ Rectangle {
                         prefixIconColor: root.textColor
 
                         onAccepted: {
-                            ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
+                            if(CurrentConversation.isCoreDialog)
+                                CurrentConversation.setPreference("alias", dynamicText);
+                            else
+                                ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
                         }
 
                         editMode: false
@@ -111,7 +114,10 @@ Rectangle {
 
                         onActiveFocusChanged: {
                             if (!activeFocus) {
-                                ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
+                                if(CurrentConversation.isCoreDialog)
+                                    CurrentConversation.setPreference("alias", dynamicText);
+                                else
+                                    ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
                             }
                             titleLine.editMode = activeFocus;
                         }
@@ -120,7 +126,7 @@ Rectangle {
                     }
 
                     ModalTextEdit {
-                        id: descriptionLineButton
+                        id: descriptionLineButtonrr
 
                         TextMetrics {
                             id: descriptionLineButtonTextSize
@@ -267,7 +273,7 @@ Rectangle {
                     spacing: 0
 
                     SwarmDetailsItem {
-                        id: firstParameter
+                        id: muteConversation
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
@@ -291,41 +297,78 @@ Rectangle {
                     }
 
                     SwarmDetailsItem {
+                        id: chooseAlias
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        visible: CurrentConversation.isCoreDialog
 
-                        Text {
-                            anchors.left: parent.left
-                            anchors.right: parent.right
-                            anchors.top: parent.top
-                            anchors.margins: JamiTheme.preferredMarginSize
-                            text: JamiStrings.leaveConversation
-                            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
-                            font.kerning: true
-                            elide: Text.ElideRight
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
+                        ToggleSwitch {
+                            id: enableAlias
 
-                            color: JamiTheme.textColor
-                        }
+                            anchors.fill: parent
+                            anchors.leftMargin: JamiTheme.preferredMarginSize
+                            anchors.rightMargin: JamiTheme.settingsMarginSize
 
-                        TapHandler {
-                            target: parent
-                            enabled: parent.visible
-                            onTapped: function onTapped(eventPoint) {
-                                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                                        "title": JamiStrings.confirmAction,
-                                        "textLabel": JamiStrings.confirmRmConversation,
-                                        "confirmLabel": JamiStrings.optionRemove
-                                    });
-                                dlg.accepted.connect(function () {
-                                        MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
-                                    });
+                            checked: false
+
+                            labelText: JamiStrings.enableAlias
+
+                            tooltipText: JamiStrings.ignoreNotificationsTooltip
+
+                            onSwitchToggled: {
                             }
                         }
                     }
 
+                    ModalTextEdit {
+                        id: aliasEdit
+
+                        Layout.leftMargin: JamiTheme.preferredMarginSize
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        visible: CurrentConversation.isCoreDialog && enableAlias.checked
+
+                        placeholderText: CurrentConversation.alias
+
+                        TextMetrics {
+                            id: aliasEditTextSize
+                            text: CurrentConversation.alias
+                            elide: Text.ElideRight
+                            elideWidth: aliasEdit.width
+                        }
+
+                        maxCharacters: JamiTheme.maximumCharacters
+                        fontPixelSize: JamiTheme.materialLineEditPixelSize
+
+                        isSwarmDetail: true
+
+                        Layout.preferredWidth: Math.min(217, swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
+
+                        staticText: CurrentConversation.alias
+                        elidedText: aliasEditTextSize.elidedText
+
+                        textColor: JamiTheme.textColor
+                        prefixIconColor: JamiTheme.textColor
+
+                        onAccepted: {
+                            CurrentConversation.setPreference("alias", dynamicText);
+                        }
+
+//                        isPersistent: false
+
+                        onActiveFocusChanged: {
+                            if (!activeFocus) {
+                                CurrentConversation.setPreference("alias", dynamicText);
+                            }
+                            aliasEdit.editMode = activeFocus;
+                        }
+
+                        infoTipLineText: JamiStrings.contactName
+                    }
+
                     SwarmDetailsItem {
+                        id: colorChooser
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
                         visible: CurrentAccount.type !== Profile.Type.SIP // TODO for SIP save in VCard
@@ -485,6 +528,7 @@ Rectangle {
                     }
 
                     RowLayout {
+                        id: typeOfSwarm
                         Layout.leftMargin: JamiTheme.preferredMarginSize
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
                         visible: CurrentAccount.type !== Profile.Type.SIP
@@ -518,6 +562,7 @@ Rectangle {
                     }
 
                     RowLayout {
+                        id: identifierDebug
                         Layout.leftMargin: JamiTheme.preferredMarginSize
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
                         visible: LRCInstance.debugMode()
@@ -549,6 +594,43 @@ Rectangle {
                             elide: Text.ElideRight
                         }
                     }
+
+                    SwarmDetailsItem {
+                        id: leaveConversation
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+
+                        Text {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.top: parent.top
+                            anchors.margins: JamiTheme.preferredMarginSize
+                            text: JamiStrings.leaveConversation
+                            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                            font.kerning: true
+                            elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+                        }
+
+                        TapHandler {
+                            target: parent
+                            enabled: parent.visible
+                            onTapped: function onTapped(eventPoint) {
+                                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                                        "title": JamiStrings.confirmAction,
+                                        "textLabel": JamiStrings.confirmRmConversation,
+                                        "confirmLabel": JamiStrings.optionRemove
+                                    });
+                                dlg.accepted.connect(function () {
+                                        MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
+                                    });
+                            }
+                        }
+                    }
+
                 }
             }
 

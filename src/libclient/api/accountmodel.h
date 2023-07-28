@@ -142,12 +142,12 @@ public:
      */
     void setAvatar(const QString& accountId, const QString& avatar, bool save = true);
     /**
-     * Change the alias of an account
+     * Change the displayName of an account
      * @param accountId
-     * @param alias
+     * @param displayName
      * @throws out_of_range exception if account is not found
      */
-    void setAlias(const QString& accountId, const QString& alias, bool save = true);
+    void setDisplayName(const QString& accountId, const QString& displayName, bool save = true);
     /**
      * Try to register a name
      * @param accountId

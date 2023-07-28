@@ -462,7 +462,7 @@ ConversationModel::getConferenceableConversations(const QString& convId, const Q
                 contactsVector.push_back(cv);
                 continue;
             }
-            bool result = contact.profileInfo.alias.contains(filter, Qt::CaseInsensitive)
+            bool result = contact.profileInfo.displayName.contains(filter, Qt::CaseInsensitive)
                           || contact.profileInfo.uri.contains(filter, Qt::CaseInsensitive)
                           || contact.registeredName.contains(filter, Qt::CaseInsensitive);
             if (result) {
@@ -539,7 +539,7 @@ ConversationModel::getConferenceableConversations(const QString& convId, const Q
                 // check if contact satisfy filter
                 bool result = (filter.isEmpty() || isConference)
                                   ? true
-                                  : (contact.profileInfo.alias.contains(filter)
+                                  : (contact.profileInfo.displayName.contains(filter)
                                      || contact.profileInfo.uri.contains(filter)
                                      || contact.registeredName.contains(filter));
                 if (!result) {
@@ -570,7 +570,7 @@ ConversationModel::getConferenceableConversations(const QString& convId, const Q
                     continue;
                 }
                 auto cont = account.contactModel->getContact(peers.front());
-                if (cont.profileInfo.alias.contains(filter) || cont.profileInfo.uri.contains(filter)
+                if (cont.profileInfo.displayName.contains(filter) || cont.profileInfo.uri.contains(filter)
                     || cont.registeredName.contains(filter)) {
                     callsVector.push_back(it.second);
                     continue;
@@ -1027,7 +1027,7 @@ ConversationModel::getConversationInfos(const QString& conversationId)
 }
 
 MapStringString
-ConversationModel::getConversationPreferences(const QString& conversationId)
+ConversationModel::getConversationPreferences(const QString& conversationId) const
 {
     MapStringString ret = ConfigurationManager::instance()
                               .getConversationPreferences(owner.id, conversationId);
@@ -1106,6 +1106,11 @@ void
 ConversationModel::setConversationPreferences(const QString& conversationId,
                                               const MapStringString prefs)
 {
+    //log prefs
+    qWarning() << "&&&&" << "setConversationPreferences";
+    for (auto it = prefs.begin(); it != prefs.end(); ++it) {
+        qWarning() << "&&&&" << it.key() << " : " << it.value();
+    }
     ConfigurationManager::instance().setConversationPreferences(owner.id, conversationId, prefs);
 }
 
@@ -1159,7 +1164,11 @@ ConversationModel::title(const QString& conversationId) const
         // In this case, we can just display contact name
         if (peer.at(0) == owner.profileInfo.uri)
             return QObject::tr("%1 (you)").arg(owner.accountModel->bestNameForAccount(owner.id));
-        return owner.contactModel->bestNameForContact(peer.at(0));
+        //return owner.contactModel->bestNameForContact(peer.at(0));
+        QString alias = getConversationPreferences(conversationId).value("alias");
+        qWarning() << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7777  alias: " << alias;
+        qWarning() << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7777  contact name : " << owner.contactModel->bestNameForContact(peer.at(0));
+        return owner.contactModel->bestNameForContact(peer.at(0)) + (alias.isEmpty() ? "" : " (" + alias + ")");
     }
     if (conversation.infos["title"] != "") {
         return conversation.infos["title"];
@@ -2226,7 +2235,7 @@ ConversationModelPimpl::filter(const conversation::Info& entry)
             if (currentFilter == "")
                 return false;
             return contactInfo.profileInfo.uri == currentFilter
-                   || contactInfo.profileInfo.alias == currentFilter
+                   || contactInfo.profileInfo.displayName == currentFilter
                    || contactInfo.registeredName == currentFilter;
         }
 
@@ -2272,9 +2281,9 @@ ConversationModelPimpl::filter(const conversation::Info& entry)
         }
 
         // Otherwise perform usual regex search
-        bool result = contactInfo.profileInfo.alias.contains(currentFilter);
+        bool result = contactInfo.profileInfo.displayName.contains(currentFilter);
         if (!result && isValidReFilter)
-            result |= std::regex_search(contactInfo.profileInfo.alias.toStdString(), regexFilter);
+            result |= std::regex_search(contactInfo.profileInfo.displayName.toStdString(), regexFilter);
         if (!result)
             result |= filterUriAndReg(contactInfo, currentFilter);
         return result;
@@ -3020,7 +3029,7 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
             profile::Info profileInfo;
             profileInfo.uri = peerUri;
             profileInfo.type = profile::Type::JAMI;
-            profileInfo.alias = details["title"];
+            profileInfo.displayName = details["title"];
             profileInfo.avatar = details["avatar"];
             contact::Info contactInfo;
             contactInfo.profileInfo = profileInfo;
