@@ -126,7 +126,7 @@ CurrentAccount::updateData()
 
         set_uri(accInfo.profileInfo.uri);
         set_registeredName(accInfo.registeredName);
-        set_alias(accInfo.profileInfo.alias);
+        set_alias(accInfo.profileInfo.displayName);
         set_bestId(lrcInstance_->accountModel().bestIdForAccount(id_));
         set_bestName(lrcInstance_->accountModel().bestNameForAccount(id_));
         set_hasAvatarSet(!accInfo.profileInfo.avatar.isEmpty());

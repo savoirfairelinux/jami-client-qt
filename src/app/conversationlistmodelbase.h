@@ -26,7 +26,7 @@
     X(Title) \
     X(BestId) \
     X(Presence) \
-    X(Alias) \
+    X(DisplayName) \
     X(RegisteredName) \
     X(URI) \
     X(UnreadMessagesCount) \

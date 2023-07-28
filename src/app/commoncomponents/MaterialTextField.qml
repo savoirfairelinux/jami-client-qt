@@ -112,7 +112,8 @@ TextField {
         anchors.baseline: root.baseline
         anchors.horizontalCenter: !isSwarmDetail ? root.horizontalCenter : undefined
         text: root.placeholderText
-        color: isSwarmDetail ? root.color : root.baseColor
+        color: isSwarmDetail ? JamiTheme.faddedLastInteractionFontColor : root.baseColor
+
         visible: !root.isActive && !readOnly && root.text.toString() === ""
     }
 

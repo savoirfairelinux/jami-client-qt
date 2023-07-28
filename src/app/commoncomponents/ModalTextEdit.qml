@@ -30,6 +30,7 @@ Loader {
     property color textColor: JamiTheme.textColor
 
     required property string placeholderText
+    property color placeHolderTextColor : textColor
     property string staticText: ""
     property string dynamicText
 
@@ -95,6 +96,7 @@ Loader {
             isSettings: root.isSettings
             textColor: root.textColor
             placeholderText: root.placeholderText
+            placeholderTextColor: root.placeHolderTextColor
             prefixIconSrc: isSwarmDetail ? "" : root.prefixIconSrc
             prefixIconColor: root.prefixIconColor
         }
@@ -121,6 +123,7 @@ Loader {
             font.bold: root.fontBold
             echoMode: root.echoMode
             placeholderText: root.placeholderText
+            placeholderTextColor: root.placeHolderTextColor
             onAccepted: root.accepted()
             onKeyPressed: root.keyPressed()
             onTextChanged: dynamicText = text

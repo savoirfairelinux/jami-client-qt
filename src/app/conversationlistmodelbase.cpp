@@ -147,7 +147,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             try {
                 auto& accInfo = lrcInstance_->getAccountInfo(accountId_);
                 auto contact = accInfo.contactModel->getContact(peerUri);
-                ret << contact.profileInfo.alias << contact.registeredName;
+                ret << contact.profileInfo.displayName << contact.registeredName;
             } catch (const std::exception&) {
             }
         return ret;
@@ -181,8 +181,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             switch (role) {
             case Role::BestId:
                 return QVariant(lrcInstance_->accountModel().bestIdForAccount(accInfo.id));
-            case Role::Alias:
-                return QVariant(accInfo.profileInfo.alias);
+            case Role::DisplayName:
+                return QVariant(accInfo.profileInfo.displayName);
             case Role::RegisteredName:
                 return QVariant(accInfo.registeredName);
             case Role::URI:
@@ -207,8 +207,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         switch (role) {
         case Role::BestId:
             return QVariant(contactModel->bestIdForContact(peerUri));
-        case Role::Alias:
-            return QVariant(contact.profileInfo.alias);
+        case Role::DisplayName:
+            return QVariant(contact.profileInfo.displayName);
         case Role::RegisteredName:
             return QVariant(contact.registeredName);
         case Role::URI:
