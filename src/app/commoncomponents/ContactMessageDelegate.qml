@@ -34,12 +34,12 @@ Column {
     property alias messageToSend: textLabel.text
 
     width: ListView.view ? ListView.view.width : 0
+    height: timestampItem.height + textLabel.height
     spacing: 0
 
-    ColumnLayout {
+    Item {
         anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width
-        spacing: 0
+        height: timestampItem.height + textLabel.height
 
         TimestampInfo {
             id: timestampItem
@@ -48,14 +48,18 @@ Column {
             showTime: root.showTime
             formattedTime: root.formattedTime
             formattedDay: root.formattedDay
-            Layout.alignment: Qt.AlignHCenter
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+
         }
 
         Label {
             id: textLabel
 
-            Layout.alignment: Qt.AlignCenter
-            width: parent.width
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: timestampItem.bottom
+
             text: Body
             horizontalAlignment: Qt.AlignHCenter
             font.pointSize: JamiTheme.smallFontSize
