@@ -60,7 +60,7 @@ JamiFlickable {
                 type: Type
                 property bool hideTipBox: false
                 anchors.bottom: row.bottom
-                textColor:tipsTextColor
+                textColor: tipsTextColor
                 iconColor: tipsRow.iconColor
 
                 visible: {
@@ -93,7 +93,7 @@ JamiFlickable {
                 }
 
                 onHideTipBoxChanged: {
-                    tipsRepeater.updateVisibleTipBoxCount()
+                    tipsRepeater.updateVisibleTipBoxCount();
                 }
 
                 onOpenedChanged: {
@@ -107,22 +107,21 @@ JamiFlickable {
             property int visibleTipBoxCount: 0
 
             Component.onCompleted: {
-                updateVisibleTipBoxCount()
+                updateVisibleTipBoxCount();
             }
 
             function updateVisibleTipBoxCount() {
-                var count = 0
+                var count = 0;
                 for (var i = 0; i < tipsRepeater.count; i++) {
-                    var item = tipsRepeater.itemAt(i)
-                    if (item.type === "backup" || item.type === "customize"){
+                    var item = tipsRepeater.itemAt(i);
+                    if (item.type === "backup" || item.type === "customize") {
                         if (item.visible)
-                            count ++
-                    }
-                    else if (!item.hideTipBox) {
-                        count++
+                            count++;
+                    } else if (!item.hideTipBox) {
+                        count++;
                     }
                 }
-                visibleTipBoxCount = count
+                visibleTipBoxCount = count;
             }
         }
     }
