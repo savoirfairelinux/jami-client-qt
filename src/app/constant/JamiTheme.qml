@@ -420,6 +420,7 @@ Item {
     property real swarmDetailsPageDocumentsMediaSize: 150
     property real swarmDetailsPageDocumentsHeight: 40 * baseZoom
     property real swarmDetailsPageDocumentsMinHeight: 40
+    property color leaveSwarnColor: darkTheme ? "#FF3B5C" : "#d50022"
 
     // Call information
     property real textFontPointSize: calcSize(10)
