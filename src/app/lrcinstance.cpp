@@ -288,7 +288,7 @@ void
 LRCInstance::setCurrAccDisplayName(const QString& displayName)
 {
     auto accountId = get_currentAccountId();
-    accountModel().setAlias(accountId, displayName);
+    accountModel().setDisplayName(accountId, displayName);
     /*
      * Force save to .yml.
      */

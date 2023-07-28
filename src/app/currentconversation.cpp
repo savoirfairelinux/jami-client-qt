@@ -56,6 +56,7 @@ CurrentConversation::updateData()
     if (convId.isEmpty()) {
         set_id();
         uris_->setMembers({}, {}, {});
+        set_participantUris({});
         return;
     }
 
@@ -95,7 +96,13 @@ CurrentConversation::updateData()
             for (const auto& banned : bannedUris)
                 uris.push_back(banned);
         }
+
+        // Track members for both the list model and basic URI list.
         uris_->setMembers(accountId, convId, uris);
+        if (uris.length() > 1)
+            uris.removeOne(accInfo.profileInfo.uri);
+        set_participantUris(uris);
+
         set_isSwarm(convInfo.isSwarm());
         set_isLegacy(convInfo.isLegacy());
         set_isCoreDialog(convInfo.isCoreDialog());
@@ -164,6 +171,9 @@ CurrentConversation::setPreference(const QString& key, const QString& value)
 {
     if (key == "color")
         set_color(value);
+    else if (key == "alias")
+        set_alias(value);
+
     auto preferences = getPreferences();
     preferences[key] = value;
     auto accountId = lrcInstance_->get_currentAccountId();
@@ -257,7 +267,15 @@ CurrentConversation::updateConversationPreferences(const QString& convId)
         if (convInfo.preferences.contains("color")) {
             color = convInfo.preferences["color"];
         }
+        QString alias;
+        if (convInfo.preferences.contains("alias")) {
+            alias = convInfo.preferences["alias"];
+        }
+
         set_color(color);
+        set_alias(alias);
+        const auto& convModel = lrcInstance_->getCurrentConversationModel();
+        set_title(convModel->title(convId));
         set_ignoreNotifications(convInfo.preferences.contains("ignoreNotifications")
                                 && convInfo.preferences["ignoreNotifications"] == "true");
     }
@@ -267,6 +285,7 @@ void
 CurrentConversation::connectModel()
 {
     uris_->setMembers({}, {}, {});
+    set_participantUris({});
     auto convModel = lrcInstance_->getCurrentConversationModel();
     if (!convModel)
         return;

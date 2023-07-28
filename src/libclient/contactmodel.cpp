@@ -379,7 +379,7 @@ ContactModel::getContact(const QString& contactUri) const
 }
 
 void
-ContactModel::updateContact(const QString& uri, const MapStringString& infos)
+ContactModel::updateContact(const QString& uri, const MapStringString& infos, const bool store)
 {
     std::unique_lock<std::mutex> lk(pimpl_->contactsMtx_);
     auto ci = pimpl_->contacts.find(uri);
@@ -390,9 +390,12 @@ ContactModel::updateContact(const QString& uri, const MapStringString& infos)
             // Else it will be reseted
             ci->profileInfo.avatar = storage::avatar(owner.id, uri);
         }
-        if (infos.contains("title"))
+        if (infos.contains("title")) {
             ci->profileInfo.alias = infos["title"];
-        storage::createOrUpdateProfile(owner.id, ci->profileInfo, true, true);
+        }
+        pimpl_->searchResult.insert(uri, ci.value());
+        if (store)
+            storage::createOrUpdateProfile(owner.id, ci->profileInfo, true, true);
         lk.unlock();
         Q_EMIT profileUpdated(uri);
         Q_EMIT modelUpdated(uri);
@@ -470,7 +473,7 @@ ContactModelPimpl::searchContact(const URI& query)
                 return;
         auto& temporaryContact = searchResult[uriId];
         temporaryContact.profileInfo.uri = uriId;
-        temporaryContact.profileInfo.alias = uriId;
+        temporaryContact.profileInfo.displayName = uriId;
         temporaryContact.profileInfo.type = profile::Type::TEMPORARY;
         Q_EMIT linked.modelUpdated(uriId);
     } else {
@@ -503,7 +506,7 @@ ContactModelPimpl::searchSipContact(const URI& query)
             auto& temporaryContact = searchResult[query];
 
             temporaryContact.profileInfo.uri = uriId;
-            temporaryContact.profileInfo.alias = uriId;
+            temporaryContact.profileInfo.displayName = uriId;
             temporaryContact.profileInfo.type = profile::Type::TEMPORARY;
         }
     }
@@ -540,11 +543,12 @@ ContactModel::bestNameForContact(const QString& contactUri) const
     QString res = contactUri;
     try {
         auto contact = getContact(contactUri);
+        auto displayName = contact.profileInfo.displayName.simplified();
         auto alias = contact.profileInfo.alias.simplified();
-        if (alias.isEmpty()) {
-            return bestIdFromContactInfo(contact);
+        if (displayName.isEmpty()) {
+            return bestIdFromContactInfo(contact) + (alias.isEmpty() ? "" : " (" + alias + ")");
         }
-        return alias;
+        return displayName + (alias.isEmpty() ? "" : " (" + alias + ")");
     } catch (const std::out_of_range&) {
         auto itContact = pimpl_->nonContactLookup_.find(contactUri);
         if (itContact != pimpl_->nonContactLookup_.end()) {
@@ -742,15 +746,15 @@ ContactModelPimpl::fillWithJamiContacts()
                                                             profile::Type::PENDING);
 
         const auto vCard = lrc::vCard::utils::toHashMap(payload);
-        const auto alias = vCard["FN"];
+        const auto displayName = vCard["FN"];
         QByteArray photo;
         for (const auto& key : vCard.keys()) {
             if (key.contains("PHOTO") && lrc::api::Lrc::cacheAvatars.load())
                 photo = vCard[key];
         }
         contactInfo.profileInfo.type = profile::Type::PENDING;
-        if (!alias.isEmpty())
-            contactInfo.profileInfo.alias = alias.constData();
+        if (!displayName.isEmpty())
+            contactInfo.profileInfo.displayName = displayName.constData();
         if (!photo.isEmpty())
             contactInfo.profileInfo.avatar = photo.constData();
         contactInfo.registeredName = "";
@@ -930,12 +934,13 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
                                  const QString& conversationId)
 {
     // create a vcard if necessary
-    profile::Info profileInfo {contactUri, {}, displayName, linked.owner.profileInfo.type};
+    profile::Info profileInfo {contactUri, {}, "", displayName, linked.owner.profileInfo.type};
     auto contactInfo = storage::buildContactFromProfile(linked.owner.id, contactUri, type);
     auto updateProfile = false;
-    if (!profileInfo.alias.isEmpty() && contactInfo.profileInfo.alias != profileInfo.alias) {
+    if (!profileInfo.displayName.isEmpty()
+        && contactInfo.profileInfo.displayName != profileInfo.displayName) {
         updateProfile = true;
-        contactInfo.profileInfo.alias = profileInfo.alias;
+        contactInfo.profileInfo.displayName = profileInfo.displayName;
     }
     auto oldAvatar = lrc::api::Lrc::cacheAvatars.load()
                          ? contactInfo.profileInfo.avatar
@@ -945,7 +950,7 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
         contactInfo.profileInfo.avatar = profileInfo.avatar;
     }
     if (updateProfile)
-        storage::vcard::setProfile(linked.owner.id, contactInfo.profileInfo, true);
+        storage::vcard::setProfile(linked.owner.id, contactInfo.profileInfo, false);
 
     contactInfo.isBanned = banned;
     contactInfo.conversationId = conversationId;
@@ -956,7 +961,7 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
         ConfigurationManager::instance().lookupAddress(linked.owner.id, "", contactUri);
         PresenceManager::instance().subscribeBuddy(linked.owner.id, contactUri, !banned);
     } else {
-        contactInfo.profileInfo.alias = displayName;
+        contactInfo.profileInfo.displayName = displayName;
     }
 
     contactInfo.profileInfo.type = type; // Because PENDING should not be stored in the database
@@ -996,7 +1001,7 @@ ContactModelPimpl::slotRegisteredNameFound(const QString& accountId,
                 return;
             }
             auto& temporaryContact = searchResult[uri];
-            lrc::api::profile::Info profileInfo = {uri, "", "", profile::Type::TEMPORARY};
+            lrc::api::profile::Info profileInfo = {uri, "", "", "", profile::Type::TEMPORARY};
             temporaryContact = {profileInfo, registeredName, false, false};
         }
     } else {
@@ -1050,7 +1055,7 @@ ContactModelPimpl::slotNewCall(const QString& fromId,
             } else {
                 // Update the display name
                 if (!displayname.isEmpty()) {
-                    it->profileInfo.alias = displayname;
+                    it->profileInfo.displayName = displayname;
                     storage::createOrUpdateProfile(linked.owner.id, it->profileInfo, true);
                 }
             }
@@ -1209,16 +1214,18 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
         if (e.contains("PHOTO"))
             profileInfo.avatar = e.split(":")[1];
         else if (e.contains("FN"))
-            profileInfo.alias = e.split(":")[1];
+            profileInfo.displayName = e.split(":")[1];
 
     if (peer == linked.owner.profileInfo.uri) {
         auto avatarChanged = profileInfo.avatar != linked.owner.profileInfo.avatar;
-        auto aliasChanged = profileInfo.alias != linked.owner.profileInfo.alias;
+        auto displayNameChanged = profileInfo.displayName != linked.owner.profileInfo.displayName;
         if (profileInfo.avatar.isEmpty())
             return; // In this case, probably a new device without avatar.
         // Only save the new profile once
-        if (aliasChanged)
-            linked.owner.accountModel->setAlias(linked.owner.id, profileInfo.alias, !avatarChanged);
+        if (displayNameChanged)
+            linked.owner.accountModel->setDisplayName(linked.owner.id,
+                                                      profileInfo.displayName,
+                                                      !avatarChanged);
         if (avatarChanged)
             linked.owner.accountModel->setAvatar(linked.owner.id, profileInfo.avatar, true);
         return;
@@ -1254,7 +1261,8 @@ ContactModelPimpl::slotUserSearchEnded(const QString& accountId,
             profileInfo.uri = resultInfo.value("id");
             profileInfo.type = profile::Type::TEMPORARY;
             profileInfo.avatar = resultInfo.value("profilePicture");
-            profileInfo.alias = resultInfo.value("firstName") + " " + resultInfo.value("lastName");
+            profileInfo.displayName = resultInfo.value("firstName") + " "
+                                      + resultInfo.value("lastName");
             contact::Info contactInfo;
             contactInfo.profileInfo = profileInfo;
             contactInfo.registeredName = resultInfo.value("username");
