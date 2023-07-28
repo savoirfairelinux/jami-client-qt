@@ -606,6 +606,17 @@ UtilsAdapter::setTempCreationImageFromImage(const QImage& image, const QString& 
         file.close();
         Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
     } else {
+        auto optConv = lrcInstance_->getCurrentConversationModel()->getConversationForUid(imageId);
+        if (optConv) {
+            auto& convInfo = optConv->get();
+            if (convInfo.isCoreDialog()) {
+                auto preferences = lrcInstance_->getCurrentConversationModel()
+                                       ->getConversationPreferences(imageId);
+                preferences["avatar"] = ba.toBase64();
+                lrcInstance_->getCurrentConversationModel()->setConversationPreferences(imageId,
+                                                                                        preferences);
+            }
+        }
         lrcInstance_->getCurrentConversationModel()->updateConversationInfos(imageId,
                                                                              {{"avatar",
                                                                                ba.toBase64()}});
@@ -857,7 +868,7 @@ UtilsAdapter::getStandardTempLocation()
 }
 
 QString
-UtilsAdapter::getMimeName(const QString &filePath) const
+UtilsAdapter::getMimeName(const QString& filePath) const
 {
     QMimeDatabase db;
     QMimeType mime = db.mimeTypeForFile(filePath);
@@ -865,7 +876,7 @@ UtilsAdapter::getMimeName(const QString &filePath) const
 }
 
 #ifdef ENABLE_TESTS
-//Must only be used for testing purposes
+// Must only be used for testing purposes
 QString
 UtilsAdapter::createDummyImage() const
 {
