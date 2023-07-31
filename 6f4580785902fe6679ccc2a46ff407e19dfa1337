@@ -16,6 +16,24 @@
       "message": "doesn\u0027t build",
       "revId": "6f4580785902fe6679ccc2a46ff407e19dfa1337",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88da7984_dc99f1b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 38
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-07-31T13:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a99811fd_6943efb2",
+      "revId": "6f4580785902fe6679ccc2a46ff407e19dfa1337",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
