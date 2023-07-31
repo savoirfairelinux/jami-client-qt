@@ -162,6 +162,68 @@ SettingsPageBase {
         }
 
         ColumnLayout {
+            id: linkDevice
+
+            Layout.fillWidth: true
+            visible: !isSIP && CurrentAccount.managerUri === ""
+            spacing: JamiTheme.settingsCategorySpacing
+
+            Text {
+                id: linkTitle
+
+                Layout.alignment: Qt.AlignLeft
+                Layout.fillWidth: true
+
+                text: JamiStrings.linkTitle
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+            }
+
+            Text {
+                id: linkDescription
+
+                Layout.alignment: Qt.AlignLeft
+                Layout.fillWidth: true
+
+                text: JamiStrings.linkDescription
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                font.kerning: true
+                lineHeight: JamiTheme.wizardViewTextLineHeight
+            }
+
+            MaterialButton {
+                id: linkDeviceBtn
+
+                TextMetrics {
+                    id: linkDeviceBtnTextSize
+                    font.weight: Font.Bold
+                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                    text: linkDeviceBtn.text
+                }
+
+                preferredWidth: linkDeviceBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+
+                primary: true
+                Layout.alignment: Qt.AlignLeft
+
+                toolTipText: JamiStrings.tipLinkNewDevice
+                text: JamiStrings.linkAnotherDevice
+
+                onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
+            }
+        }
+
+        ColumnLayout {
             id: encryptAccount
 
             Layout.fillWidth: true
@@ -190,7 +252,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
 
-                text: JamiStrings.ecryptAccountDescription
+                text: JamiStrings.encryptAccountDescription
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter

@@ -83,44 +83,5 @@ SettingsPageBase {
                 title: JamiStrings.linkedOtherDevices
             }
         }
-
-        Text {
-            id: linkedDevicesDescription
-
-            Layout.alignment: Qt.AlignLeft
-            Layout.preferredWidth: parent.width
-            visible: (CurrentAccount.managerUri === "" && CurrentAccount.enabled)
-
-            text: JamiStrings.linkedAccountDescription
-            color: JamiTheme.textColor
-            horizontalAlignment: Text.AlignLeft
-            wrapMode: Text.WordWrap
-
-            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
-            font.kerning: true
-            lineHeight: JamiTheme.wizardViewTextLineHeight
-        }
-
-        MaterialButton {
-            id: linkDevPushButton
-
-            TextMetrics {
-                id: linkDevPushButtonTextSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                text: linkDevPushButton.text
-            }
-
-            Layout.alignment: Qt.AlignLeft
-            preferredWidth: linkDevPushButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
-
-            visible: CurrentAccount.managerUri === "" && CurrentAccount.enabled
-
-            primary: true
-            toolTipText: JamiStrings.tipLinkNewDevice
-            text: JamiStrings.linkAnotherDevice
-
-            onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
-        }
     }
 }

@@ -417,7 +417,7 @@ Item {
     // accountSettingsPages
     property string customizeAccountDescription: qsTr("Your profile is only shared with your contacts.\nYour picture and your nickname can be changed at all time in the settings of your account.")
     property string usernameAccountDescription: qsTr("A chosen username can help to be found more easily on Jami.\nIf a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.")
-    property string ecryptAccountDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.")
+    property string encryptAccountDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.")
     property string saveAccountTitle: qsTr("Backup account")
     property string saveAccountDescription: qsTr("This Jami account exists only on this device.\nThe account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.")
     property string deleteAccountTitle: qsTr("Delete your account")
@@ -425,7 +425,6 @@ Item {
     property string linkedAccountList: qsTr("List of the devices that are linked to this account:")
     property string linkedThisDevice: qsTr("This device")
     property string linkedOtherDevices: qsTr("Other linked devices")
-    property string linkedAccountDescription: qsTr("Linking this account to other devices enables it to be used on other devices.")
 
     // CurrentAccountSettings && AdvancedSettings
     property string backupSuccessful: qsTr("Backup successful")
@@ -448,7 +447,11 @@ Item {
     property string encryptTitle: qsTr("Encrypt account with a password")
     property string encryptDescription: qsTr("A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.")
     property string encryptWarning: qsTr("Please note that if you lose your password, it CANNOT be recovered!")
-    property string enterNickname: qsTr("Enter a nickname, surname...")
+    property string enterNickname: qsTr("Enter a nickname, surname…")
+    property string linkTitle: qsTr("Use this account on other devices")
+    property string linkDescription: qsTr("This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.")
+    property string linkAnotherDevice: qsTr("Link device")
+
 
     // NameRegistrationDialog
     property string setUsername: qsTr("Set username")
@@ -461,7 +464,6 @@ Item {
 
     // LinkedDevices
     property string tipLinkNewDevice: qsTr("Link a new device to this account")
-    property string linkAnotherDevice: qsTr("Link a new device")
     property string linkNewDevice: qsTr("Exporting account…")
     property string removeDevice: qsTr("Remove Device")
     property string sureToRemoveDevice: qsTr("Are you sure you wish to remove this device?")
