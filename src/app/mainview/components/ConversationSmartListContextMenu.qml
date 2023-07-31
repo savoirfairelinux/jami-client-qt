@@ -30,7 +30,7 @@ ContextMenuAutoLoader {
     property string responsibleAccountId: ""
     property string responsibleConvUid: ""
     property bool isBanned: false
-    property var isCoreDialog: undefined
+    property bool isCoreDialog: false
     property var mode: undefined
     property int contactType: Profile.Type.INVALID
     property bool hasCall: false
