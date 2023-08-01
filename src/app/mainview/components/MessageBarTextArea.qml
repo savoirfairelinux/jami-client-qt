@@ -30,7 +30,9 @@ JamiFlickable {
 
     property int maxWidth: 330
     property bool tooMuch: {
-        return textArea.contentWidth > maxWidth;
+        if (maxWidth > 0)
+            return textArea.contentWidth > maxWidth;
+        return false;
     }
     property alias text: textArea.text
     property var textAreaObj: textArea
