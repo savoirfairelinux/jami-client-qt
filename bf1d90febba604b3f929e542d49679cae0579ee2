@@ -45,6 +45,54 @@
       },
       "revId": "bf1d90febba604b3f929e542d49679cae0579ee2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0304677_81a8eb4c",
+        "filename": "src/app/settingsview/components/PluginAvailableDelagate.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-08-01T13:59:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81b1f6e7_644caf7c",
+      "range": {
+        "startLine": 88,
+        "startChar": 63,
+        "endLine": 88,
+        "endChar": 67
+      },
+      "revId": "bf1d90febba604b3f929e542d49679cae0579ee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6edd03e7_dec9eb47",
+        "filename": "src/app/settingsview/components/PluginAvailableDelagate.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-08-01T13:59:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "483077b8_1e8a5e0b",
+      "range": {
+        "startLine": 88,
+        "startChar": 82,
+        "endLine": 88,
+        "endChar": 134
+      },
+      "revId": "bf1d90febba604b3f929e542d49679cae0579ee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
