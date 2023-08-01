@@ -258,12 +258,12 @@ Window {
         ListElement {
             shortcut: "Shift + Alt + T"
             shortcut2: ""
-            description: qsTr("Show Formatting")
+            description: qsTr("Show formatting")
         }
         ListElement {
             shortcut: "Shift + Alt + P"
             shortcut2: ""
-            description: qsTr("Show Preview")
+            description: qsTr("Show preview")
         }
     }
 
