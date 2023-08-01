@@ -130,7 +130,6 @@ Item {
                 id: controlsLayout
 
                 height: childrenRect.height
-                width: childrenRect.width
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.rightMargin: JamiTheme.pushButtonMargins
                 anchors.leftMargin: JamiTheme.pushButtonMargins

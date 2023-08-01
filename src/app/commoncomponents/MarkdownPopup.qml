@@ -36,11 +36,12 @@ Popup {
     contentItem: ListView {
         id: listViewTypoSecond
 
-        width: contentWidth + leftMargin
+        width: contentWidth + leftMargin + rightMargin
         height: JamiTheme.chatViewFooterButtonSize
         orientation: ListView.Horizontal
         interactive: false
         leftMargin: 10
+        rightMargin: 10
         spacing: 10
 
         Rectangle {
@@ -53,7 +54,7 @@ Popup {
         model: menuTypoActionsSecond
 
         delegate: PushButton {
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenter: parent ? parent.verticalCenter : undefined
 
             preferredSize: JamiTheme.chatViewFooterRealButtonSize
             imageContainerWidth: 20
