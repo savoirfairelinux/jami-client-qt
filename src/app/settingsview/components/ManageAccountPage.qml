@@ -141,6 +141,7 @@ SettingsPageBase {
                 Layout.topMargin: 10
                 Layout.preferredWidth: Math.min(500, manageAccountColumnLayout.width - JamiTheme.preferredSettingsMarginSize)
                 backgroundColor: JamiTheme.jamiIdColor
+                centered: false
             }
 
             Text {
