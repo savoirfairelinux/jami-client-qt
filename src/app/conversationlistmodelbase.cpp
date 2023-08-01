@@ -105,6 +105,12 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         return QVariant(item.isRequest);
     case Role::Title:
         return QVariant(model_->title(item.uid));
+    case Role::elementColor:
+        return "green";
+    case Role::connected:
+        return true;
+    case Role::status:
+        return QVariant("Connected");
     case Role::UnreadMessagesCount:
         return QVariant(item.unreadMessages);
     case Role::LastInteractionTimeStamp: {
