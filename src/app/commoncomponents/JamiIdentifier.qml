@@ -27,6 +27,7 @@ Item {
     property bool slimDisplay: true
     property color backgroundColor: JamiTheme.welcomeBlockColor
     property color contentColor: JamiTheme.tintedBlue
+    property bool centered: true
     height: getHeight()
 
     function getHeight() {
@@ -44,12 +45,15 @@ Item {
 
     RowLayout {
         id: outerRow
-        width: parent.width
+        anchors.horizontalCenter: jamiId.centered ? parent.horizontalCenter : undefined
+        anchors.left: jamiId.centered ? undefined : parent.left
+        spacing: 2
 
         RoundedBorderRectangle {
             id: leftRect
             fillColor: jamiId.backgroundColor
-            Layout.fillWidth: true
+            Layout.preferredWidth: childrenRect.width
+            Layout.maximumWidth: jamiId.width - rightRect.width
             Layout.preferredHeight: childrenRect.height
             radius: {
                 "tl": 5,
@@ -59,7 +63,6 @@ Item {
             }
 
             RowLayout {
-                width: parent.width
                 anchors.verticalCenter: parent.verticalCenter
 
                 ResponsiveImage {
@@ -74,11 +77,11 @@ Item {
 
                 UsernameTextEdit {
                     id: usernameTextEdit
-                    Layout.fillWidth: true
+                    visible: !readOnly
                     Layout.preferredHeight: 40
                     Layout.alignment: Qt.AlignVCenter
                     textColor: jamiId.contentColor
-                    fontPixelSize: staticText.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.jamiIdFontSize
+                    fontPixelSize: staticText.length > 16 || dynamicText.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
                     editMode: false
                     isPersistent: false
                     readOnly: true
@@ -95,6 +98,17 @@ Item {
                                 usernameTextEdit.nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
                             });
                     }
+                }
+                Label{
+                    id: usernameLabel
+                    visible: usernameTextEdit.readOnly
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.rightMargin: JamiTheme.pushButtonMargins
+                    color: jamiId.contentColor
+                    font.pixelSize : text.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
+                    property string registeredName: CurrentAccount.registeredName
+                    property string infohash: CurrentAccount.uri
+                    text: registeredName ? registeredName : infohash
                 }
             }
         }
@@ -178,10 +192,12 @@ Item {
                     toolTipText: JamiStrings.identifierURI
                     onClicked: {
                         if (clicked) {
-                            usernameTextEdit.staticText = CurrentAccount.uri;
+                            usernameLabel.text = Qt.binding(function() {return CurrentAccount.uri} );
+                            usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.uri} );
                             btnId.toolTipText = JamiStrings.identifierRegisterName;
                         } else {
-                            usernameTextEdit.staticText = CurrentAccount.registeredName;
+                            usernameLabel.text = Qt.binding(function() {return CurrentAccount.registeredName} );
+                            usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.registeredName} );
                             btnId.toolTipText = JamiStrings.identifierURI;
                         }
                         clicked = !clicked;
@@ -196,7 +212,6 @@ Item {
         preferredSize: 30
         radius: 5
         normalColor: JamiTheme.transparentColor
-        //hoveredColor: JamiTheme.hoveredButtonColorWizard
         imageContainerWidth: JamiTheme.pushButtonSize
         imageContainerHeight: JamiTheme.pushButtonSize
         border.color: jamiId.contentColor
