@@ -25,13 +25,8 @@ import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
-Rectangle {
+RowLayout {
     id: root
-
-    Layout.fillWidth: true
-    Layout.leftMargin: marginSize
-    Layout.rightMargin: marginSize
-    Layout.bottomMargin: marginSize
 
     property alias text: textArea.text
     property var textAreaObj: textArea
@@ -56,61 +51,62 @@ Rectangle {
     signal showMapClicked
     signal emojiButtonClicked
 
-    color: JamiTheme.transparentColor
     height: showTypo || multiLine ? textArea.height + 25 + 3 * marginSize + 1 : textArea.height + marginSize + 1
 
-    ComboBox {
-        id: showMoreButton
+    Rectangle {
+        Layout.preferredHeight: parent.height
+        Layout.preferredWidth: childrenRect.width
         visible: !CurrentConversation.isSip
-        width: CurrentConversation.isSip ? 0 : JamiTheme.chatViewFooterButtonSize
-        height: JamiTheme.chatViewFooterButtonSize
+        ComboBox {
+            id: showMoreButton
+            width: JamiTheme.chatViewFooterButtonSize
+            height: JamiTheme.chatViewFooterButtonSize
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: marginSize / 2
 
-        anchors.leftMargin: marginSize
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: marginSize / 2
-
-        background: Rectangle {
-            implicitWidth: showMoreButton.width
-            implicitHeight: showMoreButton.height
-            radius: 5
-            color: JamiTheme.transparentColor
-        }
-
-        MaterialToolTip {
-            id: toolTipMoreButton
-
-            parent: showMoreButton
-            visible: showMoreButton.hovered && (text.length > 0)
-            delay: Qt.styleHints.mousePressAndHoldInterval
-            text: JamiStrings.showMore
-        }
-
-        indicator: ResponsiveImage {
-
-            width: 25
-            height: 25
-
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            source: JamiResources.more_menu_black_24dp_svg
-
-            color: JamiTheme.chatViewFooterImgColor
-        }
-
-        onHoveredChanged: {
-            if (!sharePopup.opened) {
-                showMoreButton.indicator.color = hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor;
-                showMoreButton.background.color = hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor;
+            background: Rectangle {
+                implicitWidth: showMoreButton.width
+                implicitHeight: showMoreButton.height
+                radius: 5
+                color: JamiTheme.transparentColor
             }
-        }
 
-        popup: SharePopup {
-            id: sharePopup
-            y: -180
-            x: -20
+            MaterialToolTip {
+                id: toolTipMoreButton
 
-            menuMoreButton: listViewMoreButton.menuMoreButton
+                parent: showMoreButton
+                visible: showMoreButton.hovered && (text.length > 0)
+                delay: Qt.styleHints.mousePressAndHoldInterval
+                text: JamiStrings.showMore
+            }
+
+            indicator: ResponsiveImage {
+
+                width: 25
+                height: 25
+
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                source: JamiResources.more_menu_black_24dp_svg
+
+                color: JamiTheme.chatViewFooterImgColor
+            }
+
+            onHoveredChanged: {
+                if (!sharePopup.opened) {
+                    showMoreButton.indicator.color = hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor;
+                    showMoreButton.background.color = hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor;
+                }
+            }
+
+            popup: SharePopup {
+                id: sharePopup
+                y: -180
+                x: -20
+
+                menuMoreButton: listViewMoreButton.menuMoreButton
+            }
         }
     }
 
@@ -125,11 +121,10 @@ Rectangle {
     Rectangle {
         id: rectangle
 
-        anchors.top: parent.top
-        anchors.left: showMoreButton.right
-        anchors.right: sendButtonRow.left
-        anchors.rightMargin: marginSize
-        anchors.leftMargin: marginSize
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.rightMargin: marginSize
+        Layout.leftMargin: marginSize
 
         radius: 5
         color: JamiTheme.transparentColor
@@ -179,9 +174,8 @@ Rectangle {
                 Layout.topMargin: marginSize / 2
                 Layout.bottomMargin: marginSize / 2
                 Layout.rightMargin: marginSize / 2
-                Layout.preferredHeight: {
-                    JamiTheme.chatViewFooterPreferredHeight > contentHeight ? JamiTheme.chatViewFooterPreferredHeight : contentHeight;
-                }
+                Layout.minimumHeight: JamiTheme.chatViewFooterPreferredHeight
+                Layout.preferredHeight: contentHeight
                 Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight - marginSize / 2
 
                 onSendMessagesRequired: {
@@ -326,7 +320,6 @@ Rectangle {
                 Layout.rightMargin: 0
 
                 Row {
-
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: marginSize / 2
 
@@ -566,8 +559,8 @@ Rectangle {
 
                             objectName: "listViewTypoFirst"
 
-                            visible: width > 0
-                            width: showTypo ? contentWidth + 2 * leftMargin : 0
+                            visible: showTypo
+                            width: contentWidth + 2 * leftMargin
 
                             Behavior on width  {
                                 NumberAnimation {
@@ -648,8 +641,7 @@ Rectangle {
                             model: menuTypoActionsFirst
 
                             delegate: PushButton {
-                                anchors.verticalCenter: parent.verticalCenter
-
+                                anchors.verticalCenter: parent ? parent.verticalCenter : undefined
                                 preferredSize: JamiTheme.chatViewFooterRealButtonSize
                                 imageContainerWidth: 15
                                 imageContainerHeight: 15
@@ -693,11 +685,10 @@ Rectangle {
                         }
 
                         Rectangle {
-
                             height: JamiTheme.chatViewFooterButtonSize
                             color: JamiTheme.transparentColor
-                            visible: width > 0
-                            width: showTypo && showTypoSecond ? 2 : 0
+                            visible: showTypo && showTypoSecond
+                            width: 2
 
                             Rectangle {
                                 anchors.verticalCenter: parent.verticalCenter
@@ -768,8 +759,8 @@ Rectangle {
 
                         ListView {
                             id: listViewTypoSecond
-                            visible: width > 0
-                            width: showTypo && showTypoSecond ? contentWidth + 2 * leftMargin : 0
+                            visible: showTypo && showTypoSecond
+                            width: contentWidth + 2 * leftMargin
 
                             height: JamiTheme.chatViewFooterButtonSize
                             orientation: ListView.Horizontal
@@ -834,8 +825,7 @@ Rectangle {
                             model: menuTypoActionsSecond
 
                             delegate: PushButton {
-                                anchors.verticalCenter: parent.verticalCenter
-
+                                anchors.verticalCenter: parent ? parent.verticalCenter : undefined
                                 preferredSize: JamiTheme.chatViewFooterRealButtonSize
                                 imageContainerWidth: 20
                                 imageContainerHeight: 20
@@ -904,7 +894,7 @@ Rectangle {
 
                         onClicked: {
                             showTypo = !showTypo;
-                            if (messageBar.width < messageBarLayoutMaximumWidth + sendButtonRow.width + 2 * JamiTheme.preferredMarginSize)
+                            if (messageBar.width < messageBarLayoutMaximumWidth + sendMessageButton.width + 2 * JamiTheme.preferredMarginSize)
                                 showTypoSecond = false;
                             if (!showDefault)
                                 showDefault = true;
@@ -922,7 +912,6 @@ Rectangle {
                 }
 
                 Row {
-
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: marginSize / 2
 
@@ -1172,20 +1161,16 @@ Rectangle {
         }
     }
 
-    Row {
-        id: sendButtonRow
-
-        spacing: JamiTheme.chatViewFooterRowSpacing
-
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        anchors.rightMargin: sendMessageButton.visible ? marginSize / 2 : 0
-        anchors.bottomMargin: marginSize / 2
-
+    Rectangle {
+        Layout.preferredHeight: parent.height
+        Layout.preferredWidth: childrenRect.width
+        visible: sendButtonVisibility
         PushButton {
             id: sendMessageButton
 
             objectName: "sendMessageButton"
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: marginSize / 2
 
             enabled: sendButtonVisibility
             hoverEnabled: enabled
@@ -1210,7 +1195,6 @@ Rectangle {
             pressedColor: hoveredColor
 
             opacity: 1
-            visible: opacity
             scale: opacity
 
             Behavior on opacity  {
