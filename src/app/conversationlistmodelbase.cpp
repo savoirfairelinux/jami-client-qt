@@ -54,6 +54,15 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
 {
     auto& accInfo = lrcInstance_->getAccountInfo(accountId_);
     switch (role) {
+    case Role::deviceID: {
+        const auto& convInfo = lrcInstance_->getConversationFromConvUid(item.uid);
+        if (!convInfo.uid.isEmpty()) {
+            QString deviceID = convInfo.deviceID; // Remplacez cela par la façon dont vous obtenez
+                                                  // l'identifiant de périphérique
+            return QVariant(deviceID);
+        }
+        return QVariant();
+    }
     case Role::InCall: {
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty()) {
@@ -105,6 +114,12 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         return QVariant(item.isRequest);
     case Role::Title:
         return QVariant(model_->title(item.uid));
+    case Role::elementColor:
+        return "green";
+    case Role::connected:
+        return true;
+    case Role::status:
+        return QVariant("Connected");
     case Role::UnreadMessagesCount:
         return QVariant(item.unreadMessages);
     case Role::LastInteractionTimeStamp: {
