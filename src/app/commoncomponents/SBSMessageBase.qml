@@ -344,7 +344,12 @@ Control {
                 EmojiReactions {
                     id: emojiReactions
 
-                    anchors.right: bubble.right
+                    // Set the anchors based on the value of root.isOutgoing
+                    // anchors.right: root.isOutgoing ? bubble.right : undefined
+                    // anchors.left: root.isOutgoing ? undefined : bubble.left
+  
+                    // anchors.right: bubble.right // sent messages: anchored on the right and emojis are hidden
+                    anchors.left: bubble.left      // sent messages: anchored on the left and emojis are hidden
                     anchors.top: bubble.bottom
                     anchors.topMargin: -8
                     anchors.rightMargin: 16
@@ -352,6 +357,13 @@ Control {
                     height: contentHeight + 5
                     reactions: Reactions
                     borderColor: root.getBaseColor()
+
+                    Rectangle {
+                        width: parent.width
+                        height: parent.height
+                        color: "red"
+                        
+                    }
 
                     TapHandler {
                         onTapped: {
