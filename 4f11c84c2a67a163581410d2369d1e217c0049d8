@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3f5c156_7096cdde",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 77
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-08-01T17:07:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ed0450b_427b52c3",
+      "range": {
+        "startLine": 663,
+        "startChar": 20,
+        "endLine": 663,
+        "endChar": 32
+      },
+      "revId": "4f11c84c2a67a163581410d2369d1e217c0049d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81fbfe8a_dcd5b97e",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "386c2c10_d2d5e383",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 77
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-08-01T17:07:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81fbfe8a_dcd5b97e",
+      "range": {
+        "startLine": 672,
+        "startChar": 20,
+        "endLine": 672,
+        "endChar": 37
+      },
+      "revId": "4f11c84c2a67a163581410d2369d1e217c0049d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "106181a4_40017619",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-08-01T13:48:46Z",
       "side": 1,
       "message": "remove TODO or add ticket",
+      "range": {
+        "startLine": 171,
+        "startChar": 66,
+        "endLine": 171,
+        "endChar": 77
+      },
+      "revId": "4f11c84c2a67a163581410d2369d1e217c0049d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92c8a6aa_c52bff3f",
+        "filename": "src/app/settingsview/components/PluginAvailableDelagate.qml",
+        "patchSetId": 77
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-08-01T17:07:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "106181a4_40017619",
       "range": {
         "startLine": 171,
         "startChar": 66,
