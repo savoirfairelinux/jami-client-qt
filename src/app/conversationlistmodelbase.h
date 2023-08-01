@@ -24,6 +24,10 @@
 // TODO: many of these roles should probably be factored out
 #define CONV_ROLES \
     X(Title) \
+    X(elementColor) \
+    X(deviceID) \
+    X(connected) \
+    X(status) \
     X(BestId) \
     X(Presence) \
     X(Alias) \

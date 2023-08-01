@@ -27,7 +27,17 @@ import "../../commoncomponents"
 import "../js/logviewwindowcreation.js" as LogViewWindowCreation
 
 SettingsPageBase {
+    ////Scaffold{}
     id: root
+
+    Layout.fillWidth: true
+
+    property int type: ContactList.YOUR_NEW_TYPE
+
+    readonly property string baseProviderPrefix: 'image://avatarImage'
+
+    property string typePrefix: 'contact'
+    property string divider: '_'
 
     property int itemWidth
 
@@ -42,7 +52,8 @@ SettingsPageBase {
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
         RowLayout {
-
+            id: rawLayout
+            Layout.alignment: Qt.AlignTop
             Text {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 30
@@ -82,6 +93,180 @@ SettingsPageBase {
                 onClicked: {
                     LogViewWindowCreation.createlogViewWindowObject();
                     LogViewWindowCreation.showLogViewWindow();
+                }
+            }
+        }
+
+        Rectangle {
+            //color: "lightblue"
+            height: listview.childrenRect.height
+            Layout.fillWidth: true
+
+            ListView {
+                id: listview
+                height: contentItem.childrenRect.height
+
+                spacing: 5
+
+                header: Rectangle {
+                    height: 55
+                    width: contentFlickableWidth
+                    Rectangle {
+                        color: "#d1d1d1"
+                        anchors.top: parent.top
+                        height: 50
+                        width: contentFlickableWidth
+
+                        RowLayout {
+                            anchors.fill: parent
+                            Rectangle {
+                                //Scaffold{}
+                                id: profile
+                                height: 50
+                                Layout.leftMargin: 5
+                                Layout.fillWidth: true
+                                color: JamiTheme.transparentColor
+                                Text {
+                                    id: textImage
+                                    anchors.leftMargin: 10
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: "Account"
+                                }
+                            }
+
+                            Rectangle {
+                                //Scaffold{}
+                                id: device
+                                width: 80
+                                height: 50
+                                color: JamiTheme.transparentColor
+                                Text {
+                                    id: deviceText
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: "Device"
+                                }
+                            }
+
+                            Rectangle {
+                                ////Scaffold{}
+                                id: connection
+                                width: 120
+                                height: 50
+                                radius: 5
+                                color: JamiTheme.transparentColor
+                                Text {
+                                    id: connectionText
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.leftMargin: 10
+                                    text: "Connection"
+                                }
+                            }
+
+                            Rectangle {
+                                ////Scaffold{}
+                                id: channel
+                                height: 50
+                                width: 70
+                                color: JamiTheme.transparentColor
+                                Text {
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: "Channels"
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //model: ConversationListModel
+                model: ContactAdapter.getContactSelectableModel(type)
+
+                delegate: Rectangle {
+                    width: contentFlickableWidth
+                    height: 50
+                    color: index % 2 === 0 ? "#f0efef" : "#f6f5f5"
+
+                    RowLayout {
+                        anchors.fill: parent
+                        Rectangle {
+                            //Scaffold{}
+                            id: profile
+                            height: 50
+                            Layout.leftMargin: 5
+                            Layout.fillWidth: true
+                            color: JamiTheme.transparentColor
+                            Avatar {
+                                id: avatar
+                                anchors.left: parent.left
+                                height: 40
+                                width: 40
+                                anchors.verticalCenter: parent.verticalCenter
+                                imageId: UID
+                                mode: Avatar.Mode.Conversation
+                            }
+                            Text {
+                                id: textImage
+                                width: profile.width - 50
+                                anchors.leftMargin: 10
+                                anchors.verticalCenter: parent.verticalCenter
+                                anchors.left: avatar.right
+                                text: Title === undefined ? "" : Title
+                                elide: Text.ElideMiddle
+                            }
+                        }
+
+                        Rectangle {
+                            //Scaffold{}
+                            id: device
+                            width: 80
+                            height: 50
+                            color: JamiTheme.transparentColor
+                            Text {
+                                id: deviceText
+                                width: 80
+                                elide: Text.ElideMiddle
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: URI
+                            }
+                        }
+
+                        Rectangle {
+                            ////Scaffold{}
+                            id: connection
+                            width: 120
+                            height: 50
+                            radius: 5
+                            color: JamiTheme.transparentColor
+                            ResponsiveImage {
+                                id: connectionImage
+                                anchors.left: parent.left
+                                anchors.verticalCenter: parent.verticalCenter
+                                source: connected ? JamiResources.connected_black_24dp_svg : JamiResources.connecting_black_24dp_svg
+                                color: elementColor
+                            }
+                            Text {
+                                id: connectionText
+                                width: parent.width - 30
+                                anchors.verticalCenter: parent.verticalCenter
+                                anchors.left: connectionImage.right
+                                anchors.leftMargin: 5
+                                text: status
+                                elide: Text.ElideRight
+                                color: elementColor
+                            }
+                        }
+
+                        Rectangle {
+                            ////Scaffold{}
+                            id: channel
+                            height: 50
+                            color: JamiTheme.transparentColor
+                            width: 70
+                            Text {
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: "4" + deviceID
+                            }
+                        }
+                    }
                 }
             }
         }
