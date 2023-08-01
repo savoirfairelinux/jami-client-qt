@@ -25,13 +25,8 @@ import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
-Rectangle {
+RowLayout {
     id: root
-
-    Layout.fillWidth: true
-    Layout.leftMargin: marginSize
-    Layout.rightMargin: marginSize
-    Layout.bottomMargin: marginSize
 
     property alias text: textArea.text
     property var textAreaObj: textArea
@@ -56,7 +51,6 @@ Rectangle {
     signal showMapClicked
     signal emojiButtonClicked
 
-    color: JamiTheme.transparentColor
     height: showTypo || multiLine ? textArea.height + 25 + 3 * marginSize + 1 : textArea.height + marginSize + 1
 
     ComboBox {
@@ -64,10 +58,6 @@ Rectangle {
         visible: !CurrentConversation.isSip
         width: CurrentConversation.isSip ? 0 : JamiTheme.chatViewFooterButtonSize
         height: JamiTheme.chatViewFooterButtonSize
-
-        anchors.leftMargin: marginSize
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: marginSize / 2
 
         background: Rectangle {
             implicitWidth: showMoreButton.width
@@ -125,11 +115,10 @@ Rectangle {
     Rectangle {
         id: rectangle
 
-        anchors.top: parent.top
-        anchors.left: showMoreButton.right
-        anchors.right: sendButtonRow.left
-        anchors.rightMargin: marginSize
-        anchors.leftMargin: marginSize
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.rightMargin: marginSize
+        Layout.leftMargin: marginSize
 
         radius: 5
         color: JamiTheme.transparentColor
@@ -179,9 +168,8 @@ Rectangle {
                 Layout.topMargin: marginSize / 2
                 Layout.bottomMargin: marginSize / 2
                 Layout.rightMargin: marginSize / 2
-                Layout.preferredHeight: {
-                    JamiTheme.chatViewFooterPreferredHeight > contentHeight ? JamiTheme.chatViewFooterPreferredHeight : contentHeight;
-                }
+                Layout.minimumHeight: JamiTheme.chatViewFooterPreferredHeight
+                Layout.preferredHeight: contentHeight
                 Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight - marginSize / 2
 
                 onSendMessagesRequired: {
@@ -648,8 +636,6 @@ Rectangle {
                             model: menuTypoActionsFirst
 
                             delegate: PushButton {
-                                anchors.verticalCenter: parent.verticalCenter
-
                                 preferredSize: JamiTheme.chatViewFooterRealButtonSize
                                 imageContainerWidth: 15
                                 imageContainerHeight: 15
@@ -834,8 +820,6 @@ Rectangle {
                             model: menuTypoActionsSecond
 
                             delegate: PushButton {
-                                anchors.verticalCenter: parent.verticalCenter
-
                                 preferredSize: JamiTheme.chatViewFooterRealButtonSize
                                 imageContainerWidth: 20
                                 imageContainerHeight: 20
@@ -904,7 +888,7 @@ Rectangle {
 
                         onClicked: {
                             showTypo = !showTypo;
-                            if (messageBar.width < messageBarLayoutMaximumWidth + sendButtonRow.width + 2 * JamiTheme.preferredMarginSize)
+                            if (messageBar.width < messageBarLayoutMaximumWidth + sendMessageButton.width + 2 * JamiTheme.preferredMarginSize)
                                 showTypoSecond = false;
                             if (!showDefault)
                                 showDefault = true;
@@ -1172,59 +1156,48 @@ Rectangle {
         }
     }
 
-    Row {
-        id: sendButtonRow
+    PushButton {
+        id: sendMessageButton
 
-        spacing: JamiTheme.chatViewFooterRowSpacing
+        objectName: "sendMessageButton"
 
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        anchors.rightMargin: sendMessageButton.visible ? marginSize / 2 : 0
-        anchors.bottomMargin: marginSize / 2
+        enabled: sendButtonVisibility
+        hoverEnabled: enabled
 
-        PushButton {
-            id: sendMessageButton
+        width: scale * JamiTheme.chatViewFooterButtonSize
+        height: JamiTheme.chatViewFooterButtonSize
 
-            objectName: "sendMessageButton"
+        radius: JamiTheme.chatViewFooterButtonRadius
+        preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
+        imageContainerWidth: 25
+        imageContainerHeight: 25
 
-            enabled: sendButtonVisibility
-            hoverEnabled: enabled
+        toolTipText: JamiStrings.send
 
-            width: scale * JamiTheme.chatViewFooterButtonSize
-            height: JamiTheme.chatViewFooterButtonSize
+        mirror: UtilsAdapter.isRTL
 
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
-            imageContainerWidth: 25
-            imageContainerHeight: 25
+        source: JamiResources.send_black_24dp_svg
 
-            toolTipText: JamiStrings.send
+        normalColor: enabled ? JamiTheme.chatViewFooterSendButtonColor : JamiTheme.chatViewFooterSendButtonDisableColor
+        imageColor: enabled ? JamiTheme.chatViewFooterSendButtonImgColor : JamiTheme.chatViewFooterSendButtonImgColorDisable
+        hoveredColor: JamiTheme.buttonTintedBlueHovered
+        pressedColor: hoveredColor
 
-            mirror: UtilsAdapter.isRTL
+        opacity: 1
+        visible: opacity
+        scale: opacity
 
-            source: JamiResources.send_black_24dp_svg
-
-            normalColor: enabled ? JamiTheme.chatViewFooterSendButtonColor : JamiTheme.chatViewFooterSendButtonDisableColor
-            imageColor: enabled ? JamiTheme.chatViewFooterSendButtonImgColor : JamiTheme.chatViewFooterSendButtonImgColorDisable
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: hoveredColor
-
-            opacity: 1
-            visible: opacity
-            scale: opacity
-
-            Behavior on opacity  {
-                enabled: animate
-                NumberAnimation {
-                    duration: JamiTheme.shortFadeDuration
-                    easing.type: Easing.InOutQuad
-                }
+        Behavior on opacity  {
+            enabled: animate
+            NumberAnimation {
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.InOutQuad
             }
+        }
 
-            onClicked: {
-                root.showPreview = false;
-                sendMessageButtonClicked();
-            }
+        onClicked: {
+            root.showPreview = false;
+            sendMessageButtonClicked();
         }
     }
 }
