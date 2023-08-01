@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee3f71b_00a9637c",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-01T13:28:09Z",
+      "side": 1,
+      "message": "break alignment of icons (bold/italic/...). Now the icons are aligned to the top instead of vertically center.\n\nAlso break the alignment of the send message (cf first video in https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1096#note_42518)",
+      "range": {
+        "startLine": 118,
+        "startChar": 24,
+        "endLine": 118,
+        "endChar": 30
+      },
+      "revId": "3ead50ca958fa8237f0190c116ce20e0990fcc62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
