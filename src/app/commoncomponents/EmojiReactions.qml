@@ -31,7 +31,7 @@ Item {
 
     visible: emojis.length && Body !== ""
 
-    property string emojis: {
+    property var emojis: {
         if (reactions === undefined)
             return [];
         var space = "";
@@ -51,15 +51,7 @@ Item {
                 }
             }
         }
-        var cur = "";
-        for (var i in emojiList) {
-            if (emojiNumberList[i] !== 1)
-                cur = cur + space + emojiList[i] + emojiNumberList[i] + "";
-            else
-                cur = cur + space + emojiList[i] + "";
-            space = "  ";
-        }
-        return cur;
+        return emojiList;
     }
 
     property var ownEmojis: {
@@ -81,24 +73,46 @@ Item {
         return [];
     }
 
+    // TODO:
+    // -fix direction flow of the emojis, needs to be left to right and always on the right side of a message
+    // -adapt the dimensions of the emoji reactions rectangle based on the number of emojis
+    // -add padding at the bottom to avoid the emojis overlapping the message
+    // -order emojis based on the timestamp of the reaction and/or the quantity of emojis
     Rectangle {
         id: bubble
 
-        color: JamiTheme.emojiReactBubbleBgColor
-        width: textEmojis.width + 6
-        height: textEmojis.height + 6
+        color: "cyan"
+        // color: JamiTheme.emojiReactBubbleBgColor
+        width: parent.width
+        height: flow.implicitHeight
+
         radius: 5
         border.color: root.borderColor
         border.width: 1
 
-        Text {
-            id: textEmojis
+        Flow {
+            id: flow
+            spacing: 3
+            clip: true
+             width: parent.width
+            bottomPadding: 20
 
-            anchors.margins: 10
-            anchors.centerIn: bubble
-            font.pointSize: JamiTheme.emojiReactSize
-            color: JamiTheme.chatviewTextColor
-            text: root.emojis
+            // TODO fix icon order
+            // each time we build jami the order of the icons is randomized
+            
+            layoutDirection: Qt.RightToLeft
+
+            Repeater {
+                id: textEmojis
+                model: root.emojis
+
+                delegate: Text {
+                    anchors.margins: 10
+                    font.pointSize: JamiTheme.emojiReactSize
+                    color: JamiTheme.chatviewTextColor
+                    text: modelData
+                }
+            }
         }
     }
 }
