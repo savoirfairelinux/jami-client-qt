@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de075246_7cca8daa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-08-02T14:38:33Z",
+      "side": 1,
+      "message": "when you increase the size of the window, it\u0027s the panel with the contacts that gets bigger, not the conversation view.",
+      "revId": "da5d402c5758495195b1f95d843c7533ab3e21b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
