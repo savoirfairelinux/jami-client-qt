@@ -157,6 +157,8 @@ FocusScope {
             imageContainerWidth: 20
             imageContainerHeight: 20
 
+            radius: 5
+
             visible: opened
             circled: true
 
