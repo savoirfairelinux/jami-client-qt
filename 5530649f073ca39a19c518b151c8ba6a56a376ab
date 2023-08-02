@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97a56334_1f72796f",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-02T12:28:00Z",
+      "side": 0,
+      "message": "We should always have the access to the identifier.",
+      "range": {
+        "startLine": 173,
+        "startChar": 16,
+        "endLine": 173,
+        "endChar": 35
+      },
+      "revId": "5530649f073ca39a19c518b151c8ba6a56a376ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
