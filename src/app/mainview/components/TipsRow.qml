@@ -31,6 +31,7 @@ JamiFlickable {
     property color tipsColor: JamiTheme.welcomeBlockColor
     property color tipsTextColor: JamiTheme.textColor
     property color iconColor: JamiTheme.tintedBlue
+    property alias visibleTipBoxCount: tipsRepeater.visibleTipBoxCount
 
     width: JamiTheme.welcomeGridWidth
     height: getHeight()
@@ -91,12 +92,37 @@ JamiFlickable {
                     hideTipBox = true;
                 }
 
+                onHideTipBoxChanged: {
+                    tipsRepeater.updateVisibleTipBoxCount()
+                }
+
                 onOpenedChanged: {
                     if (opened)
                         row.openedTipCount++;
                     else
                         row.openedTipCount--;
                 }
+            }
+
+            property int visibleTipBoxCount: 0
+
+            Component.onCompleted: {
+                updateVisibleTipBoxCount()
+            }
+
+            function updateVisibleTipBoxCount() {
+                var count = 0
+                for (var i = 0; i < tipsRepeater.count; i++) {
+                    var item = tipsRepeater.itemAt(i)
+                    if (item.type === "backup" || item.type === "customize"){
+                        if (item.visible)
+                            count ++
+                    }
+                    else if (!item.hideTipBox) {
+                        count++
+                    }
+                }
+                visibleTipBoxCount = count
             }
         }
     }
