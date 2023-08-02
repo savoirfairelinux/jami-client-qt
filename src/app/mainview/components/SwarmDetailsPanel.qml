@@ -67,8 +67,6 @@ Rectangle {
                     width: avatarSize
                     height: avatarSize
 
-                    Layout.alignment: Qt.AlignHCenter
-
                     newItem: true
                     imageId: LRCInstance.selectedConvUid
                     avatarSize: JamiTheme.smartListAvatarSize
@@ -76,6 +74,7 @@ Rectangle {
 
                 ColumnLayout {
                     signal accepted
+                    Layout.fillWidth: true
 
                     ModalTextEdit {
                         id: titleLine
@@ -92,8 +91,8 @@ Rectangle {
 
                         isSwarmDetail: true
                         readOnly: !isAdmin
-
-                        Layout.preferredWidth: Math.min(217, swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
+                        Layout.fillWidth: true
+                        Layout.rightMargin: 2 * JamiTheme.settingsMarginSize
 
                         staticText: CurrentConversation.title
                         elidedText: titleLineTextSize.elidedText
@@ -136,7 +135,8 @@ Rectangle {
 
                         readOnly: !isAdmin || CurrentConversation.isCoreDialog
 
-                        Layout.preferredWidth: Math.min(217, swarmProfileDetails.width - currentAccountAvatar.width - 30 - JamiTheme.settingsMarginSize)
+                        Layout.fillWidth: true
+                        Layout.rightMargin: 2 * JamiTheme.settingsMarginSize
 
                         staticText: CurrentConversation.description
                         placeholderText: JamiStrings.addADescription
