@@ -25,6 +25,7 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 ColumnLayout {
+    id: root
     property bool storeAvailable: true
     Component.onCompleted: {
         PluginAdapter.getPluginsFromStore();
@@ -55,8 +56,9 @@ ColumnLayout {
             height: childrenRect.height
             spacing: 20
             Repeater {
+                id: pluginStoreRepeater
                 model: PluginStoreListModel
-
+                onCountChanged: root.visible = count !== 0
                 delegate: PluginAvailableDelagate {
                     id: pluginItemDelegate
                     width: JamiTheme.remotePluginWidthDelegate
