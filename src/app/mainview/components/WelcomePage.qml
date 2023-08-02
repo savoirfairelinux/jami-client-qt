@@ -221,14 +221,31 @@ ListSelectionView {
                     if (!active) {
                         return 0;
                     } else {
-                        if (root.width > root.thresholdSize) {
-                            return JamiTheme.welcomeGridWidth;
-                        } else {
+                        if (item.visibleTipBoxCount <= 2) {
+                            if (item.visibleTipBoxCount <= 1)
+                                return JamiTheme.tipBoxWidth;
                             return JamiTheme.welcomeShortGridWidth;
+                        } else {
+                            if (root.width > root.thresholdSize) {
+                                return JamiTheme.welcomeGridWidth;
+                            } else {
+                                return JamiTheme.welcomeShortGridWidth;
+                            }
                         }
                     }
                 }
                 focus: true
+            }
+
+            Connections {
+                target: CurrentAccount
+                onIdChanged: {
+                    //Making sure the tips are refreshed when changing user
+                    loader_tipsRow.active = false;
+                    loader_tipsRow.active = Qt.binding(function () {
+                            return viewNode.hasTips && root.height > root.thresholdHeight;
+                        });
+                }
             }
 
             Item {
