@@ -22,6 +22,30 @@
       },
       "revId": "49b966e58ee898960409e7f418ab5836dfdd64c8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acce599a_5d1c5d85",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-02T12:53:52Z",
+      "side": 1,
+      "message": "Forget \"the send button should be always shown like on master (seems a design changed that was not in the original video)\"\n\nThis is a design changed introduced by Liam not Charlotte, so it\u0027s ok to fix thuis.\n\nThe only bug is the first",
+      "parentUuid": "d1be12f3_680c490d",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 9
+      },
+      "revId": "49b966e58ee898960409e7f418ab5836dfdd64c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
