@@ -496,6 +496,7 @@ Item {
     // Context Menu
     property string saveFile: qsTr("Save file")
     property string openLocation: qsTr("Open location")
+    property string removeLocally: qsTr("Delete file from device")
 
     // Updates
     property string betaInstall: qsTr("Install beta version")

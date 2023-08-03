@@ -306,6 +306,9 @@ public:
     void getTransferInfo(const QString& conversationId,
                          const QString& interactionId,
                          api::datatransfer::Info& info) const;
+    void removeFile(const QString& conversationId,
+                    const QString& interactionId,
+                    const QString& path);
 
     /**
      * Starts a search of all medias in a conversation
