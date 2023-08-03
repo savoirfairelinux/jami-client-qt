@@ -97,7 +97,7 @@ PluginAdapter::getPluginsFromStore()
                              QList<QVariantMap> plugins;
                              for (const auto& plugin : result) {
                                  auto qPlugin = plugin.toVariant().toMap();
-                                 if (!pluginsInstalled.contains(qPlugin["name"].toString())) {
+                                 if (!pluginsInstalled.contains(qPlugin["id"].toString())) {
                                      plugins.append(qPlugin);
                                  }
                              }
