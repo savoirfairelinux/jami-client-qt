@@ -24,6 +24,7 @@ class QColor;
 class QString;
 
 #define PLUGINSTORE_ROLES \
+    X(Id) \
     X(Name) \
     X(IconPath) \
     X(Background) \

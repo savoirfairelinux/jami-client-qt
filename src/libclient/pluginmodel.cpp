@@ -106,6 +106,7 @@ PluginModel::getPluginDetails(const QString& path)
     MapStringString details = PluginManager::instance().getPluginDetails(path);
     plugin::PluginDetails result;
     if (!details.empty()) {
+        result.path = details["path"];
         result.id = details["id"];
         result.name = details["name"];
         result.description = details["description"];
@@ -113,8 +114,8 @@ PluginModel::getPluginDetails(const QString& path)
         result.iconPath = details["iconPath"];
         result.version = details["version"];
     }
-    if (!pluginsPath_.contains(result.id)) {
-        pluginsPath_[result.id] = path;
+    if (!pluginsPath_.contains(result.path)) {
+        pluginsPath_[result.path] = path;
     }
     VectorString loadedPlugins = getLoadedPlugins();
     if (std::find(loadedPlugins.begin(), loadedPlugins.end(), result.path) != loadedPlugins.end()) {
@@ -177,7 +178,7 @@ PluginModel::setPluginsPath()
 {
     for (auto plugin : getInstalledPlugins()) {
         auto details = getPluginDetails(plugin);
-        pluginsPath_[details.name] = details.path;
+        pluginsPath_[details.id] = details.path;
     }
 }
 

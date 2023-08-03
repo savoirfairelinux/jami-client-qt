@@ -61,6 +61,7 @@ ColumnLayout {
                     id: pluginItemDelegate
                     width: JamiTheme.remotePluginWidthDelegate
                     height: JamiTheme.remotePluginHeightDelegate
+                    pluginId: Id
                     pluginName: Name
                     pluginIcon: IconPath
                     pluginDescription: Description

@@ -28,6 +28,7 @@ import "../../mainview/components"
 ItemDelegate {
     id: root
     property string pluginName
+    property string pluginId
     property string pluginIcon
     property string pluginBackground: JamiTheme.pluginDefaultBackgroundColor
     property string pluginDescription
@@ -83,10 +84,6 @@ ItemDelegate {
             rightPadding: 5
             bottomPadding: 20
             topPadding: 5
-            background: Rectangle {
-                id: headerBackground
-                color: hovered ? Qt.lighter(pluginBackground, 1.9) : Qt.lighter(pluginBackground, 2)
-            }
             contentItem: ColumnLayout {
                 SpinningAnimation {
                     id: buttonContainer
@@ -110,7 +107,6 @@ ItemDelegate {
                     MaterialButton {
                         id: install
                         hoverEnabled: pluginStatus !== PluginStatus.INSTALLING
-                        secHoveredColor: Qt.darker(headerBackground.color, 1.1)
                         buttontextHeightMargin: 10.0
                         radius: JamiTheme.chatViewHeaderButtonRadius
                         TextMetrics {
@@ -148,13 +144,12 @@ ItemDelegate {
                                 pluginBackground = JamiTheme.pluginDefaultBackgroundColor;
                                 return;
                             }
-                            pluginBackground = PluginStoreListModel.computeAverageColorOfImage(source);
                         }
                         width: 55
                         height: 55
-                        downloadUrl: PluginAdapter.getIconUrl(pluginName)
+                        downloadUrl: PluginAdapter.getIconUrl(pluginId)
                         fileExtension: '.svg'
-                        localPath: UtilsAdapter.getCachePath() + '/plugins/' + pluginName + '.svg'
+                        localPath: UtilsAdapter.getCachePath() + '/plugins/' + pluginId + '.svg'
                     }
                     ColumnLayout {
                         width: parent.width
@@ -214,9 +209,6 @@ ItemDelegate {
         }
         footer: Control {
             padding: 20
-            background: Rectangle {
-                color: hovered ? JamiTheme.smartListHoveredColor : JamiTheme.pluginViewBackgroundColor
-            }
             contentItem: Text {
                 Layout.fillWidth: true
                 Layout.preferredHeight: implicitHeight
@@ -236,13 +228,13 @@ ItemDelegate {
     function installPlugin() {
         switch (pluginStatus) {
         case PluginStatus.DOWNLOADING:
-            PluginAdapter.cancelDownload(pluginName);
+            PluginAdapter.cancelDownload(pluginId);
             break;
         case PluginStatus.INSTALLABLE:
-            PluginAdapter.installRemotePlugin(pluginName);
+            PluginAdapter.installRemotePlugin(pluginId);
             break;
         case PluginStatus.FAILED:
-            PluginAdapter.installRemotePlugin(pluginName);
+            PluginAdapter.installRemotePlugin(pluginId);
             break;
         case PluginStatus.INSTALLING:
             break;
