@@ -25,6 +25,9 @@ RowLayout {
 
     layoutDirection: UtilsAdapter.isRTL ? Qt.RightToLeft : Qt.LeftToRight
 
+    focus: true
+
+    // Needs to get focus so Orca can read the shortcut
     Rectangle {
         id: descriptionTextRect
 
@@ -35,6 +38,10 @@ RowLayout {
         Layout.rightMargin: 10
 
         color: JamiTheme.transparentColor
+
+        focus: true
+
+        border.color: activeFocus ? "red" : "blue"
 
         Text {
             id: descriptionText
@@ -48,6 +55,7 @@ RowLayout {
         }
     }
 
+    // Needs to get focus as well so Orca can read the shortcut
     Rectangle {
         id: shortcutTextRect
 
@@ -58,6 +66,7 @@ RowLayout {
         Layout.rightMargin: 10
 
         color: JamiTheme.backgroundColor
+
         radius: JamiTheme.primaryRadius
 
         Text {
