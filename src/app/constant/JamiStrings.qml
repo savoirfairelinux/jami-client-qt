@@ -532,6 +532,7 @@ Item {
     property string saveFile: qsTr("Save file")
     property string openLocation: qsTr("Open location")
     property string me: qsTr("Me")
+    property string removeLocally: qsTr("Delete for me")
 
     // Updates
     property string betaInstall: qsTr("Install beta version")
