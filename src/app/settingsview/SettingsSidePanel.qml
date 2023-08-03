@@ -226,7 +226,7 @@ SidePanelBase {
 
                 ListView {
                     id: childListView
-                    width: parent.width
+                    Layout.fillWidth: true
                     height: childrenRect.height
                     clip: true
                     visible: isChildSelected
