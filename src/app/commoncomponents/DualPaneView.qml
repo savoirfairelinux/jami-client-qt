@@ -85,10 +85,12 @@ BaseView {
         clip: true
         required property bool isMinorPane
         onWidthChanged: {
-            if (!isSinglePane && ((isRTL && !isMinorPane) || (!isRTL && isMinorPane)))
+            if (!isSinglePane && isMinorPane)
                 previousMinorPaneWidth = width
-            if (!isSinglePane && ((isRTL && isMinorPane) || (!isRTL && !isMinorPane)))
+            if (!isSinglePane && !isMinorPane)
                 previousMajorPaneWidth = width
+            if (isMinorPane)
+                JamiTheme.currentLeftPaneWidth = width
         }
 
         Connections {
@@ -101,8 +103,9 @@ BaseView {
             }
         }
 
-        SplitView.minimumWidth: isSinglePane ? viewNode.width : (isMinorPane && !isRTL ? minorPaneMinWidth : majorPaneMinWidth)
-        SplitView.maximumWidth: isSinglePane ? viewNode.width : viewNode.width - (isMinorPane && !isRTL ? majorPaneMinWidth : minorPaneMinWidth)
-        SplitView.preferredWidth: isMinorPane && !isRTL ? minorPaneMinWidth : majorPaneMinWidth
+        SplitView.minimumWidth: isSinglePane ? undefined : (isMinorPane ? minorPaneMinWidth : majorPaneMinWidth)
+        SplitView.maximumWidth: isSinglePane || !isMinorPane ? undefined : Math.abs(viewNode.width - majorPaneMinWidth)
+        SplitView.preferredWidth: isSinglePane || !isMinorPane ? undefined : JamiTheme.currentLeftPaneWidth
+        SplitView.fillWidth: !isMinorPane || isSinglePane
     }
 }

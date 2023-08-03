@@ -59,7 +59,7 @@ JamiFlickable {
                 type: Type
                 property bool hideTipBox: false
                 anchors.bottom: row.bottom
-                textColor:tipsTextColor
+                textColor: tipsTextColor
                 iconColor: tipsRow.iconColor
 
                 visible: {
@@ -74,14 +74,14 @@ JamiFlickable {
                 }
 
                 enabled: {
-                    if (x >= tipsRow.width)
+                    if (x > tipsRow.width || x < tipsRow.x )
                         return false;
                     else
                         return true;
                 }
 
                 opacity: {
-                    if (x >= tipsRow.width)
+                    if (x > tipsRow.width || x < tipsRow.x )
                         return 0;
                     else
                         return 1;
