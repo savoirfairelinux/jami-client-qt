@@ -45,6 +45,7 @@ ListSelectionView {
 
     Component.onCompleted: {
         updateUiFlags();
+        btnKeyboard.clicked();
     }
 
     property bool hasCustomUi: false
