@@ -26,6 +26,8 @@ import "../../commoncomponents"
 Window {
     id: root
 
+    onActiveFocusItemChanged: print("&&&&&&& AFI:", activeFocusItem)
+
     title: JamiStrings.keyboardShortcutTableWindowTitle
     width: 500
     minimumWidth: 300
@@ -267,60 +269,56 @@ Window {
         }
     }
 
-    Rectangle {
-        id: windowRect
+    Page {
+        id: page
 
         anchors.fill: parent
 
-        color: JamiTheme.secondaryBackgroundColor
+        header: TabBar {
+            id: selectionBar
 
-        Rectangle {
-            id: titleRect
+            readonly property real lambda: 12
 
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.topMargin: JamiTheme.titleRectMargin
+            spacing: lambda
+            padding: lambda
 
-            height: titleName.contentHeight + JamiTheme.titleRectMargin
-            width: titleName.contentWidth + JamiTheme.titleRectMargin
+            Repeater {
+                model: [
+                    JamiStrings.generalSettingsTitle,
+                    JamiStrings.conversationKeyboardShortcuts,
+                    JamiStrings.callKeyboardShortcuts,
+                    JamiStrings.settings,
+                    JamiStrings.markdownKeyboardShortcuts
+                ]
 
-            color: JamiTheme.backgroundColor
-            radius: JamiTheme.primaryRadius
-
-            Text {
-                id: titleName
-
-                anchors.centerIn: parent
-
-                font.pointSize: JamiTheme.titleFontSize
-                text: {
-                    var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
-                    switch (modelId) {
-                    case 0:
-                        return JamiStrings.generalSettingsTitle;
-                    case 1:
-                        return JamiStrings.conversationKeyboardShortcuts;
-                    case 2:
-                        return JamiStrings.callKeyboardShortcuts;
-                    case 3:
-                        return JamiStrings.settings;
-                    case 4:
-                        return JamiStrings.markdownKeyboardShortcuts;
+                TabButton {
+                    id: tabButton
+                    contentItem: Text {
+                        text: modelData
+                        color: JamiTheme.textColor
+                        font.pixelSize: JamiTheme.titleFontSize
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+                    background: Rectangle {
+                        color: {
+                            if (tabButton.checked || tabButton.pressed)
+                                return JamiTheme.pressedButtonColor
+                            if (tabButton.hovered)
+                                return JamiTheme.hoveredButtonColor
+                            else
+                                return JamiTheme.normalButtonColor
+                        }
+                        radius: JamiTheme.primaryRadius
                     }
                 }
-                color: JamiTheme.textColor
             }
         }
 
+        // Content: ListView goes here
         JamiListView {
             id: keyboardShortCutList
 
-            anchors.top: titleRect.bottom
-            anchors.topMargin: 10
-            anchors.horizontalCenter: parent.horizontalCenter
-
             width: parent.width
-            height: parent.height - titleRect.height - JamiTheme.titleRectMargin - keyboardShortCutList.anchors.topMargin - selectionBar.height - selectionBar.anchors.bottomMargin
 
             model: {
                 var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
@@ -343,32 +341,118 @@ Window {
             }
         }
 
-        TabBar {
-            id: selectionBar
-
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 10
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            width: 96
+        footer: Item {
             height: JamiTheme.keyboardShortcutTabBarSize
-            contentHeight: JamiTheme.keyboardShortcutTabBarSize
-            background: Rectangle {
-                color: windowRect.color
-            }
-
-            Repeater {
-                model: UtilsAdapter.isRTL ? ["5", "4", "3", "2", "1"] : ["1", "2", "3", "4", "5"]
-
-                KeyboardShortcutTabButton {
-                    currentIndex: selectionBar.currentIndex
-                    text: modelData
-                }
-            }
-
-            Component.onCompleted: {
-                setCurrentIndex(UtilsAdapter.isRTL ? 4 : 0);
+            PageIndicator {
+                anchors.centerIn: parent
+                count: selectionBar.count
+                currentIndex: selectionBar.currentIndex
             }
         }
     }
+
+    //    Rectangle {
+    //        id: windowRect
+
+    //        anchors.fill: parent
+
+    //        color: JamiTheme.secondaryBackgroundColor
+
+    //        Rectangle {
+    //            id: titleRect
+
+    //            anchors.top: parent.top
+    //            anchors.horizontalCenter: parent.horizontalCenter
+    //            anchors.topMargin: JamiTheme.titleRectMargin
+
+    //            height: titleName.contentHeight + JamiTheme.titleRectMargin
+    //            width: titleName.contentWidth + JamiTheme.titleRectMargin
+
+    //            color: JamiTheme.backgroundColor
+    //            radius: JamiTheme.primaryRadius
+
+    //            Text {
+    //                id: titleName
+
+    //                anchors.centerIn: parent
+
+    //                font.pointSize: JamiTheme.titleFontSize
+    //                text: {
+    //                    var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
+    //                    switch (modelId) {
+    //                    case 0:
+    //                        return JamiStrings.generalSettingsTitle;
+    //                    case 1:
+    //                        return JamiStrings.conversationKeyboardShortcuts;
+    //                    case 2:
+    //                        return JamiStrings.callKeyboardShortcuts;
+    //                    case 3:
+    //                        return JamiStrings.settings;
+    //                    case 4:
+    //                        return JamiStrings.markdownKeyboardShortcuts;
+    //                    }
+    //                }
+    //                color: JamiTheme.textColor
+    //            }
+    //        }
+
+    //        JamiListView {
+    //            id: keyboardShortCutList
+
+    //            anchors.top: titleRect.bottom
+    //            anchors.topMargin: 10
+    //            anchors.horizontalCenter: parent.horizontalCenter
+
+    //            width: parent.width
+    //            height: parent.height - titleRect.height - JamiTheme.titleRectMargin - keyboardShortCutList.anchors.topMargin - selectionBar.height - selectionBar.anchors.bottomMargin
+
+    //            model: {
+    //                var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
+    //                switch (modelId) {
+    //                case 0:
+    //                    return keyboardGeneralShortcutsModel;
+    //                case 1:
+    //                    return keyboardConversationShortcutsModel;
+    //                case 2:
+    //                    return keyboardCallsShortcutsModel;
+    //                case 3:
+    //                    return keyboardSettingsShortcutsModel;
+    //                case 4:
+    //                    return keyboardMarkdownShortcutsModel;
+    //                }
+    //            }
+    //            delegate: KeyboardShortcutKeyDelegate {
+    //                width: keyboardShortCutList.width
+    //                height: Math.max(JamiTheme.keyboardShortcutDelegateSize, implicitHeight)
+    //            }
+    //        }
+
+    //        TabBar {
+    //            id: selectionBar
+
+    //            anchors.bottom: parent.bottom
+    //            anchors.bottomMargin: 10
+    //            anchors.horizontalCenter: parent.horizontalCenter
+
+    //            width: 96
+    //            height: JamiTheme.keyboardShortcutTabBarSize
+    //            contentHeight: JamiTheme.keyboardShortcutTabBarSize
+    //            background: Rectangle {
+    //                color: windowRect.color
+    //            }
+
+    //            Repeater {
+    //                model: UtilsAdapter.isRTL ? ["5", "4", "3", "2", "1"] : ["1", "2", "3", "4", "5"]
+
+    //                KeyboardShortcutTabButton {
+    //                    currentIndex: selectionBar.currentIndex
+    //                    text: modelData
+    //                }
+    //            }
+
+    //            Component.onCompleted: {
+    //                setCurrentIndex(UtilsAdapter.isRTL ? 4 : 0);
+    //            }
+    //        }
+    //    }
 }
