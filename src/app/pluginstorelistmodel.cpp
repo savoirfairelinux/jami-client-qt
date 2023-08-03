@@ -50,6 +50,8 @@ PluginStoreListModel::data(const QModelIndex& index, int role) const
     switch (role) {
     case Role::Name:
         return QVariant(plugin["name"].toString());
+    case Role::Id:
+        return QVariant(plugin["id"].toString());
     case Role::IconPath:
         return QVariant(plugin["iconPath"].toString());
     case Role::Description:
@@ -84,6 +86,9 @@ PluginStoreListModel::reset()
 void
 PluginStoreListModel::addPlugin(const QVariantMap& plugin)
 {
+    if (plugin["id"].toString().isEmpty()) {
+        plugin["id"] = plugin["name"];
+    }
     beginInsertRows(QModelIndex(), plugins_.size(), plugins_.size());
     plugins_.append(plugin);
     endInsertRows();
@@ -104,7 +109,7 @@ PluginStoreListModel::removePlugin(const QString& pluginId)
 {
     auto index = 0;
     for (auto& plugin : plugins_) {
-        if (plugin["name"].toString() == pluginId) {
+        if (plugin["id"].toString() == pluginId) {
             beginRemoveRows(QModelIndex(), index, index);
             plugins_.removeAt(index);
             endRemoveRows();
@@ -120,7 +125,7 @@ PluginStoreListModel::updatePlugin(const QVariantMap& plugin)
 {
     auto index = 0;
     for (auto& p : plugins_) {
-        if (p["name"].toString() == plugin["name"].toString()) {
+        if (p["id"].toString() == plugin["id"].toString()) {
             p = plugin;
             Q_EMIT dataChanged(createIndex(index, 0), createIndex(index, 0));
             return;
@@ -169,7 +174,7 @@ void
 PluginStoreListModel::onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status)
 {
     auto it = std::find_if(plugins_.begin(), plugins_.end(), [&pluginId](const QVariantMap& p) {
-        return p["name"].toString() == pluginId;
+        return p["id"].toString() == pluginId;
     });
 
     switch (status) {
@@ -237,7 +242,7 @@ PluginStoreListModel::filterPlugins(const QList<QVariantMap>& plugins)
                          installedPlugins.end(),
                          [remotePlugin, &pluginModel, this](const QString& installedPlugin) {
                              const auto& details = pluginModel.getPluginDetails(installedPlugin);
-                             return remotePlugin["name"].toString() == details.name;
+                             return remotePlugin["id"].toString() == details.id;
                          })
             == installedPlugins.end()) {
             filterPluginsNotInstalled.append(remotePlugin);
