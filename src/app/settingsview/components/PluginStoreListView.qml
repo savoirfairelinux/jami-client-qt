@@ -59,7 +59,7 @@ ColumnLayout {
             Repeater {
                 model: PluginStoreListModel
                 onCountChanged: {
-                    root.visible = count > 0
+                    root.visible = count > 0;
                 }
                 delegate: Item {
                     id: wrapper
@@ -87,6 +87,7 @@ ColumnLayout {
                         width: wrapper.widthProvider() * scalingFactor
                         height: wrapper.heightProvider() * scalingFactor
                         pluginName: Name
+                        pluginId:
                         pluginIcon: IconPath
                         pluginDescription: Description
                         pluginAuthor: Author
