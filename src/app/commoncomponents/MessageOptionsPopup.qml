@@ -229,6 +229,18 @@ Popup {
             }
 
             MessageOptionButton {
+                visible: type === Interaction.Type.DATA_TRANSFER && Status === Interaction.Status.TRANSFER_FINISHED
+                textButton: JamiStrings.removeLocally
+                iconSource: JamiResources.trash_black_24dp_svg
+                Layout.fillWidth: true
+                Layout.margins: 5
+                onClicked: {
+                    MessagesAdapter.removeFile(msgId, root.location)
+                    close()
+                }
+            }
+
+            MessageOptionButton {
                 id: buttonEdit
 
                 visible: root.isOutgoing && type === Interaction.Type.TEXT

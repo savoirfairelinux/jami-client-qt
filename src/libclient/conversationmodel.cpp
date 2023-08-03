@@ -4035,6 +4035,26 @@ ConversationModel::getTransferInfo(const QString& conversationId,
     }
 }
 
+void
+ConversationModel::removeFile(const QString& conversationId,
+                              const QString& interactionId,
+                              const QString& path)
+{
+    auto convOpt = getConversationForUid(conversationId);
+    if (!convOpt)
+        return;
+
+    QFile::remove(path);
+
+    std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[convOpt->get().uid]);
+    auto& interactions = convOpt->get().interactions;
+    auto it = interactions->find(interactionId);
+    if (it != interactions->end()) {
+        it->second.status = interaction::Status::TRANSFER_AWAITING_HOST;
+        interactions->emitDataChanged(it, {MessageList::Role::Status});
+    }
+}
+
 int
 ConversationModel::getNumberOfUnreadMessagesFor(const QString& convUid)
 {
