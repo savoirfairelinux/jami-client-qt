@@ -300,6 +300,13 @@ MessagesAdapter::openDirectory(const QString& path)
 }
 
 void
+MessagesAdapter::removeFile(const QString& interactionId, const QString& path)
+{
+    auto convUid = lrcInstance_->get_selectedConvUid();
+    lrcInstance_->getCurrentConversationModel()->removeFile(convUid, interactionId, path);
+}
+
+void
 MessagesAdapter::acceptFile(const QString& interactionId)
 {
     auto convUid = lrcInstance_->get_selectedConvUid();
