@@ -3384,8 +3384,7 @@ ConversationModelPimpl::slotNewCall(const QString& fromId, const QString& callId
         // in case if we receive call after removing contact add conversation request;
         try {
             auto contact = linked.owner.contactModel->getContact(fromId);
-            if (!isOutgoing && !contact.isBanned
-                && fromId != linked.owner.profileInfo.uri) {
+            if (!isOutgoing && !contact.isBanned && fromId != linked.owner.profileInfo.uri) {
                 addContactRequest(fromId);
             }
             if (isOutgoing && contact.profileInfo.type == profile::Type::TEMPORARY) {
@@ -4046,6 +4045,26 @@ ConversationModel::getTransferInfo(const QString& conversationId,
         info.path = path;
         info.totalSize = totalSize;
         info.progress = bytesProgress;
+    }
+}
+
+void
+ConversationModel::removeFile(const QString& conversationId,
+                              const QString& interactionId,
+                              const QString& path)
+{
+    auto convOpt = getConversationForUid(conversationId);
+    if (!convOpt)
+        return;
+
+    QFile::remove(path);
+
+    std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[convOpt->get().uid]);
+    auto& interactions = convOpt->get().interactions;
+    auto it = interactions->find(interactionId);
+    if (it != interactions->end()) {
+        it->second.status = interaction::Status::TRANSFER_AWAITING_HOST;
+        interactions->emitDataChanged(it, {MessageList::Role::Status});
     }
 }
 
