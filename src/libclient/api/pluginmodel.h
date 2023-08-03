@@ -38,10 +38,10 @@ namespace plugin {
  */
 struct PluginDetails
 {
+    QString path = "";
     QString id = "";
     QString name = "";
     QString description = "";
-    QString path = "";
     QString version = "";
     QString author = "";
     QString iconPath = "";

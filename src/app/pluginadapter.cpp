@@ -97,7 +97,11 @@ PluginAdapter::getPluginsFromStore()
                              QList<QVariantMap> plugins;
                              for (const auto& plugin : result) {
                                  auto qPlugin = plugin.toVariant().toMap();
-                                 if (!pluginsInstalled.contains(qPlugin["name"].toString())) {
+                                 if (!qPlugin.contains("id")) {
+                                     qPlugin["id"] = qPlugin["name"];
+                                 }
+                                 qWarning() << qPlugin["id"];
+                                 if (!pluginsInstalled.contains(qPlugin["id"].toString())) {
                                      plugins.append(qPlugin);
                                  }
                              }
@@ -115,8 +119,11 @@ PluginAdapter::getPluginDetails(const QString& pluginId)
                                               auto result = QJsonDocument::fromJson(data).object();
                                               // my response is a json object and I want to convert
                                               // it to a QVariantMap
-                                              pluginStoreListModel_->addPlugin(
-                                                  result.toVariantMap());
+                                              auto plugin = result.toVariantMap();
+                                              if (!plugin.contains("id")) {
+                                                  plugin["id"] = plugin["name"];
+                                              }
+                                              pluginStoreListModel_->addPlugin(plugin);
                                           });
 }
 
