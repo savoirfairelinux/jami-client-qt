@@ -28,6 +28,7 @@ import "../../mainview/components"
 ItemDelegate {
     id: root
     property string pluginName
+    property string pluginId
     property string pluginIcon
     property string pluginBackground: JamiTheme.pluginDefaultBackgroundColor
     property string pluginDescription
@@ -238,13 +239,13 @@ ItemDelegate {
     function installPlugin() {
         switch (pluginStatus) {
         case PluginStatus.DOWNLOADING:
-            PluginAdapter.cancelDownload(pluginName);
+            PluginAdapter.cancelDownload(pluginId);
             break;
         case PluginStatus.INSTALLABLE:
-            PluginAdapter.installRemotePlugin(pluginName);
+            PluginAdapter.installRemotePlugin(pluginId);
             break;
         case PluginStatus.FAILED:
-            PluginAdapter.installRemotePlugin(pluginName);
+            PluginAdapter.installRemotePlugin(pluginId);
             break;
         case PluginStatus.INSTALLING:
             break;
