@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4c1bea8_53d053b2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-08-04T21:21:55Z",
+      "side": 1,
+      "message": "Should this string be moved to where other strings that related to it are located?\n\nSeems better that this string is not located within the strings used for the formatting toolbar.\n\nThank you",
+      "range": {
+        "startLine": 811,
+        "startChar": 0,
+        "endLine": 811,
+        "endChar": 40
+      },
+      "revId": "f53b1945000bfaa4e717fb065b83b7f98810a518",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
