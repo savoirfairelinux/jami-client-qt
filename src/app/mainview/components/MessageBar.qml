@@ -609,7 +609,7 @@ RowLayout {
                                 Action {
                                     id: titleAction
                                     property var iconSrc: JamiResources.title_black_24dp_svg
-                                    property var shortcutText: JamiStrings.title
+                                    property var shortcutText: JamiStrings.heading
                                     property string shortcutKey: "Ctrl+Alt+H"
                                     property bool isStyle: listViewTypo.isPrefixSyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "### ", false)
                                     onTriggered: function clickAction() {
