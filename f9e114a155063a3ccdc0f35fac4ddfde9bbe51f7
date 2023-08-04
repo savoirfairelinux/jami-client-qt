@@ -22,6 +22,30 @@
       },
       "revId": "f9e114a155063a3ccdc0f35fac4ddfde9bbe51f7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "891f603f_4001778a",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-04T12:57:37Z",
+      "side": 1,
+      "message": "second is better",
+      "parentUuid": "f37679fc_b45c6267",
+      "range": {
+        "startLine": 535,
+        "startChar": 41,
+        "endLine": 535,
+        "endChar": 54
+      },
+      "revId": "f9e114a155063a3ccdc0f35fac4ddfde9bbe51f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
