@@ -17,6 +17,7 @@
  */
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
@@ -36,10 +37,11 @@ RowLayout {
 
         color: JamiTheme.transparentColor
 
-        Text {
+        TextField {
             id: descriptionText
 
             anchors.centerIn: parent
+            focus: true
 
             text: description
             font.pointSize: JamiTheme.textFontSize
@@ -60,10 +62,11 @@ RowLayout {
         color: JamiTheme.backgroundColor
         radius: JamiTheme.primaryRadius
 
-        Text {
+        TextField {
             id: shortcutText
 
             anchors.centerIn: parent
+            focus: true
 
             text: shortcut2 === "" ? shortcut : shortcut + " + " + shortcut2
             font.pointSize: JamiTheme.textFontSize + 3

@@ -809,6 +809,7 @@ Item {
     property string italic: qsTr("Italic")
     property string strikethrough: qsTr("Strikethrough")
     property string title: qsTr("Title")
+    property string heading: qsTr("Heading")
     property string link: qsTr("Link")
     property string code: qsTr("Code")
     property string quote: qsTr("Quote")
