@@ -22,6 +22,30 @@
       },
       "revId": "6c2ca39a0bd7f9411ca58264f27f10c71c8f6586",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecd16f73_8bf4e55e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-04T20:06:28Z",
+      "side": 0,
+      "message": "yup, cf JamiStrings.title, it\u0027s used for the swarm\u0027s title ;)",
+      "parentUuid": "6e093001_a4ec81c6",
+      "range": {
+        "startLine": 811,
+        "startChar": 4,
+        "endLine": 811,
+        "endChar": 40
+      },
+      "revId": "6c2ca39a0bd7f9411ca58264f27f10c71c8f6586",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
