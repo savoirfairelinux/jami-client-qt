@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2f02a71_a2f51c89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-07T12:39:28Z",
+      "side": 1,
+      "message": "LGTM, but name-id change is still non-functional",
+      "revId": "a5cf292ec0f2e7d9e8a610d15cce3aeaf210cd33",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
