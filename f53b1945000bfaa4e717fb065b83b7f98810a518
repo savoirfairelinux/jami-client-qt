@@ -22,6 +22,30 @@
       },
       "revId": "f53b1945000bfaa4e717fb065b83b7f98810a518",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad20399a_1c6a25f5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-07T11:20:12Z",
+      "side": 1,
+      "message": "We actually should do a pass to cleanup the strings in this file. Marking as done to prioritise the organisation in another patch.",
+      "parentUuid": "f4c1bea8_53d053b2",
+      "range": {
+        "startLine": 811,
+        "startChar": 0,
+        "endLine": 811,
+        "endChar": 40
+      },
+      "revId": "f53b1945000bfaa4e717fb065b83b7f98810a518",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
