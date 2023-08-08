@@ -53,17 +53,17 @@ ColumnLayout {
                     var sec = seconds % 60;
                     if (hour) {
                         if (minutes)
-                            return qsTr("%1h%2min").arg(hour).arg(minutes);
+                            return JamiStrings.xhourxmin.arg(hour).arg(minutes);
                         else
-                            return qsTr("%1h").arg(hour);
+                            return JamiStrings.xhour.arg(hour);
                     }
                     if (minutes) {
                         if (sec)
-                            return qsTr("%1m%2sec").arg(minutes).arg(sec);
+                            return JamiStrings.xminxsec.arg(minutes).arg(sec);
                         else
-                            return qsTr("%1m").arg(minutes);
+                            return JamiStrings.xmin.arg(minutes);
                     }
-                    return qsTr("%1sec").arg(sec);
+                    return JamiStrings.xsec.arg(sec);
                 }
 
                 property int remainingTimeMs: 0

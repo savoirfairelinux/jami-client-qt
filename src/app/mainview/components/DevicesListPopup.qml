@@ -159,7 +159,7 @@ BaseModalDialog {
 
                                 elide: Text.ElideRight
                                 color: JamiTheme.textColor
-                                text: deviceId === "" ? qsTr("Device Id") : deviceId
+                                text: deviceId === "" ? JamiStrings.deviceId : deviceId
                             }
                         }
                     }

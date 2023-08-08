@@ -53,11 +53,11 @@ SettingsPageBase {
                 var min = minutes % 60;
                 if (hour) {
                     if (min)
-                        return qsTr("%1h%2min").arg(hour).arg(min);
+                        return JamiStrings.xhourxmin.arg(hour).arg(min);
                     else
-                        return qsTr("%1h").arg(hour);
+                        return JamiStrings.xhour.arg(hour);
                 }
-                return qsTr("%1min").arg(min);
+                return JamiStrings.xmin.arg(min);
             }
 
             Text {

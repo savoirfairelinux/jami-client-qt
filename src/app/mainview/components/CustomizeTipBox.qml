@@ -128,7 +128,7 @@ ColumnLayout {
         font.pixelSize: JamiTheme.tipBoxContentFontSize
         visible: opened
         wrapMode: Text.WordWrap
-        text: JamiStrings.customizationDescription2
+        text: JamiStrings.customizationDescription
         color: column.textColor
     }
 }
