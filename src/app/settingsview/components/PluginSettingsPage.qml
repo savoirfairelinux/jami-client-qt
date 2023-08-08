@@ -32,8 +32,19 @@ SettingsPageBase {
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
         ColumnLayout {
-            id: generalSettings
-            Layout.maximumWidth: 3 * (JamiTheme.remotePluginWidthDelegate + 20)
+            function widthProvider() {
+                let width = 0;
+                if (JamiTheme.remotePluginDelegateWidth < JamiTheme.remotePluginMinimumDelegateWidth) {
+                    width = JamiTheme.remotePluginMinimumDelegateWidth + 20;
+                } else if (JamiTheme.remotePluginDelegateWidth > JamiTheme.remotePluginMaximumDelegateWidth) {
+                    width = JamiTheme.remotePluginMaximumDelegateWidth + 20;
+                } else {
+                    width = JamiTheme.remotePluginDelegateWidth + 20;
+                }
+                return width;
+            }
+            Layout.maximumWidth: 3 * widthProvider()
+            Layout.minimumWidth: widthProvider()
             Layout.preferredWidth: parent.width
             Layout.rightMargin: 80
             spacing: JamiTheme.settingsBlockSpacing
@@ -52,6 +63,7 @@ SettingsPageBase {
             }
             // View of available plugins in the store
             PluginStoreListView {
+                id: pluginRemoteList
                 Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
                 Layout.fillWidth: true
             }
@@ -91,6 +103,17 @@ SettingsPageBase {
             previousWidth = width;
     }
 
+    function widthProvider() {
+        let width = 0;
+        if (JamiTheme.remotePluginDelegateWidth < JamiTheme.remotePluginMinimumDelegateWidth) {
+            width = JamiTheme.remotePluginMinimumDelegateWidth + 10;
+        } else if (JamiTheme.remotePluginDelegateWidth > JamiTheme.remotePluginMaximumDelegateWidth) {
+            width = JamiTheme.remotePluginMaximumDelegateWidth + 10;
+        } else {
+            width = JamiTheme.remotePluginDelegateWidth + 10;
+        }
+        return width;
+    }
     onResizingChanged: if (pageContainer.visible)
         pluginPreferencesView.previousWidth = pluginPreferencesView.width
 

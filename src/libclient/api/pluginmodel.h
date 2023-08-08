@@ -43,7 +43,9 @@ struct PluginDetails
     QString description = "";
     QString path = "";
     QString version = "";
+    QString author = "";
     QString iconPath = "";
+    QString imagePath = "";
     bool loaded = false;
 };
 

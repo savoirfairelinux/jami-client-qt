@@ -111,6 +111,8 @@ PluginModel::getPluginDetails(const QString& path)
         result.description = details["description"];
         result.path = path;
         result.iconPath = details["iconPath"];
+        result.imagePath = details["imagePath"];
+        result.author = details["author"];
         result.version = details["version"];
     }
     if (!pluginsPath_.contains(result.id)) {

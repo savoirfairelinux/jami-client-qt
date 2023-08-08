@@ -75,6 +75,10 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString bas
             &PluginListModel::setVersionStatus,
             pluginStoreListModel_,
             &PluginStoreListModel::onVersionStatusChanged);
+    connect(pluginVersionManager_,
+            &PluginVersionManager::newVersionAvailable,
+            pluginListModel_,
+            &PluginListModel::onNewVersionAvailable);
     getPluginsFromStore();
 }
 
@@ -202,4 +206,10 @@ QString
 PluginAdapter::getIconUrl(const QString& pluginId) const
 {
     return baseUrl_ + "/icons/" + pluginId + "?arch=" + Utils::getPlatformString();
+}
+
+QString
+PluginAdapter::getBackgroundImageUrl(const QString& pluginId) const
+{
+    return baseUrl_ + "/backgrounds/" + pluginId + "?arch=" + Utils::getPlatformString();
 }
