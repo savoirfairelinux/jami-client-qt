@@ -693,7 +693,10 @@ Item {
     property string editPreference: qsTr("Edit preference")
     property string onOff: qsTr("On/Off")
     property string choosePlugin: qsTr("Choose Plugin")
-
+    property string versionPlugin: qsTr("Version")
+    property string lastUpdate: qsTr("Last update")
+    property string by: qsTr("By")
+    property string proposedBy: qsTr("Proposed by")
     // ProfilePage
     property string profileSharedWithContacts: qsTr("Profile is only shared with contacts")
     property string saveProfile: qsTr("Save profile")
@@ -701,6 +704,7 @@ Item {
     property string enterRVName: qsTr("Enter the rendezvous point's name")
     property string generatingRV: qsTr("Creating rendezvous point…")
     property string information: qsTr("Information")
+    property string moreInformations: qsTr("More informations")
     property string profile: qsTr("Profile")
 
     // RevokeDevicePasswordDialog

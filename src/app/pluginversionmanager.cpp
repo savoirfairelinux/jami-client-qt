@@ -115,6 +115,7 @@ public:
                                    }
                                    parent_.versionStatusChanged(plugin.id,
                                                                 PluginStatus::Role::UPDATABLE);
+
                                });
     }
 
