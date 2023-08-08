@@ -452,7 +452,6 @@ Item {
     property string linkDescription: qsTr("This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.")
     property string linkAnotherDevice: qsTr("Link device")
 
-
     // NameRegistrationDialog
     property string setUsername: qsTr("Set username")
     property string registeringName: qsTr("Registering name")
@@ -693,7 +692,10 @@ Item {
     property string editPreference: qsTr("Edit preference")
     property string onOff: qsTr("On/Off")
     property string choosePlugin: qsTr("Choose Plugin")
-
+    property string versionPlugin: qsTr("Version")
+    property string lastUpdate: qsTr("Last update")
+    property string by: qsTr("By")
+    property string proposedBy: qsTr("Proposed by")
     // ProfilePage
     property string profileSharedWithContacts: qsTr("Profile is only shared with contacts")
     property string saveProfile: qsTr("Save profile")
@@ -701,6 +703,7 @@ Item {
     property string enterRVName: qsTr("Enter the rendezvous point's name")
     property string generatingRV: qsTr("Creating rendezvous point…")
     property string information: qsTr("Information")
+    property string moreInformations: qsTr("More informations")
     property string profile: qsTr("Profile")
 
     // RevokeDevicePasswordDialog
