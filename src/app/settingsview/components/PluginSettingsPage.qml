@@ -34,6 +34,7 @@ SettingsPageBase {
         ColumnLayout {
             id: generalSettings
             Layout.maximumWidth: 3 * (JamiTheme.remotePluginWidthDelegate + 20)
+            Layout.minimumWidth: JamiTheme.remotePluginWidthDelegate + 20
             Layout.preferredWidth: parent.width
             Layout.rightMargin: 80
             spacing: JamiTheme.settingsBlockSpacing
