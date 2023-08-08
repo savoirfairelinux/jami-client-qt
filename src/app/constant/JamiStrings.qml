@@ -427,7 +427,6 @@ Item {
     property string linkDescription: qsTr("This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.")
     property string linkAnotherDevice: qsTr("Link device")
 
-
     // NameRegistrationDialog
     property string setUsername: qsTr("Set username")
     property string registeringName: qsTr("Registering name")
@@ -625,9 +624,13 @@ Item {
     property string editPreference: qsTr("Edit preference")
     property string onOff: qsTr("On/Off")
     property string choosePlugin: qsTr("Choose Plugin")
-
+    property string versionPlugin: qsTr("Version %1")
+    property string lastUpdate: qsTr("Last update %1")
+    property string by: qsTr("By %1")
+    property string proposedBy: qsTr("Proposed by %1")
     // ProfilePage
     property string information: qsTr("Information")
+    property string moreInformation: qsTr("More information")
     property string profile: qsTr("Profile")
 
     // RevokeDevicePasswordDialog
