@@ -85,7 +85,7 @@ ItemDelegate {
             id: prefLlabel
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            Layout.leftMargin: 8
+            Layout.leftMargin: 20
 
             text: preferenceName
             color: JamiTheme.textColor
@@ -103,7 +103,7 @@ ItemDelegate {
             normalColor: JamiTheme.primaryBackgroundColor
 
             Layout.alignment: Qt.AlignRight | Qt.AlingVCenter
-            Layout.rightMargin: 8
+            Layout.rightMargin: 20
             Layout.preferredWidth: preferredSize
             Layout.preferredHeight: preferredSize
             imageColor: JamiTheme.textColor
@@ -119,7 +119,7 @@ ItemDelegate {
 
             visible: preferenceType === PreferenceItemListModel.SWITCH
             Layout.alignment: Qt.AlignRight | Qt.AlingVCenter
-            Layout.rightMargin: 16
+            Layout.rightMargin: 20
             Layout.preferredHeight: 30
             Layout.preferredWidth: 30
             checked: preferenceCurrentValue === "1"
@@ -134,7 +134,7 @@ ItemDelegate {
             visible: preferenceType === PreferenceItemListModel.LIST
             Layout.preferredWidth: root.width / 2 - 8
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.rightMargin: 4
+            Layout.rightMargin: 20
 
             font.pointSize: JamiTheme.settingsFontSize
             font.kerning: true
@@ -157,7 +157,7 @@ ItemDelegate {
             buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.rightMargin: 4
+            Layout.rightMargin: 20
 
             text: UtilsAdapter.fileName(preferenceCurrentValue)
             toolTipText: JamiStrings.chooseImageFile
@@ -176,7 +176,7 @@ ItemDelegate {
             Layout.preferredWidth: root.width / 2 - 8
             Layout.preferredHeight: 30
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.rightMargin: 4
+            Layout.rightMargin: 20
 
             visible: preferenceType === PreferenceItemListModel.EDITTEXT
             width: root.width / 2 - 8
