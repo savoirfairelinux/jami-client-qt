@@ -351,15 +351,6 @@ Control {
             onEnabledChanged: CallOverlayModel.setEnabled(this, inputPanelSIPAction.enabled)
         },
         Action {
-            id: callTransferAction
-            onTriggered: root.transferClicked()
-            icon.source: JamiResources.phone_forwarded_24dp_svg
-            icon.color: "white"
-            text: JamiStrings.transferCall
-            enabled: CurrentCall.isSIP
-            onEnabledChanged: CallOverlayModel.setEnabled(this, callTransferAction.enabled)
-        },
-        Action {
             id: shareAction
             onTriggered: {
                 if (CurrentCall.isSharing)
@@ -420,8 +411,17 @@ Control {
             icon.source: JamiResources.plugins_24dp_svg
             icon.color: "white"
             text: JamiStrings.viewPlugin
-            enabled: PluginAdapter.callMediaHandlersListCount
+            enabled: PluginAdapter.isEnabled && PluginAdapter.callMediaHandlersListCount
             onEnabledChanged: CallOverlayModel.setEnabled(this, pluginsAction.enabled)
+        },
+        Action {
+            id: callTransferAction
+            onTriggered: root.transferClicked()
+            icon.source: JamiResources.phone_forwarded_24dp_svg
+            icon.color: "white"
+            text: JamiStrings.transferCall
+            enabled: !CurrentCall.isConference
+            onEnabledChanged: CallOverlayModel.setEnabled(this, callTransferAction.enabled)
         },
         Action {
             id: swarmDetailsAction
@@ -458,12 +458,12 @@ Control {
         CallOverlayModel.addSecondaryControl(addPersonAction, addPersonAction.enabled);
         CallOverlayModel.addSecondaryControl(resumePauseCallAction, resumePauseCallAction.enabled);
         CallOverlayModel.addSecondaryControl(inputPanelSIPAction, inputPanelSIPAction.enabled);
-        CallOverlayModel.addSecondaryControl(callTransferAction, callTransferAction.enabled);
         CallOverlayModel.addSecondaryControl(chatAction, chatAction.enabled);
         CallOverlayModel.addSecondaryControl(shareAction, shareAction.enabled);
         CallOverlayModel.addSecondaryControl(layoutAction, layoutAction.enabled);
         CallOverlayModel.addSecondaryControl(recordAction, recordAction.enabled);
         CallOverlayModel.addSecondaryControl(pluginsAction, pluginsAction.enabled);
+        CallOverlayModel.addSecondaryControl(callTransferAction, callTransferAction.enabled);
         CallOverlayModel.addSecondaryControl(swarmDetailsAction, swarmDetailsAction.enabled);
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount();
     }
