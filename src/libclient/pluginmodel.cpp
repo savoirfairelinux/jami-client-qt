@@ -67,24 +67,6 @@ PluginModel::PluginModel()
 
 PluginModel::~PluginModel() {}
 
-void
-PluginModel::setPluginsEnabled(bool enable)
-{
-    PluginManager::instance().setPluginsEnabled(enable);
-    if (!enable)
-        Q_EMIT chatHandlerStatusUpdated(false);
-    else
-        Q_EMIT chatHandlerStatusUpdated(getChatHandlers().size() > 0);
-
-    Q_EMIT modelUpdated();
-}
-
-bool
-PluginModel::getPluginsEnabled() const
-{
-    return PluginManager::instance().getPluginsEnabled();
-}
-
 VectorString
 PluginModel::getInstalledPlugins() const
 {
@@ -111,6 +93,8 @@ PluginModel::getPluginDetails(const QString& path)
         result.description = details["description"];
         result.path = path;
         result.iconPath = details["iconPath"];
+        result.imagePath = details["imagePath"];
+        result.author = details["author"];
         result.version = details["version"];
     }
     if (!pluginsPath_.contains(result.id)) {
@@ -127,32 +111,29 @@ PluginModel::getPluginDetails(const QString& path)
 bool
 PluginModel::installPlugin(const QString& jplPath, bool force)
 {
-    if (getPluginsEnabled()) {
-        auto result = PluginManager::instance().installPlugin(jplPath, force);
-        Q_EMIT modelUpdated();
-        if (result != 0) {
-            switch (result) {
-            case PluginInstallStatus::PLUGIN_ALREADY_INSTALLED:
-                qWarning() << "Plugin already installed";
-                break;
-            case PluginInstallStatus::PLUGIN_OLD_VERSION:
-                qWarning() << "Plugin already installed with a newer version";
-                break;
-            case PluginInstallStatus::SIGNATURE_VERIFICATION_FAILED:
-                qWarning() << "Signature verification failed";
-                break;
-            case PluginInstallStatus::CERTIFICATE_VERIFICATION_FAILED:
-                qWarning() << "Certificate verification failed";
-                break;
-            case PluginInstallStatus::INVALID_PLUGIN:
-                qWarning() << "Invalid plugin";
-                break;
-            }
+    auto result = PluginManager::instance().installPlugin(jplPath, force);
+    Q_EMIT modelUpdated();
+    if (result != 0) {
+        switch (result) {
+        case PluginInstallStatus::PLUGIN_ALREADY_INSTALLED:
+            qWarning() << "Plugin already installed";
+            break;
+        case PluginInstallStatus::PLUGIN_OLD_VERSION:
+            qWarning() << "Plugin already installed with a newer version";
+            break;
+        case PluginInstallStatus::SIGNATURE_VERIFICATION_FAILED:
+            qWarning() << "Signature verification failed";
+            break;
+        case PluginInstallStatus::CERTIFICATE_VERIFICATION_FAILED:
+            qWarning() << "Certificate verification failed";
+            break;
+        case PluginInstallStatus::INVALID_PLUGIN:
+            qWarning() << "Invalid plugin";
+            break;
         }
-        pluginsPath_[getPluginDetails(jplPath).id] = jplPath;
-        return result == 0;
     }
-    return false;
+    pluginsPath_[getPluginDetails(jplPath).id] = jplPath;
+    return result == 0;
 }
 
 bool
@@ -196,7 +177,7 @@ PluginModel::loadPlugin(const QString& path)
     bool status = PluginManager::instance().loadPlugin(path);
     Q_EMIT modelUpdated();
     if (getChatHandlers().size() > 0)
-        Q_EMIT chatHandlerStatusUpdated(getPluginsEnabled());
+        Q_EMIT chatHandlerStatusUpdated(true);
     return status;
 }
 

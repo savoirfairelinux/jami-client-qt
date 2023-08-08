@@ -131,7 +131,6 @@ Popup {
 
                     delegate: PluginHandlerItemDelegate {
                         id: pluginHandlerItemDelegate
-                        visible: PluginModel.getPluginsEnabled()
                         width: pluginhandlerPickerListView.width
                         height: JamiTheme.pluginHandlersPopupViewDelegateHeight
 

@@ -44,13 +44,11 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString bas
 {
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")
-    set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
             &lrc::api::PluginModel::modelUpdated,
             this,
             &PluginAdapter::updateHandlersListCount);
-    connect(this, &PluginAdapter::isEnabledChanged, this, &PluginAdapter::updateHandlersListCount);
     connect(pluginVersionManager_,
             &PluginVersionManager::versionStatusChanged,
             pluginListModel_,
@@ -75,6 +73,10 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString bas
             &PluginListModel::setVersionStatus,
             pluginStoreListModel_,
             &PluginStoreListModel::onVersionStatusChanged);
+    connect(pluginVersionManager_,
+            &PluginVersionManager::newVersionAvailable,
+            pluginListModel_,
+            &PluginListModel::onNewVersionAvailable);
     getPluginsFromStore();
 }
 
@@ -177,13 +179,8 @@ PluginAdapter::getPluginPreferencesCategories(const QString& pluginId,
 void
 PluginAdapter::updateHandlersListCount()
 {
-    if (isEnabled_) {
-        set_callMediaHandlersListCount(lrcInstance_->pluginModel().getCallMediaHandlers().size());
-        set_chatHandlersListCount(lrcInstance_->pluginModel().getChatHandlers().size());
-    } else {
-        set_callMediaHandlersListCount(0);
-        set_chatHandlersListCount(0);
-    }
+    set_callMediaHandlersListCount(lrcInstance_->pluginModel().getCallMediaHandlers().size());
+    set_chatHandlersListCount(lrcInstance_->pluginModel().getChatHandlers().size());
 }
 
 void
@@ -202,4 +199,10 @@ QString
 PluginAdapter::getIconUrl(const QString& pluginId) const
 {
     return baseUrl_ + "/icons/" + pluginId + "?arch=" + Utils::getPlatformString();
+}
+
+QString
+PluginAdapter::getBackgroundImageUrl(const QString& pluginId) const
+{
+    return baseUrl_ + "/backgrounds/" + pluginId + "?arch=" + Utils::getPlatformString();
 }

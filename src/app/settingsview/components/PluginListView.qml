@@ -32,13 +32,13 @@ Rectangle {
         if (pluginLoader.item !== undefined) {
             return -1;
         } else {
-            if (pluginListView.currentIndex === null) {
+            if (pluginListView.currentIndex === 0) {
                 return -1;
             }
             return pluginListView.currentIndex;
         }
     }
-    visible: PluginAdapter.isEnabled && count
+    visible: count
     color: JamiTheme.secondaryBackgroundColor
 
     ColumnLayout {
@@ -48,7 +48,6 @@ Rectangle {
         RowLayout {
             Layout.preferredHeight: JamiTheme.settingsHeaderpreferredHeight
             Layout.fillWidth: true
-            Layout.bottomMargin: 20
             Layout.alignment: Qt.AlignRight
             Label {
                 Layout.fillWidth: true
@@ -58,7 +57,7 @@ Rectangle {
                 color: JamiTheme.textColor
 
                 horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
+                verticalAlignment: Text.AlignBottom
             }
             HeaderToggleSwitch {
                 labelText: "auto update"
