@@ -29,9 +29,11 @@ Item {
     property alias source: image.source
     property string defaultImage: ""
     property string downloadUrl: ""
+    property alias imageLayer: image.layer
     property string fileExtension: downloadUrl.substring(downloadUrl.lastIndexOf("."), downloadUrl.length)
     property string localPath: ""
     property int imageFillMode: 0
+    property alias image: image
 
     AnimatedImage {
         id: image
