@@ -26,6 +26,7 @@ import "../../commoncomponents"
 
 ColumnLayout {
     property bool storeAvailable: true
+    property bool remotePluginHovered : false
     Component.onCompleted: {
         PluginAdapter.getPluginsFromStore();
     }
@@ -53,20 +54,44 @@ ColumnLayout {
         sourceComponent: Flow {
             id: pluginStoreList
             height: childrenRect.height
-            spacing: 20
+            spacing: 10
             Repeater {
                 model: PluginStoreListModel
 
-                delegate: PluginAvailableDelagate {
-                    id: pluginItemDelegate
-                    width: JamiTheme.remotePluginWidthDelegate
-                    height: JamiTheme.remotePluginHeightDelegate
-                    pluginName: Name
-                    pluginIcon: IconPath
-                    pluginDescription: Description
-                    pluginAuthor: Author
-                    pluginShortDescription: ""
-                    pluginStatus: Status
+                delegate: Item {
+                    id: wrapper
+                    function widthProvider() {
+                        if (JamiTheme.remotePluginDelegateWidth  < JamiTheme.remotePluginMinimumDelegateWidth) {
+                            return JamiTheme.remotePluginMinimumDelegateWidth;
+                        }
+                        else if (JamiTheme.remotePluginDelegateWidth  > JamiTheme.remotePluginMaximumDelegateWidth) {
+                            return JamiTheme.remotePluginMaximumDelegateWidth;
+                        }
+                        return JamiTheme.remotePluginDelegateWidth;
+                    }
+                    function heightProvider() {
+                        if (JamiTheme.remotePluginDelegateHeight < JamiTheme.remotePluginMinimumDelegateHeight) {
+                            return JamiTheme.remotePluginMinimumDelegateHeight;
+                        }
+                        else if(JamiTheme.remotePluginDelegateHeight > JamiTheme.remotePluginMaximumDelegateHeight) {
+                            return JamiTheme.remotePluginMaximumDelegateHeight;
+                        }
+                        return JamiTheme.remotePluginDelegateHeight;
+                    }
+                    width: widthProvider() + 10
+                    height: widthProvider() + 6
+                    PluginAvailableDelegate {
+                        id: pluginItemDelegate
+                        anchors.centerIn: parent
+                        width: wrapper.widthProvider() * scalingFactor
+                        height: wrapper.heightProvider() * scalingFactor
+                        pluginName: Name
+                        pluginIcon: IconPath
+                        pluginDescription: Description
+                        pluginAuthor: Author
+                        pluginShortDescription: ""
+                        pluginStatus: Status
+                    }
                 }
             }
         }
