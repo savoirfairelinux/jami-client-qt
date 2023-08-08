@@ -58,10 +58,12 @@ Item {
     property color blackColor: "#000000"
     property color redColor: "red"
     property color whiteColor: "#ffffff"
+    property color darkBlueGreen: "#123F4A"
     property color darkGreyColor: "#272727"
+    property color darkGreyColorOpacityFade: "#cc000000" // 80%
     property color darkGreyColorOpacity: "#be272727" // 77%
     property color tintedBlue: darkTheme ? lightTintedBlue : darkTintedBlue
-    property color lightTintedBlue:"#03B9E9"
+    property color lightTintedBlue: "#03B9E9"
     property color darkTintedBlue: "#005699"
     property color sysColor: "#F0EFEF"
 
@@ -386,8 +388,12 @@ Item {
     property real pluginHandlersPopupViewHeight: 200
     property real pluginHandlersPopupViewDelegateHeight: 50
     property color pluginDefaultBackgroundColor: "#666666"
-    property real remotePluginWidthDelegate: 350
-    property real remotePluginHeightDelegate: 400
+    property real remotePluginMinimumDelegateWidth: 430
+    property real remotePluginMinimumDelegateHeight: 260
+    property real remotePluginMaximumDelegateWidth: 645
+    property real remotePluginMaximumDelegateHeight: 390
+    property real remotePluginDelegateWidth: remotePluginMinimumDelegateWidth * baseZoom
+    property real remotePluginDelegateHeight: remotePluginMinimumDelegateHeight * baseZoom
     property color pluginViewBackgroundColor: darkTheme ? "#000000" : "#F0EFEF"
     property real secondaryDialogDimension: 500
 

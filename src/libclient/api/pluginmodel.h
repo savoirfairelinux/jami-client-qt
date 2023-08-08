@@ -43,7 +43,9 @@ struct PluginDetails
     QString description = "";
     QString path = "";
     QString version = "";
+    QString author = "";
     QString iconPath = "";
+    QString imagePath = "";
     bool loaded = false;
 };
 
@@ -62,18 +64,6 @@ class LIB_EXPORT PluginModel : public QObject
 public:
     PluginModel();
     ~PluginModel();
-
-    /**
-     * Enable/disable plugins
-     * @param if plugin enabled
-     */
-    Q_INVOKABLE void setPluginsEnabled(bool enable);
-
-    /**
-     * Get if plugins are enabled
-     * @return plugins enabled
-     */
-    Q_INVOKABLE bool getPluginsEnabled() const;
 
     /**
      * Get list of installed plugins
