@@ -31,7 +31,9 @@ Item {
 
     property alias source: image.source
     property alias status: image.status
+    property alias fillMode: image.fillMode
     property alias cache: image.cache
+    property alias image: image
     property alias mirror: image.mirror
     property string color: "transparent"
     property bool hovered: false
@@ -40,7 +42,7 @@ Item {
 
     property bool isSvg: {
         var match = /[^.]+$/.exec(source);
-        return match !== null && match[0] === 'svg';
+        return match != null && match[0] === 'svg';
     }
 
     anchors.horizontalCenterOffset: offset.x

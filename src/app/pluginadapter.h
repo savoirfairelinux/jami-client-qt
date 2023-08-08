@@ -55,6 +55,7 @@ public:
     Q_INVOKABLE void cancelDownload(const QString& pluginId);
     Q_INVOKABLE void setAutoUpdate(bool state);
     Q_INVOKABLE QString getIconUrl(const QString& pluginId) const;
+    Q_INVOKABLE QString getBackgroundImageUrl(const QString& pluginId) const;
 
 protected:
     Q_INVOKABLE QVariant getMediaHandlerSelectableModel(const QString& callId);

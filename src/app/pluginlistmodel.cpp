@@ -62,16 +62,24 @@ PluginListModel::data(const QModelIndex& index, int role) const
     switch (role) {
     case Role::PluginName:
         return QVariant(details.name);
+    case Role::PluginVersion:
+        return QVariant(details.version);
     case Role::PluginDescription:
         return QVariant(details.description);
     case Role::PluginId:
         return QVariant(installedPlugins_.at(index.row()));
     case Role::PluginIcon:
         return QVariant(details.iconPath);
+    case Role::PluginImage:
+        return QVariant(details.imagePath);
     case Role::IsLoaded:
         return QVariant(details.loaded);
+    case Role::PluginAuthor:
+        return QVariant(details.author);
     case Role::Status:
         return QVariant(pluginStatus_.value(installedPlugins_.at(index.row())));
+    case Role::NewPluginAvailable:
+        return QVariant(newVersionAvailable_.value(installedPlugins_.at(index.row())));
     }
     return QVariant();
 }
@@ -83,9 +91,13 @@ PluginListModel::roleNames() const
     roles[PluginName] = "PluginName";
     roles[PluginId] = "PluginId";
     roles[PluginIcon] = "PluginIcon";
+    roles[PluginImage] = "PluginImage";
+    roles[PluginVersion] = "PluginVersion";
+    roles[PluginAuthor] = "PluginAuthor";
     roles[IsLoaded] = "IsLoaded";
     roles[Status] = "Status";
     roles[PluginDescription] = "PluginDescription";
+    roles[NewPluginAvailable] = "NewPluginAvailable";
     return roles;
 }
 
@@ -164,6 +176,41 @@ PluginListModel::filterPlugins(VectorString& list) const
                list.cend());
 }
 
+void
+PluginListModel::onNewVersionAvailable(const QString& pluginId, const QString& version)
+{
+    // check if pluginId exists in installedPlugins_
+    auto pluginIndex = -1;
+    for (auto& p : installedPlugins_) {
+        auto details = lrcInstance_->pluginModel().getPluginDetails(p);
+        if (details.name == pluginId) {
+            pluginIndex = installedPlugins_.indexOf(p, -1);
+            break;
+        }
+    }
+    if (pluginIndex == -1) {
+        return;
+    }
+    newVersionAvailable_[pluginId] = version;
+    pluginChanged(pluginIndex);
+}
+
+void
+PluginListModel::deleteLatestVersion(const QString& pluginId)
+{
+    auto pluginIndex = -1;
+    for (auto& p : installedPlugins_) {
+        auto details = lrcInstance_->pluginModel().getPluginDetails(p);
+        if (details.name == pluginId) {
+            pluginIndex = installedPlugins_.indexOf(p, -1);
+            break;
+        }
+    }
+    if (pluginIndex == -1) {
+        return;
+    }
+    newVersionAvailable_.remove(pluginId);
+}
 void
 PluginListModel::onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status)
 {

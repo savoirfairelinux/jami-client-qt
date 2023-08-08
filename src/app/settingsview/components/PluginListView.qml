@@ -48,7 +48,6 @@ Rectangle {
         RowLayout {
             Layout.preferredHeight: JamiTheme.settingsHeaderpreferredHeight
             Layout.fillWidth: true
-            Layout.bottomMargin: 20
             Layout.alignment: Qt.AlignRight
             Label {
                 Layout.fillWidth: true
@@ -58,7 +57,7 @@ Rectangle {
                 color: JamiTheme.textColor
 
                 horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
+                verticalAlignment: Text.AlignBottom
             }
             HeaderToggleSwitch {
                 labelText: "auto update"
