@@ -64,7 +64,6 @@ Item {
                 spyDownloadSuccessful.wait()
 
                 compare(findChild(cachedImage,"image").source, Qt.url("file://"+localPath), "image source")
-                compare(findChild(cachedImage,"default_img").visible,false, "default_img visible")
 
             }
 
@@ -78,8 +77,7 @@ Item {
 
                 spyDownloadFailed.wait()
 
-                compare(findChild(cachedImage,"image").source,"", "image source")
-                compare(findChild(cachedImage,"image").visible,true, "default_img visible")
+                compare(findChild(cachedImage,"image").source,cachedImage.defaultImage, "image source")
             }
         }
     }

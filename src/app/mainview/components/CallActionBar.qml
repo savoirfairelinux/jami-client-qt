@@ -420,7 +420,7 @@ Control {
             icon.source: JamiResources.plugins_24dp_svg
             icon.color: "white"
             text: JamiStrings.viewPlugin
-            enabled: PluginAdapter.isEnabled && PluginAdapter.callMediaHandlersListCount
+            enabled: PluginAdapter.callMediaHandlersListCount
             onEnabledChanged: CallOverlayModel.setEnabled(this, pluginsAction.enabled)
         },
         Action {

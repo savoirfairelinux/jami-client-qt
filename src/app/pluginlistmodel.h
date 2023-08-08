@@ -32,7 +32,11 @@ public:
         PluginName = Qt::UserRole + 1,
         PluginDescription,
         PluginId,
+        PluginVersion,
+        PluginAuthor,
+        PluginImage,
         PluginIcon,
+        NewPluginAvailable,
         IsLoaded,
         Status
     };
@@ -60,6 +64,7 @@ public:
     Q_INVOKABLE void pluginChanged(int index);
     Q_INVOKABLE void addPlugin();
     Q_INVOKABLE void disableAllPlugins();
+    Q_INVOKABLE void deleteLatestVersion(const QString& pluginId);
 
 Q_SIGNALS:
     void versionCheckRequested(const QString& pluginId);
@@ -68,10 +73,12 @@ Q_SIGNALS:
     void disabled(const QString& pluginId);
 public Q_SLOTS:
     void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
+    void onNewVersionAvailable(const QString& pluginId, const QString& version);
 
 private:
     LRCInstance* lrcInstance_ = nullptr;
     void filterPlugins(VectorString& list) const;
     VectorString installedPlugins_ {};
     QMap<QString, PluginStatus::Role> pluginStatus_ {};
+    QMap<QString, QString> newVersionAvailable_ {};
 };
