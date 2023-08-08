@@ -27,6 +27,7 @@ Rectangle {
     id: root
     property string accountId: ""
     required property string pluginId
+    required property bool isLoaded
     width: parent.width
 
     property int count: pluginPreferenceView.count + pluginPreferenceViewCategory.count
@@ -274,7 +275,7 @@ Rectangle {
 
             onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                     "title": JamiStrings.resetPreferences,
-                    "infoText": JamiStrings.pluginResetConfirmation.arg(pluginName),
+                    "infoText": JamiStrings.pluginResetConfirmation.arg(pluginId),
                     "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
                     "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
                     "buttonCallBacks": [function () {
