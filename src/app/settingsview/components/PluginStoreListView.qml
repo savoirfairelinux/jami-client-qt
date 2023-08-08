@@ -57,7 +57,7 @@ ColumnLayout {
             Repeater {
                 model: PluginStoreListModel
 
-                delegate: PluginAvailableDelagate {
+                delegate: PluginAvailableDelegate {
                     id: pluginItemDelegate
                     width: JamiTheme.remotePluginWidthDelegate
                     height: JamiTheme.remotePluginHeightDelegate
