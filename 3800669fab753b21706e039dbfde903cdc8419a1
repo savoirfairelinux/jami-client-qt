@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51154813_a19d5e76",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-08-09T19:04:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dd32147_17e0bf19",
+      "revId": "3800669fab753b21706e039dbfde903cdc8419a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b5162dc_382d29fe",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-08-09T15:35:37Z",
       "side": 1,
       "message": "misplaced and string should be \n`More information` , not plural form of uncountable words",
+      "range": {
+        "startLine": 633,
+        "startChar": 4,
+        "endLine": 633,
+        "endChar": 63
+      },
+      "revId": "3800669fab753b21706e039dbfde903cdc8419a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58463a5e_2db8d594",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-08-09T19:04:18Z",
+      "side": 1,
+      "message": "\u003e misplaced and string should be \n\u003e `More information` , not plural form of uncountable words\n\nThat is contain in the design https://xd.adobe.com/view/26c8e935-110d-4ae8-8f00-841ea0759dc2-739b/screen/8e0b368d-3218-4e64-a723-55d035f3af82/specs/",
+      "parentUuid": "4b5162dc_382d29fe",
       "range": {
         "startLine": 633,
         "startChar": 4,
