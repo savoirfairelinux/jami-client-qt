@@ -336,6 +336,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "262132e7_22ac95bb",
+        "filename": "src/app/settingsview/components/PluginPreferencesView.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-09T13:10:51Z",
+      "side": 1,
+      "message": "to remove",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 56,
+        "endChar": 65
+      },
+      "revId": "f8b06301f049a2e49d262011ee911b3115a0ac4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0094d488_81a838cc",
+        "filename": "src/app/settingsview/components/PluginPreferencesView.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-09T13:10:51Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 59,
+        "startChar": 20,
+        "endLine": 59,
+        "endChar": 69
+      },
+      "revId": "f8b06301f049a2e49d262011ee911b3115a0ac4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e44bad84_80dc5813",
         "filename": "src/app/settingsview/components/PluginPreferencesView.qml",
         "patchSetId": 7
