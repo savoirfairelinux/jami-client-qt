@@ -279,7 +279,7 @@ Popup {
             }
 
             MessageOptionButton {
-                visible: root.isOutgoing && type === Interaction.Type.TEXT
+                visible: root.isOutgoing && (type === Interaction.Type.TEXT || type === Interaction.Type.DATA_TRANSFER)
                 textButton: JamiStrings.deleteMessage
                 iconSource: JamiResources.delete_svg
                 Layout.fillWidth: true

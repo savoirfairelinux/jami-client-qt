@@ -332,6 +332,7 @@ Item {
     property string disabledAccount: qsTr("The account is disabled")
     property string noNetworkConnectivity: qsTr("No network connectivity")
     property string deletedMessage: qsTr("Deleted message")
+    property string deletedMedia: qsTr("Deleted media")
     property string backCall: qsTr("Back to Call")
 
     //MessagesResearch

@@ -119,6 +119,9 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             auto interaction = item.interactions->rbegin()->second;
             auto& accInfo = lrcInstance_->getCurrentAccountInfo();
             if (interaction.type == interaction::Type::DATA_TRANSFER) {
+                if (interaction.commit.value("tid").isEmpty()) {
+                    return QVariant(tr("Deleted media"));
+                }
                 return QVariant(interaction.commit.value("displayName"));
             } else if (interaction.type == lrc::api::interaction::Type::CALL) {
                 return QVariant(interaction::getCallInteractionString(interaction.authorUri
