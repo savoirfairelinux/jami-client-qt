@@ -134,7 +134,7 @@ VideoProvider::captureRawVideoFrame(const QString& id)
         QVideoFrame& videoFrame = it->second.videoFrame;
         if (videoFrame.map(QVideoFrame::ReadOnly)) {
             auto imageFormat = QVideoFrameFormat::imageFormatFromPixelFormat(
-                QVideoFrameFormat::Format_RGBA8888);
+                QVideoFrameFormat::Format_YUV420P);
             img = QImage(videoFrame.bits(0),
                          videoFrame.width(),
                          videoFrame.height(),
@@ -149,8 +149,8 @@ void
 VideoProvider::onRendererStarted(const QString& id, const QSize& size)
 {
     static const auto pixelFormat = avModel_.useDirectRenderer()
-                                        ? QVideoFrameFormat::Format_RGBA8888
-                                        : QVideoFrameFormat::Format_BGRA8888;
+                                        ? QVideoFrameFormat::Format_YUV420P
+                                        : QVideoFrameFormat::Format_YUV420P;
     auto frameFormat = QVideoFrameFormat(size, pixelFormat);
 
     renderersMutex_.lockForWrite();
@@ -204,11 +204,15 @@ VideoProvider::onFrameBufferRequested(const QString& id, AVFrame* avframe)
     // underlying buffer.
     // TODO: ideally, the colorspace format should likely come from jamid and
     // be the decoded format.
-    avframe->format = AV_PIX_FMT_RGBA;
+    avframe->format = AV_PIX_FMT_YUV420P;
     avframe->width = videoFrame.width();
     avframe->height = videoFrame.height();
     avframe->data[0] = (uint8_t*) videoFrame.bits(0);
     avframe->linesize[0] = videoFrame.bytesPerLine(0);
+    avframe->data[1] = avframe->data[0] + avframe->linesize[0] * avframe->height;
+    avframe->linesize[1] = avframe->linesize[0] >> 1;
+    avframe->data[2] = avframe->data[1] + avframe->linesize[0] * avframe->height >> 2;
+    avframe->linesize[2] = avframe->linesize[0] >> 1;
 }
 
 void
