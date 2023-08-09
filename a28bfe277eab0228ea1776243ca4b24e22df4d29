@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58812aa5_448d5838",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-09T12:53:48Z",
+      "side": 1,
+      "message": "Missing related tickets",
+      "revId": "a28bfe277eab0228ea1776243ca4b24e22df4d29",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a00659d_b07c34ca",
+        "filename": "daemon",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-09T12:53:48Z",
+      "side": 1,
+      "message": "need to be updated once the daemon patch is merged",
+      "revId": "a28bfe277eab0228ea1776243ca4b24e22df4d29",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
