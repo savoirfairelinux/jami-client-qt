@@ -821,6 +821,30 @@
       },
       "revId": "f8b06301f049a2e49d262011ee911b3115a0ac4f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "597e4cee_35b2f03b",
+        "filename": "src/app/settingsview/components/PluginPreferencesView.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-09T15:35:37Z",
+      "side": 1,
+      "message": "Still pending",
+      "parentUuid": "12b8b759_ce28a667",
+      "range": {
+        "startLine": 141,
+        "startChar": 24,
+        "endLine": 149,
+        "endChar": 25
+      },
+      "revId": "f8b06301f049a2e49d262011ee911b3115a0ac4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
