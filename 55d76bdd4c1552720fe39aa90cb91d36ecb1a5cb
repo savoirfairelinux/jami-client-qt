@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5263da8c_1d1ca62f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-10T11:29:27Z",
+      "side": 1,
+      "message": "Use `boundsBehavior: Flickable.StopAtBounds` in the flickables to avoid scrolling beyond view",
+      "revId": "55d76bdd4c1552720fe39aa90cb91d36ecb1a5cb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
