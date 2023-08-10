@@ -81,6 +81,30 @@
       },
       "revId": "3800669fab753b21706e039dbfde903cdc8419a1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62c976ae_2b11dae6",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-10T11:05:17Z",
+      "side": 1,
+      "message": "\"Informations\" is not a word in standard English. If the design has it it is also misspelled, do fix it.",
+      "parentUuid": "58463a5e_2db8d594",
+      "range": {
+        "startLine": 633,
+        "startChar": 4,
+        "endLine": 633,
+        "endChar": 63
+      },
+      "revId": "3800669fab753b21706e039dbfde903cdc8419a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
