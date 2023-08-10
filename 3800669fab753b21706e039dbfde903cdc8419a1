@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a521b6fb_27ab3435",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-10T12:55:06Z",
+      "side": 1,
+      "message": "still missing",
+      "parentUuid": "51154813_a19d5e76",
+      "revId": "3800669fab753b21706e039dbfde903cdc8419a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b5162dc_382d29fe",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 10
