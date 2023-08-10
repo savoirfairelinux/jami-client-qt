@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f769e0a8_2222c1bc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-10T17:03:13Z",
+      "side": 1,
+      "message": "still missing, please only mark as done when added and pushed.",
+      "parentUuid": "6daa71d6_5a794b04",
+      "revId": "3800669fab753b21706e039dbfde903cdc8419a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b5162dc_382d29fe",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 10
