@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87ac768b_08d9ba0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-08-11T22:13:53Z",
+      "side": 1,
+      "message": "Hopefully this small unrelated to current issue is not too much inconvenience. Thank you",
+      "revId": "a9b21b2e2bb97dbda983944340733a4045ea0e19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aee81618_e2c42e2b",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-08-11T22:13:53Z",
+      "side": 1,
+      "message": "Change to sentence case?\nShould string be changed to: `Return to call`\n\nThank you",
+      "range": {
+        "startLine": 336,
+        "startChar": 36,
+        "endLine": 336,
+        "endChar": 48
+      },
+      "revId": "a9b21b2e2bb97dbda983944340733a4045ea0e19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
