@@ -169,6 +169,8 @@ DISTRIBUTIONS := \
 	ubuntu_23.04 \
 	fedora_37 \
 	fedora_38 \
+	alma_8 \
+	alma_9 \
 	opensuse-leap_15.4 \
 	snap
 
