@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "422e9e05_f6396f82",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-11T17:19:11Z",
+      "side": 1,
+      "message": "Identifier should be after \"Leave conversation\" (and also Identifier should be visible and the id ellipsed if necessary)\n\nWhy a switch for \"Add an alias\" -\u003e Just directly the text input? So if empty it\u0027s not overriden, else it is!",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "a27ea3a442c72ad610c631a348118ca15f2dbb52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fba0dc24_c95d04f1",
         "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
         "patchSetId": 9
