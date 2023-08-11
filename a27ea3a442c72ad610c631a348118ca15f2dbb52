@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ecda66c_cee95218",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-11T17:01:44Z",
+      "side": 1,
+      "message": "add gitlab tickets \u0026 improve commit message. it\u0027s a 800 lines changes you\u0027re describing in 6 words there.",
+      "range": {
+        "startLine": 7,
+        "startChar": 18,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "a27ea3a442c72ad610c631a348118ca15f2dbb52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fba0dc24_c95d04f1",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-11T17:01:44Z",
+      "side": 1,
+      "message": "how to set the first rdv point if there is no button shown?",
+      "range": {
+        "startLine": 463,
+        "startChar": 60,
+        "endLine": 463,
+        "endChar": 82
+      },
+      "revId": "a27ea3a442c72ad610c631a348118ca15f2dbb52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f27aaebc_3e4db6aa",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-11T17:01:44Z",
+      "side": 1,
+      "message": "cleanup patch",
+      "range": {
+        "startLine": 675,
+        "startChar": 24,
+        "endLine": 675,
+        "endChar": 26
+      },
+      "revId": "a27ea3a442c72ad610c631a348118ca15f2dbb52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "542a17d0_c3ea5040",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-11T17:01:44Z",
+      "side": 1,
+      "message": "not planned finally",
+      "range": {
+        "startLine": 427,
+        "startChar": 42,
+        "endLine": 427,
+        "endChar": 68
+      },
+      "revId": "a27ea3a442c72ad610c631a348118ca15f2dbb52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
