@@ -170,6 +170,8 @@ DISTRIBUTIONS := \
 	ubuntu_23.04 \
 	fedora_37 \
 	fedora_38 \
+	alma_8 \
+	alma_9 \
 	opensuse-leap_15.4 \
 	snap
 
@@ -209,6 +211,7 @@ $(1)-docker-run-command := docker run \
   -v '$(CURDIR)/$(RELEASE_TARBALL_FILENAME)':'/src/$(RELEASE_TARBALL_FILENAME)' \
   -v '$(CURDIR)/extras/packaging/gnu-linux/packages/$(1)':/opt/output \
   -t $(and $(IS_SHELL_INTERACTIVE),-i) \
+  --storage-opt size=150G \
   $(3) \
   "$$($(1)-docker-image-name)"
 
