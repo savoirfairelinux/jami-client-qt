@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c257887e_50e4e50e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-12T17:27:32Z",
+      "side": 1,
+      "message": "no need to say it\u0027s for orca, there are other screen readers!",
+      "range": {
+        "startLine": 7,
+        "startChar": 43,
+        "endLine": 7,
+        "endChar": 52
+      },
+      "revId": "a8425063ee07f3c094739f4accb13044ed579bbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1065fdd3_383b2176",
+        "filename": "daemon",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-08-12T17:27:32Z",
+      "side": 1,
+      "message": "no need to bump daemon in this patch!",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "a8425063ee07f3c094739f4accb13044ed579bbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
