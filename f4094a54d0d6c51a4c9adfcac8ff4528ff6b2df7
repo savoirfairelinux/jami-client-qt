@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a25c05c1_81c78ead",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-08-14T21:53:54Z",
+      "side": 1,
+      "message": "1. Should this have a trailing `d` to become `Last Updated`?\nCf. https://addons.thunderbird.net/thunderbird/addon/cardbook/\n2. Is there a date associated with this string? If so, should the string include the date as a variable, i.e. `Last updated: %1`\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1306#note_45016",
+      "range": {
+        "startLine": 628,
+        "startChar": 38,
+        "endLine": 628,
+        "endChar": 49
+      },
+      "revId": "f4094a54d0d6c51a4c9adfcac8ff4528ff6b2df7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
