@@ -1,35 +1,35 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hy" sourcelanguage="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cmn" sourcelanguage="en">
 <context>
     <name>CallAdapter</name>
     <message>
         <location filename="../src/app/calladapter.cpp" line="153"/>
         <source>Missed call</source>
-        <translation>Հեռացած զանգ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="154"/>
         <source>Missed call with %1</source>
-        <translation>% 1 հեռախոսազանգը բաց թողել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="456"/>
         <source>Incoming call</source>
-        <translation>Հեռախոսազանգ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="457"/>
         <source>%1 is calling you</source>
-        <translation>%1 զանգում է ձեզ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="468"/>
         <source>is calling you</source>
-        <translation>Ձեզ է կանչում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="945"/>
         <source>Screenshot</source>
-        <translation>Էկրանային նկար</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -37,12 +37,12 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="189"/>
         <source>%1 received a new message</source>
-        <translation>% 1 նոր հաղորդագրություն է ստացել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="244"/>
         <source>%1 received a new trust request</source>
-        <translation>%1-ը ստացել է նոր վստահության խնդրանք</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -50,7 +50,7 @@
     <message>
         <location filename="../src/app/currentcall.cpp" line="185"/>
         <source>Me</source>
-        <translation>Ես</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -58,27 +58,27 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="137"/>
         <source>Private</source>
-        <translation>Անձնական</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="139"/>
         <source>Private group (restricted invites)</source>
-        <translation>Անձնական խումբ (սահմանափակ հրավիրումներ)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="141"/>
         <source>Private group</source>
-        <translation>Անձնական խումբ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="143"/>
         <source>Public group</source>
-        <translation>Հանրային խումբ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="324"/>
         <source>An error occurred while fetching this repository</source>
-        <translation>Սխալ է տեղի ունեցել այս պահեստը բերելու ժամանակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="326"/>
@@ -98,7 +98,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="328"/>
         <source>An invalid message was detected</source>
-        <translation>Հատուկ հաղորդագրություն է հայտնաբերվել</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -106,460 +106,460 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="29"/>
         <source>Accept</source>
-        <translation>Ընդունիր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
         <source>Accept in audio</source>
-        <translation>Հեռախոսով ընդունել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="31"/>
         <source>Accept in video</source>
-        <translation>Հեռուստատեսությամբ ընդունեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
         <source>Refuse</source>
-        <translation>Բացառություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
         <source>End call</source>
-        <translation>Վերջնական զանգը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
         <source>Incoming audio call from {}</source>
-        <translation>{}-ից ստացված ձայնային զանգ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
         <source>Incoming video call from {}</source>
-        <translation>Հեռուստաալիք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
         <source>Invitations</source>
-        <translation>հրավիրումներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="39"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>Ջամիը համընդհանուր հաղորդակցման հարթակ է, որի հիմքում է գաղտնիությունը, որը հիմնված է բոլորի համար անվճար տարածված ցանցի վրա:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>Swarm տեխնոլոգիայի միգրացիան թույլ կտա սինկրոնացնել այս զրույցը բազմաթիվ սարքերի միջեւ եւ բարելավել հուսալիությունը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="44"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="711"/>
         <source>Could not re-connect to the Jami daemon (jamid).
 Jami will now quit.</source>
-        <translation>Չկարողացա կապվել Ջամի դեմոնի հետ (Ջամիդ): Ջամիը հիմա կլքի:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="710"/>
         <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation>Փորձելով կապ հաստատել Ջամի դեմոնի հետ...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="48"/>
         <source>Version</source>
-        <translation>Վարկած</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="51"/>
         <source>Jami is a free universal communication software that respects the freedom and privacy of its users.</source>
-        <translation>Ջամի-ն ազատ համընդհանուր հաղորդակցման ծրագրային ապահովում է, որը հարգում է օգտատերերի ազատությունը եւ գաղտնիությունը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
         <source>Display QR code</source>
-        <translation>QR կոդ ցուցադրեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="55"/>
         <source>Open settings</source>
-        <translation>Բաց կարգավորումներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="56"/>
         <source>Close settings</source>
-        <translation>Հակառակ կարգավորումներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="57"/>
         <source>Add Account</source>
-        <translation>Բաժնորդագրություն ավելացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Add to conference</source>
-        <translation>Բարձրացնել համաժողովը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
         <source>Add to conversation</source>
-        <translation>Խոսքի մեջ ավելացրեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="62"/>
         <source>Transfer this call</source>
-        <translation>Փոխանցեք այս զանգը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="63"/>
         <source>Transfer to</source>
-        <translation>Տեղափոխություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="66"/>
         <source>Authentication required</source>
-        <translation>Անհրաժեշտ է հավաստիացում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="67"/>
         <source>Your session has expired or been revoked on this device. Please enter your password.</source>
-        <translation>Ձեր նստաշրջանը ավարտվել է կամ չեղյալ է հայտարարվել այս սարքում: Խնդրում ենք մուտքագրել գաղտնաբառը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="68"/>
         <source>JAMS server</source>
-        <translation>JAMS սերվեր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="69"/>
         <source>Authenticate</source>
-        <translation>Հավատարմագրեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="70"/>
         <source>Delete account</source>
-        <translation>Հաշիվը ջնջել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="71"/>
         <source>In progress…</source>
-        <translation>Գործընթացում...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="72"/>
         <source>Authentication failed</source>
-        <translation>Փաստագրական հաստատումը ձախողվել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="73"/>
         <source>Password</source>
-        <translation>Անձանագրություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="74"/>
         <source>Username</source>
-        <translation>Օգտագործողի անունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
         <source>Alias</source>
-        <translation>Անանուններ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="78"/>
         <source>Allow incoming calls from unknown contacts</source>
-        <translation>Թույլ տալ մուտքագրվող զանգերը անհայտ կոնտակտներից</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="79"/>
         <source>Convert your account into a rendezvous point</source>
-        <translation>Ձեր հաշիվը դարձեք հանդիպման վայր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="80"/>
         <source>Automatically answer calls</source>
-        <translation>Ավտոմատ պատասխանել զանգերին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="81"/>
         <source>Enable custom ringtone</source>
-        <translation>Հնարավորացնել հարմարվողական զանգահարման ձայնը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="82"/>
         <source>Select custom ringtone</source>
-        <translation>Ընտրեք հարմարվողական զանգահարման ձայնը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="83"/>
         <source>Select a new ringtone</source>
-        <translation>Ընտրեք նոր զանգահարիչ ձայն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="84"/>
         <source>Certificate File (*.crt)</source>
-        <translation>վկայականի ֆայլ (*.crt)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="85"/>
         <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation>Ձայնային ֆայլ (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="88"/>
         <source>Enable read receipts</source>
-        <translation>Հեռախոսահամարներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
         <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation>Հեռացնել եւ ստանալ հաղորդագրություն, որը ցույց է տալիս, որ հաղորդագրություն է ցուցադրվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="92"/>
         <source>Voicemail</source>
-        <translation>Ձայնային փոստ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
         <source>Voicemail dial code</source>
-        <translation>Ձայնային փոստի զանգվածային կոդը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="96"/>
         <source>Security</source>
-        <translation>Անվտանգություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
         <source>Enable SDES key exchange</source>
-        <translation>Ստեղծել SDES բանալիների փոխանակում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="98"/>
         <source>Encrypt negotiation (TLS)</source>
-        <translation>Գլխավորագրման բանակցություններ (TLS)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="99"/>
         <source>CA certificate</source>
-        <translation>CA վկայական</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="100"/>
         <source>User certificate</source>
-        <translation>Օգտագործողի վկայագիր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="101"/>
         <source>Private key</source>
-        <translation>Անձնական բանալին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="102"/>
         <source>Private key password</source>
-        <translation>Անձնական բանալի գաղտնաբառ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="103"/>
         <source>Verify certificates for incoming TLS connections</source>
-        <translation>Ստուգեք մուտքագրվող TLS կապերի վկայականները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="104"/>
         <source>Verify server TLS certificates</source>
-        <translation>Վավերացնել սերվերների TLS վկայականները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="105"/>
         <source>Require certificate for incoming TLS connections</source>
-        <translation>Հայցելել վկայագիր մուտքագրվող TLS կապերի համար</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="107"/>
         <source>Select a private key</source>
-        <translation>Ընտրեք գաղտնի բանալին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="108"/>
         <source>Select a user certificate</source>
-        <translation>Ընտրեք օգտագործողի վկայագիր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="109"/>
         <source>Select a CA certificate</source>
-        <translation>Ընտրեք CA վկայագիր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="111"/>
         <source>Key File (*.key)</source>
-        <translation>Բացառիկ ֆայլ (*.բացառիկ)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="114"/>
         <source>Connectivity</source>
-        <translation>Կապակցվածություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="115"/>
         <source>Auto Registration After Expired</source>
-        <translation>Ավտոմեքենայով գրանցում ժամկետը լրացնելուց հետո</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="116"/>
         <source>Registration expiration time (seconds)</source>
-        <translation>գրանցման ժամկետի ժամկետը (սեկոնդեր)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="117"/>
         <source>Network interface</source>
-        <translation>Համացանցային ինտերֆեյս</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="118"/>
         <source>Use UPnP</source>
-        <translation>Օգտագործեք UPnP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="119"/>
         <source>Use TURN</source>
-        <translation>Օգտագործեք TURN</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="120"/>
         <source>TURN address</source>
-        <translation>ՏԵՐՆԻՆԻՆ հասցե</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="121"/>
         <source>TURN username</source>
-        <translation>TURN օգտատերու անուն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="122"/>
         <source>TURN password</source>
-        <translation>TURN գաղտնաբառ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
         <source>TURN Realm</source>
-        <translation>ՏՈՐՆԻՍՏԵՐ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="124"/>
         <source>Use STUN</source>
-        <translation>Օգտագործեք STUN</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="125"/>
         <source>STUN address</source>
-        <translation>STUN հասցեն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="128"/>
         <source>Allow IP Auto Rewrite</source>
-        <translation>թույլ տալ ավտոմատ կերպով վերանписаել IP- ն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
         <source>Public address</source>
-        <translation>Հանրային հասցե</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
         <source>Use custom address and port</source>
-        <translation>Օգտագործեք հարմարեցված հասցե եւ նավահանգիստ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="131"/>
         <source>Address</source>
-        <translation>Գիրք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="132"/>
         <source>Port</source>
-        <translation>Պորտ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="135"/>
         <source>Media</source>
-        <translation>ԶԼՄ-ներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="136"/>
         <source>Enable video</source>
-        <translation>Հեռուստացույցը ակտիվացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="144"/>
         <source>SDP Session Negotiation (ICE Fallback)</source>
-        <translation>SDP-ի նստաշրջանի բանակցությունները (ICE Fallback)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="145"/>
         <source>Only used during negotiation in case ICE is not supported</source>
-        <translation>Միայն բանակցությունների ընթացքում օգտագործվում է այն դեպքում, եթե ICE- ն չի աջակցում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="146"/>
         <source>Audio RTP minimum Port</source>
-        <translation>Audio RTP նվազագույն պորտ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="147"/>
         <source>Audio RTP maximum Port</source>
-        <translation>Ավਡੀਓ RTP առավելագույն պորտ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="148"/>
         <source>Video RTP minimum Port</source>
-        <translation>Video RTP նվազագույն պորտ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="149"/>
         <source>Video RTP maximum port</source>
-        <translation>Տեսանյութի RTP առավելագույն պորտ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="152"/>
         <source>Enable local peer discovery</source>
-        <translation>Հնարավորացնել տեղական զուգընկերների հայտնաբերումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="153"/>
         <source>Connect to other DHT nodes advertising on your local network.</source>
-        <translation>Կապվեք ձեր տեղական ցանցում գովազդող DHT խանութների հետ:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="155"/>
         <source>Enable proxy</source>
-        <translation>Փոխնախարարական գործառույթներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="156"/>
         <source>Proxy address</source>
-        <translation>Փոխանակման հասցե</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="157"/>
         <source>Bootstrap</source>
-        <translation>Բուտստրաֆ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
         <source>Back</source>
-        <translation>Վերադարձ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
         <source>Account</source>
-        <translation>Հաշվարկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
         <source>General</source>
-        <translation>Գլխավոր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
@@ -569,143 +569,143 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="173"/>
         <source>Audio</source>
-        <translation>Ձայնային ձայն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="174"/>
         <source>Microphone</source>
-        <translation>Միկրոֆոն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
         <source>Select audio input device</source>
-        <translation>Ընտրեք ձայնային մուտքագրման սարքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
         <source>Output device</source>
-        <translation>Արտադրանքի սարք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="177"/>
         <source>Select audio output device</source>
-        <translation>Ընտրեք ձայնային արտադրանքի սարքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
         <source>Ringtone device</source>
-        <translation>Զանգահարիչ սարք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="179"/>
         <source>Select ringtone output device</source>
-        <translation>Ընտրեք զանգահարահարման ձայնային ձայնի արտադրանքի սարքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="180"/>
         <source>Audio manager</source>
-        <translation>Ձայնային կառավարիչ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="184"/>
         <source>Video</source>
-        <translation>Տեսանյութ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="185"/>
         <source>Select video device</source>
-        <translation>Ընտրեք տեսահոլովակի սարք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
         <source>Device</source>
-        <translation>սարք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="187"/>
         <source>Resolution</source>
-        <translation>Բանաձեւ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="188"/>
         <source>Select video resolution</source>
-        <translation>Ընտրեք տեսանյութի լուծումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="189"/>
         <source>Frames per second</source>
-        <translation>Սկունտ մեկ ֆրանկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="190"/>
         <source>Select video frame rate (frames per second)</source>
-        <translation>Ընտրեք տեսանյութի ֆրանկային արագությունը (ֆրանկներ վայրկյանում)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="191"/>
         <source>Enable hardware acceleration</source>
-        <translation>Հարդքորային արագացումը հնարավորացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="194"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation>Ընտրեք էկրանի կիսման ֆրանկների արագությունը (ֆրանկներ վայրկյանում)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="195"/>
         <source>no video</source>
-        <translation>ոչ մի տեսանյութ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="200"/>
         <source>Back up account here</source>
-        <translation>Վերադարձ հաշվառություն այստեղ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="201"/>
         <source>Back up account</source>
-        <translation>Բաքա հաշիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="275"/>
         <source>Unavailable</source>
-        <translation>Չկա</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Turn off sharing</source>
-        <translation>Հավաքումը անջատեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="303"/>
         <source>Stop location sharing in this conversation (%1)</source>
-        <translation>Սահմանել տեղամասերի փոխանակումը այս զրույցում (% 1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
         <source>Hide chat</source>
-        <translation>Գաղթեք զրույցը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
         <source>Back to Call</source>
-        <translation>Վերադարձ դեպի Կոչ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="344"/>
         <source>Scroll to end of conversation</source>
-        <translation>Խոսքի վերջը փայլիր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation>Դուք կարող եք ընտրել օգտատերու անուն, որպեսզի ուրիշները ավելի հեշտությամբ գտնեն եւ հասնեն ձեզ Ջամիում:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="369"/>
         <source>Are you sure you would like to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
-        <translation>Համոզված եք, որ ցանկանում եք միանալ Ջամի- ին առանց օգտատերերի անունի: Եթե այո, ապա այս հաշիվին կտտվի միայն պատահականորեն ստեղծված 40-բառանիշային նույնականացողը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
@@ -713,145 +713,145 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
 - Special characters allowed: dash (-)</source>
-        <translation>- առավելագույնը 32 տառ - Ալֆաբետային տառեր (A-Z եւ a-Z) - Թվային տառեր (0-9) - Մասնավորապես թույլատրվում են հատուկ տառեր. տասներ (-)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="376"/>
         <source>Your account will be created and stored locally.</source>
-        <translation>Ձեր հաշիվը ստեղծվելու է եւ կպահպանվի տեղական:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="377"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
-        <translation>Հարկավոր է ընտրել օգտատերու անուն, եւ ընտրված օգտատերու անունը չի կարող հետագայում փոխվել:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="378"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation>Ձեր հաշիվը գաղտնաբառով կոդավորելը ընտրանքային է, եւ եթե գաղտնաբառը կորած է, այն չի կարող վերականգնվել ավելի ուշ:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
         <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
-        <translation>Պրոֆիլային նկար եւ կատակերգություն սահմանելը ընտրանքային է, եւ կարող է նաեւ փոփոխվել ավելի ուշ կարգավորումների մեջ:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="388"/>
         <source>TLS</source>
-        <translation>TLS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="389"/>
         <source>UDP</source>
-        <translation>UDP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="390"/>
         <source>Display Name</source>
-        <translation>Ցուցադրեք անուն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="394"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Ընտրված օգտատերու անունը կարող է օգնել ավելի հեշտությամբ գտնել Jami- ում: Եթե օգտատերու անուն չի ընտրվել, պատահականորեն ստեղծված 40-բառերի նույնականացողը կվերաբաշխվի այս հաշիվին որպես օգտատերու անուն: Ավելի դժվար է գտնել եւ հասնել այս նույնականացողի հետ:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="397"/>
         <source>This Jami account exists only on this device.
 The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation>Այս Jami հաշիվը գոյություն ունի միայն այս սարքում: հաշիվը կկորցվի, եթե այս սարքը կորչի կամ ծրագիրը անբեռնել է: Հրჩევվում է կատարել այս հաշիվի պահուստային պահուստ:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="412"/>
         <source>Encrypt account</source>
-        <translation>Գաղտնի հաշիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
         <source>Back up account to a .gz file</source>
-        <translation>Բաքա հաշիվ.gz ֆայլում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
         <source>This profile is only shared with this account's contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation>Այս պրոֆիլը միայն բաժին է ընկնում այս հաշիվի կոնտակտների հետ: Պրոֆիլը կարող է ցանկացած պահի փոխվել հաշիվի կարգավորումների միջոցով:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="422"/>
         <source>Encrypt account with a password</source>
-        <translation>Գաղտնի հաշիվ գաղտնաբառով</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="423"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation>Jami հաշիվը ստեղծվում եւ պահվում է միայն այս սարքում, որպես արխիվ, որը պարունակում է ձեր հաշիվի բանալիները: Այս արխիվի մուտքը կարող է պաշտպանվել գաղտնաբառով:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="424"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
-        <translation>Խնդրում ենք նկատի ունենալ, որ եթե կորցնում եք գաղտնաբառը, այն չի կարող վերականգնվել:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
         <source>Would you really like to delete this account?</source>
-        <translation>Դուք իսկապես կցանկանայիք ջնջել այս հաշիվը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="452"/>
         <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation>Եթե ձեր հաշիվը չի կրկնօրինվել կամ ավելացվել այլ սարք, ձեր հաշիվը եւ գրանցված օգտատերուն IRREVOCABLE LOST կլինեն:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="463"/>
         <source>Dark</source>
-        <translation>Սեւ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="464"/>
         <source>Light</source>
-        <translation>Լույս</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="472"/>
         <source>Include local video in recording</source>
-        <translation>Ներառեք տեղական տեսանյութը ձայնագրման մեջ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="473"/>
         <source>Default settings</source>
-        <translation>Նախնական կարգավորումները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="476"/>
         <source>Enable typing indicators</source>
-        <translation>Թիպման ցուցանիշները հնարավորացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="477"/>
         <source>Send and receive typing indicators showing that a message is being typed.</source>
-        <translation>Տեղադրել եւ ստանալ տիպման ցուցանիշներ, որոնք ցույց են տալիս, որ հաղորդագրություն է տիպվում:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="478"/>
         <source>Show link preview in conversations</source>
-        <translation>Խոսակցություններում ցուցադրեք հղման նախադիտություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
         <source>Strikethrough</source>
-        <translation>Վրագծում</translation>
+        <translation>刪除線</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
         <source>Unordered list</source>
-        <translation>Չպատվիրված ցուցակ</translation>
+        <translation>未经排序的列表</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
         <source>Ordered list</source>
-        <translation>Պատվիրված ցուցակ</translation>
+        <translation>已排序清單</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
@@ -866,337 +866,337 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="807"/>
         <source>Appearance</source>
-        <translation>Արտաքին տեսք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="488"/>
         <source>Accept transfer limit (in Mb)</source>
-        <translation>Ընդունել փոխանցման սահմանը (Mb-ում)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="507"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation>Ջամիի նոր տարբերակը հայտնաբերվել է: Ցանկանում եք արդիականացնել հիմա:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
         <source>Save recordings to</source>
-        <translation>Գրեք ձայնագրությունները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="529"/>
         <source>Save screenshots to</source>
-        <translation>Սկրինային լուսանկարները պահեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="571"/>
         <source>Select &quot;Link another device&quot;</source>
-        <translation>Ընտրեք &quot;Կապել այլ սարք&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="591"/>
         <source>Choose a picture as your avatar</source>
-        <translation>Ընտրեք նկարը որպես ձեր ավատար</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="663"/>
         <source>Share freely and privately with Jami</source>
-        <translation>Ջամիի հետ ազատորեն եւ մասնավոր կիսվեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
         <source>Unban</source>
-        <translation>Անբան</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="706"/>
         <source>Add</source>
-        <translation>Բարձրացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="715"/>
         <source>more emojis</source>
-        <translation>ավելի շատ էմոջիներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="736"/>
         <source>Reply to</source>
-        <translation>Պատասխանել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
         <source>In reply to</source>
-        <translation>Պատասխանելով</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="738"/>
         <source> replied to</source>
-        <translation>պատասխանել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="740"/>
         <source>Reply</source>
-        <translation>Պատասխանել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="456"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
         <source>Edit</source>
-        <translation>Կարգավորեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
         <source>Edited</source>
-        <translation>Կարգավորվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="744"/>
         <source>Join call</source>
-        <translation>Մասնակցեք զանգին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="745"/>
         <source>A call is in progress. Do you want to join the call?</source>
-        <translation>Հեռախոսազանգ է ընթանում։ Ցանկանում եք միանալ զանգին։</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
         <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
-        <translation>Այս ցավերի ներկայիս հյուրընկալողը անհասանելի է թվում:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
         <source>Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.</source>
-        <translation>Ընտրեք հատուկ սարք, որը կկառավարի ապագա զանգերը այս զանգի մեջ: Եթե այն չի սահմանվել, զանգը սկսող սարքը կկառավարի այն:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="748"/>
         <source>Choose this device</source>
-        <translation>Ընտրեք այս սարքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
         <source>Remove current device</source>
-        <translation>Հեռացնել ընթացիկ սարքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
         <source>Host only this call</source>
-        <translation>Միայն այս զանգը հյուրընկալեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
         <source>Host this call</source>
-        <translation>Հյուրընկալեք այս զանգը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
         <source>Make me the default host for future calls</source>
-        <translation>Ինձ ստուգեք որպես ապագա զանգերի հյուրընկալող</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
         <source>Mute conversation</source>
-        <translation>Լռական զրույց</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="770"/>
         <source>Default host (calls)</source>
-        <translation>Նախնական հյուրընկալող (հղումներ)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="773"/>
         <source>None</source>
-        <translation>Ոչ մի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="787"/>
         <source>Tip</source>
-        <translation>Տղաներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
         <source>Add a profile picture and nickname to complete your profile</source>
-        <translation>Բացրեք ձեր պրոֆիլը լրացնելու համար պրոֆիլի նկար եւ կատակերգություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
         <source>Start swarm</source>
-        <translation>Սկսեք զավակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
         <source>Create swarm</source>
-        <translation>Ստեղծեք ցավաք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="167"/>
         <source>Call settings</source>
-        <translation>Հեռախոսազանգի կարգավորումները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="106"/>
         <source>Disable secure dialog check for incoming TLS data</source>
-        <translation>Անջատեք մուտքագրվող TLS տվյալների անվտանգ երկխոսության ստուգումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
         <source>Video codecs</source>
-        <translation>Տեսանյութերի կոդեկներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="138"/>
         <source>Audio codecs</source>
-        <translation>Ձայնային կոդեկներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="141"/>
         <source>Name server</source>
-        <translation>Անունային սերվեր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="154"/>
         <source>OpenDHT configuration</source>
-        <translation>OpenDHT կոնֆիգուրացիան</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="192"/>
         <source>Mirror local video</source>
-        <translation>Հանդիսացրեք տեղական տեսանյութը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
         <source>Why should I back-up this account?</source>
-        <translation>Ինչո՞ւ պետք է կրկնօրինակի այս հաշիվը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="202"/>
         <source>Success</source>
-        <translation>Հաջողություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="203"/>
         <source>Error</source>
-        <translation>Սխալ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="204"/>
         <source>Jami archive files (*.gz)</source>
-        <translation>Jami արխիվային ֆայլեր (*.gz)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="205"/>
         <source>All files (*)</source>
-        <translation>Բոլոր ֆայլերը (*)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
         <source>Reinstate as contact</source>
-        <translation>Վերականգնել որպես կապ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="209"/>
         <source>name</source>
-        <translation>անուն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
         <source>Identifier</source>
-        <translation>Հնազեկիչ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
         <source>is recording</source>
-        <translation>է գրանցում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
         <source>are recording</source>
-        <translation>գրանցում են</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="694"/>
         <source>Mute</source>
-        <translation>Լռություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="695"/>
         <source>Unmute</source>
-        <translation>Անխոսություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="217"/>
         <source>Pause call</source>
-        <translation>Հանգիստ զանգ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="218"/>
         <source>Resume call</source>
-        <translation>Վերսկսել զանգը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="219"/>
         <source>Mute camera</source>
-        <translation>Լռակ տեսախցիկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
         <source>Unmute camera</source>
-        <translation>Անխափան տեսախցիկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="221"/>
         <source>Add participant</source>
-        <translation>Մասնակիցը ավելացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="222"/>
         <source>Add participants</source>
-        <translation>Մասնակցողներ ավելացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="223"/>
         <source>Details</source>
-        <translation>Մասնավորապես</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="224"/>
         <source>Chat</source>
-        <translation>Խոսք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="165"/>
         <source>Manage account</source>
-        <translation>Հաշիվի կառավարում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="166"/>
         <source>Linked devices</source>
-        <translation>Կապակցված սարքեր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
         <source>Advanced settings</source>
-        <translation>Հրագաթնակետային կարգավորումներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
         <source>Audio and Video</source>
-        <translation>Ձայնային եւ տեսանյութ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="181"/>
         <source>Sound test</source>
-        <translation>Ձայնային փորձարկում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="193"/>
         <source>Screen sharing</source>
-        <translation>Էկրանի բաժանման համար</translation>
+        <translation>屏幕共享</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
@@ -1206,248 +1206,248 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="225"/>
         <source>More options</source>
-        <translation>Ավելի շատ տարբերակներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="226"/>
         <source>Mosaic</source>
-        <translation>Մոզայիկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="227"/>
         <source>Participant is still muted on their device</source>
-        <translation>Մասնակիցը դեռեւս մուլտ է իր սարքում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="228"/>
         <source>You are still muted on your device</source>
-        <translation>Դուք դեռեւս մութ եք ձեր սարքում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="229"/>
         <source>You are still muted by moderator</source>
-        <translation>Դուք դեռ մուսուլացված եք մոդերատորի կողմից</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="230"/>
         <source>You are muted by a moderator</source>
-        <translation>Դուք մուլտացվում եք մոդերատորի կողմից</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
         <source>Moderator</source>
-        <translation>Մոդերատոր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
         <source>Host</source>
-        <translation>Հյուրընկալող</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
         <source>Local and Moderator muted</source>
-        <translation>Տեղական եւ Մոդերատորի լռություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
         <source>Moderator muted</source>
-        <translation>Մոդերատորը դիպչված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
         <source>Not muted</source>
-        <translation>Չի մուլտացված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
         <source>On the side</source>
-        <translation>Մոտակայքում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
         <source>On the top</source>
-        <translation>Վերեւում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="238"/>
         <source>Hide self</source>
-        <translation>Գնացեք ինքներդ ձեզ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
         <source>Hide spectators</source>
-        <translation>Գաղթեք հանդիսատեսները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="543"/>
         <source>Copy</source>
-        <translation>Կոդավորվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
         <source>Share</source>
-        <translation>Մասնակից</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
         <source>Cut</source>
-        <translation>Կտրում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
         <source>Paste</source>
-        <translation>Պաստառ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="248"/>
         <source>Start video call</source>
-        <translation>Սկսեք տեսահաղորդումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="249"/>
         <source>Start audio call</source>
-        <translation>Սկսել ձայնային զանգը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
         <source>Clear conversation</source>
-        <translation>Հստակ խոսակցություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
         <source>Confirm action</source>
-        <translation>Կոնֆերմատիվ գործողություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="252"/>
         <source>Remove conversation</source>
-        <translation>Հեռացնել զրույցը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="253"/>
         <source>Would you really like to remove this conversation?</source>
-        <translation>Դուք իսկապես կցանկանայիք հեռացնել այս զրույցը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="254"/>
         <source>Would you really like to block this conversation?</source>
-        <translation>Դուք իսկապես կցանկանայիք արգելափակել այս խոսակցությունը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="255"/>
         <source>Remove contact</source>
-        <translation>Հեռացնել շփումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
         <source>Block contact</source>
-        <translation>Բլոկային շփումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
         <source>Conversation details</source>
-        <translation>Զրույցի մանրամասները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="258"/>
         <source>Contact details</source>
-        <translation>Կապ տեղեկություններ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="261"/>
         <source>Sip input panel</source>
-        <translation>Սիպ մուտքային պանդե</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
         <source>Transfer call</source>
-        <translation>Հեռախոսահամար</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="263"/>
         <source>Stop recording</source>
-        <translation>Դադարեցրեք ձայնագրումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="264"/>
         <source>Start recording</source>
-        <translation>Սկսեք ձայնագրումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="265"/>
         <source>View full screen</source>
-        <translation>Լրիվ էկրան դիտել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="266"/>
         <source>Share screen</source>
-        <translation>Համագործակցեք էկրանը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
         <source>Share window</source>
-        <translation>Համագործակցեք պատուհանը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
         <source>Stop sharing screen or file</source>
-        <translation>Սեղմեք էկրանի կամ ֆայլերի փոխանակումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
         <source>Share screen area</source>
-        <translation>Համագործակցեք էկրանի տարածքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
         <source>Share file</source>
-        <translation>Գործակցել ֆայլը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
         <source>Select sharing method</source>
-        <translation>Ընտրեք բաժանման մեթոդը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
         <source>View plugin</source>
-        <translation>Տեսեք հավելվածը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="273"/>
         <source>Advanced information</source>
-        <translation>Հրատարակ տեղեկատվություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="274"/>
         <source>No video device</source>
-        <translation>Ոչ մի տեսանյութի սարք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
         <source>Lower hand</source>
-        <translation>Նվազագույն ձեռքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="277"/>
         <source>Raise hand</source>
-        <translation>Բարձրացրեք ձեռքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="278"/>
         <source>Layout settings</source>
-        <translation>Լայսաուտի կարգավորումները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="279"/>
         <source>Take tile screenshot</source>
-        <translation>Նկարագրեք թաղաներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="280"/>
         <source>Screenshot saved to %1</source>
-        <translation>% 1 էկրանային նկարը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
@@ -1457,159 +1457,159 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="284"/>
         <source>Renderers information</source>
-        <translation>Տեղեկատվություն տրամադրողների մասին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
         <source>Call information</source>
-        <translation>Հեռախոսազանգերի տեղեկատվություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
         <source>Peer number</source>
-        <translation>Համահայկական թիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
         <source>Call id</source>
-        <translation>Հեռախոսահամար</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
         <source>Sockets</source>
-        <translation>Սոկայներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
         <source>Video codec</source>
-        <translation>Տեսանյութի կոդեկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
         <source>Hardware acceleration</source>
-        <translation>Հարդքորային արագացում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
         <source>Video bitrate</source>
-        <translation>Տեսանյութի բիթային արագությունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
         <source>Audio codec</source>
-        <translation>Ձայնային կոդեկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
         <source>Renderer id</source>
-        <translation>Գրանցման համար</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="294"/>
         <source>Fps</source>
-        <translation>FPS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="297"/>
         <source>Share location</source>
-        <translation>Գործակցման վայր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="298"/>
         <source>Stop sharing</source>
-        <translation>Սեղմեք կիսումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="299"/>
         <source>Your precise location could not be determined.
 In Device Settings, please turn on &quot;Location Services&quot;.
 Other participants&apos; location can still be received.</source>
-        <translation>Ձեր ճշգրիտ գտնվելու վայրը չի կարող որոշվել: Բջջայինի կարգավորումների մեջ խնդրում ենք ակտիվացնել &quot;տեղակայության ծառայությունները&quot;: Այլ մասնակիցների գտնվելու վայրը դեռ կարող է ստանալու:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
         <source>Your precise location could not be determined. Please check your Internet connection.</source>
-        <translation>Ձեր ճշգրիտ գտնվելու վայրը չի կարող որոշվել։ Խնդրում ենք ստուգել ձեր ինտերնետային կապը։</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Turn off location sharing</source>
-        <translation>Հեռացնել տեղակայման բաժանումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
         <source>Location is shared in several conversations</source>
-        <translation>Տեղը կիսվում է մի քանի զրույցներում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
-        <translation>Պին քարտեզ ՝ տեղակայման բաժնետոմսեր կամ որոշակի զրույցներում տեղակայման անջատում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
-        <translation>Տեղը կիսվում է մի քանի զրույցներում, սեղմեք ընտրելու համար, թե ինչպես անջատել տեղը կիսելը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
         <source>Share location to participants of this conversation (%1)</source>
-        <translation>Գտնվելու վայրը կիսել զրույցի մասնակիցների հետ (%1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
         <source>Reduce</source>
-        <translation>Կրկնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
         <source>Drag</source>
-        <translation>Շեղարկել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="311"/>
         <source>Center</source>
-        <translation>Կենտրոն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source>Unpin</source>
-        <translation>Բաց թողնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="314"/>
         <source>Pin</source>
-        <translation>Պին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
         <source>Position share duration</source>
-        <translation>Պաշտոնային բաժնետոմսերի տեւողությունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
         <source>Location sharing</source>
-        <translation>Տեղի բաժանում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <source>Unlimited</source>
-        <translation>Անսահմանափակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
         <source>1 min</source>
-        <translation>1 րոպե</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
         <source>%1h%2min</source>
-        <translation>% 1h% 2 րոպե</translation>
+        <translation>时间:</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
         <source>%1h</source>
-        <translation>% 1h</translation>
+        <translation>百分比1h</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="321"/>
@@ -1619,7 +1619,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="322"/>
         <source>%1min</source>
-        <translation>%1 րոպե</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="323"/>
@@ -1629,283 +1629,283 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="327"/>
         <source>Place audio call</source>
-        <translation>Հեռախոսազանգներ կատարեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
         <source>Place video call</source>
-        <translation>Տեսագրական զանգեր կատարեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
         <source>Show available plugins</source>
-        <translation>Ցուցադրել հասանելի հավելվածները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
         <source>Add to conversations</source>
-        <translation>Բարեւ խոսակցություններին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
         <source>This is the error from the backend: %0</source>
-        <translation>Սա է սխալը, որ ստացվել է հետագա վերջում. %0</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
         <source>The account is disabled</source>
-        <translation>Հաշիվը անջատված է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
         <source>No network connectivity</source>
-        <translation>Ոչ մի ցանցային կապ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
         <source>Deleted message</source>
-        <translation>Սեղմված հաղորդագրություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
         <source>Jump to</source>
-        <translation>Հագնա դեպի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
         <source>Messages</source>
-        <translation>Հաղորդագրություններ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
         <source>Files</source>
-        <translation>Ֆայլեր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
         <source>Search</source>
-        <translation>Փնտրություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="345"/>
         <source>{} is typing…</source>
-        <translation>{} տիպում է...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="346"/>
         <source>{} are typing…</source>
-        <translation>{} տիպում են...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="347"/>
         <source>Several people are typing…</source>
-        <translation>Մի քանի մարդ տիպում է...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
         <source> and </source>
-        <translation>եւ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
         <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation>Ներբեռնեք Jami հաշիվների կառավարման սերվեր (JAMS) URL- ը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
         <source>Jami Account Management Server URL</source>
-        <translation>Jami հաշիվների կառավարման սերվերների URL- ը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
         <source>Enter JAMS credentials</source>
-        <translation>Ներբեռնեք JAMS հավաստագրերը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="354"/>
         <source>Connect</source>
-        <translation>Կապակցել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="355"/>
         <source>Creating account…</source>
-        <translation>Հաշիվ ստեղծելը...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
         <source>Choose name</source>
-        <translation>Ընտրեք անուն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="359"/>
         <source>Choose username</source>
-        <translation>Ընտրեք օգտատերու անունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="360"/>
         <source>Choose a username</source>
-        <translation>Ընտրեք օգտատերու անուն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="419"/>
         <source>Encrypt account with password</source>
-        <translation>Գաղտնի հաշիվ գաղտնաբառով</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="361"/>
         <source>Confirm password</source>
-        <translation>Փաստաթուղթ հաստատել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="363"/>
         <source>Choose a name for your rendezvous point</source>
-        <translation>Ընտրեք ձեր հանդիպման կետի անունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="364"/>
         <source>Choose a name</source>
-        <translation>Ընտրեք անուն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="365"/>
         <source>Invalid name</source>
-        <translation>Անավերժ անուն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="366"/>
         <source>Invalid username</source>
-        <translation>Անհավեր օգտագործողի անունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="367"/>
         <source>Name already taken</source>
-        <translation>Անունը արդեն վերցված է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="368"/>
         <source>Username already taken</source>
-        <translation>Օգտագործողի անունը արդեն վերցված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
         <source>Good to know</source>
-        <translation>Հաճելի է իմանալ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
         <source>Local</source>
-        <translation>Տեղական</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
         <source>Encrypt</source>
-        <translation>Գլխավորագրված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
         <source>SIP account</source>
-        <translation>SIP հաշիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
         <source>Proxy</source>
-        <translation>Պրոկսի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
         <source>Server</source>
-        <translation>Սերվերը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
         <source>Configure an existing SIP account</source>
-        <translation>Ստեղծել գոյություն ունեցող SIP հաշիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
         <source>Personalize account</source>
-        <translation>Անհատականացնել հաշիվը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="387"/>
         <source>Add SIP account</source>
-        <translation>Ավելացնել SIP հաշիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="393"/>
         <source>Your profile is only shared with your contacts.
 Your picture and your nickname can be changed at all time in the settings of your account.</source>
-        <translation>Ձեր պրոֆիլը միայն ձեր կոնտակտների հետ է կիսվում: Ձեր նկարը եւ կատակագիրը կարող են ցանկացած պահի փոխվել ձեր հաշիվի կարգավորումների միջոցով:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.</source>
-        <translation>Ձեր Jami հաշիվը գրանցվում է միայն այս սարքում որպես արխիվ, որը պարունակում է ձեր հաշիվի բանալիները: Այս արխիվի մուտքը կարող է պաշտպանվել գաղտնաբառով:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="396"/>
         <source>Backup account</source>
-        <translation>Բաքու հաշիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="398"/>
         <source>Delete your account</source>
-        <translation>Սեղմեք ձեր հաշիվը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="399"/>
         <source>If your account has not been backed up or added to another device, your account and registered name will be irrevocably lost.</source>
-        <translation>Եթե ձեր հաշիվը չի պահվել կամ չի ավելացվել այլ սարք, ձեր հաշիվը եւ գրանցված անունը անշեղորեն կկորցվեն:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="400"/>
         <source>List of the devices that are linked to this account:</source>
-        <translation>Այս հաշիվին կապված սարքերի ցուցակը.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="401"/>
         <source>This device</source>
-        <translation>Այս սարքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
         <source>Other linked devices</source>
-        <translation>Կապակցված այլ սարքեր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
         <source>Backup successful</source>
-        <translation>Բաքպու հաջողված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="406"/>
         <source>Backup failed</source>
-        <translation>Բաքպու անհաջողություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="407"/>
         <source>Password changed successfully</source>
-        <translation>Անվանումը հաջողությամբ փոխվել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
         <source>Password change failed</source>
-        <translation>Անշուտի փոփոխությունը չի հաջողվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
         <source>Password set successfully</source>
-        <translation>Անձնագրը հաջողությամբ սահմանվել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
         <source>Password set failed</source>
-        <translation>Անշարունակության հավաքածու անհաջողություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="411"/>
         <source>Change password</source>
-        <translation>Փոխել գաղտնաբառը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="425"/>
@@ -1930,7 +1930,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="539"/>
         <source>Markdown</source>
-        <translation>Մարքդուն</translation>
+        <translation>标记</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
@@ -1955,7 +1955,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="603"/>
         <source>Installing</source>
-        <translation>Մուտքագրում</translation>
+        <translation>装备</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="604"/>
@@ -2000,42 +2000,42 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="719"/>
         <source>Show more</source>
-        <translation>Ցույց տվեք ավելին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
         <source>Bold</source>
-        <translation>Թավ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
         <source>Italic</source>
-        <translation>Շեղ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
         <source>Title</source>
-        <translation>Գլուխ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
         <source>Heading</source>
-        <translation>Վերնագիր</translation>
+        <translation>標題</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
         <source>Link</source>
-        <translation>Կապ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="727"/>
         <source>Code</source>
-        <translation>Կոդ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
         <source>Quote</source>
-        <translation>Նշում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
@@ -2055,1114 +2055,1114 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
         <source>Jami identity</source>
-        <translation>Ջամի ինքնությունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
         <source>Show fingerprint</source>
-        <translation>Աղբյուրի տպավորությունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
         <source>Show registered name</source>
-        <translation>Ցուցադրել գրանցված անունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
-        <translation>Ձեր հաշիվը ակտիվացնելով կարող եք կապվել Ջամիի հետ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
         <source>Experimental</source>
-        <translation>Փորձնական</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
         <source>Ringtone</source>
-        <translation>Զանգահարություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="816"/>
         <source>Rendezvous point</source>
-        <translation>Հանդիպման կետ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
         <source>Moderation</source>
-        <translation>Մաքրություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="822"/>
         <source>Theme</source>
-        <translation>Տեմա</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="823"/>
         <source>Text zoom level</source>
-        <translation>Տեքստային զուգագաղման մակարդակը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="413"/>
         <source>Set a password</source>
-        <translation>Անխոսությունը սահմանել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="414"/>
         <source>Change current password</source>
-        <translation>Փոխել ընթացիկ գաղտնաբառը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
         <source>Display advanced settings</source>
-        <translation>Ցուցադրել առաջադեմ կարգավորումները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="417"/>
         <source>Hide advanced settings</source>
-        <translation>Հաղթանակված կարգավորումները թաքցնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="164"/>
         <source>Enable account</source>
-        <translation>Հաշիվը ակտիվացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="418"/>
         <source>Advanced account settings</source>
-        <translation>Հաշվի առաջադեմ կարգավորումները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="420"/>
         <source>Customize profile</source>
-        <translation>Մշակել պրոֆիլ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="432"/>
         <source>Set username</source>
-        <translation>Օգտագործողի անունը սահմանել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="433"/>
         <source>Registering name</source>
-        <translation>Գրանցման անուն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="436"/>
         <source>Identity</source>
-        <translation>Անձնագրություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
         <source>Link a new device to this account</source>
-        <translation>Կապակցեք նոր սարք այս հաշիվի հետ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="440"/>
         <source>Exporting account…</source>
-        <translation>Արտահանման հաշիվ...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="441"/>
         <source>Remove Device</source>
-        <translation>Հեռացնել սարքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="442"/>
         <source>Are you sure you wish to remove this device?</source>
-        <translation>Համոզված եք, որ ցանկանում եք հեռացնել այս սարքը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
         <source>Your PIN is:</source>
-        <translation>Ձեր PIN-ը հետեւյալն է.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
         <source>Error connecting to the network.
 Please try again later.</source>
-        <translation>Ցանցի հետ կապվելու սխալ. Խնդրում ենք փորձել նորից։</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
         <source>Banned</source>
-        <translation>Արգելվում է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="448"/>
         <source>Banned contacts</source>
-        <translation>Արգելված շփումներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="459"/>
         <source>Device Id</source>
-        <translation>սարքի ID</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="462"/>
         <source>System</source>
-        <translation>Համակարգ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="465"/>
         <source>Select a folder</source>
-        <translation>Ընտրեք պանակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
         <source>Enable notifications</source>
-        <translation>Հրավերների հնարավորություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="470"/>
         <source>Launch at startup</source>
-        <translation>Սկսումից հետո</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="471"/>
         <source>Choose download directory</source>
-        <translation>Ընտրեք ներբեռնել ցուցակը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="479"/>
         <source>Preview requires downloading content from third-party servers.</source>
-        <translation>Նախագահում պահանջում է բովանդակություն ներբեռնել երրորդ կողմի սերվերներից:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="481"/>
         <source>User interface language</source>
-        <translation>Օգտագործողի ինտերֆեյսի լեզուն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="482"/>
         <source>Vertical view</source>
-        <translation>Վերատիկական տեսանկյուն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="483"/>
         <source>Horizontal view</source>
-        <translation>Հորիզոնական տեսանկյունից</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="486"/>
         <source>File transfer</source>
-        <translation>Ֆայլերի փոխանցում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="487"/>
         <source>Automatically accept incoming files</source>
-        <translation>Ավտոմատորեն ընդունեք մուտքագրվող ֆայլերը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="489"/>
         <source>in MB, 0 = unlimited</source>
-        <translation>MB-ում, 0 = անսահմանափակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="492"/>
         <source>Register</source>
-        <translation>Գրանցվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="493"/>
         <source>Incorrect password</source>
-        <translation>Անհիմն գաղտնաբառ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="494"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="510"/>
         <source>Network error</source>
-        <translation>Համացանցի սխալ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
         <source>Something went wrong</source>
-        <translation>Ինչ-որ բան սխալվեց:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="498"/>
         <source>Save file</source>
-        <translation>Փրկել ֆայլը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
         <source>Open location</source>
-        <translation>Բաց տեղ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
         <source>Me</source>
-        <translation>Ես</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="502"/>
         <source>Install beta version</source>
-        <translation>Բեռնել բետա տարբերակը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="503"/>
         <source>Check for updates now</source>
-        <translation>Ստուգեք արդիականությունները հիմա</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="504"/>
         <source>Enable/Disable automatic updates</source>
-        <translation>Հնարավորացնել/մեղադրել ավտոմատ թարմացումներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
         <source>Updates</source>
-        <translation>Թարմացումներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="506"/>
         <source>Update</source>
-        <translation>Վերանորոգում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="508"/>
         <source>No new version of Jami was found</source>
-        <translation>Ջամիի նոր տարբերակը չի հայտնաբերվել:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="509"/>
         <source>An error occured when checking for a new version</source>
-        <translation>Նոր տարբերակի ստուգման ժամանակ սխալ է առաջացել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
         <source>SSL error</source>
-        <translation>SSL սխալ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="512"/>
         <source>Installer download canceled</source>
-        <translation>Կառուցող ներբեռնումը չեղյալ է հայտարարվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="514"/>
         <source>This will uninstall your current Release version and you can always download the latest Release version on our website</source>
-        <translation>Սա կբացարկի ձեր ներկայիս թողարկման տարբերակը եւ դուք միշտ կարող եք ներբեռնել վերջին թողարկման տարբերակը մեր կայքում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
         <source>Network disconnected</source>
-        <translation>Համացանցի անջատված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="519"/>
         <source>Troubleshoot</source>
-        <translation>Խնդիրների լուծում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="520"/>
         <source>Open logs</source>
-        <translation>Բաց օրագրեր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
         <source>Get logs</source>
-        <translation>Գտեք օրագրեր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="523"/>
         <source>(Experimental) Enable call support for swarm</source>
-        <translation>(փորձնական) Հեռախոսազանգերի աջակցություն է թույլ տալ swarm</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="524"/>
         <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation>Այս հատկությունը հնարավորություն կտա զանգահարել կոճակները բազմակի մասնակիցների հետ swarms.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
         <source>Quality</source>
-        <translation>Որակի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="531"/>
         <source>Always record calls</source>
-        <translation>Միշտ ձայնագրեք զանգերը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="534"/>
         <source>Keyboard Shortcut Table</source>
-        <translation>Քաբիոներային կոտրակետային աղյուսակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="535"/>
         <source>Keyboard Shortcuts</source>
-        <translation>Քաբիոդի կարճատեւներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="536"/>
         <source>Conversation</source>
-        <translation>Զրույց</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="537"/>
         <source>Call</source>
-        <translation>Զանգահարել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="538"/>
         <source>Settings</source>
-        <translation>Կարգավորումներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="542"/>
         <source>Debug</source>
-        <translation>Դեբուգում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="544"/>
         <source>Report Bug</source>
-        <translation>Զեկույցի բոգ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
         <source>Clear</source>
-        <translation>Հստակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="683"/>
         <source>Cancel</source>
-        <translation>Արգելել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="547"/>
         <source>Copied to clipboard!</source>
-        <translation>Կոպիացված է մետաղադրամի վրա:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="548"/>
         <source>Receive Logs</source>
-        <translation>Գրանցվեք օրագրերի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="551"/>
         <source>Archive</source>
-        <translation>Արխիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="552"/>
         <source>Open file</source>
-        <translation>Բաց ֆայլ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="555"/>
         <source>Generating account…</source>
-        <translation>Հաշվետարի ստեղծում...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="556"/>
         <source>Import from archive backup</source>
-        <translation>Արտահանում արխիվային պահուստային համակարգից</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
         <source>Select archive file</source>
-        <translation>Ընտրեք արխիվային ֆայլը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="428"/>
         <source>Link device</source>
-        <translation>Կապակցման սարք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
         <source>Import</source>
-        <translation>Արտահանման համար</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="564"/>
         <source>A PIN is required to use an existing Jami account on this device.</source>
-        <translation>Այս սարքում գոյություն ունեցող Jami հաշիվ օգտագործելու համար անհրաժեշտ է PIN- ն:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="570"/>
         <source>Choose the account to link</source>
-        <translation>Ընտրեք հաշիվը, որը կկապակցվի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="576"/>
         <source>The PIN and the account password should be entered in your device within 10 minutes.</source>
-        <translation>PIN-ը եւ հաշիվի գաղտնաբառը պետք է մուտքագրվեն ձեր սարքում 10 րոպեում:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
         <source>Choose a picture</source>
-        <translation>Ընտրեք նկար</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
         <source>Contact&apos;s name</source>
-        <translation>Կապի անունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="779"/>
         <source>Reinstate member</source>
-        <translation>Վերադարձ անդամ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
         <source>Delete message</source>
-        <translation>Հաղորդագրությունը ջնջել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
         <source>*(Deleted Message)*</source>
-        <translation>*(Վերջացված հաղորդագրություն) *</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="795"/>
         <source>Edit message</source>
-        <translation>Տարբերել հաղորդագրությունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="577"/>
         <source>Close</source>
-        <translation>Մոտակայքում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="530"/>
         <source>Call recording</source>
-        <translation>Հեռախոսազանգերի ձայնագրություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
         <source>If the account is encrypted with a password, please fill the following field.</source>
-        <translation>Եթե հաշիվը կոդավորված է գաղտնաբառով, խնդրում ենք լրացնել հետեւյալ դաշտը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
         <source>Enter the PIN code</source>
-        <translation>Տեղադրել PIN կոդը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="565"/>
         <source>Step 01</source>
-        <translation>Քայլ 1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
         <source>Step 02</source>
-        <translation>Քայլ 2</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="567"/>
         <source>Step 03</source>
-        <translation>Քայլ 3</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="568"/>
         <source>Step 04</source>
-        <translation>Քայլ 4</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="569"/>
         <source>Go to the account management settings of a previous device</source>
-        <translation>Գնացեք նախորդ սարքի հաշիվների կառավարման կարգավորումների</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="572"/>
         <source>The PIN code will be available for 10 minutes</source>
-        <translation>PIN կոդը հասանելի կլինի 10 րոպե:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="573"/>
         <source>Fill if the account is password-encrypted.</source>
-        <translation>Պրծնել, եթե հաշիվը գաղտնաբառով է գաղտնագրված:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
         <source>Enter account&apos;s password</source>
-        <translation>Գրեք հաշիվի գաղտնաբառը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
         <source>Add Device</source>
-        <translation>Բարձրացնել սարքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="582"/>
         <source>Enter the password</source>
-        <translation>Ներբեռնեք գաղտնաբառը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
         <source>Enter current password</source>
-        <translation>Ներկայումս մուտքագրեք գաղտնաբառ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
         <source>Enter this account&apos;s password to confirm the removal of this device</source>
-        <translation>Ներբեռնեք այս հաշիվի գաղտնաբառը ՝ հաստատելու համար, որ այս սարքը հեռացվել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
         <source>Enter new password</source>
-        <translation>Ներբեռնեք նոր գաղտնաբառ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
         <source>Confirm new password</source>
-        <translation>Համոզվեք նոր գաղտնաբառը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
         <source>Change</source>
-        <translation>Փոփոխություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Export</source>
-        <translation>Արտահանման համար</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
         <source>Import avatar from image file</source>
-        <translation>Ներմուծել avatar պատկերային ֆայլից</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
         <source>Clear avatar image</source>
-        <translation>Անկեղծ avatar պատկեր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
         <source>Take photo</source>
-        <translation>Լուսանկարներ արեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
         <source>Preferences</source>
-        <translation>Նախապատվություններ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="611"/>
         <source>Reset</source>
-        <translation>Վերադարձ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
         <source>Uninstall</source>
-        <translation>Անբեռահասել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
         <source>Reset Preferences</source>
-        <translation>Վերադարձ նախընտրություններ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>Select a plugin to install</source>
-        <translation>Ընտրեք տեղադրելու հավելվածը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="615"/>
         <source>Uninstall plugin</source>
-        <translation>Բացրեք plugin- ը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="616"/>
         <source>Are you sure you wish to reset %1 preferences?</source>
-        <translation>Համոզված եք, որ ցանկանում եք %1 նախընտրությունները վերափոխել:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="617"/>
         <source>Are you sure you wish to uninstall %1?</source>
-        <translation>Համոզված եք, որ ցանկանում եք անբեռնել %1-ը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Go back to plugins list</source>
-        <translation>Վերադարձ դեպի Plugins ցուցակը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
         <source>Select a file</source>
-        <translation>Ընտրեք ֆայլ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="110"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="620"/>
         <source>Select</source>
-        <translation>Ընտրել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
         <source>Choose image file</source>
-        <translation>Ընտրեք պատկերային ֆայլ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="622"/>
         <source>Plugin Files (*.jpl)</source>
-        <translation>Plugin ֆայլեր (*.jpl)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
         <source>Load/Unload</source>
-        <translation>Լիցքավորում/բեռնաթափում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
         <source>Select An Image to %1</source>
-        <translation>Ընտրեք % 1 պատկեր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
         <source>Edit preference</source>
-        <translation>Դեղափոխել նախընտրությունները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
         <source>On/Off</source>
-        <translation>Բաց/բաց</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
         <source>Choose Plugin</source>
-        <translation>Ընտրեք Plugin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
         <source>Information</source>
-        <translation>Տեղեկատվություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
         <source>Profile</source>
-        <translation>Պրոֆիլ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="634"/>
         <source>Enter the account password to confirm the removal of this device</source>
-        <translation>Ներբեռնեք հաշիվի գաղտնաբառը ՝ հաստատելու համար այս սարքը հեռացնելու մասին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="637"/>
         <source>Select a screen to share</source>
-        <translation>Ընտրեք բաժնետոմսերի համար նախատեսված էկրան</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="638"/>
         <source>Select a window to share</source>
-        <translation>Ընտրեք բաժնետոմսեր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="639"/>
         <source>All Screens</source>
-        <translation>Բոլոր էկրանները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="640"/>
         <source>Screens</source>
-        <translation>Էկրաններ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="641"/>
         <source>Windows</source>
-        <translation>Windows</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="642"/>
         <source>Screen %1</source>
-        <translation>% 1 էկրան</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="645"/>
         <source>QR code</source>
-        <translation>QR կոդ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="648"/>
         <source>Link this device to an existing account</source>
-        <translation>Կապակցեք այս սարքը առկա հաշիվի հետ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="649"/>
         <source>Import from another device</source>
-        <translation>Արտահանման այլ սարք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="650"/>
         <source>Import from an archive backup</source>
-        <translation>Ներմուծել արխիվային պահուստաալիքից</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
         <source>Advanced features</source>
-        <translation>Հրագաթագույն առանձնահատկություններ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="652"/>
         <source>Show advanced features</source>
-        <translation>Ցուցադրել առաջադեմ հատկությունները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
         <source>Hide advanced features</source>
-        <translation>Գցեք առաջադեմ առանձնահատկությունները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="654"/>
         <source>Connect to a JAMS server</source>
-        <translation>Հաղորդակցել JAMS սերվերի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="655"/>
         <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>Հաշիվ ստեղծեք Jami Account Management Server-ից (JAMS)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
         <source>Configure a SIP account</source>
-        <translation>Սահմանել SIP հաշիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="657"/>
         <source>Error while creating your account. Check your credentials.</source>
-        <translation>Ձեր հաշիվը ստեղծելու ժամանակ սխալ է առաջացել։ Փորձեք ձեր վավերագրությունները։</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="658"/>
         <source>Create a rendezvous point</source>
-        <translation>Ստեղծեք հանդիպման կետ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
         <source>Join Jami</source>
-        <translation>Միացեք Ջամիին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="660"/>
         <source>Create new Jami account</source>
-        <translation>Ստեղծեք նոր Jami հաշիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="661"/>
         <source>Create new SIP account</source>
-        <translation>Ստեղծեք նոր SIP հաշիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="662"/>
         <source>About Jami</source>
-        <translation>Ջամիի մասին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="664"/>
         <source>I already have an account</source>
-        <translation>Ես արդեն հաշիվ ունեմ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="665"/>
         <source>Use existing Jami account</source>
-        <translation>Օգտագործել Jami հաշիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="666"/>
         <source>Welcome to Jami</source>
-        <translation>Բարի գալուստ Ջամի:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="669"/>
         <source>Clear Text</source>
-        <translation>Հստակ տեքստ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
         <source>Conversations</source>
-        <translation>Զրույցներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="671"/>
         <source>Search Results</source>
-        <translation>Հետազոտության արդյունքները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="674"/>
         <source>Decline contact request</source>
-        <translation>Բացառություն խնդրանք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="675"/>
         <source>Accept contact request</source>
-        <translation>Ընդունեք կապի խնդրանք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="678"/>
         <source>Automatically check for updates</source>
-        <translation>Ավտոմատորեն ստուգեք թարմացումները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="681"/>
         <source>Ok</source>
-        <translation>Լավ, լավ։</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="455"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="682"/>
         <source>Save</source>
-        <translation>Փրկել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="684"/>
         <source>Upgrade</source>
-        <translation>Բարձրացրեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="685"/>
         <source>Later</source>
-        <translation>Ավելի ուշ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="686"/>
         <source>Delete</source>
-        <translation>Հեռացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
         <source>Block</source>
-        <translation>Բլոկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="692"/>
         <source>Set moderator</source>
-        <translation>Կազմել մոդերատոր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="693"/>
         <source>Unset moderator</source>
-        <translation>Կարգավորիչը անսահմանված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="696"/>
         <source>Maximize</source>
-        <translation>Մաքսիմալացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="697"/>
         <source>Minimize</source>
-        <translation>Մինիմինացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="698"/>
         <source>Hangup</source>
-        <translation>Հանգահարեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="699"/>
         <source>Local muted</source>
-        <translation>Տեղական մուլտ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="702"/>
         <source>Default moderators</source>
-        <translation>Նախնական մոդերատորներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="703"/>
         <source>Enable local moderators</source>
-        <translation>Սեղմեք տեղական մոդերատորներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="704"/>
         <source>Make all participants moderators</source>
-        <translation>Բոլոր մասնակիցներին մոդերատոր դարձնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="705"/>
         <source>Add default moderator</source>
-        <translation>Դիմադրյալ մոդերատոր ավելացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="707"/>
         <source>Remove default moderator</source>
-        <translation>Հեռացնել նախնական մոդերատորը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="714"/>
         <source>Add emoji</source>
-        <translation>Ավելացնել էմոժի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="716"/>
         <source>Send file</source>
-        <translation>Փաստաթուղթ ուղարկել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="735"/>
         <source>Send</source>
-        <translation>Գտիր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="458"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="687"/>
         <source>Remove</source>
-        <translation>Հեռացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
         <source>Migrate conversation</source>
-        <translation>Զրուցումներ տեղափոխել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="467"/>
         <source>Show notifications</source>
-        <translation>Նշում ծանուցումներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="468"/>
         <source>Minimize on close</source>
-        <translation>Նվազեցրեք մոտեցումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="469"/>
         <source>Run at system startup</source>
-        <translation>Սկսել համակարգի գործարկման ժամանակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="553"/>
         <source>Create account from backup</source>
-        <translation>Բաժնորդագրություն ստեղծեք պահուստային համակարգից</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="554"/>
         <source>Restore account from backup</source>
-        <translation>Վերականգնեք հաշիվը պահուստային համակարգից</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="557"/>
         <source>Import Jami account from local archive file.</source>
-        <translation>Ներմուծել Ջամի հաշիվը տեղական արխիվային ֆայլից:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
         <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation>Պատկերային ֆայլեր (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="741"/>
         <source>Write to %1</source>
-        <translation>Գրեք % 1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
         <source>%1 has sent you a request for a conversation.</source>
-        <translation>%1-ը ձեզ ուղարկել է զրույցի խնդրանք:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
         <source>Hello,
 Would you like to join the conversation?</source>
-        <translation>Բարեւ, կցանկանայի՞ք միանալ զրույցին:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
         <source>You have accepted
 the conversation request</source>
-        <translation>Դուք ընդունել եք զրուցի խնդրանքը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="758"/>
         <source>Waiting until %1
 connects to synchronize the conversation.</source>
-        <translation>Սպասելով, մինչեւ %1 կապի, որպեսզի սինխրոնացնի զրույցը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
         <source>%1 Members</source>
-        <translation>%1 Անդամներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
         <source>Member</source>
-        <translation>Անդամ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
         <source>Swarm&apos;s name</source>
-        <translation>Սավրոնի անունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
         <source>Add a description</source>
-        <translation>Բացատրություն ավելացնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="768"/>
         <source>Ignore all notifications from this conversation</source>
-        <translation>Անտեսեք այս զրույցի բոլոր ծանուցումները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="769"/>
         <source>Choose a color</source>
-        <translation>Ընտրեք գույն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="771"/>
         <source>Leave conversation</source>
-        <translation>Թող խոսակցությունը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
         <source>Type of swarm</source>
-        <translation>Սավերի տեսակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
         <source>Create the swarm</source>
-        <translation>Ստեղծեք զավակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
         <source>Go to conversation</source>
-        <translation>Գնացեք զրույցի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="778"/>
         <source>Kick member</source>
-        <translation>Պտտտտտտտտտ անդամ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
         <source>Administrator</source>
-        <translation>Վարչապետ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="781"/>
         <source>Invited</source>
-        <translation>հրավիրված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="782"/>
         <source>Remove member</source>
-        <translation>Հեռացնել անդամ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
         <source>To:</source>
-        <translation>Հանձնաժողովի անդամ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="786"/>
         <source>Customize</source>
-        <translation>Կազմակերպել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="788"/>
         <source>Dismiss</source>
-        <translation>Բացառություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
         <source>Your profile is only shared with your contacts</source>
-        <translation>Ձեր պրոֆիլը միայն ձեր կոնտակտների հետ է կիսվում</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3170,207 +3170,207 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="41"/>
         <source>Open account list</source>
-        <translation>Բաց հաշիվների ցուցակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="46"/>
         <source>Focus conversations list</source>
-        <translation>Կենտրոնացրեք զրույցների ցանկը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="51"/>
         <source>Requests list</source>
-        <translation>Հայցերի ցանկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="56"/>
         <source>Previous conversation</source>
-        <translation>Նախորդ զրույցը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="61"/>
         <source>Next conversation</source>
-        <translation>Հաջորդ զրույցը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="66"/>
         <source>Search bar</source>
-        <translation>Հետազոտական տախտակը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="71"/>
         <source>Full screen</source>
-        <translation>Ամբողջական էկրան</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="76"/>
         <source>Increase font size</source>
-        <translation>Բարձրացնել տառատեսակի չափը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="81"/>
         <source>Decrease font size</source>
-        <translation>Փոքրացնել տառատեսակի չափը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="86"/>
         <source>Reset font size</source>
-        <translation>Գրիչի չափը վերափոխել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Start an audio call</source>
-        <translation>Սկսեք ձայնային զանգը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="101"/>
         <source>Start a video call</source>
-        <translation>Սկսեք տեսախցիկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="106"/>
         <source>Clear history</source>
-        <translation>Հստակ պատմություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="111"/>
         <source>Search messages/files</source>
-        <translation>Փնտրեք հաղորդագրություններ/ֆայլեր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Block contact</source>
-        <translation>Բլոկային շփումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="121"/>
         <source>Remove conversation</source>
-        <translation>Հեռացնել զրույցը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="126"/>
         <source>Accept contact request</source>
-        <translation>Ընդունեք կապի խնդրանք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="131"/>
         <source>Edit last message</source>
-        <translation>Վերջին հաղորդագրությունը խմբագրել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
         <source>Cancel message edition</source>
-        <translation>Հաղորդագրության հրատարակությունը չեղյալ հայտարարել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="146"/>
         <source>Media settings</source>
-        <translation>Մեդիա կարգավորումները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="151"/>
         <source>General settings</source>
-        <translation>Գլխավոր կարգավորումներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="156"/>
         <source>Account settings</source>
-        <translation>Հաշվեի կարգավորումները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="161"/>
         <source>Plugin settings</source>
-        <translation>Plugin- ի կարգավորումները</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="166"/>
         <source>Open account creation wizard</source>
-        <translation>Բաց հաշիվ ստեղծելու հնարք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="171"/>
         <source>Open keyboard shortcut table</source>
-        <translation>Բաց ստեղնաշարի շտապուղային աղյուսակը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="181"/>
         <source>Answer an incoming call</source>
-        <translation>Պատասխանեք ներկա զանգին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="186"/>
         <source>End call</source>
-        <translation>Վերջնական զանգը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="191"/>
         <source>Decline the call request</source>
-        <translation>Բողոքարկել զանգի խնդրանքին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="196"/>
         <source>Mute microphone</source>
-        <translation>Միկրոֆոն անջատ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="201"/>
         <source>Stop camera</source>
-        <translation>Հեռուստացույցը կանգնեցրեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="205"/>
         <source>Mouse middle click</source>
-        <translation>Մկնիկի միջին կլիկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="206"/>
         <source>Take tile screenshot</source>
-        <translation>Նկարագրեք թաղաներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="216"/>
         <source>Bold</source>
-        <translation>Թավ</translation>
+        <translation>粗體</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="221"/>
         <source>Italic</source>
-        <translation>Շեղ</translation>
+        <translation>斜体</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="226"/>
         <source>Strikethrough</source>
-        <translation>Վրագծում</translation>
+        <translation>刪除線</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="231"/>
         <source>Heading</source>
-        <translation>Վերնագիր</translation>
+        <translation>標題</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="236"/>
         <source>Link</source>
-        <translation>Կապ</translation>
+        <translation>关联</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="241"/>
         <source>Code</source>
-        <translation>Կոդ</translation>
+        <translation>代码</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="246"/>
         <source>Quote</source>
-        <translation>Նշում</translation>
+        <translation>引用</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="251"/>
         <source>Unordered list</source>
-        <translation>Չպատվիրված ցուցակ</translation>
+        <translation>未经排序的列表</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="256"/>
         <source>Ordered list</source>
-        <translation>Պատվիրված ցուցակ</translation>
+        <translation>已排序清單</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="261"/>
@@ -3388,17 +3388,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="368"/>
         <source>E&amp;xit</source>
-        <translation>E&amp;xit</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="370"/>
         <source>&amp;Quit</source>
-        <translation>&amp; թողնել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="376"/>
         <source>&amp;Show Jami</source>
-        <translation>&amp;Show Ջամի</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3411,7 +3411,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="419"/>
         <source>Location sharing</source>
-        <translation>Տեղի բաժանում</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3419,510 +3419,510 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="458"/>
         <source>Me</source>
-        <translation>Ես</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
         <source>Hold</source>
-        <translation>Պահպանեք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="64"/>
         <source>Talking</source>
-        <translation>Խոսում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="66"/>
         <source>ERROR</source>
-        <translation>Սխալ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="68"/>
         <source>Incoming</source>
-        <translation>Գնացող</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="70"/>
         <source>Calling</source>
-        <translation>Հեռախոսազանգ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="366"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
-        <translation>Կապակցում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="74"/>
         <source>Searching</source>
-        <translation>Փնտրում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="76"/>
         <source>Inactive</source>
-        <translation>Անկառավարություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="383"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
-        <translation>Ավարտված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
         <source>Timeout</source>
-        <translation>Ժամանակային դադար</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="82"/>
         <source>Peer busy</source>
-        <translation>Զուգընկերները զբաղված են</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="86"/>
         <source>Communication established</source>
-        <translation>Հաղորդագրություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1004"/>
         <source>Invitation received</source>
-        <translation>Հրավիրություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="260"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="208"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1002"/>
         <source>Contact added</source>
-        <translation>Կապակցություն ավելացվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="262"/>
         <source>%1 was invited to join</source>
-        <translation>%1-ը հրավիրվել է միանալ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="264"/>
         <source>%1 joined</source>
-        <translation>%1 միացել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="266"/>
         <source>%1 left</source>
-        <translation>%1 ձախ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="268"/>
         <source>%1 was kicked</source>
-        <translation>%1 կատակվել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="270"/>
         <source>%1 was re-added</source>
-        <translation>%1 վերանայվել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="358"/>
         <source>Swarm created</source>
-        <translation>Ստեղծված խավ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="174"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="180"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1000"/>
         <source>Outgoing call</source>
-        <translation>Արտաքին զանգ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="176"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="186"/>
         <source>Incoming call</source>
-        <translation>Հեռախոսազանգ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="182"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="998"/>
         <source>Missed outgoing call</source>
-        <translation>Հեռացվող զանգը բացակայում է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="188"/>
         <source>Missed incoming call</source>
-        <translation>Հեռացած ներկա զանգ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="198"/>
         <source>Join call</source>
-        <translation>Մասնակցեք զանգին</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="213"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="1006"/>
         <source>Invitation accepted</source>
-        <translation>Հրավիրումը ընդունվել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="391"/>
         <location filename="../src/libclient/avmodel.cpp" line="410"/>
         <source>default</source>
-        <translation>անբաժանելիություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
-        <translation>Ոչինչ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Trying</source>
-        <translation>Փորձելով</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
-        <translation>Զանգահարում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
-        <translation>Հեռարձակվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Queued</source>
-        <translation>Սարք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Progress</source>
-        <translation>Առաջադրանքներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>OK</source>
-        <translation>Հանգիստ:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Accepted</source>
-        <translation>ընդունված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
-        <translation>Բազմաթիվ ընտրություններ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
-        <translation>Հաստատ տեղաշարժվում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
-        <translation>Ժամանակավորապես տեղափոխվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
-        <translation>Օգտագործեք Proxy</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
-        <translation>Բացի այլընտրանքային ծառայություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
-        <translation>Չար խնդրանք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
-        <translation>Անհամաձայն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
-        <translation>Պահանջվող վճարում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
-        <translation>Արգելված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
-        <translation>Չի գտնվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
-        <translation>Չթույլատրվում է մեթոդ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
         <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
-        <translation>Անընդունելի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
-        <translation>Պահանջվում է վավերացում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
-        <translation>Հայցել ժամանակահատված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Gone</source>
-        <translation>Գնացել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
-        <translation>Հայցի կազմակերպությունը չափազանց մեծ է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
-        <translation>URI- ի պահանջը չափազանց երկար</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
-        <translation>Աջակցված չէ մեդիա</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
-        <translation>Աջակցված չկան URI սխեմաներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
-        <translation>Չար երկարացում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
-        <translation>Պահանջվում է երկարաձգում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
-        <translation>Հանդիպման ժամանակացույցը չափազանց փոքր է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
-        <translation>Հատուկ կարճ ժամանակահատված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
-        <translation>Ժամանակավորապես անհասանելի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
-        <translation>Հղում TSX- ը գոյություն չունի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
-        <translation>Պարզվել է փուլը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
-        <translation>Շատ շատ ցնցումներ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
-        <translation>Գիրք Անբավարար</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
-        <translation>Անբացասական</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
-        <translation>Բեռնված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
-        <translation>Հայցը դադարեցվել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
-        <translation>Վատ իրադարձություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
-        <translation>Հայցը թարմացվել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
-        <translation>Հայցը սպասվում է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
-        <translation>Անկասկած</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
-        <translation>Ներքին սերվերների սխալ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
-        <translation>Չի իրականացվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
-        <translation>Վատ դարպաս</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
-        <translation>Ծառայություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
-        <translation>Սերվերի ժամանակահատված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
-        <translation>Տվյալ տարբերակ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
-        <translation>Հաղորդագրությունը չափազանց մեծ է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
-        <translation>Նախադրյալ պայմանների ձախողումը</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
-        <translation>Ամենուր զբաղված</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
-        <translation>Հղում մերժվել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
-        <translation>Ոչ մի տեղ գոյություն չունի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
-        <translation>Ոչ մի տեղ ընդունելի չէ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="368"/>
         <source>Accept</source>
-        <translation>Ընդունիր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="360"/>
         <source>Sending</source>
-        <translation>Հեռուստահաղորդում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="364"/>
         <source>Sent</source>
-        <translation>ուղարկվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="373"/>
         <source>Unable to make contact</source>
-        <translation>Հեռախոսազրույց չկարողացավ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="377"/>
         <source>Waiting for contact</source>
-        <translation>Սպասում է կապի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="379"/>
         <source>Incoming transfer</source>
-        <translation>Ներբեռնված փոխանցում</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="381"/>
         <source>Timed out waiting for contact</source>
-        <translation>Ժամանակավոր սպասել կապի</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="735"/>
         <source>Today</source>
-        <translation>Այսօր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="737"/>
         <source>Yesterday</source>
-        <translation>Երեկ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="370"/>
         <source>Canceled</source>
-        <translation>Արգելվել է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="375"/>
         <source>Ongoing</source>
-        <translation>Շարունակվող</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="716"/>
         <source>just now</source>
-        <translation>հենց հիմա</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="362"/>
         <source>Failure</source>
-        <translation>Չափազանցություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="109"/>
         <source>locationServicesError</source>
-        <translation>տեղակայությունServicesԱնթարթություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="112"/>
         <source>locationServicesClosedError</source>
-        <translation>տեղակայությունServicesClosedError</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="114"/>
         <source>locationServicesUnknownError</source>
-        <translation>տեղակայությունServicesUnknownError</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/conversationmodel.cpp" line="1162"/>
@@ -3941,7 +3941,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/app/smartlistmodel.cpp" line="191"/>
         <location filename="../src/app/smartlistmodel.cpp" line="192"/>
         <source>Calls</source>
-        <translation>Զանգահարություններ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/smartlistmodel.cpp" line="69"/>
@@ -3951,7 +3951,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/app/smartlistmodel.cpp" line="193"/>
         <location filename="../src/app/smartlistmodel.cpp" line="194"/>
         <source>Contacts</source>
-        <translation>Կոնտակտներ</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3959,27 +3959,27 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="216"/>
         <source>Answer</source>
-        <translation>Պատասխան</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="217"/>
         <source>Decline</source>
-        <translation>Հասնում է</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="219"/>
         <source>Open conversation</source>
-        <translation>Բաց խոսակցություն</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="221"/>
         <source>Accept</source>
-        <translation>Ընդունիր</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="222"/>
         <source>Refuse</source>
-        <translation>Բացառություն</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3987,122 +3987,122 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="78"/>
         <source>Customize</source>
-        <translation>Կազմակերպել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
         <source>What does Jami mean?</source>
-        <translation>Ի՞նչ է նշանակում Ջամի?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="87"/>
         <source>What is the green dot next to my account?</source>
-        <translation>Ո՞րն է իմ հաշիվի կողքին կանաչ կետը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="83"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
-        <translation>Ջամի անունն ընտրվել է սվահիլերենի բառից &apos;ջամիի&apos; ՝ որը նշանակում է &apos;համայնություն&apos; որպես անվան անուն եւ &apos;համատեղ&apos; որպես ադվեբ:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="79"/>
         <source>Backup account</source>
-        <translation>Բաքու հաշիվ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
-        <translation>Կարմիր կետը նշանակում է, որ ձեր հաշիվը անջատված է ցանցից, այն կանաչ է դառնում, երբ այն միացված է:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="94"/>
         <source>Why should I back up my account?</source>
-        <translation>Ինչո՞ւ պետք է կրկնօրինակեմ իմ հաշիվը։</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="96"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation>Jami- ն տարածվում է եւ ձեր հաշիվը պահվում է միայն տեղական ձեր սարքում: Եթե կորցնում եք գաղտնաբառը կամ տեղական հաշիվի տվյալները, Դուք չեք կարողանա վերականգնել ձեր հաշիվը, եթե դուք չեք պահուստային ապահովում այն ավելի վաղ:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="102"/>
         <source>Can I make a conference call?</source>
-        <translation>Կարո՞ղ եմ հեռախոսազանգ անել:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="107"/>
         <source>What is a Jami account?</source>
-        <translation>Ի՞նչ է Ջամիի հաշիվը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="109"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation>Ջամի հաշիվը ասիմետրիկ կոդավորման բանալին է: Ձեր հաշիվը ճանաչվում է Ջամիի ID-ով, որը ձեր հանրային բանալի մատնահետք է:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="113"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation>Ի՞նչ տեղեկություններ պետք է տրամադրեմ Ջամիի հաշիվ ստեղծելու համար:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="115"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation>Երբ ստեղծում եք նոր Jami հաշիվ, դուք ստիպված չեք լինի տրամադրել որեւէ անձնական տեղեկություն, ինչպիսիք են էլփոստի հասցեն կամ հեռախոսահամարը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation>Ջամիի դեպքում ձեր հաշիվը պահվում է ձեր սարքի ցուցակում: Անխոսությունը օգտագործվում է միայն ձեր հաշիվը կոդավորելու համար, որպեսզի պաշտպանվի ձեզ որեւէ մեկից, ով ֆիզիկական մուտք ունի ձեր սարքը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="142"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation>Ձեր հաշիվը պահվում է միայն ձեր սեփական սարքերում: Եթե ձեր հաշիվը ջնջեք բոլոր սարքերից, հաշիվը հավերժ կվերանա եւ դուք չեք կարող վերականգնել այն:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="146"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation>Կարո՞ղ եմ օգտագործել իմ հաշիվը մի քանի սարքերում:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="148"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation>Այո, դուք կարող եք կապել ձեր հաշիվը կարգավորումների միջոցով, կամ կարող եք ներմուծել ձեր պահուստային ապահովումը այլ սարք:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="120"/>
         <source>Why don&apos;t I have to use a password?</source>
-        <translation>Ինչո՞ւ ես պետք է գաղտնաբառ չօգտագործեմ։</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="104"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
-        <translation>Հաղորդակցության ժամանակ կարող եք սեղմել &quot;Անդբավել մասնակիցներ&quot; ՝ զանգի մեջ կապի ավելացնելու համար:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="128"/>
         <source>Why don&apos;t I have to register a username?</source>
-        <translation>Ինչո՞ւ ես պետք է գրանցեմ օգտատերերի անուն:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="130"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation>Ամենաերկարահայտնի եւ անվտանգ նույնականացողը ձեր Jami ID-ն է, բայց քանի որ դրանք դժվար են օգտագործվում որոշ մարդկանց համար, դուք նաեւ ունեք օգտատերու անուն գրանցելու տարբերակ:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="135"/>
         <source>How can I back up my account?</source>
-        <translation>Ինչպե՞ս կարող եմ կրկնօրինակել իմ հաշիվը:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation>Հաշիվի կարգավորումների էջում կա կոճակ, որը կարող է պահուստային պահեստ ստեղծել ձեր հաշիվի համար:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="140"/>
         <source>What happens when I delete my account?</source>
-        <translation>Ի՞նչ է տեղի ունենում, երբ ջնջում եմ հաշիվը:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4110,17 +4110,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="336"/>
         <source>%1 Mbps</source>
-        <translation>% 1 Mbps</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="336"/>
         <source>Default</source>
-        <translation>Անշարժ գույք</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="541"/>
         <source>System</source>
-        <translation>Համակարգ</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4128,22 +4128,22 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="477"/>
         <source>Searching…</source>
-        <translation>Փնտրում եմ...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1016"/>
         <source>Invalid ID</source>
-        <translation>Անավերժ ID</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1019"/>
         <source>Username not found</source>
-        <translation>Օգտագործողի անունը չի գտնվել</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1022"/>
         <source>Couldn&apos;t lookup…</source>
-        <translation>Չկարողացա փնտրել...</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4151,7 +4151,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="440"/>
         <source>Bad URI scheme</source>
-        <translation>Վատ URI սխեման</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
