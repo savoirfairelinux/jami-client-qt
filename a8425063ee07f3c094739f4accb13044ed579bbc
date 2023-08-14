@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1454d6e7_8cb41fcd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 991
+      },
+      "writtenOn": "2023-08-14T15:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c257887e_50e4e50e",
+      "range": {
+        "startLine": 7,
+        "startChar": 43,
+        "endLine": 7,
+        "endChar": 52
+      },
+      "revId": "a8425063ee07f3c094739f4accb13044ed579bbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1065fdd3_383b2176",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-12T17:27:32Z",
       "side": 1,
       "message": "no need to bump daemon in this patch!",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "a8425063ee07f3c094739f4accb13044ed579bbc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74cdf93c_e2719c01",
+        "filename": "daemon",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 991
+      },
+      "writtenOn": "2023-08-14T15:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1065fdd3_383b2176",
       "range": {
         "startLine": 1,
         "startChar": 18,
