@@ -32,342 +32,317 @@ Window {
     height: 480
     minimumHeight: 300
 
-    ListModel {
-        id: keyboardGeneralShortcutsModel
+    readonly property list<ListModel> keyboardShortcutsModelList: [
+        ListModel {
+            id: keyboardGeneralShortcutsModel
 
-        ListElement {
-            shortcut: "Ctrl + J"
-            shortcut2: ""
-            description: qsTr("Open account list")
-        }
-        ListElement {
-            shortcut: "Ctrl + L"
-            shortcut2: ""
-            description: qsTr("Focus conversations list")
-        }
-        ListElement {
-            shortcut: "Ctrl + R"
-            shortcut2: ""
-            description: qsTr("Requests list")
-        }
-        ListElement {
-            shortcut: "Ctrl + ↑"
-            shortcut2: ""
-            description: qsTr("Previous conversation")
-        }
-        ListElement {
-            shortcut: "Ctrl + ↓"
-            shortcut2: ""
-            description: qsTr("Next conversation")
-        }
-        ListElement {
-            shortcut: "Ctrl + F"
-            shortcut2: ""
-            description: qsTr("Search bar")
-        }
-        ListElement {
-            shortcut: "F11"
-            shortcut2: ""
-            description: qsTr("Full screen")
-        }
-        ListElement {
-            shortcut: "Ctrl + +"
-            shortcut2: ""
-            description: qsTr("Increase font size")
-        }
-        ListElement {
-            shortcut: "Ctrl + -"
-            shortcut2: ""
-            description: qsTr("Decrease font size")
-        }
-        ListElement {
-            shortcut: "Ctrl + 0"
-            shortcut2: ""
-            description: qsTr("Reset font size")
-        }
-    }
+            ListElement {
+                shortcut: "Ctrl + J"
+                description: qsTr("Open account list")
+            }
+            ListElement {
+                shortcut: "Ctrl + L"
+                description: qsTr("Focus conversations list")
+            }
+            ListElement {
+                shortcut: "Ctrl + R"
+                description: qsTr("Requests list")
+            }
+            ListElement {
+                shortcut: "Ctrl + ↑"
+                description: qsTr("Previous conversation")
+            }
+            ListElement {
+                shortcut: "Ctrl + ↓"
+                description: qsTr("Next conversation")
+            }
+            ListElement {
+                shortcut: "Ctrl + F"
+                description: qsTr("Search bar")
+            }
+            ListElement {
+                shortcut: "F11"
+                description: qsTr("Full screen")
+            }
+            ListElement {
+                shortcut: "Ctrl + +"
+                description: qsTr("Increase font size")
+            }
+            ListElement {
+                shortcut: "Ctrl + -"
+                description: qsTr("Decrease font size")
+            }
+            ListElement {
+                shortcut: "Ctrl + 0"
+                description: qsTr("Reset font size")
+            }
+        },
+        ListModel {
+            id: keyboardConversationShortcutsModel
 
-    ListModel {
-        id: keyboardConversationShortcutsModel
+            ListElement {
+                shortcut: "Ctrl + Shift + C"
+                description: qsTr("Start an audio call")
+            }
+            ListElement {
+                shortcut: "Ctrl + Shift + X"
+                description: qsTr("Start a video call")
+            }
+            ListElement {
+                shortcut: "Ctrl + Shift + L"
+                description: qsTr("Clear history")
+            }
+            ListElement {
+                shortcut: "Ctrl + Shift + F"
+                description: qsTr("Search messages/files")
+            }
+            ListElement {
+                shortcut: "Ctrl + Shift + B"
+                description: qsTr("Block contact")
+            }
+            ListElement {
+                shortcut: "Ctrl + Shift + Delete"
+                description: qsTr("Remove conversation")
+            }
+            ListElement {
+                shortcut: "Ctrl + Shift + A"
+                description: qsTr("Accept contact request")
+            }
+            ListElement {
+                shortcut: "↑"
+                description: qsTr("Edit last message")
+            }
+            ListElement {
+                shortcut: "Esc"
+                description: qsTr("Cancel message edition")
+            }
+        },
+        ListModel {
+            id: keyboardSettingsShortcutsModel
 
-        ListElement {
-            shortcut: "Ctrl + Shift + C"
-            shortcut2: ""
-            description: qsTr("Start an audio call")
-        }
-        ListElement {
-            shortcut: "Ctrl + Shift + X"
-            shortcut2: ""
-            description: qsTr("Start a video call")
-        }
-        ListElement {
-            shortcut: "Ctrl + Shift + L"
-            shortcut2: ""
-            description: qsTr("Clear history")
-        }
-        ListElement {
-            shortcut: "Ctrl + Shift + F"
-            shortcut2: ""
-            description: qsTr("Search messages/files")
-        }
-        ListElement {
-            shortcut: "Ctrl + Shift + B"
-            shortcut2: ""
-            description: qsTr("Block contact")
-        }
-        ListElement {
-            shortcut: "Ctrl + Shift + Delete"
-            shortcut2: ""
-            description: qsTr("Remove conversation")
-        }
-        ListElement {
-            shortcut: "Ctrl + Shift + A"
-            shortcut2: ""
-            description: qsTr("Accept contact request")
-        }
-        ListElement {
-            shortcut: "↑"
-            shortcut2: ""
-            description: qsTr("Edit last message")
-        }
-        ListElement {
-            shortcut: "Esc"
-            shortcut2: ""
-            description: qsTr("Cancel message edition")
-        }
-    }
+            ListElement {
+                shortcut: "Ctrl + M"
+                description: qsTr("Media settings")
+            }
+            ListElement {
+                shortcut: "Ctrl + G"
+                description: qsTr("General settings")
+            }
+            ListElement {
+                shortcut: "Ctrl + Alt + I"
+                description: qsTr("Account settings")
+            }
+            ListElement {
+                shortcut: "Ctrl + P"
+                description: qsTr("Plugin settings")
+            }
+            ListElement {
+                shortcut: "Ctrl + Shift + N"
+                description: qsTr("Open account creation wizard")
+            }
+            ListElement {
+                shortcut: "F10"
+                shortcut2: ""
+                description: qsTr("Open keyboard shortcut table")
+            }
+        },
+        ListModel {
+            id: keyboardCallsShortcutsModel
 
-    ListModel {
-        id: keyboardSettingsShortcutsModel
+            ListElement {
+                shortcut: "Ctrl + Y"
+                description: qsTr("Answer an incoming call")
+            }
+            ListElement {
+                shortcut: "Ctrl + D"
+                description: qsTr("End call")
+            }
+            ListElement {
+                shortcut: "Ctrl + Shift + D"
+                description: qsTr("Decline the call request")
+            }
+            ListElement {
+                shortcut: "M"
+                description: qsTr("Mute microphone")
+            }
+            ListElement {
+                shortcut: "V"
+                description: qsTr("Stop camera")
+            }
+            ListElement {
+                shortcut: "Ctrl"
+                description: qsTr("Take tile screenshot")
+            }
+        },
+        ListModel {
+            id: keyboardMarkdownShortcutsModel
 
-        ListElement {
-            shortcut: "Ctrl + M"
-            shortcut2: ""
-            description: qsTr("Media settings")
+            ListElement {
+                shortcut: "Ctrl + B"
+                description: qsTr("Bold")
+            }
+            ListElement {
+                shortcut: "Ctrl + I"
+                description: qsTr("Italic")
+            }
+            ListElement {
+                shortcut: "Shift + Alt + X"
+                description: qsTr("Strikethrough")
+            }
+            ListElement {
+                shortcut: "Ctrl + Alt + H"
+                description: qsTr("Heading")
+            }
+            ListElement {
+                shortcut: "Ctrl + Alt + K"
+                description: qsTr("Link")
+            }
+            ListElement {
+                shortcut: "Ctrl + Alt + C"
+                description: qsTr("Code")
+            }
+            ListElement {
+                shortcut: "Shift + Alt + 9"
+                description: qsTr("Quote")
+            }
+            ListElement {
+                shortcut: "Shift + Alt + 8"
+                description: qsTr("Unordered list")
+            }
+            ListElement {
+                shortcut: "Shift + Alt + 7"
+                description: qsTr("Ordered list")
+            }
+            ListElement {
+                shortcut: "Shift + Alt + T"
+                description: qsTr("Show formatting")
+            }
+            ListElement {
+                shortcut: "Shift + Alt + P"
+                description: qsTr("Show preview")
+            }
         }
-        ListElement {
-            shortcut: "Ctrl + G"
-            shortcut2: ""
-            description: qsTr("General settings")
-        }
-        ListElement {
-            shortcut: "Ctrl + Alt + I"
-            shortcut2: ""
-            description: qsTr("Account settings")
-        }
-        ListElement {
-            shortcut: "Ctrl + P"
-            shortcut2: ""
-            description: qsTr("Plugin settings")
-        }
-        ListElement {
-            shortcut: "Ctrl + Shift + N"
-            shortcut2: ""
-            description: qsTr("Open account creation wizard")
-        }
-        ListElement {
-            shortcut: "F10"
-            shortcut2: ""
-            description: qsTr("Open keyboard shortcut table")
-        }
-    }
+    ]
 
-    ListModel {
-        id: keyboardCallsShortcutsModel
-
-        ListElement {
-            shortcut: "Ctrl + Y"
-            shortcut2: ""
-            description: qsTr("Answer an incoming call")
-        }
-        ListElement {
-            shortcut: "Ctrl + D"
-            shortcut2: ""
-            description: qsTr("End call")
-        }
-        ListElement {
-            shortcut: "Ctrl + Shift + D"
-            shortcut2: ""
-            description: qsTr("Decline the call request")
-        }
-        ListElement {
-            shortcut: "M"
-            shortcut2: ""
-            description: qsTr("Mute microphone")
-        }
-        ListElement {
-            shortcut: "V"
-            shortcut2: ""
-            description: qsTr("Stop camera")
-        }
-        ListElement {
-            shortcut: "Ctrl"
-            shortcut2: qsTr("Mouse middle click")
-            description: qsTr("Take tile screenshot")
-        }
-    }
-
-    ListModel {
-        id: keyboardMarkdownShortcutsModel
-
-        ListElement {
-            shortcut: "Ctrl + B"
-            shortcut2: ""
-            description: qsTr("Bold")
-        }
-        ListElement {
-            shortcut: "Ctrl + I"
-            shortcut2: ""
-            description: qsTr("Italic")
-        }
-        ListElement {
-            shortcut: "Shift + Alt + X"
-            shortcut2: ""
-            description: qsTr("Strikethrough")
-        }
-        ListElement {
-            shortcut: "Ctrl + Alt + H"
-            shortcut2: ""
-            description: qsTr("Heading")
-        }
-        ListElement {
-            shortcut: "Ctrl + Alt + K"
-            shortcut2: ""
-            description: qsTr("Link")
-        }
-        ListElement {
-            shortcut: "Ctrl + Alt + C"
-            shortcut2: ""
-            description: qsTr("Code")
-        }
-        ListElement {
-            shortcut: "Shift + Alt + 9"
-            shortcut2: ""
-            description: qsTr("Quote")
-        }
-        ListElement {
-            shortcut: "Shift + Alt + 8"
-            shortcut2: ""
-            description: qsTr("Unordered list")
-        }
-        ListElement {
-            shortcut: "Shift + Alt + 7"
-            shortcut2: ""
-            description: qsTr("Ordered list")
-        }
-        ListElement {
-            shortcut: "Shift + Alt + T"
-            shortcut2: ""
-            description: qsTr("Show formatting")
-        }
-        ListElement {
-            shortcut: "Shift + Alt + P"
-            shortcut2: ""
-            description: qsTr("Show preview")
-        }
-    }
-
-    Rectangle {
-        id: windowRect
+    Page {
+        id: page
 
         anchors.fill: parent
 
-        color: JamiTheme.secondaryBackgroundColor
+        // make a list view of keyboardShortcutsModelList[selectionBar.currentIndex]
+        JamiListView {
+            id: keyboardShortcutsListView
 
-        Rectangle {
-            id: titleRect
+            anchors.fill: parent
+            anchors.leftMargin: 48
+            anchors.rightMargin: 48
 
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.topMargin: JamiTheme.titleRectMargin
+            Keys.onUpPressed: keyboardShortcutsListView.decrementCurrentIndex()
+            Keys.onDownPressed: keyboardShortcutsListView.incrementCurrentIndex()
 
-            height: titleName.contentHeight + JamiTheme.titleRectMargin
-            width: titleName.contentWidth + JamiTheme.titleRectMargin
+            // on key tab forceActiveFocus
+            Keys.onTabPressed: if (activeFocus)
+                selectionBar.forceActiveFocus()
 
-            color: JamiTheme.backgroundColor
-            radius: JamiTheme.primaryRadius
+            model: keyboardShortcutsModelList[selectionBar.currentIndex]
+            spacing: 24
+            delegate: FocusScope {
+                id: fs
+                height: childrenRect.height
+                focus: true
 
-            Text {
-                id: titleName
+                // Accessible.role: Accessible.Button
+                Accessible.name: descriptionLabel.text
+                Accessible.description: shortcutLabel.text
 
-                anchors.centerIn: parent
-
-                font.pointSize: JamiTheme.titleFontSize
-                text: {
-                    var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
-                    switch (modelId) {
-                    case 0:
-                        return JamiStrings.generalSettingsTitle;
-                    case 1:
-                        return JamiStrings.conversationKeyboardShortcuts;
-                    case 2:
-                        return JamiStrings.callKeyboardShortcuts;
-                    case 3:
-                        return JamiStrings.settings;
-                    case 4:
-                        return JamiStrings.markdownKeyboardShortcuts;
+                RowLayout {
+                    width: keyboardShortcutsListView.width
+                    Label {
+                        id: descriptionLabel
+                        Layout.alignment: Qt.AlignLeft
+                        Layout.topMargin: 8
+                        Layout.leftMargin: 20
+                        text: description
+                        background: Rectangle {
+                            width: parent.width + 16
+                            height: parent.height + 16
+                            border.color: fs.activeFocus ? "darkblue" : "transparent"
+                            border.width: 2
+                            radius: 5
+                            anchors.centerIn: parent
+                        }
+                    }
+                    Label {
+                        id: shortcutLabel
+                        Layout.alignment: Qt.AlignRight
+                        Layout.topMargin: 8
+                        Layout.rightMargin: 20
+                        text: shortcut
+                        background: Rectangle {
+                            width: parent.width + 16
+                            height: parent.height + 16
+                            border.color: fs.activeFocus ? "darkblue" : "transparent"
+                            border.width: 2
+                            radius: 5
+                            anchors.centerIn: parent
+                        }
                     }
                 }
-                color: JamiTheme.textColor
             }
         }
 
-        JamiListView {
-            id: keyboardShortCutList
-
-            anchors.top: titleRect.bottom
-            anchors.topMargin: 10
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            width: parent.width
-            height: parent.height - titleRect.height - JamiTheme.titleRectMargin - keyboardShortCutList.anchors.topMargin - selectionBar.height - selectionBar.anchors.bottomMargin
-
-            model: {
-                var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
-                switch (modelId) {
-                case 0:
-                    return keyboardGeneralShortcutsModel;
-                case 1:
-                    return keyboardConversationShortcutsModel;
-                case 2:
-                    return keyboardCallsShortcutsModel;
-                case 3:
-                    return keyboardSettingsShortcutsModel;
-                case 4:
-                    return keyboardMarkdownShortcutsModel;
-                }
-            }
-            delegate: KeyboardShortcutKeyDelegate {
-                width: keyboardShortCutList.width
-                height: Math.max(JamiTheme.keyboardShortcutDelegateSize, implicitHeight)
-            }
-        }
-
-        TabBar {
+        header: TabBar {
             id: selectionBar
 
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 10
-            anchors.horizontalCenter: parent.horizontalCenter
+            readonly property real lambda: 12
 
-            width: 96
-            height: JamiTheme.keyboardShortcutTabBarSize
-            contentHeight: JamiTheme.keyboardShortcutTabBarSize
-            background: Rectangle {
-                color: windowRect.color
-            }
+            spacing: lambda
+            padding: lambda
+
+            focus: true
 
             Repeater {
-                model: UtilsAdapter.isRTL ? ["5", "4", "3", "2", "1"] : ["1", "2", "3", "4", "5"]
+                model: [JamiStrings.generalSettingsTitle, JamiStrings.conversationKeyboardShortcuts, JamiStrings.callKeyboardShortcuts, JamiStrings.settings, JamiStrings.markdownKeyboardShortcuts]
 
-                KeyboardShortcutTabButton {
-                    currentIndex: selectionBar.currentIndex
-                    text: modelData
+                TabButton {
+                    id: tabButton
+
+                    Accessible.name: modelData + "shortcuts category"
+
+                    Keys.onTabPressed: if (activeFocus)
+                        keyboardShortcutsListView.forceActiveFocus()
+
+                    contentItem: Text {
+                        text: modelData
+                        color: JamiTheme.textColor
+                        font.pixelSize: JamiTheme.titleFontSize
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+
+                    background: Rectangle {
+                        border.color: tabButton.activeFocus ? "darkblue" : "transparent"
+                        border.width: 2
+
+                        color: {
+                            if (tabButton.checked || tabButton.pressed)
+                                return JamiTheme.pressedButtonColor;
+                            if (tabButton.hovered)
+                                return JamiTheme.hoveredButtonColor;
+                            else
+                                return JamiTheme.normalButtonColor;
+                        }
+                        radius: JamiTheme.primaryRadius
+                    }
                 }
             }
+        }
 
-            Component.onCompleted: {
-                setCurrentIndex(UtilsAdapter.isRTL ? 4 : 0);
+        footer: Item {
+            height: JamiTheme.keyboardShortcutTabBarSize
+            PageIndicator {
+                anchors.centerIn: parent
+                count: selectionBar.count
+                currentIndex: selectionBar.currentIndex
             }
         }
     }
