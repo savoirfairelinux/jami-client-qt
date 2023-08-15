@@ -248,6 +248,10 @@ CurrentCall::updateCallInfo()
                     isCapturing = media[MediaAttributeKey::MUTED] == FALSE_STR;
                 }
             } else if (media[MediaAttributeKey::MEDIA_TYPE] == Details::MEDIA_TYPE_AUDIO) {
+                if (media[MediaAttributeKey::SOURCE].startsWith(VideoProtocolPrefix::FILE)) {
+                    isSharing = true;
+                    sharingSource = media[MediaAttributeKey::SOURCE];
+                }
                 if (media[MediaAttributeKey::LABEL] == "audio_0") {
                     isAudioMuted |= media[libjami::Media::MediaAttributeKey::MUTED] == TRUE_STR;
                 }
