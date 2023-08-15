@@ -305,6 +305,11 @@ AvAdapter::stopSharing(const QString& source)
             qDebug() << "Stopping file: " << source;
             lrcInstance_->getCurrentCallModel()
                 ->removeMedia(callId,
+                              libjami::Media::Details::MEDIA_TYPE_AUDIO,
+                              libjami::Media::VideoProtocolPrefix::FILE,
+                              muteCamera_);
+            lrcInstance_->getCurrentCallModel()
+                ->removeMedia(callId,
                               libjami::Media::Details::MEDIA_TYPE_VIDEO,
                               libjami::Media::VideoProtocolPrefix::FILE,
                               muteCamera_);
@@ -367,7 +372,8 @@ AvAdapter::isSharing() const
         // TODO enum
         return call.hasMediaWithType(libjami::Media::VideoProtocolPrefix::DISPLAY,
                                      libjami::Media::Details::MEDIA_TYPE_VIDEO)
-               || call.hasMediaWithType("file:", libjami::Media::Details::MEDIA_TYPE_VIDEO);
+               || call.hasMediaWithType("file:", libjami::Media::Details::MEDIA_TYPE_VIDEO)
+               || call.hasMediaWithType("file:", libjami::Media::Details::MEDIA_TYPE_AUDIO);
     } catch (...) {
     }
     return false;
