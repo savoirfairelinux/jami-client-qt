@@ -135,6 +135,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89a2aaa4_961883a0",
+        "filename": "src/app/settingsview/components/PluginSettingsPage.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-08-16T19:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "808ff0f9_0f6f2eda",
+      "range": {
+        "startLine": 35,
+        "startChar": 16,
+        "endLine": 35,
+        "endChar": 31
+      },
+      "revId": "a6b03e07c1a8efd345305137f583d333f27f250f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8ad40a0_9524fe4f",
@@ -148,6 +172,30 @@
       "writtenOn": "2023-08-16T19:13:05Z",
       "side": 1,
       "message": "scary",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 13
+      },
+      "revId": "a6b03e07c1a8efd345305137f583d333f27f250f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "247ebfca_25a50b33",
+        "filename": "src/app/settingsview/components/PluginSettingsPage.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-08-16T19:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8ad40a0_9524fe4f",
       "range": {
         "startLine": 36,
         "startChar": 12,
