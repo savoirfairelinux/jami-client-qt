@@ -70,6 +70,25 @@ NetworkManager::sendGetRequest(const QUrl& url,
     });
 }
 
+void NetworkManager::sendGetRequest(const QUrl& url,
+                                    const QMap<QString, QByteArray>& header,
+                                    std::function<void(const QByteArray&)>&& onDoneCallback)
+{
+    QNetworkRequest request = QNetworkRequest(url);
+    for (auto it = header.begin(); it != header.end(); ++it) {
+        request.setRawHeader(QByteArray(it.key().toStdString().c_str(), it.key().size()), it.value());
+    }
+    auto* const reply = manager_->get(request);
+    QObject::connect(reply, &QNetworkReply::finished, this, [reply, onDoneCallback, this]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            onDoneCallback(reply->readAll());
+        } else {
+            Q_EMIT errorOccurred(GetError::NETWORK_ERROR, reply->errorString());
+        }
+        reply->deleteLater();
+    });
+}
+
 int
 NetworkManager::downloadFile(const QUrl& url,
                              int replyId,
