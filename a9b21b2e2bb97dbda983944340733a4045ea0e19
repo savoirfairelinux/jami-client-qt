@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "07a19d41_8b757695",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-08-17T00:15:41Z",
+      "side": 1,
+      "message": "1. Click on a conversation\n2. Click `Details` button\n3. Click `Files` tab\n4. Right-click on a file to open the contextual menu\n\nDoes `Delete file` show in the contextual menu?\n\nThank you",
+      "revId": "a9b21b2e2bb97dbda983944340733a4045ea0e19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aee81618_e2c42e2b",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 1
