@@ -123,7 +123,7 @@ registerTypes(QQmlEngine* engine,
     auto contactAdapter = new ContactAdapter(lrcInstance, parent);
     auto accountAdapter = new AccountAdapter(settingsManager, systemTray, lrcInstance, parent);
     auto utilsAdapter = new UtilsAdapter(settingsManager, systemTray, lrcInstance, parent);
-    auto pluginAdapter = new PluginAdapter(lrcInstance, parent);
+    auto pluginAdapter = new PluginAdapter(lrcInstance, settingsManager, parent);
     auto currentCall = new CurrentCall(lrcInstance, parent);
     auto currentConversation = new CurrentConversation(lrcInstance, parent);
     auto currentAccount = new CurrentAccount(lrcInstance, settingsManager, parent);
