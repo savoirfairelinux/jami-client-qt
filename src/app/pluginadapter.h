@@ -32,6 +32,7 @@
 
 class PluginVersionManager;
 class PluginStoreListModel;
+class AppSettingsManager;
 
 class PluginAdapter final : public QmlAdapterBase
 {
@@ -42,6 +43,7 @@ class PluginAdapter final : public QmlAdapterBase
 
 public:
     explicit PluginAdapter(LRCInstance* instance,
+                           AppSettingsManager* settingsManager,
                            QObject* parent = nullptr,
                            QString baseUrl = "https://plugins.jami.net");
     ~PluginAdapter() = default;
@@ -79,4 +81,5 @@ private:
     std::mutex mtx_;
     QString tempPath_;
     QString baseUrl_;
+    AppSettingsManager* settingsManager_;
 };
