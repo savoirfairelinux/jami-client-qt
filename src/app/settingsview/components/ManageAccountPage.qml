@@ -220,6 +220,8 @@ SettingsPageBase {
                 toolTipText: JamiStrings.tipLinkNewDevice
                 text: JamiStrings.linkAnotherDevice
 
+                Component.onCompleted: clicked()
+
                 onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
             }
         }

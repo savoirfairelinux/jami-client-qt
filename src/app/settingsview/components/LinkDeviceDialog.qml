@@ -24,6 +24,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
+// Popup
 BaseModalDialog {
     id: root
 
@@ -32,7 +33,7 @@ BaseModalDialog {
     title: JamiStrings.addDevice
 
     width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
+    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight + 40)
 
     popupContent: StackLayout {
         id: stackedWidget
@@ -108,9 +109,10 @@ BaseModalDialog {
 
             readonly property int pageIndex: 0
 
-            ColumnLayout {
-                anchors.fill: parent
+            width: childrenRect.width
+            height: childrenRect.height
 
+            ColumnLayout {
                 spacing: 16
 
                 Label {
@@ -193,15 +195,17 @@ BaseModalDialog {
             }
         }
 
+        // loading page after the first click
         // Index = 1
         Item {
             id: exportingSpinnerPage
 
             readonly property int pageIndex: 1
 
-            ColumnLayout {
-                anchors.fill: parent
+            width: childrenRect.width
+            height: childrenRect.height
 
+            ColumnLayout {
                 spacing: 16
 
                 Label {
@@ -231,17 +235,35 @@ BaseModalDialog {
             }
         }
 
+        // this page shows whats your pin
         // Index = 2
         Item {
             id: exportingInfoPage
 
             readonly property int pageIndex: 2
 
-            ColumnLayout {
-                anchors.fill: parent
+            width: childrenRect.width
+            height: childrenRect.height
 
+            ColumnLayout {
                 spacing: 16
 
+                // TODO: use qr image provider to show a QR code of the pin
+                Image {
+                    id: userQrImage
+                    smooth: false
+                    fillMode: Image.PreserveAspectFit
+
+                    // TODO: replace the hard coded pin with the real pin variable
+                    source: "image://qrImage/raw_" + exportedPIN.text
+
+                    //TODO allign the image to the center
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: 128
+                    Layout.preferredHeight: 128
+                }
+
+                // "your pin is: xxxxxx-xxxxxx"
                 Item {
                     id: infoLabelsRowLayout
 
@@ -271,7 +293,8 @@ BaseModalDialog {
 
                         padding: 0
 
-                        text: JamiStrings.pin
+                        text: JamiStrings.pin // "Enter the pin code"
+
                         wrapMode: Text.NoWrap
 
                         color: JamiTheme.textColor
@@ -284,6 +307,7 @@ BaseModalDialog {
                     }
                 }
 
+                // Info rectangle "the pin and the account password should be entered"
                 Label {
                     id: infoLabel
 
@@ -317,6 +341,7 @@ BaseModalDialog {
                     }
                 }
 
+                // close button
                 MaterialButton {
                     id: btnCloseExportDialog
 

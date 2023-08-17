@@ -33,17 +33,20 @@ public:
                                  instance)
     {}
 
-    enum class QrType { Account, Contact };
+    enum class QrType { Account, Contact, Raw };
 
     /*
-     * Id should be string like account_0 (account index),
-     * or contact_xxx (uid).
+     * Id should be string like
+     * account_0 (account index), contact_xxx (uid), raw_xxx (pin for example).
      * Cannot use getCurrentAccId to replace account index,
      * since we need to keep each image id unique.
      */
     QPair<QrType, QString> getIndexFromID(const QString& id)
     {
         auto list = id.split('_', Qt::SkipEmptyParts);
+        if (list.contains("raw")) {
+            return {QrType::Raw, list[1]};
+        }
         if (list.size() < 2)
             return {QrType::Account, {}};
         if (list.contains("account") && list.size() > 1) {
@@ -72,18 +75,20 @@ public:
     {
         Q_UNUSED(size);
 
-        QString uri;
+        QString data;
         auto indexPair = getIndexFromID(id);
 
-        if (indexPair.first == QrType::Contact) {
-            uri = indexPair.second;
+        if (indexPair.first == QrType::Raw) {
+            data = indexPair.second;
+        } else if (indexPair.first == QrType::Contact) {
+            data = indexPair.second;
         } else {
             if (indexPair.second.isEmpty())
                 return QImage();
             auto accountId = indexPair.second;
             try {
                 auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
-                uri = accountInfo.profileInfo.uri;
+                data = accountInfo.profileInfo.uri;
             } catch (const std::out_of_range&) {
                 qWarning() << "Couldn't get account info for id:" << accountId;
                 return QImage();
@@ -91,8 +96,8 @@ public:
         }
 
         if (!requestedSize.isEmpty())
-            return Utils::setupQRCode(uri, 0).scaled(requestedSize, Qt::KeepAspectRatio);
+            return Utils::getQRCodeImage(data).scaled(requestedSize, Qt::KeepAspectRatio);
         else
-            return Utils::setupQRCode(uri, 0);
+            return Utils::getQRCodeImage(data);
     }
 };
