@@ -24,6 +24,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
+// Popup
 BaseModalDialog {
     id: root
 
@@ -103,7 +104,7 @@ BaseModalDialog {
         }
 
         // Index = 0
-        Item {
+        Item { 
             id: enterPasswordPage
 
             readonly property int pageIndex: 0
@@ -193,6 +194,8 @@ BaseModalDialog {
             }
         }
 
+
+        // loading page after the first click
         // Index = 1
         Item {
             id: exportingSpinnerPage
@@ -231,6 +234,7 @@ BaseModalDialog {
             }
         }
 
+        // this page shows whats your pin
         // Index = 2
         Item {
             id: exportingInfoPage
@@ -242,6 +246,16 @@ BaseModalDialog {
 
                 spacing: 16
 
+                // TODO: use qr image provider to show a QR code of the pin
+                
+                Image {
+                    id: userQrImage                
+                    smooth: false
+                    fillMode: Image.PreserveAspectFit
+                    source: "image://qrImage/raw_" + "fb8gvcum-qifgah25"
+                }
+                
+                // "your pin is: xxxxxx-xxxxxx"
                 Item {
                     id: infoLabelsRowLayout
 
@@ -261,6 +275,7 @@ BaseModalDialog {
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
+
 
                     MaterialLineEdit {
                         id: exportedPIN
@@ -284,6 +299,7 @@ BaseModalDialog {
                     }
                 }
 
+                // Info rectangle "the pin and the account password should be entered"
                 Label {
                     id: infoLabel
 
@@ -317,6 +333,7 @@ BaseModalDialog {
                     }
                 }
 
+                // close button
                 MaterialButton {
                     id: btnCloseExportDialog
 
