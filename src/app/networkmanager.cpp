@@ -59,7 +59,28 @@ void
 NetworkManager::sendGetRequest(const QUrl& url,
                                std::function<void(const QByteArray&)>&& onDoneCallback)
 {
-    auto* const reply = manager_->get(QNetworkRequest(url));
+    QNetworkRequest request = QNetworkRequest(url);
+    sendGetRequest(request, std::move(onDoneCallback));
+}
+
+void
+NetworkManager::sendGetRequest(const QUrl& url,
+                               const QMap<QString, QByteArray>& header,
+                               std::function<void(const QByteArray&)>&& onDoneCallback)
+{
+    QNetworkRequest request = QNetworkRequest(url);
+    for (auto it = header.begin(); it != header.end(); ++it) {
+        request.setRawHeader(QByteArray(it.key().toStdString().c_str(), it.key().size()),
+                             it.value());
+    }
+    sendGetRequest(request, std::move(onDoneCallback));
+}
+
+void
+NetworkManager::sendGetRequest(const QNetworkRequest& request,
+                               std::function<void(const QByteArray&)>&& onDoneCallback)
+{
+    auto* const reply = manager_->get(request);
     QObject::connect(reply, &QNetworkReply::finished, this, [reply, onDoneCallback, this]() {
         if (reply->error() == QNetworkReply::NoError) {
             onDoneCallback(reply->readAll());

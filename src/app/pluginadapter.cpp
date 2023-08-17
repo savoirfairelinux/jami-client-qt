@@ -23,21 +23,27 @@
 #include "pluginstorelistmodel.h"
 #include "networkmanager.h"
 #include "lrcinstance.h"
+#include "appsettingsmanager.h"
 #include "utilsadapter.h"
 #include "qmlregister.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QtNetwork>
 #include <QJsonObject>
 #include <QDir>
 #include <QString>
 
-PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString baseUrl)
+PluginAdapter::PluginAdapter(LRCInstance* instance,
+                             AppSettingsManager* settingsManager,
+                             QObject* parent,
+                             QString baseUrl)
     : QmlAdapterBase(instance, parent)
     , pluginStoreListModel_(new PluginStoreListModel(instance, this))
     , pluginVersionManager_(new PluginVersionManager(instance, baseUrl, this))
     , pluginListModel_(new PluginListModel(instance, this))
     , lrcInstance_(instance)
+    , settingsManager_(settingsManager)
     , tempPath_(QDir::tempPath())
     , baseUrl_(baseUrl)
 
@@ -89,8 +95,12 @@ PluginAdapter::getPluginsFromStore()
                                        [this](NetworkManager::GetError error, const QString& msg) {
                                            Q_EMIT storeNotAvailable();
                                        });
+    QMap<QString, QByteArray> header;
+    const auto& language = settingsManager_->getLanguage();
+    header["Accept-Language"] = QByteArray(language.toStdString().c_str(), language.size());
     pluginVersionManager_
         ->sendGetRequest(QUrl(baseUrl_ + "?arch=" + Utils::getPlatformString()),
+                         header,
                          [this, errorHandler](const QByteArray& data) {
                              auto result = QJsonDocument::fromJson(data).array();
                              auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
@@ -113,8 +123,12 @@ PluginAdapter::getPluginsFromStore()
 void
 PluginAdapter::getPluginDetails(const QString& pluginId)
 {
+    QMap<QString, QByteArray> header;
+    const auto& language = settingsManager_->getLanguage();
+    header["Accept-Language"] = QByteArray(language.toStdString().c_str(), language.size());
     pluginVersionManager_->sendGetRequest(QUrl(baseUrl_ + "/details/" + pluginId
                                                + "?arch=" + Utils::getPlatformString()),
+                                          header,
                                           [this](const QByteArray& data) {
                                               auto result = QJsonDocument::fromJson(data).object();
                                               // my response is a json object and I want to convert
