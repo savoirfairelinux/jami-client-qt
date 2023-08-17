@@ -805,10 +805,12 @@ Utils::pixmapFromSvg(const QString& svg_resource, const QSize& size)
     return pixmap;
 }
 
+//make a qr code for the pin to link a device to an account
 QImage
-Utils::setupQRCode(QString ringID, int margin)
+Utils::getQRCodeImage(QString data, int margin)
 {
-    auto qrcode = QRcode_encodeString(ringID.toStdString().c_str(),
+    // Encode the data as a QR code using libqrencode.
+    auto qrcode = QRcode_encodeString(data.toStdString().c_str(),
                                       0,            // Let the version be decided by libqrencode
                                       QR_ECLEVEL_L, // Lowest level of error correction
                                       QR_MODE_8,    // 8-bit data mode
@@ -818,24 +820,34 @@ Utils::setupQRCode(QString ringID, int margin)
         return QImage();
     }
 
+    // Calculate the width of the QR code image including the specified margin.
     int qrwidth = qrcode->width + margin * 2;
+
     QImage result(QSize(qrwidth, qrwidth), QImage::Format_Mono);
     QPainter painter;
+    
     painter.begin(&result);
     painter.setClipRect(QRect(0, 0, qrwidth, qrwidth));
     painter.setPen(QPen(Qt::black, 0.1, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin));
     painter.setBrush(Qt::black);
+    // Fill the entire image with a white background.
     painter.fillRect(QRect(0, 0, qrwidth, qrwidth), Qt::white);
+    
+    // Iterate over each module (cell) in the QR code data and draw black squares for non-blank modules.
     unsigned char* p;
     p = qrcode->data;
+    
     for (int y = 0; y < qrcode->width; y++) {
         unsigned char* row = (p + (y * qrcode->width));
         for (int x = 0; x < qrcode->width; x++) {
             if (*(row + x) & 0x1) {
+                // Draw a black square at the corresponding position.
                 painter.drawRect(margin + x, margin + y, 1, 1);
             }
         }
     }
+
+    // Finish painting and free the QR code data.
     painter.end();
     QRcode_free(qrcode);
     return result;
