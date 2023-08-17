@@ -51,7 +51,7 @@ RowLayout {
     signal showMapClicked
     signal emojiButtonClicked
 
-    height: showTypo || multiLine ? textAreaObj.height + 25 + 3 * marginSize + 1 : textAreaObj.height + marginSize + 1
+    height: showTypo || multiLine ? messageBarTextArea.height + 25 + 3 * marginSize + 1 : textAreaObj.height + marginSize + 1
 
     Rectangle {
         Layout.preferredHeight: parent.height
@@ -180,7 +180,6 @@ RowLayout {
 
                 onSendMessagesRequired: {
                     sendMessageButtonClicked();
-                    messageBarTextArea.heightBinding();
                 }
                 onTextChanged: MessagesAdapter.userIsComposing(text ? true : false)
 
