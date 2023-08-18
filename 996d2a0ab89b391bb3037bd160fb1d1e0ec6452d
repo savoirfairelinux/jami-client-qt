@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80db5dee_fed67627",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-18T12:31:07Z",
+      "side": 1,
+      "message": "could try to avoid duplicated code",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 1
+      },
+      "revId": "996d2a0ab89b391bb3037bd160fb1d1e0ec6452d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
