@@ -73,6 +73,8 @@ endif()
 
 string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
 
+set(QUICK_TEST_SOURCE_DIR "${CMAKE_SOURCE_DIR}tests/qml/src")
+
 set(QML_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/qml/main.cpp
     ${TEST_QML_RESOURCES}
