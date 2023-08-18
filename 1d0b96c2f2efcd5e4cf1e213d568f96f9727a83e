@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64b5b873_47c1caa0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-08-18T20:39:57Z",
+      "side": 1,
+      "message": "Perhaps a more succinct msg:\nmessagebar: fix layout issue ?? no further description needed",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 10
+      },
+      "revId": "1d0b96c2f2efcd5e4cf1e213d568f96f9727a83e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e37703d5_5bc6590e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-08-18T20:39:57Z",
+      "side": 1,
+      "message": "LGTM otherwise",
+      "revId": "1d0b96c2f2efcd5e4cf1e213d568f96f9727a83e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
