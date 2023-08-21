@@ -25,7 +25,7 @@ coucou
 #include "appsettingsmanager.h"
 #include "qtutils.h"
 #include "qmlregister.h"
-
+hjgfyft
 #include <QtConcurrent/QtConcurrent>
 
 AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
