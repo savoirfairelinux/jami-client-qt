@@ -64,6 +64,8 @@ struct AppVersionManager::Impl : public QObject
                     &parent_,
                     &AppVersionManager::updateErrorOccurred);
 
+
+abc
         cleanUpdateFiles();
         QUrl versionUrl {isBeta ? QUrl::fromUserInput(baseUrlString_ + betaVersionSubUrl)
                                 : QUrl::fromUserInput(baseUrlString_ + versionSubUrl)};
@@ -86,6 +88,8 @@ struct AppVersionManager::Impl : public QObject
                     Q_EMIT parent_.updateCheckReplyReceived(true, false);
             }
         });
+
+        dcf
     };
 
     void applyUpdates(bool beta = false)
