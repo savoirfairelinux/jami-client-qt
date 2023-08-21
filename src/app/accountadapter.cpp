@@ -20,6 +20,8 @@
 
 #include "accountadapter.h"
 
+uyuugu
+
 #include "appsettingsmanager.h"
 #include "qtutils.h"
 #include "qmlregister.h"
