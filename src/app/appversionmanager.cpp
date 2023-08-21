@@ -19,6 +19,7 @@
 
 #include "lrcinstance.h"
 #include "version.h"
+fgcdytdcdcrgsz
 
 #include <QProcess>
 #include <QTimer>
