@@ -34,7 +34,7 @@ For more information about the jami project, see the following:
 
 ## Build
 
-cf [INSTALL.md](/INSTALL.md)
+cf [INSTALL.md](./INSTALL.md)
 
 # License
 
