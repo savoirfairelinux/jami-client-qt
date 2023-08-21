@@ -1,24 +1,18 @@
-# Build instructions
-
-There are essentially two ways to build `client-qt`:
-
-- Use `build.py` script which will build all of Jami (daemon and client)
-- Build only this client.
-
-## Disclaimer
+# Disclaimer
 
 Because the client-qt is multi-platforms and supporting macOS, we need a recent version of Qt to do rendering with Metal. So, Qt 6.4 is necessary.
 This version is generally not packaged on a lot of platforms, and to control available plugins and such, we have our own Qt packaged (available on https://jami.net on the distributions we support).
 So, you will need to get Qt 6.4 first. For this, there is 3 methods:
 
-### Qt from our repo (recommended)
+### <u>Qt from our repo (recommended)</u>
 
 If your distribution is supported, we provide a Qt package (libqt-jami) on our repo.
 The files will be installed in `/usr/lib/libqt-jami`.
 
-#### Install libqt-jami, Ubuntu based
+- #### Install libqt-jami, Ubuntu based
 
-To install libqt-jami on Ubuntu, execute these commands replacing `ubuntu_<VERSION>` by your distribution version. For example "ubuntu_22.04"
+
+To install libqt-jami on Ubuntu, execute these commands **replacing** `ubuntu_<VERSION>` by your distribution version. For example "ubuntu_22.04"
 
 ```bash
 sudo apt install gnupg dirmngr ca-certificates curl --no-install-recommends
@@ -27,9 +21,10 @@ sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] h
 sudo apt-get update && sudo apt-get install libqt-jami
 ```
 
-#### Install libqt-jami, Debian based
+- #### Install libqt-jami, Debian based
 
-To install libqt-jami on Debian, execute these commands replacing `debian_<VERSION>` by your distribution version. For example "debian_11"
+
+To install libqt-jami on Debian, execute these commands **replacing** `debian_<VERSION>` by your distribution version. For example "debian_11"
 
 ```bash
 sudo apt install gnupg dirmngr ca-certificates curl --no-install-recommends
@@ -38,22 +33,24 @@ sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] h
 sudo apt-get update && sudo apt-get install jami
 ```
 
-#### Install jami-libqt, Fedora based
+- #### Install jami-libqt, Fedora based
 
-To install libqt-jami on Fedora, execute these commands replacing `fedora_<VERSION>` by your distribution version. For example "fedora_38"
+
+To install libqt-jami on Fedora, execute these commands **replacing** `fedora_<VERSION>` by your distribution version. For example "fedora_38"
 
 ```bash
 sudo dnf config-manager --add-repo https://dl.jami.net/nightly/fedora_<VERSION>/jami-nightly.repo
 sudo dnf update && sudo dnf install jami-libqt
 ```
 
-### Qt from your distribution
+### <u>Qt from your distribution</u>
 
 If Qt 6.4 is available, you can use the packages from your distribution:
 
 It should be (For now qt5 only is packaged by distributions, so names can change).
 
-#### Dependencies, Debian based
+- #### Dependencies, Debian based
+
 
 ```bash
 sudo apt-get install cmake make doxygen g++ gettext libnotify-dev pandoc nasm libqrencode-dev \
@@ -70,28 +67,46 @@ sudo apt-get install cmake make doxygen g++ gettext libnotify-dev pandoc nasm li
                      qml-module-qt-labs-qmlmodels
 ```
 
-#### Dependencies, Fedora based
+- #### Dependencies, Fedora based
+
 
 ```bash
 sudo dnf install qt6-qtsvg-devel qt6-qtwebengine-devel qt6-qtmultimedia-devel qt6-qtdeclarative-devel qt6-qtquickcontrols2-devel qt6-qtquickcontrols qrencode-devel NetworkManager-libnm-devel
 ```
 
-### Qt from sources
+### <u>Qt from sources</u>
 
 https://www.qt.io/product/qt6
 
-## GNU/Linux
 
-Then, you can build the project
 
-### With build.py
+
+
+# GNU/Linux : Build instructions
+
+Then, you can build the project : 
+
+There are essentially two ways to build `client-qt`:
+
+--­­­ Use `build.py` script which will build all of Jami (daemon and client)
+
+-- Build only this client
+
+-- Other build
+
+
+
+- ## With build.py
+
 
 The build.py Jami installer uses **python3 (minimum v3.6)**. If it's not installed,
 please install it. Then run the following to initialize and update
 the submodules to set them at the top of their latest commit (ideal
-for getting the latest development versions; otherwise, you can use
-`git submodule update --init` then checkout specific commits for each
-submodule).
+for getting the latest development versions; otherwise, you can use :
+
+`git submodule update --init` 
+
+then checkout specific commits for each submodule).
 
 If you're a developer you need to install clang-format separately before initializing with the command
 ```bash
@@ -99,8 +114,10 @@ sudo apt install clang-format
 ```
 
 ```bash
-./build.py --init [--qt=<path/to/qt> (this is required for qmlformatting to work)]
+./build.py --init --qt=/usr/lib/libqt-jami
 ```
+
+(this is required for qmlformatting to work)
 
 Then you will need to install dependencies:
 
@@ -116,8 +133,7 @@ Then, you can build daemon and the client using:
 ./build.py --install
 ```
 
-If you use a Qt version that is not system-wide installed, you need to
-specify its path using the `--qt` flag, e.g.
+**If you use a Qt version that is not system-wide installed,** you need to specify its path using the `--qt` flag, e.g.
 `./build.py --install --qt=/home/<username>/Qt/6.4.1/gcc_64`.
 
 Now you will have the daemon in `daemon/bin/dbus/jamid` and the client in
@@ -132,11 +148,15 @@ Notes:
 - `--global-install` to install client-qt globally under /usr/local
 - `--prefix` to change the destination of the install.
 
-## Build only the client
+
+
+- ## Build only the client
+
 
 In order to use the Qt Client it is necessary to have the Qt version 6.4 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
 
-## Build only this repository
+- ## Build only this repository
+
 
 Clone with common required submodule (platform specific submodules will be cloned during the configure step)
 
@@ -172,7 +192,9 @@ If you want to install it to the path provided by `CMAKE_INSTALL_PREFIX` you can
 make install
 ```
 
-## Building on native Windows
+
+
+- ## Building on native Windows
 
 Only 64-bit MSVC build can be compiled.
 
@@ -247,7 +269,10 @@ Only 64-bit MSVC build can be compiled.
 
 Once the build has finished, you should then be able to use the Visual Studio Solution file in client-qt **build** folder **(Configuration = Release, Platform = x64)**
 
-### Build Module Individually
+
+
+- ## Build Module Individually
+
 
 - Jami also supports building each module (daemon, jami) separately
 
@@ -279,7 +304,9 @@ Once the build has finished, you should then be able to use the Visual Studio So
     python extras\scripts\build-windows.py --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.4.3/msvc2019_64)
 ```
 
-## Building On MacOS
+
+
+- ## Building On MacOS
 
 **Set up**
 
@@ -314,6 +341,8 @@ QT_ROOT_DIRECTORY=your_qt_directory ./build.py --install
 
 Built client could be find in `build/Jami`
 
+
+
 ## Packaging On Native Windows
 
 - To be able to generate a msi package, first download and install [Wixtoolset](https://wixtoolset.org/releases/).
@@ -337,6 +366,8 @@ Built client could be find in `build/Jami`
 ```
 
 - These environment variables will be temporarily set when using build-windows.py to run tests.
+
+  
 
 ## Debugging
 
