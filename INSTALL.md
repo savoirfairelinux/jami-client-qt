@@ -1,10 +1,18 @@
-# Disclaimer
+# Build instructions
+
+Table of contents :
+
+[TOC]
+
+
+
+## Disclaimer
 
 Because the client-qt is multi-platforms and supporting macOS, we need a recent version of Qt to do rendering with Metal. So, Qt 6.4 is necessary.
 This version is generally not packaged on a lot of platforms, and to control available plugins and such, we have our own Qt packaged (available on https://jami.net on the distributions we support).
 So, you will need to get Qt 6.4 first. For this, there is 3 methods:
 
-### <u>Qt from our repo (recommended)</u>
+### Qt from our repo (recommended)
 
 If your distribution is supported, we provide a Qt package (libqt-jami) on our repo.
 The files will be installed in `/usr/lib/libqt-jami`.
@@ -43,7 +51,9 @@ sudo dnf config-manager --add-repo https://dl.jami.net/nightly/fedora_<VERSION>/
 sudo dnf update && sudo dnf install jami-libqt
 ```
 
-### <u>Qt from your distribution</u>
+
+
+### Qt from your distribution
 
 If Qt 6.4 is available, you can use the packages from your distribution:
 
@@ -74,11 +84,9 @@ sudo apt-get install cmake make doxygen g++ gettext libnotify-dev pandoc nasm li
 sudo dnf install qt6-qtsvg-devel qt6-qtwebengine-devel qt6-qtmultimedia-devel qt6-qtdeclarative-devel qt6-qtquickcontrols2-devel qt6-qtquickcontrols qrencode-devel NetworkManager-libnm-devel
 ```
 
-### <u>Qt from sources</u>
+### Qt from sources
 
 https://www.qt.io/product/qt6
-
-
 
 
 
