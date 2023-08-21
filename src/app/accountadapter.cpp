@@ -20,6 +20,8 @@
 
 #include "accountadapter.h"
 
+coucou
+
 #include "appsettingsmanager.h"
 #include "qtutils.h"
 #include "qmlregister.h"
