@@ -933,9 +933,3 @@ Utils::generateUid()
 {
     return QUuid::createUuid().toString(QUuid::Id128);
 }
-
-QString
-Utils::getPlatformString()
-{
-    return "desktop";
-}

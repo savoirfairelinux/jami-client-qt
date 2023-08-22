@@ -61,6 +61,12 @@ PluginManagerInterface::uninstallPlugin(const QString& pluginRootPath)
     return 0;
 }
 
+MapStringString
+PluginManagerInterface::getPlatformInfo()
+{
+    return {};
+}
+
 QStringList
 PluginManagerInterface::getCallMediaHandlers()
 {
