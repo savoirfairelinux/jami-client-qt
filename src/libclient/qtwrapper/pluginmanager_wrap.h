@@ -58,6 +58,8 @@ public Q_SLOTS: // METHODS
 
     int uninstallPlugin(const QString& pluginRootPath);
 
+    MapStringString getPlatformInfo();
+
     QStringList getCallMediaHandlers();
 
     void toggleCallMediaHandler(const QString& mediaHandlerId, const QString& callId, bool toggle);

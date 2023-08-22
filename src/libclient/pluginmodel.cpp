@@ -108,6 +108,12 @@ PluginModel::getPluginDetails(const QString& path)
     return result;
 }
 
+MapStringString
+PluginModel::getPlatformInfo()
+{
+    return PluginManager::instance().getPlatformInfo();
+}
+
 bool
 PluginModel::installPlugin(const QString& jplPath, bool force)
 {
