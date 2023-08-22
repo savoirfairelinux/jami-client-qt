@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d51a05_2f8ec6df",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-08-22T12:48:20Z",
+      "side": 1,
+      "message": "remove unnecessary space",
+      "range": {
+        "startLine": 115,
+        "startChar": 28,
+        "endLine": 115,
+        "endChar": 30
+      },
+      "revId": "bb4dcbb7c2ac7ffb8a305959637f3303a1f3a52e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43df0a25_c0fe3164",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-08-22T12:48:20Z",
+      "side": 1,
+      "message": "remove unnecessary space",
+      "range": {
+        "startLine": 378,
+        "startChar": 0,
+        "endLine": 378,
+        "endChar": 2
+      },
+      "revId": "bb4dcbb7c2ac7ffb8a305959637f3303a1f3a52e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
