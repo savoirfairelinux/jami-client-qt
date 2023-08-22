@@ -60,6 +60,12 @@ PluginManagerInterface::uninstallPlugin(const QString& pluginRootPath)
     return libjami::uninstallPlugin(pluginRootPath.toStdString());
 }
 
+MapStringString
+PluginManagerInterface::getPlatformInfo()
+{
+    return convertMap(libjami::getPlatformInfo());
+}
+
 QStringList
 PluginManagerInterface::getCallMediaHandlers()
 {
