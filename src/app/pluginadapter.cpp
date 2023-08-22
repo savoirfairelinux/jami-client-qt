@@ -90,7 +90,8 @@ PluginAdapter::getPluginsFromStore()
                                            Q_EMIT storeNotAvailable();
                                        });
     pluginVersionManager_
-        ->sendGetRequest(QUrl(baseUrl_ + "?arch=" + Utils::getPlatformString()),
+        ->sendGetRequest(QUrl(baseUrl_
+                              + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
                          [this, errorHandler](const QByteArray& data) {
                              auto result = QJsonDocument::fromJson(data).array();
                              auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
@@ -112,18 +113,19 @@ PluginAdapter::getPluginsFromStore()
 void
 PluginAdapter::getPluginDetails(const QString& pluginId)
 {
-    pluginVersionManager_->sendGetRequest(QUrl(baseUrl_ + "/details/" + pluginId
-                                               + "?arch=" + Utils::getPlatformString()),
-                                          [this](const QByteArray& data) {
-                                              auto result = QJsonDocument::fromJson(data).object();
-                                              // my response is a json object and I want to convert
-                                              // it to a QVariantMap
-                                              auto plugin = result.toVariantMap();
-                                              if (!plugin.contains("id")) {
-                                                  plugin["id"] = plugin["name"];
-                                              }
-                                              pluginStoreListModel_->addPlugin(plugin);
-                                          });
+    pluginVersionManager_
+        ->sendGetRequest(QUrl(baseUrl_ + "/details/" + pluginId
+                              + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
+                         [this](const QByteArray& data) {
+                             auto result = QJsonDocument::fromJson(data).object();
+                             // my response is a json object and I want to convert
+                             // it to a QVariantMap
+                             auto plugin = result.toVariantMap();
+                             if (!plugin.contains("id")) {
+                                 plugin["id"] = plugin["name"];
+                             }
+                             pluginStoreListModel_->addPlugin(plugin);
+                         });
 }
 
 void
@@ -204,11 +206,13 @@ PluginAdapter::baseUrl() const
 QString
 PluginAdapter::getIconUrl(const QString& pluginId) const
 {
-    return baseUrl_ + "/icons/" + pluginId + "?arch=" + Utils::getPlatformString();
+    return baseUrl_ + "/icons/" + pluginId
+           + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"];
 }
 
 QString
 PluginAdapter::getBackgroundImageUrl(const QString& pluginId) const
 {
-    return baseUrl_ + "/backgrounds/" + pluginId + "?arch=" + Utils::getPlatformString();
+    return baseUrl_ + "/backgrounds/" + pluginId
+           + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"];
 }

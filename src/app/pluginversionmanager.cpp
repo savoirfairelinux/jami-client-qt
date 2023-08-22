@@ -103,8 +103,8 @@ public:
             return;
         }
 
-        parent_.sendGetRequest(QUrl(parent_.baseUrl + "/versions/" + plugin.id
-                                    + "?arch=" + Utils::getPlatformString()),
+        parent_.sendGetRequest(QUrl(parent_.baseUrl + "/versions/" + plugin.id + "?arch="
+                                    + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
                                [this, plugin](const QByteArray& data) {
                                    // `data` represents the version in this case.
                                    if (plugin.version < data) {
@@ -121,7 +121,8 @@ public:
     void installRemotePlugin(const QString& pluginId)
     {
         parent_.downloadFile(
-            QUrl(parent_.baseUrl + "/download/" + Utils::getPlatformString() + "/" + pluginId),
+            QUrl(parent_.baseUrl + "/download/"
+                 + lrcInstance_->pluginModel().getPlatformInfo()["os"] + "/" + pluginId),
             pluginId,
             0,
             [this, pluginId](bool success, const QString& error) {
