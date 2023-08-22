@@ -98,6 +98,7 @@ RowLayout {
                     showMoreButton.indicator.color = hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor;
                     showMoreButton.background.color = hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor;
                 }
+                toolTipMoreButton.text = sharePopup.opened ? JamiStrings.showLess : JamiStrings.showMore;
             }
 
             popup: SharePopup {
@@ -718,11 +719,10 @@ RowLayout {
 
                                 MaterialToolTip {
                                     id: toolTip
-
                                     parent: showMoreTypoButton
                                     visible: showMoreTypoButton.hovered && (text.length > 0)
                                     delay: Qt.styleHints.mousePressAndHoldInterval
-                                    text: JamiStrings.showMore
+                                    text: JamiStrings.showMore;
                                 }
 
                                 background: Rectangle {
