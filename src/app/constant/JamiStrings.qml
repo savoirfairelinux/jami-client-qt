@@ -720,6 +720,8 @@ Item {
     property string leaveAudioMessage: qsTr("Audio message")
     property string leaveVideoMessage: qsTr("Video message")
     property string showMore: qsTr("Show more")
+    property string showLess: qsTr("Show less")
+
 
     property string bold: qsTr("Bold")
     property string italic: qsTr("Italic")
