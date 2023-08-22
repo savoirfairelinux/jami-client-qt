@@ -122,9 +122,6 @@ ApplicationWindow {
         // If we're in the onboarding wizard or 'MinimizeOnClose'
         // is set, then we can quit
         if (force || !UtilsAdapter.getAppValue(Settings.MinimizeOnClose) || !UtilsAdapter.getAccountListSize()) {
-            if (checkLoadedSource() === MainApplicationWindow.LoadedSource.MainView) {
-                cleanupMainView();
-            }
             Qt.quit();
         } else {
             layoutManager.closeToTray();
@@ -232,6 +229,10 @@ ApplicationWindow {
 
     Connections {
         target: MainApplication
+
+        function onAboutToQuit() {
+            cleanupMainView()
+        }
 
         function onCloseRequested() {
             close(true);
