@@ -206,32 +206,32 @@ RowLayout {
                     },
                     "Link": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(0).action.triggered();
-                        }
+                            listViewTypoFirst.itemAtIndex(4).action.triggered();
+                        } 
                     },
                     "Code": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(1).action.triggered();
-                        }
+                            listViewTypoFirst.itemAtIndex(5).action.triggered();
+                        } 
                     },
                     "Quote": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(2).action.triggered();
+                            listViewTypoSecond.itemAtIndex(0).action.triggered();
                         }
                     },
                     "Unordered list": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(3).action.triggered();
+                            listViewTypoSecond.itemAtIndex(1).action.triggered();
                         }
                     },
                     "Ordered list": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(4).action.triggered();
+                            listViewTypoSecond.itemAtIndex(2).action.triggered();
                         }
                     },
                     "Enter is new line": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(5).action.triggered();
+                            listViewTypoSecond.itemAtIndex(3).action.triggered();
                         }
                     }
                 }
@@ -249,7 +249,7 @@ RowLayout {
                 }
 
                 Shortcut {
-                    sequence: "Shift+Alt+X"
+                    sequence: "Alt+Shift+X"
                     context: Qt.ApplicationShortcut
                     onActivated: messageBarTextArea.markdownShortCut["Barre"]()
                 }
@@ -261,7 +261,7 @@ RowLayout {
                 }
 
                 Shortcut {
-                    sequence: "Ctrl+Alt+K"
+                    sequence: "Ctrl+Alt+K" 
                     context: Qt.ApplicationShortcut
                     onActivated: messageBarTextArea.markdownShortCut["Link"]()
                 }
@@ -271,35 +271,31 @@ RowLayout {
                     context: Qt.ApplicationShortcut
                     onActivated: messageBarTextArea.markdownShortCut["Code"]()
                 }
-
                 Shortcut {
-                    sequence: "Shift+Alt+9"
+                    sequence: "Alt+Shift+9"
                     context: Qt.ApplicationShortcut
                     onActivated: messageBarTextArea.markdownShortCut["Quote"]()
                 }
 
                 Shortcut {
-                    sequence: "Shift+Alt+8"
+                    sequence: "Alt+Shift+8" 
                     context: Qt.ApplicationShortcut
                     onActivated: messageBarTextArea.markdownShortCut["Unordered list"]()
                 }
-
                 Shortcut {
-                    sequence: "Shift+Alt+7"
+                    sequence: "Alt+Shift+7"
                     context: Qt.ApplicationShortcut
                     onActivated: messageBarTextArea.markdownShortCut["Ordered list"]()
                 }
-
                 Shortcut {
-                    sequence: "Shift+Alt+T"
+                    sequence: "Alt+Shift+T"
                     context: Qt.ApplicationShortcut
                     onActivated: {
                         showTypo = !showTypo;
                     }
                 }
-
                 Shortcut {
-                    sequence: "Shift+Alt+P"
+                    sequence: "Alt+Shift+P"
                     context: Qt.ApplicationShortcut
                     onActivated: {
                         showPreview = !showPreview;
@@ -614,12 +610,12 @@ RowLayout {
                                     onTriggered: function clickAction() {
                                         listViewTypo.addPrefixStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "### ", false);
                                     }
-                                },
+                                }, 
                                 Action {
                                     id: linkAction
                                     property var iconSrc: JamiResources.link_web_black_24dp_svg
                                     property var shortcutText: JamiStrings.link
-                                    property string shortcutKey: "Ctrl+Alt+K"
+                                    property string shortcutKey: "Ctrl+Alt+K" 
                                     property bool isStyle: listViewTypo.isStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "[", "](url)", /\[.+\]\(.+\)/)
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "[", "](url)", /\[.+\]\(.+\)/);
@@ -629,7 +625,7 @@ RowLayout {
                                     id: codeAction
                                     property var iconSrc: JamiResources.code_black_24dp_svg
                                     property var shortcutText: JamiStrings.code
-                                    property string shortcutKey: "Ctrl+Alt+C"
+                                    property string shortcutKey: "Ctrl+Alt+C" 
                                     property bool isStyle: listViewTypo.isStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "```", "```", /\`\`\`.+\`\`\`/)
                                     onTriggered: function clickAction() {
                                         listViewTypo.addStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "```", "```", /\`\`\`.+\`\`\`/);
@@ -780,7 +776,7 @@ RowLayout {
                                     id: quoteAction
                                     property var iconSrc: JamiResources.quote_black_24dp_svg
                                     property var shortcutText: JamiStrings.quote
-                                    property string shortcutKey: "Shift+Alt+9"
+                                    property string shortcutKey: "Alt+Shift+9"
                                     property bool isStyle: listViewTypo.isPrefixSyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "> ", false)
                                     onTriggered: function clickAction() {
                                         listViewTypo.addPrefixStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "> ", false);
@@ -790,7 +786,7 @@ RowLayout {
                                     id: unorderedListAction
                                     property var iconSrc: JamiResources.bullet_point_black_24dp_svg
                                     property var shortcutText: JamiStrings.unorderedList
-                                    property string shortcutKey: "Shift+Alt+8"
+                                    property string shortcutKey: "Alt+Shift+8" 
                                     property bool isStyle: listViewTypo.isPrefixSyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "- ", false)
                                     onTriggered: function clickAction() {
                                         listViewTypo.addPrefixStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "- ", false);
@@ -800,20 +796,20 @@ RowLayout {
                                     id: orderedListAction
                                     property var iconSrc: JamiResources.bullet_number_black_24dp_svg
                                     property var shortcutText: JamiStrings.orderedList
-                                    property string shortcutKey: "Shift+Alt+7"
+                                    property string shortcutKey: "Alt+Shift+7" 
                                     property bool isStyle: listViewTypo.isPrefixSyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "", true)
                                     onTriggered: function clickAction() {
                                         listViewTypo.addPrefixStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "", true);
                                     }
                                 },
                                 Action {
-                                    id: shiftEnterActiom
+                                    id: shiftEnterAction
                                     property var iconSrc: JamiResources.shift_enter_black_24dp_svg
                                     property var shortcutText: chatViewEnterIsNewLine ? JamiStrings.enterNewLine : JamiStrings.shiftEnterNewLine
                                     property var imageColor: chatViewEnterIsNewLine ? JamiTheme.chatViewFooterImgHoverColor : "#7f7f7f"
                                     property var normalColor: chatViewEnterIsNewLine ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
-                                    property var hasShortcut: false
-                                    property var shortcutKey: null
+                                    property var hasShortcut: true
+                                    property var shortcutKey: chatViewEnterIsNewLine ? "Enter" : "Shift+Enter"
                                     property bool isStyle: false
                                     onTriggered: function clickAction() {
                                         root.chatViewEnterIsNewLine = !root.chatViewEnterIsNewLine;
