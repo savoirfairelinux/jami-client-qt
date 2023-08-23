@@ -100,7 +100,6 @@ PluginAdapter::getPluginsFromStore()
                                  if (!qPlugin.contains("id")) {
                                      qPlugin["id"] = qPlugin["name"];
                                  }
-                                 qWarning() << qPlugin["id"];
                                  if (!pluginsInstalled.contains(qPlugin["id"].toString())) {
                                      plugins.append(qPlugin);
                                  }
