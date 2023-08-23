@@ -101,6 +101,9 @@ RowLayout {
                 toolTipMoreButton.text = sharePopup.opened ? JamiStrings.showLess : JamiStrings.showMore;
             }
 
+            onPressedChanged: {
+                if (sharePopup.enabled) sharePopup.close();
+            }
             popup: SharePopup {
                 id: sharePopup
                 y: -180
