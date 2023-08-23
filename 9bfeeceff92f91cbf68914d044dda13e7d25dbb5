@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60676d8d_7d0aec27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-23T15:44:47Z",
+      "side": 1,
+      "message": "should wait for pluginstore new deploy",
+      "revId": "9bfeeceff92f91cbf68914d044dda13e7d25dbb5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
