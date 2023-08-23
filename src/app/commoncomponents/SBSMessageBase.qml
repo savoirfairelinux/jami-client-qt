@@ -60,6 +60,8 @@ Control {
     property real textContentHeight
     property bool isReply: ReplyTo !== ""
 
+    property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
+
     // If the ListView attached properties are not available,
     // then the root delegate is likely a Loader.
     readonly property ListView listView: ListView.view ? ListView.view : parent.ListView.view
@@ -350,7 +352,7 @@ Control {
                     height: contentHeight + 5
                     reactions: Reactions
                     borderColor: root.getBaseColor()
-                    maxWidth: 2/3 * maxMsgWidth - JamiTheme.emojiMargins
+                    maxWidth: 2 / 3 * maxMsgWidth - JamiTheme.emojiMargins
 
                     state: root.isOutgoing ? "anchorsRight" : (emojiReactions.width > bubble.width - JamiTheme.emojiMargins ? "anchorsLeft" : "anchorsRight")
 
@@ -364,12 +366,12 @@ Control {
                         State {
                             name: "anchorsRight"
                             AnchorChanges {
-                                target: emojiReactions;
+                                target: emojiReactions
                                 anchors.right: bubble.right
                                 anchors.left: undefined
                             }
                             PropertyChanges {
-                                target: emojiReactions;
+                                target: emojiReactions
                                 anchors.rightMargin: JamiTheme.emojiMargins
                                 anchors.leftMargin: 0
                             }
@@ -377,12 +379,12 @@ Control {
                         State {
                             name: "anchorsLeft"
                             AnchorChanges {
-                                target: emojiReactions;
+                                target: emojiReactions
                                 anchors.right: undefined
-                                anchors.left:  bubble.left
+                                anchors.left: bubble.left
                             }
                             PropertyChanges {
-                                target: emojiReactions;
+                                target: emojiReactions
                                 anchors.rightMargin: 0
                                 anchors.leftMargin: JamiTheme.emojiMargins
                             }

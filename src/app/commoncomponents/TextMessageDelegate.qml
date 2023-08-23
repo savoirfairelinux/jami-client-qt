@@ -30,15 +30,14 @@ SBSMessageBase {
 
     property bool isRemoteImage
     property bool isEmojiOnly: IsEmojiOnly
-    property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
     property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
     property string colorText: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
     Connections {
         target: bubble
         function onColorChanged(color) {
-            root.colorUrl = UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
-            root.colorText = UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+            root.colorUrl = UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark;
+            root.colorText = UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark;
             // Update parsed body with correct colors
             if (Body !== "")
                 MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
@@ -65,7 +64,7 @@ SBSMessageBase {
             text: {
                 if (Body !== "" && ParsedBody.length === 0) {
                     MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
-                    return ""
+                    return "";
                 }
                 return (ParsedBody !== "") ? ParsedBody : "<i>(" + JamiStrings.deletedMessage + ")</i>";
             }
@@ -277,5 +276,5 @@ SBSMessageBase {
             duration: 100
         }
     }
-    Component.onCompleted: opacity = 1;
+    Component.onCompleted: opacity = 1
 }
