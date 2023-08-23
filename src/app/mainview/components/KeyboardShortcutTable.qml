@@ -265,6 +265,11 @@ Window {
             shortcut2: ""
             description: qsTr("Show preview")
         }
+        ListElement {
+            shortcut: "Shift + Enter"
+            shortcut2: ""
+            description: qsTr("New line")
+        }
     }
 
     Rectangle {
@@ -294,7 +299,7 @@ Window {
 
                 font.pointSize: JamiTheme.titleFontSize
                 text: {
-                    var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
+                    var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex;
                     switch (modelId) {
                     case 0:
                         return JamiStrings.generalSettingsTitle;
@@ -323,7 +328,7 @@ Window {
             height: parent.height - titleRect.height - JamiTheme.titleRectMargin - keyboardShortCutList.anchors.topMargin - selectionBar.height - selectionBar.anchors.bottomMargin
 
             model: {
-                var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
+                var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex;
                 switch (modelId) {
                 case 0:
                     return keyboardGeneralShortcutsModel;

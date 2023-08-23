@@ -206,32 +206,32 @@ RowLayout {
                     },
                     "Link": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(0).action.triggered();
+                            listViewTypoFirst.itemAtIndex(4).action.triggered();
                         }
                     },
                     "Code": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(1).action.triggered();
+                            listViewTypoFirst.itemAtIndex(5).action.triggered();
                         }
                     },
                     "Quote": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(2).action.triggered();
+                            listViewTypoSecond.itemAtIndex(0).action.triggered();
                         }
                     },
                     "Unordered list": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(3).action.triggered();
+                            listViewTypoSecond.itemAtIndex(1).action.triggered();
                         }
                     },
                     "Ordered list": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(4).action.triggered();
+                            listViewTypoSecond.itemAtIndex(2).action.triggered();
                         }
                     },
                     "Enter is new line": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(5).action.triggered();
+                            listViewTypoSecond.itemAtIndex(3).action.triggered();
                         }
                     }
                 }
@@ -271,7 +271,6 @@ RowLayout {
                     context: Qt.ApplicationShortcut
                     onActivated: messageBarTextArea.markdownShortCut["Code"]()
                 }
-
                 Shortcut {
                     sequence: "Shift+Alt+9"
                     context: Qt.ApplicationShortcut
@@ -283,13 +282,11 @@ RowLayout {
                     context: Qt.ApplicationShortcut
                     onActivated: messageBarTextArea.markdownShortCut["Unordered list"]()
                 }
-
                 Shortcut {
                     sequence: "Shift+Alt+7"
                     context: Qt.ApplicationShortcut
                     onActivated: messageBarTextArea.markdownShortCut["Ordered list"]()
                 }
-
                 Shortcut {
                     sequence: "Shift+Alt+T"
                     context: Qt.ApplicationShortcut
@@ -297,7 +294,6 @@ RowLayout {
                         showTypo = !showTypo;
                     }
                 }
-
                 Shortcut {
                     sequence: "Shift+Alt+P"
                     context: Qt.ApplicationShortcut
@@ -781,9 +777,9 @@ RowLayout {
                                     property var iconSrc: JamiResources.quote_black_24dp_svg
                                     property var shortcutText: JamiStrings.quote
                                     property string shortcutKey: "Shift+Alt+9"
-                                    property bool isStyle: listViewTypo.isPrefixSyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "> ", false)
+                                    property bool isStyle: listViewTypo.isPrefixSyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, ">", false)
                                     onTriggered: function clickAction() {
-                                        listViewTypo.addPrefixStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "> ", false);
+                                        listViewTypo.addPrefixStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, ">", false);
                                     }
                                 },
                                 Action {
@@ -807,13 +803,13 @@ RowLayout {
                                     }
                                 },
                                 Action {
-                                    id: shiftEnterActiom
+                                    id: shiftEnterAction
                                     property var iconSrc: JamiResources.shift_enter_black_24dp_svg
                                     property var shortcutText: chatViewEnterIsNewLine ? JamiStrings.enterNewLine : JamiStrings.shiftEnterNewLine
                                     property var imageColor: chatViewEnterIsNewLine ? JamiTheme.chatViewFooterImgHoverColor : "#7f7f7f"
                                     property var normalColor: chatViewEnterIsNewLine ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
-                                    property var hasShortcut: false
-                                    property var shortcutKey: null
+                                    property var hasShortcut: true
+                                    property var shortcutKey: chatViewEnterIsNewLine ? "Enter" : "Shift+Enter"
                                     property bool isStyle: false
                                     onTriggered: function clickAction() {
                                         root.chatViewEnterIsNewLine = !root.chatViewEnterIsNewLine;
