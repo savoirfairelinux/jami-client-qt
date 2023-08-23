@@ -221,7 +221,7 @@ Window {
             description: qsTr("Italic")
         }
         ListElement {
-            shortcut: "Shift + Alt + X"
+            shortcut: "Alt + Shift +  X"
             shortcut2: ""
             description: qsTr("Strikethrough")
         }
@@ -231,39 +231,44 @@ Window {
             description: qsTr("Heading")
         }
         ListElement {
-            shortcut: "Ctrl + Alt + K"
+            shortcut: "Ctrl + Alt + K" 
             shortcut2: ""
             description: qsTr("Link")
         }
         ListElement {
-            shortcut: "Ctrl + Alt + C"
+            shortcut: "Ctrl + Alt + C" 
             shortcut2: ""
             description: qsTr("Code")
         }
         ListElement {
-            shortcut: "Shift + Alt + 9"
+            shortcut: "Alt + Shift + 9"
             shortcut2: ""
             description: qsTr("Quote")
         }
         ListElement {
-            shortcut: "Shift + Alt + 8"
+            shortcut: "Alt + Shift + 8" 
             shortcut2: ""
             description: qsTr("Unordered list")
         }
         ListElement {
-            shortcut: "Shift + Alt + 7"
+            shortcut: "Alt + Shift + 7"
             shortcut2: ""
             description: qsTr("Ordered list")
         }
         ListElement {
-            shortcut: "Shift + Alt + T"
+            shortcut: "Alt + Shift +  T"
             shortcut2: ""
             description: qsTr("Show formatting")
         }
         ListElement {
-            shortcut: "Shift + Alt + P"
+            shortcut: " Alt + Shift + P"
             shortcut2: ""
             description: qsTr("Show preview")
+        }
+        ListElement {
+            shortcut: " Shift + Enter"
+            shortcut2: ""
+            description: qsTr("New line")
         }
     }
 
@@ -294,7 +299,7 @@ Window {
 
                 font.pointSize: JamiTheme.titleFontSize
                 text: {
-                    var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
+                    var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex;
                     switch (modelId) {
                     case 0:
                         return JamiStrings.generalSettingsTitle;
@@ -323,7 +328,7 @@ Window {
             height: parent.height - titleRect.height - JamiTheme.titleRectMargin - keyboardShortCutList.anchors.topMargin - selectionBar.height - selectionBar.anchors.bottomMargin
 
             model: {
-                var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex
+                var modelId = UtilsAdapter.isRTL ? 4 - selectionBar.currentIndex : selectionBar.currentIndex;
                 switch (modelId) {
                 case 0:
                     return keyboardGeneralShortcutsModel;
