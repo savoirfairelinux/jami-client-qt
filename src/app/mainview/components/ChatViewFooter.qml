@@ -140,6 +140,7 @@ Rectangle {
                 target: messageBar.emojiPicker ? messageBar.emojiPicker : null
                 function onEmojiIsPicked(content) {
                     messageBar.textAreaObj.insertText(content);
+                    messageBar.textAreaObj.forceActiveFocus();
                 }
             }
 
@@ -172,6 +173,7 @@ Rectangle {
             onEmojiButtonClicked: {
                 if (emojiPicker != null && emojiPicker.opened) {
                     emojiPicker.closeEmojiPicker();
+                    textAreaObj.forceActiveFocus();
                 } else {
                     openEmojiPicker();
                 }

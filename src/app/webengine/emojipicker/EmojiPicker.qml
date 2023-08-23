@@ -45,6 +45,7 @@ Popup {
     function openEmojiPicker() {
         root.open();
         emojiPickerWebView.runJavaScript("prepare_to_show(" + JamiTheme.darkTheme + ");");
+        emojiPickerWebView.forceActiveFocus();
     }
 
     function closeEmojiPicker() {
