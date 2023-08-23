@@ -35,6 +35,8 @@ Popup {
     focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
+    onClosed: messageBar.textAreaObj.forceActiveFocus()
+
     // Close the picker when attached to a listView that receives height/scroll
     // property changes.
     property real listViewHeight: listView ? listView.height : 0
@@ -45,6 +47,7 @@ Popup {
     function openEmojiPicker() {
         root.open();
         emojiPickerWebView.runJavaScript("prepare_to_show(" + JamiTheme.darkTheme + ");");
+        emojiPickerWebView.forceActiveFocus();
     }
 
     function closeEmojiPicker() {
