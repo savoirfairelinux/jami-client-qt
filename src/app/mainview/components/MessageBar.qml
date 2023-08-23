@@ -206,32 +206,32 @@ RowLayout {
                     },
                     "Link": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(0).action.triggered();
+                            listViewTypoFirst.itemAtIndex(4).action.triggered();
                         }
                     },
                     "Code": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(1).action.triggered();
+                            listViewTypoFirst.itemAtIndex(5).action.triggered();
                         }
                     },
                     "Quote": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(2).action.triggered();
+                            listViewTypoSecond.itemAtIndex(0).action.triggered();
                         }
                     },
                     "Unordered list": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(3).action.triggered();
+                            listViewTypoSecond.itemAtIndex(1).action.triggered();
                         }
                     },
                     "Ordered list": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(4).action.triggered();
+                            listViewTypoSecond.itemAtIndex(2).action.triggered();
                         }
                     },
                     "Enter is new line": function () {
                         if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(5).action.triggered();
+                            listViewTypoSecond.itemAtIndex(3).action.triggered();
                         }
                     }
                 }
