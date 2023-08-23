@@ -221,7 +221,7 @@ Window {
             description: qsTr("Italic")
         }
         ListElement {
-            shortcut: "Shift + Alt + X"
+            shortcut: "Alt + Shift +  X"
             shortcut2: ""
             description: qsTr("Strikethrough")
         }
@@ -231,39 +231,44 @@ Window {
             description: qsTr("Heading")
         }
         ListElement {
-            shortcut: "Ctrl + Alt + K"
+            shortcut: "Ctrl + Alt + K" //false
             shortcut2: ""
             description: qsTr("Link")
         }
         ListElement {
-            shortcut: "Ctrl + Alt + C"
+            shortcut: "Ctrl + Alt + C" //false
             shortcut2: ""
             description: qsTr("Code")
         }
         ListElement {
-            shortcut: "Shift + Alt + 9"
+            shortcut: "Ctrl + Alt + K"
             shortcut2: ""
             description: qsTr("Quote")
         }
         ListElement {
-            shortcut: "Shift + Alt + 8"
+            shortcut: "Ctrl + Alt + C"
             shortcut2: ""
             description: qsTr("Unordered list")
         }
         ListElement {
-            shortcut: "Shift + Alt + 7"
+            shortcut: "Alt + Shift + 9"
             shortcut2: ""
             description: qsTr("Ordered list")
         }
         ListElement {
-            shortcut: "Shift + Alt + T"
+            shortcut: "Alt + Shift +  T"
             shortcut2: ""
             description: qsTr("Show formatting")
         }
         ListElement {
-            shortcut: "Shift + Alt + P"
+            shortcut: " Alt + Shift + P"
             shortcut2: ""
             description: qsTr("Show preview")
+        }
+         ListElement {
+            shortcut: " Alt + Shift + 8"
+            shortcut2: ""
+            description: qsTr("Automatic new line ")
         }
     }
 
