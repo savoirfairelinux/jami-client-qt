@@ -87,7 +87,7 @@ ColumnLayout {
                         width: wrapper.widthProvider() * scalingFactor
                         height: wrapper.heightProvider() * scalingFactor
                         pluginName: Name
-                        pluginId:
+                        pluginId: Id
                         pluginIcon: IconPath
                         pluginDescription: Description
                         pluginAuthor: Author
