@@ -946,6 +946,7 @@ RowLayout {
                                 property bool noSip: false
                                 onTriggered: function clickAction() {
                                     sendFileButtonClicked();
+                                    textAreaObj.forceActiveFocus();
                                 }
                             },
                             Action {
