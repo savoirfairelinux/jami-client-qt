@@ -18,6 +18,8 @@
  */
 
 #include "conversationlistmodelbase.h"
+#include "../jami/jami.h"
+#include "../jami/configurationmanager_interface.h"
 
 ConversationListModelBase::ConversationListModelBase(LRCInstance* instance, QObject* parent)
     : AbstractListModelBase(parent)
@@ -93,6 +95,32 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         }
         return {};
     }
+    case Role::Test: {
+        const auto& test = lrcInstance_->getConnectionList(accountId_, item.uid);
+        if (!test.empty()) {
+            for (const auto& c : test) {
+                for (auto it = c.keyValueBegin(); it != c.keyValueEnd(); ++it) {
+                    qWarning() << it->first << " -> " << it->second;
+                }
+            }
+        } else {
+            qWarning() << "Vide" << accountId_ << item.accountId << item.uid;
+        }
+        qWarning() << item.uid << "SIZE :" << test.size();
+        return "test";
+    }
+    case Role::ModelDevide: {
+        const auto& connectionList = lrcInstance_->getConnectionList(accountId_, item.uid);
+        QStringList deviceListModel;
+        for (const auto& connection : connectionList) {
+            if (connection["device"] != "" && !deviceListModel.contains(connection["device"])) {
+                deviceListModel.append(connection["device"]);
+            }
+        }
+        qWarning() << "Device list model :" << deviceListModel;
+        // deviceListModel.append("bidule");
+        return QVariant(deviceListModel);
+    }
     case Role::Draft: {
         if (!item.uid.isEmpty())
             return lrcInstance_->getContentDraft(item.uid, item.accountId);
@@ -105,6 +133,36 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         return QVariant(item.isRequest);
     case Role::Title:
         return QVariant(model_->title(item.uid));
+    case Role::elementColor:
+        return "green";
+    case Role::connected: {
+        const auto& connectionList = lrcInstance_->getConnectionList(accountId_, item.uid);
+        const auto& test = lrcInstance_->getConnectionList(accountId_, "");
+        for (const auto& c : test) {
+            if (!c["peer"].isNull()) {
+                qWarning() << "----------Start-----------";
+                for (auto it = c.keyValueBegin(); it != c.keyValueEnd(); ++it) {
+                    qWarning() << it->first << " -> " << it->second;
+                }
+                qWarning() << "----------End-----------";
+            }
+        }
+        if (!connectionList.empty()) {
+            int mini = 4;
+            for (const auto& c : connectionList) {
+                for (const auto& c : connectionList) {
+                    int status = c["status"].toInt();
+                    if (status < mini) {
+                        mini = status;
+                    }
+                }
+            }
+            return mini;
+        }
+        return 4;
+    }
+    case Role::status:
+        return QVariant("Connected");
     case Role::UnreadMessagesCount:
         return QVariant(item.unreadMessages);
     case Role::LastInteractionTimeStamp: {
