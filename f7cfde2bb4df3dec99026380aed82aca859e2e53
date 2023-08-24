@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "51e6548e_b8cd525c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-24T12:41:01Z",
+      "side": 1,
+      "message": "add line before `gitlabl...` to avoid showing it in the commit title",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 14
+      },
+      "revId": "f7cfde2bb4df3dec99026380aed82aca859e2e53",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42b1bdc8_81f9f116",
         "filename": "src/app/mainview/components/MessageBar.qml",
         "patchSetId": 2
