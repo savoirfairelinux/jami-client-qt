@@ -850,4 +850,15 @@ Item {
     property string shiftEnter: qsTr("SHIFT+ENTER")
     property string textFormattingDescription: qsTr("ENTER or SHIFT+ENTER to insert a new line")
     property string textFormatting: qsTr("Text formatting")
+
+    //Connection monitoring
+    property string connected: qsTr("Connected")
+    property string connectingTLS: qsTr("Connecting TLS")
+    property string connectingICE: qsTr("Connecting ICE")
+    property string connecting: qsTr("Connecting")
+    property string waiting: qsTr("Waiting")
+    property string contact: qsTr("Contact")
+    property string connection: qsTr("Connection")
+    property string channels: qsTr("Channels")
+    property string copyAllData: qsTr("Copy all data")
 }
