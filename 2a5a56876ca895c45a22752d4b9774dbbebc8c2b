@@ -16,6 +16,24 @@
       "message": "focus on emojipicker opening is ok, but it is not going back the te textarea after closing",
       "revId": "2a5a56876ca895c45a22752d4b9774dbbebc8c2b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a247e68_84f01714",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-08-24T09:51:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0468fc7_4db4980e",
+      "revId": "2a5a56876ca895c45a22752d4b9774dbbebc8c2b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
