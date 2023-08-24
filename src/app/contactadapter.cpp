@@ -21,10 +21,16 @@
 #include "contactadapter.h"
 
 #include "lrcinstance.h"
+#include "qmlregister.h"
 
 ContactAdapter::ContactAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
+    , connectionInfoListModel_(new ConnectionInfoListModel(lrcInstance_, this))
 {
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS,
+                                      connectionInfoListModel_.get(),
+                                      "ConnectionInfoListModel");
+
     selectableProxyModel_.reset(new SelectableProxyModel(this));
     if (lrcInstance_) {
         connectSignals();
@@ -244,6 +250,12 @@ ContactAdapter::removeContact(const QString& peerUri, bool banContact)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
     accInfo.contactModel->removeContact(peerUri, banContact);
+}
+
+void
+ContactAdapter::updateConnectionInfo()
+{
+    connectionInfoListModel_->update();
 }
 
 void

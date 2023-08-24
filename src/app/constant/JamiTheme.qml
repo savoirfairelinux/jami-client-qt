@@ -663,6 +663,11 @@ Item {
     property color donationBackgroundColor: "#D5E4EF"
     property string donationUrl: "https://jami.net/donate/"
 
+    //Connection monitoring
+    property color connectionMonitoringTableColor1: "#f0efef"
+    property color connectionMonitoringTableColor2: "#f6f5f5"
+    property color connectionMonitoringHeaderColor: "#d1d1d1"
+
     function setTheme(dark) {
         darkTheme = dark;
     }
