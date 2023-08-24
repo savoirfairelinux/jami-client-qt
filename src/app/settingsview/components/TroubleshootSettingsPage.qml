@@ -29,11 +29,18 @@ import "../js/logviewwindowcreation.js" as LogViewWindowCreation
 SettingsPageBase {
     id: root
 
+    Layout.fillWidth: true
+
+    readonly property string baseProviderPrefix: 'image://avatarImage'
+
+    property string typePrefix: 'contact'
+    property string divider: '_'
+
     property int itemWidth
 
     title: JamiStrings.troubleshootTitle
 
-    flickableContent: ColumnLayout {
+    flickableContent: Column {
         id: troubleshootSettingsColumnLayout
 
         width: contentFlickableWidth
@@ -42,7 +49,7 @@ SettingsPageBase {
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
         RowLayout {
-
+            id: rawLayout
             Text {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 30
@@ -83,6 +90,16 @@ SettingsPageBase {
                     LogViewWindowCreation.createlogViewWindowObject();
                     LogViewWindowCreation.showLogViewWindow();
                 }
+            }
+        }
+
+        Rectangle {
+            id: connectionMonitoringTable
+            height: listview.childrenRect.height + 60
+            width: tableWidth
+
+            ConnectionMonitoringTable {
+                id: listview
             }
         }
     }

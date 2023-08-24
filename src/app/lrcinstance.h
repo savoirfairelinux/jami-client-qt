@@ -135,6 +135,10 @@ public:
         return debugMode_;
     }
 
+    VectorMapStringString getConnectionList(const QString& accountId, const QString& uid = {});
+
+    VectorMapStringString getChannelList(const QString& accountId, const QString& uid = {});
+
 Q_SIGNALS:
     void accountListChanged();
     void selectedConvUidChanged();
