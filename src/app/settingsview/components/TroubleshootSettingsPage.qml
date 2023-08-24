@@ -29,11 +29,18 @@ import "../js/logviewwindowcreation.js" as LogViewWindowCreation
 SettingsPageBase {
     id: root
 
+    Layout.fillWidth: true
+
+    readonly property string baseProviderPrefix: 'image://avatarImage'
+
+    property string typePrefix: 'contact'
+    property string divider: '_'
+
     property int itemWidth
 
     title: JamiStrings.troubleshootTitle
 
-    flickableContent: ColumnLayout {
+    flickableContent: Column {
         id: troubleshootSettingsColumnLayout
 
         width: contentFlickableWidth
@@ -42,7 +49,7 @@ SettingsPageBase {
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
         RowLayout {
-
+            id: rawLayout
             Text {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 30
@@ -82,6 +89,353 @@ SettingsPageBase {
                 onClicked: {
                     LogViewWindowCreation.createlogViewWindowObject();
                     LogViewWindowCreation.showLogViewWindow();
+                }
+            }
+        }
+
+        Rectangle {
+            id: connectionMonitoringTable
+            height: listview.childrenRect.height + 60
+            width: tableWidth
+
+            ListView {
+                id: listview
+                height: contentItem.childrenRect.height
+                anchors.top: parent.top
+                anchors.topMargin: 10
+
+                spacing: 5
+                cacheBuffer: 10
+
+                property int rota: 0
+
+                header: Rectangle {
+                    height: 55
+                    width: connectionMonitoringTable.width
+                    Rectangle {
+                        color: JamiTheme.connectionMonitoringHeaderColor
+                        anchors.top: parent.top
+                        height: 50
+                        width: connectionMonitoringTable.width
+
+                        RowLayout {
+                            anchors.fill: parent
+                            Rectangle {
+                                //Scaffold{}
+                                id: profile
+                                height: 50
+                                Layout.leftMargin: 5
+                                Layout.preferredWidth: 210
+                                color: JamiTheme.transparentColor
+                                Text {
+                                    id: textImage
+                                    anchors.leftMargin: 10
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: JamiStrings.account
+                                }
+                            }
+
+                            Rectangle {
+                                //Scaffold{}
+                                id: device
+                                Layout.fillWidth: true
+                                height: 50
+                                color: JamiTheme.transparentColor
+                                Text {
+                                    id: deviceText
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: JamiStrings.device
+                                }
+                            }
+
+                            Rectangle {
+                                ////Scaffold{}
+                                id: connection
+                                width: 130
+                                height: 50
+                                radius: 5
+                                color: JamiTheme.transparentColor
+                                Text {
+                                    id: connectionText
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.leftMargin: 10
+                                    text: JamiStrings.connection
+                                }
+                            }
+
+                            Rectangle {
+                                ////Scaffold{}
+                                id: channel
+                                height: 50
+                                width: 70
+                                color: JamiTheme.transparentColor
+                                Text {
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: JamiStrings.channels
+                                }
+                            }
+                        }
+                    }
+                }
+
+                model: ConnectionInfoListModel
+                Timer {
+                    interval: 100 // L'intervalle est en millisecondes (1000 ms = 1 seconde)
+                    running: root.visible // Démarrer le timer dès le chargement de la vue
+                    repeat: true // Répéter le timer indéfiniment
+                    onTriggered: {
+                        ContactAdapter.updateConnectionInfo();
+                        listview.rota = listview.rota + 5;
+                    }
+                }
+
+                delegate: Rectangle {
+                    id: delegate
+                    height: Count == 0 ? 0 : 10 + 40 * Count
+                    width: connectionMonitoringTable.width
+                    color: index % 2 === 0 ? JamiTheme.connectionMonitoringTableColor1 : JamiTheme.connectionMonitoringTableColor2
+
+                    ListView {
+                        id: listView2
+                        height: 40 * Count
+
+                        anchors.top: delegate.top
+
+                        spacing: 0
+
+                        model: Count
+
+                        delegate: RowLayout {
+                            id: rowLayoutDelegate
+                            height: 40
+                            width: connectionMonitoringTable.width
+
+                            //y: index == 1 ? -10 : 0
+                            //Scaffold{}
+                            Rectangle {
+                                //Scaffold{}
+                                id: profile
+                                height: 50
+                                Layout.leftMargin: 5
+                                Layout.preferredWidth: 210
+                                color: JamiTheme.transparentColor//delegate.color
+                                Avatar {
+                                    id: avatar
+                                    visible: index == 0
+                                    anchors.left: parent.left
+                                    height: 40
+                                    width: 40
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    imageId: PeerId
+                                    mode: Avatar.Mode.Contact
+                                    //mettre au premier plan
+                                    z: 10
+                                }
+                                Text {
+                                    id: textImage
+                                    visible: index == 0
+                                    width: profile.width - 50
+                                    anchors.leftMargin: 10
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.left: avatar.right
+                                    text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerId)
+                                    elide: Text.ElideRight
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        onEntered: {
+                                            textImage.font.underline = true;
+                                            tooltipContact.text = "Copy all data";
+                                        }
+                                        onExited: {
+                                            textImage.font.underline = false;
+                                            tooltipContact.text = "Copy all data";
+                                        }
+
+                                        ToolTip {
+                                            id: tooltipContact
+                                            visible: textImage.font.underline
+                                            text: "Copy all data"
+                                        }
+                                        //lorsque l on clique copier le text
+                                        onClicked: {
+                                            tooltipContact.text = JamiStrings.logsViewCopied;
+                                            UtilsAdapter.setClipboardText(ConnectionDatas);
+                                        }
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                //Scaffold{}
+                                //y: index == 1 ? -10 : 0
+                                height: 40
+                                Layout.fillWidth: true
+                                color: delegate.color
+                                Text {
+                                    id: delegateDeviceText
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.left: parent.left
+                                    text: {
+                                        if (DeviceId[index] != undefined) {
+                                            return DeviceId[index];
+                                        } else {
+                                            return "";
+                                        }
+                                    }
+                                    elide: Text.ElideMiddle
+                                    width: parent.width - 10
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        onEntered: {
+                                            delegateDeviceText.font.underline = true;
+                                        }
+                                        onExited: {
+                                            delegateDeviceText.font.underline = false;
+                                            tooltipDevice.text = delegateDeviceText.text;
+                                        }
+
+                                        ToolTip {
+                                            id: tooltipDevice
+                                            visible: delegateDeviceText.font.underline
+                                            text: delegateDeviceText.text
+                                        }
+                                        //lorsque l on clique copier le text
+                                        onClicked: {
+                                            tooltipDevice.text = delegateDeviceText.text + " (" + JamiStrings.logsViewCopied + ")";
+                                            UtilsAdapter.setClipboardText(delegateDeviceText.text);
+                                        }
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                id: connectionRectangle
+                                color: delegate.color
+                                height: 40
+                                Layout.preferredWidth: 130
+                                property var status: Status[index]
+                                ResponsiveImage {
+                                    id: connectionImage
+                                    anchors.left: parent.left
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    rotation: connectionRectangle.status == 0 ? 0 : listview.rota
+                                    source: {
+                                        if (connectionRectangle.status == 0) {
+                                            return JamiResources.connected_black_24dp_svg;
+                                        } else {
+                                            return JamiResources.connecting_black_24dp_svg;
+                                        }
+                                    }
+                                    color: {
+                                        if (connectionRectangle.status == 0) {
+                                            return "#009c7f";
+                                        } else {
+                                            if (connectionRectangle.status == 4) {
+                                                return "red";
+                                            } else {
+                                                return "#ff8100";
+                                            }
+                                        }
+                                    }
+                                }
+                                Text {
+                                    id: connectionText
+                                    anchors.left: connectionImage.right
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.leftMargin: 5
+                                    text: if (connectionRectangle.status == 0) {
+                                        return JamiStrings.connected;
+                                    } else {
+                                        if (connectionRectangle.status == 1) {
+                                            return JamiStrings.connectingTLS;
+                                        } else {
+                                            if (connectionRectangle.status == 2) {
+                                                return JamiStrings.connectingICE;
+                                            } else {
+                                                if (connectionRectangle.status == 3) {
+                                                    return JamiStrings.connecting;
+                                                } else {
+                                                    return JamiStrings.waiting;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    color: connectionImage.color
+                                    //if the text is hovered, show the tooltip and underline the text
+                                    property var tooltipText: "toi <-> " + textImage.text
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        onEntered: {
+                                            connectionText.font.underline = true;
+                                        }
+                                        onExited: {
+                                            connectionText.font.underline = false;
+                                        }
+
+                                        ToolTip {
+                                            visible: connectionText.font.underline
+                                            text: connectionText.tooltipText
+                                        }
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                height: 40
+                                Layout.preferredWidth: 70
+                                color: delegate.color
+                                Text {
+                                    id: channelText
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.leftMargin: 10
+                                    anchors.left: parent.left
+                                    text: {
+                                        if (Channels[index] != undefined) {
+                                            return Channels[index];
+                                        } else {
+                                            return "";
+                                        }
+                                    }
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        onEntered: {
+                                            channelText.font.underline = true;
+                                        }
+                                        onExited: {
+                                            channelText.font.underline = false;
+                                        }
+
+                                        ToolTip {
+                                            id: tooltipChannel
+                                            visible: channelText.font.underline
+                                            text: {
+                                                var output = "";
+                                                var channelMap = ChannelsMap[index];
+                                                for (var key in channelMap) {
+                                                    var value = channelMap[key];
+                                                    // //elide value if it is too long
+                                                    // if (value.length > 100) {
+                                                    //     value = value.substring(0, 100) + "...";
+                                                    // }
+                                                    //transform the key in hexadecimal
+                                                    var keyHexa = parseInt(key).toString(16);
+                                                    output += keyHexa + " : " + value + "\n";
+                                                }
+                                                return output;
+                                            }
+                                        }
+                                        onClicked: {
+                                            UtilsAdapter.setClipboardText(tooltipChannel.text);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
