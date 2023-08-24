@@ -143,6 +143,10 @@ SmartListModel::data(const QModelIndex& index, int role) const
         auto& item = conversations_.at(index.row());
         return dataForItem(item, role);
     } break;
+    case Type::YOUR_NEW_TYPE: {
+        auto& item = conversations_.at(index.row());
+        return dataForItem(item, role);
+    } break;
     default:
         break;
     }
@@ -179,7 +183,8 @@ SmartListModel::updateModels()
 {
     if (listModelType_ == Type::CONFERENCE) {
         setConferenceableFilter();
-    } else if (listModelType_ == Type::CONVERSATION || listModelType_ == Type::ADDCONVMEMBER) {
+    } else if (listModelType_ == Type::CONVERSATION || listModelType_ == Type::ADDCONVMEMBER
+               || listModelType_ == Type::YOUR_NEW_TYPE) {
         fillConversationsList();
     }
 }
