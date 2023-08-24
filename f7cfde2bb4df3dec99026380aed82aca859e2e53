@@ -95,6 +95,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca4c858f_1b1d10f2",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1005
+      },
+      "writtenOn": "2023-08-24T19:24:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54e45337_45d888f2",
+      "range": {
+        "startLine": 210,
+        "startChar": 25,
+        "endLine": 210,
+        "endChar": 26
+      },
+      "revId": "f7cfde2bb4df3dec99026380aed82aca859e2e53",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c01af6db_239e8500",
@@ -108,6 +132,30 @@
       "writtenOn": "2023-08-24T09:55:28Z",
       "side": 1,
       "message": "trailling",
+      "range": {
+        "startLine": 215,
+        "startChar": 25,
+        "endLine": 215,
+        "endChar": 26
+      },
+      "revId": "f7cfde2bb4df3dec99026380aed82aca859e2e53",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02d666c0_a3604ee0",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1005
+      },
+      "writtenOn": "2023-08-24T19:24:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c01af6db_239e8500",
       "range": {
         "startLine": 215,
         "startChar": 25,
@@ -155,6 +203,30 @@
       "side": 1,
       "message": "if it is for the move of Alt and Shift, it is for answering a part of the issue #1128",
       "parentUuid": "1684a7b3_77f72a74",
+      "range": {
+        "startLine": 207,
+        "startChar": 20,
+        "endLine": 234,
+        "endChar": 81
+      },
+      "revId": "f7cfde2bb4df3dec99026380aed82aca859e2e53",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb9a094f_a3753264",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1005
+      },
+      "writtenOn": "2023-08-24T19:24:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a35f816_b1f5de1f",
       "range": {
         "startLine": 207,
         "startChar": 20,
