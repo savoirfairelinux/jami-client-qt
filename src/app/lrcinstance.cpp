@@ -458,3 +458,15 @@ LRCInstance::set_selectedConvUid(QString selectedConvUid)
         Q_EMIT selectedConvUidChanged();
     }
 }
+
+VectorMapStringString
+LRCInstance::getConnectionList(const QString& accountId, const QString& uid)
+{
+    return Lrc::getConnectionList(accountId, uid);
+}
+
+VectorMapStringString
+LRCInstance::getChannelList(const QString& accountId, const QString& uid)
+{
+    return Lrc::getChannelList(accountId, uid);
+}
