@@ -107,6 +107,13 @@ ContactAdapter::getContactSelectableModel(int type)
             }
             return match && !index.parent().isValid();
         });
+    case SmartListModel::Type::YOUR_NEW_TYPE:
+        selectableProxyModel_->setPredicate(
+            [this](const QModelIndex& index, const QRegularExpression&) {
+                QVariant uriData = index.data(Role::URI);
+                QString uri = uriData.isValid() ? uriData.toString() : QString();
+                return !defaultModerators_.contains(uri) && uri != "";
+            });
         break;
     default:
         break;
@@ -121,6 +128,12 @@ ContactAdapter::setSearchFilter(const QString& filter)
 {
     if (listModeltype_ == SmartListModel::Type::CONFERENCE) {
         smartListModel_->setConferenceableFilter(filter);
+    } else if (listModeltype_ == SmartListModel::Type::YOUR_NEW_TYPE) {
+        selectableProxyModel_->setPredicate(
+            [this, filter](const QModelIndex& index, const QRegularExpression&) {
+                return (!defaultModerators_.contains(index.data(Role::URI).toString())
+                        && index.data(Role::Title).toString().contains(filter));
+            });
     } else if (listModeltype_ == SmartListModel::Type::CONVERSATION) {
         selectableProxyModel_->setPredicate(
             [this, filter](const QModelIndex& index, const QRegularExpression&) {
@@ -222,6 +235,18 @@ ContactAdapter::contactSelected(int index)
             }
         } break;
         case SmartListModel::Type::CONVERSATION: {
+            const auto contactUri = contactIndex.data(Role::URI).value<QString>();
+            if (contactUri.isEmpty()) {
+                return;
+            }
+
+            lrcInstance_->accountModel().setDefaultModerator(lrcInstance_->get_currentAccountId(),
+                                                             contactUri,
+                                                             true);
+            Q_EMIT defaultModeratorsUpdated();
+
+        } break;
+        case SmartListModel::Type::YOUR_NEW_TYPE: {
             const auto contactUri = contactIndex.data(Role::URI).value<QString>();
             if (contactUri.isEmpty()) {
                 return;

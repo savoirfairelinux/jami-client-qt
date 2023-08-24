@@ -212,6 +212,12 @@ Lrc::getConferences(const QString& accountId)
     return result;
 }
 
+VectorMapStringString
+Lrc::getConnectionList(const QString& accountId, const QString& uid)
+{
+    return ConfigurationManager::instance().getConnectionList(accountId, uid);
+}
+
 bool
 isFinished(const QString& callState)
 {
