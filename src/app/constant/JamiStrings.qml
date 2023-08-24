@@ -843,4 +843,14 @@ Item {
     property string donation: qsTr("Donate")
     property string donationText: qsTr("If you enjoy using Jami and believe in our mission, would you make a donation?")
     property string notNow: qsTr("Not now")
+
+    //Connection monitoring
+    property string connected: qsTr("Connected")
+    property string connectingTLS: qsTr("Connecting TLS")
+    property string connectingICE: qsTr("Connecting ICE")
+    property string connecting: qsTr("Connecting")
+    property string waiting: qsTr("Waiting")
+    property string account: qsTr("Account")
+    property string connection: qsTr("Connection")
+    property string channels: qsTr("Channels")
 }
