@@ -244,7 +244,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/messageparser.cpp
   ${APP_SRC_DIR}/previewengine.cpp
   ${APP_SRC_DIR}/imagedownloader.cpp
-  ${APP_SRC_DIR}/pluginversionmanager.cpp)
+  ${APP_SRC_DIR}/pluginversionmanager.cpp
+  ${APP_SRC_DIR}/connectioninfolistmodel.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
@@ -310,8 +311,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/messageparser.h
   ${APP_SRC_DIR}/htmlparser.h
   ${APP_SRC_DIR}/imagedownloader.h
-  ${APP_SRC_DIR}/pluginversionmanager.h)
-
+  ${APP_SRC_DIR}/pluginversionmanager.h
+  ${APP_SRC_DIR}/connectioninfolistmodel.h)
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
