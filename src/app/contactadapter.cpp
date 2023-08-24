@@ -21,10 +21,16 @@
 #include "contactadapter.h"
 
 #include "lrcinstance.h"
+#include "qmlregister.h"
 
 ContactAdapter::ContactAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
+    , connectionInfoListModel_(new ConnectionInfoListModel(lrcInstance_, this))
 {
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS,
+                                      connectionInfoListModel_.get(),
+                                      "ConnectionInfoListModel");
+
     selectableProxyModel_.reset(new SelectableProxyModel(this));
     if (lrcInstance_) {
         connectSignals();
@@ -107,6 +113,13 @@ ContactAdapter::getContactSelectableModel(int type)
             }
             return match && !index.parent().isValid();
         });
+    case SmartListModel::Type::YOUR_NEW_TYPE:
+        selectableProxyModel_->setPredicate(
+            [this](const QModelIndex& index, const QRegularExpression&) {
+                QVariant uriData = index.data(Role::URI);
+                QString uri = uriData.isValid() ? uriData.toString() : QString();
+                return !defaultModerators_.contains(uri) && uri != "";
+            });
         break;
     default:
         break;
@@ -121,6 +134,12 @@ ContactAdapter::setSearchFilter(const QString& filter)
 {
     if (listModeltype_ == SmartListModel::Type::CONFERENCE) {
         smartListModel_->setConferenceableFilter(filter);
+    } else if (listModeltype_ == SmartListModel::Type::YOUR_NEW_TYPE) {
+        selectableProxyModel_->setPredicate(
+            [this, filter](const QModelIndex& index, const QRegularExpression&) {
+                return (!defaultModerators_.contains(index.data(Role::URI).toString())
+                        && index.data(Role::Title).toString().contains(filter));
+            });
     } else if (listModeltype_ == SmartListModel::Type::CONVERSATION) {
         selectableProxyModel_->setPredicate(
             [this, filter](const QModelIndex& index, const QRegularExpression&) {
@@ -233,6 +252,18 @@ ContactAdapter::contactSelected(int index)
             Q_EMIT defaultModeratorsUpdated();
 
         } break;
+        case SmartListModel::Type::YOUR_NEW_TYPE: {
+            const auto contactUri = contactIndex.data(Role::URI).value<QString>();
+            if (contactUri.isEmpty()) {
+                return;
+            }
+
+            lrcInstance_->accountModel().setDefaultModerator(lrcInstance_->get_currentAccountId(),
+                                                             contactUri,
+                                                             true);
+            Q_EMIT defaultModeratorsUpdated();
+
+        } break;
         default:
             break;
         }
@@ -244,6 +275,12 @@ ContactAdapter::removeContact(const QString& peerUri, bool banContact)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
     accInfo.contactModel->removeContact(peerUri, banContact);
+}
+
+void
+ContactAdapter::updateConnectionInfo()
+{
+    connectionInfoListModel_->update();
 }
 
 void
