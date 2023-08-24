@@ -21,6 +21,7 @@
 #include "qmladapterbase.h"
 #include "smartlistmodel.h"
 #include "conversationlistmodel.h"
+#include "connectioninfolistmodel.h"
 
 #include <QObject>
 #include <QSortFilterProxyModel>
@@ -90,6 +91,7 @@ public:
     Q_INVOKABLE void setSearchFilter(const QString& filter);
     Q_INVOKABLE void contactSelected(int index);
     Q_INVOKABLE void removeContact(const QString& peerUri, bool banContact);
+    Q_INVOKABLE void updateConnectionInfo();
 
     void connectSignals();
 
@@ -104,6 +106,7 @@ private:
     SmartListModel::Type listModeltype_;
     QScopedPointer<SmartListModel> smartListModel_;
     QScopedPointer<SelectableProxyModel> selectableProxyModel_;
+    QScopedPointer<ConnectionInfoListModel> connectionInfoListModel_;
 
     QStringList defaultModerators_;
 

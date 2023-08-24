@@ -1016,6 +1016,15 @@ public Q_SLOTS: // METHODS
         libjami::setAllModerators(accountID.toStdString(), allModerators);
     }
 
+    VectorMapStringString getConnectionList(const QString& accountId, const QString& uid)
+    {
+        VectorMapStringString temp;
+        for (auto x : libjami::getConnectionList(accountId.toStdString(), uid.toStdString())) {
+            temp.push_back(convertMap(x));
+        }
+        return temp;
+    }
+
     bool isAllModerators(const QString& accountID)
     {
         return libjami::isAllModerators(accountID.toStdString());
