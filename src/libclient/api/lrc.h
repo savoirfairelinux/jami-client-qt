@@ -110,6 +110,16 @@ public:
     static VectorString getConferences(const QString& accountId = "");
 
     /**
+     * Get connection list from daemon
+     */
+    static VectorMapStringString getConnectionList(const QString& accountId, const QString& uid);
+
+    /**
+     * Get channel list from daemon
+     */
+    static VectorMapStringString getChannelList(const QString& accountId, const QString& uid);
+
+    /**
      * Preference
      */
     static std::atomic_bool holdConferences;
