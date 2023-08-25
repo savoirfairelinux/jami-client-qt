@@ -389,9 +389,10 @@ Item {
     property real pluginHandlersPopupViewDelegateHeight: 50
     property color pluginDefaultBackgroundColor: "#666666"
     property real remotePluginMinimumDelegateWidth: 430
-    property real remotePluginMinimumDelegateHeight: 260
+    property real remotePluginMinimumDelegateHeight: 275
     property real remotePluginMaximumDelegateWidth: 645
-    property real remotePluginMaximumDelegateHeight: 390
+    property real remotePluginMaximumDelegateHeight: 413
+    property real iconMargin: 30 * baseZoom
     property real remotePluginDelegateWidth: remotePluginMinimumDelegateWidth * baseZoom
     property real remotePluginDelegateHeight: remotePluginMinimumDelegateHeight * baseZoom
     property color pluginViewBackgroundColor: darkTheme ? "#000000" : "#F0EFEF"

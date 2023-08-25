@@ -80,9 +80,9 @@ ItemDelegate {
         background: CachedImage {
             id: background
             defaultImage: JamiResources.default_plugin_background_jpg
-            downloadUrl: PluginAdapter.getBackgroundImageUrl(pluginName)
+            downloadUrl: PluginAdapter.getBackgroundImageUrl(pluginId)
             anchors.fill: parent
-            localPath: root.localPath === undefined ? '' : root.localPath
+            localPath: root.backgroundLocalPath === undefined ? '' : root.backgroundLocalPath
             imageFillMode: Image.PreserveAspectCrop
             LinearGradient {
                 id: gradient
@@ -165,6 +165,8 @@ ItemDelegate {
                 }
                 RowLayout {
                     Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: JamiTheme.iconMargin
+                    Layout.bottomMargin: JamiTheme.iconMargin
                     CachedImage {
                         id: icon
                         defaultImage: JamiResources.plugins_default_icon_svg
