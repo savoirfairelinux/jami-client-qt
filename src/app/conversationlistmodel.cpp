@@ -93,6 +93,7 @@ bool
 ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
     QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
+
     auto rx = filterRegularExpression();
     auto uriStripper = URI(rx.pattern());
     bool stripScheme = (uriStripper.schemeType() < URI::SchemeType::COUNT__);
@@ -104,6 +105,11 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     rx.setPattern(uriStripper.format(flags));
 
     using namespace ConversationList;
+    if (index.data(Role::Uris).toStringList().isEmpty()) {
+        // TODO: Find out why, and fix in libjami/libjamiclient.
+        qCritical() << "Filtering 0 member conversation. Fix me";
+        return false;
+    }
 
     QStringList toFilter;
     toFilter += index.data(Role::Title).toString();
