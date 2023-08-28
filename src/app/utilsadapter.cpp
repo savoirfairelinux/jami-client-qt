@@ -857,15 +857,21 @@ UtilsAdapter::getStandardTempLocation()
 }
 
 QString
-UtilsAdapter::getMimeName(const QString &filePath) const
+UtilsAdapter::getMimeNameForUrl(const QUrl& fileUrl) const
 {
     QMimeDatabase db;
-    QMimeType mime = db.mimeTypeForFile(filePath);
+    QMimeType mime = db.mimeTypeForUrl(fileUrl);
     return mime.name();
 }
 
+QUrl
+UtilsAdapter::urlFromLocalPath(const QString& filePath) const
+{
+    return QUrl::fromLocalFile(filePath);
+}
+
 #ifdef ENABLE_TESTS
-//Must only be used for testing purposes
+// Must only be used for testing purposes
 QString
 UtilsAdapter::createDummyImage() const
 {
