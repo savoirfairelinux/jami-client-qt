@@ -156,7 +156,8 @@ public:
     Q_INVOKABLE QString base64Encode(const QString& input);
     Q_INVOKABLE bool fileExists(const QString& filePath);
     Q_INVOKABLE QString getStandardTempLocation();
-    Q_INVOKABLE QString getMimeName(const QString& filePath) const;
+    Q_INVOKABLE QString getMimeNameForUrl(const QUrl& fileUrl) const;
+    Q_INVOKABLE QUrl urlFromLocalPath(const QString& filePath) const;
 
 #ifdef ENABLE_TESTS
     Q_INVOKABLE QString createDummyImage() const;

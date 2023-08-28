@@ -53,21 +53,21 @@ public:
             return {};
         }
 
-        auto imageId = idInfo.at(1);
+        const auto& imageId = idInfo.at(1);
         if (!imageId.size()) {
             qWarning() << Q_FUNC_INFO << "Missing id in the image url";
             return {};
         }
 
-        auto type = idInfo.at(0);
+        const auto& type = idInfo.at(0);
         if (type == "conversation") {
             if (imageId == "temp")
                 return Utils::tempConversationAvatar(requestedSize);
-
             return Utils::conversationAvatar(lrcInstance_, imageId, requestedSize);
-        } else if (type == "account")
+        }
+        if (type == "account")
             return Utils::accountPhoto(lrcInstance_, imageId, requestedSize);
-        else if (type == "contact")
+        if (type == "contact")
             return Utils::contactPhoto(lrcInstance_, imageId, requestedSize);
 
         qWarning() << Q_FUNC_INFO << "Missing valid prefix in the image url";
