@@ -16,6 +16,7 @@
  */
 
 #include "imagedownloader.h"
+
 #include <QDir>
 #include <QLockFile>
 
@@ -38,29 +39,29 @@ ImageDownloader::downloadImage(const QUrl& url, const QString& localPath)
 void
 ImageDownloader::onDownloadImageFinished(const QByteArray& data, const QString& localPath)
 {
-    if (!data.isEmpty()) {
-        // Check if the parent folders exist create them if not
-        QString dirPath = localPath.left(localPath.lastIndexOf('/'));
-        QDir dir;
-        dir.mkpath(dirPath);
+    if (data.isEmpty()) {
+        Q_EMIT downloadImageFailed(localPath);
+        return;
+    }
 
-        QLockFile lf(localPath + ".lock");
-        QFile file(localPath);
+    // Make sure the parent folders exists.
+    const QString dirPath = localPath.left(localPath.lastIndexOf('/'));
+    const QDir dir;
+    if (!dir.mkpath(dirPath)) {
+        qWarning() << Q_FUNC_INFO << "Failed to create directory" << dirPath;
+        Q_EMIT downloadImageFailed(localPath);
+        return;
+    }
 
-        if (!lf.lock()) {
-            qWarning().noquote() << "Can't lock file for writing: " << file.fileName();
-            return;
-        }
-        if (!file.open(QIODevice::WriteOnly)) {
-            qWarning().noquote() << "Can't open file for writing: " << file.fileName();
-            return;
-        }
-
+    QLockFile lf(localPath + ".lock");
+    QFile file(localPath);
+    if (lf.lock() && file.open(QIODevice::WriteOnly)) {
         file.write(data);
         file.close();
-        qWarning() << Q_FUNC_INFO;
         Q_EMIT downloadImageSuccessful(localPath);
         return;
     }
+
+    qWarning() << Q_FUNC_INFO << "Failed to write image to" << localPath;
     Q_EMIT downloadImageFailed(localPath);
 }

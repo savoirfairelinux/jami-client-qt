@@ -240,7 +240,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoFormatFpsModel)
 
     engine->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance));
-    engine->addImageProvider(QLatin1String("avatarImage"),
+    engine->addImageProvider(QLatin1String("avatarimage"),
                               new AvatarImageProvider(lrcInstance));
 
     engine->setObjectOwnership(&lrcInstance->avModel(), QQmlEngine::CppOwnership);

@@ -42,7 +42,10 @@ Item {
         fillMode: imageFillMode
         smooth: true
         antialiasing: true
-        property bool isGif: getIsGif(this)
+        property bool isGif: {
+            // True only for local gifs.
+            UtilsAdapter.getMimeNameForUrl(source).startsWith("image/gif");
+        }
 
         source: defaultImage
         onStatusChanged: {
@@ -52,22 +55,11 @@ Item {
         }
     }
 
-    function getIsGif(img) {
-        if (img.source && img.source != "") {
-            var localPath = img.source.toString();
-            if (localPath.startsWith("file://")) {
-                localPath = localPath.substring(7);
-            }
-            return UtilsAdapter.getMimeName(localPath).startsWith("image/gif");
-        }
-        return false;
-    }
-
     Connections {
         target: ImageDownloader
         function onDownloadImageSuccessful(localPath) {
             if (localPath === cachedImage.localPath) {
-                image.source = "file://" + localPath;
+                image.source = UtilsAdapter.urlFromLocalPath(localPath);
             }
         }
     }
@@ -92,7 +84,7 @@ Item {
             if (!UtilsAdapter.fileExists(localPath)) {
                 ImageDownloader.downloadImage(downloadUrl, localPath);
             } else {
-                image.source = "file://" + localPath;
+                image.source = UtilsAdapter.urlFromLocalPath(localPath);
                 if (image.isGif) {
                     image.playing = true;
                 }
