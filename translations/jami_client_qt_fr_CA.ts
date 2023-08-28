@@ -2004,27 +2004,27 @@ Votre photo et votre pseudo peuvent être modifiés à tout moment dans les para
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
         <source>Version %1</source>
-        <translation type="unfinished"/>
+        <translation>Version %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="628"/>
         <source>Last update %1</source>
-        <translation type="unfinished"/>
+        <translation>Dernière mise à jour %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>Par %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
         <source>Proposed by %1</source>
-        <translation type="unfinished"/>
+        <translation>Proposé par %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="633"/>
         <source>More information</source>
-        <translation type="unfinished"/>
+        <translation>Pour plus d&apos;informations :</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="720"/>

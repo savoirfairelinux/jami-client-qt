@@ -860,12 +860,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="736"/>
         <source>Press Shift+Enter to insert a new line</source>
-        <translation type="unfinished"/>
+        <translation>按 Shift+Enter 插入换行</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
         <source>Press Enter to insert a new line</source>
-        <translation type="unfinished"/>
+        <translation>按 Enter 插入换行</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
@@ -1688,7 +1688,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
         <source>Search</source>
-        <translation>搜索</translation>
+        <translation>搜尋</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="345"/>
@@ -2756,7 +2756,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
         <source>Choose Plugin</source>
-        <translation>选择插件</translation>
+        <translation>選擇外掛程式</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="632"/>
@@ -3268,7 +3268,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="111"/>
         <source>Search messages/files</source>
-        <translation>搜索消息/文件</translation>
+        <translation>搜尋訊息/檔案</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>

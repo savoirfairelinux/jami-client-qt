@@ -2000,27 +2000,27 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
         <source>Version %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 verzió</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="628"/>
         <source>Last update %1</source>
-        <translation type="unfinished"/>
+        <translation>Legutóbb frissítve %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 által</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
         <source>Proposed by %1</source>
-        <translation type="unfinished"/>
+        <translation>Javasolta: %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="633"/>
         <source>More information</source>
-        <translation type="unfinished"/>
+        <translation>További tájékoztatás</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
