@@ -38,7 +38,7 @@ Item {
     property string imageId
 
     readonly property string divider: '_'
-    readonly property string baseProviderPrefix: 'image://avatarImage'
+    readonly property string baseProviderPrefix: 'image://avatarimage'
     property string typePrefix: {
         switch (mode) {
         case Avatar.Mode.Account:
