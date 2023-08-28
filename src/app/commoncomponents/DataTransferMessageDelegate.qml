@@ -88,8 +88,11 @@ Loader {
                         target: parent
                         enabled: canOpen
                         onHoveredChanged: {
-                            dataTransferItem.hoveredLink = enabled && hovered ?
-                                        ("file:///" + Body) : ""
+                            if (enabled && hovered) {
+                                dataTransferItem.hoveredLink = UtilsAdapter.urlFromLocalPath(Body)
+                            } else {
+                                dataTransferItem.hoveredLink = ""
+                            }
                         }
                         cursorShape: enabled ?
                                          Qt.PointingHandCursor :
@@ -199,10 +202,12 @@ Loader {
                                                  Qt.PointingHandCursor :
                                                  Qt.ArrowCursor
                                 onClicked: function (mouse) {
-                                    dataTransferItem.hoveredLink = canOpen ?
-                                                ("file:///" + Body) : ""
-                                    if (dataTransferItem.hoveredLink)
+                                    if (canOpen) {
+                                        dataTransferItem.hoveredLink = UtilsAdapter.urlFromLocalPath(Body)
                                         Qt.openUrlExternally(new Url(dataTransferItem.hoveredLink))
+                                    } else {
+                                        dataTransferItem.hoveredLink = ""
+                                    }
                                 }
                             }
                         }
@@ -303,7 +308,7 @@ Loader {
                             antialiasing: true
                             autoTransform: true
                             asynchronous: true
-                            source: "file:///" + Body
+                            source: UtilsAdapter.urlFromLocalPath(Body)
                             property real aspectRatio: implicitWidth / implicitHeight
                             property real adjustedWidth: Math.min(maxSize,
                                                                   Math.max(minSize,
@@ -348,7 +353,7 @@ Loader {
                             antialiasing: true
                             autoTransform: true
                             asynchronous: true
-                            source: Body !== undefined ? "file:///" + Body : ''
+                            source: Body !== undefined ? UtilsAdapter.urlFromLocalPath(Body) : ''
 
                             // The sourceSize represents the maximum source dimensions.
                             // This should not be a dynamic binding, as property changes
