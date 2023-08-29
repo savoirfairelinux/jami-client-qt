@@ -16,6 +16,24 @@
       "message": "introduces a bunch of `QFSFileEngine::open: No file name specified` in linux",
       "revId": "bac900e62a040c51c881e89311421a52d3407837",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4f7ab3f_239681d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-08-29T15:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97adfff9_8a33753d",
+      "revId": "bac900e62a040c51c881e89311421a52d3407837",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
