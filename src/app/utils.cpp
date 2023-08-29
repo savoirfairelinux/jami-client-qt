@@ -459,11 +459,10 @@ Utils::conversationAvatar(LRCInstance* instance,
         auto avatarb64 = convModel->avatar(convId);
         if (!avatarb64.isEmpty()) {
             auto photo = imageFromBase64String(avatarb64, true);
-            if (photo.isNull()) {
-                qWarning() << "Invalid image for conversation " << convId;
-                return photo;
+            if (!photo.isNull()) {
+                return scaleAndFrame(photo, size);
             }
-            return scaleAndFrame(photo, size);
+            qWarning() << "Couldn't load image from base 64 data for conversation " << convId;
         }
         // Else, generate an avatar
         auto members = convModel->peersForConversation(convId);
