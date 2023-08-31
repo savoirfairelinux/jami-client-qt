@@ -26,28 +26,19 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    width: 488
-    height: 256
-
     property bool isAdmin: {
         var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri);
         return role === Member.Role.ADMIN;
     }
 
-    popupContent: Rectangle {
+    popupContent: ColumnLayout {
         id: rect
-
-        color: JamiTheme.transparentColor
-        width: root.width
 
         PushButton {
             id: btnCancel
             imageColor: "grey"
             normalColor: "transparent"
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.topMargin: 10
-            anchors.rightMargin: 10
+            Layout.alignment: Qt.AlignRight | Qt.AlignTop
             source: JamiResources.round_close_24dp_svg
             onClicked: {
                 close();
@@ -56,15 +47,14 @@ BaseModalDialog {
 
         ColumnLayout {
             id: mainLayout
-            anchors.fill: parent
-            anchors.margins: JamiTheme.preferredMarginSize
+            spacing: JamiTheme.preferredMarginSize
 
             Label {
                 id: informativeLabel
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.fillWidth: true
-                Layout.topMargin: 26
+                Layout.maximumWidth: root.parent.width - 4*JamiTheme.preferredMarginSize
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -77,7 +67,7 @@ BaseModalDialog {
 
                 Layout.alignment: Qt.AlignCenter
 
-                Layout.topMargin: 26
+                Layout.margins: JamiTheme.preferredMarginSize
                 text: isAdmin ? JamiStrings.becomeHostOneCall : JamiStrings.hostThisCall
 
                 onClicked: {
@@ -90,6 +80,7 @@ BaseModalDialog {
                 id: becomeDefaultHostBtn
 
                 Layout.alignment: Qt.AlignCenter
+                Layout.margins: JamiTheme.preferredMarginSize
 
                 text: JamiStrings.becomeDefaultHost
                 toolTipText: JamiStrings.becomeDefaultHost
