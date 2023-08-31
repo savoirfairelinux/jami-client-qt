@@ -20,6 +20,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
+import "../mainview/components"
 
 Popup {
     id: root
@@ -28,65 +29,80 @@ Popup {
     property bool autoClose: true
     property alias backgroundColor: container.color
     property alias title: titleText.text
-    property var popupContentLoader: containerSubContentLoader
+    property var popupcontainerSubContentLoader: containerSubContentLoader
+    property bool topLayoutVisible: true
     property alias popupContentLoadStatus: containerSubContentLoader.status
     property alias popupContent: containerSubContentLoader.sourceComponent
-    property int popupContentPreferredHeight: 0
-    property int popupContentPreferredWidth: 0
-    property int popupContentMargins: 0
+    property int popupContentMargins: JamiTheme.preferredMarginSize
 
     parent: Overlay.overlay
-
-    // center in parent
-    x: Math.round((parent.width - width) / 2)
-    y: Math.round((parent.height - height) / 2)
-
+    anchors.centerIn: parent
     modal: true
+    padding: popupContentMargins
 
-    padding: 0
-
-    // A popup is invisible until opened.
-    visible: false
     focus: true
     closePolicy: autoClose ? (Popup.CloseOnEscape | Popup.CloseOnPressOutside) : Popup.NoAutoClose
 
-    Rectangle {
+    contentItem: Control {
         id: container
 
-        anchors.fill: parent
+        property color color: JamiTheme.secondaryBackgroundColor
+        padding: popupContentMargins
+        anchors.margins: popupContentMargins
+        anchors.centerIn: parent
 
-        ColumnLayout {
-            anchors.fill: parent
+        background: Rectangle {
+            id: bgRect
+            radius: JamiTheme.modalPopupRadius
+            color: container.color
+            layer.enabled: true
+            layer.effect: DropShadow {
+                horizontalOffset: 3.0
+                verticalOffset: 3.0
+                radius: bgRect.radius * 4
+                color: JamiTheme.shadowColor
+                source: bgRect
+                transparentBorder: true
+                samples: radius + 1
+            }
+        }
 
-            spacing: 0
+        contentItem: ColumnLayout {
+            id: contentLayout
 
-            Text {
-                id: titleText
+            RowLayout {
+                Layout.preferredWidth: parent.width
+                Layout.bottomMargin: JamiTheme.preferredMarginSize
+                visible: topLayoutVisible
 
-                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                Layout.margins: text.length === 0 ? 0 : 10
+                Label {
+                    id: titleText
 
-                Layout.preferredHeight: text.length === 0 ? 0 : contentHeight
+                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                    font.pointSize: JamiTheme.menuFontSize
+                    color: JamiTheme.textColor
 
-                font.pointSize: JamiTheme.menuFontSize
-                color: JamiTheme.textColor
+
+                    visible: text.length > 0
+                }
+
+                JamiPushButton {
+                    id: closeButton
+                    Layout.alignment: Qt.AlignRight
+                    imageColor: "grey"
+                    normalColor: "transparent"
+
+                    source: JamiResources.round_close_24dp_svg
+                    onClicked: close()
+                }
             }
 
             Loader {
                 id: containerSubContentLoader
 
-                Layout.topMargin: popupContentMargins
-                Layout.bottomMargin: popupContentMargins
                 Layout.alignment: Qt.AlignCenter
-                Layout.fillWidth: popupContentPreferredWidth === 0
-                Layout.fillHeight: popupContentPreferredHeight === 0
-                Layout.preferredHeight: popupContentPreferredHeight
-                Layout.preferredWidth: popupContentPreferredWidth
             }
         }
-
-        radius: JamiTheme.modalPopupRadius
-        color: JamiTheme.secondaryBackgroundColor
     }
 
     background: Rectangle {
@@ -101,19 +117,6 @@ Popup {
             to: JamiTheme.popupOverlayColor
             duration: 500
         }
-    }
-
-    DropShadow {
-        z: -1
-        width: root.width
-        height: root.height
-        horizontalOffset: 3.0
-        verticalOffset: 3.0
-        radius: container.radius * 4
-        color: JamiTheme.shadowColor
-        source: container
-        transparentBorder: true
-        samples: radius + 1
     }
 
     enter: Transition {
