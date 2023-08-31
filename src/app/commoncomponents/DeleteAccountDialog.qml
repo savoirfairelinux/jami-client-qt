@@ -33,17 +33,15 @@ BaseModalDialog {
 
     title: JamiStrings.deleteAccount
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
-
     popupContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
+        anchors.centerIn: parent
 
         Label {
             id: labelDeletion
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: deleteAccountContentColumnLayout.width - JamiTheme.preferredMarginSize * 2
+            Layout.preferredWidth: root.width - 4*JamiTheme.preferredMarginSize
 
             color: JamiTheme.textColor
             text: JamiStrings.confirmDeleteQuestion
@@ -51,8 +49,6 @@ BaseModalDialog {
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
 
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
         }
 
@@ -60,7 +56,6 @@ BaseModalDialog {
             id: labelBestId
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: deleteAccountContentColumnLayout.width - JamiTheme.preferredMarginSize * 2
 
             color: JamiTheme.textColor
             text: bestName
@@ -68,9 +63,6 @@ BaseModalDialog {
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
             font.bold: true
-
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
         }
 
@@ -78,7 +70,7 @@ BaseModalDialog {
             id: labelAccountHash
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: deleteAccountContentColumnLayout.width - JamiTheme.preferredMarginSize * 2
+            Layout.preferredWidth: root.width - 4*JamiTheme.preferredMarginSize
 
             color: JamiTheme.textColor
             text: accountId
@@ -87,7 +79,6 @@ BaseModalDialog {
             font.kerning: true
 
             horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
         }
 
@@ -97,7 +88,7 @@ BaseModalDialog {
             visible: !isSIP
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: deleteAccountContentColumnLayout.width - JamiTheme.preferredMarginSize * 2
+            Layout.preferredWidth: root.width - 4*JamiTheme.preferredMarginSize
 
             text: JamiStrings.deleteAccountInfos
 
@@ -120,6 +111,7 @@ BaseModalDialog {
                 id: btnDelete
 
                 Layout.alignment: Qt.AlignHCenter
+                Layout.bottomMargin: JamiTheme.preferredMarginSize
 
                 preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
                 buttontextHeightMargin: JamiTheme.buttontextHeightMargin
@@ -164,6 +156,7 @@ BaseModalDialog {
                 id: btnCancel
 
                 Layout.alignment: Qt.AlignHCenter
+                Layout.bottomMargin: JamiTheme.preferredMarginSize
 
                 preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
                 buttontextHeightMargin: JamiTheme.buttontextHeightMargin
