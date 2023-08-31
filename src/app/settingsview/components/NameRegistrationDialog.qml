@@ -31,13 +31,12 @@ BaseModalDialog {
 
     signal accepted
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
-
     title: JamiStrings.setUsername
 
     popupContent: StackLayout {
         id: stackedWidget
+
+        width: children[currentIndex].width
 
         function startRegistration() {
             stackedWidget.currentIndex = nameRegisterSpinnerPage.pageIndex;
@@ -97,8 +96,10 @@ BaseModalDialog {
 
             readonly property int pageIndex: 0
 
+            width: childrenRect.width
+            height: childrenRect.height
+
             ColumnLayout {
-                anchors.fill: parent
 
                 spacing: 16
 
@@ -179,8 +180,10 @@ BaseModalDialog {
 
             readonly property int pageIndex: 1
 
+            width: childrenRect.width
+            height: childrenRect.height
+
             ColumnLayout {
-                anchors.fill: parent
 
                 spacing: 16
 
@@ -217,8 +220,10 @@ BaseModalDialog {
 
             readonly property int pageIndex: 2
 
+            width: childrenRect.width
+            height: childrenRect.height
+
             ColumnLayout {
-                anchors.fill: parent
 
                 spacing: 16
 

@@ -28,9 +28,6 @@ BaseModalDialog {
 
     required property string deviceId
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
-
     title: JamiStrings.removeDevice
 
     popupContent: ColumnLayout {
@@ -42,7 +39,7 @@ BaseModalDialog {
             id: labelDeletion
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: revokeDeviceContentColumnLayout.width - JamiTheme.preferredMarginSize * 2
+            Layout.maximumWidth: root.parent.width - JamiTheme.preferredMarginSize * 4
 
             text: JamiStrings.confirmRemoval
             color: JamiTheme.textColor
