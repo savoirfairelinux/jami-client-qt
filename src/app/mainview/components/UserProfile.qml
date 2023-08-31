@@ -24,9 +24,6 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
-
     property string convId
     property string aliasText
     property string registeredNameText
@@ -34,19 +31,11 @@ BaseModalDialog {
 
     property int preferredImgSize: 80
 
-    popupContent: Rectangle {
-        id: userProfileContentRect
-
-        color: JamiTheme.backgroundColor
-        radius: JamiTheme.modalPopupRadius
-        anchors.fill: parent
-
-        GridLayout {
+    popupContent: GridLayout {
             id: userProfileDialogLayout
 
-            anchors.centerIn: parent
-            anchors.fill: parent
             anchors.margins: JamiTheme.preferredMarginSize
+            width: JamiTheme.secondaryDialogDimension
 
             columns: 2
             rows: 6
@@ -88,7 +77,7 @@ BaseModalDialog {
                     id: textMetricsContactAliasText
                     font: contactAlias.font
                     text: aliasText
-                    elideWidth: userProfileContentRect.width - 200
+                    elideWidth: root.width - 200
                     elide: Qt.ElideMiddle
                 }
             }
@@ -141,12 +130,13 @@ BaseModalDialog {
                     id: textMetricsContactDisplayNameText
                     font: contactDisplayName.font
                     text: registeredNameText
-                    elideWidth: userProfileContentRect.width - 200
+                    elideWidth: root.width - 200
                     elide: Qt.ElideMiddle
                 }
             }
 
             Text {
+                id: identifierText
                 Layout.alignment: Qt.AlignRight
                 font.pointSize: JamiTheme.textFontSize
                 text: JamiStrings.identifier
@@ -157,8 +147,8 @@ BaseModalDialog {
                 id: contactId
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: userProfileContentRect.width - 200
-
+                Layout.preferredWidth: root.width - 250
+                Layout.rightMargin: JamiTheme.preferredMarginSize
                 font.pointSize: JamiTheme.textFontSize
                 font.kerning: true
                 color: JamiTheme.textColor
@@ -166,7 +156,7 @@ BaseModalDialog {
                 readOnly: true
                 selectByMouse: true
 
-                wrapMode: TextEdit.WrapAnywhere
+                wrapMode: Text.Wrap
                 text: idText
 
                 horizontalAlignment: Text.AlignLeft
@@ -199,6 +189,7 @@ BaseModalDialog {
 
                 Layout.columnSpan: 2
                 Layout.alignment: Qt.AlignHCenter
+                Layout.margins: JamiTheme.preferredMarginSize
 
                 preferredWidth: JamiTheme.preferredFieldWidth / 2
                 buttontextHeightMargin: JamiTheme.buttontextHeightMargin
@@ -214,4 +205,4 @@ BaseModalDialog {
             }
         }
     }
-}
+
