@@ -31,11 +31,10 @@ BaseModalDialog {
 
     title: JamiStrings.addDevice
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
-
     popupContent: StackLayout {
         id: stackedWidget
+
+        width: children[currentIndex].width
 
         function setGeneratingPage() {
             if (passwordEdit.length === 0 && CurrentAccount.hasArchivePassword) {
@@ -107,14 +106,14 @@ BaseModalDialog {
             id: enterPasswordPage
 
             readonly property int pageIndex: 0
+            width: childrenRect.width
+            height: childrenRect.height
 
             ColumnLayout {
-                anchors.fill: parent
-
-                spacing: 16
+                spacing: JamiTheme.preferredMarginSize
 
                 Label {
-                    Layout.alignment: Qt.AlignHCenter
+                    Layout.alignment: Qt.AlignCenter
 
                     text: JamiStrings.enterAccountPassword
                     color: JamiTheme.textColor
@@ -147,7 +146,6 @@ BaseModalDialog {
 
                 RowLayout {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.fillWidth: true
                     spacing: 16
 
                     MaterialButton {
@@ -199,10 +197,12 @@ BaseModalDialog {
 
             readonly property int pageIndex: 1
 
-            ColumnLayout {
-                anchors.fill: parent
+            width: childrenRect.width
+            height: childrenRect.height
 
-                spacing: 16
+            ColumnLayout {
+
+                spacing: JamiTheme.preferredMarginSize
 
                 Label {
                     Layout.alignment: Qt.AlignCenter
@@ -237,10 +237,12 @@ BaseModalDialog {
 
             readonly property int pageIndex: 2
 
-            ColumnLayout {
-                anchors.fill: parent
+            width: childrenRect.width
+            height: childrenRect.height
 
-                spacing: 16
+            ColumnLayout {
+
+                spacing: JamiTheme.preferredMarginSize
 
                 Item {
                     id: infoLabelsRowLayout
