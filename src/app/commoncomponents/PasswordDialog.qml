@@ -35,9 +35,6 @@ BaseModalDialog {
 
     signal done(bool success, int purpose)
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
-
     title: {
         switch (purpose) {
         case PasswordDialog.ExportAccount:
@@ -75,7 +72,7 @@ BaseModalDialog {
     popupContent: ColumnLayout {
         id: popupContentColumnLayout
 
-        spacing: 0
+        spacing: 16
 
         function validatePassword() {
             switch (purpose) {
@@ -128,6 +125,8 @@ BaseModalDialog {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: JamiTheme.preferredFieldWidth
             Layout.preferredHeight: visible ? 48 : 0
+            Layout.leftMargin: JamiTheme.preferredMarginSize
+            Layout.rightMargin: JamiTheme.preferredMarginSize
 
             visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.ExportAccount
             placeholderText: JamiStrings.enterCurrentPassword
@@ -141,6 +140,8 @@ BaseModalDialog {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: JamiTheme.preferredFieldWidth
             Layout.preferredHeight: visible ? 48 : 0
+            Layout.leftMargin: JamiTheme.preferredMarginSize
+            Layout.rightMargin: JamiTheme.preferredMarginSize
 
             visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
 
@@ -155,6 +156,8 @@ BaseModalDialog {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: JamiTheme.preferredFieldWidth
             Layout.preferredHeight: visible ? 48 : 0
+            Layout.leftMargin: JamiTheme.preferredMarginSize
+            Layout.rightMargin: JamiTheme.preferredMarginSize
 
             visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
 
@@ -163,49 +166,24 @@ BaseModalDialog {
             onDynamicTextChanged: popupContentColumnLayout.validatePassword()
         }
 
-        RowLayout {
-            spacing: 16
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignCenter
+        MaterialButton {
+            id: btnConfirm
 
-            MaterialButton {
-                id: btnConfirm
+            Layout.alignment: Qt.AlignHCenter
+            preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
 
-                Layout.alignment: Qt.AlignHCenter
+            color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+            hoveredColor: JamiTheme.buttonTintedBlackHovered
+            pressedColor: JamiTheme.buttonTintedBlackPressed
+            secondary: true
+            autoAccelerator: true
+            enabled: purpose === PasswordDialog.SetPassword
 
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+            text: (purpose === PasswordDialog.ExportAccount) ? JamiStrings.exportAccount : JamiStrings.change
 
-                color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
-                secondary: true
-                autoAccelerator: true
-                enabled: purpose === PasswordDialog.SetPassword
-
-                text: (purpose === PasswordDialog.ExportAccount) ? JamiStrings.exportAccount : JamiStrings.change
-
-                onClicked: {
-                    btnConfirm.enabled = false;
-                    timerToOperate.restart();
-                }
-            }
-
-            MaterialButton {
-                id: btnCancel
-
-                Layout.alignment: Qt.AlignHCenter
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-
-                color: JamiTheme.buttonTintedBlack
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
-                secondary: true
-                autoAccelerator: true
-
-                text: JamiStrings.optionCancel
-
-                onClicked: close()
+            onClicked: {
+                btnConfirm.enabled = false;
+                timerToOperate.restart();
             }
         }
     }

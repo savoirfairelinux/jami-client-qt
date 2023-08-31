@@ -68,7 +68,8 @@ BaseModalDialog {
             id: daemonReconnectPopupTextLabel
 
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            Layout.topMargin: preferredMargin
+            Layout.maximumWidth: root.parent.width - 4 * JamiTheme.preferredMarginSize
+            wrapMode: Text.Wrap
 
             text: connectionFailed ? JamiStrings.reconnectionFailed : JamiStrings.reconnectDaemon
             font.pointSize: JamiTheme.textFontSize + 2
