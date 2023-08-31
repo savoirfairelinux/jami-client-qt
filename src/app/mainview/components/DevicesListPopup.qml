@@ -27,44 +27,26 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    width: 488
-    height: 320
+    width: JamiTheme.secondaryDialogDimension
 
-    popupContent: Rectangle {
-        id: rect
+    title: JamiStrings.defaultCallHost
 
-        color: JamiTheme.transparentColor
-        width: root.width
-
-        PushButton {
-            id: btnCancel
-            imageColor: "grey"
-            normalColor: "transparent"
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.topMargin: 10
-            anchors.rightMargin: 10
-            source: JamiResources.round_close_24dp_svg
-            onClicked: {
-                close();
-            }
-        }
-
-        ColumnLayout {
+    popupContent: ColumnLayout {
             id: mainLayout
-            anchors.fill: parent
+
+            anchors.centerIn: parent
             anchors.margins: JamiTheme.preferredMarginSize
             spacing: JamiTheme.preferredMarginSize
+
 
             Label {
                 id: informativeLabel
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.fillWidth: true
-                Layout.topMargin: 26
-                wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+                Layout.topMargin: JamiTheme.preferredMarginSize
+                Layout.preferredWidth: root.width - 4*JamiTheme.preferredMarginSize
+
+                wrapMode: Text.Wrap
                 text: JamiStrings.chooseHoster
                 color: JamiTheme.primaryForegroundColor
             }
@@ -97,7 +79,7 @@ BaseModalDialog {
                     property bool isCurrent: DeviceName
 
                     implicitWidth: devicesListView.width
-                    width: devicesListView.width
+                    width: root.width - 4*JamiTheme.preferredMarginSize
                     height: 70
 
                     highlighted: ListView.isCurrentItem
@@ -136,7 +118,6 @@ BaseModalDialog {
                         ColumnLayout {
                             id: deviceInfoColumnLayout
 
-                            Layout.fillWidth: true
                             Layout.fillHeight: true
                             Layout.leftMargin: JamiTheme.preferredMarginSize
 
@@ -144,7 +125,6 @@ BaseModalDialog {
                                 id: labelDeviceName
 
                                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                                Layout.fillWidth: true
 
                                 elide: Text.ElideRight
                                 color: JamiTheme.textColor
@@ -155,7 +135,7 @@ BaseModalDialog {
                                 id: labelDeviceId
 
                                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                                Layout.fillWidth: true
+                                Layout.preferredWidth: root.width - 200
 
                                 elide: Text.ElideRight
                                 color: JamiTheme.textColor
@@ -175,9 +155,10 @@ BaseModalDialog {
                 }
             }
 
-            RowLayout {
+            ColumnLayout {
+                id: buttonLayout
                 spacing: JamiTheme.preferredMarginSize
-                Layout.preferredWidth: parent.width
+                Layout.preferredWidth: root.width - 240
 
                 MaterialButton {
                     id: chooseBtn
@@ -192,8 +173,8 @@ BaseModalDialog {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.fillWidth: true
+
                     primary: true
-                    preferredWidth: chooseBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
                     enabled: devicesListView.currentItem
 
                     text: JamiStrings.chooseThisDevice
@@ -220,7 +201,6 @@ BaseModalDialog {
                     Layout.alignment: Qt.AlignCenter
                     Layout.fillWidth: true
                     primary: true
-                    preferredWidth: rmDeviceBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
                     enabled: devicesListView.currentItem
 
                     text: JamiStrings.removeCurrentDevice
@@ -235,4 +215,4 @@ BaseModalDialog {
             }
         }
     }
-}
+

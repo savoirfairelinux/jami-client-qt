@@ -28,11 +28,6 @@ BaseModalDialog {
 
     property int type: ContactList.CONFERENCE
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
-
-    padding: 0
-
     title: {
         switch (type) {
         case ContactList.CONFERENCE:
@@ -48,6 +43,8 @@ BaseModalDialog {
 
     popupContent: ColumnLayout {
         id: contactPickerPopupRectColumnLayout
+        anchors.centerIn: parent
+        width: 400
 
         Searchbar {
             id: contactPickerContactSearchBar
@@ -80,9 +77,5 @@ BaseModalDialog {
                 showPresenceIndicator: type !== ContactList.TRANSFER
             }
         }
-    }
-
-    onAboutToShow: {
-        contactPickerListView.model = ContactAdapter.getContactSelectableModel(type);
     }
 }

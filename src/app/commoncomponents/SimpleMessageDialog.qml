@@ -44,9 +44,6 @@ BaseModalDialog {
         open();
     }
 
-    width: Math.max(JamiTheme.preferredDialogWidth, buttonTitles.length * (JamiTheme.preferredFieldWidth / 2 + JamiTheme.preferredMarginSize))
-    height: JamiTheme.preferredDialogHeight / 2 - JamiTheme.preferredMarginSize
-
     popupContent: ColumnLayout {
         Label {
             id: infoTextLabel
@@ -72,12 +69,10 @@ BaseModalDialog {
 
             data: innerContentData
         }
-
         RowLayout {
             spacing: JamiTheme.preferredMarginSize
 
             Layout.fillWidth: true
-            Layout.preferredHeight: contentHeight
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
             Layout.bottomMargin: JamiTheme.preferredMarginSize
 
