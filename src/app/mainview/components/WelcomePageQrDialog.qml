@@ -18,26 +18,26 @@
 import QtQuick
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import QtQuick.Layouts
 import "../../commoncomponents"
 
 BaseModalDialog {
     id: root
 
-    //Content height + margin.
-    property int size: JamiTheme.qrCodeImageSize + 30
-
-    width: size
-    height: size
+    topLayoutVisible: false
 
     backgroundColor: JamiTheme.whiteColor
 
-    popupContentPreferredHeight: JamiTheme.qrCodeImageSize
-    popupContentPreferredWidth: JamiTheme.qrCodeImageSize
     popupContent: Image {
-        id: userQrImage
+            id: userQrImage
+            property int size: JamiTheme.qrCodeImageSize
+            width: size
+            height: size
+            anchors.centerIn: parent
 
-        smooth: false
-        fillMode: Image.PreserveAspectFit
-        source: "image://qrImage/account_" + CurrentAccount.id
+            smooth: false
+            fillMode: Image.PreserveAspectFit
+            source: "image://qrImage/account_" + CurrentAccount.id
     }
 }
+

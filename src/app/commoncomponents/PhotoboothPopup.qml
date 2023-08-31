@@ -32,14 +32,11 @@ import "../mainview/components"
 BaseModalDialog {
     id: root
 
-    height: 157
-    x: - width / 2
-    y: - height / 5
-
     property string imageId
     property bool newItem
     property real buttonSize: JamiTheme.smartListAvatarSize
     property real imageSize: 25
+
 
     signal focusOnPreviousItem
     signal focusOnNextItem
@@ -60,8 +57,14 @@ BaseModalDialog {
         importButton.forceActiveFocus()
     }
 
+    width: JamiTheme.preferredDialogWidth
+
+    title: JamiStrings.chooseAvatarPicture
+
     RecordBox {
         id: recordBox
+
+        anchors.centerIn: parent
 
         isPhoto: true
         visible: false
@@ -77,223 +80,176 @@ BaseModalDialog {
         }
     }
 
-    popupContent: Item {
+    popupContent: RowLayout {
+            id: buttonsRowLayout
 
-        Component.onCompleted: {
-            root.width = Qt.binding(() => clearButton.visible ? 283 : 210)
-        }
-
-        Rectangle {
-            id: container
-
-            anchors.fill: parent
-            radius: JamiTheme.photoPopupRadius
-            color: JamiTheme.inviteHoverColor
+            spacing: 10
 
             PushButton {
-                id: btnCancel
-                imageColor: "grey"
+                id: takePhotoButton
+
+                objectName: "takePhotoButton"
+
+                Layout.alignment: Qt.AlignHCenter
+
+                height: buttonSize
+                width: buttonSize
+                imageContainerWidth: imageSize
+                imageContainerHeight: imageSize
+                radius: height / 2
+                border.color: JamiTheme.buttonTintedBlue
                 normalColor: "transparent"
-                anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.topMargin: 10
-                anchors.rightMargin: 10
-                source: JamiResources.round_close_24dp_svg
-                onClicked: { close();}
-            }
+                imageColor: JamiTheme.buttonTintedBlue
+                toolTipText: JamiStrings.takePhoto
+                source: JamiResources.baseline_camera_alt_24dp_svg
+                hoveredColor: JamiTheme.smartListHoveredColor
 
-
-            ColumnLayout {
-                id:  mainLayout
-                anchors.fill: parent
-                anchors.margins: JamiTheme.preferredMarginSize
-
-                Text {
-                    id: informativeLabel
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.fillWidth: true
-                    Layout.topMargin: 26
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    text: JamiStrings.chooseAvatarPicture
-                    color: JamiTheme.primaryForegroundColor
-                    font.pixelSize: JamiTheme.popupPhotoTextSize
-                    elide: Text.ElideRight
+                Keys.onPressed: function (keyEvent) {
+                    if (keyEvent.key === Qt.Key_Enter ||
+                            keyEvent.key === Qt.Key_Return) {
+                        clicked()
+                        keyEvent.accepted = true
+                    } else if (keyEvent.key === Qt.Key_Up) {
+                        root.focusOnPreviousItem()
+                        keyEvent.accepted = true
+                    }
                 }
 
-                RowLayout {
-                    id: buttonsRowLayout
-                    Layout.preferredHeight: childrenRect.height
-                    Layout.alignment: Qt.AlignCenter
-                    spacing: 10
+                KeyNavigation.tab: {
+                    if (clearButton.visible)
+                        return clearButton
+                    return importButton
+                }
+                KeyNavigation.down: KeyNavigation.tab
 
-                    PushButton {
-                        id: takePhotoButton
+                onClicked: {
+                    recordBox.parent = buttonsRowLayout
 
-                        objectName: "takePhotoButton"
+                    recordBox.x = Qt.binding(function() {
+                        var buttonCenterX = buttonsRowLayout.width / 2
+                        return buttonCenterX - recordBox.width / 2
+                    })
+                    recordBox.y = Qt.binding(function() {
+                        return - recordBox.height / 2
+                    })
+                    startBooth()
+                }
+            }
 
-                        Layout.alignment: Qt.AlignHCenter
+            PushButton {
+                id: importButton
 
-                        height: buttonSize
-                        width: buttonSize
-                        imageContainerWidth: imageSize
-                        imageContainerHeight: imageSize
-                        radius: height / 2
-                        border.color: JamiTheme.buttonTintedBlue
-                        normalColor: "transparent"
-                        imageColor: JamiTheme.buttonTintedBlue
-                        toolTipText: JamiStrings.takePhoto
-                        source: JamiResources.baseline_camera_alt_24dp_svg
-                        hoveredColor: JamiTheme.smartListHoveredColor
+                objectName: "photoboothViewImportButton"
 
-                        Keys.onPressed: function (keyEvent) {
-                            if (keyEvent.key === Qt.Key_Enter ||
-                                    keyEvent.key === Qt.Key_Return) {
-                                clicked()
-                                keyEvent.accepted = true
-                            } else if (keyEvent.key === Qt.Key_Up) {
-                                root.focusOnPreviousItem()
-                                keyEvent.accepted = true
-                            }
-                        }
+                Layout.alignment: Qt.AlignHCenter
+                visible: parent.visible
 
-                        KeyNavigation.tab: {
-                            if (clearButton.visible)
-                                return clearButton
-                            return importButton
-                        }
-                        KeyNavigation.down: KeyNavigation.tab
+                height: buttonSize
+                width: buttonSize
+                imageContainerWidth: imageSize
+                imageContainerHeight: imageSize
+                radius: height / 2
+                border.color: JamiTheme.buttonTintedBlue
+                normalColor: "transparent"
+                source: JamiResources.round_folder_24dp_svg
+                toolTipText: JamiStrings.importFromFile
+                imageColor: JamiTheme.buttonTintedBlue
+                hoveredColor: JamiTheme.smartListHoveredColor
 
-                        onClicked: {
-                            recordBox.parent = buttonsRowLayout
 
-                            recordBox.x = Qt.binding(function() {
-                                var buttonCenterX = buttonsRowLayout.width / 2
-                                return buttonCenterX - recordBox.width / 2
-                            })
-                            recordBox.y = Qt.binding(function() {
-                                return - recordBox.height / 2
-                            })
-                            startBooth()
-                        }
+                Keys.onPressed: function (keyEvent) {
+                    if (keyEvent.key === Qt.Key_Enter ||
+                            keyEvent.key === Qt.Key_Return) {
+                        clicked()
+                        keyEvent.accepted = true
+                    } else if (keyEvent.key === Qt.Key_Down ||
+                               keyEvent.key === Qt.Key_Tab) {
+                        clearButton.forceActiveFocus()
+                        keyEvent.accepted = true
                     }
+                }
 
-                    PushButton {
-                        id: importButton
+                KeyNavigation.up: takePhotoButton
 
-                        objectName: "photoboothViewImportButton"
-
-                        Layout.alignment: Qt.AlignHCenter
-                        visible: parent.visible
-
-                        height: buttonSize
-                        width: buttonSize
-                        imageContainerWidth: imageSize
-                        imageContainerHeight: imageSize
-                        radius: height / 2
-                        border.color: JamiTheme.buttonTintedBlue
-                        normalColor: "transparent"
-                        source: JamiResources.round_folder_24dp_svg
-                        toolTipText: JamiStrings.importFromFile
-                        imageColor: JamiTheme.buttonTintedBlue
-                        hoveredColor: JamiTheme.smartListHoveredColor
-
-
-                        Keys.onPressed: function (keyEvent) {
-                            if (keyEvent.key === Qt.Key_Enter ||
-                                    keyEvent.key === Qt.Key_Return) {
-                                clicked()
-                                keyEvent.accepted = true
-                            } else if (keyEvent.key === Qt.Key_Down ||
-                                       keyEvent.key === Qt.Key_Tab) {
-                                clearButton.forceActiveFocus()
-                                keyEvent.accepted = true
-                            }
+                onClicked: {
+                    stopBooth()
+                    var dlg = viewCoordinator.presentDialog(
+                                appWindow,
+                                "commoncomponents/JamiFileDialog.qml",
+                                {
+                                    title: JamiStrings.chooseAvatarImage,
+                                    fileMode: JamiFileDialog.OpenFile,
+                                    folder: StandardPaths.writableLocation(
+                                                StandardPaths.PicturesLocation),
+                                    nameFilters: [JamiStrings.imageFiles,
+                                        JamiStrings.allFiles]
+                                })
+                    dlg.fileAccepted.connect(function(file) {
+                        var filePath = UtilsAdapter.getAbsPath(file)
+                        if (!root.newItem) {
+                            AccountAdapter.setCurrentAccountAvatarFile(filePath)
+                        } else {
+                            UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId)
                         }
+                        root.close()
+                    })
+                }
+            }
 
-                        KeyNavigation.up: takePhotoButton
+            PushButton {
+                id: clearButton
 
-                        onClicked: {
-                            stopBooth()
-                            var dlg = viewCoordinator.presentDialog(
-                                        appWindow,
-                                        "commoncomponents/JamiFileDialog.qml",
-                                        {
-                                            title: JamiStrings.chooseAvatarImage,
-                                            fileMode: JamiFileDialog.OpenFile,
-                                            folder: StandardPaths.writableLocation(
-                                                        StandardPaths.PicturesLocation),
-                                            nameFilters: [JamiStrings.imageFiles,
-                                                JamiStrings.allFiles]
-                                        })
-                            dlg.fileAccepted.connect(function(file) {
-                                var filePath = UtilsAdapter.getAbsPath(file)
-                                if (!root.newItem) {
-                                    AccountAdapter.setCurrentAccountAvatarFile(filePath)
-                                } else {
-                                    UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId)
-                                }
-                                root.close()
-                            })
-                        }
+                objectName: "photoboothViewClearButton"
+
+                Layout.alignment: Qt.AlignHCenter
+
+                height: buttonSize
+                width: buttonSize
+                imageContainerWidth: imageSize
+                imageContainerHeight: imageSize
+                radius: height / 2
+                border.color: JamiTheme.buttonTintedBlue
+                normalColor: "transparent"
+                source: JamiResources.ic_hangup_participant_24dp_svg
+                toolTipText: JamiStrings.clearAvatar
+                imageColor: JamiTheme.buttonTintedBlue
+                hoveredColor: JamiTheme.smartListHoveredColor
+
+
+                visible: {
+                    if (!newItem && LRCInstance.currentAccountAvatarSet)
+                        return true
+                    if (newItem && UtilsAdapter.tempCreationImage(imageId).length !== 0)
+                        return true
+                    return false
+                }
+
+                KeyNavigation.up: importButton
+
+                Keys.onPressed: function (keyEvent) {
+                    if (keyEvent.key === Qt.Key_Enter ||
+                            keyEvent.key === Qt.Key_Return) {
+                        clicked()
+                        importButton.forceActiveFocus()
+                        keyEvent.accepted = true
+                    } else if (keyEvent.key === Qt.Key_Down ||
+                               keyEvent.key === Qt.Key_Tab) {
+                        btnCancel.forceActiveFocus()
+                        keyEvent.accepted = true
                     }
+                }
 
-                    PushButton {
-                        id: clearButton
-
-                        objectName: "photoboothViewClearButton"
-
-                        Layout.alignment: Qt.AlignHCenter
-
-                        height: buttonSize
-                        width: buttonSize
-                        imageContainerWidth: imageSize
-                        imageContainerHeight: imageSize
-                        radius: height / 2
-                        border.color: JamiTheme.buttonTintedBlue
-                        normalColor: "transparent"
-                        source: JamiResources.ic_hangup_participant_24dp_svg
-                        toolTipText: JamiStrings.clearAvatar
-                        imageColor: JamiTheme.buttonTintedBlue
-                        hoveredColor: JamiTheme.smartListHoveredColor
-
-
-                        visible: {
-                            if (!newItem && LRCInstance.currentAccountAvatarSet)
-                                return true
-                            if (newItem && UtilsAdapter.tempCreationImage(imageId).length !== 0)
-                                return true
-                            return false
-                        }
-
-                        KeyNavigation.up: importButton
-
-                        Keys.onPressed: function (keyEvent) {
-                            if (keyEvent.key === Qt.Key_Enter ||
-                                    keyEvent.key === Qt.Key_Return) {
-                                clicked()
-                                importButton.forceActiveFocus()
-                                keyEvent.accepted = true
-                            } else if (keyEvent.key === Qt.Key_Down ||
-                                       keyEvent.key === Qt.Key_Tab) {
-                                btnCancel.forceActiveFocus()
-                                keyEvent.accepted = true
-                            }
-                        }
-
-                        onClicked: {
-                            if (!root.newItem)
-                                AccountAdapter.setCurrentAccountAvatarBase64()
-                            else
-                                UtilsAdapter.setTempCreationImageFromString("", imageId)
-                            visible = false
-                            stopBooth()
-                            root.close()
-                        }
-                    }
+                onClicked: {
+                    if (!root.newItem)
+                        AccountAdapter.setCurrentAccountAvatarBase64()
+                    else
+                        UtilsAdapter.setTempCreationImageFromString("", imageId)
+                    visible = false
+                    stopBooth()
+                    root.close()
                 }
             }
         }
     }
-}
+
+

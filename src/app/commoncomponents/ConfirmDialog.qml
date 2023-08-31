@@ -27,9 +27,6 @@ BaseModalDialog {
 
     signal accepted
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
-
     property string confirmLabel: ""
     property string textLabel: ""
 
@@ -40,7 +37,7 @@ BaseModalDialog {
             id: labelAction
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: column.width - JamiTheme.preferredMarginSize * 2
+            Layout.maximumWidth: root.width - JamiTheme.preferredMarginSize * 4
 
             color: JamiTheme.textColor
             text: root.textLabel
@@ -55,8 +52,8 @@ BaseModalDialog {
 
         RowLayout {
             spacing: 16
-            Layout.fillWidth: true
             Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: JamiTheme.preferredMarginSize
 
             MaterialButton {
                 id: primaryBtn
