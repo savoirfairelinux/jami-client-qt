@@ -31,9 +31,6 @@ BaseModalDialog {
 
     title: JamiStrings.addDevice
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
-
     popupContent: StackLayout {
         id: stackedWidget
 
@@ -50,7 +47,8 @@ BaseModalDialog {
         function setExportPage(status, pin) {
             if (status === NameDirectory.ExportOnRingStatus.SUCCESS) {
                 infoLabel.success = true;
-                infoLabelsRowLayout.visible = true;
+                yourPinLabel.visible = true;
+                exportedPIN.visible = true;
                 infoLabel.text = JamiStrings.pinTimerInfos;
                 exportedPIN.text = pin;
             } else {
@@ -69,6 +67,7 @@ BaseModalDialog {
                 }
             }
             stackedWidget.currentIndex = exportingInfoPage.pageIndex;
+            stackedWidget.height = exportingInfoPage.height + 2 * JamiTheme.preferredMarginSize;
         }
 
         Timer {
@@ -109,12 +108,10 @@ BaseModalDialog {
             readonly property int pageIndex: 0
 
             ColumnLayout {
-                anchors.fill: parent
-
-                spacing: 16
+                spacing: JamiTheme.preferredMarginSize
 
                 Label {
-                    Layout.alignment: Qt.AlignHCenter
+                    Layout.alignment: Qt.AlignCenter
 
                     text: JamiStrings.enterAccountPassword
                     color: JamiTheme.textColor
@@ -147,7 +144,6 @@ BaseModalDialog {
 
                 RowLayout {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.fillWidth: true
                     spacing: 16
 
                     MaterialButton {
@@ -200,9 +196,9 @@ BaseModalDialog {
             readonly property int pageIndex: 1
 
             ColumnLayout {
-                anchors.fill: parent
 
-                spacing: 16
+                spacing: JamiTheme.preferredMarginSize
+                anchors.centerIn: parent
 
                 Label {
                     Layout.alignment: Qt.AlignCenter
@@ -237,51 +233,40 @@ BaseModalDialog {
 
             readonly property int pageIndex: 2
 
+            width: childrenRect.width
+            height: childrenRect.height
+
             ColumnLayout {
-                anchors.fill: parent
 
-                spacing: 16
-
-                Item {
-                    id: infoLabelsRowLayout
+                Label {
+                    id: yourPinLabel
 
                     Layout.alignment: Qt.AlignCenter
-                    Layout.margins: JamiTheme.preferredMarginSize
-                    Layout.preferredWidth: yourPinLabel.contentWidth + exportedPIN.contentWidth + 5
-                    Label {
-                        id: yourPinLabel
 
-                        anchors.left: infoLabelsRowLayout.left
-                        anchors.verticalCenter: infoLabelsRowLayout.verticalCenter
+                    text: JamiStrings.yourPinIs
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
 
-                        text: JamiStrings.yourPinIs
-                        color: JamiTheme.textColor
-                        font.pointSize: JamiTheme.headerFontSize
-                        font.kerning: true
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                    }
+                MaterialLineEdit {
+                    id: exportedPIN
 
-                    MaterialLineEdit {
-                        id: exportedPIN
+                    padding: 0
+                    Layout.alignment: Qt.AlignCenter
 
-                        anchors.left: yourPinLabel.right
-                        anchors.leftMargin: 5
-                        anchors.verticalCenter: infoLabelsRowLayout.verticalCenter
+                    text: JamiStrings.pin
+                    wrapMode: Text.NoWrap
 
-                        padding: 0
-
-                        text: JamiStrings.pin
-                        wrapMode: Text.NoWrap
-
-                        color: JamiTheme.textColor
-                        selectByMouse: true
-                        readOnly: true
-                        font.pointSize: JamiTheme.headerFontSize
-                        font.kerning: true
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                    }
+                    color: JamiTheme.textColor
+                    selectByMouse: true
+                    readOnly: true
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
                 }
 
                 Label {
@@ -293,7 +278,9 @@ BaseModalDialog {
                     property string backgroundColor: success ? "whitesmoke" : "transparent"
                     property string borderColor: success ? "lightgray" : "transparent"
 
-                    Layout.maximumWidth: stackedWidget.width - JamiTheme.preferredMarginSize * 2
+                    Layout.maximumWidth: JamiTheme.preferredDialogWidth
+                    Layout.margins: JamiTheme.preferredMarginSize
+                    Layout.bottomMargin: 30
 
                     Layout.alignment: Qt.AlignCenter
 
@@ -314,30 +301,6 @@ BaseModalDialog {
                         border.color: infoLabel.borderColor
                         radius: infoLabel.borderRadius
                         color: JamiTheme.secondaryBackgroundColor
-                    }
-                }
-
-                MaterialButton {
-                    id: btnCloseExportDialog
-
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-                    Layout.bottomMargin: JamiTheme.preferredMarginSize
-
-                    preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                    color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
-                    hoveredColor: JamiTheme.buttonTintedBlackHovered
-                    pressedColor: JamiTheme.buttonTintedBlackPressed
-                    secondary: true
-                    enabled: true
-
-                    text: JamiStrings.close
-
-                    onClicked: {
-                        if (infoLabel.success)
-                            accepted();
-                        close();
                     }
                 }
             }
