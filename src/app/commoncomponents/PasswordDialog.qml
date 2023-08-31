@@ -35,9 +35,6 @@ BaseModalDialog {
 
     signal done(bool success, int purpose)
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
-
     title: {
         switch (purpose) {
         case PasswordDialog.ExportAccount:

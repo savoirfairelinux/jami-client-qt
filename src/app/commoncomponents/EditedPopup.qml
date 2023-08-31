@@ -25,19 +25,32 @@ import net.jami.Constants 1.1
 BaseModalDialog {
     id: root
 
-    width: 488
-    height: 256
+    width: JamiTheme.secondaryDialogDimension
 
     property var previousBodies: undefined
 
-    popupContent: Item {
+    popupContent: ColumnLayout {
         id: rect
+        anchors.centerIn: parent
+        height: childrenRect.height
+        spacing: JamiTheme.preferredMarginSize
+
 
         width: root.width
 
+        PushButton {
+            id: btnCancel
+            imageColor: "grey"
+            normalColor: "transparent"
+            Layout.alignment: Qt.AlignRight | Qt.AlignTop
+            Layout.rightMargin: 4 * JamiTheme.preferredMarginSize
+            source: JamiResources.round_close_24dp_svg
+            onClicked: close()
+        }
+
         JamiListView {
-            anchors.fill: parent
-            anchors.margins: JamiTheme.preferredMarginSize
+            width: root.width - 4 * JamiTheme.preferredMarginSize
+            height: Math.min(count * 50, 150)
 
             model: root.previousBodies
 
@@ -78,18 +91,6 @@ BaseModalDialog {
                     }
                 }
             }
-        }
-
-        PushButton {
-            id: btnCancel
-            imageColor: "grey"
-            normalColor: "transparent"
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.topMargin: 10
-            anchors.rightMargin: 10
-            source: JamiResources.round_close_24dp_svg
-            onClicked: close()
         }
     }
 }
