@@ -33,8 +33,9 @@ BaseModalDialog {
 
     title: JamiStrings.deleteAccount
 
-    width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
-    height: Math.min(appWindow.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
+    //width: Math.min(appWindow.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
+
+
 
     popupContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
@@ -51,8 +52,8 @@ BaseModalDialog {
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
 
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+            //horizontalAlignment: Text.AlignHCenter
+            //verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
         }
 

@@ -28,33 +28,49 @@ BaseModalDialog {
     id: root
 
     width: 488
-    height: 320
 
-    popupContent: Rectangle {
-        id: rect
-
-        color: JamiTheme.transparentColor
-        width: root.width
-
-        PushButton {
-            id: btnCancel
-            imageColor: "grey"
-            normalColor: "transparent"
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.topMargin: 10
-            anchors.rightMargin: 10
-            source: JamiResources.round_close_24dp_svg
-            onClicked: {
-                close();
-            }
-        }
-
-        ColumnLayout {
+    popupContent: ColumnLayout {
             id: mainLayout
             anchors.fill: parent
             anchors.margins: JamiTheme.preferredMarginSize
             spacing: JamiTheme.preferredMarginSize
+
+            Rectangle {
+                id: topRectangle
+
+                Layout.fillWidth: parent
+
+                Layout.preferredHeight: childrenRect.height
+                Layout.preferredWidth: childrenRect.width
+                Layout.alignment: Qt.AlignCenter
+
+                PushButton {
+                    id: btnCancel
+                    imageColor: "grey"
+                    normalColor: "transparent"
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    source: JamiResources.round_close_24dp_svg
+                    onClicked: {
+                        close();
+                    }
+                }
+
+                Label {
+                    id: titleLabel
+                    anchors.fill: parent
+
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    //anchors.margins: JamiTheme.preferredMarginSize
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    text: JamiStrings.defaultCallHost
+                    font.pointSize: JamiTheme.menuFontSize
+                    color: JamiTheme.textColor
+                }
+            }
+
+
 
             Label {
                 id: informativeLabel
@@ -177,7 +193,6 @@ BaseModalDialog {
 
             RowLayout {
                 spacing: JamiTheme.preferredMarginSize
-                Layout.preferredWidth: parent.width
 
                 MaterialButton {
                     id: chooseBtn
@@ -191,9 +206,9 @@ BaseModalDialog {
                     }
 
                     Layout.alignment: Qt.AlignCenter
-                    Layout.fillWidth: true
+                    Layout.bottomMargin: JamiTheme.preferredMarginSize
+
                     primary: true
-                    preferredWidth: chooseBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
                     enabled: devicesListView.currentItem
 
                     text: JamiStrings.chooseThisDevice
@@ -217,10 +232,10 @@ BaseModalDialog {
                         text: rmDeviceBtn.text
                     }
 
+                    Layout.bottomMargin: JamiTheme.preferredMarginSize
                     Layout.alignment: Qt.AlignCenter
                     Layout.fillWidth: true
                     primary: true
-                    preferredWidth: rmDeviceBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
                     enabled: devicesListView.currentItem
 
                     text: JamiStrings.removeCurrentDevice
@@ -235,4 +250,4 @@ BaseModalDialog {
             }
         }
     }
-}
+//}

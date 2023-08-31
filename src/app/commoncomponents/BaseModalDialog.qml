@@ -22,69 +22,74 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
 
 Popup {
-    id: root
+    id: popup
 
     // convient access to closePolicy
     property bool autoClose: true
     property alias backgroundColor: container.color
     property alias title: titleText.text
-    property var popupContentLoader: containerSubContentLoader
+    property var popupcontainerSubContentLoader: containerSubContentLoader
     property alias popupContentLoadStatus: containerSubContentLoader.status
     property alias popupContent: containerSubContentLoader.sourceComponent
-    property int popupContentPreferredHeight: 0
-    property int popupContentPreferredWidth: 0
-    property int popupContentMargins: 0
+    property int popupContentMargins: JamiTheme.preferredMarginSize
 
     parent: Overlay.overlay
+    anchors.centerIn: parent
+    width: JamiTheme.preferredDialogWidth
 
-    // center in parent
-    x: Math.round((parent.width - width) / 2)
-    y: Math.round((parent.height - height) / 2)
 
     modal: true
-
     padding: 0
-
-    // A popup is invisible until opened.
-    visible: false
     focus: true
     closePolicy: autoClose ? (Popup.CloseOnEscape | Popup.CloseOnPressOutside) : Popup.NoAutoClose
 
-    Rectangle {
+
+    contentItem: Rectangle {
         id: container
+
+        layer.enabled: true
+        layer.effect: DropShadow {
+            horizontalOffset: 3.0
+            verticalOffset: 3.0
+            radius: container.radius * 4
+            color: JamiTheme.shadowColor
+            source: container
+            transparentBorder: true
+            samples: radius + 1
+        }
 
         anchors.fill: parent
 
         ColumnLayout {
+            id: contentLayout
+
             anchors.fill: parent
 
             spacing: 0
 
-            Text {
+            Label {
+                Component.onCompleted: print(this, width, height)
                 id: titleText
 
                 Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                Layout.margins: text.length === 0 ? 0 : 10
-
-                Layout.preferredHeight: text.length === 0 ? 0 : contentHeight
-
                 font.pointSize: JamiTheme.menuFontSize
                 color: JamiTheme.textColor
+
+                //if there is no title, no space should be allocated for it
+                Layout.preferredWidth: text.lenght === 0 ? 0 : contentLayout.width - JamiTheme.preferredMarginSize * 2
+                Layout.margins: text.lenght === 0 ? 0 : JamiTheme.preferredMarginSize
+                visible: text.length > 0
             }
 
-            Loader {
+            Loader{
                 id: containerSubContentLoader
 
-                Layout.topMargin: popupContentMargins
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: contentLayout.width - JamiTheme.preferredMarginSize * 2
                 Layout.bottomMargin: popupContentMargins
-                Layout.alignment: Qt.AlignCenter
-                Layout.fillWidth: popupContentPreferredWidth === 0
-                Layout.fillHeight: popupContentPreferredHeight === 0
-                Layout.preferredHeight: popupContentPreferredHeight
-                Layout.preferredWidth: popupContentPreferredWidth
+        
             }
         }
-
         radius: JamiTheme.modalPopupRadius
         color: JamiTheme.secondaryBackgroundColor
     }
@@ -93,7 +98,7 @@ Popup {
         color: JamiTheme.transparentColor
     }
 
-    Overlay.modal: Rectangle {
+     Overlay.modal: Rectangle {
         color: JamiTheme.transparentColor
 
         // Color animation for overlay when pop up is shown.
@@ -101,19 +106,6 @@ Popup {
             to: JamiTheme.popupOverlayColor
             duration: 500
         }
-    }
-
-    DropShadow {
-        z: -1
-        width: root.width
-        height: root.height
-        horizontalOffset: 3.0
-        verticalOffset: 3.0
-        radius: container.radius * 4
-        color: JamiTheme.shadowColor
-        source: container
-        transparentBorder: true
-        samples: radius + 1
     }
 
     enter: Transition {

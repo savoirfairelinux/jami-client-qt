@@ -28,43 +28,37 @@ BaseModalDialog {
     id: root
 
     width: Math.min(parent.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
-    height: Math.min(parent.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
+    height : Math.min(parent.height - 2 * JamiTheme.preferredMarginSize, contentChildren.implicitHeight)
 
-    popupContentMargins: 14
 
-    PushButton {
-        id: btnClose
-
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.topMargin: JamiTheme.preferredMarginSize
-        anchors.rightMargin: JamiTheme.preferredMarginSize
-        imageColor: "grey"
-        normalColor: JamiTheme.transparentColor
-
-        source: JamiResources.round_close_24dp_svg
-
-        onClicked: {
-            close();
-        }
-    }
-
-    popupContent: JamiFlickable {
-        id: aboutPopUpScrollView
-
-        width: root.width
-        contentHeight: aboutPopUpContentRectColumnLayout.implicitHeight
-
-        ColumnLayout {
+    popupContent: ColumnLayout {
             id: aboutPopUpContentRectColumnLayout
 
-            width: root.width
+
+            anchors.centerIn: parent
+            anchors.fill: parent
+
+            PushButton {
+                id: btnClose
+                Component.onCompleted: print(this, width, height)
+                Layout.margins: JamiTheme.preferredMarginSize
+
+                Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                imageColor: "grey"
+                normalColor: JamiTheme.transparentColor
+
+                source: JamiResources.round_close_24dp_svg
+
+                onClicked: {
+                    close();
+                }
+            }
 
             ResponsiveImage {
                 id: aboutPopUPJamiLogoImage
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.topMargin: JamiTheme.preferredMarginSize
+                //Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: JamiTheme.aboutLogoPreferredWidth
                 Layout.preferredHeight: JamiTheme.aboutLogoPreferredHeight
 
@@ -75,7 +69,7 @@ BaseModalDialog {
                 id: jamiSlogansText
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: aboutPopUpScrollView.width
+                Layout.preferredWidth: root.width
                 Layout.topMargin: 26
 
                 wrapMode: Text.WordWrap
@@ -100,7 +94,7 @@ BaseModalDialog {
                 id: jamiVersionText
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: aboutPopUpScrollView.width
+                Layout.preferredWidth: root.width
 
                 font.pixelSize: JamiTheme.tinyCreditsTextSize
 
@@ -119,7 +113,7 @@ BaseModalDialog {
                 id: jamiDeclarationText
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: aboutPopUpScrollView.width - JamiTheme.preferredMarginSize * 2
+                Layout.preferredWidth: root.width - JamiTheme.preferredMarginSize * 2
                 Layout.topMargin: 15
 
                 wrapMode: Text.WordWrap
@@ -206,11 +200,11 @@ BaseModalDialog {
             ProjectCreditsScrollView {
                 id: projectCreditsScrollView
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: aboutPopUpScrollView.width - JamiTheme.preferredMarginSize * 2
+                Layout.preferredWidth: root.width - JamiTheme.preferredMarginSize * 2
                 Layout.preferredHeight: 100
                 Layout.topMargin: 25
                 Layout.margins: JamiTheme.preferredMarginSize
             }
         }
     }
-}
+
