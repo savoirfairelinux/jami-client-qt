@@ -80,6 +80,9 @@ Rectangle {
                 messageBar.textAreaObj.insertText(editedMessageBody);
                 messageBar.textAreaObj.forceActiveFocus();
             }
+            else {
+                messageBar.textAreaObj.clearText();
+            }
         }
 
         function onReplyToIdChanged() {
@@ -115,7 +118,7 @@ Rectangle {
 
         EditContainer {
             id: editContainer
-
+            Scaffold{}
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
             Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
