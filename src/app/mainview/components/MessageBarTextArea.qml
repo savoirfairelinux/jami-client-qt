@@ -60,7 +60,11 @@ JamiFlickable {
     }
 
     function clearText() {
+        var multiLine = textArea.lineCount !== 1;
         textArea.clear();
+        if (multiLine) {
+            heightBinding();
+        }
     }
 
     function pasteText() {
