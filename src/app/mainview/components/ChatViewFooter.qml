@@ -79,6 +79,8 @@ Rectangle {
                 var editedMessageBody = MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.Body);
                 messageBar.textAreaObj.insertText(editedMessageBody);
                 messageBar.textAreaObj.forceActiveFocus();
+            } else {
+                messageBar.textAreaObj.clearText();
             }
         }
 
@@ -115,7 +117,6 @@ Rectangle {
 
         EditContainer {
             id: editContainer
-
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
             Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
