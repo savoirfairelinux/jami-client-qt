@@ -48,7 +48,7 @@ JamiFlickable {
     signal sendMessagesRequired
 
     function heightBinding() {
-        textArea.height = Qt.binding(() => textArea.paintedHeight);
+        textArea.height = Qt.binding(() => textArea.lineCount === 1 ? 35 : textArea.paintedHeight);
     }
 
     function selectText(start, end) {
@@ -60,7 +60,11 @@ JamiFlickable {
     }
 
     function clearText() {
+        var multiLine = textArea.lineCount !== 1;
         textArea.clear();
+        if (multiLine) {
+            heightBinding();
+        }
     }
 
     function pasteText() {

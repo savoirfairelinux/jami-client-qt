@@ -190,8 +190,12 @@ RowLayout {
                 onSendMessagesRequired: {
                     sendMessageButtonClicked();
                 }
-                onTextChanged: MessagesAdapter.userIsComposing(text ? true : false)
-
+                onTextChanged: {
+                    MessagesAdapter.userIsComposing(text ? true : false);
+                    if (!text) {
+                        messageBarTextArea.heightBinding();
+                    }
+                }
                 property var markdownShortCut: {
                     "Bold": function () {
                         if (!showPreview) {
