@@ -36,6 +36,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7aa42731_7633af6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-06T20:01:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d2d34f1_c199f27c",
+      "revId": "2ff940387c96058085b0c925bc70321ed4316621",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62449a34_4d134128",
@@ -97,6 +115,30 @@
       "side": 1,
       "message": "There are no warning but I\u0027m going to remove the line, it\u0027s unuseful",
       "parentUuid": "8ec21e9c_15dab605",
+      "range": {
+        "startLine": 79,
+        "startChar": 37,
+        "endLine": 79,
+        "endChar": 43
+      },
+      "revId": "2ff940387c96058085b0c925bc70321ed4316621",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "252a1195_58eaabe6",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-06T20:01:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b83691d_5713862e",
       "range": {
         "startLine": 79,
         "startChar": 37,
