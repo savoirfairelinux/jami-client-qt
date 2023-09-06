@@ -57,6 +57,76 @@
       },
       "revId": "2ff940387c96058085b0c925bc70321ed4316621",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ec21e9c_15dab605",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-06T19:12:43Z",
+      "side": 1,
+      "message": "verify if some warnings are introduced by this patch",
+      "parentUuid": "62449a34_4d134128",
+      "range": {
+        "startLine": 79,
+        "startChar": 37,
+        "endLine": 79,
+        "endChar": 43
+      },
+      "revId": "2ff940387c96058085b0c925bc70321ed4316621",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea416fb7_d451b6e9",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-06T19:12:43Z",
+      "side": 1,
+      "message": "qmlformat installed? the coding style seems heterogeneous \"Loader{\" vs \"Label {\"",
+      "range": {
+        "startLine": 83,
+        "startChar": 14,
+        "endLine": 83,
+        "endChar": 19
+      },
+      "revId": "2ff940387c96058085b0c925bc70321ed4316621",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de17f5f5_ae5161bf",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-06T19:12:43Z",
+      "side": 1,
+      "message": "seesm a big margin is created. Maybe add the btnClose in base component?",
+      "range": {
+        "startLine": 29,
+        "startChar": 23,
+        "endLine": 29,
+        "endChar": 42
+      },
+      "revId": "2ff940387c96058085b0c925bc70321ed4316621",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
