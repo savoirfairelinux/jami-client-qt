@@ -16,6 +16,24 @@
       "message": "I don\u0027t see popup/dialogs related to the plugins...",
       "revId": "2ff940387c96058085b0c925bc70321ed4316621",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d2d34f1_c199f27c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-06T18:37:32Z",
+      "side": 1,
+      "message": "The popups related to the plugins are \"SimpleMessageDialog\"",
+      "parentUuid": "f49616d6_ed4918b2",
+      "revId": "2ff940387c96058085b0c925bc70321ed4316621",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
