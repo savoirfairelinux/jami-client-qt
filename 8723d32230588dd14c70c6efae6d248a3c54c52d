@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06acd6fa_55a9355f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-09-06T17:29:37Z",
+      "side": 1,
+      "message": "is the daemon commit newer than the commit that introduces the new api?",
+      "revId": "8723d32230588dd14c70c6efae6d248a3c54c52d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
