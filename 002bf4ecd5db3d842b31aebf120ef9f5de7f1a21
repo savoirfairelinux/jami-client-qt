@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47bead93_ad8f7b83",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-06T19:42:01Z",
+      "side": 1,
+      "message": "first line is too long \u0026 french typo. In english there is no narrow no-break space before \u0027:\u0027\n\nso instead \"popup : \" you can write \"popup: \"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 74
+      },
+      "revId": "002bf4ecd5db3d842b31aebf120ef9f5de7f1a21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
