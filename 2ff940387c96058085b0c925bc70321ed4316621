@@ -34,6 +34,29 @@
       "parentUuid": "f49616d6_ed4918b2",
       "revId": "2ff940387c96058085b0c925bc70321ed4316621",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62449a34_4d134128",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-06T19:09:22Z",
+      "side": 1,
+      "message": "should not work",
+      "range": {
+        "startLine": 79,
+        "startChar": 37,
+        "endLine": 79,
+        "endChar": 43
+      },
+      "revId": "2ff940387c96058085b0c925bc70321ed4316621",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
