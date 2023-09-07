@@ -198,6 +198,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "081bfede_477db0a6",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-09-07T10:33:55Z",
+      "side": 1,
+      "message": "oh, by style what is meant is the space between the component name and the `{` sign\n\n`Component{` vs `Component {` we use the latter.",
+      "parentUuid": "c635e909_8a7e7002",
+      "range": {
+        "startLine": 83,
+        "startChar": 14,
+        "endLine": 83,
+        "endChar": 19
+      },
+      "revId": "2ff940387c96058085b0c925bc70321ed4316621",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de17f5f5_ae5161bf",
         "filename": "src/app/mainview/components/AboutPopUp.qml",
         "patchSetId": 4
@@ -233,6 +257,30 @@
       "side": 1,
       "message": "I thought about it but in some popups (often when there are other options than closing) the Close button is a big button at the bottom of the popup. So yes I can add it in the base component but it will affect the design of many popups",
       "parentUuid": "de17f5f5_ae5161bf",
+      "range": {
+        "startLine": 29,
+        "startChar": 23,
+        "endLine": 29,
+        "endChar": 42
+      },
+      "revId": "2ff940387c96058085b0c925bc70321ed4316621",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd0efd3a_9259f7d0",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-09-07T10:33:55Z",
+      "side": 1,
+      "message": "It is better to check design changes with charlotte",
+      "parentUuid": "33f735d7_e2612967",
       "range": {
         "startLine": 29,
         "startChar": 23,
