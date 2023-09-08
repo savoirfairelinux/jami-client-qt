@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b03266ab_8f2be095",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-09-08T11:35:00Z",
+      "side": 1,
+      "message": "\u003e missing something on server or daemon? I don\u0027t see the store anymore with this patch\n\nIt need to redeploy the plugin store server",
+      "parentUuid": "fa28fbcf_e7bfdd1e",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "8723d32230588dd14c70c6efae6d248a3c54c52d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06acd6fa_55a9355f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
