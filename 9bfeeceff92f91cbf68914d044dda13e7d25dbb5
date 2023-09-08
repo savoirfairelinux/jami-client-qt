@@ -16,6 +16,24 @@
       "message": "should wait for pluginstore new deploy",
       "revId": "9bfeeceff92f91cbf68914d044dda13e7d25dbb5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e18653c8_86984caf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-09-08T11:36:30Z",
+      "side": 1,
+      "message": "\u003e should wait for pluginstore new deploy\n\nI don\u0027t think so, you should not have bad behaviour with this new ui",
+      "parentUuid": "60676d8d_7d0aec27",
+      "revId": "9bfeeceff92f91cbf68914d044dda13e7d25dbb5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
