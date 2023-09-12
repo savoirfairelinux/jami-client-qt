@@ -239,7 +239,7 @@ ListSelectionView {
 
             Connections {
                 target: CurrentAccount
-                onIdChanged: {
+                function onIdChanged() {
                     //Making sure the tips are refreshed when changing user
                     loader_tipsRow.active = false;
                     loader_tipsRow.active = Qt.binding(function () {
