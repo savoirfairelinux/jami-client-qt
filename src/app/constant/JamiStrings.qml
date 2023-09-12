@@ -47,7 +47,7 @@ Item {
     // AboutPopUp
     property string version: qsTr("Version") + (AppVersionManager.isCurrentVersionBeta() ? " (Beta)" : "")
     property string declarationYear: "© 2015-2023"
-    property string slogan: "Világfa"
+    property string slogan: "Eleutheria"
     property string declaration: qsTr("Jami is a free universal communication software that respects the freedom and privacy of its users.")
 
     // AccountComboBox
