@@ -57,6 +57,7 @@ RowLayout {
         Layout.preferredHeight: parent.height
         Layout.preferredWidth: childrenRect.width
         visible: !CurrentConversation.isSip
+        color: JamiTheme.transparentColor
         ComboBox {
             id: showMoreButton
             width: JamiTheme.chatViewFooterButtonSize
@@ -1174,6 +1175,7 @@ RowLayout {
         Layout.preferredHeight: parent.height
         Layout.preferredWidth: childrenRect.width
         visible: sendButtonVisibility
+        color: JamiTheme.transparentColor
         PushButton {
             id: sendMessageButton
 
