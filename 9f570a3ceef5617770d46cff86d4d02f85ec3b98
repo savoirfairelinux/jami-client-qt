@@ -22,6 +22,30 @@
       },
       "revId": "9f570a3ceef5617770d46cff86d4d02f85ec3b98",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e6786e9_5ee5d814",
+        "filename": "src/libclient/pluginmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-09-12T13:06:32Z",
+      "side": 1,
+      "message": "changes in repovm done, should be ok now",
+      "parentUuid": "805c7c1a_f42f1c43",
+      "range": {
+        "startLine": 115,
+        "startChar": 37,
+        "endLine": 115,
+        "endChar": 52
+      },
+      "revId": "9f570a3ceef5617770d46cff86d4d02f85ec3b98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
