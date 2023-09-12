@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "805c7c1a_f42f1c43",
+        "filename": "src/libclient/pluginmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-12T12:15:59Z",
+      "side": 1,
+      "message": "Store is actually broken as you cannot download any plugin (plugins are shown, but server doesn\u0027t work as every platform is on desktop, which is not the arch it does). This is really problematic as it blocks any nightly/release with the store.",
+      "range": {
+        "startLine": 115,
+        "startChar": 37,
+        "endLine": 115,
+        "endChar": 52
+      },
+      "revId": "9f570a3ceef5617770d46cff86d4d02f85ec3b98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
