@@ -220,6 +220,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c8f3a1e_d4fdcb1b",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-12T21:12:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "081bfede_477db0a6",
+      "range": {
+        "startLine": 83,
+        "startChar": 14,
+        "endLine": 83,
+        "endChar": 19
+      },
+      "revId": "2ff940387c96058085b0c925bc70321ed4316621",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de17f5f5_ae5161bf",
