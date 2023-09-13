@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f5ff445_f488d227",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-13T20:24:18Z",
+      "side": 1,
+      "message": "Is this a duplicate string as this string is also used in the Keyboard Shortcuts Table? Thank you",
+      "range": {
+        "startLine": 726,
+        "startChar": 4,
+        "endLine": 726,
+        "endChar": 53
+      },
+      "revId": "7e578a301fe5f199018143fd006a74a045695347",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
