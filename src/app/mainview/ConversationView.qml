@@ -59,6 +59,7 @@ ListSelectionView {
     leftPaneItem: viewCoordinator.getView("SidePanel")
 
     rightPaneItem: StackLayout {
+
         currentIndex: !CurrentConversation.hasCall ? 0 : 1
         onCurrentIndexChanged: chatView.parent = currentIndex === 1 ? callStackView.chatViewContainer : chatViewContainer
 
