@@ -22,6 +22,7 @@
 #include "pluginlistmodel.h"
 #include "pluginhandlerlistmodel.h"
 #include "pluginlistpreferencemodel.h"
+#include "appsettingsmanager.h"
 #include "pluginversionmanager.h"
 #include "pluginstorelistmodel.h"
 #include "preferenceitemlistmodel.h"
@@ -78,8 +79,8 @@ private:
     std::unique_ptr<PluginHandlerListModel> pluginHandlerListModel_;
 
     LRCInstance* lrcInstance_;
+    AppSettingsManager* settingsManager_;
     std::mutex mtx_;
     QString tempPath_;
     QString baseUrl_;
-    AppSettingsManager* settingsManager_;
 };
