@@ -22,6 +22,30 @@
       },
       "revId": "7e578a301fe5f199018143fd006a74a045695347",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a6262a8_600e51eb",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-13T20:31:25Z",
+      "side": 1,
+      "message": "it\u0027s a duplicate as JamiStrings. will not work in a ListModelElement",
+      "parentUuid": "5f5ff445_f488d227",
+      "range": {
+        "startLine": 726,
+        "startChar": 4,
+        "endLine": 726,
+        "endChar": 53
+      },
+      "revId": "7e578a301fe5f199018143fd006a74a045695347",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
