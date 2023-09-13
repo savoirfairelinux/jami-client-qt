@@ -44,7 +44,7 @@ Rectangle {
 
             placeHolderText: JamiStrings.addParticipant
 
-            onSearchBarTextChanged: function(text){
+            onSearchBarTextChanged: function (text) {
                 ContactAdapter.setSearchFilter(text);
             }
         }
