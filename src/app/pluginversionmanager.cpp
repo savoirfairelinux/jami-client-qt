@@ -33,7 +33,7 @@ public:
     Impl(LRCInstance* instance, PluginVersionManager& parent)
         : QObject(nullptr)
         , parent_(parent)
-        , appSettingsManager_(new AppSettingsManager(this))
+        , settingsManager_(new AppSettingsManager(this))
         , lrcInstance_(instance)
         , tempPath_(QDir::tempPath())
         , updateTimer_(new QTimer(this))
@@ -78,12 +78,12 @@ public:
 
     bool isAutoUpdaterEnabled()
     {
-        return appSettingsManager_->getValue(Settings::Key::PluginAutoUpdate).toBool();
+        return settingsManager_->getValue(Settings::Key::PluginAutoUpdate).toBool();
     }
 
     void setAutoUpdate(bool state)
     {
-        appSettingsManager_->setValue(Settings::Key::PluginAutoUpdate, state);
+        settingsManager_->setValue(Settings::Key::PluginAutoUpdate, state);
     }
 
     void checkVersionStatus(const QString& pluginId)
@@ -103,7 +103,8 @@ public:
             return;
         }
 
-        parent_.sendGetRequest(QUrl(parent_.baseUrl + "/versions/" + plugin.id + "?arch="
+        parent_.sendGetRequest(QUrl(settingsManager_->getValue("PluginStoreEndpoint").toString()
+                                    + "/versions/" + plugin.id + "?arch="
                                     + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
                                [this, plugin](const QByteArray& data) {
                                    // `data` represents the version in this case.
@@ -121,7 +122,7 @@ public:
     void installRemotePlugin(const QString& pluginId)
     {
         parent_.downloadFile(
-            QUrl(parent_.baseUrl + "/download/"
+            QUrl(settingsManager_->getValue("PluginStoreEndpoint").toString() + "/download/"
                  + lrcInstance_->pluginModel().getPlatformInfo()["os"] + "/" + pluginId),
             pluginId,
             0,
@@ -158,15 +159,14 @@ public:
     };
 
     PluginVersionManager& parent_;
-    AppSettingsManager* appSettingsManager_ {nullptr};
+    AppSettingsManager* settingsManager_ {nullptr};
     LRCInstance* lrcInstance_ {nullptr};
     QString tempPath_;
     QTimer* updateTimer_;
 };
 
-PluginVersionManager::PluginVersionManager(LRCInstance* instance, QString& baseUrl, QObject* parent)
+PluginVersionManager::PluginVersionManager(LRCInstance* instance, QObject* parent)
     : NetworkManager(&instance->connectivityMonitor(), parent)
-    , baseUrl(baseUrl)
     , pimpl_(std::make_unique<Impl>(instance, *this))
 {}
 

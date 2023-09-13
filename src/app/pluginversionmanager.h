@@ -46,9 +46,7 @@ class PluginVersionManager final : public NetworkManager
 {
     Q_OBJECT
 public:
-    explicit PluginVersionManager(LRCInstance* instance,
-                                  QString& baseUrl,
-                                  QObject* parent = nullptr);
+    explicit PluginVersionManager(LRCInstance* instance, QObject* parent = nullptr);
     ~PluginVersionManager();
 
     Q_INVOKABLE bool isAutoUpdaterEnabled();
