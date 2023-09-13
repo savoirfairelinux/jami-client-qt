@@ -22,6 +22,7 @@ import net.jami.Models 1.1
 import "commoncomponents"
 
 QtObject {
+    //Scaffold{}
     id: root
 
     required property QtObject viewManager
