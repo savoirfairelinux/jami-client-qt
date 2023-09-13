@@ -49,10 +49,12 @@ SettingsPageBase {
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
-        ColumnLayout {
+        Column {
             id: enableAccount
 
             width: parent.width
+
+            spacing: 10
 
             FolderDialog {
                 id: downloadPathDialog
@@ -70,8 +72,9 @@ SettingsPageBase {
             }
 
             ToggleSwitch {
+                //Scaffold{}
                 id: notificationCheckBox
-                Layout.fillWidth: true
+                width: parent.width
 
                 checked: UtilsAdapter.getAppValue(Settings.EnableNotifications)
                 labelText: JamiStrings.showNotifications
@@ -80,8 +83,27 @@ SettingsPageBase {
             }
 
             ToggleSwitch {
+                //Scaffold{}
+                id: enableDonation
+                width: parent.width
+
+                checked: new Date(2999, 1, 1, 0, 0, 0, 0) != new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonateDateBis)))
+                labelText: "Enable donation campaign"
+                tooltipText: UtilsAdapter.getAppValue(Settings.Key.DonateDateBis)
+                onSwitchToggled: {
+                    if (checked) {
+                        UtilsAdapter.setAppValue(Settings.Key.DonateDateBis, new Date(new Date().getTime() - 24 * 60 * 60 * 1000).toISOString().slice(0, 16).replace("T", " "));
+                    } else {
+                        UtilsAdapter.setAppValue(Settings.Key.DonateDateBis, new Date(2999, 1, 1, 0, 0, 0, 0).toISOString().slice(0, 16).replace("T", " "));
+                    }
+                }
+                //UtilsAdapter.setAppValue(Settings.Key.DonateDateBis, new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16).replace("T", " "));
+            }
+
+            ToggleSwitch {
+                //Scaffold{}
                 id: closeOrMinCheckBox
-                Layout.fillWidth: true
+                width: parent.width
 
                 visible: UtilsAdapter.isSystemTrayIconVisible()
                 checked: UtilsAdapter.getAppValue(Settings.MinimizeOnClose) && UtilsAdapter.isSystemTrayIconVisible()
@@ -91,7 +113,7 @@ SettingsPageBase {
 
             ToggleSwitch {
                 id: applicationOnStartUpCheckBox
-                Layout.fillWidth: true
+                width: parent.width
 
                 checked: UtilsAdapter.checkStartupLink()
                 labelText: JamiStrings.runStartup
@@ -100,8 +122,8 @@ SettingsPageBase {
             }
 
             RowLayout {
-                Layout.fillWidth: true
-                Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                width: parent.width
+                height: JamiTheme.preferredFieldHeight
 
                 Text {
                     Layout.fillWidth: true
@@ -138,8 +160,8 @@ SettingsPageBase {
             SettingsComboBox {
                 id: langComboBoxSetting
 
-                Layout.fillWidth: true
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                width: parent.width
+                height: JamiTheme.preferredFieldHeight
 
                 labelText: JamiStrings.language
                 tipText: JamiStrings.language
