@@ -35,11 +35,11 @@
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent, QString baseUrl)
     : QmlAdapterBase(instance, parent)
     , pluginStoreListModel_(new PluginStoreListModel(instance, this))
-    , pluginVersionManager_(new PluginVersionManager(instance, baseUrl, this))
+    , pluginVersionManager_(new PluginVersionManager(instance, this))
     , pluginListModel_(new PluginListModel(instance, this))
     , lrcInstance_(instance)
+    , settingsManager_(new AppSettingsManager(this))
     , tempPath_(QDir::tempPath())
-    , baseUrl_(baseUrl)
 
 {
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
@@ -90,7 +90,7 @@ PluginAdapter::getPluginsFromStore()
                                            Q_EMIT storeNotAvailable();
                                        });
     pluginVersionManager_
-        ->sendGetRequest(QUrl(baseUrl_
+        ->sendGetRequest(QUrl(baseUrl()
                               + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
                          [this, errorHandler](const QByteArray& data) {
                              auto result = QJsonDocument::fromJson(data).array();
@@ -114,7 +114,7 @@ void
 PluginAdapter::getPluginDetails(const QString& pluginId)
 {
     pluginVersionManager_
-        ->sendGetRequest(QUrl(baseUrl_ + "/details/" + pluginId
+        ->sendGetRequest(QUrl(baseUrl() + "/details/" + pluginId
                               + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
                          [this](const QByteArray& data) {
                              auto result = QJsonDocument::fromJson(data).object();
@@ -200,19 +200,19 @@ PluginAdapter::checkVersionStatus(const QString& pluginId)
 QString
 PluginAdapter::baseUrl() const
 {
-    return baseUrl_;
+    return settingsManager_->getValue("PluginStoreEndpoint").toString();
 }
 
 QString
 PluginAdapter::getIconUrl(const QString& pluginId) const
 {
-    return baseUrl_ + "/icons/" + pluginId
+    return baseUrl() + "/icons/" + pluginId
            + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"];
 }
 
 QString
 PluginAdapter::getBackgroundImageUrl(const QString& pluginId) const
 {
-    return baseUrl_ + "/backgrounds/" + pluginId
+    return baseUrl() + "/backgrounds/" + pluginId
            + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"];
 }
