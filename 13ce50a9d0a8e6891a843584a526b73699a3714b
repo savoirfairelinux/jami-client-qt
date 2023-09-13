@@ -16,6 +16,24 @@
       "message": "start a multi-line message, then Ctrl+A/Ctrl+X -\u003e size is not refreshed",
       "revId": "13ce50a9d0a8e6891a843584a526b73699a3714b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9c90ea4_9e3c5622",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-09-13T15:03:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fae5d225_4116cd29",
+      "revId": "13ce50a9d0a8e6891a843584a526b73699a3714b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
