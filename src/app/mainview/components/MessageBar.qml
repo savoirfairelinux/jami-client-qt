@@ -1165,6 +1165,7 @@ RowLayout {
                     imageColor: (hovered || showPreview) ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
                     hoveredColor: JamiTheme.hoveredButtonColor
                     pressedColor: hoveredColor
+                    toolTipText: JamiStrings.showPreview
 
                     onClicked: {
                         showPreview = !showPreview;
