@@ -80,6 +80,23 @@ SettingsPageBase {
             }
 
             ToggleSwitch {
+                id: enableDonation
+                Layout.fillWidth: true
+
+                checked: new Date() > new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonateDateBis)))
+                labelText: "Enable donation campaign"
+                tooltipText: UtilsAdapter.getAppValue(Settings.Key.DonateDateBis)
+                onSwitchToggled: {
+                    if (checked) {
+                        UtilsAdapter.setAppValue(Settings.Key.DonateDateBis, new Date(new Date().getTime() - 24 * 60 * 60 * 1000).toISOString().slice(0, 16).replace("T", " "));
+                    } else {
+                        UtilsAdapter.setAppValue(Settings.Key.DonateDateBis, new Date(2999, 1, 1, 0, 0, 0, 0).toISOString().slice(0, 16).replace("T", " "));
+                    }
+                }
+                //UtilsAdapter.setAppValue(Settings.Key.DonateDateBis, new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16).replace("T", " "));
+            }
+
+            ToggleSwitch {
                 id: closeOrMinCheckBox
                 Layout.fillWidth: true
 

@@ -37,7 +37,6 @@ FocusScope {
     property color textColor: JamiTheme.textColor
     property color iconColor: JamiTheme.tintedBlue
 
-
     property string customizeTip: "CustomizeTipBox {}"
 
     property string backupTip: "BackupTipBox {" + "    onIgnore: {" + "        root.ignoreClicked()" + "    }" + "}"
@@ -56,7 +55,6 @@ FocusScope {
     focus: true
     activeFocusOnTab: true
 
-
     Rectangle {
         id: rect
         anchors.fill: parent
@@ -72,6 +70,30 @@ FocusScope {
             anchors.top: parent.top
             width: parent.width
             anchors.topMargin: 10
+
+            Loader {
+                id: loader_donationTip
+                active: type === "donation"
+                focus: true
+                sourceComponent: DonationTipBox {
+                    maxHeight: root.maximumHeight
+                    textColor: root.textColor
+                    iconColor: root.iconColor
+                }
+                width: parent.width
+            }
+
+            Loader {
+                id: loader_newsletterTip
+                active: type === "newsletter"
+                focus: true
+                sourceComponent: NewsletterTipBox {
+                    maxHeight: root.maximumHeight
+                    textColor: root.textColor
+                    iconColor: root.iconColor
+                }
+                width: parent.width
+            }
 
             Loader {
                 id: loader_backupTip
@@ -95,7 +117,6 @@ FocusScope {
                 }
                 width: parent.width
                 focus: true
-
             }
             Loader {
                 id: loader_infoTip
@@ -106,19 +127,20 @@ FocusScope {
                     iconColor: root.iconColor
                 }
                 width: parent.width
-
             }
         }
     }
 
     HoverHandler {
         target: rect
+        //enabled: type !== "donation"
         onHoveredChanged: root.hovered = hovered
-        cursorShape: Qt.PointingHandCursor
+        cursorShape: type !== "donation" ? Qt.PointingHandCursor : Qt.ArrowCursor
     }
 
     TapHandler {
         target: rect
+        enabled: type !== "donation"
         onTapped: {
             return opened ? focus = false : root.forceActiveFocus();
         }
