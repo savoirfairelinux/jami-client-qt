@@ -654,6 +654,11 @@ Item {
     property color darkThemeCheckedColor: "#03B9E9"
     property color darkThemeBorderColor: "#03B9E9"
 
+    // Donation campaign
+    property color donationButtonTextColor: "#005699"
+    property color donationBackgroundColor: "#D5E4EF"
+    property string donationUrl: "https://jami.net/donate/"
+
     function setTheme(dark) {
         darkTheme = dark;
     }
