@@ -35,8 +35,8 @@ ItemDelegate {
     property string pluginAuthor
     property string pluginShortDescription
     property int pluginStatus
-    property string backgroundLocalPath: UtilsAdapter.getCachePath() + '/backgrounds/' + pluginName + '.jpg'
-    property string iconLocalPath: UtilsAdapter.getCachePath() + '/icons/' + pluginName + '.svg'
+    property string backgroundLocalPath: UtilsAdapter.getCachePath() + '/backgrounds/' + pluginId + '.jpg'
+    property string iconLocalPath: UtilsAdapter.getCachePath() + '/icons/' + pluginId + '.svg'
     readonly property real scalingFactor: 1 + hovered * 0.02
     property string installButtonStatus: {
         switch (pluginStatus) {
