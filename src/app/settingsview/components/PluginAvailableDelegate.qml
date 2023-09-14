@@ -172,7 +172,7 @@ ItemDelegate {
                         defaultImage: JamiResources.plugins_default_icon_svg
                         width: 65
                         height: 65
-                        downloadUrl: PluginAdapter.getIconUrl(pluginName)
+                        downloadUrl: PluginAdapter.getIconUrl(pluginId)
                         localPath: root.iconLocalPath
                     }
                 }
