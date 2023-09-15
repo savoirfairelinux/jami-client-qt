@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c17bae04_4ed7286c",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-15T18:19:44Z",
+      "side": 1,
+      "message": "problem with zoom \u003d 200",
+      "range": {
+        "startLine": 333,
+        "startChar": 20,
+        "endLine": 333,
+        "endChar": 28
+      },
+      "revId": "9c8195513154591faff44a451cb4e485177bbc4b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
