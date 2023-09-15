@@ -22,6 +22,30 @@
       },
       "revId": "b95abbc8913ccad0f05ea51d8477a29ea9f0acb0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ad61d62_c7c85c25",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-15T20:31:37Z",
+      "side": 1,
+      "message": "Should this be something like:\n\n`shortcut: \"Ctrl + \" \u0026 qsTr(Mouse middle click)`\n\n`shortcut: \"Ctrl + \" \u0026\u0026 qsTr(Mouse middle click)`\n\n`shortcut: \"Ctrl + \" + qsTr(Mouse middle click)`\n\nThank you",
+      "parentUuid": "807b4273_16fe8d8f",
+      "range": {
+        "startLine": 173,
+        "startChar": 34,
+        "endLine": 173,
+        "endChar": 52
+      },
+      "revId": "b95abbc8913ccad0f05ea51d8477a29ea9f0acb0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
