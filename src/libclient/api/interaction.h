@@ -355,7 +355,11 @@ struct Info
         if (type == Type::CONTACT) {
             authorUri = accountURI == message["uri"] ? "" : message["uri"];
         } else if (type == Type::INITIAL) {
-            body = QObject::tr("Swarm created");
+            if (message["mode"] == "0") {
+                body = QObject::tr("Private conversation created");
+            } else {
+                body = QObject::tr("Swarm created");
+            }
         } else if (type == Type::CALL) {
             duration = message["duration"].toInt() / 1000;
             if (message.contains("confId"))
