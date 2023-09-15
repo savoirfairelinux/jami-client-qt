@@ -231,7 +231,6 @@ MainApplication::initLrc(const QString& downloadUrl,
                          bool debugMode,
                          bool muteDaemon)
 {
-    lrc::api::Lrc::cacheAvatars.store(false);
     /*
      * Init mainwindow and finish splash when mainwindow shows up.
      */

@@ -1583,8 +1583,7 @@ CallModelPimpl::slotincomingVCardChunk(const QString& accountId,
             contactInfo.profileInfo = profileInfo;
 
             linked.owner.contactModel->addContact(contactInfo);
-            if (!lrc::api::Lrc::cacheAvatars.load())
-                contactInfo.profileInfo.avatar.clear();
+            contactInfo.profileInfo.avatar.clear(); // Do not want avatar in memory here
             vcardsChunks.erase(from); // Transfer is finish, we don't want to reuse this entry.
         }
     } else {
