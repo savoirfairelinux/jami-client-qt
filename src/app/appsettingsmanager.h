@@ -46,7 +46,7 @@ extern const QString defaultDownloadPath;
     X(AppTheme, "System") \
     X(BaseZoom, 1.0) \
     X(ParticipantsSide, false) \
-    X(HideSelf, false) \
+    X(HideSelf, true) \
     X(HideSpectators, false) \
     X(AutoUpdate, true) \
     X(PluginAutoUpdate, false) \
