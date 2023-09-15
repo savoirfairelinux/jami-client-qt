@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f9acb80_e70032c0",
+        "filename": "src/app/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-15T15:47:23Z",
+      "side": 1,
+      "message": "with zoom 200%, the add device override",
+      "range": {
+        "startLine": 245,
+        "startChar": 12,
+        "endLine": 245,
+        "endChar": 24
+      },
+      "revId": "6ad78e1783e805386eace5c2d0ab3c50e2ae9340",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
