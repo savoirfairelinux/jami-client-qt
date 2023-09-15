@@ -372,6 +372,7 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
         } else {
             lrcInstance_->selectConversation(convInfo.uid, accountId);
         }
+                qWarning() << "@@@ ICI";
         showNotification(accountId, convInfo.uid);
         return;
     }
@@ -393,6 +394,7 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
         if ((currentCall.status == call::Status::CONNECTED
              || currentCall.status == call::Status::IN_PROGRESS)
             && !accountProperties.autoAnswer && !currentCall.isOutgoing) {
+                qWarning() << "@@@ ICI2";
             showNotification(accountId, convInfo.uid);
             return;
         }
@@ -450,6 +452,7 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
         return;
 
 #ifdef Q_OS_LINUX
+    qWarning() << "@@@ ICI3";
     auto convAvatar = Utils::conversationAvatar(lrcInstance_, convUid, QSize(50, 50), accountId);
     auto notifId = QString("%1;%2").arg(accountId, convUid);
     systemTray_->showNotification(notifId,
