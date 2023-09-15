@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55d780bf_7ff102c6",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-15T18:20:23Z",
+      "side": 1,
+      "message": "link doesn\u0027t work",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 13
+      },
+      "revId": "9c8195513154591faff44a451cb4e485177bbc4b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c17bae04_4ed7286c",
         "filename": "src/app/mainview/components/SidePanel.qml",
         "patchSetId": 1
