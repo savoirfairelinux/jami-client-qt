@@ -170,7 +170,7 @@ Window {
                 description: qsTr("Stop camera")
             }
             ListElement {
-                shortcut: "Ctrl"
+                shortcut: "Ctrl + Mouse middle click"
                 description: qsTr("Take tile screenshot")
             }
         },
