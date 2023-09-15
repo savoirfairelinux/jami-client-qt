@@ -386,8 +386,8 @@ ContactModel::updateContact(const QString& uri, const MapStringString& infos)
     if (ci != pimpl_->contacts.end()) {
         if (infos.contains("avatar")) {
             ci->profileInfo.avatar = storage::vcard::compressedAvatar(infos["avatar"]);
-        } else if (!lrc::api::Lrc::cacheAvatars.load()) {
-            // Else it will be reseted
+        } else {
+            // Else it will be resetted
             ci->profileInfo.avatar = storage::avatar(owner.id, uri);
         }
         if (infos.contains("title"))
@@ -743,16 +743,9 @@ ContactModelPimpl::fillWithJamiContacts()
 
         const auto vCard = lrc::vCard::utils::toHashMap(payload);
         const auto alias = vCard["FN"];
-        QByteArray photo;
-        for (const auto& key : vCard.keys()) {
-            if (key.contains("PHOTO") && lrc::api::Lrc::cacheAvatars.load())
-                photo = vCard[key];
-        }
         contactInfo.profileInfo.type = profile::Type::PENDING;
         if (!alias.isEmpty())
             contactInfo.profileInfo.alias = alias.constData();
-        if (!photo.isEmpty())
-            contactInfo.profileInfo.avatar = photo.constData();
         contactInfo.registeredName = "";
         contactInfo.isBanned = false;
 
@@ -937,9 +930,7 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
         updateProfile = true;
         contactInfo.profileInfo.alias = profileInfo.alias;
     }
-    auto oldAvatar = lrc::api::Lrc::cacheAvatars.load()
-                         ? contactInfo.profileInfo.avatar
-                         : storage::avatar(linked.owner.id, contactUri);
+    auto oldAvatar = storage::avatar(linked.owner.id, contactUri);
     if (!profileInfo.avatar.isEmpty() && oldAvatar != profileInfo.avatar) {
         updateProfile = true;
         contactInfo.profileInfo.avatar = profileInfo.avatar;
@@ -949,8 +940,7 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
 
     contactInfo.isBanned = banned;
     contactInfo.conversationId = conversationId;
-    if (!lrc::api::Lrc::cacheAvatars.load())
-        contactInfo.profileInfo.avatar.clear();
+    contactInfo.profileInfo.avatar.clear();
 
     if (type == profile::Type::JAMI) {
         ConfigurationManager::instance().lookupAddress(linked.owner.id, "", contactUri);
@@ -1229,8 +1219,7 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
     contactInfo.profileInfo = profileInfo;
 
     linked.owner.contactModel->addContact(contactInfo);
-    if (!lrc::api::Lrc::cacheAvatars.load())
-        contactInfo.profileInfo.avatar.clear(); // Do not store after update
+    contactInfo.profileInfo.avatar.clear(); // Do not store after update
 }
 
 void

@@ -440,16 +440,6 @@ buildContactFromProfile(const QString& accountId,
 
     const auto vCard = lrc::vCard::utils::toHashMap(file.readAll());
     const auto alias = vCard[vCard::Property::FORMATTED_NAME];
-    if (lrc::api::Lrc::cacheAvatars.load()) {
-        if (overridenAvatar.isEmpty()) {
-            for (const auto& key : vCard.keys()) {
-                if (key.contains("PHOTO"))
-                    profileInfo.avatar = vCard[key];
-            }
-        } else {
-            profileInfo.avatar = overridenAvatar;
-        }
-    }
     profileInfo.alias = overridenAlias.isEmpty() ? alias : overridenAlias;
     return {profileInfo, "", type == api::profile::Type::JAMI, false};
 }
