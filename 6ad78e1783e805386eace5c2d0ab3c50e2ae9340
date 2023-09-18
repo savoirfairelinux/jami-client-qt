@@ -22,6 +22,30 @@
       },
       "revId": "6ad78e1783e805386eace5c2d0ab3c50e2ae9340",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebe4f926_03b97a60",
+        "filename": "src/app/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-18T17:49:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f9acb80_e70032c0",
+      "range": {
+        "startLine": 245,
+        "startChar": 12,
+        "endLine": 245,
+        "endChar": 24
+      },
+      "revId": "6ad78e1783e805386eace5c2d0ab3c50e2ae9340",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
