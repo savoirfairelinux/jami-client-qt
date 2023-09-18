@@ -71,7 +71,7 @@ PluginListModel::data(const QModelIndex& index, int role) const
     case Role::PluginIcon:
         return QVariant(details.iconPath);
     case Role::PluginImage:
-        return QVariant(details.imagePath);
+        return QVariant(details.backgroundPath);
     case Role::IsLoaded:
         return QVariant(details.loaded);
     case Role::PluginAuthor:

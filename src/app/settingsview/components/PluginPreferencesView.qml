@@ -52,6 +52,9 @@ Item {
             }
             header: Control {
                 id: preferenceHeader
+                Component.onCompleted: {
+                    console.log(PluginImage)
+                }
                 width: root.width
                 background: ResponsiveImage {
                     id: background
