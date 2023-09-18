@@ -77,6 +77,7 @@ BaseModalDialog {
                 visible: aliasText ? (aliasText === idText ? false : true) : false
 
                 selectByMouse: true
+                readOnly: true
 
                 wrapMode: Text.NoWrap
                 text: textMetricsContactAliasText.elidedText
