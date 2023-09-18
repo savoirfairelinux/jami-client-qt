@@ -70,6 +70,30 @@
       },
       "revId": "b95abbc8913ccad0f05ea51d8477a29ea9f0acb0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2ae8649_d31ece11",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-09-18T13:43:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "df9202c7_8f4442fe",
+      "range": {
+        "startLine": 173,
+        "startChar": 34,
+        "endLine": 173,
+        "endChar": 52
+      },
+      "revId": "b95abbc8913ccad0f05ea51d8477a29ea9f0acb0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
