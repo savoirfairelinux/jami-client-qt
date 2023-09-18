@@ -63,6 +63,24 @@
       "message": "problem with the size when pin is showed and zoom \u003d 200",
       "revId": "a028696e5770266c4da7c7a6b9f2d56e474fc42b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5615621_04c519de",
+        "filename": "src/app/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-18T20:17:53Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "3d49f397_c08ab946",
+      "revId": "a028696e5770266c4da7c7a6b9f2d56e474fc42b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
