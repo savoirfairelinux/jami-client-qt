@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e860dea5_1e201b29",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-18T14:24:59Z",
+      "side": 1,
+      "message": "oops",
+      "parentUuid": "4d7c2bf7_229b8071",
+      "range": {
+        "startLine": 375,
+        "startChar": 16,
+        "endLine": 375,
+        "endChar": 40
+      },
+      "revId": "76217d5db9e16977576c5056165b099f6f576367",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbb5c1f6_ac4f5b7d",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f623b45_157106b9",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-18T14:24:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbb5c1f6_ac4f5b7d",
+      "range": {
+        "startLine": 397,
+        "startChar": 16,
+        "endLine": 397,
+        "endChar": 41
+      },
+      "revId": "76217d5db9e16977576c5056165b099f6f576367",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6f44574_3831030b",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-09-18T13:58:25Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 455,
+        "startChar": 4,
+        "endLine": 455,
+        "endChar": 29
+      },
+      "revId": "76217d5db9e16977576c5056165b099f6f576367",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "064d8c39_07a4a77a",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-18T14:24:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6f44574_3831030b",
       "range": {
         "startLine": 455,
         "startChar": 4,
