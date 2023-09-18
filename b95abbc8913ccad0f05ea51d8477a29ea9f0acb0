@@ -46,6 +46,30 @@
       },
       "revId": "b95abbc8913ccad0f05ea51d8477a29ea9f0acb0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df9202c7_8f4442fe",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-18T12:48:48Z",
+      "side": 1,
+      "message": "good point. Sadly this can\u0027t be translatable, Qt will not suport it there.",
+      "parentUuid": "9ad61d62_c7c85c25",
+      "range": {
+        "startLine": 173,
+        "startChar": 34,
+        "endLine": 173,
+        "endChar": 52
+      },
+      "revId": "b95abbc8913ccad0f05ea51d8477a29ea9f0acb0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
