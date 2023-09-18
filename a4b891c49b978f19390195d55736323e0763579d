@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84e9b672_87f40e04",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-18T19:04:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c171c91f_e503bb52",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 13
+      },
+      "revId": "a4b891c49b978f19390195d55736323e0763579d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23fae396_1f874b4c",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-09-18T18:28:07Z",
       "side": 1,
       "message": "no need for {}",
+      "range": {
+        "startLine": 94,
+        "startChar": 30,
+        "endLine": 94,
+        "endChar": 42
+      },
+      "revId": "a4b891c49b978f19390195d55736323e0763579d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0848e556_631567bd",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-18T19:04:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23fae396_1f874b4c",
       "range": {
         "startLine": 94,
         "startChar": 30,
