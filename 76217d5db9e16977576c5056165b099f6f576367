@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d7c2bf7_229b8071",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-09-18T13:58:25Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 375,
+        "startChar": 16,
+        "endLine": 375,
+        "endChar": 40
+      },
+      "revId": "76217d5db9e16977576c5056165b099f6f576367",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbb5c1f6_ac4f5b7d",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-09-18T13:58:25Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 397,
+        "startChar": 16,
+        "endLine": 397,
+        "endChar": 41
+      },
+      "revId": "76217d5db9e16977576c5056165b099f6f576367",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6f44574_3831030b",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-09-18T13:58:25Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 455,
+        "startChar": 4,
+        "endLine": 455,
+        "endChar": 29
+      },
+      "revId": "76217d5db9e16977576c5056165b099f6f576367",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
