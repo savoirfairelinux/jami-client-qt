@@ -849,7 +849,7 @@ Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>Datei vom Gerät löschen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
@@ -3576,7 +3576,7 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="359"/>
         <source>Private conversation created</source>
-        <translation type="unfinished"/>
+        <translation>Private Unterhaltung erstellt</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="361"/>
