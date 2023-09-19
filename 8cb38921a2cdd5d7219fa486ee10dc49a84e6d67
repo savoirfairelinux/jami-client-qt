@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ad029b9_7f0c011a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-19T20:49:36Z",
+      "side": 1,
+      "message": "Please advise when https://jami.net/donate/ will be available. Please advise if you want proofreading of the Donate page. Thank you",
+      "revId": "8cb38921a2cdd5d7219fa486ee10dc49a84e6d67",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6677df99_33cb5b97",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-19T20:49:36Z",
+      "side": 1,
+      "message": "Remove space ` `?",
+      "range": {
+        "startLine": 830,
+        "startChar": 109,
+        "endLine": 830,
+        "endChar": 110
+      },
+      "revId": "8cb38921a2cdd5d7219fa486ee10dc49a84e6d67",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "709cd55f_8457da04",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-19T20:49:36Z",
+      "side": 1,
+      "message": "What do you mean by `expand`? Do you mean `develop`?\n\n`Donate to fund development`?\n\nThank you",
+      "range": {
+        "startLine": 830,
+        "startChar": 124,
+        "endLine": 830,
+        "endChar": 130
+      },
+      "revId": "8cb38921a2cdd5d7219fa486ee10dc49a84e6d67",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
