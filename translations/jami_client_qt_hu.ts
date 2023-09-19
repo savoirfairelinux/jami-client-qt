@@ -847,7 +847,7 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>Fájl törlése az eszközről</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
@@ -3574,7 +3574,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="359"/>
         <source>Private conversation created</source>
-        <translation type="unfinished"/>
+        <translation>Magánbeszélgetés létrehozva</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="361"/>

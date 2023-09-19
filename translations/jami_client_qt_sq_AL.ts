@@ -849,7 +849,7 @@ Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translatio
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>Fshije kartelën prej pajisjeje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
@@ -3576,7 +3576,7 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="359"/>
         <source>Private conversation created</source>
-        <translation type="unfinished"/>
+        <translation>U krijua bisedë private</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="361"/>

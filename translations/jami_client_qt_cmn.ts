@@ -1599,7 +1599,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
         <source>Position share duration</source>
-        <translation type="unfinished"/>
+        <translation>位置分享持续时间 -</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
@@ -1724,7 +1724,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
         <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation type="unfinished"/>
+        <translation>输入 Jami 账号管理服务器（JAMS）的 URL</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
@@ -2906,7 +2906,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
         <source>Welcome to Jami</source>
-        <translation type="unfinished"/>
+        <translation>欢迎使用 Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="673"/>
@@ -4052,7 +4052,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
-        <translation type="unfinished"/>
+        <translation>红点表示您没有连接网络，连接后会变成绿色。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="94"/>
@@ -4087,22 +4087,22 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="115"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation type="unfinished"/>
+        <translation>当您创建新 Jami 账户时，您不需要提供任何个人信息，如电子邮件、地址或电话号码等。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation type="unfinished"/>
+        <translation>在 Jami 中，您的账户存储在您设备中的目录下。密码仅用于加密您的帐户，以防止任何人物理访问您设备时访问您的账户信息。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="142"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation type="unfinished"/>
+        <translation>您的账户仅存储在您自己的设备上。如果您从所有设备中删除了账户，则账户将永远消失。您无法恢复。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="146"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation type="unfinished"/>
+        <translation>我可以在多个设备上使用我的账户吗?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="148"/>
