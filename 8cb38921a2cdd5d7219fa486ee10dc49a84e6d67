@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec9a053e_0c019517",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-19T20:53:41Z",
+      "side": 1,
+      "message": "Should https://git.jami.net/savoirfairelinux/jami-project/-/issues/1330 be added to the commit message? Thank you",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 8
+      },
+      "revId": "8cb38921a2cdd5d7219fa486ee10dc49a84e6d67",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ad029b9_7f0c011a",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -14,6 +37,23 @@
       "writtenOn": "2023-09-19T20:49:36Z",
       "side": 1,
       "message": "Please advise when https://jami.net/donate/ will be available. Please advise if you want proofreading of the Donate page. Thank you",
+      "revId": "8cb38921a2cdd5d7219fa486ee10dc49a84e6d67",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1609892b_8ce8b79b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-19T20:53:41Z",
+      "side": 1,
+      "message": "Should https://git.jami.net/savoirfairelinux/jami-project/-/issues/1330",
       "revId": "8cb38921a2cdd5d7219fa486ee10dc49a84e6d67",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
