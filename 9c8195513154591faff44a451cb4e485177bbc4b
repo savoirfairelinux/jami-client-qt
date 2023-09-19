@@ -186,6 +186,30 @@
       },
       "revId": "9c8195513154591faff44a451cb4e485177bbc4b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c2e2299_f2cf62f5",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-09-19T18:08:40Z",
+      "side": 1,
+      "message": "Thank you for your comment we have passed on your suggestions to our content management and user experience team.",
+      "parentUuid": "e809d32a_d012732e",
+      "range": {
+        "startLine": 395,
+        "startChar": 35,
+        "endLine": 395,
+        "endChar": 114
+      },
+      "revId": "9c8195513154591faff44a451cb4e485177bbc4b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
