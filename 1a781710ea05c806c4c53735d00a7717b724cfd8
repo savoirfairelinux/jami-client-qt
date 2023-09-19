@@ -47,6 +47,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eb6be38_11124075",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-09-19T14:59:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7418679_31a49d93",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 8
+      },
+      "revId": "1a781710ea05c806c4c53735d00a7717b724cfd8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a262b73e_30aa5e7e",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-09-18T18:13:14Z",
       "side": 1,
       "message": "focus seems broken",
+      "range": {
+        "startLine": 38,
+        "startChar": 30,
+        "endLine": 38,
+        "endChar": 39
+      },
+      "revId": "1a781710ea05c806c4c53735d00a7717b724cfd8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3781a58e_05bf4fc2",
+        "filename": "src/app/mainview/components/TipBox.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-09-19T14:59:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a262b73e_30aa5e7e",
       "range": {
         "startLine": 38,
         "startChar": 30,
