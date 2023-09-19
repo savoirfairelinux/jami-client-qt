@@ -1605,7 +1605,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
         <source>Position share duration</source>
-        <translation>位置分享持续时间</translation>
+        <translation>位置共享持续时间</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
@@ -1730,7 +1730,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
         <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation>输入 Jami 帐号管理服务器（JAMS）的 URL</translation>
+        <translation>输入 Jami 账号管理服务器（JAMS）的 URL</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
@@ -2913,7 +2913,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
         <source>Welcome to Jami</source>
-        <translation>欢迎来到 Jami</translation>
+        <translation>欢迎使用 Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="673"/>
