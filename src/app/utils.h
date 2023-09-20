@@ -119,7 +119,7 @@ QPixmap generateTintedPixmap(const QPixmap& pix, QColor color);
 QImage scaleAndFrame(const QImage photo, const QSize& size = defaultAvatarSize);
 QImage cropImage(const QImage& img);
 QPixmap pixmapFromSvg(const QString& svg_resource, const QSize& size);
-QImage setupQRCode(QString ringID, int margin);
+QImage getQRCodeImage(QString data, int margin);
 bool isImage(const QString& fileExt);
 QString generateUid();
 
