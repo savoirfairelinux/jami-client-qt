@@ -39,6 +39,12 @@ Item {
     }
 
     Keys.onPressed: {
+        if (event.key === Qt.Key_Space) {
+            if (!event.isAutoRepeat) {
+                console.log("Barre d'espace enfoncée.");
+                CallAdapter.muteAudioToggle();
+            }
+        }
         if (LRCInstance.currentAccountType !== Profile.Type.SIP)
             return;
         var key = event.text.toUpperCase();
@@ -46,6 +52,15 @@ Item {
                 return item === key;
             })) {
             CallAdapter.sipInputPanelPlayDTMF(key);
+        }
+    }
+
+    Keys.onReleased: {
+        if (event.key === Qt.Key_Space) {
+            if (!event.isAutoRepeat) {
+                console.log("Barre d'espace relâchée.");
+                CallAdapter.muteAudioToggle();
+            }
         }
     }
 
