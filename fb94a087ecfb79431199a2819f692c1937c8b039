@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b468a49a_11ea9d61",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-20T20:14:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "122ff961_fa7db084",
+      "range": {
+        "startLine": 579,
+        "startChar": 72,
+        "endLine": 579,
+        "endChar": 73
+      },
+      "revId": "fb94a087ecfb79431199a2819f692c1937c8b039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ef05cf0_b1186903",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b004df20_3247a39b",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-20T20:14:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ef05cf0_b1186903",
+      "range": {
+        "startLine": 583,
+        "startChar": 85,
+        "endLine": 583,
+        "endChar": 91
+      },
+      "revId": "fb94a087ecfb79431199a2819f692c1937c8b039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "970a5d1f_9151bdf8",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-09-20T19:14:25Z",
       "side": 1,
       "message": "remove code if unused",
+      "range": {
+        "startLine": 58,
+        "startChar": 24,
+        "endLine": 59,
+        "endChar": 24
+      },
+      "revId": "fb94a087ecfb79431199a2819f692c1937c8b039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5905f90c_d9c95baa",
+        "filename": "src/app/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-20T20:14:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "970a5d1f_9151bdf8",
       "range": {
         "startLine": 58,
         "startChar": 24,
