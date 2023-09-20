@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "122ff961_fa7db084",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-20T19:14:25Z",
+      "side": 1,
+      "message": "no \"-\"",
+      "range": {
+        "startLine": 579,
+        "startChar": 72,
+        "endLine": 579,
+        "endChar": 73
+      },
+      "revId": "fb94a087ecfb79431199a2819f692c1937c8b039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ef05cf0_b1186903",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-20T19:14:25Z",
+      "side": 1,
+      "message": "typo, « should not be used in english",
+      "range": {
+        "startLine": 583,
+        "startChar": 85,
+        "endLine": 583,
+        "endChar": 91
+      },
+      "revId": "fb94a087ecfb79431199a2819f692c1937c8b039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "970a5d1f_9151bdf8",
+        "filename": "src/app/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-20T19:14:25Z",
+      "side": 1,
+      "message": "remove code if unused",
+      "range": {
+        "startLine": 58,
+        "startChar": 24,
+        "endLine": 59,
+        "endChar": 24
+      },
+      "revId": "fb94a087ecfb79431199a2819f692c1937c8b039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b2d0f5f_3704ae8a",
+        "filename": "src/app/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-20T19:14:25Z",
+      "side": 1,
+      "message": "new Date(mapItem.count +\u003d 1).toLocaleTimeString(...) can be used to avoid this\n\nThe advantage is that it can be localized",
+      "range": {
+        "startLine": 354,
+        "startChar": 33,
+        "endLine": 356,
+        "endChar": 130
+      },
+      "revId": "fb94a087ecfb79431199a2819f692c1937c8b039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
