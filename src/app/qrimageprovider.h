@@ -33,7 +33,7 @@ public:
                                  instance)
     {}
 
-    enum class QrType { Account, Contact };
+    enum class QrType { Account, Contact, Raw };
 
     /*
      * Id should be string like account_0 (account index),
@@ -64,6 +64,8 @@ public:
             } catch (...) {
             }
             return {QrType::Contact, {}};
+        } else if (list.contains("raw") && list.size() > 1) {
+            return {QrType::Raw, list[1]};
         }
         return {QrType::Account, {}};
     }
@@ -75,7 +77,7 @@ public:
         QString uri;
         auto indexPair = getIndexFromID(id);
 
-        if (indexPair.first == QrType::Contact) {
+        if (indexPair.first == QrType::Contact || indexPair.first == QrType::Raw) {
             uri = indexPair.second;
         } else {
             if (indexPair.second.isEmpty())
@@ -89,10 +91,9 @@ public:
                 return QImage();
             }
         }
-
         if (!requestedSize.isEmpty())
-            return Utils::setupQRCode(uri, 0).scaled(requestedSize, Qt::KeepAspectRatio);
+            return Utils::getQRCodeImage(uri, 0).scaled(requestedSize, Qt::KeepAspectRatio);
         else
-            return Utils::setupQRCode(uri, 0);
+            return Utils::getQRCodeImage(uri, 0);
     }
 };

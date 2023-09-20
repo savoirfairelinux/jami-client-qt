@@ -576,7 +576,14 @@ Item {
     property string pinTimerInfos: qsTr("The PIN and the account password should be entered in your device within 10 minutes.")
     property string close: qsTr("Close")
     property string enterAccountPassword: qsTr("Enter account's password")
+    property string enterPasswordPinCode: qsTr("This account is password-encrypted, enter the password to generate the PIN code.")
     property string addDevice: qsTr("Add Device")
+    property string pinExpired: qsTr("PIN Expired")
+    property string onOtherDevice: qsTr("On the other device")
+    property string onOtherDeviceInstruction: qsTr("Install and launch Jami, select «Import from an other device» and scan the QR code.")
+    property string linkANewDevice: qsTr("Link a new device")
+    property string linkingInstructions: qsTr("On the new Jami app, scan the QR code or enter manually the PIN.")
+    property string pinValidity: qsTr("The PIN code is valid for ")
 
     // PasswordDialog
     property string enterPassword: qsTr("Enter the password")
