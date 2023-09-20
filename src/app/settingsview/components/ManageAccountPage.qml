@@ -218,7 +218,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
 
                 toolTipText: JamiStrings.tipLinkNewDevice
-                text: JamiStrings.linkAnotherDevice
+                text: JamiStrings.linkNewDevice
 
                 onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
             }
