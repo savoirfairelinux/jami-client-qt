@@ -39,6 +39,47 @@ SettingsPageBase {
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
+
+
+        Text {
+            id: linkDescription
+
+            Layout.alignment: Qt.AlignLeft
+            Layout.fillWidth: true
+
+            text: JamiStrings.linkDescription
+            color: JamiTheme.textColor
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.WordWrap
+
+            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+            font.kerning: true
+            lineHeight: JamiTheme.wizardViewTextLineHeight
+        }
+
+        MaterialButton {
+            id: linkDeviceBtn
+
+            TextMetrics {
+                id: linkDeviceBtnTextSize
+                font.weight: Font.Bold
+                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                text: linkDeviceBtn.text
+            }
+
+            preferredWidth: linkDeviceBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+            Layout.bottomMargin: JamiTheme.preferredMarginSize
+
+            primary: true
+            Layout.alignment: Qt.AlignLeft
+
+            toolTipText: JamiStrings.tipLinkNewDevice
+            text: JamiStrings.linkANewDevice
+
+            onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
+        }
+
         Text {
             id: linkedDevicesTitle
 

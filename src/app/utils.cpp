@@ -805,9 +805,9 @@ Utils::pixmapFromSvg(const QString& svg_resource, const QSize& size)
 }
 
 QImage
-Utils::setupQRCode(QString ringID, int margin)
+Utils::getQRCodeImage(QString data, int margin)
 {
-    auto qrcode = QRcode_encodeString(ringID.toStdString().c_str(),
+    auto qrcode = QRcode_encodeString(data.toStdString().c_str(),
                                       0,            // Let the version be decided by libqrencode
                                       QR_ECLEVEL_L, // Lowest level of error correction
                                       QR_MODE_8,    // 8-bit data mode
