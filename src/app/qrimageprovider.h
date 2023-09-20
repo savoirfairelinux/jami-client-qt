@@ -33,7 +33,7 @@ public:
                                  instance)
     {}
 
-    enum class QrType { Account, Contact };
+    enum class QrType { Account, Contact, Raw };
 
     /*
      * Id should be string like account_0 (account index),
@@ -64,6 +64,8 @@ public:
             } catch (...) {
             }
             return {QrType::Contact, {}};
+        } else if (list.contains("raw") && list.size() > 1) {
+            return {QrType::Raw, list[1]};
         }
         return {QrType::Account, {}};
     }
@@ -73,26 +75,24 @@ public:
         Q_UNUSED(size);
 
         QString uri;
-        auto indexPair = getIndexFromID(id);
+        auto [type, identifier] = getIndexFromID(id);
 
-        if (indexPair.first == QrType::Contact) {
-            uri = indexPair.second;
-        } else {
-            if (indexPair.second.isEmpty())
+        if (type == QrType::Account) {
+            if (identifier.isEmpty())
                 return QImage();
-            auto accountId = indexPair.second;
             try {
-                auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
+                auto& accountInfo = lrcInstance_->getAccountInfo(identifier);
                 uri = accountInfo.profileInfo.uri;
             } catch (const std::out_of_range&) {
-                qWarning() << "Couldn't get account info for id:" << accountId;
+                qWarning() << "Couldn't get account info for id:" << identifier;
                 return QImage();
             }
-        }
+        } else
+            uri = identifier;
 
         if (!requestedSize.isEmpty())
-            return Utils::setupQRCode(uri, 0).scaled(requestedSize, Qt::KeepAspectRatio);
+            return Utils::getQRCodeImage(uri, 0).scaled(requestedSize, Qt::KeepAspectRatio);
         else
-            return Utils::setupQRCode(uri, 0);
+            return Utils::getQRCodeImage(uri, 0);
     }
 };
