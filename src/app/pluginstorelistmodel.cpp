@@ -79,7 +79,6 @@ void
 PluginStoreListModel::reset()
 {
     beginResetModel();
-    plugins_.clear();
     endResetModel();
 }
 
@@ -88,8 +87,8 @@ PluginStoreListModel::addPlugin(const QVariantMap& plugin)
 {
     beginInsertRows(QModelIndex(), plugins_.size(), plugins_.size());
     plugins_.append(plugin);
-    endInsertRows();
     sort();
+    endInsertRows();
 }
 
 void
@@ -97,8 +96,8 @@ PluginStoreListModel::setPlugins(const QList<QVariantMap>& plugins)
 {
     beginResetModel();
     plugins_ = filterPlugins(plugins);
-    endResetModel();
     sort();
+    endResetModel();
 }
 
 void
@@ -109,12 +108,12 @@ PluginStoreListModel::removePlugin(const QString& pluginId)
         if (plugin["id"].toString() == pluginId) {
             beginRemoveRows(QModelIndex(), index, index);
             plugins_.removeAt(index);
+            sort();
             endRemoveRows();
             return;
         }
         index++;
     }
-    sort();
 }
 
 void
@@ -129,7 +128,6 @@ PluginStoreListModel::updatePlugin(const QVariantMap& plugin)
         }
         index++;
     }
-    sort();
 }
 
 QColor
@@ -221,11 +219,9 @@ PluginStoreListModel::rowFromPluginId(const QString& pluginId) const
 void
 PluginStoreListModel::sort()
 {
-    beginResetModel();
     std::sort(plugins_.begin(), plugins_.end(), [](const QVariantMap& a, const QVariantMap& b) {
         return a["timestamp"].toString() < b["timestamp"].toString();
     });
-    endResetModel();
 }
 
 QList<QVariantMap>

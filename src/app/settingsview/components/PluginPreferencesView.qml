@@ -289,9 +289,10 @@ Item {
                                 "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
                                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
                                 "buttonCallBacks": [function () {
-                                        PluginListModel.setVersionStatus(PluginName, PluginStatus.INSTALLABLE);
+                                        PluginListModel.setVersionStatus(Id, PluginStatus.INSTALLABLE);
                                         PluginModel.uninstallPlugin(PluginId);
                                         PluginListModel.removePlugin(index);
+                                        PluginAdapter.getPluginsFromStore();
                                         // could not call root from here
                                         settings.ListView.view.parent.closed();
                                     }]

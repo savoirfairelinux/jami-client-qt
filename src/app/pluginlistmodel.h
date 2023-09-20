@@ -38,7 +38,8 @@ public:
         PluginIcon,
         NewPluginAvailable,
         IsLoaded,
-        Status
+        Status,
+        Id
     };
     Q_ENUM(Role)
 
