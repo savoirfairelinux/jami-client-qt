@@ -109,7 +109,7 @@ public:
                                    // `data` represents the version in this case.
                                    if (plugin.version < data) {
                                        if (isAutoUpdaterEnabled()) {
-                                           installRemotePlugin(plugin.name);
+                                           installRemotePlugin(plugin.id);
                                            return;
                                        }
                                    }

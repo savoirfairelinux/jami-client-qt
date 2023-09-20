@@ -80,6 +80,8 @@ PluginListModel::data(const QModelIndex& index, int role) const
         return QVariant(pluginStatus_.value(installedPlugins_.at(index.row())));
     case Role::NewPluginAvailable:
         return QVariant(newVersionAvailable_.value(installedPlugins_.at(index.row())));
+    case Role::Id:
+        return QVariant(details.id);
     }
     return QVariant();
 }
@@ -98,6 +100,7 @@ PluginListModel::roleNames() const
     roles[Status] = "Status";
     roles[PluginDescription] = "PluginDescription";
     roles[NewPluginAvailable] = "NewPluginAvailable";
+    roles[Id] = "Id";
     return roles;
 }
 
