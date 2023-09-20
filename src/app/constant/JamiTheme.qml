@@ -643,6 +643,9 @@ Item {
     property int settingsMenuHeaderButtonHeight: 50
     property int settingsListViewsSpacing: 10
 
+    // Link Device
+    property color pinBackgroundColor: "#D6E4EF"
+
     // MaterialRadioButton
     property int radioImageSize: 30
     property color radioBackgroundColor: darkTheme ? "#303030" : "#F0EFEF"
