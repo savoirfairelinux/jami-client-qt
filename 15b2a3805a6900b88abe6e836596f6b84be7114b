@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd28ad73_15c320a8",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "Remove apostrophe `\u0027`? i.e. `Enter account password`?",
+      "range": {
+        "startLine": 578,
+        "startChar": 48,
+        "endLine": 578,
+        "endChar": 73
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4915ac5_abcc2640",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "Should `the` be `a` as a unique PIN code is generated each time?",
+      "range": {
+        "startLine": 579,
+        "startChar": 115,
+        "endLine": 579,
+        "endChar": 118
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc2c4f1c_f78d7653",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "Sentence case? i.e. `PIN expired`?",
+      "range": {
+        "startLine": 581,
+        "startChar": 38,
+        "endLine": 581,
+        "endChar": 49
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8782e775_f2d2c58d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "`On another device`?",
+      "range": {
+        "startLine": 582,
+        "startChar": 41,
+        "endLine": 582,
+        "endChar": 60
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ce39dd0_5e10fb52",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "Can `a ` be removed to become `Link new device`?",
+      "range": {
+        "startLine": 584,
+        "startChar": 42,
+        "endLine": 584,
+        "endChar": 59
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ed0e1c1_caf11b60",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "Swap `enter manually` to `manually enter`?",
+      "range": {
+        "startLine": 585,
+        "startChar": 88,
+        "endLine": 585,
+        "endChar": 102
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32014c7f_4ec7ce7d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "`In Jami, scan QR code or manually enter the PIN.`",
+      "range": {
+        "startLine": 585,
+        "startChar": 47,
+        "endLine": 585,
+        "endChar": 111
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7645b6f_8b249c0b",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "1. Is the word `app` required? Do you say: in the `Word app` or `Word`; in `Excel app` or `Excel`; in `Google Docs app` or `Google Docs`; etc. \n\n2. Should `On` be `In` to become `In Jami`?",
+      "range": {
+        "startLine": 585,
+        "startChar": 47,
+        "endLine": 585,
+        "endChar": 66
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fccbb96_9921fd0c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "Can the variable please be in the string to become `The PIN code is valid for %1`? Some translation may have the variable not at the end. If the variable can be in the string, perhaps a better string would be `PIN code valid for %1`\n\nIf the variable must be at the end, recommend to remove the trailing space ` ` and add an colon `:` to become `PIN code valid for:`",
+      "range": {
+        "startLine": 586,
+        "startChar": 39,
+        "endLine": 586,
+        "endChar": 65
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a2ecfbc_bbe470d7",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "Can `the ` be removed to become `Enter password`?",
+      "range": {
+        "startLine": 589,
+        "startChar": 41,
+        "endLine": 589,
+        "endChar": 59
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d381615e_6fe5f87e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "Can `this ` be removed?",
+      "range": {
+        "startLine": 591,
+        "startChar": 48,
+        "endLine": 591,
+        "endChar": 53
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62a86c4e_3d6b37b5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-20T23:50:45Z",
+      "side": 1,
+      "message": "Can the apostrophe `\u0027` be removed to become `account password`?",
+      "range": {
+        "startLine": 591,
+        "startChar": 53,
+        "endLine": 591,
+        "endChar": 71
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
