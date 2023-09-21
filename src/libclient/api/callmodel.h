@@ -268,6 +268,11 @@ public:
     void setCurrentCall(const QString& callId) const;
 
     /**
+     * Check if there is a ongoing current call
+     */
+    bool hasCurrentCall() const;
+
+    /**
      * Update call mediaList to be used in the call answering
      *
      * @param callId
