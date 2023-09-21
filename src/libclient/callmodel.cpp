@@ -1215,6 +1215,21 @@ CallModel::setCurrentCall(const QString& callId) const
     Q_EMIT currentCallChanged(callId);
 }
 
+bool
+CallModel::hasCurrentCall() const
+{
+    // The client should be able to set the current call multiple times
+    if (pimpl_->currentCall_.isEmpty())
+        return false;
+
+    // check if ongoing
+    auto& call = pimpl_->calls[pimpl_->currentCall_];
+    if (call->status == call::Status::IN_PROGRESS) {
+        return true;
+    }
+    return false;
+}
+
 void
 CallModel::setConferenceLayout(const QString& confId, const call::Layout& layout)
 {
@@ -1472,7 +1487,8 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
                     .arg(call::to_string(status));
 
     // NOTE: signal emission order matters, always emit CallStatusChanged before CallEnded
-    Q_EMIT linked.callStatusChanged(callId, code);
+    if (!linked.hasCurrentCall() || currentCall_ == callId)
+        Q_EMIT linked.callStatusChanged(callId, code);
     Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
 
     if (call->status == call::Status::ENDED) {
