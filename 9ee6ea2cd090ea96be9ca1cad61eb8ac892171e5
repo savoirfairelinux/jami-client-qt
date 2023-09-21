@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc7e3e73_cf3bde94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-21T20:12:10Z",
+      "side": 1,
+      "message": "1. Should `Continue editing` be added to the Keyboard Shortcuts Table?\n2. Should the keyboard shortcut be added when hovering above the Send button?\n\nThank you",
+      "revId": "9ee6ea2cd090ea96be9ca1cad61eb8ac892171e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
