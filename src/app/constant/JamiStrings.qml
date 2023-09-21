@@ -731,6 +731,7 @@ Item {
     property string showLess: qsTr("Show less")
 
     property string showPreview: qsTr("Show preview")
+    property string continueEditing: qsTr("Continue editing")
     property string bold: qsTr("Bold")
     property string italic: qsTr("Italic")
     property string strikethrough: qsTr("Strikethrough")
