@@ -27,7 +27,7 @@ import "../../commoncomponents"
 
 RowLayout {
     id: root
-
+    //Scaffold{}
     property alias text: messageBarTextArea.text
     property var textAreaObj: messageBarTextArea
     property real marginSize: JamiTheme.messageBarMarginSize
@@ -54,6 +54,7 @@ RowLayout {
     height: showTypo || multiLine ? messageBarTextArea.height + 25 + 3 * marginSize + 1 : textAreaObj.height + marginSize + 1
 
     Rectangle {
+        //Scaffold{}
         Layout.preferredHeight: parent.height
         Layout.preferredWidth: childrenRect.width
         visible: !CurrentConversation.isSip
@@ -132,8 +133,8 @@ RowLayout {
 
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Layout.rightMargin: marginSize
-        Layout.leftMargin: marginSize
+        Layout.rightMargin: 0//marginSize
+        Layout.leftMargin: 0//marginSize
 
         radius: 5
         color: JamiTheme.transparentColor

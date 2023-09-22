@@ -48,6 +48,7 @@ JamiFlickable {
     signal sendMessagesRequired
 
     function heightBinding() {
+        //textArea.width = width;
         textArea.height = Qt.binding(() => textArea.lineCount === 1 ? 35 : textArea.paintedHeight);
     }
 
