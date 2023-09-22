@@ -157,7 +157,7 @@ JamiFlickable {
 
         persistentSelection: true
 
-        height: this.paintedHeight
+        height: textArea.lineCount === 1 ? 35 : textArea.paintedHeight
 
         verticalAlignment: TextEdit.AlignVCenter
 
