@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70f657be_ee11a66b",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd28ad73_15c320a8",
+      "range": {
+        "startLine": 578,
+        "startChar": 48,
+        "endLine": 578,
+        "endChar": 73
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4915ac5_abcc2640",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-20T23:50:45Z",
       "side": 1,
       "message": "Should `the` be `a` as a unique PIN code is generated each time?",
+      "range": {
+        "startLine": 579,
+        "startChar": 115,
+        "endLine": 579,
+        "endChar": 118
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d1cc6bb_a6c9ca38",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4915ac5_abcc2640",
       "range": {
         "startLine": 579,
         "startChar": 115,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4abf11c_332e5ce2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "After 10 minutes the PIN code isn\u0027t valid anymore so we need to display it",
+      "parentUuid": "bc2c4f1c_f78d7653",
+      "range": {
+        "startLine": 581,
+        "startChar": 38,
+        "endLine": 581,
+        "endChar": 49
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8782e775_f2d2c58d",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 4
@@ -83,6 +155,30 @@
       "writtenOn": "2023-09-20T23:50:45Z",
       "side": 1,
       "message": "`On another device`?",
+      "range": {
+        "startLine": 582,
+        "startChar": 41,
+        "endLine": 582,
+        "endChar": 60
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c9b04e2_932195c5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8782e775_f2d2c58d",
       "range": {
         "startLine": 582,
         "startChar": 41,
@@ -106,6 +202,30 @@
       "writtenOn": "2023-09-20T23:50:45Z",
       "side": 1,
       "message": "Can `a ` be removed to become `Link new device`?",
+      "range": {
+        "startLine": 584,
+        "startChar": 42,
+        "endLine": 584,
+        "endChar": 59
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c43bcd42_27666fc0",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ce39dd0_5e10fb52",
       "range": {
         "startLine": 584,
         "startChar": 42,
@@ -185,6 +305,78 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46cca25a_e4872705",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ed0e1c1_caf11b60",
+      "range": {
+        "startLine": 585,
+        "startChar": 88,
+        "endLine": 585,
+        "endChar": 102
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1de1686b_20332093",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7645b6f_8b249c0b",
+      "range": {
+        "startLine": 585,
+        "startChar": 47,
+        "endLine": 585,
+        "endChar": 66
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "482fff6d_d9387233",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32014c7f_4ec7ce7d",
+      "range": {
+        "startLine": 585,
+        "startChar": 47,
+        "endLine": 585,
+        "endChar": 111
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fccbb96_9921fd0c",
@@ -208,6 +400,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "683171a0_45252fa3",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fccbb96_9921fd0c",
+      "range": {
+        "startLine": 586,
+        "startChar": 39,
+        "endLine": 586,
+        "endChar": 65
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a2ecfbc_bbe470d7",
@@ -221,6 +437,30 @@
       "writtenOn": "2023-09-20T23:50:45Z",
       "side": 1,
       "message": "Can `the ` be removed to become `Enter password`?",
+      "range": {
+        "startLine": 589,
+        "startChar": 41,
+        "endLine": 589,
+        "endChar": 59
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce084f86_23a19095",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a2ecfbc_bbe470d7",
       "range": {
         "startLine": 589,
         "startChar": 41,
@@ -272,6 +512,54 @@
         "startChar": 53,
         "endLine": 591,
         "endChar": 71
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85208e0d_32cbbfe2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62a86c4e_3d6b37b5",
+      "range": {
+        "startLine": 591,
+        "startChar": 53,
+        "endLine": 591,
+        "endChar": 71
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d51e1c7_dbdc90b0",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-22T17:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d381615e_6fe5f87e",
+      "range": {
+        "startLine": 591,
+        "startChar": 48,
+        "endLine": 591,
+        "endChar": 53
       },
       "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
