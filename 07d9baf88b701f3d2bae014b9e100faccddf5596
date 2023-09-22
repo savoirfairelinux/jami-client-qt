@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "616ddfd0_c29e7b83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-22T19:41:50Z",
+      "side": 1,
+      "message": "Variable names",
+      "revId": "07d9baf88b701f3d2bae014b9e100faccddf5596",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0022873_94b26e95",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-22T19:41:50Z",
+      "side": 1,
+      "message": "onAnotherDevice",
+      "range": {
+        "startLine": 582,
+        "startChar": 20,
+        "endLine": 582,
+        "endChar": 33
+      },
+      "revId": "07d9baf88b701f3d2bae014b9e100faccddf5596",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d6f216f_7dc15527",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-22T19:41:50Z",
+      "side": 1,
+      "message": "onAnotherDeviceInstructions",
+      "range": {
+        "startLine": 583,
+        "startChar": 20,
+        "endLine": 583,
+        "endChar": 44
+      },
+      "revId": "07d9baf88b701f3d2bae014b9e100faccddf5596",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b11966e_463e6d32",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-09-22T19:41:50Z",
+      "side": 1,
+      "message": "linkNewDevice",
+      "range": {
+        "startLine": 584,
+        "startChar": 20,
+        "endLine": 584,
+        "endChar": 34
+      },
+      "revId": "07d9baf88b701f3d2bae014b9e100faccddf5596",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
