@@ -48,7 +48,9 @@ JamiFlickable {
     signal sendMessagesRequired
 
     function heightBinding() {
+        //textArea.width = width;
         textArea.height = Qt.binding(() => textArea.lineCount === 1 ? 35 : textArea.paintedHeight);
+        console.log("textArea.height: " + textArea.height);
     }
 
     function selectText(start, end) {
@@ -100,6 +102,7 @@ JamiFlickable {
 
         onWidthChanged: root.height = this.height
 
+        //onHeigthChanged: console.log("textAreaPreview.height: " + this.height)
         overwriteMode: false
         readOnly: true
 
@@ -157,7 +160,7 @@ JamiFlickable {
 
         persistentSelection: true
 
-        height: this.paintedHeight
+        height: textArea.lineCount === 1 ? 35 : textArea.paintedHeight
 
         verticalAlignment: TextEdit.AlignVCenter
 
