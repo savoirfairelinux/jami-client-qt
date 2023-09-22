@@ -27,7 +27,7 @@ import "../../commoncomponents"
 
 RowLayout {
     id: root
-
+    //Scaffold{}
     property alias text: messageBarTextArea.text
     property var textAreaObj: messageBarTextArea
     property real marginSize: JamiTheme.messageBarMarginSize
@@ -54,6 +54,7 @@ RowLayout {
     height: showTypo || multiLine ? messageBarTextArea.height + 25 + 3 * marginSize + 1 : textAreaObj.height + marginSize + 1
 
     Rectangle {
+        //Scaffold{}
         Layout.preferredHeight: parent.height
         Layout.preferredWidth: childrenRect.width
         visible: !CurrentConversation.isSip
@@ -103,6 +104,8 @@ RowLayout {
             }
 
             onPressedChanged: {
+                console.log("TextArea : ", messageBarTextArea.height);
+                console.log("Root : ", root.height);
                 if (sharePopup.enabled)
                     sharePopup.close();
             }
@@ -132,8 +135,8 @@ RowLayout {
 
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Layout.rightMargin: marginSize
-        Layout.leftMargin: marginSize
+        Layout.rightMargin: 0//marginSize
+        Layout.leftMargin: 0//marginSize
 
         radius: 5
         color: JamiTheme.transparentColor
@@ -671,11 +674,11 @@ RowLayout {
 
                                 normalColor: {
                                     if (showPreview) {
-                                        return JamiTheme.transparentColor;
+                                        return JamiTheme.primaryBackgroundColor;
                                     } else if (modelData.isStyle) {
                                         return JamiTheme.hoveredButtonColor;
                                     } else {
-                                        return JamiTheme.transparentColor;
+                                        return JamiTheme.primaryBackgroundColor;
                                     }
                                 }
                                 imageColor: {
@@ -698,7 +701,7 @@ RowLayout {
 
                         Rectangle {
                             height: JamiTheme.chatViewFooterButtonSize
-                            color: JamiTheme.transparentColor
+                            color: JamiTheme.primaryBackgroundColor
                             visible: showTypo && showTypoSecond
                             width: 2
 
@@ -713,7 +716,7 @@ RowLayout {
                         Rectangle {
                             z: -1
                             radius: 0
-                            color: JamiTheme.transparentColor
+                            color: JamiTheme.primaryBackgroundColor
                             width: JamiTheme.chatViewFooterButtonSize
                             height: JamiTheme.chatViewFooterButtonSize
 
@@ -855,13 +858,13 @@ RowLayout {
 
                                 normalColor: {
                                     if (showPreview) {
-                                        return JamiTheme.transparentColor;
+                                        return JamiTheme.primaryBackgroundColor;
                                     } else if (modelData.normalColor != null) {
                                         return modelData.normalColor;
                                     } else if (modelData.isStyle) {
                                         return JamiTheme.hoveredButtonColor;
                                     } else {
-                                        return JamiTheme.transparentColor;
+                                        return JamiTheme.primaryBackgroundColor;
                                     }
                                 }
                                 imageColor: {
@@ -900,7 +903,7 @@ RowLayout {
                         toolTipText: showTypo ? JamiStrings.hideFormatting : JamiStrings.showFormatting
                         source: JamiResources.text_edit_black_24dp_svg
 
-                        normalColor: showPreview ? JamiTheme.transparentColor : (showTypo ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor)
+                        normalColor: showPreview ? JamiTheme.primaryBackgroundColor : (showTypo ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor)
                         imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered || showTypo ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
                         hoveredColor: JamiTheme.hoveredButtonColor
                         pressedColor: hoveredColor
@@ -1022,7 +1025,7 @@ RowLayout {
                             toolTipText: modelData.toolTip
                             source: modelData.iconSrc
 
-                            normalColor: JamiTheme.transparentColor
+                            normalColor: JamiTheme.primaryBackgroundColor
                             imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
                             hoveredColor: JamiTheme.hoveredButtonColor
                             pressedColor: hoveredColor
