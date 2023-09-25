@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6250fee_04b8d3f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-25T15:30:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "616ddfd0_c29e7b83",
+      "revId": "07d9baf88b701f3d2bae014b9e100faccddf5596",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0022873_94b26e95",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-09-22T19:41:50Z",
       "side": 1,
       "message": "onAnotherDevice",
+      "range": {
+        "startLine": 582,
+        "startChar": 20,
+        "endLine": 582,
+        "endChar": 33
+      },
+      "revId": "07d9baf88b701f3d2bae014b9e100faccddf5596",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb14da0e_f07b95e3",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-25T15:30:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0022873_94b26e95",
       "range": {
         "startLine": 582,
         "startChar": 20,
@@ -64,6 +106,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c667c8f1_e4b3c24d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-25T15:30:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d6f216f_7dc15527",
+      "range": {
+        "startLine": 583,
+        "startChar": 20,
+        "endLine": 583,
+        "endChar": 44
+      },
+      "revId": "07d9baf88b701f3d2bae014b9e100faccddf5596",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b11966e_463e6d32",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-09-22T19:41:50Z",
       "side": 1,
       "message": "linkNewDevice",
+      "range": {
+        "startLine": 584,
+        "startChar": 20,
+        "endLine": 584,
+        "endChar": 34
+      },
+      "revId": "07d9baf88b701f3d2bae014b9e100faccddf5596",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9400a8f3_238bdaf2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-25T15:30:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b11966e_463e6d32",
       "range": {
         "startLine": 584,
         "startChar": 20,
