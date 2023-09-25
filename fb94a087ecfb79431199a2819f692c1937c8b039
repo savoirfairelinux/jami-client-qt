@@ -163,6 +163,30 @@
       },
       "revId": "fb94a087ecfb79431199a2819f692c1937c8b039",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d68422e8_eacda32c",
+        "filename": "src/app/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-25T16:06:50Z",
+      "side": 1,
+      "message": "I tried it, but I didn\u0027t manage to understand how to use it. It doesn\u0027t give me the same display as I had before.",
+      "parentUuid": "5b2d0f5f_3704ae8a",
+      "range": {
+        "startLine": 354,
+        "startChar": 33,
+        "endLine": 356,
+        "endChar": 130
+      },
+      "revId": "fb94a087ecfb79431199a2819f692c1937c8b039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
