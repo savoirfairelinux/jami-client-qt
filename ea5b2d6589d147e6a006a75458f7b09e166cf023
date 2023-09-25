@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0325907b_b490edd4",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-25T23:10:43Z",
+      "side": 0,
+      "message": "The cursor does not change when hovering over the Donate link?",
+      "revId": "ea5b2d6589d147e6a006a75458f7b09e166cf023",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

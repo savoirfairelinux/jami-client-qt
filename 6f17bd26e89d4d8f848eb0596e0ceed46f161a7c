@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9200ea74_6ed8c8ea",
+        "filename": "src/app/ViewCoordinator.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-25T23:10:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 16
+      },
+      "revId": "6f17bd26e89d4d8f848eb0596e0ceed46f161a7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6f46c8a_d34964d3",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 12
@@ -19,6 +42,190 @@
         "startChar": 109,
         "endLine": 832,
         "endChar": 110
+      },
+      "revId": "6f17bd26e89d4d8f848eb0596e0ceed46f161a7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "494da95b_718beaa9",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-25T23:10:43Z",
+      "side": 1,
+      "message": "This should be in a separate file",
+      "range": {
+        "startLine": 332,
+        "startChar": 12,
+        "endLine": 459,
+        "endChar": 13
+      },
+      "revId": "6f17bd26e89d4d8f848eb0596e0ceed46f161a7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36e0ba90_e8680849",
+        "filename": "src/app/mainview/components/TipBox.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-25T23:10:43Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 38
+      },
+      "revId": "6f17bd26e89d4d8f848eb0596e0ceed46f161a7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0f3387c_725c103c",
+        "filename": "src/app/mainview/components/TipBox.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-25T23:10:43Z",
+      "side": 1,
+      "message": "I see. I would leave it as is if there is a problem implementing this",
+      "range": {
+        "startLine": 126,
+        "startChar": 21,
+        "endLine": 126,
+        "endChar": 81
+      },
+      "revId": "6f17bd26e89d4d8f848eb0596e0ceed46f161a7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2c19011_19024581",
+        "filename": "src/app/mainview/components/WelcomeInfo.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-25T23:10:43Z",
+      "side": 1,
+      "message": "why is this commented out?",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 16
+      },
+      "revId": "6f17bd26e89d4d8f848eb0596e0ceed46f161a7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f58f0352_be1ad66b",
+        "filename": "src/app/mainview/components/WelcomeLogo.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-25T23:10:43Z",
+      "side": 1,
+      "message": "should this not be parametrized for the campaign period?",
+      "range": {
+        "startLine": 50,
+        "startChar": 22,
+        "endLine": 50,
+        "endChar": 53
+      },
+      "revId": "6f17bd26e89d4d8f848eb0596e0ceed46f161a7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e476288_74501ff4",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-25T23:10:43Z",
+      "side": 1,
+      "message": "when exiting and entering the system settings, the toggle switch does not reflect the last set state",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 26
+      },
+      "revId": "6f17bd26e89d4d8f848eb0596e0ceed46f161a7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eee9de17_dcca0b34",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-25T23:10:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 86,
+        "startChar": 16,
+        "endLine": 86,
+        "endChar": 28
+      },
+      "revId": "6f17bd26e89d4d8f848eb0596e0ceed46f161a7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28ccf0b7_575cd5ef",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-25T23:10:43Z",
+      "side": 1,
+      "message": "is this the last date when the donate banner was dismissed?",
+      "range": {
+        "startLine": 90,
+        "startChar": 119,
+        "endLine": 90,
+        "endChar": 132
       },
       "revId": "6f17bd26e89d4d8f848eb0596e0ceed46f161a7c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
