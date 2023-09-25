@@ -849,7 +849,7 @@ Il profilo può essere modificato in qualsiasi momento nelle impostazioni dell&a
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>Elimina il file dal dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
@@ -3576,7 +3576,7 @@ si connetta per sincronizzare la conversazione.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="359"/>
         <source>Private conversation created</source>
-        <translation type="unfinished"/>
+        <translation>Conversazione privata creata</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="361"/>

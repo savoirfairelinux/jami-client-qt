@@ -849,7 +849,7 @@ Profilul poate fi modificat în orice moment în reglările contului.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>Șterge fișierul din aparat</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
@@ -3575,7 +3575,7 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="359"/>
         <source>Private conversation created</source>
-        <translation type="unfinished"/>
+        <translation>Conversație privată creată</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="361"/>
