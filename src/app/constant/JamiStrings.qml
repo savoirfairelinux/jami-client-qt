@@ -513,6 +513,8 @@ Item {
     property string updateDownloading: "Downloading"
     property string confirmBeta: qsTr("This will uninstall your current Release version and you can always download the latest Release version on our website")
     property string networkDisconnected: qsTr("Network disconnected")
+    property string accessError: qsTr("Content access error")
+    property string contentNotFoundError: qsTr("Content not found")
     property string genericError: qsTr("Something went wrong")
 
     //Troubleshoot Settings
