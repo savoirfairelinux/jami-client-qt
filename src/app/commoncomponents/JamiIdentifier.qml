@@ -24,6 +24,7 @@ import net.jami.Constants 1.1
 
 Item {
     id: jamiId
+
     property bool slimDisplay: true
     property color backgroundColor: JamiTheme.welcomeBlockColor
     property color contentColor: JamiTheme.tintedBlue
@@ -104,6 +105,8 @@ Item {
                     visible: usernameTextEdit.readOnly
                     Layout.alignment: Qt.AlignVCenter
                     Layout.rightMargin: JamiTheme.pushButtonMargins
+                    Layout.maximumWidth: leftRect.width - 50
+                    elide: Text.ElideRight
                     color: jamiId.contentColor
                     font.pixelSize : text.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
                     property string registeredName: CurrentAccount.registeredName
