@@ -47,10 +47,11 @@ Q_SIGNALS:
     void appCloseRequested();
     void updateCheckReplyReceived(bool ok, bool found = false);
     void updateDownloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
-    void updateErrorOccurred(const NetworkManager::GetError& error);
+    void networkErrorOccurred(const NetworkManager::GetError& error);
+    void installErrorOccurred(const QString& errorMsg);
 
 private:
-    QScopedPointer<int> replyId_;
+    int replyId_;
     struct Impl;
     friend struct Impl;
     std::unique_ptr<Impl> pimpl_;
