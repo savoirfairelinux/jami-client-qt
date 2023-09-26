@@ -36,34 +36,68 @@ QtObject {
         }
     }
 
+    // Create a view from a path only if it doesn't already exist. This is used
+    // by the view coordinator to create views that are not self-destructing
+    // (main views) and only exist once per instance of the app.
     function createView(path, parent = null, cb = null, props = {}) {
-        if (views.hasOwnProperty(path)) {
-            // an instance of <path> already exists
+        const component = Qt.createComponent(Qt.resolvedUrl(path));
+        return createViewFromComponent(component, path, parent, cb, props);
+    }
+
+    // Create a new view. Useful when we want to create multiple views that are
+    // self-destructing (dialogs).
+    function createUniqueView(path, parent = null, cb = null, props = {}) {
+        const component = Qt.createComponent(Qt.resolvedUrl(path));
+        return createViewFromComponent(component, getViewName(path), parent, cb,
+                                       props);
+    }
+
+    // Create a new view from a component. If a view with the same path already
+    // exists, it is returned instead.
+    function createViewFromComponent(component, viewName, parent = null,
+                                     cb = null, props = {}) {
+        if (views.hasOwnProperty(viewName)) {
+            // an instance of the view already exists
             if (cb !== null) {
-                cb(views[path])
+                cb(views[viewName])
             }
-            return views[path]
+            return views[viewName]
         }
-        const component = Qt.createComponent(Qt.resolvedUrl(path))
         if (component.status === Component.Ready) {
             const obj = component.createObject(parent, props)
             if (obj === null) {
-                print("error creating object")
+                console.error("error creating object")
                 return null
             }
-            views[path] = obj
+            views[viewName] = obj
             // Set the view name to the object name if it has one.
-            const viewName = obj.objectName.toString() !== '' ? obj.objectName : path.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, "")
-            viewPaths[viewName] = path
+            const friendlyName = obj.objectName.toString() !== '' ?
+                obj.objectName :
+                viewName.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, "")
+            viewPaths[friendlyName] = viewName
             if (cb !== null) {
                 cb(obj)
             }
-            return views[path]
+            return views[viewName]
         }
-        print("error creating component", path)
+        console.error("error creating component", component.url)
         console.error(component.errorString())
         Qt.exit(1)
         return null
+    }
+
+    // Finds a unique view name for a given path by appending a number to the
+    // base name. For example, if a view named "MyView" already exists, the next
+    // view will be named "MyView_1".
+    function getViewName(path) {
+        const baseName = path.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, "")
+        let viewName = baseName
+        let suffix = 1
+        while (views.hasOwnProperty(viewName)) {
+            viewName = `${baseName}_${suffix}`
+            suffix++
+        }
+        return viewName
     }
 
     function destroyView(path) {
