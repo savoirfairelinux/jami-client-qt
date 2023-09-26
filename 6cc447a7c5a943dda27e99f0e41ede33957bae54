@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4ee8322_2b9f80fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-09-26T19:39:41Z",
+      "side": 1,
+      "message": "waiting for tests",
+      "revId": "6cc447a7c5a943dda27e99f0e41ede33957bae54",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49aa5f82_8f172204",
         "filename": "src/app/currentaccount.cpp",
         "patchSetId": 1
