@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d2a1a47_652ec43f",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-26T15:07:32Z",
+      "side": 1,
+      "message": "data type should be `real`",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 31
+      },
+      "revId": "0b736d02afa02437395fd553f3079c24483dd31f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83bf5352_77d06ff7",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-26T15:07:32Z",
+      "side": 1,
+      "message": "don\u0027t abbrev if possible\n(preferred? prefrontal? prefix? etc.)",
+      "range": {
+        "startLine": 35,
+        "startChar": 17,
+        "endLine": 35,
+        "endChar": 26
+      },
+      "revId": "0b736d02afa02437395fd553f3079c24483dd31f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8adeca6f_eabdc623",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-26T15:07:32Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 100,
+        "startChar": 12,
+        "endLine": 100,
+        "endChar": 39
+      },
+      "revId": "0b736d02afa02437395fd553f3079c24483dd31f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc97eb1_fc2d48a6",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-26T15:07:32Z",
+      "side": 1,
+      "message": "these should be in the donate component",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 85
+      },
+      "revId": "0b736d02afa02437395fd553f3079c24483dd31f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
