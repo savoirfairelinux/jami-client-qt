@@ -90,6 +90,10 @@ CurrentAccount::get_isLocalModeratorsEnabled()
 void
 CurrentAccount::setupForAccount()
 {
+    if (!lrcInstance_->getCurrentContactModel()) {
+        qWarning() << Q_FUNC_INFO << "No contact model";
+        return;
+    }
     connect(lrcInstance_->getCurrentContactModel(),
             &ContactModel::bannedStatusChanged,
             this,
