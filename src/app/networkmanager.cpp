@@ -25,6 +25,28 @@
 #include <QtNetwork>
 #include <QScopedPointer>
 
+namespace {
+NetworkManager::GetError
+translateErrorCode(QNetworkReply::NetworkError error)
+{
+    // From qnetworkreply.h:
+    // network layer errors (1-99): / proxy errors (101-199):
+    // content errors (201-299): ContentAccessDenied = 201,
+    // protocol errors / Server side errors (401-499)
+    static auto inRange = [](int value, int min, int max) -> bool {
+        return (value >= min && value <= max);
+    };
+    if (inRange(error, 1, 199))
+        return NetworkManager::NETWORK_ERROR;
+    if (inRange(error, 201, 201))
+        return NetworkManager::ACCESS_DENIED;
+    if (inRange(error, 202, 299))
+        return NetworkManager::CONTENT_NOT_FOUND;
+    return NetworkManager::NETWORK_ERROR;
+}
+
+} // namespace
+
 NetworkManager::NetworkManager(ConnectivityMonitor* cm, QObject* parent)
     : QObject(parent)
     , manager_(new QNetworkAccessManager(this))
@@ -45,7 +67,7 @@ NetworkManager::NetworkManager(ConnectivityMonitor* cm, QObject* parent)
             });
 #endif
     connect(connectivityMonitor_, &ConnectivityMonitor::connectivityChanged, this, [this] {
-        auto connected = connectivityMonitor_->isOnline();
+        const auto connected = connectivityMonitor_->isOnline();
         if (connected && !lastConnectionState_) {
             manager_->deleteLater();
             manager_ = new QNetworkAccessManager(this);
@@ -59,7 +81,7 @@ void
 NetworkManager::sendGetRequest(const QUrl& url,
                                std::function<void(const QByteArray&)>&& onDoneCallback)
 {
-    QNetworkRequest request = QNetworkRequest(url);
+    const QNetworkRequest request = QNetworkRequest(url);
     sendGetRequest(request, std::move(onDoneCallback));
 }
 
@@ -98,9 +120,8 @@ NetworkManager::downloadFile(const QUrl& url,
                              const QString& filePath,
                              const QString& extension)
 {
-    // If there is already a download in progress, return.
-    if ((downloadReplies_.value(replyId) != NULL || !(replyId == 0))
-        && downloadReplies_[replyId]->isRunning()) {
+    // Don't replace the download if there is already a download in progress for this id.
+    if (downloadReplies_.contains(replyId) && downloadReplies_.value(replyId)->isRunning()) {
         qWarning() << Q_FUNC_INFO << "Download already in progress";
         return replyId;
     }
@@ -167,7 +188,7 @@ NetworkManager::downloadFile(const QUrl& url,
                 resetDownload(uuid);
                 qWarning() << Q_FUNC_INFO
                            << QMetaEnum::fromType<QNetworkReply::NetworkError>().valueToKey(error);
-                Q_EMIT errorOccurred(GetError::NETWORK_ERROR);
+                Q_EMIT errorOccurred(translateErrorCode(error));
             });
 
     connect(reply, &QNetworkReply::finished, this, [this, uuid, onDoneCallback, reply, file]() {
