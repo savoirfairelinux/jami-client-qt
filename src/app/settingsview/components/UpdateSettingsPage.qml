@@ -32,28 +32,6 @@ SettingsPageBase {
 
     title: JamiStrings.updatesTitle
 
-    function presentInfoDialog(infoText) {
-        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                "title": JamiStrings.updateDialogTitle,
-                "infoText": infoText,
-                "buttonTitles": [JamiStrings.optionOk],
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                "buttonCallBacks": []
-            });
-    }
-
-    function presentConfirmInstallDialog(infoText, beta) {
-        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                "title": JamiStrings.updateDialogTitle,
-                "infoText": infoText,
-                "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
-                "buttonCallBacks": [function () {
-                        AppVersionManager.applyUpdates(beta);
-                    }]
-            });
-    }
-
     flickableContent: ColumnLayout {
         id: manageAccountEnableColumnLayout
         width: contentFlickableWidth
@@ -119,15 +97,7 @@ SettingsPageBase {
             toolTipText: JamiStrings.betaInstall
             text: JamiStrings.betaInstall
 
-            onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                    "title": JamiStrings.updateDialogTitle,
-                    "infoText": JamiStrings.confirmBeta,
-                    "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
-                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
-                    "buttonCallBacks": [function () {
-                            AppVersionManager.applyUpdates(true);
-                        }]
-                })
+            onClicked: appWindow.presentUpdateConfirmInstallDialog(true)
         }
     }
 }

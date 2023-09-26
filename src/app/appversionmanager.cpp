@@ -62,11 +62,11 @@ struct AppVersionManager::Impl : public QObject
             connect(&parent_,
                     &NetworkManager::errorOccurred,
                     &parent_,
-                    &AppVersionManager::updateErrorOccurred);
+                    &AppVersionManager::networkErrorOccurred);
 
         cleanUpdateFiles();
-        QUrl versionUrl {isBeta ? QUrl::fromUserInput(baseUrlString_ + betaVersionSubUrl)
-                                : QUrl::fromUserInput(baseUrlString_ + versionSubUrl)};
+        const QUrl versionUrl {isBeta ? QUrl::fromUserInput(baseUrlString_ + betaVersionSubUrl)
+                                      : QUrl::fromUserInput(baseUrlString_ + versionSubUrl)};
         parent_.sendGetRequest(versionUrl, [this, quiet](const QByteArray& latestVersionString) {
             if (latestVersionString.isEmpty()) {
                 qWarning() << "Error checking version";
@@ -76,14 +76,15 @@ struct AppVersionManager::Impl : public QObject
             }
             auto currentVersion = QString(VERSION_STRING).toULongLong();
             auto latestVersion = latestVersionString.toULongLong();
-            qDebug() << "latest: " << latestVersion << " current: " << currentVersion;
-            if (latestVersion > currentVersion) {
-                qDebug() << "New version found";
+            const QString channelStr = isBeta ? "beta" : "stable";
+            const auto newVersionFound = latestVersion > currentVersion;
+            qInfo().noquote() << "--------- Version info ------------"
+                              << QString("\n - Current: %1 (%2)").arg(currentVersion).arg(channelStr);
+            if (newVersionFound) {
+                qDebug() << " - Latest: " << latestVersion;
                 Q_EMIT parent_.updateCheckReplyReceived(true, true);
-            } else {
-                qDebug() << "No new version found";
-                if (!quiet)
-                    Q_EMIT parent_.updateCheckReplyReceived(true, false);
+            } else if (!quiet) {
+                Q_EMIT parent_.updateCheckReplyReceived(true, false);
             }
         });
     };
@@ -94,35 +95,51 @@ struct AppVersionManager::Impl : public QObject
         connect(&parent_,
                 &NetworkManager::errorOccurred,
                 &parent_,
-                &AppVersionManager::updateErrorOccurred);
+                &AppVersionManager::networkErrorOccurred);
 
         const QUrl downloadUrl {(beta || isBeta)
                                     ? QUrl::fromUserInput(baseUrlString_ + betaMsiSubUrl)
                                     : QUrl::fromUserInput(baseUrlString_ + msiSubUrl)};
 
-        int uuid = parent_.downloadFile(
+        const auto lastDownloadReplyId = parent_.replyId_;
+        parent_.replyId_ = parent_.downloadFile(
             downloadUrl,
-            *(parent_.replyId_),
+            lastDownloadReplyId,
             [this, downloadUrl](bool success, const QString& errorMessage) {
                 Q_UNUSED(success)
                 Q_UNUSED(errorMessage)
-                const QProcess process;
+                QProcess process;
                 auto basePath = tempPath_ + QDir::separator();
                 auto msiPath = QDir::toNativeSeparators(basePath + downloadUrl.fileName());
                 auto logPath = QDir::toNativeSeparators(basePath + "jami_x64_install.log");
-                process.startDetached("msiexec",
-                                      QStringList() << "/i" << msiPath << "/passive"
-                                                    << "/norestart"
-                                                    << "WIXNONUILAUNCH=1"
-                                                    << "/L*V" << logPath);
+                connect(&process, &QProcess::errorOccurred, this, [&](QProcess::ProcessError error) {
+                    QString errorMsg;
+                    if (error == QProcess::ProcessError::Timedout) {
+                        errorMsg = tr("The installer process has timed out.");
+                    } else {
+                        errorMsg = process.readAllStandardError();
+                        if (errorMsg.isEmpty())
+                            errorMsg = tr("The installer process has failed.");
+                    }
+                    Q_EMIT parent_.installErrorOccurred(errorMsg);
+                });
+                process.start("msiexec",
+                              QStringList() << "/i" << msiPath << "/passive"
+                                            << "/norestart"
+                                            << "WIXNONUILAUNCH=1"
+                                            << "/L*V" << logPath);
+                process.waitForFinished(20000);
+                if (process.exitCode() != QProcess::ExitStatus::NormalExit) {
+                    auto errorMsg = process.readAllStandardOutput();
+                    Q_EMIT parent_.installErrorOccurred(errorMsg);
+                }
             },
             tempPath_);
-        parent_.replyId_.reset(&uuid);
     };
 
     void cancelUpdate()
     {
-        parent_.cancelDownload(*(parent_.replyId_));
+        parent_.cancelDownload(parent_.replyId_);
     };
 
     void setAutoUpdateCheck(bool state)
@@ -138,7 +155,7 @@ struct AppVersionManager::Impl : public QObject
     void cleanUpdateFiles()
     {
         // Delete all logs and msi in the temporary directory before launching.
-        QString dir = QDir::tempPath();
+        const QString dir = QDir::tempPath();
         QDir log_dir(dir, {"jami*.log"});
         for (const QString& filename : log_dir.entryList()) {
             log_dir.remove(filename);
@@ -166,13 +183,13 @@ AppVersionManager::AppVersionManager(const QString& url,
                                      LRCInstance* instance,
                                      QObject* parent)
     : NetworkManager(cm, parent)
-    , replyId_(new int(0))
+    , replyId_(0)
     , pimpl_(std::make_unique<Impl>(url, instance, *this))
 {}
 
 AppVersionManager::~AppVersionManager()
 {
-    cancelDownload(*replyId_);
+    cancelDownload(replyId_);
 }
 
 void
