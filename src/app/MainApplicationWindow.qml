@@ -268,13 +268,43 @@ ApplicationWindow {
     }
 
     function presentUpdateInfoDialog(infoText) {
-        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+        return viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                 "title": JamiStrings.updateDialogTitle,
                 "infoText": infoText,
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonCallBacks": []
             });
+    }
+
+    function presentUpdateConfirmInstallDialog(switchToBeta=false) {
+        return viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                "title": JamiStrings.updateDialogTitle,
+                "infoText": switchToBeta ? JamiStrings.confirmBeta : JamiStrings.updateFound,
+                "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
+                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonCallBacks": [function () {
+                        AppVersionManager.applyUpdates(switchToBeta);
+                    }]
+            });
+    }
+
+    function translateErrorToString(error) {
+        switch (error) {
+        case NetworkManager.DISCONNECTED:
+            return JamiStrings.networkDisconnected;
+        case NetworkManager.CONTENT_NOT_FOUND:
+            return JamiStrings.contentNotFoundError;
+        case NetworkManager.ACCESS_DENIED:
+            return JamiStrings.accessError;
+        case NetworkManager.SSL_ERROR:
+            return JamiStrings.updateSSLError;
+        case NetworkManager.CANCELED:
+            return JamiStrings.updateDownloadCanceled;
+        case NetworkManager.NETWORK_ERROR:
+        default:
+            return JamiStrings.updateNetworkError;
+        }
     }
 
     Connections {
@@ -288,41 +318,26 @@ ApplicationWindow {
 
         function onUpdateCheckReplyReceived(ok, found) {
             if (!ok) {
+                // Show an error dialog describing that we could not successfully check for an update.
                 presentUpdateInfoDialog(JamiStrings.updateCheckError);
                 return;
             }
             if (!found) {
+                // Show a dialog describing that no update was found.
                 presentUpdateInfoDialog(JamiStrings.updateNotFound);
             } else {
-                viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                        "title": JamiStrings.updateDialogTitle,
-                        "infoText": JamiStrings.updateFound,
-                        "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
-                        "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
-                        "buttonCallBacks": [function () {
-                                AppVersionManager.applyUpdates();
-                            }]
-                    });
+                // Show a dialog describing that an update were found, and offering to install it.
+                presentUpdateConfirmInstallDialog()
             }
         }
 
-        function onUpdateErrorOccurred(error) {
-            presentUpdateInfoDialog((function () {
-                        switch (error) {
-                        case NetworkManager.ACCESS_DENIED:
-                            return JamiStrings.genericError;
-                        case NetworkManager.DISCONNECTED:
-                            return JamiStrings.networkDisconnected;
-                        case NetworkManager.NETWORK_ERROR:
-                            return JamiStrings.updateNetworkError;
-                        case NetworkManager.SSL_ERROR:
-                            return JamiStrings.updateSSLError;
-                        case NetworkManager.CANCELED:
-                            return JamiStrings.updateDownloadCanceled;
-                        default:
-                            return {};
-                        }
-                    })());
+        function onNetworkErrorOccurred(error) {
+            var errorStr = translateErrorToString(error);
+            presentUpdateInfoDialog(errorStr);
+        }
+
+        function onInstallErrorOccurred(errorMsg) {
+            presentUpdateInfoDialog(errorMsg);
         }
     }
 

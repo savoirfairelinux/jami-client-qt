@@ -35,7 +35,14 @@ public:
     explicit NetworkManager(ConnectivityMonitor* cm, QObject* parent = nullptr);
     virtual ~NetworkManager() = default;
 
-    enum GetError { DISCONNECTED, NETWORK_ERROR, ACCESS_DENIED, SSL_ERROR, CANCELED };
+    enum GetError {
+        DISCONNECTED,
+        CONTENT_NOT_FOUND,
+        ACCESS_DENIED,
+        SSL_ERROR,
+        CANCELED,
+        NETWORK_ERROR,
+    };
     Q_ENUM(GetError)
 
     void sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)>&& onDoneCallback);
@@ -48,7 +55,7 @@ public:
                      int replyId,
                      std::function<void(bool, const QString&)>&& onDoneCallback,
                      const QString& filePath,
-                     const QString& extension = "");
+                     const QString& extension = {});
     void resetDownload(int replyId);
     void cancelDownload(int replyId);
 Q_SIGNALS:
