@@ -261,16 +261,14 @@ ListSelectionView {
                     TextMetrics {
                         id: textSize
                         font.weight: Font.Bold
-                        font.pixelSize: 20
                         font.capitalization: Font.AllUppercase
                         text: aboutJami.text
                     }
 
                     tertiary: true
                     anchors.horizontalCenter: parent.horizontalCenter
-                    preferredWidth: textSize.width
+                    preferredWidth: text.width
                     text: JamiStrings.aboutJami
-                    fontSize: 12
 
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
                 }
