@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d1e84777_fdb8bcde",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-26T17:05:46Z",
+      "side": 1,
+      "message": "Ovari is just saying to replace \"Expired\" by \"expired\" without a capital letter ;)",
+      "parentUuid": "f4abf11c_332e5ce2",
+      "range": {
+        "startLine": 581,
+        "startChar": 38,
+        "endLine": 581,
+        "endChar": 49
+      },
+      "revId": "15b2a3805a6900b88abe6e836596f6b84be7114b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8782e775_f2d2c58d",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 4
