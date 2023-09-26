@@ -74,7 +74,7 @@ QtObject {
     // Create, present, and return a dialog object.
     function presentDialog(parent, path, props = {}) {
         // Open the dialog once the object is created
-        return viewManager.createView(path, parent, function (obj) {
+        return viewManager.createUniqueView(path, parent, function (obj) {
                 const doneCb = function () {
                     viewManager.destroyView(path);
                 };
