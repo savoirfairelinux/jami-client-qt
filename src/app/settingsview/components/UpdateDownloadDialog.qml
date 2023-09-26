@@ -36,8 +36,7 @@ SimpleMessageDialog {
     Connections {
         target: AppVersionManager
 
-        function onErrorOccurred(error, msg) {
-            console.warn("Error while downloading update: " + error + " - " + msg);
+        function onNetworkErrorOccurred(error) {
             downloadDialog.close();
         }
 
