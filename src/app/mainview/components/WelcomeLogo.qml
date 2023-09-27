@@ -47,7 +47,7 @@ Item {
         id: cachedImgLogo
         objectName: "cachedImgLogo"
         downloadUrl: logoUrl
-        defaultImage: JamiResources.jami_logo_icon_svg
+        defaultImage: JamiTheme.welcomeLogo
         visible: welcomeLogo.visible
         height: parent.height * logoSize
         width: parent.width * logoSize

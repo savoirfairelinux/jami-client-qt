@@ -532,6 +532,7 @@ Item {
 
     // WizardView Welcome Page
     property real welcomeLabelPointSize: 30
+    property var welcomeLogo: darkTheme ? JamiResources.logo_donation_dark_png : JamiResources.logo_donation_png
     property real welcomeLogoWidth: 100
     property real welcomeLogoHeight: 100
     property real wizardButtonWidth: 400
