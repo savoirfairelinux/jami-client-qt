@@ -532,6 +532,7 @@ Item {
 
     // WizardView Welcome Page
     property real welcomeLabelPointSize: 30
+    property var welcomeLogo: darkTheme ? JamiResources.logo_jami_standard_coul_white_svg : JamiResources.logo_jami_standard_coul_svg
     property real welcomeLogoWidth: 100
     property real welcomeLogoHeight: 100
     property real wizardButtonWidth: 400
@@ -543,7 +544,7 @@ Item {
     property real welcomeGridWidth: 3 * JamiTheme.tipBoxWidth + 2 * JamiTheme.welcomePageSpacing
     property real welcomeHalfGridWidth: (welcomeGridWidth - JamiTheme.welcomePageSpacing) / 2
     property real welcomeShortGridWidth: 2 * JamiTheme.tipBoxWidth + JamiTheme.welcomePageSpacing
-    readonly property string welcomeBg: darkTheme ? JamiResources.bg_darkmode_id_jami_png : JamiResources.bg_lightmode_id_jami_png
+    readonly property string welcomeBg: darkTheme ? JamiResources.background_don_dark_jpg : JamiResources.background_don_white_jpg
     property color welcomeBlockColor: darkTheme ? "#4D000000" : "#4DFFFFFF"
 
     // WizardView Advanced Account Settings
