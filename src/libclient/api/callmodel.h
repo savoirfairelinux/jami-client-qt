@@ -89,12 +89,29 @@ public:
      * @param source        Of the media
      * @param type          Audio/video
      * @param mute
-     * @note For now, we only support video, as multistream only supports video in the daemon
+     * @param shareAudio
      */
     void addMedia(const QString& callId,
                   const QString& source,
                   MediaRequestType type,
-                  bool mute = false);
+                  bool mute = false,
+                  bool shareAudio = false);
+
+    /**
+     * get list of proposed medias
+     * @param mediaList
+     * @param callId
+     * @param source        Of the media
+     * @param type          Audio/video
+     * @param mute
+     * @param shareAudio
+     */
+    VectorMapStringString getProposed(VectorMapStringString mediaList,
+                                      const QString& callId,
+                                      const QString& source,
+                                      MediaRequestType type,
+                                      bool mute,
+                                      bool shareAudio = false);
     /**
      * Mute a media
      * @param callId
