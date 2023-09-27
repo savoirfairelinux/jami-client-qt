@@ -835,4 +835,9 @@ Item {
     // Appearence
     property string theme: qsTr("Theme")
     property string zoomLevel: qsTr("Text zoom level")
+
+    //Donation campaign
+    property string donation: qsTr("Donate")
+    property string donationText: qsTr("If you enjoy using Jami and believe in our mission, would you make a donation?")
+    property string notNow: qsTr("Not now")
 }
