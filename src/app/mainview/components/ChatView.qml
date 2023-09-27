@@ -24,6 +24,8 @@ import net.jami.Enums 1.1
 import "../../commoncomponents"
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
+// The chat view is the main view of the application.
+
 Rectangle {
     id: root
 
