@@ -75,6 +75,7 @@ TipsModel::reset()
     beginResetModel();
     tips_.clear();
 
+    tips_.append({{"id", "14"}, {"title", tr("Donate")}, {"desc", ""}, {"type", "donation"}});
     tips_.append({{"id", "0"}, {"title", tr("Customize")}, {"desc", ""}, {"type", "customize"}});
     tips_.append({{"id", "13"}, {"title", tr("Backup account")}, {"desc", ""}, {"type", "backup"}});
     tips_.append({{"id", "1"},
