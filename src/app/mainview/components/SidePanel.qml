@@ -16,21 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 import "../../settingsview/components"
 
 SidePanelBase {
     id: root
+
     objectName: "SidePanel"
 
     color: JamiTheme.backgroundColor
@@ -39,7 +37,7 @@ SidePanelBase {
         target: LRCInstance
 
         function onCurrentAccountIdChanged() {
-            clearContactSearchBar()
+            clearContactSearchBar();
         }
     }
 
@@ -47,8 +45,8 @@ SidePanelBase {
         target: ConversationsAdapter
 
         function onConversationReady() {
-            selectTab(SidePanelTabBar.Conversations)
-            clearContactSearchBar()
+            selectTab(SidePanelTabBar.Conversations);
+            clearContactSearchBar();
         }
     }
 
@@ -56,46 +54,46 @@ SidePanelBase {
         target: ConversationsAdapter
 
         function onShowSearchStatus(status) {
-            searchStatusText.text = status
+            searchStatusText.text = status;
         }
 
         function onTextFilterChanged(text) {
             // In the swarm details, "Go to conversation" can
             // change the search bar. Be sure to be synced
-            contactSearchBar.textContent = text
+            contactSearchBar.textContent = text;
         }
     }
 
     function toggleCreateSwarmView() {
         if (!inNewSwarm) {
-            viewCoordinator.present("NewSwarmPage")
-            const newSwarmPage = viewCoordinator.getView("NewSwarmPage")
+            viewCoordinator.present("NewSwarmPage");
+            const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
             newSwarmPage.removeMember.connect((convId, member) => {
-                removeMember(convId, member)
-            })
+                    removeMember(convId, member);
+                });
             newSwarmPage.createSwarmClicked.connect((title, description, avatar) => {
-                var uris = []
-                for (var idx in newSwarmPage.members) {
-                    var uri = newSwarmPage.members[idx].uri
-                    if (uris.indexOf(uri) === -1) {
-                        uris.push(uri)
+                    var uris = [];
+                    for (var idx in newSwarmPage.members) {
+                        var uri = newSwarmPage.members[idx].uri;
+                        if (uris.indexOf(uri) === -1) {
+                            uris.push(uri);
+                        }
                     }
-                }
-                let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris)
-                viewCoordinator.dismiss("NewSwarmPage")
-                LRCInstance.selectConversation(convuid)
-            })
+                    let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
+                    viewCoordinator.dismiss("NewSwarmPage");
+                    LRCInstance.selectConversation(convuid);
+                });
         } else {
-            viewCoordinator.dismiss("NewSwarmPage")
+            viewCoordinator.dismiss("NewSwarmPage");
         }
     }
 
     function clearContactSearchBar() {
-        contactSearchBar.clearText()
+        contactSearchBar.clearText();
     }
 
     function selectTab(tabIndex) {
-        sidePanelTabBar.selectTab(tabIndex)
+        sidePanelTabBar.selectTab(tabIndex);
     }
 
     property bool inNewSwarm: viewCoordinator.currentViewName === "NewSwarmPage"
@@ -104,65 +102,64 @@ SidePanelBase {
     property var highlightedMembers: []
     onHighlightedMembersChanged: {
         if (inNewSwarm) {
-            const newSwarmPage = viewCoordinator.getView("NewSwarmPage")
-            newSwarmPage.members = highlightedMembers
+            const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
+            newSwarmPage.members = highlightedMembers;
         }
     }
 
     function refreshHighlighted(convId, highlightedStatus) {
-        var newH = root.highlighted
-        var newHm = root.highlightedMembers
-
+        var newH = root.highlighted;
+        var newHm = root.highlightedMembers;
         if (highlightedStatus) {
-            var item = ConversationsAdapter.getConvInfoMap(convId)
-            var added = false
+            var item = ConversationsAdapter.getConvInfoMap(convId);
+            var added = false;
             for (var idx in item.uris) {
-                var uri = item.uris[idx]
-                if (!Array.from(newHm).find(r => r.uri === uri) &&
-                        uri !== CurrentAccount.uri) {
-                    newHm.push({"uri": uri, "convId": convId})
-                    added = true
+                var uri = item.uris[idx];
+                if (!Array.from(newHm).find(r => r.uri === uri) && uri !== CurrentAccount.uri) {
+                    newHm.push({
+                            "uri": uri,
+                            "convId": convId
+                        });
+                    added = true;
                 }
             }
             if (!added)
-                return false
+                return false;
         } else {
-            newH = Array.from(newH).filter(r => r !== convId)
-            newHm = Array.from(newHm).filter(r => r.convId !== convId)
+            newH = Array.from(newH).filter(r => r !== convId);
+            newHm = Array.from(newHm).filter(r => r.convId !== convId);
         }
-
-        newH.push(convId)
-        root.highlighted = newH
-        root.highlightedMembers = newHm
-        ConversationsAdapter.ignoreFiltering(root.highlighted)
-        return true
+        newH.push(convId);
+        root.highlighted = newH;
+        root.highlightedMembers = newHm;
+        ConversationsAdapter.ignoreFiltering(root.highlighted);
+        return true;
     }
 
     function clearHighlighted() {
-        root.highlighted = []
-        root.highlightedMembers = []
+        root.highlighted = [];
+        root.highlightedMembers = [];
     }
 
     function removeMember(convId, member) {
-        var refreshHighlighted = true
-        var newHm = []
+        var refreshHighlighted = true;
+        var newHm = [];
         for (var hm in root.highlightedMembers) {
-            var m = root.highlightedMembers[hm]
+            var m = root.highlightedMembers[hm];
             if (m.convId === convId && m.uri === member) {
                 continue;
             } else if (m.convId === convId) {
-                refreshHighlighted = false
+                refreshHighlighted = false;
             }
-            newHm.push(m)
+            newHm.push(m);
         }
-        root.highlightedMembers = newHm
-
+        root.highlightedMembers = newHm;
         if (refreshHighlighted) {
             // Remove highlighted status if necessary
             for (var d in swarmCurrentConversationList.contentItem.children) {
-                var delegate = swarmCurrentConversationList.contentItem.children[d]
+                var delegate = swarmCurrentConversationList.contentItem.children[d];
                 if (delegate.convId === convId)
-                    delegate.highlighted = false
+                    delegate.highlighted = false;
             }
         }
     }
@@ -176,10 +173,16 @@ SidePanelBase {
             color: JamiTheme.backgroundColor
         }
 
-        header: AccountComboBox {}
+        header: AccountComboBox {
+        }
 
         Item {
             anchors.fill: parent
+
+            onVisibleChanged: {
+                donation.donateDate = UtilsAdapter.getAppValue(Settings.Key.DonateDate);
+                donation.donationVisible = Qt.binding(() => new Date() > new Date(Date.parse(donation.donateDate)));
+            }
 
             RowLayout {
                 id: titleBar
@@ -240,7 +243,7 @@ SidePanelBase {
                     sequence: "Ctrl+F"
                     context: Qt.ApplicationShortcut
                     onActivated: {
-                        contactSearchBar.forceActiveFocus()
+                        contactSearchBar.forceActiveFocus();
                     }
                 }
 
@@ -250,20 +253,18 @@ SidePanelBase {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
 
-                    onSearchBarTextChanged: function(text){
+                    onSearchBarTextChanged: function (text) {
                         // not calling positionViewAtBeginning will cause
                         // sort animation visual bugs
-                        conversationListView.positionViewAtBeginning()
-                        ConversationsAdapter.ignoreFiltering(root.highlighted)
-                        ConversationsAdapter.setFilter(text)
+                        conversationListView.positionViewAtBeginning();
+                        ConversationsAdapter.ignoreFiltering(root.highlighted);
+                        ConversationsAdapter.setFilter(text);
                     }
 
                     onReturnPressedWhileSearching: {
-                        var listView = searchResultsListView.count ?
-                                    searchResultsListView :
-                                    conversationListView
+                        var listView = searchResultsListView.count ? searchResultsListView : conversationListView;
                         if (listView.count)
-                            listView.model.select(0)
+                            listView.model.select(0);
                     }
                 }
 
@@ -282,7 +283,7 @@ SidePanelBase {
                     visible: !swarmMemberSearchList.visible && CurrentAccount.type !== Profile.Type.SIP
 
                     source: smartListLayout.visible ? JamiResources.create_swarm_svg : JamiResources.round_close_24dp_svg
-                    toolTipText: smartListLayout.visible ? JamiStrings.startSwarm : JamiStrings.cancel
+                    toolTipText: donation.donateDate//smartListLayout.visible ? JamiStrings.startSwarm : JamiStrings.cancel
 
                     onClicked: toggleCreateSwarmView()
                 }
@@ -291,8 +292,7 @@ SidePanelBase {
             SidePanelTabBar {
                 id: sidePanelTabBar
 
-                visible: ConversationsAdapter.pendingRequestCount &&
-                         !contactSearchBar.textContent && smartListLayout.visible
+                visible: ConversationsAdapter.pendingRequestCount && !contactSearchBar.textContent && smartListLayout.visible
                 anchors.top: startBar.bottom
                 anchors.topMargin: visible ? 10 : 0
                 width: page.width
@@ -311,7 +311,6 @@ SidePanelBase {
                 height: visible ? 42 : 0
 
                 color: JamiTheme.backgroundColor
-
                 Text {
                     id: searchStatusText
 
@@ -326,13 +325,22 @@ SidePanelBase {
                 }
             }
 
+            DonationBanner {
+                id: donation
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.leftMargin: 15
+                anchors.rightMargin: 15
+                anchors.top: sidePanelTabBar.bottom
+                anchors.topMargin: 10
+                visible: donation.donationVisible
+            }
+
             ColumnLayout {
                 id: smartListLayout
 
                 width: parent.width
-                anchors.top: searchStatusRect.bottom
-                anchors.topMargin: (sidePanelTabBar.visible ||
-                                    searchStatusRect.visible) ? 0 : 12
+                anchors.top: donation.donationVisible ? donation.bottom : sidePanelTabBar.bottom
+                anchors.topMargin: (sidePanelTabBar.visible || searchStatusRect.visible) ? 0 : 12
                 anchors.bottom: parent.bottom
 
                 spacing: 4
@@ -350,14 +358,14 @@ SidePanelBase {
                     Layout.fillWidth: true
                     Layout.preferredHeight: visible ? contentHeight : 0
                     Layout.maximumHeight: {
-                        var otherContentHeight = conversationListView.contentHeight + 16
+                        var otherContentHeight = conversationListView.contentHeight + 16;
                         if (conversationListView.visible)
                             if (otherContentHeight < parent.height / 2)
-                                return parent.height - otherContentHeight
+                                return parent.height - otherContentHeight;
                             else
-                                return parent.height / 2
+                                return parent.height / 2;
                         else
-                            return parent.height
+                            return parent.height;
                     }
 
                     model: SearchResultsListModel
@@ -385,9 +393,8 @@ SidePanelBase {
                 visible: inNewSwarm
 
                 width: parent.width
-                anchors.top: searchStatusRect.bottom
-                anchors.topMargin: (sidePanelTabBar.visible ||
-                                    searchStatusRect.visible) ? 0 : 12
+                anchors.top: donation.donationVisible ? donation.bottom : sidePanelTabBar.bottom
+                anchors.topMargin: (sidePanelTabBar.visible || searchStatusRect.visible) ? 0 : 12
                 anchors.bottom: parent.bottom
 
                 spacing: 4
@@ -404,8 +411,8 @@ SidePanelBase {
 
                         onVisibleChanged: {
                             if (!swarmCurrentConversationList.visible) {
-                                highlighted = false
-                                root.clearHighlighted()
+                                highlighted = false;
+                                root.clearHighlighted();
                             }
                         }
 
@@ -414,26 +421,26 @@ SidePanelBase {
                             // destroyed from the memory. So, re-add the highlighted
                             // status if necessary
                             if (Array.from(root.highlighted).find(r => r === UID)) {
-                                highlighted = true
+                                highlighted = true;
                             }
                         }
 
                         onHighlightedChanged: function onHighlightedChanged() {
                             if (highlighted && Array.from(root.highlighted).find(r => r === UID)) {
                                 // Due to scrolling destruction/reconstruction
-                                return
+                                return;
                             }
-                            var currentHighlighted = root.highlighted
+                            var currentHighlighted = root.highlighted;
                             if (!root.refreshHighlighted(UID, highlighted)) {
-                                highlighted = false
-                                return
+                                highlighted = false;
+                                return;
                             }
                             if (highlighted) {
-                                root.highlighted.push(UID)
+                                root.highlighted.push(UID);
                             } else {
-                                root.highlighted = Array.from(root.highlighted).filter(r => r !== UID)
+                                root.highlighted = Array.from(root.highlighted).filter(r => r !== UID);
                             }
-                            root.clearContactSearchBar()
+                            root.clearContactSearchBar();
                         }
                     }
                     currentIndex: model.currentFilteredRow
@@ -448,7 +455,9 @@ SidePanelBase {
                         interval: 750
                         running: isSharingPosition || isReceivingPosition
                         repeat: true
-                        onTriggered: {showIconArrow = !showIconArrow}
+                        onTriggered: {
+                            showIconArrow = !showIconArrow;
+                        }
                     }
                 }
             }
