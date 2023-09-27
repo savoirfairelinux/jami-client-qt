@@ -494,23 +494,28 @@ CallModel::replaceDefaultCamera(const QString& callId, const QString& deviceId)
     CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
 }
 
-void
-CallModel::addMedia(const QString& callId, const QString& source, MediaRequestType type, bool mute)
+VectorMapStringString
+CallModel::getProposed(VectorMapStringString mediaList, const QString& callId, const QString& source, MediaRequestType type, bool mute, bool shareAudio)
 {
     auto& callInfo = pimpl_->calls[callId];
     if (!callInfo || source.isEmpty())
-        return;
+        return {};
 
     QString resource {};
-    auto id = 0;
-    for (const auto& media : callInfo->mediaList) {
+    auto aid = 0;
+    auto vid = 0;
+    for (const auto& media : mediaList) {
         if (media[MediaAttributeKey::SOURCE] == source)
             break;
+        if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::AUDIO)
+            aid++;
         if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO)
-            id++;
+            vid++;
     }
-    QString label = QString("video_%1").arg(id);
+    QString alabel = QString("audio_%1").arg(aid);
+    QString vlabel = QString("video_%1").arg(vid);
     QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
+    MapStringString audioMediaAttribute {};
     switch (type) {
     case MediaRequestType::FILESHARING: {
         // File sharing
@@ -519,6 +524,12 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
                                            .arg(sep)
                                            .arg(QUrl(source).toLocalFile())
                                      : libjami::Media::VideoProtocolPrefix::NONE;
+        if (shareAudio)
+            audioMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::AUDIO},
+                                {MediaAttributeKey::ENABLED, TRUE_STR},
+                                {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                                {MediaAttributeKey::SOURCE, resource},
+                                {MediaAttributeKey::LABEL, alabel}};
         break;
     }
     case MediaRequestType::SCREENSHARING: {
@@ -536,22 +547,22 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
         break;
     }
     default:
-        return;
+        return {};
     }
 
-    auto proposedList = callInfo->mediaList;
-    MapStringString mediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
-                                      {MediaAttributeKey::ENABLED, TRUE_STR},
-                                      {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
-                                      {MediaAttributeKey::SOURCE, resource},
-                                      {MediaAttributeKey::LABEL, label}};
+    VectorMapStringString proposedList {};
+    MapStringString videoMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
+                                           {MediaAttributeKey::ENABLED, TRUE_STR},
+                                           {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                                           {MediaAttributeKey::SOURCE, resource},
+                                           {MediaAttributeKey::LABEL, vlabel}};
     // if we're in a 1:1, we only show one preview, so, limit to 1 video (the new one)
     auto participantsModel = pimpl_->participantsModel.find(callId);
     auto isConf = participantsModel != pimpl_->participantsModel.end()
                   && participantsModel->second->getParticipants().size() != 0;
 
     auto replaced = false;
-    for (auto& media : proposedList) {
+    for (auto& media : mediaList) {
         auto replace = media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO;
         // In a 1:1 we replace the first video, in a conference we replace only if it's a muted
         // video or if a new sharing is requested
@@ -565,14 +576,32 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
                            || type == MediaRequestType::SCREENSHARING);
         }
         if (replace) {
-            mediaAttribute[MediaAttributeKey::LABEL] = media[MediaAttributeKey::LABEL];
-            media = mediaAttribute;
+            videoMediaAttribute[MediaAttributeKey::LABEL] = media[MediaAttributeKey::LABEL];
+            media = videoMediaAttribute;
             replaced = true;
-            break;
+        }
+        if (!(media[MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::FILE)
+              && type == MediaRequestType::CAMERA)) {
+            proposedList.emplace_back(media);
         }
     }
     if (!replaced)
-        proposedList.push_back(mediaAttribute);
+        proposedList.push_back(videoMediaAttribute);
+    if (!audioMediaAttribute.isEmpty())
+        proposedList.emplace_back(audioMediaAttribute);
+
+    return proposedList;
+}
+
+
+void
+CallModel::addMedia(const QString& callId, const QString& source, MediaRequestType type, bool mute, bool shareAudio)
+{
+    auto& callInfo = pimpl_->calls[callId];
+    if (!callInfo || source.isEmpty())
+        return;
+
+    auto proposedList = getProposed(callInfo->mediaList, callId, source, type, mute, shareAudio);
 
     CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
     callInfo->mediaList = proposedList;
@@ -600,17 +629,19 @@ CallModel::removeMedia(const QString& callId,
             replaceIdx = true;
             label = media[MediaAttributeKey::LABEL];
         } else {
-            if (media[MediaAttributeKey::MEDIA_TYPE] == mediaType) {
-                auto newMedia = media;
-                if (replaceIdx) {
-                    QString idxStr = QString::number(newIdx);
-                    newMedia[MediaAttributeKey::LABEL] = isVideo ? "video_" + idxStr
-                                                                 : "audio_" + idxStr;
+            if (!media[MediaAttributeKey::SOURCE].startsWith(type)) {
+                if (media[MediaAttributeKey::MEDIA_TYPE] == mediaType) {
+                    auto newMedia = media;
+                    if (replaceIdx) {
+                        QString idxStr = QString::number(newIdx);
+                        newMedia[MediaAttributeKey::LABEL] = isVideo ? "video_" + idxStr
+                                                                     : "audio_" + idxStr;
+                    }
+                    proposedList.push_back(newMedia);
+                    newIdx++;
+                } else {
+                    proposedList.push_back(media);
                 }
-                proposedList.push_back(newMedia);
-                newIdx++;
-            } else {
-                proposedList.push_back(media);
             }
             hasVideo |= media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO;
         }
@@ -622,12 +653,13 @@ CallModel::removeMedia(const QString& callId,
     if (!isConf) {
         // 1:1 call, in this case we only show one preview, and switch between sharing and camera
         // preview So, if no video, replace by camera
-        if (!hasVideo)
-            addMedia(callInfo->id,
-                     pimpl_->lrc.getAVModel().getCurrentVideoCaptureDevice(),
-                     MediaRequestType::CAMERA,
-                     muteCamera);
-        return;
+        if (!hasVideo) {
+            proposedList = getProposed(proposedList,
+                                       callInfo->id,
+                                       pimpl_->lrc.getAVModel().getCurrentVideoCaptureDevice(),
+                                       MediaRequestType::CAMERA,
+                                       muteCamera);
+        }
     } else if (!hasVideo) {
         // To receive the remote video, we need a muted camera
         proposedList.push_back(MapStringString {
