@@ -19,7 +19,12 @@
 // JamiQmlUtils as a singleton is to provide global property entry
 pragma Singleton
 import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 import net.jami.Adapters 1.1
+import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 
 Item {
     property string qmlFilePrefix: "file:/"
@@ -68,5 +73,23 @@ Item {
 
     function clamp(val, min, max) {
         return Math.min(Math.max(val, min), max);
+    }
+
+    function isDonationBannerVisible() {
+        //The banner is visible if the current date is after the date set in the settings
+        return new Date() > new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonateVisibleDate)));
+    }
+
+    function isDonationToggleChecked() {
+        //Desactivate the donation = set the date to 2999-01-01
+        return new Date(Date.parse(new Date(2998, 1, 1, 0, 0, 0, 0).toISOString().slice(0, 16).replace("T", " "))) >= new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonateVisibleDate)));
+    }
+
+    function setDonationToggleChecked(checked) {
+        if (checked) {
+            return UtilsAdapter.setAppValue(Settings.Key.DonateVisibleDate, new Date(new Date().getTime() - 24 * 60 * 60 * 1000).toISOString().slice(0, 16).replace("T", " "));
+        } else {
+            return UtilsAdapter.setAppValue(Settings.Key.DonateVisibleDate, new Date(2999, 1, 1, 0, 0, 0, 0).toISOString().slice(0, 16).replace("T", " "));
+        }
     }
 }
