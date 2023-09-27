@@ -18,6 +18,8 @@ import QtQuick
 import QtQuick.Layouts
 import net.jami.Adapters 1.1
 
+// Ipsum lorum dolor sit amet.
+
 StackLayout {
     id: root
 
