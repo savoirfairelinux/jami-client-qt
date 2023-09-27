@@ -80,6 +80,18 @@ SettingsPageBase {
             }
 
             ToggleSwitch {
+                id: enableDonation
+                width: parent.width
+
+                checked: JamiQmlUtils.isDonationToggleChecked()
+                labelText: JamiStrings.enableDonation
+                tooltipText: JamiStrings.enableDonation
+                onSwitchToggled: {
+                    JamiQmlUtils.setDonationToggleChecked(checked);
+                }
+            }
+
+            ToggleSwitch {
                 id: closeOrMinCheckBox
                 Layout.fillWidth: true
 
@@ -245,6 +257,8 @@ SettingsPageBase {
                 UtilsAdapter.setToDefault(Settings.Key.MinimizeOnClose);
                 UtilsAdapter.setToDefault(Settings.Key.LANG);
                 UtilsAdapter.setToDefault(Settings.Key.EnableExperimentalSwarm);
+                UtilsAdapter.setToDefault(Settings.Key.DonateDate);
+                enableDonation.checked = Qt.binding(() => new Date(Date.parse(new Date(2998, 1, 1, 0, 0, 0, 0).toISOString().slice(0, 16).replace("T", " "))) >= new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonateDate))));
             }
         }
     }
