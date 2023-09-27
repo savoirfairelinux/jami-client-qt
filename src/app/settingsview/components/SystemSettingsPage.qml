@@ -49,10 +49,12 @@ SettingsPageBase {
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
-        ColumnLayout {
+        Column {
             id: enableAccount
 
             width: parent.width
+
+            spacing: 10
 
             FolderDialog {
                 id: downloadPathDialog
@@ -71,7 +73,7 @@ SettingsPageBase {
 
             ToggleSwitch {
                 id: notificationCheckBox
-                Layout.fillWidth: true
+                width: parent.width
 
                 checked: UtilsAdapter.getAppValue(Settings.EnableNotifications)
                 labelText: JamiStrings.showNotifications
@@ -80,8 +82,18 @@ SettingsPageBase {
             }
 
             ToggleSwitch {
+                id: enableDonation
+                width: parent.width
+
+                checked: UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible)
+                labelText: JamiStrings.enableDonation
+                tooltipText: JamiStrings.enableDonation
+                onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.IsDonationVisible, checked)
+            }
+
+            ToggleSwitch {
                 id: closeOrMinCheckBox
-                Layout.fillWidth: true
+                width: parent.width
 
                 visible: UtilsAdapter.isSystemTrayIconVisible()
                 checked: UtilsAdapter.getAppValue(Settings.MinimizeOnClose) && UtilsAdapter.isSystemTrayIconVisible()
@@ -91,7 +103,7 @@ SettingsPageBase {
 
             ToggleSwitch {
                 id: applicationOnStartUpCheckBox
-                Layout.fillWidth: true
+                width: parent.width
 
                 checked: UtilsAdapter.checkStartupLink()
                 labelText: JamiStrings.runStartup
@@ -100,8 +112,8 @@ SettingsPageBase {
             }
 
             RowLayout {
-                Layout.fillWidth: true
-                Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                width: parent.width
+                height: JamiTheme.preferredFieldHeight
 
                 Text {
                     Layout.fillWidth: true
@@ -138,8 +150,8 @@ SettingsPageBase {
             SettingsComboBox {
                 id: langComboBoxSetting
 
-                Layout.fillWidth: true
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                width: parent.width
+                height: JamiTheme.preferredFieldHeight
 
                 labelText: JamiStrings.language
                 tipText: JamiStrings.language
@@ -245,6 +257,9 @@ SettingsPageBase {
                 UtilsAdapter.setToDefault(Settings.Key.MinimizeOnClose);
                 UtilsAdapter.setToDefault(Settings.Key.LANG);
                 UtilsAdapter.setToDefault(Settings.Key.EnableExperimentalSwarm);
+                UtilsAdapter.setToDefault(Settings.Key.IsDonationVisible);
+                UtilsAdapter.setToDefault(Settings.Key.DonationVisibleDate);
+                enableDonation.checked = Qt.binding(() => UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible));
             }
         }
     }
