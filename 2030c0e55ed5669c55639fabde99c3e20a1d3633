@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "182dbc6c_379dfb5e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-27T19:19:58Z",
+      "side": 1,
+      "message": "if enable_libwrap is not specified",
+      "range": {
+        "startLine": 7,
+        "startChar": 28,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "2030c0e55ed5669c55639fabde99c3e20a1d3633",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
