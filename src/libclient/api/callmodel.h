@@ -95,6 +95,19 @@ public:
                   const QString& source,
                   MediaRequestType type,
                   bool mute = false);
+
+    /**
+     * get list of proposed medias
+     * @param callId
+     * @param source        Of the media
+     * @param type          Audio/video
+     * @param mute
+     * @note For now, we only support video, as multistream only supports video in the daemon
+     */
+    VectorMapStringString getProposed(const QString& callId,
+                                      const QString& source,
+                                      MediaRequestType type,
+                                      bool mute);
     /**
      * Mute a media
      * @param callId
