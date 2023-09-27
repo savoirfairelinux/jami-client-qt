@@ -39,8 +39,6 @@ Item {
 
     property real contentWidth: welcomeInfo.width - 2 * JamiTheme.mainViewMargin
 
-
-
     function getHeight() {
         return bgRect.height;
     }
@@ -59,18 +57,8 @@ Item {
             spacing: 0
 
             Loader {
-                id: loader_welcomeTitle
-                Layout.alignment: Qt.AlignHCenter
-                Layout.preferredHeight: item ? item.contentHeight : 0
-                Layout.topMargin: JamiTheme.mainViewMargin / 2
-                Layout.bottomMargin: loader_identifierDescription.item ? JamiTheme.mainViewMargin - 15 : 0
-                sourceComponent: welcomeInfo.hasTitle ? component_welcomeTitle : undefined
-            }
-
-            Loader {
                 id: loader_identifierDescription
                 Layout.alignment: Qt.AlignHCenter
-                Layout.preferredWidth: contentWidth
                 Layout.preferredHeight: item ? item.contentHeight : 0
                 Layout.bottomMargin: loader_bottomIdentifier.item ? JamiTheme.mainViewMargin - 10 : 0
                 sourceComponent: {
@@ -93,7 +81,6 @@ Item {
                 sourceComponent: JamiIdentifier {
                     backgroundColor: welcomeInfo.idColor
                     contentColor: contentIdColor
-
                 }
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: active ? item.getHeight() : 0
