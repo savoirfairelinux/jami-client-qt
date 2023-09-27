@@ -200,11 +200,10 @@ AvAdapter::shareFile(const QString& filePath)
                               &lrc::api::AVModel::fileOpened,
                               this,
                               [this, callId, filePath](bool hasAudio, bool hasVideo) {
-                                  // TODO: check audio while adding file sharing
-                                  Q_UNUSED(hasAudio);
-                                  if (hasVideo) {
+                                  // TODO: allow audio only sharing
+                                  if (hasVideo) { // only start sharing if video is available
                                       lrcInstance_->getCurrentCallModel()
-                                          ->addMedia(callId, filePath, lrc::api::CallModel::MediaRequestType::FILESHARING);
+                                          ->addMedia(callId, filePath, lrc::api::CallModel::MediaRequestType::FILESHARING, false, hasAudio);
                                   }
                               });
 
