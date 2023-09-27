@@ -72,7 +72,45 @@ Item {
     }
 
     function isDonationBannerVisible() {
-        // The banner is visible if the current date is after the date set in the settings
-        return new Date() > new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonateVisibleDate)));
+        // The banner is visible if the current date is after the date set in the settings and before the end date
+        // And if the donation toggle is checked
+        var isDonationVisible = UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible);
+        var endDonationDate = new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonationEndDate)));
+        var donationVisibleDate = new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonationVisibleDate)));
+        return new Date() < endDonationDate && new Date() > donationVisibleDate && isDonationVisible;
+    }
+
+    function isDonationToggleChecked() {
+        var isDonationVisible = UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible);
+        return isDonationVisible;
+    }
+
+    function setDonationToggleChecked() {
+        var isDonationVisible = UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible);
+        if (isDonationVisible) {
+            UtilsAdapter.setAppValue(Settings.Key.IsDonationVisible, false);
+        } else {
+            UtilsAdapter.setAppValue(Settings.Key.IsDonationVisible, true);
+        }
+    }
+
+    function isDonationToggleChecked() {
+        // Desactivate the donation = set the date to 2999-01-01
+        // If the date is after 2998-01-01, the donation is desactivated
+        var date2998 = new Date(Date.parse(new Date(2998, 1, 1, 0, 0, 0, 0).toISOString().slice(0, 16).replace("T", " ")));
+        var donationVisibleDate = new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonateVisibleDate)));
+        return date2998 >= donationVisibleDate;
+    }
+
+    function setDonationToggleChecked(checked) {
+        if (checked) {
+            // Activate the donation = set the date to yesterday
+            var yesterday = new Date(new Date().getTime() - 24 * 60 * 60 * 1000).toISOString().slice(0, 16).replace("T", " ");
+            return UtilsAdapter.setAppValue(Settings.Key.DonateVisibleDate, yesterday);
+        } else {
+            // Desactivate the donation = set the date to 2999-01-01
+            var date2999 = new Date(2999, 1, 1, 0, 0, 0, 0).toISOString().slice(0, 16).replace("T", " ");
+            return UtilsAdapter.setAppValue(Settings.Key.DonateVisibleDate, date2999);
+        }
     }
 }
