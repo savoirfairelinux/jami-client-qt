@@ -20,6 +20,7 @@
 pragma Singleton
 import QtQuick
 import net.jami.Adapters 1.1
+import net.jami.Enums 1.1
 
 Item {
     property string qmlFilePrefix: "file:/"
@@ -68,5 +69,10 @@ Item {
 
     function clamp(val, min, max) {
         return Math.min(Math.max(val, min), max);
+    }
+
+    function isDonationBannerVisible() {
+        // The banner is visible if the current date is after the date set in the settings
+        return new Date() > new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonateVisibleDate)));
     }
 }
