@@ -543,7 +543,7 @@ Item {
     property real welcomeGridWidth: 3 * JamiTheme.tipBoxWidth + 2 * JamiTheme.welcomePageSpacing
     property real welcomeHalfGridWidth: (welcomeGridWidth - JamiTheme.welcomePageSpacing) / 2
     property real welcomeShortGridWidth: 2 * JamiTheme.tipBoxWidth + JamiTheme.welcomePageSpacing
-    readonly property string welcomeBg: darkTheme ? JamiResources.bg_darkmode_id_jami_png : JamiResources.bg_lightmode_id_jami_png
+    readonly property string welcomeBg: darkTheme ? JamiResources.background_don_dark_png : JamiResources.background_don_white_png
     property color welcomeBlockColor: darkTheme ? "#4D000000" : "#4DFFFFFF"
 
     // WizardView Advanced Account Settings
@@ -656,6 +656,11 @@ Item {
     property color darkThemeBackgroundColor: JamiTheme.darkTheme ? JamiTheme.blackColor : JamiTheme.bgDarkMode_
     property color darkThemeCheckedColor: "#03B9E9"
     property color darkThemeBorderColor: "#03B9E9"
+
+    // Donation campaign
+    property color donationButtonTextColor: "#005699"
+    property color donationBackgroundColor: "#D5E4EF"
+    property string donationUrl: "https://jami.net/donate/"
 
     function setTheme(dark) {
         darkTheme = dark;
