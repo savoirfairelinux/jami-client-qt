@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2e023d2_16c26493",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-28T15:49:24Z",
+      "side": 1,
+      "message": "what does this mean? if it is the last time a donation prompt was ignored, then the setting name should reflect that e.g. DonateIgnoreDate",
+      "range": {
+        "startLine": 66,
+        "startChar": 6,
+        "endLine": 66,
+        "endChar": 16
+      },
+      "revId": "f90d295a3e65bcc0847815c26395d5738e0a5abb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84375c26_414c3a49",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-28T15:49:24Z",
+      "side": 1,
+      "message": "missing header",
+      "revId": "f90d295a3e65bcc0847815c26395d5738e0a5abb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cff8a083_d95d3118",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-28T15:49:24Z",
+      "side": 1,
+      "message": "this logic isn\u0027t clear, nor is it commented\nseems like visible will be true if we are any time after the donate date",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 89
+      },
+      "revId": "f90d295a3e65bcc0847815c26395d5738e0a5abb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1aaf3be_c32abdef",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-28T15:49:24Z",
+      "side": 1,
+      "message": "these are repeated calculations. avoid that",
+      "range": {
+        "startLine": 182,
+        "startChar": 12,
+        "endLine": 185,
+        "endChar": 13
+      },
+      "revId": "f90d295a3e65bcc0847815c26395d5738e0a5abb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
