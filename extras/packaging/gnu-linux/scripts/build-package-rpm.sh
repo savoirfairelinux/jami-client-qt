@@ -46,7 +46,7 @@ CMAKE_PREFIX_PATH="${QT_JAMI_PREFIX}/lib/cmake:${CMAKE_PREFIX_PATH}"
 QT_MAJOR=6
 QT_MINOR=4
 QT_PATCH=3
-QT_RELEASE_PATCH=2
+QT_RELEASE_PATCH=7
 
 QT_MAJOR_MINOR=${QT_MAJOR}.${QT_MINOR}
 QT_MAJOR_MINOR_PATCH=${QT_MAJOR}.${QT_MINOR}.${QT_PATCH}
@@ -117,6 +117,8 @@ if [ ! -f "${RPM_PATH}" ]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc37.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_38" ]]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc38.x86_64.rpm "${RPM_PATH}"
+        elif [[ "${DISTRIBUTION}" == "alma_9" ]]; then
+            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-7.el9.x86_64.rpm "${RPM_PATH}"
         else
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-*.rpm "${RPM_PATH}"
         fi
