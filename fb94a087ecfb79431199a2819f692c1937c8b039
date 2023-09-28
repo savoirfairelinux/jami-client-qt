@@ -187,6 +187,30 @@
       },
       "revId": "fb94a087ecfb79431199a2819f692c1937c8b039",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ced36e49_738c8810",
+        "filename": "src/app/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-28T05:35:49Z",
+      "side": 1,
+      "message": "Yeah forget that. The solution is ugly. I prefer yours",
+      "parentUuid": "d68422e8_eacda32c",
+      "range": {
+        "startLine": 354,
+        "startChar": 33,
+        "endLine": 356,
+        "endChar": 130
+      },
+      "revId": "fb94a087ecfb79431199a2819f692c1937c8b039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
