@@ -171,6 +171,7 @@ DISTRIBUTIONS := \
 	fedora_37 \
 	fedora_38 \
 	fedora_39 \
+	alma_9 \
 	opensuse-leap_15.4 \
 	snap
 
