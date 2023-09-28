@@ -272,7 +272,7 @@ function package()
 {
     if [[ $DISTRIBUTION =~ debian|ubuntu|raspbian|guix-deb-pack ]]; then
         package_deb
-    elif [[ $DISTRIBUTION =~ fedora|rhel|opensuse|guix-rpm-pack ]]; then
+    elif [[ $DISTRIBUTION =~ alma|fedora|rhel|opensuse|guix-rpm-pack ]]; then
         package_rpm
     elif [[ $DISTRIBUTION =~ snap ]]; then
         package_snap
