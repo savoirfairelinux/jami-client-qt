@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48fb0668_70ef7482",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-28T16:27:06Z",
+      "side": 1,
+      "message": "as discussed",
+      "range": {
+        "startLine": 88,
+        "startChar": 15,
+        "endLine": 97,
+        "endChar": 17
+      },
+      "revId": "b0f856289ea2f6dde49bcc6f64f81ced32ef1694",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
