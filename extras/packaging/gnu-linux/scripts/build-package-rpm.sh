@@ -113,6 +113,8 @@ if [ ! -f "${RPM_PATH}" ]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc38.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_39" ]]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc39.x86_64.rpm "${RPM_PATH}"
+        elif [[ "${DISTRIBUTION}" == "alma_9" ]]; then
+            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-7.el9.x86_64.rpm "${RPM_PATH}"
         else
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-*.rpm "${RPM_PATH}"
         fi
