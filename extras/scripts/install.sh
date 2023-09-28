@@ -125,6 +125,8 @@ else
       if [[ "$OSTYPE" != "darwin"* ]]; then
         CONFIGURE_FLAGS+=" --disable-shared"
       fi
+    else
+        CONFIGURE_FLAGS+=" --without-dbus"
     fi
 
     BUILD_TYPE="Release"
