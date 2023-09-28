@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0abfe319_43652f89",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-28T14:09:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74dab5e9_89d88bb7",
+      "range": {
+        "startLine": 579,
+        "startChar": 20,
+        "endLine": 579,
+        "endChar": 40
+      },
+      "revId": "2449f46e91e90e0cc62258c478f41de1a94f384a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea853ea6_4f8412db",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-27T18:02:12Z",
       "side": 1,
       "message": "Can be simplified a bit:\n\n        auto [type, identifier] \u003d getIndexFromID(id);\nand only get one if for type \u003d\u003d QrType::Account\n\nIt will aovid a if/else condition",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 16
+      },
+      "revId": "2449f46e91e90e0cc62258c478f41de1a94f384a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89b36bf8_cda6a38b",
+        "filename": "src/app/qrimageprovider.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-09-28T14:09:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea853ea6_4f8412db",
       "range": {
         "startLine": 80,
         "startChar": 8,
