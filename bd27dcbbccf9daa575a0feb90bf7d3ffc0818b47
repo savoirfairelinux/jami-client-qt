@@ -22,6 +22,30 @@
       },
       "revId": "bd27dcbbccf9daa575a0feb90bf7d3ffc0818b47",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93bac08e_8f93133b",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-09-28T17:34:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "536f93c9_3401e6ce",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "bd27dcbbccf9daa575a0feb90bf7d3ffc0818b47",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
