@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74230b4c_3f38bfee",
+        "filename": "src/app/constant/JamiQmlUtils.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-28T19:24:49Z",
+      "side": 1,
+      "message": "we don\u0027t need all this",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 26
+      },
+      "revId": "f4af1d254d6b28b4d562b7de5f7a496d89ad9438",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f32aa08_3a653ada",
+        "filename": "src/app/constant/JamiQmlUtils.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-09-28T19:24:49Z",
+      "side": 1,
+      "message": "clean, clarify, format",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 5
+      },
+      "revId": "f4af1d254d6b28b4d562b7de5f7a496d89ad9438",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
