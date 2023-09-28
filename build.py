@@ -44,7 +44,7 @@ APT_BASED_DISTROS = [
 ]
 
 DNF_BASED_DISTROS = [
-    'fedora', 'rhel',
+    'fedora', 'rhel', 'almalinux',
 ]
 
 PACMAN_BASED_DISTROS = [
