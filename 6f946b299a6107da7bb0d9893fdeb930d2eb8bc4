@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aabf339d_9402a7ec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-09-29T18:08:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f4c526f_cbe527f0",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca72807a_59b94662",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-29T08:28:27Z",
       "side": 1,
       "message": "only 2023",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3157f4c_606c6891",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-09-29T18:08:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca72807a_59b94662",
       "range": {
         "startLine": 2,
         "startChar": 17,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e003b19_bccc935b",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-09-29T18:08:33Z",
+      "side": 1,
+      "message": "i just copy another tipbox so ig",
+      "parentUuid": "f40122bc_6d87b522",
+      "range": {
+        "startLine": 18,
+        "startChar": 15,
+        "endLine": 18,
+        "endChar": 23
+      },
+      "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e79337d_6cc74da9",
         "filename": "src/app/mainview/components/DonationTipBox.qml",
         "patchSetId": 7
@@ -83,6 +155,24 @@
       "writtenOn": "2023-09-29T08:28:27Z",
       "side": 1,
       "message": "remove",
+      "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b1e5ee7_6ea636fa",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-09-29T18:08:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e79337d_6cc74da9",
       "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -100,6 +190,30 @@
       "writtenOn": "2023-09-29T08:28:27Z",
       "side": 1,
       "message": "added in another patch, I guess it should be added there",
+      "range": {
+        "startLine": 74,
+        "startChar": 34,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "346c95bd_0fa05a5a",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-09-29T18:08:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be4ed9e3_546e9ca8",
       "range": {
         "startLine": 74,
         "startChar": 34,
