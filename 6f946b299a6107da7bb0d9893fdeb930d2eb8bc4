@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f4c526f_cbe527f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-29T08:28:27Z",
+      "side": 1,
+      "message": "missing GitLab ticket",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca72807a_59b94662",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-29T08:28:27Z",
+      "side": 1,
+      "message": "only 2023",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f40122bc_6d87b522",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-29T08:28:27Z",
+      "side": 1,
+      "message": "all used?",
+      "range": {
+        "startLine": 18,
+        "startChar": 15,
+        "endLine": 18,
+        "endChar": 23
+      },
+      "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e79337d_6cc74da9",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-29T08:28:27Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be4ed9e3_546e9ca8",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-29T08:28:27Z",
+      "side": 1,
+      "message": "added in another patch, I guess it should be added there",
+      "range": {
+        "startLine": 74,
+        "startChar": 34,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
