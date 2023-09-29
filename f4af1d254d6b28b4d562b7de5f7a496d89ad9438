@@ -91,6 +91,52 @@
       },
       "revId": "f4af1d254d6b28b4d562b7de5f7a496d89ad9438",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "108c3456_e48b352a",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-29T09:22:02Z",
+      "side": 1,
+      "message": "missing TODO",
+      "range": {
+        "startLine": 113,
+        "startChar": 27,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "f4af1d254d6b28b4d562b7de5f7a496d89ad9438",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c744f593_61acf6c7",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-29T09:22:02Z",
+      "side": 1,
+      "message": "qrc:/mainview/components/DonationBanner.qml:115: Error: binding(): argument (binding expression) must be a function",
+      "range": {
+        "startLine": 115,
+        "startChar": 54,
+        "endLine": 115,
+        "endChar": 61
+      },
+      "revId": "f4af1d254d6b28b4d562b7de5f7a496d89ad9438",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
