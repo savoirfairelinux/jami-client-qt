@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a450f3d_0c507a4b",
+        "filename": "src/app/mainview/components/WelcomeInfo.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-09-29T08:34:52Z",
+      "side": 0,
+      "message": "This is breaking white labelling if a custom title is specified",
+      "range": {
+        "startLine": 62,
+        "startChar": 20,
+        "endLine": 62,
+        "endChar": 39
+      },
+      "revId": "f4af1d254d6b28b4d562b7de5f7a496d89ad9438",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
