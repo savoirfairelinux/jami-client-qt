@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc232cf9_8af0edf1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-02T21:55:45Z",
+      "side": 1,
+      "message": "at least one scenario when invoking the call screen may trigger a maximized details panel also",
+      "revId": "0a3030cfc356ac81b2cf5272e0aa2db9bc4e38e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
