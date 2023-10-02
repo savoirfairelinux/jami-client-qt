@@ -21,24 +21,46 @@ import net.jami.Adapters 1.1
 StackLayout {
     id: root
 
+    // We need to set the currentIndex to -1 to make sure the
+    // panel is closed when the application starts.
+    Component.onCompleted: closePanel()
+
+    // The index of the tab in the swarm details panel.
     property int detailsIndex: -1
+
+    // Best to avoid using the visible property directly.
+    // Pass through the following open/close wrappers instead.
+    function openPanel(panel) {
+        currentIndex = panel;
+        visible = true;
+    }
+
+    function closePanel() {
+        currentIndex = -1;
+        visible = false;
+    }
 
     function isOpen(panel) {
         return visible && currentIndex === panel;
     }
 
-    visible: currentIndex > -1
-
-    property bool detailsShouldOpen: false
-    onVisibleChanged: if (visible)
-        detailsShouldOpen = true
-
-    function restoreState() {
-        // Only applies to Jami accounts, and we musn't be in a call.
-        if (detailsShouldOpen && !inCallView && !CurrentConversation.needsSyncing && !CurrentConversation.isRequest) {
-            switchToPanel(ChatView.SwarmDetailsPanel, false);
+    // This will open the details panel if it's not already visible.
+    // Additionally, `toggle` being true (default) will close the panel
+    // if it is already open to `panel`.
+    function switchToPanel(panel, toggle = true) {
+        console.debug("switchToPanel: %1, toggle: %2".arg(panel).arg(toggle));
+        if (visible) {
+            // We need to close the panel if it's open and we're switching to
+            // the same panel.
+            if (toggle && currentIndex === panel) {
+                // Toggle off.
+                closePanel();
+            } else {
+                // Switch to the new panel.
+                openPanel(panel);
+            }
         } else {
-            closePanel();
+            openPanel(panel);
         }
     }
 
@@ -54,24 +76,6 @@ StackLayout {
         }
     }
 
-    // This will open the details panel if it's not already visible.
-    // Additionally, `toggle` being true (default) will close the panel
-    // if it is already open to `panel`.
-    function switchToPanel(panel, toggle = true) {
-        if (visible && toggle && currentIndex === panel) {
-            closePanel();
-        } else {
-            currentIndex = panel;
-        }
-    }
-
-    function closePanel() {
-        // We need to close the panel, but not save it when appropriate.
-        currentIndex = -1;
-        if (!inCallView)
-            detailsShouldOpen = false;
-    }
-
     SwarmDetailsPanel {
         id: detailsPanel
 
@@ -81,8 +85,6 @@ StackLayout {
         // Save it when it changes.
         onTabBarIndexChanged: root.detailsIndex = tabBarIndex
     }
-    MessagesResearchPanel {
-    }
-    AddMemberPanel {
-    }
+    MessagesResearchPanel {}
+    AddMemberPanel {}
 }

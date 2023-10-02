@@ -19,6 +19,7 @@ import QtQuick.Controls
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
+// A SplitView that supports dynamic RTL and splitView state saving.
 SplitView {
     id: root
 
