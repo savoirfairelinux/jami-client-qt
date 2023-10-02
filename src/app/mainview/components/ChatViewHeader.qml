@@ -23,16 +23,14 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
+
 import "../../commoncomponents"
 
 Rectangle {
     id: root
 
     signal backClicked
-    signal addToConversationClicked
     signal pluginSelector
-    signal showDetailsClicked
-    signal searchClicked
 
     Connections {
         target: CurrentConversation
@@ -44,7 +42,7 @@ Rectangle {
             description.eText = CurrentConversation.description;
         }
         function onShowSwarmDetails() {
-            root.showDetailsClicked();
+            extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel);
         }
     }
 
@@ -60,11 +58,10 @@ Rectangle {
         return true;
     }
 
-    property bool addParticipantOpened: false
-    property bool swarmDetailsOpened: false
-
     property bool addMemberVisibility: {
-        return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.isRequest;
+        return swarmDetailsVisibility
+                && !CurrentConversation.isCoreDialog
+                && !CurrentConversation.isRequest;
     }
 
     property bool swarmDetailsVisibility: {
@@ -171,9 +168,7 @@ Rectangle {
                 MessagesAdapter.searchbarPrompt = text;
             }
 
-            onSearchClicked: {
-                root.searchClicked();
-            }
+            onSearchClicked: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
 
             Shortcut {
                 sequence: "Ctrl+Shift+F"
@@ -209,12 +204,12 @@ Rectangle {
             id: addParticipantsButton
 
             checkable: true
-            checked: root.addParticipantOpened
+            checked: extrasPanel.isOpen(ChatView.AddMemberPanel)
             visible: interactionButtonsVisibility && addMemberVisibility
             source: JamiResources.add_people_24dp_svg
             toolTipText: JamiStrings.addParticipants
 
-            onClicked: addToConversationClicked()
+            onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
         }
 
         JamiPushButton {
@@ -241,12 +236,12 @@ Rectangle {
             id: detailsButton
 
             checkable: true
-            checked: root.swarmDetailsOpened
+            checked: extrasPanel.isOpen(ChatView.SwarmDetailsPanel)
             visible: interactionButtonsVisibility && (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP) // TODO if SIP not a request
             source: JamiResources.swarm_details_panel_svg
             toolTipText: JamiStrings.details
 
-            onClicked: showDetailsClicked()
+            onClicked: extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel)
         }
     }
 
