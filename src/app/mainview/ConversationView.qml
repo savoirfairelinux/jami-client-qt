@@ -32,6 +32,9 @@ ListSelectionView {
     splitViewStateKey: "Main"
     hasValidSelection: CurrentConversation.id !== ''
 
+    visible: false
+    onPresented: visible = true
+
     Connections {
         target: CurrentConversation
         function onReloadInteractions() {
@@ -75,7 +78,7 @@ ListSelectionView {
                 anchors.fill: parent
                 inCallView: parent == callStackView.chatViewContainer
 
-                property string currentConvId: CurrentConversation.id
+                readonly property string currentConvId: CurrentConversation.id
                 onCurrentConvIdChanged: {
                     if (!CurrentConversation.hasCall) {
                         Qt.callLater(focusChatView);
@@ -86,7 +89,7 @@ ListSelectionView {
                 }
 
                 onDismiss: {
-                    if (parent == chatViewContainer) {
+                    if (!inCallView) {
                         viewNode.dismiss();
                     } else {
                         callStackView.chatViewContainer.visible = false;
@@ -94,13 +97,14 @@ ListSelectionView {
                     }
                 }
 
+                // Handle visibility change for the in-call chat only.
                 onVisibleChanged: {
-                    if (!inCallView)
-                        return;
-                    if (visible && !parent.showDetails) {
-                        focusChatView();
-                    } else {
-                        callStackView.contentView.forceActiveFocus();
+                    if (inCallView) {
+                        if (visible) {
+                            focusChatView();
+                        } else {
+                            callStackView.contentView.forceActiveFocus();
+                        }
                     }
                 }
             }
