@@ -68,6 +68,7 @@ SplitView {
     }
 
     handle: Rectangle {
+        visible: !isSinglePane
         implicitWidth: JamiTheme.splitViewHandlePreferredWidth
         implicitHeight: root.height
         color: JamiTheme.primaryBackgroundColor
