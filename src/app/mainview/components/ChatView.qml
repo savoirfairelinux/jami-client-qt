@@ -327,7 +327,12 @@ Rectangle {
                 SplitView.minimumWidth: JamiTheme.extrasPanelMinWidth
                 SplitView.preferredWidth: JamiTheme.extrasPanelMinWidth
 
-                onVisibleChanged: chatViewSplitView.resolvePanes(true)
+                onVisibleChanged: {
+                    if (!visible) {
+                        width = previousWidth;
+                    }
+                    chatViewSplitView.resolvePanes(true)
+                }
             }
         }
     }
