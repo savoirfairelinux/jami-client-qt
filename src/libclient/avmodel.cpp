@@ -795,6 +795,41 @@ AVModel::useDirectRenderer() const
 #endif
 }
 
+QString AVModel::createMediaPlayer(const QString& resource)
+{
+    return VideoManager::instance().createMediaPlayer(resource);
+}
+
+bool AVModel::pausePlayer(const QString& id, bool pause)
+{
+    return VideoManager::instance().pausePlayer(id, pause);
+}
+
+bool AVModel::mutePlayerAudio(const QString& id, bool mute)
+{
+    return VideoManager::instance().mutePlayerAudio(id, mute);
+}
+
+bool AVModel::playerSeekToTime(const QString& id, int time)
+{
+    return VideoManager::instance().playerSeekToTime(id, time);
+}
+
+qint64 AVModel::getPlayerPosition(const QString& id)
+{
+    return VideoManager::instance().getPlayerPosition(id);
+}
+
+qint64 AVModel::getPlayerDuration(const QString& id)
+{
+    return VideoManager::instance().getPlayerDuration(id);
+}
+
+void AVModel::setAutoRestart(const QString& id, bool restart)
+{
+    VideoManager::instance().setAutoRestart(id, restart);
+}
+
 AVModelPimpl::AVModelPimpl(AVModel& linked, const CallbacksHandler& callbacksHandler)
     : callbacksHandler(callbacksHandler)
     , linked_(linked)
@@ -825,6 +860,17 @@ AVModelPimpl::AVModelPimpl(AVModel& linked, const CallbacksHandler& callbacksHan
             this,
             &AVModelPimpl::onDecodingStopped,
             Qt::DirectConnection);
+
+    // Media player connection
+    connect(&callbacksHandler,
+            &CallbacksHandler::fileOpened,
+            this,
+            [this](const QString& path, MapStringString info) {
+                Q_UNUSED(path);
+                bool hasAudio = info["audio_stream"].toInt() >= 0;
+                bool hasVideo = info["video_stream"].toInt() >= 0;
+                Q_EMIT linked_.fileOpened(hasAudio, hasVideo);
+            });
 
     auto startedPreview = false;
     auto restartRenderers = [&](const QStringList& callList) {
