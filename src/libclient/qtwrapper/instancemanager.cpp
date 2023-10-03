@@ -41,6 +41,7 @@ InstanceManagerInterface::InstanceManagerInterface(bool muteDaemon)
 
 #ifdef ENABLE_VIDEO
     using libjami::VideoSignal;
+    using libjami::MediaPlayerSignal;
 #endif
 
 #ifndef MUTE_LIBJAMI
