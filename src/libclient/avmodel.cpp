@@ -795,6 +795,31 @@ AVModel::useDirectRenderer() const
 #endif
 }
 
+bool AVModel::pausePlayer(const QString& id, bool pause)
+{
+    return VideoManager::instance().pausePlayer(id, pause);
+}
+
+bool AVModel::mutePlayerAudio(const QString& id, bool mute)
+{
+    return VideoManager::instance().mutePlayerAudio(id, mute);
+}
+
+bool AVModel::playerSeekToTime(const QString& id, int time)
+{
+    return VideoManager::instance().playerSeekToTime(id, time);
+}
+
+qint64 AVModel::getPlayerPosition(const QString& id)
+{
+    return VideoManager::instance().getPlayerPosition(id);
+}
+
+qint64 AVModel::getPlayerDuration(const QString& id)
+{
+    return VideoManager::instance().getPlayerDuration(id);
+}
+
 AVModelPimpl::AVModelPimpl(AVModel& linked, const CallbacksHandler& callbacksHandler)
     : callbacksHandler(callbacksHandler)
     , linked_(linked)

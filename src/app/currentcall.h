@@ -45,6 +45,8 @@ class CurrentCall final : public QObject
     QML_RO_PROPERTY(QStringList, remoteRecorderNameList)
     QML_RO_PROPERTY(bool, isSharing)
     QML_RO_PROPERTY(QString, sharingSource)
+    QML_PROPERTY(bool, sharingMuted)
+    QML_PROPERTY(bool, sharingPaused)
     QML_RO_PROPERTY(bool, isHandRaised)
     QML_RO_PROPERTY(bool, isConference)
     QML_RO_PROPERTY(bool, isModerator)

@@ -214,6 +214,8 @@ Item {
     property string areRecording: qsTr("are recording")
     property string mute: qsTr("Mute")
     property string unmute: qsTr("Unmute")
+    property string pause: qsTr("Pause")
+    property string play: qsTr("Play")
     property string pauseCall: qsTr("Pause call")
     property string resumeCall: qsTr("Resume call")
     property string muteCamera: qsTr("Mute camera")
