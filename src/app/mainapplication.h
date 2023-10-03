@@ -121,4 +121,6 @@ private:
     QScopedPointer<ImageDownloader> imageDownloader_;
 
     ScreenInfo screenInfo_;
+
+    bool isCleanupped;
 };

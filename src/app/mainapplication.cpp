@@ -401,7 +401,12 @@ MainApplication::initSystray()
 void
 MainApplication::cleanup()
 {
-    QApplication::exit(0);
+    // In Qt 6.5, QApplication::exit(0) will signal aboutToQuit, and aboutToQuit is connected to cleanup
+    // TODO: delete cleanup.
+    if (!isCleanupped) {
+        isCleanupped = true;
+        QApplication::exit(0);
+    }
 }
 
 #ifdef Q_OS_MACOS
