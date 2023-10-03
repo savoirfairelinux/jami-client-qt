@@ -194,11 +194,52 @@ public Q_SLOTS: // METHODS
         return convertMap(libjami::getRenderer(id.toStdString()));
     }
 
+    QString createMediaPlayer(const QString& path)
+    {
+        return QString::fromStdString(libjami::createMediaPlayer(path.toStdString()));
+    }
+
+    bool closeMediaPlayer(const QString& id)
+    {
+        return libjami::closeMediaPlayer(id.toStdString());
+    }
+
+    bool pausePlayer(const QString& id, bool pause)
+    {
+        return libjami::pausePlayer(id.toStdString(), pause);
+    }
+
+    bool mutePlayerAudio(const QString& id, bool mute)
+    {
+        return libjami::mutePlayerAudio(id.toStdString(), mute);
+    }
+
+    bool playerSeekToTime(const QString& id, int time)
+    {
+        return libjami::playerSeekToTime(id.toStdString(), time);
+    }
+
+    qint64 getPlayerPosition(const QString& id)
+    {
+        return libjami::getPlayerPosition(id.toStdString());
+    }
+
+    qint64 getPlayerDuration(const QString& id)
+    {
+        return libjami::getPlayerDuration(id.toStdString());
+    }
+
+    void setAutoRestart(const QString& id, bool restart)
+    {
+        libjami::setAutoRestart(id.toStdString(), restart);
+    }
+
 Q_SIGNALS: // SIGNALS
     void deviceEvent();
     void decodingStarted(
         const QString& id, const QString& shmPath, int width, int height, bool isMixer);
     void decodingStopped(const QString& id, const QString& shmPath, bool isMixer);
+    void fileOpened(const QString& path, const MapStringString& info);
 };
 
 namespace org {
