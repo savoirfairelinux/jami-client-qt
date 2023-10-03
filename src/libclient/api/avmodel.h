@@ -286,6 +286,12 @@ public:
      */
     Q_SLOT void updateRenderersFPSInfo(QString rendererId);
 
+    Q_INVOKABLE bool pausePlayer(const QString& id, bool pause);
+    Q_INVOKABLE bool mutePlayerAudio(const QString& id, bool mute);
+    Q_INVOKABLE bool playerSeekToTime(const QString& id, int time);
+    Q_INVOKABLE qint64 getPlayerPosition(const QString& id);
+    Q_INVOKABLE qint64 getPlayerDuration(const QString& id);
+
 Q_SIGNALS:
     /**
      * Emitted after an update of renderer's fps

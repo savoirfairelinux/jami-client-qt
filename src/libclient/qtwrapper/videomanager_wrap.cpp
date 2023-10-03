@@ -23,6 +23,7 @@ VideoManagerInterface::VideoManagerInterface()
 #ifdef ENABLE_VIDEO
     using libjami::exportable_callback;
     using libjami::VideoSignal;
+    using libjami::MediaPlayerSignal;
     videoHandlers
         = {exportable_callback<VideoSignal::DeviceEvent>([this]() { Q_EMIT deviceEvent(); }),
            exportable_callback<VideoSignal::DecodingStarted>([this](const std::string& id,
