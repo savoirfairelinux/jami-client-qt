@@ -24,6 +24,8 @@
 
 #include "calladapter.h"
 
+#include "pttlistener.h"
+
 #include "systemtray.h"
 #include "utils.h"
 #include "qmlregister.h"
@@ -97,6 +99,67 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
             &LRCInstance::selectedConvUidChanged,
             this,
             &CallAdapter::saveConferenceSubcalls);
+
+#ifdef HAVE_GLOBAL_PTT
+    connectPtt();
+#endif
+}
+
+#ifdef HAVE_GLOBAL_PTT
+CallAdapter::~CallAdapter()
+{
+    disconnectPtt();
+}
+#else
+CallAdapter::~CallAdapter() = default;
+#endif
+
+void
+CallAdapter::connectPtt()
+{
+    if (listener_.getPttState()) {
+        QObject::connect(
+            &listener_,
+            &PTTListener::PTTKeyPressed,
+            this,
+            [this]() {
+                isMicrophoneMuted_ = isMuted();
+                if (isMicrophoneMuted_) {
+                    muteAudioToggle();
+                }
+            },
+            Qt::QueuedConnection);
+
+        QObject::connect(
+            &listener_,
+            &PTTListener::PTTKeyReleased,
+            this,
+            [this]() {
+                if (isMicrophoneMuted_) {
+                    muteAudioToggle();
+                }
+            },
+            Qt::QueuedConnection);
+    }
+}
+
+void CallAdapter::disconnectPtt()
+{
+    if (listener_.getPttState()) {
+        QObject::disconnect(
+            &listener_,
+            &PTTListener::PTTKeyPressed,
+            this,
+            nullptr
+            );
+
+        QObject::disconnect(
+            &listener_,
+            &PTTListener::PTTKeyReleased,
+            this,
+            nullptr
+            );
+    }
 }
 
 void
@@ -172,6 +235,10 @@ CallAdapter::onCallStarted(const QString& callId)
     // update call Information list by adding the new information related to the callId
     callInformationListModel_->addElement(
         qMakePair(callId, callModel->advancedInformationForCallId(callId)));
+    if (listener_.getPttState())
+#ifdef HAVE_GLOBAL_PTT
+        listener_.startListening();
+#endif
 }
 
 void
@@ -181,6 +248,10 @@ CallAdapter::onCallEnded(const QString& callId)
         return;
     // update call Information list by removing information related to the callId
     callInformationListModel_->removeElement(callId);
+#ifdef HAVE_GLOBAL_PTT
+    if (listener_.getPttState())
+        listener_.stopListening();
+#endif
 }
 
 void
@@ -816,6 +887,24 @@ CallAdapter::holdThisCallToggle()
     }
 }
 
+bool
+CallAdapter::isMuted()
+{
+    const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
+                                                                  accountId_);
+    if (!(callId.isEmpty() || !lrcInstance_->getCurrentCallModel()->hasCall(callId))) {
+        auto* callModel = lrcInstance_->getCurrentCallModel();
+        if (callModel->hasCall(callId)) {
+            const auto callInfo = lrcInstance_->getCurrentCallModel()->getCall(callId);
+            auto mute = false;
+            for (const auto& m : callInfo.mediaList)
+                if (m[libjami::Media::MediaAttributeKey::LABEL] == "audio_0")
+                    mute = m[libjami::Media::MediaAttributeKey::MUTED] == TRUE_STR;
+            return mute;
+        }
+    }
+}
+
 void
 CallAdapter::muteAudioToggle()
 {
@@ -825,15 +914,10 @@ CallAdapter::muteAudioToggle()
         return;
     }
     auto* callModel = lrcInstance_->getCurrentCallModel();
-    if (callModel->hasCall(callId)) {
-        const auto callInfo = lrcInstance_->getCurrentCallModel()->getCall(callId);
-        auto mute = false;
-        for (const auto& m : callInfo.mediaList)
-            if (m[libjami::Media::MediaAttributeKey::LABEL] == "audio_0")
-                mute = m[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
-        callModel->muteMedia(callId, "audio_0", mute);
-    }
+    callModel->muteMedia(callId, "audio_0", !isMuted());
 }
+
+
 
 void
 CallAdapter::recordThisCallToggle()
