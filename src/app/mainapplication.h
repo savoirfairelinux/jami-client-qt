@@ -23,6 +23,7 @@
 #include "imagedownloader.h"
 #include "lrcinstance.h"
 #include "qtutils.h"
+#include "pttlistener.h"
 
 #include <QFile>
 #include <QApplication>
@@ -82,17 +83,20 @@ public:
         return runOptions_[opt];
     };
 
-#ifdef Q_OS_MACOS
     Q_INVOKABLE void setEventFilter();
 
     bool eventFilter(QObject* object, QEvent* event)
     {
+#ifdef Q_OS_MACOS
+
         if (event->type() == QEvent::ApplicationActivate) {
             restoreApp();
         }
+
+#endif // Q_OS_MACOS
+
         return QApplication::eventFilter(object, event);
     }
-#endif // Q_OS_MACOS
 
 Q_SIGNALS:
     void closeRequested();
@@ -119,6 +123,8 @@ private:
     QScopedPointer<AppSettingsManager> settingsManager_;
     QScopedPointer<SystemTray> systemTray_;
     QScopedPointer<ImageDownloader> imageDownloader_;
+
+    PTTListener* listener_;
 
     ScreenInfo screenInfo_;
 
