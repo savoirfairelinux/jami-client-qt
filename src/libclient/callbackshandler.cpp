@@ -284,6 +284,11 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             this,
             &CallbacksHandler::deviceEvent,
             Qt::QueuedConnection);
+    connect(&VideoManager::instance(),
+            &VideoManagerInterface::fileOpened,
+            this,
+            &CallbacksHandler::fileOpened,
+            Qt::DirectConnection);
 
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::audioDeviceEvent,

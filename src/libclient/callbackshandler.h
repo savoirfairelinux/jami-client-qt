@@ -296,6 +296,11 @@ Q_SIGNALS:
     void deviceEvent();
 
     /**
+     * Emitted when a media player is opened
+     */
+    void fileOpened(const QString& path, const MapStringString& info);
+
+    /**
      * Emitted when an audio level is plugged or unplugged
      */
     void audioDeviceEvent();
@@ -365,7 +370,6 @@ Q_SIGNALS:
                                         const QString& conversationId,
                                         const MapStringString& preferences);
     void recordingStateChanged(const QString& callId, bool state);
-
     /**
      * Emitted when a conversation receives a new position
      */
