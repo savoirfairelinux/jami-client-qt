@@ -28,11 +28,13 @@ import "../../commoncomponents"
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
+
 SettingsPageBase {
     id: root
 
     property bool isSIP: CurrentAccount.type === Profile.Type.SIP
     property int itemWidth: 132
+    property string key: pttListener.keyToString(pttListener.getCurrentKey())
     title: JamiStrings.callSettingsTitle
 
     function updateAndShowModeratorsSlot() {
@@ -370,6 +372,73 @@ SettingsPageBase {
                         if (checked) {
                             UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, false);
                         }
+                    }
+                }
+            }
+        }
+        ColumnLayout{
+            width: parent.width
+            spacing: 9
+            Text {
+                text: JamiStrings.pushToTalk
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+            }
+            ToggleSwitch {
+                id: pttToggle
+                labelText: JamiStrings.enablePTT
+                checked: UtilsAdapter.getAppValue(Settings.EnablePtt)
+                onSwitchToggled: {
+                    UtilsAdapter.setAppValue(Settings.Key.EnablePtt, checked)
+                }
+            }
+            RowLayout {
+                visible: pttToggle.checked
+                Layout.preferredWidth: parent.width
+
+                Label {
+                    color: JamiTheme.textColor
+                    wrapMode: Text.WordWrap
+                    text: JamiStrings.keyboardShortcut
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+                Label {
+                    id: keyLabel
+                    color: JamiTheme.textColor
+                    wrapMode: Text.WordWrap
+                    text: key
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    background: Rectangle {
+                         id: backgroundRect
+                         anchors.centerIn: parent
+                         width: keyLabel.width + 2 * JamiTheme.preferredMarginSize
+                         height: keyLabel.height + JamiTheme.preferredMarginSize
+                         color: JamiTheme.lightGrey_
+                         border.color: JamiTheme.darkGreyColor
+                         radius: 4
+                    }
+                }
+                MaterialButton {
+                    Layout.alignment: Qt.AlignRight
+                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+                    primary: true
+                    toolTipText: JamiStrings.changeKeyboardShortcut
+                    text: JamiStrings.change
+                    onClicked: {
+                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ChangePttKeyPopup.qml");
+                        dlg.choiceMade.connect(function (chosenKey) {
+                             keyLabel.text = pttListener.keyToString(chosenKey);
+                        });
                     }
                 }
             }
