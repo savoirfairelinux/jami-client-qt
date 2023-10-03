@@ -24,6 +24,8 @@
 
 #include "calladapter.h"
 
+#include "pttlistener.h"
+
 #include "systemtray.h"
 #include "utils.h"
 #include "qmlregister.h"
@@ -97,6 +99,38 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
             &LRCInstance::selectedConvUidChanged,
             this,
             &CallAdapter::saveConferenceSubcalls);
+
+#ifdef HAVE_GLOBAL_PTT
+    connectPtt();
+    qDebug() << "ptt connected";
+#endif
+}
+
+void
+CallAdapter::connectPtt()
+{
+    QObject::connect(
+        &listener_,
+        &PTTListener::PTTKeyPressed,
+        this,
+        [this]() {
+            isMicrophoneMuted_ = isMuted();
+            if (isMicrophoneMuted_) {
+                unMute();
+            }
+        },
+        Qt::QueuedConnection);
+
+    QObject::connect(
+        &listener_,
+        &PTTListener::PTTKeyReleased,
+        this,
+        [this]() {
+            if (isMicrophoneMuted_) {
+                mute();
+            }
+        },
+        Qt::QueuedConnection);
 }
 
 void
@@ -165,6 +199,7 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
 void
 CallAdapter::onCallStarted(const QString& callId)
 {
+    qDebug() << "on call started";
     if (lrcInstance_->get_selectedConvUid().isEmpty())
         return;
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
@@ -172,6 +207,15 @@ CallAdapter::onCallStarted(const QString& callId)
     // update call Information list by adding the new information related to the callId
     callInformationListModel_->addElement(
         qMakePair(callId, callModel->advancedInformationForCallId(callId)));
+    qDebug() << "on call started";
+#ifdef HAVE_GLOBAL_PTT
+    if (listener_.getPttState()) {
+        qDebug() << "before start listening";
+        listener_.startListening();
+    } else
+        qDebug() << "ptt off";
+    qDebug() << "ptt started";
+#endif
 }
 
 void
@@ -181,6 +225,12 @@ CallAdapter::onCallEnded(const QString& callId)
         return;
     // update call Information list by removing information related to the callId
     callInformationListModel_->removeElement(callId);
+    auto* callModel = lrcInstance_->getCurrentCallModel();
+#ifdef HAVE_GLOBAL_PTT
+    if (listener_.getPttState() /*&& !callModel->hasCall(callId)*/)
+        listener_.stopListening();
+    qDebug() << "ptt stopped";
+#endif
 }
 
 void
@@ -832,6 +882,52 @@ CallAdapter::muteAudioToggle()
             if (m[libjami::Media::MediaAttributeKey::LABEL] == "audio_0")
                 mute = m[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
         callModel->muteMedia(callId, "audio_0", mute);
+    }
+}
+
+void
+CallAdapter::mute()
+{
+    const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
+                                                                  accountId_);
+    if (callId.isEmpty() || !lrcInstance_->getCurrentCallModel()->hasCall(callId)) {
+        return;
+    }
+    auto* callModel = lrcInstance_->getCurrentCallModel();
+    if (callModel->hasCall(callId)) {
+        callModel->muteMedia(callId, "audio_0", true);
+    }
+}
+
+void
+CallAdapter::unMute()
+{
+    const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
+                                                                  accountId_);
+    if (callId.isEmpty() || !lrcInstance_->getCurrentCallModel()->hasCall(callId)) {
+        return;
+    }
+    auto* callModel = lrcInstance_->getCurrentCallModel();
+    if (callModel->hasCall(callId)) {
+        callModel->muteMedia(callId, "audio_0", false);
+    }
+}
+
+bool
+CallAdapter::isMuted()
+{
+    const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
+                                                                  accountId_);
+    if (!(callId.isEmpty() || !lrcInstance_->getCurrentCallModel()->hasCall(callId))) {
+        auto* callModel = lrcInstance_->getCurrentCallModel();
+        if (callModel->hasCall(callId)) {
+            const auto callInfo = lrcInstance_->getCurrentCallModel()->getCall(callId);
+            auto mute = false;
+            for (const auto& m : callInfo.mediaList)
+                if (m[libjami::Media::MediaAttributeKey::LABEL] == "audio_0")
+                    mute = m[libjami::Media::MediaAttributeKey::MUTED] == TRUE_STR;
+            return mute;
+        }
     }
 }
 

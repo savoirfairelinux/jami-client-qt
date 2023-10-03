@@ -26,6 +26,7 @@
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "videoprovider.h"
+#include "pttlistener.h"
 
 #include <QAction>
 #include <QCommandLineParser>
@@ -105,7 +106,8 @@ ScreenInfo::onPhysicalDotsPerInchChanged()
 }
 
 MainApplication::MainApplication(int& argc, char** argv)
-    : QApplication(argc, argv), isCleanupped(false)
+    : QApplication(argc, argv)
+    , isCleanupped(false)
 {
     const char* qtVersion = qVersion();
     qInfo() << "Using Qt runtime version:" << qtVersion;
@@ -409,10 +411,8 @@ MainApplication::cleanup()
     }
 }
 
-#ifdef Q_OS_MACOS
 void
 MainApplication::setEventFilter()
 {
     installEventFilter(this);
 }
-#endif

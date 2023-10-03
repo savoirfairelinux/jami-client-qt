@@ -42,7 +42,7 @@ Item {
 
     // DaemonReconnectWindow
     property string reconnectWarn: qsTr("Could not re-connect to the Jami daemon (jamid).\nJami will now quit.")
-    property string reconnectTry: qsTr("Trying to reconnect to the Jami daemon (jamid)…")
+    property string reconnectTry: qsTr("Trying to reconnect to the Jami daeon (jamid)…")
 
     // AboutPopUp
     property string version: qsTr("Version") + (AppVersionManager.isCurrentVersionBeta() ? " (Beta)" : "")
