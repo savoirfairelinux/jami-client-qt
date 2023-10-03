@@ -19,9 +19,13 @@
 
 #include "calloverlaymodel.h"
 
+#include "calladapter.h"
+#include "pttlistener.h"
+
 #include <QEvent>
 #include <QMouseEvent>
 #include <QQuickWindow>
+#include <QKeyEvent>
 
 IndexRangeFilterProxyModel::IndexRangeFilterProxyModel(QAbstractListModel* parent)
     : QSortFilterProxyModel(parent)
@@ -74,10 +78,10 @@ PendingConferenceesListModel::data(const QModelIndex& index, int role) const
     using namespace PendingConferences;
 
     // WARNING: not swarm ready
+    lrc::api::call::Status callStatus;
     QString pendingConferenceeCallId;
     QString pendingConferenceeContactUri;
     ContactModel* contactModel {nullptr};
-    lrc::api::call::Status callStatus;
     try {
         auto callModel = lrcInstance_->getCurrentCallModel();
         auto currentPendingConferenceeInfo = callModel->getPendingConferencees().at(index.row());
@@ -386,6 +390,25 @@ CallOverlayModel::eventFilter(QObject* object, QEvent* event)
             }
         }
     }
+#ifndef HAVE_GLOBAL_PTT
+    Qt::Key pttKey = Qt::Key_Space;
+    else if (event->type() == QEvent::KeyPress)
+    {
+        QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->key() == pttKey && !keyEvent->isAutoRepeat()) {
+            qDebug() << "pressed";
+            Q_EMIT pttKeyPressed();
+        }
+    }
+    else if (event->type() == QEvent::KeyRelease)
+    {
+        QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->key() == pttKey && !keyEvent->isAutoRepeat()) {
+            qDebug() << "released";
+            Q_EMIT pttKeyReleased();
+        }
+    }
+#endif
     return QObject::eventFilter(object, event);
 }
 
