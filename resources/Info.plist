@@ -30,6 +30,10 @@
 	<string>${SPARKLE_URL}</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+        <key>NSAppleEventsUsageDescription</key>
+        <string>Jami requires to monitor global key events for push-to-talk functionality.</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Jami requires to monitor global key events for push-to-talk functionality.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Jami requires to access your camera to make calls and record video</string>
 	<key>NSMicrophoneUsageDescription</key>
