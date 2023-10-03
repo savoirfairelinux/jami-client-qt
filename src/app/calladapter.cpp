@@ -24,6 +24,8 @@
 
 #include "calladapter.h"
 
+#include "pttlistener.h"
+
 #include "systemtray.h"
 #include "utils.h"
 #include "qmlregister.h"
@@ -97,6 +99,32 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
             &LRCInstance::selectedConvUidChanged,
             this,
             &CallAdapter::saveConferenceSubcalls);
+
+#ifdef HAVE_GLOBAL_PTT
+    QObject::connect(
+        &listener_,
+        &PTTListener::PTTKeyPressed,
+        this,
+        [this]() {
+            if (isMuted()) {
+                muteAudioToggle();
+                isMicrophoneMuted_ = false;
+            }
+        },
+        Qt::QueuedConnection);
+
+    QObject::connect(
+        &listener_,
+        &PTTListener::PTTKeyReleased,
+        this,
+        [this]() {
+            if (!isMicrophoneMuted_) {
+                muteAudioToggle();
+                isMicrophoneMuted_ = true;
+            }
+        },
+        Qt::QueuedConnection);
+#endif
 }
 
 void
@@ -172,6 +200,8 @@ CallAdapter::onCallStarted(const QString& callId)
     // update call Information list by adding the new information related to the callId
     callInformationListModel_->addElement(
         qMakePair(callId, callModel->advancedInformationForCallId(callId)));
+    if (listener_.getPttState())
+        listener_.startListening();
 }
 
 void
@@ -181,6 +211,8 @@ CallAdapter::onCallEnded(const QString& callId)
         return;
     // update call Information list by removing information related to the callId
     callInformationListModel_->removeElement(callId);
+    if (listener_.getPttState())
+        listener_.stopListening();
 }
 
 void
@@ -832,6 +864,24 @@ CallAdapter::muteAudioToggle()
             if (m[libjami::Media::MediaAttributeKey::LABEL] == "audio_0")
                 mute = m[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
         callModel->muteMedia(callId, "audio_0", mute);
+    }
+}
+
+bool
+CallAdapter::isMuted()
+{
+    const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
+                                                                  accountId_);
+    if (!(callId.isEmpty() || !lrcInstance_->getCurrentCallModel()->hasCall(callId))) {
+        auto* callModel = lrcInstance_->getCurrentCallModel();
+        if (callModel->hasCall(callId)) {
+            const auto callInfo = lrcInstance_->getCurrentCallModel()->getCall(callId);
+            auto mute = false;
+            for (const auto& m : callInfo.mediaList)
+                if (m[libjami::Media::MediaAttributeKey::LABEL] == "audio_0")
+                    mute = m[libjami::Media::MediaAttributeKey::MUTED] == TRUE_STR;
+            return mute;
+        }
     }
 }
 
