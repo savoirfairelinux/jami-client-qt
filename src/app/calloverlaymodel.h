@@ -36,7 +36,7 @@
 
 namespace CallControl {
 Q_NAMESPACE
-enum Role { ItemAction = Qt::UserRole + 1, UrgentCount, Enabled};
+enum Role { ItemAction = Qt::UserRole + 1, UrgentCount, Enabled };
 Q_ENUM_NS(Role)
 
 struct Item
@@ -142,6 +142,8 @@ public:
 
 Q_SIGNALS:
     void mouseMoved(QQuickItem* item);
+    void pttKeyPressed();
+    void pttKeyReleased();
 
 private Q_SLOTS:
     void setControlRanges();
