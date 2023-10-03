@@ -454,6 +454,8 @@ CallModel::muteMedia(const QString& callId, const QString& label, bool mute)
         return;
 
     auto proposedList = callInfo->mediaList;
+    if (proposedList.isEmpty())
+        return;
     for (auto& media : proposedList)
         if (media[MediaAttributeKey::LABEL] == label)
             media[MediaAttributeKey::MUTED] = mute ? TRUE_STR : FALSE_STR;

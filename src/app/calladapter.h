@@ -25,6 +25,10 @@
 #include "screensaver.h"
 #include "calloverlaymodel.h"
 
+#ifdef HAVE_GLOBAL_PTT
+#include "pttlistener.h"
+#endif
+
 #include <QObject>
 #include <QString>
 #include <QVariant>
@@ -46,7 +50,7 @@ public:
     Q_ENUM(MuteStates)
 
     explicit CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject* parent = nullptr);
-    ~CallAdapter() = default;
+    ~CallAdapter();
 
 public:
     Q_INVOKABLE void startTimerInformation();
@@ -76,6 +80,9 @@ public:
     Q_INVOKABLE void holdThisCallToggle();
     Q_INVOKABLE void recordThisCallToggle();
     Q_INVOKABLE void muteAudioToggle();
+    Q_INVOKABLE bool isMuted(const QString& callId);
+    Q_INVOKABLE void connectPtt();
+    Q_INVOKABLE void disconnectPtt();
     Q_INVOKABLE void muteCameraToggle();
     Q_INVOKABLE bool isRecordingThisCall();
     Q_INVOKABLE void muteParticipant(const QString& accountUri,
@@ -109,6 +116,7 @@ public Q_SLOTS:
     void onCallAddedToConference(const QString& callId, const QString& confId);
     void onCallStarted(const QString& callId);
     void onCallEnded(const QString& callId);
+    void onCallInfosChanged(const QString& accountId, const QString& callId);
 
 private:
     void showNotification(const QString& accountId, const QString& convUid);
@@ -121,6 +129,8 @@ private:
     SystemTray* systemTray_;
     QScopedPointer<CallOverlayModel> overlayModel_;
     VectorString currentConfSubcalls_;
-
     std::unique_ptr<CallInformationListModel> callInformationListModel_;
+
+    PTTListener* listener_ = new PTTListener(systemTray_->getSettingsManager());
+    bool isMicrophoneMuted_ = true;
 };
