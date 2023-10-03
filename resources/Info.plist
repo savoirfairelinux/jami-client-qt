@@ -36,5 +36,7 @@
 	<string>Jami requires to access your microphone to make calls and record audio</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<true/>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>Jami requires to monitor global key events for push-to-talk functionality.</string>
 </dict>
 </plist>
