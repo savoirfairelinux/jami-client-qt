@@ -454,6 +454,8 @@ CallModel::muteMedia(const QString& callId, const QString& label, bool mute)
         return;
 
     auto proposedList = callInfo->mediaList;
+    if (proposedList.isEmpty())
+        return;
     for (auto& media : proposedList)
         if (media[MediaAttributeKey::LABEL] == label)
             media[MediaAttributeKey::MUTED] = mute ? TRUE_STR : FALSE_STR;
@@ -1413,8 +1415,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
         callInfo->mediaList = {};
         calls.emplace(callId, std::move(callInfo));
 
-        if (!(details["CALL_TYPE"] == "1")
-            && !linked.owner.confProperties.allowIncoming
+        if (!(details["CALL_TYPE"] == "1") && !linked.owner.confProperties.allowIncoming
             && linked.owner.profileInfo.type == profile::Type::JAMI) {
             linked.refuse(callId);
             return;
