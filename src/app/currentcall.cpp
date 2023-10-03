@@ -226,6 +226,7 @@ CurrentCall::updateCallInfo()
     bool isAudioMuted {};
     bool isVideoMuted {};
     bool isSharing {};
+    bool sharingMuted {};
     QString sharingSource {};
     bool isCapturing {};
     QString previewId {};
@@ -251,6 +252,8 @@ CurrentCall::updateCallInfo()
                 if (media[MediaAttributeKey::LABEL] == "audio_0") {
                     isAudioMuted |= media[libjami::Media::MediaAttributeKey::MUTED] == TRUE_STR;
                 }
+                if (media[MediaAttributeKey::SOURCE].startsWith(VideoProtocolPrefix::FILE))
+                    sharingMuted = media[MediaAttributeKey::MUTED] == TRUE_STR;
             }
         }
     }
@@ -258,6 +261,7 @@ CurrentCall::updateCallInfo()
     set_isAudioMuted(isAudioMuted);
     set_isVideoMuted(isVideoMuted);
     set_isSharing(isSharing);
+    set_sharingMuted(sharingMuted);
     set_sharingSource(sharingSource);
     set_isCapturing(isCapturing);
     set_isHandRaised(callModel->isHandRaised(id_));
