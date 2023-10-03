@@ -25,7 +25,6 @@ import "../../commoncomponents"
 
 Item {
     id: root
-
     property alias chatViewContainer: ongoingCallPage.chatViewContainer
     property alias contentView: callStackMainView
 
@@ -47,6 +46,16 @@ Item {
             })) {
             CallAdapter.sipInputPanelPlayDTMF(key);
         }
+    }
+
+    Connections {
+            target: CallOverlayModel
+            function onPttKeyPressed() {
+                CallAdapter.muteAudioToggle();
+            }
+            function onPttKeyReleased() {
+                CallAdapter.muteAudioToggle();
+            }
     }
 
     // TODO: this should all be done by listening to
