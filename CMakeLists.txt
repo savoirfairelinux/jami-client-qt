@@ -310,7 +310,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/messageparser.h
   ${APP_SRC_DIR}/htmlparser.h
   ${APP_SRC_DIR}/imagedownloader.h
-  ${APP_SRC_DIR}/pluginversionmanager.h)
+  ${APP_SRC_DIR}/pluginversionmanager.h
+  ${APP_SRC_DIR}/pttlistener.h)
 
 
 # For libavutil/avframe.
@@ -493,6 +494,31 @@ else()
     OPTIONAL_COMPONENTS LinguistTools)
 endif()
 
+list(APPEND SRC_FILES
+    pttlistener.h
+)
+
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    if (DEFINED ENV{XDG_SESSION_TYPE})
+        if ($ENV{XDG_SESSION_TYPE} STREQUAL "x11")
+            set(PTT_PLATFORM "x11")
+        # TODO: add Wayland support
+        endif ()
+    endif ()
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set(PTT_PLATFORM "windows")
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(PTT_PLATFORM "macos")
+endif ()
+
+if (NOT ${PTT_PLATFORM} STREQUAL "")
+    message(STATUS "Platform: ${PTT_PLATFORM}")
+    add_definitions(-DHAVE_GLOBAL_PTT)
+    list(APPEND COMMON_SOURCES ${APP_SRC_DIR}/platform/${PTT_PLATFORM}/pttlistener.cpp)
+else ()
+    message(WARNING "Global push-to-talk not supported.")
+endif ()
+
 # common includes
 include_directories(
   ${PROJECT_SOURCE_DIR}
@@ -593,7 +619,6 @@ elseif (NOT APPLE)
     ${GLIB_LIBRARIES}
     ${GIO_LIBRARIES})
 
-  # Installation rules
   install(
     TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION bin)
