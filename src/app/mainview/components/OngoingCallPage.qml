@@ -200,6 +200,148 @@ Rectangle {
                 y: previewMarginYTop
                 flip: CurrentCall.flipSelf && !CurrentCall.isSharing
 
+                overlayItems: Item {
+                    id: overlayRect
+
+                    anchors.fill: parent
+                    anchors.centerIn: parent
+                    visible: CurrentCall.sharingSource.startsWith("file")
+
+                    onVisibleChanged: {
+                        if (visible) {
+                            progressBar.to = AVModel.getPlayerDuration(CurrentCall.sharingSource);
+                        } else {
+                            seekTimer.stop();
+                            progressBar.to = 0;
+                            progressBar.from = 0;
+                            progressBar.value = 0;
+                            CurrentCall.sharingPaused = true;
+                            CurrentCall.sharingMuted = false;
+                        }
+                    }
+
+                    Rectangle {
+                        anchors.bottom: parent.bottom
+                        width: parent.width
+                        height: parent.height / 4
+                        color: "transparent"
+
+                        HoverHandler {
+                            id: mediaHover
+                        }
+
+                        RowLayout {
+                            id: mediaControls
+                            anchors.fill: parent
+                            PushButton {
+                                id: pauseBtn
+                                toolTipText: CurrentCall.sharingPaused ? JamiStrings.play : JamiStrings.pause
+                                source: CurrentCall.sharingPaused ? JamiResources.play_circle_outline_24dp_svg : JamiResources.pause_circle_outline_24dp_svg
+                                onClicked: {
+                                    CurrentCall.sharingPaused = !CurrentCall.sharingPaused
+                                    AVModel.pausePlayer(CurrentCall.sharingSource, CurrentCall.sharingPaused)
+                                    if (CurrentCall.sharingPaused) {
+                                        seekTimer.stop();
+                                    } else {
+                                        seekTimer.restart();
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                id: seekBar
+                                // Timer to fetch seek position
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: parent.height
+                                color: "transparent"
+
+                                Slider {
+                                    id: progressBar
+                                    anchors.fill: parent
+                                    handle.height: 10
+                                    live: false
+
+                                    onPressedChanged: {
+                                        if (!pressed) {
+                                            AVModel.playerSeekToTime(CurrentCall.sharingSource, progressBar.value)
+                                        }
+                                    }
+                                }
+
+                                Timer {
+                                    id: seekTimer
+                                    interval: 1000
+                                    onTriggered: {
+                                        if (progressBar.pressed)
+                                            seekTimer.restart();
+
+                                        if (CurrentCall.sharingPaused) {
+                                            seekTimer.stop();
+                                            return;
+                                        }
+                                        if (progressBar.from == 0) {
+                                            progressBar.from = AVModel.getPlayerPosition(CurrentCall.sharingSource);
+                                        }
+                                        if (progressBar.to == 0) {
+                                            progressBar.to = AVModel.getPlayerDuration(CurrentCall.sharingSource);
+                                        }
+                                        progressBar.value = AVModel.getPlayerPosition(CurrentCall.sharingSource);
+                                        var delta = progressBar.value - progressBar.from;
+                                        if (delta <= 0) {
+                                            CurrentCall.sharingPaused = true
+                                            progressBar.value = progressBar.from;
+                                            seekTimer.stop();
+                                            return;
+                                        }
+                                        seekTimer.restart();
+                                    }
+                                }
+                            }
+
+                            PushButton {
+                                id: muteBtn
+                                toolTipText: CurrentCall.sharingMuted ? JamiStrings.unmute : JamiStrings.mute
+                                source: CurrentCall.sharingMuted ? JamiResources.spkoff_black_24dp_svg : JamiResources.spk_black_24dp_svg
+                                onClicked: {
+                                    CurrentCall.sharingMuted = !CurrentCall.sharingMuted
+                                    AVModel.mutePlayerAudio(CurrentCall.sharingSource, CurrentCall.sharingMuted)
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Timer to decide when sharing overlay fade out
+                Timer {
+                    id: fadeOutTimer
+                    interval: JamiTheme.overlayFadeDelay
+                    onTriggered: {
+                        if (overlayRect.hovered) {
+                            fadeOutTimer.restart();
+                            return;
+                        }
+                        overlayRect.opacity = 0;
+                    }
+                }
+
+                HoverHandler {
+                    id: hoverIndicator
+
+                    onPointChanged: {
+                        overlayRect.opacity = 1;
+                        fadeOutTimer.restart();
+                    }
+
+                    onHoveredChanged: {
+                        if (previewRenderer.hovered) {
+                            overlayRect.opacity = 1;
+                            fadeOutTimer.restart();
+                            return;
+                        }
+                        overlayRect.opacity = hovered ? 1 : 0;
+                    }
+                }
+
                 // HACK: this is a workaround to the preview video starting
                 // and stopping a few times. The root cause should be investigated ASAP.
                 Timer {
@@ -251,6 +393,8 @@ Rectangle {
                     id: dragMouseArea
 
                     anchors.fill: previewRenderer
+                    enabled: !mediaHover.hovered
+                    propagateComposedEvents: true
 
                     onPressed: function (mouse) {
                         clickPos = Qt.point(mouse.x, mouse.y);

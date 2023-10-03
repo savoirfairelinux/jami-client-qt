@@ -23,6 +23,7 @@ VideoManagerInterface::VideoManagerInterface()
 #ifdef ENABLE_VIDEO
     using libjami::exportable_callback;
     using libjami::VideoSignal;
+    using libjami::MediaPlayerSignal;
     videoHandlers
         = {exportable_callback<VideoSignal::DeviceEvent>([this]() { Q_EMIT deviceEvent(); }),
            exportable_callback<VideoSignal::DecodingStarted>([this](const std::string& id,
@@ -41,6 +42,10 @@ VideoManagerInterface::VideoManagerInterface()
                    Q_EMIT decodingStopped(QString(id.c_str()),
                                           QString(shmPath.c_str()),
                                           isMixer);
+               }),
+           exportable_callback<MediaPlayerSignal::FileOpened>(
+               [this](const std::string& id, const std::map<std::string, std::string>& info) {
+                    qDebug() << "File info arrived";
                })};
 #endif
 }

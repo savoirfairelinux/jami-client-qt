@@ -194,6 +194,41 @@ public Q_SLOTS: // METHODS
         return convertMap(libjami::getRenderer(id.toStdString()));
     }
 
+    QString createMediaPlayer(const QString& path)
+    {
+        return QString::fromStdString(libjami::createMediaPlayer(path.toStdString()));
+    }
+
+    bool closeMediaPlayer(const QString& id)
+    {
+        return libjami::closeMediaPlayer(id.toStdString());
+    }
+
+    bool pausePlayer(const QString& id, bool pause)
+    {
+        return libjami::pausePlayer(id.toStdString(), pause);
+    }
+
+    bool mutePlayerAudio(const QString& id, bool mute)
+    {
+        return libjami::mutePlayerAudio(id.toStdString(), mute);
+    }
+
+    bool playerSeekToTime(const QString& id, int time)
+    {
+        return libjami::playerSeekToTime(id.toStdString(), time);
+    }
+
+    qint64 getPlayerPosition(const QString& id)
+    {
+        return libjami::getPlayerPosition(id.toStdString());
+    }
+
+    qint64 getPlayerDuration(const QString& id)
+    {
+        return libjami::getPlayerDuration(id.toStdString());
+    }
+
 Q_SIGNALS: // SIGNALS
     void deviceEvent();
     void decodingStarted(
