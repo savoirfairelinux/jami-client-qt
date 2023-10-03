@@ -409,10 +409,8 @@ MainApplication::cleanup()
     }
 }
 
-#ifdef Q_OS_MACOS
 void
 MainApplication::setEventFilter()
 {
     installEventFilter(this);
 }
-#endif
