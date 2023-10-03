@@ -195,8 +195,28 @@ AvAdapter::shareFile(const QString& filePath)
     auto callId = lrcInstance_->getCurrentCallId();
     if (!callId.isEmpty()) {
         muteCamera_ = !isCapturing();
-        lrcInstance_->getCurrentCallModel()
-            ->addMedia(callId, filePath, lrc::api::CallModel::MediaRequestType::FILESHARING);
+        auto resource = QString("%1%2%3")
+                            .arg(libjami::Media::VideoProtocolPrefix::FILE)
+                            .arg(libjami::Media::VideoProtocolPrefix::SEPARATOR)
+                            .arg(QUrl(filePath).toLocalFile());
+
+        Utils::oneShotConnect(&lrcInstance_->avModel(),
+                              &lrc::api::AVModel::fileOpened,
+                              this,
+                              [this, callId, filePath, resource](bool hasAudio, bool hasVideo) {
+                                  // TODO: add videos's audio while adding file sharing
+                                  if (hasVideo) {
+                                      lrcInstance_->avModel().pausePlayer(resource, false);
+                                      lrcInstance_->avModel().setAutoRestart(resource, true);
+                                      lrcInstance_->getCurrentCallModel()
+                                          ->addMedia(callId, filePath, lrc::api::CallModel::MediaRequestType::FILESHARING);
+                                  } else {
+                                      // Close media player because we are not going to start sharing
+                                      lrcInstance_->avModel().closeMediaPlayer(resource);
+                                  }
+                              });
+
+        lrcInstance_->avModel().createMediaPlayer(resource);
     }
 }
 
