@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b9b4d94_961a4f19",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-03T13:32:52Z",
+      "side": 1,
+      "message": "1. use the appropriate compile-time Qt version flags to restructure the connections and avoid using a flag\n2. test on all platforms",
+      "range": {
+        "startLine": 404,
+        "startChar": 4,
+        "endLine": 409,
+        "endChar": 5
+      },
+      "revId": "9243334159e08c823264619d3e76f2625139701e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
