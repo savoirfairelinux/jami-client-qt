@@ -155,36 +155,21 @@ if(LIBJAMI_FOUND)
   include_directories(${LIBJAMI_INCLUDE_DIRS})
 endif()
 
+# Resource auto-gen for QML and related code files.
+# The script will not overwrite the qrc files if the file
+# list has not changed.
 include(FindPython3)
 find_package(Python3 3.6 REQUIRED COMPONENTS Interpreter)
 set(PYTHON_EXEC ${Python3_EXECUTABLE})
-
-# Resource auto-gen
-# QML and related code files
-# Check files in the app's src directory and force a reconfigure if it
-# changes.
 # Only include webengine resources if specified.
 if(WITH_WEBENGINE)
   set(GEN_QRC_ARGS "--with-webengine")
 endif()
-file(GLOB_RECURSE
-  QML_FILES CONFIGURE_DEPENDS
-  ${APP_SRC_DIR}/*)
-execute_process(
-  COMMAND
-  ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_qml_qrc.py ${GEN_QRC_ARGS}
+execute_process(COMMAND ${PYTHON_EXEC}
+  ${SCRIPTS_DIR}/gen_qrc_files.py ${GEN_QRC_ARGS}
   WORKING_DIRECTORY ${APP_SRC_DIR})
-set(QML_RESOURCES_QML ${APP_SRC_DIR}/qml.qrc)
-# Image and misc. resources
-# check files in the resources directory and force a reconfigure if it
-# changes
-file(GLOB_RECURSE
-  RES_FILES CONFIGURE_DEPENDS
-  ${PROJECT_SOURCE_DIR}/resources/*)
-execute_process(
-  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py ${GEN_QRC_ARGS}
-  WORKING_DIRECTORY ${APP_SRC_DIR})
-set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
+set(QML_QRC ${APP_SRC_DIR}/qml.qrc)
+set(RESOURCES_QRC ${APP_SRC_DIR}/resources.qrc)
 
 # library compatibility (boost, libnotify, etc.)
 add_definitions(-DQT_NO_KEYWORDS)
@@ -530,8 +515,8 @@ qt_add_executable(
   ${APP_SRC_DIR}/main.cpp
   ${COMMON_HEADERS}
   ${COMMON_SOURCES}
-  ${QML_RESOURCES}
-  ${QML_RESOURCES_QML}
+  ${RESOURCES_QRC}
+  ${QML_QRC}
   ${SFPM_OBJECTS})
 
 foreach(MODULE ${QT_MODULES})
