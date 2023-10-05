@@ -44,8 +44,6 @@ PluginAdapter::PluginAdapter(LRCInstance* instance,
     , pluginListModel_(new PluginListModel(instance, this))
     , lrcInstance_(instance)
     , settingsManager_(settingsManager)
-    , tempPath_(QDir::tempPath())
-
 {
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")

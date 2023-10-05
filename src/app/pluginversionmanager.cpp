@@ -35,7 +35,6 @@ public:
         , parent_(parent)
         , settingsManager_(new AppSettingsManager(this))
         , lrcInstance_(instance)
-        , tempPath_(QDir::tempPath())
         , updateTimer_(new QTimer(this))
     {
         connect(updateTimer_, &QTimer::timeout, this, [this] { checkForUpdates(); });
@@ -133,9 +132,9 @@ public:
                     return;
                 }
                 QThreadPool::globalInstance()->start([this, pluginId] {
-                    auto res = lrcInstance_->pluginModel().installPlugin(QDir(tempPath_).filePath(
-                                                                             pluginId + ".jpl"),
-                                                                         true);
+                    auto res = lrcInstance_->pluginModel()
+                                   .installPlugin(QDir(QDir::tempPath()).filePath(pluginId + ".jpl"),
+                                                  true);
                     if (res) {
                         parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLED);
                     } else {
@@ -144,7 +143,7 @@ public:
                 });
                 parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLING);
             },
-            tempPath_ + '/');
+            QDir::tempPath());
         Q_EMIT parent_.versionStatusChanged(pluginId, PluginStatus::Role::DOWNLOADING);
     }
 
@@ -161,7 +160,6 @@ public:
     PluginVersionManager& parent_;
     AppSettingsManager* settingsManager_ {nullptr};
     LRCInstance* lrcInstance_ {nullptr};
-    QString tempPath_;
     QTimer* updateTimer_;
 };
 
