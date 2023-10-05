@@ -4,6 +4,7 @@
 
 #include <QCoreApplication>
 #include <QVariant>
+#include <QString>
 
 #include <X11/X.h>
 #include <X11/Xlib.h>
@@ -41,6 +42,19 @@ public:
     {
         stop_.store(true);
         // thread_->wait();
+    }
+
+    QString getKeyString()
+    {
+        char* keyString = XKeysymToString(currentKey_);
+        if (keyString != nullptr) {
+            QString keyQString = QString::fromUtf8(keyString);
+            qDebug() << "KeySym en QString : " << keyQString;
+        } else {
+            qDebug() << "La conversion KeySym en chaîne a échoué.";
+        }
+
+        return QString::fromUtf8(XKeysymToString(currentKey_));
     }
 
 private Q_SLOTS:
@@ -97,9 +111,6 @@ private Q_SLOTS:
                 }
                 break;
             }
-            if (thread_->isFinished()) {
-                qDebug() << "fini";
-            }
         }
     }
 
@@ -109,8 +120,8 @@ private:
     Window root_;
     QScopedPointer<QThread> thread_;
     std::atomic_bool stop_ {false};
-    bool pttOn = false;
     KeySym currentKey_ = XK_space;
+    // QString keyString_ = QString::fromStdString(XKeysymToString(currentKey_));
 };
 
 PTTListener::PTTListener(QObject* parent)
@@ -130,6 +141,12 @@ void
 PTTListener::stopListening()
 {
     pimpl_->stopListening();
+}
+
+QString
+PTTListener::getKeyString()
+{
+    return pimpl_->getKeyString();
 }
 
 #include "pttlistener.moc"
