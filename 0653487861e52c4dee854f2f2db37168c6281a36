@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b260bf37_305fbc6a",
+        "filename": "src/libclient/api/callmodel.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-10-05T14:16:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8a5f07a9_8b7e6643",
+      "range": {
+        "startLine": 105,
+        "startChar": 48,
+        "endLine": 105,
+        "endChar": 59
+      },
+      "revId": "0653487861e52c4dee854f2f2db37168c6281a36",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61c85b07_caa872a2",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-29T05:42:37Z",
       "side": 1,
       "message": "slotMediaNegotiationStatus should take care of this imho",
+      "range": {
+        "startLine": 654,
+        "startChar": 12,
+        "endLine": 654,
+        "endChar": 31
+      },
+      "revId": "0653487861e52c4dee854f2f2db37168c6281a36",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "576cbf17_287a2139",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-10-05T14:16:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "61c85b07_caa872a2",
       "range": {
         "startLine": 654,
         "startChar": 12,
