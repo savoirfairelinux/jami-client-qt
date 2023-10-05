@@ -1,0 +1,187 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af896f74_911a81f6",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-05T18:08:01Z",
+      "side": 1,
+      "message": "we may have multiple calls. perhaps the listen state should be bound to number-of-calls \u003e 0 (property change for CallAdapter::hasCall) ?",
+      "range": {
+        "startLine": 214,
+        "startChar": 3,
+        "endLine": 215,
+        "endChar": 34
+      },
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94d68648_29050c7f",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-05T18:08:01Z",
+      "side": 1,
+      "message": "minor coding style detail: 1 line in between this-file-name.h and the rest of the project headers.\ne.g.\n```\n#include \"calloverlaymodel.h\"\n\n#include \"calladapter.h\"\n#include \"pttlistener.h\"\n...\n```",
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b10d80e4_3322ce08",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-05T18:08:01Z",
+      "side": 1,
+      "message": "even if this is hard-coded for now, prepare by using some constant defined in one place, e.g. `pttKey \u003d Qt::Key_Space`, and `pttKeyReleased` instead of `spaceKeyReleased`",
+      "range": {
+        "startLine": 402,
+        "startChar": 35,
+        "endLine": 402,
+        "endChar": 45
+      },
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8338cffb_40600f3b",
+        "filename": "src/app/pttlistener.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-05T18:08:01Z",
+      "side": 1,
+      "message": "copyright header",
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "469db8d4_086dd00b",
+        "filename": "src/app/pttlistener.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-05T18:08:01Z",
+      "side": 1,
+      "message": "this file should be under platform/x11",
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "461efa35_ff5e60be",
+        "filename": "src/app/pttlistener.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-05T18:08:01Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 35,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 9
+      },
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45cce796_c4b68cde",
+        "filename": "src/app/pttlistener.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-05T18:08:01Z",
+      "side": 1,
+      "message": "is this not working?",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 27
+      },
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d931eb7_168dec8f",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-05T18:08:01Z",
+      "side": 1,
+      "message": "copyright header",
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa00b9a6_3d8646df",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-05T18:08:01Z",
+      "side": 1,
+      "message": "Q_DISABLE_COPY(PTTListener) below Q_OBJECT",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 48
+      },
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
