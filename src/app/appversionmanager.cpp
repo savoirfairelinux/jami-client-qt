@@ -44,7 +44,6 @@ struct AppVersionManager::Impl : public QObject
         , parent_(parent)
         , lrcInstance_(instance)
         , baseUrlString_(url.isEmpty() ? downloadUrl : url)
-        , tempPath_(QDir::tempPath())
         , updateTimer_(new QTimer(this))
     {
         connect(updateTimer_, &QTimer::timeout, this, [this] {
@@ -105,41 +104,20 @@ struct AppVersionManager::Impl : public QObject
         parent_.replyId_ = parent_.downloadFile(
             downloadUrl,
             lastDownloadReplyId,
-            [this, downloadUrl](bool success, const QString& errorMessage) {
+            [downloadUrl](bool success, const QString& errorMessage) {
                 Q_UNUSED(success)
                 Q_UNUSED(errorMessage)
                 QProcess process;
-                auto basePath = tempPath_ + QDir::separator();
+                auto basePath = QDir::tempPath() + QDir::separator();
                 auto msiPath = QDir::toNativeSeparators(basePath + downloadUrl.fileName());
                 auto logPath = QDir::toNativeSeparators(basePath + "jami_x64_install.log");
-                connect(&process, &QProcess::errorOccurred, this, [&](QProcess::ProcessError error) {
-                    QString errorMsg;
-                    if (error == QProcess::ProcessError::Timedout) {
-                        errorMsg = tr("The installer process has timed out.");
-                    } else {
-                        errorMsg = process.readAllStandardError();
-                        if (errorMsg.isEmpty())
-                            errorMsg = tr("The installer process has failed.");
-                    }
-                    Q_EMIT parent_.installErrorOccurred(errorMsg);
-                });
-                connect(&process,
-                        &QProcess::finished,
-                        this,
-                        [&](int exitCode, QProcess::ExitStatus exitStatus) {
-                            if (exitStatus != QProcess::ExitStatus::NormalExit || exitCode != 0) {
-                                auto errorMsg = process.readAllStandardOutput();
-                                Q_EMIT parent_.installErrorOccurred(errorMsg);
-                            }
-                        });
-                process.start("msiexec",
-                              QStringList() << "/i" << msiPath << "/passive"
-                                            << "/norestart"
-                                            << "WIXNONUILAUNCH=1"
-                                            << "/L*V" << logPath);
-                process.waitForFinished();
+                process.startDetached("msiexec",
+                                      QStringList() << "/i" << msiPath << "/passive"
+                                                    << "/norestart"
+                                                    << "WIXNONUILAUNCH=1"
+                                                    << "/L*V" << logPath);
             },
-            tempPath_);
+            QDir::tempPath());
     };
 
     void cancelUpdate()
@@ -179,7 +157,6 @@ struct AppVersionManager::Impl : public QObject
 
     LRCInstance* lrcInstance_ {nullptr};
     QString baseUrlString_;
-    QString tempPath_;
     QTimer* updateTimer_;
 };
 
