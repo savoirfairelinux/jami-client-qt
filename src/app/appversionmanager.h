@@ -48,7 +48,6 @@ Q_SIGNALS:
     void updateCheckReplyReceived(bool ok, bool found = false);
     void updateDownloadProgressChanged(qint64 bytesRead, qint64 totalBytes);
     void networkErrorOccurred(const NetworkManager::GetError& error);
-    void installErrorOccurred(const QString& errorMsg);
 
 private:
     int replyId_;

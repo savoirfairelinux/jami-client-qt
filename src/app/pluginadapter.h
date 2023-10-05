@@ -81,6 +81,5 @@ private:
     LRCInstance* lrcInstance_;
     AppSettingsManager* settingsManager_;
     std::mutex mtx_;
-    QString tempPath_;
     QString baseUrl_;
 };

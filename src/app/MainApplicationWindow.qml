@@ -335,10 +335,6 @@ ApplicationWindow {
             var errorStr = translateErrorToString(error);
             presentUpdateInfoDialog(errorStr);
         }
-
-        function onInstallErrorOccurred(errorMsg) {
-            presentUpdateInfoDialog(errorMsg);
-        }
     }
 
     onClosing: root.close()

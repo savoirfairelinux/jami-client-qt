@@ -155,7 +155,7 @@ NetworkManager::downloadFile(const QUrl& url,
     const QFileInfo fileInfo(url.path());
     const QString fileName = fileInfo.fileName();
     auto& file = files_[uuid];
-    file = new QFile(filePath + fileName + extension);
+    file = new QFile(filePath + QDir::separator() + fileName + extension);
     if (!file->open(QIODevice::WriteOnly)) {
         Q_EMIT errorOccurred(GetError::ACCESS_DENIED);
         files_.remove(uuid);
