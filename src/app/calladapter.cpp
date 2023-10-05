@@ -101,29 +101,31 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
             &CallAdapter::saveConferenceSubcalls);
 
 #ifdef HAVE_GLOBAL_PTT
-    QObject::connect(
-        &listener_,
-        &PTTListener::PTTKeyPressed,
-        this,
-        [this]() {
-            if (isMuted()) {
-                muteAudioToggle();
-                isMicrophoneMuted_ = false;
-            }
-        },
-        Qt::QueuedConnection);
+    if (listener_.getPttState()) {
+        QObject::connect(
+            &listener_,
+            &PTTListener::PTTKeyPressed,
+            this,
+            [this]() {
+                if (isMuted()) {
+                    muteAudioToggle();
+                    isMicrophoneMuted_ = false;
+                }
+            },
+            Qt::QueuedConnection);
 
-    QObject::connect(
-        &listener_,
-        &PTTListener::PTTKeyReleased,
-        this,
-        [this]() {
-            if (!isMicrophoneMuted_) {
-                muteAudioToggle();
-                isMicrophoneMuted_ = true;
-            }
-        },
-        Qt::QueuedConnection);
+        QObject::connect(
+            &listener_,
+            &PTTListener::PTTKeyReleased,
+            this,
+            [this]() {
+                if (!isMicrophoneMuted_) {
+                    muteAudioToggle();
+                    isMicrophoneMuted_ = true;
+                }
+            },
+            Qt::QueuedConnection);
+    }
 #endif
 }
 

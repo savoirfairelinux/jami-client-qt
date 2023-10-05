@@ -374,5 +374,89 @@ SettingsPageBase {
                 }
             }
         }
+
+        ColumnLayout{
+            width: parent.width
+            spacing: 9
+
+            Text {
+                text: JamiStrings.pushToTalk
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+            }
+
+            ToggleSwitch {
+                id: pttToggle
+
+                labelText: JamiStrings.enablePtt
+                checked: pttListener.getPttState()
+                onSwitchToggled: pttListener.setPttState(checked)
+            }
+
+            RowLayout {
+                visible: pttToggle.checked
+                Layout.preferredWidth: parent.width
+
+                Label {
+
+                    color: JamiTheme.textColor
+                    wrapMode: Text.WordWrap
+                    text: JamiStrings.currentKey
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+
+                Label {
+                    id: keyLabel
+
+                    color: JamiTheme.textColor
+                    wrapMode: Text.WordWrap
+                    text: pttListener.getKeyString()
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+
+                    background: Rectangle {
+                         id: backgroundRect
+
+                         anchors.centerIn: parent
+
+                         width: keyLabel.width + 2 * JamiTheme.preferredMarginSize
+                         height: keyLabel.height + JamiTheme.preferredMarginSize
+                         color: JamiTheme.lightGrey_
+                         border.color: JamiTheme.darkGreyColor
+                         radius: 4
+                    }
+
+                }
+
+                MaterialButton {
+
+                    Layout.alignment: Qt.AlignRight
+
+                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+
+                    primary: true
+                    toolTipText: JamiStrings.changeKey
+
+                    text: JamiStrings.change
+
+                    onClicked: {
+                        viewCoordinator.presentDialog(appWindow, "commoncomponents/ChangePttKeyPopup.qml");
+                    }
+                }
+            }
+        }
     }
 }
