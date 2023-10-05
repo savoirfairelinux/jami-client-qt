@@ -2,6 +2,12 @@
 
 #include <QObject>
 #include <QThread>
+#include <QString>
+#include <QKeyEvent>
+
+#include <X11/X.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
 
 class PTTListener : public QObject
 {
@@ -22,6 +28,8 @@ public:
     {
         pttOn_ = on;
     }
+    Q_INVOKABLE QString getKeyString();
+    Q_INVOKABLE QString keyEventToString(QKeyEvent* event);
 
 Q_SIGNALS:
     void PTTKeyPressed();
@@ -37,7 +45,6 @@ private:
 
     PTTListener(const PTTListener&) = delete;
     void operator=(const PTTListener&) = delete;
-
     class Impl;
     std::unique_ptr<Impl> pimpl_;
     bool pttOn_ = true;
