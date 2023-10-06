@@ -311,8 +311,8 @@ def deploy_runtimes(config_str, qt_dir):
         shutil.copy(os.path.join(rel_path, src), runtime_dir)
 
     print("Copying libjami dependencies")
-    install_file("contrib/build/openssl/libcrypto-1_1-x64.dll", daemon_dir)
-    install_file("contrib/build/openssl/libssl-1_1-x64.dll", daemon_dir)
+    install_file("contrib/build/openssl/libcrypto-3-x64.dll", daemon_dir)
+    install_file("contrib/build/openssl/libssl-3-x64.dll", daemon_dir)
     # Ringtone files (ul,ogg,wav,opus files in the daemon ringtone dir).
 
     print("Copying ringtones")
