@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9436d3af_41794f57",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-10T15:05:39Z",
+      "side": 1,
+      "message": "When I try to use this, I think the listener never stops, and when I press the space bar without an ongoing call, it crashes the entire app.",
+      "parentUuid": "af896f74_911a81f6",
+      "range": {
+        "startLine": 214,
+        "startChar": 3,
+        "endLine": 215,
+        "endChar": 34
+      },
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94d68648_29050c7f",
         "filename": "src/app/calloverlaymodel.cpp",
         "patchSetId": 2
@@ -37,6 +61,24 @@
       "writtenOn": "2023-10-05T18:08:01Z",
       "side": 1,
       "message": "minor coding style detail: 1 line in between this-file-name.h and the rest of the project headers.\ne.g.\n```\n#include \"calloverlaymodel.h\"\n\n#include \"calladapter.h\"\n#include \"pttlistener.h\"\n...\n```",
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "383ddf32_67821589",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-10T15:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94d68648_29050c7f",
       "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -98,6 +140,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8025b6ee_47dd5b6a",
+        "filename": "src/app/pttlistener.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-10T15:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "469db8d4_086dd00b",
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "461efa35_ff5e60be",
@@ -121,6 +181,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa2323db_6324e529",
+        "filename": "src/app/pttlistener.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-10T15:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "461efa35_ff5e60be",
+      "range": {
+        "startLine": 35,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 9
+      },
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45cce796_c4b68cde",
@@ -134,6 +218,30 @@
       "writtenOn": "2023-10-05T18:08:01Z",
       "side": 1,
       "message": "is this not working?",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 27
+      },
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c801345_f8e12644",
+        "filename": "src/app/pttlistener.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-10T15:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45cce796_c4b68cde",
       "range": {
         "startLine": 43,
         "startChar": 8,
@@ -174,6 +282,30 @@
       "writtenOn": "2023-10-05T18:08:01Z",
       "side": 1,
       "message": "Q_DISABLE_COPY(PTTListener) below Q_OBJECT",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 48
+      },
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4144f99f_9f00bfff",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-10T15:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa00b9a6_3d8646df",
       "range": {
         "startLine": 38,
         "startChar": 4,
