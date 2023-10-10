@@ -154,9 +154,18 @@ UtilsAdapter::getLocalDataPath()
 const QString
 UtilsAdapter::getCachePath()
 {
-    QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
-    dataDir.cdUp();
-    return dataDir.absolutePath() + "/jami";
+    const auto cacheDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+
+    // Remove old mistaken cache dir.
+    // NOTE: this can be removed once we give a chance for users to upgrade.
+    QDir oldCacheDir(cacheDir);
+    oldCacheDir.cdUp();
+    oldCacheDir.setPath(oldCacheDir.absolutePath() + "/jami");
+    if (oldCacheDir.exists()) {
+        oldCacheDir.removeRecursively();
+    }
+
+    return cacheDir;
 }
 
 QString
