@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "625f832f_135873ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-10T13:27:25Z",
+      "side": 1,
+      "message": "There is a problem in one case (not new I think but the previous behavior was a bit a workaround it seems)\n\nIf you\u0027re in conference with Alice and Bob, and your current selection is the conv with Alice, when Bob hang up, the layout isn\u0027t changed (the call is now a 1:1)",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "6add91672022c4969418570d61c4eff8ca164b10",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
