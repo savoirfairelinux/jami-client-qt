@@ -106,6 +106,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca158893_0f01c2ee",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-10T15:23:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b10d80e4_3322ce08",
+      "range": {
+        "startLine": 402,
+        "startChar": 35,
+        "endLine": 402,
+        "endChar": 45
+      },
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8338cffb_40600f3b",
