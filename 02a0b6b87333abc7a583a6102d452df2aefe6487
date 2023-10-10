@@ -69,6 +69,30 @@
       },
       "revId": "02a0b6b87333abc7a583a6102d452df2aefe6487",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a7f14bd_1628510c",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-10T21:04:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f8609a2_5d1b6169",
+      "range": {
+        "startLine": 85,
+        "startChar": 20,
+        "endLine": 85,
+        "endChar": 34
+      },
+      "revId": "02a0b6b87333abc7a583a6102d452df2aefe6487",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
