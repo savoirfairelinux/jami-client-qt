@@ -1,52 +1,119 @@
+/*
+ * Copyright (C) 2023 Savoir-faire Linux Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <ApplicationServices/ApplicationServices.h>
+
 #include "pttlistener.h"
 
 #include <QCoreApplication>
 #include <QVariant>
 
+class PTTListener::Impl : public QObject
+{
+    Q_OBJECT
+public:
+    Impl(PTTListener* parent)
+        : QObject(parent)
+    {
+        qApp->setProperty("PTTListener", QVariant::fromValue(parent));
+    }
+
+    ~Impl()
+    {
+        stopListening();
+    };
+
+    void startListening()
+    {
+        CGEventMask eventMask = (1 << kCGEventKeyDown) | (1 << kCGEventKeyUp);
+        CFMachPortRef eventTap = CGEventTapCreate(kCGHIDEventTap,
+                                                  kCGHeadInsertEventTap,
+                                                  kCGEventTapOptionDefault,
+                                                  eventMask,
+                                                  CGEventCallback,
+                                                  this);
+
+        if (eventTap) {
+            CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault,
+                                                                             eventTap,
+                                                                             0);
+            CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode);
+            CFRelease(runLoopSource);
+
+            CGEventTapEnable(eventTap, true);
+        } else {
+            qDebug() << "Impossible to create the keyboard tap.";
+        }
+    }
+
+    void stopListening()
+    {
+        if (eventTap) {
+            CGEventTapEnable(eventTap, false);
+            CFRelease(eventTap);
+        }
+    }
+
+    static CGEventRef CGEventCallback(CGEventTapProxy proxy,
+                                      CGEventType type,
+                                      CGEventRef event,
+                                      void* refcon)
+    {
+        auto* pThis = qApp->property("PTTListener").value<PTTListener*>();
+        CGKeyCode keycode = (CGKeyCode) CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
+        CGKeyCode pttKey = (CGKeyCode) 49;
+        if (pThis == nullptr) {
+            qWarning() << "PTTListener not found";
+            return {};
+        }
+        static bool isKeyDown = false;
+        if (keycode == pttKey) {
+            if (type == kCGEventKeyDown) {
+                Q_EMIT pThis->pttKeyPressed();
+                isKeyDown = true;
+            } else if (type == kCGEventKeyUp) {
+                Q_EMIT pThis->pttKeyReleased();
+                isKeyDown = false;
+            }
+        }
+        return event;
+    }
+
+private:
+    CFMachPortRef eventTap;
+};
+
 PTTListener::PTTListener(QObject* parent)
     : QObject(parent)
-{
-    qApp->setProperty("PTTListener", QVariant::fromValue(this));
-    moveToThread(&workerThread);
-    workerThread.start();
-}
+    , pimpl_(std::make_unique<Impl>(this))
+{}
 
-PTTListener::~PTTListener()
-{
-    stopListening();
-    workerThread.quit();
-    workerThread.wait();
-}
+PTTListener::~PTTListener() = default;
 
 void
 PTTListener::startListening()
 {
-    keyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, GlobalKeyboardProc, NULL, 0);
+    pimpl_->startListening();
 }
 
 void
 PTTListener::stopListening()
 {
-    UnhookWindowsHookEx(keyboardHook);
+    pimpl_->stopListening();
 }
 
-LRESULT CALLBACK
-PTTListener::GlobalKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
-{
-    auto* pThis = qApp->property("PTTListener").value<PTTListener*>();
-    if (pThis == nullptr) {
-        qWarning() << "PTTListener not found";
-        return CallNextHookEx(keyboardHook, nCode, wParam, lParam);
-    }
-    if (nCode == HC_ACTION) {
-        if (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) {
-            Q_EMIT pThis->PTTKeyPressed();
-        } else if (wParam == WM_KEYUP || wParam == WM_SYSKEYUP) {
-            Q_EMIT pThis->PTTKeyReleased();
-        }
-    }
-
-    return CallNextHookEx(keyboardHook, nCode, wParam, lParam);
-}
-
-HHOOK PTTListener::keyboardHook = nullptr;
+#include "pttlistener.moc"
