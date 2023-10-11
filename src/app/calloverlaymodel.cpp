@@ -19,9 +19,6 @@
 
 #include "calloverlaymodel.h"
 
-#include "calladapter.h"
-#include "pttlistener.h"
-
 #include <QEvent>
 #include <QMouseEvent>
 #include <QQuickWindow>
@@ -391,20 +388,14 @@ CallOverlayModel::eventFilter(QObject* object, QEvent* event)
         }
     }
 #ifndef HAVE_GLOBAL_PTT
-    Qt::Key pttKey = Qt::Key_Space;
-    else if (event->type() == QEvent::KeyPress)
-    {
+    else if (event->type() == QEvent::KeyPress && listener_->getPttState()) {
         QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
-        if (keyEvent->key() == pttKey && !keyEvent->isAutoRepeat()) {
-            qDebug() << "pressed";
+        if (keyEvent->key() == listener_->getCurrentKey() && !keyEvent->isAutoRepeat()) {
             Q_EMIT pttKeyPressed();
         }
-    }
-    else if (event->type() == QEvent::KeyRelease)
-    {
+    } else if (event->type() == QEvent::KeyRelease && listener_->getPttState()) {
         QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
-        if (keyEvent->key() == pttKey && !keyEvent->isAutoRepeat()) {
-            qDebug() << "released";
+        if (keyEvent->key() == listener_->getCurrentKey() && !keyEvent->isAutoRepeat()) {
             Q_EMIT pttKeyReleased();
         }
     }

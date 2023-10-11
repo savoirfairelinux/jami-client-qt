@@ -23,6 +23,7 @@
 #include "imagedownloader.h"
 #include "lrcinstance.h"
 #include "qtutils.h"
+#include "pttlistener.h"
 
 #include <QFile>
 #include <QApplication>
@@ -66,6 +67,7 @@ public:
 
     bool init();
     void restoreApp();
+    static PTTListener* listener_;
 
     Q_INVOKABLE void handleUriAction(const QString& uri = {});
 
