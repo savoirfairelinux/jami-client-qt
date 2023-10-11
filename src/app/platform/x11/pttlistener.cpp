@@ -38,6 +38,10 @@ public:
         stop_.store(true);
     }
 
+    KeySym getKeySymFromQtKey(Qt::Key qtKey);
+
+    QString keySymToQString(KeySym ks);
+
 private Q_SLOTS:
     void processEvents()
     {
@@ -52,11 +56,15 @@ private Q_SLOTS:
         XGetInputFocus(display_, &curFocus, &revert);
         XSelectInput(display_, curFocus, flags);
         bool pressed = false;
+        // KeySym key = XK_a;
+        KeySym key = getKeySymFromQtKey(parent_.currentKey_);
+        qDebug() << "********** KeySym du ptt : " << XKeysymToString(key);
 
         while (!stop_.load()) {
             XEvent ev;
 
             XNextEvent(display_, &ev);
+            XLookupString(&ev.xkey, buf, 16, &ks, &comp);
             switch (ev.type) {
             case FocusOut:
                 if (curFocus != root_)
@@ -68,8 +76,8 @@ private Q_SLOTS:
                 break;
 
             case KeyPress: {
-                XLookupString(&ev.xkey, buf, 16, &ks, &comp);
-                if (!(pressed) && ks == XK_space) {
+                if (!(pressed) && ks == key) {
+                    qDebug() << "pressed";
                     Q_EMIT parent_.PTTKeyPressed();
                     pressed = true;
                 }
@@ -86,9 +94,10 @@ private Q_SLOTS:
                         is_retriggered = true;
                     }
                 }
-                if (!is_retriggered && ks == XK_space) {
+                if (!is_retriggered && ks == key) {
                     Q_EMIT parent_.PTTKeyReleased();
                     pressed = false;
+                    qDebug() << "released";
                 }
                 break;
             }
@@ -105,6 +114,18 @@ private:
     QScopedPointer<QThread> thread_;
     std::atomic_bool stop_ {false};
 };
+
+QString
+PTTListener::Impl::keySymToQString(KeySym ks)
+{
+    char* keyString = XKeysymToString(ks);
+    if (keyString != nullptr) {
+        QString keyQString = QString::fromUtf8(keyString);
+    } else {
+        qDebug() << "conversion failed";
+    }
+    return QString::fromUtf8(XKeysymToString(ks));
+}
 
 PTTListener::PTTListener(QObject* parent)
     : QObject(parent)
@@ -123,6 +144,14 @@ void
 PTTListener::stopListening()
 {
     pimpl_->stopListening();
+}
+KeySym
+PTTListener::Impl::getKeySymFromQtKey(Qt::Key qtKey)
+{
+    QString keyString = QKeySequence(qtKey).toString().toLower();
+    KeySym keySym = XStringToKeysym(keyString.toUtf8().data());
+    qDebug() << "********** KeySym converti en QString : " << XKeysymToString(keySym);
+    return keySym;
 }
 
 #include "pttlistener.moc"
