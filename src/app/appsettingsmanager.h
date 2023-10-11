@@ -64,7 +64,9 @@ extern const QString defaultDownloadPath;
     X(ShowMardownOption, false) \
     X(ChatViewEnterIsNewLine, false) \
     X(ShowSendOption, false) \
-    X(DonateVisibleDate,  "2999-02-01 05:00")
+    X(DonateVisibleDate,  "2999-02-01 05:00")\
+    X(EnablePtt, false) \
+    X(pttKey, 36)
 /*
  * A class to expose settings keys in both c++ and QML.
  * Note: this is using a non-constructable class instead of a
