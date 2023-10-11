@@ -350,6 +350,8 @@ MainApplication::initQmlLayer()
 
     auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
     engine_->rootContext()->setContextProperty("videoProvider", videoProvider);
+    PTTListener& pttlistener = PTTListener::getInstance();
+    engine_->rootContext()->setContextProperty("pttListener", &pttlistener);
 
     engine_->load(QUrl(QStringLiteral("qrc:/MainApplicationWindow.qml")));
     qWarning().noquote() << "Main window loaded using" << getRenderInterfaceString();

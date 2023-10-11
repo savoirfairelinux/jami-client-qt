@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QThread>
+#include <QKeyEvent>
 
 class PTTListener : public QObject
 {
@@ -14,16 +15,30 @@ public:
         static PTTListener instance;
         return instance;
     }
+
     Q_INVOKABLE bool getPttState()
     {
         return pttOn_;
     }
+
     Q_INVOKABLE void setPttState(bool on)
     {
         pttOn_ = on;
     }
-    Q_INVOKABLE QString getQKey();
 
+    Q_INVOKABLE Qt::Key getCurrentKey()
+    {
+        return currentKey_;
+    }
+
+    Q_INVOKABLE QString keyToString(Qt::Key key)
+    {
+        return QKeySequence(key).toString();
+    }
+    Q_INVOKABLE void setPttKey(Qt::Key key)
+    {
+        currentKey_ = key;
+    }
 Q_SIGNALS:
     void PTTKeyPressed();
     void PTTKeyReleased();
@@ -38,4 +53,5 @@ private:
     class Impl;
     std::unique_ptr<Impl> pimpl_;
     bool pttOn_ = true;
+    Qt::Key currentKey_ = Qt::Key_Space;
 };
