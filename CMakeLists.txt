@@ -244,8 +244,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/messageparser.cpp
   ${APP_SRC_DIR}/previewengine.cpp
   ${APP_SRC_DIR}/imagedownloader.cpp
-  ${APP_SRC_DIR}/pluginversionmanager.cpp
-  ${APP_SRC_DIR}/platform/x11/pttlistener.cpp)
+  ${APP_SRC_DIR}/pluginversionmanager.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
@@ -404,7 +403,6 @@ elseif (NOT APPLE)
   list(APPEND QT_MODULES DBus)
 
   find_package(PkgConfig REQUIRED)
-  find_package(X11 REQUIRED)
 
   pkg_check_modules(GLIB REQUIRED glib-2.0)
   if(GLIB_FOUND)
@@ -496,10 +494,6 @@ else()
     OPTIONAL_COMPONENTS LinguistTools)
 endif()
 
-list(APPEND SRC_FILES
-    pttlistener.h
-)
-
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     if (DEFINED ENV{XDG_SESSION_TYPE})
         if ($ENV{XDG_SESSION_TYPE} STREQUAL "x11")
@@ -516,10 +510,10 @@ endif ()
 if (NOT ${PTT_PLATFORM} STREQUAL "")
     message(STATUS "Platform: ${PTT_PLATFORM}")
     add_definitions(-DHAVE_GLOBAL_PTT)
-    list(APPEND SRC_FILES platform/${PTT_PLATFORM}/pttlistener.cpp)
+    list(APPEND COMMON_SOURCES ${APP_SRC_DIR}/platform/${PTT_PLATFORM}/pttlistener.cpp)
+    list(APPEND COMMON_HEADERS ${APP_SRC_DIR}/pttlistener.h)
 else ()
     message(WARNING "Global push-to-talk not supported.")
-
 endif ()
 
 # common includes
@@ -622,8 +616,6 @@ elseif (NOT APPLE)
     ${GLIB_LIBRARIES}
     ${GIO_LIBRARIES})
 
-
-  # Installation rules
   install(
     TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION bin)
