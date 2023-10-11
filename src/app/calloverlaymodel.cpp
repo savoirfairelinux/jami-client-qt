@@ -19,9 +19,6 @@
 
 #include "calloverlaymodel.h"
 
-#include "calladapter.h"
-#include "pttlistener.h"
-
 #include <QEvent>
 #include <QMouseEvent>
 #include <QQuickWindow>
@@ -272,7 +269,7 @@ CallControlListModel::clearData()
     data_.clear();
 }
 
-CallOverlayModel::CallOverlayModel(LRCInstance* instance, QObject* parent)
+CallOverlayModel::CallOverlayModel(LRCInstance* instance, PTTListener* listener, QObject* parent)
     : QObject(parent)
     , lrcInstance_(instance)
     , primaryModel_(new CallControlListModel(this))
@@ -287,6 +284,10 @@ CallOverlayModel::CallOverlayModel(LRCInstance* instance, QObject* parent)
             this,
             &CallOverlayModel::setControlRanges);
     overflowVisibleModel_->setFilterRole(CallControl::Role::UrgentCount);
+
+#ifndef HAVE_GLOBAL_PTT
+    listener_ = listener;
+#endif
 }
 
 void
@@ -391,20 +392,14 @@ CallOverlayModel::eventFilter(QObject* object, QEvent* event)
         }
     }
 #ifndef HAVE_GLOBAL_PTT
-    Qt::Key pttKey = Qt::Key_Space;
-    else if (event->type() == QEvent::KeyPress)
-    {
+    else if (event->type() == QEvent::KeyPress && listener_->getPttState()) {
         QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
-        if (keyEvent->key() == pttKey && !keyEvent->isAutoRepeat()) {
-            qDebug() << "pressed";
+        if (keyEvent->key() == listener_->getCurrentKey() && !keyEvent->isAutoRepeat()) {
             Q_EMIT pttKeyPressed();
         }
-    }
-    else if (event->type() == QEvent::KeyRelease)
-    {
+    } else if (event->type() == QEvent::KeyRelease && listener_->getPttState()) {
         QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
-        if (keyEvent->key() == pttKey && !keyEvent->isAutoRepeat()) {
-            qDebug() << "released";
+        if (keyEvent->key() == listener_->getCurrentKey() && !keyEvent->isAutoRepeat()) {
             Q_EMIT pttKeyReleased();
         }
     }

@@ -20,6 +20,7 @@
  */
 
 #include "mainapplication.h"
+#include "pttlistener.h"
 
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
@@ -132,6 +133,7 @@ MainApplication::init()
     connectivityMonitor_.reset(new ConnectivityMonitor(this));
     settingsManager_.reset(new AppSettingsManager(this));
     systemTray_.reset(new SystemTray(settingsManager_.get(), this));
+    listener_ = new PTTListener(settingsManager_.get(), this);
 
     QObject::connect(settingsManager_.get(),
                      &AppSettingsManager::retranslate,
@@ -350,6 +352,7 @@ MainApplication::initQmlLayer()
 
     auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
     engine_->rootContext()->setContextProperty("videoProvider", videoProvider);
+    engine_->rootContext()->setContextProperty("pttListener", listener_);
 
     engine_->load(QUrl(QStringLiteral("qrc:/MainApplicationWindow.qml")));
     qWarning().noquote() << "Main window loaded using" << getRenderInterfaceString();
@@ -414,3 +417,4 @@ MainApplication::setEventFilter()
 {
     installEventFilter(this);
 }
+

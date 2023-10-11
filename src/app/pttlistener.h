@@ -1,41 +1,52 @@
 #pragma once
 
+#include "systemtray.h"
+#include "appsettingsmanager.h"
+
 #include <QObject>
 #include <QThread>
+#include <QKeyEvent>
 
 class PTTListener : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PTTListener)
 
 public:
-    static PTTListener& getInstance()
+    Q_INVOKABLE Qt::Key getCurrentKey()
     {
-        static PTTListener instance;
-        return instance;
+        int keyInt = settingsManager_->getValue(Settings::Key::pttKey).toInt();
+        Qt::Key key = static_cast<Qt::Key>(keyInt);
+        return key;
+    }
+
+    Q_INVOKABLE QString keyToString(Qt::Key key)
+    {
+        return QKeySequence(key).toString();
+    }
+    Q_INVOKABLE void setPttKey(Qt::Key key)
+    {
+        settingsManager_->setValue(Settings::Key::pttKey, key);
     }
     Q_INVOKABLE bool getPttState()
     {
-        return pttOn_;
+        return settingsManager_->getValue(Settings::Key::EnablePtt).toBool();
     }
-    Q_INVOKABLE void setPttState(bool on)
-    {
-        pttOn_ = on;
-    }
-    Q_INVOKABLE QString getQKey();
+
+    PTTListener(AppSettingsManager* settingsManager, QObject* parent = nullptr);
+    ~PTTListener();
 
 Q_SIGNALS:
-    void PTTKeyPressed();
-    void PTTKeyReleased();
+    void pttKeyPressed();
+    void pttKeyReleased();
 
+#ifdef HAVE_GLOBAL_PTT
 public Q_SLOTS:
     void startListening();
     void stopListening();
+#endif
 
 private:
-    PTTListener(QObject* parent = nullptr);
-    ~PTTListener();
     class Impl;
     std::unique_ptr<Impl> pimpl_;
-    bool pttOn_ = true;
+    AppSettingsManager* settingsManager_;
 };
