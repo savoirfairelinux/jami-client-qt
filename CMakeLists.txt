@@ -36,6 +36,14 @@ if(WITH_WEBENGINE)
   add_definitions(-DWITH_WEBENGINE)
 endif()
 
+option(ENABLE_ASAN "Enable address sanitization" OFF)
+if(ENABLE_ASAN AND NOT MSVC)
+  message(STATUS "Address sanitization enabled for client")
+  # Add AddressSanitizer flags for both compiler and linker
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-pointer")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address")
+endif()
+
 # init some variables for includes, libs, etc.
 set(CLIENT_INCLUDE_DIRS, "")
 set(CLIENT_LINK_DIRS, "")
@@ -43,7 +51,10 @@ set(CLIENT_LIBS, "")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
+if(NOT MSVC)
+  set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
+endif()
+
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
