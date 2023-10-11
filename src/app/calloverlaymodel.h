@@ -21,6 +21,9 @@
 
 #include "lrcinstance.h"
 #include "qtutils.h"
+#include "mainapplication.h"
+
+#include "pttlistener.h"
 
 #include <QAbstractListModel>
 #include <QObject>
@@ -159,4 +162,8 @@ private:
     PendingConferenceesListModel* pendingConferenceesModel_;
 
     QList<QQuickItem*> watchedItems_;
+
+#ifndef HAVE_GLOBAL_PTT
+    PTTListener* listener_ = MainApplication::listener_;
+#endif
 };
