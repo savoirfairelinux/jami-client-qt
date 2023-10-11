@@ -459,6 +459,93 @@ def run_uninstall(args):
 def run_clean():
     execute_script(['git clean -xfd',
                     'git submodule foreach git clean -xfd'])
+    
+
+def clean_contribs(contribs):
+    """
+    Helper to clean one or more of the libjami contribs.
+
+    Takes a list of contrib names(space separated) to clean, or 'all' to clean all contribs.
+
+    Contribs are assumed to be in the contrib_dir: daemon/contrib
+    Artifacts to remove include:
+    - build directory: <contrib_dir>/<native_dir>/<contrib_name>
+    - build stamp: <contrib_dir>/<native_dir>/.<contrib_name>
+    - tarball: <contrib_dir>/tarballs/<contrib_name>*.tar.*
+    - build artifacts (we don't care about the contents of share):
+        - <contrib_dir>/<abi_triplet>/bin/<contrib_name>
+        - <contrib_dir>/<abi_triplet>/lib/<contrib_name>*
+        - <contrib_dir>/<abi_triplet>/include/<contrib_name>*
+    """
+
+    # Not supported on Windows
+    if platform.system() == 'Windows':
+        print('Cleaning contribs is not supported on Windows. Exiting.')
+        sys.exit(1)
+
+    # Assume we are using the submodule here.
+    contrib_dir = 'daemon/contrib'
+    sub_dirs = os.listdir(contrib_dir)
+
+    # Let's find the abi triplet:
+    # The abi_triplet is 3 parts: <arch>-<vendor>-<sys> and should be the only directory
+    # named like that in the contrib directory. We can use a regex to find it.
+    triplet_pattern = re.compile(r'^[a-zA-Z0-9_]+-[a-zA-Z0-9_]+-[a-zA-Z0-9_]+$')
+    def is_triplet(s):
+        return bool(triplet_pattern.match(s))
+    abi_triplet = ''
+    for sub_dir in sub_dirs:
+        if is_triplet(sub_dir):
+            abi_triplet = sub_dir
+            break
+    
+    # If we didn't find the abi triplet, we need to stop.
+    if abi_triplet == '':
+        print('Could not find the abi triplet for the contribs. Exiting.')
+        sys.exit(1)
+
+    # Let's find the native build source directory (native-*)
+    native_dir = ''
+    for sub_dir in sub_dirs:
+        if sub_dir.startswith('native'):
+            native_dir = os.path.join(contrib_dir, sub_dir)
+            break
+
+    # If we didn't find the native build source directory, we need to stop.
+    if native_dir == '':
+        print('Could not find the native build source directory. Exiting.')
+        sys.exit(1)
+    
+    # If contribs is 'all', construct the list of all contribs from the contrib native directory
+    # list of directories only
+    if contribs == ['all']:
+        contribs = [d for d in os.listdir(native_dir) if os.path.isdir(os.path.join(native_dir, d))]
+    
+    # Clean each contrib
+    for contrib in contribs:
+        print(f'Cleaning contrib: {contrib} for {abi_triplet} in {native_dir}')
+        build_dir = os.path.join(native_dir, contrib, '*')
+        build_stamp = os.path.join(native_dir, f'.{contrib}*')
+        tarball = os.path.join(contrib_dir, 'tarballs', f'{contrib}*.tar.*')
+        bins = os.path.join(contrib_dir, abi_triplet, 'bin', contrib)
+        libs = os.path.join(contrib_dir, abi_triplet, 'lib', f'lib{contrib}*')
+        includes = os.path.join(contrib_dir, abi_triplet, 'include', f'{contrib}*')
+
+        # EXCEPTIONS: pjproject and ffmpeg
+        if contrib == 'pjproject':
+            libs =  f' {os.path.join(contrib_dir, abi_triplet, "lib", "libpj*")}' \
+                    f' {os.path.join(contrib_dir, abi_triplet, "lib", "libsrtp*")}'
+            includes = os.path.join(contrib_dir, abi_triplet, 'include', 'pj*')
+        elif contrib == 'ffmpeg':
+            libs = f' {os.path.join(contrib_dir, abi_triplet, "lib", "libav*")}' \
+                   f' {os.path.join(contrib_dir, abi_triplet, "lib", "libsw*")}'
+            includes = f' {os.path.join(contrib_dir, abi_triplet, "include", "libav*")}' \
+                       f' {os.path.join(contrib_dir, abi_triplet, "include", "libsw*")}'
+
+        # For a dry run:
+        #  execute_script([f'find {build_dir} {build_stamp} {tarball} {bins} {libs} {includes}'], fail=False)
+        
+        execute_script([f'rm -rf {build_dir} {build_stamp} {tarball} {bins} {libs} {includes}'], fail=False)
 
 
 def run_run(args):
@@ -645,6 +732,9 @@ def parse_args():
                     default=False, action='store_true',
                     help='Do not use Qt WebEngine.')
     ap.add_argument('--arch')
+    ap.add_argument('--clean-contribs', nargs='+',
+                    help='Clean the specified contribs (space separated) or \
+                          "all" to clean all contribs before building.')
 
     dist = choose_distribution()
 
@@ -690,6 +780,10 @@ def choose_distribution():
 
 def main():
     parsed_args = parse_args()
+
+    # Clean contribs if specified first.
+    if parsed_args.clean_contribs:
+        clean_contribs(parsed_args.clean_contribs)
 
     if parsed_args.dependencies:
         run_dependencies(parsed_args)
