@@ -21,6 +21,9 @@
 
 #include "lrcinstance.h"
 #include "qtutils.h"
+#include "mainapplication.h"
+
+#include "pttlistener.h"
 
 #include <QAbstractListModel>
 #include <QObject>
@@ -121,7 +124,7 @@ class CallOverlayModel : public QObject
     QML_PROPERTY(int, overflowIndex)
 
 public:
-    CallOverlayModel(LRCInstance* instance, QObject* parent = nullptr);
+    CallOverlayModel(LRCInstance* instance, PTTListener* listener, QObject* parent = nullptr);
 
     Q_INVOKABLE void addPrimaryControl(const QVariant& action, bool enabled);
     Q_INVOKABLE void addSecondaryControl(const QVariant& action, bool enabled);
@@ -159,4 +162,8 @@ private:
     PendingConferenceesListModel* pendingConferenceesModel_;
 
     QList<QQuickItem*> watchedItems_;
+
+#ifndef HAVE_GLOBAL_PTT
+    PTTListener* listener_ {nullptr};
+#endif
 };
