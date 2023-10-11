@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7c4d4de_5cde5c3c",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-11T18:46:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cbd47a3_ab750e60",
+      "range": {
+        "startLine": 67,
+        "startChar": 30,
+        "endLine": 67,
+        "endChar": 36
+      },
+      "revId": "5b97594840b87ef46897fc1a08129267e4ec2248",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7fbb298_e147e411",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2929162_c890c3d6",
+        "filename": "src/app/constant/JamiQmlUtils.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-11T18:46:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7fbb298_e147e411",
+      "range": {
+        "startLine": 99,
+        "startChar": 26,
+        "endLine": 99,
+        "endChar": 43
+      },
+      "revId": "5b97594840b87ef46897fc1a08129267e4ec2248",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "916014db_9aa1a1aa",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-10-11T15:27:26Z",
       "side": 1,
       "message": "Column/Column? spacing/spacing?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 16
+      },
+      "revId": "5b97594840b87ef46897fc1a08129267e4ec2248",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "742cab99_d4f1a07f",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-11T18:46:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "916014db_9aa1a1aa",
       "range": {
         "startLine": 51,
         "startChar": 0,
