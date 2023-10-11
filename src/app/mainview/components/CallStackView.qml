@@ -50,10 +50,10 @@ Item {
 
     Connections {
             target: CallOverlayModel
-            onPttKeyPressed: {
+            function onPttKeyPressed() {
                 CallAdapter.muteAudioToggle();
             }
-            onPttKeyReleased: {
+            function onPttKeyReleased() {
                 CallAdapter.muteAudioToggle();
             }
     }
