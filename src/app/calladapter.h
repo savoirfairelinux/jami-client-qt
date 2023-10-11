@@ -78,9 +78,8 @@ public:
     Q_INVOKABLE void recordThisCallToggle();
     Q_INVOKABLE void muteAudioToggle();
     Q_INVOKABLE bool isMuted();
-    Q_INVOKABLE void mute();
-    Q_INVOKABLE void unMute();
     Q_INVOKABLE void connectPtt();
+    Q_INVOKABLE void disconnectPtt();
     Q_INVOKABLE void muteCameraToggle();
     Q_INVOKABLE bool isRecordingThisCall();
     Q_INVOKABLE void muteParticipant(const QString& accountUri,
@@ -126,7 +125,7 @@ private:
     SystemTray* systemTray_;
     QScopedPointer<CallOverlayModel> overlayModel_;
     VectorString currentConfSubcalls_;
-    PTTListener& listener_ = PTTListener::getInstance();
+    PTTListener listener_ = new PTTListener(this);
     bool isMicrophoneMuted_ = true;
 
     std::unique_ptr<CallInformationListModel> callInformationListModel_;
