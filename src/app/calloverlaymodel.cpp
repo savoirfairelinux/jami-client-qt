@@ -381,6 +381,7 @@ CallOverlayModel::unregisterFilter(QQuickWindow* object, QQuickItem* item)
 bool
 CallOverlayModel::eventFilter(QObject* object, QEvent* event)
 {
+    Qt::Key pttKey = Qt::Key_Space;
     if (event->type() == QEvent::MouseMove) {
         auto mouseEvent = static_cast<QMouseEvent*>(event);
         auto windowItem = static_cast<QQuickWindow*>(object)->contentItem();
@@ -391,20 +392,15 @@ CallOverlayModel::eventFilter(QObject* object, QEvent* event)
         }
     }
 #ifndef HAVE_GLOBAL_PTT
-    Qt::Key pttKey = Qt::Key_Space;
-    else if (event->type() == QEvent::KeyPress)
-    {
+    else if (event->type() == QEvent::KeyPress) {
         QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
         if (keyEvent->key() == pttKey && !keyEvent->isAutoRepeat()) {
             qDebug() << "pressed";
             Q_EMIT pttKeyPressed();
         }
-    }
-    else if (event->type() == QEvent::KeyRelease)
-    {
+    } else if (event->type() == QEvent::KeyRelease) {
         QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
         if (keyEvent->key() == pttKey && !keyEvent->isAutoRepeat()) {
-            qDebug() << "released";
             Q_EMIT pttKeyReleased();
         }
     }

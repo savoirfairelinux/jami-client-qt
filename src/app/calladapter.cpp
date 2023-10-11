@@ -7,6 +7,7 @@
  * Author: Isa Nanic <isa.nanic@savoirfairelinux.com>
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ * Author: Capucine Berthet <capucine.berthet@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -105,31 +106,63 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
 #endif
 }
 
+CallAdapter::~CallAdapter()
+{
+#ifdef HAVE_GLOBAL_PTT
+    disconnectPtt();
+#endif
+}
+
 void
 CallAdapter::connectPtt()
 {
-    QObject::connect(
-        &listener_,
-        &PTTListener::PTTKeyPressed,
-        this,
-        [this]() {
-            isMicrophoneMuted_ = isMuted();
-            if (isMicrophoneMuted_) {
-                unMute();
-            }
-        },
-        Qt::QueuedConnection);
+#ifdef HAVE_GLOBAL_PTT
+    if (listener_.getPttState()) {
+        QObject::connect(
+            &listener_,
+            &PTTListener::pttKeyPressed,
+            this,
+            [this]() {
+                isMicrophoneMuted_ = isMuted();
+                if (isMicrophoneMuted_) {
+                    muteAudioToggle();
+                }
+            },
+            Qt::QueuedConnection);
 
-    QObject::connect(
-        &listener_,
-        &PTTListener::PTTKeyReleased,
-        this,
-        [this]() {
-            if (isMicrophoneMuted_) {
-                mute();
-            }
-        },
-        Qt::QueuedConnection);
+        QObject::connect(
+            &listener_,
+            &PTTListener::pttKeyReleased,
+            this,
+            [this]() {
+                if (isMicrophoneMuted_) {
+                    muteAudioToggle();
+                }
+            },
+            Qt::QueuedConnection);
+    }
+#endif
+}
+
+void CallAdapter::disconnectPtt()
+{
+#ifdef HAVE_GLOBAL_PTT
+    if (listener_.getPttState()) {
+        QObject::disconnect(
+            &listener_,
+            &PTTListener::pttKeyPressed,
+            this,
+            nullptr
+            );
+
+        QObject::disconnect(
+            &listener_,
+            &PTTListener::pttKeyReleased,
+            this,
+            nullptr
+            );
+    }
+#endif
 }
 
 void
@@ -205,8 +238,11 @@ CallAdapter::onCallStarted(const QString& callId)
     // update call Information list by adding the new information related to the callId
     callInformationListModel_->addElement(
         qMakePair(callId, callModel->advancedInformationForCallId(callId)));
+
+#ifdef HAVE_GLOBAL_PTT
     if (listener_.getPttState())
         listener_.startListening();
+#endif
 }
 
 void
@@ -216,9 +252,10 @@ CallAdapter::onCallEnded(const QString& callId)
         return;
     // update call Information list by removing information related to the callId
     callInformationListModel_->removeElement(callId);
-    auto* callModel = lrcInstance_->getCurrentCallModel();
-    if (listener_.getPttState() /*&& !callModel->hasCall(callId)*/)
+#ifdef HAVE_GLOBAL_PTT
+    if (listener_.getPttState() && !hasCall_)
         listener_.stopListening();
+#endif
 }
 
 void
@@ -854,53 +891,6 @@ CallAdapter::holdThisCallToggle()
     }
 }
 
-void
-CallAdapter::muteAudioToggle()
-{
-    const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
-                                                                  accountId_);
-    if (callId.isEmpty() || !lrcInstance_->getCurrentCallModel()->hasCall(callId)) {
-        return;
-    }
-    auto* callModel = lrcInstance_->getCurrentCallModel();
-    if (callModel->hasCall(callId)) {
-        const auto callInfo = lrcInstance_->getCurrentCallModel()->getCall(callId);
-        auto mute = false;
-        for (const auto& m : callInfo.mediaList)
-            if (m[libjami::Media::MediaAttributeKey::LABEL] == "audio_0")
-                mute = m[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
-        callModel->muteMedia(callId, "audio_0", mute);
-    }
-}
-
-void
-CallAdapter::mute()
-{
-    const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
-                                                                  accountId_);
-    if (callId.isEmpty() || !lrcInstance_->getCurrentCallModel()->hasCall(callId)) {
-        return;
-    }
-    auto* callModel = lrcInstance_->getCurrentCallModel();
-    if (callModel->hasCall(callId)) {
-        callModel->muteMedia(callId, "audio_0", true);
-    }
-}
-
-void
-CallAdapter::unMute()
-{
-    const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
-                                                                  accountId_);
-    if (callId.isEmpty() || !lrcInstance_->getCurrentCallModel()->hasCall(callId)) {
-        return;
-    }
-    auto* callModel = lrcInstance_->getCurrentCallModel();
-    if (callModel->hasCall(callId)) {
-        callModel->muteMedia(callId, "audio_0", false);
-    }
-}
-
 bool
 CallAdapter::isMuted()
 {
@@ -917,6 +907,18 @@ CallAdapter::isMuted()
             return mute;
         }
     }
+}
+
+void
+CallAdapter::muteAudioToggle()
+{
+    const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
+                                                                  accountId_);
+    if (callId.isEmpty() || !lrcInstance_->getCurrentCallModel()->hasCall(callId)) {
+        return;
+    }
+    auto* callModel = lrcInstance_->getCurrentCallModel();
+    callModel->muteMedia(callId, "audio_0", !isMuted());
 }
 
 void
