@@ -166,6 +166,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6ecec2f_98cccc7e",
+        "filename": "src/app/mainview/components/DonationTipBox.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-11T12:33:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80b2d45f_ec25f324",
+      "range": {
+        "startLine": 18,
+        "startChar": 15,
+        "endLine": 18,
+        "endChar": 23
+      },
+      "revId": "6f946b299a6107da7bb0d9893fdeb930d2eb8bc4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e79337d_6cc74da9",
