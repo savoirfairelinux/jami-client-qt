@@ -23,6 +23,7 @@
 #include "imagedownloader.h"
 #include "lrcinstance.h"
 #include "qtutils.h"
+#include "pttlistener.h"
 
 #include <QFile>
 #include <QApplication>
@@ -122,6 +123,8 @@ private:
     QScopedPointer<AppSettingsManager> settingsManager_;
     QScopedPointer<SystemTray> systemTray_;
     QScopedPointer<ImageDownloader> imageDownloader_;
+
+    PTTListener* listener_;
 
     ScreenInfo screenInfo_;
 
