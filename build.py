@@ -28,6 +28,7 @@ import shutil
 import subprocess
 import sys
 import time
+import re
 
 OSX_DISTRIBUTION_NAME = "osx"
 WIN32_DISTRIBUTION_NAME = "win32"
@@ -386,6 +387,8 @@ def run_install(args):
         install_args.append('-u')
     if args.debug:
         install_args.append('-d')
+    if args.asan:
+        install_args.append('-A')
     if args.no_libwrap:
         install_args.append('-W')
     if args.no_webengine:
@@ -713,6 +716,8 @@ def parse_args():
     ap.add_argument('--global-install', default=False, action='store_true')
     ap.add_argument('--debug', default=False, action='store_true',
                     help='Build with debug support; run in GDB')
+    ap.add_argument('--asan', default=False, action='store_true',
+                    help='Build both daemon and client with ASAN')
     ap.add_argument('--background', default=False, action='store_true')
     ap.add_argument('--no-priv-install', dest='priv_install',
                     default=True, action='store_false')
