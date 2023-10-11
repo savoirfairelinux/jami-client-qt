@@ -43,9 +43,10 @@ proc='1'
 priv_install=true
 enable_libwrap=true
 enable_webengine=true
+asan=false
 arch=''
 
-while getopts gsc:dQ:P:p:uWwa: OPT; do
+while getopts gsc:dQ:P:p:uWwa:A OPT; do
   case "$OPT" in
     g)
       global='true'
@@ -76,6 +77,9 @@ while getopts gsc:dQ:P:p:uWwa: OPT; do
     ;;
     a)
       arch="${OPTARG}"
+    ;;
+    A)
+      asan='true'
     ;;
     \?)
       exit 1
@@ -116,7 +120,7 @@ else
     mkdir -p contrib/native
     (
         cd contrib/native
-        ../bootstrap ${prefix:+"--prefix=$prefix"}
+        ../bootstrap ${prefix:+"--prefix=$prefix"} ${asan:+"--enable-asan"}
         make -j"${proc}"
     )
 
@@ -135,8 +139,14 @@ else
       CONFIGURE_FLAGS+=" --enable-debug"
     fi
 
+    if [ "${asan}" = "true" ]; then
+      CONFIGURE_FLAGS+=" --enable-asan"
+    fi
+
+    ./autogen.sh
+
     # Build the daemon itself.
-    test -f configure || ./autogen.sh
+    # test -f configure || ./autogen.sh
 
     if [ "${global}" = "true" ]; then
         ./configure ${CONFIGURE_FLAGS} ${prefix:+"--prefix=$prefix"}
@@ -183,6 +193,11 @@ client_cmake_flags=(-DCMAKE_BUILD_TYPE="${BUILD_TYPE}"
                     -DCMAKE_PREFIX_PATH="${qtpath}"
                     -DENABLE_LIBWRAP="${enable_libwrap}"
                     -DWITH_WEBENGINE="${enable_webengine}")
+
+if [ "${asan}" = "true" ]; then
+    client_cmake_flags+=(-DENABLE_ASAN=true)
+fi
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     #detect arch for macos
     CMAKE_OSX_ARCHITECTURES="arm64"
