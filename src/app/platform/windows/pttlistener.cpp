@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2023 Savoir-faire Linux Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "pttlistener.h"
 
 #include <QCoreApplication>
@@ -5,7 +22,7 @@
 
 #include <windows.h>
 
-class
+class PTTListener::Impl : public QObject
 {
     Q_OBJECT
 public:
@@ -38,11 +55,21 @@ public:
             return {};
         }
         auto* keyboardHook = pThis->pimpl_->keyboardHook;
+        DWORD key = VK_SPACE;
+        static bool isKeyDown = false;
         if (nCode == HC_ACTION) {
             if (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) {
-                Q_EMIT pThis->PTTKeyPressed();
+                KBDLLHOOKSTRUCT* keyInfo = reinterpret_cast<KBDLLHOOKSTRUCT*>(lParam);
+                if (keyInfo->vkCode == key && !isKeyDown) {
+                    Q_EMIT pThis->pttKeyPressed();
+                    isKeyDown = true;
+                }
             } else if (wParam == WM_KEYUP || wParam == WM_SYSKEYUP) {
-                Q_EMIT pThis->PTTKeyReleased();
+                KBDLLHOOKSTRUCT* keyInfo = reinterpret_cast<KBDLLHOOKSTRUCT*>(lParam);
+                if (keyInfo->vkCode == key) {
+                    Q_EMIT pThis->pttKeyReleased();
+                    isKeyDown = false;
+                }
             }
         }
 

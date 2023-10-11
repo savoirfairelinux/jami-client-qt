@@ -83,6 +83,14 @@ Item {
     property string selectNewRingtone: qsTr("Select a new ringtone")
     property string certificateFile: qsTr("Certificate File (*.crt)")
     property string audioFile: qsTr("Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)")
+    property string pushToTalk: qsTr("Push-to-talk")
+    property string enablePtt: qsTr("Enable push-to-talk")
+    property string currentKey: qsTr("Current key")
+    property string changeKey: qsTr("Change key")
+
+    //ChangePttKeyPopup
+    property string assignmentIndication: qsTr("Press the key to be assigned to push-to-talk.")
+    property string assign: qsTr("Assign")
 
     // AdvancedChatSettings
     property string enableReadReceipts: qsTr("Enable read receipts")
