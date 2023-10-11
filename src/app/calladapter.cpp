@@ -108,28 +108,30 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
 void
 CallAdapter::connectPtt()
 {
-    QObject::connect(
-        &listener_,
-        &PTTListener::PTTKeyPressed,
-        this,
-        [this]() {
-            isMicrophoneMuted_ = isMuted();
-            if (isMicrophoneMuted_) {
-                unMute();
-            }
-        },
-        Qt::QueuedConnection);
+    if (listener_.getPttState()) {
+        QObject::connect(
+            &listener_,
+            &PTTListener::PTTKeyPressed,
+            this,
+            [this]() {
+                isMicrophoneMuted_ = isMuted();
+                if (isMicrophoneMuted_) {
+                    unMute();
+                }
+            },
+            Qt::QueuedConnection);
 
-    QObject::connect(
-        &listener_,
-        &PTTListener::PTTKeyReleased,
-        this,
-        [this]() {
-            if (isMicrophoneMuted_) {
-                mute();
-            }
-        },
-        Qt::QueuedConnection);
+        QObject::connect(
+            &listener_,
+            &PTTListener::PTTKeyReleased,
+            this,
+            [this]() {
+                if (isMicrophoneMuted_) {
+                    mute();
+                }
+            },
+            Qt::QueuedConnection);
+    }
 }
 
 void
