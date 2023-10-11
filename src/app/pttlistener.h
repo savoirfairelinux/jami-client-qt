@@ -2,40 +2,59 @@
 
 #include <QObject>
 #include <QThread>
+#include <QKeyEvent>
 
 class PTTListener : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PTTListener)
+    Q_PROPERTY(bool pttState READ getPttState WRITE setPttState NOTIFY pttStateChanged)
 
 public:
-    static PTTListener& getInstance()
-    {
-        static PTTListener instance;
-        return instance;
-    }
     Q_INVOKABLE bool getPttState()
     {
-        return pttOn_;
+        return pttState_;
     }
+
     Q_INVOKABLE void setPttState(bool on)
     {
-        pttOn_ = on;
+        if (pttState_ != on) {
+            pttState_ = on;
+            Q_EMIT pttStateChanged();
+        }
     }
-    Q_INVOKABLE QString getQKey();
+
+    Q_INVOKABLE Qt::Key getCurrentKey()
+    {
+        return currentKey_;
+    }
+
+    Q_INVOKABLE QString keyToString(Qt::Key key)
+    {
+        return QKeySequence(key).toString();
+    }
+    Q_INVOKABLE void setPttKey(Qt::Key key)
+    {
+        currentKey_ = key;
+    }
+
+    PTTListener(QObject* parent = nullptr);
+    ~PTTListener();
 
 Q_SIGNALS:
-    void PTTKeyPressed();
-    void PTTKeyReleased();
+    void pttKeyPressed();
+    void pttKeyReleased();
+    void pttStateChanged();
 
+#ifdef HAVE_GLOBAL_PTT
 public Q_SLOTS:
     void startListening();
     void stopListening();
+#endif
 
 private:
-    PTTListener(QObject* parent = nullptr);
-    ~PTTListener();
     class Impl;
     std::unique_ptr<Impl> pimpl_;
-    bool pttOn_ = true;
+
+    bool pttState_ = true;
+    Qt::Key currentKey_ = Qt::Key_Space;
 };
