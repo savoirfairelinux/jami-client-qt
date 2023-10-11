@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cbd47a3_ab750e60",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-11T15:27:26Z",
+      "side": 1,
+      "message": "23-11",
+      "range": {
+        "startLine": 67,
+        "startChar": 30,
+        "endLine": 67,
+        "endChar": 36
+      },
+      "revId": "5b97594840b87ef46897fc1a08129267e4ec2248",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7fbb298_e147e411",
+        "filename": "src/app/constant/JamiQmlUtils.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-11T15:27:26Z",
+      "side": 1,
+      "message": "settings dates for 2998 should not be necessary anymore",
+      "range": {
+        "startLine": 99,
+        "startChar": 26,
+        "endLine": 99,
+        "endChar": 43
+      },
+      "revId": "5b97594840b87ef46897fc1a08129267e4ec2248",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "916014db_9aa1a1aa",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-11T15:27:26Z",
+      "side": 1,
+      "message": "Column/Column? spacing/spacing?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 16
+      },
+      "revId": "5b97594840b87ef46897fc1a08129267e4ec2248",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
