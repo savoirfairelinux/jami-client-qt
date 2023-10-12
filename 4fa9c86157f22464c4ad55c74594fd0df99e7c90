@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86889ce2_9974ece3",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 20
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-12T13:24:11Z",
+      "side": 1,
+      "message": "This option should only be shown during the donation period I guess. Moreover, if checked the donate element in the smartlist is not shown",
+      "range": {
+        "startLine": 846,
+        "startChar": 20,
+        "endLine": 846,
+        "endChar": 34
+      },
+      "revId": "4fa9c86157f22464c4ad55c74594fd0df99e7c90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3bbb90c_b0cbdcbc",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 20
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-12T13:24:11Z",
+      "side": 1,
+      "message": "fix TODO",
+      "range": {
+        "startLine": 112,
+        "startChar": 25,
+        "endLine": 113,
+        "endChar": 140
+      },
+      "revId": "4fa9c86157f22464c4ad55c74594fd0df99e7c90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a911645c_9a8d5b8c",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 20
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-12T13:24:11Z",
+      "side": 1,
+      "message": "what was the issue with ColumnLayout fillWidth?",
+      "range": {
+        "startLine": 76,
+        "startChar": 20,
+        "endLine": 76,
+        "endChar": 34
+      },
+      "revId": "4fa9c86157f22464c4ad55c74594fd0df99e7c90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
