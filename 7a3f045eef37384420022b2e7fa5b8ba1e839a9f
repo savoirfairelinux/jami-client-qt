@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e934c80_c557e8ab",
+        "filename": "build.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T11:58:16Z",
+      "side": 1,
+      "message": "trailing",
+      "range": {
+        "startLine": 462,
+        "startChar": 0,
+        "endLine": 462,
+        "endChar": 4
+      },
+      "revId": "7a3f045eef37384420022b2e7fa5b8ba1e839a9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f12c943_49f70456",
+        "filename": "build.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T11:58:16Z",
+      "side": 1,
+      "message": "yeay :/",
+      "range": {
+        "startLine": 534,
+        "startChar": 10,
+        "endLine": 534,
+        "endChar": 20
+      },
+      "revId": "7a3f045eef37384420022b2e7fa5b8ba1e839a9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
