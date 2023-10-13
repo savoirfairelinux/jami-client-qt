@@ -669,6 +669,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0564291a_be051756",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:44:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c41df245_d7a11c1f",
+      "range": {
+        "startLine": 17,
+        "startChar": 21,
+        "endLine": 17,
+        "endChar": 32
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a9ab122_8bdc655d",
@@ -682,6 +706,30 @@
       "writtenOn": "2023-10-13T12:10:01Z",
       "side": 1,
       "message": "never called?",
+      "range": {
+        "startLine": 21,
+        "startChar": 21,
+        "endLine": 21,
+        "endChar": 32
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab142832_0f3b17fa",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:44:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a9ab122_8bdc655d",
       "range": {
         "startLine": 21,
         "startChar": 21,
