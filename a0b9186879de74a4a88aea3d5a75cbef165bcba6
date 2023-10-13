@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cada52a_72183200",
+        "filename": "src/app/commoncomponents/ChangePttKeyPopup.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:11:45Z",
+      "side": 1,
+      "message": "I think Yang is not your name",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 53
+      },
+      "revId": "a0b9186879de74a4a88aea3d5a75cbef165bcba6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8192455c_7821015f",
+        "filename": "src/app/commoncomponents/ChangePttKeyPopup.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:11:45Z",
+      "side": 1,
+      "message": "unused, cleanup file",
+      "revId": "a0b9186879de74a4a88aea3d5a75cbef165bcba6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09618c64_fd053bc2",
+        "filename": "src/app/commoncomponents/ChangePttKeyPopup.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:11:45Z",
+      "side": 1,
+      "message": "remove some newlines",
+      "revId": "a0b9186879de74a4a88aea3d5a75cbef165bcba6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "681583ce_d06f5d91",
+        "filename": "src/app/platform/x11/pttlistener.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:11:45Z",
+      "side": 1,
+      "message": "clean code",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 14
+      },
+      "revId": "a0b9186879de74a4a88aea3d5a75cbef165bcba6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
