@@ -22,6 +22,30 @@
       },
       "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "023b9cc1_bdbd7124",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T19:29:19Z",
+      "side": 1,
+      "message": "nvm probably a lock. However for channel list I see \"Nan\"",
+      "parentUuid": "ee34b587_7c89db3d",
+      "range": {
+        "startLine": 7,
+        "startChar": 24,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
