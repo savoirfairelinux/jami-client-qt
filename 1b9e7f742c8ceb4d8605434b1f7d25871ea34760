@@ -182,6 +182,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff555263_e7b48986",
+        "filename": "src/app/pttlistener.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8338cffb_40600f3b",
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "461efa35_ff5e60be",
@@ -289,6 +307,24 @@
       "writtenOn": "2023-10-05T18:08:01Z",
       "side": 1,
       "message": "copyright header",
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e3d46e7_a2488d5a",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d931eb7_168dec8f",
       "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },

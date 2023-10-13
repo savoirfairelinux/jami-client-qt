@@ -446,6 +446,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "716c3ad8_ab542d1d",
+        "filename": "src/app/platform/macos/pttlistener.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7f7a55b_5640346d",
+      "range": {
+        "startLine": 1,
+        "startChar": 10,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2676157b_df62d3ba",
@@ -463,6 +487,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e249ef99_330c769b",
+        "filename": "src/app/platform/windows/pttlistener.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2676157b_df62d3ba",
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01d6f69b_ea51080c",
@@ -476,6 +518,30 @@
       "writtenOn": "2023-10-13T12:10:01Z",
       "side": 1,
       "message": "missing copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 10,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d618ea8_e562192f",
+        "filename": "src/app/platform/x11/pttlistener.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01d6f69b_ea51080c",
       "range": {
         "startLine": 1,
         "startChar": 10,
