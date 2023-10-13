@@ -1,0 +1,377 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "494a32c8_9399c507",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "wrong commit format for first line (part: short desc)",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6df9707e_a265bde6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "rebase on master",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdc40537_12261bcd",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "not sure it should be required. If not there, the x11-ptt should not be built",
+      "range": {
+        "startLine": 407,
+        "startChar": 14,
+        "endLine": 407,
+        "endChar": 26
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14920787_1c490a69",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ea52ff5_f3dcf94c",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "remove or clean logs",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 27
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1fe497e_629c5264",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "there should be a disconnect I guess?",
+      "range": {
+        "startLine": 112,
+        "startChar": 13,
+        "endLine": 112,
+        "endChar": 20
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "586669ba_9d71c3e4",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "and for the local ptt?",
+      "range": {
+        "startLine": 211,
+        "startChar": 7,
+        "endLine": 211,
+        "endChar": 22
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ecdd0d3_49f81862",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "clear log",
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59ed982c_f032bad9",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "I think we walready do this check in some other places. We should group the method to avoid code duplication",
+      "range": {
+        "startLine": 928,
+        "startChar": 29,
+        "endLine": 928,
+        "endChar": 36
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dd6c396_e260b7ff",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "fix typo",
+      "range": {
+        "startLine": 45,
+        "startChar": 72,
+        "endLine": 45,
+        "endChar": 77
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f7a55b_5640346d",
+        "filename": "src/app/platform/macos/pttlistener.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "missing copyright.\nAsk Kateryna to test this.",
+      "range": {
+        "startLine": 1,
+        "startChar": 10,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2676157b_df62d3ba",
+        "filename": "src/app/platform/windows/pttlistener.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "missing copyright. Is it tested?",
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01d6f69b_ea51080c",
+        "filename": "src/app/platform/x11/pttlistener.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "missing copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 10,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6c7615f_a7791260",
+        "filename": "src/app/platform/x11/pttlistener.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "10 would be good I guess. 100ms on a call is some time",
+      "range": {
+        "startLine": 71,
+        "startChar": 66,
+        "endLine": 71,
+        "endChar": 69
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613253b1_ed1913a8",
+        "filename": "src/app/platform/x11/pttlistener.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "seems useless as unused",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 132,
+        "endChar": 5
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c41df245_d7a11c1f",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "can be a read/write property instead getter/setter",
+      "range": {
+        "startLine": 17,
+        "startChar": 21,
+        "endLine": 17,
+        "endChar": 32
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a9ab122_8bdc655d",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T12:10:01Z",
+      "side": 1,
+      "message": "never called?",
+      "range": {
+        "startLine": 21,
+        "startChar": 21,
+        "endLine": 21,
+        "endChar": 32
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
