@@ -822,6 +822,7 @@ ContactModelPimpl::slotContactAdded(const QString& accountId, const QString& con
     }
 
     bool isBanned = false;
+    qWarning() << "@@@ ADD CONTACT " << contactUri;
 
     {
         // Always get contactsMtx_ lock before bannedContactsMtx_.
@@ -841,6 +842,7 @@ ContactModelPimpl::slotContactAdded(const QString& accountId, const QString& con
 
             MapStringString details = ConfigurationManager::instance()
                                           .getContactDetails(linked.owner.id, contactUri);
+    qWarning() << "@@@ ADD CONTACT2 " << details["conversationId"];
             addToContacts(contactUri,
                           linked.owner.profileInfo.type,
                           "",
@@ -852,7 +854,9 @@ ContactModelPimpl::slotContactAdded(const QString& accountId, const QString& con
         // Update the smartlist
         linked.owner.conversationModel->refreshFilter();
         Q_EMIT linked.bannedStatusChanged(contactUri, false);
+        qWarning() << "@@@@2";
     } else {
+        qWarning() << "@@@@";
         Q_EMIT linked.contactAdded(contactUri);
     }
 }
