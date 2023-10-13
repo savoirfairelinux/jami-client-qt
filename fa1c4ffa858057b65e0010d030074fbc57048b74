@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0440987e_e238a6f1",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T18:12:11Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 399,
+        "startChar": 17,
+        "endLine": 399,
+        "endChar": 32
+      },
+      "revId": "fa1c4ffa858057b65e0010d030074fbc57048b74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90568c08_a7f3c375",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T18:12:11Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 407,
+        "startChar": 18,
+        "endLine": 407,
+        "endChar": 27
+      },
+      "revId": "fa1c4ffa858057b65e0010d030074fbc57048b74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4bf4e05_6ff57f3c",
+        "filename": "src/app/platform/macos/pttlistener.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T18:12:11Z",
+      "side": 1,
+      "message": "you\u0027re still not one of them",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "fa1c4ffa858057b65e0010d030074fbc57048b74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53168296_9567ed4c",
+        "filename": "src/app/platform/macos/pttlistener.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T18:12:11Z",
+      "side": 1,
+      "message": "trailing space (and leading space the next line)",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 1
+      },
+      "revId": "fa1c4ffa858057b65e0010d030074fbc57048b74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6701c998_8fbf0451",
+        "filename": "src/app/platform/windows/pttlistener.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T18:12:11Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 1
+      },
+      "revId": "fa1c4ffa858057b65e0010d030074fbc57048b74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec87fd7_0bacd203",
+        "filename": "src/app/platform/x11/pttlistener.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T18:12:11Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 4,
+        "startChar": 30,
+        "endLine": 9,
+        "endChar": 30
+      },
+      "revId": "fa1c4ffa858057b65e0010d030074fbc57048b74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df027ead_fa87be51",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T18:12:11Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 3,
+        "startChar": 24,
+        "endLine": 3,
+        "endChar": 31
+      },
+      "revId": "fa1c4ffa858057b65e0010d030074fbc57048b74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a0217c1_dcff95a2",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T18:12:11Z",
+      "side": 1,
+      "message": "Note that push to talk MUST be disabled by default (else the user will unmute itself if clicking on space). I\u0027ll lock the patch til the next one is not ready to avoid this",
+      "range": {
+        "startLine": 77,
+        "startChar": 30,
+        "endLine": 77,
+        "endChar": 39
+      },
+      "revId": "fa1c4ffa858057b65e0010d030074fbc57048b74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
