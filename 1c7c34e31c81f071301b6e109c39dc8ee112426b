@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab33903b_b081005f",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T17:35:16Z",
+      "side": 1,
+      "message": "Not sure a string should be returned there. can be a struct to work with. Moreover if it\u0027s a string to be shown, translation must be taken into account",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 22
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "def5602a_663b42a7",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T17:35:16Z",
+      "side": 1,
+      "message": "string-\u003eint-\u003estring?",
+      "range": {
+        "startLine": 39,
+        "startChar": 41,
+        "endLine": 39,
+        "endChar": 93
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e8e44af_51c0afde",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T17:35:16Z",
+      "side": 1,
+      "message": "accountId",
+      "range": {
+        "startLine": 111,
+        "startChar": 15,
+        "endLine": 111,
+        "endChar": 24
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "296cefa3_ea56d090",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T17:35:16Z",
+      "side": 1,
+      "message": "lean code",
+      "range": {
+        "startLine": 118,
+        "startChar": 7,
+        "endLine": 118,
+        "endChar": 15
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cd20644_0323eaa1",
+        "filename": "src/app/connectioninfolistmodel.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T17:35:16Z",
+      "side": 1,
+      "message": "missing copyright header",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 7
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6b303c5_1c6b2a25",
+        "filename": "src/app/settingsview/components/TroubleshootSettingsPage.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T17:35:16Z",
+      "side": 1,
+      "message": "qrc:/settingsview/components/TroubleshootSettingsPage.qml:34:5: Unable to assign [undefined] to int\n[1]    818688 segmentation fault (core dumped)  ./jami -dq",
+      "range": {
+        "startLine": 24,
+        "startChar": 11,
+        "endLine": 24,
+        "endChar": 15
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "754b38fa_b6088fe2",
+        "filename": "src/app/settingsview/components/TroubleshootSettingsPage.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T17:35:16Z",
+      "side": 1,
+      "message": "should be split into other files",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 20
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdfc980e_4482ae5e",
+        "filename": "src/app/settingsview/components/TroubleshootSettingsPage.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-13T17:35:16Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 306,
+        "startChar": 72,
+        "endLine": 306,
+        "endChar": 76
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
