@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fdd364a3_15c8aa32",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-13T17:59:46Z",
+      "side": 1,
+      "message": "this data is only there to be copied and pasted if necessary",
+      "parentUuid": "ab33903b_b081005f",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 22
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "def5602a_663b42a7",
         "filename": "src/app/connectioninfolistmodel.cpp",
         "patchSetId": 11
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-13T17:35:16Z",
       "side": 1,
       "message": "string-\u003eint-\u003estring?",
+      "range": {
+        "startLine": 39,
+        "startChar": 41,
+        "endLine": 39,
+        "endChar": 93
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06331d1c_e8122051",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-13T17:59:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "def5602a_663b42a7",
       "range": {
         "startLine": 39,
         "startChar": 41,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4f20010_305987f4",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-13T17:59:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e8e44af_51c0afde",
+      "range": {
+        "startLine": 111,
+        "startChar": 15,
+        "endLine": 111,
+        "endChar": 24
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "296cefa3_ea56d090",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-10-13T17:35:16Z",
       "side": 1,
       "message": "lean code",
+      "range": {
+        "startLine": 118,
+        "startChar": 7,
+        "endLine": 118,
+        "endChar": 15
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8914ffb4_a4e15714",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-13T17:59:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "296cefa3_ea56d090",
       "range": {
         "startLine": 118,
         "startChar": 7,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc8bb790_bc071005",
+        "filename": "src/app/connectioninfolistmodel.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-13T17:59:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cd20644_0323eaa1",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 7
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6b303c5_1c6b2a25",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-10-13T17:35:16Z",
       "side": 1,
       "message": "qrc:/settingsview/components/TroubleshootSettingsPage.qml:34:5: Unable to assign [undefined] to int\n[1]    818688 segmentation fault (core dumped)  ./jami -dq",
+      "range": {
+        "startLine": 24,
+        "startChar": 11,
+        "endLine": 24,
+        "endChar": 15
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cda80d42_a11f6391",
+        "filename": "src/app/settingsview/components/TroubleshootSettingsPage.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-13T17:59:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6b303c5_1c6b2a25",
       "range": {
         "startLine": 24,
         "startChar": 11,
@@ -175,6 +319,30 @@
       "writtenOn": "2023-10-13T17:35:16Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 306,
+        "startChar": 72,
+        "endLine": 306,
+        "endChar": 76
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6cacee9_af838c82",
+        "filename": "src/app/settingsview/components/TroubleshootSettingsPage.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-13T17:59:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdfc980e_4482ae5e",
       "range": {
         "startLine": 306,
         "startChar": 72,
