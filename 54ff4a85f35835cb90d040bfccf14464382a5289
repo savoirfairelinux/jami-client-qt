@@ -47,6 +47,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d94a8329_3b884867",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "494a32c8_9399c507",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdc40537_12261bcd",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-10-13T12:10:01Z",
       "side": 1,
       "message": "not sure it should be required. If not there, the x11-ptt should not be built",
+      "range": {
+        "startLine": 407,
+        "startChar": 14,
+        "endLine": 407,
+        "endChar": 26
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56edd095_49c9466b",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdc40537_12261bcd",
       "range": {
         "startLine": 407,
         "startChar": 14,
@@ -87,6 +135,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e1f0215_1cda9ad1",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14920787_1c490a69",
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ea52ff5_f3dcf94c",
@@ -100,6 +166,30 @@
       "writtenOn": "2023-10-13T12:10:01Z",
       "side": 1,
       "message": "remove or clean logs",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 27
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7792370a_add47a94",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ea52ff5_f3dcf94c",
       "range": {
         "startLine": 105,
         "startChar": 0,
@@ -133,6 +223,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "893dfc7c_da9b904f",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1fe497e_629c5264",
+      "range": {
+        "startLine": 112,
+        "startChar": 13,
+        "endLine": 112,
+        "endChar": 20
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "586669ba_9d71c3e4",
@@ -146,6 +260,30 @@
       "writtenOn": "2023-10-13T12:10:01Z",
       "side": 1,
       "message": "and for the local ptt?",
+      "range": {
+        "startLine": 211,
+        "startChar": 7,
+        "endLine": 211,
+        "endChar": 22
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe36dd93_437d4a6e",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:02:57Z",
+      "side": 1,
+      "message": "it\u0027s in calloverlaymodel.cpp (lines 393 to 411) and in CallStackView.qml",
+      "parentUuid": "586669ba_9d71c3e4",
       "range": {
         "startLine": 211,
         "startChar": 7,
@@ -173,6 +311,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c306acdb_74c3f5e6",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ecdd0d3_49f81862",
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59ed982c_f032bad9",
@@ -196,6 +352,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "395dc21a_3de759b5",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59ed982c_f032bad9",
+      "range": {
+        "startLine": 928,
+        "startChar": 29,
+        "endLine": 928,
+        "endChar": 36
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0dd6c396_e260b7ff",
@@ -209,6 +389,30 @@
       "writtenOn": "2023-10-13T12:10:01Z",
       "side": 1,
       "message": "fix typo",
+      "range": {
+        "startLine": 45,
+        "startChar": 72,
+        "endLine": 45,
+        "endChar": 77
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e363c35d_98e3d487",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0dd6c396_e260b7ff",
       "range": {
         "startLine": 45,
         "startChar": 72,
@@ -305,6 +509,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbd5ff18_fabe5ec8",
+        "filename": "src/app/platform/x11/pttlistener.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6c7615f_a7791260",
+      "range": {
+        "startLine": 71,
+        "startChar": 66,
+        "endLine": 71,
+        "endChar": 69
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "613253b1_ed1913a8",
@@ -318,6 +546,30 @@
       "writtenOn": "2023-10-13T12:10:01Z",
       "side": 1,
       "message": "seems useless as unused",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 132,
+        "endChar": 5
+      },
+      "revId": "54ff4a85f35835cb90d040bfccf14464382a5289",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b90a138_8701dd8c",
+        "filename": "src/app/platform/x11/pttlistener.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-13T15:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "613253b1_ed1913a8",
       "range": {
         "startLine": 128,
         "startChar": 6,
