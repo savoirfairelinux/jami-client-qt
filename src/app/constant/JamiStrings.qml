@@ -844,4 +844,10 @@ Item {
     property string donationText: qsTr("If you enjoy using Jami and believe in our mission, would you make a donation?")
     property string notNow: qsTr("Not now")
     property string enableDonation: qsTr("Enable donation campaign")
+
+    //Chat setting page
+    property string enter: qsTr("ENTER")
+    property string shiftEnter: qsTr("SHIFT+ENTER")
+    property string textFormattingDescription: qsTr("ENTER or SHIFT+ENTER to insert a new line")
+    property string textFormatting: qsTr("Text formatting")
 }
