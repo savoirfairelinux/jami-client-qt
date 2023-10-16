@@ -41,6 +41,7 @@ JamiFlickable {
     property alias selectionStart: textArea.selectionStart
     property alias selectionEnd: textArea.selectionEnd
     property bool showPreview: false
+    property bool isShowTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
 
     ScrollBar.vertical.visible: textArea.text
     ScrollBar.horizontal.visible: textArea.text
@@ -206,7 +207,13 @@ JamiFlickable {
                 const isEnterNewLine = UtilsAdapter.getAppValue(Settings.Key.ChatViewEnterIsNewLine);
                 const isShiftPressed = (keyEvent.modifiers & Qt.ShiftModifier);
                 const isCtrlPressed = (keyEvent.modifiers & Qt.ControlModifier);
-                if (!isEnterNewLine && !isShiftPressed || isCtrlPressed) {
+                if (!root.isShowTypo && !isShiftPressed) {
+                    root.sendMessagesRequired();
+                    keyEvent.accepted = true;
+                } else if (isCtrlPressed) {
+                    root.sendMessagesRequired();
+                    keyEvent.accepted = true;
+                } else if (!isEnterNewLine && !isShiftPressed) {
                     root.sendMessagesRequired();
                     keyEvent.accepted = true;
                 }

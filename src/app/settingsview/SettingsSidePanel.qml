@@ -70,10 +70,10 @@ SidePanelBase {
                         "title": JamiStrings.appearance
                     }, {
                         "id": 7,
-                        "title": JamiStrings.locationSharingLabel
+                        "title": JamiStrings.chatSettingsTitle
                     }, {
                         "id": 8,
-                        "title": JamiStrings.fileTransfer
+                        "title": JamiStrings.locationSharingLabel
                     }, {
                         "id": 9,
                         "title": JamiStrings.callRecording
