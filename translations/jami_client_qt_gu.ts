@@ -950,17 +950,27 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
-        <source>Donate</source>
+        <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
-        <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
+        <source>Donate</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
+        <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
         <source>Not now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
+        <source>Enable donation campaign</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4090,122 +4100,127 @@ connects to synchronize the conversation.</source>
 <context>
     <name>TipsModel</name>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="78"/>
+        <location filename="../src/app/tipsmodel.cpp" line="79"/>
         <source>Customize</source>
         <translation>કસ્ટમાઇઝ કરો</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="81"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>What does Jami mean?</source>
         <translation>જેમીનો અર્થ શું છે?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="87"/>
+        <location filename="../src/app/tipsmodel.cpp" line="88"/>
         <source>What is the green dot next to my account?</source>
         <translation>મારા ખાતાની બાજુમાં લીલો બિંદુ શું છે?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="83"/>
+        <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
         <translation>જમી નામની પસંદગી સ્વાહિલી શબ્દ &apos;જમી&apos; દ્વારા પ્રેરિત કરવામાં આવી હતી, જેનો અર્થ &apos;સમુદાય&apos; તરીકે સંજ્ઞા અને &apos;સાથે&apos; તરીકે ક્રિયાપદ તરીકે થાય છે.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="79"/>
+        <location filename="../src/app/tipsmodel.cpp" line="78"/>
+        <source>Donate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Backup account</source>
         <translation>બેકઅપ એકાઉન્ટ</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="89"/>
+        <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
         <translation>લાલ બિંદુનો અર્થ એ થાય કે તમારું એકાઉન્ટ નેટવર્કથી ડિસ્કનેક્ટ છે; જ્યારે તે કનેક્ટ થાય ત્યારે તે લીલો થઈ જાય છે.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="94"/>
+        <location filename="../src/app/tipsmodel.cpp" line="95"/>
         <source>Why should I back up my account?</source>
         <translation>મારે મારા એકાઉન્ટને બેકઅપ કેમ લેવું જોઈએ?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="96"/>
+        <location filename="../src/app/tipsmodel.cpp" line="97"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
         <translation>જો તમે તમારો પાસવર્ડ અથવા તમારા સ્થાનિક એકાઉન્ટ ડેટા ગુમાવો છો, તો તમે તમારા એકાઉન્ટને પુનર્સ્થાપિત કરી શકશો નહીં જો તમે તેને અગાઉ બેકઅપ ન લીધું હોય.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="102"/>
+        <location filename="../src/app/tipsmodel.cpp" line="103"/>
         <source>Can I make a conference call?</source>
         <translation>હું કોન્ફરન્સ કૉલ કરી શકું?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="107"/>
+        <location filename="../src/app/tipsmodel.cpp" line="108"/>
         <source>What is a Jami account?</source>
         <translation>જેમી એકાઉન્ટ શું છે?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="109"/>
+        <location filename="../src/app/tipsmodel.cpp" line="110"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>એક જમી એકાઉન્ટ એ અસમપ્રમાણ એન્ક્રિપ્શન કી છે. તમારું એકાઉન્ટ જમી આઈડી દ્વારા ઓળખાય છે, જે તમારી જાહેર કીનો ફિંગરપ્રિન્ટ છે.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="113"/>
+        <location filename="../src/app/tipsmodel.cpp" line="114"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>જેમી એકાઉન્ટ બનાવવા માટે મારે કઈ માહિતી આપવાની જરૂર છે?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="115"/>
+        <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
         <translation>જ્યારે તમે નવું જમ્મી એકાઉન્ટ બનાવો છો, ત્યારે તમારે કોઈ ખાનગી માહિતી જેમ કે ઇમેઇલ, સરનામું અથવા ફોન નંબર આપવાની જરૂર નથી.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="122"/>
+        <location filename="../src/app/tipsmodel.cpp" line="123"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
         <translation>જેમી સાથે, તમારું એકાઉન્ટ તમારા ડિવાઇસ પર ડિરેક્ટરીમાં સંગ્રહિત થાય છે. પાસવર્ડ ફક્ત તમારા એકાઉન્ટને એન્ક્રિપ્ટ કરવા માટે ઉપયોગમાં લેવાય છે જેથી તમને કોઈ વ્યક્તિથી સુરક્ષિત કરવામાં આવે જે તમારા ડિવાઇસ પર ભૌતિક ઍક્સેસ ધરાવે છે.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="142"/>
+        <location filename="../src/app/tipsmodel.cpp" line="143"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
         <translation>તમારું એકાઉન્ટ ફક્ત તમારા પોતાના ઉપકરણો પર જ સંગ્રહિત થાય છે. જો તમે તમારા એકાઉન્ટને તમારા બધા ઉપકરણોમાંથી કાઢી નાખો છો, તો એકાઉન્ટ કાયમ માટે ગયો છે અને તમે તેને પુનઃપ્રાપ્ત કરી શકતા નથી.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="146"/>
+        <location filename="../src/app/tipsmodel.cpp" line="147"/>
         <source>Can I use my account on multiple devices?</source>
         <translation>શું હું મારા એકાઉન્ટને બહુવિધ ઉપકરણો પર ઉપયોગ કરી શકું?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="148"/>
+        <location filename="../src/app/tipsmodel.cpp" line="149"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
         <translation>હા, તમે સેટિંગ્સમાંથી તમારા એકાઉન્ટને લિંક કરી શકો છો, અથવા તમે તમારા બેકઅપને બીજા ઉપકરણ પર આયાત કરી શકો છો.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="120"/>
+        <location filename="../src/app/tipsmodel.cpp" line="121"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>મારે પાસવર્ડનો ઉપયોગ કેમ કરવો નથી?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="104"/>
+        <location filename="../src/app/tipsmodel.cpp" line="105"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
         <translation>કૉલ માં, તમે કૉલ પર સંપર્ક ઉમેરવા માટે &quot;ભાગીદારો ઉમેરો&quot; પર ક્લિક કરી શકો છો.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="128"/>
+        <location filename="../src/app/tipsmodel.cpp" line="129"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>મારે વપરાશકર્તા નામ નોંધવું કેમ નથી?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="130"/>
+        <location filename="../src/app/tipsmodel.cpp" line="131"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>સૌથી કાયમી, સુરક્ષિત ઓળખકર્તા તમારી જમ્મી આઈડી છે, પરંતુ કેટલાક લોકો માટે તેનો ઉપયોગ કરવો મુશ્કેલ છે, તેથી તમારી પાસે વપરાશકર્તા નામ નોંધણી કરવાનો વિકલ્પ પણ છે.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="135"/>
+        <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>How can I back up my account?</source>
         <translation>હું મારા એકાઉન્ટને કેવી રીતે બેકઅપ લઈ શકું?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="136"/>
+        <location filename="../src/app/tipsmodel.cpp" line="137"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
         <translation>એકાઉન્ટ સેટિંગ્સમાં, તમારા એકાઉન્ટનો બેકઅપ બનાવવા માટે એક બટન ઉપલબ્ધ છે.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="140"/>
+        <location filename="../src/app/tipsmodel.cpp" line="141"/>
         <source>What happens when I delete my account?</source>
         <translation>જ્યારે હું મારું એકાઉન્ટ કાઢી નાખીશ ત્યારે શું થશે?</translation>
     </message>
@@ -4213,17 +4228,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="336"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>%1 Mbps</source>
         <translation>%1 મેગાબીટ/સેકન્ડ</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="336"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>Default</source>
         <translation>ડિફૉલ્ટ</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="541"/>
+        <location filename="../src/app/utilsadapter.cpp" line="550"/>
         <source>System</source>
         <translation>સિસ્ટમ</translation>
     </message>

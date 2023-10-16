@@ -950,17 +950,27 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
-        <source>Donate</source>
+        <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
-        <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
+        <source>Donate</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
+        <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
         <source>Not now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
+        <source>Enable donation campaign</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4090,122 +4100,127 @@ connects to synchronize the conversation.</source>
 <context>
     <name>TipsModel</name>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="78"/>
+        <location filename="../src/app/tipsmodel.cpp" line="79"/>
         <source>Customize</source>
         <translation>Cải tạo</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="81"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>What does Jami mean?</source>
         <translation>Jami có nghĩa là gì?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="87"/>
+        <location filename="../src/app/tipsmodel.cpp" line="88"/>
         <source>What is the green dot next to my account?</source>
         <translation>Điểm xanh bên cạnh tài khoản của tôi là gì?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="83"/>
+        <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
         <translation>Việc chọn tên Jami được lấy cảm hứng từ từ Swahili &apos;jamii&apos;, có nghĩa là &apos;thành phố&apos; như một từ và &apos;cùng nhau&apos; như một động từ.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="79"/>
+        <location filename="../src/app/tipsmodel.cpp" line="78"/>
+        <source>Donate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Backup account</source>
         <translation>Tài khoản sao lưu</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="89"/>
+        <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
         <translation>Một chấm đỏ có nghĩa là tài khoản của bạn bị tách khỏi mạng; nó trở nên xanh khi nó được kết nối.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="94"/>
+        <location filename="../src/app/tipsmodel.cpp" line="95"/>
         <source>Why should I back up my account?</source>
         <translation>Tại sao tôi phải sao lại tài khoản của mình?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="96"/>
+        <location filename="../src/app/tipsmodel.cpp" line="97"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
         <translation>Jami được phân phối và tài khoản của bạn chỉ được lưu trữ tại địa phương trên thiết bị của bạn. Nếu bạn mất mật khẩu hoặc dữ liệu tài khoản địa phương của mình, bạn sẽ KHÔNG có thể khôi phục tài khoản của mình nếu bạn không sao lưu nó trước đó.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="102"/>
+        <location filename="../src/app/tipsmodel.cpp" line="103"/>
         <source>Can I make a conference call?</source>
         <translation>Tôi có thể gọi điện thoại không?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="107"/>
+        <location filename="../src/app/tipsmodel.cpp" line="108"/>
         <source>What is a Jami account?</source>
         <translation>Tài khoản Jami là gì?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="109"/>
+        <location filename="../src/app/tipsmodel.cpp" line="110"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>Tài khoản Jami là một khóa mã hóa không đối xứng. Tài khoản của bạn được xác định bằng một thẻ nhận dạng Jami, đó là dấu vân tay của khóa công khai của bạn.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="113"/>
+        <location filename="../src/app/tipsmodel.cpp" line="114"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>Tôi cần cung cấp thông tin nào để tạo tài khoản Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="115"/>
+        <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
         <translation>Khi bạn tạo tài khoản Jami mới, bạn không cần phải cung cấp bất kỳ thông tin riêng tư nào như email, địa chỉ hoặc số điện thoại.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="122"/>
+        <location filename="../src/app/tipsmodel.cpp" line="123"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
         <translation>Với Jami, tài khoản của bạn được lưu trữ trong một thư mục trên thiết bị của bạn. mật khẩu chỉ được sử dụng để mã hóa tài khoản của bạn để bảo vệ bạn khỏi một người có quyền truy cập vật lý vào thiết bị của bạn.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="142"/>
+        <location filename="../src/app/tipsmodel.cpp" line="143"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
         <translation>Tài khoản của bạn chỉ được lưu trữ trên các thiết bị của bạn. Nếu bạn xóa tài khoản của bạn khỏi tất cả các thiết bị của bạn, tài khoản sẽ biến mất mãi mãi và bạn KHÔNG CHO CẢI TINH.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="146"/>
+        <location filename="../src/app/tipsmodel.cpp" line="147"/>
         <source>Can I use my account on multiple devices?</source>
         <translation>Tôi có thể sử dụng tài khoản của mình trên nhiều thiết bị không?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="148"/>
+        <location filename="../src/app/tipsmodel.cpp" line="149"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
         <translation>Có, bạn có thể liên kết tài khoản của mình từ cài đặt, hoặc bạn có thể nhập sao lưu của bạn vào một thiết bị khác.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="120"/>
+        <location filename="../src/app/tipsmodel.cpp" line="121"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>Sao tôi không phải dùng mật khẩu?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="104"/>
+        <location filename="../src/app/tipsmodel.cpp" line="105"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
         <translation>Trong cuộc gọi, bạn có thể nhấp vào &quot;Tổ thêm người tham gia&quot; để thêm một liên hệ vào cuộc gọi.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="128"/>
+        <location filename="../src/app/tipsmodel.cpp" line="129"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>Sao tôi không phải đăng ký tên người dùng?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="130"/>
+        <location filename="../src/app/tipsmodel.cpp" line="131"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>Định dạng nhận dạng an toàn nhất là danh tính Jami của bạn, nhưng vì những người này khó sử dụng cho một số người, bạn cũng có tùy chọn đăng ký tên người dùng.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="135"/>
+        <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>How can I back up my account?</source>
         <translation>Làm sao tôi có thể sao lưu tài khoản của mình?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="136"/>
+        <location filename="../src/app/tipsmodel.cpp" line="137"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
         <translation>Trong Settings Account, có một nút để tạo sao lưu tài khoản của bạn.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="140"/>
+        <location filename="../src/app/tipsmodel.cpp" line="141"/>
         <source>What happens when I delete my account?</source>
         <translation>Điều gì sẽ xảy ra khi tôi xóa tài khoản của mình?</translation>
     </message>
@@ -4213,17 +4228,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="336"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>%1 Mbps</source>
         <translation>%1 Mb/giây</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="336"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>Default</source>
         <translation>Mặc định</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="541"/>
+        <location filename="../src/app/utilsadapter.cpp" line="550"/>
         <source>System</source>
         <translation>Hệ thống</translation>
     </message>

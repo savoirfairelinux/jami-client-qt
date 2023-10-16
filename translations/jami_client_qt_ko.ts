@@ -950,17 +950,27 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
-        <source>Donate</source>
+        <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
-        <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
+        <source>Donate</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
+        <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
         <source>Not now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
+        <source>Enable donation campaign</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4090,122 +4100,127 @@ connects to synchronize the conversation.</source>
 <context>
     <name>TipsModel</name>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="78"/>
+        <location filename="../src/app/tipsmodel.cpp" line="79"/>
         <source>Customize</source>
         <translation>사용자 정의</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="81"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>What does Jami mean?</source>
         <translation>자미는 무슨 뜻이야?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="87"/>
+        <location filename="../src/app/tipsmodel.cpp" line="88"/>
         <source>What is the green dot next to my account?</source>
         <translation>내 계좌 옆에 있는 녹색 점은 무엇입니까?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="83"/>
+        <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
         <translation>자미라는 이름을 선택하게 된 것은 &apos;자미&apos;라는 스와힐어 단어에서 영감을 받았으며, 이는 명명으로서 &apos;공동체&apos;와 adverb로서 &apos;함께&apos;를 의미합니다.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="79"/>
+        <location filename="../src/app/tipsmodel.cpp" line="78"/>
+        <source>Donate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Backup account</source>
         <translation>백업 계좌</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="89"/>
+        <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
         <translation>빨간 점은 계정이 네트워크에서 분리되어 있다는 것을 의미합니다. 연결되면 녹색이 됩니다.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="94"/>
+        <location filename="../src/app/tipsmodel.cpp" line="95"/>
         <source>Why should I back up my account?</source>
         <translation>왜 내 계좌를 백업해야 할까요?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="96"/>
+        <location filename="../src/app/tipsmodel.cpp" line="97"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
         <translation>자미는 배포되고 계정은 장치에 로컬에서만 저장됩니다. 비밀번호 또는 로컬 계정 데이터를 잃으면 이전에 백업하지 않으면 계정을 복구 할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="102"/>
+        <location filename="../src/app/tipsmodel.cpp" line="103"/>
         <source>Can I make a conference call?</source>
         <translation>전화 할 수 있나요?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="107"/>
+        <location filename="../src/app/tipsmodel.cpp" line="108"/>
         <source>What is a Jami account?</source>
         <translation>자미 계좌는 뭐죠?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="109"/>
+        <location filename="../src/app/tipsmodel.cpp" line="110"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>자미 계정은 비대칭 암호 키입니다. 자미 ID로 식별됩니다.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="113"/>
+        <location filename="../src/app/tipsmodel.cpp" line="114"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>자미 계정을 만들기 위해 어떤 정보를 제공해야 할까요?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="115"/>
+        <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
         <translation>새로운 자미 계정을 만들 때 이메일, 주소, 전화번호와 같은 개인 정보를 제공하지 않아도 됩니다.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="122"/>
+        <location filename="../src/app/tipsmodel.cpp" line="123"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
         <translation>자미 (Jami) 에서, 계정은 장치의 디렉토리에 저장됩니다. 비밀번호는 단지 장치에 물리적 접근을 가진 사람으로부터 당신을 보호하기 위해 계정을 암호화하는 데 사용됩니다.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="142"/>
+        <location filename="../src/app/tipsmodel.cpp" line="143"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
         <translation>귀하의 계정은 귀하의 장치에서만 저장됩니다. 모든 장치에서 계정을 삭제하면 계정은 영원히 사라지고 복구 할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="146"/>
+        <location filename="../src/app/tipsmodel.cpp" line="147"/>
         <source>Can I use my account on multiple devices?</source>
         <translation>여러 장치에서 내 계정을 사용할 수 있나요?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="148"/>
+        <location filename="../src/app/tipsmodel.cpp" line="149"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
         <translation>예, 설정에서 계정을 연결하거나 다른 장치에 백업을 가져올 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="120"/>
+        <location filename="../src/app/tipsmodel.cpp" line="121"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>왜 비밀번호를 써야지?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="104"/>
+        <location filename="../src/app/tipsmodel.cpp" line="105"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
         <translation>통화에서 &quot;참여자를 추가&quot;를 클릭하여 통화에 연락처를 추가할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="128"/>
+        <location filename="../src/app/tipsmodel.cpp" line="129"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>왜 내가 사용자 이름을 등록하지 않아도 되죠?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="130"/>
+        <location filename="../src/app/tipsmodel.cpp" line="131"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>가장 영구적이고 안전한 식별자는 자미 ID입니다. 하지만 일부 사람들에게는 사용하기 어렵기 때문에 사용자 이름을 등록할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="135"/>
+        <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>How can I back up my account?</source>
         <translation>어떻게 내 계좌를 백업할 수 있을까요?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="136"/>
+        <location filename="../src/app/tipsmodel.cpp" line="137"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
         <translation>계정 설정에서 계정을 백업하기 위한 버튼이 있습니다.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="140"/>
+        <location filename="../src/app/tipsmodel.cpp" line="141"/>
         <source>What happens when I delete my account?</source>
         <translation>내 계정을 삭제하면 어떻게 될까요?</translation>
     </message>
@@ -4213,17 +4228,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="336"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>%1 Mbps</source>
         <translation>%1메가비트/초</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="336"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>Default</source>
         <translation>기본값</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="541"/>
+        <location filename="../src/app/utilsadapter.cpp" line="550"/>
         <source>System</source>
         <translation>시스템</translation>
     </message>

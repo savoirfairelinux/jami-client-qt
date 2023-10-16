@@ -670,7 +670,7 @@ Jami tani do të mbyllet.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="275"/>
         <source>Unavailable</source>
-        <translation>Nuk është në dispozicion</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
@@ -854,12 +854,12 @@ Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translatio
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
         <source>Content access error</source>
-        <translation type="unfinished"/>
+        <translation>Gabim hyrjeje në lëndë</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="517"/>
         <source>Content not found</source>
-        <translation type="unfinished"/>
+        <translation>S’u gjet lëndë</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
@@ -958,18 +958,28 @@ Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translatio
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
+        <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
         <source>Donate</source>
         <translation>Dhuroni</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
         <translation>Nëse ju shijon të përdorni Jami-n dhe besoni në misionin tonë, a do të bënit një dhurim?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
         <source>Not now</source>
         <translation>Jo tani</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
+        <source>Enable donation campaign</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="487"/>
@@ -1167,7 +1177,7 @@ Do të donit të përditësohet tani?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="192"/>
         <source>Mirror local video</source>
-        <translation>Video lokale pasqyrë</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
@@ -1546,7 +1556,7 @@ Do të donit të përditësohet tani?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="279"/>
         <source>Take tile screenshot</source>
-        <translation>Merrni ekranet e pllakave</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="280"/>
@@ -1581,7 +1591,7 @@ Do të donit të përditësohet tani?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
         <source>Sockets</source>
-        <translation>Shtëpi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
@@ -2037,7 +2047,7 @@ Fotoja dhe nofka juaj mund të ndryshohet kurdo, që nga rregullimet e llogaris�
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="541"/>
         <source>Markdown</source>
-        <translation>Markdown</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
@@ -2062,7 +2072,7 @@ Fotoja dhe nofka juaj mund të ndryshohet kurdo, që nga rregullimet e llogaris�
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
         <source>Installing</source>
-        <translation>Instalimi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
@@ -3441,7 +3451,7 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="174"/>
         <source>Take tile screenshot</source>
-        <translation>Merrni ekranet e pllakave</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="182"/>
@@ -3692,7 +3702,7 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
-        <translation>Null</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
@@ -4033,17 +4043,17 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/app/positioning.cpp" line="109"/>
         <source>locationServicesError</source>
-        <translation>VendndodhjeServicesError</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="112"/>
         <source>locationServicesClosedError</source>
-        <translation>vendndodhjeServicesClosedError</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="114"/>
         <source>locationServicesUnknownError</source>
-        <translation>vendndodhjeServicesUnknownError</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/conversationmodel.cpp" line="1162"/>
@@ -4106,122 +4116,127 @@ të lidhet, për njëkohësim të bisedës.</translation>
 <context>
     <name>TipsModel</name>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="78"/>
+        <location filename="../src/app/tipsmodel.cpp" line="79"/>
         <source>Customize</source>
         <translation>Përshtateni</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="81"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>What does Jami mean?</source>
         <translation>Ç’do të thotë Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="87"/>
+        <location filename="../src/app/tipsmodel.cpp" line="88"/>
         <source>What is the green dot next to my account?</source>
         <translation>Ç’nënkupton pika e gjelbër në krah të llogarisë time?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="83"/>
+        <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
         <translation>Zgjedhja e emrit Jami u frymëzua nga fjala “jamii” e suahilishtes, që, si emër, do të thotë “bashkësi” dhe si ndajfolje do të thotë “tok”.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="79"/>
+        <location filename="../src/app/tipsmodel.cpp" line="78"/>
+        <source>Donate</source>
+        <translation>Dhuroni</translation>
+    </message>
+    <message>
+        <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Backup account</source>
         <translation>Kopjeruani llogarinë</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="89"/>
+        <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
         <translation>Një topth i kuq do të thotë se llogaria juaj është shkëputur nga rrjeti; bëhet i gjelbër, kur ajo lidhet.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="94"/>
+        <location filename="../src/app/tipsmodel.cpp" line="95"/>
         <source>Why should I back up my account?</source>
         <translation>Pse duhet ta kopjeruaj llogarinë time?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="96"/>
+        <location filename="../src/app/tipsmodel.cpp" line="97"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
         <translation>Jami është platformë e shpërndarë dhe llogaria juaj depozitohet lokalisht vetëm në pajisjen tuaj. Nëse humbni fjalëkalimin tuaj, ose të dhënat vendore të llogarisë tuaj, NUK do të jeni në gjendje të ringjallni llogarinë tuaj, nëse nuk e keni kopjeruajtur më herët.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="102"/>
+        <location filename="../src/app/tipsmodel.cpp" line="103"/>
         <source>Can I make a conference call?</source>
         <translation>A mund të bëj thirrje konferencë?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="107"/>
+        <location filename="../src/app/tipsmodel.cpp" line="108"/>
         <source>What is a Jami account?</source>
         <translation>Ç’është një llogari Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="109"/>
+        <location filename="../src/app/tipsmodel.cpp" line="110"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>Një llogari Jami është një kyç asimetrik fshehtëzimi. Llogaria juaj identifikohet nga një ID Jami që është shenjë gishti e kyçit tuaj publik.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="113"/>
+        <location filename="../src/app/tipsmodel.cpp" line="114"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>Ç’hollësi duhet të jap për të krijuar një llogari Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="115"/>
+        <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
         <translation>Kur krijoni një llogari të re Jami, nuk ju duhet të jepni ndonjë hollësi private, bie fjala, një email, adresë, apo numër telefoni.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="122"/>
+        <location filename="../src/app/tipsmodel.cpp" line="123"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
         <translation>Me Jami-n, llogaria juaj depozitohet në një drejtori në pajisjen tuaj. Fjalëkalimi përdoret vetëm për të fshehtëzuar llogarinë tuaj, me qëllim mbrojtjen tuaj nga dikush që ka shtënë në dorë pajisjen tuaj.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="142"/>
+        <location filename="../src/app/tipsmodel.cpp" line="143"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
         <translation>Llogaria juaj depozitohet lokalisht vetëm në pajisjen tuaj. Nëse fshini llogarinë tuaj nga krejt pajisjet tuaja, llogaria ikën përgjithmonë dhe NUK mund ta ringjallni.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="146"/>
+        <location filename="../src/app/tipsmodel.cpp" line="147"/>
         <source>Can I use my account on multiple devices?</source>
         <translation>A mund ta përdor llogarinë time në pajisje të shumta?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="148"/>
+        <location filename="../src/app/tipsmodel.cpp" line="149"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
         <translation>Po, mund ta lidhni llogarinë tuaj që nga rregullimet, ose mund të importoni kopjeruajtjen tuaj në një pajisje tjetër.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="120"/>
+        <location filename="../src/app/tipsmodel.cpp" line="121"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>Pse s’më duhet të përdor një fjalëkalim?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="104"/>
+        <location filename="../src/app/tipsmodel.cpp" line="105"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
         <translation>Gjatë një thirrjeje, mund të klikoni mbi “Shtoni pjesëmarrës”, që të shtoni një kontakt te thirrja.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="128"/>
+        <location filename="../src/app/tipsmodel.cpp" line="129"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>Pse më duhet të regjistroj një emër përdoruesi?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="130"/>
+        <location filename="../src/app/tipsmodel.cpp" line="131"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>Identifikuesi më i qëndrueshëm, më i sigurt është ID-ja juaj Jami, por ngaqë këto janë të vështira për t’u përdorur nga disa persona, keni gjithashtu mundësinë e regjistrimit të një emri përdoruesi.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="135"/>
+        <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>How can I back up my account?</source>
         <translation>Si mund ta kopjeruaj llogarinë time?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="136"/>
+        <location filename="../src/app/tipsmodel.cpp" line="137"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
         <translation>Te Rregullime Llogarie ka një buton për të krijuar një kopjeruajtje të llogarisë tuaj.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="140"/>
+        <location filename="../src/app/tipsmodel.cpp" line="141"/>
         <source>What happens when I delete my account?</source>
         <translation>Ç’ndodh nëse fshij llogariën time?</translation>
     </message>
@@ -4229,17 +4244,17 @@ të lidhet, për njëkohësim të bisedës.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="336"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>%1 Mbps</source>
         <translation>%1 Mbit/s</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="336"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>Default</source>
         <translation>Parazgjedhja</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="541"/>
+        <location filename="../src/app/utilsadapter.cpp" line="550"/>
         <source>System</source>
         <translation>Sistem</translation>
     </message>

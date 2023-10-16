@@ -855,12 +855,12 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
         <source>Content access error</source>
-        <translation type="unfinished"/>
+        <translation>Erreur d&apos;accès au contenu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="517"/>
         <source>Content not found</source>
-        <translation type="unfinished"/>
+        <translation>Contenu non trouvé</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
@@ -870,22 +870,22 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="581"/>
         <source>This account is password encrypted, enter the password to generate a PIN code.</source>
-        <translation type="unfinished"/>
+        <translation>Ce compte est chiffré, veuillez saisir le mot de passe pour générer un NIP.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
         <source>PIN expired</source>
-        <translation type="unfinished"/>
+        <translation>Le NIP est expiré</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
         <source>On another device</source>
-        <translation type="unfinished"/>
+        <translation>Sur l&apos;autre appareil</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
         <source>Install and launch Jami, select &quot;Import from another device&quot; and scan the QR code.</source>
-        <translation type="unfinished"/>
+        <translation>Installer et lancer Jami, choisissez &quot;Importer d&apos;un nouvel appareil&quot; et scanner le code QR.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
@@ -895,12 +895,12 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
         <source>In Jami, scan QR code or manually enter the PIN.</source>
-        <translation type="unfinished"/>
+        <translation>Dans Jami, scanner votre QR code ou saisissez votre NIP.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>The PIN code is valid for: </source>
-        <translation type="unfinished"/>
+        <translation>Votre NIP est valide pour :</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="591"/>
@@ -910,7 +910,7 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
         <source>Enter account password to confirm the removal of this device</source>
-        <translation type="unfinished"/>
+        <translation>Entrer le mot de passe du compte pour confirmer la suppression de cet appareil</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
@@ -925,7 +925,7 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="736"/>
         <source>Continue editing</source>
-        <translation type="unfinished"/>
+        <translation>Continuer l&apos;édition</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
@@ -959,17 +959,27 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
-        <source>Donate</source>
+        <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
-        <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
-        <translation type="unfinished"/>
+        <source>Donate</source>
+        <translation>Donnez </translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
+        <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
+        <translation>Si vous appréciez Jami et que vous croyez à notre mission, feriez-vous une donation ?</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
         <source>Not now</source>
+        <translation>Pas maintenant</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
+        <source>Enable donation campaign</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4107,122 +4117,127 @@ connects to synchronize the conversation.</source>
 <context>
     <name>TipsModel</name>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="78"/>
+        <location filename="../src/app/tipsmodel.cpp" line="79"/>
         <source>Customize</source>
         <translation>Paramétrer</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="81"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>What does Jami mean?</source>
         <translation>Que veut dire Jami ?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="87"/>
+        <location filename="../src/app/tipsmodel.cpp" line="88"/>
         <source>What is the green dot next to my account?</source>
         <translation>Que veut dire le point vert à coté de mon compte ?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="83"/>
+        <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
         <translation>Le choix du nom Jami a été inspiré par le mot swahili &quot;jamii&quot;, qui signifie &quot;communauté&quot; comme substantif et &quot;ensemble&quot; comme adverbe.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="79"/>
+        <location filename="../src/app/tipsmodel.cpp" line="78"/>
+        <source>Donate</source>
+        <translation>Donnez </translation>
+    </message>
+    <message>
+        <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Backup account</source>
         <translation>Sauvegarder le compte</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="89"/>
+        <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
         <translation>Un point rouge signifie que votre compte est déconnecté du réseau ; il devient vert lorsqu&apos;il est connecté.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="94"/>
+        <location filename="../src/app/tipsmodel.cpp" line="95"/>
         <source>Why should I back up my account?</source>
         <translation>Pourquoi dois-je faire une sauvegarde de mon compte ?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="96"/>
+        <location filename="../src/app/tipsmodel.cpp" line="97"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
         <translation>Jami est distribué et votre compte n&apos;est stocké que localement sur votre appareil. Si vous perdez votre mot de passe ou les données de votre compte local, vous NE POURREZ PAS récupérer votre compte si vous ne l&apos;avez pas sauvegardé auparavant.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="102"/>
+        <location filename="../src/app/tipsmodel.cpp" line="103"/>
         <source>Can I make a conference call?</source>
         <translation>Puis-je faire un appel conférence ?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="107"/>
+        <location filename="../src/app/tipsmodel.cpp" line="108"/>
         <source>What is a Jami account?</source>
         <translation>Qu&apos;est-ce qu&apos;un compte Jami ?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="109"/>
+        <location filename="../src/app/tipsmodel.cpp" line="110"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>Un compte Jami est une clé de chiffrement asymétrique. Votre compte est identifié par un Jami ID, qui est une empreinte digitale de votre clé publique.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="113"/>
+        <location filename="../src/app/tipsmodel.cpp" line="114"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>Quelles informations dois-je fournir pour créer un compte Jami ?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="115"/>
+        <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
         <translation>Lorsque vous créez un nouveau compte Jami, vous n&apos;avez pas à fournir d&apos;informations privées telles qu&apos;une adresse électronique, une adresse ou un numéro de téléphone.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="122"/>
+        <location filename="../src/app/tipsmodel.cpp" line="123"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
         <translation>Avec Jami, votre compte est stocké dans un répertoire sur votre appareil. Le mot de passe est uniquement utilisé pour crypter votre compte afin de vous protéger d&apos;une personne ayant un accès physique à votre appareil.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="142"/>
+        <location filename="../src/app/tipsmodel.cpp" line="143"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
         <translation>Votre compte est uniquement stocké sur vos propres appareils. Si vous supprimez votre compte de tous vos appareils, le compte est perdu à jamais et vous ne pouvez pas le récupérer.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="146"/>
+        <location filename="../src/app/tipsmodel.cpp" line="147"/>
         <source>Can I use my account on multiple devices?</source>
         <translation>Puis-je utiliser mon compte sur plusieurs appareils ?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="148"/>
+        <location filename="../src/app/tipsmodel.cpp" line="149"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
         <translation>Oui, vous pouvez lier votre compte à partir des paramètres, ou vous pouvez importer votre sauvegarde sur un autre appareil.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="120"/>
+        <location filename="../src/app/tipsmodel.cpp" line="121"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>Pourquoi n&apos;ai-je pas besoin d&apos;utiliser un mot de passe ?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="104"/>
+        <location filename="../src/app/tipsmodel.cpp" line="105"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
         <translation>Dans un appel, vous pouvez cliquer sur &quot;Ajouter des participants&quot; pour ajouter un contact à un appel.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="128"/>
+        <location filename="../src/app/tipsmodel.cpp" line="129"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>Pourquoi je n&apos;ai pas besoin d&apos;enregistrer un nom d&apos;utilisateur ?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="130"/>
+        <location filename="../src/app/tipsmodel.cpp" line="131"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>L&apos;identifiant le plus permanent et le plus sûr est votre identifiant Jami, mais comme celui-ci est difficile à utiliser pour certaines personnes, vous avez également la possibilité d&apos;enregistrer un nom d&apos;utilisateur.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="135"/>
+        <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>How can I back up my account?</source>
         <translation>Comment faire pour sauvegarder mon compte ?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="136"/>
+        <location filename="../src/app/tipsmodel.cpp" line="137"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
         <translation>Dans les paramètres du compte, un bouton est disponible pour créer une sauvegarde de votre compte.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="140"/>
+        <location filename="../src/app/tipsmodel.cpp" line="141"/>
         <source>What happens when I delete my account?</source>
         <translation>Que se passe-t-il si je supprime mon compte ?</translation>
     </message>
@@ -4230,17 +4245,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="336"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>%1 Mbps</source>
         <translation>%1 Mbits/s</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="336"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>Default</source>
         <translation>Défaut</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="541"/>
+        <location filename="../src/app/utilsadapter.cpp" line="550"/>
         <source>System</source>
         <translation>Système</translation>
     </message>
