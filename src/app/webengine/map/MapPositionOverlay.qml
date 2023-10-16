@@ -42,7 +42,7 @@ Rectangle {
 
             toolTipText: !isUnpin ? JamiStrings.unpin : JamiStrings.pinWindow
             imageColor: JamiTheme.mapButtonColor
-            normalColor: JamiTheme.transparentColor
+            normalColor: JamiTheme.mapButtonsOverlayColor
             source: JamiResources.unpin_svg
             onClicked: {
                 if (!isUnpin) {
@@ -58,7 +58,7 @@ Rectangle {
 
             toolTipText: JamiStrings.centerMapTooltip
             imageColor: JamiTheme.mapButtonColor
-            normalColor: JamiTheme.transparentColor
+            normalColor: JamiTheme.mapButtonsOverlayColor
             source: JamiResources.share_location_svg
             onClicked: {
                 webView.runJavaScript("zoomTolayersExtent()");
@@ -70,7 +70,7 @@ Rectangle {
 
             toolTipText: JamiStrings.dragMapTooltip
             imageColor: JamiTheme.mapButtonColor
-            normalColor: JamiTheme.transparentColor
+            normalColor: JamiTheme.mapButtonsOverlayColor
             source: JamiResources.move_svg
             visible: !isUnpin
 
@@ -90,7 +90,7 @@ Rectangle {
             visible: !isUnpin
             toolTipText: mapObject.isFullScreen ? JamiStrings.reduceMapTooltip : JamiStrings.maximizeMapTooltip
             imageColor: JamiTheme.mapButtonColor
-            normalColor: JamiTheme.transparentColor
+            normalColor: JamiTheme.mapButtonsOverlayColor
             source: mapObject.isFullScreen ? JamiResources.close_fullscreen_24dp_svg : JamiResources.open_in_full_24dp_svg
             onClicked: {
                 if (!mapObject.isFullScreen) {
@@ -106,7 +106,7 @@ Rectangle {
 
             toolTipText: JamiStrings.closeMapTooltip
             imageColor: JamiTheme.mapButtonColor
-            normalColor: JamiTheme.transparentColor
+            normalColor: JamiTheme.mapButtonsOverlayColor
             source: JamiResources.round_close_24dp_svg
             visible: !isUnpin
 

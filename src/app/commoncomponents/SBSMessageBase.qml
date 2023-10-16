@@ -278,7 +278,7 @@ Control {
                         anchors.leftMargin: !isOutgoing ? 10 : 0
 
                         imageColor: JamiTheme.emojiReactPushButtonColor
-                        normalColor: JamiTheme.transparentColor
+                        normalColor: JamiTheme.primaryBackgroundColor
                         toolTipText: JamiStrings.moreOptions
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? optionButtonItem.right : undefined
@@ -308,12 +308,13 @@ Control {
                         id: reply
 
                         imageColor: JamiTheme.emojiReactPushButtonColor
-                        normalColor: JamiTheme.transparentColor
+                        normalColor: JamiTheme.primaryBackgroundColor
                         toolTipText: JamiStrings.reply
                         source: JamiResources.reply_svg
                         width: optionButtonItem.width / 2
                         height: optionButtonItem.height
                         anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 5
                         anchors.right: isOutgoing ? more.left : undefined
                         anchors.left: !isOutgoing ? more.right : undefined
                         visible: CurrentAccount.type !== Profile.Type.SIP && Body !== "" && (bubbleArea.bubbleHovered || hovered || more.hovered || bgHandler.hovered)

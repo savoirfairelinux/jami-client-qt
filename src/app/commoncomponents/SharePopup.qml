@@ -79,8 +79,8 @@ Popup {
                 contentItem: RowLayout {
                     Rectangle {
                         id: image
-                        width: 26
-                        height: 26
+                        width: 20
+                        height: 20
                         radius: 5
                         color: JamiTheme.transparentColor
                         ResponsiveImage {
@@ -92,7 +92,8 @@ Popup {
                     Text {
                         Layout.alignment: Qt.AlignLeft
                         text: control.text
-                        color: control.hovered ? JamiTheme.chatViewFooterImgHoverColor : "#7f7f7f"
+                        color: JamiTheme.chatViewFooterImgHoverColor
+                        font.pixelSize: JamiTheme.chatViewFooterFontSize
                     }
                 }
                 background: Rectangle {
@@ -106,6 +107,20 @@ Popup {
                 }
             }
         }
+    }
+
+    DropShadow {
+        z: -1
+
+        width: rect.width
+        height: rect.height
+        horizontalOffset: 3.0
+        verticalOffset: 3.0
+        radius: rect.radius * 4
+        color: JamiTheme.shadowColor
+        source: rect
+        transparentBorder: true
+        samples: radius + 1
     }
 
     background: Rectangle {

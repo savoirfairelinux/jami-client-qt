@@ -76,7 +76,7 @@ Rectangle {
         hoveredColor: JamiTheme.hoveredButtonColor
         source: JamiResources.ic_baseline_search_24dp_svg
         toolTipText: JamiStrings.search
-        normalColor: "transparent"
+        normalColor: JamiTheme.primaryBackgroundColor
         imageColor: {
             if (reductionEnabled) {
                 if (hovered) {

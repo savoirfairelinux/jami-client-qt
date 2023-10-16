@@ -110,7 +110,7 @@ RowLayout {
 
             popup: SharePopup {
                 id: sharePopup
-                y: -180
+                y: -160
                 x: -20
 
                 menuMoreButton: listViewMoreButton.menuMoreButton
@@ -1160,7 +1160,7 @@ RowLayout {
                     imageContainerHeight: 25
                     radius: 5
                     source: JamiResources.preview_black_24dp_svg
-                    normalColor: showPreview ? hoveredColor : JamiTheme.transparentColor
+                    normalColor: showPreview ? hoveredColor : JamiTheme.primaryBackgroundColor
                     imageColor: (hovered || showPreview) ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
                     hoveredColor: JamiTheme.hoveredButtonColor
                     pressedColor: hoveredColor
