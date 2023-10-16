@@ -141,10 +141,10 @@ RowLayout {
 
         onWidthChanged: {
             height = Qt.binding(() => root.height);
-            if (width < 468) {
+            if (width < 438) {
                 showTypoSecond = false;
             } else {
-                if (width >= 468) {
+                if (width >= 438) {
                     showTypoSecond = true;
                 }
             }
@@ -307,6 +307,8 @@ RowLayout {
                     context: Qt.ApplicationShortcut
                     onActivated: {
                         showTypo = !showTypo;
+                        messageBarTextArea.isShowTypo = showTypo;
+                        UtilsAdapter.setAppValue(Settings.Key.ShowMardownOption, showTypo);
                     }
                 }
 
@@ -761,7 +763,7 @@ RowLayout {
                                     id: markdownPopup
                                     y: 1.5 * parent.height
                                     x: -parent.width * 2
-                                    width: 155
+                                    width: 105
                                     height: JamiTheme.chatViewFooterButtonSize
 
                                     menuTypoActionsSecond: listViewTypoSecond.menuTypoActionsSecond
@@ -816,20 +818,6 @@ RowLayout {
                                     property bool isStyle: listViewTypo.isPrefixSyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "", true)
                                     onTriggered: function clickAction() {
                                         listViewTypo.addPrefixStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "", true);
-                                    }
-                                },
-                                Action {
-                                    id: shiftEnterActiom
-                                    property var iconSrc: JamiResources.shift_enter_black_24dp_svg
-                                    property var shortcutText: chatViewEnterIsNewLine ? JamiStrings.enterNewLine : JamiStrings.shiftEnterNewLine
-                                    property var imageColor: chatViewEnterIsNewLine ? JamiTheme.chatViewFooterImgHoverColor : "#7f7f7f"
-                                    property var normalColor: chatViewEnterIsNewLine ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
-                                    property var hasShortcut: false
-                                    property var shortcutKey: null
-                                    property bool isStyle: false
-                                    onTriggered: function clickAction() {
-                                        root.chatViewEnterIsNewLine = !root.chatViewEnterIsNewLine;
-                                        UtilsAdapter.setAppValue(Settings.Key.ChatViewEnterIsNewLine, chatViewEnterIsNewLine);
                                     }
                                 }
                             ]
@@ -906,17 +894,11 @@ RowLayout {
 
                         onClicked: {
                             showTypo = !showTypo;
+                            messageBarTextArea.isShowTypo = showTypo;
                             if (messageBar.width < messageBarLayoutMaximumWidth + sendMessageButton.width + 2 * JamiTheme.preferredMarginSize)
                                 showTypoSecond = false;
                             if (!showDefault)
                                 showDefault = true;
-                            if (showTypo) {
-                                root.chatViewEnterIsNewLine = true;
-                                UtilsAdapter.setAppValue(Settings.Key.ChatViewEnterIsNewLine, true);
-                            } else {
-                                root.chatViewEnterIsNewLine = false;
-                                UtilsAdapter.setAppValue(Settings.Key.ChatViewEnterIsNewLine, false);
-                            }
                             UtilsAdapter.setAppValue(Settings.Key.ShowMardownOption, showTypo);
                             UtilsAdapter.setAppValue(Settings.Key.ShowSendOption, !showDefault);
                         }

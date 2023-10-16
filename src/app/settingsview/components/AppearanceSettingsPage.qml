@@ -43,60 +43,6 @@ SettingsPageBase {
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
         ColumnLayout {
-            id: generalSettings
-
-            width: parent.width
-            spacing: JamiTheme.settingsCategorySpacing
-
-            Text {
-                id: enableAccountTitle
-
-                Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
-
-                text: JamiStrings.generalSettingsTitle
-                color: JamiTheme.textColor
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.WordWrap
-
-                font.pixelSize: JamiTheme.settingsTitlePixelSize
-                font.kerning: true
-            }
-
-            ToggleSwitch {
-                id: enableTypingIndicatorCheckbox
-
-                Layout.fillWidth: true
-
-                checked: UtilsAdapter.getAppValue(Settings.EnableTypingIndicator)
-                labelText: JamiStrings.enableTypingIndicator
-                descText: JamiStrings.enableTypingIndicatorDescription
-                tooltipText: JamiStrings.enableTypingIndicator
-
-                onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.EnableTypingIndicator, checked)
-            }
-
-            ToggleSwitch {
-                id: displayImagesCheckbox
-                visible: WITH_WEBENGINE
-
-                Layout.fillWidth: true
-
-                checked: UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews)
-
-                labelText: JamiStrings.displayHyperlinkPreviews
-                descText: JamiStrings.displayHyperlinkPreviewsDescription
-
-                tooltipText: JamiStrings.displayHyperlinkPreviews
-
-                onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.DisplayHyperlinkPreviews, checked);
-                }
-            }
-        }
-
-        ColumnLayout {
             id: themeSettings
 
             width: parent.width
