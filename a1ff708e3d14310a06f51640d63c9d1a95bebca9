@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e6b8f40_8d3a76fe",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-16T19:08:28Z",
+      "side": 1,
+      "message": "this should be explained. Why this value",
+      "range": {
+        "startLine": 144,
+        "startChar": 24,
+        "endLine": 144,
+        "endChar": 27
+      },
+      "revId": "a1ff708e3d14310a06f51640d63c9d1a95bebca9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a086200c_6955b4e9",
+        "filename": "src/app/settingsview/components/ChatSettingsPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-16T19:08:28Z",
+      "side": 1,
+      "message": "non translatable text",
+      "range": {
+        "startLine": 128,
+        "startChar": 15,
+        "endLine": 128,
+        "endChar": 65
+      },
+      "revId": "a1ff708e3d14310a06f51640d63c9d1a95bebca9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72defa7e_681e1747",
+        "filename": "src/app/settingsview/components/ChatSettingsPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-16T19:08:28Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 155,
+        "startChar": 27,
+        "endLine": 155,
+        "endChar": 32
+      },
+      "revId": "a1ff708e3d14310a06f51640d63c9d1a95bebca9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a768b82_785c7f65",
+        "filename": "src/app/settingsview/components/ChatSettingsPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-16T19:08:28Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 45
+      },
+      "revId": "a1ff708e3d14310a06f51640d63c9d1a95bebca9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
