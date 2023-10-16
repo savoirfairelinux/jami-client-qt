@@ -72,6 +72,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fcc9b3f_ea5791ad",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-16T19:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af0b25d7_9c2d98a0",
+      "range": {
+        "startLine": 214,
+        "startChar": 3,
+        "endLine": 215,
+        "endChar": 34
+      },
+      "revId": "1b9e7f742c8ceb4d8605434b1f7d25871ea34760",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94d68648_29050c7f",
