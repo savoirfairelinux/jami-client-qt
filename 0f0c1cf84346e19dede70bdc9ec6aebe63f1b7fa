@@ -70,6 +70,99 @@
       },
       "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61de9d9b_6e779952",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T13:26:45Z",
+      "side": 1,
+      "message": "Actually, it\u0027s still NaN even if crash is fixed for channels",
+      "parentUuid": "a932b2b2_c98e0521",
+      "range": {
+        "startLine": 7,
+        "startChar": 24,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d66ced7e_bcd3bd59",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 13
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T13:26:45Z",
+      "side": 1,
+      "message": "to rebase on master",
+      "range": {
+        "startLine": 248,
+        "startChar": 17,
+        "endLine": 248,
+        "endChar": 40
+      },
+      "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b9a4c76_26c5d8c9",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T13:26:45Z",
+      "side": 1,
+      "message": "it should be \"id\" and \"name\" not \"channel\" and \"channelName\", that\u0027s why it,s NaN",
+      "range": {
+        "startLine": 57,
+        "startChar": 41,
+        "endLine": 57,
+        "endChar": 79
+      },
+      "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09fdb6ea_0559c909",
+        "filename": "src/app/settingsview/components/TroubleshootSettingsPage.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T13:26:45Z",
+      "side": 1,
+      "message": "can be every 1-2 second, no need for polling every 100ms",
+      "range": {
+        "startLine": 179,
+        "startChar": 23,
+        "endLine": 179,
+        "endChar": 33
+      },
+      "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
