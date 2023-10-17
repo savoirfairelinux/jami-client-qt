@@ -143,6 +143,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4664e4c6_6e3e2ace",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 13
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-17T14:41:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d66ced7e_bcd3bd59",
+      "range": {
+        "startLine": 248,
+        "startChar": 17,
+        "endLine": 248,
+        "endChar": 40
+      },
+      "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b9a4c76_26c5d8c9",
