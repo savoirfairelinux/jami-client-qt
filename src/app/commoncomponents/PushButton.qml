@@ -37,7 +37,7 @@ AbstractButton {
     property int preferredLeftMargin: 16
     property int preferredRightMargin: 16
     // Note the radius will default to preferredSize
-    property bool circled: false//true
+    property bool circled: true
     property alias radius: background.radius
     property alias border: background.border
 
