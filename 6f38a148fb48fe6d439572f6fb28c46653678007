@@ -1,0 +1,268 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf041e34_eb22eea5",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 16
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "can you disable this for now, so that we can merge and wait for the macOS team to do that. The code is nearly ready",
+      "range": {
+        "startLine": 511,
+        "startChar": 4,
+        "endLine": 511,
+        "endChar": 29
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6967cce_03f37c7e",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 16
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "remove this line",
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "476aa660_927ab1b4",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 16
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "If PTT_PLATFORM is empty, the code doesn\u0027t compile due to some errors in calladapter/calloverlaymodel",
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e65b844_ec01774a",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "CallAdapter::~CallAdapter()\n{\n#ifdef HAVE_GLOBAL_PTT\n    disconnectPtt();\n#endif\n}",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 6
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0f9e6f0_6a0cd405",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "no need for #ifdef HAVE_GLOBAL_PTT?",
+      "range": {
+        "startLine": 121,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 17
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "391546ea_acb5db91",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "no need for #ifdef HAVE_GLOBAL_PTT?",
+      "range": {
+        "startLine": 149,
+        "startChar": 18,
+        "endLine": 149,
+        "endChar": 29
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "691133d0_1eadce04",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "homogeneize ifdef with onCallEnded (ifdef before the if)",
+      "range": {
+        "startLine": 239,
+        "startChar": 3,
+        "endLine": 242,
+        "endChar": 5
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f86b696f_1bea8c2d",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "the \"else if\" here is a problem as it\u0027s not connected to the previous \"if\" due to line 394",
+      "range": {
+        "startLine": 394,
+        "startChar": 4,
+        "endLine": 395,
+        "endChar": 8
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8df54cca_bf75f0de",
+        "filename": "src/app/platform/macos/pttlistener.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "remove trailing space (you can configure your editor to automatically do this on save0",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaf40dbc_79d9b60e",
+        "filename": "src/app/platform/windows/pttlistener.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a41ed01f_29795a4c",
+        "filename": "src/app/platform/x11/pttlistener.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "remove debug log",
+      "range": {
+        "startLine": 43,
+        "startChar": 28,
+        "endLine": 43,
+        "endChar": 40
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb1ced77_d50315ba",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-17T12:25:06Z",
+      "side": 1,
+      "message": "cleanup headers, it should be your name",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
