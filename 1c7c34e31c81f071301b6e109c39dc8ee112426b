@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22c16a5a_68c62c0f",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-17T13:41:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fdd364a3_15c8aa32",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 22
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "def5602a_663b42a7",

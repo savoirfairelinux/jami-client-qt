@@ -96,6 +96,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8efc533_98f5b03e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-17T13:41:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61de9d9b_6e779952",
+      "range": {
+        "startLine": 7,
+        "startChar": 24,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d66ced7e_bcd3bd59",
@@ -142,6 +166,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "654e338f_d02edeb9",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-17T13:41:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b9a4c76_26c5d8c9",
+      "range": {
+        "startLine": 57,
+        "startChar": 41,
+        "endLine": 57,
+        "endChar": 79
+      },
+      "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09fdb6ea_0559c909",
@@ -155,6 +203,30 @@
       "writtenOn": "2023-10-17T13:26:45Z",
       "side": 1,
       "message": "can be every 1-2 second, no need for polling every 100ms",
+      "range": {
+        "startLine": 179,
+        "startChar": 23,
+        "endLine": 179,
+        "endChar": 33
+      },
+      "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbdcbce5_86406903",
+        "filename": "src/app/settingsview/components/TroubleshootSettingsPage.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-17T13:41:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09fdb6ea_0559c909",
       "range": {
         "startLine": 179,
         "startChar": 23,
