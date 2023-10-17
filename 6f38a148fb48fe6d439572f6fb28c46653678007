@@ -175,6 +175,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41d77134_1d731866",
+        "filename": "src/app/platform/macos/pttlistener.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-17T13:10:03Z",
+      "side": 1,
+      "message": "this is the Windows platform code",
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42b12428_2d2b169b",
+        "filename": "src/app/platform/macos/pttlistener.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-17T13:10:03Z",
+      "side": 1,
+      "message": "- 2023\n- we don\u0027t list authors anymore and track with git instead",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 5,
+        "endChar": 63
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8df54cca_bf75f0de",
         "filename": "src/app/platform/macos/pttlistener.cpp",
         "patchSetId": 16
@@ -278,6 +318,75 @@
       "writtenOn": "2023-10-17T13:02:25Z",
       "side": 1,
       "message": "Q_EMIT PTTStateChanged();",
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7595a476_d7a06079",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-17T13:10:03Z",
+      "side": 1,
+      "message": "signals are functions and should start with a lowercase letter",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 27
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dab3c5b7_b1107ea3",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-17T13:10:03Z",
+      "side": 1,
+      "message": "making this a singleton may have side-effects that should considered carefully. can it be injected where it is needed?",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 19
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b66fa858_14d0d402",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-10-17T13:10:03Z",
+      "side": 1,
+      "message": "consider aerating code like this for the sake of the reader",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 40
+      },
       "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
