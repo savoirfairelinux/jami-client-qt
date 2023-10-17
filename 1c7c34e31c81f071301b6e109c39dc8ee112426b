@@ -330,6 +330,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cfcd5bc_010dba45",
+        "filename": "src/app/settingsview/components/TroubleshootSettingsPage.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-17T14:28:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "754b38fa_b6088fe2",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 20
+      },
+      "revId": "1c7c34e31c81f071301b6e109c39dc8ee112426b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdfc980e_4482ae5e",
