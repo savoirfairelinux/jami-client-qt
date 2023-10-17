@@ -730,6 +730,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99268314_45f8bd37",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-17T14:33:12Z",
+      "side": 1,
+      "message": "Yes, it seems to work properly wis a singleton",
+      "parentUuid": "dab3c5b7_b1107ea3",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 19
+      },
+      "revId": "6f38a148fb48fe6d439572f6fb28c46653678007",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b66fa858_14d0d402",
         "filename": "src/app/pttlistener.h",
         "patchSetId": 16
