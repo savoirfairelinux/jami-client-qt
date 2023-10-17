@@ -93,7 +93,7 @@ Popup {
                         Layout.alignment: Qt.AlignLeft
                         text: control.text
                         color: JamiTheme.chatViewFooterImgHoverColor
-                        font.pixelSize: JamiTheme.chatViewFooterFontSize
+                        font.pixelSize: JamiTheme.menuFontSize
                     }
                 }
                 background: Rectangle {
