@@ -42,8 +42,8 @@ MenuItem {
     property int leftBorderWidth: JamiTheme.menuItemsCommonBorderWidth
     property int rightBorderWidth: JamiTheme.menuItemsCommonBorderWidth
 
-    property int itemImageLeftMargin: 24
-    property int itemTextMargin: 20
+    property int itemImageLeftMargin: 18
+    property int itemTextMargin: 10
 
     signal clicked
     property bool itemHovered: menuItemContentRect.hovered
@@ -55,10 +55,12 @@ MenuItem {
             id: background
 
             anchors.fill: parent
-            anchors.leftMargin: 1
-            anchors.rightMargin: 1
+            anchors.leftMargin: 5
+            anchors.rightMargin: 5
 
-            color: menuItemContentRect.hovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
+            radius: 5
+
+            color: menuItemContentRect.hovered ? JamiTheme.hoverColor : JamiTheme.primaryBackgroundColor
         }
 
         anchors.fill: parent
@@ -69,6 +71,7 @@ MenuItem {
             anchors.fill: menuItemContentRect
 
             ResponsiveImage {
+                //Scaffold{}
                 id: contextMenuItemImage
 
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
@@ -76,16 +79,17 @@ MenuItem {
 
                 visible: status === Image.Ready
 
-                color: iconColor !== "" ? iconColor : JamiTheme.textColor
+                color: iconColor !== "" ? iconColor : menuItemContentRect.hovered ? JamiTheme.textColor : "#7f7f7f"
                 opacity: 0.7
             }
 
             Text {
+                //Scaffold{}
                 id: contextMenuItemText
 
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                Layout.leftMargin: contextMenuItemImage.status === Image.Ready ? itemTextMargin : itemTextMargin / 2
-                Layout.rightMargin: contextMenuItemImage.status === Image.Ready ? itemTextMargin : itemTextMargin / 2
+                Layout.leftMargin: contextMenuItemImage.status === Image.Ready ? itemTextMargin : itemTextMargin
+                Layout.rightMargin: contextMenuItemImage.status === Image.Ready ? itemImageLeftMargin : itemTextMargin
                 Layout.preferredHeight: itemPreferredHeight
                 Layout.fillWidth: true
 
@@ -94,24 +98,25 @@ MenuItem {
                 font.pointSize: JamiTheme.textFontSize
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
 
-                TextMetrics {
-                    id: contextMenuItemTextMetrics
+                // TextMetrics {
+                //     id: contextMenuItemTextMetrics
 
-                    font: contextMenuItemText.font
-                    text: contextMenuItemText.text
+                //     font: contextMenuItemText.font
+                //     text: contextMenuItemText.text
 
-                    onBoundingRectChanged: {
-                        var sizeToCompare = itemPreferredWidth - (contextMenuItemImage.source.toString().length > 0 ? itemTextMargin + itemImageLeftMargin + contextMenuItemImage.width : itemTextMargin / 2);
-                        if (autoTextSizeAdjustment && boundingRect.width > sizeToCompare) {
-                            if (boundingRect.width > JamiTheme.contextMenuItemTextMaxWidth) {
-                                itemPreferredWidth += JamiTheme.contextMenuItemTextMaxWidth - JamiTheme.contextMenuItemTextPreferredWidth + itemTextMargin;
-                                contextMenuItemText.elide = Text.ElideRight;
-                            } else
-                                itemPreferredWidth += boundingRect.width + itemTextMargin - sizeToCompare;
-                        }
-                    }
-                }
+                //     // onBoundingRectChanged: {
+                //     //     var sizeToCompare = itemPreferredWidth - (contextMenuItemImage.source.toString().length > 0 ? itemTextMargin + itemImageLeftMargin + contextMenuItemImage.width : itemTextMargin / 2);
+                //     //     if (autoTextSizeAdjustment && boundingRect.width > sizeToCompare) {
+                //     //         if (boundingRect.width > JamiTheme.contextMenuItemTextMaxWidth) {
+                //     //             itemPreferredWidth += JamiTheme.contextMenuItemTextMaxWidth - JamiTheme.contextMenuItemTextPreferredWidth + itemTextMargin;
+                //     //             contextMenuItemText.elide = Text.ElideRight;
+                //     //         } else
+                //     //             itemPreferredWidth += boundingRect.width + itemTextMargin - sizeToCompare;
+                //     //     }
+                //     // }
+                // }
             }
         }
 
@@ -130,6 +135,8 @@ MenuItem {
         anchors.leftMargin: leftBorderWidth
         anchors.rightMargin: rightBorderWidth
 
+        color: JamiTheme.primaryBackgroundColor
+
         implicitWidth: itemPreferredWidth
         implicitHeight: itemPreferredHeight
 
@@ -141,7 +148,7 @@ MenuItem {
             rBorderwidth: rightBorderWidth
             tBorderwidth: 0
             bBorderwidth: 0
-            borderColor: JamiTheme.tabbarBorderColor
+            borderColor: JamiTheme.primaryBackgroundColor
         }
     }
 }

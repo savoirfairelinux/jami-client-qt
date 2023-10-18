@@ -24,18 +24,21 @@ MenuSeparator {
 
     property int separatorPreferredWidth: JamiTheme.menuItemsPreferredWidth
     property int separatorPreferredHeight: 1
-    property string separatorColor: JamiTheme.tabbarBorderColor
+    property string separatorColor: JamiTheme.primaryBackgroundColor
 
     padding: 0
     topPadding: 1
     bottomPadding: 1
+
     contentItem: Rectangle {
         implicitWidth: separatorPreferredWidth
         implicitHeight: separatorPreferredHeight
-        color: separatorColor
+        color: JamiTheme.primaryBackgroundColor
+        radius: 5
     }
 
     background: Rectangle {
-        color: JamiTheme.backgroundColor
+        color: JamiTheme.primaryBackgroundColor
+        radius: 5
     }
 }
