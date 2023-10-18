@@ -37,6 +37,7 @@ ContextMenuAutoLoader {
 
             canTrigger: root.transferId !== ""
             itemName: JamiStrings.saveFile
+            iconSource: JamiResources.save_file_svg
             onClicked: MessagesAdapter.copyToDownloads(root.transferId, root.transferName)
         },
         GeneralMenuItem {
@@ -44,6 +45,7 @@ ContextMenuAutoLoader {
 
             canTrigger: root.transferId !== ""
             itemName: JamiStrings.openLocation
+            iconSource: JamiResources.round_folder_24dp_svg
             onClicked: {
                 MessagesAdapter.openDirectory(root.location);
             }
@@ -52,6 +54,7 @@ ContextMenuAutoLoader {
             id: reply
 
             itemName: JamiStrings.reply
+            iconSource: JamiResources.reply_svg
             onClicked: {
                 MessagesAdapter.editId = "";
                 MessagesAdapter.replyToId = root.msgId;
@@ -62,6 +65,7 @@ ContextMenuAutoLoader {
 
             canTrigger: transferId === "" && isOutgoing
             itemName: JamiStrings.edit
+            iconSource: JamiResources.edit_svg
             onClicked: {
                 MessagesAdapter.replyToId = "";
                 MessagesAdapter.editId = root.msgId;
@@ -73,6 +77,7 @@ ContextMenuAutoLoader {
 
             canTrigger: transferId === "" && isOutgoing
             itemName: JamiStrings.optionDelete
+            iconSource: JamiResources.delete_svg
             onClicked: {
                 MessagesAdapter.editMessage(CurrentConversation.id, "", root.msgId);
             }
