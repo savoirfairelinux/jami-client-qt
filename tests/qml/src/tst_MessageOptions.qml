@@ -51,7 +51,7 @@ Item {
     }
 
     function getOptionsPopup(isOutgoing, id, body, type, transferName) {
-        var component = Qt.createComponent("qrc:/commoncomponents/MessageOptionsPopup.qml");
+        var component = Qt.createComponent("qrc:/commoncomponents/ShowMoreMenu.qml");
         var obj = component.createObject(bubble, {
                 "emojiReactions": emojiReactions,
                 "isOutgoing": isOutgoing,
