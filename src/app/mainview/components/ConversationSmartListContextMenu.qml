@@ -104,7 +104,6 @@ ContextMenuAutoLoader {
             canTrigger: hasCall
             itemName: JamiStrings.endCall
             iconSource: JamiResources.ic_call_end_white_24dp_svg
-            addMenuSeparatorAfter: contactType !== Profile.Type.SIP && (contactType === Profile.Type.PENDING || !hasCall)
             onClicked: CallAdapter.hangUpACall(responsibleAccountId, responsibleConvUid)
         },
         GeneralMenuItem {
@@ -129,7 +128,6 @@ ContextMenuAutoLoader {
             canTrigger: !hasCall && contactType !== Profile.Type.SIP && !root.isBanned && isCoreDialog && root.idText !== CurrentAccount.uri
             itemName: JamiStrings.blockContact
             iconSource: JamiResources.block_black_24dp_svg
-            addMenuSeparatorAfter: canTrigger
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                         "title": JamiStrings.confirmAction,
@@ -147,7 +145,6 @@ ContextMenuAutoLoader {
             canTrigger: root.isBanned
             itemName: JamiStrings.reinstateContact
             iconSource: JamiResources.round_remove_circle_24dp_svg
-            addMenuSeparatorAfter: canTrigger
             onClicked: MessagesAdapter.unbanConversation(responsibleConvUid)
         },
         GeneralMenuItem {

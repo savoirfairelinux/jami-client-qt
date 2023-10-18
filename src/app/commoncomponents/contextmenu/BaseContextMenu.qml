@@ -43,11 +43,9 @@ Menu {
 
     function loadMenuItems(menuItems) {
         root.addItem(menuTopBorder);
-
-        // use the maximum text width as the preferred width for menu
         for (var j = 0; j < menuItems.length; ++j) {
             var currentItemWidth = menuItems[j].itemPreferredWidth;
-            if (currentItemWidth !== JamiTheme.menuItemsPreferredWidth && currentItemWidth > menuPreferredWidth)
+            if (currentItemWidth !== JamiTheme.menuItemsPreferredWidth && currentItemWidth > menuPreferredWidth && menuItems[j].canTrigger)
                 menuPreferredWidth = currentItemWidth;
         }
         for (var i = 0; i < menuItems.length; ++i) {
@@ -55,17 +53,28 @@ Menu {
                 menuItems[i].parentMenu = root;
                 root.addItem(menuItems[i]);
                 if (menuPreferredWidth)
-                    menuItems[i].itemPreferredWidth = menuPreferredWidth;
+                    menuItems[i].itemRealWidth = menuPreferredWidth;
                 if (menuItemsPreferredHeight)
                     menuItems[i].itemPreferredHeight = menuItemsPreferredHeight;
-            }
-            if (menuItems[i].addMenuSeparatorAfter) {
-                // If the QML file to be loaded is a local file,
-                // you could omit the finishCreation() function
-                var menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
-                var menuSeparatorComponentObj = menuSeparatorComponent.createObject();
-                generalMenuSeparatorList.push(menuSeparatorComponentObj);
-                root.addItem(menuSeparatorComponentObj);
+                if (i !== menuItems.length - 1) {
+                    var menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
+                    var menuSeparatorComponentObj = menuSeparatorComponent.createObject();
+                    generalMenuSeparatorList.push(menuSeparatorComponentObj);
+                    root.addItem(menuSeparatorComponentObj);
+                }
+                if (menuItems[i].addMenuSeparatorAfter) {
+                    var menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
+                    var menuSeparatorComponentObj = menuSeparatorComponent.createObject(root, {
+                            "separatorColor": "#DEDEDE",
+                            "separatorPreferredHeight": 0
+                        });
+                    generalMenuSeparatorList.push(menuSeparatorComponentObj);
+                    root.addItem(menuSeparatorComponentObj);
+                    var menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
+                    var menuSeparatorComponentObj = menuSeparatorComponent.createObject();
+                    generalMenuSeparatorList.push(menuSeparatorComponentObj);
+                    root.addItem(menuSeparatorComponentObj);
+                }
             }
         }
         root.addItem(menuBottomBorder);
@@ -81,24 +90,23 @@ Menu {
     Overlay.modal: Rectangle {
         color: "transparent"
     }
+
     font.pointSize: JamiTheme.menuFontSize
 
     background: Rectangle {
-        id: container
 
         implicitWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
 
-        border.width: JamiTheme.menuItemsCommonBorderWidth
-        border.color: JamiTheme.tabbarBorderColor
-        color: JamiTheme.backgroundColor
+        color: JamiTheme.primaryBackgroundColor
+        radius: 5
 
         layer.enabled: true
         layer.effect: DropShadow {
             z: -1
-            horizontalOffset: 3.0
+            horizontalOffset: 0.0
             verticalOffset: 3.0
-            radius: 16.0
-            color: JamiTheme.shadowColor
+            radius: 6
+            color: "#29000000"
             transparentBorder: true
             samples: radius + 1
         }
