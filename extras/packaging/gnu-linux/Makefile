@@ -49,7 +49,7 @@ QT_MAJOR := 6
 QT_MINOR := 4
 QT_PATCH := 3
 QT_TARBALL_CHECKSUM := 29a7eebdbba0ea57978dea6083709c93593a60f0f3133a3de08b9571ee8eaab4
-DEBIAN_QT_VERSION := $(QT_MAJOR).$(QT_MINOR).$(QT_PATCH)-2
+DEBIAN_QT_VERSION := $(QT_MAJOR).$(QT_MINOR).$(QT_PATCH)-3
 DEBIAN_QT_DSC_FILENAME := libqt-jami_$(DEBIAN_QT_VERSION).dsc
 QT_JAMI_PREFIX := /usr/lib/libqt-jami
 
@@ -167,8 +167,10 @@ DISTRIBUTIONS := \
 	ubuntu_20.04 \
 	ubuntu_22.04 \
 	ubuntu_23.04 \
+	ubuntu_23.10 \
 	fedora_37 \
 	fedora_38 \
+	fedora_39 \
 	opensuse-leap_15.4 \
 	snap
 
