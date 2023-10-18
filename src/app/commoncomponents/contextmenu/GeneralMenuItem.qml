@@ -58,6 +58,8 @@ MenuItem {
             anchors.leftMargin: 1
             anchors.rightMargin: 1
 
+            radius: 5
+
             color: menuItemContentRect.hovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
         }
 
@@ -101,16 +103,16 @@ MenuItem {
                     font: contextMenuItemText.font
                     text: contextMenuItemText.text
 
-                    onBoundingRectChanged: {
-                        var sizeToCompare = itemPreferredWidth - (contextMenuItemImage.source.toString().length > 0 ? itemTextMargin + itemImageLeftMargin + contextMenuItemImage.width : itemTextMargin / 2);
-                        if (autoTextSizeAdjustment && boundingRect.width > sizeToCompare) {
-                            if (boundingRect.width > JamiTheme.contextMenuItemTextMaxWidth) {
-                                itemPreferredWidth += JamiTheme.contextMenuItemTextMaxWidth - JamiTheme.contextMenuItemTextPreferredWidth + itemTextMargin;
-                                contextMenuItemText.elide = Text.ElideRight;
-                            } else
-                                itemPreferredWidth += boundingRect.width + itemTextMargin - sizeToCompare;
-                        }
-                    }
+                    // onBoundingRectChanged: {
+                    //     var sizeToCompare = itemPreferredWidth - (contextMenuItemImage.source.toString().length > 0 ? itemTextMargin + itemImageLeftMargin + contextMenuItemImage.width : itemTextMargin / 2);
+                    //     if (autoTextSizeAdjustment && boundingRect.width > sizeToCompare) {
+                    //         if (boundingRect.width > JamiTheme.contextMenuItemTextMaxWidth) {
+                    //             itemPreferredWidth += JamiTheme.contextMenuItemTextMaxWidth - JamiTheme.contextMenuItemTextPreferredWidth + itemTextMargin;
+                    //             contextMenuItemText.elide = Text.ElideRight;
+                    //         } else
+                    //             itemPreferredWidth += boundingRect.width + itemTextMargin - sizeToCompare;
+                    //     }
+                    // }
                 }
             }
         }
@@ -130,6 +132,8 @@ MenuItem {
         anchors.leftMargin: leftBorderWidth
         anchors.rightMargin: rightBorderWidth
 
+        color: JamiTheme.backgroundColor
+
         implicitWidth: itemPreferredWidth
         implicitHeight: itemPreferredHeight
 
@@ -141,7 +145,7 @@ MenuItem {
             rBorderwidth: rightBorderWidth
             tBorderwidth: 0
             bBorderwidth: 0
-            borderColor: JamiTheme.tabbarBorderColor
+            borderColor: JamiTheme.backgroundColor
         }
     }
 }
