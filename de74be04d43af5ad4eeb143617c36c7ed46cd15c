@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7fc8cd0_4b577360",
+        "filename": "src/app/settingsview/components/ConnectionMonitoringTable.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-18T11:32:39Z",
+      "side": 1,
+      "message": "remove non used code",
+      "range": {
+        "startLine": 161,
+        "startChar": 30,
+        "endLine": 161,
+        "endChar": 38
+      },
+      "revId": "de74be04d43af5ad4eeb143617c36c7ed46cd15c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

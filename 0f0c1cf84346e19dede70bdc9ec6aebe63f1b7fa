@@ -259,6 +259,30 @@
       },
       "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65215b51_f972d754",
+        "filename": "src/app/settingsview/components/TroubleshootSettingsPage.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-18T11:32:39Z",
+      "side": 1,
+      "message": "it still 100 ms",
+      "parentUuid": "dbdcbce5_86406903",
+      "range": {
+        "startLine": 179,
+        "startChar": 23,
+        "endLine": 179,
+        "endChar": 33
+      },
+      "revId": "0f0c1cf84346e19dede70bdc9ec6aebe63f1b7fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
