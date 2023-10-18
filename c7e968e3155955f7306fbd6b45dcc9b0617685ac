@@ -16,6 +16,23 @@
       "message": "Missing widget design and UX definition.\nParent patches only keep master behaviour.",
       "revId": "c7e968e3155955f7306fbd6b45dcc9b0617685ac",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de70432e_820d34ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2023-10-18T13:41:11Z",
+      "side": 1,
+      "message": "TODO:\n- In conference no controls are shown for the conf host while sharing a file.\n- Sometimes the controls do not show.",
+      "revId": "c7e968e3155955f7306fbd6b45dcc9b0617685ac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
