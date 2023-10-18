@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93940d83_6327e2a4",
+        "filename": "src/app/connectioninfolistmodel.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-18T17:33:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bde2fff6_48e068e6",
+      "range": {
+        "startLine": 55,
+        "startChar": 55,
+        "endLine": 55,
+        "endChar": 69
+      },
+      "revId": "de74be04d43af5ad4eeb143617c36c7ed46cd15c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7fc8cd0_4b577360",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-18T11:32:39Z",
       "side": 1,
       "message": "remove non used code",
+      "range": {
+        "startLine": 161,
+        "startChar": 30,
+        "endLine": 161,
+        "endChar": 38
+      },
+      "revId": "de74be04d43af5ad4eeb143617c36c7ed46cd15c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04aa4bd7_7a1b3cfa",
+        "filename": "src/app/settingsview/components/ConnectionMonitoringTable.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-18T17:33:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7fc8cd0_4b577360",
       "range": {
         "startLine": 161,
         "startChar": 30,
