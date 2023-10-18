@@ -33,6 +33,39 @@
 extern const QString defaultDownloadPath;
 
 // clang-format off
+#ifdef APPSTORE
+#define KEYS \
+    X(MinimizeOnClose, false) \
+    X(DownloadPath, defaultDownloadPath) \
+    X(ScreenshotPath, {}) \
+    X(EnableNotifications, true) \
+    X(EnableTypingIndicator, true) \
+    X(EnableReadReceipt, true) \
+    X(AcceptTransferBelow, 20) \
+    X(AutoAcceptFiles, true) \
+    X(DisplayHyperlinkPreviews, true) \
+    X(AppTheme, "System") \
+    X(BaseZoom, 1.0) \
+    X(ParticipantsSide, false) \
+    X(HideSelf, true) \
+    X(HideSpectators, false) \
+    X(AutoUpdate, true) \
+    X(PluginAutoUpdate, false) \
+    X(StartMinimized, false) \
+    X(ShowChatviewHorizontally, true) \
+    X(NeverShowMeAgain, false) \
+    X(WindowGeometry, QRectF(qQNaN(), qQNaN(), 0., 0.)) \
+    X(WindowState, QWindow::AutomaticVisibility) \
+    X(EnableExperimentalSwarm, false) \
+    X(LANG, "SYSTEM") \
+    X(PluginStoreEndpoint, "https://plugins.jami.net") \
+    X(PositionShareDuration, 15) \
+    X(PositionShareLimit, true) \
+    X(FlipSelf, true) \
+    X(ShowMardownOption, false) \
+    X(ChatViewEnterIsNewLine, false) \
+    X(ShowSendOption, false)
+#else
 #define KEYS \
     X(MinimizeOnClose, false) \
     X(DownloadPath, defaultDownloadPath) \
@@ -67,6 +100,7 @@ extern const QString defaultDownloadPath;
     X(DonationVisibleDate, "2023-11-01 05:00") \
     X(IsDonationVisible, true) \
     X(DonationEndDate, "2024-01-01 00:00")
+#endif
 
 /*
  * A class to expose settings keys in both c++ and QML.
