@@ -367,9 +367,9 @@ Item {
     property int avatarReadReceiptSize: 18
 
     property int menuItemsPreferredWidth: 220
-    property int menuItemsPreferredHeight: 48
+    property int menuItemsPreferredHeight: 36
     property int menuItemsCommonBorderWidth: 1
-    property int menuBorderPreferredHeight: 8
+    property int menuBorderPreferredHeight: 5
 
     property real maximumWidthSettingsView: 516
     property real settingsHeaderpreferredHeight: 64

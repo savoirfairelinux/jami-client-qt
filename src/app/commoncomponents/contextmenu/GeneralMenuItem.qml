@@ -32,21 +32,25 @@ MenuItem {
     property alias iconSource: contextMenuItemImage.source
     property string iconColor: ""
     property bool canTrigger: true
+    property bool hasIcon: true
     property bool addMenuSeparatorAfter: false
     property bool autoTextSizeAdjustment: true
     property bool dangerous: false
     property BaseContextMenu parentMenu
 
-    property int itemPreferredWidth: JamiTheme.menuItemsPreferredWidth
+    property int itemPreferredWidth: hasIcon ? 50 + contextMenuItemText.contentWidth + contextMenuItemImage.width : 35 + contextMenuItemText.contentWidth
+    property int itemRealWidth: itemPreferredWidth
     property int itemPreferredHeight: JamiTheme.menuItemsPreferredHeight
     property int leftBorderWidth: JamiTheme.menuItemsCommonBorderWidth
     property int rightBorderWidth: JamiTheme.menuItemsCommonBorderWidth
 
-    property int itemImageLeftMargin: 24
-    property int itemTextMargin: 20
+    property int itemImageLeftMargin: 18
+    property int itemTextMargin: 10
 
     signal clicked
     property bool itemHovered: menuItemContentRect.hovered
+
+    width: itemRealWidth
 
     contentItem: AbstractButton {
         id: menuItemContentRect
@@ -55,10 +59,12 @@ MenuItem {
             id: background
 
             anchors.fill: parent
-            anchors.leftMargin: 1
-            anchors.rightMargin: 1
+            anchors.leftMargin: 6
+            anchors.rightMargin: 6
 
-            color: menuItemContentRect.hovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
+            radius: 5
+
+            color: menuItemContentRect.hovered ? JamiTheme.hoverColor : JamiTheme.primaryBackgroundColor
         }
 
         anchors.fill: parent
@@ -69,6 +75,7 @@ MenuItem {
             anchors.fill: menuItemContentRect
 
             ResponsiveImage {
+                //Scaffold{}
                 id: contextMenuItemImage
 
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
@@ -76,41 +83,27 @@ MenuItem {
 
                 visible: status === Image.Ready
 
-                color: iconColor !== "" ? iconColor : JamiTheme.textColor
+                color: iconColor !== "" ? iconColor : menuItemContentRect.hovered ? JamiTheme.textColor : "#7e7e7e"
                 opacity: 0.7
             }
 
-            Text {
-                id: contextMenuItemText
-
+            Item {
+                //Scaffold{}
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                Layout.leftMargin: contextMenuItemImage.status === Image.Ready ? itemTextMargin : itemTextMargin / 2
-                Layout.rightMargin: contextMenuItemImage.status === Image.Ready ? itemTextMargin : itemTextMargin / 2
+                Layout.leftMargin: contextMenuItemImage.status === Image.Ready ? itemTextMargin : itemTextMargin
+                Layout.rightMargin: contextMenuItemImage.status === Image.Ready ? itemImageLeftMargin : itemTextMargin
                 Layout.preferredHeight: itemPreferredHeight
                 Layout.fillWidth: true
 
-                text: itemName
-                color: dangerous ? JamiTheme.redColor : JamiTheme.textColor
-                font.pointSize: JamiTheme.textFontSize
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-
-                TextMetrics {
-                    id: contextMenuItemTextMetrics
-
-                    font: contextMenuItemText.font
-                    text: contextMenuItemText.text
-
-                    onBoundingRectChanged: {
-                        var sizeToCompare = itemPreferredWidth - (contextMenuItemImage.source.toString().length > 0 ? itemTextMargin + itemImageLeftMargin + contextMenuItemImage.width : itemTextMargin / 2);
-                        if (autoTextSizeAdjustment && boundingRect.width > sizeToCompare) {
-                            if (boundingRect.width > JamiTheme.contextMenuItemTextMaxWidth) {
-                                itemPreferredWidth += JamiTheme.contextMenuItemTextMaxWidth - JamiTheme.contextMenuItemTextPreferredWidth + itemTextMargin;
-                                contextMenuItemText.elide = Text.ElideRight;
-                            } else
-                                itemPreferredWidth += boundingRect.width + itemTextMargin - sizeToCompare;
-                        }
-                    }
+                Text {
+                    id: contextMenuItemText
+                    height: parent.height
+                    text: itemName
+                    color: dangerous ? JamiTheme.redColor : JamiTheme.textColor
+                    font.pointSize: JamiTheme.textFontSize
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
                 }
             }
         }
@@ -130,7 +123,9 @@ MenuItem {
         anchors.leftMargin: leftBorderWidth
         anchors.rightMargin: rightBorderWidth
 
-        implicitWidth: itemPreferredWidth
+        color: JamiTheme.primaryBackgroundColor
+
+        implicitWidth: itemRealWidth
         implicitHeight: itemPreferredHeight
 
         border.width: 0
@@ -141,7 +136,7 @@ MenuItem {
             rBorderwidth: rightBorderWidth
             tBorderwidth: 0
             bBorderwidth: 0
-            borderColor: JamiTheme.tabbarBorderColor
+            borderColor: JamiTheme.primaryBackgroundColor
         }
     }
 }

@@ -277,7 +277,7 @@ Control {
                         anchors.rightMargin: isOutgoing ? 10 : 0
                         anchors.leftMargin: !isOutgoing ? 10 : 0
 
-                        imageColor: JamiTheme.emojiReactPushButtonColor
+                        imageColor: hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
                         normalColor: JamiTheme.primaryBackgroundColor
                         toolTipText: JamiStrings.moreOptions
                         anchors.verticalCenter: parent.verticalCenter
@@ -290,7 +290,7 @@ Control {
                         circled: false
 
                         onClicked: {
-                            var component = Qt.createComponent("qrc:/commoncomponents/MessageOptionsPopup.qml");
+                            var component = Qt.createComponent("qrc:/commoncomponents/ShowMoreMenu.qml");
                             var obj = component.createObject(bubble, {
                                     "emojiReactions": emojiReactions,
                                     "isOutgoing": isOutgoing,
@@ -308,7 +308,8 @@ Control {
                     PushButton {
                         id: reply
 
-                        imageColor: JamiTheme.emojiReactPushButtonColor
+                        circled: false
+                        imageColor: hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
                         normalColor: JamiTheme.primaryBackgroundColor
                         toolTipText: JamiStrings.reply
                         source: JamiResources.reply_svg

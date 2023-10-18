@@ -53,6 +53,7 @@ AbstractButton {
     property alias toolTipText: toolTip.text
     property alias hasShortcut: toolTip.hasShortcut
     property alias shortcutKey: toolTip.shortcutKey
+    property int buttonTextFontSize: 12
 
     // State colors
     property string pressedColor: JamiTheme.pressedButtonColor
@@ -143,7 +144,7 @@ AbstractButton {
 
         color: JamiTheme.primaryForegroundColor
         font.kerning: true
-        font.pixelSize: 12
+        font.pixelSize: buttonTextFontSize
         elide: Qt.ElideRight
     }
 
