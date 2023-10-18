@@ -37,6 +37,7 @@ ContextMenuAutoLoader {
 
             canTrigger: lineEditObj.selectedText.length
             itemName: JamiStrings.copy
+            hasIcon: false
             onClicked: {
                 lineEditObj.copy();
             }
@@ -46,7 +47,7 @@ ContextMenuAutoLoader {
 
             canTrigger: lineEditObj.selectedText.length && !selectOnly
             itemName: JamiStrings.cut
-
+            hasIcon: false
             onClicked: {
                 lineEditObj.cut();
             }
@@ -56,6 +57,7 @@ ContextMenuAutoLoader {
 
             canTrigger: !selectOnly
             itemName: JamiStrings.paste
+            hasIcon: false
             onClicked: {
                 if (customizePaste)
                     root.contextMenuRequirePaste();
@@ -77,7 +79,7 @@ ContextMenuAutoLoader {
     }
 
     contextMenuItemPreferredHeight: JamiTheme.lineEditContextMenuItemsHeight
-    contextMenuItemPreferredWidth: JamiTheme.lineEditContextMenuItemsWidth
+    //contextMenuItemPreferredWidth: JamiTheme.lineEditContextMenuItemsWidth
     contextMenuSeparatorPreferredHeight: JamiTheme.lineEditContextMenuSeparatorsHeight
 
     Connections {
