@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1efb9228_24f13b05",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-18T13:04:51Z",
+      "side": 1,
+      "message": "kateryna confirms that this is working, so you can re-add it",
+      "range": {
+        "startLine": 510,
+        "startChar": 9,
+        "endLine": 510,
+        "endChar": 26
+      },
+      "revId": "622299f579b0d4df98b8165004e65a8d555c4f74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "22d00b57_bf338bdd",
         "filename": "src/app/calloverlaymodel.cpp",
         "patchSetId": 20
@@ -19,6 +42,29 @@
         "startChar": 24,
         "endLine": 394,
         "endChar": 25
+      },
+      "revId": "622299f579b0d4df98b8165004e65a8d555c4f74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58e3386e_c06fdf90",
+        "filename": "src/app/platform/x11/pttlistener.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-18T13:04:51Z",
+      "side": 1,
+      "message": "Jenkins doesn\u0027t build (some linking error) when you have:\n\nCMake Warning at CMakeLists.txt:519 (message):\n  Global push-to-talk not supported.",
+      "range": {
+        "startLine": 6,
+        "startChar": 33,
+        "endLine": 6,
+        "endChar": 39
       },
       "revId": "622299f579b0d4df98b8165004e65a8d555c4f74",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
