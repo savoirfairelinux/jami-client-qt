@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22d00b57_bf338bdd",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-18T11:35:55Z",
+      "side": 1,
+      "message": "trailing spaces. You can configure your editor to avoid this",
+      "range": {
+        "startLine": 394,
+        "startChar": 24,
+        "endLine": 394,
+        "endChar": 25
+      },
+      "revId": "622299f579b0d4df98b8165004e65a8d555c4f74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
