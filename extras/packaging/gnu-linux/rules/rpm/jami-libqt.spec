@@ -28,6 +28,9 @@ URL:           https://jami.net/
 Source:        jami-libqt-%{version}.tar.xz
 Patch0:        0001-fix-gcc13.patch
 Patch1:        0002-OpenFile-portal-do-not-use-O_PATH-fds.patch
+Patch2:        0003-fix-mathops.patch
+Patch3:        0004-fix-binary-tokenizer.patch
+Patch4:        0005-importlib.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -64,6 +67,9 @@ This package contains Qt libraries for Jami.
 %setup -n qt-everywhere-src-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 echo "Building Qt using %{job_count} parallel jobs"
