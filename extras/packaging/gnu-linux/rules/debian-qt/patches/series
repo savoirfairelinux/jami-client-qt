@@ -1,5 +1,2 @@
-0001-fix-gcc13.patch
-0002-OpenFile-portal-do-not-use-O_PATH-fds.patch
-0003-fix-mathops.patch
-0004-fix-binary-tokenizer.patch
-0005-importlib.patch
+0001-fix-mathops.patch
+0002-fix-binary-tokenizer.patch
