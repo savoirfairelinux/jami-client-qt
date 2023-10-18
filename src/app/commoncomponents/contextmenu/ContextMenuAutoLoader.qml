@@ -30,6 +30,8 @@ Loader {
 
     active: false
 
+    visible: false
+
     function openMenu() {
         root.active = true;
         root.sourceComponent = menuComponent;
