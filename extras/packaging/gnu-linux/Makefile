@@ -167,8 +167,10 @@ DISTRIBUTIONS := \
 	ubuntu_20.04 \
 	ubuntu_22.04 \
 	ubuntu_23.04 \
+	ubuntu_23.10 \
 	fedora_37 \
 	fedora_38 \
+	fedora_39 \
 	opensuse-leap_15.4 \
 	snap
 
