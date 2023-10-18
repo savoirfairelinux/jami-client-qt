@@ -287,6 +287,7 @@ Control {
                         source: JamiResources.more_vert_24dp_svg
                         width: optionButtonItem.width / 2
                         height: optionButtonItem.height
+                        circled: false
 
                         onClicked: {
                             var component = Qt.createComponent("qrc:/commoncomponents/MessageOptionsPopup.qml");
@@ -318,6 +319,7 @@ Control {
                         anchors.right: isOutgoing ? more.left : undefined
                         anchors.left: !isOutgoing ? more.right : undefined
                         visible: CurrentAccount.type !== Profile.Type.SIP && Body !== "" && (bubbleArea.bubbleHovered || hovered || more.hovered || bgHandler.hovered)
+                        circled: false
 
                         onClicked: {
                             MessagesAdapter.editId = "";
