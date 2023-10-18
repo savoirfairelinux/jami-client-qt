@@ -108,14 +108,21 @@ RowLayout {
                     sharePopup.close();
             }
 
-            popup: SharePopup {
+            popup: ShareMenu {
                 id: sharePopup
+                onAudioRecordMessageButtonClicked: {
+                    root.audioRecordMessageButtonClicked();
+                }
+                onVideoRecordMessageButtonClicked: {
+                    root.videoRecordMessageButtonClicked();
+                }
+                onShowMapClicked: {
+                    root.showMapClicked();
+                }
+                parent: root
+                modelList: listViewMoreButton.menuMoreButton
                 y: -160
                 x: -20
-
-                menuMoreButton: listViewMoreButton.menuMoreButton
-
-                onClosed: messageBar.textAreaObj.forceActiveFocus()
             }
         }
     }
