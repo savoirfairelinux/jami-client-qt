@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dd6db03_35c88e36",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-18T13:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1efb9228_24f13b05",
+      "range": {
+        "startLine": 510,
+        "startChar": 9,
+        "endLine": 510,
+        "endChar": 26
+      },
+      "revId": "622299f579b0d4df98b8165004e65a8d555c4f74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22d00b57_bf338bdd",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-18T11:35:55Z",
       "side": 1,
       "message": "trailing spaces. You can configure your editor to avoid this",
+      "range": {
+        "startLine": 394,
+        "startChar": 24,
+        "endLine": 394,
+        "endChar": 25
+      },
+      "revId": "622299f579b0d4df98b8165004e65a8d555c4f74",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b6257f2_8438fa56",
+        "filename": "src/app/calloverlaymodel.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-18T13:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22d00b57_bf338bdd",
       "range": {
         "startLine": 394,
         "startChar": 24,
