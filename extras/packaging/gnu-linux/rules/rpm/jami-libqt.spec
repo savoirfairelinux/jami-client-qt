@@ -26,8 +26,6 @@ License:       GPLv3+
 Vendor:        Savoir-faire Linux Inc.
 URL:           https://jami.net/
 Source:        jami-libqt-%{version}.tar.xz
-Patch0:        0001-fix-gcc13.patch
-Patch1:        0002-OpenFile-portal-do-not-use-O_PATH-fds.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
