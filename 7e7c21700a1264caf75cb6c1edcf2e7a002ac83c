@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b1e057e_8feab925",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-19T18:10:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89cfea00_ddc76e45",
+      "range": {
+        "startLine": 86,
+        "startChar": 38,
+        "endLine": 86,
+        "endChar": 50
+      },
+      "revId": "7e7c21700a1264caf75cb6c1edcf2e7a002ac83c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "100afa25_19335c37",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-17T21:57:23Z",
       "side": 1,
       "message": "Should hyphens be added, i.e. `push-to-talk`? https://en.wikipedia.org/wiki/Push-to-talk.",
+      "range": {
+        "startLine": 87,
+        "startChar": 44,
+        "endLine": 87,
+        "endChar": 56
+      },
+      "revId": "7e7c21700a1264caf75cb6c1edcf2e7a002ac83c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "613c486d_160e071c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-19T18:10:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "100afa25_19335c37",
       "range": {
         "startLine": 87,
         "startChar": 44,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7dbd6ad_3e78922a",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-19T18:10:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0c206bd_08654a50",
+      "range": {
+        "startLine": 88,
+        "startChar": 49,
+        "endLine": 88,
+        "endChar": 50
+      },
+      "revId": "7e7c21700a1264caf75cb6c1edcf2e7a002ac83c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6ac48f0_0be10b62",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-10-17T21:57:23Z",
       "side": 1,
       "message": "1. Perhaps tech support is assigning the key for a user. Should first person, i.e. ‘you’, be changed to third-person?\n2. Should hyphens be added, i.e. `push-to-talk`? https://en.wikipedia.org/wiki/Push-to-talk\n\nSuggested en source string:\n`Press the key to be assigned for push-to-talk.`\n\nThank you",
+      "range": {
+        "startLine": 92,
+        "startChar": 48,
+        "endLine": 92,
+        "endChar": 97
+      },
+      "revId": "7e7c21700a1264caf75cb6c1edcf2e7a002ac83c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ec39739_a214ce86",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-19T18:10:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6ac48f0_0be10b62",
       "range": {
         "startLine": 92,
         "startChar": 48,
