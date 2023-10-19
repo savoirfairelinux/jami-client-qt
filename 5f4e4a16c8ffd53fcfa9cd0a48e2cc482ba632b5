@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd51387d_ddc28425",
+        "filename": "src/app/commoncomponents/SBSContextMenu.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-19T20:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bea5a4f9_9fe87347",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "5f4e4a16c8ffd53fcfa9cd0a48e2cc482ba632b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4d28832_9de6ca23",
