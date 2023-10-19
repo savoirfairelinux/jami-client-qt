@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ae345a1_f6b41a89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-10-19T22:22:03Z",
+      "side": 1,
+      "message": "1. Can LMDE 6 be added?\nhttps://blog.linuxmint.com/?p\u003d4570\nhttps://git.jami.net/savoirfairelinux/jami-packaging/-/issues/153\n2. Can LMDE 5 be removed?\n\nThank you",
+      "revId": "9a7ac40cf507276511343583b6363b4409feff5a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
