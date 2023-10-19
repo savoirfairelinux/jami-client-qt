@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d477511a_b8cfee3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-19T13:50:25Z",
+      "side": 1,
+      "message": "No merge till no daemon bump + jenkins - but code is ok",
+      "revId": "0bed6c739403696c8f474b7a8b10f2f8b57ed6d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
