@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bea5a4f9_9fe87347",
+        "filename": "src/app/commoncomponents/SBSContextMenu.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-19T19:26:55Z",
+      "side": 1,
+      "message": "This menu seems in a different style (icon color/size)",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "5f4e4a16c8ffd53fcfa9cd0a48e2cc482ba632b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4d28832_9de6ca23",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-19T19:26:55Z",
+      "side": 1,
+      "message": "remove debug. or set as wip",
+      "range": {
+        "startLine": 87,
+        "startChar": 18,
+        "endLine": 87,
+        "endChar": 26
+      },
+      "revId": "5f4e4a16c8ffd53fcfa9cd0a48e2cc482ba632b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d8d7bf6_cc62cbb4",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-19T19:26:55Z",
+      "side": 1,
+      "message": "remove if not present",
+      "range": {
+        "startLine": 103,
+        "startChar": 19,
+        "endLine": 103,
+        "endChar": 30
+      },
+      "revId": "5f4e4a16c8ffd53fcfa9cd0a48e2cc482ba632b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
