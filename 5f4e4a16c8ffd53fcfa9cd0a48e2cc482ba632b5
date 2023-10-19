@@ -47,6 +47,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4b6584d_72ba6315",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-19T20:24:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4d28832_9de6ca23",
+      "range": {
+        "startLine": 87,
+        "startChar": 18,
+        "endLine": 87,
+        "endChar": 26
+      },
+      "revId": "5f4e4a16c8ffd53fcfa9cd0a48e2cc482ba632b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d8d7bf6_cc62cbb4",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-10-19T19:26:55Z",
       "side": 1,
       "message": "remove if not present",
+      "range": {
+        "startLine": 103,
+        "startChar": 19,
+        "endLine": 103,
+        "endChar": 30
+      },
+      "revId": "5f4e4a16c8ffd53fcfa9cd0a48e2cc482ba632b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "739c42af_0517eaf4",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-19T20:24:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d8d7bf6_cc62cbb4",
       "range": {
         "startLine": 103,
         "startChar": 19,
