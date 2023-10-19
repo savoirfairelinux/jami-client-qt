@@ -114,6 +114,29 @@
       },
       "revId": "77744902a8bf448d4c01c045ecc434b0f075e43c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d96cb0ba_0013d2cb",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-19T18:48:18Z",
+      "side": 1,
+      "message": "Push-to-talk must be a preference saved and consistant across reboot (cf other preferences in settings such as \"Enable call support for swarm\"). Same for the key. Else the suer will need to change its preferences after each reboot",
+      "range": {
+        "startLine": 58,
+        "startChar": 21,
+        "endLine": 58,
+        "endChar": 25
+      },
+      "revId": "77744902a8bf448d4c01c045ecc434b0f075e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
