@@ -850,4 +850,5 @@ Item {
     property string shiftEnter: qsTr("SHIFT+ENTER")
     property string textFormattingDescription: qsTr("ENTER or SHIFT+ENTER to insert a new line")
     property string textFormatting: qsTr("Text formatting")
+    property string view: qsTr("View")
 }
