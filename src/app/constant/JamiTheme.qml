@@ -674,7 +674,7 @@ Item {
     }
 
     //Chat setting page
-    property color chatSettingButtonBackgroundColor: "#F0EFEF"
-    property color chatSettingButtonBorderColor: "#005699"
-    property color chatSettingButtonTextColor: "#000000"
+    property color chatSettingButtonBackgroundColor: darkTheme ? "#303030" : "#F0EFEF"
+    property color chatSettingButtonBorderColor: darkTheme ? "#03B9E9" : "#005699"
+    property color chatSettingButtonTextColor: textColor
 }
