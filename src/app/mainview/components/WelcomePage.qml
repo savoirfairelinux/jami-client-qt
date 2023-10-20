@@ -49,7 +49,7 @@ ListSelectionView {
 
     property bool hasCustomUi: false
 
-    property bool hasTitle: true
+    property bool hasTitle: false
     property bool hasDescription: true
 
     property bool hasCustomTitle: false
@@ -95,7 +95,7 @@ ListSelectionView {
 
     function updateUiFlags() {
         hasCustomUi = Object.keys(uiCustomization).length > 0;
-        hasTitle = hasCustomUi ? uiCustomization.title !== "" : true;
+        hasTitle = hasCustomUi ? uiCustomization.title !== "" : false;
         hasDescription = hasCustomUi ? uiCustomization.description !== "" : true;
         title = hasCustomUi && uiCustomization.title !== undefined ? uiCustomization.title : JamiStrings.welcomeToJami;
         description = hasCustomUi && uiCustomization.description !== undefined ? uiCustomization.description : JamiStrings.hereIsIdentifier;

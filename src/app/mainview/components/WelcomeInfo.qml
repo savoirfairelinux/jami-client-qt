@@ -31,7 +31,7 @@ Item {
     property color textColor: JamiTheme.textColor
     property color idColor: JamiTheme.welcomeBlockColor
     property color contentIdColor: JamiTheme.tintedBlue
-    property bool hasTitle: true
+    property bool hasTitle: false
     property bool hasDescription: true
 
     property string title: JamiStrings.welcomeToJami
@@ -129,7 +129,7 @@ Item {
 
             width: welcomeInfo.contentWidth
             height: contentHeight
-            font.pixelSize: JamiTheme.headerFontSize
+            font.pixelSize: JamiTheme.tipBoxContentFontSize
 
             wrapMode: Text.WordWrap
 

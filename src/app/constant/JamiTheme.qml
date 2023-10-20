@@ -543,7 +543,7 @@ Item {
     property real welcomeRectTopMargin: 90
     property real welcomePageSpacing: 13
     property real welcomeGridWidth: 3 * JamiTheme.tipBoxWidth + 2 * JamiTheme.welcomePageSpacing
-    property real welcomeHalfGridWidth: (welcomeGridWidth - JamiTheme.welcomePageSpacing) / 2
+    property real welcomeThirdGridWidth: (welcomeGridWidth - JamiTheme.welcomePageSpacing) / 3
     property real welcomeShortGridWidth: 2 * JamiTheme.tipBoxWidth + JamiTheme.welcomePageSpacing
     readonly property string welcomeBg: darkTheme ? JamiResources.background_don_dark_jpg : JamiResources.background_don_white_jpg
     property color welcomeBlockColor: darkTheme ? "#4D000000" : "#4DFFFFFF"

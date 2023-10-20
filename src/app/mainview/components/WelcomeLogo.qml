@@ -36,11 +36,11 @@ Item {
     width: getWidth()
 
     function getWidth() {
-        return JamiTheme.welcomeHalfGridWidth;
+        return JamiTheme.welcomeThirdGridWidth;
     }
 
     function getHeight() {
-        return 120;
+        return 80;
     }
 
     CachedImage {
