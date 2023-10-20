@@ -206,6 +206,30 @@
       },
       "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e16c482_252e4cc8",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-20T13:50:25Z",
+      "side": 1,
+      "message": "all key on the keyboard should work. It\u0027s not diacritics as \"é\" and \"e\" can be different keys on your keyboard.\nBut E and e are the same (the key \"e\" on your keyboard is pressed when you rpess \"Shift + E\"\n\nDefault here is spacebar",
+      "parentUuid": "52e98d80_627c5cf0",
+      "range": {
+        "startLine": 92,
+        "startChar": 48,
+        "endLine": 92,
+        "endChar": 93
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
