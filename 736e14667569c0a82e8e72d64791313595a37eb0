@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82879c7f_2d0188ad",
+        "filename": "src/app/settingsview/components/ConnectionMonitoringTable.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-20T19:36:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a5deade_ef569b80",
+      "range": {
+        "startLine": 314,
+        "startChar": 49,
+        "endLine": 314,
+        "endChar": 60
+      },
+      "revId": "736e14667569c0a82e8e72d64791313595a37eb0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7679aeca_e4597f06",
