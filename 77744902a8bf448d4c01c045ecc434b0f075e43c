@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea5ffd6d_add23671",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-20T20:49:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f34ec45_2de1cf2d",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "77744902a8bf448d4c01c045ecc434b0f075e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "010cbcb9_5a62fa22",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-19T18:46:01Z",
       "side": 1,
       "message": "remove daemon from commit, it should not be added as nothing changed in daemon for PTT",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "77744902a8bf448d4c01c045ecc434b0f075e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "592464ea_f9fc6dc8",
+        "filename": "daemon",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-20T20:49:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "010cbcb9_5a62fa22",
       "range": {
         "startLine": 1,
         "startChar": 18,
@@ -116,6 +164,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "325bf595_5f8686c3",
+        "filename": "src/app/platform/x11/pttlistener.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-20T20:49:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df0a2f53_1f7e685b",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 2
+      },
+      "revId": "77744902a8bf448d4c01c045ecc434b0f075e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d96cb0ba_0013d2cb",
@@ -129,6 +201,30 @@
       "writtenOn": "2023-10-19T18:48:18Z",
       "side": 1,
       "message": "Push-to-talk must be a preference saved and consistant across reboot (cf other preferences in settings such as \"Enable call support for swarm\"). Same for the key. Else the suer will need to change its preferences after each reboot",
+      "range": {
+        "startLine": 58,
+        "startChar": 21,
+        "endLine": 58,
+        "endChar": 25
+      },
+      "revId": "77744902a8bf448d4c01c045ecc434b0f075e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cf45f0a_74300a8f",
+        "filename": "src/app/pttlistener.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-20T20:49:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d96cb0ba_0013d2cb",
       "range": {
         "startLine": 58,
         "startChar": 21,
