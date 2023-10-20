@@ -862,4 +862,5 @@ Item {
     property string channels: qsTr("Channels")
     property string copyAllData: qsTr("Copy all data")
     property string remote: qsTr("Remote: ")
+    property string view: qsTr("View")
 }
