@@ -45,6 +45,167 @@
       },
       "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7da00b6_759f249d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-10-20T00:56:46Z",
+      "side": 1,
+      "message": "`keyboard shortcut`",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d20d261e_d26f8d99",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-10-20T00:56:46Z",
+      "side": 1,
+      "message": "Should `key` be renamed to `keyboard shortcut` or just `shortcut`?\nhttps://en.wikipedia.org/wiki/Keyboard_shortcut\n\nIf mouse buttons can (or in the future could) be implemented, please just use `shortcut`.\n\nLikewise, if gesture can (or in the future could) be implemented, please just use `shortcut`.",
+      "range": {
+        "startLine": 88,
+        "startChar": 46,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0f5137c_ecb6923e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-10-20T00:56:46Z",
+      "side": 1,
+      "message": "Please homogenize variable names with value changes.",
+      "range": {
+        "startLine": 88,
+        "startChar": 27,
+        "endLine": 88,
+        "endChar": 30
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5697f93_fefcab64",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-10-20T00:56:46Z",
+      "side": 1,
+      "message": "Should `key` be renamed to `keyboard shortcut` or just `shortcut`?\nhttps://en.wikipedia.org/wiki/Keyboard_shortcut\n\nIf mouse buttons can (or in the future could) be implemented, please just use `shortcut`.\n\nLikewise, if gesture can (or in the future could) be implemented, please just use `shortcut`.",
+      "range": {
+        "startLine": 89,
+        "startChar": 44,
+        "endLine": 89,
+        "endChar": 47
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb402e4f_436a6ae5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-10-20T00:56:46Z",
+      "side": 1,
+      "message": "Please homogenize variable names with value changes.",
+      "range": {
+        "startLine": 89,
+        "startChar": 26,
+        "endLine": 89,
+        "endChar": 29
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52e98d80_627c5cf0",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-10-20T00:56:46Z",
+      "side": 1,
+      "message": "1. Is the PTT key case-insensitive? i.e. is `a` the same as `A`?\n2. Is the PTT key diacritic insensitive? i.e. are `á`, `a`, `ǻ`, `ǽ`, `ắ`, `à`, `ȁ`, `ã`, `ẫ`, `ẵ` all equivalent to `A`?\n3. Instead of asking for a key to be pressed to be assigned to PTT, should there be a drop-down with keys that can be assigned to PTT? Consideration on whether or not to include the following in the list `~` (tilde) `Ctrl`, `Shift`, `Spacebar`, `Alt`, `AltGr` (https://en.wikipedia.org/wiki/AltGr_key), `F1`, `F2`, `F3`.\n\nDiscord `~` (tilde)\nhttps://www.howtogeek.com/662101/how-to-enable-push-to-talk-in-discord/\n\u003e We recommend using the tilde (~) key as your push-to-talk button, as it is easily accessible during play and rarely interferes with the game itself.\n\nZoom `Spacebar`\nhttps://support.zoom.us/hc/en-us/articles/360000510003-Using-push-to-talk\n\u003e The push-to-talk feature allows you to remain muted throughout your Zoom meeting and hold down the spacebar when you want to be unmuted and talk.\n\nThank you",
+      "range": {
+        "startLine": 92,
+        "startChar": 48,
+        "endLine": 92,
+        "endChar": 93
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec3de1b0_e68e0323",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-10-20T00:56:46Z",
+      "side": 1,
+      "message": "`Push-to-talk shortcut.`\n\nShould the trailing full-stop `.` be removed? What is the convention for other string used in Jami?\n\nIf so, `Push-to-talk shortcut`\n\nThank you",
+      "range": {
+        "startLine": 92,
+        "startChar": 48,
+        "endLine": 92,
+        "endChar": 93
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
