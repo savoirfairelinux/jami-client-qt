@@ -55,7 +55,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: parent.width
 
-                text: "View"
+                text: JamiStrings.view
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -145,7 +145,7 @@ SettingsPageBase {
                 MaterialRadioButton {
                     id: enterButton
 
-                    width: 120
+                    width: 130
                     height: 40
                     backgroundColor: JamiTheme.chatSettingButtonBackgroundColor
                     textColor: JamiTheme.chatSettingButtonTextColor
@@ -164,7 +164,7 @@ SettingsPageBase {
                 MaterialRadioButton {
                     id: shiftEnterButton
 
-                    width: 180
+                    width: 210
                     height: 40
                     backgroundColor: JamiTheme.chatSettingButtonBackgroundColor
                     textColor: JamiTheme.chatSettingButtonTextColor

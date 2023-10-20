@@ -846,9 +846,9 @@ Item {
     property string enableDonation: qsTr("Enable donation campaign")
 
     //Chat setting page
-    property string enter: qsTr("ENTER")
-    property string shiftEnter: qsTr("SHIFT+ENTER")
-    property string textFormattingDescription: qsTr("ENTER or SHIFT+ENTER to insert a new line")
+    property string enter: qsTr("Enter")
+    property string shiftEnter: qsTr("Shift+Enter")
+    property string textFormattingDescription: qsTr("Enter or Shift+Enter to insert a new line")
     property string textFormatting: qsTr("Text formatting")
 
     //Connection monitoring
@@ -862,4 +862,5 @@ Item {
     property string channels: qsTr("Channels")
     property string copyAllData: qsTr("Copy all data")
     property string remote: qsTr("Remote: ")
+    property string view: qsTr("View")
 }
