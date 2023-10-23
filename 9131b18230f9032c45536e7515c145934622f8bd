@@ -22,6 +22,30 @@
       },
       "revId": "9131b18230f9032c45536e7515c145934622f8bd",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d44de87c_47853915",
+        "filename": "src/app/mainview/components/WelcomePage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-23T18:41:17Z",
+      "side": 1,
+      "message": "yes for the moment the title is remove by default",
+      "parentUuid": "bae872d6_46208268",
+      "range": {
+        "startLine": 98,
+        "startChar": 64,
+        "endLine": 98,
+        "endChar": 69
+      },
+      "revId": "9131b18230f9032c45536e7515c145934622f8bd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
