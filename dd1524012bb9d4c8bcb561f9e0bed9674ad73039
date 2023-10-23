@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0e6a59b_c0ff27c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-23T18:52:04Z",
+      "side": 1,
+      "message": "lookup name NOT FOUND: address:  \"4687acfb5d026857237506d69094c29a1e5c1e72\"  name:  \"\"  accountId:  \"3b28f0a09d85512e\"\nlookup name NOT FOUND: address:  \"d82187668e23e45a7411f45fe43f65ff9b0bf958\"  name:  \"\"  accountId:  \"62acf5a1656b2138\"\nqml: error creating component qrc:/mainview/ConversationView.qml\nqml: qrc:/mainview/ConversationView.qml:73 Type ChatView unavailable\nqrc:/mainview/components/ChatView.qml:262 Type MessageListView unavailable\nqrc:/mainview/components/MessageListView.qml:203 Type TextMessageDelegate unavailable\nqrc:/commoncomponents/TextMessageDelegate.qml:28 Type SBSMessageBase unavailable\nqrc:/commoncomponents/SBSMessageBase.qml:323 Property value set multiple times\n\nqml: Failed to load view: ConversationView",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "dd1524012bb9d4c8bcb561f9e0bed9674ad73039",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
