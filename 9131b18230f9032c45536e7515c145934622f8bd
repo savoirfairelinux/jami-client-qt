@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bae872d6_46208268",
+        "filename": "src/app/mainview/components/WelcomePage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-23T14:55:14Z",
+      "side": 1,
+      "message": "can you link to the GitLab ticket from Charlotte? Do we need to remove the title y default?",
+      "range": {
+        "startLine": 98,
+        "startChar": 64,
+        "endLine": 98,
+        "endChar": 69
+      },
+      "revId": "9131b18230f9032c45536e7515c145934622f8bd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
