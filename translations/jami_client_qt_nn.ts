@@ -974,6 +974,76 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
+        <source>ENTER</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="850"/>
+        <source>SHIFT+ENTER</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="851"/>
+        <source>ENTER or SHIFT+ENTER to insert a new line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="852"/>
+        <source>Text formatting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="855"/>
+        <source>Connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="856"/>
+        <source>Connecting TLS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="857"/>
+        <source>Connecting ICE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
+        <source>Connecting</source>
+        <translation>Kopplande</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
+        <source>Waiting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
+        <source>Contact</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
+        <source>Connection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="862"/>
+        <source>Channels</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="863"/>
+        <source>Copy all data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="864"/>
+        <source>Remote: </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="487"/>
         <source>Accept transfer limit (in Mb)</source>
         <translation>Ta imot overførselsgrens (i Mb)</translation>
@@ -4100,127 +4170,127 @@ connects to synchronize the conversation.</source>
 <context>
     <name>TipsModel</name>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="79"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>Customize</source>
         <translation>Egeskrepa</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="82"/>
+        <location filename="../src/app/tipsmodel.cpp" line="85"/>
         <source>What does Jami mean?</source>
         <translation>Kva meiner Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="88"/>
+        <location filename="../src/app/tipsmodel.cpp" line="91"/>
         <source>What is the green dot next to my account?</source>
         <translation>Kva er den grøne punkten ved sidan kontoen min?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="84"/>
+        <location filename="../src/app/tipsmodel.cpp" line="87"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
         <translation>Velginga av namnet Jami var inspirert av swahili ordet &apos;jamii&apos;, som tyder&apos;samfunn&apos; som eit navne og&apos;sammen&apos; som eit adverb.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="78"/>
+        <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Donate</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="80"/>
+        <location filename="../src/app/tipsmodel.cpp" line="83"/>
         <source>Backup account</source>
         <translation>Baksekonto</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="90"/>
+        <location filename="../src/app/tipsmodel.cpp" line="93"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
         <translation>Ein raud dot tyder at kontoen din er avkoppla frå nettverket; det vert grønt når det er tilslutte.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="95"/>
+        <location filename="../src/app/tipsmodel.cpp" line="98"/>
         <source>Why should I back up my account?</source>
         <translation>Kvifor skal eg backup kontoen min?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="97"/>
+        <location filename="../src/app/tipsmodel.cpp" line="100"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
         <translation>Jami vert distribuert og kontoen din vert berre lagra lokalt på einheten din. Dersom du mista passordet ditt eller data om den lokale kontoen, kan du IKKE gjenoppretta kontoen din om du ikkje har lagra den opp tidlegare.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="103"/>
+        <location filename="../src/app/tipsmodel.cpp" line="106"/>
         <source>Can I make a conference call?</source>
         <translation>Kan eg gjera ein samtale?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="108"/>
+        <location filename="../src/app/tipsmodel.cpp" line="111"/>
         <source>What is a Jami account?</source>
         <translation>Kva er ein Jami-konto?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="110"/>
+        <location filename="../src/app/tipsmodel.cpp" line="113"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>Ein Jami-konto er ein asymmetrisk krypteringsnøkkel. Konta din blir identifisert med ein Jami-ID, som er ein fingeravtrykk av offentleg nøkkel.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="114"/>
+        <location filename="../src/app/tipsmodel.cpp" line="117"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>Kva informasjon treng eg å gje for å oppretta ein Jami-konto?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="116"/>
+        <location filename="../src/app/tipsmodel.cpp" line="119"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
         <translation>Når du oppretter ein ny Jami-konto, treng du ikkje å gje nokon privat informasjon som e-post, adresse eller telefonnummer.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="123"/>
+        <location filename="../src/app/tipsmodel.cpp" line="126"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
         <translation>Med Jami vert kontoen din lagra i ein katalog på gardskapet ditt. Passordet vert berre brukt til å kryptera kontoen din for å verne deg mot nokon som har fysisk tilgang til gardskapet ditt.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="143"/>
+        <location filename="../src/app/tipsmodel.cpp" line="146"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
         <translation>Konta ditt vert berre lagra på dei eigne enhetane dine. Dersom du sleppar kontoen din frå alle enhetane dine, er kontoen borte for alltid og du kan IKKE gjenopprette den.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="147"/>
+        <location filename="../src/app/tipsmodel.cpp" line="150"/>
         <source>Can I use my account on multiple devices?</source>
         <translation>Kan eg bruke kontoen min på fleire enheter?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="149"/>
+        <location filename="../src/app/tipsmodel.cpp" line="152"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
         <translation>Ja, du kan knyta kontoen din frå innstillingane, eller du kan importera backup på ein annan enhet.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="121"/>
+        <location filename="../src/app/tipsmodel.cpp" line="124"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>Kvifor må eg ikkje bruke ein passord?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="105"/>
+        <location filename="../src/app/tipsmodel.cpp" line="108"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
         <translation>I ein samtale kan du klikke på &quot;Tillegg medlegarar&quot; for å leggje til ein kontakt til ein samtale.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="129"/>
+        <location filename="../src/app/tipsmodel.cpp" line="132"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>Kvifor må eg ikkje registrera eit brukernavn?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="131"/>
+        <location filename="../src/app/tipsmodel.cpp" line="134"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>Den mest permanente, trygge identifikatoren er Jami ID, men sidan dei er vanskelege å bruka for nokre, har du òg høve til å registrera eit brukernavn.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="136"/>
+        <location filename="../src/app/tipsmodel.cpp" line="139"/>
         <source>How can I back up my account?</source>
         <translation>Korleis kan eg backup kontoen min?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="137"/>
+        <location filename="../src/app/tipsmodel.cpp" line="140"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
         <translation>I kontoinnstillingane er ein knapp til å oppretta ein backup til kontoen din.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="141"/>
+        <location filename="../src/app/tipsmodel.cpp" line="144"/>
         <source>What happens when I delete my account?</source>
         <translation>Kva skjer når eg slepp kontoen min?</translation>
     </message>
