@@ -70,6 +70,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd6faa30_3ceb222e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-23T14:55:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fd88eb1_509ccdd1",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5ce2f0e_60f86fd7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-23T14:55:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7da00b6_759f249d",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d20d261e_d26f8d99",
@@ -116,6 +164,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6be3a873_70306e02",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-23T14:55:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0f5137c_ecb6923e",
+      "range": {
+        "startLine": 88,
+        "startChar": 27,
+        "endLine": 88,
+        "endChar": 30
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b609db52_8e2e74c5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-23T14:55:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d20d261e_d26f8d99",
+      "range": {
+        "startLine": 88,
+        "startChar": 46,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5697f93_fefcab64",
@@ -157,6 +253,54 @@
         "startChar": 26,
         "endLine": 89,
         "endChar": 29
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3e47610_db81e356",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-23T14:55:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb402e4f_436a6ae5",
+      "range": {
+        "startLine": 89,
+        "startChar": 26,
+        "endLine": 89,
+        "endChar": 29
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10006445_ee32d701",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-23T14:55:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5697f93_fefcab64",
+      "range": {
+        "startLine": 89,
+        "startChar": 44,
+        "endLine": 89,
+        "endChar": 47
       },
       "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
@@ -222,6 +366,30 @@
       "side": 1,
       "message": "all key on the keyboard should work. It\u0027s not diacritics as \"é\" and \"e\" can be different keys on your keyboard.\nBut E and e are the same (the key \"e\" on your keyboard is pressed when you rpess \"Shift + E\"\n\nDefault here is spacebar",
       "parentUuid": "52e98d80_627c5cf0",
+      "range": {
+        "startLine": 92,
+        "startChar": 48,
+        "endLine": 92,
+        "endChar": 93
+      },
+      "revId": "39c5cbe42dd7b8643e368e8bb9469e0025a6ad14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f59d7821_b7fc4701",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-23T14:55:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec3de1b0_e68e0323",
       "range": {
         "startLine": 92,
         "startChar": 48,
