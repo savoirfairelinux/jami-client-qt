@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a1a0f89_96a22ff9",
+        "filename": "src/app/commoncomponents/ShareMenu.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-24T13:26:51Z",
+      "side": 1,
+      "message": "remove author line",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 18
+      },
+      "revId": "c43fdfaebf744b263a70db49ff7154c31806ee2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "814ac034_ecfdf611",
+        "filename": "src/app/commoncomponents/ShowMoreMenu.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-24T13:26:51Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 3,
+        "startChar": 14,
+        "endLine": 3,
+        "endChar": 34
+      },
+      "revId": "c43fdfaebf744b263a70db49ff7154c31806ee2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5224690e_504ad17e",
+        "filename": "src/app/commoncomponents/ShowMoreMenu.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-24T13:26:51Z",
+      "side": 1,
+      "message": "Now this is a duplicate of MessageOptionsPopup.qml I guess some cleanup should be done",
+      "range": {
+        "startLine": 107,
+        "startChar": 14,
+        "endLine": 107,
+        "endChar": 26
+      },
+      "revId": "c43fdfaebf744b263a70db49ff7154c31806ee2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcd80a1e_b0bdbcc1",
+        "filename": "src/app/commoncomponents/contextmenu/BaseContextMenu.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-24T13:26:51Z",
+      "side": 1,
+      "message": "same for light/dark theme?",
+      "range": {
+        "startLine": 68,
+        "startChar": 48,
+        "endLine": 68,
+        "endChar": 54
+      },
+      "revId": "c43fdfaebf744b263a70db49ff7154c31806ee2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0970e42_3e263624",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItemList.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-24T13:26:51Z",
+      "side": 1,
+      "message": "remove author line",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 18
+      },
+      "revId": "c43fdfaebf744b263a70db49ff7154c31806ee2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
