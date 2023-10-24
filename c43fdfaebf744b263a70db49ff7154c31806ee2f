@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e314c63d_285f888b",
+        "filename": "src/app/commoncomponents/ShareMenu.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-24T14:15:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a1a0f89_96a22ff9",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 18
+      },
+      "revId": "c43fdfaebf744b263a70db49ff7154c31806ee2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "814ac034_ecfdf611",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-24T13:26:51Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 3,
+        "startChar": 14,
+        "endLine": 3,
+        "endChar": 34
+      },
+      "revId": "c43fdfaebf744b263a70db49ff7154c31806ee2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39a4354e_b0442eb0",
+        "filename": "src/app/commoncomponents/ShowMoreMenu.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-24T14:15:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "814ac034_ecfdf611",
       "range": {
         "startLine": 3,
         "startChar": 14,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8306edf7_b1865e1b",
+        "filename": "src/app/commoncomponents/ShowMoreMenu.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-24T14:15:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5224690e_504ad17e",
+      "range": {
+        "startLine": 107,
+        "startChar": 14,
+        "endLine": 107,
+        "endChar": 26
+      },
+      "revId": "c43fdfaebf744b263a70db49ff7154c31806ee2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcd80a1e_b0bdbcc1",
@@ -93,6 +165,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c9219c4_007b6410",
+        "filename": "src/app/commoncomponents/contextmenu/BaseContextMenu.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-24T14:15:31Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "dcd80a1e_b0bdbcc1",
+      "range": {
+        "startLine": 68,
+        "startChar": 48,
+        "endLine": 68,
+        "endChar": 54
+      },
+      "revId": "c43fdfaebf744b263a70db49ff7154c31806ee2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0970e42_3e263624",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-10-24T13:26:51Z",
       "side": 1,
       "message": "remove author line",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 18
+      },
+      "revId": "c43fdfaebf744b263a70db49ff7154c31806ee2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75ac7dc4_44116f69",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItemList.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-10-24T14:15:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0970e42_3e263624",
       "range": {
         "startLine": 3,
         "startChar": 11,
