@@ -36,6 +36,7 @@ MenuItem {
     property bool autoTextSizeAdjustment: true
     property bool dangerous: false
     property BaseContextMenu parentMenu
+    property bool isActif: true
 
     property int itemPreferredWidth: hasIcon ? 50 + contextMenuItemText.contentWidth + contextMenuItemImage.width : 35 + contextMenuItemText.contentWidth
     property int itemRealWidth: itemPreferredWidth
@@ -43,7 +44,7 @@ MenuItem {
     property int leftBorderWidth: JamiTheme.menuItemsCommonBorderWidth
     property int rightBorderWidth: JamiTheme.menuItemsCommonBorderWidth
 
-    property int itemImageLeftMargin: 18
+    property int itemImageLeftMargin: 10
     property int itemTextMargin: 10
 
     signal clicked
@@ -51,20 +52,20 @@ MenuItem {
 
     width: itemRealWidth
 
-    contentItem: AbstractButton {
+    contentItem: PushButton {
         id: menuItemContentRect
 
-        background: Rectangle {
-            id: background
+        enabled: isActif
+        hoverEnabled: isActif
 
-            anchors.fill: parent
-            anchors.leftMargin: 6
-            anchors.rightMargin: 6
+        hoveredColor: JamiTheme.hoverColor
+        normalColor: JamiTheme.primaryBackgroundColor
+        circled: false
+        radius: 5
 
-            radius: 5
-
-            color: menuItemContentRect.hovered ? JamiTheme.hoverColor : JamiTheme.primaryBackgroundColor
-        }
+        //duration: 1000
+        anchors.leftMargin: 6
+        anchors.rightMargin: 6
 
         anchors.fill: parent
 
@@ -95,7 +96,7 @@ MenuItem {
                     id: contextMenuItemText
                     height: parent.height
                     text: itemName
-                    color: dangerous ? JamiTheme.redColor : JamiTheme.textColor
+                    color: dangerous ? JamiTheme.redColor : isActif ? JamiTheme.textColor : JamiTheme.chatViewFooterImgColor
                     font.pointSize: JamiTheme.textFontSize
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter

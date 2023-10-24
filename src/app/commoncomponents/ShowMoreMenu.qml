@@ -45,10 +45,10 @@ BaseContextMenu {
         const listViewWidth = listView.width;
         if (isOutgoing) {
             const leftMargin = msgBubble.mapToItem(listView, 0, 0).x;
-            return width > leftMargin ? -leftMargin : -width;
+            return width > leftMargin ? -leftMargin - 20 : -width - 20;
         } else {
             const rightMargin = listViewWidth - (msgBubble.x + msgBubble.width);
-            return width > rightMargin ? msgBubble.width - width : msgBubble.width;
+            return width > rightMargin ? msgBubble.width - width + 20 : msgBubble.width + 20;
         }
     }
     function yPositionProvider(height) {
@@ -122,16 +122,6 @@ BaseContextMenu {
             messageId: msgId
         },
         GeneralMenuItem {
-            id: copyMessage
-
-            canTrigger: true
-            iconSource: JamiResources.copy_svg
-            itemName: JamiStrings.copy
-            onClicked: {
-                UtilsAdapter.setClipboardText(msgBody);
-            }
-        },
-        GeneralMenuItem {
             id: saveFile
 
             canTrigger: type === Interaction.Type.DATA_TRANSFER
@@ -181,6 +171,16 @@ BaseContextMenu {
             itemName: JamiStrings.deleteMessage
             onClicked: {
                 MessagesAdapter.editMessage(CurrentConversation.id, "", root.msgId);
+            }
+        },
+        GeneralMenuItem {
+            id: copyMessage
+
+            canTrigger: true
+            iconSource: JamiResources.copy_svg
+            itemName: JamiStrings.copy
+            onClicked: {
+                UtilsAdapter.setClipboardText(msgBody);
             }
         }
     ]

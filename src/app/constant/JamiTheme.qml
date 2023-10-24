@@ -76,7 +76,7 @@ Item {
     property color greyBorderColor: "#333"
     property color selectionBlue: darkTheme ? "#0061a5" : "#109ede"
 
-    property color hoverColor: darkTheme ? "#4d4d4d" : "#c7c7c7"
+    property color hoverColor: darkTheme ? "#4d4d4d" : "#DEDEDE"
     property color pressColor: darkTheme ? "#777" : "#c0c0c0"
     property color selectedColor: darkTheme ? "#0e81c5" : "#e0e0e0"
     property color smartListHoveredColor: darkTheme ? "#4d4d4d" : "#dedede"

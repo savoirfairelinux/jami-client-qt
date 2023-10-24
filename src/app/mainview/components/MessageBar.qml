@@ -61,6 +61,7 @@ RowLayout {
         color: JamiTheme.transparentColor
         ComboBox {
             id: showMoreButton
+            focus: true
             width: JamiTheme.chatViewFooterButtonSize
             height: JamiTheme.chatViewFooterButtonSize
             anchors.bottom: parent.bottom
@@ -96,6 +97,7 @@ RowLayout {
             }
 
             onHoveredChanged: {
+                console.log("Hovered changed");
                 if (!sharePopup.opened) {
                     showMoreButton.indicator.color = hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor;
                     showMoreButton.background.color = hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor;
@@ -104,6 +106,7 @@ RowLayout {
             }
 
             onPressedChanged: {
+                console.log("Pressed changed");
                 if (sharePopup.enabled)
                     sharePopup.close();
             }
@@ -119,9 +122,8 @@ RowLayout {
                 onShowMapClicked: {
                     root.showMapClicked();
                 }
-                parent: root
                 modelList: listViewMoreButton.menuMoreButton
-                y: -160
+                y: -140
                 x: -20
             }
         }

@@ -106,13 +106,18 @@ Popup {
                     height: Top || Bottom ? 10 : 45
 
                     background: Rectangle {
+                        radius: 5
                         visible: !Top && !Bottom
                         anchors.fill: parent
+                        anchors.leftMargin: 5
+                        anchors.rightMargin: 5
                         color: menuItem.down ? "#c4aaaaaa" : menuItem.hovered ? "#c4777777" : "transparent"
                     }
 
                     RowLayout {
                         anchors.fill: parent
+                        anchors.leftMargin: 5
+                        anchors.rightMargin: 5
                         visible: !Top && !Bottom
                         ResponsiveImage {
                             Layout.leftMargin: JamiTheme.preferredMarginSize
