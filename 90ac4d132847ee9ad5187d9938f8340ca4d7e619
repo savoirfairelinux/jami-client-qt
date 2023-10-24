@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea1c727c_bc091e1b",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-24T14:20:07Z",
+      "side": 1,
+      "message": "I think \u0027push-to-talk\u0027 is better because it\u0027s a feature commonly used in other applications under this name. It only transmits audio, and the term \u0027transmit\u0027 could lead users to think it will also broadcast their camera",
+      "parentUuid": "16f71383_f7883387",
+      "range": {
+        "startLine": 87,
+        "startChar": 20,
+        "endLine": 87,
+        "endChar": 29
+      },
+      "revId": "90ac4d132847ee9ad5187d9938f8340ca4d7e619",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9aad91c_194acaea",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-24T00:40:05Z",
       "side": 1,
       "message": "Should a space ` ` be added after `//` for consistency?\n\n`// ChangePttKeyPopup`",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 23
+      },
+      "revId": "90ac4d132847ee9ad5187d9938f8340ca4d7e619",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a019b4c4_456aad08",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-24T14:20:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9aad91c_194acaea",
       "range": {
         "startLine": 91,
         "startChar": 4,
