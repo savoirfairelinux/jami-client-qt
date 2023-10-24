@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16f71383_f7883387",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-10-24T00:40:05Z",
+      "side": 1,
+      "message": "It seems that each new word is uppercase. Not sure what the SFL convention is with acronyms, which is this context.\n\nIf uppercase should be used with acronyms too, should variable name be `enablePTT`?\nhttps://en.wikipedia.org/wiki/Push-to-talk\n\nThinking further about this feature, should `press-to-talk` be changed to `press-to-transmit` as this is a superset of `talk`. Jami users may be transmitting music during music lessons, which is not talking.\n\nThank you",
+      "range": {
+        "startLine": 87,
+        "startChar": 20,
+        "endLine": 87,
+        "endChar": 29
+      },
+      "revId": "90ac4d132847ee9ad5187d9938f8340ca4d7e619",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9aad91c_194acaea",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-10-24T00:40:05Z",
+      "side": 1,
+      "message": "Should a space ` ` be added after `//` for consistency?\n\n`// ChangePttKeyPopup`",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 23
+      },
+      "revId": "90ac4d132847ee9ad5187d9938f8340ca4d7e619",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
