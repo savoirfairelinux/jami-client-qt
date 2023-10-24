@@ -122,16 +122,6 @@ BaseContextMenu {
             messageId: msgId
         },
         GeneralMenuItem {
-            id: copyMessage
-
-            canTrigger: true
-            iconSource: JamiResources.copy_svg
-            itemName: JamiStrings.copy
-            onClicked: {
-                UtilsAdapter.setClipboardText(msgBody);
-            }
-        },
-        GeneralMenuItem {
             id: saveFile
 
             canTrigger: type === Interaction.Type.DATA_TRANSFER
@@ -181,6 +171,16 @@ BaseContextMenu {
             itemName: JamiStrings.deleteMessage
             onClicked: {
                 MessagesAdapter.editMessage(CurrentConversation.id, "", root.msgId);
+            }
+        },
+        GeneralMenuItem {
+            id: copyMessage
+
+            canTrigger: true
+            iconSource: JamiResources.copy_svg
+            itemName: JamiStrings.copy
+            onClicked: {
+                UtilsAdapter.setClipboardText(msgBody);
             }
         }
     ]

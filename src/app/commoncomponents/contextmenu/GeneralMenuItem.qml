@@ -36,6 +36,7 @@ MenuItem {
     property bool autoTextSizeAdjustment: true
     property bool dangerous: false
     property BaseContextMenu parentMenu
+    property bool isActif: true
 
     property int itemPreferredWidth: hasIcon ? 50 + contextMenuItemText.contentWidth + contextMenuItemImage.width : 35 + contextMenuItemText.contentWidth
     property int itemRealWidth: itemPreferredWidth
@@ -53,6 +54,9 @@ MenuItem {
 
     contentItem: AbstractButton {
         id: menuItemContentRect
+
+        enabled: isActif
+        hoverEnabled: isActif
 
         background: Rectangle {
             id: background
@@ -95,7 +99,7 @@ MenuItem {
                     id: contextMenuItemText
                     height: parent.height
                     text: itemName
-                    color: dangerous ? JamiTheme.redColor : JamiTheme.textColor
+                    color: dangerous ? JamiTheme.redColor : isActif ? JamiTheme.textColor : JamiTheme.chatViewFooterImgColor
                     font.pointSize: JamiTheme.textFontSize
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter

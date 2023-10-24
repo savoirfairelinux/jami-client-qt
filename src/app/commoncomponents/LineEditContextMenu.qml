@@ -35,7 +35,8 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: copy
 
-            canTrigger: lineEditObj.selectedText.length
+            canTrigger: true
+            isActif: lineEditObj.selectedText.length
             itemName: JamiStrings.copy
             hasIcon: false
             onClicked: {
@@ -45,7 +46,8 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: cut
 
-            canTrigger: lineEditObj.selectedText.length && !selectOnly
+            canTrigger: true
+            isActif: lineEditObj.selectedText.length && !selectOnly
             itemName: JamiStrings.cut
             hasIcon: false
             onClicked: {
