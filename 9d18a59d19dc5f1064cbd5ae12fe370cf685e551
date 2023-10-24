@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "102658ba_560c0997",
+        "filename": "src/app/commoncomponents/ChangePttKeyPopup.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-24T14:51:41Z",
+      "side": 1,
+      "message": "clicking on Assign before clicking on a key broke the popup",
+      "range": {
+        "startLine": 9,
+        "startChar": 19,
+        "endLine": 9,
+        "endChar": 30
+      },
+      "revId": "9d18a59d19dc5f1064cbd5ae12fe370cf685e551",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b56921d3_1aec8cd8",
         "filename": "src/app/platform/x11/xcbkeyboard.h",
         "patchSetId": 27
