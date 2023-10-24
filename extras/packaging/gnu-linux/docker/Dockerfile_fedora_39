@@ -96,9 +96,13 @@ RUN dnf install -y \
         clang \
         cmake \
         fmt-devel \
-        python3-html5lib \
+        python3.10 \
+        python-html5lib+all \
         cups-devel \
+        python-pip \
         python-six
+
+RUN alternatives --install /usr/bin/python3 python /usr/bin/python3.10 2
 
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 
