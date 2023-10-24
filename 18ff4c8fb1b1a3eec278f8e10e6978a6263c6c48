@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f32442b8_d59b9fb9",
+        "filename": "src/app/settingsview/components/ChatSettingsPage.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-24T13:20:20Z",
+      "side": 1,
+      "message": "2 remarks from Ovari\n\n1. If Zoom \u003d 200, Button text overflow from the rect\n2. Use \"Enter\"/\"Shift+Enter\" to be homogene with Keyboard shortcuts table",
+      "range": {
+        "startLine": 53,
+        "startChar": 20,
+        "endLine": 53,
+        "endChar": 38
+      },
+      "revId": "18ff4c8fb1b1a3eec278f8e10e6978a6263c6c48",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
