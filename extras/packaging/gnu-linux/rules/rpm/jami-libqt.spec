@@ -31,6 +31,7 @@ Patch1:        0002-OpenFile-portal-do-not-use-O_PATH-fds.patch
 Patch2:        0003-fix-mathops.patch
 Patch3:        0004-fix-binary-tokenizer.patch
 Patch4:        0005-importlib.patch
+Patch5:        0006-fix-six-moves-f39.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -71,6 +72,7 @@ This package contains Qt libraries for Jami.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 echo "Building Qt using %{job_count} parallel jobs"
