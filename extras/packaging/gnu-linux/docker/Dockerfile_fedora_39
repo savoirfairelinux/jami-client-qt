@@ -96,9 +96,8 @@ RUN dnf install -y \
         clang \
         cmake \
         fmt-devel \
-        python3-html5lib \
-        cups-devel \
-        python-six
+        python3.10 \
+        cups-devel
 
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 
