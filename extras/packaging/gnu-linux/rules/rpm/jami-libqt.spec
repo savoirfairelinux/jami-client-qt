@@ -91,6 +91,15 @@ cat qtbase/src/corelib/global/qendian.h
 sed -i 's,#include <string.h>,#include <string.h>\n#include <limits>,g' qtbase/src/corelib/global/qfloat16.h
 sed -i 's,#include <QtCore/qbytearray.h>,#include <QtCore/qbytearray.h>\n#include <limits>,g' qtbase/src/corelib/text/qbytearraymatcher.h
 cat qtwebengine/configure.cmake
+
+#https://bugreports.qt.io/browse/QTBUG-117979
+if test -f "/usr/bin/python3.10"; then
+  /usr/bin/python3.10 -m venv env
+  source env/bin/activate
+  python -m pip install html5lib
+  python -m pip install six
+fi
+
 # recent gcc version do not like lto from qt
 CXXFLAGS="${CXXFLAGS} -fno-lto" CFLAGS="${CFLAGS} -fno-lto" LDFLAGS="$(CFLAGS) ${LDFLAGS}" ./configure \
   -opensource \
