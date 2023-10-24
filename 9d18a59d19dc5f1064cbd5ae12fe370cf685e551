@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e61910dc_32d6af17",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 27
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-24T14:49:47Z",
+      "side": 1,
+      "message": "fix this",
+      "range": {
+        "startLine": 247,
+        "startChar": 8,
+        "endLine": 247,
+        "endChar": 12
+      },
+      "revId": "9d18a59d19dc5f1064cbd5ae12fe370cf685e551",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f372a2ff_ea2c07b5",
+        "filename": "src/app/settingsview/components/CallSettingsPage.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-24T14:49:47Z",
+      "side": 1,
+      "message": "dark theme is broken",
+      "range": {
+        "startLine": 379,
+        "startChar": 8,
+        "endLine": 379,
+        "endChar": 20
+      },
+      "revId": "9d18a59d19dc5f1064cbd5ae12fe370cf685e551",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
