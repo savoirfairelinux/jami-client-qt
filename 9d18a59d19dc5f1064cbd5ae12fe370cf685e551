@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b56921d3_1aec8cd8",
+        "filename": "src/app/platform/x11/xcbkeyboard.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-24T14:50:39Z",
+      "side": 1,
+      "message": "keys like F2 doesn\u0027t work, check special keys (or remove it from the choices user can do)",
+      "range": {
+        "startLine": 82,
+        "startChar": 1,
+        "endLine": 82,
+        "endChar": 6
+      },
+      "revId": "9d18a59d19dc5f1064cbd5ae12fe370cf685e551",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f372a2ff_ea2c07b5",
         "filename": "src/app/settingsview/components/CallSettingsPage.qml",
         "patchSetId": 27
