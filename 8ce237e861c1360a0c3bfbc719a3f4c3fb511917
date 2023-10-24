@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "280addaf_861f1f77",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 886,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-24T18:18:56Z",
+      "side": 1,
+      "message": "you should pass the callId. Conversation can be another one than the one you\u0027re checking",
+      "range": {
+        "startLine": 886,
+        "startChar": 80,
+        "endLine": 886,
+        "endChar": 99
+      },
+      "revId": "8ce237e861c1360a0c3bfbc719a3f4c3fb511917",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
