@@ -31,6 +31,7 @@ Patch1:        0002-OpenFile-portal-do-not-use-O_PATH-fds.patch
 Patch2:        0003-fix-mathops.patch
 Patch3:        0004-fix-binary-tokenizer.patch
 Patch4:        0005-importlib.patch
+Patch5:        0006-fix-six-moves-f39.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -71,6 +72,7 @@ This package contains Qt libraries for Jami.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 echo "Building Qt using %{job_count} parallel jobs"
@@ -91,6 +93,14 @@ cat qtbase/src/corelib/global/qendian.h
 sed -i 's,#include <string.h>,#include <string.h>\n#include <limits>,g' qtbase/src/corelib/global/qfloat16.h
 sed -i 's,#include <QtCore/qbytearray.h>,#include <QtCore/qbytearray.h>\n#include <limits>,g' qtbase/src/corelib/text/qbytearraymatcher.h
 cat qtwebengine/configure.cmake
+
+%if 0%{?fedora} == 39
+  /usr/bin/python3.10 -m venv env
+  source env/bin/activate
+  python -m pip install html5lib
+  python -m pip install six
+%fi
+
 # recent gcc version do not like lto from qt
 CXXFLAGS="${CXXFLAGS} -fno-lto" CFLAGS="${CFLAGS} -fno-lto" LDFLAGS="$(CFLAGS) ${LDFLAGS}" ./configure \
   -opensource \
