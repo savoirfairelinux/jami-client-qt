@@ -98,7 +98,9 @@ RUN dnf install -y \
         fmt-devel \
         python3-html5lib \
         cups-devel \
-        python-six
+        python-pip \
+        python-six \
+        python-lxml
 
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 
