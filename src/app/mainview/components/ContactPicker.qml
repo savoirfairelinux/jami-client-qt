@@ -67,7 +67,6 @@ BaseModalDialog {
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
             Layout.preferredHeight: 180
-            Layout.bottomMargin: JamiTheme.preferredMarginSize
 
             model: ContactAdapter.getContactSelectableModel(type)
 

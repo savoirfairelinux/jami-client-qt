@@ -24,11 +24,18 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    topLayoutVisible: false
+    //button1Text: JamiStrings.close
+    button1Clicked: function() { close() }
+    backgroundColor: JamiTheme.darkTheme ? JamiTheme.blackColor : JamiTheme.whiteColor
 
-    backgroundColor: JamiTheme.whiteColor
+    popupContent:  Rectangle{
+        anchors.centerIn: parent
+        width: userQrImage.width + 10
+        height: userQrImage.height + 10
+        color: JamiTheme.whiteColor
+        radius: 5
 
-    popupContent: Image {
+        Image {
             id: userQrImage
             property int size: JamiTheme.qrCodeImageSize
             width: size
@@ -38,6 +45,7 @@ BaseModalDialog {
             smooth: false
             fillMode: Image.PreserveAspectFit
             source: "image://qrImage/account_" + CurrentAccount.id
+        }
     }
 }
 
