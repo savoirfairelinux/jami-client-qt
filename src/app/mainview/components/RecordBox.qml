@@ -40,7 +40,7 @@ Popup {
     property bool isPhoto: false
     property bool showVideo: (root.isVideo && VideoDevices.listSize !== 0)
     property int preferredWidth: 320
-    property int preferredHeight: 240
+    property int preferredHeight: 500
     property int btnSize: 40
 
     property int offset: 3
@@ -140,30 +140,34 @@ Popup {
     } // Computed by id: box, to do the layer on LocalVideo
 
     width: preferredWidth
-    height: isVideo ? previewWidget.height + 80 : preferredHeight
+    height: recordItem.height + 80
     Rectangle {
-        id: box
+        id: background
         radius: 5
         anchors.fill: parent
         color: JamiTheme.backgroundColor
 
-        PushButton {
+
+        ColumnLayout{
+            id: mainLayout
+            anchors.fill: parent
+            anchors.leftMargin: 30
+            anchors.bottomMargin: 30
+
+        JamiPushButton {
             id: cancelBtn
             objectName: "cancelBtn"
             z: 1
+            Layout.alignment: Qt.AlignRight
+            Layout.preferredHeight: 20
+            Layout.preferredWidth: 20
+            Layout.topMargin: 5
+            Layout.rightMargin: 5
 
+            imageColor: "grey"
             normalColor: "transparent"
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-            imageColor: isVideo ? JamiTheme.whiteColor : JamiTheme.textColor
-
-            preferredSize: 12
-
             source: JamiResources.round_close_24dp_svg
             toolTipText: JamiStrings.back
-
-            anchors.right: box.right
-            anchors.top: box.top
-            anchors.margins: 8
 
             focusPolicy: Qt.TabFocus
             onClicked: {
@@ -172,18 +176,14 @@ Popup {
             }
         }
 
-        Item {
-            // Else it will be resized by the layer effect
-            id: photoMask
-            visible: false
-            anchors.fill: parent
-            Rectangle {
-                anchors.centerIn: parent
-                height: parent.height
-                width: parent.height
-                radius: height / 2
-            }
-        }
+        Rectangle {
+            id: box
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.rightMargin: 30
+            color: JamiTheme.backgroundColor
+
+
 
         Rectangle {
             id: rectBox
@@ -194,15 +194,16 @@ Popup {
 
         ColumnLayout {
             id: recordItem
-            anchors.fill: parent
-            spacing: 0
+            anchors.centerIn: parent
+            spacing: 10
             Layout.alignment: Qt.AlignTop
 
             // Video
             Image {
                 id: screenshotImg
                 visible: root.showVideo && root.isPhoto && btnSend.visible
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                height: localVideo.width * localVideo.invAspectRatio
+                width: 230
 
                 sourceSize.width: parent.width
                 sourceSize.height: width * localVideo.invAspectRatio
@@ -212,12 +213,13 @@ Popup {
 
             // video Preview
             Rectangle {
+                radius: 5
                 id: previewWidget
                 visible: root.showVideo && !screenshotImg.visible
 
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                height: localVideo.width * localVideo.invAspectRatio
-                width: parent.width
+                Layout.alignment: Qt.AlignCenter
+                height: 200
+                width: 230
 
                 color: JamiTheme.primaryForegroundColor
 
@@ -241,6 +243,19 @@ Popup {
                             anchors.centerIn: parent
                             maskSource: photoMask
                             invert: true
+                        }
+
+                        Item {
+                            // Else it will be resized by the layer effect
+                            id: photoMask
+                            visible: false
+                            anchors.fill: parent
+                            Rectangle {
+                                anchors.centerIn: parent
+                                height: parent.height
+                                width: parent.height
+                                radius: height / 2
+                            }
                         }
                     }
                 }
@@ -319,7 +334,7 @@ Popup {
                     }
                 }
 
-                PushButton {
+                JamiPushButton {
                     id: btnRestart
                     objectName: "btnRestart"
                     Layout.alignment: Qt.AlignCenter
@@ -329,10 +344,7 @@ Popup {
                     normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
 
                     source: JamiResources.re_record_24dp_svg
-                    hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-                    imageColor: UtilsAdapter.luma(JamiTheme.backgroundColor) ? "white" : JamiTheme.buttonTintedBlue
-                    border.width: 1
-                    border.color: imageColor
+                    imageColor: JamiTheme.tintedBlue
 
                     focusPolicy: Qt.TabFocus
                     onClicked: {
@@ -342,20 +354,18 @@ Popup {
                     }
                 }
 
-                PushButton {
+                JamiPushButton {
                     id: btnSend
                     objectName: "btnSend"
+
                     Layout.alignment: Qt.AlignCenter
-
+                                        height: 40
+                                        width: 40
                     preferredSize: btnSize
+                    normalColor: JamiTheme.backgroundColor
 
-                    normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
-
-                    source: JamiResources.check_black_24dp_svg
-                    imageColor: UtilsAdapter.luma(JamiTheme.backgroundColor) ? "white" : JamiTheme.buttonTintedBlue
-                    border.width: 1
-                    border.color: imageColor
-
+                    imageColor: JamiTheme.tintedBlue
+                    source: JamiResources.check_box_24dp_svg
                     focusPolicy: Qt.TabFocus
                     onClicked: {
                         if (!root.isPhoto) {
@@ -391,5 +401,7 @@ Popup {
                 }
             }
         }
+        }
+    }
     }
 }

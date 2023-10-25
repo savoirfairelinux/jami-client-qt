@@ -36,7 +36,7 @@ Rectangle {
         TextEdit {
             id: projectCreditsTextArea
 
-            horizontalAlignment: Text.AlignHCenter
+            horizontalAlignment: Text.AlignLeft
 
             width: projectCreditsFlickable.width
             color: JamiTheme.textColor

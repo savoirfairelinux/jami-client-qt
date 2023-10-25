@@ -32,6 +32,8 @@ BaseModalDialog {
     signal accepted
 
     title: JamiStrings.setUsername
+    closeButtonVisible: false
+
 
     popupContent: StackLayout {
         id: stackedWidget
@@ -133,6 +135,7 @@ BaseModalDialog {
                     spacing: 16
                     Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
+
 
                     MaterialButton {
                         id: btnRegister
