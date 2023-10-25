@@ -29,7 +29,20 @@ ItemDelegate {
     width: ListView.view.width
     height: JamiTheme.accountListItemHeight
 
-    background: Rectangle {
+    background:Rectangle {
+        width: root.width - 10
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        Rectangle{
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            height: 2
+            width: parent.width - 20
+            color: JamiTheme.smartListHoveredColor
+        }
+
+        radius: 5
+
         color: {
             if (root.pressed)
                 return JamiTheme.smartListSelectedColor;
@@ -39,6 +52,7 @@ ItemDelegate {
                 return JamiTheme.backgroundColor;
         }
     }
+
 
     RowLayout {
         anchors.fill: parent
