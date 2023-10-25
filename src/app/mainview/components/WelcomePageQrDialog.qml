@@ -24,8 +24,8 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    topLayoutVisible: false
-
+    //button1Text: JamiStrings.close
+    button1Clicked: function() { close() }
     backgroundColor: JamiTheme.whiteColor
 
     popupContent: Image {
