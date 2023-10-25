@@ -39,6 +39,24 @@
       "message": "Fix crash if key is pressed when user is outside the call",
       "revId": "873c4c72b92f953eeadf6b7e1fcc7ae88fb31ef2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b95cda8_ff5697a2",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 30
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-10-25T15:05:47Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "008e88e4_274403c2",
+      "revId": "873c4c72b92f953eeadf6b7e1fcc7ae88fb31ef2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
