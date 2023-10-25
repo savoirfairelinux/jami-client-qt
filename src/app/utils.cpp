@@ -24,6 +24,7 @@
 
 #include "jamiavatartheme.h"
 #include "lrcinstance.h"
+#include "utilsadapter.h"
 
 #include <qrencode.h>
 
@@ -816,6 +817,7 @@ Utils::getQRCodeImage(QString data, int margin)
         qWarning() << "Failed to generate QR code";
         return QImage();
     }
+
 
     int qrwidth = qrcode->width + margin * 2;
     QImage result(QSize(qrwidth, qrwidth), QImage::Format_Mono);
