@@ -41,7 +41,13 @@ BaseModalDialog {
         }
     }
 
-    popupContent: ColumnLayout {
+    popupContent: Rectangle {
+        width: contactPickerPopupRectColumnLayout.width
+        height: contactPickerPopupRectColumnLayout.height
+        color: JamiTheme.jamiButtonBorderColor
+        radius: 5
+
+        ColumnLayout {
         id: contactPickerPopupRectColumnLayout
         anchors.centerIn: parent
         width: 400
@@ -50,11 +56,11 @@ BaseModalDialog {
             id: contactPickerContactSearchBar
 
             Layout.alignment: Qt.AlignCenter
-            Layout.margins: 5
+            Layout.margins: 10
             Layout.fillWidth: true
             Layout.preferredHeight: 35
 
-            placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.addParticipant
+            placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.search
 
             onSearchBarTextChanged: function(text){
                 ContactAdapter.setSearchFilter(text);
@@ -67,7 +73,6 @@ BaseModalDialog {
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
             Layout.preferredHeight: 180
-            Layout.bottomMargin: JamiTheme.preferredMarginSize
 
             model: ContactAdapter.getContactSelectableModel(type)
 
@@ -76,6 +81,7 @@ BaseModalDialog {
 
                 showPresenceIndicator: type !== ContactList.TRANSFER
             }
+        }
         }
     }
 }

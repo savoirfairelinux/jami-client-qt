@@ -110,7 +110,6 @@ TextField {
         id: overBaseLineLabel
         font.pixelSize: root.font.pixelSize
         anchors.baseline: root.baseline
-        anchors.horizontalCenter: !isSwarmDetail ? root.horizontalCenter : undefined
         text: root.placeholderText
         color: isSwarmDetail ? root.color : root.baseColor
         visible: !root.isActive && !readOnly && root.text.toString() === ""

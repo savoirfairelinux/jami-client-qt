@@ -183,32 +183,23 @@ Label {
 
             JamiPushButton {
                 id: shareButton
-
                 width: visible ? preferredSize : 0
                 height: visible ? preferredSize : 0
                 anchors.verticalCenter: parent.verticalCenter
-
                 visible: LRCInstance.currentAccountType === Profile.Type.JAMI
                 toolTipText: JamiStrings.displayQRCode
-
-                source: JamiResources.share_24dp_svg
-
+                source: JamiResources.qr_code_black_24dp_svg
                 normalColor: JamiTheme.backgroundColor
-                imageColor: JamiTheme.textColor
-
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
                 onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
-
             JamiPushButton {
                 id: settingsButton
-
                 anchors.verticalCenter: parent.verticalCenter
-                source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
-
+                source: !inSettings ? JamiResources.settings1_24dp_svg : JamiResources.round_close_24dp_svg
                 normalColor: JamiTheme.backgroundColor
-                imageColor: JamiTheme.textColor
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
                 toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
-
                 onClicked: {
                     !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
                     background.state = "normal";

@@ -168,11 +168,25 @@ Item {
                         }
                     }
                 }
+                JamiIdControlButton {
+                    id: btnUsername
+                    source: JamiResources.assignment_ind_black_24dp_svg
+                    visible: false
+                    border.color: "transparent"
+                    onClicked: {
+                        usernameLabel.text = Qt.binding(function() {return CurrentAccount.registeredName} );
+                        usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.registeredName} );
+                        btnId.toolTipText = JamiStrings.identifierURI;
+                        visible = false;
+                        btnId.visible = true
+                    }
+                }
+
 
                 JamiIdControlButton {
                     id: btnCopy
                     anchors.leftMargin: JamiTheme.pushButtonMargins
-                    source: JamiResources.content_copy_24dp_svg
+                    source: JamiResources.content_copy_black_24dp_svg
                     border.color: "transparent"
                     toolTipText: JamiStrings.copy
                     onClicked: UtilsAdapter.setClipboardText(usernameTextEdit.staticText)
@@ -180,7 +194,8 @@ Item {
 
                 JamiIdControlButton {
                     id: btnShare
-                    source: JamiResources.share_24dp_svg
+                    source: JamiResources.qr_code_black_24dp_svg
+                    //imageContainerWidth: 30
                     border.color: "transparent"
                     toolTipText: JamiStrings.share
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
@@ -188,21 +203,18 @@ Item {
 
                 JamiIdControlButton {
                     id: btnId
-                    source: JamiResources.key_black_24dp_svg
+                    source: JamiResources.outline_info_24dp_svg
                     visible: CurrentAccount.registeredName !== ""
                     border.color: "transparent"
                     toolTipText: JamiStrings.identifierURI
                     onClicked: {
-                        if (clicked) {
+
                             usernameLabel.text = Qt.binding(function() {return CurrentAccount.uri} );
                             usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.uri} );
                             btnId.toolTipText = JamiStrings.identifierRegisterName;
-                        } else {
-                            usernameLabel.text = Qt.binding(function() {return CurrentAccount.registeredName} );
-                            usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.registeredName} );
-                            btnId.toolTipText = JamiStrings.identifierURI;
-                        }
-                        clicked = !clicked;
+                            visible = false
+                            btnUsername.visible = true
+
                     }
                 }
             }

@@ -88,6 +88,8 @@ Item {
     property color popupOverlayColor: darkTheme ? Qt.rgba(255, 255, 255, 0.22) : Qt.rgba(0, 0, 0, 0.33)
     property real formsRadius: 30
 
+    property color warningRedRectangle: darkTheme ? "#3c131a" : "#fae5e8"
+
     // Side panel
     property color presenceGreen: "#4cd964"
     property color notificationRed: "#ff3b30"
@@ -138,6 +140,10 @@ Item {
     property color secAndTertiHoveredBackgroundColor: darkTheme ? "#123F4A" : "#E5EEF5"
     property color closeButtonLighterBlack: "#4c4c4c"
 
+    property color jamiButtonBorderColor: darkTheme ? "#333333" : "#F0EFEF"
+    property color deleteButtonRed: "#CC0022"
+    property color eyeButtonColor: "#5e5e5e"
+
     // Jami switch
     property color switchBackgroundCheckedColor: "#8dbaea"
     property color switchBackgroundColor: darkTheme ? "#626262" : "#E5EEF5"
@@ -158,6 +164,12 @@ Item {
     // Spinbox
     property color spinboxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
     property color spinboxBorderColor: darkTheme ? "#1D5F70" : "#A3C2DA"
+
+    //RecordBox
+    property color screenshotButtonColor: "#CC0022"
+    property color recordBoxcloseButtonColor: "#8d8a87"
+    property color recordBoxHoverColor: "#4D4D4D"
+    property color recordBoxButtonColor: "#272727"
 
     // Toast
     property color toastColor: darkTheme ? "#f0f0f0" : "#000000"
@@ -647,6 +659,7 @@ Item {
 
     // Link Device
     property color pinBackgroundColor: "#D6E4EF"
+    property color infoRectangleColor: JamiTheme.darkTheme ? "#143842" : "#e5eef5"
 
     // MaterialRadioButton
     property int radioImageSize: 30

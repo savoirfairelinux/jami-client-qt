@@ -46,7 +46,7 @@ Popup {
 
         Rectangle {
             color: JamiTheme.backgroundColor
-            radius: 10
+            radius: 5
             anchors.fill: parent
 
             Connections {
@@ -77,41 +77,36 @@ Popup {
 
             ColumnLayout {
                 anchors.fill: parent
-                anchors.bottomMargin: 5
+                anchors.leftMargin: 30
+                anchors.bottomMargin: 30
+                spacing: 10
 
-                RowLayout {
-                    height: JamiTheme.preferredFieldHeight
+                JamiPushButton {
+                    id: closeButton
+
+                    Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                    Layout.preferredHeight: 20
+                    Layout.preferredWidth: 20
+                    Layout.topMargin: 5
+                    Layout.rightMargin: 5
+
+                    imageColor: "grey"
+                    normalColor: "transparent"
+                    source: JamiResources.round_close_24dp_svg
+                    onClicked: close()
+                    }
 
                     Text {
-                        Layout.topMargin: 10
-                        Layout.leftMargin: 5 + closeButton.width
-                        Layout.alignment: Qt.AlignCenter
+                        Layout.alignment: Qt.AlignLeft
                         Layout.fillWidth: true
 
                         font.pointSize: JamiTheme.textFontSize
                         font.bold: true
-
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
                         color: JamiTheme.textColor
 
                         text: JamiStrings.choosePlugin
                     }
 
-                    PushButton {
-                        id: closeButton
-                        Layout.alignment: Qt.AlignRight
-                        Layout.rightMargin: 5
-                        Layout.topMargin: 5
-
-                        source: JamiResources.round_close_24dp_svg
-                        imageColor: JamiTheme.textColor
-
-                        onClicked: {
-                            root.close();
-                        }
-                    }
-                }
 
                 JamiListView {
                     id: pluginhandlerPickerListView
@@ -119,6 +114,7 @@ Popup {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
                     Layout.fillHeight: true
+                    Layout.rightMargin: 30
 
                     model: {
                         if (isCall) {
@@ -198,13 +194,14 @@ Popup {
                         text: JamiStrings.pluginPreferences
                     }
 
-                    PushButton {
+                    JamiPushButton {
                         id: closeButton2
                         Layout.rightMargin: 5
                         Layout.topMargin: 5
 
                         source: JamiResources.round_close_24dp_svg
                         imageColor: JamiTheme.textColor
+                        normalColor: "transparent"
 
                         onClicked: {
                             root.close();

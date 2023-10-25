@@ -48,13 +48,18 @@ Item {
     property string version: qsTr("Version") + (AppVersionManager.isCurrentVersionBeta() ? " (Beta)" : "")
     property string declarationYear: "© 2015-2023"
     property string slogan: "Eleutheria"
-    property string declaration: qsTr("Jami is a free universal communication software that respects the freedom and privacy of its users.")
+    property string declaration: qsTr("Jami, a GNU package, is a universal and distributed peer to peer communication software that respects the freedom and privacy of its users. Learn more on ")
+    property string noWarranty: qsTr('This program comes with absolutely no warranty. See the <a href="http://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.blueLinkColor + '">GNU General Public License</a>, version 3 or later for details.')
+    property string contribute: qsTr('Contribute')
+    property string feedback: qsTr('Feedback')
 
     // AccountComboBox
     property string displayQRCode: qsTr("Display QR code")
     property string openSettings: qsTr("Open settings")
     property string closeSettings: qsTr("Close settings")
-    property string addAccount: qsTr("Add Account")
+    property string addAccount: qsTr("Add another account")
+    property string manageAccount: qsTr("Manage account")
+
 
     // ContactPicker
     property string addToConference: qsTr("Add to conference")
@@ -771,7 +776,9 @@ Item {
     property string needsHost: qsTr("Current host for this swarm seems unreachable. Do you want to host the call?")
     property string chooseHoster: qsTr("Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.")
     property string chooseThisDevice: qsTr("Choose this device")
+    property string chooseDevice: qsTr("Choose device")
     property string removeCurrentDevice: qsTr("Remove current device")
+    property string removeThisDevice: qsTr("Remove device")
     property string becomeHostOneCall: qsTr("Host only this call")
     property string hostThisCall: qsTr("Host this call")
     property string becomeDefaultHost: qsTr("Make me the default host for future calls")

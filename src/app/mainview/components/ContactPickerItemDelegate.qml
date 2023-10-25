@@ -56,6 +56,7 @@ ItemDelegate {
 
         width: parent.width - avatar.width - 20
         height: parent.height
+        radius: 5
 
         color: "transparent"
 
@@ -105,9 +106,10 @@ ItemDelegate {
     background: Rectangle {
         id: itemSmartListBackground
 
-        color: JamiTheme.backgroundColor
+        color: JamiTheme.jamiButtonBorderColor
 
         border.width: 0
+        radius: 5
     }
 
     MouseArea {
@@ -135,7 +137,7 @@ ItemDelegate {
         }
 
         onExited: {
-            itemSmartListBackground.color = JamiTheme.backgroundColor;
+            itemSmartListBackground.color = JamiTheme.jamiButtonBorderColor;
         }
     }
 }
