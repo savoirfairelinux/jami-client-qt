@@ -45,10 +45,10 @@ BaseContextMenu {
         const listViewWidth = listView.width;
         if (isOutgoing) {
             const leftMargin = msgBubble.mapToItem(listView, 0, 0).x;
-            return width > leftMargin ? -leftMargin - 20 : -width - 20;
+            return width > leftMargin ? -leftMargin - 35 : -width - 35;
         } else {
             const rightMargin = listViewWidth - (msgBubble.x + msgBubble.width);
-            return width > rightMargin ? msgBubble.width - width + 20 : msgBubble.width + 20;
+            return width > rightMargin ? msgBubble.width - width + 35 : msgBubble.width + 35;
         }
     }
     function yPositionProvider(height) {
