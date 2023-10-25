@@ -124,7 +124,6 @@ RowLayout {
                 }
                 modelList: listViewMoreButton.menuMoreButton
                 y: -140
-                x: -20
             }
         }
     }
