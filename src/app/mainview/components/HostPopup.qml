@@ -31,6 +31,22 @@ BaseModalDialog {
         return role === Member.Role.ADMIN;
     }
 
+    button1.text: isAdmin ? JamiStrings.becomeHostOneCall : JamiStrings.hostThisCall
+    button1Clicked: function() {
+        MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
+        close();
+    }
+
+    button2.text: JamiStrings.becomeDefaultHost
+    button2.toolTipText: JamiStrings.becomeDefaultHost
+    button2.visible: isAdmin
+    button2Clicked: {
+        CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri);
+        CurrentConversation.setInfo("rdvDevice", devicesListView.currentItem.deviceId);
+        MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
+        close();
+    }
+
     popupContent: ColumnLayout {
             id: mainLayout
             spacing: JamiTheme.preferredMarginSize
@@ -48,38 +64,38 @@ BaseModalDialog {
                 color: JamiTheme.primaryForegroundColor
             }
 
-            MaterialButton {
-                id: becomeHostBtn
+//            MaterialButton {
+//                id: becomeHostBtn
 
-                Layout.alignment: Qt.AlignCenter
+//                Layout.alignment: Qt.AlignCenter
 
-                Layout.margins: JamiTheme.preferredMarginSize
-                text: isAdmin ? JamiStrings.becomeHostOneCall : JamiStrings.hostThisCall
+//                Layout.margins: JamiTheme.preferredMarginSize
+//                text: isAdmin ? JamiStrings.becomeHostOneCall : JamiStrings.hostThisCall
 
-                onClicked: {
-                    MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
-                    close();
-                }
-            }
+//                onClicked: {
+//                    MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
+//                    close();
+//                }
+//            }
 
-            MaterialButton {
-                id: becomeDefaultHostBtn
+//            MaterialButton {
+//                id: becomeDefaultHostBtn
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.margins: JamiTheme.preferredMarginSize
+//                Layout.alignment: Qt.AlignCenter
+//                Layout.margins: JamiTheme.preferredMarginSize
 
-                text: JamiStrings.becomeDefaultHost
-                toolTipText: JamiStrings.becomeDefaultHost
+//                text: JamiStrings.becomeDefaultHost
+//                toolTipText: JamiStrings.becomeDefaultHost
 
-                visible: isAdmin
+//                visible: isAdmin
 
-                onClicked: {
-                    CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri);
-                    CurrentConversation.setInfo("rdvDevice", devicesListView.currentItem.deviceId);
-                    MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
-                    close();
-                }
-            }
+//                onClicked: {
+//                    CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri);
+//                    CurrentConversation.setInfo("rdvDevice", devicesListView.currentItem.deviceId);
+//                    MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
+//                    close();
+//                }
+//            }
         }
     }
 //}
