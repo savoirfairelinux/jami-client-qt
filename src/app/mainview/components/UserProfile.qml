@@ -31,159 +31,174 @@ BaseModalDialog {
 
     property int preferredImgSize: 80
 
-    popupContent: GridLayout {
+    title: JamiStrings.contactDetails
+
+    popupContent: Rectangle {
+
+        color: JamiTheme.jamiButtonBorderColor
+        width: userProfileDialogLayout.width + 20
+        height: userProfileDialogLayout.height + 20
+
+        radius: 5
+
+
+        ColumnLayout {
             id: userProfileDialogLayout
+            anchors.centerIn: parent
 
-            anchors.margins: JamiTheme.preferredMarginSize
             width: JamiTheme.secondaryDialogDimension
+            height: childrenRect.height
+            spacing: 10
 
-            columns: 2
-            rows: 6
-            rowSpacing: 16
-            columnSpacing: 24
-
-            Avatar {
-                id: contactImage
-
-                Layout.alignment: Qt.AlignRight
-                Layout.preferredWidth: preferredImgSize
-                Layout.preferredHeight: preferredImgSize
-
-                imageId: convId !== "" ? convId : idText
-                showPresenceIndicator: false
-                mode: convId !== "" ? Avatar.Mode.Conversation : Avatar.Mode.Contact
-            }
-
-            // Visible when user alias is not empty and not equal to id.
-            TextEdit {
-                id: contactAlias
-
-                Layout.alignment: Qt.AlignLeft
-
-                font.pointSize: JamiTheme.titleFontSize
-                font.kerning: true
-                color: JamiTheme.textColor
-                visible: aliasText ? (aliasText === idText ? false : true) : false
-
-                selectByMouse: true
-                readOnly: true
-
-                wrapMode: Text.NoWrap
-                text: textMetricsContactAliasText.elidedText
-
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-
-                TextMetrics {
-                    id: textMetricsContactAliasText
-                    font: contactAlias.font
-                    text: aliasText
-                    elideWidth: root.width - 200
-                    elide: Qt.ElideMiddle
-                }
-            }
-
-            Item {
-                Layout.columnSpan: 2
-                height: 8
-            }
-
-            Text {
-                Layout.alignment: Qt.AlignRight
-                font.pointSize: JamiTheme.menuFontSize
-                text: JamiStrings.information
-                color: JamiTheme.textColor
-            }
-
-            Item {
+            RowLayout {
+                Layout.margins: 10
                 Layout.fillWidth: true
+                spacing: 10
+
+                Avatar {
+                    id: contactImage
+
+                    //Layout.alignment: Qt.AlignRight
+                    Layout.preferredWidth: preferredImgSize
+                    Layout.preferredHeight: preferredImgSize
+
+                    imageId: convId !== "" ? convId : idText
+                    showPresenceIndicator: false
+                    mode: convId !== "" ? Avatar.Mode.Conversation : Avatar.Mode.Contact
+                }
+
+                ColumnLayout {
+                    spacing: 10
+                    Layout.alignment: Qt.AlignLeft
+
+
+                    // Visible when user alias is not empty and not equal to id.
+                    TextEdit {
+                        id: contactAlias
+
+                        Layout.alignment: Qt.AlignLeft
+
+                        font.pointSize: JamiTheme.titleFontSize
+                        font.kerning: true
+                        color: JamiTheme.textColor
+                        visible: aliasText ? (aliasText === idText ? false : true) : false
+
+                        selectByMouse: true
+                        readOnly: true
+
+                        wrapMode: Text.NoWrap
+                        text: textMetricsContactAliasText.elidedText
+
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
+                        TextMetrics {
+                            id: textMetricsContactAliasText
+                            font: contactAlias.font
+                            text: aliasText
+                            elideWidth: root.width - 200
+                            elide: Qt.ElideMiddle
+                        }
+                    }
+
+
+                    // Visible when user name is not empty or equals to id.
+                    TextEdit {
+                        id: contactDisplayName
+
+                        Layout.alignment: Qt.AlignLeft
+
+                        font.pointSize: JamiTheme.textFontSize
+                        font.kerning: true
+                        color: JamiTheme.textColor
+                        visible: registeredNameText ? (registeredNameText === idText ? false : true) : false
+
+                        readOnly: true
+                        selectByMouse: true
+
+                        wrapMode: Text.NoWrap
+                        text: textMetricsContactDisplayNameText.elidedText
+
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
+                        TextMetrics {
+                            id: textMetricsContactDisplayNameText
+                            font: contactDisplayName.font
+                            text: registeredNameText
+                            elideWidth: root.width - 200
+                            elide: Qt.ElideMiddle
+                        }
+                    }
+
+                }
+
+                Image {
+                    id: contactQrImage
+
+                    Layout.alignment: Qt.AlignRight
+                    Layout.fillWidth: true
+                    horizontalAlignment: Image.AlignRight
+
+                    fillMode: Image.PreserveAspectFit
+                    sourceSize.width: preferredImgSize
+                    sourceSize.height: preferredImgSize
+                    mipmap: false
+                    smooth: false
+
+                    source: convId !== "" ? "image://qrImage/contact_" + convId : "image://qrImage/contact_" + idText
+                }
+
+
             }
 
-            Text {
-                Layout.alignment: Qt.AlignRight
-                font.pointSize: JamiTheme.textFontSize
-                text: JamiStrings.username
-                visible: contactDisplayName.visible
-                color: JamiTheme.faddedFontColor
-            }
+            Rectangle {
+                Layout.fillWidth: true
+                radius: 5
+                color: root.backgroundColor
+                width: userProfileDialogLayout.width - 10
+                height: contactId.height + 10
+                Layout.margins: 10
 
-            // Visible when user name is not empty or equals to id.
-            TextEdit {
-                id: contactDisplayName
 
-                Layout.alignment: Qt.AlignLeft
+                RowLayout {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                    height: childrenRect.height
+                    spacing: 20
 
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
-                color: JamiTheme.textColor
-                visible: registeredNameText ? (registeredNameText === idText ? false : true) : false
+                    Text {
+                        id: identifierText
+                        font.pointSize: JamiTheme.textFontSize
+                        text: JamiStrings.identifier
+                        color: JamiTheme.faddedFontColor
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+                    }
 
-                readOnly: true
-                selectByMouse: true
+                    TextEdit {
+                        id: contactId
 
-                wrapMode: Text.NoWrap
-                text: textMetricsContactDisplayNameText.elidedText
+                        Layout.alignment: Qt.AlignLeft
+                        Layout.preferredWidth: root.width - 250
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
+                        font.pointSize: JamiTheme.textFontSize
+                        font.kerning: true
+                        color: JamiTheme.textColor
 
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
+                        readOnly: true
+                        selectByMouse: true
 
-                TextMetrics {
-                    id: textMetricsContactDisplayNameText
-                    font: contactDisplayName.font
-                    text: registeredNameText
-                    elideWidth: root.width - 200
-                    elide: Qt.ElideMiddle
+                        wrapMode: Text.Wrap
+                        text: idText
+
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+                    }
                 }
             }
 
-            Text {
-                id: identifierText
-                Layout.alignment: Qt.AlignRight
-                font.pointSize: JamiTheme.textFontSize
-                text: JamiStrings.identifier
-                color: JamiTheme.faddedFontColor
             }
-
-            TextEdit {
-                id: contactId
-
-                Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: root.width - 250
-                Layout.rightMargin: JamiTheme.preferredMarginSize
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
-                color: JamiTheme.textColor
-
-                readOnly: true
-                selectByMouse: true
-
-                wrapMode: Text.Wrap
-                text: idText
-
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-            }
-
-            Text {
-                Layout.alignment: Qt.AlignRight
-                font.pointSize: JamiTheme.textFontSize
-                text: JamiStrings.qrCode
-                color: JamiTheme.faddedFontColor
-            }
-
-            Image {
-                id: contactQrImage
-
-                Layout.alignment: Qt.AlignLeft
-
-                fillMode: Image.PreserveAspectFit
-                sourceSize.width: preferredImgSize
-                sourceSize.height: preferredImgSize
-                mipmap: false
-                smooth: false
-
-                source: convId !== "" ? "image://qrImage/contact_" + convId : "image://qrImage/contact_" + idText
-            }
-        }
+    }
     }
 
