@@ -28,6 +28,7 @@ Label {
     id: root
 
     property alias popup: comboBoxPopup
+    property alias color: background.color
 
     width: parent ? parent.width : o
     height: JamiTheme.accountListItemHeight
@@ -64,33 +65,12 @@ Label {
         id: background
         anchors.fill: parent
 
-        color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.05) : JamiTheme.backgroundColor
+        color: JamiTheme.backgroundColor
+
         Behavior on color  {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
-        }
-
-        // TODO: this can be removed when frameless window is implemented
-        Rectangle {
-            height: 1
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
-            }
-            color: JamiTheme.tabbarBorderColor
-        }
-    }
-
-    MouseArea {
-        id: mouseArea
-        enabled: visible
-        anchors.fill: parent
-        hoverEnabled: true
-        onClicked: {
-            root.forceActiveFocus();
-            togglePopup();
         }
     }
 
@@ -104,11 +84,40 @@ Label {
         }
     }
 
+
     RowLayout {
+        id: mainLayout
         anchors.fill: parent
         anchors.leftMargin: 15
         anchors.rightMargin: 15
         spacing: 10
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.0) : JamiTheme.backgroundColor
+            radius: 5
+            Layout.topMargin: 5
+
+            MouseArea {
+                id: mouseArea
+                enabled: visible
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: {
+                    root.forceActiveFocus();
+                    togglePopup();
+                }
+
+            }
+
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.leftMargin: 15
+                    anchors.rightMargin: 15
+                    spacing: 10
+
+
 
         Avatar {
             id: avatar
@@ -159,6 +168,8 @@ Label {
                 horizontalAlignment: Text.AlignLeft
             }
         }
+        }
+        }
 
         Row {
             id: controlRow
@@ -167,19 +178,6 @@ Label {
 
             Layout.preferredWidth: childrenRect.width
             Layout.preferredHeight: parent.height
-
-            ResponsiveImage {
-                id: arrowDropDown
-
-                anchors.verticalCenter: parent.verticalCenter
-
-                width: 24
-                height: 24
-
-                color: JamiTheme.textColor
-
-                source: !root.popup.opened ? JamiResources.expand_more_24dp_svg : JamiResources.expand_less_24dp_svg
-            }
 
             JamiPushButton {
                 id: shareButton
@@ -191,10 +189,10 @@ Label {
                 visible: LRCInstance.currentAccountType === Profile.Type.JAMI
                 toolTipText: JamiStrings.displayQRCode
 
-                source: JamiResources.share_24dp_svg
+                source: JamiResources.qr_code_black_24dp_svg
 
                 normalColor: JamiTheme.backgroundColor
-                imageColor: JamiTheme.textColor
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
 
                 onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
@@ -203,10 +201,10 @@ Label {
                 id: settingsButton
 
                 anchors.verticalCenter: parent.verticalCenter
-                source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
+                source: !inSettings ? JamiResources.settings1_24dp_svg : JamiResources.round_close_24dp_svg
 
                 normalColor: JamiTheme.backgroundColor
-                imageColor: JamiTheme.textColor
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
                 toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
 
                 onClicked: {
