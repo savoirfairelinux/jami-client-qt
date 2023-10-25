@@ -24,9 +24,9 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    topLayoutVisible: false
-
-    backgroundColor: JamiTheme.whiteColor
+    //button1Text: JamiStrings.close
+    button1Clicked: function() { close() }
+    backgroundColor: JamiTheme.darkTheme ? JamiTheme.blackColor : JamiTheme.whiteColor
 
     popupContent: Image {
             id: userQrImage
@@ -38,6 +38,7 @@ BaseModalDialog {
             smooth: false
             fillMode: Image.PreserveAspectFit
             source: "image://qrImage/account_" + CurrentAccount.id
+            //color: JamiTheme.darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
     }
 }
 

@@ -63,8 +63,11 @@ Label {
     background: Rectangle {
         id: background
         anchors.fill: parent
+        radius: 5
+        anchors.margins: 5
 
-        color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.05) : JamiTheme.backgroundColor
+        color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : /*mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.05) :*/ JamiTheme.backgroundColor
+        //color: JamiTheme.backgroundColor
         Behavior on color  {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
@@ -109,6 +112,21 @@ Label {
         anchors.leftMargin: 15
         anchors.rightMargin: 15
         spacing: 10
+
+//        Rectangle {
+//            color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.05) : JamiTheme.backgroundColor
+//            radius: 5
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.leftMargin: 15
+                anchors.rightMargin: 15
+                spacing: 10
+
+
+
+
+
 
         Avatar {
             id: avatar
@@ -159,6 +177,8 @@ Label {
                 horizontalAlignment: Text.AlignLeft
             }
         }
+        }
+        //}
 
         Row {
             id: controlRow
@@ -168,18 +188,18 @@ Label {
             Layout.preferredWidth: childrenRect.width
             Layout.preferredHeight: parent.height
 
-            ResponsiveImage {
-                id: arrowDropDown
+//            ResponsiveImage {
+//                id: arrowDropDown
 
-                anchors.verticalCenter: parent.verticalCenter
+//                anchors.verticalCenter: parent.verticalCenter
 
-                width: 24
-                height: 24
+//                width: 24
+//                height: 24
 
-                color: JamiTheme.textColor
+//                color: JamiTheme.textColor
 
-                source: !root.popup.opened ? JamiResources.expand_more_24dp_svg : JamiResources.expand_less_24dp_svg
-            }
+//                source: !root.popup.opened ? JamiResources.expand_more_24dp_svg : JamiResources.expand_less_24dp_svg
+//            }
 
             JamiPushButton {
                 id: shareButton
@@ -191,10 +211,10 @@ Label {
                 visible: LRCInstance.currentAccountType === Profile.Type.JAMI
                 toolTipText: JamiStrings.displayQRCode
 
-                source: JamiResources.share_24dp_svg
+                source: JamiResources.qr_code_black_24dp_svg
 
                 normalColor: JamiTheme.backgroundColor
-                imageColor: JamiTheme.textColor
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
 
                 onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
@@ -203,10 +223,11 @@ Label {
                 id: settingsButton
 
                 anchors.verticalCenter: parent.verticalCenter
-                source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
+                source: !inSettings ? JamiResources.settings1_24dp_svg : JamiResources.round_close_24dp_svg
 
                 normalColor: JamiTheme.backgroundColor
-                imageColor: JamiTheme.textColor
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+                imageContainerWidth: 25
                 toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
 
                 onClicked: {
