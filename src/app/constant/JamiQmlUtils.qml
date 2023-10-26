@@ -77,6 +77,6 @@ Item {
         var isDonationVisible = UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible);
         var endDonationDate = new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonationEndDate)));
         var donationVisibleDate = new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonationVisibleDate)));
-        return new Date() < endDonationDate && new Date() > donationVisibleDate && isDonationVisible;
+        return new Date() < endDonationDate && new Date() > donationVisibleDate && isDonationVisible && false;
     }
 }
