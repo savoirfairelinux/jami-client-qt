@@ -456,11 +456,9 @@ Control {
         CallOverlayModel.addSecondaryControl(audioOutputAction, audioOutputAction.enabled);
         CallOverlayModel.addSecondaryControl(raiseHandAction, raiseHandAction.enabled);
         CallOverlayModel.addSecondaryControl(addPersonAction, addPersonAction.enabled);
-
         CallOverlayModel.addSecondaryControl(resumePauseCallAction, resumePauseCallAction.enabled);
         CallOverlayModel.addSecondaryControl(inputPanelSIPAction, inputPanelSIPAction.enabled);
         CallOverlayModel.addSecondaryControl(callTransferAction, callTransferAction.enabled);
-
         CallOverlayModel.addSecondaryControl(chatAction, chatAction.enabled);
         CallOverlayModel.addSecondaryControl(shareAction, shareAction.enabled);
         CallOverlayModel.addSecondaryControl(layoutAction, layoutAction.enabled);
@@ -486,7 +484,7 @@ Control {
 
                 orientation: ListView.Horizontal
                 implicitWidth: contentWidth
-                implicitHeight: contentHeight
+                height: root.height
                 interactive: false
 
                 model: SortFilterProxyModel {
@@ -507,6 +505,9 @@ Control {
         anchors.right: parent.right
         width: childrenRect.width
         height: root.height
+
+        //put in top
+        z: 1
 
         RowLayout {
             spacing: itemSpacing
