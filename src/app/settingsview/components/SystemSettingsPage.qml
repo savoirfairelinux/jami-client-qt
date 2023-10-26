@@ -49,7 +49,7 @@ SettingsPageBase {
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
-        Column {
+        ColumnLayout {
             id: enableAccount
 
             width: parent.width
@@ -73,7 +73,7 @@ SettingsPageBase {
 
             ToggleSwitch {
                 id: notificationCheckBox
-                width: parent.width
+                Layout.fillWidth: true
 
                 checked: UtilsAdapter.getAppValue(Settings.EnableNotifications)
                 labelText: JamiStrings.showNotifications
@@ -83,7 +83,7 @@ SettingsPageBase {
 
             ToggleSwitch {
                 id: enableDonation
-                width: parent.width
+                Layout.fillWidth: true
                 visible: new Date() >= new Date(Date.parse("2023-11-01"))
 
                 checked: UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible)
@@ -99,7 +99,7 @@ SettingsPageBase {
 
             ToggleSwitch {
                 id: closeOrMinCheckBox
-                width: parent.width
+                Layout.fillWidth: true
 
                 visible: UtilsAdapter.isSystemTrayIconVisible()
                 checked: UtilsAdapter.getAppValue(Settings.MinimizeOnClose) && UtilsAdapter.isSystemTrayIconVisible()
@@ -109,7 +109,7 @@ SettingsPageBase {
 
             ToggleSwitch {
                 id: applicationOnStartUpCheckBox
-                width: parent.width
+                Layout.fillWidth: true
 
                 checked: UtilsAdapter.checkStartupLink()
                 labelText: JamiStrings.runStartup
@@ -118,7 +118,7 @@ SettingsPageBase {
             }
 
             RowLayout {
-                width: parent.width
+                Layout.fillWidth: true
                 height: JamiTheme.preferredFieldHeight
 
                 Text {
@@ -156,7 +156,7 @@ SettingsPageBase {
             SettingsComboBox {
                 id: langComboBoxSetting
 
-                width: parent.width
+                Layout.fillWidth: true
                 height: JamiTheme.preferredFieldHeight
 
                 labelText: JamiStrings.language
