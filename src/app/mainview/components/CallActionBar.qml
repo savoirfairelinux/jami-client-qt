@@ -65,6 +65,10 @@ Control {
             barWidth: root.width
             onSubMenuVisibleChanged: subMenuOpen = subMenuVisible
             onHoveredChanged: root.barHovered = hovered
+            Component.onCompleted: {
+                console.log("\n-------------------componentn compled----------------\n");
+                console.log("visible: " + visible);
+            }
         }
     }
 
@@ -445,6 +449,7 @@ Control {
     property var overflowItemCount
 
     Component.onCompleted: {
+        console.log("debug");
         CallOverlayModel.clearControls();
 
         // centered controls
@@ -456,11 +461,9 @@ Control {
         CallOverlayModel.addSecondaryControl(audioOutputAction, audioOutputAction.enabled);
         CallOverlayModel.addSecondaryControl(raiseHandAction, raiseHandAction.enabled);
         CallOverlayModel.addSecondaryControl(addPersonAction, addPersonAction.enabled);
-
         CallOverlayModel.addSecondaryControl(resumePauseCallAction, resumePauseCallAction.enabled);
         CallOverlayModel.addSecondaryControl(inputPanelSIPAction, inputPanelSIPAction.enabled);
         CallOverlayModel.addSecondaryControl(callTransferAction, callTransferAction.enabled);
-
         CallOverlayModel.addSecondaryControl(chatAction, chatAction.enabled);
         CallOverlayModel.addSecondaryControl(shareAction, shareAction.enabled);
         CallOverlayModel.addSecondaryControl(layoutAction, layoutAction.enabled);
@@ -485,8 +488,9 @@ Control {
                 property bool centeredGroup: true
 
                 orientation: ListView.Horizontal
+                //set width to the childrenRect.width to avoid flickering when the width is changing
                 implicitWidth: contentWidth
-                implicitHeight: contentHeight
+                height: root.height
                 interactive: false
 
                 model: SortFilterProxyModel {
@@ -497,6 +501,26 @@ Control {
                     }
                 }
                 delegate: buttonDelegate
+
+                onVisibleChanged: {
+                    console.log("Content width: " + contentWidth);
+                    console.log("Content height: " + contentHeight);
+                    console.log("Children width: " + childrenRect.width);
+                    console.log("Children height: " + childrenRect.height);
+                    console.log("Implicit width: " + implicitWidth);
+                    console.log("Implicit height: " + implicitHeight);
+                    console.log("Model count: " + model.count);
+                }
+
+                Component.onCompleted: {
+                    console.log("Content width: " + contentWidth);
+                    console.log("Content height: " + contentHeight);
+                    console.log("Children width: " + childrenRect.width);
+                    console.log("Children height: " + childrenRect.height);
+                    console.log("Implicit width: " + implicitWidth);
+                    console.log("Implicit height: " + implicitHeight);
+                    console.log("Model count: " + model.count);
+                }
             }
         }
     }
@@ -507,6 +531,9 @@ Control {
         anchors.right: parent.right
         width: childrenRect.width
         height: root.height
+
+        //put in top
+        z: 1
 
         RowLayout {
             spacing: itemSpacing

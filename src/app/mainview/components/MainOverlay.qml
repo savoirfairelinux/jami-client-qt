@@ -273,4 +273,8 @@ Item {
             duration: JamiTheme.overlayFadeDuration
         }
     }
+
+    Component.onCompleted: {
+        console.log("-----------------ICI CA MARCHE-----------------");
+    }
 }
