@@ -1,0 +1,33 @@
+diff --git a/src/gui/image/qppmhandler.cpp b/src/gui/image/qppmhandler.cpp
+index b03458b..8b1719e 100644
+--- a/src/gui/image/qppmhandler.cpp
++++ b/src/gui/image/qppmhandler.cpp
+@@ -102,6 +102,19 @@ static int read_pbm_int(QIODevice *d, bool *ok)
+     return hasOverflow ? -1 : val;
+ }
+ 
++static uchar read_pbm_1_0(QIODevice *d, bool *ok)
++{
++    char c = 0;
++    do {
++        if (!d->getChar(&c))                // end of file
++            break;
++    } while (isspace((uchar) c));
++
++    if (c != '0' && c != '1')
++        *ok = false;
++    return c == '1' ? 1 : 0;
++}
++
+ static bool read_pbm_header(QIODevice *device, char& type, int& w, int& h, int& mcc)
+ {
+     char buf[3];
+@@ -247,7 +260,7 @@ static bool read_pbm_body(QIODevice *device, char type, int w, int h, int mcc, Q
+                     b = 0;
+                     for (int i=0; i<8; i++) {
+                         if (i < bitsLeft)
+-                            b = (b << 1) | (read_pbm_int(device, &ok) & 1);
++                            b = (b << 1) | (read_pbm_1_0(device, &ok) & 1);
+                         else
+                             b = (b << 1) | (0 & 1); // pad it our self if we need to
+                     }
