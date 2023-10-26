@@ -45,7 +45,7 @@ Item {
                 ctxMenu.y = mouse.y;
                 ctxMenu.openMenu();
             } else {
-                MessagesAdapter.openUrl("file://" + Body);
+                MessagesAdapter.openUrl(icon.fileSource);
             }
         }
     }
