@@ -411,6 +411,7 @@ Item {
     property real lineEditContextMenuItemsHeight: 15
     property real lineEditContextMenuItemsWidth: 100
     property real lineEditContextMenuSeparatorsHeight: 2
+    property color menuSeparatorColor: darkTheme ? "#4d4d4d" : "#DEDEDE"
 
     // Recording
     property real recordingBtnSize: 12

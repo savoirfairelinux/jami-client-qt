@@ -7,9 +7,9 @@ There are essentially two ways to build `client-qt`:
 
 ## Disclaimer
 
-Because the client-qt is multi-platforms and supporting macOS, we need a recent version of Qt to do rendering with Metal. So, Qt 6.4 is necessary.
+Because the client-qt is multi-platforms and supporting macOS, we need a recent version of Qt to do rendering with Metal. So, Qt 6.5 is necessary.
 This version is generally not packaged on a lot of platforms, and to control available plugins and such, we have our own Qt packaged (available on https://jami.net on the distributions we support).
-So, you will need to get Qt 6.4 first. For this, there is 3 methods:
+So, you will need to get Qt 6.5 first. For this, there is 3 methods:
 
 ### Qt from our repo (recommended)
 
@@ -49,7 +49,7 @@ sudo dnf update && sudo dnf install jami-libqt
 
 ### Qt from your distribution
 
-If Qt 6.4 is available, you can use the packages from your distribution:
+If Qt 6.5 is available, you can use the packages from your distribution:
 
 It should be (For now qt5 only is packaged by distributions, so names can change).
 
@@ -118,7 +118,7 @@ Then, you can build daemon and the client using:
 
 If you use a Qt version that is not system-wide installed, you need to
 specify its path using the `--qt` flag, e.g.
-`./build.py --install --qt=/home/<username>/Qt/6.4.1/gcc_64`.
+`./build.py --install --qt=/home/<username>/Qt/6.5.1/gcc_64`.
 
 Now you will have the daemon in `daemon/bin/dbus/jamid` and the client in
 `build/jami`. You can now run Jami using:
@@ -134,7 +134,7 @@ Notes:
 
 ## Build only the client
 
-In order to use the Qt Client it is necessary to have the Qt version 6.4 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
+In order to use the Qt Client it is necessary to have the Qt version 6.5 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
 
 ## Build only this repository
 
@@ -286,9 +286,9 @@ Once the build has finished, you should then be able to use the Visual Studio So
 - macOS minimum version 10.15
 - install python3
 - download xcode
-- install Qt 6.4
+- install Qt 6.5
 
-Qt 6.4 can be installed via brew
+Qt 6.5 can be installed via brew
 
 ```bash
 brew install qt
