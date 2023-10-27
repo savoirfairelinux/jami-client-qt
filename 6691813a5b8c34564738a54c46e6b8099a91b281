@@ -79,6 +79,30 @@
       },
       "revId": "6691813a5b8c34564738a54c46e6b8099a91b281",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54ada321_0d75b1fb",
+        "filename": "src/app/platform/macos/pttlistener.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2023-10-27T14:47:00Z",
+      "side": 1,
+      "message": "Checking isKeyDown for both kCGEventKeyUp and kCGEventKeyDown will works.",
+      "parentUuid": "230af8b7_7831c98f",
+      "range": {
+        "startLine": 88,
+        "startChar": 31,
+        "endLine": 88,
+        "endChar": 44
+      },
+      "revId": "6691813a5b8c34564738a54c46e6b8099a91b281",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
