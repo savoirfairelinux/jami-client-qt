@@ -65,6 +65,7 @@ if(WITH_DAEMON_SUBMODULE)
     PATHS ${CMAKE_INSTALL_PREFIX}/daemon/lib
     PATHS ${CMAKE_INSTALL_PREFIX}/libexec
     PATHS ${CMAKE_INSTALL_PREFIX}/bin
+    PATHS ${CMAKE_INSTALL_PREFIX}/daemon/build/bin
     NO_DEFAULT_PATH)
 else()
   # Search only in these given PATHS.
@@ -75,6 +76,7 @@ else()
     PATHS ${CMAKE_INSTALL_PREFIX}/daemon/lib
     PATHS ${CMAKE_INSTALL_PREFIX}/libexec
     PATHS ${CMAKE_INSTALL_PREFIX}/bin
+    PATHS ${CMAKE_INSTALL_PREFIX}/daemon/build/bin
     NO_DEFAULT_PATH)
 
   # Search elsewhere as well (e.g. system-wide).
@@ -94,6 +96,7 @@ if(NOT LIBJAMI_LIB)
       PATHS ${CMAKE_INSTALL_PREFIX}/lib
       PATHS ${CMAKE_INSTALL_PREFIX}/daemon/lib
       PATHS ${CMAKE_INSTALL_PREFIX}/libexec
+      PATHS ${CMAKE_INSTALL_PREFIX}/daemon/build/lib
       NO_DEFAULT_PATH)
   else()
     # Search only in these given PATHS.
@@ -104,6 +107,7 @@ if(NOT LIBJAMI_LIB)
       PATHS ${CMAKE_INSTALL_PREFIX}/lib
       PATHS ${CMAKE_INSTALL_PREFIX}/daemon/lib
       PATHS ${CMAKE_INSTALL_PREFIX}/libexec
+      PATHS ${CMAKE_INSTALL_PREFIX}/daemon/build/lib
       NO_DEFAULT_PATH)
 
     # Search elsewhere as well (e.g. system-wide).
