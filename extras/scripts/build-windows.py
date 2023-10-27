@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+# -*- coding: utf-8 -*-
 """
 Build, test, and package the project.
 
@@ -201,19 +201,19 @@ def init_submodules():
 
 def build_deps():
     """Build the dependencies for the project."""
-    print('Patching and building qrencode')
-    apply_cmd = [
-        'git',
-        'apply',
-        '--reject',
-        '--ignore-whitespace',
-        '--whitespace=fix'
-    ]
+    # print('Patching and building qrencode')
+    # apply_cmd = [
+    #     'git',
+    #     'apply',
+    #     '--reject',
+    #     '--ignore-whitespace',
+    #     '--whitespace=fix'
+    # ]
     qrencode_dir = os.path.join(repo_root_dir, '3rdparty', 'qrencode-win32')
-    patch_file = os.path.join(repo_root_dir, 'qrencode-win32.patch')
-    apply_cmd.append(patch_file)
-    if execute_cmd(apply_cmd, False, None, qrencode_dir):
-        print("Couldn't patch qrencode-win32.")
+    # patch_file = os.path.join(repo_root_dir, 'qrencode-win32.patch')
+    # apply_cmd.append(patch_file)
+    # if execute_cmd(apply_cmd, False, None, qrencode_dir):
+    #     print("Couldn't patch qrencode-win32.")
 
     vs_env_vars = {}
     vs_env_vars.update(get_vs_env())
@@ -264,8 +264,7 @@ def build(config_str, qt_dir, tests):
 
     # Get the daemon bin/include directories.
     daemon_dir = os.path.join(repo_root_dir, "daemon")
-    daemon_bin_dir = os.path.join(
-        daemon_dir, "build", "x64", "ReleaseLib_win32", "bin")
+    daemon_bin_dir = os.path.join(daemon_dir, "build", "lib")
 
     # We need to update the minimum SDK version to be able to
     # build with system theme support
