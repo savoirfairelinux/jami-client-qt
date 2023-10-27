@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ccd49ac3_85bc3138",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-27T14:40:48Z",
+      "side": 1,
+      "message": "@capucine can you check on windows?",
+      "range": {
+        "startLine": 129,
+        "startChar": 24,
+        "endLine": 129,
+        "endChar": 42
+      },
+      "revId": "6691813a5b8c34564738a54c46e6b8099a91b281",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "54581db5_781d94a3",
         "filename": "src/app/platform/macos/pttlistener.cpp",
         "patchSetId": 37
@@ -31,6 +54,29 @@
       "writtenOn": "2023-10-27T14:08:41Z",
       "side": 1,
       "message": "Carbon need to be included. And it also should be added in CMakeList.txt",
+      "revId": "6691813a5b8c34564738a54c46e6b8099a91b281",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "230af8b7_7831c98f",
+        "filename": "src/app/platform/macos/pttlistener.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-27T14:40:48Z",
+      "side": 1,
+      "message": "@kateyna \u003d\u003e here we can check isKeyDown, so the KeyReleased will not be emitted multiple times?",
+      "range": {
+        "startLine": 88,
+        "startChar": 31,
+        "endLine": 88,
+        "endChar": 44
+      },
       "revId": "6691813a5b8c34564738a54c46e6b8099a91b281",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
