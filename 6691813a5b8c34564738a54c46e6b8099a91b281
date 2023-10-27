@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10cb8ce4_de623922",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2023-10-27T01:13:35Z",
+      "side": 1,
+      "message": "On macOS pttKeyPressed is emitted multiple times until key is released. So isMicrophoneMuted_ will have wrong state when receiving pttKeyReleased.",
+      "revId": "6691813a5b8c34564738a54c46e6b8099a91b281",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
