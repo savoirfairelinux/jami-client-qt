@@ -376,7 +376,6 @@ if(MSVC)
 
   # daemon
   set(JAMID_SRC_PATH ${DAEMON_DIR}/contrib/msvc/include)
-  set(JAMID_LIB ${DAEMON_DIR}/build/x64/ReleaseLib_win32/bin/libjami.lib)
   set(GNUTLS_LIB ${DAEMON_DIR}/contrib/msvc/lib/x64/libgnutls.lib)
 
   # Beta config
@@ -572,7 +571,7 @@ if(MSVC)
     WIN32_EXECUTABLE TRUE)
 
   list(APPEND CLIENT_LIBS
-    ${JAMID_LIB}
+    ${LIBJAMI_LIB}
     ${GNUTLS_LIB}
     ${LIBCLIENT_NAME}
     ${QT_LIBS}
