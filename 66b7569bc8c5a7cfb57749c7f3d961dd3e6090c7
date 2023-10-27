@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4135a55c_6b621ff9",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2023-10-27T15:24:33Z",
+      "side": 1,
+      "message": "I have build issue than \"A type specifier is required for all declarations\"",
+      "parentUuid": "fc1df0e0_66066e47",
+      "range": {
+        "startLine": 36,
+        "startChar": 7,
+        "endLine": 36,
+        "endChar": 15
+      },
+      "revId": "66b7569bc8c5a7cfb57749c7f3d961dd3e6090c7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f3913827_5fd8b6ab",
         "filename": "src/app/tipsmodel.cpp",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-27T14:42:43Z",
       "side": 1,
       "message": "can you add \"\u0026\u0026 false\" in the condition (for other platform, I missed this one)",
+      "range": {
+        "startLine": 80,
+        "startChar": 60,
+        "endLine": 80,
+        "endChar": 62
+      },
+      "revId": "66b7569bc8c5a7cfb57749c7f3d961dd3e6090c7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00d30082_47cdeda6",
+        "filename": "src/app/tipsmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2023-10-27T15:24:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3913827_5fd8b6ab",
       "range": {
         "startLine": 80,
         "startChar": 60,
