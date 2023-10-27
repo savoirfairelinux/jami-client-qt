@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+# -*- coding: utf-8 -*-
 """
 Build, test, and package the project.
 
@@ -264,8 +264,7 @@ def build(config_str, qt_dir, tests):
 
     # Get the daemon bin/include directories.
     daemon_dir = os.path.join(repo_root_dir, "daemon")
-    daemon_bin_dir = os.path.join(
-        daemon_dir, "build", "x64", "ReleaseLib_win32", "bin")
+    daemon_bin_dir = os.path.join(daemon_dir, "build", "lib")
 
     # We need to update the minimum SDK version to be able to
     # build with system theme support
