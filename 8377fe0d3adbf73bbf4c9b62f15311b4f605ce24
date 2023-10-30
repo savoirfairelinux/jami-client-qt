@@ -16,6 +16,24 @@
       "message": "isKeyDown should be checked before emitting pttKeyPressed(), otherwise it will be emmited multiple times.",
       "revId": "8377fe0d3adbf73bbf4c9b62f15311b4f605ce24",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6ce81d2_e14e5dcc",
+        "filename": "src/app/platform/macos/pttlistener.cpp",
+        "patchSetId": 41
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-30T13:31:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1975079e_f857f817",
+      "revId": "8377fe0d3adbf73bbf4c9b62f15311b4f605ce24",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
