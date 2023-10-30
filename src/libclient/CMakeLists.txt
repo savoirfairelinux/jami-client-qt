@@ -231,6 +231,7 @@ building with ENABLE_LIBWRAP")
 Qt${QT_VERSION_MAJOR} enabled.")
 
   add_subdirectory(qtwrapper)
+  add_dependencies(qtwrapper jami-core)
   include_directories(qtwrapper)
 
   if(${VERBOSE_IPC} MATCHES true)
@@ -478,6 +479,15 @@ add_library(${LIBCLIENT_NAME} STATIC
   ${LIBCLIENT_SOURCES}
   ${LIBCLIENT_HEADERS_API}
   ${LIBCLIENT_HEADERS_MOC})
+
+# Define the project dependencies depending on the build type.
+if(ENABLE_LIBWRAP)
+  add_dependencies(qtwrapper jami-core)
+  add_dependencies(${LIBCLIENT_NAME} qtwrapper)
+else()
+  add_dependencies(${LIBCLIENT_NAME} jami-core)
+endif()
+
 foreach(QT_LIB ${QT_LIBS})
   target_link_libraries(${LIBCLIENT_NAME} ${QT_LIB})
 endforeach()
