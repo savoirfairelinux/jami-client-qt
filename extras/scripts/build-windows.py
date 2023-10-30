@@ -190,13 +190,9 @@ def init_submodules():
     """Initialize any git submodules in the project."""
     print("Initializing submodules...")
 
-    if execute_cmd(["git", "submodule", "update", "--init"], False):
+    if execute_cmd(["git", "submodule", "update", "--init", "--recursive"], False):
         print("Submodule initialization error.")
-    else:
-        if execute_cmd(["git", "submodule", "update", "--recursive"], False):
-            print("Submodule recursive checkout error.")
-        else:
-            print("Submodule recursive checkout finished.")
+        sys.exit(1)
 
 
 def build_deps():
@@ -270,6 +266,7 @@ def build(config_str, qt_dir, tests):
     # build with system theme support
     cmake_options = [
         "-DWITH_DAEMON_SUBMODULE=ON",
+        "-DJAMICORE_AS_SUBDIR=ON",
         "-DCMAKE_PREFIX_PATH=" + qt_dir,
         "-DCMAKE_MSVCIDE_RUN_PATH=" + qt_dir + "\\bin",
         "-DCMAKE_INSTALL_PREFIX=" + os.getcwd(),
