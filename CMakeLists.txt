@@ -36,6 +36,19 @@ if(WITH_WEBENGINE)
   add_definitions(-DWITH_WEBENGINE)
 endif()
 
+# jami-core
+if(NOT WITH_DAEMON_SUBMODULE)
+  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/../daemon)
+else()
+  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/daemon)
+endif()
+
+# For now only MSVC is supported for building the daemon within the
+# client cmake.
+if(MSVC)
+  add_subdirectory(${DAEMON_DIR})
+endif()
+
 # init some variables for includes, libs, etc.
 set(CLIENT_INCLUDE_DIRS, "")
 set(CLIENT_LINK_DIRS, "")
@@ -50,14 +63,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-# Main project directories:
-
-# jami-daemon
-if(NOT WITH_DAEMON_SUBMODULE)
-  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/../daemon)
-else()
-  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/daemon)
-endif()
 # src
 set(LIBCLIENT_SRC_DIR ${PROJECT_SOURCE_DIR}/src/libclient)
 set(APP_SRC_DIR ${PROJECT_SOURCE_DIR}/src/app)
@@ -87,16 +92,6 @@ if (${QT_VERSION_MINOR} GREATER_EQUAL ${QT6_MINVER_MINOR})
   message(STATUS "Found a suitable Qt version ${QT_VERSION}")
 else()
   message(FATAL_ERROR "Qt 6.4 or higher is required. Found ${QT_VERSION}")
-endif()
-
-if(MSVC)
-  set(DEFAULT_BUILD_TYPE "Debug")
-  if(NOT CMAKE_BUILD_TYPE)
-    message(STATUS "Setting build type to '${DEFAULT_BUILD_TYPE}' as none was specified.")
-    set(CMAKE_BUILD_TYPE "${DEFAULT_BUILD_TYPE}" CACHE
-        STRING "Choose the type of build." FORCE)
-  endif()
-  set(OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/x64/${CMAKE_BUILD_TYPE}")
 endif()
 
 # libjamiclient
