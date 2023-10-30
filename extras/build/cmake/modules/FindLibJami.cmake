@@ -53,13 +53,8 @@ set(CMAKE_FIND_LIBRARY_SUFFIXES_orig ${CMAKE_FIND_LIBRARY_SUFFIXES})
 
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".dylib;.so;.dll")
 
-# Add the lib prefix for Windows checks.
-if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-  set(CMAKE_FIND_LIBRARY_PREFIXES "lib;")
-endif()
-
 if(WITH_DAEMON_SUBMODULE)
-  find_library(LIBJAMI_LIB NAMES jami ring
+  find_library(LIBJAMI_LIB NAMES jami-core
     PATHS ${DAEMON_DIR}/src/.libs
     PATHS ${CMAKE_INSTALL_PREFIX}/lib
     PATHS ${CMAKE_INSTALL_PREFIX}/daemon/lib
@@ -69,7 +64,7 @@ if(WITH_DAEMON_SUBMODULE)
     NO_DEFAULT_PATH)
 else()
   # Search only in these given PATHS.
-  find_library(LIBJAMI_LIB NAMES jami ring
+  find_library(LIBJAMI_LIB NAMES jami-core
     PATHS ${LIBJAMI_BUILD_DIR}/.libs
     PATHS ${RING_BUILD_DIR}/.libs
     PATHS ${CMAKE_INSTALL_PREFIX}/lib
@@ -81,7 +76,7 @@ else()
 
   # Search elsewhere as well (e.g. system-wide).
   if(NOT LIBJAMI_LIB)
-    find_library(LIBJAMI_LIB NAMES jami ring)
+    find_library(LIBJAMI_LIB NAMES jami-core)
   endif()
 endif()
 
@@ -90,7 +85,7 @@ if(NOT LIBJAMI_LIB)
   set(CMAKE_FIND_LIBRARY_SUFFIXES ".a;.lib")
 
   if(WITH_DAEMON_SUBMODULE)
-    find_library(LIBJAMI_LIB NAMES jami ring
+    find_library(LIBJAMI_LIB NAMES jami-core
       PATHS ${DAEMON_DIR}/src/.libs
       PATHS ${CMAKE_INSTALL_PREFIX}
       PATHS ${CMAKE_INSTALL_PREFIX}/lib
@@ -100,7 +95,7 @@ if(NOT LIBJAMI_LIB)
       NO_DEFAULT_PATH)
   else()
     # Search only in these given PATHS.
-    find_library(LIBJAMI_LIB NAMES jami ring
+    find_library(LIBJAMI_LIB NAMES jami-core
       PATHS ${LIBJAMI_BUILD_DIR}/.libs
       PATHS ${RING_BUILD_DIR}/.libs
       PATHS ${CMAKE_INSTALL_PREFIX}
@@ -112,7 +107,7 @@ if(NOT LIBJAMI_LIB)
 
     # Search elsewhere as well (e.g. system-wide).
     if(NOT LIBJAMI_LIB)
-      find_library(LIBJAMI_LIB NAMES jami ring)
+      find_library(LIBJAMI_LIB NAMES jami-core)
     endif()
 
     if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
