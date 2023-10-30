@@ -364,13 +364,7 @@ def cwd(path):
 def run_install(args):
     # Platforms with special compilation scripts
     if args.distribution == WIN32_DISTRIBUTION_NAME:
-        if args.pywinmake:
-            with cwd('daemon'):
-                execute_script(['git submodule update --init'])
-                execute_script(['python -m pip install extras/scripts/pywinmake'])
-                execute_script(['python extras/scripts/winmake.py'])
-                execute_script(['python extras/scripts/winmake.py --base-dir compat/msvc'])
-        else:
+        if not args.pywinmake:
             with cwd('daemon/compat/msvc'):
                 execute_script([f'python winmake.py -iv -s {args.sdk} -b daemon'])
 

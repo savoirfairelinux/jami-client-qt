@@ -225,6 +225,10 @@ Qt${QT_VERSION_MAJOR} enabled.")
   add_subdirectory(qtwrapper)
   include_directories(qtwrapper)
 
+  if(JAMICORE_AS_SUBDIR)
+    add_dependencies(qtwrapper jami-core)
+  endif()
+
   if(${VERBOSE_IPC} MATCHES true)
     message(STATUS "Adding more debug output")
     add_definitions(-DVERBOSE_IPC=true)
@@ -470,6 +474,17 @@ add_library(${LIBCLIENT_NAME} STATIC
   ${LIBCLIENT_SOURCES}
   ${LIBCLIENT_HEADERS_API}
   ${LIBCLIENT_HEADERS_MOC})
+
+if(JAMICORE_AS_SUBDIR)
+  # Define the project dependencies depending on the build type.
+  if(ENABLE_LIBWRAP)
+    add_dependencies(qtwrapper jami-core)
+    add_dependencies(${LIBCLIENT_NAME} qtwrapper)
+  else()
+    add_dependencies(${LIBCLIENT_NAME} jami-core)
+  endif()
+endif()
+
 foreach(QT_LIB ${QT_LIBS})
   target_link_libraries(${LIBCLIENT_NAME} ${QT_LIB})
 endforeach()
