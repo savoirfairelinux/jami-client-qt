@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fab5305_2da45ea8",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-10-30T13:37:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4135a55c_6b621ff9",
+      "range": {
+        "startLine": 36,
+        "startChar": 7,
+        "endLine": 36,
+        "endChar": 15
+      },
+      "revId": "66b7569bc8c5a7cfb57749c7f3d961dd3e6090c7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3913827_5fd8b6ab",
