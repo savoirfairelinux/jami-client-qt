@@ -73,6 +73,11 @@ MenuItem {
                 width: 36
                 color: emojiReplied.includes(modelList[0]) ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor
                 radius: 5
+                Behavior on color  {
+                    ColorAnimation {
+                        duration: JamiTheme.shortFadeDuration
+                    }
+                }
 
                 Text {
                     anchors.centerIn: parent
@@ -108,6 +113,11 @@ MenuItem {
                 width: 36
                 color: emojiReplied.includes(modelList[1]) ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor
                 radius: 5
+                Behavior on color  {
+                    ColorAnimation {
+                        duration: JamiTheme.shortFadeDuration
+                    }
+                }
 
                 Text {
                     anchors.centerIn: parent
@@ -143,6 +153,11 @@ MenuItem {
                 width: 36
                 color: emojiReplied.includes(modelList[2]) ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor
                 radius: 5
+                Behavior on color  {
+                    ColorAnimation {
+                        duration: JamiTheme.shortFadeDuration
+                    }
+                }
 
                 Text {
                     anchors.centerIn: parent

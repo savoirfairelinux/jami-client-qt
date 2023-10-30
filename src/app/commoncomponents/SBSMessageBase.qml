@@ -243,6 +243,7 @@ Control {
 
                     anchors.fill: bubble
                     hoverEnabled: true
+
                     onClicked: function (mouse) {
                         if (root.hoveredLink) {
                             MessagesAdapter.openUrl(root.hoveredLink);
@@ -288,20 +289,38 @@ Control {
                         width: optionButtonItem.width / 2
                         height: optionButtonItem.height
                         circled: false
+                        property bool isOpen: false
+                        property var obj: undefined
+
+                        function bind() {
+                            more.isOpen = false;
+                            visible = Qt.binding(() => CurrentAccount.type !== Profile.Type.SIP && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || bgHandler.hovered));
+                            imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
+                            normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
+                        }
 
                         onClicked: {
-                            var component = Qt.createComponent("qrc:/commoncomponents/ShowMoreMenu.qml");
-                            var obj = component.createObject(bubble, {
-                                    "emojiReactions": emojiReactions,
-                                    "isOutgoing": isOutgoing,
-                                    "msgId": Id,
-                                    "msgBody": Body,
-                                    "type": Type,
-                                    "transferName": TransferName,
-                                    "msgBubble": bubble,
-                                    "listView": listView
-                                });
-                            obj.open();
+                            if (more.isOpen) {
+                                more.bind();
+                                obj.close();
+                            } else {
+                                var component = Qt.createComponent("qrc:/commoncomponents/ShowMoreMenu.qml");
+                                obj = component.createObject(more, {
+                                        "emojiReactions": emojiReactions,
+                                        "isOutgoing": isOutgoing,
+                                        "msgId": Id,
+                                        "msgBody": Body,
+                                        "type": Type,
+                                        "transferName": TransferName,
+                                        "msgBubble": bubble,
+                                        "listView": listView
+                                    });
+                                obj.open();
+                                more.isOpen = true;
+                                visible = true;
+                                imageColor = JamiTheme.chatViewFooterImgHoverColor;
+                                normalColor = JamiTheme.hoveredButtonColor;
+                            }
                         }
                     }
 
@@ -312,7 +331,7 @@ Control {
                         imageColor: hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
                         normalColor: JamiTheme.primaryBackgroundColor
                         toolTipText: JamiStrings.reply
-                        source: JamiResources.reply_svg
+                        source: JamiResources.reply_black_24dp_svg
                         width: optionButtonItem.width / 2
                         height: optionButtonItem.height
                         anchors.verticalCenter: parent.verticalCenter
