@@ -43,25 +43,16 @@ BaseContextMenu {
     function xPositionProvider(width) {
         // Use the width at function scope to retrigger property evaluation.
         const listViewWidth = listView.width;
+        const parentX = parent.x;
         if (isOutgoing) {
-            const leftMargin = msgBubble.mapToItem(listView, 0, 0).x;
-            return width > leftMargin ? -leftMargin - 35 : -width - 35;
+            return parentX - width - 21;
         } else {
-            const rightMargin = listViewWidth - (msgBubble.x + msgBubble.width);
-            return width > rightMargin ? msgBubble.width - width + 35 : msgBubble.width + 35;
+            return parentX + 21;
         }
     }
-    function yPositionProvider(height) {
-        const topOffset = msgBubble.mapToItem(listView, 0, 0).y;
-        if (topOffset < 0)
-            return -topOffset;
-        const bottomOffset = topOffset + height - listView.height;
-        if (bottomOffset > 0)
-            return -bottomOffset;
-        return 0;
-    }
+
     x: xPositionProvider(width)
-    y: yPositionProvider(height)
+    y: parent.y
 
     signal addMoreEmoji
     onAddMoreEmoji: {
@@ -187,5 +178,13 @@ BaseContextMenu {
 
     Component.onCompleted: {
         root.loadMenuItems(menuItems);
+    }
+
+    onAboutToHide: {
+        root.destroy();
+    }
+
+    Component.onDestruction: {
+        parent.bind();
     }
 }
