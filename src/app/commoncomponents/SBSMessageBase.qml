@@ -239,13 +239,23 @@ Control {
                 Layout.fillWidth: true
 
                 MouseArea {
+                    //Scaffold{}
                     id: bubbleArea
 
                     anchors.fill: bubble
                     hoverEnabled: true
+                    onEntered: {
+                        console.log("Entered2");
+                    }
                     onClicked: function (mouse) {
+                        console.log("clac2");
                         if (root.hoveredLink) {
+                            console.log("Ca ca marche");
                             MessagesAdapter.openUrl(root.hoveredLink);
+                        }
+                        //if right click open the showmoremenu
+                        if (mouse.button === Qt.RightButton) {
+                            more.onClicked();
                         }
                     }
                     property bool bubbleHovered: containsMouse || textHovered
@@ -288,20 +298,39 @@ Control {
                         width: optionButtonItem.width / 2
                         height: optionButtonItem.height
                         circled: false
+                        property bool isOpen: false
+                        property var obj: undefined
+
+                        //define a function
+                        function bind() {
+                            more.isOpen = false;
+                            visible = Qt.binding(() => CurrentAccount.type !== Profile.Type.SIP && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || bgHandler.hovered));
+                            imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
+                            normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
+                        }
 
                         onClicked: {
-                            var component = Qt.createComponent("qrc:/commoncomponents/ShowMoreMenu.qml");
-                            var obj = component.createObject(bubble, {
-                                    "emojiReactions": emojiReactions,
-                                    "isOutgoing": isOutgoing,
-                                    "msgId": Id,
-                                    "msgBody": Body,
-                                    "type": Type,
-                                    "transferName": TransferName,
-                                    "msgBubble": bubble,
-                                    "listView": listView
-                                });
-                            obj.open();
+                            if (more.isOpen) {
+                                more.bind();
+                                obj.close();
+                            } else {
+                                var component = Qt.createComponent("qrc:/commoncomponents/ShowMoreMenu.qml");
+                                obj = component.createObject(more, {
+                                        "emojiReactions": emojiReactions,
+                                        "isOutgoing": isOutgoing,
+                                        "msgId": Id,
+                                        "msgBody": Body,
+                                        "type": Type,
+                                        "transferName": TransferName,
+                                        "msgBubble": bubble,
+                                        "listView": listView
+                                    });
+                                obj.open();
+                                more.isOpen = true;
+                                visible = true;
+                                imageColor = JamiTheme.chatViewFooterImgHoverColor;
+                                normalColor = JamiTheme.hoveredButtonColor;
+                            }
                         }
                     }
 
@@ -312,7 +341,7 @@ Control {
                         imageColor: hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
                         normalColor: JamiTheme.primaryBackgroundColor
                         toolTipText: JamiStrings.reply
-                        source: JamiResources.reply_svg
+                        source: JamiResources.reply_black_24dp_svg
                         width: optionButtonItem.width / 2
                         height: optionButtonItem.height
                         anchors.verticalCenter: parent.verticalCenter
@@ -344,6 +373,26 @@ Control {
 
                     width: Type === Interaction.Type.TEXT && !isEdited ? root.textContentWidth : innerContent.childrenRect.width
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
+
+                    //when right click open the showmoremenu
+                    MouseArea {
+                        id: bubbleMouseArea
+                        //Scaffold{}
+                        anchors.fill: parent
+                        z: +5
+                        hoverEnabled: true
+                        focus: true
+                        onEntered: {
+                            console.log("Entered");
+                        }
+                        onClicked: function (mouse) {
+                            console.log("clac");
+                            if (mouse.button === Qt.RightButton) {
+                                console.log("clic");
+                                more.onClicked();
+                            }
+                        }
+                    }
                 }
 
                 EmojiReactions {

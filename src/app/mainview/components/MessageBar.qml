@@ -97,18 +97,11 @@ RowLayout {
             }
 
             onHoveredChanged: {
-                console.log("Hovered changed");
                 if (!sharePopup.opened) {
                     showMoreButton.indicator.color = hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor;
                     showMoreButton.background.color = hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor;
                 }
                 toolTipMoreButton.text = sharePopup.opened ? JamiStrings.showLess : JamiStrings.showMore;
-            }
-
-            onPressedChanged: {
-                console.log("Pressed changed");
-                if (sharePopup.enabled)
-                    sharePopup.close();
             }
 
             popup: ShareMenu {
@@ -123,7 +116,8 @@ RowLayout {
                     root.showMapClicked();
                 }
                 modelList: listViewMoreButton.menuMoreButton
-                y: -140
+                y: showMoreButton.y + 31
+                x: showMoreButton.x - 3
             }
         }
     }

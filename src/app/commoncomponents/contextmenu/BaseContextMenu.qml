@@ -23,6 +23,8 @@ import net.jami.Constants 1.1
 Menu {
     id: root
 
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside | Popup.CloseOnPressOutsideParent
+
     property int menuPreferredWidth: 0
     property int menuItemsPreferredHeight: 0
     property int menuSeparatorPreferredHeight: 0
@@ -86,11 +88,10 @@ Menu {
             root.close();
     }
 
-    modal: true
-    Overlay.modal: Rectangle {
-        color: "transparent"
-    }
-
+    // modal: true
+    // Overlay.modal: Rectangle {
+    //     color: "transparent"
+    // }
     font.pointSize: JamiTheme.menuFontSize
 
     background: Rectangle {
