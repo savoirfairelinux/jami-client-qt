@@ -36,6 +36,7 @@ ListView {
     property int rota: 0
 
     header: Rectangle {
+        color: JamiTheme.transparentColor
         height: 55
         width: connectionMonitoringTable.width
         Rectangle {
@@ -168,6 +169,7 @@ ListView {
 
                             Text {
                                 id: usernameText
+                                color: JamiTheme.textColor
                                 text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerId)
                                 elide: Text.ElideRight
                             }
@@ -184,6 +186,7 @@ ListView {
 
                             Text {
                                 id: idText
+                                color: JamiTheme.textColor
                                 anchors.fill: parent
                                 text: UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerId)
                                 font.pixelSize: 12
@@ -223,6 +226,7 @@ ListView {
                     color: delegate.color
                     Text {
                         id: delegateDeviceText
+                        color: JamiTheme.textColor
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
                         text: {
@@ -337,6 +341,7 @@ ListView {
                     color: delegate.color
                     Text {
                         id: channelText
+                        color: JamiTheme.textColor
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.leftMargin: 10
                         anchors.left: parent.left
