@@ -97,6 +97,7 @@ SettingsPageBase {
             id: connectionMonitoringTable
             height: listview.childrenRect.height + 60
             width: tableWidth
+            color: JamiTheme.transparentColor
 
             ConnectionMonitoringTable {
                 id: listview
