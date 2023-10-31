@@ -65,6 +65,15 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 repo_root_dir = os.path.abspath(os.path.join(this_dir, os.pardir, os.pardir))
 build_dir = os.path.join(repo_root_dir, "build")
 
+def get_latest_toolset_version():
+    """Get the latest toolset version."""
+    # Get the visual studio version. Use only the major version number.
+    # Then: toolset = 2022 ? "v143" : 2019 ? "v142" : 2017 ? "v141" : "v140"
+    vs_ver = get_vs_prop("installationVersion")
+    if vs_ver is None:
+        return None
+    vs_ver = int(vs_ver.split(".")[0])
+    return "v143" if vs_ver >= 16 else "v142" if vs_ver >= 15 else "v141"
 
 def find_latest_qt_path():
     """Find the latest Qt installation path."""
@@ -205,29 +214,16 @@ def init_submodules():
 
 def build_deps():
     """Build the dependencies for the project."""
-    print('Patching and building qrencode')
-    apply_cmd = [
-        'git',
-        'apply',
-        '--reject',
-        '--ignore-whitespace',
-        '--whitespace=fix'
-    ]
+    print('Building qrencode')
     qrencode_dir = os.path.join(repo_root_dir, '3rdparty', 'qrencode-win32')
-    patch_file = os.path.join(repo_root_dir, 'qrencode-win32.patch')
-    apply_cmd.append(patch_file)
-    if execute_cmd(apply_cmd, False, None, qrencode_dir):
-        print("Couldn't patch qrencode-win32.")
-
     vs_env_vars = {}
     vs_env_vars.update(get_vs_env())
-
-    msbuild_args = get_ms_build_args("x64", "Release-Lib")
-
+    toolset = get_latest_toolset_version()
+    print(f'Using toolset {toolset}')
+    msbuild_args = get_ms_build_args("x64", "Release-Lib", toolset)
     proj_path = os.path.join(
-        qrencode_dir, "qrencode-win32", "vc8", "qrcodelib", "qrcodelib.vcxproj"
+        qrencode_dir, "qrencode-win32", "vc15", "qrcodelib", "qrcodelib.vcxproj"
     )
-
     build_project(msbuild_args, proj_path, vs_env_vars)
 
 
