@@ -21,6 +21,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import "../../commoncomponents"
 
 Popup {
     id: popup
@@ -39,10 +40,10 @@ Popup {
             contentHeight: textComponent.contentHeight + 10
             contentWidth: textComponent.contentWidth + 20
             clip: true
-            ScrollBar.vertical: ScrollBar {
+            ScrollBar.vertical: JamiScrollBar {
                 active: contentHeight > height
             }
-            ScrollBar.horizontal: ScrollBar {
+            ScrollBar.horizontal: JamiScrollBar {
                 active: contentWidth > width
             }
             contentX: 10
@@ -54,7 +55,14 @@ Popup {
                 elide: Text.ElideRight
                 horizontalAlignment: Text.AlignLeft
                 text: popup.text
+                color: JamiTheme.textColor
             }
         }
+    }
+
+    background: Rectangle {
+        anchors.fill: parent
+        color: JamiTheme.backgroundColor
+        radius: 5
     }
 }

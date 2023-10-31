@@ -665,9 +665,9 @@ Item {
     property string donationUrl: "https://jami.net/donate/"
 
     //Connection monitoring
-    property color connectionMonitoringTableColor1: "#f0efef"
-    property color connectionMonitoringTableColor2: "#f6f5f5"
-    property color connectionMonitoringHeaderColor: "#d1d1d1"
+    property color connectionMonitoringTableColor1: darkTheme ? "#4D4D4D" : "#f0efef"
+    property color connectionMonitoringTableColor2: darkTheme ? "#333333" : "#f6f5f5"
+    property color connectionMonitoringHeaderColor: darkTheme ? "#6F6F6F" : "#d1d1d1"
 
     function setTheme(dark) {
         darkTheme = dark;
