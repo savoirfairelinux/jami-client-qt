@@ -36,6 +36,7 @@ ListView {
     property int rota: 0
 
     header: Rectangle {
+        color: JamiTheme.transparentColor
         height: 55
         width: connectionMonitoringTable.width
         Rectangle {
@@ -54,6 +55,7 @@ ListView {
                     color: JamiTheme.transparentColor
                     Text {
                         id: textImage
+                        color: JamiTheme.textColor
                         anchors.leftMargin: 10
                         anchors.verticalCenter: parent.verticalCenter
                         text: JamiStrings.contact
@@ -67,6 +69,7 @@ ListView {
                     color: JamiTheme.transparentColor
                     Text {
                         id: deviceText
+                        color: JamiTheme.textColor
                         anchors.verticalCenter: parent.verticalCenter
                         text: JamiStrings.device
                     }
@@ -80,6 +83,7 @@ ListView {
                     color: JamiTheme.transparentColor
                     Text {
                         id: connectionText
+                        color: JamiTheme.textColor
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.leftMargin: 10
                         text: JamiStrings.connection
@@ -92,6 +96,7 @@ ListView {
                     width: 70
                     color: JamiTheme.transparentColor
                     Text {
+                        color: JamiTheme.textColor
                         anchors.verticalCenter: parent.verticalCenter
                         text: JamiStrings.channels
                     }
@@ -168,6 +173,7 @@ ListView {
 
                             Text {
                                 id: usernameText
+                                color: JamiTheme.textColor
                                 text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerId)
                                 elide: Text.ElideRight
                             }
@@ -184,6 +190,7 @@ ListView {
 
                             Text {
                                 id: idText
+                                color: JamiTheme.textColor
                                 anchors.fill: parent
                                 text: UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerId)
                                 font.pixelSize: 12
@@ -204,7 +211,7 @@ ListView {
                                 tooltipContact.text = JamiStrings.copyAllData;
                             }
 
-                            ToolTip {
+                            MaterialToolTip {
                                 id: tooltipContact
                                 visible: usernameText.font.underline
                                 text: JamiStrings.copyAllData
@@ -223,6 +230,7 @@ ListView {
                     color: delegate.color
                     Text {
                         id: delegateDeviceText
+                        color: JamiTheme.textColor
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
                         text: {
@@ -245,7 +253,7 @@ ListView {
                                 tooltipDevice.text = delegateDeviceText.text;
                             }
 
-                            ToolTip {
+                            MaterialToolTip {
                                 id: tooltipDevice
                                 visible: delegateDeviceText.font.underline
                                 text: delegateDeviceText.text
@@ -322,7 +330,7 @@ ListView {
                                 connectionText.font.underline = false;
                             }
 
-                            ToolTip {
+                            MaterialToolTip {
                                 visible: connectionText.font.underline
                                 text: connectionText.tooltipText
                             }
@@ -337,6 +345,7 @@ ListView {
                     color: delegate.color
                     Text {
                         id: channelText
+                        color: JamiTheme.textColor
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.leftMargin: 10
                         anchors.left: parent.left
