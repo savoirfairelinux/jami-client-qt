@@ -345,10 +345,6 @@ if(MSVC)
   # preprocessor defines
   add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
 
-  # dependencies
-  set(QRENCODE_DIR
-    ${PROJECT_SOURCE_DIR}/3rdparty/qrencode-win32/qrencode-win32)
-
   # compiler options
   add_compile_options(
     /wd4068 /wd4099 /wd4189 /wd4267 /wd4577 /wd4467 /wd4715 /wd4828)
@@ -366,8 +362,10 @@ if(MSVC)
     "/NODEFAULTLIB:LIBCMT")
 
   # client deps
-  set(QRENCODE_LIB
-    ${QRENCODE_DIR}/vc8/qrcodelib/x64/Release-Lib/qrcodelib.lib)
+  set(QRENCODE_DIR ${PROJECT_SOURCE_DIR}/3rdparty/qrencode-win32/qrencode-win32)
+  file(GLOB_RECURSE QRENCODE_LIB ${QRENCODE_DIR}/qrcodelib.lib)
+  file(GLOB_RECURSE QRENCODE_INCLUDE ${QRENCODE_DIR}/qrencode.h)
+  get_filename_component(QRENCODE_INCLUDE_DIR ${QRENCODE_INCLUDE} DIRECTORY)
 
   # daemon
   set(JAMID_SRC_PATH ${DAEMON_DIR}/contrib/msvc/include)
@@ -386,7 +384,7 @@ if(MSVC)
   include_directories(
     ${JAMID_SRC_PATH}
     ${LIBCLIENT_SRC_DIR}
-    ${QRENCODE_DIR})
+    ${QRENCODE_INCLUDE_DIR})
 elseif (NOT APPLE)
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/xrectsel.c
