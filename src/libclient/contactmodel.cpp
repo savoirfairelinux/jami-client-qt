@@ -164,8 +164,9 @@ public Q_SLOTS:
      * @param callId
      * @param displayName
      * @param isOutgoing
+     * @param toUri
      */
-    void slotNewCall(const QString& fromId, const QString& callId, const QString& displayname, bool isOutgoing);
+    void slotNewCall(const QString& fromId, const QString& callId, const QString& displayname, bool isOutgoing, const QString& toUri);
 
     /**
      * Listen from callbacksHandler for new account interaction and add pending contact if not present
@@ -1022,9 +1023,10 @@ void
 ContactModelPimpl::slotNewCall(const QString& fromId,
                                const QString& callId,
                                const QString& displayname,
-                               bool isOutgoing)
+                               bool isOutgoing,
+                               const QString& toUri)
 {
-    if (!isOutgoing) {
+    if (!isOutgoing && toUri == linked.owner.profileInfo.uri) {
         bool emitContactAdded = false;
         {
             std::lock_guard<std::mutex> lk(contactsMtx_);
@@ -1053,7 +1055,7 @@ ContactModelPimpl::slotNewCall(const QString& fromId,
         } else
             Q_EMIT linked.profileUpdated(fromId);
     }
-    Q_EMIT linked.newCall(fromId, callId, isOutgoing);
+    Q_EMIT linked.newCall(fromId, callId, isOutgoing, toUri);
 }
 
 void

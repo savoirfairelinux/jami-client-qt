@@ -156,8 +156,9 @@ Q_SIGNALS:
      * @param fromId peer profile uri
      * @param callId call id
      * @param isOutgoing
+     * @param toUri
      */
-    void newCall(const QString& from, const QString& callId, bool isOutgoing) const;
+    void newCall(const QString& from, const QString& callId, bool isOutgoing, const QString& toUri) const;
     /**
      * Connect this signal to know when a text message arrives for this account
      * @param accountId

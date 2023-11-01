@@ -451,11 +451,13 @@ Q_SIGNALS:
      * @param callId
      * @param displayname
      * @param isOutgoing
+     * @param toUri             Generally account's uri for 1:1 calls, rdv uri for swarm-call
      */
     void newCall(const QString& peerId,
                  const QString& callId,
                  const QString& displayname,
-                 bool isOutgoing) const;
+                 bool isOutgoing,
+                 const QString& toUri) const;
     /**
      * Emitted when a call is added to a conference
      * @param callId
