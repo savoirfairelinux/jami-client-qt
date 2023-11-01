@@ -16,6 +16,24 @@
       "message": "No merge till no daemon bump + jenkins - but code is ok",
       "revId": "0bed6c739403696c8f474b7a8b10f2f8b57ed6d3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "688fda7b_2df14d01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-01T18:39:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d477511a_b8cfee3f",
+      "revId": "0bed6c739403696c8f474b7a8b10f2f8b57ed6d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
