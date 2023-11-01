@@ -1,4 +1,22 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d295567_3afcd0ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006
+      },
+      "writtenOn": "2023-11-01T16:15:15Z",
+      "side": 1,
+      "message": "Try mozjpeg?",
+      "revId": "77193b26d9ed3df4888fc0c2ee6b35eda5e0f393",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
