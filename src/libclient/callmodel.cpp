@@ -1440,7 +1440,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
         qDebug() << displayname;
         qDebug() << peerId;
 
-        Q_EMIT linked.newCall(peerId, callId, displayname, details["CALL_TYPE"] == "1");
+        Q_EMIT linked.newCall(peerId, callId, displayname, details["CALL_TYPE"] == "1", details["TO_USERNAME"]);
 
         // NOTE: signal emission order matters, always emit CallStatusChanged before CallEnded
         Q_EMIT linked.callStatusChanged(callId, code);

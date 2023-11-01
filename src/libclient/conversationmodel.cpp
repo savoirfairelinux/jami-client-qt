@@ -271,8 +271,9 @@ public Q_SLOTS:
      * @param fromId caller uri
      * @param callId
      * @param isOutgoing
+     * @param toUri
      */
-    void slotNewCall(const QString& fromId, const QString& callId, bool isOutgoing = false);
+    void slotNewCall(const QString& fromId, const QString& callId, bool isOutgoing, const QString& toUri);
     /**
      * Listen from callmodel for calls status changed.
      * @param callId
@@ -3367,7 +3368,7 @@ ConversationModelPimpl::getIndicesForContact(const QString& uri) const
 }
 
 void
-ConversationModelPimpl::slotNewCall(const QString& fromId, const QString& callId, bool isOutgoing)
+ConversationModelPimpl::slotNewCall(const QString& fromId, const QString& callId, bool isOutgoing, const QString& toUri)
 {
     if (isOutgoing) {
         // search contact
@@ -3379,33 +3380,35 @@ ConversationModelPimpl::slotNewCall(const QString& fromId, const QString& callId
         Q_EMIT linked.filterChanged();
     }
 
-    auto convIds = storage::getConversationsWithPeer(db, fromId);
-    if (convIds.empty()) {
-        // in case if we receive call after removing contact add conversation request;
-        try {
-            auto contact = linked.owner.contactModel->getContact(fromId);
-            if (!isOutgoing && !contact.isBanned && fromId != linked.owner.profileInfo.uri) {
-                addContactRequest(fromId);
+    if (toUri == linked.owner.profileInfo.uri) {
+        auto convIds = storage::getConversationsWithPeer(db, fromId);
+        if (convIds.empty()) {
+            // in case if we receive call after removing contact add conversation request;
+            try {
+                auto contact = linked.owner.contactModel->getContact(fromId);
+                if (!isOutgoing && !contact.isBanned && fromId != linked.owner.profileInfo.uri) {
+                    addContactRequest(fromId);
+                }
+                if (isOutgoing && contact.profileInfo.type == profile::Type::TEMPORARY) {
+                    linked.owner.contactModel->addContact(contact);
+                }
+            } catch (const std::out_of_range&) {
             }
-            if (isOutgoing && contact.profileInfo.type == profile::Type::TEMPORARY) {
-                linked.owner.contactModel->addContact(contact);
-            }
-        } catch (const std::out_of_range&) {
         }
+
+        auto conversationIndices = getIndicesForContact(fromId);
+        if (conversationIndices.empty()) {
+            qDebug() << "ConversationModelPimpl::slotNewCall, but conversation not found";
+            return; // Not a contact
+        }
+
+        auto& conversation = conversations.at(conversationIndices.at(0));
+        qDebug() << "Add call to conversation " << conversation.uid << " - " << callId;
+        conversation.callId = callId;
+
+        addOrUpdateCallMessage(callId, fromId, true);
+        Q_EMIT behaviorController.showIncomingCallView(linked.owner.id, conversation.uid);
     }
-
-    auto conversationIndices = getIndicesForContact(fromId);
-    if (conversationIndices.empty()) {
-        qDebug() << "ConversationModelPimpl::slotNewCall, but conversation not found";
-        return; // Not a contact
-    }
-
-    auto& conversation = conversations.at(conversationIndices.at(0));
-    qDebug() << "Add call to conversation " << conversation.uid << " - " << callId;
-    conversation.callId = callId;
-
-    addOrUpdateCallMessage(callId, fromId, true);
-    Q_EMIT behaviorController.showIncomingCallView(linked.owner.id, conversation.uid);
 }
 
 void
