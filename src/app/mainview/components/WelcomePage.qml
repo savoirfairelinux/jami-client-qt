@@ -283,6 +283,7 @@ ListSelectionView {
                     anchors.right: parent.right
                     anchors.rightMargin: JamiTheme.preferredMarginSize
                     preferredSize: 30
+                    anchors.verticalCenter: aboutJami.verticalCenter
                     imageContainerWidth: JamiTheme.pushButtonSize
                     imageContainerHeight: JamiTheme.pushButtonSize
 
