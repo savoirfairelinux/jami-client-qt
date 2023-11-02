@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
- * Author: Albert Babí <albert.babi@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,45 +21,9 @@ import "../../commoncomponents"
 PushButton {
     id: root
 
-    property alias toolTipText: toolTip.text
-
     normalColor: JamiTheme.buttonConference
     hoveredColor: JamiTheme.buttonConferenceHovered
     pressedColor: JamiTheme.buttonConferencePressed
 
     imageColor: JamiTheme.whiteColor
-    hoverEnabled: false
-
-    Rectangle {
-        id: toolTipRect
-        height: 16
-        width: toolTip.width + 8
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            top: parent.bottom
-            topMargin: isBarLayout ? 6 : 2
-        }
-        color: isBarLayout ? JamiTheme.darkGreyColorOpacity : "transparent"
-        visible: hover.hovered && !isSmall
-        radius: 2
-
-        Text {
-            id: toolTip
-            anchors.centerIn: parent
-            horizontalAlignment: Text.AlignHCenter
-            color: JamiTheme.whiteColor
-            font.pointSize: JamiTheme.tinyFontSize
-        }
-    }
-
-    Item {
-        anchors.fill: parent
-
-        HoverHandler {
-            id: hover
-            onHoveredChanged: {
-                root.forceHovered = hover.hovered;
-            }
-        }
-    }
 }
