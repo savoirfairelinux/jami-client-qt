@@ -109,10 +109,11 @@ Rectangle {
                     implicitHeight: 50
 
                     pluginName: PluginName
-                    pluginId: PluginId
+                    pluginPath: PluginId
                     pluginIcon: PluginIcon
                     pluginStatus: Status
                     isLoaded: IsLoaded
+                    pluginId: Id
                     HoverHandler {
                         id: pluginHover
                         target: parent

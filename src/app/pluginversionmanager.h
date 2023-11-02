@@ -69,6 +69,7 @@ Q_SIGNALS:
     void newVersionAvailable(const QString& pluginId, const QString& version);
 
 private:
+    bool checkVersion(const QString& installedVersion, const QString& remoteVersion) const;
     QString baseUrl;
     bool autoUpdateCheck = false;
     QMap<QString, int> pluginRepliesId {};

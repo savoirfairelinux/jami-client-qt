@@ -218,16 +218,22 @@ void
 PluginListModel::onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status)
 {
     auto pluginIndex = -1;
-    for (auto& p : installedPlugins_) {
+    QString pluginModelId = "";
+    for (const auto& p : installedPlugins_) {
         auto details = lrcInstance_->pluginModel().getPluginDetails(p);
-        if (details.name == pluginId) {
+        if (details.id == pluginId) {
             pluginIndex = installedPlugins_.indexOf(p, -1);
+            pluginModelId = p;
             break;
         }
     }
     switch (status) {
     case PluginStatus::INSTALLED:
         addPlugin();
+        break;
+    case PluginStatus::FAILED:
+        errorOccurred(pluginId);
+        status = PluginStatus::UPDATABLE;
         break;
     default:
         break;
@@ -236,7 +242,8 @@ PluginListModel::onVersionStatusChanged(const QString& pluginId, PluginStatus::R
     if (pluginIndex == -1) {
         return;
     }
-    pluginStatus_[pluginId] = status;
+    pluginStatus_[pluginModelId] = status;
+    pluginChanged(pluginIndex);
     switch (status) {
     case PluginStatus::INSTALLABLE:
         removePlugin(pluginIndex);

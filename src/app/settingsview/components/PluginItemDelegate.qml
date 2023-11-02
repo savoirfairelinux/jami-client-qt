@@ -27,23 +27,42 @@ import "../../commoncomponents"
 ItemDelegate {
     id: root
     property string pluginName: ""
-    property string pluginId: ""
+    property string pluginPath: ""
     property string pluginIcon: ""
+    property string pluginId: ""
     property int pluginStatus
     property bool isLoaded: false
     height: implicitHeight
     Connections {
         target: PluginListModel
         function onDisabled(id) {
-            if (root.pluginId === id) {
+            if (root.pluginPath === id) {
                 isLoaded = false;
                 loadSwitch.checked = false;
             }
         }
+        function onErrorOccurred(id) {
+            if (root.pluginId !== id) {
+                return;
+            }
+            presentErrorMessage();
+        }
     }
-
     onClicked: {
         pluginListView.currentIndex = index;
+    }
+    Component.onCompleted: {
+        PluginAdapter.checkVersionStatus(pluginPath);
+    }
+
+    function presentErrorMessage() {
+        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                "title": JamiStrings.installationFailed,
+                "infoText": JamiStrings.pluginInstallationFailed,
+                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonTitles": [JamiStrings.optionOk],
+                "buttonCallBacks": []
+            });
     }
 
     Rectangle {
@@ -121,6 +140,7 @@ ItemDelegate {
                 preferredWidth: updateTextSize.width
                 text: JamiStrings.updateDialogTitle
                 fontSize: 15
+                onClicked: PluginAdapter.installRemotePlugin(pluginId)
             }
             Item {
                 id: itemSwitch
@@ -140,9 +160,9 @@ ItemDelegate {
                     checked: isLoaded
                     onSwitchToggled: {
                         if (isLoaded)
-                            PluginModel.unloadPlugin(pluginId);
+                            PluginModel.unloadPlugin(pluginPath);
                         else
-                            PluginModel.loadPlugin(pluginId);
+                            PluginModel.loadPlugin(pluginPath);
                         PluginListModel.pluginChanged(index);
                     }
                 }
