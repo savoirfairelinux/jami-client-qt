@@ -199,7 +199,15 @@ def init_submodules():
     """Initialize any git submodules in the project."""
     print("Initializing submodules...")
 
-    if execute_cmd(["git", "submodule", "update", "--init", "--recursive"], False):
+    # Init the client submodules for Windows other than the daemon.
+    submodules = [
+        "3rdparty/qrencode-win32",
+        "3rdparty/SortFilterProxyModel",
+        "3rdparty/md4c",
+        "3rdparty/tidy-html5",
+    ]
+    if execute_cmd(["git", "submodule", "update", "--init" ] + submodules,
+                   False):
         print("Submodule initialization error.")
         sys.exit(1)
 
