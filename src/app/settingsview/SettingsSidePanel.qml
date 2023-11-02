@@ -45,7 +45,8 @@ SidePanelBase {
                         "title": JamiStrings.manageAccountSettingsTitle
                     }, {
                         "id": 1,
-                        "title": JamiStrings.customizeProfile
+                        "title": JamiStrings.customizeProfile,
+                        "visible": CurrentAccount.type !== Profile.Type.SIP
                     }, {
                         "id": 2,
                         "title": JamiStrings.linkedDevicesSettingsTitle,
@@ -124,6 +125,7 @@ SidePanelBase {
 
         function onTypeChanged() {
             updateModel();
+            select(-1);
         }
     }
 
