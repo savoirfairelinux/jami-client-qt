@@ -29,6 +29,7 @@ ItemDelegate {
     property string pluginName: ""
     property string pluginId: ""
     property string pluginIcon: ""
+    property string mainId: ""
     property int pluginStatus
     property bool isLoaded: false
     height: implicitHeight
@@ -40,10 +41,28 @@ ItemDelegate {
                 loadSwitch.checked = false;
             }
         }
+        function onErrorOccurred(id) {
+            if (root.mainId !== id){
+                return;
+            }
+            presentErrorMessage();
+        }
     }
-
     onClicked: {
         pluginListView.currentIndex = index;
+    }
+    Component.onCompleted: {
+        PluginAdapter.checkVersionStatus(pluginId);
+    }
+
+    function presentErrorMessage() {
+        viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                "title": JamiStrings.installationFailed,
+                "infoText": JamiStrings.pluginInstallationFailed,
+                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonTitles": [JamiStrings.optionOk],
+                "buttonCallBacks": []
+            });
     }
 
     Rectangle {
@@ -121,6 +140,7 @@ ItemDelegate {
                 preferredWidth: updateTextSize.width
                 text: JamiStrings.updateDialogTitle
                 fontSize: 15
+                onClicked: PluginAdapter.installRemotePlugin(mainId)
             }
             Item {
                 id: itemSwitch

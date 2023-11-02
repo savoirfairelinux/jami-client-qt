@@ -21,6 +21,8 @@
 #include "lrcinstance.h"
 #include "api/pluginmodel.h"
 
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QMap>
 #include <QTimer>
 #include <QDir>
@@ -40,7 +42,7 @@ public:
         connect(updateTimer_, &QTimer::timeout, this, [this] { checkForUpdates(); });
         connect(&parent_, &NetworkManager::downloadFinished, this, [this](int replyId) {
             auto pluginsId = parent_.pluginRepliesId.keys(replyId);
-            if (pluginsId.size() == 0) {
+             if (pluginsId.size() == 0) {
                 return;
             }
             for (const auto& pluginId : qAsConst(pluginsId)) {
@@ -101,20 +103,21 @@ public:
             Q_EMIT parent_.versionStatusChanged(plugin.id, PluginStatus::Role::FAILED);
             return;
         }
-
         parent_.sendGetRequest(QUrl(settingsManager_->getValue("PluginStoreEndpoint").toString()
                                     + "/versions/" + plugin.id + "?arch="
                                     + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
                                [this, plugin](const QByteArray& data) {
                                    // `data` represents the version in this case.
-                                   if (plugin.version < data) {
+                                   // TODO: check if the version is greater than the current one. and check the format
+                                   auto result = QJsonDocument::fromJson(data).array().toVariantList()[0].toMap();
+                                   if (parent_.checkVersion(plugin.version, result["version"].toString())) {
                                        if (isAutoUpdaterEnabled()) {
                                            installRemotePlugin(plugin.id);
                                            return;
                                        }
-                                   }
-                                   parent_.versionStatusChanged(plugin.id,
+                                    parent_.versionStatusChanged(plugin.id,
                                                                 PluginStatus::Role::UPDATABLE);
+                                   }
                                });
     }
 
@@ -221,4 +224,20 @@ void
 PluginVersionManager::installRemotePlugin(const QString& pluginId)
 {
     pimpl_->installRemotePlugin(pluginId);
+}
+
+bool PluginVersionManager::checkVersion(const QString& installedVersion,
+                                        const QString& remoteVersion)
+{
+    auto installedVersionDetails = installedVersion.split(".");
+    auto remoteVersionDetails = remoteVersion.split(".");
+    if (remoteVersionDetails.size() != installedVersionDetails.size()) {
+        return false;
+    }
+    for (int i = 0; i < installedVersionDetails.size(); i++) {
+        if (installedVersionDetails[i].toInt() < remoteVersionDetails[i].toInt()) {
+            return true;
+        }
+    }
+    return false;
 }

@@ -72,6 +72,8 @@ Q_SIGNALS:
     void setVersionStatus(const QString& pluginId, PluginStatus::Role status);
     void autoUpdateChanged(bool state);
     void disabled(const QString& pluginId);
+    void errorOccurred(const QString& pluginId);
+
 public Q_SLOTS:
     void onVersionStatusChanged(const QString& pluginId, PluginStatus::Role status);
     void onNewVersionAvailable(const QString& pluginId, const QString& version);
