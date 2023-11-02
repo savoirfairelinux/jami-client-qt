@@ -113,6 +113,7 @@ Rectangle {
                     pluginIcon: PluginIcon
                     pluginStatus: Status
                     isLoaded: IsLoaded
+                    mainId: Id
                     HoverHandler {
                         id: pluginHover
                         target: parent
