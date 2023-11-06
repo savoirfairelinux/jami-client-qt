@@ -161,6 +161,7 @@ SettingsPageBase {
 
             width: parent.width
             spacing: JamiTheme.settingsCategorySpacing
+            visible: !isSIP
 
             Text {
 
@@ -180,8 +181,6 @@ SettingsPageBase {
             ToggleSwitch {
                 id: checkBoxRdv
 
-                visible: !isSIP
-
                 labelText: JamiStrings.rendezVous
                 checked: CurrentAccount.isRendezVous
                 onSwitchToggled: CurrentAccount.isRendezVous = checked
@@ -193,6 +192,7 @@ SettingsPageBase {
 
             width: parent.width
             spacing: 9
+            visible: !isSIP
 
             Text {
 
