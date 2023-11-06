@@ -28,6 +28,7 @@ ContextMenuAutoLoader {
     property string location
     property bool isOutgoing
     property string msgId
+    property var status
     property string transferName
     property string transferId
 
@@ -48,6 +49,16 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.round_folder_24dp_svg
             onClicked: {
                 MessagesAdapter.openDirectory(root.location);
+            }
+        },
+        GeneralMenuItem {
+            id: removeLocally
+
+            canTrigger: root.transferId !== ""
+            iconSource: JamiResources.trash_black_24dp_svg
+            itemName: JamiStrings.removeLocally
+            onClicked: {
+                MessagesAdapter.removeFile(root.msgId, root.location);
             }
         },
         GeneralMenuItem {
@@ -80,6 +91,16 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.delete_svg
             onClicked: {
                 MessagesAdapter.editMessage(CurrentConversation.id, "", root.msgId);
+            }
+        },
+        GeneralMenuItem {
+            id: copyMessage
+
+            canTrigger: true
+            iconSource: JamiResources.copy_svg
+            itemName: JamiStrings.copy
+            onClicked: {
+                UtilsAdapter.setClipboardText(root.location);
             }
         }
     ]

@@ -140,7 +140,6 @@ BaseContextMenu {
             itemName: JamiStrings.removeLocally
             onClicked: {
                 MessagesAdapter.removeFile(msgId, root.location);
-                ;
             }
         },
         GeneralMenuItem {

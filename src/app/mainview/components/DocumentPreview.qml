@@ -57,6 +57,7 @@ Item {
         location: Body
         transferId: Id
         transferName: TransferName
+        status: Status
     }
 
     RowLayout {
