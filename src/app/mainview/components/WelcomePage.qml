@@ -266,8 +266,9 @@ ListSelectionView {
                     }
 
                     tertiary: true
+                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
                     anchors.horizontalCenter: parent.horizontalCenter
-                    preferredWidth: text.width
+                    preferredWidth: textSize.width + 2 * JamiTheme.preferredMarginSize
                     text: JamiStrings.aboutJami
 
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
