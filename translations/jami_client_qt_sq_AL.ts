@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="547"/>
         <source>is calling you</source>
-        <translation>po ju thërret</translation>
+        <translation>po ju telefonon</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="1044"/>
@@ -111,12 +111,12 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
         <source>Accept in audio</source>
-        <translation>Pranoje në audio</translation>
+        <translation>Pranoje me audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="31"/>
         <source>Accept in video</source>
-        <translation>Pranoje në video</translation>
+        <translation>Pranoje me video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
@@ -315,32 +315,32 @@ Jami tani do të mbyllet.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="87"/>
         <source>Enable push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Aktiviz “push-to-talk”</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="88"/>
         <source>Keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Shkurtore tastiere</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Ndryshoni shkurtore tastiere</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="92"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Ndryshoni shkurtore</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Shtypni tastin që duhet caktuar si shkurtore për “push-to-talk”</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
         <source>Assign</source>
-        <translation type="unfinished"/>
+        <translation>Caktoje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
@@ -1019,17 +1019,17 @@ Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translatio
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
         <source>Enter</source>
-        <translation type="unfinished"/>
+        <translation>Tasti Enter</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
         <source>Shift+Enter</source>
-        <translation type="unfinished"/>
+        <translation>Tastet Shift+Enter</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
         <source>Enter or Shift+Enter to insert a new line</source>
-        <translation type="unfinished"/>
+        <translation>Tasti Enter, ose tastet Shift+Enter që të futet një rresht i ri</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
@@ -4166,8 +4166,8 @@ të lidhet, për njëkohësim të bisedës.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1162"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1175"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1163"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1176"/>
         <source>%1 (you)</source>
         <translation>%1 (ju)</translation>
     </message>
@@ -4372,22 +4372,22 @@ të lidhet, për njëkohësim të bisedës.</translation>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="477"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="478"/>
         <source>Searching…</source>
         <translation>Po kërkohet…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1006"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1007"/>
         <source>Invalid ID</source>
         <translation>ID e pavlefshme</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1009"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1010"/>
         <source>Username not found</source>
         <translation>S’u gjet emër përdoruesi</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1012"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1013"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>S’u kërkua dot…</translation>
     </message>
@@ -4395,7 +4395,7 @@ të lidhet, për njëkohësim të bisedës.</translation>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="440"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="441"/>
         <source>Bad URI scheme</source>
         <translation>Skemë URI i gabuar</translation>
     </message>

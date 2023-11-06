@@ -310,37 +310,37 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="86"/>
         <source>Push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Apasă și vorbește</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="87"/>
         <source>Enable push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Activează „Apasă și vorbește”</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="88"/>
         <source>Keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Taste Rapide</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Schimbă tasta rapidă</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="92"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Modifică scurtătura</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Apasă tasta care urmează să fie atribuită scurtăturii „Apasă și vorbește”</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
         <source>Assign</source>
-        <translation type="unfinished"/>
+        <translation>Atribuie</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
@@ -1019,17 +1019,17 @@ Profilul poate fi modificat în orice moment în reglările contului.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
         <source>Enter</source>
-        <translation type="unfinished"/>
+        <translation>Enter</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
         <source>Shift+Enter</source>
-        <translation type="unfinished"/>
+        <translation>Shift+Enter</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
         <source>Enter or Shift+Enter to insert a new line</source>
-        <translation type="unfinished"/>
+        <translation>Enter sau Shift+Enter pentru a introduce un rînd nou</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
@@ -4165,8 +4165,8 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <translation>EroareNecunoscutăServiciiDeLocalizare</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1162"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1175"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1163"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1176"/>
         <source>%1 (you)</source>
         <translation>%1 (tu)</translation>
     </message>
@@ -4371,22 +4371,22 @@ să se conecteze pentru a sincroniza conversația.</translation>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="477"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="478"/>
         <source>Searching…</source>
         <translation>Se caută…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1006"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1007"/>
         <source>Invalid ID</source>
         <translation>ID greșit</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1009"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1010"/>
         <source>Username not found</source>
         <translation>Numele de utilizator nu a fost găsit</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1012"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1013"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Căutare imposibilă...</translation>
     </message>
@@ -4394,7 +4394,7 @@ să se conecteze pentru a sincroniza conversația.</translation>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="440"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="441"/>
         <source>Bad URI scheme</source>
         <translation>Schemă URI greșită</translation>
     </message>

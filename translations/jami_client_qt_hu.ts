@@ -310,37 +310,37 @@ A Jami most kilép.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="86"/>
         <source>Push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Nyomd-hogy-beszélj</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="87"/>
         <source>Enable push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Nyomd-hogy-beszélj engedélyezése</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="88"/>
         <source>Keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Billentyűparancs</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Billentyűparancs megváltoztatása</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="92"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Billentyűparancs megváltoztatása</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Nyomd-hogy-beszélj billentyűparancs hozzárendelése a gomb megnyomásával</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
         <source>Assign</source>
-        <translation type="unfinished"/>
+        <translation>Hozzárendelés</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
@@ -465,7 +465,7 @@ A Jami most kilép.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
         <source>TURN address</source>
-        <translation>TURN cím</translation>
+        <translation>TURN-cím</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
@@ -1022,12 +1022,12 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
         <source>Shift+Enter</source>
-        <translation type="unfinished"/>
+        <translation>Shift+Enter</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
         <source>Enter or Shift+Enter to insert a new line</source>
-        <translation type="unfinished"/>
+        <translation>Új sor beillesztésének billentyűparancs</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
@@ -1265,12 +1265,12 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="146"/>
         <source>Video codecs</source>
-        <translation>Videócodekek</translation>
+        <translation>Videokodekek</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="147"/>
         <source>Audio codecs</source>
-        <translation>Hangcodekek</translation>
+        <translation>Hangkodekek</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="150"/>
@@ -1719,7 +1719,7 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Audio codec</source>
-        <translation>Hangcodek</translation>
+        <translation>Hangkodek</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
@@ -4164,8 +4164,8 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
         <translation>Ismeretlen helymeghatározási szolgáltatások hiba</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1162"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1175"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1163"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1176"/>
         <source>%1 (you)</source>
         <translation>%1 (Ön)</translation>
     </message>
@@ -4370,22 +4370,22 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="477"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="478"/>
         <source>Searching…</source>
         <translation>Keresés…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1006"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1007"/>
         <source>Invalid ID</source>
         <translation>Érvénytelen azonosító</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1009"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1010"/>
         <source>Username not found</source>
         <translation>Felhasználónév nem található</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1012"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1013"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Betekintés sikertelen…</translation>
     </message>
@@ -4393,7 +4393,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="440"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="441"/>
         <source>Bad URI scheme</source>
         <translation>Rossz URI rendszer</translation>
     </message>

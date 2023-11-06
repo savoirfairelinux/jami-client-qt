@@ -330,7 +330,7 @@ Jami 將會結束。</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="92"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>修改快捷键</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
@@ -905,7 +905,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
         <source>PIN expired</source>
-        <translation type="unfinished"/>
+        <translation>PIN过期</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
@@ -1671,7 +1671,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
         <source>File saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>文件保存到 %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
@@ -4158,10 +4158,10 @@ connects to synchronize the conversation.</source>
         <translation>位置服务未知错误</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1162"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1175"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1163"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1176"/>
         <source>%1 (you)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (您)</translation>
     </message>
 </context>
 <context>
@@ -4364,22 +4364,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="477"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="478"/>
         <source>Searching…</source>
         <translation>正在搜尋……</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1006"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1007"/>
         <source>Invalid ID</source>
         <translation>無效 ID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1009"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1010"/>
         <source>Username not found</source>
         <translation>找不到使用者名稱</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1012"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1013"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>無法查詢……</translation>
     </message>
@@ -4387,7 +4387,7 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="440"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="441"/>
         <source>Bad URI scheme</source>
         <translation>錯誤的 URI 結構</translation>
     </message>

@@ -310,37 +310,37 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="86"/>
         <source>Push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Push-to-Talk</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="87"/>
         <source>Enable push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Push-to-Talk aktivieren</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="88"/>
         <source>Keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Tastaturkürzel</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="89"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Tastaturkürzel ändern</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="92"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Verknüpfung ändern</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Drücken Sie die Taste, der Sie eine Push-to-Talk-Tastenkombination zuweisen möchten</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="94"/>
         <source>Assign</source>
-        <translation type="unfinished"/>
+        <translation>Zuweisen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
@@ -1019,17 +1019,17 @@ Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
         <source>Enter</source>
-        <translation type="unfinished"/>
+        <translation>Eingabetaste</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
         <source>Shift+Enter</source>
-        <translation type="unfinished"/>
+        <translation>Umschalt+Eingabetaste</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
         <source>Enter or Shift+Enter to insert a new line</source>
-        <translation type="unfinished"/>
+        <translation>Geben Sie die Eingabetaste oder Umschalt+Eingabetaste ein, um eine neue Zeile einzufügen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
@@ -1039,22 +1039,22 @@ Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
         <source>Text formatting</source>
-        <translation type="unfinished"/>
+        <translation>Textformatierung</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="864"/>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Verbunden</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
         <source>Connecting TLS</source>
-        <translation type="unfinished"/>
+        <translation>Verbinde TLS</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
         <source>Connecting ICE</source>
-        <translation type="unfinished"/>
+        <translation>Verbinde ICE</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
@@ -1064,7 +1064,7 @@ Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="868"/>
         <source>Waiting</source>
-        <translation type="unfinished"/>
+        <translation>Warten</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
@@ -1074,22 +1074,22 @@ Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
         <source>Connection</source>
-        <translation type="unfinished"/>
+        <translation>Verbindung</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="871"/>
         <source>Channels</source>
-        <translation type="unfinished"/>
+        <translation>Kanäle</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="872"/>
         <source>Copy all data</source>
-        <translation type="unfinished"/>
+        <translation>Alle Daten kopieren</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="873"/>
         <source>Remote: </source>
-        <translation type="unfinished"/>
+        <translation>Fernbedienung:</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="496"/>
@@ -2646,7 +2646,7 @@ Bitte versuchen Sie es später erneut.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>Keyboard Shortcuts</source>
-        <translation>Tastatürkürzel</translation>
+        <translation>Tastaturkürzel</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="547"/>
@@ -4166,8 +4166,8 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
         <translation>Standortdienste Unbekannter Fehler</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1162"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1175"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1163"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1176"/>
         <source>%1 (you)</source>
         <translation>%1 (Sie)</translation>
     </message>
@@ -4372,22 +4372,22 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="477"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="478"/>
         <source>Searching…</source>
         <translation>Suchen…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1006"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1007"/>
         <source>Invalid ID</source>
         <translation>Ungültige ID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1009"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1010"/>
         <source>Username not found</source>
         <translation>Benutzername nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1012"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1013"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Konnte nicht nachschlagen...</translation>
     </message>
@@ -4395,7 +4395,7 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="440"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="441"/>
         <source>Bad URI scheme</source>
         <translation>Ungültiges URI-Schema</translation>
     </message>
