@@ -309,6 +309,7 @@ Rectangle {
                         }
                         if (usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.BLANK)
                             popup.visible = true;
+                        UtilsAdapter.setTempCreationImageFromString("", "temp");
                     }
                 }
 
