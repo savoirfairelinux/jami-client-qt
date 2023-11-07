@@ -87,8 +87,8 @@ public Q_SLOTS:
 
         // Expose custom types to the QML engine.
         Utils::registerTypes(engine,
+                             lrcInstance_,
                              systemTray_.get(),
-                             lrcInstance_.get(),
                              settingsManager_.get(),
                              connectivityMonitor_.get(),
                              &screenInfo_,

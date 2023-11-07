@@ -62,7 +62,8 @@ ItemDelegate {
                 "infoText": JamiStrings.pluginInstallationFailed,
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonTitles": [JamiStrings.optionOk],
-                "buttonCallBacks": []
+                "buttonCallBacks": [],
+                "buttonRoles": [DialogButtonBox.AcceptRole]
             });
     }
 

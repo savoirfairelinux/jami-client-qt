@@ -33,6 +33,8 @@ BaseModalDialog {
 
     title: JamiStrings.setUsername
 
+    button2.onClicked: close()
+
     popupContent: StackLayout {
         id: stackedWidget
 
@@ -74,6 +76,10 @@ BaseModalDialog {
                     break;
                 }
                 stackedWidget.currentIndex = nameRegisterErrorPage.pageIndex;
+                root.button1.text = JamiStrings.close;
+                button1Role = DialogButtonBox.RejectRole;
+                root.button1.onClicked = close()
+                root.button2.visible = false;
             }
         }
 
@@ -83,6 +89,16 @@ BaseModalDialog {
                 passwordEdit.clear();
                 if (CurrentAccount.hasArchivePassword) {
                     stackedWidget.currentIndex = nameRegisterEnterPasswordPage.pageIndex;
+                    root.button1.text = JamiStrings.register;
+                    button1Role = DialogButtonBox.AcceptRole;
+                    root.button1.enabled = false
+                    root.button1.clicked.connect(function() {
+                        stackedWidget.startRegistration();
+                    });
+
+                    root.button2.text = JamiStrings.optionCancel;
+                    root.button2Role = DialogButtonBox.RejectRole
+
                     passwordEdit.forceActiveFocus();
                 } else {
                     startRegistration();
@@ -124,52 +140,9 @@ BaseModalDialog {
                     echoMode: TextInput.Password
                     placeholderText: JamiStrings.password
 
-                    onTextChanged: btnRegister.enabled = (text.length > 0)
+                    onTextChanged: root.button1.enabled = (text.length > 0)
 
-                    onAccepted: btnRegister.clicked()
-                }
-
-                RowLayout {
-                    spacing: 16
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
-
-                    MaterialButton {
-                        id: btnRegister
-
-                        Layout.alignment: Qt.AlignHCenter
-
-                        preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                        buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                        color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
-                        hoveredColor: JamiTheme.buttonTintedBlackHovered
-                        pressedColor: JamiTheme.buttonTintedBlackPressed
-                        secondary: true
-                        enabled: false
-
-                        text: JamiStrings.register
-
-                        onClicked: stackedWidget.startRegistration()
-                    }
-
-                    MaterialButton {
-                        id: btnCancel
-
-                        Layout.alignment: Qt.AlignHCenter
-
-                        preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                        buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                        color: JamiTheme.buttonTintedBlack
-                        hoveredColor: JamiTheme.buttonTintedBlackHovered
-                        pressedColor: JamiTheme.buttonTintedBlackPressed
-                        secondary: true
-
-                        text: JamiStrings.optionCancel
-
-                        onClicked: close()
-                    }
+                    onAccepted: root.button1.clicked()
                 }
             }
         }
@@ -225,8 +198,6 @@ BaseModalDialog {
 
             ColumnLayout {
 
-                spacing: 16
-
                 Label {
                     id: lblRegistrationError
 
@@ -237,25 +208,6 @@ BaseModalDialog {
                     color: JamiTheme.redColor
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                }
-
-                MaterialButton {
-                    id: btnClose
-
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-                    Layout.bottomMargin: JamiTheme.preferredMarginSize
-
-                    preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                    color: JamiTheme.buttonTintedBlack
-                    hoveredColor: JamiTheme.buttonTintedBlackHovered
-                    pressedColor: JamiTheme.buttonTintedBlackPressed
-                    secondary: true
-
-                    text: JamiStrings.close
-
-                    onClicked: close()
                 }
             }
         }
