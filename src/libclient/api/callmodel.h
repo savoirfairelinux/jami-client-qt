@@ -125,11 +125,13 @@ public:
      * @param source        Of the media
      * @param type          Audio/video
      * @param mute
+     * @param removeAll     Remove Audio/Video
      */
     void removeMedia(const QString& callId,
                      const QString& mediaType,
                      const QString& type,
-                     bool muteCamera);
+                     bool muteCamera,
+                     bool removeAll);
 
     /**
      * Get the call from its call id

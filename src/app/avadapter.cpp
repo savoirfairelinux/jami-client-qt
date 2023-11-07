@@ -320,14 +320,16 @@ AvAdapter::stopSharing(const QString& source)
                 ->removeMedia(callId,
                               libjami::Media::Details::MEDIA_TYPE_VIDEO,
                               libjami::Media::VideoProtocolPrefix::DISPLAY,
-                              muteCamera_);
+                              muteCamera_,
+                              true);
         } else {
             qDebug() << "Stopping file: " << source;
             lrcInstance_->getCurrentCallModel()
                 ->removeMedia(callId,
                               libjami::Media::Details::MEDIA_TYPE_VIDEO,
                               libjami::Media::VideoProtocolPrefix::FILE,
-                              muteCamera_);
+                              muteCamera_,
+                              true);
         }
     }
 }

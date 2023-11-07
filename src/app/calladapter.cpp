@@ -976,7 +976,7 @@ CallAdapter::muteCameraToggle()
             callModel->removeMedia(callId,
                                    libjami::Media::Details::MEDIA_TYPE_VIDEO,
                                    libjami::Media::VideoProtocolPrefix::CAMERA,
-                                   mute);
+                                   mute, false);
         else
             callModel->addMedia(callId,
                                 lrcInstance_->avModel().getCurrentVideoCaptureDevice(),

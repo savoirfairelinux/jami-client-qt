@@ -613,7 +613,8 @@ void
 CallModel::removeMedia(const QString& callId,
                        const QString& mediaType,
                        const QString& type,
-                       bool muteCamera)
+                       bool muteCamera,
+                       bool removeAll)
 {
     auto& callInfo = pimpl_->calls[callId];
     if (!callInfo)
@@ -629,7 +630,7 @@ CallModel::removeMedia(const QString& callId,
             replaceIdx = true;
             label = media[MediaAttributeKey::LABEL];
         } else {
-            if (!media[MediaAttributeKey::SOURCE].startsWith(type)) {
+            if (!removeAll || !media[MediaAttributeKey::SOURCE].startsWith(type)) {
                 if (media[MediaAttributeKey::MEDIA_TYPE] == mediaType) {
                     auto newMedia = media;
                     if (replaceIdx) {
