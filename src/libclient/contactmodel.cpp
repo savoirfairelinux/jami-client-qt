@@ -810,8 +810,16 @@ ContactModelPimpl::slotContactAdded(const QString& accountId, const QString& con
     if (accountId != linked.owner.id)
         return;
     auto contact = contacts.find(contactUri);
-    if (contact != contacts.end() && contact->profileInfo.type == profile::Type::PENDING)
-        Q_EMIT behaviorController.trustRequestTreated(linked.owner.id, contactUri);
+    if (contact != contacts.end()) {
+        if (contact->isBanned) {
+            // Continue
+        } else if (contact->profileInfo.type == profile::Type::PENDING) {
+            Q_EMIT behaviorController.trustRequestTreated(linked.owner.id, contactUri);
+            // Continue
+        } else {
+            return;
+        }
+    }
 
     // for jams account we already have profile with avatar, use it to save to vCard
     bool isJamsAccount = !linked.owner.confProperties.managerUri.isEmpty();
