@@ -138,6 +138,8 @@ Item {
     property color secAndTertiHoveredBackgroundColor: darkTheme ? "#123F4A" : "#E5EEF5"
     property color closeButtonLighterBlack: "#4c4c4c"
 
+    property color redButtonColor: darkTheme ? "#FA2E30" : "#CC0022"
+
     // Jami switch
     property color switchBackgroundCheckedColor: "#8dbaea"
     property color switchBackgroundColor: darkTheme ? "#626262" : "#E5EEF5"
