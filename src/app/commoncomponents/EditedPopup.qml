@@ -30,13 +30,13 @@ BaseModalDialog {
     property var previousBodies: undefined
 
     popupContent: JamiListView {
-            width: root.width - 4 * JamiTheme.preferredMarginSize
+            width: root.width - 80
             height: Math.min(count * 50, 150)
 
             model: root.previousBodies
 
             delegate: Rectangle {
-                width: root.width - 2 * JamiTheme.preferredMarginSize
+                width: root.width - 80
                 height: Math.max(JamiTheme.menuItemsPreferredHeight, rowBody.implicitHeight)
                 color: index % 2 === 0 ? JamiTheme.backgroundColor : JamiTheme.secondaryBackgroundColor
 
