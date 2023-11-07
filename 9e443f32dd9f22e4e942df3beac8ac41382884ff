@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb339142_31a8c076",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-07T03:44:02Z",
+      "side": 1,
+      "message": "Should the `Keyboard Shortcuts` button to the right of the `About` button also follow the same style? Thank you",
+      "revId": "9e443f32dd9f22e4e942df3beac8ac41382884ff",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
