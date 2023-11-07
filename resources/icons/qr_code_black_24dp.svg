@@ -1,0 +1,20 @@
+<svg id="qr_code_black_24dp" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Group_66" data-name="Group 66">
+    <rect id="Rectangle_305" data-name="Rectangle 305" width="24" height="24" fill="none"/>
+  </g>
+  <g id="Group_68" data-name="Group 68">
+    <g id="Group_67" data-name="Group 67">
+      <path id="Path_302" data-name="Path 302" d="M3,11h8V3H3ZM5,5H9V9H5Z" fill="#005699"/>
+      <path id="Path_303" data-name="Path 303" d="M3,21h8V13H3Zm2-6H9v4H5Z" fill="#005699"/>
+      <path id="Path_304" data-name="Path 304" d="M13,3v8h8V3Zm6,6H15V5h4Z" fill="#005699"/>
+      <rect id="Rectangle_306" data-name="Rectangle 306" width="2" height="2" transform="translate(19 19)" fill="#005699"/>
+      <rect id="Rectangle_307" data-name="Rectangle 307" width="2" height="2" transform="translate(13 13)" fill="#005699"/>
+      <rect id="Rectangle_308" data-name="Rectangle 308" width="2" height="2" transform="translate(15 15)" fill="#005699"/>
+      <rect id="Rectangle_309" data-name="Rectangle 309" width="2" height="2" transform="translate(13 17)" fill="#005699"/>
+      <rect id="Rectangle_310" data-name="Rectangle 310" width="2" height="2" transform="translate(15 19)" fill="#005699"/>
+      <rect id="Rectangle_311" data-name="Rectangle 311" width="2" height="2" transform="translate(17 17)" fill="#005699"/>
+      <rect id="Rectangle_312" data-name="Rectangle 312" width="2" height="2" transform="translate(17 13)" fill="#005699"/>
+      <rect id="Rectangle_313" data-name="Rectangle 313" width="2" height="2" transform="translate(19 15)" fill="#005699"/>
+    </g>
+  </g>
+</svg>
