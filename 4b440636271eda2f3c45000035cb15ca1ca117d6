@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "713d074e_0f1e7530",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T13:41:54Z",
+      "side": 1,
+      "message": "rebase on master \u0026 add gitLab ticket",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "4b440636271eda2f3c45000035cb15ca1ca117d6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da079b52_2a769452",
+        "filename": "resources/icons/add_a_photo_black_24dp.svg",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T13:41:54Z",
+      "side": 1,
+      "message": "remove unused icons",
+      "range": {
+        "startLine": 3,
+        "startChar": 14,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "4b440636271eda2f3c45000035cb15ca1ca117d6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0823fd3_13beab80",
+        "filename": "resources/icons/add_photo_alternate_black_24dp.svg",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T13:41:54Z",
+      "side": 1,
+      "message": "ideally this patch should be splitted in smaller patches",
+      "range": {
+        "startLine": 1,
+        "startChar": 59,
+        "endLine": 1,
+        "endChar": 61
+      },
+      "revId": "4b440636271eda2f3c45000035cb15ca1ca117d6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f0de3ed_34f74598",
+        "filename": "src/app/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T13:41:54Z",
+      "side": 1,
+      "message": "try with zoom \u003d 200 for all your popup",
+      "range": {
+        "startLine": 258,
+        "startChar": 38,
+        "endLine": 258,
+        "endChar": 56
+      },
+      "revId": "4b440636271eda2f3c45000035cb15ca1ca117d6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57f2d6c2_65aed305",
+        "filename": "src/app/commoncomponents/PhotoboothPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T13:41:54Z",
+      "side": 1,
+      "message": "clean commented",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "4b440636271eda2f3c45000035cb15ca1ca117d6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47f2961a_031c0ed4",
+        "filename": "src/app/mainview/components/UserProfile.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T13:41:54Z",
+      "side": 1,
+      "message": "check zoom \u003d 200 \u0026 ideally add margin for QR Code in black theme",
+      "range": {
+        "startLine": 40,
+        "startChar": 16,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "4b440636271eda2f3c45000035cb15ca1ca117d6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
