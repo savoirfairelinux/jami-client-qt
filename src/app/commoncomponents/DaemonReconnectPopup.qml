@@ -29,6 +29,11 @@ BaseModalDialog {
 
     autoClose: false
 
+    button1.text: JamiStrings.optionOk
+    button1Role: DialogButtonBox.AcceptRole
+    button1.visible: connectionFailed
+    button1.onClicked: Qt.quit()
+
     Connections {
         target: {
             if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
@@ -51,10 +56,10 @@ BaseModalDialog {
     onPopupContentLoadStatusChanged: {
         if (popupContentLoadStatus === Loader.Ready) {
             root.height = Qt.binding(function () {
-                    return popupContentLoader.item.implicitHeight + 50;
+                    return popupContent.implicitHeight + 50;
                 });
             root.width = Qt.binding(function () {
-                    return popupContentLoader.item.implicitWidth + 50;
+                    return popupContent.implicitWidth + 50;
                 });
         }
     }
@@ -93,25 +98,6 @@ BaseModalDialog {
             mipmap: true
             smooth: true
             fillMode: Image.PreserveAspectFit
-        }
-
-        MaterialButton {
-            id: btnOk
-
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-
-            preferredWidth: JamiTheme.preferredFieldWidth / 2
-
-            visible: connectionFailed
-
-            text: JamiStrings.optionOk
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
-            secondary: true
-            autoAccelerator: true
-
-            onClicked: Qt.quit()
         }
     }
 }
