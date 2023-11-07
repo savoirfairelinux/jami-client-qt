@@ -31,10 +31,15 @@ BaseModalDialog {
 
     property string alias: ""
 
+    property bool saved: false
+
+    property string imageId: "temp"
+
     button1.text: JamiStrings.optionSave
-    button1.enabled: false
+    button1.enabled: UtilsAdapter.tempCreationImage(imageId) !== ''
     button1.onClicked: {
         accepted(alias);
+        saved = true;
         close();
     }
 
@@ -58,52 +63,86 @@ BaseModalDialog {
                 anchors.centerIn: parent
                 width: parent.width
 
-                PhotoboothView {
-                    id: accountAvatar
-
-                    width: avatarSize
-                    height: avatarSize
-
+                Rectangle {
                     Layout.alignment: Qt.AlignLeft | Qt.AlignCenter
                     Layout.margins: 10
 
-                    newItem: true
-                    imageId: "temp"
-                    avatarSize: 56
-                    editButton.visible: false
-                    visible: false
+                    color: "transparent"
 
-                }
+                    width: accountAvatar.width
+                    height: accountAvatar.height
 
-                PushButton {
-                    id: editImage
+                    PhotoboothView {
+                        id: accountAvatar
 
-                    width: 56
-                    height: 56
-                    Layout.margins: 10
-                    Layout.alignment: Qt.AlignLeft| Qt.AlignCenter
+                        anchors.centerIn: parent
 
-                    source: JamiResources.person_outline_black_24dp_svg
-                    visible: !accountAvatar.visible
+                        width: avatarSize
+                        height: avatarSize
 
-                    preferredSize: 56
+                        newItem: true
+                        imageId: root.imageId
+                        avatarSize: 56
+                        editButton.visible: false
+                        visible: UtilsAdapter.tempCreationImage(imageId).length !== 0
 
-                    normalColor: JamiTheme.customizePhotoColor
-                    imageColor: JamiTheme.whiteColor
-                    hoveredColor: JamiTheme.customizePhotoHoveredColor
+                        Component.onCompleted: {
+                            root.onClosed.connect(function() {
+                                if(!root.saved)
+                                    UtilsAdapter.setTempCreationImageFromString('', imageId);
+                            });
+                        }
+                    }
 
-                    imageContainerWidth: 30
+                    PushButton {
+                        id: editImage
 
-                    onClicked: {
-                        var dlg = viewCoordinator.presentDialog(parent, "commoncomponents/PhotoboothPopup.qml", {
-                            "parent": editImage,
-                            "imageId": accountAvatar.imageId,
-                            "newItem": true
-                        })
-                        dlg.onImageValidated.connect(function() {
-                            accountAvatar.visible = true
-                            root.button1.enabled = true
-                        })
+                        anchors.centerIn: parent
+
+                        width: 56
+                        height: 56
+
+                        anchors.fill: parent
+
+                        source: JamiResources.person_outline_black_24dp_svg
+                        background.opacity:  {
+                            if (accountAvatar.visible) {
+                                if(hovered)
+                                    return 0.3
+                                else
+                                    return 0
+                            }
+                            else
+                                return 1
+                        }
+
+                        preferredSize: 56
+
+                        normalColor: JamiTheme.customizePhotoColor
+                        imageColor: accountAvatar.visible ? JamiTheme.customizeRectangleColor : JamiTheme.whiteColor
+                        hoveredColor: JamiTheme.customizePhotoHoveredColor
+
+                        imageContainerWidth: 30
+
+                        onClicked: {
+                            var dlg = viewCoordinator.presentDialog(parent, "commoncomponents/PhotoboothPopup.qml", {
+                                "parent": editImage,
+                                "imageId": root.imageId,
+                                "newItem": true
+                            })
+                            dlg.onImageValidated.connect(function() {
+                                if (UtilsAdapter.tempCreationImage(root.imageId).length !== 0) {
+                                    accountAvatar.visible = true
+                                    root.button1.enabled = true
+                                }
+                            })
+                            dlg.onImageRemoved.connect(function() {
+                                if (UtilsAdapter.tempCreationImage(root.imageId).length !== 0) {
+                                    accountAvatar.visible = true
+                                    root.button1.enabled = true
+                                }
+                            })
+                        }
                     }
                 }
 
