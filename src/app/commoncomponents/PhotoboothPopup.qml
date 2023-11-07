@@ -34,13 +34,14 @@ BaseModalDialog {
 
     property string imageId
     property bool newItem
-    property real buttonSize: JamiTheme.smartListAvatarSize
+    property real buttonSize: 36
     property real imageSize: 25
 
 
     signal focusOnPreviousItem
     signal focusOnNextItem
     signal imageValidated
+    signal imageRemoved
 
     function startBooth() {
         recordBox.openRecorder(true)
@@ -58,9 +59,7 @@ BaseModalDialog {
         importButton.forceActiveFocus()
     }
 
-    width: JamiTheme.preferredDialogWidth
-
-    title: JamiStrings.chooseAvatarPicture
+    title: JamiStrings.selectImage
 
     RecordBox {
         id: recordBox
@@ -77,18 +76,16 @@ BaseModalDialog {
                 UtilsAdapter.setTempCreationImageFromString(photo, imageId);
                 imageValidated();
             }
-
             root.close()
-
         }
     }
 
     popupContent: RowLayout {
             id: buttonsRowLayout
 
-            spacing: 10
+            spacing: 18
 
-            PushButton {
+            JamiPushButton {
                 id: takePhotoButton
 
                 objectName: "takePhotoButton"
@@ -97,15 +94,11 @@ BaseModalDialog {
 
                 height: buttonSize
                 width: buttonSize
-                imageContainerWidth: imageSize
-                imageContainerHeight: imageSize
-                radius: height / 2
-                border.color: JamiTheme.buttonTintedBlue
+
                 normalColor: "transparent"
-                imageColor: JamiTheme.buttonTintedBlue
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
                 toolTipText: JamiStrings.takePhoto
-                source: JamiResources.baseline_camera_alt_24dp_svg
-                hoveredColor: JamiTheme.smartListHoveredColor
+                source: JamiResources.add_a_photo_black_24dp_svg
 
                 Keys.onPressed: function (keyEvent) {
                     if (keyEvent.key === Qt.Key_Enter ||
@@ -139,7 +132,7 @@ BaseModalDialog {
                 }
             }
 
-            PushButton {
+            JamiPushButton {
                 id: importButton
 
                 objectName: "photoboothViewImportButton"
@@ -149,16 +142,11 @@ BaseModalDialog {
 
                 height: buttonSize
                 width: buttonSize
-                imageContainerWidth: imageSize
-                imageContainerHeight: imageSize
-                radius: height / 2
-                border.color: JamiTheme.buttonTintedBlue
-                normalColor: "transparent"
-                source: JamiResources.round_folder_24dp_svg
-                toolTipText: JamiStrings.importFromFile
-                imageColor: JamiTheme.buttonTintedBlue
-                hoveredColor: JamiTheme.smartListHoveredColor
 
+                normalColor: "transparent"
+                source: JamiResources.add_photo_alternate_black_24dp_svg
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+                toolTipText: JamiStrings.importFromFile
 
                 Keys.onPressed: function (keyEvent) {
                     if (keyEvent.key === Qt.Key_Enter ||
@@ -180,7 +168,7 @@ BaseModalDialog {
                                 appWindow,
                                 "commoncomponents/JamiFileDialog.qml",
                                 {
-                                    title: JamiStrings.chooseAvatarImage,
+                                    title: JamiStrings.selectAvatarImage,
                                     fileMode: JamiFileDialog.OpenFile,
                                     folder: StandardPaths.writableLocation(
                                                 StandardPaths.PicturesLocation),
@@ -192,14 +180,15 @@ BaseModalDialog {
                         if (!root.newItem) {
                             AccountAdapter.setCurrentAccountAvatarFile(filePath)
                         } else {
-                            UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId)
+                            UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId);
+                            imageValidated();
                         }
                         root.close()
                     })
                 }
             }
 
-            PushButton {
+            JamiPushButton {
                 id: clearButton
 
                 objectName: "photoboothViewClearButton"
@@ -208,16 +197,11 @@ BaseModalDialog {
 
                 height: buttonSize
                 width: buttonSize
-                imageContainerWidth: imageSize
-                imageContainerHeight: imageSize
-                radius: height / 2
-                border.color: JamiTheme.buttonTintedBlue
-                normalColor: "transparent"
-                source: JamiResources.ic_hangup_participant_24dp_svg
-                toolTipText: JamiStrings.clearAvatar
-                imageColor: JamiTheme.buttonTintedBlue
-                hoveredColor: JamiTheme.smartListHoveredColor
 
+                normalColor: "transparent"
+                source: JamiResources.remove_circle_outline_black_24dp_svg
+                toolTipText: JamiStrings.removeImage
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
 
                 visible: {
                     if (!newItem && LRCInstance.currentAccountAvatarSet)
@@ -245,8 +229,10 @@ BaseModalDialog {
                 onClicked: {
                     if (!root.newItem)
                         AccountAdapter.setCurrentAccountAvatarBase64()
-                    else
-                        UtilsAdapter.setTempCreationImageFromString("", imageId)
+                    else {
+                        UtilsAdapter.setTempCreationImageFromString("", imageId);
+                        imageRemoved();
+                    }
                     visible = false
                     stopBooth()
                     root.close()
