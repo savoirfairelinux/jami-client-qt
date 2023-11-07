@@ -138,6 +138,8 @@ Item {
     property color secAndTertiHoveredBackgroundColor: darkTheme ? "#123F4A" : "#E5EEF5"
     property color closeButtonLighterBlack: "#4c4c4c"
 
+    property color editButtonBorderColor: darkTheme ? "#333333" : "#F0EFEF"
+
     // Jami switch
     property color switchBackgroundCheckedColor: "#8dbaea"
     property color switchBackgroundColor: darkTheme ? "#626262" : "#E5EEF5"
@@ -158,6 +160,12 @@ Item {
     // Spinbox
     property color spinboxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
     property color spinboxBorderColor: darkTheme ? "#1D5F70" : "#A3C2DA"
+
+    //RecordBox
+    property color screenshotButtonColor: "#CC0022"
+    property color recordBoxcloseButtonColor: "#8d8a87"
+    property color recordBoxHoverColor: "#4D4D4D"
+    property color recordBoxButtonColor: "#272727"
 
     // Toast
     property color toastColor: darkTheme ? "#f0f0f0" : "#000000"
