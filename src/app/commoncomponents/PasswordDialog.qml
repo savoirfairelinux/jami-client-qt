@@ -64,10 +64,16 @@ BaseModalDialog {
                 "title": title,
                 "infoText": info,
                 "buttonTitles": [JamiStrings.optionOk],
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue]
+                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonRoles": [DialogButtonBox.AcceptRole]
             });
         done(success, purpose);
     }
+
+    button1.text: (purpose === PasswordDialog.ExportAccount) ? JamiStrings.exportAccount : JamiStrings.change
+    button1Role: DialogButtonBox.ApplyRole
+    button1.enabled: purpose === PasswordDialog.SetPassword
+
 
     popupContent: ColumnLayout {
         id: popupContentColumnLayout
@@ -77,13 +83,13 @@ BaseModalDialog {
         function validatePassword() {
             switch (purpose) {
             case PasswordDialog.ExportAccount:
-                btnConfirm.enabled = currentPasswordEdit.dynamicText.length > 0;
+                button1.enabled = currentPasswordEdit.dynamicText.length > 0;
                 break;
             case PasswordDialog.SetPassword:
-                btnConfirm.enabled = passwordEdit.dynamicText.length > 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
+                button1.enabled = passwordEdit.dynamicText.length > 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
                 break;
             default:
-                btnConfirm.enabled = currentPasswordEdit.dynamicText.length > 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
+                button1.enabled = currentPasswordEdit.dynamicText.length > 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
             }
         }
 
@@ -103,6 +109,13 @@ BaseModalDialog {
         }
 
         onVisibleChanged: validatePassword()
+
+        Component.onCompleted: {
+            root.button1.clicked.connect(function() {
+                button1.enabled = false;
+                timerToOperate.restart();
+            });
+        }
 
         Timer {
             id: timerToOperate
@@ -164,27 +177,6 @@ BaseModalDialog {
             placeholderText: JamiStrings.confirmNewPassword
 
             onDynamicTextChanged: popupContentColumnLayout.validatePassword()
-        }
-
-        MaterialButton {
-            id: btnConfirm
-
-            Layout.alignment: Qt.AlignHCenter
-            preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-
-            color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
-            hoveredColor: JamiTheme.buttonTintedBlackHovered
-            pressedColor: JamiTheme.buttonTintedBlackPressed
-            secondary: true
-            autoAccelerator: true
-            enabled: purpose === PasswordDialog.SetPassword
-
-            text: (purpose === PasswordDialog.ExportAccount) ? JamiStrings.exportAccount : JamiStrings.change
-
-            onClicked: {
-                btnConfirm.enabled = false;
-                timerToOperate.restart();
-            }
         }
     }
 }
