@@ -109,7 +109,7 @@ registerTypes(QQmlEngine* engine,
               AppSettingsManager* settingsManager,
               ConnectivityMonitor* connectivityMonitor,
               ScreenInfo* screenInfo,
-              MainApplication* app)
+              QObject* app)
 {
     // setup the adapters (their lifetimes are that of MainApplication)
     auto callAdapter = new CallAdapter(settingsManager, systemTray, lrcInstance, engine);

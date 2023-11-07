@@ -68,5 +68,5 @@ void registerTypes(QQmlEngine* engine,
                    AppSettingsManager* appSettingsManager,
                    ConnectivityMonitor* connectivityMonitor,
                    ScreenInfo* screenInfo,
-                   MainApplication* app);
+                   QObject* app);
 }

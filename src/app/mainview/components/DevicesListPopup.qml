@@ -29,25 +29,45 @@ BaseModalDialog {
 
     width: JamiTheme.secondaryDialogDimension
 
+    property string currentDeviceId
+
     title: JamiStrings.defaultCallHost
+
+    button1.text: JamiStrings.selectDevice
+    button1Role: DialogButtonBox.AcceptRole
+    button1.toolTipText: JamiStrings.selectThisDevice
+    button1.enabled: false
+    button1.onClicked : {
+        CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri);
+        CurrentConversation.setInfo("rdvDevice", currentDeviceId);
+        root.close();
+    }
+
+    button2.text: JamiStrings.removeDevice
+    button2Role: DialogButtonBox.ResetRole
+    button2.toolTipText: JamiStrings.removeCurrentDevice
+    button2.enabled: CurrentConversation.rdvAccount !== ""
+    button2.onClicked: {
+        CurrentConversation.setInfo("rdvAccount", "");
+        CurrentConversation.setInfo("rdvDevice", "");
+        close();
+    }
 
     popupContent: ColumnLayout {
             id: mainLayout
 
             anchors.centerIn: parent
-            anchors.margins: JamiTheme.preferredMarginSize
-            spacing: JamiTheme.preferredMarginSize
-
+            spacing: 10
+            width: JamiTheme.preferredDialogWidth
 
             Label {
                 id: informativeLabel
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.topMargin: JamiTheme.preferredMarginSize
-                Layout.preferredWidth: root.width - 4*JamiTheme.preferredMarginSize
+                Layout.fillWidth: true
 
                 wrapMode: Text.Wrap
-                text: JamiStrings.chooseHoster
+                text: JamiStrings.selectHost
                 color: JamiTheme.primaryForegroundColor
             }
 
@@ -79,15 +99,27 @@ BaseModalDialog {
                     property bool isCurrent: DeviceName
 
                     implicitWidth: devicesListView.width
-                    width: root.width - 4*JamiTheme.preferredMarginSize
                     height: 70
 
-                    highlighted: ListView.isCurrentItem
+                    highlighted: CurrentConversation.rdvDevice === deviceId
 
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            devicesListView.currentIndex = index;
+                            if (!highlighted){
+                                devicesListView.currentIndex = index;
+                                for (var i = 0; i < devicesListView.count; i++) {
+                                    devicesListView.itemAtIndex(i).highlighted = false;
+                                }
+                                currentDeviceId = deviceId;
+                                button1.enabled = true;
+                            }
+                            else {
+                                devicesListView.currentIndex = -1;
+                                button1.enabled = false;
+                            }
+
+                            item.highlighted = !item.highlighted;
                         }
                     }
 
@@ -154,65 +186,6 @@ BaseModalDialog {
                     }
                 }
             }
-
-            ColumnLayout {
-                id: buttonLayout
-                spacing: JamiTheme.preferredMarginSize
-                Layout.preferredWidth: root.width - 240
-
-                MaterialButton {
-                    id: chooseBtn
-
-                    TextMetrics {
-                        id: chooseBtnTextSize
-                        font.weight: Font.Bold
-                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                        font.capitalization: Font.AllUppercase
-                        text: chooseBtn.text
-                    }
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.fillWidth: true
-
-                    primary: true
-                    enabled: devicesListView.currentItem
-
-                    text: JamiStrings.chooseThisDevice
-                    toolTipText: JamiStrings.chooseThisDevice
-
-                    onClicked: {
-                        CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri);
-                        CurrentConversation.setInfo("rdvDevice", devicesListView.currentItem.deviceId);
-                        close();
-                    }
-                }
-
-                MaterialButton {
-                    id: rmDeviceBtn
-
-                    TextMetrics {
-                        id: rmDeviceBtnTextSize
-                        font.weight: Font.Bold
-                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                        font.capitalization: Font.AllUppercase
-                        text: rmDeviceBtn.text
-                    }
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.fillWidth: true
-                    primary: true
-                    enabled: devicesListView.currentItem
-
-                    text: JamiStrings.removeCurrentDevice
-                    toolTipText: JamiStrings.removeCurrentDevice
-
-                    onClicked: {
-                        CurrentConversation.setInfo("rdvAccount", "");
-                        CurrentConversation.setInfo("rdvDevice", "");
-                        close();
-                    }
-                }
-            }
         }
-    }
+}
 

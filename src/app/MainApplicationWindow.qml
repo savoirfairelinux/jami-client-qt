@@ -273,7 +273,8 @@ ApplicationWindow {
                 "infoText": infoText,
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                "buttonCallBacks": []
+                "buttonCallBacks": [],
+                "buttonRoles": [DialogButtonBox.AcceptRole]
             });
     }
 
@@ -285,7 +286,8 @@ ApplicationWindow {
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonCallBacks": [function () {
                         AppVersionManager.applyUpdates(switchToBeta);
-                    }]
+                    }],
+                "buttonRoles": [DialogButtonBox.AcceptRole, DialogButtonBox.RejectRole]
             });
     }
 
