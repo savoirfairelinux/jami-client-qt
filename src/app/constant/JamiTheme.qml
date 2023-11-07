@@ -140,6 +140,8 @@ Item {
 
     property color redButtonColor: darkTheme ? "#FA2E30" : "#CC0022"
 
+    property color editButtonBorderColor: darkTheme ? "#333333" : "#F0EFEF"
+
     // Jami switch
     property color switchBackgroundCheckedColor: "#8dbaea"
     property color switchBackgroundColor: darkTheme ? "#626262" : "#E5EEF5"
