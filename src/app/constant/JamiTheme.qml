@@ -88,6 +88,8 @@ Item {
     property color popupOverlayColor: darkTheme ? Qt.rgba(255, 255, 255, 0.22) : Qt.rgba(0, 0, 0, 0.33)
     property real formsRadius: 30
 
+    property color warningRedRectangle: darkTheme ? "#3c131a" : "#fae5e8"
+
     // Side panel
     property color presenceGreen: "#4cd964"
     property color notificationRed: "#ff3b30"
@@ -139,6 +141,9 @@ Item {
     property color closeButtonLighterBlack: "#4c4c4c"
 
     property color redButtonColor: darkTheme ? "#FA2E30" : "#CC0022"
+
+    property color backgroundRectangleColor: darkTheme ? "#333333" : "#F0EFEF"
+    property color deleteRedButton: "#CC0022"
 
     // Jami switch
     property color switchBackgroundCheckedColor: "#8dbaea"
