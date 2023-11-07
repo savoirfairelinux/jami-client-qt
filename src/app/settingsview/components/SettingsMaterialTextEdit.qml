@@ -78,7 +78,6 @@ RowLayout {
         }
 
         editMode: false
-        isPersistent: false
 
         onActiveFocusChanged: {
             if (!activeFocus) {

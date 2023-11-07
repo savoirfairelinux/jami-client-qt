@@ -79,24 +79,10 @@ SettingsPageBase {
                 maxCharacters: JamiTheme.maximumCharacters
                 placeholderText: JamiStrings.displayName
 
-                editMode: false
-                isPersistent: false
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight + 8
-                Layout.fillWidth: true
-
                 staticText: CurrentAccount.alias
                 elidedText: displayNameLineEditTextSize.elidedText
 
                 onAccepted: AccountAdapter.setCurrAccDisplayName(dynamicText)
-
-                onActiveFocusChanged: {
-                    if (!activeFocus) {
-                        AccountAdapter.setCurrAccDisplayName(dynamicText);
-                    }
-                    displayNameLineEdit.editMode = activeFocus;
-                }
             }
         }
 
