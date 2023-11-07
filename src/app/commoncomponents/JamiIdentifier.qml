@@ -52,7 +52,7 @@ Item {
 
         RoundedBorderRectangle {
             id: leftRect
-            fillColor: jamiId.backgroundColor
+            fillColor: JamiTheme.jamiIdBackgroundColor
             Layout.preferredWidth: childrenRect.width
             Layout.maximumWidth: jamiId.width - rightRect.width
             Layout.preferredHeight: childrenRect.height
@@ -73,7 +73,7 @@ Item {
                     containerWidth: 40
                     Layout.leftMargin: JamiTheme.pushButtonMargins
                     source: JamiResources.jami_id_logo_svg
-                    color: jamiId.contentColor
+                    color: JamiTheme.tintedBlue
                 }
 
                 UsernameTextEdit {
@@ -81,7 +81,7 @@ Item {
                     visible: !readOnly
                     Layout.preferredHeight: 40
                     Layout.alignment: Qt.AlignVCenter
-                    textColor: jamiId.contentColor
+                    textColor: JamiTheme.tintedBlue
                     fontPixelSize: staticText.length > 16 || dynamicText.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
                     editMode: false
                     isPersistent: false
@@ -107,7 +107,7 @@ Item {
                     Layout.rightMargin: JamiTheme.pushButtonMargins
                     Layout.maximumWidth: leftRect.width - 50
                     elide: Text.ElideRight
-                    color: jamiId.contentColor
+                    color: JamiTheme.tintedBlue
                     font.pixelSize : text.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
                     property string registeredName: CurrentAccount.registeredName
                     property string infohash: CurrentAccount.uri
@@ -118,7 +118,7 @@ Item {
 
         RoundedBorderRectangle {
             id: rightRect
-            fillColor: jamiId.backgroundColor
+            fillColor: JamiTheme.jamiIdBackgroundColor
             Layout.preferredWidth: childrenRect.width + 2 * JamiTheme.pushButtonMargins
 
             Layout.preferredHeight: leftRect.height
@@ -142,8 +142,8 @@ Item {
                     id: btnEdit
                     anchors.leftMargin: JamiTheme.pushButtonMargins
                     visible: CurrentAccount.registeredName === ""
-                    border.color: enabled ? jamiId.contentColor : JamiTheme.buttonTintedBlack
-                    imageColor: enabled ? jamiId.contentColor : JamiTheme.buttonTintedBlack
+                    imageColor: enabled ? JamiTheme.tintedBlue : JamiTheme.buttonTintedBlack
+                    border.color: usernameTextEdit.editMode ? jamiId.contentColor : "transparent"
                     enabled: {
                         if (!usernameTextEdit.editMode)
                             return true;
@@ -157,7 +157,7 @@ Item {
                             return false;
                         }
                     }
-                    source: usernameTextEdit.editMode ? JamiResources.check_black_24dp_svg : JamiResources.round_edit_24dp_svg
+                    source: usernameTextEdit.editMode ? JamiResources.check_black_24dp_svg : JamiResources.assignment_ind_black_24dp_svg
                     toolTipText: JamiStrings.chooseUsername
                     onClicked: {
                         if (usernameTextEdit.readOnly) {
@@ -166,6 +166,19 @@ Item {
                         } else {
                             usernameTextEdit.accepted();
                         }
+                    }
+
+                    Rectangle {
+                        width: 10
+                        height: 10
+                        visible: !usernameTextEdit.editMode
+
+                        anchors.top: parent.top
+                        anchors.right: parent.right
+                        radius: width / 2
+                        color: JamiTheme.redDotColor
+                        border.color: JamiTheme.jamiIdBackgroundColor
+                        border.width: 2
                     }
                 }
 
@@ -188,7 +201,7 @@ Item {
 
                 JamiIdControlButton {
                     id: btnId
-                    source: JamiResources.key_black_24dp_svg
+                    source: JamiResources.outline_info_24dp_svg
                     visible: CurrentAccount.registeredName !== ""
                     border.color: "transparent"
                     toolTipText: JamiStrings.identifierURI
@@ -217,7 +230,7 @@ Item {
         imageContainerWidth: JamiTheme.pushButtonSize
         imageContainerHeight: JamiTheme.pushButtonSize
         border.color: jamiId.contentColor
-        imageColor: jamiId.contentColor
+        imageColor: JamiTheme.tintedBlue
         duration: 0
     }
 }

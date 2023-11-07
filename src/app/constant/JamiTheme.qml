@@ -436,10 +436,6 @@ Item {
     property real switchPreferredWidth: 40
     property real switchIndicatorPreferredWidth: 20
 
-    // Jami Identifier
-    property color mainColor: "#005699"
-    property real pushButtonSize: 22
-    property real pushButtonMargins: 10
 
     // Modal Popup
     property real modalPopupRadius: 20
@@ -508,6 +504,11 @@ Item {
     property real jamiIdFontSize: calcSize(19)
     property real jamiIdSmallFontSize: calcSize(11)
     property color jamiIdColor: darkTheme ? blackColor : sysColor
+    property color mainColor: "#005699"
+    property real pushButtonSize: 22
+    property real pushButtonMargins: 10
+    property color jamiIdBackgroundColor: darkTheme ? "#333333" : "#F0EFEF"
+    property color redDotColor: "#CC0022"
 
     // MainView
     property color rectColor: darkTheme ? blackColor : "#e5eef5"
