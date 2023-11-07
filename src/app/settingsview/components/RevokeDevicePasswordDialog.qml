@@ -30,6 +30,19 @@ BaseModalDialog {
 
     title: JamiStrings.removeDevice
 
+    closeButtonVisible: false
+
+    button1.text: JamiStrings.optionRemove
+    button1Role: DialogButtonBox.DestructiveRole
+    button1.enabled: false
+    button1.onClicked: {
+        DeviceItemListModel.revokeDevice(deviceId, passwordEdit.dynamicText);
+        close();
+    }
+    button2.text: JamiStrings.optionCancel
+    button2Role: DialogButtonBox.RejectRole
+    button2.onClicked: close()
+
     popupContent: ColumnLayout {
         id: revokeDeviceContentColumnLayout
 
@@ -60,57 +73,7 @@ BaseModalDialog {
 
             placeholderText: JamiStrings.enterCurrentPassword
 
-            onDynamicTextChanged: btnRemove.enabled = dynamicText.length > 0
-        }
-
-        RowLayout {
-            spacing: 16
-            Layout.alignment: Qt.AlignHCenter
-
-            Layout.fillWidth: true
-
-            MaterialButton {
-                id: btnRemove
-
-                Layout.alignment: Qt.AlignHCenter
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                color: enabled ? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
-                secondary: true
-                autoAccelerator: true
-                enabled: false
-
-                text: JamiStrings.optionRemove
-
-                onClicked: {
-                    DeviceItemListModel.revokeDevice(deviceId, passwordEdit.dynamicText);
-                    close();
-                }
-            }
-
-            MaterialButton {
-                id: btnCancel
-
-                Layout.alignment: Qt.AlignHCenter
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                color: JamiTheme.buttonTintedBlack
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
-                secondary: true
-                autoAccelerator: true
-                enabled: true
-
-                text: JamiStrings.optionCancel
-
-                onClicked: close()
-            }
+            onDynamicTextChanged: root.button1.enabled = dynamicText.length > 0
         }
     }
 }

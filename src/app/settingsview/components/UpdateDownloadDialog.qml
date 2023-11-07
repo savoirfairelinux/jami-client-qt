@@ -33,6 +33,12 @@ SimpleMessageDialog {
     property string hTotalBytes: UtilsAdapter.humanFileSize(totalBytes)
     property alias progressBarValue: progressBar.value
 
+    closeButtonVisible: false
+
+    button1.text: JamiStrings.optionCancel
+    button1Role: DialogButtonBox.RejectRole
+    button1.onClicked: function () { AppVersionManager.cancelUpdate();}
+
     Connections {
         target: AppVersionManager
 
