@@ -26,22 +26,47 @@ BaseModalDialog {
     id: root
 
     property bool isSIP: false
-    property string bestName: ""
-    property string accountId: ""
 
     signal accepted
 
     title: JamiStrings.deleteAccount
 
+    closeButtonVisible: false
+    button1.text: JamiStrings.optionDelete
+    button1Clicked: function() {
+        button1.enabled = false;
+        busyInd.running = true;
+        AccountAdapter.deleteCurrentAccount();
+        close();
+        accepted();
+    }
+    button1.contentColorProvider: JamiTheme.deleteRedButton
+
+    button2.text: JamiStrings.optionCancel
+    button2Clicked: function() {close();}
+
+    BusyIndicator {
+        id: busyInd
+        running: false
+        Connections {
+            target: root
+            function onClosed() {
+            busyInd.running = false;
+            }
+        }
+    }
+
     popupContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
         anchors.centerIn: parent
+        spacing: 10
 
         Label {
             id: labelDeletion
 
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignLeft
             Layout.maximumWidth: root.width - 4*JamiTheme.preferredMarginSize
+            Layout.bottomMargin: 5
 
             color: JamiTheme.textColor
             text: JamiStrings.confirmDeleteQuestion
@@ -52,43 +77,187 @@ BaseModalDialog {
             wrapMode: Text.Wrap
         }
 
-        Label {
-            id: labelBestId
+        Rectangle {
+            id: accountRectangle
 
-            Layout.alignment: Qt.AlignHCenter
+            color: JamiTheme.backgroundRectangleColor
 
-            color: JamiTheme.textColor
-            text: bestName
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: userProfileDialogLayout.height
+            Layout.maximumWidth: root.width - 80
 
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-            font.bold: true
-            wrapMode: Text.Wrap
+            radius: 5
+
+            ColumnLayout {
+                id: userProfileDialogLayout
+
+                anchors.centerIn: parent
+                width: parent.width
+
+                RowLayout {
+                    Layout.margins: 10
+                    Layout.fillWidth: true
+
+                    spacing: 10
+
+                    Avatar {
+                        id: currentAccountImage
+
+                        Layout.preferredWidth: 56
+                        Layout.preferredHeight: 56
+
+                        imageId: CurrentAccount.id
+                        showPresenceIndicator: false
+                        mode: Avatar.Mode.Account
+                    }
+
+                    ColumnLayout {
+
+                        spacing: 10
+                        Layout.alignment: Qt.AlignLeft
+
+                        // Visible when user alias is not empty and not equal to id.
+                        TextEdit {
+                            id: accountAlias
+
+                            Layout.alignment: Qt.AlignLeft
+
+                            font.pointSize: JamiTheme.settingsFontSize
+                            font.kerning: true
+
+                            color: JamiTheme.textColor
+                            visible: accountDisplayName.text ? (CurrentAccount.alias === CurrentAccount.bestId ? false : true) : false
+                            selectByMouse: true
+                            readOnly: true
+
+                            wrapMode: Text.NoWrap
+                            text: textMetricsAccountAliasText.elidedText
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            TextMetrics {
+                                id: textMetricsAccountAliasText
+
+                                font: accountAlias.font
+                                text: CurrentAccount.alias
+                                elideWidth: root.width - 200
+                                elide: Qt.ElideMiddle
+                            }
+                        }
+
+                        // Visible when user name is not empty or equals to id.
+                        TextEdit {
+                            id: accountDisplayName
+
+                            Layout.alignment: Qt.AlignLeft
+
+                            font.pointSize: JamiTheme.textFontSize
+                            font.kerning: true
+                            color: JamiTheme.faddedFontColor
+
+                            visible: text.length && text !== CurrentAccount.alias
+                            readOnly: true
+                            selectByMouse: true
+
+                            wrapMode: Text.NoWrap
+                            text: textMetricsAccountDisplayNameText.elidedText
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            TextMetrics {
+                                id: textMetricsAccountDisplayNameText
+
+                                font: accountDisplayName.font
+                                text: CurrentAccount.bestId
+                                elideWidth: root.width - 200
+                                elide: Qt.ElideMiddle
+                            }
+                        }
+                    }
+                }
+                Rectangle {
+                    Layout.fillWidth: true
+
+                    radius: 5
+                    color: root.backgroundColor
+
+                    Layout.preferredHeight: accountId.height + 10
+                    Layout.margins: 10
+                    Layout.topMargin: 0
+                    RowLayout {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        spacing: 20
+
+                        Text {
+                            id: identifierText
+
+                            font.pointSize: JamiTheme.textFontSize
+                            text: JamiStrings.identifier
+
+                            color: JamiTheme.faddedFontColor
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            Layout.leftMargin: JamiTheme.preferredMarginSize
+                        }
+                        Label {
+                            id: accountId
+
+                            Layout.alignment: Qt.AlignLeft
+                            Layout.preferredWidth: root.width - 250
+                            Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                            font.pointSize: JamiTheme.textFontSize
+                            font.kerning: true
+                            color: JamiTheme.textColor
+
+                            elide: Text.ElideRight
+                            text: CurrentAccount.uri
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+                }
+            }
         }
+        Rectangle {
+            id: warningRectangle
 
-        Label {
-            id: labelAccountHash
+            color: JamiTheme.warningRedRectangle
 
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: root.width - 4*JamiTheme.preferredMarginSize
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: labelWarning.height + 20
+            Layout.maximumWidth: root.width - 80
 
-            color: JamiTheme.textColor
-            text: accountId
+            radius: 5
 
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
+            RowLayout{
+                id: warningLayout
 
-            horizontalAlignment: Text.AlignHCenter
-            wrapMode: Text.Wrap
-        }
+                anchors.centerIn: parent
+                anchors.margins: 15
+                width: accountRectangle.width
 
-        Label {
-            id: labelWarning
+                Image{
+                    id: warningIcon
+
+                    Layout.fillWidth: true
+                    Layout.leftMargin: 15
+
+                    source: JamiResources.notification_important_24dp_svg
+                    fillMode: Image.PreserveAspectFit
+                }
+
+                Label {
+                    id: labelWarning
+
+                    Layout.fillWidth: true
+                    Layout.margins: 15
 
             visible: !isSIP
 
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: root.width - 4*JamiTheme.preferredMarginSize
 
             text: JamiStrings.deleteAccountInfos
 
@@ -99,77 +268,9 @@ BaseModalDialog {
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
 
-            color: JamiTheme.redColor
-        }
-
-        RowLayout {
-            spacing: 16
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignCenter
-
-            MaterialButton {
-                id: btnDelete
-
-                Layout.alignment: Qt.AlignHCenter
-                Layout.topMargin: JamiTheme.preferredMarginSize
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                color: JamiTheme.buttonTintedRed
-                hoveredColor: JamiTheme.buttonTintedRedHovered
-                pressedColor: JamiTheme.buttonTintedRedPressed
-                secondary: true
-                autoAccelerator: true
-
-                text: JamiStrings.optionDelete
-
-                Connections {
-                    target: root
-                    function onClosed() {
-                        btnDelete.enabled = true;
-                    }
+                    color: JamiTheme.textColor
+                    onHeightChanged: warningRectangle.height = height + 20
                 }
-
-                onClicked: {
-                    btnDelete.enabled = false;
-                    busyInd.running = true;
-                    AccountAdapter.deleteCurrentAccount();
-                    close();
-                    accepted();
-                }
-            }
-
-            BusyIndicator {
-                id: busyInd
-                running: false
-
-                Connections {
-                    target: root
-                    function onClosed() {
-                        busyInd.running = false;
-                    }
-                }
-            }
-
-            MaterialButton {
-                id: btnCancel
-
-                Layout.alignment: Qt.AlignHCenter
-                Layout.topMargin: JamiTheme.preferredMarginSize
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                color: JamiTheme.buttonTintedBlack
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
-                secondary: true
-
-                text: JamiStrings.optionCancel
-                autoAccelerator: true
-
-                onClicked: close()
             }
         }
     }
