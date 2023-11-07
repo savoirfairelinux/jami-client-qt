@@ -28,6 +28,21 @@ BaseModalDialog {
     property string accountId: ""
     property int pressedKey: Qt.Key_unknown
 
+    closeButtonVisible: false
+
+    button1.text: JamiStrings.assign
+    button2.text: JamiStrings.cancel
+    button1Clicked: function() {
+        if (!(pressedKey === Qt.Key_unknown)){
+            pttListener.setPttKey(pressedKey);
+            choiceMade(pressedKey);
+        }
+        close();
+    }
+    button2Clicked: function() {
+        close();
+    }
+
     signal accepted
     signal choiceMade(int chosenKey)
 
@@ -80,33 +95,6 @@ BaseModalDialog {
                  border.color: JamiTheme.darkGreyColor
                  radius: 4
             }
-
-        }
-
-        MaterialButton {
-            id: btnAssign
-
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize
-
-            preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-            buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-            color: JamiTheme.buttonTintedBlack
-            hoveredColor: JamiTheme.buttonTintedBlackHovered
-            pressedColor: JamiTheme.buttonTintedBlackPressed
-            secondary: true
-
-            text: JamiStrings.assign
-            autoAccelerator: true
-
-            onClicked: {
-                if (!(pressedKey === Qt.Key_unknown)){
-                    pttListener.setPttKey(pressedKey);
-                    choiceMade(pressedKey);
-                }
-                close();
-            }
         }
 
         Item {
@@ -118,6 +106,4 @@ BaseModalDialog {
             }
         }
     }
-
-
 }
