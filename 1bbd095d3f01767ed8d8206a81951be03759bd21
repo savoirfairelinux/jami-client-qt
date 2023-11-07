@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43a346ce_9c5ba254",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T13:33:51Z",
+      "side": 1,
+      "message": "linked ticket? What was the bug?",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
