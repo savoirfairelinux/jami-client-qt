@@ -30,6 +30,19 @@ BaseModalDialog {
     property string confirmLabel: ""
     property string textLabel: ""
 
+    closeButtonVisible: false
+    button1.text: confirmLabel
+    button1.contentColorProvider: JamiTheme.redButtonColor
+    button1.onClicked: {
+        close();
+        accepted();
+    }
+    button2.text: JamiStrings.optionCancel
+    button2.onClicked: close()
+
+    button1Role: DialogButtonBox.AcceptRole
+    button2Role: DialogButtonBox.RejectRole
+
     popupContent: ColumnLayout {
         id: column
 
@@ -48,52 +61,6 @@ BaseModalDialog {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
-        }
-
-        RowLayout {
-            spacing: 16
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize
-
-            MaterialButton {
-                id: primaryBtn
-
-                Layout.alignment: Qt.AlignHCenter
-                text: root.confirmLabel
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                color: JamiTheme.buttonTintedRed
-                hoveredColor: JamiTheme.buttonTintedRedHovered
-                pressedColor: JamiTheme.buttonTintedRedPressed
-                secondary: true
-                autoAccelerator: true
-
-                onClicked: {
-                    close();
-                    accepted();
-                }
-            }
-
-            MaterialButton {
-                id: btnCancel
-
-                Layout.alignment: Qt.AlignHCenter
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                color: JamiTheme.buttonTintedBlack
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
-                secondary: true
-                autoAccelerator: true
-
-                text: JamiStrings.optionCancel
-
-                onClicked: close()
-            }
         }
     }
 }

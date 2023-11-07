@@ -44,6 +44,43 @@ BaseModalDialog {
         open();
     }
 
+    button1.text: buttonTitles[0]
+    button2.text: buttonTitles[1] ? buttonTitles[1] : null
+    button1.onClicked: {
+        if (buttonCallBacks[0])
+            buttonCallBacks[0]();
+        close();
+    }
+    button2.onClicked: {
+        if (buttonCallBacks[1])
+            buttonCallBacks[1]();
+        close();
+    }
+
+    Component.onCompleted: {
+        for (var i = 0; i < buttonStyles.length; i++){
+
+            switch (buttonStyles[i]) {
+
+            case SimpleMessageDialog.ButtonStyle.TintedBlue:
+                button1.color = JamiTheme.buttonTintedBlue;
+                button1.hoveredColor = JamiTheme.buttonTintedBlueHovered;
+                button1.pressedColor = JamiTheme.buttonTintedBluePressed;
+                break;
+            case SimpleMessageDialog.ButtonStyle.TintedBlack:
+                button1.color = JamiTheme.buttonTintedBlack;
+                button1.hoveredColor = JamiTheme.buttonTintedBlackHovered;
+                button1.pressedColor = JamiTheme.buttonTintedBlackPressed;
+                break;
+            case SimpleMessageDialog.ButtonStyle.TintedRed:
+                button1.color = JamiTheme.buttonTintedRed;
+                button1.hoveredColor = JamiTheme.buttonTintedRedHovered;
+                button1.pressedColor = JamiTheme.buttonTintedRedPressed;
+                break;
+            }
+        }
+    }
+
     popupContent: ColumnLayout {
         Label {
             id: infoTextLabel
@@ -68,64 +105,6 @@ BaseModalDialog {
             Layout.preferredHeight: childrenRect.height
 
             data: innerContentData
-        }
-        RowLayout {
-            spacing: JamiTheme.preferredMarginSize
-
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-            Layout.bottomMargin: JamiTheme.preferredMarginSize
-
-            Repeater {
-                model: buttonTitles.length
-                MaterialButton {
-                    Layout.alignment: Qt.AlignVCenter
-
-                    preferredWidth: JamiTheme.preferredFieldWidth / 2
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                    color: {
-                        switch (buttonStyles[modelData]) {
-                        case SimpleMessageDialog.ButtonStyle.TintedBlue:
-                            return JamiTheme.buttonTintedBlue;
-                        case SimpleMessageDialog.ButtonStyle.TintedBlack:
-                            return JamiTheme.buttonTintedBlack;
-                        case SimpleMessageDialog.ButtonStyle.TintedRed:
-                            return JamiTheme.buttonTintedRed;
-                        }
-                    }
-                    hoveredColor: {
-                        switch (buttonStyles[modelData]) {
-                        case SimpleMessageDialog.ButtonStyle.TintedBlue:
-                            return JamiTheme.buttonTintedBlueHovered;
-                        case SimpleMessageDialog.ButtonStyle.TintedBlack:
-                            return JamiTheme.buttonTintedBlackHovered;
-                        case SimpleMessageDialog.ButtonStyle.TintedRed:
-                            return JamiTheme.buttonTintedRedHovered;
-                        }
-                    }
-                    pressedColor: {
-                        switch (buttonStyles[modelData]) {
-                        case SimpleMessageDialog.ButtonStyle.TintedBlue:
-                            return JamiTheme.buttonTintedBluePressed;
-                        case SimpleMessageDialog.ButtonStyle.TintedBlack:
-                            return JamiTheme.buttonTintedBlackPressed;
-                        case SimpleMessageDialog.ButtonStyle.TintedRed:
-                            return JamiTheme.buttonTintedRedPressed;
-                        }
-                    }
-                    secondary: true
-                    autoAccelerator: true
-
-                    text: buttonTitles[modelData]
-
-                    onClicked: {
-                        if (buttonCallBacks[modelData])
-                            buttonCallBacks[modelData]();
-                        close();
-                    }
-                }
-            }
         }
     }
 }
