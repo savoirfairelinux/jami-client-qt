@@ -309,6 +309,7 @@ Rectangle {
                         }
                         if (usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.BLANK)
                             popup.visible = true;
+                        UtilsAdapter.setTempCreationImageFromString("", "temp");
                     }
                 }
 
@@ -456,4 +457,5 @@ Rectangle {
         KeyNavigation.up: backButton
         KeyNavigation.down: KeyNavigation.tab
     }
+    Component.onDestruction: UtilsAdapter.setTempCreationImageFromString("", "temp")
 }
