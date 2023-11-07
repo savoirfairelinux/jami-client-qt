@@ -288,7 +288,8 @@ Rectangle {
                             }
                             preferencesPerCategoryModel.reset();
                             generalPreferencesModel.reset();
-                        }]
+                        }],
+                        "buttonRoles": [DialogButtonBox.AcceptRole, DialogButtonBox.RejectRole]
                 })
         }
     }

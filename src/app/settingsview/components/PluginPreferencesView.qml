@@ -295,7 +295,8 @@ Item {
                                         PluginAdapter.getPluginsFromStore();
                                         // could not call root from here
                                         settings.ListView.view.parent.closed();
-                                    }]
+                                    }],
+                                    "buttonRoles": [DialogButtonBox.AcceptRole, DialogButtonBox.RejectRole]
                             })
                     }
                 }

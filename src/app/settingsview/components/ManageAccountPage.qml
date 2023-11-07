@@ -366,7 +366,8 @@ SettingsPageBase {
                                         "title": success ? JamiStrings.success : JamiStrings.error,
                                         "infoText": success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
                                         "buttonTitles": [JamiStrings.optionOk],
-                                        "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue]
+                                        "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                                        "buttonRoles": [DialogButtonBox.AcceptRole]
                                     });
                             }
                         });

@@ -49,7 +49,8 @@ ColumnLayout {
                     "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
                     "buttonCallBacks": [function () {
                             DeviceItemListModel.revokeDevice(deviceId, "");
-                        }]
+                        }],
+                    "buttonRoles": [DialogButtonBox.AcceptRole, DialogButtonBox.RejectRole]
                 });
         }
     }
