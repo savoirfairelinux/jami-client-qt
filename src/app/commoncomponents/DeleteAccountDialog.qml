@@ -26,8 +26,6 @@ BaseModalDialog {
     id: root
 
     property bool isSIP: false
-    property string bestName: ""
-    property string accountId: ""
 
     signal accepted
 
@@ -42,6 +40,8 @@ BaseModalDialog {
         close();
         accepted();
     }
+    button1.contentColorProvider: JamiTheme.deleteButtonRed
+
     button2.text: JamiStrings.optionCancel
     button2Clicked: function() {close();}
 
@@ -59,12 +59,14 @@ BaseModalDialog {
     popupContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
         anchors.centerIn: parent
+        spacing: 10
 
         Label {
             id: labelDeletion
 
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignLeft
             Layout.maximumWidth: root.width - 4*JamiTheme.preferredMarginSize
+            Layout.bottomMargin: 5
 
             color: JamiTheme.textColor
             text: JamiStrings.confirmDeleteQuestion
@@ -75,54 +77,196 @@ BaseModalDialog {
             wrapMode: Text.Wrap
         }
 
-        Label {
-            id: labelBestId
+        Rectangle {
+            id: accountRectangle
 
-            Layout.alignment: Qt.AlignHCenter
+            color: JamiTheme.backgroudRectangleColor
+//            Layout.maximumWidth: 600
+//            Layout.minimumWidth: 400
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: userProfileDialogLayout.height
+            Layout.maximumWidth: root.width - 80
 
-            color: JamiTheme.textColor
-            text: bestName
+            radius: 5
 
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-            font.bold: true
-            wrapMode: Text.Wrap
+            ColumnLayout {
+                id: userProfileDialogLayout
+
+                anchors.centerIn: parent
+                width: parent.width
+
+                RowLayout {
+                    Layout.margins: 10
+                    Layout.fillWidth: true
+
+                    spacing: 10
+
+                    Avatar {
+                        id: contactImage
+
+                        Layout.preferredWidth: 56
+                        Layout.preferredHeight: 56
+
+                        imageId: CurrentAccount.id
+                        showPresenceIndicator: false
+                        mode: Avatar.Mode.Account
+                    }
+
+                    ColumnLayout {
+
+                        spacing: 10
+                        Layout.alignment: Qt.AlignLeft
+
+                        // Visible when user alias is not empty and not equal to id.
+                        TextEdit {
+                            id: contactAlias
+
+                            Layout.alignment: Qt.AlignLeft
+
+                            font.pointSize: JamiTheme.settingsFontSize
+                            font.kerning: true
+
+                            color: JamiTheme.textColor
+                            visible: contactDisplayName.text ? (CurrentAccount.alias === CurrentAccount.bestId ? false : true) : false
+                            selectByMouse: true
+                            readOnly: true
+
+                            wrapMode: Text.NoWrap
+                            text: textMetricsContactAliasText.elidedText
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            TextMetrics {
+                                id: textMetricsContactAliasText
+
+                                font: contactAlias.font
+                                text: CurrentAccount.alias
+                                elideWidth: root.width - 200
+                                elide: Qt.ElideMiddle
+                            }
+                        }
+
+                        // Visible when user name is not empty or equals to id.
+                        TextEdit {
+                            id: contactDisplayName
+
+                            Layout.alignment: Qt.AlignLeft
+
+                            font.pointSize: JamiTheme.textFontSize
+                            font.kerning: true
+                            color: JamiTheme.faddedFontColor
+
+                            visible: text.length && text !== CurrentAccount.alias
+                            readOnly: true
+                            selectByMouse: true
+
+                            wrapMode: Text.NoWrap
+                            text: textMetricsContactDisplayNameText.elidedText
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            TextMetrics {
+                                id: textMetricsContactDisplayNameText
+
+                                font: contactDisplayName.font
+                                text: CurrentAccount.bestId
+                                elideWidth: root.width - 200
+                                elide: Qt.ElideMiddle
+                            }
+                        }
+                    }
+                }
+                Rectangle {
+                    Layout.fillWidth: true
+
+                    radius: 5
+                    color: root.backgroundColor
+
+                    Layout.preferredHeight: contactId.height + 10
+                    Layout.margins: 10
+                    Layout.topMargin: 0
+                    RowLayout {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        spacing: 20
+
+                        Text {
+                            id: identifierText
+
+                            font.pointSize: JamiTheme.textFontSize
+                            text: JamiStrings.identifier
+
+                            color: JamiTheme.faddedFontColor
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            Layout.leftMargin: JamiTheme.preferredMarginSize
+                        }
+                        Label {
+                            id: contactId
+
+                            Layout.alignment: Qt.AlignLeft
+                            Layout.preferredWidth: root.width - 250
+                            Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                            font.pointSize: JamiTheme.textFontSize
+                            font.kerning: true
+                            color: JamiTheme.textColor
+
+                            elide: Text.ElideRight
+                            text: CurrentAccount.uri
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+                }
+            }
         }
+        Rectangle {
+            id: warningRectangle
 
-        Label {
-            id: labelAccountHash
+            color: JamiTheme.warningRedRectangle
 
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: root.width - 4*JamiTheme.preferredMarginSize
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: labelWarning.height + 20
+            Layout.maximumWidth: root.width - 80
 
-            color: JamiTheme.textColor
-            text: accountId
+            radius: 5
 
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
+            RowLayout{
+                id: warningLayout
 
-            horizontalAlignment: Text.AlignHCenter
-            wrapMode: Text.Wrap
-        }
+                anchors.centerIn: parent
+                anchors.margins: 15
+                width: accountRectangle.width
 
-        Label {
-            id: labelWarning
+                Image{
+                    id: warningIcon
 
-            visible: !isSIP
+                    Layout.fillWidth: true
+                    Layout.leftMargin: 15
 
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: root.width - 4*JamiTheme.preferredMarginSize
+                    source: JamiResources.notification_important_24dp_svg
+                    fillMode: Image.PreserveAspectFit
+                }
 
-            text: JamiStrings.deleteAccountInfos
+                Label {
+                    id: labelWarning
 
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
+                    Layout.fillWidth: true
+                    Layout.margins: 15
 
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            wrapMode: Text.Wrap
+                    visible: !isSIP
+                    text: JamiStrings.deleteAccountInfos
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+                    wrapMode: Text.WordWrap
 
-            color: JamiTheme.redColor
+                    color: JamiTheme.textColor
+                    onHeightChanged: warningRectangle.height = height + 20
+                }
+            }
         }
     }
 }
