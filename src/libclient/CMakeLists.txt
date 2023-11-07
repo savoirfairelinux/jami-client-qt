@@ -158,14 +158,6 @@ if(NOT ENABLE_TEST)
   set(ENABLE_TEST false)
 endif()
 
-if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    OR ENABLE_LIBWRAP
-    # because mocks use the same interface present in qtwrapper/
-    OR ENABLE_TEST)
-  set(ENABLE_LIBWRAP true)
-  set(ENABLE_LIBWRAP ${ENABLE_LIBWRAP} PARENT_SCOPE)
-endif()
-
 if(NOT (${ENABLE_VIDEO} MATCHES false))
   message(STATUS "VIDEO enabled")
   set(ENABLE_VIDEO 1 CACHE BOOL "Enable video")

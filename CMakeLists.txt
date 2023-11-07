@@ -29,13 +29,19 @@ else()
   project(jami)
 endif()
 
-option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" OFF)
+option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
 option(ENABLE_TESTS "Build with tests" OFF)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
 if(WITH_WEBENGINE)
   add_definitions(-DWITH_WEBENGINE)
 endif()
-
+option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
+if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    OR ENABLE_LIBWRAP
+    # because mocks use the same interface present in qtwrapper/
+    OR ENABLE_TEST)
+  set(ENABLE_LIBWRAP true)
+endif()
 option(ENABLE_ASAN "Enable address sanitization" OFF)
 if(ENABLE_ASAN AND NOT MSVC)
   message(STATUS "Address sanitization enabled for client")
