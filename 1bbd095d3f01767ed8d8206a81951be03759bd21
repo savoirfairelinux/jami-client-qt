@@ -22,6 +22,190 @@
       },
       "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "313fb652_962cc740",
+        "filename": "src/app/pluginlistmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T19:58:24Z",
+      "side": 1,
+      "message": "const auto\u0026",
+      "range": {
+        "startLine": 222,
+        "startChar": 9,
+        "endLine": 222,
+        "endChar": 16
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac6a703d_efdabfff",
+        "filename": "src/app/pluginlistmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T19:58:24Z",
+      "side": 1,
+      "message": "on can I verify the behaviour if there is no test?",
+      "range": {
+        "startLine": 245,
+        "startChar": 18,
+        "endLine": 245,
+        "endChar": 31
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8119598_f5269d8f",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T19:58:24Z",
+      "side": 1,
+      "message": "remove TODO or add ticket",
+      "range": {
+        "startLine": 111,
+        "startChar": 19,
+        "endLine": 111,
+        "endChar": 23
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2296fa80_3b54fb03",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T19:58:24Z",
+      "side": 1,
+      "message": "so if installed\u003d\"12.1.2\" and remote \u003d \"3.0\" it will return false (or vice-versa)",
+      "range": {
+        "startLine": 233,
+        "startChar": 26,
+        "endLine": 235,
+        "endChar": 5
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3888ebaf_ae7ac3f4",
+        "filename": "src/app/pluginversionmanager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T19:58:24Z",
+      "side": 1,
+      "message": "const?",
+      "range": {
+        "startLine": 72,
+        "startChar": 83,
+        "endLine": 72,
+        "endChar": 85
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "357f6165_05532233",
+        "filename": "src/app/settingsview/components/PluginItemDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T19:58:24Z",
+      "side": 1,
+      "message": "instead of default, maybe add \"required\"",
+      "range": {
+        "startLine": 31,
+        "startChar": 20,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0349216_efee7a21",
+        "filename": "src/app/settingsview/components/PluginItemDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T19:58:24Z",
+      "side": 1,
+      "message": "check patch from Capucine to avoid to redesign popup if needed",
+      "range": {
+        "startLine": 59,
+        "startChar": 67,
+        "endLine": 59,
+        "endChar": 86
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba3c3971_8d6ce5f3",
+        "filename": "src/app/settingsview/components/PluginListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T19:58:24Z",
+      "side": 1,
+      "message": "pluginId?",
+      "range": {
+        "startLine": 116,
+        "startChar": 20,
+        "endLine": 116,
+        "endChar": 26
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
