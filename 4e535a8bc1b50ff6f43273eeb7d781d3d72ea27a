@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8e0687a_abfae086",
+        "filename": "src/app/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-07T20:29:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cb11177_12150689",
+      "range": {
+        "startLine": 84,
+        "startChar": 14,
+        "endLine": 84,
+        "endChar": 20
+      },
+      "revId": "4e535a8bc1b50ff6f43273eeb7d781d3d72ea27a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3687f258_1522ea2e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-07T20:02:16Z",
       "side": 1,
       "message": "contact image but it\u0027s current account",
+      "range": {
+        "startLine": 105,
+        "startChar": 28,
+        "endLine": 105,
+        "endChar": 40
+      },
+      "revId": "4e535a8bc1b50ff6f43273eeb7d781d3d72ea27a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f4b2a44_54a5993e",
+        "filename": "src/app/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-07T20:29:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3687f258_1522ea2e",
       "range": {
         "startLine": 105,
         "startChar": 28,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "006fe064_5f68819e",
+        "filename": "src/app/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-07T20:29:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98c476eb_2d12bc18",
+      "range": {
+        "startLine": 130,
+        "startChar": 37,
+        "endLine": 130,
+        "endChar": 55
+      },
+      "revId": "4e535a8bc1b50ff6f43273eeb7d781d3d72ea27a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d18895c_a35cca62",
@@ -93,6 +165,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73200c16_05dab2b2",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-07T20:29:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d18895c_a35cca62",
+      "range": {
+        "startLine": 143,
+        "startChar": 19,
+        "endLine": 143,
+        "endChar": 42
+      },
+      "revId": "4e535a8bc1b50ff6f43273eeb7d781d3d72ea27a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42746fd2_43b6d1b1",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-11-07T20:02:16Z",
       "side": 1,
       "message": "red button (blue train vs train blue)",
+      "range": {
+        "startLine": 144,
+        "startChar": 19,
+        "endLine": 144,
+        "endChar": 34
+      },
+      "revId": "4e535a8bc1b50ff6f43273eeb7d781d3d72ea27a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e50d39_c94835f4",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-07T20:29:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42746fd2_43b6d1b1",
       "range": {
         "startLine": 144,
         "startChar": 19,
