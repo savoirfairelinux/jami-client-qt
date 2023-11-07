@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a86c27f1_4235d98e",
+        "filename": ".gitmodules",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T19:31:00Z",
+      "side": 1,
+      "message": "seems random name :)",
+      "range": {
+        "startLine": 3,
+        "startChar": 26,
+        "endLine": 3,
+        "endChar": 38
+      },
+      "revId": "d051dde4d9e2267bdb91ac32704f4dd3bf8b8f34",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
