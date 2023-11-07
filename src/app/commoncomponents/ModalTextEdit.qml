@@ -122,6 +122,10 @@ Loader {
             echoMode: root.echoMode
             placeholderText: root.placeholderText
             onAccepted: root.accepted()
+            onRejected: {
+                root.editMode = false;
+                text = staticText;
+            }
             onKeyPressed: root.keyPressed()
             onTextChanged: dynamicText = text
             text: staticText

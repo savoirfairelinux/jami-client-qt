@@ -76,15 +76,12 @@ SettingsPageBase {
                     font.pixelSize: JamiTheme.materialLineEditPixelSize
                 }
 
-                maxCharacters: JamiTheme.maximumCharacters
-                placeholderText: JamiStrings.displayName
-
-                editMode: false
-                isPersistent: false
-
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight + 8
                 Layout.fillWidth: true
+
+                maxCharacters: JamiTheme.maximumCharacters
+                placeholderText: JamiStrings.displayName
 
                 staticText: CurrentAccount.alias
                 elidedText: displayNameLineEditTextSize.elidedText
