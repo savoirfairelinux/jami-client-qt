@@ -57,7 +57,7 @@ Item {
             showPresenceIndicator: false
         }
 
-        PushButton {
+        JamiPushButton {
             id: editImage
 
             width: doubleEditAvatar ? avatar.width / 2 : avatar.width / 4
@@ -71,9 +71,10 @@ Item {
             preferredSize: doubleEditAvatar ? avatar.width / 3 : avatar.width / 6
 
             normalColor: JamiTheme.secondaryBackgroundColor
-            imageColor: JamiTheme.buttonTintedBlue
             hoveredColor: JamiTheme.hoveredButtonColorWizard
-            border.color: JamiTheme.buttonTintedBlue
+            border.color: JamiTheme.editButtonBorderColor
+            border.width: 2
+            imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
 
             enabled: avatar.visible && !root.readOnly
             visible: enabled
