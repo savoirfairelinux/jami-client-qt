@@ -170,6 +170,20 @@ Item {
                 }
 
                 JamiIdControlButton {
+                    id: btnUsername
+                    source: JamiResources.assignment_ind_black_24dp_svg
+                    visible: false
+                    border.color: "transparent"
+                    onClicked: {
+                        usernameLabel.text = Qt.binding(function() {return CurrentAccount.registeredName} );
+                        usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.registeredName} );
+                        btnId.toolTipText = JamiStrings.identifierURI;
+                        visible = false;
+                        btnId.visible = true
+                    }
+                }
+
+                JamiIdControlButton {
                     id: btnCopy
                     anchors.leftMargin: JamiTheme.pushButtonMargins
                     source: JamiResources.content_copy_24dp_svg
@@ -188,21 +202,16 @@ Item {
 
                 JamiIdControlButton {
                     id: btnId
-                    source: JamiResources.key_black_24dp_svg
+                    source: JamiResources.outline_info_24dp_svg
                     visible: CurrentAccount.registeredName !== ""
                     border.color: "transparent"
                     toolTipText: JamiStrings.identifierURI
                     onClicked: {
-                        if (clicked) {
-                            usernameLabel.text = Qt.binding(function() {return CurrentAccount.uri} );
-                            usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.uri} );
-                            btnId.toolTipText = JamiStrings.identifierRegisterName;
-                        } else {
-                            usernameLabel.text = Qt.binding(function() {return CurrentAccount.registeredName} );
-                            usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.registeredName} );
-                            btnId.toolTipText = JamiStrings.identifierURI;
-                        }
-                        clicked = !clicked;
+                        usernameLabel.text = Qt.binding(function() {return CurrentAccount.uri} );
+                        usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.uri} );
+                        btnId.toolTipText = JamiStrings.identifierRegisterName;
+                        visible = false
+                        btnUsername.visible = true
                     }
                 }
             }
