@@ -51,7 +51,6 @@ Rectangle {
             anchors.right: parent.right
             height: headerRow.implicitHeight + JamiTheme.preferredMarginSize + settingsTabButton.height
 
-
             RowLayout {
                 id: headerRow
                 spacing: 15
@@ -105,7 +104,7 @@ Rectangle {
                         }
 
                         editMode: false
-                        isPersistent: false
+
                         placeholderText: JamiStrings.title
 
                         onActiveFocusChanged: {
@@ -148,7 +147,6 @@ Rectangle {
                         onAccepted: ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, dynamicText)
 
                         editMode: false
-                        isPersistent: false
 
                         onActiveFocusChanged: {
                             if (!activeFocus) {

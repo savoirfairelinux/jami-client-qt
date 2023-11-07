@@ -36,6 +36,7 @@ TextField {
     }
 
     signal keyPressed
+    signal rejected
 
     property bool inputIsValid: true
 
@@ -87,6 +88,9 @@ TextField {
                 root.accepted();
             }
             event.accepted = true;
+        } else if (event.key === Qt.Key_Escape) {
+            root.focus = false;
+            root.rejected();
         } else {
             root.keyPressed();
         }
