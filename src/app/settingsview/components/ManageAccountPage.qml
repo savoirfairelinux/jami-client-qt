@@ -467,8 +467,6 @@ SettingsPageBase {
                 onClicked: {
                     var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/DeleteAccountDialog.qml", {
                             "isSIP": CurrentAccount.type === Profile.Type.SIP,
-                            "bestName": CurrentAccount.bestName,
-                            "accountId": CurrentAccount.uri
                         });
                     dlg.accepted.connect(navigateToMainView);
                 }
