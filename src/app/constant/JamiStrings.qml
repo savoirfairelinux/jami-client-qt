@@ -606,12 +606,12 @@ Item {
     property string exportAccount: qsTr("Export")
 
     // PhotoBoothView
-    property string chooseAvatarImage: qsTr("Choose a picture as your avatar")
-    property string chooseAvatarPicture: qsTr("Choose a picture")
+    property string selectAvatarImage: qsTr("Select image as avatar")
+    property string selectImage: qsTr("Select image")
     property string importFromFile: qsTr("Import avatar from image file")
-    property string clearAvatar: qsTr("Clear avatar image")
+    property string removeImage: qsTr("Remove image")
     property string takePhoto: qsTr("Take photo")
-    property string imageFiles: qsTr("Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)")
+    property string imageFiles: qsTr("Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)")
 
     // Plugins
     property string autoUpdate: qsTr("Auto update")
