@@ -145,6 +145,8 @@ Item {
     property color backgroundRectangleColor: darkTheme ? "#333333" : "#F0EFEF"
     property color deleteRedButton: "#CC0022"
 
+    property color editButtonBorderColor: darkTheme ? "#333333" : "#F0EFEF"
+
     // Jami switch
     property color switchBackgroundCheckedColor: "#8dbaea"
     property color switchBackgroundColor: darkTheme ? "#626262" : "#E5EEF5"

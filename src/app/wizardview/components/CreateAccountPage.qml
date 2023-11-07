@@ -309,6 +309,7 @@ Rectangle {
                         }
                         if (usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.BLANK)
                             popup.visible = true;
+                        UtilsAdapter.setTempCreationImageFromString("", "temp");
                     }
                 }
 
@@ -333,7 +334,7 @@ Rectangle {
                         Layout.topMargin: 2 * JamiTheme.wizardViewBlocMarginSize
                         preferredWidth: customizeButton.width
 
-                        text: JamiStrings.encrypt
+                        text: JamiStrings.setPassword
                         toolTipText: JamiStrings.encryptWithPassword
 
                         KeyNavigation.tab: customizeButton
@@ -456,4 +457,5 @@ Rectangle {
         KeyNavigation.up: backButton
         KeyNavigation.down: KeyNavigation.tab
     }
+    Component.onDestruction: UtilsAdapter.setTempCreationImageFromString("", "temp")
 }
