@@ -25,25 +25,23 @@ import net.jami.Constants 1.1
 BaseModalDialog {
     id: root
 
-    width: JamiTheme.secondaryDialogDimension
-
     property var previousBodies: undefined
 
     popupContent: JamiListView {
-            width: root.width - 4 * JamiTheme.preferredMarginSize
+            width: 400 - 2 * root.popupMargins
+
             height: Math.min(count * 50, 150)
 
             model: root.previousBodies
 
             delegate: Rectangle {
-                width: root.width - 2 * JamiTheme.preferredMarginSize
+                width: 400 - 2 * root.popupMargins
                 height: Math.max(JamiTheme.menuItemsPreferredHeight, rowBody.implicitHeight)
                 color: index % 2 === 0 ? JamiTheme.backgroundColor : JamiTheme.secondaryBackgroundColor
 
                 RowLayout {
                     id: rowBody
                     spacing: JamiTheme.preferredMarginSize
-                    width: parent.width
                     anchors.centerIn: parent
 
                     Text {
@@ -58,7 +56,6 @@ BaseModalDialog {
 
                     Text {
                         Layout.alignment: Qt.AlignLeft
-                        Layout.fillWidth: true
 
                         TextMetrics {
                             id: metrics

@@ -33,6 +33,31 @@ BaseModalDialog {
 
     title: JamiStrings.deleteAccount
 
+    closeButtonVisible: false
+    button1.text: JamiStrings.optionDelete
+    button1Role: DialogButtonBox.DestructiveRole
+    button1.onClicked: {
+        button1.enabled = false;
+        busyInd.running = true;
+        AccountAdapter.deleteCurrentAccount();
+        close();
+        accepted();
+    }
+    button2.text: JamiStrings.optionCancel
+    button2Role: DialogButtonBox.RejectRole
+    button2.onClicked: close();
+
+    BusyIndicator {
+        id: busyInd
+        running: false
+        Connections {
+            target: root
+            function onClosed() {
+                busyInd.running = false;
+            }
+        }
+    }
+
     popupContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
         anchors.centerIn: parent
@@ -100,77 +125,6 @@ BaseModalDialog {
             wrapMode: Text.Wrap
 
             color: JamiTheme.redColor
-        }
-
-        RowLayout {
-            spacing: 16
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignCenter
-
-            MaterialButton {
-                id: btnDelete
-
-                Layout.alignment: Qt.AlignHCenter
-                Layout.topMargin: JamiTheme.preferredMarginSize
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                color: JamiTheme.buttonTintedRed
-                hoveredColor: JamiTheme.buttonTintedRedHovered
-                pressedColor: JamiTheme.buttonTintedRedPressed
-                secondary: true
-                autoAccelerator: true
-
-                text: JamiStrings.optionDelete
-
-                Connections {
-                    target: root
-                    function onClosed() {
-                        btnDelete.enabled = true;
-                    }
-                }
-
-                onClicked: {
-                    btnDelete.enabled = false;
-                    busyInd.running = true;
-                    AccountAdapter.deleteCurrentAccount();
-                    close();
-                    accepted();
-                }
-            }
-
-            BusyIndicator {
-                id: busyInd
-                running: false
-
-                Connections {
-                    target: root
-                    function onClosed() {
-                        busyInd.running = false;
-                    }
-                }
-            }
-
-            MaterialButton {
-                id: btnCancel
-
-                Layout.alignment: Qt.AlignHCenter
-                Layout.topMargin: JamiTheme.preferredMarginSize
-
-                preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                color: JamiTheme.buttonTintedBlack
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
-                secondary: true
-
-                text: JamiStrings.optionCancel
-                autoAccelerator: true
-
-                onClicked: close()
-            }
         }
     }
 }

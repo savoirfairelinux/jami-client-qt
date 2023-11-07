@@ -28,6 +28,22 @@ BaseModalDialog {
     property string accountId: ""
     property int pressedKey: Qt.Key_unknown
 
+    closeButtonVisible: false
+
+    button1.text: JamiStrings.assign
+    button2.text: JamiStrings.cancel
+
+    button1Role: DialogButtonBox.ApplyRole
+    button2Role: DialogButtonBox.RejectRole
+    button1.onClicked: {
+        if (!(pressedKey === Qt.Key_unknown)){
+            pttListener.setPttKey(pressedKey);
+            choiceMade(pressedKey);
+        }
+        close();
+    }
+    button2.onClicked: close();
+
     signal accepted
     signal choiceMade(int chosenKey)
 
@@ -118,6 +134,4 @@ BaseModalDialog {
             }
         }
     }
-
-
 }
