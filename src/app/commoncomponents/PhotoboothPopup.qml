@@ -34,7 +34,7 @@ BaseModalDialog {
 
     property string imageId
     property bool newItem
-    property real buttonSize: JamiTheme.smartListAvatarSize
+    property real buttonSize: 36
     property real imageSize: 25
 
 
@@ -56,8 +56,6 @@ BaseModalDialog {
     function focusOnPreviousPhotoBoothItem () {
         importButton.forceActiveFocus()
     }
-
-    width: JamiTheme.preferredDialogWidth
 
     title: JamiStrings.chooseAvatarPicture
 
@@ -83,9 +81,9 @@ BaseModalDialog {
     popupContent: RowLayout {
             id: buttonsRowLayout
 
-            spacing: 10
+            spacing: 18
 
-            PushButton {
+            JamiPushButton {
                 id: takePhotoButton
 
                 objectName: "takePhotoButton"
@@ -94,15 +92,11 @@ BaseModalDialog {
 
                 height: buttonSize
                 width: buttonSize
-                imageContainerWidth: imageSize
-                imageContainerHeight: imageSize
-                radius: height / 2
-                border.color: JamiTheme.buttonTintedBlue
+
                 normalColor: "transparent"
-                imageColor: JamiTheme.buttonTintedBlue
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
                 toolTipText: JamiStrings.takePhoto
-                source: JamiResources.baseline_camera_alt_24dp_svg
-                hoveredColor: JamiTheme.smartListHoveredColor
+                source: JamiResources.add_a_photo_black_24dp_svg
 
                 Keys.onPressed: function (keyEvent) {
                     if (keyEvent.key === Qt.Key_Enter ||
@@ -136,7 +130,7 @@ BaseModalDialog {
                 }
             }
 
-            PushButton {
+            JamiPushButton {
                 id: importButton
 
                 objectName: "photoboothViewImportButton"
@@ -146,15 +140,10 @@ BaseModalDialog {
 
                 height: buttonSize
                 width: buttonSize
-                imageContainerWidth: imageSize
-                imageContainerHeight: imageSize
-                radius: height / 2
-                border.color: JamiTheme.buttonTintedBlue
+
                 normalColor: "transparent"
-                source: JamiResources.round_folder_24dp_svg
-                toolTipText: JamiStrings.importFromFile
-                imageColor: JamiTheme.buttonTintedBlue
-                hoveredColor: JamiTheme.smartListHoveredColor
+                source: JamiResources.add_photo_alternate_black_24dp_svg
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
 
 
                 Keys.onPressed: function (keyEvent) {
@@ -196,7 +185,7 @@ BaseModalDialog {
                 }
             }
 
-            PushButton {
+            JamiPushButton {
                 id: clearButton
 
                 objectName: "photoboothViewClearButton"
@@ -205,16 +194,11 @@ BaseModalDialog {
 
                 height: buttonSize
                 width: buttonSize
-                imageContainerWidth: imageSize
-                imageContainerHeight: imageSize
-                radius: height / 2
-                border.color: JamiTheme.buttonTintedBlue
-                normalColor: "transparent"
-                source: JamiResources.ic_hangup_participant_24dp_svg
-                toolTipText: JamiStrings.clearAvatar
-                imageColor: JamiTheme.buttonTintedBlue
-                hoveredColor: JamiTheme.smartListHoveredColor
 
+                normalColor: "transparent"
+                source: JamiResources.remove_circle_outline_black_24dp_svg
+                toolTipText: JamiStrings.clearAvatar
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
 
                 visible: {
                     if (!newItem && LRCInstance.currentAccountAvatarSet)
