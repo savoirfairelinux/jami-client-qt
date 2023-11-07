@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cb11177_12150689",
+        "filename": "src/app/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T20:02:16Z",
+      "side": 1,
+      "message": "clean code",
+      "range": {
+        "startLine": 84,
+        "startChar": 14,
+        "endLine": 84,
+        "endChar": 20
+      },
+      "revId": "4e535a8bc1b50ff6f43273eeb7d781d3d72ea27a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3687f258_1522ea2e",
+        "filename": "src/app/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T20:02:16Z",
+      "side": 1,
+      "message": "contact image but it\u0027s current account",
+      "range": {
+        "startLine": 105,
+        "startChar": 28,
+        "endLine": 105,
+        "endChar": 40
+      },
+      "revId": "4e535a8bc1b50ff6f43273eeb7d781d3d72ea27a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98c476eb_2d12bc18",
+        "filename": "src/app/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T20:02:16Z",
+      "side": 1,
+      "message": "contact or account?",
+      "range": {
+        "startLine": 130,
+        "startChar": 37,
+        "endLine": 130,
+        "endChar": 55
+      },
+      "revId": "4e535a8bc1b50ff6f43273eeb7d781d3d72ea27a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d18895c_a35cca62",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T20:02:16Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 143,
+        "startChar": 19,
+        "endLine": 143,
+        "endChar": 42
+      },
+      "revId": "4e535a8bc1b50ff6f43273eeb7d781d3d72ea27a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42746fd2_43b6d1b1",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-07T20:02:16Z",
+      "side": 1,
+      "message": "red button (blue train vs train blue)",
+      "range": {
+        "startLine": 144,
+        "startChar": 19,
+        "endLine": 144,
+        "endChar": 34
+      },
+      "revId": "4e535a8bc1b50ff6f43273eeb7d781d3d72ea27a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
