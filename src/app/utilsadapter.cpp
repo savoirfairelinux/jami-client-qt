@@ -894,3 +894,9 @@ UtilsAdapter::createDummyImage() const
     }
 }
 #endif
+
+bool
+UtilsAdapter::isWayland() const
+{
+    return !qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY");
+}
