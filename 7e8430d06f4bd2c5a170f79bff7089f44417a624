@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03e2ebe6_9ae120f5",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-08T22:33:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db20730f_a3d3b333",
+      "range": {
+        "startLine": 91,
+        "startChar": 18,
+        "endLine": 92,
+        "endChar": 17
+      },
+      "revId": "7e8430d06f4bd2c5a170f79bff7089f44417a624",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4d351a8_f78f813b",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-08T20:19:20Z",
       "side": 1,
       "message": "magic numbers",
+      "range": {
+        "startLine": 110,
+        "startChar": 37,
+        "endLine": 110,
+        "endChar": 45
+      },
+      "revId": "7e8430d06f4bd2c5a170f79bff7089f44417a624",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2bc4d3c_ed45c8b5",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-08T22:33:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4d351a8_f78f813b",
       "range": {
         "startLine": 110,
         "startChar": 37,
@@ -87,6 +135,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9a07912_d8d95d54",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-08T22:33:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8305794_bf5f712d",
+      "range": {
+        "startLine": 120,
+        "startChar": 23,
+        "endLine": 129,
+        "endChar": 21
+      },
+      "revId": "7e8430d06f4bd2c5a170f79bff7089f44417a624",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5a5d7a3_6e6427c6",
@@ -110,6 +182,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "811acb28_4b3257c2",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-08T22:33:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5a5d7a3_6e6427c6",
+      "range": {
+        "startLine": 137,
+        "startChar": 28,
+        "endLine": 138,
+        "endChar": 42
+      },
+      "revId": "7e8430d06f4bd2c5a170f79bff7089f44417a624",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cedd6755_4b70349a",
@@ -123,6 +219,30 @@
       "writtenOn": "2023-11-08T20:19:20Z",
       "side": 1,
       "message": "closed() is enough",
+      "range": {
+        "startLine": 42,
+        "startChar": 20,
+        "endLine": 44,
+        "endChar": 5
+      },
+      "revId": "7e8430d06f4bd2c5a170f79bff7089f44417a624",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9ae5fc9_7b4dbc60",
+        "filename": "src/app/commoncomponents/ChangePttKeyPopup.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-08T22:33:32Z",
+      "side": 1,
+      "message": "When I use close() without function() it doesn\u0027t work : it\u0027s as if there were no function associated with onClicked",
+      "parentUuid": "cedd6755_4b70349a",
       "range": {
         "startLine": 42,
         "startChar": 20,
@@ -202,6 +322,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9f2847d_561dec4d",
+        "filename": "src/app/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-08T22:33:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd3cfa5c_90a9cec4",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 19
+      },
+      "revId": "7e8430d06f4bd2c5a170f79bff7089f44417a624",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bb47f6f_a8f18c00",
@@ -215,6 +359,30 @@
       "writtenOn": "2023-11-08T20:19:20Z",
       "side": 1,
       "message": "why this magic number",
+      "range": {
+        "startLine": 33,
+        "startChar": 32,
+        "endLine": 33,
+        "endChar": 34
+      },
+      "revId": "7e8430d06f4bd2c5a170f79bff7089f44417a624",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a74e38f_6c028036",
+        "filename": "src/app/commoncomponents/EditedPopup.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-08T22:33:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bb47f6f_a8f18c00",
       "range": {
         "startLine": 33,
         "startChar": 32,
