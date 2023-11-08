@@ -87,6 +87,7 @@ Loader {
 
         MaterialTextField {
             id: displayCompField
+
             font.pixelSize: root.fontPixelSize
             readOnly: root.readOnly
             text: elidedText != "" ? elidedText : staticText
@@ -94,6 +95,8 @@ Loader {
             isSwarmDetail: root.isSwarmDetail
             isSettings: root.isSettings
             textColor: root.textColor
+            suffixBisIconSrc: root.suffixBisIconSrc
+            suffixBisIconColor: root.suffixBisIconColor
             placeholderText: root.placeholderText
             prefixIconSrc: isSwarmDetail ? "" : root.prefixIconSrc
             prefixIconColor: root.prefixIconColor
