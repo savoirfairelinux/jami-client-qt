@@ -162,6 +162,7 @@ public:
 #ifdef ENABLE_TESTS
     Q_INVOKABLE QString createDummyImage() const;
 #endif
+    Q_INVOKABLE bool isWayland() const;
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
     void changeFontSize();

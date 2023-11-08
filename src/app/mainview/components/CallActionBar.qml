@@ -123,13 +123,13 @@ Control {
                         "Name": JamiStrings.shareScreen,
                         "IconSource": JamiResources.laptop_black_24dp_svg
                     });
-                if (Qt.platform.os.toString() !== "osx") {
+                if (Qt.platform.os.toString() !== "osx" && !UtilsAdapter.isWayland()) {
                     shareModel.append({
                             "Name": JamiStrings.shareWindow,
                             "IconSource": JamiResources.window_black_24dp_svg
                         });
                 }
-                if (Qt.platform.os.toString() !== "windows") {
+                if (Qt.platform.os.toString() !== "windows" && !UtilsAdapter.isWayland()) {
                     // temporarily disable for windows
                     shareModel.append({
                             "Name": JamiStrings.shareScreenArea,
