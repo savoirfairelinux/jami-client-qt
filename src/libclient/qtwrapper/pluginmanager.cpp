@@ -123,17 +123,6 @@ PluginManagerInterface::getChatHandlerDetails(const QString& chatHandlerId)
     return convertMap(libjami::getChatHandlerDetails(chatHandlerId.toStdString()));
 }
 
-void
-PluginManagerInterface::setPluginsEnabled(bool enable)
-{
-    libjami::setPluginsEnabled(enable);
-}
-
-bool
-PluginManagerInterface::getPluginsEnabled()
-{
-    return libjami::getPluginsEnabled();
-}
 
 VectorMapStringString
 PluginManagerInterface::getPluginPreferences(const QString& path, const QString& accountId)
