@@ -27,6 +27,7 @@ TextField {
     property bool isActive: activeFocus || contextMenu.active
     property bool isSettings: false
     property bool isSwarmDetail: false
+    property bool isPassword: false
     property bool dontShowFocusState: !readOnly
 
     onActiveFocusChanged: {
@@ -47,7 +48,7 @@ TextField {
     property alias suffixBisIconColor: suffixBisIcon.color
     property alias icon: container.data
 
-    property color accent: isActive || hovered ? prefixIconColor : JamiTheme.buttonTintedBlue
+    property color accent: isPassword ? JamiTheme.passwordBaselineColor : (isActive || hovered ? prefixIconColor : JamiTheme.buttonTintedBlue)
     property color baseColor: JamiTheme.primaryForegroundColor
     property color textColor: JamiTheme.textColor
     color: textColor
@@ -110,8 +111,12 @@ TextField {
         id: overBaseLineLabel
         font.pixelSize: root.font.pixelSize
         anchors.baseline: root.baseline
-        anchors.horizontalCenter: !isSwarmDetail ? root.horizontalCenter : undefined
+        anchors.horizontalCenter: (!isSwarmDetail && !root.isPassword) ? root.horizontalCenter : undefined
+        anchors.left: isPassword ? root.left : undefined
+        anchors.leftMargin: isPassword ? 32 : 0
+        width: root.width - 64
         text: root.placeholderText
+        elide: Text.ElideRight
         color: isSwarmDetail ? root.color : root.baseColor
         visible: !root.isActive && !readOnly && root.text.toString() === ""
     }
@@ -119,7 +124,7 @@ TextField {
     Rectangle {
         id: baselineLine
         width: parent.width
-        height: visible ? 1 : 0
+        height: visible ? (isPassword ? 2 : 1) : 0
         anchors.top: root.baseline
         anchors.topMargin: 10
         color: isSwarmDetail ? textColor : root.accent
@@ -202,12 +207,13 @@ TextField {
 
     TextFieldIcon {
         id: suffixBisIcon
-        size: 20
+        size: isPassword ? 16 : 20
         anchors.right: parent.right
         anchors.verticalCenter: root.verticalCenter
         anchors.verticalCenterOffset: -root.bottomPadding / 2
         color: suffixBisIconColor
         source: suffixBisIconSrc
+        opacity: isPassword
 
         TapHandler {
             cursorShape: Qt.ArrowCursor
