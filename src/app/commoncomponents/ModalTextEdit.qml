@@ -52,6 +52,7 @@ Loader {
     property var icon
     property bool isSettings
     property bool isSwarmDetail
+    property bool isPassword
 
     property bool readOnly: false
     property bool isEditing: false
@@ -87,13 +88,17 @@ Loader {
 
         MaterialTextField {
             id: displayCompField
+
             font.pixelSize: root.fontPixelSize
             readOnly: root.readOnly
             text: elidedText != "" ? elidedText : staticText
             horizontalAlignment: elidedText != "" ? TextEdit.AlignLeft : TextEdit.AlignHCenter
             isSwarmDetail: root.isSwarmDetail
+            isPassword: root.isPassword
             isSettings: root.isSettings
             textColor: root.textColor
+            suffixBisIconSrc: root.suffixBisIconSrc
+            suffixBisIconColor: root.suffixBisIconColor
             placeholderText: root.placeholderText
             prefixIconSrc: isSwarmDetail ? "" : root.prefixIconSrc
             prefixIconColor: root.prefixIconColor
@@ -136,6 +141,7 @@ Loader {
             validator: root.textValidator
             isSettings: root.isSettings
             isSwarmDetail: root.isSwarmDetail
+            isPassword: root.isPassword
             readOnly: root.readOnly
             maxCharacters: root.maxCharacters
         }

@@ -25,10 +25,12 @@ ModalTextEdit {
     property bool firstEntry: false
     signal icoClicked
 
+    isPassword: true
+
     prefixIconSrc: firstEntry ? JamiResources.lock_svg : JamiResources.round_edit_24dp_svg
 
     suffixBisIconSrc: echoMode == TextInput.Password ? JamiResources.eye_cross_svg : JamiResources.noun_eye_svg
-    suffixBisIconColor: JamiTheme.buttonTintedBlue
+    suffixBisIconColor: JamiTheme.passwordEyeIconColor
 
     placeholderText: JamiStrings.password
     infoTipText: firstEntry ? JamiStrings.password : ""
