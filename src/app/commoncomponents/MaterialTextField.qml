@@ -48,7 +48,7 @@ TextField {
     property alias suffixBisIconColor: suffixBisIcon.color
     property alias icon: container.data
 
-    property color accent: isActive || hovered ? prefixIconColor : JamiTheme.buttonTintedBlue
+    property color accent:  (isActive || hovered ? prefixIconColor : JamiTheme.passwordBaselineColor)
     property color baseColor: JamiTheme.primaryForegroundColor
     property color textColor: JamiTheme.textColor
     color: textColor
@@ -114,8 +114,11 @@ TextField {
         id: overBaseLineLabel
         font.pixelSize: root.font.pixelSize
         anchors.baseline: root.baseline
-        anchors.horizontalCenter: !isSwarmDetail ? root.horizontalCenter : undefined
+        anchors.left: root.left
+        anchors.leftMargin: 32
+        width: root.width - 64
         text: root.placeholderText
+        elide: Text.ElideRight
         color: isSwarmDetail ? root.color : root.baseColor
         visible: !root.isActive && !readOnly && root.text.toString() === ""
     }
@@ -206,12 +209,13 @@ TextField {
 
     TextFieldIcon {
         id: suffixBisIcon
-        size: 20
+        size: 16
         anchors.right: parent.right
         anchors.verticalCenter: root.verticalCenter
         anchors.verticalCenterOffset: -root.bottomPadding / 2
         color: suffixBisIconColor
         source: suffixBisIconSrc
+        opacity: 1
 
         TapHandler {
             cursorShape: Qt.ArrowCursor

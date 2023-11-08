@@ -596,6 +596,10 @@ Item {
     property real textEditError: calcSize(15)
     property real maximumCharacters: 50
 
+    // PasswordTextEdit
+    property color passwordEyeIconColor: "#5d5d5d"
+    property color passwordBaselineColor: darkTheme ? "#6e6e6e" : "#9fbfd9"
+
     // MaterialButton
     property real buttontextPadding: 10
     property real buttontextWizzardPadding: 30
