@@ -116,16 +116,6 @@ PluginManagerInterface::getChatHandlerDetails(const QString& chatHandlerId)
     return {};
 }
 
-void
-PluginManagerInterface::setPluginsEnabled(bool enable)
-{}
-
-bool
-PluginManagerInterface::getPluginsEnabled()
-{
-    return false;
-}
-
 VectorMapStringString
 PluginManagerInterface::getPluginPreferences(const QString& path, const QString& accountId)
 {
