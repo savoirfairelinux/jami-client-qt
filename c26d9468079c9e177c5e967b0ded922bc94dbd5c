@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9deb0590_53046413",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-08T05:52:59Z",
+      "side": 1,
+      "message": "1. Remove `a `?\n2. Remove reference to first-person, eg `your`?\n\n3. Should the en source string be `Choose avatar picture` or `Choose avatar image`?\n\n4. How is this string different to the string below? This variable name has `Image` and the variable name below has `Picture`?\n\nThank you",
+      "range": {
+        "startLine": 609,
+        "startChar": 45,
+        "endLine": 609,
+        "endChar": 76
+      },
+      "revId": "c26d9468079c9e177c5e967b0ded922bc94dbd5c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
