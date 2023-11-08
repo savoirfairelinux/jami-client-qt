@@ -24,6 +24,8 @@ import net.jami.Constants 1.1
 BaseModalDialog {
     id: root
 
+    closeButtonVisible: false
+
     enum PasswordEnteringPurpose {
         ChangePassword,
         ExportAccount,
@@ -77,6 +79,7 @@ BaseModalDialog {
 
     popupContent: ColumnLayout {
         id: popupContentColumnLayout
+        width: JamiTheme.preferredDialogWidth
 
         spacing: 16
 
@@ -136,10 +139,8 @@ BaseModalDialog {
             id: currentPasswordEdit
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: JamiTheme.preferredFieldWidth
+            Layout.fillWidth: true
             Layout.preferredHeight: visible ? 48 : 0
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
 
             visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.ExportAccount
             placeholderText: JamiStrings.enterCurrentPassword
@@ -151,10 +152,8 @@ BaseModalDialog {
             id: passwordEdit
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: JamiTheme.preferredFieldWidth
             Layout.preferredHeight: visible ? 48 : 0
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
+            Layout.fillWidth: true
 
             visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
 
@@ -167,10 +166,8 @@ BaseModalDialog {
             id: confirmPasswordEdit
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: JamiTheme.preferredFieldWidth
             Layout.preferredHeight: visible ? 48 : 0
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
+            Layout.fillWidth: true
 
             visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
 
