@@ -79,10 +79,6 @@ public Q_SLOTS: // METHODS
 
     MapStringString getChatHandlerDetails(const QString& chatHandlerId);
 
-    void setPluginsEnabled(bool enable);
-
-    bool getPluginsEnabled();
-
     VectorMapStringString getPluginPreferences(const QString& path, const QString& accountId);
 
     bool setPluginPreference(const QString& path,
