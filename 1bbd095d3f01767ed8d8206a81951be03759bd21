@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34e7c996_6697ce82",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-09T14:00:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43a346ce_9c5ba254",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "313fb652_962cc740",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-07T19:58:24Z",
       "side": 1,
       "message": "const auto\u0026",
+      "range": {
+        "startLine": 222,
+        "startChar": 9,
+        "endLine": 222,
+        "endChar": 16
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34165f40_ab517505",
+        "filename": "src/app/pluginlistmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-09T14:00:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "313fb652_962cc740",
       "range": {
         "startLine": 222,
         "startChar": 9,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d18686e8_93a269f6",
+        "filename": "src/app/pluginlistmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-09T14:00:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ac6a703d_efdabfff",
+      "range": {
+        "startLine": 245,
+        "startChar": 18,
+        "endLine": 245,
+        "endChar": 31
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c8119598_f5269d8f",
         "filename": "src/app/pluginversionmanager.cpp",
         "patchSetId": 3
@@ -83,6 +155,30 @@
       "writtenOn": "2023-11-07T19:58:24Z",
       "side": 1,
       "message": "remove TODO or add ticket",
+      "range": {
+        "startLine": 111,
+        "startChar": 19,
+        "endLine": 111,
+        "endChar": 23
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab460c0d_1e24ec82",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-09T14:00:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8119598_f5269d8f",
       "range": {
         "startLine": 111,
         "startChar": 19,
@@ -118,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d26ca1b_eabaac82",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-09T14:00:33Z",
+      "side": 1,
+      "message": "\u003e so if installed\u003d\"12.1.2\" and remote \u003d \"3.0\" it will return false (or vice-versa)\n\nyes, for one plugin, it must have the same versioning semantic and the same size. If this two parameters are not satisfied, I can\u0027t compare two versions.",
+      "parentUuid": "2296fa80_3b54fb03",
+      "range": {
+        "startLine": 233,
+        "startChar": 26,
+        "endLine": 235,
+        "endChar": 5
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3888ebaf_ae7ac3f4",
         "filename": "src/app/pluginversionmanager.h",
         "patchSetId": 3
@@ -129,6 +249,30 @@
       "writtenOn": "2023-11-07T19:58:24Z",
       "side": 1,
       "message": "const?",
+      "range": {
+        "startLine": 72,
+        "startChar": 83,
+        "endLine": 72,
+        "endChar": 85
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4802040d_6e70339e",
+        "filename": "src/app/pluginversionmanager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-09T14:00:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3888ebaf_ae7ac3f4",
       "range": {
         "startLine": 72,
         "startChar": 83,
@@ -164,6 +308,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "13ec6d23_4eae8d49",
+        "filename": "src/app/settingsview/components/PluginItemDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-09T14:00:33Z",
+      "side": 1,
+      "message": "The default value was legacy code. Without the default value, it breaks the ui. I think the plugin ui need refactor but not in this patch.",
+      "parentUuid": "357f6165_05532233",
+      "range": {
+        "startLine": 31,
+        "startChar": 20,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f0349216_efee7a21",
         "filename": "src/app/settingsview/components/PluginItemDelegate.qml",
         "patchSetId": 3
@@ -175,6 +343,30 @@
       "writtenOn": "2023-11-07T19:58:24Z",
       "side": 1,
       "message": "check patch from Capucine to avoid to redesign popup if needed",
+      "range": {
+        "startLine": 59,
+        "startChar": 67,
+        "endLine": 59,
+        "endChar": 86
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25935bc2_2878c9db",
+        "filename": "src/app/settingsview/components/PluginItemDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-09T14:00:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0349216_efee7a21",
       "range": {
         "startLine": 59,
         "startChar": 67,
@@ -198,6 +390,30 @@
       "writtenOn": "2023-11-07T19:58:24Z",
       "side": 1,
       "message": "pluginId?",
+      "range": {
+        "startLine": 116,
+        "startChar": 20,
+        "endLine": 116,
+        "endChar": 26
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed4bea6e_49db9ca2",
+        "filename": "src/app/settingsview/components/PluginListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-09T14:00:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba3c3971_8d6ce5f3",
       "range": {
         "startLine": 116,
         "startChar": 20,
