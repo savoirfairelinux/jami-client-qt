@@ -42,6 +42,7 @@ Popup {
 
     property int popupMargins: 30
     property int buttonMargin: 20
+    property int maximumPopupWidth: 600
 
     parent: Overlay.overlay
     anchors.centerIn: parent

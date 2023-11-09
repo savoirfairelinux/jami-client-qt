@@ -41,6 +41,7 @@ BaseModalDialog {
 
     button1.text: JamiStrings.chooseAUsername
     button2.text: JamiStrings.joinJami
+    button2.objectName: "joinButton"
     button2Clicked: function() {
         root.joinClicked();
         WizardViewStepModel.nextStep();
