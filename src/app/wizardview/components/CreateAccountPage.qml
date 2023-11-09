@@ -26,6 +26,7 @@ import Qt5Compat.GraphicalEffects
 import "../"
 import "../../commoncomponents"
 import "../../settingsview/components"
+import "../../mainview/components"
 
 Rectangle {
     id: root
@@ -361,12 +362,14 @@ Rectangle {
         }
     }
 
-    BackButton {
+    JamiPushButton {
         id: backButton
 
         objectName: "createAccountPageBackButton"
 
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
+        preferredSize: 36
+        imageContainerWidth: 20
+        source: JamiResources.ic_arrow_back_24dp_svg
 
         anchors.left: parent.left
         anchors.top: parent.top
@@ -383,37 +386,39 @@ Rectangle {
                 createAccountStack.currentIndex--;
             } else {
                 WizardViewStepModel.previousStep();
-                goodToKnow.visible = false;
                 helpOpened = false;
             }
         }
     }
 
-    PushButton {
+    JamiPushButton {
         id: adviceBox
         z: 1
 
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
+        preferredSize: 36
+        checkedImageColor: JamiTheme.chatviewButtonColor
+
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        normalColor: "transparent"
-        imageColor: adviceBox.checked ? JamiTheme.inviteHoverColor : JamiTheme.buttonTintedBlue
         source: JamiResources._black_24dp_svg
-        pressedColor: JamiTheme.tintedBlue
-        hoveredColor: JamiTheme.hoveredButtonColorWizard
-        border.color: {
-            if (adviceBox.checked) {
-                return "transparent";
-            }
-            return JamiTheme.buttonTintedBlue;
-        }
+
         checkable: true
 
+        onClicked:{
+            if (!helpOpened) {
+                checked = true
+                helpOpened = true;
+                var dlg = viewCoordinator.presentDialog(appWindow, "wizardview/components/GoodToKnowPopup.qml");
+                dlg.accepted.connect(function() {
+                    checked = false;
+                    helpOpened = false;
+                });
+            }
+        }
+
         onCheckedChanged: {
-            goodToKnow.visible = !goodToKnow.visible;
-            helpOpened = !helpOpened;
             advancedAccountSettingsPage.openedPassword = false;
             advancedAccountSettingsPage.openedNickname = false;
         }
@@ -421,124 +426,5 @@ Rectangle {
         KeyNavigation.tab: !createAccountStack.currentIndex ? usernameEdit : advancedAccountSettingsPage
         KeyNavigation.up: backButton
         KeyNavigation.down: KeyNavigation.tab
-    }
-
-    Item {
-        id: goodToKnow
-        anchors.top: parent.top
-        anchors.right: parent.right
-
-        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins + adviceBox.preferredWidth * 2 / 5
-
-        width: helpOpened ? Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 452) : 0
-        height: {
-            if (!helpOpened)
-                return 0;
-            var finalHeight = title.height + 3 * JamiTheme.preferredMarginSize;
-            finalHeight += flow.implicitHeight;
-            return finalHeight;
-        }
-
-        visible: false
-
-        Behavior on width {
-            NumberAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-
-        Behavior on height  {
-            NumberAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-
-        DropShadow {
-            z: -1
-            anchors.fill: boxAdvice
-            horizontalOffset: 2.0
-            verticalOffset: 2.0
-            radius: boxAdvice.radius
-            color: JamiTheme.shadowColor
-            source: boxAdvice
-            transparentBorder: true
-            samples: radius + 1
-        }
-
-        Rectangle {
-            id: boxAdvice
-
-            z: 0
-            anchors.fill: parent
-            radius: 30
-            color: JamiTheme.secondaryBackgroundColor
-
-            ColumnLayout {
-                id: adviceContainer
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.top: parent.top
-                visible: helpOpened ? 1 : 0
-
-                Behavior on visible  {
-                    NumberAnimation {
-                        from: 0
-                        duration: JamiTheme.overlayFadeDuration
-                    }
-                }
-
-                Text {
-                    id: title
-                    text: JamiStrings.goodToKnow
-                    color: JamiTheme.textColor
-                    font.weight: Font.Medium
-                    Layout.topMargin: JamiTheme.preferredMarginSize
-                    Layout.alignment: Qt.AlignCenter | Qt.AlignTop
-
-                    font.pixelSize: JamiTheme.title2FontSize
-                    font.kerning: true
-                }
-
-                Flow {
-                    id: flow
-                    spacing: 25
-                    Layout.alignment: Qt.AlignTop
-                    Layout.leftMargin: JamiTheme.preferredMarginSize * 4
-                    Layout.topMargin: JamiTheme.preferredMarginSize
-                    Layout.preferredWidth: helpOpened ? Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 452) : 0
-                    Layout.fillWidth: true
-
-                    InfoBox {
-                        id: info
-                        icoSource: JamiResources.laptop_black_24dp_svg
-                        title: JamiStrings.local
-                        description: JamiStrings.localAccount
-                        icoColor: JamiTheme.buttonTintedBlue
-                    }
-
-                    InfoBox {
-                        icoSource: JamiResources.person_24dp_svg
-                        title: JamiStrings.username
-                        description: JamiStrings.usernameRecommened
-                        icoColor: JamiTheme.buttonTintedBlue
-                    }
-
-                    InfoBox {
-                        icoSource: JamiResources.lock_svg
-                        title: JamiStrings.encrypt
-                        description: JamiStrings.passwordOptional
-                        icoColor: JamiTheme.buttonTintedBlue
-                    }
-
-                    InfoBox {
-                        icoSource: JamiResources.noun_paint_svg
-                        title: JamiStrings.customize
-                        description: JamiStrings.customizeOptional
-                        icoColor: JamiTheme.buttonTintedBlue
-                    }
-                }
-            }
-        }
     }
 }

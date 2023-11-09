@@ -531,6 +531,7 @@ Item {
     property real wizardViewBlocMarginSize: pixelToPoint(40)
     property real wizardViewDescriptionMarginSize: pixelToPoint(20)
 
+
     // WizardView Welcome Page
     property real welcomeLabelPointSize: 30
     property var welcomeLogo: darkTheme ? JamiResources.logo_jami_standard_coul_white_svg : JamiResources.logo_jami_standard_coul_svg
@@ -562,6 +563,8 @@ Item {
     property real advancedAccountSettingsHeightMargin: 16.5
 
     property real cornerIconSize: 40
+
+    property color wizardIconColor: darkTheme ? "#8c8c8c" : "#7f7f7f"
 
     // InfoBox
     property real infoBoxTitleFontSize: calcSize(13)
