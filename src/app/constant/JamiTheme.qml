@@ -138,6 +138,8 @@ Item {
     property color secAndTertiHoveredBackgroundColor: darkTheme ? "#123F4A" : "#E5EEF5"
     property color closeButtonLighterBlack: "#4c4c4c"
 
+    property color backgroundRectangleColor: darkTheme ? "#333333" : "#F0EFEF"
+
     // Jami switch
     property color switchBackgroundCheckedColor: "#8dbaea"
     property color switchBackgroundColor: darkTheme ? "#626262" : "#E5EEF5"
@@ -647,6 +649,7 @@ Item {
 
     // Link Device
     property color pinBackgroundColor: "#D6E4EF"
+    property color infoRectangleColor: JamiTheme.darkTheme ? "#143842" : "#e5eef5"
 
     // MaterialRadioButton
     property int radioImageSize: 30

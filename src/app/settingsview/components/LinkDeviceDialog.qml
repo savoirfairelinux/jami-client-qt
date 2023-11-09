@@ -87,7 +87,6 @@ BaseModalDialog {
 
             function onExportOnRingEnded(status, pin) {
                 stackedWidget.setExportPage(status, pin);
-                countdownTimer.start();
             }
         }
 
@@ -161,15 +160,16 @@ BaseModalDialog {
                         id: btnConfirm
 
                         Layout.alignment: Qt.AlignCenter
-                        height: 40
-                        width: 40
-                        preferredSize: 60
+                        height: 36
+                        width: 36
 
                         hoverEnabled: false
                         enabled: false
 
-                        imageColor: JamiTheme.tintedBlue
-                        source: JamiResources.check_box_24dp_svg
+                        imageColor: JamiTheme.secondaryBackgroundColor
+                        hoveredColor: JamiTheme.buttonTintedBlueHovered
+                        source: JamiResources.check_black_24dp_svg
+                        normalColor: JamiTheme.tintedBlue
 
                         onClicked: stackedWidget.setGeneratingPage()
 
@@ -187,7 +187,7 @@ BaseModalDialog {
             onHeightChanged: {
                 stackedWidget.height = spinnerLayout.implicitHeight
             }
-
+            onWidthChanged: stackedWidget.width = exportingLayout.implicitWidth
 
             ColumnLayout {
                 id: spinnerLayout
@@ -234,6 +234,7 @@ BaseModalDialog {
             onHeightChanged: {
                 stackedWidget.height = exportingLayout.implicitHeight
             }
+            onWidthChanged: stackedWidget.width = exportingLayout.implicitWidth
 
             ColumnLayout {
                 id: exportingLayout
@@ -243,158 +244,140 @@ BaseModalDialog {
                 Label {
                     id: instructionLabel
 
-                    Layout.maximumWidth: JamiTheme.preferredDialogWidth
-                    Layout.alignment: Qt.AlignCenter
+                    Layout.maximumWidth: Math.min(root.maximumPopupWidth, root.width) - 2 * root.popupMargins
+                    Layout.alignment: Qt.AlignLeft
 
                     color: JamiTheme.textColor
-                    padding: 8
 
                     wrapMode: Text.Wrap
                     text: JamiStrings.linkingInstructions
                     font.pointSize: JamiTheme.textFontSize
                     font.kerning: true
-                    horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
 
-                }
-
-                Rectangle {
-                    Layout.alignment: Qt.AlignCenter
-
-                    border.width: 3
-                    border.color: JamiTheme.textColor
-                    radius: JamiTheme.primaryRadius
-                    color: darkTheme ? JamiTheme.textColor : JamiTheme.secondaryBackgroundColor
-                    width: 170
-                    height: 170
-
-                    Image {
-                         id: qrImage
-
-                         anchors.fill: parent
-                         anchors.margins: 10
-
-                         mipmap: false
-                         smooth: false
-
-                         source: "image://qrImage/raw_" + exportedPIN.text
-                         sourceSize.width: 150
-                         sourceSize.height: 150
-                    }
-                }
-
-                Rectangle {
-                    id: pinRectangle
-
-                    radius: 15
-                    color: darkTheme ? JamiTheme.tintedBlue : JamiTheme.pinBackgroundColor
-
-                    width: exportedPIN.implicitWidth + 4 * JamiTheme.preferredMarginSize
-                    height: exportedPIN.implicitHeight + 2 * JamiTheme.preferredMarginSize
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.margins: JamiTheme.preferredMarginSize
-
-                    MaterialLineEdit {
-                        id: exportedPIN
-
-                        padding: 0
-                        anchors.centerIn: parent
-
-                        text: JamiStrings.pin
-                        wrapMode: Text.NoWrap
-
-                        backgroundColor: darkTheme ? JamiTheme.tintedBlue : JamiTheme.pinBackgroundColor
-
-                        color: darkTheme ? JamiTheme.textColor : JamiTheme.tintedBlue
-                        selectByMouse: true
-                        readOnly: true
-                        font.pointSize: JamiTheme.headerFontSize
-                        font.kerning: true
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                    }
                 }
 
                 RowLayout {
+                    spacing: 10
+                    Layout.maximumWidth: Math.min(root.maximumPopupWidth, root.width) - 2 * root.popupMargins
 
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.bottomMargin: JamiTheme.preferredMarginSize
-                    spacing: 0
+                    Rectangle {
+                        Layout.alignment: Qt.AlignCenter
 
-                    Label {
-                        id: validityLabel
+                        radius: 5
+                        color: JamiTheme.backgroundRectangleColor
+                        width: 100
+                        height: 100
 
-                        Layout.alignment: Qt.AlignRight
+                        Rectangle {
+                            width: qrImage.width + 4
+                            height: qrImage.height + 4
+                            anchors.centerIn: parent
+                            radius: 5
+                            color: JamiTheme.darkTheme ? JamiTheme.whiteColor : JamiTheme.jamiButtonBorderColor
+                            Image {
+                                 id: qrImage
+                                 anchors.centerIn: parent
+                                 mipmap: false
+                                 smooth: false
+                                 source: "image://qrImage/raw_" + exportedPIN.text
+                                 sourceSize.width: 80
+                                 sourceSize.height: 80
+                            }
+                        }
 
-                        color: JamiTheme.textColor
-                        text: JamiStrings.pinValidity
-                        font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
                     }
 
-                    Label {
-                        id: countdownLabel
+                    Rectangle {
+                        id: pinRectangle
 
-                        color: JamiTheme.textColor
-                        Layout.alignment: Qt.AlignLeft
-                        font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
+                        radius: 5
+                        color: JamiTheme.backgroundRectangleColor
+                        Layout.fillWidth: true
+                        height: 100
+                        Layout.minimumWidth: exportedPIN.width + 20
 
-                        text: "10:00"
+                        Layout.alignment: Qt.AlignCenter
+
+                        MaterialLineEdit {
+                            id: exportedPIN
+
+                            padding: 10
+                            anchors.centerIn: parent
+
+                            text: JamiStrings.pin
+                            wrapMode: Text.NoWrap
+
+                            backgroundColor: JamiTheme.backgroundRectangleColor
+
+                            color: darkTheme ? JamiTheme.editLineColor : JamiTheme.darkTintedBlue
+                            selectByMouse: true
+                            readOnly: true
+                            font.pointSize: JamiTheme.tinyCreditsTextSize
+                            font.kerning: true
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
                     }
-
-                    Timer {
-                         id: countdownTimer
-                         interval: 1000
-                         repeat: true
-
-                         property int remainingTime: 600
-
-                         onTriggered: {
-                             remainingTime--
-
-                             var minutes = Math.floor(remainingTime / 60)
-                             var seconds = remainingTime % 60
-                             countdownLabel.text = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds
-
-                             if (remainingTime <= 0) {
-                                 validityLabel.visible = false
-                                 countdownLabel.text = JamiStrings.pinExpired
-                                 countdownLabel.color = JamiTheme.redColor
-                                 countdownTimer.stop()
-                              }
-                          }
-                     }
-
                 }
 
-                Label {
-                    id: otherDeviceLabel
+                Rectangle {
+                    radius: 5
+                    color: JamiTheme.infoRectangleColor
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: infoLabels.height + 38
 
-                    Layout.alignment: Qt.AlignCenter
+                    RowLayout {
+                        id: infoLayout
 
-                    color: JamiTheme.textColor
-                    text: JamiStrings.onAnotherDevice
-                    font.pointSize: JamiTheme.smallFontSize
-                    font.kerning: true
-                    font.bold: true
-                }
+                        anchors.centerIn: parent
+                        anchors.fill: parent
+                        anchors.margins: 14
+                        spacing: 10
 
-                Label {
-                    id: otherInstructionLabel
+                        ResponsiveImage{
+                            Layout.fillWidth: true
 
-                    Layout.maximumWidth: JamiTheme.preferredDialogWidth
-                    Layout.bottomMargin: JamiTheme.preferredMarginSize
-                    Layout.alignment: Qt.AlignCenter
-                    wrapMode: Text.Wrap
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
+                            source: JamiResources.outline_info_24dp_svg
+                            fillMode: Image.PreserveAspectFit
 
-                    color: JamiTheme.textColor
-                    text: JamiStrings.onAnotherDeviceInstruction
-                    font.pointSize: JamiTheme.smallFontSize
-                    font.kerning: true
+                            color: darkTheme ? JamiTheme.editLineColor : JamiTheme.darkTintedBlue
+                            Layout.fillHeight: true
+                        }
+
+                        ColumnLayout{
+                            id: infoLabels
+
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+
+                            Label {
+                                id: otherDeviceLabel
+
+                                Layout.alignment: Qt.AlignLeft
+                                color: JamiTheme.textColor
+                                text: JamiStrings.onAnotherDevice
+
+                                font.pointSize: JamiTheme.smallFontSize
+                                font.kerning: true
+                                font.bold: true
+                            }
+
+                            Label {
+                                id: otherInstructionLabel
+
+                                Layout.fillWidth: true
+                                Layout.alignment: Qt.AlignLeft
+
+                                wrapMode: Text.Wrap
+                                color: JamiTheme.textColor
+                                text: JamiStrings.onAnotherDeviceInstruction
+
+                                font.pointSize: JamiTheme.smallFontSize
+                                font.kerning: true
+                            }
+                        }
+                    }
                 }
 
                 // Displays error messages
