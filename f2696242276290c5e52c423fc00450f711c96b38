@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dcb2bee_713fb6db",
+        "filename": "resources/icons/content_copy_black_24dp.svg",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-09T22:22:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a4a97b6_39973983",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "f2696242276290c5e52c423fc00450f711c96b38",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a3b5e08_387911fb",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-07T18:45:34Z",
       "side": 1,
       "message": "replace previous icon?",
+      "range": {
+        "startLine": 11,
+        "startChar": 36,
+        "endLine": 11,
+        "endChar": 40
+      },
+      "revId": "f2696242276290c5e52c423fc00450f711c96b38",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "192f143b_5ae243d9",
+        "filename": "resources/icons/qr_code_black_24dp.svg",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-09T22:22:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a3b5e08_387911fb",
       "range": {
         "startLine": 11,
         "startChar": 36,
