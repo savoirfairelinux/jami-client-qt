@@ -655,6 +655,7 @@ Item {
 
     // Link Device
     property color pinBackgroundColor: "#D6E4EF"
+    property color infoRectangleColor: JamiTheme.darkTheme ? "#143842" : "#e5eef5"
 
     // MaterialRadioButton
     property int radioImageSize: 30
