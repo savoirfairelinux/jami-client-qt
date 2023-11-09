@@ -50,14 +50,12 @@ BaseModalDialog {
     button1Clicked: function() {root.close()};
 
     popupContent: Text {
-                Layout.fillWidth: true
-                Layout.preferredWidth: 280
-                Layout.leftMargin: 20
-                Layout.rightMargin: 20
-                Layout.alignment: Qt.AlignLeft
+                width: root.width - 2 * root.popupMargins
                 font.pixelSize: JamiTheme.popuptextSize
+
                 lineHeight: JamiTheme.wizardViewTextLineHeight
                 wrapMode: Text.WordWrap
+
                 color: JamiTheme.textColor
                 text: JamiStrings.joinJamiNoPassword
         }
