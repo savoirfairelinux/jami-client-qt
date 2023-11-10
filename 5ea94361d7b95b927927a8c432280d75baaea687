@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70499c8b_b7c1c04d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-10T14:56:27Z",
+      "side": 1,
+      "message": "Seen with Charlotte and the design is not respected. As the logic should not change\n\nThe (i) should replace the key icon\nThe assignment_ind must have a red dot at the top (cf design) and is used to replace the pencil for edition\n",
+      "revId": "5ea94361d7b95b927927a8c432280d75baaea687",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
