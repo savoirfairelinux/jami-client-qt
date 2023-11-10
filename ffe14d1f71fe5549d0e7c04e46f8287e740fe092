@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bca1b69f_c2b4dc80",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-10T19:38:40Z",
+      "side": 1,
+      "message": "Does this effect window sharing on GNU/Linux? If so, this is temporary or permanent?\n\nShould a comment be added just under this `if()` statement, like the next if statement such as:\n`// temporarily disable on non-Wayland display server for non-macOS`\n\nThank you",
+      "range": {
+        "startLine": 126,
+        "startChar": 55,
+        "endLine": 126,
+        "endChar": 84
+      },
+      "revId": "ffe14d1f71fe5549d0e7c04e46f8287e740fe092",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
