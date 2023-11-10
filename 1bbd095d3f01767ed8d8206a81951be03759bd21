@@ -142,6 +142,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d2e8001_7fd3eadd",
+        "filename": "src/app/pluginlistmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-10T18:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d18686e8_93a269f6",
+      "range": {
+        "startLine": 245,
+        "startChar": 18,
+        "endLine": 245,
+        "endChar": 31
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8119598_f5269d8f",
@@ -236,6 +260,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78808b2c_b12b0efe",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-10T18:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d26ca1b_eabaac82",
+      "range": {
+        "startLine": 233,
+        "startChar": 26,
+        "endLine": 235,
+        "endChar": 5
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3888ebaf_ae7ac3f4",
@@ -320,6 +368,30 @@
       "side": 1,
       "message": "The default value was legacy code. Without the default value, it breaks the ui. I think the plugin ui need refactor but not in this patch.",
       "parentUuid": "357f6165_05532233",
+      "range": {
+        "startLine": 31,
+        "startChar": 20,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "1bbd095d3f01767ed8d8206a81951be03759bd21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12cdea6c_8c28e8da",
+        "filename": "src/app/settingsview/components/PluginItemDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-10T18:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13ec6d23_4eae8d49",
       "range": {
         "startLine": 31,
         "startChar": 20,
