@@ -271,6 +271,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9afe0754_58463784",
+        "filename": "src/app/commoncomponents/ChangePttKeyPopup.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-10T15:09:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9ae5fc9_7b4dbc60",
+      "range": {
+        "startLine": 42,
+        "startChar": 20,
+        "endLine": 44,
+        "endChar": 5
+      },
+      "revId": "7e8430d06f4bd2c5a170f79bff7089f44417a624",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "939f9ce1_ae48e618",
@@ -294,6 +318,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f699d49e_5f25a972",
+        "filename": "src/app/commoncomponents/ConfirmDialog.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-10T15:09:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "939f9ce1_ae48e618",
+      "range": {
+        "startLine": 40,
+        "startChar": 20,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "7e8430d06f4bd2c5a170f79bff7089f44417a624",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f453af18_6ef4825c",
@@ -307,6 +355,30 @@
       "writtenOn": "2023-11-08T20:19:20Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 34,
+        "startChar": 20,
+        "endLine": 34,
+        "endChar": 28
+      },
+      "revId": "7e8430d06f4bd2c5a170f79bff7089f44417a624",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6507259_e40e8721",
+        "filename": "src/app/commoncomponents/DaemonReconnectPopup.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-10T15:09:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f453af18_6ef4825c",
       "range": {
         "startLine": 34,
         "startChar": 20,
