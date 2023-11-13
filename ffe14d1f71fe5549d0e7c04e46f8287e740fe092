@@ -22,6 +22,30 @@
       },
       "revId": "ffe14d1f71fe5549d0e7c04e46f8287e740fe092",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "995192e3_e43e7a05",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-13T20:18:42Z",
+      "side": 1,
+      "message": "this doesn\u0027t touch anything regarding non wayland environment",
+      "parentUuid": "bca1b69f_c2b4dc80",
+      "range": {
+        "startLine": 126,
+        "startChar": 55,
+        "endLine": 126,
+        "endChar": 84
+      },
+      "revId": "ffe14d1f71fe5549d0e7c04e46f8287e740fe092",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
