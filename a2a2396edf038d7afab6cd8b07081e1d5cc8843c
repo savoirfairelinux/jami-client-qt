@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b14dbdd_d9011f58",
+        "filename": "src/app/commoncomponents/ConfirmDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-13T16:35:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4175019a_02f42676",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 22
+      },
+      "revId": "a2a2396edf038d7afab6cd8b07081e1d5cc8843c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03f866e8_c8dfbc8e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-10T15:09:47Z",
       "side": 1,
       "message": "This popup seems broken",
+      "range": {
+        "startLine": 36,
+        "startChar": 21,
+        "endLine": 36,
+        "endChar": 26
+      },
+      "revId": "a2a2396edf038d7afab6cd8b07081e1d5cc8843c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "798abdab_1e687035",
+        "filename": "src/app/mainview/components/DevicesListPopup.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-13T16:35:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03f866e8_c8dfbc8e",
       "range": {
         "startLine": 36,
         "startChar": 21,
