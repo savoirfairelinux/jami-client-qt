@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49d3678c_116742d6",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-13T21:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fcb1875_3a36cd2a",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "b0900b7d2266c0cd67634df40795aa6b2f228455",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f624499_cc3a4eeb",
@@ -83,6 +107,30 @@
       "writtenOn": "2023-11-13T17:55:12Z",
       "side": 1,
       "message": "avoid ternary with true/false as a result.\n\nCurrentConversation.rdvAccount !\u003d\u003d \"\" is the same result!",
+      "range": {
+        "startLine": 40,
+        "startChar": 22,
+        "endLine": 40,
+        "endChar": 73
+      },
+      "revId": "b0900b7d2266c0cd67634df40795aa6b2f228455",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d485137_c65e5a86",
+        "filename": "src/app/mainview/components/DevicesListPopup.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-13T21:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bdc2b16_434780b9",
       "range": {
         "startLine": 40,
         "startChar": 22,
