@@ -4150,8 +4150,8 @@ connects to synchronize the conversation.</source>
         <translation>ಸ್ಥಳಸೇವೆಗಳುಅಜ್ಞಾತಪರಿಣಾಮ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1162"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1175"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1163"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1176"/>
         <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>
@@ -4356,22 +4356,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="477"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="478"/>
         <source>Searching…</source>
         <translation>ಹುಡುಕುತ್ತಿರುವ.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1006"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1015"/>
         <source>Invalid ID</source>
         <translation>ಅಮಾನ್ಯ ಗುರುತಿನ ಚೀಟಿ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1009"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1018"/>
         <source>Username not found</source>
         <translation>ಬಳಕೆದಾರ ಹೆಸರು ಕಂಡುಬಂದಿಲ್ಲ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1012"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1021"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>ನಾನು ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</translation>
     </message>
@@ -4379,7 +4379,7 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="440"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="441"/>
         <source>Bad URI scheme</source>
         <translation>ಕೆಟ್ಟ URI ಯೋಜನೆ</translation>
     </message>

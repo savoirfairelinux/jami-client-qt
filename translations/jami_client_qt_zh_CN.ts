@@ -330,7 +330,7 @@ Jami 将立即退出。</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="92"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>修改快捷键</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
@@ -907,7 +907,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
         <source>PIN expired</source>
-        <translation type="unfinished"/>
+        <translation>PIN过期</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
@@ -1067,7 +1067,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
         <source>Contact</source>
-        <translation>通讯录</translation>
+        <translation>联系人</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
@@ -1673,7 +1673,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
         <source>File saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>文件保存到 %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
@@ -1703,7 +1703,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="298"/>
         <source>Video codec</source>
-        <translation>视频编程器</translation>
+        <translation>视频编解码器</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="299"/>
@@ -1718,7 +1718,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Audio codec</source>
-        <translation>音频编程器</translation>
+        <translation>音频编解码器</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
@@ -1780,7 +1780,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
         <source>Reduce</source>
-        <translation>减少</translation>
+        <translation>缩小</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
@@ -2151,7 +2151,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="550"/>
         <source>Markdown</source>
-        <translation>标记</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="617"/>
@@ -3580,7 +3580,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="198"/>
         <source>Link</source>
-        <translation>关联</translation>
+        <translation>链接</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="202"/>
@@ -3896,7 +3896,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
-        <translation>方式不允许</translation>
+        <translation>方法不被允许</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
@@ -3907,7 +3907,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
-        <translation>需要代理服务器认证</translation>
+        <translation>代理服务器需要认证</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
@@ -3942,12 +3942,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
-        <translation>错误的扩展名 </translation>
+        <translation>错误的扩展</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
-        <translation>需要扩展名</translation>
+        <translation>需要扩展</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
@@ -3987,7 +3987,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
-        <translation>含糊</translation>
+        <translation>URI不明确</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
@@ -4072,12 +4072,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
-        <translation>任何地方都不存在 </translation>
+        <translation>用户不存在</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
-        <translation>任何地方都不可接受</translation>
+        <translation>不可接受</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="375"/>
@@ -4160,10 +4160,10 @@ connects to synchronize the conversation.</source>
         <translation>位置服务未知错误</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1162"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1175"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1163"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1176"/>
         <source>%1 (you)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (您)</translation>
     </message>
 </context>
 <context>
@@ -4237,7 +4237,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
-        <translation>选择Jami的名字是源于斯瓦希利语的&quot;jamii&quot;字,意思是&quot;社区&quot;作为名词,&quot;一起&quot;作为词.</translation>
+        <translation>Jami这个名字是源于斯瓦希里语的词 &quot;jamii&quot;，&quot;jamii&quot;作为名词时意思是“社区”，作为副词时意思是“一起”。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
@@ -4366,22 +4366,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="477"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="478"/>
         <source>Searching…</source>
         <translation>正在搜索…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1006"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1015"/>
         <source>Invalid ID</source>
         <translation>非法 ID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1009"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1018"/>
         <source>Username not found</source>
         <translation>未找到用户名</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1012"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1021"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>无法查找...</translation>
     </message>
@@ -4389,7 +4389,7 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="440"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="441"/>
         <source>Bad URI scheme</source>
         <translation>错误的 URI 方案 </translation>
     </message>

@@ -1,35 +1,35 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="tt" sourcelanguage="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh-Hant" sourcelanguage="en">
 <context>
     <name>CallAdapter</name>
     <message>
         <location filename="../src/app/calladapter.cpp" line="213"/>
         <source>Missed call</source>
-        <translation>Чакыруны югалтканнар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="214"/>
         <source>Missed call with %1</source>
-        <translation>% 1 белән шалтыратуны югалту</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="535"/>
         <source>Incoming call</source>
-        <translation>Килүче чакыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="536"/>
         <source>%1 is calling you</source>
-        <translation>%1 сезгә шалтыратып тора</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="547"/>
         <source>is calling you</source>
-        <translation>сезне чакыра</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="1044"/>
         <source>Screenshot</source>
-        <translation>Скриншот</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -37,12 +37,12 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="189"/>
         <source>%1 received a new message</source>
-        <translation>% 1 яңа хәбәр алды</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="244"/>
         <source>%1 received a new trust request</source>
-        <translation>%1 яңа ышаныч үтенече алды</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -50,7 +50,7 @@
     <message>
         <location filename="../src/app/currentcall.cpp" line="185"/>
         <source>Me</source>
-        <translation>Мин.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -58,27 +58,27 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="137"/>
         <source>Private</source>
-        <translation>Шәхси</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="139"/>
         <source>Private group (restricted invites)</source>
-        <translation>Шәхси төркем (кече чакырулар белән)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="141"/>
         <source>Private group</source>
-        <translation>Шәхси төркем</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="143"/>
         <source>Public group</source>
-        <translation>Халык төркеме</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="324"/>
         <source>An error occurred while fetching this repository</source>
-        <translation>Бу саклагычны алып килү вакытында хата булган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="326"/>
@@ -98,7 +98,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="328"/>
         <source>An invalid message was detected</source>
-        <translation>Яраксыз хәбәр ачыкланган</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -106,205 +106,205 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="29"/>
         <source>Accept</source>
-        <translation>Бу сорауны кабул итегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="30"/>
         <source>Accept in audio</source>
-        <translation>Аудиоязмада кабул итү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="31"/>
         <source>Accept in video</source>
-        <translation>Видеода кабул итегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
         <source>Refuse</source>
-        <translation>Кире</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
         <source>End call</source>
-        <translation>Шалтыратуны тәмамлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
         <source>Incoming audio call from {}</source>
-        <translation>{}дан килгән аудио чакыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
         <source>Incoming video call from {}</source>
-        <translation>{}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
         <source>Invitations</source>
-        <translation>Чакырулар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="39"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>Jami - җәмгыятьтә киң таралган коммуникация платформасы, аның нигезендә - һәркем өчен бушлай таратылган челтәр.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>Swarm технологиясенә күчү бу сөйләшүне берничә җайланма аша синхронлаштыруга һәм ышанычлылыкны яхшыртуга мөмкинлек бирә.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="44"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
         <source>Could not re-connect to the Jami daemon (jamid).
 Jami will now quit.</source>
-        <translation>Җәмид дәймоны белән элемтәгә керә алмадым.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
         <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation>Җәми дәймоны белән яңадан элемтәгә керергә тырышам...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="48"/>
         <source>Version</source>
-        <translation>Версия</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="51"/>
         <source>Jami is a free universal communication software that respects the freedom and privacy of its users.</source>
-        <translation>Jami - кулланучыларның ирекле һәм шәхси хокукларын хөрмәт итүче ирекле универсаль коммуникация программасы.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="54"/>
         <source>Display QR code</source>
-        <translation>QR-кодны күрсәтү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="55"/>
         <source>Open settings</source>
-        <translation>Параметрларны ачу</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="56"/>
         <source>Close settings</source>
-        <translation>Якындагы җайланмалар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="57"/>
         <source>Add Account</source>
-        <translation>Хисапны өстәү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Add to conference</source>
-        <translation>Конференциягә өстәү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
         <source>Add to conversation</source>
-        <translation>Әңгәмәгә өстәмәләр кертү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="62"/>
         <source>Transfer this call</source>
-        <translation>Бу чакыруны күчер</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="63"/>
         <source>Transfer to</source>
-        <translation>Трансфер</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="66"/>
         <source>Authentication required</source>
-        <translation>Исәпләү таләп ителә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="67"/>
         <source>Your session has expired or been revoked on this device. Please enter your password.</source>
-        <translation>Сезнең сессиягез тәмамланды яки бу җайланмада кире алынды.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="68"/>
         <source>JAMS server</source>
-        <translation>JAMS серверы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="69"/>
         <source>Authenticate</source>
-        <translation>Ышанычлылык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="70"/>
         <source>Delete account</source>
-        <translation>Хисапны бетерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="71"/>
         <source>In progress…</source>
-        <translation>Эш бара...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="72"/>
         <source>Authentication failed</source>
-        <translation>Идентификацияне раслау уңышсыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="73"/>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="74"/>
         <source>Username</source>
-        <translation>Исем кулланучы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="75"/>
         <source>Alias</source>
-        <translation>Исемдәшләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="78"/>
         <source>Allow incoming calls from unknown contacts</source>
-        <translation>Билгесез контактлардан керүче шалтыратуларга рөхсәт итү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="79"/>
         <source>Convert your account into a rendezvous point</source>
-        <translation>Аккаунтыгызны очрашу урыны итеп үзгәртегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="80"/>
         <source>Automatically answer calls</source>
-        <translation>Автоматка җавап бирү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="81"/>
         <source>Enable custom ringtone</source>
-        <translation>Үзгәртелгән кыңгырау тавышын кую</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="82"/>
         <source>Select custom ringtone</source>
-        <translation>Үзгәртелгән кыңгырау тавышын сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="83"/>
         <source>Select a new ringtone</source>
-        <translation>Яңа кыңгырау тавышын сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="84"/>
         <source>Certificate File (*.crt)</source>
-        <translation>Сертификат файлы (*.crt)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="85"/>
         <source>Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation>Аудио файл (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="86"/>
@@ -329,7 +329,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="92"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>修改快捷键</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="93"/>
@@ -344,257 +344,257 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
         <source>Enable read receipts</source>
-        <translation>Укырга кертүне кую</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="98"/>
         <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation>Хәбәр күрсәтелгән дип күрсәтелгән распискалар җибәрү һәм алу</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="101"/>
         <source>Voicemail</source>
-        <translation>Тавыш почтасы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="102"/>
         <source>Voicemail dial code</source>
-        <translation>Тавыш почтасы номеры</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="105"/>
         <source>Security</source>
-        <translation>Корылык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="106"/>
         <source>Enable SDES key exchange</source>
-        <translation>SDES ачкычларын алмаштыруны мөмкинләштерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="107"/>
         <source>Encrypt negotiation (TLS)</source>
-        <translation>Шифрлау сөйләшүләре (TLS)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="108"/>
         <source>CA certificate</source>
-        <translation>КА сертификаты</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="109"/>
         <source>User certificate</source>
-        <translation>Кулланучы сертификаты</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="110"/>
         <source>Private key</source>
-        <translation>Шәхси ачкыч</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="111"/>
         <source>Private key password</source>
-        <translation>Шәхси ачкычлы пароль</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="112"/>
         <source>Verify certificates for incoming TLS connections</source>
-        <translation>Килүче TLS элемтәләре сертификатын тикшерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="113"/>
         <source>Verify server TLS certificates</source>
-        <translation>Серверның TLS сертификатын тикшерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="114"/>
         <source>Require certificate for incoming TLS connections</source>
-        <translation>Килүче TLS тоташулары өчен сертификат таләп ителә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="116"/>
         <source>Select a private key</source>
-        <translation>Шәхси ачкычны сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="117"/>
         <source>Select a user certificate</source>
-        <translation>Кулланучы сертификатын сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="118"/>
         <source>Select a CA certificate</source>
-        <translation>КА сертификатын сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="120"/>
         <source>Key File (*.key)</source>
-        <translation>Төп файл (*.key)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
         <source>Connectivity</source>
-        <translation>Бәйләнеш</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="124"/>
         <source>Auto Registration After Expired</source>
-        <translation>Автомобильдә теркәлү вакыты тәмамланганнан соң</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="125"/>
         <source>Registration expiration time (seconds)</source>
-        <translation>Теркәлү вакыты (секундлар)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="126"/>
         <source>Network interface</source>
-        <translation>Аварияләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="127"/>
         <source>Use UPnP</source>
-        <translation>UPnP куллан</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="128"/>
         <source>Use TURN</source>
-        <translation>ТУРНны куллан</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
         <source>TURN address</source>
-        <translation>ТУРН адресы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
         <source>TURN username</source>
-        <translation>ТУРН кулланучы исеме</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="131"/>
         <source>TURN password</source>
-        <translation>ТУРН пароле</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="132"/>
         <source>TURN Realm</source>
-        <translation>ТУРН дөньясы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="133"/>
         <source>Use STUN</source>
-        <translation>STUN куллан</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="134"/>
         <source>STUN address</source>
-        <translation>STUN адресы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
         <source>Allow IP Auto Rewrite</source>
-        <translation>IP-ны автомат рәвештә язарга рөхсәт итү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="138"/>
         <source>Public address</source>
-        <translation>Халык алдындагы адрес</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="139"/>
         <source>Use custom address and port</source>
-        <translation>Үзгәртелгән адрес һәм портны кулланыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="140"/>
         <source>Address</source>
-        <translation>Адрес</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="141"/>
         <source>Port</source>
-        <translation>Порт</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="144"/>
         <source>Media</source>
-        <translation>Медиа</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="145"/>
         <source>Enable video</source>
-        <translation>Видеоны кую</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="153"/>
         <source>SDP Session Negotiation (ICE Fallback)</source>
-        <translation>СДП сессиясе сөйләшүләре (ICE Fallback)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="154"/>
         <source>Only used during negotiation in case ICE is not supported</source>
-        <translation>ICE ярдәм итмәгән очракта гына сөйләшүләр вакытында кулланыла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="155"/>
         <source>Audio RTP minimum Port</source>
-        <translation>Аудио RTP минималь порт</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="156"/>
         <source>Audio RTP maximum Port</source>
-        <translation>Аудио RTP максималь порт</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="157"/>
         <source>Video RTP minimum Port</source>
-        <translation>Видеоның минималь RTP порт</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="158"/>
         <source>Video RTP maximum port</source>
-        <translation>Видеоның иң зур RTP порты</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
         <source>Enable local peer discovery</source>
-        <translation>Җирле яшьтәшләрне ачыклау мөмкинлеге</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
         <source>Connect to other DHT nodes advertising on your local network.</source>
-        <translation>Җирле челтәрдә реклама ясаган башка DHT узелларына тоташыгыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="164"/>
         <source>Enable proxy</source>
-        <translation>Проксины кую</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="165"/>
         <source>Proxy address</source>
-        <translation>Прокси адресы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="166"/>
         <source>Bootstrap</source>
-        <translation>Бутстрап</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
         <source>Back</source>
-        <translation>Кайт!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
         <source>Account</source>
-        <translation>Хисап</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
         <source>General</source>
-        <translation>Генераль</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="172"/>
@@ -604,143 +604,143 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="182"/>
         <source>Audio</source>
-        <translation>Аудиоязма</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="183"/>
         <source>Microphone</source>
-        <translation>Микрофон</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="184"/>
         <source>Select audio input device</source>
-        <translation>Аудио кертү җайланмасын сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="185"/>
         <source>Output device</source>
-        <translation>Чыгыш җайланмасы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
         <source>Select audio output device</source>
-        <translation>Аудио чыгару җайланмасын сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="187"/>
         <source>Ringtone device</source>
-        <translation>Таңлы тавышлар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="188"/>
         <source>Select ringtone output device</source>
-        <translation>Туннар чыгару җайланмасын сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="189"/>
         <source>Audio manager</source>
-        <translation>Аудио менеджер</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="193"/>
         <source>Video</source>
-        <translation>Видео</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="194"/>
         <source>Select video device</source>
-        <translation>Видео җайланманы сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="195"/>
         <source>Device</source>
-        <translation>Кушымта</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="196"/>
         <source>Resolution</source>
-        <translation>Катылык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
         <source>Select video resolution</source>
-        <translation>Видео төшенчәсен сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
         <source>Frames per second</source>
-        <translation>Сакынга кадрлар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
         <source>Select video frame rate (frames per second)</source>
-        <translation>Видео кадрлар тизлеген сайлагыз (секунда кадрлар)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="200"/>
         <source>Enable hardware acceleration</source>
-        <translation>Хардверны тизләтүне кую</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="203"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation>Экранны уртаклашуның кадрлар тизлеген сайлагыз (секунда кадрлар)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="204"/>
         <source>no video</source>
-        <translation>видеосыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="209"/>
         <source>Back up account here</source>
-        <translation>Бу урындагы хисабын яңартыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
         <source>Back up account</source>
-        <translation>Ярдәмче хисабы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="284"/>
         <source>Unavailable</source>
-        <translation>Бу китап юк</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="311"/>
         <source>Turn off sharing</source>
-        <translation>Бүләкләүне туктату</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
         <source>Stop location sharing in this conversation (%1)</source>
-        <translation>Бу сөйләшүдә урынны бүлешүне туктату (%1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
         <source>Hide chat</source>
-        <translation>Саклан!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="344"/>
         <source>Back to Call</source>
-        <translation>Кайту</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
         <source>Scroll to end of conversation</source>
-        <translation>Сөйләшүнең ахырына кадәр сызык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="371"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation>Башкаларга сезне Jamiда табарга һәм сезгә ирешергә ярдәм итәр өчен, сез кулланучы исемен сайлый аласыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="378"/>
         <source>Are you sure you would like to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
-        <translation>Әгәр шулай икән, бу хисапка 40 тамгалы идентификатор гына билгеләнәчәк.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
@@ -748,130 +748,130 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
 - Special characters allowed: dash (-)</source>
-        <translation>- Максималь 32 тамга - Әлифба хәрефләре (A-Z һәм a-z) - Санлы хәрефләр (0-9 нчы сан) - Махсус хәрефләр рөхсәт ителә: сызык (-)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
         <source>Your account will be created and stored locally.</source>
-        <translation>Сезнең хисабыгыз җирле рәвештә төзеләчәк һәм сакланачак.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
-        <translation>Исем сайларга киңәш ителә, ә сайланган исем соңрак үзгәртелә алмый.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="387"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation>Кулланучының хисабын пароль белән шифрлау ирекле, һәм пароль югалган очракта аны соңрак кире кайтарырга ярамый.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="388"/>
         <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
-        <translation>Профиль рәсемен һәм кушаматны урнаштыру ирекле, һәм аны шулай ук урнаштыруларда соңрак үзгәртергә мөмкин.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="397"/>
         <source>TLS</source>
-        <translation>ТЛС</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="398"/>
         <source>UDP</source>
-        <translation>УПД</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="399"/>
         <source>Display Name</source>
-        <translation>Исем күрсәтү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Сайланган кулланучы исеме Jamiда җиңелрәк табарга ярдәм итә ала. Әгәр кулланучы исеме сайланмаса, бу хисапны кулланучы исеме буларак очраклы рәвештә 40 тамгалы идентификатор билгеләнә. Бу идентификатор белән табу һәм аныга ирешү кыенрак.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="406"/>
         <source>This Jami account exists only on this device.
 The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation>Бу Jami хисабы бу җайланмада гына бар. Бу җайланма югалган яки кушымта урнаштырылмаган очракта хисабы югалачак. Бу хисабның резервка коруны киңәш ителә.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
         <source>Encrypt account</source>
-        <translation>Шифрланган хисап</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="424"/>
         <source>Back up account to a .gz file</source>
-        <translation>.gz файлына архивлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="430"/>
         <source>This profile is only shared with this account's contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation>Бу профиль әлеге хисапның контактлары белән генә уртаклаша.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="431"/>
         <source>Encrypt account with a password</source>
-        <translation>Кулланма белән хисапны шифрлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="432"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation>Jami хисабы бу җайланмада гына, сезнең хисап ачкычлары булган архив буларак, барлыкка килә һәм саклана.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="433"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
-        <translation>Игътибар итегез: парольсез калган очракта аны кире кайтарырга ярамый!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="459"/>
         <source>Would you really like to delete this account?</source>
-        <translation>Сез бу хисапны бетерәсегез киләме?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="460"/>
         <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation>Әгәр сезнең аккаунтыгыз башка җайланмага кертелмәсә, сезнең аккаунтыгыз һәм теркәлгән кулланучы исемегез кайтарылмаслык рәвештә югалып калачак.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="471"/>
         <source>Dark</source>
-        <translation>Караңгы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="472"/>
         <source>Light</source>
-        <translation>Яктылык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="480"/>
         <source>Include local video in recording</source>
-        <translation>Җирле видеоны яздыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="481"/>
         <source>Default settings</source>
-        <translation>Әдеһәти көйләүләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
         <source>Enable typing indicators</source>
-        <translation>Типография күрсәткечләрен кую</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="485"/>
         <source>Send and receive typing indicators showing that a message is being typed.</source>
-        <translation>Хәбәрнең язылачагын күрсәтүче язу күрсәткечләрен җибәрү һәм алу.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="486"/>
         <source>Show link preview in conversations</source>
-        <translation>Сылтаманы сөйләшүләрдә күрсәтү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="508"/>
@@ -891,7 +891,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="589"/>
         <source>Enter account password</source>
-        <translation>Хисап номеры шифрен кертегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="590"/>
@@ -901,7 +901,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
         <source>PIN expired</source>
-        <translation type="unfinished"/>
+        <translation>PIN过期</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
@@ -916,7 +916,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
         <source>Link new device</source>
-        <translation>Яңа җайланманы бәйлә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
@@ -931,7 +931,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="600"/>
         <source>Enter password</source>
-        <translation>Пароль кертегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="602"/>
@@ -941,7 +941,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
         <source>Show less</source>
-        <translation>Кирәк күрсәтү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="744"/>
@@ -956,17 +956,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="748"/>
         <source>Strikethrough</source>
-        <translation>Сызылган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
         <source>Unordered list</source>
-        <translation>Тәртипсез исемлек</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
         <source>Ordered list</source>
-        <translation>Заказлы исемлек</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="758"/>
@@ -981,7 +981,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
         <source>Appearance</source>
-        <translation>Күренеш</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="851"/>
@@ -1011,7 +1011,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
         <source>Enter</source>
-        <translation type="unfinished"/>
+        <translation>輸入</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
@@ -1026,7 +1026,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
         <source>View</source>
-        <translation type="unfinished"/>
+        <translation>查看</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
@@ -1051,7 +1051,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
         <source>Connecting</source>
-        <translation>Бәйләнеш</translation>
+        <translation>連接中</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="868"/>
@@ -1061,7 +1061,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
         <source>Contact</source>
-        <translation type="unfinished"/>
+        <translation>聯絡人</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
@@ -1086,332 +1086,332 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="496"/>
         <source>Accept transfer limit (in Mb)</source>
-        <translation>Трансферлар чикләүләрен кабул итү (Mb)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation>Җәминең яңа версиясе табылды. Хәзерге вакытта аны яңартырга телисезме?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="539"/>
         <source>Save recordings to</source>
-        <translation>Зыялыларны</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="540"/>
         <source>Save screenshots to</source>
-        <translation>Скринофотосүрәтләрне</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="582"/>
         <source>Select &quot;Link another device&quot;</source>
-        <translation>&quot;Тагын бер җайланманы тоташтыру&quot;ны сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
         <source>Choose a picture as your avatar</source>
-        <translation>Аватар итеп фотоны сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="685"/>
         <source>Share freely and privately with Jami</source>
-        <translation>Җәми белән иркенләп һәм шәхси рәвештә уртаклашыгыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="711"/>
         <source>Unban</source>
-        <translation>Азатлык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
         <source>Add</source>
-        <translation>Өстәргә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
         <source>more emojis</source>
-        <translation>күбрәк эмоджилар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
         <source>Reply to</source>
-        <translation>Җавап</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
         <source>In reply to</source>
-        <translation>Бу сорауларга җавап итеп:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
         <source> replied to</source>
-        <translation>җавап</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
         <source>Reply</source>
-        <translation>Җавап</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="464"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
         <source>Edit</source>
-        <translation>Редакция</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="768"/>
         <source>Edited</source>
-        <translation>Редакция</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="769"/>
         <source>Join call</source>
-        <translation>Кушылу чакыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="770"/>
         <source>A call is in progress. Do you want to join the call?</source>
-        <translation>Телефон буенча сөйләшү бара.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="771"/>
         <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
-        <translation>Бу төркемнең хәзерге хуҗасы килми.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
         <source>Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.</source>
-        <translation>Бу төркемдә киләчәктә телефоннан шалтыратулар өчен махсус җайланма сайлагыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="773"/>
         <source>Choose this device</source>
-        <translation>Бу җайланманы сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="774"/>
         <source>Remove current device</source>
-        <translation>Хәзерге җайланманы алып ташлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
         <source>Host only this call</source>
-        <translation>Бу чакыруны гына кабул итегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
         <source>Host this call</source>
-        <translation>Бу чакыруны кабул итегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
         <source>Make me the default host for future calls</source>
-        <translation>Мине киләчәктә телефоннар өчен алдан билгеләнгән хост итеп куй</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="792"/>
         <source>Mute conversation</source>
-        <translation>Тыныч сөйләшү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="795"/>
         <source>Default host (calls)</source>
-        <translation>Әдеһәти хост (күрәшелешләр)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
         <source>None</source>
-        <translation>Берсе дә юк</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
         <source>Tip</source>
-        <translation>Өстәмә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
         <source>Add a profile picture and nickname to complete your profile</source>
-        <translation>Профиль рәсемен һәм кушаматны кушып, профилегезне тулыландырыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
         <source>Start swarm</source>
-        <translation>Күчләр җыюны башлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
         <source>Create swarm</source>
-        <translation>Күмәклек барлыкка китер</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
         <source>Call settings</source>
-        <translation>Чакырулар өчен көйләүләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="115"/>
         <source>Disable secure dialog check for incoming TLS data</source>
-        <translation>Килгән TLS мәгълүматлары өчен куркынычсыз диалогны тикшерүне гамәлдән чыгару</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="146"/>
         <source>Video codecs</source>
-        <translation>Видеокодеклар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="147"/>
         <source>Audio codecs</source>
-        <translation>Аудиокодеклар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="150"/>
         <source>Name server</source>
-        <translation>Исем серверы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
         <source>OpenDHT configuration</source>
-        <translation>OpenDHT конфигурациясе</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="201"/>
         <source>Mirror local video</source>
-        <translation>Җирле видеоны күзәтеп карагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
         <source>Why should I back-up this account?</source>
-        <translation>Ни өчен мин бу хисапны резервка кертәм?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
         <source>Success</source>
-        <translation>Уңыш</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
         <source>Error</source>
-        <translation>Хата</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
         <source>Jami archive files (*.gz)</source>
-        <translation>Jami архив файллары (*.gz)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
         <source>All files (*)</source>
-        <translation>Барлык файллар (*)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="217"/>
         <source>Reinstate as contact</source>
-        <translation>Контактны кире кайтарыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="218"/>
         <source>name</source>
-        <translation>исем</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="219"/>
         <source>Identifier</source>
-        <translation>Идентификатор</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="222"/>
         <source>is recording</source>
-        <translation>теркәлгән</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="223"/>
         <source>are recording</source>
-        <translation>теркәлгән</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="224"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="716"/>
         <source>Mute</source>
-        <translation>Тыңлаучан</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="225"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="717"/>
         <source>Unmute</source>
-        <translation>Тынычлык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="226"/>
         <source>Pause call</source>
-        <translation>Тәртибе</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="227"/>
         <source>Resume call</source>
-        <translation>Көйрәне дәвам итү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="228"/>
         <source>Mute camera</source>
-        <translation>Сүлпән камера</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="229"/>
         <source>Unmute camera</source>
-        <translation>Тыныч камера</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="230"/>
         <source>Add participant</source>
-        <translation>Катнашучыны өстәү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
         <source>Add participants</source>
-        <translation>Катнашучыларны өстәргә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
         <source>Details</source>
-        <translation>Мәгълүматлар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="177"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
         <source>Chat</source>
-        <translation>Чатта</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="174"/>
         <source>Manage account</source>
-        <translation>Хисапны идарә итү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
         <source>Linked devices</source>
-        <translation>Бәйләнешле җайланмалар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
         <source>Advanced settings</source>
-        <translation>Алга таба урнаштырулар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="179"/>
         <source>Audio and Video</source>
-        <translation>Аудио һәм видео</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="190"/>
         <source>Sound test</source>
-        <translation>Тавыш сынавы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="202"/>
         <source>Screen sharing</source>
-        <translation>Экранны бүлешү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
@@ -1421,410 +1421,410 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
         <source>More options</source>
-        <translation>Күпрәк мөмкинлекләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
         <source>Mosaic</source>
-        <translation>Мозаика</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
         <source>Participant is still muted on their device</source>
-        <translation>Катнашучының җайланмасы һаман да тынып тора</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
         <source>You are still muted on your device</source>
-        <translation>Сез һаман да үз җайланмагызда тавышсыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="238"/>
         <source>You are still muted by moderator</source>
-        <translation>Сез һаман да модератор тарафыннан тынып каласыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
         <source>You are muted by a moderator</source>
-        <translation>Сезне модераторлар тыйды.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="240"/>
         <source>Moderator</source>
-        <translation>Модератор</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
         <source>Host</source>
-        <translation>Кунагы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
         <source>Local and Moderator muted</source>
-        <translation>Җирле һәм Модератор тавышсыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
         <source>Moderator muted</source>
-        <translation>Модераторны тынландыралар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
         <source>Not muted</source>
-        <translation>Тынычланмаган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
         <source>On the side</source>
-        <translation>Янәшәдә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="246"/>
         <source>On the top</source>
-        <translation>Өстәлдә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="247"/>
         <source>Hide self</source>
-        <translation>Үзеңне яшер</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="248"/>
         <source>Hide spectators</source>
-        <translation>Тамашачыларны яшерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="554"/>
         <source>Copy</source>
-        <translation>Кушымта</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="252"/>
         <source>Share</source>
-        <translation>Бүләкләү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="253"/>
         <source>Cut</source>
-        <translation>Кыса</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="254"/>
         <source>Paste</source>
-        <translation>Паст</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
         <source>Start video call</source>
-        <translation>Видеокүршетүне башлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="258"/>
         <source>Start audio call</source>
-        <translation>Аудиокызылышны башлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="259"/>
         <source>Clear conversation</source>
-        <translation>Ачык сөйләшү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="260"/>
         <source>Confirm action</source>
-        <translation>Эшләүне раслау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="261"/>
         <source>Remove conversation</source>
-        <translation>Әңгәмәне алып ташлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
         <source>Would you really like to remove this conversation?</source>
-        <translation>Сез бу сөйләшүне алып ташларга телисезме?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="263"/>
         <source>Would you really like to block this conversation?</source>
-        <translation>Сез бу сөйләшүне туктатырга телисезме?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="264"/>
         <source>Remove contact</source>
-        <translation>Контакты алып ташлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="265"/>
         <source>Block contact</source>
-        <translation>Блок белән элемтә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="266"/>
         <source>Conversation details</source>
-        <translation>Сөйләшүнең җентеклелекләре</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
         <source>Contact details</source>
-        <translation>Контакт мәгълүматлары</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
         <source>Sip input panel</source>
-        <translation>СИП керү панеле</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
         <source>Transfer call</source>
-        <translation>Трансфер чакыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
         <source>Stop recording</source>
-        <translation>Язуны туктату</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="273"/>
         <source>Start recording</source>
-        <translation>Язуны башлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="274"/>
         <source>View full screen</source>
-        <translation>Тулы экранда карау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="275"/>
         <source>Share screen</source>
-        <translation>Экранны бүлешү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
         <source>Share window</source>
-        <translation>Тәрәзәне бүлешү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="277"/>
         <source>Stop sharing screen or file</source>
-        <translation>Экран яки файлны бүлешүне туктату</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="278"/>
         <source>Share screen area</source>
-        <translation>Экран өлкәсен бүлешү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="279"/>
         <source>Share file</source>
-        <translation>Файлны бүлегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="280"/>
         <source>Select sharing method</source>
-        <translation>Бөлшерү ысулын сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
         <source>View plugin</source>
-        <translation>Плагинны карау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
         <source>Advanced information</source>
-        <translation>Алга табагы мәгълүмат</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="283"/>
         <source>No video device</source>
-        <translation>Видео җайланма юк</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
         <source>Lower hand</source>
-        <translation>Түбән кул</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
         <source>Raise hand</source>
-        <translation>Кулыңны күтәр!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
         <source>Layout settings</source>
-        <translation>Дизайн кую</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
         <source>Take tile screenshot</source>
-        <translation>Тилле экраннан фотосурәт алыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
         <source>Screenshot saved to %1</source>
-        <translation>% 1 дан саклана торган экран</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
         <source>File saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>文件保存到 %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
         <source>Renderers information</source>
-        <translation>Исемлек бирүчеләр турында мәгълүмат</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="294"/>
         <source>Call information</source>
-        <translation>Чакырулар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="295"/>
         <source>Peer number</source>
-        <translation>Бер-берсе белән беррәттән</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
         <source>Call id</source>
-        <translation>Зинһар өчен, шалтыратыгыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="297"/>
         <source>Sockets</source>
-        <translation>Саклар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="298"/>
         <source>Video codec</source>
-        <translation>Видеокодек</translation>
+        <translation>视频编解码器</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="299"/>
         <source>Hardware acceleration</source>
-        <translation>Планнар белән тизләтү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
         <source>Video bitrate</source>
-        <translation>Видео битү тизлеге</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Audio codec</source>
-        <translation>Аудиокодек</translation>
+        <translation>音频编解码器</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Renderer id</source>
-        <translation>Исемлек бирүченең идентификаторы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="303"/>
         <source>Fps</source>
-        <translation>Фпс</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Share location</source>
-        <translation>Биредә урнашу</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
         <source>Stop sharing</source>
-        <translation>Бүлешүне туктатыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
         <source>Your precise location could not be determined.
 In Device Settings, please turn on &quot;Location Services&quot;.
 Other participants&apos; location can still be received.</source>
-        <translation>Сезнең төгәл урнашу урыныгызны билгеләп булмый. Устройстволар көйләүләрендә &quot;Урынлылык хезмәтләре&quot;не эшләтегез. Башка катнашучыларның урнашу урыны әле дә кабул ителә ала.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
         <source>Your precise location could not be determined. Please check your Internet connection.</source>
-        <translation>Сезнең төгәл урыныгыз билгеләнмәгән. Интернет элемтәгез турында белешегез.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
         <source>Turn off location sharing</source>
-        <translation>Мәйданны бүлешүне туктату</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source>Location is shared in several conversations</source>
-        <translation>Күп кенә сөйләшүләрдә урынны сөйләшәләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="314"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
-        <translation>Билгеле сөйләшүләрдә урынны бүлешү яки туктату өчен пин картасы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
-        <translation>Биредә берничә сөйләшүләр, урынны бүлешүне ничек гамәлдән чыгарырга икәнен сайларга, бүлешү бүленә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
         <source>Share location to participants of this conversation (%1)</source>
-        <translation>Бу сөйләшүдә катнашучыларга урынны бүлегез (%1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
         <source>Reduce</source>
-        <translation>Киметегез</translation>
+        <translation>缩小</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
         <source>Drag</source>
-        <translation>Алып ташла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
         <source>Center</source>
-        <translation>Үзәк</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="322"/>
         <source>Unpin</source>
-        <translation>Алып баручы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="323"/>
         <source>Pin</source>
-        <translation>Шырпы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="324"/>
         <source>Position share duration</source>
-        <translation>Позицияләр өлешенең дәвамлылыгы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
         <source>Location sharing</source>
-        <translation>Мәйданны бүлешү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
         <source>Unlimited</source>
-        <translation>Чикле</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="327"/>
         <source>1 min</source>
-        <translation>1 минут</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
         <source>%1h%2min</source>
-        <translation>% 1h% 2мин</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
         <source>%1h</source>
-        <translation>% 1h</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
@@ -1834,7 +1834,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
         <source>%1min</source>
-        <translation>% 1 минут</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
@@ -1844,283 +1844,283 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
         <source>Place audio call</source>
-        <translation>Аудиокызылышны урнаштыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="337"/>
         <source>Place video call</source>
-        <translation>Видеокүршетү ясагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
         <source>Show available plugins</source>
-        <translation>Барлык плагиннарны күрсәтү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
         <source>Add to conversations</source>
-        <translation>Әңгәмәләргә өстәмәләр кертү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
         <source>This is the error from the backend: %0</source>
-        <translation>Бу бит биттәге хата: %0</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
         <source>The account is disabled</source>
-        <translation>Аккаунт эшләми</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="342"/>
         <source>No network connectivity</source>
-        <translation>Авылыбыз юк</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="343"/>
         <source>Deleted message</source>
-        <translation>Мәгълүматлар бетерелгән</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="347"/>
         <source>Jump to</source>
-        <translation>Кач!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
         <source>Messages</source>
-        <translation>Хәбәрләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="349"/>
         <source>Files</source>
-        <translation>Файллар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
         <source>Search</source>
-        <translation>Эзләү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="354"/>
         <source>{} is typing…</source>
-        <translation>{} типографиядә...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="355"/>
         <source>{} are typing…</source>
-        <translation>{} алар язу...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="356"/>
         <source>Several people are typing…</source>
-        <translation>Күпләр язуда...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="357"/>
         <source> and </source>
-        <translation>һәм </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="360"/>
         <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation>Jami хисапны идарә итү серверы (JAMS) URL-сын кертегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="361"/>
         <source>Jami Account Management Server URL</source>
-        <translation>Jami хисапны идарә итү сервер URL</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
         <source>Enter JAMS credentials</source>
-        <translation>JAMS идентификацияләрен кертү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="363"/>
         <source>Connect</source>
-        <translation>Бәйләнешкә кертү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="364"/>
         <source>Creating account…</source>
-        <translation>Хисапны булдыру...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="367"/>
         <source>Choose name</source>
-        <translation>Исем сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="368"/>
         <source>Choose username</source>
-        <translation>Кулланучы исемен сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="369"/>
         <source>Choose a username</source>
-        <translation>Кулланучы исемен сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="428"/>
         <source>Encrypt account with password</source>
-        <translation>Кулланма белән хисапны шифрлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
         <source>Confirm password</source>
-        <translation>Парольне раслау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="372"/>
         <source>Choose a name for your rendezvous point</source>
-        <translation>Килешү урыныгызның исемен сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
         <source>Choose a name</source>
-        <translation>Исем сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
         <source>Invalid name</source>
-        <translation>Яраксыз исем</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
         <source>Invalid username</source>
-        <translation>Яраксыз кулланучы исеме</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="376"/>
         <source>Name already taken</source>
-        <translation>Инде алынган исем</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="377"/>
         <source>Username already taken</source>
-        <translation>Инде алынган кулланучы исеме</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
         <source>Good to know</source>
-        <translation>Бу яхшы хәбәр.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
         <source>Local</source>
-        <translation>Җирле</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
         <source>Encrypt</source>
-        <translation>Шифрлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="391"/>
         <source>SIP account</source>
-        <translation>СИП хисабы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="392"/>
         <source>Proxy</source>
-        <translation>Прокси</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="393"/>
         <source>Server</source>
-        <translation>Сервер</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="394"/>
         <source>Configure an existing SIP account</source>
-        <translation>Хәзерге SIP хисабын көйләү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
         <source>Personalize account</source>
-        <translation>Хисапны персонализацияләү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="396"/>
         <source>Add SIP account</source>
-        <translation>SIP хисабын өстәү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
         <source>Your profile is only shared with your contacts.
 Your picture and your nickname can be changed at all time in the settings of your account.</source>
-        <translation>Профиль белән танышуыгыз сезнең белән генә уртаклашалар.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.</source>
-        <translation>Сезнең Jami хисабыгыз бу җайланмада гына теркәлгән, ул сезнең хисабыгыз ачкычларын үз эченә алган архив буларак.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
         <source>Backup account</source>
-        <translation>Яңарту хисабы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="407"/>
         <source>Delete your account</source>
-        <translation>Аккаунтыгызны бетерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
         <source>If your account has not been backed up or added to another device, your account and registered name will be irrevocably lost.</source>
-        <translation>Әгәр дә сезнең аккаунтыгыз икенче урынга куелмаса, сезнең аккаунтыгыз һәм теркәлгән исемегез кире кайтарылмаслык рәвештә юкка чыгачак.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
         <source>List of the devices that are linked to this account:</source>
-        <translation>Бу хисап белән бәйле булган җайланмалар исемлеге:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
         <source>This device</source>
-        <translation>Бу корал</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="411"/>
         <source>Other linked devices</source>
-        <translation>Башка бәйләнгән җайланмалар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="414"/>
         <source>Backup successful</source>
-        <translation>Язгы көчүрү уңышлы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
         <source>Backup failed</source>
-        <translation>Язгы көчәймә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
         <source>Password changed successfully</source>
-        <translation>Пароль уңышлы үзгәртелде</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="417"/>
         <source>Password change failed</source>
-        <translation>Пароль үзгәртү уңышсыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="418"/>
         <source>Password set successfully</source>
-        <translation>Пароль уңышлы куелган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="419"/>
         <source>Password set failed</source>
-        <translation>Парольләр куюы уңышсыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="420"/>
         <source>Change password</source>
-        <translation>Парольне үзгәртү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="434"/>
@@ -2145,7 +2145,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="550"/>
         <source>Markdown</source>
-        <translation>Маркаунда</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="617"/>
@@ -2170,7 +2170,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
         <source>Installing</source>
-        <translation>Монтажлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="622"/>
@@ -2240,42 +2240,42 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="741"/>
         <source>Show more</source>
-        <translation>Күбрәк күрсәтегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
         <source>Bold</source>
-        <translation>Калын</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
         <source>Italic</source>
-        <translation>Курсив</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
         <source>Title</source>
-        <translation>Исем</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
         <source>Heading</source>
-        <translation>Башлам</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
         <source>Link</source>
-        <translation>Сылтама</translation>
+        <translation>链接</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
         <source>Code</source>
-        <translation>Код</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
         <source>Quote</source>
-        <translation>Сөйләм</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
@@ -2295,1099 +2295,1099 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
         <source>Jami identity</source>
-        <translation>Җәминең кемлеге</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="825"/>
         <source>Show fingerprint</source>
-        <translation>Бармак эзләрен күрсәтү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="826"/>
         <source>Show registered name</source>
-        <translation>Теркәлгән исем күрсәтегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="829"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
-        <translation>Аккаунтыгызны эшләтеп, сез Джами белән элемтәгә керә аласыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="835"/>
         <source>Experimental</source>
-        <translation>Эксперименталь</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
         <source>Ringtone</source>
-        <translation>Төймә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="841"/>
         <source>Rendezvous point</source>
-        <translation>Килешү урыны</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
         <source>Moderation</source>
-        <translation>Тыйнаклык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="847"/>
         <source>Theme</source>
-        <translation>Тема</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="848"/>
         <source>Text zoom level</source>
-        <translation>Текстны күчерү дәрәҗәсе</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="422"/>
         <source>Set a password</source>
-        <translation>Парольне билгелә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="423"/>
         <source>Change current password</source>
-        <translation>Хәзерге парольне үзгәртү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="425"/>
         <source>Display advanced settings</source>
-        <translation>Алга таба урнаштыруларны күрсәтү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
         <source>Hide advanced settings</source>
-        <translation>Алдангы җайланмаларны яшерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="173"/>
         <source>Enable account</source>
-        <translation>Аккаунтны булдыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
         <source>Advanced account settings</source>
-        <translation>Алга табагы хисапны урнаштыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="429"/>
         <source>Customize profile</source>
-        <translation>Профильне үзгәртү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="440"/>
         <source>Set username</source>
-        <translation>Кулланучы исемен билгеләү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="441"/>
         <source>Registering name</source>
-        <translation>Теркәлү исеме</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
         <source>Identity</source>
-        <translation>Идентификация</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
         <source>Link a new device to this account</source>
-        <translation>Яңа җайланманы бу хисапка тоташтыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="448"/>
         <source>Exporting account…</source>
-        <translation>Экспорт хисабы...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="449"/>
         <source>Remove Device</source>
-        <translation>Кушымтаны чистарту</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="450"/>
         <source>Are you sure you wish to remove this device?</source>
-        <translation>Сез бу җайланманы алып ташларга телисез икәненә ышанасызмы?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
         <source>Your PIN is:</source>
-        <translation>Сезнең номерыгыз:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="452"/>
         <source>Error connecting to the network.
 Please try again later.</source>
-        <translation>Шабака белән тоташуда хата.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="455"/>
         <source>Banned</source>
-        <translation>Тыелган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="456"/>
         <source>Banned contacts</source>
-        <translation>Тыелган контактлар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="467"/>
         <source>Device Id</source>
-        <translation>Кушымта ID</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="470"/>
         <source>System</source>
-        <translation>Система</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="473"/>
         <source>Select a folder</source>
-        <translation>Файлны сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="474"/>
         <source>Enable notifications</source>
-        <translation>Билгеләүләрне булдыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="478"/>
         <source>Launch at startup</source>
-        <translation>Старт вакытында старт</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="479"/>
         <source>Choose download directory</source>
-        <translation>Скачать каталогын сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="487"/>
         <source>Preview requires downloading content from third-party servers.</source>
-        <translation>Пресматривать өченче як серверларыннан контентны йөкләүне таләп итә.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="489"/>
         <source>User interface language</source>
-        <translation>Кулланучының интерфейс теле</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="490"/>
         <source>Vertical view</source>
-        <translation>Вертикаль күренеш</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="491"/>
         <source>Horizontal view</source>
-        <translation>Горизонталь күренеш</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="494"/>
         <source>File transfer</source>
-        <translation>Файллар күчерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
         <source>Automatically accept incoming files</source>
-        <translation>Керү файлларын автомат рәвештә кабул итү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="497"/>
         <source>in MB, 0 = unlimited</source>
-        <translation>MB, 0 = чиксез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="500"/>
         <source>Register</source>
-        <translation>Теркәлү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="501"/>
         <source>Incorrect password</source>
-        <translation>Дөрес булмаган пароль</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="502"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="519"/>
         <source>Network error</source>
-        <translation>Аварияләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="503"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
         <source>Something went wrong</source>
-        <translation>Берәр нәрсә начар булган.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="506"/>
         <source>Save file</source>
-        <translation>Файлны сакларга</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="507"/>
         <source>Open location</source>
-        <translation>Ачык урын</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
         <source>Me</source>
-        <translation>Мин.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
         <source>Install beta version</source>
-        <translation>Бета версиясен урнаштыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="512"/>
         <source>Check for updates now</source>
-        <translation>Яңалыклар өчен хәзер тикшер</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="513"/>
         <source>Enable/Disable automatic updates</source>
-        <translation>Автоматлаштырылган яңартуларны булдыру/хәлсезләндерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="514"/>
         <source>Updates</source>
-        <translation>Яңалыклар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
         <source>Update</source>
-        <translation>Яңалык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="517"/>
         <source>No new version of Jami was found</source>
-        <translation>Җәминең яңа версиясе табылмады.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="518"/>
         <source>An error occured when checking for a new version</source>
-        <translation>Яңа версияне тикшергәндә хата булган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="520"/>
         <source>SSL error</source>
-        <translation>SSL хатасы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
         <source>Installer download canceled</source>
-        <translation>Уставительны йөкләү туктатылды</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="523"/>
         <source>This will uninstall your current Release version and you can always download the latest Release version on our website</source>
-        <translation>Бу сезнең хәзерге чыгару версиясен урнаштыруны бетерер һәм сез һәрвакыт безнең сайттан соңгы чыгару версиясен йөкләп була</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="524"/>
         <source>Network disconnected</source>
-        <translation>Алып баручы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="530"/>
         <source>Troubleshoot</source>
-        <translation>Проблемаларны чишү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="531"/>
         <source>Open logs</source>
-        <translation>Ачык журналлар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="532"/>
         <source>Get logs</source>
-        <translation>Табыннар алыгыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="534"/>
         <source>(Experimental) Enable call support for swarm</source>
-        <translation>(Эксперименталь) Чүплек өчен чакыруны ярдәм итүне булдыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="535"/>
         <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation>Бу функция күп катнашучылар белән күп төркемнәрдә шалтырату төймәләрен эшләтәчәк.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="538"/>
         <source>Quality</source>
-        <translation>Качество</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="542"/>
         <source>Always record calls</source>
-        <translation>Һәрвакыт шалтыратуларны яздырыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
         <source>Keyboard Shortcut Table</source>
-        <translation>Клеткалар кыскача кушымтасы таблицасы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>Keyboard Shortcuts</source>
-        <translation>Клеткалар кыскартылышы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="547"/>
         <source>Conversation</source>
-        <translation>Сөйләшү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="548"/>
         <source>Call</source>
-        <translation>Чакырыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="549"/>
         <source>Settings</source>
-        <translation>Калыплар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="553"/>
         <source>Debug</source>
-        <translation>Дебютлар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="555"/>
         <source>Report Bug</source>
-        <translation>Бушлар турында хәбәр итегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="556"/>
         <source>Clear</source>
-        <translation>Ачык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="557"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="705"/>
         <source>Cancel</source>
-        <translation>Баш тарту</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
         <source>Copied to clipboard!</source>
-        <translation>Клипборда күчереп яз!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
         <source>Receive Logs</source>
-        <translation>Кулланучылар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
         <source>Archive</source>
-        <translation>Архив</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
         <source>Open file</source>
-        <translation>Ачык файл</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
         <source>Generating account…</source>
-        <translation>Хисапны булдыру...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="567"/>
         <source>Import from archive backup</source>
-        <translation>Архивлар резервтан импортлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="569"/>
         <source>Select archive file</source>
-        <translation>Архив файлын сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="437"/>
         <source>Link device</source>
-        <translation>Сылтама төре</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="573"/>
         <source>Import</source>
-        <translation>Импорт</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="575"/>
         <source>A PIN is required to use an existing Jami account on this device.</source>
-        <translation>Әлеге җайланмада булган Jami хисабын куллану өчен PIN кирәк.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="581"/>
         <source>Choose the account to link</source>
-        <translation>Сылтама кую өчен хисапны сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
         <source>The PIN and the account password should be entered in your device within 10 minutes.</source>
-        <translation>ПИН һәм хисап номеры парольне 10 минут эчендә кертергә кирәк.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
         <source>Choose a picture</source>
-        <translation>Фотоны сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
         <source>Contact&apos;s name</source>
-        <translation>Контактның исеме</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
         <source>Reinstate member</source>
-        <translation>Очрашуга кире кайту</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="818"/>
         <source>Delete message</source>
-        <translation>Хәбәрне бетерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
         <source>*(Deleted Message)*</source>
-        <translation>*(Язылган хәбәр) *</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
         <source>Edit message</source>
-        <translation>Хәбәрне үзгәртү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="321"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Close</source>
-        <translation>Якында</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="541"/>
         <source>Call recording</source>
-        <translation>Зинһар өчен, шалтыратуны языгыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="570"/>
         <source>If the account is encrypted with a password, please fill the following field.</source>
-        <translation>Әгәр дә хисапны пароль белән шифрлаган булсагыз, түбәндәге өлешен тутырыгыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="574"/>
         <source>Enter the PIN code</source>
-        <translation>ПИН-кодны кертегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="576"/>
         <source>Step 01</source>
-        <translation>1 нче адым</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="577"/>
         <source>Step 02</source>
-        <translation>2 нче адым</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
         <source>Step 03</source>
-        <translation>3 нче адым</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
         <source>Step 04</source>
-        <translation>4 нче адым</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
         <source>Go to the account management settings of a previous device</source>
-        <translation>Элекке җайланманың хисапны идарә итү көйләүләренә барыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
         <source>The PIN code will be available for 10 minutes</source>
-        <translation>ПИН-код 10 минут дәвамында кулланылачак.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
         <source>Fill if the account is password-encrypted.</source>
-        <translation>Әгәр дә аккаунт пароль белән шифрланган икән, языгыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="591"/>
         <source>Add Device</source>
-        <translation>Кушымтаны кую</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="601"/>
         <source>Enter current password</source>
-        <translation>Хәзерге парольне кертегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="603"/>
         <source>Enter new password</source>
-        <translation>Яңа шифәрне кертү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="604"/>
         <source>Confirm new password</source>
-        <translation>Яңа шифәрне раслау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="605"/>
         <source>Change</source>
-        <translation>Үзгәрешләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
         <source>Export</source>
-        <translation>Экспорт</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="611"/>
         <source>Import avatar from image file</source>
-        <translation>Фото файлыннан аватарны импортлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
         <source>Clear avatar image</source>
-        <translation>Аватар рәсеме ачык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
         <source>Take photo</source>
-        <translation>Фотога төшерегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
         <source>Preferences</source>
-        <translation>Камиллекләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
         <source>Reset</source>
-        <translation>Кайта кую</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
         <source>Uninstall</source>
-        <translation>Кушымтаны урнаштыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
         <source>Reset Preferences</source>
-        <translation>Ресетка кертү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="632"/>
         <source>Select a plugin to install</source>
-        <translation>Куяр өчен плагинны сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="633"/>
         <source>Uninstall plugin</source>
-        <translation>Плагинны урнаштыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="634"/>
         <source>Are you sure you wish to reset %1 preferences?</source>
-        <translation>%1 өстенлекләрен яңадан урнаштырырга телисез икәненә ышанасызмы?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="635"/>
         <source>Are you sure you wish to uninstall %1?</source>
-        <translation>%1ны урнаштырудан баш тартырга теләвегездә ышанычлымы?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="636"/>
         <source>Go back to plugins list</source>
-        <translation>Плюгиннар исемлегенә кайтыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="637"/>
         <source>Select a file</source>
-        <translation>Файлны сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="119"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="638"/>
         <source>Select</source>
-        <translation>Сайлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="639"/>
         <source>Choose image file</source>
-        <translation>Рәсем файлын сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="640"/>
         <source>Plugin Files (*.jpl)</source>
-        <translation>Плагиннар файллары (*.jpl)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="641"/>
         <source>Load/Unload</source>
-        <translation>Ашыгыч</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="642"/>
         <source>Select An Image to %1</source>
-        <translation>% 1 рәсемен сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="643"/>
         <source>Edit preference</source>
-        <translation>Өстәлне үзгәртү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="644"/>
         <source>On/Off</source>
-        <translation>Алып баручы / Алып баручы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="645"/>
         <source>Choose Plugin</source>
-        <translation>Плагинны сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
         <source>Information</source>
-        <translation>Мәгълүмат</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
         <source>Profile</source>
-        <translation>Профиль</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
         <source>Enter the account password to confirm the removal of this device</source>
-        <translation>Бу җайланманы алып ташлауны раслау өчен хисапны парольгә кертегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
         <source>Select a screen to share</source>
-        <translation>Бүлешү өчен экран сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="660"/>
         <source>Select a window to share</source>
-        <translation>Бүлешү өчен тәрәзә сайла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="661"/>
         <source>All Screens</source>
-        <translation>Барлык экраннар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="662"/>
         <source>Screens</source>
-        <translation>Экраннар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="663"/>
         <source>Windows</source>
-        <translation>Тәрәзә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="664"/>
         <source>Screen %1</source>
-        <translation>% 1 экран</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="667"/>
         <source>QR code</source>
-        <translation>QR-код</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
         <source>Link this device to an existing account</source>
-        <translation>Әлеге җайланманы гамәлдәге хисапка тоташтыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="671"/>
         <source>Import from another device</source>
-        <translation>Башка җайланмадан импорт</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
         <source>Import from an archive backup</source>
-        <translation>Архив резервтан импортлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="673"/>
         <source>Advanced features</source>
-        <translation>Алга табагы үзенчәлекләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="674"/>
         <source>Show advanced features</source>
-        <translation>Алга табагы үзенчәлекләрне күрсәтү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="675"/>
         <source>Hide advanced features</source>
-        <translation>Алдарак функцияләрне яшерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="676"/>
         <source>Connect to a JAMS server</source>
-        <translation>JAMS серверына тоташтыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="677"/>
         <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>Jami Account Management Server (JAMS) аша хисапны булдыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="678"/>
         <source>Configure a SIP account</source>
-        <translation>SIP хисабын көйләү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="679"/>
         <source>Error while creating your account. Check your credentials.</source>
-        <translation>Хисап язмагызны ясауда хата.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="680"/>
         <source>Create a rendezvous point</source>
-        <translation>Берәр очрашу урыны булдырыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="681"/>
         <source>Join Jami</source>
-        <translation>Җәмигә кушылыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="682"/>
         <source>Create new Jami account</source>
-        <translation>Яңа Jami хисабы булдыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="683"/>
         <source>Create new SIP account</source>
-        <translation>Яңа SIP хисабы булдыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="684"/>
         <source>About Jami</source>
-        <translation>Җәми турында</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="686"/>
         <source>I already have an account</source>
-        <translation>Минем инде хисабым бар.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="687"/>
         <source>Use existing Jami account</source>
-        <translation>Jami хисабы белән файдалану</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
         <source>Welcome to Jami</source>
-        <translation>Җәмигә рәхим итегез.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="691"/>
         <source>Clear Text</source>
-        <translation>Ачык текст</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="692"/>
         <source>Conversations</source>
-        <translation>Сөйләшүләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="693"/>
         <source>Search Results</source>
-        <translation>Эзләү нәтиҗәләре</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="696"/>
         <source>Decline contact request</source>
-        <translation>Контактны кире кагу</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="697"/>
         <source>Accept contact request</source>
-        <translation>Контактны кабул итегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="700"/>
         <source>Automatically check for updates</source>
-        <translation>Яңалыклар өчен автомат рәвештә тикшерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="703"/>
         <source>Ok</source>
-        <translation>Хуп</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="463"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="704"/>
         <source>Save</source>
-        <translation>Каплагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="706"/>
         <source>Upgrade</source>
-        <translation>Яңарту</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="707"/>
         <source>Later</source>
-        <translation>Соңрак</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="708"/>
         <source>Delete</source>
-        <translation>Ачу</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="710"/>
         <source>Block</source>
-        <translation>Блок</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="714"/>
         <source>Set moderator</source>
-        <translation>Модераторны билгелә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="715"/>
         <source>Unset moderator</source>
-        <translation>Модераторны урнаштырмау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="718"/>
         <source>Maximize</source>
-        <translation>Максимумлырак</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="719"/>
         <source>Minimize</source>
-        <translation>Бу эшне киметмәгез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
         <source>Hangup</source>
-        <translation>Төшкә кач</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
         <source>Local muted</source>
-        <translation>Җирле тавышсыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
         <source>Default moderators</source>
-        <translation>Дефолт режиссерлары</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
         <source>Enable local moderators</source>
-        <translation>Җирле модераторларны кую</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
         <source>Make all participants moderators</source>
-        <translation>Барлык катнашучыларны модераторлар итеп куегыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="727"/>
         <source>Add default moderator</source>
-        <translation>Әдеһәти модераторны кую</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
         <source>Remove default moderator</source>
-        <translation>Дефолт модераторны алып салыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="736"/>
         <source>Add emoji</source>
-        <translation>Эмоджи өстәргә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="738"/>
         <source>Send file</source>
-        <translation>Файлларны җибәрү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="760"/>
         <source>Send</source>
-        <translation>Җибәр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="709"/>
         <source>Remove</source>
-        <translation>Ачтыр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
         <source>Migrate conversation</source>
-        <translation>Мәкаләгә күчеп барыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="475"/>
         <source>Show notifications</source>
-        <translation>Билгеләүләрне күрсәтү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="476"/>
         <source>Minimize on close</source>
-        <translation>Якын вакытта минималь</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="477"/>
         <source>Run at system startup</source>
-        <translation>Система стартланган вакытта эшләгез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="564"/>
         <source>Create account from backup</source>
-        <translation>Язгы резервтан хисапны булдыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="565"/>
         <source>Restore account from backup</source>
-        <translation>Язгы язмадан аккаунтны торгызу</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="568"/>
         <source>Import Jami account from local archive file.</source>
-        <translation>Җәми хисабын җирле архив файлыннан импортлау.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation>Фото файллары (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="766"/>
         <source>Write to %1</source>
-        <translation>% 1 адресына языгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
         <source>%1 has sent you a request for a conversation.</source>
-        <translation>%1 сезгә сөйләшү өчен үтенеч җибәрде.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="781"/>
         <source>Hello,
 Would you like to join the conversation?</source>
-        <translation>Сәлам, әңгәмәгә кушылырга телисезме?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="782"/>
         <source>You have accepted
 the conversation request</source>
-        <translation>Сез сөйләшү үтенечен кабул иттегез.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
         <source>Waiting until %1
 connects to synchronize the conversation.</source>
-        <translation>%1 сөйләшүне синхронлаштыру өчен тоташканчы көтеп.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="786"/>
         <source>%1 Members</source>
-        <translation>%1 әгъзалар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="787"/>
         <source>Member</source>
-        <translation>Укучы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="788"/>
         <source>Swarm&apos;s name</source>
-        <translation>Свармның исеме</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
         <source>Add a description</source>
-        <translation>Тәрҗемәсе</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
         <source>Ignore all notifications from this conversation</source>
-        <translation>Бу сөйләшүдән алынган барлык хәбәрләрне санга сукма.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
         <source>Choose a color</source>
-        <translation>Төс сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
         <source>Leave conversation</source>
-        <translation>Сөйләшүне калдырыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
         <source>Type of swarm</source>
-        <translation>Төрле төр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
         <source>Create the swarm</source>
-        <translation>Саулыкны барлыкка китерегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
         <source>Go to conversation</source>
-        <translation>Сөйләшүләргә керегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
         <source>Kick member</source>
-        <translation>Чарада катнашучы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
         <source>Administrator</source>
-        <translation>Администратор</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
         <source>Invited</source>
-        <translation>Чакырылганнар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="807"/>
         <source>Remove member</source>
-        <translation>Алып баручыны алып ташлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
         <source>To:</source>
-        <translation>Бу:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
         <source>Customize</source>
-        <translation>Үзгәрешләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
         <source>Dismiss</source>
-        <translation>Китү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
         <source>Your profile is only shared with your contacts</source>
-        <translation>Профильгез сезнең контактларыгыз белән генә уртаклаша</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3395,202 +3395,202 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="41"/>
         <source>Open account list</source>
-        <translation>Ачык хисаплар исемлеге</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="45"/>
         <source>Focus conversations list</source>
-        <translation>Тәрҗемәләр исемлеге</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="49"/>
         <source>Requests list</source>
-        <translation>Сораулар исемлеге</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="53"/>
         <source>Previous conversation</source>
-        <translation>Элекке сөйләшү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="57"/>
         <source>Next conversation</source>
-        <translation>Киләсе сөйләшү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="61"/>
         <source>Search bar</source>
-        <translation>Эзләү панеле</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="65"/>
         <source>Full screen</source>
-        <translation>Тулы экран</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="69"/>
         <source>Increase font size</source>
-        <translation>Шрифт күләмен арттыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="73"/>
         <source>Decrease font size</source>
-        <translation>Шрифт күләмен киметү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="77"/>
         <source>Reset font size</source>
-        <translation>Шрифт күләмен үзгәртү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="85"/>
         <source>Start an audio call</source>
-        <translation>Аудиокызылышны башлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="89"/>
         <source>Start a video call</source>
-        <translation>Видеокызылышны башлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="93"/>
         <source>Clear history</source>
-        <translation>Тарих ачык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="97"/>
         <source>Search messages/files</source>
-        <translation>Эзләү хәбәрләре/файллар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="101"/>
         <source>Block contact</source>
-        <translation>Блок белән элемтә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="105"/>
         <source>Remove conversation</source>
-        <translation>Әңгәмәне алып ташлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="109"/>
         <source>Accept contact request</source>
-        <translation>Контактны кабул итегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="113"/>
         <source>Edit last message</source>
-        <translation>Соңгы хәбәрне үзгәртү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="117"/>
         <source>Cancel message edition</source>
-        <translation>Хәбәрнең редакциясен гамәлдән чыгару</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="125"/>
         <source>Media settings</source>
-        <translation>Медиа җайланмалары</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="129"/>
         <source>General settings</source>
-        <translation>Гомуми көйләүләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
         <source>Account settings</source>
-        <translation>Хисапны урнаштыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
         <source>Plugin settings</source>
-        <translation>Плагиннар көйләүләре</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="141"/>
         <source>Open account creation wizard</source>
-        <translation>Ачык хисаплар булдыру буенча кушымта</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="146"/>
         <source>Open keyboard shortcut table</source>
-        <translation>Клетканың кыскача тактасы ачыла</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="154"/>
         <source>Answer an incoming call</source>
-        <translation>Килүче чакыруга җавап бирегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="158"/>
         <source>End call</source>
-        <translation>Шалтыратуны тәмамлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="162"/>
         <source>Decline the call request</source>
-        <translation>Чакыруны кире кагу</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="166"/>
         <source>Mute microphone</source>
-        <translation>Тыныч микрофон</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="170"/>
         <source>Stop camera</source>
-        <translation>Камераны туктатыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="174"/>
         <source>Take tile screenshot</source>
-        <translation>Тилле экраннан фотосурәт алыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="182"/>
         <source>Bold</source>
-        <translation>Калын</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="186"/>
         <source>Italic</source>
-        <translation>Курсив</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="190"/>
         <source>Strikethrough</source>
-        <translation>Сызылган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="194"/>
         <source>Heading</source>
-        <translation>Башлам</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="198"/>
         <source>Link</source>
-        <translation>Сылтама</translation>
+        <translation>链接</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="202"/>
         <source>Code</source>
-        <translation>Код</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="206"/>
         <source>Quote</source>
-        <translation>Сөйләм</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="210"/>
         <source>Unordered list</source>
-        <translation>Тәртипсез исемлек</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="214"/>
         <source>Ordered list</source>
-        <translation>Заказлы исемлек</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="218"/>
@@ -3608,17 +3608,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="377"/>
         <source>E&amp;xit</source>
-        <translation>Э&amp;ксит</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="379"/>
         <source>&amp;Quit</source>
-        <translation>&amp; Quit</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="385"/>
         <source>&amp;Show Jami</source>
-        <translation>&amp;Show Jami</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3631,7 +3631,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="419"/>
         <source>Location sharing</source>
-        <translation>Мәйданны бүлешү</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3639,108 +3639,108 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="458"/>
         <source>Me</source>
-        <translation>Мин.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
         <source>Hold</source>
-        <translation>Торыгыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="64"/>
         <source>Talking</source>
-        <translation>Сөйләшү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="66"/>
         <source>ERROR</source>
-        <translation>ГАЙБӘР</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="68"/>
         <source>Incoming</source>
-        <translation>Килүче</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="70"/>
         <source>Calling</source>
-        <translation>Чакыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="373"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
-        <translation>Бәйләнеш</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="74"/>
         <source>Searching</source>
-        <translation>Эзләү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="76"/>
         <source>Inactive</source>
-        <translation>Эшләми</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="390"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
-        <translation>Бүтән әзерләнгән</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
         <source>Timeout</source>
-        <translation>Вакытлы вакыт</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="82"/>
         <source>Peer busy</source>
-        <translation>Дуслар белән эш</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="86"/>
         <source>Communication established</source>
-        <translation>Мәгълүматлаштыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="994"/>
         <source>Invitation received</source>
-        <translation>Чакыру кабул ителгән</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="260"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="208"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="992"/>
         <source>Contact added</source>
-        <translation>Контактлар өстәлгән</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="262"/>
         <source>%1 was invited to join</source>
-        <translation>%1 катнашырга чакырылган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="264"/>
         <source>%1 joined</source>
-        <translation>%1 кушылган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="266"/>
         <source>%1 left</source>
-        <translation>%1 чыкты</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="268"/>
         <source>%1 was kicked</source>
-        <translation>% 1 аткан</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="270"/>
         <source>%1 was re-added</source>
-        <translation>% 1 яңадан кушылды</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="359"/>
@@ -3750,410 +3750,410 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="361"/>
         <source>Swarm created</source>
-        <translation>Туганнар төркеме</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="174"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="180"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="990"/>
         <source>Outgoing call</source>
-        <translation>Чыгышлы чакыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="176"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="186"/>
         <source>Incoming call</source>
-        <translation>Килүче чакыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="182"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="988"/>
         <source>Missed outgoing call</source>
-        <translation>Чыгышны югалткан чакыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="188"/>
         <source>Missed incoming call</source>
-        <translation>Килгән чакыруны югалту</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="198"/>
         <source>Join call</source>
-        <translation>Кушылу чакыру</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="213"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="996"/>
         <source>Invitation accepted</source>
-        <translation>Чакыру кабул ителде</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="391"/>
         <location filename="../src/libclient/avmodel.cpp" line="410"/>
         <source>default</source>
-        <translation>Килешенгәнчә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
-        <translation>Бетмә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Trying</source>
-        <translation>Сынау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
-        <translation>Җырлый</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
-        <translation>Башкаларга җибәрелә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Queued</source>
-        <translation>Чираттагылар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Progress</source>
-        <translation>Алга китеш</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>OK</source>
-        <translation>Хуп</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Accepted</source>
-        <translation>Кабул ителгән</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
-        <translation>Күп сайлаулар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
-        <translation>Турыдан-туры хәрәкәтләнә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
-        <translation>Вакытлыча күчеп китү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
-        <translation>Прокси куллан</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
-        <translation>Башка хезмәт</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
-        <translation>Яман үтенеч</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
-        <translation>Рөхсәтсез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
-        <translation>Түләү таләп ителә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
-        <translation>Тыелган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
-        <translation>Табылмаган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
-        <translation>Метод рөхсәт ителми</translation>
+        <translation>方法不被允许</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
         <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
-        <translation>Бу килешү кабул ителми</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
-        <translation>Проксины раслау таләп ителә</translation>
+        <translation>代理服务器需要认证</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
-        <translation>Вакытны вакытлыча үткәрергә сорагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Gone</source>
-        <translation>Киттеләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
-        <translation>Кирәкле объект бик зур</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
-        <translation>Өстәмә вакыт таләп итү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
-        <translation>Ярдәмләнмәгән медиа төре</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
-        <translation>Ярдәмләнмәгән URI схемасы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
-        <translation>Яман киңлек</translation>
+        <translation>错误的扩展</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
-        <translation>Аны озайту кирәк</translation>
+        <translation>需要扩展</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
-        <translation>Утырышлар вакыты бик аз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
-        <translation>Вакыт бик кыска</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
-        <translation>Вакытлыча юк</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
-        <translation>ТССС чакыруы юк</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
-        <translation>Тәртипләр билгеләнгән</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
-        <translation>Күп кенә сабыу</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
-        <translation>Адрес тулы булмаган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
-        <translation>Ике төрле</translation>
+        <translation>URI不明确</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
-        <translation>Эш күп</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
-        <translation>Кирәкле сорауны бетерү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
-        <translation>Явыз вакыйга</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
-        <translation>Сораулар яңартылды</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
-        <translation>Кирәкле сорау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
-        <translation>Бу сүзләр аңлашылмый.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
-        <translation>Эчке сервер хатасы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
-        <translation>Башкармаган</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
-        <translation>Яман капка</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
-        <translation>Хезмәт күрсәтү мөмкинлеге юк</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
-        <translation>Серверның вакытлы вакыты</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
-        <translation>Версияне кулланмыйлар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
-        <translation>Хаклык бик зур</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
-        <translation>Беренче шартлар үтәлмәгән</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
-        <translation>Һәр җирдә эш күп</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
-        <translation>Чакырудан баш тарту</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
-        <translation>Беркайда да юк</translation>
+        <translation>用户不存在</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
-        <translation>Беркайда да кабул ителми</translation>
+        <translation>不可接受</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="375"/>
         <source>Accept</source>
-        <translation>Бу сорауны кабул итегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="367"/>
         <source>Sending</source>
-        <translation>Җибәрегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="371"/>
         <source>Sent</source>
-        <translation>Җибәрелде</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="380"/>
         <source>Unable to make contact</source>
-        <translation>Бәйләнешкә керә алмадым</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="384"/>
         <source>Waiting for contact</source>
-        <translation>Бәйләнешкә килүне көтеп</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="386"/>
         <source>Incoming transfer</source>
-        <translation>Китүгә күчеп килү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="388"/>
         <source>Timed out waiting for contact</source>
-        <translation>Бәйләнешкә килергә әзер</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="742"/>
         <source>Today</source>
-        <translation>Бүген</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="744"/>
         <source>Yesterday</source>
-        <translation>Кичә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="377"/>
         <source>Canceled</source>
-        <translation>Баш тартты</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="382"/>
         <source>Ongoing</source>
-        <translation>Эш дәвам итә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="723"/>
         <source>just now</source>
-        <translation>Әле генә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="369"/>
         <source>Failure</source>
-        <translation>Җиңеллек</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="109"/>
         <source>locationServicesError</source>
-        <translation>урыннамәСервислар Хата</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="112"/>
         <source>locationServicesClosedError</source>
-        <translation>урыннамәСервисларЯбыклар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="114"/>
         <source>locationServicesUnknownError</source>
-        <translation>урыннамәләрБелмәгән хата</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/conversationmodel.cpp" line="1163"/>
         <location filename="../src/libclient/conversationmodel.cpp" line="1176"/>
         <source>%1 (you)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (您)</translation>
     </message>
 </context>
 <context>
@@ -4166,7 +4166,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/app/smartlistmodel.cpp" line="191"/>
         <location filename="../src/app/smartlistmodel.cpp" line="192"/>
         <source>Calls</source>
-        <translation>Чакырулар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/smartlistmodel.cpp" line="69"/>
@@ -4176,7 +4176,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/app/smartlistmodel.cpp" line="193"/>
         <location filename="../src/app/smartlistmodel.cpp" line="194"/>
         <source>Contacts</source>
-        <translation>Контактлар</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4184,27 +4184,27 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="216"/>
         <source>Answer</source>
-        <translation>Җавап</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="217"/>
         <source>Decline</source>
-        <translation>Кирешү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="219"/>
         <source>Open conversation</source>
-        <translation>Ачык сөйләшү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="221"/>
         <source>Accept</source>
-        <translation>Бу сорауны кабул итегез</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="222"/>
         <source>Refuse</source>
-        <translation>Кире</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4212,22 +4212,22 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>
         <source>Customize</source>
-        <translation>Үзгәрешләр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="88"/>
         <source>What does Jami mean?</source>
-        <translation>Җәми нәрсә аңлата?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="94"/>
         <source>What is the green dot next to my account?</source>
-        <translation>Минем хисабым янындагы яшел төстә нинди билге бар?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
-        <translation>Җәми исемен сайлау суахили сүзе &quot;җәми&quot; сүзеннән рухландырылган, ул исем буларак &quot;җәмәгать&quot; һәм adverb буларак &quot;бергә&quot; дигәнне аңлата.</translation>
+        <translation>Jami这个名字是源于斯瓦希里语的词 &quot;jamii&quot;，作为名词时意思是“社区”，作为副词时意思是“一起”。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
@@ -4237,102 +4237,102 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="86"/>
         <source>Backup account</source>
-        <translation>Яңарту хисабы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="96"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
-        <translation>Кызыл төстәге искәрмә сезнең аккаунтыгызның челтәрдән өзелүен аңлата.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="101"/>
         <source>Why should I back up my account?</source>
-        <translation>Ни өчен мин үз хисабымны кире кайтарырга тиеш?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="103"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation>Jami таратыла һәм сезнең хисабыгыз бары тик локаль рәвештә җайланмагызда саклана. Әгәр сез пароль яки локаль хисабыгыз мәгълүматларын югалтасыз икән, сез хисабыгызны элек кенә резервка кертмәгәнсез икән, кире кайтара алмыйсыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="109"/>
         <source>Can I make a conference call?</source>
-        <translation>Мин телефон аша сөйләшүләр алып буламы?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="114"/>
         <source>What is a Jami account?</source>
-        <translation>Җәми хисабы нәрсә ул?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation>Jami хисабы - асимметрик шифрлау ачкычы.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="120"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation>Jami хисабы булдырыр өчен миңа нинди мәгълүмат бирергә кирәк?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation>Яңа &quot;Джами&quot; аккаунты төзегәндә, электрон почта, адрес яки телефон номеры кебек шәхси мәгълүмат бирергә кирәкми.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="129"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation>Җәми белән сезнең аккаунтыгыз сезнең җайланмагыздагы каталогта саклана.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="149"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation>Бу битләр сезнең өчен бик мөһим, чөнки алар сезнең өчен бик мөһим.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="153"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation>Мин үз хисабымны берничә җайланмада куллана аламмы?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="155"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation>Әйе, сез үз хисабыгызны көйләүләрдән бәйли аласыз, яки резерв копиясен башка җайланмага импортлый аласыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="127"/>
         <source>Why don&apos;t I have to use a password?</source>
-        <translation>Ни өчен минем паролем кирәкми?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="111"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
-        <translation>Зыян вакытында сез &quot;Укучыларны өстәргә&quot; дигәндә басыгыз һәм телефоннан элемтәгә керешүчене өстәп куегыз.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="135"/>
         <source>Why don&apos;t I have to register a username?</source>
-        <translation>Ни өчен миңа кулланучы исемен теркәп куярга кирәкми?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="137"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation>Иң даими, куркынычсыз идентификатор - сезнең Jami ID, әмма кайбер кешеләр өчен аларны куллану авыр булганга, сезнең шулай ук кулланучы исемен теркәү мөмкинлегегез бар.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="142"/>
         <source>How can I back up my account?</source>
-        <translation>Мин үз хисабымны ничек аккаунт итеп бирә алам?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="143"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation>Аккаунт җайланмаларында аккаунтыгызның резерв копиясен булдыру өчен төймәгә куелган.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="147"/>
         <source>What happens when I delete my account?</source>
-        <translation>Мин аккаунтымны бетергәч, нәрсә була?</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4340,17 +4340,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="334"/>
         <source>%1 Mbps</source>
-        <translation>%1 Мбит/с</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="334"/>
         <source>Default</source>
-        <translation>Килешенгәнчә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="539"/>
         <source>System</source>
-        <translation>Система</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4358,22 +4358,22 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="478"/>
         <source>Searching…</source>
-        <translation>Эзләү...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1015"/>
         <source>Invalid ID</source>
-        <translation>Яраксыз таныклык</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1018"/>
         <source>Username not found</source>
-        <translation>Исем табылмады</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1021"/>
         <source>Couldn&apos;t lookup…</source>
-        <translation>Эзләп таба алмадым...</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4381,7 +4381,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="441"/>
         <source>Bad URI scheme</source>
-        <translation>Яман URI схемасы</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
