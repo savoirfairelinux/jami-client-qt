@@ -22,6 +22,30 @@
       },
       "revId": "ab5094de4244cfba0a44bcb42edddd49e7f11723",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4648eb2_cac83bec",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-11-13T19:05:34Z",
+      "side": 1,
+      "message": "you could build the daemon within the client project without it being the submodule. I mean ultimately, yeah, I think we should aim at unifying this, but maybe it\u0027s better to support a million styles of building for now (with a million ways of breaking it)",
+      "parentUuid": "73ec6a03_a852c712",
+      "range": {
+        "startLine": 33,
+        "startChar": 7,
+        "endLine": 33,
+        "endChar": 25
+      },
+      "revId": "ab5094de4244cfba0a44bcb42edddd49e7f11723",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
