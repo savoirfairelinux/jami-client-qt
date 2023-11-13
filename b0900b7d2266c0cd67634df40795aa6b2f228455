@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2702264_ce11f32b",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-13T17:55:12Z",
+      "side": 1,
+      "message": "this feature seems broken:\n\nqrc:/commoncomponents/PasswordDialog.qml:76: ReferenceError: timerToOperate is not defined",
+      "range": {
+        "startLine": 72,
+        "startChar": 19,
+        "endLine": 72,
+        "endChar": 26
+      },
+      "revId": "b0900b7d2266c0cd67634df40795aa6b2f228455",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bdc2b16_434780b9",
+        "filename": "src/app/mainview/components/DevicesListPopup.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-13T17:55:12Z",
+      "side": 1,
+      "message": "avoid ternary with true/false as a result.\n\nCurrentConversation.rdvAccount !\u003d\u003d \"\" is the same result!",
+      "range": {
+        "startLine": 40,
+        "startChar": 22,
+        "endLine": 40,
+        "endChar": 73
+      },
+      "revId": "b0900b7d2266c0cd67634df40795aa6b2f228455",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80d767d1_e6e73fb0",
+        "filename": "src/app/mainview/components/HostPopup.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-13T17:55:12Z",
+      "side": 1,
+      "message": "I can\u0027t choose the host of a call anymore, device is not clickable",
+      "revId": "b0900b7d2266c0cd67634df40795aa6b2f228455",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
