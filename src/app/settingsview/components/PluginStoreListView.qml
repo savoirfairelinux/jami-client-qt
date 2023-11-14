@@ -19,6 +19,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
+import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -28,6 +29,8 @@ ColumnLayout {
     id: root
     property bool storeAvailable: true
     property bool remotePluginHovered: false
+    property bool storeAvailableForPlatform: true
+
     Component.onCompleted: {
         PluginAdapter.getPluginsFromStore();
     }
@@ -35,6 +38,9 @@ ColumnLayout {
         target: PluginAdapter
         function onStoreNotAvailable() {
             storeAvailable = false;
+        }
+        function onStoreNotAvailableForPlatform() {
+            storeAvailableForPlatform = false;
         }
     }
     Label {
@@ -57,10 +63,8 @@ ColumnLayout {
             height: childrenRect.height
             spacing: 10
             Repeater {
+                id: pluginStoreRepeater
                 model: PluginStoreListModel
-                onCountChanged: {
-                    root.visible = count > 0;
-                }
                 delegate: Item {
                     id: wrapper
                     function widthProvider() {
@@ -109,6 +113,45 @@ ColumnLayout {
             font.pixelSize: JamiTheme.bigFontSize
             horizontalAlignment: Text.AlignHCenter
             text: JamiStrings.pluginStoreNotAvailable
+        }
+    }
+    Loader {
+        id: platormNotAvailableLoader
+        Layout.fillWidth: true
+        active: !storeAvailableForPlatform && storeAvailable
+        Layout.preferredHeight: active ? JamiTheme.materialButtonPreferredHeight + 10 : 0
+        sourceComponent: Rectangle {
+            width: platormNotAvailableLoader.width
+            height: platormNotAvailableLoader.height
+            color: JamiTheme.lightTintedBlue
+            radius: 5
+            RowLayout {
+                width: parent.width
+                height: parent.height
+                ResponsiveImage {
+                    layer {
+                        enabled: true
+                        effect: ColorOverlay {
+                            color: JamiTheme.darkTintedBlue
+                        }
+                    }
+                    Layout.leftMargin: 5
+                    Layout.alignment: Qt.AlignRight | Qt.AlignHCenter
+                    width: JamiTheme.popuptextSize
+                    height: JamiTheme.popuptextSize
+                    source: JamiResources.outline_info_24dp_svg
+                }
+                Text {
+                    Scaffold {
+                    }
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignRight
+                    wrapMode: Text.WordWrap
+                    color: JamiTheme.blackColor
+                    font.pixelSize: JamiTheme.popuptextSize
+                    text: JamiStrings.storeNotSupportedPlatform
+                }
+            }
         }
     }
 }

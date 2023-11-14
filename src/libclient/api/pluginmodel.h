@@ -102,7 +102,7 @@ public:
      */
     QString getPluginPath(const QString& pluginId);
 
-    MapStringString getPlatformInfo();
+    Q_INVOKABLE MapStringString getPlatformInfo();
     /**
      * @brief fetch all plugins path and id
      *
