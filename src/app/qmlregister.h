@@ -63,10 +63,10 @@ Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
 
 namespace Utils {
 void registerTypes(QQmlEngine* engine,
-                   SystemTray* systemTray,
                    LRCInstance* lrcInstance,
+                   SystemTray* systemTray,
                    AppSettingsManager* appSettingsManager,
                    ConnectivityMonitor* connectivityMonitor,
                    ScreenInfo* screenInfo,
-                   QObject* parent);
+                   MainApplication* app);
 }

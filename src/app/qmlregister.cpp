@@ -55,7 +55,6 @@
 #include "appsettingsmanager.h"
 #include "mainapplication.h"
 #include "namedirectory.h"
-#include "pluginlistmodel.h"
 #include "pluginversionmanager.h"
 #include "appversionmanager.h"
 #include "pluginlistpreferencemodel.h"
@@ -105,33 +104,33 @@ namespace Utils {
  */
 void
 registerTypes(QQmlEngine* engine,
-              SystemTray* systemTray,
               LRCInstance* lrcInstance,
+              SystemTray* systemTray,
               AppSettingsManager* settingsManager,
               ConnectivityMonitor* connectivityMonitor,
               ScreenInfo* screenInfo,
-              QObject* parent)
+              MainApplication* app)
 {
     // setup the adapters (their lifetimes are that of MainApplication)
-    auto callAdapter = new CallAdapter(systemTray, lrcInstance, parent);
-    auto previewEngine = new PreviewEngine(connectivityMonitor, parent);
-    auto imageDownloader = new ImageDownloader(connectivityMonitor, parent);
-    auto messagesAdapter = new MessagesAdapter(settingsManager, previewEngine, lrcInstance, parent);
-    auto positionManager = new PositionManager(settingsManager, systemTray, lrcInstance, parent);
-    auto conversationsAdapter = new ConversationsAdapter(systemTray, lrcInstance, parent);
-    auto avAdapter = new AvAdapter(lrcInstance, parent);
-    auto contactAdapter = new ContactAdapter(lrcInstance, parent);
-    auto accountAdapter = new AccountAdapter(settingsManager, systemTray, lrcInstance, parent);
-    auto utilsAdapter = new UtilsAdapter(settingsManager, systemTray, lrcInstance, parent);
-    auto pluginAdapter = new PluginAdapter(lrcInstance, settingsManager, parent);
-    auto currentCall = new CurrentCall(lrcInstance, parent);
-    auto currentConversation = new CurrentConversation(lrcInstance, parent);
-    auto currentAccount = new CurrentAccount(lrcInstance, settingsManager, parent);
-    auto tipsModel = new TipsModel(settingsManager, parent);
-    auto videoDevices = new VideoDevices(lrcInstance, parent);
-    auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, parent);
-    auto avatarRegistry = new AvatarRegistry(lrcInstance, parent);
-    auto wizardViewStepModel = new WizardViewStepModel(lrcInstance, accountAdapter, settingsManager, parent);
+    auto callAdapter = new CallAdapter(settingsManager, systemTray, lrcInstance, engine);
+    auto previewEngine = new PreviewEngine(connectivityMonitor, engine);
+    auto imageDownloader = new ImageDownloader(connectivityMonitor, engine);
+    auto messagesAdapter = new MessagesAdapter(settingsManager, previewEngine, lrcInstance, engine);
+    auto positionManager = new PositionManager(settingsManager, systemTray, lrcInstance, engine);
+    auto conversationsAdapter = new ConversationsAdapter(systemTray, lrcInstance, engine);
+    auto avAdapter = new AvAdapter(lrcInstance, engine);
+    auto contactAdapter = new ContactAdapter(lrcInstance, engine);
+    auto accountAdapter = new AccountAdapter(settingsManager, systemTray, lrcInstance, engine);
+    auto utilsAdapter = new UtilsAdapter(settingsManager, systemTray, lrcInstance, engine);
+    auto pluginAdapter = new PluginAdapter(lrcInstance, settingsManager, engine);
+    auto currentCall = new CurrentCall(lrcInstance, engine);
+    auto currentConversation = new CurrentConversation(lrcInstance, engine);
+    auto currentAccount = new CurrentAccount(lrcInstance, settingsManager, engine);
+    auto tipsModel = new TipsModel(settingsManager, engine);
+    auto videoDevices = new VideoDevices(lrcInstance, engine);
+    auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, engine);
+    auto avatarRegistry = new AvatarRegistry(lrcInstance, engine);
+    auto wizardViewStepModel = new WizardViewStepModel(lrcInstance, accountAdapter, settingsManager, engine);
 
     // qml adapter registration
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
@@ -197,7 +196,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/JamiResources.qml", JamiResources);
     QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/constant/MsgSeq.qml", MsgSeq);
 
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, parent, "MainApplication")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, app, "MainApplication")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, screenInfo, "CurrentScreenInfo")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, lrcInstance, "LRCInstance")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, settingsManager, "AppSettingsManager")
