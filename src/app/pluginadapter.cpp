@@ -226,3 +226,16 @@ PluginAdapter::getBackgroundImageUrl(const QString& pluginId) const
     return baseUrl() + "/backgrounds/" + pluginId
            + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"];
 }
+
+bool
+PluginAdapter::isPluginAvailablePlatorm()
+{
+    auto os = lrcInstance_->pluginModel().getPlatformInfo()["os"];
+    auto notAvailablePlatform = {"arm64-apple-Darwin"};
+    for (auto platform : notAvailablePlatform) {
+        if (os == platform) {
+            return false;
+        }
+    }
+    return true;
+}
