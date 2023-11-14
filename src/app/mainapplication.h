@@ -20,10 +20,8 @@
 
 #pragma once
 
-#include "imagedownloader.h"
 #include "lrcinstance.h"
 #include "qtutils.h"
-#include "pttlistener.h"
 
 #include <QFile>
 #include <QApplication>
@@ -37,7 +35,6 @@
 class ConnectivityMonitor;
 class AppSettingsManager;
 class SystemTray;
-class CallAdapter;
 
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
@@ -116,15 +113,14 @@ private:
 private:
     std::map<Option, QVariant> runOptions_;
 
+    // We want to be explicit about the destruction order of these objects
     QScopedPointer<QQmlApplicationEngine> engine_;
     QScopedPointer<LRCInstance> lrcInstance_;
 
-    QScopedPointer<ConnectivityMonitor> connectivityMonitor_;
-    QScopedPointer<AppSettingsManager> settingsManager_;
-    QScopedPointer<SystemTray> systemTray_;
-    QScopedPointer<ImageDownloader> imageDownloader_;
-
-    PTTListener* listener_;
+    // These are injected into the QML layer along with our LRCInstance
+    ConnectivityMonitor* connectivityMonitor_;
+    SystemTray* systemTray_;
+    AppSettingsManager* settingsManager_;
 
     ScreenInfo screenInfo_;
 

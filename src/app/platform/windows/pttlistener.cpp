@@ -80,13 +80,12 @@ public:
     HHOOK keyboardHook;
 
     static quint32 qtKeyToVKey(Qt::Key key);
-
 };
 
 PTTListener::PTTListener(AppSettingsManager* settingsManager, QObject* parent)
-    : settingsManager_(settingsManager)
-    , QObject(parent)
+    : QObject(parent)
     , pimpl_(std::make_unique<Impl>(this))
+    , settingsManager_(settingsManager)
 {}
 
 PTTListener::~PTTListener() = default;
@@ -294,7 +293,7 @@ PTTListener::Impl::qtKeyToVKey(Qt::Key key)
         return 'Z';
 
     default:
-        //Try to get virtual key from current keyboard layout or US.
+        // Try to get virtual key from current keyboard layout or US.
         const HKL layout = GetKeyboardLayout(0);
         int vk = VkKeyScanEx(key, layout);
         if (vk == -1) {
@@ -304,6 +303,5 @@ PTTListener::Impl::qtKeyToVKey(Qt::Key key)
         return vk == -1 ? 0 : vk;
     }
 }
-
 
 #include "pttlistener.moc"

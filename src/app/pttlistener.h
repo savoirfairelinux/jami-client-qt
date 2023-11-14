@@ -1,6 +1,5 @@
 #pragma once
 
-#include "systemtray.h"
 #include "appsettingsmanager.h"
 
 #include <QObject>
@@ -23,6 +22,7 @@ public:
     {
         return QKeySequence(key).toString();
     }
+
     Q_INVOKABLE void setPttKey(Qt::Key key)
     {
         settingsManager_->setValue(Settings::Key::pttKey, key);
@@ -48,5 +48,6 @@ public Q_SLOTS:
 private:
     class Impl;
     std::unique_ptr<Impl> pimpl_;
+
     AppSettingsManager* settingsManager_;
 };
