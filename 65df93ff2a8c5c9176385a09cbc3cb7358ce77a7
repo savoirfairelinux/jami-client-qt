@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa291815_28f3191e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-14T20:32:26Z",
+      "side": 1,
+      "message": "Is `plugin` still used? Or replaced by `extension`? Sorry, not sure what the difference is. Thank you",
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "383ede0e_433c3b09",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-14T20:32:26Z",
+      "side": 1,
+      "message": "Change to `Extension Store`? Thank you",
+      "range": {
+        "startLine": 625,
+        "startChar": 51,
+        "endLine": 625,
+        "endChar": 64
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90872935_9d9e6edb",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-14T20:32:26Z",
+      "side": 1,
+      "message": "1. Would `you` like to be removed and changed to third-person?\n2. Is it `platform` or `operating system`?\n\nSuggested en source string:\nThe Jami Extension Store currently has no extension available for the operating system in use.\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 626,
+        "startChar": 53,
+        "endLine": 626,
+        "endChar": 141
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "333bdb02_86db4364",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-14T20:32:26Z",
+      "side": 1,
+      "message": "1. Remove space before exclamation mark `!`?\n2. In English, should it end with a fullstop `.`?\n\nShould the en (English) source string be:\nPlease check again later.\n\nThe magyar (Hungarian) translation would be:\nPróbálkozzon újra később!\n\nThe française (French) translation could be:\nVérifiez ultérieurement.\n\nThank you",
+      "range": {
+        "startLine": 626,
+        "startChar": 142,
+        "endLine": 626,
+        "endChar": 161
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "409baee8_805ded41",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-14T20:32:26Z",
+      "side": 1,
+      "message": "Change to `extension`?\n\nThank you",
+      "range": {
+        "startLine": 629,
+        "startChar": 76,
+        "endLine": 629,
+        "endChar": 82
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f37dce3f_6f5df0e8",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-14T20:32:26Z",
+      "side": 1,
+      "message": "Change to `extension`? Thank you",
+      "range": {
+        "startLine": 633,
+        "startChar": 54,
+        "endLine": 633,
+        "endChar": 62
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62ed7f3f_978767f9",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-14T20:32:26Z",
+      "side": 1,
+      "message": "Change to `extension`? Thank you",
+      "range": {
+        "startLine": 634,
+        "startChar": 53,
+        "endLine": 634,
+        "endChar": 59
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f30e363_15521667",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-14T20:32:26Z",
+      "side": 1,
+      "message": "Change to `extension`? Thank you",
+      "range": {
+        "startLine": 637,
+        "startChar": 58,
+        "endLine": 637,
+        "endChar": 65
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36e1e93b_3462aa6a",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-14T20:32:26Z",
+      "side": 1,
+      "message": "Does `jpl` stands for `Jami Plugin`? Will the file extension be changed to include `Jami Extension`?\n\nShould the file name extensions be `(*.jami)`? This would then work whether it is an add-on, extension, plugin, theme, etc.\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 641,
+        "startChar": 53,
+        "endLine": 641,
+        "endChar": 58
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2968a83d_9b171130",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-14T20:32:26Z",
+      "side": 1,
+      "message": "Change to `Extension`? Thank you",
+      "range": {
+        "startLine": 641,
+        "startChar": 39,
+        "endLine": 641,
+        "endChar": 45
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92d81114_8811777f",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-14T20:32:26Z",
+      "side": 1,
+      "message": "Change to `extension`? Thank you",
+      "range": {
+        "startLine": 646,
+        "startChar": 47,
+        "endLine": 646,
+        "endChar": 53
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
