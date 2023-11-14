@@ -623,6 +623,7 @@ Item {
     property string installMannuallyDescription: qsTr("Install an extension directly from your device.")
     property string pluginStoreTitle: qsTr("Available")
     property string pluginStoreNotAvailable: qsTr("Plugins store is not available")
+    property string storeNotSupportedPlatform: qsTr("There is currently no extension available for your platform on the Jami Extension Store. Check again later!")
     property string pluginPreferences: qsTr("Preferences")
     property string installationFailed: qsTr("Installation failed")
     property string pluginInstallationFailed: qsTr("The installation of the plugin failed")

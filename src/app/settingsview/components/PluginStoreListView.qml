@@ -19,6 +19,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
+import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -109,6 +110,45 @@ ColumnLayout {
             font.pixelSize: JamiTheme.bigFontSize
             horizontalAlignment: Text.AlignHCenter
             text: JamiStrings.pluginStoreNotAvailable
+        }
+    }
+    Loader {
+        id: platormNotAvailableLoader
+        Layout.fillWidth: true
+        active: !PluginAdapter.isPluginAvailablePlatorm()
+        Layout.preferredHeight: active ? JamiTheme.materialButtonPreferredHeight : 0
+        sourceComponent: Rectangle {
+            width: platormNotAvailableLoader.width
+            height: platormNotAvailableLoader.height
+            color: JamiTheme.lightTintedBlue
+            radius: 5
+            RowLayout {
+                Layout.alignment: Qt.AlignCenter
+                Layout.fillWidth: true
+                height: JamiTheme.popuptextSize
+                ResponsiveImage {
+                    layer {
+                        enabled: true
+                        effect: ColorOverlay {
+                            color: JamiTheme.darkTintedBlue
+                        }
+                    }
+                    Layout.leftMargin: 5
+                    Layout.topMargin: JamiTheme.popuptextSize / 2
+                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                    width: JamiTheme.popuptextSize
+                    height: JamiTheme.popuptextSize
+                    source: JamiResources.outline_info_24dp_svg
+                }
+                Text {
+                    Layout.leftMargin: 5
+                    Layout.topMargin: JamiTheme.popuptextSize / 2
+                    color: JamiTheme.blackColor
+                    font.pixelSize: JamiTheme.popuptextSize
+                    horizontalAlignment: Text.AlignHCenter
+                    text: JamiStrings.storeNotSupportedPlatform
+                }
+            }
         }
     }
 }
