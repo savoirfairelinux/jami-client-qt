@@ -24,7 +24,6 @@
 #include "networkmanager.h"
 #include "lrcinstance.h"
 #include "appsettingsmanager.h"
-#include "utilsadapter.h"
 #include "qmlregister.h"
 
 #include <QJsonArray>
@@ -40,7 +39,7 @@ PluginAdapter::PluginAdapter(LRCInstance* instance,
                              QString baseUrl)
     : QmlAdapterBase(instance, parent)
     , pluginStoreListModel_(new PluginStoreListModel(instance, this))
-    , pluginVersionManager_(new PluginVersionManager(instance, this))
+    , pluginVersionManager_(new PluginVersionManager(instance, settingsManager, this))
     , pluginListModel_(new PluginListModel(instance, this))
     , lrcInstance_(instance)
     , settingsManager_(settingsManager)
