@@ -102,7 +102,7 @@ BaseModalDialog {
 
             onClicked: {
                 if (!(pressedKey === Qt.Key_unknown)){
-                    pttListener.setPttKey(pressedKey);
+                    PttListener.setPttKey(pressedKey);
                     choiceMade(pressedKey);
                 }
                 close();
@@ -113,7 +113,7 @@ BaseModalDialog {
             id: keyItem
 
             Keys.onPressed: (event)=>{
-                keyLabel.text = pttListener.keyToString(event.key);
+                keyLabel.text = PttListener.keyToString(event.key);
                 pressedKey = event.key;
             }
         }

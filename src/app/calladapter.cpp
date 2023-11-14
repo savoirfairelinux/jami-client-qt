@@ -26,23 +26,30 @@
 #include "calladapter.h"
 
 #include "systemtray.h"
-#include "utils.h"
 #include "qmlregister.h"
-
-#include <QApplication>
-#include <QTimer>
-#include <QJsonObject>
+#include "appsettingsmanager.h"
 
 #include <api/callmodel.h>
 #include <api/callparticipantsmodel.h>
 
 #include <media_const.h>
 
-CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject* parent)
+#include <QApplication>
+#include <QTimer>
+#include <QJsonObject>
+
+CallAdapter::CallAdapter(AppSettingsManager* settingsManager,
+                         SystemTray* systemTray,
+                         LRCInstance* instance,
+                         QObject* parent)
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
     , callInformationListModel_(std::make_unique<CallInformationListModel>())
+    , listener_(new PTTListener(settingsManager, this))
 {
+    // Expose the Push-to-talk listener to QML as a singleton
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, listener_, "PttListener");
+
     set_callInformationList(QVariant::fromValue(callInformationListModel_.get()));
 
     timer = new QTimer(this);
@@ -232,7 +239,7 @@ CallAdapter::onCallStarted(const QString& callId)
     // update call Information list by adding the new information related to the callId
     callInformationListModel_->addElement(
         qMakePair(callId, callModel->advancedInformationForCallId(callId)));
-    if (listener_->getPttState()){
+    if (listener_->getPttState()) {
 #ifdef HAVE_GLOBAL_PTT
         listener_->startListening();
         toMute += callId;
@@ -976,7 +983,8 @@ CallAdapter::muteCameraToggle()
             callModel->removeMedia(callId,
                                    libjami::Media::Details::MEDIA_TYPE_VIDEO,
                                    libjami::Media::VideoProtocolPrefix::CAMERA,
-                                   mute, false);
+                                   mute,
+                                   false);
         else
             callModel->addMedia(callId,
                                 lrcInstance_->avModel().getCurrentVideoCaptureDevice(),

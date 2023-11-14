@@ -37,6 +37,7 @@
 #include "callInformationListModel.h"
 
 class SystemTray;
+class AppSettingsManager;
 
 class CallAdapter final : public QmlAdapterBase
 {
@@ -49,7 +50,10 @@ public:
     enum MuteStates { UNMUTED, LOCAL_MUTED, MODERATOR_MUTED, BOTH_MUTED };
     Q_ENUM(MuteStates)
 
-    explicit CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject* parent = nullptr);
+    explicit CallAdapter(AppSettingsManager* settingsManager,
+                         SystemTray* systemTray,
+                         LRCInstance* instance,
+                         QObject* parent = nullptr);
     ~CallAdapter();
 
 public:
@@ -131,7 +135,7 @@ private:
     VectorString currentConfSubcalls_;
     std::unique_ptr<CallInformationListModel> callInformationListModel_;
 
-    PTTListener* listener_ = new PTTListener(systemTray_->getSettingsManager());
+    PTTListener* listener_;
     bool isMicrophoneMuted_ = true;
     QSet<QString> toMute;
 };

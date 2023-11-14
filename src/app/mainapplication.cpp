@@ -20,7 +20,6 @@
  */
 
 #include "mainapplication.h"
-#include "pttlistener.h"
 
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
@@ -131,12 +130,12 @@ MainApplication::init()
     // This 2-phase initialisation prevents ephemeral instances from
     // performing unnecessary tasks, like initializing the webengine.
     engine_.reset(new QQmlApplicationEngine(this));
-    connectivityMonitor_.reset(new ConnectivityMonitor(this));
-    settingsManager_.reset(new AppSettingsManager(this));
-    systemTray_.reset(new SystemTray(settingsManager_.get(), this));
-    listener_ = new PTTListener(settingsManager_.get(), this);
 
-    QObject::connect(settingsManager_.get(),
+    connectivityMonitor_ = new ConnectivityMonitor(this);
+    settingsManager_ = new AppSettingsManager(this);
+    systemTray_ = new SystemTray(settingsManager_, this);
+
+    QObject::connect(settingsManager_,
                      &AppSettingsManager::retranslate,
                      engine_.get(),
                      &QQmlApplicationEngine::retranslate);
@@ -149,7 +148,7 @@ MainApplication::init()
     setApplicationFont();
 
     initLrc(runOptions_[Option::UpdateUrl].toString(),
-            connectivityMonitor_.get(),
+            connectivityMonitor_,
             runOptions_[Option::Debug].toBool(),
             runOptions_[Option::MuteDaemon].toBool());
 
@@ -171,7 +170,7 @@ MainApplication::init()
     }
 #endif
 
-    connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, this, [this] {
+    connect(connectivityMonitor_, &ConnectivityMonitor::connectivityChanged, this, [this] {
         QTimer::singleShot(500, this, [&]() { lrcInstance_->connectivityChanged(); });
     });
 
@@ -350,16 +349,15 @@ MainApplication::initQmlLayer()
 {
     // Expose custom types to the QML engine.
     Utils::registerTypes(engine_.get(),
-                         systemTray_.get(),
                          lrcInstance_.get(),
-                         settingsManager_.get(),
-                         connectivityMonitor_.get(),
+                         systemTray_,
+                         settingsManager_,
+                         connectivityMonitor_,
                          &screenInfo_,
                          this);
 
     auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
     engine_->rootContext()->setContextProperty("videoProvider", videoProvider);
-    engine_->rootContext()->setContextProperty("pttListener", listener_);
 
     engine_->load(QUrl(QStringLiteral("qrc:/MainApplicationWindow.qml")));
     qWarning().noquote() << "Main window loaded using" << getRenderInterfaceString();
@@ -385,7 +383,7 @@ MainApplication::initSystray()
     QAction* restoreAction = new QAction(tr("&Show Jami"), this);
     connect(restoreAction, &QAction::triggered, this, &MainApplication::restoreApp);
 
-    connect(systemTray_.get(),
+    connect(systemTray_,
             &QSystemTrayIcon::activated,
             this,
             [this](QSystemTrayIcon::ActivationReason reason) {
@@ -424,4 +422,3 @@ MainApplication::setEventFilter()
 {
     installEventFilter(this);
 }
-
