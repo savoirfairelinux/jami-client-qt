@@ -68,6 +68,7 @@ protected:
                                                         bool removeLast = false);
 Q_SIGNALS:
     void storeNotAvailable();
+    void storeNotAvailableForPlatform();
 
 private:
     void updateHandlersListCount();

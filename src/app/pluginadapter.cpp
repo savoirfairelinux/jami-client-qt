@@ -102,8 +102,13 @@ PluginAdapter::getPluginsFromStore()
                              auto result = QJsonDocument::fromJson(data).array();
                              auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
                              QList<QVariantMap> plugins;
+                             if (result.size() == 0) {
+                                 Q_EMIT storeNotAvailableForPlatform();
+                                 return;
+                             }
                              for (const auto& plugin : result) {
                                  auto qPlugin = plugin.toVariant().toMap();
+
                                  if (!qPlugin.contains("id")) {
                                      qPlugin["id"] = qPlugin["name"];
                                  }
