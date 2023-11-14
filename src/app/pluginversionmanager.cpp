@@ -32,10 +32,10 @@ static constexpr int updatePeriod = 1000 * 60 * 60 * 24; // one day in millis
 struct PluginVersionManager::Impl : public QObject
 {
 public:
-    Impl(LRCInstance* instance, PluginVersionManager& parent)
+    Impl(LRCInstance* instance, AppSettingsManager* settingsManager, PluginVersionManager& parent)
         : QObject(nullptr)
         , parent_(parent)
-        , settingsManager_(new AppSettingsManager(this))
+        , settingsManager_(settingsManager)
         , lrcInstance_(instance)
         , updateTimer_(new QTimer(this))
     {
@@ -164,9 +164,11 @@ public:
     QTimer* updateTimer_;
 };
 
-PluginVersionManager::PluginVersionManager(LRCInstance* instance, QObject* parent)
+PluginVersionManager::PluginVersionManager(LRCInstance* instance,
+                                           AppSettingsManager* settingsManager,
+                                           QObject* parent)
     : NetworkManager(&instance->connectivityMonitor(), parent)
-    , pimpl_(std::make_unique<Impl>(instance, *this))
+    , pimpl_(std::make_unique<Impl>(instance, settingsManager, *this))
 {}
 
 PluginVersionManager::~PluginVersionManager()
