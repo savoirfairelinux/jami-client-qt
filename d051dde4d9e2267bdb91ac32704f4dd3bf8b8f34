@@ -46,6 +46,30 @@
       },
       "revId": "d051dde4d9e2267bdb91ac32704f4dd3bf8b8f34",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28f1e12a_268b07d0",
+        "filename": ".gitmodules",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-11-14T18:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cb12392_2145b2ed",
+      "range": {
+        "startLine": 3,
+        "startChar": 26,
+        "endLine": 3,
+        "endChar": 38
+      },
+      "revId": "d051dde4d9e2267bdb91ac32704f4dd3bf8b8f34",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
