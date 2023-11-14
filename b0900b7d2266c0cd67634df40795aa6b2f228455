@@ -118,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14d9e412_5c0739bf",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-14T15:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2702264_ce11f32b",
+      "range": {
+        "startLine": 72,
+        "startChar": 19,
+        "endLine": 72,
+        "endChar": 26
+      },
+      "revId": "b0900b7d2266c0cd67634df40795aa6b2f228455",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bdc2b16_434780b9",
