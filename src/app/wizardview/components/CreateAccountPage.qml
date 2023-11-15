@@ -2,6 +2,7 @@
  * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
  * Author: Yang Wang <yang.wang@savoirfairelinux.com>
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Author: Capucine Berthet <capucine.berthet@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +27,8 @@ import Qt5Compat.GraphicalEffects
 import "../"
 import "../../commoncomponents"
 import "../../settingsview/components"
+import "../../mainview/components"
+import "../../commoncomponents/contextmenu"
 
 Rectangle {
     id: root
@@ -47,7 +50,6 @@ Rectangle {
         chooseUsernameButton.enabled = true;
         showAdvancedButton.enabled = true;
         usernameEdit.dynamicText = "";
-        advancedAccountSettingsPage.clear();
     }
 
     color: JamiTheme.secondaryBackgroundColor
@@ -293,8 +295,8 @@ Rectangle {
                     onClicked: {
                         WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
                                 "registeredName": usernameEdit.dynamicText,
-                                "alias": advancedAccountSettingsPage.alias,
-                                "password": advancedAccountSettingsPage.validatedPassword,
+                                "alias": advancedSettingsMenu.chosenDisplayName,
+                                "password": advancedSettingsMenu.chosenPassword,
                                 "avatar": UtilsAdapter.tempCreationImage(),
                                 "isRendezVous": root.isRendezVous
                             });
@@ -314,10 +316,11 @@ Rectangle {
                     objectName: "showAdvancedButton"
                     tertiary: true
                     secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
+                    checkable: true
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: 2 * JamiTheme.wizardViewBlocMarginSize
-                    preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+                    preferredWidth: Math.min(JamiTheme.wizardButtonWidth - 100, root.width - JamiTheme.preferredMarginSize * 2)
 
                     text: JamiStrings.advancedAccountSettings
                     toolTipText: JamiStrings.showAdvancedFeatures
@@ -327,11 +330,61 @@ Rectangle {
                     KeyNavigation.down: backButton
 
                     onClicked: {
+                        checked = true
                         adviceBox.checked = false;
                         infoBox.checked = false;
-                        createAccountStack.currentIndex++;
+                        advancedSettingsMenu.open();
                     }
                 }
+
+                BaseContextMenu {
+                    id: advancedSettingsMenu
+
+                    y: showAdvancedButton.y - height + 15
+                    x: showAdvancedButton.x + showAdvancedButton.width * 2/3
+
+                    property var modelList
+
+                    property string chosenPassword: ""
+                    property string chosenDisplayName: ""
+
+                    property list<GeneralMenuItem> menuItems: [
+                        GeneralMenuItem {
+                            id: customize
+
+                            canTrigger: true
+                            iconSource: JamiResources.brush_black_24dp_svg
+                            itemName: JamiStrings.customize
+                            onClicked: {
+                                var dlg = viewCoordinator.presentDialog(appWindow, "wizardview/components/CustomizeProfilPopup.qml");
+                                dlg.accepted.connect(function (displayName) {
+                                    advancedSettingsMenu.chosenDisplayName = displayName;
+                                });
+                            }
+                        },
+                        GeneralMenuItem {
+                            id: encrypt
+
+                            canTrigger: true
+                            iconSource: JamiResources.lock_black_24dp_svg
+                            itemName: JamiStrings.encrypt
+
+                            onClicked: {
+                                var dlg = viewCoordinator.presentDialog(appWindow, "wizardview/components/EncryptAccountPopup.qml");
+                                dlg.accepted.connect(function (password) {
+                                    advancedSettingsMenu.chosenPassword = password;
+                                });
+                            }
+                        }
+                    ]
+
+                    Component.onCompleted: {
+                        advancedSettingsMenu.loadMenuItems(menuItems);
+                    }
+
+                    onClosed: showAdvancedButton.checked = false
+                }
+
 
                 NoUsernamePopup {
                     id: popup
@@ -347,33 +400,22 @@ Rectangle {
                 }
             }
         }
-
-        AdvancedAccountSettings {
-            id: advancedAccountSettingsPage
-            objectName: "advancedAccountSettingsPage"
-
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-
-            property int stackIndex: 1
-
-            onSaveButtonClicked: createAccountStack.currentIndex--
-        }
     }
 
-    BackButton {
+    JamiPushButton {
         id: backButton
 
         objectName: "createAccountPageBackButton"
 
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
+        preferredSize: 36
+        imageContainerWidth: 20
+        source: JamiResources.ic_arrow_back_24dp_svg
 
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
         KeyNavigation.tab: adviceBox
-        KeyNavigation.up: advancedAccountSettingsPage
         KeyNavigation.down: KeyNavigation.tab
 
         onClicked: {
@@ -383,162 +425,40 @@ Rectangle {
                 createAccountStack.currentIndex--;
             } else {
                 WizardViewStepModel.previousStep();
-                goodToKnow.visible = false;
                 helpOpened = false;
             }
         }
     }
 
-    PushButton {
+    JamiPushButton {
         id: adviceBox
         z: 1
 
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
+        preferredSize: 36
+        checkedImageColor: JamiTheme.chatviewButtonColor
+
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        normalColor: "transparent"
-        imageColor: adviceBox.checked ? JamiTheme.inviteHoverColor : JamiTheme.buttonTintedBlue
         source: JamiResources._black_24dp_svg
-        pressedColor: JamiTheme.tintedBlue
-        hoveredColor: JamiTheme.hoveredButtonColorWizard
-        border.color: {
-            if (adviceBox.checked) {
-                return "transparent";
-            }
-            return JamiTheme.buttonTintedBlue;
-        }
+
         checkable: true
 
-        onCheckedChanged: {
-            goodToKnow.visible = !goodToKnow.visible;
-            helpOpened = !helpOpened;
-            advancedAccountSettingsPage.openedPassword = false;
-            advancedAccountSettingsPage.openedNickname = false;
+        onClicked:{
+            if (!helpOpened) {
+                checked = true
+                helpOpened = true;
+                var dlg = viewCoordinator.presentDialog(appWindow, "wizardview/components/GoodToKnowPopup.qml");
+                dlg.accepted.connect(function() {
+                    checked = false;
+                    helpOpened = false;
+                });
+            }
         }
 
         KeyNavigation.tab: !createAccountStack.currentIndex ? usernameEdit : advancedAccountSettingsPage
         KeyNavigation.up: backButton
         KeyNavigation.down: KeyNavigation.tab
-    }
-
-    Item {
-        id: goodToKnow
-        anchors.top: parent.top
-        anchors.right: parent.right
-
-        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins + adviceBox.preferredWidth * 2 / 5
-
-        width: helpOpened ? Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 452) : 0
-        height: {
-            if (!helpOpened)
-                return 0;
-            var finalHeight = title.height + 3 * JamiTheme.preferredMarginSize;
-            finalHeight += flow.implicitHeight;
-            return finalHeight;
-        }
-
-        visible: false
-
-        Behavior on width {
-            NumberAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-
-        Behavior on height  {
-            NumberAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-
-        DropShadow {
-            z: -1
-            anchors.fill: boxAdvice
-            horizontalOffset: 2.0
-            verticalOffset: 2.0
-            radius: boxAdvice.radius
-            color: JamiTheme.shadowColor
-            source: boxAdvice
-            transparentBorder: true
-            samples: radius + 1
-        }
-
-        Rectangle {
-            id: boxAdvice
-
-            z: 0
-            anchors.fill: parent
-            radius: 30
-            color: JamiTheme.secondaryBackgroundColor
-
-            ColumnLayout {
-                id: adviceContainer
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.top: parent.top
-                visible: helpOpened ? 1 : 0
-
-                Behavior on visible  {
-                    NumberAnimation {
-                        from: 0
-                        duration: JamiTheme.overlayFadeDuration
-                    }
-                }
-
-                Text {
-                    id: title
-                    text: JamiStrings.goodToKnow
-                    color: JamiTheme.textColor
-                    font.weight: Font.Medium
-                    Layout.topMargin: JamiTheme.preferredMarginSize
-                    Layout.alignment: Qt.AlignCenter | Qt.AlignTop
-
-                    font.pixelSize: JamiTheme.title2FontSize
-                    font.kerning: true
-                }
-
-                Flow {
-                    id: flow
-                    spacing: 25
-                    Layout.alignment: Qt.AlignTop
-                    Layout.leftMargin: JamiTheme.preferredMarginSize * 4
-                    Layout.topMargin: JamiTheme.preferredMarginSize
-                    Layout.preferredWidth: helpOpened ? Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 452) : 0
-                    Layout.fillWidth: true
-
-                    InfoBox {
-                        id: info
-                        icoSource: JamiResources.laptop_black_24dp_svg
-                        title: JamiStrings.local
-                        description: JamiStrings.localAccount
-                        icoColor: JamiTheme.buttonTintedBlue
-                    }
-
-                    InfoBox {
-                        icoSource: JamiResources.person_24dp_svg
-                        title: JamiStrings.username
-                        description: JamiStrings.usernameRecommened
-                        icoColor: JamiTheme.buttonTintedBlue
-                    }
-
-                    InfoBox {
-                        icoSource: JamiResources.lock_svg
-                        title: JamiStrings.encrypt
-                        description: JamiStrings.passwordOptional
-                        icoColor: JamiTheme.buttonTintedBlue
-                    }
-
-                    InfoBox {
-                        icoSource: JamiResources.noun_paint_svg
-                        title: JamiStrings.customize
-                        description: JamiStrings.customizeOptional
-                        icoColor: JamiTheme.buttonTintedBlue
-                    }
-                }
-            }
-        }
     }
 }
