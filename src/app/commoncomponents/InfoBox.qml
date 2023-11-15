@@ -71,7 +71,7 @@ Rectangle {
 
         Text {
 
-            Layout.preferredWidth: 180
+            Layout.preferredWidth: root.width - 10
             Layout.alignment: Qt.AlignLeft
             Layout.topMargin: 8
             Layout.bottomMargin: 15
