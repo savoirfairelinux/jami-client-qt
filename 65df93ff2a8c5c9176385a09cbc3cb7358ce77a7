@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2809102c_181b556a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-15T11:57:44Z",
+      "side": 1,
+      "message": "Extension is used in the UI. `plugin` is still used for all the logic. This changes of naming have to be in a different issue. Thanks for your consideration, I\u0027m going to create an issue to change the naming.Here\u0027s the issue: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1430",
+      "parentUuid": "fa291815_28f3191e",
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "383ede0e_433c3b09",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-11-14T20:32:26Z",
       "side": 1,
       "message": "Change to `Extension Store`? Thank you",
+      "range": {
+        "startLine": 625,
+        "startChar": 51,
+        "endLine": 625,
+        "endChar": 64
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adda1f65_999ac1a9",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-15T11:57:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "383ede0e_433c3b09",
       "range": {
         "startLine": 625,
         "startChar": 51,
@@ -87,6 +129,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25570c84_788b52f8",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-15T11:57:44Z",
+      "side": 1,
+      "message": "\u003e 1. Would `you` like to be removed and changed to third-person?\n\u003e 2. Is it `platform` or `operating system`?\n\u003e \n\u003e Suggested en source string:\n\u003e The Jami Extension Store currently has no extension available for the operating system in use.\n\u003e \n\u003e What do you think?\n\u003e \n\u003e Thank you\nThis warnings is used when a platform do not support extension. It\u0027s not related to operating system",
+      "parentUuid": "90872935_9d9e6edb",
+      "range": {
+        "startLine": 626,
+        "startChar": 53,
+        "endLine": 626,
+        "endChar": 141
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "409baee8_805ded41",
@@ -100,6 +166,30 @@
       "writtenOn": "2023-11-14T20:32:26Z",
       "side": 1,
       "message": "Change to `extension`?\n\nThank you",
+      "range": {
+        "startLine": 629,
+        "startChar": 76,
+        "endLine": 629,
+        "endChar": 82
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b64da687_392a1458",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-15T11:57:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "409baee8_805ded41",
       "range": {
         "startLine": 629,
         "startChar": 76,
@@ -133,6 +223,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c3306c7_17209520",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-15T11:57:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f37dce3f_6f5df0e8",
+      "range": {
+        "startLine": 633,
+        "startChar": 54,
+        "endLine": 633,
+        "endChar": 62
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62ed7f3f_978767f9",
@@ -156,6 +270,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3da6102_7e2563d5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-15T11:57:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "62ed7f3f_978767f9",
+      "range": {
+        "startLine": 634,
+        "startChar": 53,
+        "endLine": 634,
+        "endChar": 59
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f30e363_15521667",
@@ -169,6 +307,30 @@
       "writtenOn": "2023-11-14T20:32:26Z",
       "side": 1,
       "message": "Change to `extension`? Thank you",
+      "range": {
+        "startLine": 637,
+        "startChar": 58,
+        "endLine": 637,
+        "endChar": 65
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "348f40d9_151fee8c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-15T11:57:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2f30e363_15521667",
       "range": {
         "startLine": 637,
         "startChar": 58,
@@ -225,6 +387,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a0ea270_c936fc76",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-15T11:57:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2968a83d_9b171130",
+      "range": {
+        "startLine": 641,
+        "startChar": 39,
+        "endLine": 641,
+        "endChar": 45
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58896f89_70899361",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-15T11:57:44Z",
+      "side": 1,
+      "message": "\u003e Does `jpl` stands for `Jami Plugin`? Will the file extension be changed to include `Jami Extension`?\n\u003e \n\u003e Should the file name extensions be `(*.jami)`? This would then work whether it is an add-on, extension, plugin, theme, etc.\n\u003e \n\u003e What do you think?\n\u003e \n\u003e Thank you\n\nExtension is used for the UI",
+      "parentUuid": "36e1e93b_3462aa6a",
+      "range": {
+        "startLine": 641,
+        "startChar": 53,
+        "endLine": 641,
+        "endChar": 58
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92d81114_8811777f",
@@ -238,6 +448,30 @@
       "writtenOn": "2023-11-14T20:32:26Z",
       "side": 1,
       "message": "Change to `extension`? Thank you",
+      "range": {
+        "startLine": 646,
+        "startChar": 47,
+        "endLine": 646,
+        "endChar": 53
+      },
+      "revId": "65df93ff2a8c5c9176385a09cbc3cb7358ce77a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebb83487_a070589c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-15T11:57:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "92d81114_8811777f",
       "range": {
         "startLine": 646,
         "startChar": 47,
