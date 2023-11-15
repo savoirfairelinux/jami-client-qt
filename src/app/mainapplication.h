@@ -36,6 +36,26 @@ class ConnectivityMonitor;
 class AppSettingsManager;
 class SystemTray;
 
+class CallAdapter;
+class PreviewEngine;
+class ImageDownloader;
+class MessagesAdapter;
+class PositionManager;
+class ConversationsAdapter;
+class AvAdapter;
+class ContactAdapter;
+class AccountAdapter;
+class UtilsAdapter;
+class PluginAdapter;
+class CurrentCall;
+class CurrentConversation;
+class CurrentAccount;
+class TipsModel;
+class VideoDevices;
+class CurrentAccountToMigrate;
+class AvatarRegistry;
+class WizardViewStepModel;
+
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
 {
@@ -121,6 +141,27 @@ private:
     ConnectivityMonitor* connectivityMonitor_;
     SystemTray* systemTray_;
     AppSettingsManager* settingsManager_;
+
+    // QML exposed objects
+    CallAdapter* callAdapter_;
+    PreviewEngine* previewEngine_;
+    ImageDownloader* imageDownloader_;
+    MessagesAdapter* messagesAdapter_;
+    PositionManager* positionManager_;
+    ConversationsAdapter* conversationsAdapter_;
+    AvAdapter* avAdapter_;
+    ContactAdapter* contactAdapter_;
+    AccountAdapter* accountAdapter_;
+    UtilsAdapter* utilsAdapter_;
+    PluginAdapter* pluginAdapter_;
+    CurrentCall* currentCall_;
+    CurrentConversation* currentConversation_;
+    CurrentAccount* currentAccount_;
+    TipsModel* tipsModel_;
+    VideoDevices* videoDevices_;
+    CurrentAccountToMigrate* currentAccountToMigrate_;
+    AvatarRegistry* avatarRegistry_;
+    WizardViewStepModel* wizardViewStepModel_;
 
     ScreenInfo screenInfo_;
 
