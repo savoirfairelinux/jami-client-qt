@@ -40,6 +40,7 @@ BaseModalDialog {
 
     signal focusOnPreviousItem
     signal focusOnNextItem
+    signal imageValidated
 
     function startBooth() {
         recordBox.openRecorder(true)
@@ -72,8 +73,10 @@ BaseModalDialog {
         onValidatePhoto: function(photo) {
             if (!root.newItem)
                 AccountAdapter.setCurrentAccountAvatarBase64(photo)
-            else
-                UtilsAdapter.setTempCreationImageFromString(photo, imageId)
+            else{
+                UtilsAdapter.setTempCreationImageFromString(photo, imageId);
+                imageValidated();
+            }
 
             root.close()
 

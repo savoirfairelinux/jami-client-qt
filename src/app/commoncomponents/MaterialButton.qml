@@ -39,12 +39,15 @@ AbstractButton {
     property var hoveredColor: JamiTheme.buttonTintedBlueHovered
     property var secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
     property var pressedColor: JamiTheme.buttonTintedBluePressed
+    property var checkedColor: JamiTheme.secAndTertiHoveredBackgroundColor
     property bool hasIcon: animatedIconSource.length !== 0 || iconSource.length !== 0
     property var preferredWidth
     property real textLeftPadding
     property real textRightPadding
     property real fontSize: JamiTheme.buttontextFontPixelSize
     property real textAlignment: Text.AlignHCenter
+    checkable: false
+    checked: false
 
     property real buttontextHeightMargin: JamiTheme.wizardButtonHeightMargin
     height: buttontextHeightMargin + textButton.height
@@ -187,6 +190,8 @@ AbstractButton {
             if (root.secondary || root.tertiary) {
                 if (root.hovered && root.enabled)
                     return root.secHoveredColor;
+                if (root.checked && root.checkable)
+                    return root.checkedColor;
                 return JamiTheme.transparentColor;
             }
             if (root.down)
