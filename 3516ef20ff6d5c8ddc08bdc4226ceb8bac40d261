@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbc45af1_e3f80fb2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-15T20:48:52Z",
+      "side": 1,
+      "message": "Should this sentence remove the `your` as it could be tech support setting up Jami?\n\nSuggested first sentence for en source string:\n`The Jami Extension Store currently has no extension available for the platform in use.`\n\nThank you",
+      "range": {
+        "startLine": 626,
+        "startChar": 53,
+        "endLine": 626,
+        "endChar": 141
+      },
+      "revId": "3516ef20ff6d5c8ddc08bdc4226ceb8bac40d261",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
