@@ -34,6 +34,8 @@ Item {
     property real avatarSize
     property bool doubleEditAvatar: false
 
+    property alias editButton: editImage
+
     height: avatarSize
 
     Rectangle {
