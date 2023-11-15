@@ -204,6 +204,24 @@
       "message": "I can\u0027t choose the host of a call anymore, device is not clickable",
       "revId": "b0900b7d2266c0cd67634df40795aa6b2f228455",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5143870_39d391e7",
+        "filename": "src/app/mainview/components/HostPopup.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-15T15:22:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80d767d1_e6e73fb0",
+      "revId": "b0900b7d2266c0cd67634df40795aa6b2f228455",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
