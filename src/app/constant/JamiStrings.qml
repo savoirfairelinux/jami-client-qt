@@ -829,6 +829,10 @@ Item {
     // ManageAccount
     property string enableAccountDescription: qsTr("Enabling your account allows you to be contacted on Jami")
 
+    // CreateAccount
+    property string encryptWithPassword: qsTr("Encrypt your account with a password")
+    property string customizeYourProfile: qsTr("Customize your profile")
+
     // General
     property string appearance: qsTr("Appearance")
 
