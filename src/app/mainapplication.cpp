@@ -27,6 +27,32 @@
 #include "systemtray.h"
 #include "videoprovider.h"
 
+#include "calladapter.h"
+#include "previewengine.h"
+#include "imagedownloader.h"
+#include "messagesadapter.h"
+#include "positionmanager.h"
+#include "conversationsadapter.h"
+#include "avadapter.h"
+#include "contactadapter.h"
+#include "accountadapter.h"
+#include "utilsadapter.h"
+#include "pluginadapter.h"
+#include "currentcall.h"
+#include "currentconversation.h"
+#include "currentaccount.h"
+#include "tipsmodel.h"
+#include "videodevices.h"
+#include "currentaccounttomigrate.h"
+#include "avatarregistry.h"
+#include "wizardviewstepmodel.h"
+#include "qrimageprovider.h"
+#include "avatarimageprovider.h"
+#include "avatarregistry.h"
+#include "appversionmanager.h"
+
+#include "namedirectory.h"
+
 #include <QAction>
 #include <QCommandLineParser>
 #include <QCoreApplication>
@@ -348,13 +374,76 @@ void
 MainApplication::initQmlLayer()
 {
     // Expose custom types to the QML engine.
-    Utils::registerTypes(engine_.get(),
-                         lrcInstance_.get(),
-                         systemTray_,
-                         settingsManager_,
-                         connectivityMonitor_,
-                         &screenInfo_,
-                         this);
+    Utils::registerTypes(engine_.get());
+
+    auto engine = engine_.get();
+    auto lrcInstance = lrcInstance_.get();
+    callAdapter_ = new CallAdapter(settingsManager_, systemTray_, lrcInstance, engine);
+    previewEngine_ = new PreviewEngine(connectivityMonitor_, this);
+    imageDownloader_ = new ImageDownloader(connectivityMonitor_, this);
+    messagesAdapter_ = new MessagesAdapter(settingsManager_, previewEngine_, lrcInstance, engine);
+    positionManager_ = new PositionManager(settingsManager_, systemTray_, lrcInstance, engine);
+    conversationsAdapter_ = new ConversationsAdapter(systemTray_, lrcInstance, engine);
+    avAdapter_ = new AvAdapter(lrcInstance, engine);
+    contactAdapter_ = new ContactAdapter(lrcInstance, engine);
+    accountAdapter_ = new AccountAdapter(settingsManager_, systemTray_, lrcInstance, engine);
+    utilsAdapter_ = new UtilsAdapter(settingsManager_, systemTray_, lrcInstance, engine);
+    pluginAdapter_ = new PluginAdapter(lrcInstance, settingsManager_, engine);
+    currentCall_ = new CurrentCall(lrcInstance, engine);
+    currentConversation_ = new CurrentConversation(lrcInstance, engine);
+    currentAccount_ = new CurrentAccount(lrcInstance, settingsManager_, engine);
+    tipsModel_ = new TipsModel(settingsManager_, engine);
+    videoDevices_ = new VideoDevices(lrcInstance, engine);
+    currentAccountToMigrate_ = new CurrentAccountToMigrate(lrcInstance, engine);
+    avatarRegistry_ = new AvatarRegistry(lrcInstance, engine);
+    wizardViewStepModel_ = new WizardViewStepModel(lrcInstance,
+                                                   accountAdapter_,
+                                                   settingsManager_,
+                                                   engine);
+
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, this, "MainApplication")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, &screenInfo_, "CurrentScreenInfo")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, lrcInstance, "LRCInstance")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, settingsManager_, "AppSettingsManager")
+
+    // QML adapter registration.
+    // Note: these will be set to have CppOwnership in the QML engine, but will
+    // be deleted by the QML engine when the engine is deleted.
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter_, "CallAdapter");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, tipsModel_, "TipsModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, messagesAdapter_, "MessagesAdapter");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, positionManager_, "PositionManager");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, conversationsAdapter_, "ConversationsAdapter");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, avAdapter_, "AvAdapter");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, contactAdapter_, "ContactAdapter");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, accountAdapter_, "AccountAdapter");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, utilsAdapter_, "UtilsAdapter");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, pluginAdapter_, "PluginAdapter");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentCall_, "CurrentCall");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentConversation_, "CurrentConversation");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS,
+                                      currentConversation_->uris(),
+                                      "CurrentConversationMembers");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccount_, "CurrentAccount");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, videoDevices_, "VideoDevices");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS,
+                                      currentAccountToMigrate_,
+                                      "CurrentAccountToMigrate")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, avatarRegistry_, "AvatarRegistry");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, wizardViewStepModel_, "WizardViewStepModel")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, imageDownloader_, "ImageDownloader")
+
+    // TODO: remove these
+    QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())
+    QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, PluginModel, &lrcInstance->pluginModel())
+    QML_REGISTERSINGLETONTYPE_CUSTOM(NS_HELPERS,
+                                     AppVersionManager,
+                                     lrcInstance->getAppVersionManager())
+    // Eww a C++ singleton
+    QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(NameDirectory);
+
+    engine_->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance));
+    engine_->addImageProvider(QLatin1String("avatarimage"), new AvatarImageProvider(lrcInstance));
 
     auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
     engine_->rootContext()->setContextProperty("videoProvider", videoProvider);
