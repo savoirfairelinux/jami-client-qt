@@ -135,7 +135,7 @@ public:
                 QThreadPool::globalInstance()->start([this, pluginId] {
                     auto res = lrcInstance_->pluginModel()
                                    .installPlugin(QDir(QDir::tempPath()).filePath(pluginId + ".jpl"),
-                                                  true);
+                                                  false);
                     if (res) {
                         parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLED);
                     } else {
