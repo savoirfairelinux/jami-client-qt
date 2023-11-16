@@ -139,6 +139,7 @@ Item {
     property color closeButtonLighterBlack: "#4c4c4c"
 
     property color redButtonColor: darkTheme ? "#FA2E30" : "#CC0022"
+    property color backgroundRectangleColor: darkTheme ? "#333333" : "#F0EFEF"
 
     // Jami switch
     property color switchBackgroundCheckedColor: "#8dbaea"

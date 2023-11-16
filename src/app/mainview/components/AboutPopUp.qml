@@ -28,10 +28,18 @@ BaseModalDialog {
     id: root
     margins: JamiTheme.preferredMarginSize
 
+    title: JamiStrings.aboutJami
+    button1.text: JamiStrings.contribute
+    button2.text: JamiStrings.feedback
+
+    button1.onClicked: { Qt.openUrlExternally("https://jami.net/contribute/")}
+    button2.onClicked: { Qt.openUrlExternally("mailto:jami@gnu.org")}
+
     popupContent: JamiFlickable {
             id: aboutPopUpScrollView
             width: aboutPopUpContentRectColumnLayout.implicitWidth
-            height: JamiTheme.preferredDialogHeight
+            height: Math.min(root.implicitHeight, aboutPopUpContentRectColumnLayout.implicitHeight)
+            Component.onCompleted: print(root.height, aboutPopUpContentRectColumnLayout.implicitHeight)
 
             contentHeight: aboutPopUpContentRectColumnLayout.implicitHeight
 
@@ -39,84 +47,90 @@ BaseModalDialog {
                 id: aboutPopUpContentRectColumnLayout
                 anchors.centerIn: parent
 
-                ResponsiveImage {
-                    id: aboutPopUPJamiLogoImage
-
+                RowLayout{
+                    Layout.fillWidth: true
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: JamiTheme.aboutLogoPreferredWidth
-                    Layout.preferredHeight: JamiTheme.aboutLogoPreferredHeight
 
-                    source: JamiTheme.darkTheme ? JamiResources.logo_jami_standard_coul_white_svg : JamiResources.logo_jami_standard_coul_svg
-                }
+                    spacing: 10
 
-                TextEdit {
-                    id: jamiSlogansText
+                    ResponsiveImage {
+                        id: aboutPopUPJamiLogoImage
 
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.maximumWidth: JamiTheme.preferredDialogWidth - 2*JamiTheme.preferredMarginSize
-                    Layout.topMargin: 26
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.margins: 10
+                        Layout.preferredWidth: 150
+                        Layout.preferredHeight: 50
 
-                    wrapMode: Text.WordWrap
-                    font.pixelSize: JamiTheme.bigFontSize
-
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    text: textMetricsjamiSlogansText.text
-                    selectByMouse: true
-                    readOnly: true
-                    color: JamiTheme.tintedBlue
-
-                    TextMetrics {
-                        id: textMetricsjamiSlogansText
-                        font: jamiSlogansText.font
-                        text: JamiStrings.slogan
+                        source: JamiTheme.darkTheme ? JamiResources.logo_jami_standard_coul_white_svg : JamiResources.logo_jami_standard_coul_svg
                     }
-                }
 
-                TextEdit {
-                    id: jamiVersionText
+                    Rectangle {
+                        color: JamiTheme.backgroundRectangleColor
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
 
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.maximumWidth: JamiTheme.preferredDialogWidth - 2*JamiTheme.preferredMarginSize
+                        radius: 5
 
-                    font.pixelSize: JamiTheme.tinyCreditsTextSize
+                        ColumnLayout {
+                            id: sloganLayout
 
-                    padding: 0
+                            anchors.verticalCenter: parent.verticalCenter
 
-                    text: JamiStrings.version + ": " + UtilsAdapter.getVersionStr()
-                    selectByMouse: true
-                    readOnly: true
-                    color: JamiTheme.textColor
+                            TextEdit {
+                                id: jamiSlogansText
 
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
+                                Layout.alignment: Qt.AlignLeft
+                                Layout.margins: 10
+                                Layout.bottomMargin: 0
 
-                TextEdit {
-                    id: jamiDeclarationText
+                                wrapMode: Text.WordWrap
+                                font.pixelSize: JamiTheme.menuFontSize
+                                font.bold: true
 
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.maximumWidth: JamiTheme.preferredDialogWidth - 2*JamiTheme.preferredMarginSize
-                    Layout.topMargin: 15
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
 
-                    wrapMode: Text.WordWrap
-                    font.pixelSize: JamiTheme.creditsTextSize
-                    color: JamiTheme.textColor
+                                text: textMetricsjamiSlogansText.text
+                                selectByMouse: true
+                                readOnly: true
 
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
+                                color: JamiTheme.textColor
 
-                    // TextMetrics does not work for multi-line.
-                    text: JamiStrings.declaration
-                    selectByMouse: true
-                    readOnly: true
+                                TextMetrics {
+                                    id: textMetricsjamiSlogansText
+                                    font: jamiSlogansText.font
+                                    text: JamiStrings.slogan
+                                }
+                            }
+
+                            TextEdit {
+                                id: jamiVersionText
+
+                                Layout.alignment: Qt.AlignLeft
+                                Layout.margins: 10
+                                Layout.topMargin: 0
+                                Layout.maximumWidth: JamiTheme.preferredDialogWidth - 2*JamiTheme.preferredMarginSize
+
+                                font.pixelSize: JamiTheme.textFontSize
+                                padding: 0
+                                text: JamiStrings.version + ": " + UtilsAdapter.getVersionStr()
+                                selectByMouse: true
+                                readOnly: true
+
+                                color: JamiTheme.faddedFontColor
+
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                    }
                 }
 
                 TextEdit {
                     id: jamiDeclarationHyperText
 
-                    Layout.alignment: Qt.AlignCenter
+                    Layout.alignment: Qt.AlignLeft
+                    Layout.fillWidth: true
 
                     // Strangely, hoveredLink works badly when width grows too large
                     Layout.maximumWidth: JamiTheme.preferredDialogWidth - 2*JamiTheme.preferredMarginSize
@@ -124,12 +138,12 @@ BaseModalDialog {
 
                     color: JamiTheme.textColor
 
-                    font.pixelSize: JamiTheme.creditsTextSize
-                    horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: JamiTheme.menuFontSize
                     verticalAlignment: Text.AlignVCenter
 
                     text: textMetricsjamiDeclarationHyperText.text
                     textFormat: TextEdit.RichText
+                    wrapMode: TextEdit.WordWrap
                     selectByMouse: true
                     readOnly: true
                     onLinkActivated: Qt.openUrlExternally(link)
@@ -137,7 +151,7 @@ BaseModalDialog {
                     TextMetrics {
                         id: textMetricsjamiDeclarationHyperText
                         font: jamiDeclarationHyperText.font
-                        text: '<a href="https://jami.net" style="color: ' + JamiTheme.blueLinkColor + '">jami.net</a>'
+                        text: JamiStrings.declaration + '<a href="https://jami.net" style="color: ' + JamiTheme.buttonTintedBlue + '">jami.net</a>' + "."
                     }
 
                     MouseArea {
@@ -152,13 +166,12 @@ BaseModalDialog {
                 TextEdit {
                     id: jamiNoneWarrantyHyperText
 
-                    Layout.alignment: Qt.AlignCenter
+                    Layout.alignment: Qt.AlignLeft
                     Layout.maximumWidth: JamiTheme.preferredDialogWidth - 2*JamiTheme.preferredMarginSize
                     Layout.topMargin: 15
                     wrapMode: Text.WordWrap
-                    font.pixelSize: JamiTheme.tinyCreditsTextSize
+                    font.pixelSize: JamiTheme.menuFontSize
 
-                    horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignTop
                     color: JamiTheme.textColor
 
@@ -171,7 +184,7 @@ BaseModalDialog {
                     TextMetrics {
                         id: textMetricsjamiNoneWarrantyHyperText
                         font: jamiDeclarationHyperText.font
-                        text: JamiStrings.declarationYear + " " + '<a href="https://savoirfairelinux.com" style="color: ' + JamiTheme.blueLinkColor + '">Savoir-faire Linux Inc.</a><br>' + 'This program comes with absolutely no warranty. See the <a href="http://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.blueLinkColor + '">GNU General Public License</a>, version 3 or later for details.'
+                        text: JamiStrings.noWarranty
                     }
 
                     MouseArea {
@@ -181,14 +194,55 @@ BaseModalDialog {
                     }
                 }
 
-                ProjectCreditsScrollView {
-                    id: projectCreditsScrollView
-                    Layout.alignment: Qt.AlignCenter
+                TextEdit {
+                    id: jamiYears
+
+                    Layout.alignment: Qt.AlignLeft
                     Layout.maximumWidth: JamiTheme.preferredDialogWidth - 2*JamiTheme.preferredMarginSize
-                    Layout.preferredHeight: 100
-                    Layout.topMargin: 25
-                    Layout.margins: JamiTheme.preferredMarginSize
+                    Layout.topMargin: 15
+
+                    wrapMode: Text.WordWrap
+                    font.pixelSize: JamiTheme.menuFontSize
+                    verticalAlignment: Text.AlignTop
+
+                    color: JamiTheme.textColor
+
+                    text: textMetricsYears.text
+                    textFormat: TextEdit.RichText
+                    selectByMouse: true
+                    readOnly: true
+
+                    onLinkActivated: Qt.openUrlExternally(link)
+
+                    TextMetrics {
+                        id: textMetricsYears
+                        font: jamiDeclarationHyperText.font
+                        text: JamiStrings.declarationYear + " " + '<a href="https://savoirfairelinux.com" style="color: ' + JamiTheme.buttonTintedBlue + '">Savoir-faire Linux</a><br>'
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.NoButton
+                        cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+                    }
                 }
+
+                Rectangle {
+                    width: projectCreditsScrollView.width + 20
+                    height: projectCreditsScrollView.height + 20
+
+                    color: JamiTheme.backgroundRectangleColor
+                    radius: 5
+
+                    ProjectCreditsScrollView {
+                        id: projectCreditsScrollView
+                        anchors.centerIn: parent
+                        width: JamiTheme.preferredDialogWidth - 2*JamiTheme.preferredMarginSize
+                        height: 140
+                        anchors.margins: 10
+                    }
+                }
+
         }
     }
 }
