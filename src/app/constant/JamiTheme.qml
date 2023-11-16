@@ -161,6 +161,7 @@ Item {
     property color comboboxBackgroundColorHovered: darkTheme ? "#123F4A" : "#E5EEF5"
     property color comboboxTextColor: darkTheme ? "#03B9E9" : "#005699"
     property color comboboxTextColorHovered: tintedBlue
+    property color accountComboBoxBackgroundColor: darkTheme ? "#333333" : lightGrey_
 
     // Spinbox
     property color spinboxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
