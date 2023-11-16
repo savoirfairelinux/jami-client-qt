@@ -41,7 +41,7 @@ Q_ENUM_NS(Role)
 class CurrentConversationMembers : public QAbstractListModel
 {
     Q_OBJECT
-    QML_PROPERTY(int, count)
+    QML_RO_PROPERTY(int, count)
 
 public:
     explicit CurrentConversationMembers(LRCInstance* lrcInstance, QObject* parent = nullptr);

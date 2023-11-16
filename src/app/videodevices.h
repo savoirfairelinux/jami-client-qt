@@ -21,9 +21,9 @@
 #include "lrcinstance.h"
 #include "qtutils.h"
 
-#include "api/devicemodel.h"
-
 #include <QObject>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class VideoDevices;
 
@@ -115,6 +115,8 @@ private:
 class VideoDevices : public QObject
 {
     Q_OBJECT
+    QML_SINGLETON
+
     QML_RO_PROPERTY(int, listSize)
 
     QML_RO_PROPERTY(QString, defaultChannel)
@@ -130,6 +132,11 @@ class VideoDevices : public QObject
     QML_RO_PROPERTY(QVariant, sharingFpsSourceModel)
 
 public:
+    static VideoDevices* create(QQmlEngine*, QJSEngine*)
+    {
+        return new VideoDevices(qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit VideoDevices(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~VideoDevices() = default;
 
