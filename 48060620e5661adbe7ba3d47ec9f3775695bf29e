@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "789586d7_e38c827e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-16T21:42:32Z",
+      "side": 1,
+      "message": "1. Move `software` after Jami?\n2. `peer-to-peer`? https://en.wikipedia.org/wiki/Peer-to-peer\n\n`Jami, a GNU package, is software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users.`\n\n3. Should `libre/open-source` be added?\n\n`Jami, a GNU package, is libre/open-source software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users.`\n\nThank you",
+      "range": {
+        "startLine": 51,
+        "startChar": 39,
+        "endLine": 51,
+        "endChar": 178
+      },
+      "revId": "48060620e5661adbe7ba3d47ec9f3775695bf29e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8630d5f6_467a0c2c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-16T21:42:32Z",
+      "side": 1,
+      "message": "1. Translators can easily overlook a trailing space ` `.\n2. Translations may require the variable to be not at the end of the sentence.\n3. Should the sentence end with a full-stop `.`?\n4. Is this a link to a website?\n5. Is it possible to have the variable in the string?\n\nShould the last sentence be:\n`Learn more on $1.`\n\nThank you",
+      "range": {
+        "startLine": 51,
+        "startChar": 179,
+        "endLine": 51,
+        "endChar": 193
+      },
+      "revId": "48060620e5661adbe7ba3d47ec9f3775695bf29e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d23311e_d7245a58",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-16T21:42:32Z",
+      "side": 1,
+      "message": "Should `http://` be `https://`?\n\nThank you",
+      "range": {
+        "startLine": 52,
+        "startChar": 103,
+        "endLine": 52,
+        "endChar": 143
+      },
+      "revId": "48060620e5661adbe7ba3d47ec9f3775695bf29e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
