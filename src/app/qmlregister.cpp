@@ -75,6 +75,7 @@
 // clang-format off
 // TODO: remove this
 #define QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(T) \
+    QQmlEngine::setObjectOwnership(&T::instance(), QQmlEngine::CppOwnership); \
     qmlRegisterSingletonType<T>(NS_MODELS, MODULE_VER_MAJ, MODULE_VER_MIN, #T, \
                                 [](QQmlEngine* e, QJSEngine* se) -> QObject* { \
                                     Q_UNUSED(e); Q_UNUSED(se); \
@@ -112,14 +113,9 @@ registerTypes(QQmlEngine* engine,
               MainApplication* app)
 {
     // setup the adapters (their lifetimes are that of MainApplication)
-    auto callAdapter = new CallAdapter(settingsManager, systemTray, lrcInstance, engine);
-    auto previewEngine = new PreviewEngine(connectivityMonitor, engine);
-    auto imageDownloader = new ImageDownloader(connectivityMonitor, engine);
-    auto messagesAdapter = new MessagesAdapter(settingsManager, previewEngine, lrcInstance, engine);
+
     auto positionManager = new PositionManager(settingsManager, systemTray, lrcInstance, engine);
-    auto conversationsAdapter = new ConversationsAdapter(systemTray, lrcInstance, engine);
     auto avAdapter = new AvAdapter(lrcInstance, engine);
-    auto contactAdapter = new ContactAdapter(lrcInstance, engine);
     auto accountAdapter = new AccountAdapter(settingsManager, systemTray, lrcInstance, engine);
     auto utilsAdapter = new UtilsAdapter(settingsManager, systemTray, lrcInstance, engine);
     auto pluginAdapter = new PluginAdapter(lrcInstance, settingsManager, engine);
@@ -129,18 +125,21 @@ registerTypes(QQmlEngine* engine,
     auto tipsModel = new TipsModel(settingsManager, engine);
     auto videoDevices = new VideoDevices(lrcInstance, engine);
     auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, engine);
+    auto wizardViewStepModel = new WizardViewStepModel(lrcInstance, accountAdapter, settingsManager, engine); // decouple from accountAdapter
     auto avatarRegistry = new AvatarRegistry(lrcInstance, engine);
-    auto wizardViewStepModel = new WizardViewStepModel(lrcInstance, accountAdapter, settingsManager, engine);
+    auto imageDownloader = new ImageDownloader(connectivityMonitor, engine);
 
     // qml adapter registration
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, tipsModel, "TipsModel");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, messagesAdapter, "MessagesAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, positionManager, "PositionManager");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, conversationsAdapter, "ConversationsAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, avAdapter, "AvAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, contactAdapter, "ContactAdapter");
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CallAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, MessagesAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ConversationsAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ContactAdapter);
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, accountAdapter, "AccountAdapter");
+
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, tipsModel, "TipsModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, positionManager, "PositionManager");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, avAdapter, "AvAdapter");
+
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, utilsAdapter, "UtilsAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, pluginAdapter, "PluginAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentCall, "CurrentCall");
@@ -149,24 +148,15 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccount, "CurrentAccount");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, videoDevices, "VideoDevices");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccountToMigrate, "CurrentAccountToMigrate")
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, avatarRegistry, "AvatarRegistry");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, wizardViewStepModel, "WizardViewStepModel")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, avatarRegistry, "AvatarRegistry");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, imageDownloader, "ImageDownloader")
 
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, PluginModel, &lrcInstance->pluginModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_HELPERS, AppVersionManager, lrcInstance->getAppVersionManager())
-
-    // Hack for QtCreator autocomplete (part 2)
-    // https://bugreports.qt.io/browse/QTCREATORBUG-20569
-    // Use a dummy object to register the import namespace.
-    // This occurs when we register from within MainApplication
-    QML_REGISTERNAMESPACE(NS_MODELS, dummy::staticMetaObject, "");
-    QML_REGISTERNAMESPACE(NS_ADAPTERS, dummy::staticMetaObject, "");
-    QML_REGISTERNAMESPACE(NS_CONSTANTS, dummy::staticMetaObject, "");
-    QML_REGISTERNAMESPACE(NS_HELPERS, dummy::staticMetaObject, "");
-    QML_REGISTERNAMESPACE(NS_ENUMS, dummy::staticMetaObject, "");
+    QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(NameDirectory); // C++ singleton
 
     // QAbstractListModels
     QML_REGISTERTYPE(NS_MODELS, BannedListModel);
@@ -200,10 +190,6 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, screenInfo, "CurrentScreenInfo")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, lrcInstance, "LRCInstance")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, settingsManager, "AppSettingsManager")
-
-    // C++ singletons
-    // TODO: remove this
-    QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(NameDirectory);
 
     // Lrc namespaces, models, and singletons
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::staticMetaObject, "Lrc");
@@ -239,13 +225,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoFormatFpsModel)
 
     engine->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance));
-    engine->addImageProvider(QLatin1String("avatarimage"),
-                              new AvatarImageProvider(lrcInstance));
-
-    engine->setObjectOwnership(&lrcInstance->avModel(), QQmlEngine::CppOwnership);
-    engine->setObjectOwnership(&lrcInstance->pluginModel(), QQmlEngine::CppOwnership);
-    engine->setObjectOwnership(lrcInstance->getAppVersionManager(), QQmlEngine::CppOwnership);
-    engine->setObjectOwnership(&NameDirectory::instance(), QQmlEngine::CppOwnership);
+    engine->addImageProvider(QLatin1String("avatarimage"), new AvatarImageProvider(lrcInstance));
 }
 // clang-format on
 } // namespace Utils
