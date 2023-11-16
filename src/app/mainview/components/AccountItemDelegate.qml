@@ -30,6 +30,18 @@ ItemDelegate {
     height: JamiTheme.accountListItemHeight
 
     background: Rectangle {
+        width: root.width - 10
+        anchors.horizontalCenter: parent.horizontalCenter
+        radius: 5
+
+        Rectangle{
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            height: 1.5
+            width: parent.width - 20
+            color: JamiTheme.smartListHoveredColor
+        }
+
         color: {
             if (root.pressed)
                 return JamiTheme.smartListSelectedColor;
