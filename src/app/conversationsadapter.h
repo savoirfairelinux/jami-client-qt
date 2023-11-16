@@ -26,6 +26,8 @@
 
 #include <QObject>
 #include <QString>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class SystemTray;
 
@@ -35,10 +37,23 @@ class ConversationsAdapter final : public QmlAdapterBase
     QML_PROPERTY(bool, filterRequests)
     QML_PROPERTY(int, totalUnreadMessageCount)
     QML_PROPERTY(int, pendingRequestCount)
+    QML_RO_PROPERTY(QVariant, convListProxyModel)
+    QML_RO_PROPERTY(QVariant, searchListProxyModel)
 
 public:
+    static ConversationsAdapter* create(QQmlEngine*, QJSEngine*)
+    {
+        return new ConversationsAdapter(
+            qApp->property("SystemTray").value<SystemTray*>(),
+            qApp->property("LRCInstance").value<LRCInstance*>(),
+            qApp->property("ConvListProxyModel").value<ConversationListProxyModel*>(),
+            qApp->property("ConvSearchListProxyModel").value<SelectableListProxyModel*>());
+    }
+
     explicit ConversationsAdapter(SystemTray* systemTray,
                                   LRCInstance* instance,
+                                  ConversationListProxyModel* convProxyModel,
+                                  SelectableListProxyModel* searchProxyModel,
                                   QObject* parent = nullptr);
     ~ConversationsAdapter() = default;
 
@@ -46,9 +61,9 @@ public:
     void connectConversationModel();
 
     Q_INVOKABLE QString createSwarm(const QString& title,
-                                 const QString& description,
-                                 const QString& avatar,
-                                 const VectorString& participants);
+                                    const QString& description,
+                                    const QString& avatar,
+                                    const VectorString& participants);
     Q_INVOKABLE void setFilter(const QString& filterString);
     Q_INVOKABLE void setFilterAndSelect(const QString& filterString);
     Q_INVOKABLE void ignoreFiltering(const QVariant& hightlighted);
@@ -107,9 +122,9 @@ private:
     SystemTray* systemTray_;
 
     QScopedPointer<ConversationListModel> convSrcModel_;
-    QScopedPointer<ConversationListProxyModel> convModel_;
+    ConversationListProxyModel* convModel_;
     QScopedPointer<SearchResultsListModel> searchSrcModel_;
-    QScopedPointer<SelectableListProxyModel> searchModel_;
+    SelectableListProxyModel* searchModel_;
 
     std::atomic_bool selectFirst_ {false};
 };
