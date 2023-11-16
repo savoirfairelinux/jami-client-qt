@@ -62,7 +62,8 @@ BaseModalDialog {
     RecordBox {
         id: recordBox
 
-        anchors.centerIn: parent
+        x: 100
+        y: 100
 
         isPhoto: true
         visible: false
@@ -118,14 +119,6 @@ BaseModalDialog {
 
                 onClicked: {
                     recordBox.parent = buttonsRowLayout
-
-                    recordBox.x = Qt.binding(function() {
-                        var buttonCenterX = buttonsRowLayout.width / 2
-                        return buttonCenterX - recordBox.width / 2
-                    })
-                    recordBox.y = Qt.binding(function() {
-                        return - recordBox.height / 2
-                    })
                     startBooth()
                 }
             }
