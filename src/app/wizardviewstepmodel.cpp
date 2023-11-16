@@ -18,26 +18,23 @@
 
 #include "wizardviewstepmodel.h"
 
-#include "accountadapter.h"
 #include "appsettingsmanager.h"
+#include "lrcinstance.h"
+
+#include "api/accountmodel.h"
 
 WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
-                                         AccountAdapter* accountAdapter,
                                          AppSettingsManager* appSettingsManager,
                                          QObject* parent)
     : QObject(parent)
     , lrcInstance_(lrcInstance)
-    , accountAdapter_(accountAdapter)
     , appSettingsManager_(appSettingsManager)
 {
     reset();
-
-    connect(accountAdapter_,
-            &AccountAdapter::accountAdded,
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::accountAdded,
             this,
-            [this](QString accountId, int index) {
-                accountAdapter_->changeAccount(index);
-
+            [this](const QString& accountId) {
                 auto accountCreationOption = get_accountCreationOption();
                 if (accountCreationOption == AccountCreationOption::ConnectToAccountManager
                     || accountCreationOption == AccountCreationOption::CreateSipAccount) {
@@ -66,30 +63,8 @@ WizardViewStepModel::startAccountCreationFlow(AccountCreationOption accountCreat
 void
 WizardViewStepModel::nextStep()
 {
-    auto accountCreationOption = get_accountCreationOption();
-    if (get_mainStep() == MainSteps::Initial
-        || accountCreationOption == AccountCreationOption::None) {
-        return;
-    }
-
-    switch (accountCreationOption) {
-    case AccountCreationOption::CreateJamiAccount:
-    case AccountCreationOption::CreateRendezVous:
-    case AccountCreationOption::ImportFromBackup:
-    case AccountCreationOption::ImportFromDevice: {
-        accountAdapter_->createJamiAccount(get_accountCreationInfo());
-        break;
-    }
-    case AccountCreationOption::ConnectToAccountManager: {
-        accountAdapter_->createJAMSAccount(get_accountCreationInfo());
-        break;
-    }
-    case AccountCreationOption::CreateSipAccount: {
-        accountAdapter_->createSIPAccount(get_accountCreationInfo());
-        break;
-    }
-    default:
-        return;
+    if (mainStep_ != MainSteps::Initial) {
+        Q_EMIT createAccountRequested(accountCreationOption_);
     }
 }
 
