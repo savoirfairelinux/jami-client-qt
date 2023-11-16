@@ -46,12 +46,17 @@ Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
 } // namespace dummy
 
 // clang-format off
+#define QML_REGISTERSINGLETON_TYPE(NS, T) \
+    qmlRegisterSingletonType<T>(NS, MODULE_VER_MAJ, MODULE_VER_MIN, #T, T::create);
+
 #define QML_REGISTERSINGLETONTYPE_POBJECT(NS, I, N) \
     QQmlEngine::setObjectOwnership(I, QQmlEngine::CppOwnership); \
     { using T = std::remove_reference<decltype(*I)>::type; \
     qmlRegisterSingletonType<T>(NS, MODULE_VER_MAJ, MODULE_VER_MIN, N, \
                                 [i=I](QQmlEngine*, QJSEngine*) -> QObject* { \
                                     return i; }); }
+
+#define QML_FACTORY_CREATE(I) [i=I](QQmlEngine*, QJSEngine*) -> QObject* { return i; }
 
 #define QML_REGISTERSINGLETONTYPE_CUSTOM(NS, T, P) \
     QQmlEngine::setObjectOwnership(P, QQmlEngine::CppOwnership); \
