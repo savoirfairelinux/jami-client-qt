@@ -54,7 +54,8 @@ Item {
     property string displayQRCode: qsTr("Display QR code")
     property string openSettings: qsTr("Open settings")
     property string closeSettings: qsTr("Close settings")
-    property string addAccount: qsTr("Add Account")
+    property string addAccount: qsTr("Add another account")
+    property string manageAccount: qsTr("Manage account")
 
     // ContactPicker
     property string addToConference: qsTr("Add to conference")
