@@ -17,32 +17,72 @@
 
 #include "previewengine.h"
 
+#include "htmlparser.h"
+
 #include <QRegularExpression>
 #include <QThread>
 
-const QRegularExpression PreviewEngine::newlineRe("\\r?\\n");
+class PreviewEngine::Parser : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit Parser(QObject* parent = nullptr);
+    ~Parser() = default;
+
+    Q_SIGNAL void infoReady(const QString& id, const QVariantMap& info);
+
+public:
+    Q_SLOT void processHTML(const QString& id, const QString& link, const QString& data);
+
+private:
+    // An instance of HtmlParser used to parse HTML.
+    HtmlParser* htmlParser_;
+
+    QString getTagContent(const QList<QString>& tags, const QString& value);
+    QString getTitle(const QList<QString>& metaTags);
+    QString getDescription(const QList<QString>& metaTags);
+    QString getImage(const QList<QString>& metaTags);
+
+    static const QRegularExpression newlineRe;
+};
+
+const QRegularExpression PreviewEngine::Parser::newlineRe("\\r?\\n");
 
 PreviewEngine::PreviewEngine(ConnectivityMonitor* cm, QObject* parent)
     : NetworkManager(cm, parent)
-    , htmlParser_(new HtmlParser(this))
+    , parser_(new PreviewEngine::Parser)
 {
-    // Run this object in a separate thread.
-    thread_ = new QThread();
-    moveToThread(thread_);
-    thread_->start();
+    parserThread_ = new QThread();
+    parser_->moveToThread(parserThread_);
 
-    // Connect on a queued connection to avoid blocking caller thread.
-    connect(this, &PreviewEngine::parseLink, this, &PreviewEngine::onParseLink, Qt::QueuedConnection);
+    connect(this, &PreviewEngine::parseLink, this, &PreviewEngine::onParseLink);
+    connect(this, &PreviewEngine::htmlReady, parser_.get(), &Parser::processHTML);
+    connect(parser_.get(), &Parser::infoReady, this, &PreviewEngine::infoReady);
+
+    parserThread_->start();
 }
 
 PreviewEngine::~PreviewEngine()
 {
-    thread_->quit();
-    thread_->wait();
+    parserThread_->quit();
+    parserThread_->wait();
 }
 
+void
+PreviewEngine::onParseLink(const QString& id, const QString& link)
+{
+    sendGetRequest(link,
+                   [this, id, link](const QByteArray& html) { Q_EMIT htmlReady(id, link, html); });
+}
+
+PreviewEngine::Parser::Parser(QObject* parent)
+    : QObject(parent)
+    , htmlParser_(new HtmlParser(this))
+{}
+
 QString
-PreviewEngine::getTagContent(const QList<QString>& tags, const QString& value)
+PreviewEngine::Parser::getTagContent(const QList<QString>& tags, const QString& value)
 {
     Q_FOREACH (auto tag, tags) {
         const QRegularExpression re("(property|name)=\"(og:|twitter:|)" + value
@@ -56,7 +96,7 @@ PreviewEngine::getTagContent(const QList<QString>& tags, const QString& value)
 }
 
 QString
-PreviewEngine::getTitle(const QList<QString>& metaTags)
+PreviewEngine::Parser::getTitle(const QList<QString>& metaTags)
 {
     // Try with opengraph/twitter props
     QString title = getTagContent(metaTags, "title");
@@ -73,7 +113,7 @@ PreviewEngine::getTitle(const QList<QString>& metaTags)
 }
 
 QString
-PreviewEngine::getDescription(const QList<QString>& metaTags)
+PreviewEngine::Parser::getDescription(const QList<QString>& metaTags)
 {
     // Try with og/twitter props
     QString desc = getTagContent(metaTags, "description");
@@ -84,7 +124,7 @@ PreviewEngine::getDescription(const QList<QString>& metaTags)
 }
 
 QString
-PreviewEngine::getImage(const QList<QString>& metaTags)
+PreviewEngine::Parser::getImage(const QList<QString>& metaTags)
 {
     // Try with og/twitter props
     QString image = getTagContent(metaTags, "image");
@@ -101,25 +141,25 @@ PreviewEngine::getImage(const QList<QString>& metaTags)
 }
 
 void
-PreviewEngine::onParseLink(const QString& messageId, const QString& link)
+PreviewEngine::Parser::processHTML(const QString& id, const QString& link, const QString& data)
 {
-    sendGetRequest(QUrl(link), [this, messageId, link](const QByteArray& html) {
-        htmlParser_->parseHtmlString(html);
-        auto tagsNodes = htmlParser_->getTagsNodes({TidyTag_META});
-        auto metaTagNodes = tagsNodes[TidyTag_META];
-        QList<QString> metaTags;
-        Q_FOREACH (auto tag, metaTagNodes) {
-            metaTags.append(htmlParser_->getNodeText(tag));
-        }
-        QString domain = QUrl(link).host();
-        if (domain.isEmpty()) {
-            domain = link;
-        }
-        Q_EMIT infoReady(messageId,
-                         {{"title", getTitle(metaTags)},
-                          {"description", getDescription(metaTags)},
-                          {"image", getImage(metaTags)},
-                          {"url", link},
-                          {"domain", domain}});
-    });
+    htmlParser_->parseHtmlString(data);
+    auto tagsNodes = htmlParser_->getTagsNodes({TidyTag_META});
+    auto metaTagNodes = tagsNodes[TidyTag_META];
+    QList<QString> metaTags;
+    Q_FOREACH (auto tag, metaTagNodes) {
+        metaTags.append(htmlParser_->getNodeText(tag));
+    }
+    QString domain = QUrl(link).host();
+    if (domain.isEmpty()) {
+        domain = link;
+    }
+    Q_EMIT infoReady(id,
+                     {{"title", getTitle(metaTags)},
+                      {"description", getDescription(metaTags)},
+                      {"image", getImage(metaTags)},
+                      {"url", link},
+                      {"domain", domain}});
 }
+
+#include "previewengine.moc"
