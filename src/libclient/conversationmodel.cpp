@@ -273,7 +273,10 @@ public Q_SLOTS:
      * @param isOutgoing
      * @param toUri
      */
-    void slotNewCall(const QString& fromId, const QString& callId, bool isOutgoing, const QString& toUri);
+    void slotNewCall(const QString& fromId,
+                     const QString& callId,
+                     bool isOutgoing,
+                     const QString& toUri);
     /**
      * Listen from callmodel for calls status changed.
      * @param callId
@@ -3368,7 +3371,10 @@ ConversationModelPimpl::getIndicesForContact(const QString& uri) const
 }
 
 void
-ConversationModelPimpl::slotNewCall(const QString& fromId, const QString& callId, bool isOutgoing, const QString& toUri)
+ConversationModelPimpl::slotNewCall(const QString& fromId,
+                                    const QString& callId,
+                                    bool isOutgoing,
+                                    const QString& toUri)
 {
     if (isOutgoing) {
         // search contact

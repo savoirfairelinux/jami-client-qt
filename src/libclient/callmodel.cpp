@@ -495,7 +495,12 @@ CallModel::replaceDefaultCamera(const QString& callId, const QString& deviceId)
 }
 
 VectorMapStringString
-CallModel::getProposed(VectorMapStringString mediaList, const QString& callId, const QString& source, MediaRequestType type, bool mute, bool shareAudio)
+CallModel::getProposed(VectorMapStringString mediaList,
+                       const QString& callId,
+                       const QString& source,
+                       MediaRequestType type,
+                       bool mute,
+                       bool shareAudio)
 {
     auto& callInfo = pimpl_->calls[callId];
     if (!callInfo || source.isEmpty())
@@ -526,10 +531,10 @@ CallModel::getProposed(VectorMapStringString mediaList, const QString& callId, c
                                      : libjami::Media::VideoProtocolPrefix::NONE;
         if (shareAudio)
             audioMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::AUDIO},
-                                {MediaAttributeKey::ENABLED, TRUE_STR},
-                                {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
-                                {MediaAttributeKey::SOURCE, resource},
-                                {MediaAttributeKey::LABEL, alabel}};
+                                   {MediaAttributeKey::ENABLED, TRUE_STR},
+                                   {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                                   {MediaAttributeKey::SOURCE, resource},
+                                   {MediaAttributeKey::LABEL, alabel}};
         break;
     }
     case MediaRequestType::SCREENSHARING: {
@@ -551,7 +556,8 @@ CallModel::getProposed(VectorMapStringString mediaList, const QString& callId, c
     }
 
     VectorMapStringString proposedList {};
-    MapStringString videoMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
+    MapStringString videoMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE,
+                                            MediaAttributeValue::VIDEO},
                                            {MediaAttributeKey::ENABLED, TRUE_STR},
                                            {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
                                            {MediaAttributeKey::SOURCE, resource},
@@ -593,9 +599,9 @@ CallModel::getProposed(VectorMapStringString mediaList, const QString& callId, c
     return proposedList;
 }
 
-
 void
-CallModel::addMedia(const QString& callId, const QString& source, MediaRequestType type, bool mute, bool shareAudio)
+CallModel::addMedia(
+    const QString& callId, const QString& source, MediaRequestType type, bool mute, bool shareAudio)
 {
     auto& callInfo = pimpl_->calls[callId];
     if (!callInfo || source.isEmpty())
@@ -1448,7 +1454,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
         callInfo->mediaList = {};
         calls.emplace(callId, std::move(callInfo));
 
-         if (!(details["CALL_TYPE"] == "1") && !linked.owner.confProperties.allowIncoming
+        if (!(details["CALL_TYPE"] == "1") && !linked.owner.confProperties.allowIncoming
             && linked.owner.profileInfo.type == profile::Type::JAMI) {
             linked.refuse(callId);
             return;
@@ -1473,7 +1479,11 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
         qDebug() << displayname;
         qDebug() << peerId;
 
-        Q_EMIT linked.newCall(peerId, callId, displayname, details["CALL_TYPE"] == "1", details["TO_USERNAME"]);
+        Q_EMIT linked.newCall(peerId,
+                              callId,
+                              displayname,
+                              details["CALL_TYPE"] == "1",
+                              details["TO_USERNAME"]);
 
         // NOTE: signal emission order matters, always emit CallStatusChanged before CallEnded
         Q_EMIT linked.callStatusChanged(callId, code);
@@ -1524,13 +1534,6 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
     } else if (call->status == call::Status::IN_PROGRESS) {
         if (previousStatus == call::Status::INCOMING_RINGING
             || previousStatus == call::Status::OUTGOING_RINGING) {
-            if (previousStatus == call::Status::INCOMING_RINGING
-                && linked.owner.profileInfo.type != profile::Type::SIP
-                && !linked.owner.confProperties.autoAnswer
-                && !linked.owner.confProperties.isRendezVous) { // TODO remove this when we want to
-                                                                // not show calls in rendez-vous
-                linked.setCurrentCall(callId);
-            }
             call->startTime = std::chrono::steady_clock::now();
             Q_EMIT linked.callStarted(callId);
             sendProfile(callId);
