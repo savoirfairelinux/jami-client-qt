@@ -193,12 +193,13 @@ Rectangle {
             }
 
             onVideoRecordMessageButtonClicked: {
-                recordBox.y = -recordBox.height;
+                recordBox.y = -recordBox.height - 200;
+                recordBox.x = recordBox.width + 200
                 recordBox.openRecorder(true);
             }
 
             onAudioRecordMessageButtonClicked: {
-                recordBox.y = -recordBox.height;
+                recordBox.y = -recordBox.height - 200;
                 recordBox.openRecorder(false);
             }
 
