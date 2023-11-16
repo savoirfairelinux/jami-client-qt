@@ -19,8 +19,6 @@
 
 #include "networkmanager.h"
 
-#include "htmlparser.h"
-
 class PreviewEngine final : public NetworkManager
 {
     Q_OBJECT
@@ -30,21 +28,14 @@ public:
     ~PreviewEngine();
 
 Q_SIGNALS:
-    void parseLink(const QString& messageId, const QString& link);
-    void infoReady(const QString& messageId, const QVariantMap& info);
+    void parseLink(const QString& id, const QString& link);
+    void infoReady(const QString& id, const QVariantMap& info);
 
 private:
-    Q_SLOT void onParseLink(const QString& messageId, const QString& link);
+    Q_SLOT void onParseLink(const QString& id, const QString& link);
+    Q_SIGNAL void htmlReady(const QString& id, const QString& link, const QByteArray& data);
 
-    // An instance of HtmlParser used to parse HTML.
-    HtmlParser* htmlParser_;
-
-    QString getTagContent(const QList<QString>& tags, const QString& value);
-    QString getTitle(const QList<QString>& metaTags);
-    QString getDescription(const QList<QString>& metaTags);
-    QString getImage(const QList<QString>& metaTags);
-
-    static const QRegularExpression newlineRe;
-
-    QThread* thread_;
+    class Parser;
+    QScopedPointer<Parser> parser_;
+    QThread* parserThread_;
 };

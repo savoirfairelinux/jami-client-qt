@@ -62,7 +62,7 @@ OngoingCallPage {
             viewCoordinator.init(uut)
         }
 
-        function test_checkBasicVisibility() {
+        function test_checkCallActionBarVisibility() {
             var callActionBar = findChild(mainOverlay, "callActionBar")
 
             // The primary and secondary actions in the CallActionBar are currently being added
