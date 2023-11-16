@@ -26,6 +26,8 @@
 #include <QObject>
 #include <QSortFilterProxyModel>
 #include <QString>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class LRCInstance;
 
@@ -80,8 +82,14 @@ private:
 class ContactAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
 
 public:
+    static ContactAdapter* create(QQmlEngine*, QJSEngine*)
+    {
+        return new ContactAdapter(qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit ContactAdapter(LRCInstance* instance, QObject* parent = nullptr);
     ~ContactAdapter() = default;
 

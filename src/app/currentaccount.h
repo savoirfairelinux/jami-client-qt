@@ -24,6 +24,8 @@
 
 #include <QObject>
 #include <QString>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 #define ACCOUNT_CONFIG_SETTINGS_PROPERTY_BASE(type, prop) \
     PROPERTY_GETTER_BASE(type, prop) \
@@ -97,7 +99,7 @@ private: \
 class CurrentAccount final : public QObject
 {
     Q_OBJECT
-    // Basic settings
+    QML_SINGLETON
 
     QML_RO_PROPERTY(QString, id)
     QML_RO_PROPERTY(QString, uri)
@@ -194,6 +196,12 @@ class CurrentAccount final : public QObject
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(QJsonObject, uiCustomization)
 
 public:
+    static CurrentAccount* create(QQmlEngine*, QJSEngine*)
+    {
+        return new CurrentAccount(qApp->property("LRCInstance").value<LRCInstance*>(),
+                                  qApp->property("AppSettingsManager").value<AppSettingsManager*>());
+    }
+
     explicit CurrentAccount(LRCInstance* lrcInstance,
                             AppSettingsManager* settingsManager,
                             QObject* parent = nullptr);
