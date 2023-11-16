@@ -3424,35 +3424,7 @@ ConversationModelPimpl::slotCallStatusChanged(const QString& callId, int code)
 
     try {
         auto call = linked.owner.callModel->getCall(callId);
-        if (i == conversations.end()) {
-            // In this case, the user didn't pass through placeCall
-            // This means that a participant was invited to a call
-            // or a call was placed via dbus.
-            // We have to update the model
-            for (auto& conversation : conversations) {
-                auto& peers = peersForConversation(conversation);
-                if (peers.size() != 1) {
-                    continue;
-                }
-                if (peers.front() == call.peerUri.remove("ring:")) {
-                    if (!conversation.callId.isEmpty()) {
-                        // If outgoing and incoming happen at the same time, choose the current one.
-                        auto call = linked.owner.callModel->getCall(conversation.callId);
-                        qWarning() << "Double call detected" << call::to_string(call.status)
-                                   << " - " << conversation.callId;
-                        // Ignore new call in favor of existing one
-                        if (call.status == call::Status::IN_PROGRESS)
-                            return;
-                    }
-                    conversation.callId = callId;
-                    // Update interaction status
-                    invalidateModel();
-                    Q_EMIT linked.selectConversation(conversation.uid);
-                    Q_EMIT linked.conversationUpdated(conversation.uid);
-                    Q_EMIT linked.dataChanged(indexOf(conversation.uid));
-                }
-            }
-        } else if (i != conversations.end()) {
+        if (i != conversations.end()) {
             // Update interaction status
             invalidateModel();
             Q_EMIT linked.selectConversation(i->uid);
