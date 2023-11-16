@@ -18,16 +18,28 @@
 #pragma once
 
 #include "networkmanager.h"
+#include "connectivitymonitor.h"
 #include "qtutils.h"
+
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class ImageDownloader : public NetworkManager
 {
     Q_OBJECT
+    QML_SINGLETON
 
     QML_PROPERTY(QString, cachePath)
 
 public:
+    static ImageDownloader* create(QQmlEngine*, QJSEngine*)
+    {
+        return new ImageDownloader(
+            qApp->property("ConnectivityMonitor").value<ConnectivityMonitor*>());
+    }
+
     explicit ImageDownloader(ConnectivityMonitor* cm, QObject* parent = nullptr);
+    ~ImageDownloader() = default;
 
     // Download an image and call onDownloadImageFinished when done
     Q_INVOKABLE void downloadImage(const QUrl& url, const QString& localPath);

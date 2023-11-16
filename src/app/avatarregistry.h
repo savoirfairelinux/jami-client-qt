@@ -20,13 +20,22 @@
 
 #include <QObject>
 #include <QMap>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class LRCInstance;
 
 class AvatarRegistry : public QObject
 {
     Q_OBJECT
+    QML_SINGLETON
+
 public:
+    static AvatarRegistry* create(QQmlEngine*, QJSEngine*)
+    {
+        return new AvatarRegistry(qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit AvatarRegistry(LRCInstance* instance, QObject* parent = nullptr);
     ~AvatarRegistry() = default;
 

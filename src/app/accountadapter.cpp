@@ -55,6 +55,11 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
             &SystemTray::countChanged,
             accountListModel_.get(),
             &AccountListModel::updateNotifications);
+
+    // Switch account to the specified index when an account is added.
+    connect(this, &AccountAdapter::accountAdded, this, [this](const QString&, int index) {
+        changeAccount(index);
+    });
 }
 
 AccountModel*

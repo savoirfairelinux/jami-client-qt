@@ -26,6 +26,8 @@
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "videoprovider.h"
+#include "previewengine.h"
+#include "conversationlistmodel.h"
 
 #include <QWKQuick/qwkquickglobal.h>
 
@@ -42,7 +44,6 @@
 #include <QQuickWindow>
 #include <QLoggingCategory>
 
-#include <locale.h>
 #include <thread>
 
 #ifdef Q_OS_WIN
@@ -188,6 +189,7 @@ MainApplication::init()
     connectivityMonitor_ = new ConnectivityMonitor(this);
     settingsManager_ = new AppSettingsManager(this);
     systemTray_ = new SystemTray(settingsManager_, this);
+    previewEngine_ = new PreviewEngine(connectivityMonitor_, this);
 
     // These should should be QueuedConnection to ensure that the
     // they are executed after the QML engine has been initialized,
@@ -409,6 +411,22 @@ MainApplication::initQmlLayer()
                          connectivityMonitor_,
                          &screenInfo_,
                          this);
+
+    // These MUST be set prior to loading the initial QML file, in order to
+    // be available to the QML adapter class factory creation methods.
+    qApp->setProperty("LRCInstance", QVariant::fromValue(lrcInstance_.get()));
+    qApp->setProperty("SystemTray", QVariant::fromValue(systemTray_));
+    qApp->setProperty("AppSettingsManager", QVariant::fromValue(settingsManager_));
+    qApp->setProperty("ConnectivityMonitor", QVariant::fromValue(connectivityMonitor_));
+    qApp->setProperty("PreviewEngine", QVariant::fromValue(previewEngine_));
+
+    // We'll need these when instantiating ConversationAdapter.
+    auto convListProxyModel = new ConversationListProxyModel(nullptr, this);
+    qApp->setProperty("ConvListProxyModel", QVariant::fromValue(convListProxyModel));
+    auto searchProxyListModel = new SelectableListProxyModel(nullptr, this);
+    qApp->setProperty("ConvSearchListProxyModel", QVariant::fromValue(searchProxyListModel));
+    // This causes mutually exclusive selection between the two proxy models.
+    new SelectableListProxyGroupModel({convListProxyModel, searchProxyListModel}, this);
 
     auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
     engine_->rootContext()->setContextProperty("videoProvider", videoProvider);
