@@ -26,6 +26,8 @@
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "videoprovider.h"
+#include "previewengine.h"
+#include "conversationlistmodel.h"
 
 #include <QWKQuick/qwkquickglobal.h>
 
@@ -42,7 +44,6 @@
 #include <QQuickWindow>
 #include <QLoggingCategory>
 
-#include <locale.h>
 #include <thread>
 
 #ifdef Q_OS_WIN
@@ -188,6 +189,7 @@ MainApplication::init()
     connectivityMonitor_ = new ConnectivityMonitor(this);
     settingsManager_ = new AppSettingsManager(this);
     systemTray_ = new SystemTray(settingsManager_, this);
+    previewEngine_ = new PreviewEngine(connectivityMonitor_, this);
 
     // These should should be QueuedConnection to ensure that the
     // they are executed after the QML engine has been initialized,
@@ -407,6 +409,7 @@ MainApplication::initQmlLayer()
                          systemTray_,
                          settingsManager_,
                          connectivityMonitor_,
+                         previewEngine_,
                          &screenInfo_,
                          this);
 

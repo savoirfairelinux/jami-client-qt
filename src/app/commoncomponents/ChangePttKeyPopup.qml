@@ -37,7 +37,7 @@ BaseModalDialog {
     button2Role: DialogButtonBox.RejectRole
     button1.onClicked: {
         if (!(pressedKey === Qt.Key_unknown)){
-            PttListener.setPttKey(pressedKey);
+            PTTListener.setPttKey(pressedKey);
             choiceMade(pressedKey);
         }
         close();
@@ -102,7 +102,7 @@ BaseModalDialog {
             id: keyItem
 
             Keys.onPressed: (event)=>{
-                keyLabel.text = PttListener.keyToString(event.key);
+                keyLabel.text = PTTListener.keyToString(event.key);
                 pressedKey = event.key;
             }
         }

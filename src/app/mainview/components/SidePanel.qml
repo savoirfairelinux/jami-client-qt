@@ -378,7 +378,7 @@ SidePanelBase {
                             return parent.height;
                     }
 
-                    model: SearchResultsListModel
+                    model: ConversationsAdapter.searchListProxyModel
                     headerLabel: JamiStrings.searchResults
                     headerVisible: true
                 }
@@ -389,7 +389,7 @@ SidePanelBase {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
-                    model: ConversationListModel
+                    model: ConversationsAdapter.convListProxyModel
                     headerLabel: JamiStrings.conversations
                     headerVisible: count && searchResultsListView.visible
                 }
@@ -411,7 +411,7 @@ SidePanelBase {
                     Layout.preferredWidth: parent.width
                     Layout.fillHeight: true
 
-                    model: ConversationListModel
+                    model: ConversationsAdapter.convListProxyModel
                     delegate: SmartListItemDelegate {
                         interactive: false
 

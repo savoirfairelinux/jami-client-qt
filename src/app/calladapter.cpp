@@ -28,6 +28,9 @@
 #include "systemtray.h"
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
+#ifdef HAVE_GLOBAL_PTT
+#include "pttlistener.h" // Note: this is included without condition in "calloverlaymodel.h"
+#endif
 
 #include <api/callmodel.h>
 #include <api/callparticipantsmodel.h>
@@ -45,18 +48,14 @@ CallAdapter::CallAdapter(AppSettingsManager* settingsManager,
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
     , callInformationListModel_(std::make_unique<CallInformationListModel>())
-    , listener_(new PTTListener(settingsManager, this))
 {
-    // Expose the Push-to-talk listener to QML as a singleton
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, listener_, "PttListener");
+    // Get the PTTListener instance.
+    listener_ = qApp->property("PTTListener").value<PTTListener*>();
 
     set_callInformationList(QVariant::fromValue(callInformationListModel_.get()));
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &CallAdapter::updateAdvancedInformation);
-
-    overlayModel_.reset(new CallOverlayModel(lrcInstance_, listener_, this));
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, overlayModel_.get(), "CallOverlayModel");
 
     accountId_ = lrcInstance_->get_currentAccountId();
     connectCallModel(accountId_);

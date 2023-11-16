@@ -22,7 +22,7 @@
 
 #include "appsettingsmanager.h"
 #include "qtutils.h"
-#include "qmlregister.h"
+#include "accountlistmodel.h"
 
 #include <QtConcurrent/QtConcurrent>
 
@@ -33,14 +33,7 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
     , systemTray_(systemTray)
-    , accountListModel_(new AccountListModel(instance))
-    , deviceItemListModel_(new DeviceItemListModel(instance, parent))
-    , moderatorListModel_(new ModeratorListModel(instance, parent))
 {
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, accountListModel_.get(), "AccountListModel");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, deviceItemListModel_.get(), "DeviceItemListModel");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, moderatorListModel_.get(), "ModeratorListModel");
-
     connect(&lrcInstance_->accountModel(),
             &AccountModel::accountStatusChanged,
             this,
@@ -53,8 +46,13 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
 
     connect(systemTray_,
             &SystemTray::countChanged,
-            accountListModel_.get(),
+            qApp->property("AccountListModel").value<AccountListModel*>(),
             &AccountListModel::updateNotifications);
+
+    // Switch account to the specified index when an account is added.
+    connect(this, &AccountAdapter::accountAdded, this, [this](const QString&, int index) {
+        changeAccount(index);
+    });
 }
 
 AccountModel*

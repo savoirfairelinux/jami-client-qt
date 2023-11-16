@@ -20,11 +20,8 @@
 #include "accountlistmodel.h"
 
 #include "lrcinstance.h"
-#include "utils.h"
 
 #include "api/account.h"
-#include "api/contact.h"
-#include "api/conversation.h"
 
 #include <QDateTime>
 

@@ -17,6 +17,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtTest
 
 import "../../../src/app/"
 
@@ -24,8 +25,18 @@ import "../../../src/app/"
 // each UUT from having to manage its own top level app management objects
 // (currently ViewManager, ViewCoordinator, and ApplicationWindow).
 Item {
-    // This will be our UUT.
-    required default property var uut
+    id: tw
+
+    width: childrenRect.width
+    height: childrenRect.height
+
+    // A binding to the windowShown property
+    Binding {
+        tw.appWindow: uut.Window.window
+        when: QTestRootObject.windowShown
+    }
+
+    Component.onCompleted: viewCoordinator.init(this)
 
     // These are our fake app management objects. The caveat is that they
     // must be maintained in sync with the actual objects in the app for now.
@@ -33,7 +44,7 @@ Item {
     // sync them.
     property ViewManager viewManager: ViewManager {}
     property ViewCoordinator viewCoordinator: ViewCoordinator {}
-    property ApplicationWindow appWindow: ApplicationWindow {
+    property QtObject appWindow: QtObject {
         property bool useFrameless: false
     }
 }

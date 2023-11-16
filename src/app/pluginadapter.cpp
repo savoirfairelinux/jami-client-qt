@@ -24,7 +24,8 @@
 #include "networkmanager.h"
 #include "lrcinstance.h"
 #include "appsettingsmanager.h"
-#include "qmlregister.h"
+
+#include "api/pluginmodel.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -35,8 +36,7 @@
 
 PluginAdapter::PluginAdapter(LRCInstance* instance,
                              AppSettingsManager* settingsManager,
-                             QObject* parent,
-                             QString baseUrl)
+                             QObject* parent)
     : QmlAdapterBase(instance, parent)
     , pluginStoreListModel_(new PluginStoreListModel(instance, this))
     , pluginVersionManager_(new PluginVersionManager(instance, settingsManager, this))
@@ -44,8 +44,9 @@ PluginAdapter::PluginAdapter(LRCInstance* instance,
     , lrcInstance_(instance)
     , settingsManager_(settingsManager)
 {
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginStoreListModel_, "PluginStoreListModel");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, pluginListModel_, "PluginListModel")
+    pluginListModel_ = qApp->property("PluginListModel").value<PluginListModel*>();
+    pluginStoreListModel_ = qApp->property("PluginStoreListModel").value<PluginStoreListModel*>();
+
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
             &lrc::api::PluginModel::modelUpdated,

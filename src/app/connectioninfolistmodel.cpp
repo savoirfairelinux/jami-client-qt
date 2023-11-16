@@ -126,10 +126,6 @@ ConnectionInfoListModel::roleNames() const
 void
 ConnectionInfoListModel::update()
 {
-    const auto accountId = lrcInstance_->get_currentAccountId();
-    if (accountId.isEmpty()) {
-        return;
-    }
     aggregateData();
 }
 
