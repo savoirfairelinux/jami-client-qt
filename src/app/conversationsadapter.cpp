@@ -41,6 +41,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     , searchSrcModel_(new SearchResultsListModel(lrcInstance_))
     , searchModel_(new SelectableListProxyModel(searchSrcModel_.get()))
 {
+    // TODO: pull these out to main and inject
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, convModel_.get(), "ConversationListModel");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, searchModel_.get(), "SearchResultsListModel");
 
@@ -112,32 +113,27 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::newUnreadInteraction,
             this,
-            &ConversationsAdapter::onNewUnreadInteraction,
-            Qt::UniqueConnection);
+            &ConversationsAdapter::onNewUnreadInteraction);
 
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::newReadInteraction,
             this,
-            &ConversationsAdapter::onNewReadInteraction,
-            Qt::UniqueConnection);
+            &ConversationsAdapter::onNewReadInteraction);
 
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::newTrustRequest,
             this,
-            &ConversationsAdapter::onNewTrustRequest,
-            Qt::UniqueConnection);
+            &ConversationsAdapter::onNewTrustRequest);
 
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::trustRequestTreated,
             this,
-            &ConversationsAdapter::onTrustRequestTreated,
-            Qt::UniqueConnection);
+            &ConversationsAdapter::onTrustRequestTreated);
 
     connect(lrcInstance_,
             &LRCInstance::currentAccountIdChanged,
             this,
-            &ConversationsAdapter::onCurrentAccountIdChanged,
-            Qt::UniqueConnection);
+            &ConversationsAdapter::onCurrentAccountIdChanged);
 
     connectConversationModel();
 }
@@ -168,7 +164,6 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
         if (interaction.authorUri == accountInfo.profileInfo.uri)
             return;
         auto from = accountInfo.contactModel->bestNameForContact(interaction.authorUri);
-        auto to = lrcInstance_->accountModel().bestNameForAccount(accountId);
         auto body_ = interaction.body;
 
         if (interaction.type == interaction::Type::DATA_TRANSFER) {
@@ -180,6 +175,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
         if (preferences["ignoreNotifications"] == "true")
             return;
 #ifdef Q_OS_LINUX
+        auto to = lrcInstance_->accountModel().bestNameForAccount(accountId);
         auto contactPhoto = Utils::contactPhoto(lrcInstance_,
                                                 interaction.authorUri,
                                                 QSize(50, 50),
@@ -599,75 +595,49 @@ void
 ConversationsAdapter::connectConversationModel()
 {
     // Signal connections
-    auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
-    if (currentConversationModel == nullptr) {
+    auto model = lrcInstance_->getCurrentConversationModel();
+    if (!model) {
         return;
     }
 
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::modelChanged,
-                     this,
-                     &ConversationsAdapter::onModelChanged,
-                     Qt::UniqueConnection);
+    auto connectObjectSignal = [this](auto obj, auto signal, auto slot) {
+        connect(obj, signal, this, slot, Qt::UniqueConnection);
+    };
 
-    QObject::connect(lrcInstance_->getCurrentContactModel(),
-                     &ContactModel::profileUpdated,
-                     this,
-                     &ConversationsAdapter::onProfileUpdated,
-                     Qt::UniqueConnection);
+    connectObjectSignal(model,
+                        &ConversationModel::modelChanged,
+                        &ConversationsAdapter::onModelChanged);
+    connectObjectSignal(model,
+                        &ConversationModel::profileUpdated,
+                        &ConversationsAdapter::onProfileUpdated);
+    connectObjectSignal(model,
+                        &ConversationModel::conversationUpdated,
+                        &ConversationsAdapter::onConversationUpdated);
+    connectObjectSignal(model,
+                        &ConversationModel::conversationRemoved,
+                        &ConversationsAdapter::onConversationRemoved);
+    connectObjectSignal(model,
+                        &ConversationModel::filterChanged,
+                        &ConversationsAdapter::onFilterChanged);
+    connectObjectSignal(model,
+                        &ConversationModel::conversationCleared,
+                        &ConversationsAdapter::onConversationCleared);
+    connectObjectSignal(model,
+                        &ConversationModel::searchStatusChanged,
+                        &ConversationsAdapter::onSearchStatusChanged);
+    connectObjectSignal(model,
+                        &ConversationModel::searchResultUpdated,
+                        &ConversationsAdapter::onSearchResultUpdated);
+    connectObjectSignal(model,
+                        &ConversationModel::searchResultEnded,
+                        &ConversationsAdapter::onSearchResultEnded);
+    connectObjectSignal(model,
+                        &ConversationModel::conversationReady,
+                        &ConversationsAdapter::onConversationReady);
 
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::conversationUpdated,
-                     this,
-                     &ConversationsAdapter::onConversationUpdated,
-                     Qt::UniqueConnection);
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::conversationRemoved,
-                     this,
-                     &ConversationsAdapter::onConversationRemoved,
-                     Qt::UniqueConnection);
-
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::filterChanged,
-                     this,
-                     &ConversationsAdapter::onFilterChanged,
-                     Qt::UniqueConnection);
-
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::conversationCleared,
-                     this,
-                     &ConversationsAdapter::onConversationCleared,
-                     Qt::UniqueConnection);
-
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::searchStatusChanged,
-                     this,
-                     &ConversationsAdapter::onSearchStatusChanged,
-                     Qt::UniqueConnection);
-
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::searchResultUpdated,
-                     this,
-                     &ConversationsAdapter::onSearchResultUpdated,
-                     Qt::UniqueConnection);
-
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::searchResultEnded,
-                     this,
-                     &ConversationsAdapter::onSearchResultEnded,
-                     Qt::UniqueConnection);
-
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::conversationReady,
-                     this,
-                     &ConversationsAdapter::onConversationReady,
-                     Qt::UniqueConnection);
-
-    QObject::connect(lrcInstance_->getCurrentContactModel(),
-                     &ContactModel::bannedStatusChanged,
-                     this,
-                     &ConversationsAdapter::onBannedStatusChanged,
-                     Qt::UniqueConnection);
+    connectObjectSignal(lrcInstance_->getCurrentContactModel(),
+                        &ContactModel::bannedStatusChanged,
+                        &ConversationsAdapter::onBannedStatusChanged);
 
     convSrcModel_.reset(new ConversationListModel(lrcInstance_));
     convModel_->bindSourceModel(convSrcModel_.get());
