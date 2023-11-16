@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfb9f511_92e828dd",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-11-16T20:04:43Z",
+      "side": 1,
+      "message": "Try to leave it as a Popup, but try to wrap the action buttons in DialogButtonBox (if possible).",
+      "parentUuid": "60a193ce_4f3fa89e",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 35
+      },
+      "revId": "b0900b7d2266c0cd67634df40795aa6b2f228455",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2702264_ce11f32b",
         "filename": "src/app/commoncomponents/PasswordDialog.qml",
         "patchSetId": 7
