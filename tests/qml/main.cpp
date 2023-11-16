@@ -136,6 +136,7 @@ public Q_SLOTS:
                              systemTray_.get(),
                              settingsManager_.get(),
                              connectivityMonitor_.get(),
+                             previewEngine_.get(),
                              &screenInfo_,
                              this);
 

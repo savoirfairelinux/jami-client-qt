@@ -57,8 +57,8 @@ Rectangle {
             Layout.leftMargin: 4
             Layout.rightMargin: 4
 
-            // Reset the model if visible or the CurrentConversationMembers.count changes (0 or greater)
-            model: visible && CurrentConversationMembers.count >= 0 ? ContactAdapter.getContactSelectableModel(type) : null
+            // Reset the model if visible or the current conv member count changes (0 or greater)
+            model: visible && CurrentConversation.members.count >= 0 ? ContactAdapter.getContactSelectableModel(type) : null
 
             delegate: ContactPickerItemDelegate {
                 id: contactPickerItemDelegate

@@ -26,6 +26,7 @@
 #include "appsettingsmanager.h"
 #include "qtutils.h"
 #include "messageparser.h"
+#include "previewengine.h"
 
 #include <api/datatransfermodel.h>
 
