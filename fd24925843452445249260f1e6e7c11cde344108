@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9c71fde_3ff7f5a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-16T20:23:36Z",
+      "side": 1,
+      "message": "to see with charlotte, why clicking on advanced settings and not just on two buttons? 1 click saved",
+      "range": {
+        "startLine": 7,
+        "startChar": 23,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "fd24925843452445249260f1e6e7c11cde344108",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60cbfa20_ed5b56b4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-16T20:23:36Z",
+      "side": 1,
+      "message": "missing ticket",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "fd24925843452445249260f1e6e7c11cde344108",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab681a74_513580d0",
+        "filename": "src/app/wizardview/components/CustomizeProfilPopup.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-16T20:23:36Z",
+      "side": 1,
+      "message": "typo in filename + wrong copyright author",
+      "range": {
+        "startLine": 3,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 24
+      },
+      "revId": "fd24925843452445249260f1e6e7c11cde344108",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47a978fd_0d93f101",
+        "filename": "src/app/wizardview/components/GoodToKnowPopup.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-16T20:23:36Z",
+      "side": 1,
+      "message": "same on some other files",
+      "range": {
+        "startLine": 3,
+        "startChar": 26,
+        "endLine": 3,
+        "endChar": 33
+      },
+      "revId": "fd24925843452445249260f1e6e7c11cde344108",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
