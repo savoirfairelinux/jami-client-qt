@@ -24,7 +24,9 @@ CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* pare
     : QObject(parent)
     , lrcInstance_(lrcInstance)
 {
-    uris_ = new CurrentConversationMembers(lrcInstance, this);
+    membersModel_ = new CurrentConversationMembers(lrcInstance, this);
+    set_members(QVariant::fromValue(membersModel_));
+
     // whenever the account changes, reconnect the new conversation model
     // for updates to the conversation and call state/id
     connect(lrcInstance_,
@@ -55,7 +57,7 @@ CurrentConversation::updateData()
     // If the conversation is empty, clear the id and return.
     if (convId.isEmpty()) {
         set_id();
-        uris_->setMembers({}, {}, {});
+        membersModel_->setMembers({}, {}, {});
         return;
     }
 
@@ -95,7 +97,7 @@ CurrentConversation::updateData()
             for (const auto& banned : bannedUris)
                 uris.push_back(banned);
         }
-        uris_->setMembers(accountId, convId, uris);
+        membersModel_->setMembers(accountId, convId, uris);
         set_isSwarm(convInfo.isSwarm());
         set_isLegacy(convInfo.isLegacy());
         set_isCoreDialog(convInfo.isCoreDialog());
@@ -202,12 +204,6 @@ CurrentConversation::setInfo(const QString& key, const QString& value)
     accInfo.conversationModel->updateConversationInfos(convId, infos);
 }
 
-CurrentConversationMembers*
-CurrentConversation::uris() const
-{
-    return uris_;
-}
-
 void
 CurrentConversation::onConversationUpdated(const QString& convId)
 {
@@ -266,16 +262,22 @@ CurrentConversation::updateConversationPreferences(const QString& convId)
 void
 CurrentConversation::connectModel()
 {
-    uris_->setMembers({}, {}, {});
+    membersModel_->setMembers({}, {}, {});
     auto convModel = lrcInstance_->getCurrentConversationModel();
     if (!convModel)
         return;
 
-    connect(lrcInstance_->getCurrentConversationModel(),
-            &ConversationModel::conversationUpdated,
-            this,
-            &CurrentConversation::onConversationUpdated,
-            Qt::UniqueConnection);
+    auto connectObjectSignal = [this](auto obj, auto signal, auto slot) {
+        connect(obj, signal, this, slot, Qt::UniqueConnection);
+    };
+
+    connectObjectSignal(convModel,
+                        &ConversationModel::conversationUpdated,
+                        &CurrentConversation::onConversationUpdated);
+    connectObjectSignal(convModel,
+                        &ConversationModel::profileUpdated,
+                        &CurrentConversation::updateProfile);
+
     connect(lrcInstance_->getCurrentConversationModel(),
             &ConversationModel::profileUpdated,
             this,
