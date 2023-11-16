@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="person_add_alt_black_24dp" opacity="1">
+    <g id="Group_80" data-name="Group 80">
+      <rect id="Rectangle_324" data-name="Rectangle 324" width="24" height="24" fill="none"/>
+    </g>
+    <g id="Group_81" data-name="Group 81">
+      <path id="Path_313" data-name="Path 313" d="M20,9V6H18V9H15v2h3v3h2V11h3V9ZM9,12A4,4,0,1,0,5,8,4,4,0,0,0,9,12ZM9,6A2,2,0,1,1,7,8,2.006,2.006,0,0,1,9,6Zm6.39,8.56a13.867,13.867,0,0,0-12.78,0A2.971,2.971,0,0,0,1,17.22V20H17V17.22A2.971,2.971,0,0,0,15.39,14.56ZM15,18H3v-.78a.971.971,0,0,1,.52-.88A12.108,12.108,0,0,1,9,15a12.108,12.108,0,0,1,5.48,1.34.971.971,0,0,1,.52.88Z" fill="black"/>
+    </g>
+  </g>
+</svg>
