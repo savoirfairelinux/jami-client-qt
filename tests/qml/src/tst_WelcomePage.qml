@@ -24,9 +24,12 @@ import "../../../src/app/"
 import "../../../src/app/mainview/components"
 
 TestWrapper {
-    uut: WelcomePage {
+    WelcomePage {
+        id: uut
+
         TestCase {
             name: "Open 'About Jami' popup"
+            when: windowShown
 
             function test_openAboutPopup() {
                 var aboutJamiButton = findChild(uut, "aboutJami")

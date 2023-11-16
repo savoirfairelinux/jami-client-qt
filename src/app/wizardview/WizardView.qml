@@ -50,6 +50,31 @@ BaseView {
         }
     }
 
+    // Handle the end of the wizard account creation process.
+    Connections {
+        target: WizardViewStepModel
+        function onCreateAccountRequested(creationOption) {
+            switch (creationOption) {
+            case WizardViewStepModel.AccountCreationOption.CreateJamiAccount:
+            case WizardViewStepModel.AccountCreationOption.CreateRendezVous:
+            case WizardViewStepModel.AccountCreationOption.ImportFromBackup:
+            case WizardViewStepModel.AccountCreationOption.ImportFromDevice:
+                AccountAdapter.createJamiAccount(WizardViewStepModel.accountCreationInfo);
+                break;
+            case WizardViewStepModel.AccountCreationOption.ConnectToAccountManager:
+                AccountAdapter.createJAMSAccount(WizardViewStepModel.accountCreationInfo);
+                break;
+            case WizardViewStepModel.AccountCreationOption.CreateSipAccount:
+                AccountAdapter.createSIPAccount(WizardViewStepModel.accountCreationInfo);
+                break;
+            default:
+                print("Bad account creation option: " + creationOption);
+                WizardViewStepModel.closeWizardView();
+                break;
+            }
+        }
+    }
+
     Connections {
         target: WizardViewStepModel
 

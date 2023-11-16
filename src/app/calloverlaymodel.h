@@ -21,8 +21,6 @@
 
 #include "lrcinstance.h"
 #include "qtutils.h"
-#include "mainapplication.h"
-
 #include "pttlistener.h"
 
 #include <QAbstractListModel>

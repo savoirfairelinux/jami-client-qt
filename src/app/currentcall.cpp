@@ -16,7 +16,8 @@
  */
 
 #include "currentcall.h"
-#include "qmlregister.h"
+
+#include "callparticipantsmodel.h"
 
 #include <api/callparticipantsmodel.h>
 #include <api/devicemodel.h>
@@ -25,8 +26,7 @@ CurrentCall::CurrentCall(LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
     , lrcInstance_(lrcInstance)
 {
-    participantsModel_.reset(new CallParticipantsModel(lrcInstance_, this));
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, participantsModel_.get(), "CallParticipantsModel");
+    participantsModel_ = qApp->property("CallParticipantsModel").value<CallParticipantsModel*>();
 
     connect(lrcInstance_,
             &LRCInstance::currentAccountIdChanged,

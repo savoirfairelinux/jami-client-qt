@@ -27,7 +27,6 @@
 #include "positionmanager.h"
 #include "tipsmodel.h"
 #include "connectivitymonitor.h"
-#include "previewengine.h"
 #include "imagedownloader.h"
 #include "utilsadapter.h"
 #include "conversationsadapter.h"
@@ -36,7 +35,8 @@
 #include "currentaccount.h"
 #include "videodevices.h"
 #include "currentaccounttomigrate.h"
-
+#include "pttlistener.h"
+#include "calloverlaymodel.h"
 #include "accountlistmodel.h"
 #include "mediacodeclistmodel.h"
 #include "audiodevicemodel.h"
@@ -47,7 +47,10 @@
 #include "smartlistmodel.h"
 #include "filestosendlistmodel.h"
 #include "callInformationListModel.h"
-#include "rendererinformationlistmodel.h"
+#include "connectioninfolistmodel.h"
+#include "callparticipantsmodel.h"
+#include "pluginlistmodel.h"
+#include "pluginstorelistmodel.h"
 
 #include "qrimageprovider.h"
 #include "avatarimageprovider.h"
@@ -75,6 +78,7 @@
 // clang-format off
 // TODO: remove this
 #define QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(T) \
+    QQmlEngine::setObjectOwnership(&T::instance(), QQmlEngine::CppOwnership); \
     qmlRegisterSingletonType<T>(NS_MODELS, MODULE_VER_MAJ, MODULE_VER_MIN, #T, \
                                 [](QQmlEngine* e, QJSEngine* se) -> QObject* { \
                                     Q_UNUSED(e); Q_UNUSED(se); \
@@ -97,6 +101,10 @@
                                              MODULE_VER_MAJ, MODULE_VER_MIN, #T, \
                                              "Don't try to add to a qml definition of " #T);
 
+#define REG_QML_SINGLETON qmlRegisterSingletonType
+#define REG_MODEL NS_MODELS, MODULE_VER_MAJ, MODULE_VER_MIN
+#define CREATE(Obj) [=](QQmlEngine*, QJSEngine*) -> QObject* { return Obj; }
+
 namespace Utils {
 
 /*!
@@ -108,65 +116,103 @@ registerTypes(QQmlEngine* engine,
               SystemTray* systemTray,
               AppSettingsManager* settingsManager,
               ConnectivityMonitor* connectivityMonitor,
+              PreviewEngine* previewEngine,
               ScreenInfo* screenInfo,
               QObject* app)
 {
-    // setup the adapters (their lifetimes are that of MainApplication)
-    auto avatarRegistry = new AvatarRegistry(lrcInstance, engine);
-    auto callAdapter = new CallAdapter(settingsManager, systemTray, lrcInstance, engine);
-    auto previewEngine = new PreviewEngine(connectivityMonitor, engine);
-    auto imageDownloader = new ImageDownloader(connectivityMonitor, engine);
-    auto messagesAdapter = new MessagesAdapter(settingsManager, previewEngine, lrcInstance, engine);
-    auto positionManager = new PositionManager(settingsManager, systemTray, lrcInstance, engine);
-    auto conversationsAdapter = new ConversationsAdapter(systemTray, lrcInstance, engine);
-    auto avAdapter = new AvAdapter(lrcInstance, engine);
-    auto contactAdapter = new ContactAdapter(lrcInstance, engine);
-    auto accountAdapter = new AccountAdapter(settingsManager, systemTray, lrcInstance, engine);
-    auto utilsAdapter = new UtilsAdapter(settingsManager, systemTray, lrcInstance, engine);
-    auto pluginAdapter = new PluginAdapter(lrcInstance, settingsManager, engine);
-    auto currentCall = new CurrentCall(lrcInstance, engine);
-    auto currentConversation = new CurrentConversation(lrcInstance, engine);
-    auto currentAccount = new CurrentAccount(lrcInstance, settingsManager, engine);
-    auto tipsModel = new TipsModel(settingsManager, engine);
-    auto videoDevices = new VideoDevices(lrcInstance, engine);
-    auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, engine);
-    auto wizardViewStepModel = new WizardViewStepModel(lrcInstance, accountAdapter, settingsManager, engine);
+    /* Used in ContactAdapter */
+    auto connectionInfoListModel = new ConnectionInfoListModel(lrcInstance, app);
+    qApp->setProperty("ConnectionInfoListModel", QVariant::fromValue(connectionInfoListModel));
+    QQmlEngine::setObjectOwnership(connectionInfoListModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<ConnectionInfoListModel>(REG_MODEL, "ConnectionInfoListModel", CREATE(connectionInfoListModel));
+
+    /* Used in AccountAdapter */
+    auto accountListModel = new AccountListModel(lrcInstance, app);
+    qApp->setProperty("AccountListModel", QVariant::fromValue(accountListModel));
+    QQmlEngine::setObjectOwnership(accountListModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<AccountListModel>(REG_MODEL, "AccountListModel", CREATE(accountListModel));
+
+    auto deviceItemListModel = new DeviceItemListModel(lrcInstance, app);
+    qApp->setProperty("DeviceItemListModel", QVariant::fromValue(deviceItemListModel));
+    QQmlEngine::setObjectOwnership(deviceItemListModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<DeviceItemListModel>(REG_MODEL, "DeviceItemListModel", CREATE(deviceItemListModel));
+
+    auto moderatorListModel = new ModeratorListModel(lrcInstance, app);
+    qApp->setProperty("ModeratorListModel", QVariant::fromValue(moderatorListModel));
+    QQmlEngine::setObjectOwnership(moderatorListModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<ModeratorListModel>(REG_MODEL, "ModeratorListModel", CREATE(moderatorListModel));
+
+    /* Used in CallAdapter */
+    auto pttListener = new PTTListener(settingsManager, app);
+    qApp->setProperty("PTTListener", QVariant::fromValue(pttListener));
+    QQmlEngine::setObjectOwnership(pttListener, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<PTTListener>(REG_MODEL, "PTTListener", CREATE(pttListener));
+
+    auto callOverlayModel = new CallOverlayModel(lrcInstance, pttListener, app);
+    qApp->setProperty("CallOverlayModel", QVariant::fromValue(callOverlayModel));
+    QQmlEngine::setObjectOwnership(callOverlayModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<CallOverlayModel>(REG_MODEL, "CallOverlayModel", CREATE(callOverlayModel));
+
+    /* Used in CurrentCall */
+    auto callParticipantsModel = new CallParticipantsModel(lrcInstance, app);
+    qApp->setProperty("CallParticipantsModel", QVariant::fromValue(callParticipantsModel));
+    QQmlEngine::setObjectOwnership(callParticipantsModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<CallParticipantsModel>(REG_MODEL, "CallParticipantsModel", CREATE(callParticipantsModel));
+
+    /* Used in ConversationsAdapter */
+    auto convListProxyModel = new ConversationListProxyModel(nullptr, app);
+    qApp->setProperty("ConvListProxyModel", QVariant::fromValue(convListProxyModel));
+    auto searchProxyListModel = new SelectableListProxyModel(nullptr, app);
+    qApp->setProperty("ConvSearchListProxyModel", QVariant::fromValue(searchProxyListModel));
+
+    // This causes mutually exclusive selection between the two proxy models.
+    new SelectableListProxyGroupModel({convListProxyModel, searchProxyListModel}, app);
+
+    /* Used in PluginManager */
+    auto pluginListModel = new PluginListModel(lrcInstance, app);
+    qApp->setProperty("PluginListModel", QVariant::fromValue(pluginListModel));
+    QQmlEngine::setObjectOwnership(pluginListModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<PluginListModel>(REG_MODEL, "PluginListModel", CREATE(pluginListModel));
+
+    auto pluginStoreListModel = new PluginStoreListModel(lrcInstance, app);
+    qApp->setProperty("PluginStoreListModel", QVariant::fromValue(pluginStoreListModel));
+    QQmlEngine::setObjectOwnership(pluginStoreListModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<PluginStoreListModel>(REG_MODEL, "PluginStoreListModel", CREATE(pluginStoreListModel));
+
+    // Register app-level objects that are used by QML created objects.
+    // These MUST be set prior to loading the initial QML file, in order to
+    // be available to the QML adapter class factory creation methods.
+    qApp->setProperty("LRCInstance", QVariant::fromValue(lrcInstance));
+    qApp->setProperty("SystemTray", QVariant::fromValue(systemTray));
+    qApp->setProperty("AppSettingsManager", QVariant::fromValue(settingsManager));
+    qApp->setProperty("ConnectivityMonitor", QVariant::fromValue(connectivityMonitor));
+    qApp->setProperty("PreviewEngine", QVariant::fromValue(previewEngine));
 
     // qml adapter registration
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, avatarRegistry, "AvatarRegistry");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, tipsModel, "TipsModel");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, messagesAdapter, "MessagesAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, positionManager, "PositionManager");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, conversationsAdapter, "ConversationsAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, avAdapter, "AvAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, contactAdapter, "ContactAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, accountAdapter, "AccountAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, utilsAdapter, "UtilsAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, pluginAdapter, "PluginAdapter");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentCall, "CurrentCall");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentConversation, "CurrentConversation");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentConversation->uris(), "CurrentConversationMembers");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccount, "CurrentAccount");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, videoDevices, "VideoDevices");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccountToMigrate, "CurrentAccountToMigrate")
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, wizardViewStepModel, "WizardViewStepModel")
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, imageDownloader, "ImageDownloader")
+    QML_REGISTERSINGLETON_TYPE(NS_HELPERS, AvatarRegistry);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, AccountAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CallAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, MessagesAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ConversationsAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ContactAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, UtilsAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, PositionManager);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, AvAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, PluginAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CurrentAccount);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CurrentConversation);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CurrentCall);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, TipsModel);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, VideoDevices);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CurrentAccountToMigrate);
+    QML_REGISTERSINGLETON_TYPE(NS_MODELS, WizardViewStepModel);
+    QML_REGISTERSINGLETON_TYPE(NS_HELPERS, ImageDownloader);
 
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, PluginModel, &lrcInstance->pluginModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_HELPERS, AppVersionManager, lrcInstance->getAppVersionManager())
-
-    // Hack for QtCreator autocomplete (part 2)
-    // https://bugreports.qt.io/browse/QTCREATORBUG-20569
-    // Use a dummy object to register the import namespace.
-    // This occurs when we register from within MainApplication
-    QML_REGISTERNAMESPACE(NS_MODELS, dummy::staticMetaObject, "");
-    QML_REGISTERNAMESPACE(NS_ADAPTERS, dummy::staticMetaObject, "");
-    QML_REGISTERNAMESPACE(NS_CONSTANTS, dummy::staticMetaObject, "");
-    QML_REGISTERNAMESPACE(NS_HELPERS, dummy::staticMetaObject, "");
-    QML_REGISTERNAMESPACE(NS_ENUMS, dummy::staticMetaObject, "");
+    QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(NameDirectory); // C++ singleton
 
     // QAbstractListModels
     QML_REGISTERTYPE(NS_MODELS, BannedListModel);
@@ -176,10 +222,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, PreferenceItemListModel);
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
     QML_REGISTERTYPE(NS_MODELS, FilesToSendListModel);
-    QML_REGISTERTYPE(NS_MODELS, SmartListModel);
-    QML_REGISTERTYPE(NS_MODELS, MessageListModel);
     QML_REGISTERTYPE(NS_MODELS, CallInformationListModel);
-    QML_REGISTERTYPE(NS_MODELS, RendererInformationListModel);
 
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");
@@ -200,10 +243,6 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, screenInfo, "CurrentScreenInfo")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, lrcInstance, "LRCInstance")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, settingsManager, "AppSettingsManager")
-
-    // C++ singletons
-    // TODO: remove this
-    QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(NameDirectory);
 
     // Lrc namespaces, models, and singletons
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::staticMetaObject, "Lrc");
@@ -239,13 +278,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoFormatFpsModel)
 
     engine->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance));
-    engine->addImageProvider(QLatin1String("avatarimage"),
-                              new AvatarImageProvider(lrcInstance));
-
-    engine->setObjectOwnership(&lrcInstance->avModel(), QQmlEngine::CppOwnership);
-    engine->setObjectOwnership(&lrcInstance->pluginModel(), QQmlEngine::CppOwnership);
-    engine->setObjectOwnership(lrcInstance->getAppVersionManager(), QQmlEngine::CppOwnership);
-    engine->setObjectOwnership(&NameDirectory::instance(), QQmlEngine::CppOwnership);
+    engine->addImageProvider(QLatin1String("avatarimage"), new AvatarImageProvider(lrcInstance));
 }
 // clang-format on
 } // namespace Utils

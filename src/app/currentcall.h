@@ -19,14 +19,18 @@
 
 #include "lrcinstance.h"
 #include "qtutils.h"
-#include "callparticipantsmodel.h"
 
 #include <QObject>
 #include <QString>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
+
+class CallParticipantsModel;
 
 class CurrentCall final : public QObject
 {
     Q_OBJECT
+    QML_SINGLETON
 
     QML_RO_PROPERTY(QString, id)
     QML_RO_PROPERTY(QStringList, uris)
@@ -55,6 +59,11 @@ class CurrentCall final : public QObject
     QML_PROPERTY(bool, flipSelf)
 
 public:
+    static CurrentCall* create(QQmlEngine*, QJSEngine*)
+    {
+        return new CurrentCall(qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit CurrentCall(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentCall() = default;
     Q_INVOKABLE QVariantList getConferencesInfos() const;
@@ -85,5 +94,5 @@ private Q_SLOTS:
 
 private:
     LRCInstance* lrcInstance_;
-    QScopedPointer<CallParticipantsModel> participantsModel_;
+    CallParticipantsModel* participantsModel_;
 };

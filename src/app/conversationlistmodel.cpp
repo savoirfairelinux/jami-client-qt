@@ -55,10 +55,15 @@ ConversationListModel::ConversationListModel(LRCInstance* instance, QObject* par
             &ConversationListModel::endRemoveRows,
             Qt::DirectConnection);
 
-    connect(model_, &ConversationModel::dataChanged, this, [this](int position) {
-        const auto index = createIndex(position, 0);
-        Q_EMIT ConversationListModel::dataChanged(index, index);
-    }, Qt::QueuedConnection);
+    connect(
+        model_,
+        &ConversationModel::dataChanged,
+        this,
+        [this](int position) {
+            const auto index = createIndex(position, 0);
+            Q_EMIT ConversationListModel::dataChanged(index, index);
+        },
+        Qt::QueuedConnection);
 }
 
 int

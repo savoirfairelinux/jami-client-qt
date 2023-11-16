@@ -25,67 +25,59 @@ import net.jami.Constants 1.1
 import "../../../src/app/"
 import "../../../src/app/mainview/components"
 
-OngoingCallPage {
-    id: uut
+TestWrapper {
+    OngoingCallPage {
+        id: uut
 
-    width: 800
-    height: 600
+        width: 800
+        height: 600
 
-    property QtObject appWindow
-    property ViewManager viewManager: ViewManager {}
-    property ViewCoordinator viewCoordinator: ViewCoordinator {}
+        TestCase {
+            name: "Check basic visibility of action bar during a call"
+            when: windowShown // Mouse events can only be handled
+                              // after the window has been shown.
 
-    TestCase {
-        name: "Check basic visibility of action bar during a call"
-        when: windowShown // Mouse events can only be handled
-                          // after the window has been shown.
+            property var mainOverlay
 
-        property var callOverlay
-        property var mainOverlay
+            function initTestCase() {
+                mainOverlay = findChild(uut, "mainOverlay")
 
-        function initTestCase() {
-            callOverlay = findChild(uut, "callOverlay")
-            mainOverlay = findChild(callOverlay, "mainOverlay")
+                // The CallActionBar on the OngoingCallPage starts out invisible and
+                // is made visible whenever the user moves their mouse.
+                // This is implemented via an event filter in the CallOverlayModel
+                // class. The event filter is created when the MainOverlay becomes
+                // visible. In the actual Jami application, this happens when a call
+                // is started, but we need to toggle the visiblity manually here
+                // because the MainOverlay is visible at the beginning of the test.
+                mainOverlay.visible = false
+                mainOverlay.visible = true
+            }
 
-            // The CallActionBar on the OngoingCallPage starts out invisible and
-            // is made visible whenever the user moves their mouse.
-            // This is implemented via an event filter in the CallOverlayModel
-            // class. The event filter is created when the MainOverlay becomes
-            // visible. In the actual Jami application, this happens when a call
-            // is started, but we need to toggle the visiblity manually here
-            // because the MainOverlay is visible at the beginning of the test.
-            appWindow = uut.Window.window
-            mainOverlay.visible = false
-            mainOverlay.visible = true
+            function test_checkCallActionBarVisibility() {
+                var callActionBar = findChild(mainOverlay, "callActionBar")
 
-            // Calling mouseMove() will generate warnings if we don't call init first.
-            viewCoordinator.init(uut)
-        }
+                // The primary and secondary actions in the CallActionBar are currently being added
+                // one by one (not using a loop) to CallOverlayModel in the Component.onCompleted
+                // block of CallActionBar.qml. The two lines below are meant as a sanity check
+                // that no action has been forgotten.
+                compare(callActionBar.primaryActions.length, CallOverlayModel.primaryModel().rowCount())
+                compare(callActionBar.secondaryActions.length, CallOverlayModel.secondaryModel().rowCount())
 
-        function test_checkBasicVisibility() {
-            var callActionBar = findChild(mainOverlay, "callActionBar")
+                compare(callActionBar.visible, false)
+                mouseMove(uut)
 
-            // The primary and secondary actions in the CallActionBar are currently being added
-            // one by one (not using a loop) to CallOverlayModel in the Component.onCompleted
-            // block of CallActionBar.qml. The two lines below are meant as a sanity check
-            // that no action has been forgotten.
-            compare(callActionBar.primaryActions.length, CallOverlayModel.primaryModel().rowCount())
-            compare(callActionBar.secondaryActions.length, CallOverlayModel.secondaryModel().rowCount())
+                // We need to wait for the fade-in animation of the CallActionBar to be completed
+                // before we check that it's visible.
+                var waitTime = JamiTheme.overlayFadeDuration + 100
+                // Make sure we have time to check that the CallActioinBar is visible before it fades out:
+                verify(waitTime + 100 < JamiTheme.overlayFadeDelay)
+                // Note: The CallActionBar is supposed to stay visible for a few seconds. If the above
+                // check fails, then this means that either overlayFadeDuration or overlayFadeDelay
+                // got changed to a value that's way too high/low.
 
-            compare(callActionBar.visible, false)
-            mouseMove(uut)
-
-            // We need to wait for the fade-in animation of the CallActionBar to be completed
-            // before we check that it's visible.
-            var waitTime = JamiTheme.overlayFadeDuration + 100
-            // Make sure we have time to check that the CallActioinBar is visible before it fades out:
-            verify(waitTime + 100 < JamiTheme.overlayFadeDelay)
-            // Note: The CallActionBar is supposed to stay visible for a few seconds. If the above
-            // check fails, then this means that either overlayFadeDuration or overlayFadeDelay
-            // got changed to a value that's way too high/low.
-
-            wait(waitTime)
-            compare(callActionBar.visible, true)
+                wait(waitTime)
+                compare(callActionBar.visible, true)
+            }
         }
     }
 }
