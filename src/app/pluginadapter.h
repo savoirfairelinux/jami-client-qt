@@ -21,7 +21,6 @@
 #include "qmladapterbase.h"
 #include "pluginlistmodel.h"
 #include "pluginhandlerlistmodel.h"
-#include "pluginlistpreferencemodel.h"
 #include "appsettingsmanager.h"
 #include "pluginversionmanager.h"
 #include "pluginstorelistmodel.h"
@@ -30,6 +29,8 @@
 #include <QObject>
 #include <QSortFilterProxyModel>
 #include <QString>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class PluginVersionManager;
 class PluginStoreListModel;
@@ -38,14 +39,21 @@ class AppSettingsManager;
 class PluginAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
+
     QML_PROPERTY(int, callMediaHandlersListCount)
     QML_PROPERTY(int, chatHandlersListCount)
 
 public:
+    static PluginAdapter* create(QQmlEngine*, QJSEngine*)
+    {
+        return new PluginAdapter(qApp->property("LRCInstance").value<LRCInstance*>(),
+                                 qApp->property("AppSettingsManager").value<AppSettingsManager*>());
+    }
+
     explicit PluginAdapter(LRCInstance* instance,
                            AppSettingsManager* settingsManager,
-                           QObject* parent = nullptr,
-                           QString baseUrl = "https://plugins.jami.net");
+                           QObject* parent = nullptr);
     ~PluginAdapter() = default;
 
     Q_INVOKABLE void getPluginsFromStore();

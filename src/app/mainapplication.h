@@ -35,6 +35,7 @@
 class ConnectivityMonitor;
 class AppSettingsManager;
 class SystemTray;
+class PreviewEngine;
 
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
@@ -121,6 +122,7 @@ private:
     ConnectivityMonitor* connectivityMonitor_;
     SystemTray* systemTray_;
     AppSettingsManager* settingsManager_;
+    PreviewEngine* previewEngine_;
 
     ScreenInfo screenInfo_;
 

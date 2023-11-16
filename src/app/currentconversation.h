@@ -23,6 +23,8 @@
 
 #include <QObject>
 #include <QString>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 // an adapter object to expose a conversation::Info struct
 // as a group of observable properties
@@ -30,6 +32,8 @@
 class CurrentConversation final : public QObject
 {
     Q_OBJECT
+    QML_SINGLETON
+
     QML_PROPERTY(QString, id)
     QML_PROPERTY(QString, title)
     QML_PROPERTY(QString, description)
@@ -56,10 +60,17 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QStringList, backendErrors)
     QML_PROPERTY(QString, lastSelfMessageId)
     QML_RO_PROPERTY(bool, hasCall)
+    QML_RO_PROPERTY(QVariant, members)
 
 public:
+    static CurrentConversation* create(QQmlEngine*, QJSEngine*)
+    {
+        return new CurrentConversation(qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentConversation() = default;
+
     Q_INVOKABLE void scrollToMsg(const QString& msgId);
     Q_INVOKABLE void setPreference(const QString& key, const QString& value);
     Q_INVOKABLE QString getPreference(const QString& key) const;
@@ -88,7 +99,7 @@ Q_SIGNALS:
 
 private:
     LRCInstance* lrcInstance_;
-    CurrentConversationMembers* uris_;
+    CurrentConversationMembers* membersModel_;
 
     void connectModel();
 };
