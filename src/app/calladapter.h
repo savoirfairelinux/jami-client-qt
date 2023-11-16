@@ -24,17 +24,17 @@
 #include "qmladapterbase.h"
 #include "screensaver.h"
 #include "calloverlaymodel.h"
-
+#include "callInformationListModel.h"
 #ifdef HAVE_GLOBAL_PTT
-#include "pttlistener.h"
+#include "pttlistener.h" // Note: this is included without condition in "calloverlaymodel.h"
 #endif
 
 #include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QSystemTrayIcon>
-
-#include "callInformationListModel.h"
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class SystemTray;
 class AppSettingsManager;
@@ -42,13 +42,19 @@ class AppSettingsManager;
 class CallAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
+    QML_NAMED_ELEMENT(CallAdapter)
+
     QML_PROPERTY(bool, hasCall)
     QML_RO_PROPERTY(QVariant, callInformationList)
 
 public:
-    QTimer* timer;
-    enum MuteStates { UNMUTED, LOCAL_MUTED, MODERATOR_MUTED, BOTH_MUTED };
-    Q_ENUM(MuteStates)
+    static CallAdapter* create(QQmlEngine*, QJSEngine*)
+    {
+        return new CallAdapter(qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
+                               qApp->property("SystemTray").value<SystemTray*>(),
+                               qApp->property("LRCInstance").value<LRCInstance*>());
+    }
 
     explicit CallAdapter(AppSettingsManager* settingsManager,
                          SystemTray* systemTray,
@@ -56,7 +62,10 @@ public:
                          QObject* parent = nullptr);
     ~CallAdapter();
 
-public:
+    QTimer* timer;
+    enum MuteStates { UNMUTED, LOCAL_MUTED, MODERATOR_MUTED, BOTH_MUTED };
+    Q_ENUM(MuteStates)
+
     Q_INVOKABLE void startTimerInformation();
     Q_INVOKABLE void stopTimerInformation();
     Q_INVOKABLE void placeAudioOnlyCall();

@@ -26,6 +26,8 @@
 
 #include <QObject>
 #include <QString>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class SystemTray;
 
@@ -37,6 +39,12 @@ class ConversationsAdapter final : public QmlAdapterBase
     QML_PROPERTY(int, pendingRequestCount)
 
 public:
+    static ConversationsAdapter* create(QQmlEngine*, QJSEngine*)
+    {
+        return new ConversationsAdapter(qApp->property("SystemTray").value<SystemTray*>(),
+                                        qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit ConversationsAdapter(SystemTray* systemTray,
                                   LRCInstance* instance,
                                   QObject* parent = nullptr);
@@ -46,9 +54,9 @@ public:
     void connectConversationModel();
 
     Q_INVOKABLE QString createSwarm(const QString& title,
-                                 const QString& description,
-                                 const QString& avatar,
-                                 const VectorString& participants);
+                                    const QString& description,
+                                    const QString& avatar,
+                                    const VectorString& participants);
     Q_INVOKABLE void setFilter(const QString& filterString);
     Q_INVOKABLE void setFilterAndSelect(const QString& filterString);
     Q_INVOKABLE void ignoreFiltering(const QVariant& hightlighted);
