@@ -28,17 +28,20 @@ import "../../../src/app/mainview"
 import "../../../src/app/mainview/components"
 import "../../../src/app/commoncomponents"
 
-CallMessageDelegate {
-    id: uut
-    type: Interaction.Type.CALL
+TestWrapper {
+    CallMessageDelegate {
+        id: uut
 
-    TestCase {
-        name: "Check basic visibility for header buttons"
-        function test_checkBasicVisibility() {
-            var moreButton = findChild(uut, "more")
-            var replyButton = findChild(uut, "reply")
-            compare(moreButton.visible, false)
-            compare(replyButton.visible, false)
+        type: Interaction.Type.CALL
+
+        TestCase {
+            name: "Check basic visibility for option buttons"
+            function test_checkOptionButtonsVisibility() {
+                var moreButton = findChild(uut, "more")
+                var replyButton = findChild(uut, "reply")
+                compare(moreButton.visible, false)
+                compare(replyButton.visible, false)
+            }
         }
     }
 }

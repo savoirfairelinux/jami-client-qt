@@ -34,7 +34,7 @@ SettingsPageBase {
 
     property bool isSIP: CurrentAccount.type === Profile.Type.SIP
     property int itemWidth: 132
-    property string key: PttListener.keyToString(PttListener.getCurrentKey())
+    property string key: PTTListener.keyToString(PTTListener.getCurrentKey())
     title: JamiStrings.callSettingsTitle
 
     function updateAndShowModeratorsSlot() {
@@ -437,7 +437,7 @@ SettingsPageBase {
                     onClicked: {
                         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ChangePttKeyPopup.qml");
                         dlg.choiceMade.connect(function (chosenKey) {
-                             keyLabel.text = PttListener.keyToString(chosenKey);
+                             keyLabel.text = PTTListener.keyToString(chosenKey);
                         });
                     }
                 }

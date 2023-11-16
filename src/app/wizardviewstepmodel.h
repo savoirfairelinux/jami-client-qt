@@ -18,11 +18,13 @@
 
 #pragma once
 
+#include "qtutils.h"
+
 #include <QObject>
 #include <QVariant>
 #include <QMap>
-
-#include "qtutils.h"
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class AccountAdapter;
 class LRCInstance;
@@ -31,6 +33,7 @@ class AppSettingsManager;
 class WizardViewStepModel : public QObject
 {
     Q_OBJECT
+    QML_SINGLETON
     Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
 
 public:
@@ -54,12 +57,17 @@ public:
 
     QML_PROPERTY(MainSteps, mainStep)
     QML_PROPERTY(AccountCreationOption, accountCreationOption)
-
     QML_PROPERTY(QVariantMap, accountCreationInfo)
 
 public:
+    static WizardViewStepModel* create(QQmlEngine*, QJSEngine*)
+    {
+        return new WizardViewStepModel(qApp->property("LRCInstance").value<LRCInstance*>(),
+                                       qApp->property("AppSettingsManager")
+                                           .value<AppSettingsManager*>());
+    }
+
     explicit WizardViewStepModel(LRCInstance* lrcInstance,
-                                 AccountAdapter* accountAdapter,
                                  AppSettingsManager* appSettingsManager,
                                  QObject* parent = nullptr);
 
@@ -70,11 +78,11 @@ public:
 Q_SIGNALS:
     void accountIsReady(QString accountId);
     void closeWizardView();
+    void createAccountRequested(AccountCreationOption);
 
 private:
     void reset();
 
     LRCInstance* lrcInstance_;
-    AccountAdapter* accountAdapter_;
     AppSettingsManager* appSettingsManager_;
 };

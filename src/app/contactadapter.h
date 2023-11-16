@@ -20,12 +20,12 @@
 
 #include "qmladapterbase.h"
 #include "smartlistmodel.h"
-#include "conversationlistmodel.h"
-#include "connectioninfolistmodel.h"
 
 #include <QObject>
 #include <QSortFilterProxyModel>
 #include <QString>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class LRCInstance;
 
@@ -80,8 +80,14 @@ private:
 class ContactAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
 
 public:
+    static ContactAdapter* create(QQmlEngine*, QJSEngine*)
+    {
+        return new ContactAdapter(qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit ContactAdapter(LRCInstance* instance, QObject* parent = nullptr);
     ~ContactAdapter() = default;
 
@@ -91,7 +97,6 @@ public:
     Q_INVOKABLE void setSearchFilter(const QString& filter);
     Q_INVOKABLE void contactSelected(int index);
     Q_INVOKABLE void removeContact(const QString& peerUri, bool banContact);
-    Q_INVOKABLE void updateConnectionInfo();
 
     void connectSignals();
 
@@ -106,7 +111,6 @@ private:
     SmartListModel::Type listModeltype_;
     QScopedPointer<SmartListModel> smartListModel_;
     QScopedPointer<SelectableProxyModel> selectableProxyModel_;
-    QScopedPointer<ConnectionInfoListModel> connectionInfoListModel_;
 
     QStringList defaultModerators_;
 

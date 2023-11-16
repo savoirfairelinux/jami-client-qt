@@ -41,8 +41,10 @@ enum Role {
 Q_ENUM_NS(Role)
 } // namespace ConnectionInfoList
 
-class ConnectionInfoListModel : public AbstractListModelBase
+class ConnectionInfoListModel final : public AbstractListModelBase
 {
+    Q_OBJECT
+
 public:
     explicit ConnectionInfoListModel(LRCInstance* instance, QObject* parent = nullptr);
 
@@ -56,7 +58,6 @@ private:
     using Role = ConnectionInfoList::Role;
 
     VectorMapStringString connectionInfoList_;
-
     QVector<QString> peerIds_;
     QMap<QString, QMap<QString, QMap<QString, QVariant>>> peerData_;
     void aggregateData();

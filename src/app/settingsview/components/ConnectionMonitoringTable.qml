@@ -14,13 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
+
 import "../../commoncomponents"
 import "../js/logviewwindowcreation.js" as LogViewWindowCreation
 
@@ -109,16 +112,14 @@ ListView {
 
     model: ConnectionInfoListModel
 
-    Component.onCompleted: {
-        ContactAdapter.updateConnectionInfo();
-    }
+    Component.onCompleted: ConnectionInfoListModel.update()
 
     Timer {
         interval: 1000
         running: root.visible
         repeat: true
         onTriggered: {
-            ContactAdapter.updateConnectionInfo();
+            ConnectionInfoListModel.update();
             listview.rota = listview.rota + 5;
         }
     }

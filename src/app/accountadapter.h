@@ -20,21 +20,20 @@
 
 #include "qmladapterbase.h"
 
-#include "accountlistmodel.h"
-#include "deviceitemlistmodel.h"
-#include "moderatorlistmodel.h"
 #include "systemtray.h"
 #include "lrcinstance.h"
-#include "utils.h"
 
 #include <QSettings>
 #include <QString>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class AppSettingsManager;
 
 class AccountAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
 
     Q_PROPERTY(lrc::api::AccountModel* model READ getModel NOTIFY modelChanged)
 
@@ -45,6 +44,13 @@ Q_SIGNALS:
     void modelChanged();
 
 public:
+    static AccountAdapter* create(QQmlEngine*, QJSEngine*)
+    {
+        return new AccountAdapter(qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
+                                  qApp->property("SystemTray").value<SystemTray*>(),
+                                  qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit AccountAdapter(AppSettingsManager* settingsManager,
                             SystemTray* systemTray,
                             LRCInstance* instance,
@@ -100,9 +106,5 @@ private:
 
     AppSettingsManager* settingsManager_;
     SystemTray* systemTray_;
-
-    QScopedPointer<AccountListModel> accountListModel_;
-    QScopedPointer<DeviceItemListModel> deviceItemListModel_;
-    QScopedPointer<ModeratorListModel> moderatorListModel_;
 };
 Q_DECLARE_METATYPE(AccountAdapter*)

@@ -51,11 +51,9 @@ public:
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    // reset the model when there's new account added
     Q_INVOKABLE void reset();
-
     void updateNotifications();
 
-protected:
+private:
     using Role = AccountList::Role;
 };

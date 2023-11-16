@@ -20,16 +20,18 @@
 
 #include "lrcinstance.h"
 #include "qmladapterbase.h"
+
 #include "previewengine.h"
+#include "messageparser.h"
+#include "appsettingsmanager.h"
 
 #include <QObject>
 #include <QString>
 #include <QTimer>
 
 #include <QSortFilterProxyModel>
-
-class AppSettingsManager;
-class MessageParser;
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class FilteredMsgListModel final : public QSortFilterProxyModel
 {
@@ -63,6 +65,8 @@ public:
 class MessagesAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
+
     QML_RO_PROPERTY(QVariant, messageListModel)
     QML_PROPERTY(QString, replyToId)
     QML_PROPERTY(QString, editId)
@@ -71,23 +75,19 @@ class MessagesAdapter final : public QmlAdapterBase
     QML_PROPERTY(QString, searchbarPrompt)
 
 public:
+    static MessagesAdapter* create(QQmlEngine*, QJSEngine*)
+    {
+        return new MessagesAdapter(qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
+                                   qApp->property("PreviewEngine").value<PreviewEngine*>(),
+                                   qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit MessagesAdapter(AppSettingsManager* settingsManager,
                              PreviewEngine* previewEngine,
                              LRCInstance* instance,
                              QObject* parent = nullptr);
     ~MessagesAdapter() = default;
 
-Q_SIGNALS:
-    void newInteraction(const QString& id, int type);
-    void newMessageBarPlaceholderText(QString& placeholderText);
-    void newFilePasted(QString filePath);
-    void newTextPasted();
-    void moreMessagesLoaded(qint32 loadingRequestId);
-    void timestampUpdated();
-    void fileCopied(const QString& dest);
-    void messageParsed(const QString& msgId, const QString& msg);
-
-protected:
     Q_INVOKABLE bool isDocument(const interaction::Type& type);
     Q_INVOKABLE void loadMoreMessages();
     Q_INVOKABLE void connectConversationModel();
@@ -148,6 +148,15 @@ protected:
     void setSendMessageContent(const QString& content);
 
     inline MessageListModel* getMsgListSourceModel() const;
+
+Q_SIGNALS:
+    void newInteraction(const QString& id, int type);
+    void newFilePasted(const QString& filePath);
+    void newTextPasted();
+    void moreMessagesLoaded(qint32 loadingRequestId);
+    void timestampUpdated();
+    void fileCopied(const QString& dest);
+    void messageParsed(const QString& msgId, const QString& msg);
 
 private Q_SLOTS:
     void onNewInteraction(const QString& convUid,
