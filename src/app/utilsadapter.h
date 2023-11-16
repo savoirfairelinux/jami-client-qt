@@ -22,18 +22,21 @@
 
 #pragma once
 
-#include <QApplication>
-#include <QObject>
-
 #include "qmladapterbase.h"
 #include "appsettingsmanager.h"
 #include "qtutils.h"
+
+#include <QApplication>
+#include <QObject>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 #if __has_include(<gio/gio.h>)
 #include <gio/gio.h>
 #endif
 
 #if defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
+#define _SILENCE_CLANG_COROUTINE_MESSAGE
 #include <winrt/Windows.Foundation.h>
 
 #define WATCHSYSTEMTHEME __has_include(<winrt/Windows.UI.ViewManagement.h>)
@@ -65,9 +68,18 @@ bool readAppsUseLightThemeRegistry(bool getValue);
 class UtilsAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
+
     QML_PROPERTY(QStringList, logList)
     QML_RO_PROPERTY(bool, isRTL)
 public:
+    static UtilsAdapter* create(QQmlEngine*, QJSEngine*)
+    {
+        return new UtilsAdapter(qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
+                                qApp->property("SystemTray").value<SystemTray*>(),
+                                qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit UtilsAdapter(AppSettingsManager* settingsManager,
                           SystemTray* systemTray,
                           LRCInstance* instance,

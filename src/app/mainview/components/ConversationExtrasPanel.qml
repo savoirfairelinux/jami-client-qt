@@ -65,12 +65,12 @@ StackLayout {
     }
 
     Connections {
-        target: CurrentConversationMembers
+        target: CurrentConversation.members
 
         function onCountChanged() {
             // Close the panel if there are 8 or more members in the
             // conversation AND the "Add Member" panel is currently open.
-            if (CurrentConversationMembers.count >= 8 && isOpen(ChatView.AddMemberPanel)) {
+            if (CurrentConversation.members.count >= 8 && isOpen(ChatView.AddMemberPanel)) {
                 closePanel();
             }
         }

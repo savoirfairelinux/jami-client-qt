@@ -70,28 +70,6 @@ JamiListView {
 
     onCountChanged: positionViewAtBeginning()
 
-    add: Transition {
-        NumberAnimation {
-            property: "opacity"
-            from: 0
-            to: 1.0
-            duration: JamiTheme.smartListTransitionDuration
-        }
-    }
-
-    displaced: Transition {
-        NumberAnimation {
-            properties: "x,y"
-            easing.type: Easing.OutCubic
-            duration: JamiTheme.smartListTransitionDuration
-        }
-        NumberAnimation {
-            property: "opacity"
-            to: 1.0
-            duration: JamiTheme.smartListTransitionDuration * (1 - from)
-        }
-    }
-
     Behavior on opacity  {
         NumberAnimation {
             easing.type: Easing.OutCubic

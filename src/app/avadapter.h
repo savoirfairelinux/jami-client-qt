@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -20,23 +20,31 @@
 
 #include "qmladapterbase.h"
 #include "lrcinstance.h"
+#include "qtutils.h"
+#include "rendererinformationlistmodel.h"
 
 #include <QObject>
 #include <QVariant>
 #include <QString>
-#include <qtutils.h>
-
-#include "rendererinformationlistmodel.h"
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class AvAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
+
     QML_PROPERTY(bool, muteCamera)
     QML_RO_PROPERTY(QStringList, windowsNames)
     QML_RO_PROPERTY(QList<QVariant>, windowsIds)
     QML_RO_PROPERTY(QVariant, renderersInfoList)
 
 public:
+    static AvAdapter* create(QQmlEngine*, QJSEngine*)
+    {
+        return new AvAdapter(qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit AvAdapter(LRCInstance* instance, QObject* parent = nullptr);
     ~AvAdapter() = default;
 

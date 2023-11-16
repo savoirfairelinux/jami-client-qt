@@ -26,6 +26,8 @@
 #include "appsettingsmanager.h"
 #include "qmlregister.h"
 
+#include "api/pluginmodel.h"
+
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QtNetwork>
@@ -35,8 +37,7 @@
 
 PluginAdapter::PluginAdapter(LRCInstance* instance,
                              AppSettingsManager* settingsManager,
-                             QObject* parent,
-                             QString baseUrl)
+                             QObject* parent)
     : QmlAdapterBase(instance, parent)
     , pluginStoreListModel_(new PluginStoreListModel(instance, this))
     , pluginVersionManager_(new PluginVersionManager(instance, settingsManager, this))

@@ -17,12 +17,12 @@
  */
 #pragma once
 
-#include "lrcinstance.h"
 #include "appsettingsmanager.h"
-#include "qtutils.h"
 
 #include <QAbstractListModel>
 #include <QObject>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 #define TIPS_ROLES \
     X(TipId) \
@@ -44,8 +44,14 @@ Q_ENUM_NS(Role)
 class TipsModel : public QAbstractListModel
 {
     Q_OBJECT
+    QML_SINGLETON
 
 public:
+    static TipsModel* create(QQmlEngine*, QJSEngine*)
+    {
+        return new TipsModel(qApp->property("AppSettingsManager").value<AppSettingsManager*>());
+    }
+
     TipsModel(AppSettingsManager* sm, QObject* parent = nullptr);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;

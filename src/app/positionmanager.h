@@ -27,16 +27,27 @@
 #include <QMutex>
 #include <QObject>
 #include <QString>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class PositionManager : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
+
     // map of elements : map key and isUnpin
     QML_PROPERTY(QVariantMap, mapStatus)
     QML_PROPERTY(bool, mapAutoOpening)
     QML_PROPERTY(int, positionShareConvIdsCount)
     QML_PROPERTY(int, sharingUrisCount)
 public:
+    static PositionManager* create(QQmlEngine*, QJSEngine*)
+    {
+        return new PositionManager(qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
+                                   qApp->property("SystemTray").value<SystemTray*>(),
+                                   qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit PositionManager(AppSettingsManager* settingsManager,
                              SystemTray* systemTray,
                              LRCInstance* instance,

@@ -23,10 +23,13 @@
 
 #include <QObject>
 #include <QString>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class CurrentCall final : public QObject
 {
     Q_OBJECT
+    QML_SINGLETON
 
     QML_RO_PROPERTY(QString, id)
     QML_RO_PROPERTY(QStringList, uris)
@@ -55,6 +58,11 @@ class CurrentCall final : public QObject
     QML_PROPERTY(bool, flipSelf)
 
 public:
+    static CurrentCall* create(QQmlEngine*, QJSEngine*)
+    {
+        return new CurrentCall(qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit CurrentCall(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentCall() = default;
     Q_INVOKABLE QVariantList getConferencesInfos() const;

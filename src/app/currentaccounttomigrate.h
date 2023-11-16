@@ -19,15 +19,19 @@
 
 #pragma once
 
-#include <QObject>
-
 #include "qtutils.h"
+
+#include <QObject>
+#include <QQmlEngine>   // QML registration
+#include <QApplication> // QML registration
 
 class LRCInstance;
 
 class CurrentAccountToMigrate : public QObject
 {
     Q_OBJECT
+    QML_SINGLETON
+
     QML_RO_PROPERTY(int, accountToMigrateListSize)
     QML_RO_PROPERTY(QString, accountId)
     QML_RO_PROPERTY(QString, managerUsername)
@@ -36,8 +40,13 @@ class CurrentAccountToMigrate : public QObject
     QML_RO_PROPERTY(QString, alias)
 
 public:
+    static CurrentAccountToMigrate* create(QQmlEngine*, QJSEngine*)
+    {
+        return new CurrentAccountToMigrate(qApp->property("LRCInstance").value<LRCInstance*>());
+    }
+
     explicit CurrentAccountToMigrate(LRCInstance* lrcInstance, QObject* parent = nullptr);
-    ~CurrentAccountToMigrate();
+    ~CurrentAccountToMigrate() = default;
 
     Q_INVOKABLE void removeCurrentAccountToMigrate();
 

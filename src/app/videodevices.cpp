@@ -18,7 +18,8 @@
 
 #include "videodevices.h"
 
-// VideoInputDeviceModel
+#include "api/devicemodel.h"
+
 VideoInputDeviceModel::VideoInputDeviceModel(LRCInstance* lrcInstance,
                                              VideoDevices* videoDeviceInstance)
     : QAbstractListModel(videoDeviceInstance)
@@ -124,7 +125,6 @@ VideoFormatResolutionModel::getCurrentIndex() const
     return resultList.size() > 0 ? resultList[0].row() : 0;
 }
 
-// VideoFormatFpsModel
 VideoFormatFpsModel::VideoFormatFpsModel(LRCInstance* lrcInstance, VideoDevices* videoDeviceInstance)
     : QAbstractListModel(videoDeviceInstance)
     , lrcInstance_(lrcInstance)
@@ -177,7 +177,6 @@ VideoFormatFpsModel::getCurrentIndex() const
     return resultList.size() > 0 ? resultList[0].row() : 0;
 }
 
-// VideoDevices
 VideoDevices::VideoDevices(LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
     , lrcInstance_(lrcInstance)

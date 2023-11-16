@@ -58,8 +58,6 @@ CurrentAccountToMigrate::CurrentAccountToMigrate(LRCInstance* instance, QObject*
             &CurrentAccountToMigrate::slotAccountRemoved);
 }
 
-CurrentAccountToMigrate::~CurrentAccountToMigrate() {}
-
 void
 CurrentAccountToMigrate::removeCurrentAccountToMigrate()
 {

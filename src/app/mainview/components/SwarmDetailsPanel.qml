@@ -205,7 +205,7 @@ Rectangle {
                         objectName: "members"
                         visible: !CurrentConversation.isCoreDialog
                         labelText: {
-                            var membersNb = CurrentConversationMembers.count;
+                            var membersNb = CurrentConversation.members.count;
                             if (membersNb > 1)
                                 return JamiStrings.members.arg(membersNb);
                             return JamiStrings.member;
@@ -581,7 +581,7 @@ Rectangle {
                     }
                 }
 
-                model: CurrentConversationMembers
+                model: CurrentConversation.members
                 delegate: ItemDelegate {
                     id: member
 
