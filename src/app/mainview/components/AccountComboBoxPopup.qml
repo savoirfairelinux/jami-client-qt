@@ -23,16 +23,19 @@ import SortFilterProxyModel 0.2
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
 import "../../commoncomponents"
 
 Popup {
     id: root
 
-    y: parent.height
-    implicitWidth: parent.width
+    implicitWidth: parent.width - 10
+    leftMargin: 5
+    topMargin: 5
+
     // limit the number of accounts shown at once
     implicitHeight: {
-        return visible ? Math.min(JamiTheme.accountListItemHeight * Math.min(5, listView.model.count + 1), appWindow.height - parent.height) : 0;
+        return visible ? Math.min(JamiTheme.accountListItemHeight * Math.min(5, listView.model.count) + 95, appWindow.height - parent.height) : 0;
     }
     padding: 0
     modal: true
@@ -45,6 +48,178 @@ Popup {
 
     contentItem: ColumnLayout {
         spacing: 0
+        anchors.leftMargin: 20
+
+        Rectangle {
+            id: comboBox
+
+            height: JamiTheme.accountListItemHeight
+            Layout.fillWidth: true
+            radius: 5
+            color: JamiTheme.accountComboBoxBackgroundColor
+
+            property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
+
+            // TODO: remove these refresh hacks use QAbstractItemModels correctly
+            Connections {
+                target: AccountAdapter
+
+                function onAccountStatusChanged(accountId) {
+                    AccountListModel.reset();
+                }
+            }
+
+            Connections {
+                target: LRCInstance
+
+                function onAccountListChanged() {
+                    root.update();
+                    AccountListModel.reset();
+                }
+            }
+
+            RowLayout {
+                id: mainLayout
+                anchors.fill: parent
+                spacing: 10
+
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.rightMargin: 5
+                    Layout.leftMargin: 5
+                    color: mouseArea.containsMouse ? JamiTheme.hoverColor : JamiTheme.accountComboBoxBackgroundColor
+                    radius: 5
+                    Layout.topMargin: 5
+
+                    MouseArea {
+                        id: mouseArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        onClicked: root.close()
+                    }
+
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.leftMargin: 10
+                        anchors.rightMargin: 15
+                        spacing: 10
+
+
+                        Avatar {
+                            id: avatar
+
+                            Layout.preferredWidth: JamiTheme.accountListAvatarSize
+                            Layout.preferredHeight: JamiTheme.accountListAvatarSize
+                            Layout.alignment: Qt.AlignVCenter
+
+                            mode: Avatar.Mode.Account
+                            imageId: CurrentAccount.id
+                            presenceStatus: CurrentAccount.status
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            spacing: 2
+
+                            Text {
+                                id: bestNameText
+
+                                Layout.fillWidth: true
+                                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+
+                                text: CurrentAccount.bestName
+                                textFormat: TextEdit.PlainText
+
+                                font.pointSize: JamiTheme.textFontSize
+                                color: JamiTheme.textColor
+                                elide: Text.ElideRight
+                                horizontalAlignment: Text.AlignLeft
+                            }
+
+                            Text {
+                                id: bestIdText
+
+                                Layout.fillWidth: true
+                                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+
+                                visible: text.length && text !== bestNameText.text
+
+                                text: CurrentAccount.bestId
+                                textFormat: TextEdit.PlainText
+
+                                font.pointSize: JamiTheme.tinyFontSize
+                                color: JamiTheme.faddedLastInteractionFontColor
+                                elide: Text.ElideRight
+                                horizontalAlignment: Text.AlignLeft
+                            }
+                        }
+                    }
+                }
+                Row {
+                    id: controlRow
+
+                    spacing: 10
+
+                    Layout.preferredWidth: childrenRect.width
+                    Layout.preferredHeight: parent.height
+                    Layout.rightMargin: 7
+
+                    JamiPushButton {
+                        id: shareButton
+
+                        width: visible ? preferredSize : 0
+                        height: visible ? preferredSize : 0
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        visible: LRCInstance.currentAccountType === Profile.Type.JAMI
+                        toolTipText: JamiStrings.displayQRCode
+
+                        source: JamiResources.share_24dp_svg
+
+                        normalColor: JamiTheme.accountComboBoxBackgroundColor
+                        imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+                        hoveredColor: JamiTheme.hoverColor
+
+                        onClicked: {
+                            viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml");
+                            root.close();
+                        }
+                    }
+
+                    JamiPushButton {
+                        id: settingsButton
+
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
+
+                        imageContainerWidth: inSettings ? 30 : 24
+
+                        normalColor: JamiTheme.accountComboBoxBackgroundColor
+                        imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+                        hoveredColor: JamiTheme.hoverColor
+
+                        toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
+
+                        onClicked: {
+                            !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
+                            root.close();
+                        }
+                    }
+                }
+            }
+        }
+
+        Rectangle{
+            Layout.alignment: Qt.AlignHCenter
+            height: 1
+            Layout.fillWidth: true
+            Layout.leftMargin: 15
+            Layout.rightMargin: 15
+            color: JamiTheme.smartListHoveredColor
+        }
+
 
         JamiListView {
             id: listView
@@ -60,6 +235,7 @@ Popup {
                     inverted: true
                 }
             }
+
             delegate: AccountItemDelegate {
                 height: JamiTheme.accountListItemHeight
                 width: root.width
@@ -70,26 +246,46 @@ Popup {
             }
         }
 
+        Rectangle{
+            Layout.alignment: Qt.AlignHCenter
+            height: 1
+            Layout.fillWidth: true
+            Layout.leftMargin: 15
+            Layout.rightMargin: 15
+            color: JamiTheme.smartListHoveredColor
+        }
+
         // fake footer item as workaround for Qt 5.15 bug
         // https://bugreports.qt.io/browse/QTBUG-85302
         // don't use the clip trick and footer item overlay
         // explained here https://stackoverflow.com/a/64625149
         // as it causes other complexities in handling the drop shadow
         ItemDelegate {
-            id: footerItem
+            id: addAccountItem
 
-            Layout.preferredHeight: JamiTheme.accountListItemHeight
-            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: 45
+            Layout.preferredWidth: parent.width -10
+            Layout.leftMargin: 5
 
             background: Rectangle {
-                color: footerItem.hovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
-
-                Text {
+                color: addAccountItem.hovered ? JamiTheme.hoverColor : JamiTheme.accountComboBoxBackgroundColor
+                radius: 5
+                RowLayout{
                     anchors.centerIn: parent
-                    text: JamiStrings.addAccount + "+"
-                    textFormat: TextEdit.PlainText
-                    color: JamiTheme.textColor
-                    font.pointSize: JamiTheme.textFontSize
+                    anchors.fill: parent
+                    ResponsiveImage {
+                        id: addImage
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.leftMargin: 5
+                        source: JamiResources.person_add_24dp_svg
+                        color: addAccountItem.hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+                    }
+                    Text {
+                        text: JamiStrings.addAccount
+                        textFormat: TextEdit.PlainText
+                        color: JamiTheme.textColor
+                        font.pointSize: JamiTheme.textFontSize
+                    }
                 }
             }
 
@@ -98,17 +294,63 @@ Popup {
                 viewCoordinator.present("WizardView");
             }
         }
+
+        ItemDelegate {
+            id: manageAccountItem
+
+            Layout.preferredHeight: 45
+            Layout.preferredWidth: parent.width-10
+            Layout.leftMargin: 5
+            Layout.bottomMargin: 5
+
+            background: Rectangle {
+                color: manageAccountItem.hovered ? JamiTheme.hoverColor : JamiTheme.accountComboBoxBackgroundColor
+                radius: 5
+
+                RowLayout{
+                    anchors.centerIn: parent
+                    anchors.fill: parent
+
+                    ResponsiveImage {
+                        id: manageImage
+
+                        Layout.alignment: Qt.AlignHCenter
+                        source: JamiResources.manage_accounts_24dp_svg
+                        color: manageAccountItem.hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+                    }
+                    Text {
+                        text: JamiStrings.manageAccount
+
+                        textFormat: TextEdit.PlainText
+                        color: JamiTheme.textColor
+                        font.pointSize: JamiTheme.textFontSize
+                    }
+                }
+            }
+
+            onClicked: {
+                root.close();
+                viewCoordinator.present("SettingsView")
+            }
+        }
     }
 
     background: Rectangle {
-        color: JamiTheme.backgroundColor
-        CustomBorder {
-            commonBorder: false
-            tBorderwidth: 1
-            lBorderwidth: 2
-            bBorderwidth: 2
-            rBorderwidth: 1
-            borderColor: JamiTheme.tabbarBorderColor
+        id: bgRect
+        color: JamiTheme.accountComboBoxBackgroundColor
+        radius: 5
+
+        layer {
+            enabled: true
+            effect: DropShadow {
+                horizontalOffset: 3.0
+                verticalOffset: 3.0
+                radius: bgRect.radius * 4
+                color: JamiTheme.shadowColor
+                source: bgRect
+                transparentBorder: true
+                samples: radius + 1
+            }
         }
 
         layer {
@@ -116,7 +358,7 @@ Popup {
             effect: DropShadow {
                 horizontalOffset: 3.0
                 verticalOffset: 3.0
-                radius: 16.0
+                radius: 6
                 color: JamiTheme.shadowColor
                 transparentBorder: true
                 samples: radius + 1

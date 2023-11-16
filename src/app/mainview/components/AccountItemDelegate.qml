@@ -30,13 +30,28 @@ ItemDelegate {
     height: JamiTheme.accountListItemHeight
 
     background: Rectangle {
+        width: root.width - 10
+        anchors.horizontalCenter: parent.horizontalCenter
+        radius: 5
+
+        Rectangle{
+            id: separationLine
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            height: 1
+            width: parent.width - 20
+            color: JamiTheme.hoverColor
+
+        }
+
         color: {
             if (root.pressed)
                 return JamiTheme.smartListSelectedColor;
             else if (root.hovered)
-                return JamiTheme.smartListHoveredColor;
+                return JamiTheme.hoverColor;
             else
-                return JamiTheme.backgroundColor;
+                return JamiTheme.accountComboBoxBackgroundColor;
         }
     }
 
@@ -84,7 +99,7 @@ ItemDelegate {
                 text: Username
                 textFormat: TextEdit.PlainText
 
-                font.pointSize: JamiTheme.textFontSize
+                font.pointSize: JamiTheme.tinyFontSize
                 color: JamiTheme.faddedLastInteractionFontColor
                 elide: Text.ElideRight
                 horizontalAlignment: Text.AlignLeft

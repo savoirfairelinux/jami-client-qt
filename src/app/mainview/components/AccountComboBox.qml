@@ -28,6 +28,7 @@ Label {
     id: root
 
     property alias popup: comboBoxPopup
+    property alias color: background.color
 
     width: parent ? parent.width : o
     height: JamiTheme.accountListItemHeight
@@ -64,33 +65,11 @@ Label {
         id: background
         anchors.fill: parent
 
-        color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.05) : JamiTheme.backgroundColor
+        color: JamiTheme.backgroundColor
         Behavior on color  {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
-        }
-
-        // TODO: this can be removed when frameless window is implemented
-        Rectangle {
-            height: 1
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
-            }
-            color: JamiTheme.tabbarBorderColor
-        }
-    }
-
-    MouseArea {
-        id: mouseArea
-        enabled: visible
-        anchors.fill: parent
-        hoverEnabled: true
-        onClicked: {
-            root.forceActiveFocus();
-            togglePopup();
         }
     }
 
@@ -105,58 +84,92 @@ Label {
     }
 
     RowLayout {
+        id: mainLayout
         anchors.fill: parent
         anchors.leftMargin: 15
         anchors.rightMargin: 15
         spacing: 10
 
-        Avatar {
-            id: avatar
-
-            Layout.preferredWidth: JamiTheme.accountListAvatarSize
-            Layout.preferredHeight: JamiTheme.accountListAvatarSize
-            Layout.alignment: Qt.AlignVCenter
-
-            mode: Avatar.Mode.Account
-            imageId: CurrentAccount.id
-            presenceStatus: CurrentAccount.status
-        }
-
-        ColumnLayout {
+        Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            spacing: 2
+            color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.0) : JamiTheme.backgroundColor
+            radius: 5
+            Layout.topMargin: 5
 
-            Text {
-                id: bestNameText
-
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-                text: CurrentAccount.bestName
-                textFormat: TextEdit.PlainText
-
-                font.pointSize: JamiTheme.textFontSize
-                color: JamiTheme.textColor
-                elide: Text.ElideRight
-                horizontalAlignment: Text.AlignLeft
+            MouseArea {
+                id: mouseArea
+                enabled: visible
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: {
+                    root.forceActiveFocus();
+                    togglePopup();
+                }
             }
 
-            Text {
-                id: bestIdText
+            RowLayout {
+                anchors.fill: parent
+                anchors.leftMargin: 15
+                anchors.rightMargin: 15
 
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                spacing: 10
 
-                visible: text.length && text !== bestNameText.text
 
-                text: CurrentAccount.bestId
-                textFormat: TextEdit.PlainText
+                Avatar {
+                    id: avatar
 
-                font.pointSize: JamiTheme.textFontSize
-                color: JamiTheme.faddedLastInteractionFontColor
-                elide: Text.ElideRight
-                horizontalAlignment: Text.AlignLeft
+                    Layout.preferredWidth: JamiTheme.accountListAvatarSize
+                    Layout.preferredHeight: JamiTheme.accountListAvatarSize
+                    Layout.alignment: Qt.AlignVCenter
+
+                    mode: Avatar.Mode.Account
+                    imageId: CurrentAccount.id
+                    presenceStatus: CurrentAccount.status
+                }
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.topMargin: 15
+                    Layout.bottomMargin: 10
+                    spacing: 5
+
+                    Text {
+                        id: bestNameText
+
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+
+                        text: CurrentAccount.bestName
+                        textFormat: TextEdit.PlainText
+
+                        font.pointSize: JamiTheme.textFontSize
+                        color: JamiTheme.textColor
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignLeft
+                    }
+
+                    Text {
+                        id: bestIdText
+
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
+
+                        visible: text.length && text !== bestNameText.text
+
+                        text: CurrentAccount.bestId
+                        textFormat: TextEdit.PlainText
+
+                        font.pointSize: JamiTheme.tinyFontSize
+                        color: JamiTheme.faddedLastInteractionFontColor
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignBottom
+                    }
+                }
             }
         }
 
@@ -167,19 +180,6 @@ Label {
 
             Layout.preferredWidth: childrenRect.width
             Layout.preferredHeight: parent.height
-
-            ResponsiveImage {
-                id: arrowDropDown
-
-                anchors.verticalCenter: parent.verticalCenter
-
-                width: 24
-                height: 24
-
-                color: JamiTheme.textColor
-
-                source: !root.popup.opened ? JamiResources.expand_more_24dp_svg : JamiResources.expand_less_24dp_svg
-            }
 
             JamiPushButton {
                 id: shareButton
@@ -194,7 +194,7 @@ Label {
                 source: JamiResources.share_24dp_svg
 
                 normalColor: JamiTheme.backgroundColor
-                imageColor: JamiTheme.textColor
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
 
                 onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
@@ -205,8 +205,10 @@ Label {
                 anchors.verticalCenter: parent.verticalCenter
                 source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
 
+                imageContainerWidth: inSettings ? 30 : 24
+
                 normalColor: JamiTheme.backgroundColor
-                imageColor: JamiTheme.textColor
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
                 toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
 
                 onClicked: {
