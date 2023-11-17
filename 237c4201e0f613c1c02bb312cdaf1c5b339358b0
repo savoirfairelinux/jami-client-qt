@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c2add90_64bf3d65",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-17T01:57:27Z",
+      "side": 1,
+      "message": "Change to `Select dedicated device`?\n\nThank you",
+      "range": {
+        "startLine": 772,
+        "startChar": 40,
+        "endLine": 772,
+        "endChar": 65
+      },
+      "revId": "237c4201e0f613c1c02bb312cdaf1c5b339358b0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c978cd4_413171f9",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-17T01:57:27Z",
+      "side": 1,
+      "message": "`host`: One who receives or entertains guests in a social or official capacity.\nhttps://www.merriam-webster.com/dictionary/host\nShould `Hoster` be `Host`?\n\nShould `choose` be `select`?\n\nShould the variable name be `selectHost`?\n\nThank you",
+      "range": {
+        "startLine": 772,
+        "startChar": 20,
+        "endLine": 772,
+        "endChar": 32
+      },
+      "revId": "237c4201e0f613c1c02bb312cdaf1c5b339358b0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d0169cb_88a3ff6d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-17T01:57:27Z",
+      "side": 1,
+      "message": "`selectThisDevice`?",
+      "range": {
+        "startLine": 773,
+        "startChar": 20,
+        "endLine": 773,
+        "endChar": 36
+      },
+      "revId": "237c4201e0f613c1c02bb312cdaf1c5b339358b0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5ce159b_be1263b4",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-17T01:57:27Z",
+      "side": 1,
+      "message": "`Select`?",
+      "range": {
+        "startLine": 773,
+        "startChar": 44,
+        "endLine": 773,
+        "endChar": 50
+      },
+      "revId": "237c4201e0f613c1c02bb312cdaf1c5b339358b0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7f28057_577162a8",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-17T01:57:27Z",
+      "side": 1,
+      "message": "Change variable from `Choose device` to `Select device`?\n\nhttps://transvision.mozfr.org/?recherche\u003dselect+device\u0026repo\u003dall_projects\u0026sourcelocale\u003den-US\u0026locale\u003dfr\u0026search_type\u003dstrings\n\nThank you",
+      "range": {
+        "startLine": 774,
+        "startChar": 40,
+        "endLine": 774,
+        "endChar": 53
+      },
+      "revId": "237c4201e0f613c1c02bb312cdaf1c5b339358b0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe27c006_54759cf2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-17T01:57:27Z",
+      "side": 1,
+      "message": "Change variable name from `removeThisDevice` to `removeDevice`?",
+      "range": {
+        "startLine": 776,
+        "startChar": 20,
+        "endLine": 776,
+        "endChar": 36
+      },
+      "revId": "237c4201e0f613c1c02bb312cdaf1c5b339358b0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
