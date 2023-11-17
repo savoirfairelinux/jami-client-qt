@@ -16,6 +16,29 @@
       "message": "Just check with charlotte for strings",
       "revId": "065350235aad0f41aa6be6cdbfb91cafc7839dda",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6d0081b_7a820cb4",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-17T20:11:05Z",
+      "side": 1,
+      "message": "Should `Account` be removed from the variable name?",
+      "range": {
+        "startLine": 606,
+        "startChar": 26,
+        "endLine": 606,
+        "endChar": 33
+      },
+      "revId": "065350235aad0f41aa6be6cdbfb91cafc7839dda",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
