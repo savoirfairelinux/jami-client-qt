@@ -24,7 +24,7 @@ import net.jami.Constants 1.1
 import Qt5Compat.GraphicalEffects
 import "../../commoncomponents"
 
-Popup {
+BaseModalDialog {
     id: root
 
     property real maxHeight: parent.height * 40 / 100
@@ -37,6 +37,8 @@ Popup {
     height: container.height
     closePolicy: Popup.NoAutoClosed
 
+    backgroundColor: JamiTheme.blackColor
+
     onClosed: {
         CallAdapter.stopTimerInformation();
     }
@@ -48,39 +50,10 @@ Popup {
         AvAdapter.setRendererInfo();
     }
 
-    background: Rectangle {
-        color: JamiTheme.transparentColor
-    }
-
-    Rectangle {
-        id: container
-
-        color: JamiTheme.blackColor
-        opacity: 0.85
-        radius: 10
-        width: windowContent.width
-        height: windowContent.height
-
-        PushButton {
-            id: closeButton
-
-            anchors.top: container.top
-            anchors.topMargin: 5
-            anchors.right: container.right
-            anchors.rightMargin: 5
-            normalColor: JamiTheme.transparentColor
-            imageColor: JamiTheme.callInfoColor
-            source: JamiResources.round_close_24dp_svg
-            circled: false
-            toolTipText: JamiStrings.close
-
-            onClicked: {
-                root.close();
-            }
-        }
-
-        RowLayout {
+    popupContent: RowLayout {
             id: windowContent
+
+            anchors.margins: 30
 
             ColumnLayout {
                 spacing: JamiTheme.callInformationBlockSpacing
@@ -250,4 +223,4 @@ Popup {
             }
         }
     }
-}
+//}
