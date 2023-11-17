@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd959211_e77351f5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-17T20:08:26Z",
+      "side": 1,
+      "message": "In variable name, change `choose` to `select`?\n\nIn variable value, change `Choose` to `Select`?",
+      "parentUuid": "d61f2e77_97a1f5eb",
+      "range": {
+        "startLine": 609,
+        "startChar": 45,
+        "endLine": 609,
+        "endChar": 76
+      },
+      "revId": "c26d9468079c9e177c5e967b0ded922bc94dbd5c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c7dffecb_6a4db91e",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 2
@@ -61,6 +85,30 @@
       "writtenOn": "2023-11-08T06:05:43Z",
       "side": 1,
       "message": "Should the variable name be changed from `chooseAvatarPicture` to `choosePicture`?\n\nWhat does this refer to? i.e. `picture`, `image`, `photo`?\nhttps://grammarhow.com/photo-vs-picture-vs-image/\n\nSeems like `chooseImage` is preferred as it encompasses a greater set. If so, should the variable name be `chooseImage` and the variable value be `Choose image`?\n\nThank you",
+      "range": {
+        "startLine": 610,
+        "startChar": 20,
+        "endLine": 610,
+        "endChar": 39
+      },
+      "revId": "c26d9468079c9e177c5e967b0ded922bc94dbd5c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c77432d_0b07ff4e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-17T20:08:26Z",
+      "side": 1,
+      "message": "In variable name, change `choose` to `select`?\n\nIn variable value, change `Choose` to `Select`?",
+      "parentUuid": "c7dffecb_6a4db91e",
       "range": {
         "startLine": 610,
         "startChar": 20,
