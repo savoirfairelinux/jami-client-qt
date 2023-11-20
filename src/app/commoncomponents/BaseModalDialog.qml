@@ -28,6 +28,7 @@ Popup {
     // convient access to closePolicy
     property bool autoClose: true
     property alias backgroundColor: container.color
+    property alias backgroundOpacity: container.background.opacity
     property alias title: titleText.text
     property var popupcontainerSubContentLoader: containerSubContentLoader
 
