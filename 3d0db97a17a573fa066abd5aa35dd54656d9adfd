@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d63e0726_cbf8b019",
+        "filename": "src/app/settingsview/components/ManageAccountPage.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-20T15:40:03Z",
+      "side": 0,
+      "message": "qrc:/settingsview/components/ManageAccountPage.qml:471: TypeError: Cannot read property \u0027accepted\u0027 of null",
+      "range": {
+        "startLine": 470,
+        "startChar": 40,
+        "endLine": 470,
+        "endChar": 54
+      },
+      "revId": "3d0db97a17a573fa066abd5aa35dd54656d9adfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
