@@ -22,6 +22,30 @@
       },
       "revId": "517f87826db82ba741856145df0cde2982f5f4c0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "872e6ef0_c05bcab9",
+        "filename": "src/app/pluginversionmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-20T12:02:14Z",
+      "side": 0,
+      "message": "\u003e can it be tester with current extension store or does it depend on other patches\n\nIt can be tester with current extension store",
+      "parentUuid": "bb0f0bcd_e4c0a260",
+      "range": {
+        "startLine": 138,
+        "startChar": 50,
+        "endLine": 138,
+        "endChar": 54
+      },
+      "revId": "517f87826db82ba741856145df0cde2982f5f4c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
