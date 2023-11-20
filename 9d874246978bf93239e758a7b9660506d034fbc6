@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6773893_9a61378d",
+        "filename": "src/app/pluginadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-20T20:19:34Z",
+      "side": 1,
+      "message": "overkill code to check 1 string",
+      "range": {
+        "startLine": 234,
+        "startChar": 33,
+        "endLine": 234,
+        "endChar": 53
+      },
+      "revId": "9d874246978bf93239e758a7b9660506d034fbc6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c49adcfb_af0de3bf",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-20T20:19:34Z",
+      "side": 1,
+      "message": "The client should not implement such a logic. IMHO the request should be sent and if the server answers correctly an empty list of plugin, we should show the information",
+      "range": {
+        "startLine": 116,
+        "startChar": 12,
+        "endLine": 116,
+        "endChar": 37
+      },
+      "revId": "9d874246978bf93239e758a7b9660506d034fbc6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c272e4_d495b354",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-20T20:19:34Z",
+      "side": 1,
+      "message": "the text overflow the blue indication (and seems not centered)",
+      "range": {
+        "startLine": 120,
+        "startChar": 25,
+        "endLine": 120,
+        "endChar": 34
+      },
+      "revId": "9d874246978bf93239e758a7b9660506d034fbc6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
