@@ -2,32 +2,32 @@
 <context>
     <name>CallAdapter</name>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="213"/>
+        <location filename="../src/app/calladapter.cpp" line="220"/>
         <source>Missed call</source>
         <translation>Cailleadh glao</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="214"/>
+        <location filename="../src/app/calladapter.cpp" line="221"/>
         <source>Missed call with %1</source>
         <translation>Cailleadh glao le %1</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="535"/>
+        <location filename="../src/app/calladapter.cpp" line="542"/>
         <source>Incoming call</source>
         <translation>Glacadh isteach</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="536"/>
+        <location filename="../src/app/calladapter.cpp" line="543"/>
         <source>%1 is calling you</source>
         <translation>Tá %1 ag glaoch ort</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="547"/>
+        <location filename="../src/app/calladapter.cpp" line="554"/>
         <source>is calling you</source>
         <translation>Tá sé ag glaoch ort</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="1044"/>
+        <location filename="../src/app/calladapter.cpp" line="1052"/>
         <source>Screenshot</source>
         <translation>Scáileán</translation>
     </message>
@@ -979,107 +979,122 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
+        <source>Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="773"/>
+        <source>Select this device</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="774"/>
+        <source>Select device</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="833"/>
         <source>Appearance</source>
         <translation>Breathnaíonn</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="851"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="852"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="852"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="853"/>
         <source>Donate</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="853"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="855"/>
         <source>Not now</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="855"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="856"/>
         <source>Enable donation campaign</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
         <source>Enter</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="859"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
         <source>Shift+Enter</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
         <source>Enter or Shift+Enter to insert a new line</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="875"/>
         <source>View</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="862"/>
         <source>Text formatting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="864"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
         <source>Connected</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
         <source>Connecting TLS</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
         <source>Connecting ICE</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="868"/>
         <source>Connecting</source>
         <translation>Ceangal</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="868"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
         <source>Waiting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
         <source>Contact</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="870"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="871"/>
         <source>Connection</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="871"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="872"/>
         <source>Channels</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="872"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="873"/>
         <source>Copy all data</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="873"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
         <source>Remote: </source>
         <translation type="unfinished"/>
     </message>
@@ -1181,57 +1196,47 @@ Would you like to update now?</source>
         <translation>Is cosúil nach bhfuil an t-ionad reatha don tsáirge seo inrochtana.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
-        <source>Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.</source>
-        <translation>Roghnaigh feiste tiomanta chun glaonna amach anseo a óstáil sa swarm seo. Mura bhfuil sé socraithe, beidh an feiste a thosóidh glaonna a óstáil.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="773"/>
-        <source>Choose this device</source>
-        <translation>Roghnaigh an gléas seo</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="774"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
         <source>Remove current device</source>
         <translation>Déan an t-inneall reatha a bhaint</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
         <source>Host only this call</source>
         <translation>Ní fhéadfaidh tú ach an glao seo a sheachadadh</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
         <source>Host this call</source>
         <translation>Tóg an glao seo</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="778"/>
         <source>Make me the default host for future calls</source>
         <translation>Déan mé an óstair réamhshocraithe do ghlaonna amach anseo</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="792"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
         <source>Mute conversation</source>
         <translation>Cainteas muice</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="795"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
         <source>Default host (calls)</source>
         <translation>Treoir (a ghlaochanna)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
         <source>None</source>
         <translation>Ní raibh aon cheann acu</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
         <source>Tip</source>
         <translation>Tric</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
         <source>Add a profile picture and nickname to complete your profile</source>
         <translation>Cuir pictiúr próifíl agus ainm-chúlra le do phróifíl a chomhlánú</translation>
     </message>
@@ -2288,57 +2293,57 @@ Your picture and your nickname can be changed at all time in the settings of you
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="823"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="825"/>
         <source>Jami identity</source>
         <translation>Ainmniú Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="825"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="826"/>
         <source>Show fingerprint</source>
         <translation>Taispeánadh ar a gcuid seiceálacha</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="826"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="827"/>
         <source>Show registered name</source>
         <translation>Ainm cláraithe a thaispeáint</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="829"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="830"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
         <translation>Ceadaíonn sé a chumasú do chuntas a bheith i dteagmháil leat ar Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="835"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="836"/>
         <source>Experimental</source>
         <translation>Taispeántas</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
         <source>Ringtone</source>
         <translation>Tón na Gaeilge</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="841"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
         <source>Rendezvous point</source>
         <translation>Pósadh na hOifig</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="844"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
         <source>Moderation</source>
         <translation>Mórtaíocht</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="847"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="848"/>
         <source>Theme</source>
         <translation>Téama</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="848"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
         <source>Text zoom level</source>
         <translation>Leibhéal zoom téacs</translation>
     </message>
@@ -2737,27 +2742,27 @@ Please try again later.</source>
         <translation>Roghnaigh pictiúr</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
         <source>Contact&apos;s name</source>
         <translation>Ainm na teagmhála</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
         <source>Reinstate member</source>
         <translation>Comhalta ath-ghníomhaithe</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="818"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
         <source>Delete message</source>
         <translation>Teachtaireacht a scriosadh</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="819"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
         <source>*(Deleted Message)*</source>
         <translation>*(Méacs scriosadh) *</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="821"/>
         <source>Edit message</source>
         <translation>Teachtaireacht a eisiúint</translation>
     </message>
@@ -3277,115 +3282,115 @@ Please try again later.</source>
         <translation>Scríobh chuig %1</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="781"/>
         <source>%1 has sent you a request for a conversation.</source>
         <translation>Chuir %1 iarratas ar chuntas agat.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="781"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="782"/>
         <source>Hello,
 Would you like to join the conversation?</source>
         <translation>Halo, ba mhaith leat a bheith páirteach sa comhrá?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="782"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
         <source>You have accepted
 the conversation request</source>
         <translation>Tá tú glacadh leis an iarraidh comhrá</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
         <source>Waiting until %1
 connects to synchronize the conversation.</source>
         <translation>Ag fanacht go dtí go n-ascraíonn %1 chun an comhrá a shuimhrónachadh.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="786"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="787"/>
         <source>%1 Members</source>
         <translation>%1 Comhaltaí</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="787"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="788"/>
         <source>Member</source>
         <translation>Comhalta</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="788"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
         <source>Swarm&apos;s name</source>
         <translation>Ainm an Swarm</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="791"/>
         <source>Add a description</source>
         <translation>Cuir síos leis</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
         <source>Ignore all notifications from this conversation</source>
         <translation>Ignore gach fógraí ón comhrá seo</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="794"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="795"/>
         <source>Choose a color</source>
         <translation>Roghnaigh dath</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
         <source>Leave conversation</source>
         <translation>Cinnigh comhrá</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
         <source>Type of swarm</source>
         <translation>Tír na n-uimhreacha</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
         <source>Create the swarm</source>
         <translation>Cruthaigh an swarm</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
         <source>Go to conversation</source>
         <translation>Téigh chun comhrá</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
         <source>Kick member</source>
         <translation>Cuardaigh ball</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
         <source>Administrator</source>
         <translation>Rialtais</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="807"/>
         <source>Invited</source>
         <translation>Ceiliúradh</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="807"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
         <source>Remove member</source>
         <translation>Cúlghairm a bhaint</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="809"/>
         <source>To:</source>
         <translation>Chun:</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
         <source>Customize</source>
         <translation>Custaimáil</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
         <source>Dismiss</source>
         <translation>Cúlghairm</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="816"/>
         <source>Your profile is only shared with your contacts</source>
         <translation>Ní roinntear do phróifíl ach le do chaontaithe</translation>
     </message>
@@ -3606,17 +3611,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="377"/>
+        <location filename="../src/app/mainapplication.cpp" line="375"/>
         <source>E&amp;xit</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="379"/>
+        <location filename="../src/app/mainapplication.cpp" line="377"/>
         <source>&amp;Quit</source>
         <translation>&amp;Cáith</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="385"/>
+        <location filename="../src/app/mainapplication.cpp" line="383"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Show Jami</translation>
     </message>
@@ -4150,8 +4155,8 @@ connects to synchronize the conversation.</source>
         <translation>suíomhServicesUnknownEarring</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1163"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1176"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1166"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1179"/>
         <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>
