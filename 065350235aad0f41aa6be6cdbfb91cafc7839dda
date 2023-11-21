@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ed8d215_ae6283db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-21T14:38:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2916471_b58b21f1",
+      "revId": "065350235aad0f41aa6be6cdbfb91cafc7839dda",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6d0081b_7a820cb4",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-11-17T20:11:05Z",
       "side": 1,
       "message": "Should `Account` be removed from the variable name?",
+      "range": {
+        "startLine": 606,
+        "startChar": 26,
+        "endLine": 606,
+        "endChar": 33
+      },
+      "revId": "065350235aad0f41aa6be6cdbfb91cafc7839dda",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0a0c5e4_7716a4e1",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-21T14:38:16Z",
+      "side": 1,
+      "message": "We can\u0027t name a variable \"export\" it\u0027s a keyword in cpp that already has another function.",
+      "parentUuid": "d6d0081b_7a820cb4",
       "range": {
         "startLine": 606,
         "startChar": 26,
