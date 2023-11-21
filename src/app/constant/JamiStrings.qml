@@ -48,7 +48,10 @@ Item {
     property string version: qsTr("Version") + (AppVersionManager.isCurrentVersionBeta() ? " (Beta)" : "")
     property string declarationYear: "© 2015-2023"
     property string slogan: "Eleutheria"
-    property string declaration: qsTr("Jami is a free universal communication software that respects the freedom and privacy of its users.")
+    property string declaration: qsTr('Jami is a free universal communication software that respects the freedom and privacy of its users. Learn more on <a href="https://jami.net" style="color: ' + JamiTheme.buttonTintedBlue + '">jami.net</a>' + '.')
+    property string noWarranty: qsTr('This program comes with absolutely no warranty. See the <a href="http://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.buttonTintedBlue + '">GNU General Public License</a>, version 3 or later for details.')
+    property string contribute: qsTr('Contribute')
+    property string feedback: qsTr('Feedback')
 
     // AccountComboBox
     property string displayQRCode: qsTr("Display QR code")
