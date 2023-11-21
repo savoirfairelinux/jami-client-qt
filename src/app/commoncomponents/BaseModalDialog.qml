@@ -112,12 +112,22 @@ Popup {
                 visible: text.length > 0
             }
 
-            Loader {
-                id: containerSubContentLoader
+            JamiFlickable {
+                id: flickable
 
+                Layout.fillHeight: true
+
+                Layout.preferredHeight: Math.min(contentHeight, root.height)
+                Layout.preferredWidth: contentItem.childrenRect.width
                 Layout.rightMargin: popupMargins
                 Layout.alignment: Qt.AlignCenter
-                Layout.maximumWidth: maximumPopupWidth - 2 * popupMargins
+
+                contentHeight: contentItem.childrenRect.height
+
+                contentItem.children: Loader {
+                    id: containerSubContentLoader
+                }
+                ScrollBar.horizontal.visible: false
             }
 
             DialogButtonBox {
