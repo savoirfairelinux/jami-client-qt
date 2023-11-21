@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bd007dc_22acf689",
+        "filename": "src/app/mainview/components/CallInformationOverlay.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-21T13:30:05Z",
+      "side": 1,
+      "message": "when zoomed to maximum, the text goes outside the dialog",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 15
+      },
+      "revId": "f08e3eb94fea21282fa8ed28d690d5b8b675edf8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
