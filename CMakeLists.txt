@@ -798,7 +798,6 @@ else()
           MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}")
       if(APPSTORE)
           message(STATUS "app store version")
-          add_definitions(-DAPPSTORE)
           set_target_properties(${PROJECT_NAME} PROPERTIES
                XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/appstore/Jami.entitlements")
       else()
