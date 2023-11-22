@@ -138,6 +138,10 @@ MainApplication::init()
                      &AppSettingsManager::retranslate,
                      engine_.get(),
                      &QQmlApplicationEngine::retranslate);
+    QObject::connect(settingsManager_,
+                     &AppSettingsManager::retranslate,
+                     this,
+                     &MainApplication::initSystray);
 
     setWindowIcon(QIcon(":/images/jami.ico"));
 
