@@ -76,7 +76,9 @@ TipsModel::reset()
     tips_.clear();
 
     QDate date = QDate::currentDate();
-    if (date >= QDate::fromString("2023-11-27", "yyyy-MM-dd")) {
+    QDate donationStartDate = QDate::fromString(
+        settingsManager_->getValue("Donation2023VisibleDate").toString());
+    if (date >= donationStartDate) {
         tips_.append({{"id", "14"}, {"title", tr("Donate")}, {"desc", ""}, {"type", "donation"}});
     }
     tips_.append({{"id", "0"}, {"title", tr("Customize")}, {"desc", ""}, {"type", "customize"}});
