@@ -22,6 +22,7 @@
 
 #include <QCoreApplication>
 #include <QLibraryInfo>
+#include <QDir>
 
 #include <locale.h>
 

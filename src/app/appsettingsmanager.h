@@ -20,13 +20,12 @@
 
 #pragma once
 
-#include "utils.h"
-
 #include <QMetaEnum>
 #include <QObject>
 #include <QString>
 #include <QStandardPaths>
 #include <QWindow> // for QWindow::AutomaticVisibility
+#include <QSettings>
 
 #include <QTranslator>
 
@@ -68,7 +67,10 @@ extern const QString defaultDownloadPath;
     X(IsDonationVisible, true) \
     X(Donation2023EndDate, "2024-01-31 00:00") \
     X(EnablePtt, false) \
-    X(pttKey, 36)
+    X(pttKey, 36) \
+    X(LastExitWasGraceful, true) \
+    X(EnableAutomaticReporting, false)
+
 /*
  * A class to expose settings keys in both c++ and QML.
  * Note: this is using a non-constructable class instead of a
