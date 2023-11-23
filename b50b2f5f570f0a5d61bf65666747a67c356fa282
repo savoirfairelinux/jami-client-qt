@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c519cea5_2126bccc",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-23T14:31:35Z",
+      "side": 1,
+      "message": "remove debug",
+      "range": {
+        "startLine": 145,
+        "startChar": 21,
+        "endLine": 146,
+        "endChar": 21
+      },
+      "revId": "b50b2f5f570f0a5d61bf65666747a67c356fa282",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
