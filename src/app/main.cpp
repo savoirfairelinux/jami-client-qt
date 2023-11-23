@@ -110,6 +110,7 @@ main(int argc, char* argv[])
     auto newArgv = parseInputArgument(argc, argv, qtWebEngineChromiumFlags);
 
     MainApplication app(argc, newArgv);
+
     app.setDesktopFileName(QStringLiteral("jami"));
 #if defined(Q_OS_MACOS)
     if (macutils::isMetalSupported()) {
