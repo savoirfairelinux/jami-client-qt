@@ -27,6 +27,7 @@
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "previewengine.h"
+#include "crashreporter.h"
 
 #include <QWKQuick/qwkquickglobal.h>
 
@@ -41,8 +42,6 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QQuickWindow>
-
-#include <thread>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -188,6 +187,12 @@ MainApplication::~MainApplication()
 bool
 MainApplication::init()
 {
+    // Let's make sure we can provide postmortem debugging information prior
+    // to any other initialization. This won't do anything if crashpad isn't
+    // enabled.
+    settingsManager_ = new AppSettingsManager(this);
+    crashReporter_ = new CrashReporter(settingsManager_, this);
+
     // This 2-phase initialisation prevents ephemeral instances from
     // performing unnecessary tasks, like initializing the webengine.
     engine_.reset(new QQmlApplicationEngine(this));
@@ -195,7 +200,6 @@ MainApplication::init()
     QWK::registerTypes(engine_.get());
 
     connectivityMonitor_ = new ConnectivityMonitor(this);
-    settingsManager_ = new AppSettingsManager(this);
     systemTray_ = new SystemTray(settingsManager_, this);
     previewEngine_ = new PreviewEngine(connectivityMonitor_, this);
 
@@ -424,6 +428,9 @@ MainApplication::initQmlLayer()
                          previewEngine_,
                          &screenInfo_,
                          this);
+
+    // Register the crash reporter as a context property in the QML engine.
+    engine_->rootContext()->setContextProperty("crashReporter", crashReporter_);
 
     QUrl url = u"qrc:/MainApplicationWindow.qml"_qs;
 #ifdef QT_DEBUG
