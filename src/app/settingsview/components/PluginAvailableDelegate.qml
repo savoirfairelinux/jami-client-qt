@@ -209,12 +209,13 @@ ItemDelegate {
                 Text {
                     id: description
                     Layout.fillWidth: true
+                    bottomPadding: 5
                     font.pixelSize: hovered ? JamiTheme.popuptextSize * scalingFactor : JamiTheme.popuptextSize
                     color: JamiTheme.whiteColor
                     text: pluginDescription
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Qt.AlignLeft
-                    lineHeight: 1.5
+                    lineHeight: 1.25
                     textFormat: Text.MarkdownText
                     rightPadding: 40
                 }
