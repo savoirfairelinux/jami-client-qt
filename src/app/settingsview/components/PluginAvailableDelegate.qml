@@ -38,6 +38,7 @@ ItemDelegate {
     property string backgroundLocalPath: UtilsAdapter.getCachePath() + '/backgrounds/' + pluginId + '.jpg'
     property string iconLocalPath: UtilsAdapter.getCachePath() + '/icons/' + pluginId + '.svg'
     readonly property real scalingFactor: 1 + hovered * 0.02
+    property int duration: JamiTheme.shortFadeDuration
     property string installButtonStatus: {
         switch (pluginStatus) {
         case PluginStatus.DOWNLOADING:
@@ -66,11 +67,14 @@ ItemDelegate {
                 "buttonRoles": [DialogButtonBox.AcceptRole]
             });
     }
-
+    function growSize(x) {
+        return !hovered * x;
+    }
     Rectangle {
         id: mask
         anchors.fill: parent
         radius: 5
+        color: JamiTheme.secondaryBackgroundColor
     }
 
     background: null
@@ -78,25 +82,86 @@ ItemDelegate {
     Page {
         id: plugin
         anchors.fill: parent
-        background: CachedImage {
-            id: background
-            defaultImage: JamiResources.default_plugin_background_jpg
-            downloadUrl: PluginAdapter.getBackgroundImageUrl(pluginId)
-            anchors.fill: parent
-            localPath: root.backgroundLocalPath === undefined ? '' : root.backgroundLocalPath
-            imageFillMode: Image.PreserveAspectCrop
-            LinearGradient {
-                id: gradient
+        states: [
+            State {
+                name: "normal"
+                when: !hovered
+                PropertyChanges {
+                    target: plugin
+                    leftInset: 5
+                    rightInset: 5
+                    bottomInset: 3
+                    topInset: 3
+                }
+            },
+            State {
+                name: "hovered"
+                when: hovered
+                PropertyChanges {
+                    target: plugin
+                    leftInset: 0
+                    rightInset: 0
+                    bottomInset: 0
+                    topInset: 0
+                }
+            }
+        ]
+        transitions: [
+            Transition {
+                to: "normal"
+                enabled: duration
+                PropertyAnimation {
+                    properties: "leftInset,rightInset,bottomInset,topInset"
+                    duration: root.duration * 0.5
+                }
+            },
+            Transition {
+                to: "hovered"
+                enabled: duration
+                PropertyAnimation {
+                    properties: "leftInset,rightInset,bottomInset,topInset"
+                    duration: root.duration
+                }
+            },
+            Transition {
+                to: ""
+                enabled: duration
+                PropertyAnimation {
+                    properties: "leftInset,rightInset,bottomInset,topInset"
+                    duration: root.duration
+                }
+            }
+        ]
+        background: Rectangle {
+            clip: true
+            radius: 5
+            color: JamiTheme.secondaryBackgroundColor
+            CachedImage {
+                id: background
+                defaultImage: JamiResources.default_plugin_background_jpg
+                downloadUrl: PluginAdapter.getBackgroundImageUrl(pluginId)
                 anchors.fill: parent
-                start: Qt.point(0, height / 3)
-                gradient: Gradient {
-                    GradientStop {
-                        position: 0.0
-                        color: JamiTheme.transparentColor
+                localPath: root.backgroundLocalPath === undefined ? '' : root.backgroundLocalPath
+                imageFillMode: Image.PreserveAspectCrop
+                layer {
+                    enabled: true
+                    effect: OpacityMask {
+                        maskSource: mask
                     }
-                    GradientStop {
-                        position: 1.0
-                        color: JamiTheme.darkGreyColorOpacityFade
+                }
+                LinearGradient {
+                    id: gradient
+                    anchors.fill: parent
+                    start: Qt.point(0, height / 3)
+                    gradient: Gradient {
+                        GradientStop {
+                            position: 0.0
+                            color: JamiTheme.transparentColor
+                        }
+                        GradientStop {
+                            position: 1.0
+                            color: JamiTheme.darkGreyColorOpacityFade
+                        }
                     }
                 }
             }
@@ -202,19 +267,20 @@ ItemDelegate {
                     font.kerning: true
                     font.bold: true
                     color: JamiTheme.whiteColor
-                    font.pixelSize: hovered ? JamiTheme.popuptextSize * scalingFactor : JamiTheme.popuptextSize
+                    font.pixelSize: JamiTheme.popuptextSize
                     textFormat: Text.PlainText
                     wrapMode: Text.WrapAnywhere
                 }
                 Text {
                     id: description
                     Layout.fillWidth: true
-                    font.pixelSize: hovered ? JamiTheme.popuptextSize * scalingFactor : JamiTheme.popuptextSize
+                    bottomPadding: 5
+                    font.pixelSize: JamiTheme.popuptextSize
                     color: JamiTheme.whiteColor
                     text: pluginDescription
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Qt.AlignLeft
-                    lineHeight: 1.5
+                    lineHeight: 1.25
                     textFormat: Text.MarkdownText
                     rightPadding: 40
                 }
@@ -230,7 +296,7 @@ ItemDelegate {
                 Layout.leftMargin: 8
                 color: JamiTheme.whiteColor
 
-                font.pixelSize: hovered ? JamiTheme.settingsFontSize * scalingFactor : JamiTheme.settingsFontSize
+                font.pixelSize: JamiTheme.settingsFontSize
                 font.kerning: true
                 font.italic: true
                 text: JamiStrings.by.arg(pluginAuthor)
