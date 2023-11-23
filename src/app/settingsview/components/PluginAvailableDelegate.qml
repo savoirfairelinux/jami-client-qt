@@ -38,6 +38,7 @@ ItemDelegate {
     property string backgroundLocalPath: UtilsAdapter.getCachePath() + '/backgrounds/' + pluginId + '.jpg'
     property string iconLocalPath: UtilsAdapter.getCachePath() + '/icons/' + pluginId + '.svg'
     readonly property real scalingFactor: 1 + hovered * 0.02
+    onHorizontalPaddingChanged: print(horizontalPadding)
     property string installButtonStatus: {
         switch (pluginStatus) {
         case PluginStatus.DOWNLOADING:
@@ -71,6 +72,7 @@ ItemDelegate {
         id: mask
         anchors.fill: parent
         radius: 5
+        color: JamiTheme.secondaryBackgroundColor
     }
 
     background: null
@@ -202,19 +204,20 @@ ItemDelegate {
                     font.kerning: true
                     font.bold: true
                     color: JamiTheme.whiteColor
-                    font.pixelSize: hovered ? JamiTheme.popuptextSize * scalingFactor : JamiTheme.popuptextSize
+                    font.pixelSize: JamiTheme.popuptextSize
                     textFormat: Text.PlainText
                     wrapMode: Text.WrapAnywhere
                 }
                 Text {
                     id: description
                     Layout.fillWidth: true
-                    font.pixelSize: hovered ? JamiTheme.popuptextSize * scalingFactor : JamiTheme.popuptextSize
+                    bottomPadding: 5
+                    font.pixelSize: JamiTheme.popuptextSize
                     color: JamiTheme.whiteColor
                     text: pluginDescription
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Qt.AlignLeft
-                    lineHeight: 1.5
+                    lineHeight: 1.25
                     textFormat: Text.MarkdownText
                     rightPadding: 40
                 }
@@ -230,7 +233,7 @@ ItemDelegate {
                 Layout.leftMargin: 8
                 color: JamiTheme.whiteColor
 
-                font.pixelSize: hovered ? JamiTheme.settingsFontSize * scalingFactor : JamiTheme.settingsFontSize
+                font.pixelSize: JamiTheme.settingsFontSize
                 font.kerning: true
                 font.italic: true
                 text: JamiStrings.by.arg(pluginAuthor)
