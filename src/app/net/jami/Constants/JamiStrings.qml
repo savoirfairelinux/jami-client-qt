@@ -46,13 +46,17 @@ Item {
     // AboutPopUp
     property string buildID: qsTr("Build ID")
     property string version: qsTr("Version")
-
     property string declarationYear: "© 2015-2024"
     property string slogan: "Astarte"
     property string declaration: qsTr('Jami, a GNU package, is software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users. Visit <a href="https://jami.net" style="color: ' + JamiTheme.buttonTintedBlue + '">jami.net</a>' + ' to learn more.')
     property string noWarranty: qsTr('This program comes with absolutely no warranty. See the <a href="https://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.buttonTintedBlue + '">GNU General Public License</a>, version 3 or later for details.')
     property string contribute: qsTr('Contribute')
     property string feedback: qsTr('Feedback')
+
+    // Crash report popup
+    property string crashReportTitle: qsTr("Application Recovery")
+    property string crashReportMessage: qsTr("Jami has recovered from a crash. Would you like to send a crash report to help us fix the issue?")
+    property string crashReportMessageExtra: qsTr("Only essential data, including the app version, platform information, and a snapshot of the program's state at the time of the crash, will be shared.")
 
     // AccountComboBox
     property string displayQRCode: qsTr("Display QR code")
@@ -769,6 +773,7 @@ Item {
     property string shiftEnterNewLine: qsTr("Press Shift+Enter to insert a new line")
     property string enterNewLine: qsTr("Press Enter to insert a new line")
     property string send: qsTr("Send")
+    property string dontSend: qsTr("Don't send")
     property string replyTo: qsTr("Reply to")
     property string inReplyTo: qsTr("In reply to")
     property string repliedTo: qsTr(" replied to")
