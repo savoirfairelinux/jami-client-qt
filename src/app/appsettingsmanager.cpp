@@ -24,8 +24,7 @@
 
 #include <QCoreApplication>
 #include <QLibraryInfo>
-
-#include <locale.h>
+#include <QDir>
 
 const QString defaultDownloadPath = QStandardPaths::writableLocation(
     QStandardPaths::DownloadLocation);
