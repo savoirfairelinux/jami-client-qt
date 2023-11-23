@@ -49,47 +49,89 @@ SettingsPageBase {
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
-        RowLayout {
-            id: rawLayout
-            Text {
+        ColumnLayout {
+            width: parent.width
+
+            spacing: 10
+
+            ToggleSwitch {
+                id: enableCrashReports
                 Layout.fillWidth: true
-                Layout.preferredHeight: 30
-                Layout.rightMargin: JamiTheme.preferredMarginSize
+                labelText: qsTr("Enable crash reports")
+                checked: UtilsAdapter.getAppValue(Settings.EnableCrashReporting)
 
-                text: JamiStrings.troubleshootText
-                font.pointSize: JamiTheme.settingsFontSize
-                font.kerning: true
-                wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-
-                color: JamiTheme.textColor
+                onSwitchToggled: {
+                    UtilsAdapter.setAppValue(Settings.EnableCrashReporting, checked);
+                    crashReportClient.setHandlerSettings();
+                }
             }
 
-            MaterialButton {
-                id: enableTroubleshootingButton
+            ToggleSwitch {
+                id: enableAutomaticCrashReporting
+                Layout.fillWidth: true
+                labelText: qsTr("Automatically send crash reports")
+                checked: UtilsAdapter.getAppValue(Settings.EnableAutomaticCrashReporting)
 
-                TextMetrics {
-                    id: enableTroubleshootingButtonTextSize
-                    font.weight: Font.Bold
-                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    font.capitalization: Font.AllUppercase
-                    text: enableTroubleshootingButton.text
+                onSwitchToggled: {
+                    UtilsAdapter.setAppValue(Settings.EnableAutomaticCrashReporting, checked);
+                    crashReportClient.setHandlerSettings();
+                }
+            }
+
+            ToggleSwitch {
+                id: enableDeepCrashReports
+                Layout.fillWidth: true
+                labelText: qsTr("Enable deep crash reports")
+                checked: UtilsAdapter.getAppValue(Settings.EnableDeepCrashReports)
+
+                onSwitchToggled: {
+                    UtilsAdapter.setAppValue(Settings.EnableDeepCrashReports, checked);
+                    crashReportClient.setHandlerSettings();
+                }
+            }
+
+            RowLayout {
+                id: rawLayout
+                Text {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 30
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                    text: JamiStrings.troubleshootText
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+
+                    color: JamiTheme.textColor
                 }
 
-                Layout.alignment: Qt.AlignRight
+                MaterialButton {
+                    id: enableTroubleshootingButton
 
-                preferredWidth: enableTroubleshootingButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+                    TextMetrics {
+                        id: enableTroubleshootingButtonTextSize
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        font.capitalization: Font.AllUppercase
+                        text: enableTroubleshootingButton.text
+                    }
 
-                primary: true
+                    Layout.alignment: Qt.AlignRight
 
-                text: JamiStrings.troubleshootButton
-                toolTipText: JamiStrings.troubleshootButton
+                    preferredWidth: enableTroubleshootingButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
 
-                onClicked: {
-                    LogViewWindowCreation.createlogViewWindowObject();
-                    LogViewWindowCreation.showLogViewWindow();
+                    primary: true
+
+                    text: JamiStrings.troubleshootButton
+                    toolTipText: JamiStrings.troubleshootButton
+
+                    onClicked: {
+                        LogViewWindowCreation.createlogViewWindowObject();
+                        LogViewWindowCreation.showLogViewWindow();
+                    }
                 }
             }
         }
