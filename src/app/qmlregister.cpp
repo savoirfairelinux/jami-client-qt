@@ -280,6 +280,7 @@ registerTypes(QQmlEngine* engine,
     auto videoProvider = new VideoProvider(lrcInstance->avModel(), app);
     engine->rootContext()->setContextProperty("videoProvider", videoProvider);
 
+    engine->rootContext()->setContextProperty("ENABLE_CRASHREPORTS", ENABLE_CRASHREPORTS);
     engine->rootContext()->setContextProperty("WITH_WEBENGINE", WITH_WEBENGINE);
     engine->rootContext()->setContextProperty("APPSTORE", APPSTORE);
 }
