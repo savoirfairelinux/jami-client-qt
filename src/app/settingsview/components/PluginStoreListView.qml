@@ -83,13 +83,12 @@ ColumnLayout {
                         }
                         return JamiTheme.remotePluginDelegateHeight;
                     }
-                    width: widthProvider() + 10
-                    height: heightProvider() + 6
+                    width: widthProvider()
+                    height: heightProvider()
                     PluginAvailableDelegate {
                         id: pluginItemDelegate
                         anchors.centerIn: parent
-                        width: wrapper.widthProvider() * scalingFactor
-                        height: wrapper.heightProvider() * scalingFactor
+                        anchors.fill: parent
                         pluginName: Name
                         pluginId: Id
                         pluginIcon: IconPath
