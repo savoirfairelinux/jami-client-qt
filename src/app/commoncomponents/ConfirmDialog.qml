@@ -26,10 +26,15 @@ BaseModalDialog {
     id: root
 
     signal accepted
+    signal rejected
 
     property string confirmLabel: ""
+    property string rejectLabel
     property string textLabel: ""
+    property int textHAlign: Text.AlignHCenter
+    property real textMaxWidth: width - JamiTheme.preferredMarginSize * 4
 
+    autoClose: false
     closeButtonVisible: false
     button1.text: confirmLabel
     button1.contentColorProvider: JamiTheme.redButtonColor
@@ -37,8 +42,11 @@ BaseModalDialog {
         close();
         accepted();
     }
-    button2.text: JamiStrings.optionCancel
-    button2.onClicked: close()
+    button2.text: rejectLabel ? rejectLabel : JamiStrings.optionCancel
+    button2.onClicked: {
+        close();
+        rejected();
+    }
 
     button1Role: DialogButtonBox.AcceptRole
     button2Role: DialogButtonBox.RejectRole
@@ -50,7 +58,7 @@ BaseModalDialog {
             id: labelAction
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.maximumWidth: root.width - JamiTheme.preferredMarginSize * 4
+            Layout.maximumWidth: textMaxWidth
 
             color: JamiTheme.textColor
             text: root.textLabel
@@ -58,7 +66,7 @@ BaseModalDialog {
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
 
-            horizontalAlignment: Text.AlignHCenter
+            horizontalAlignment: textHAlign
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
         }
