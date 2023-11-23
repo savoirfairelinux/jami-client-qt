@@ -26,6 +26,7 @@
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "videoprovider.h"
+#include "crashreportclient.h"
 
 #include <QAction>
 #include <QCommandLineParser>
@@ -122,17 +123,25 @@ MainApplication::~MainApplication()
 {
     engine_.reset();
     lrcInstance_.reset();
+
+    // Set the LastRunWasGraceful key to true if the application exits gracefully.
+    settingsManager_->setValue(Settings::Key::LastExitWasGraceful, true);
 }
 
 bool
 MainApplication::init()
 {
+    // Let's make sure we can provide postmortem debugging information prior
+    // to any other initialization. This won't do anything if crashpad isn't
+    // enabled.
+    settingsManager_ = new AppSettingsManager(this);
+    crashReportClient_ = new CrashReportClient(settingsManager_, CRASH_REPORT_URL, this);
+
     // This 2-phase initialisation prevents ephemeral instances from
     // performing unnecessary tasks, like initializing the webengine.
     engine_.reset(new QQmlApplicationEngine(this));
 
     connectivityMonitor_ = new ConnectivityMonitor(this);
-    settingsManager_ = new AppSettingsManager(this);
     systemTray_ = new SystemTray(settingsManager_, this);
 
     QObject::connect(settingsManager_,
