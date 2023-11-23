@@ -41,7 +41,7 @@ if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     OR ENABLE_TEST)
   set(ENABLE_LIBWRAP true)
 endif()
-option(ENABLE_ASAN "Enable address sanitization" OFF)
+
 if(ENABLE_ASAN AND NOT MSVC)
   message(STATUS "Address sanitization enabled for client")
   # Add AddressSanitizer flags for both compiler and linker
@@ -49,9 +49,13 @@ if(ENABLE_ASAN AND NOT MSVC)
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address")
 endif()
 
+# Enable this option when building for production.
+option(ENABLE_CRASHREPORTS "Enable crash reports" OFF)
+
 # These values are exposed to QML and are better off being defined as values.
 define_macro_with_value(WITH_WEBENGINE)
 define_macro_with_value(APPSTORE)
+define_macro_with_value(ENABLE_CRASHREPORTS)
 
 # jami-core
 if(NOT WITH_DAEMON_SUBMODULE)
@@ -108,6 +112,30 @@ add_fetch_content(
 )
 list(APPEND CLIENT_INCLUDE_DIRS ${QWindowKit_BINARY_DIR}/include)
 list(APPEND CLIENT_LIBS QWindowKit::Quick)
+
+# If ENABLE_CRASHREPORTS is enabled, we will use crashpad_cmake for now.
+if(ENABLE_CRASHREPORTS)
+  set(ENABLE_CRASHPAD ON)
+endif()
+
+# Crash-report client: crashpad
+if(ENABLE_CRASHPAD)
+  message(STATUS "Crashpad enabled for client")
+  if(WIN32)
+    set(CMAKE_OBJECT_PATH_MAX 256)
+    add_definitions(-DNOMINMAX)
+  endif()
+  add_fetch_content(
+    TARGET crashpad_cmake
+    URL https://github.com/TheAssemblyArmada/crashpad-cmake.git
+  )
+  add_definitions(-DENABLE_CRASHPAD)
+  if (WIN32)
+    # This makes sure the console window doesn't show up when running the
+    # crashpad_handler executable.
+    set_target_properties(crashpad_handler PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
+  endif()
+endif()
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -303,7 +331,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/imagedownloader.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/connectioninfolistmodel.cpp
-  ${APP_SRC_DIR}/pluginversionmanager.cpp)
+  ${APP_SRC_DIR}/pluginversionmanager.cpp
+)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/global.h
@@ -372,7 +401,10 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/imagedownloader.h
   ${APP_SRC_DIR}/pluginversionmanager.h
   ${APP_SRC_DIR}/connectioninfolistmodel.h
-  ${APP_SRC_DIR}/pttlistener.h)
+  ${APP_SRC_DIR}/pttlistener.h
+  ${APP_SRC_DIR}/crashreportclient.h
+  ${APP_SRC_DIR}/crashreporter.h
+)
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
@@ -390,6 +422,15 @@ if(Vulkan_FOUND)
 endif()
 # Define PREFER_VULKAN to prefer Vulkan over the default API
 # on GNU/Linux and Windows. Metal is always preferred on macOS.
+
+if(ENABLE_CRASHREPORTS)
+  set(CRASHREPORT_CLIENT_DIR ${APP_SRC_DIR}/crashreportclients)
+  if(ENABLE_CRASHPAD)
+    list(APPEND CLIENT_LIBS crashpad_client)
+    list(APPEND COMMON_SOURCES ${CRASHREPORT_CLIENT_DIR}/crashpad.cpp)
+    list(APPEND COMMON_HEADERS ${CRASHREPORT_CLIENT_DIR}/crashpad.h)
+  endif()
+endif()
 
 if(MSVC)
   set(WINDOWS_SYS_LIBS

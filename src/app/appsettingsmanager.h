@@ -74,7 +74,9 @@ extern const QString defaultDownloadPath;
     X(ShowSendOption, false) \
     X(EnablePtt, false) \
     X(PttKeys, 32) \
-    X(UseFramelessWindow, USE_FRAMELESS_WINDOW_DEFAULT)
+    X(UseFramelessWindow, USE_FRAMELESS_WINDOW_DEFAULT) \
+    X(EnableCrashReporting, true) \
+    X(EnableAutomaticCrashReporting, false)
 #if APPSTORE
 #define KEYS COMMON_KEYS
 #else
