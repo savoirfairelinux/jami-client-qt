@@ -49,9 +49,13 @@ if(ENABLE_ASAN AND NOT MSVC)
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address")
 endif()
 
+# Enable this option when building for production.
+option(ENABLE_CRASHREPORTS "Enable crash reports" OFF)
+
 # These values are exposed to QML and are better off being defined as values.
 define_macro_with_value(WITH_WEBENGINE)
 define_macro_with_value(APPSTORE)
+define_macro_with_value(ENABLE_CRASHREPORTS)
 
 # jami-core
 if(NOT WITH_DAEMON_SUBMODULE)
@@ -87,6 +91,17 @@ list(APPEND QWINDOWKIT_OPTIONS
 )
 
 if(WIN32)
+  # Beta config
+  if(BETA)
+    message(STATUS "Beta config enabled")
+    add_definitions(-DBETA)
+    set(JAMI_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/Beta)
+  else()
+    set(JAMI_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/Release)
+  endif()
+endif()
+
+if(WIN32)
   list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
 endif()
 
@@ -108,6 +123,37 @@ add_fetch_content(
 )
 list(APPEND CLIENT_INCLUDE_DIRS ${QWindowKit_BINARY_DIR}/include)
 list(APPEND CLIENT_LIBS QWindowKit::Quick)
+
+# If ENABLE_CRASHREPORTS is enabled, we will use crashpad_cmake for now.
+if(ENABLE_CRASHREPORTS)
+  set(ENABLE_CRASHPAD ON)
+  set(CRASH_REPORT_URL "http://localhost:8080/submit" CACHE STRING "URL for crash handler uploads")
+endif()
+add_definitions(-DCRASH_REPORT_URL="${CRASH_REPORT_URL}")
+
+# Crash-report client: crashpad
+if(ENABLE_CRASHPAD)
+  message(STATUS "Crashpad enabled for client")
+  if(WIN32)
+    set(CMAKE_OBJECT_PATH_MAX 256)
+    add_definitions(-DNOMINMAX)
+  endif()
+  add_fetch_content(
+    TARGET crashpad_cmake
+    URL https://github.com/TheAssemblyArmada/crashpad-cmake.git
+  )
+  add_definitions(-DENABLE_CRASHPAD)
+  if (WIN32)
+    # This makes sure the console window doesn't show up when running the
+    # crashpad_handler executable.
+    set_target_properties(crashpad_handler PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
+    # Set the output directory for the crashpad_handler executable. On Windows,
+    # we use either the Release or Beta directory depending on the BETA option
+    # which is set above.
+    set_target_properties(crashpad_handler PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY_RELEASE "${JAMI_OUTPUT_DIRECTORY_RELEASE}")
+  endif()
+endif()
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -303,7 +349,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/imagedownloader.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/connectioninfolistmodel.cpp
-  ${APP_SRC_DIR}/pluginversionmanager.cpp)
+  ${APP_SRC_DIR}/pluginversionmanager.cpp
+)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/global.h
@@ -372,7 +419,10 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/imagedownloader.h
   ${APP_SRC_DIR}/pluginversionmanager.h
   ${APP_SRC_DIR}/connectioninfolistmodel.h
-  ${APP_SRC_DIR}/pttlistener.h)
+  ${APP_SRC_DIR}/pttlistener.h
+  ${APP_SRC_DIR}/crashreportclient.h
+  ${APP_SRC_DIR}/crashreporter.h
+)
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
@@ -390,6 +440,15 @@ if(Vulkan_FOUND)
 endif()
 # Define PREFER_VULKAN to prefer Vulkan over the default API
 # on GNU/Linux and Windows. Metal is always preferred on macOS.
+
+if(ENABLE_CRASHREPORTS)
+  set(CRASHREPORT_CLIENT_DIR ${APP_SRC_DIR}/crashreportclients)
+  if(ENABLE_CRASHPAD)
+    list(APPEND CLIENT_LIBS crashpad_client)
+    list(APPEND COMMON_SOURCES ${CRASHREPORT_CLIENT_DIR}/crashpad.cpp)
+    list(APPEND COMMON_HEADERS ${CRASHREPORT_CLIENT_DIR}/crashpad.h)
+  endif()
+endif()
 
 if(MSVC)
   set(WINDOWS_SYS_LIBS
@@ -435,16 +494,6 @@ if(MSVC)
   # daemon
   set(JAMID_SRC_PATH ${DAEMON_DIR}/contrib/msvc/include)
   set(GNUTLS_LIB ${DAEMON_DIR}/contrib/msvc/lib/x64/libgnutls.lib)
-
-  # Beta config
-  if(BETA)
-    message(STATUS "Beta config enabled")
-    add_definitions(-DBETA)
-    set(JAMI_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/Beta)
-  else()
-    set(JAMI_OUTPUT_DIRECTORY_RELEASE
-      ${PROJECT_SOURCE_DIR}/x64/Release)
-  endif()
 
   include_directories(
     ${JAMID_SRC_PATH}
