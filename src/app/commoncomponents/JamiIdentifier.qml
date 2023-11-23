@@ -71,6 +71,7 @@ Item {
                     Layout.preferredHeight: 40
                     containerHeight: 40
                     containerWidth: 40
+                    Layout.fillHeight: true
                     Layout.leftMargin: JamiTheme.pushButtonMargins
                     source: JamiResources.jami_id_logo_svg
                     color: JamiTheme.tintedBlue
@@ -80,9 +81,10 @@ Item {
                     id: usernameTextEdit
                     visible: !readOnly
                     Layout.preferredHeight: 40
+                    Layout.preferredWidth: 300
                     Layout.alignment: Qt.AlignVCenter
                     textColor: JamiTheme.tintedBlue
-                    fontPixelSize: staticText.length > 16 || dynamicText.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
+                    fontPixelSize: JamiTheme.jamiIdSmallFontSize
                     editMode: false
                     isPersistent: false
                     readOnly: true
@@ -103,15 +105,21 @@ Item {
                 Label{
                     id: usernameLabel
                     visible: usernameTextEdit.readOnly
-                    Layout.alignment: Qt.AlignVCenter
+
+                    verticalAlignment: Text.AlignVCenter
+
                     Layout.rightMargin: JamiTheme.pushButtonMargins
+                    Layout.bottomMargin: text == registeredName ? 5 : 0
                     Layout.maximumWidth: leftRect.width - 50
+                    Layout.fillHeight: true
                     elide: Text.ElideRight
                     color: JamiTheme.tintedBlue
                     font.pixelSize : text.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
                     property string registeredName: CurrentAccount.registeredName
                     property string infohash: CurrentAccount.uri
-                    text: registeredName ? registeredName : infohash
+                    onRegisteredNameChanged: {
+                        text = registeredName ? registeredName : infohash
+                    }
                 }
             }
         }
