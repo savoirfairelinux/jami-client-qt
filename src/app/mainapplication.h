@@ -31,11 +31,10 @@
 #include <QWindow>
 #include <QCommandLineParser>
 
-#include <memory>
-
 class ConnectivityMonitor;
-class AppSettingsManager;
 class SystemTray;
+class AppSettingsManager;
+class CrashReporter;
 class PreviewEngine;
 
 // Provides information about the screen the app is displayed on
@@ -123,6 +122,8 @@ private:
     SystemTray* systemTray_;
     AppSettingsManager* settingsManager_;
     PreviewEngine* previewEngine_;
+    CrashReporter* crashReporter_;
+
     ScreenInfo screenInfo_;
     QCommandLineParser parser_;
 };
