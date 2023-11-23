@@ -1,0 +1,9 @@
+# python virtual environment
+venv/
+# python compiled files
+*.pyc
+# python cache
+__pycache__
+
+# example output
+crash_reports/
