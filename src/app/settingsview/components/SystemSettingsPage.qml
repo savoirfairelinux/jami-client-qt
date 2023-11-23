@@ -92,7 +92,7 @@ SettingsPageBase {
                 onSwitchToggled: {
                     UtilsAdapter.setAppValue(Settings.Key.IsDonationVisible, checked);
                     if (checked) {
-                        UtilsAdapter.setToDefault(Settings.Key.DonationVisibleDate);
+                        UtilsAdapter.setToDefault(Settings.Key.Donation2023VisibleDate);
                     }
                 }
             }
@@ -264,7 +264,7 @@ SettingsPageBase {
                 UtilsAdapter.setToDefault(Settings.Key.LANG);
                 UtilsAdapter.setToDefault(Settings.Key.EnableExperimentalSwarm);
                 UtilsAdapter.setToDefault(Settings.Key.IsDonationVisible);
-                UtilsAdapter.setToDefault(Settings.Key.DonationVisibleDate);
+                UtilsAdapter.setToDefault(Settings.Key.Donation2023VisibleDate);
                 enableDonation.checked = Qt.binding(() => UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible));
             }
         }
