@@ -402,7 +402,7 @@ Item {
     property real remotePluginMinimumDelegateHeight: 275
     property real remotePluginMaximumDelegateWidth: 645
     property real remotePluginMaximumDelegateHeight: 413
-    property real iconMargin: 30 * baseZoom
+    property real iconMargin: 25 * baseZoom
     property real remotePluginDelegateWidth: remotePluginMinimumDelegateWidth * baseZoom
     property real remotePluginDelegateHeight: remotePluginMinimumDelegateHeight * baseZoom
     property color pluginViewBackgroundColor: darkTheme ? "#000000" : "#F0EFEF"
@@ -445,7 +445,6 @@ Item {
     property real switchPreferredHeight: 20
     property real switchPreferredWidth: 40
     property real switchIndicatorPreferredWidth: 20
-
 
     // Modal Popup
     property real modalPopupRadius: 20
@@ -541,7 +540,6 @@ Item {
     property real wizardViewMarginSize: pixelToPoint(10)
     property real wizardViewBlocMarginSize: pixelToPoint(40)
     property real wizardViewDescriptionMarginSize: pixelToPoint(20)
-
 
     // WizardView Welcome Page
     property real welcomeLabelPointSize: 30
