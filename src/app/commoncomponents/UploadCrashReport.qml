@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2022-2024 Savoir-faire Linux Inc.
- * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ * Copyright (C) 2023 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,53 +17,35 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 BaseModalDialog {
     id: root
 
-    signal accepted
-    signal rejected
+    title: "Oops!"
 
-    property string confirmLabel: ""
-    property string textLabel: ""
-
-    closeButtonVisible: false
-    button1.text: confirmLabel
-    button1.contentColorProvider: JamiTheme.redButtonColor
+    button1.text: "Send"
+    button1Role: DialogButtonBox.YesRole
     button1.onClicked: {
+        crashReporter.uploadLastReport();
         close();
         accepted();
     }
-    button2.text: JamiStrings.optionCancel
-    button2.onClicked: {
-        close();
-        rejected();
-    }
+    button1.contentColorProvider: JamiTheme.deleteRedButton
 
-    button1Role: DialogButtonBox.AcceptRole
+    button2.text: JamiStrings.optionCancel
     button2Role: DialogButtonBox.RejectRole
+    button2.onClicked: close()
 
     popupContent: ColumnLayout {
-        id: column
+        id: sendReportLayout
+        anchors.centerIn: parent
+        spacing: 10
 
         Label {
-            id: labelAction
-
-            Layout.alignment: Qt.AlignHCenter
-            Layout.maximumWidth: root.width - JamiTheme.preferredMarginSize * 4
-
-            color: JamiTheme.textColor
-            text: root.textLabel
-
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            wrapMode: Text.Wrap
+            id: infoMessage
+            text: "Are you sure you want to send a report?"
         }
     }
 }

@@ -210,6 +210,23 @@ ApplicationWindow {
         // Dbus error handler for Linux.
         if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
             DBusErrorHandler.setActive(true);
+
+        // Handle possible crash recovery.
+        var crashedLastRun = crashReporter.getHasPendingReport();
+        if (crashedLastRun) {
+            // If we crashed, we need to show the crash dialog.
+            var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                    "title": "Oops",
+                    "textLabel": "Jami crashed last time it was running. Would you like to send a crash report?",
+                    "confirmLabel": "Send",
+                });
+            dlg.accepted.connect(function () {
+                    crashReporter.uploadLastReport();
+                });
+            dlg.rejected.connect(function () {
+                    crashReporter.clearAllReports();
+                });
+        }
     }
 
     Loader {
