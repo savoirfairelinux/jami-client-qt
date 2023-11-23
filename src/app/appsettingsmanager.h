@@ -64,7 +64,7 @@ extern const QString defaultDownloadPath;
     X(ShowMardownOption, false) \
     X(ChatViewEnterIsNewLine, false) \
     X(ShowSendOption, false) \
-    X(Donation2023VisibleDate, "2023-11-27 05:00") \
+    X(Donation2023VisibleDate, "2023-11-21 05:00") \
     X(IsDonationVisible, true) \
     X(Donation2023EndDate, "2024-01-31 00:00") \
     X(EnablePtt, false) \
