@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dc5ed01_f854a342",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-23T19:30:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fb50d03_4c99d7f9",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 27
+      },
+      "revId": "0b263cb01f4b8da0467ba48f94cea7d8d9a4a7d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e626889_4359c780",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-23T14:58:08Z",
       "side": 1,
       "message": "wrong ticket I don\u0027t see the ddesign of the account combo box",
+      "range": {
+        "startLine": 9,
+        "startChar": 9,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "0b263cb01f4b8da0467ba48f94cea7d8d9a4a7d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ccf4a86_cf92edb1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-23T19:30:53Z",
+      "side": 1,
+      "message": "Yes, it\u0027s page 5",
+      "parentUuid": "8e626889_4359c780",
       "range": {
         "startLine": 9,
         "startChar": 9,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c21e04e4_104f6264",
+        "filename": "src/app/mainview/components/AccountComboBox.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-23T19:30:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c1a6c7a_5ed1848e",
+      "range": {
+        "startLine": 31,
+        "startChar": 19,
+        "endLine": 31,
+        "endChar": 24
+      },
+      "revId": "0b263cb01f4b8da0467ba48f94cea7d8d9a4a7d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3107701_828932db",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-11-23T14:55:07Z",
       "side": 1,
       "message": "introduces a new warning: qrc:/mainview/components/AccountComboBoxPopup.qml:76: TypeError: Property \u0027update\u0027 of object AccountComboBoxPopup_QMLTYPE_80(0x55ea25839600) is not a function",
+      "range": {
+        "startLine": 76,
+        "startChar": 25,
+        "endLine": 76,
+        "endChar": 31
+      },
+      "revId": "0b263cb01f4b8da0467ba48f94cea7d8d9a4a7d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66fd610d_aa8e9e29",
+        "filename": "src/app/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-23T19:30:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3107701_828932db",
       "range": {
         "startLine": 76,
         "startChar": 25,
