@@ -29,6 +29,8 @@
 #include "appsettingsmanager.h"
 #include "qtutils.h"
 
+#include "api/member.h"
+
 #if __has_include(<gio/gio.h>)
 #include <gio/gio.h>
 #endif

@@ -26,6 +26,7 @@
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "videoprovider.h"
+#include "crashreportclient.h"
 
 #include <QAction>
 #include <QCommandLineParser>
@@ -122,17 +123,25 @@ MainApplication::~MainApplication()
 {
     engine_.reset();
     lrcInstance_.reset();
+
+    // Set the LastRunWasGraceful key to true if the application exits gracefully.
+    settingsManager_->setValue(Settings::Key::LastExitWasGraceful, true);
 }
 
 bool
 MainApplication::init()
 {
+    // Let's make sure we can provide postmortem debugging information prior
+    // to any other initialization. This won't do anything if crashpad isn't
+    // enabled.
+    settingsManager_ = new AppSettingsManager(this);
+    crashReportClient_ = new CrashReportClient(settingsManager_, this);
+
     // This 2-phase initialisation prevents ephemeral instances from
     // performing unnecessary tasks, like initializing the webengine.
     engine_.reset(new QQmlApplicationEngine(this));
 
     connectivityMonitor_ = new ConnectivityMonitor(this);
-    settingsManager_ = new AppSettingsManager(this);
     systemTray_ = new SystemTray(settingsManager_, this);
 
     // These should should be QueuedConnection to ensure that the
@@ -362,6 +371,9 @@ MainApplication::initQmlLayer()
     auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
     engine_->rootContext()->setContextProperty("videoProvider", videoProvider);
 
+    // Register crashReportClient_ as a context property.
+    engine_->rootContext()->setContextProperty("crashReportClient", crashReportClient_);
+
     engine_->load(QUrl(QStringLiteral("qrc:/MainApplicationWindow.qml")));
     qWarning().noquote() << "Main window loaded using" << getRenderInterfaceString();
 }
@@ -419,6 +431,10 @@ MainApplication::initSystray()
 void
 MainApplication::cleanup()
 {
+    // Test the crashpad handler.
+    int* p = nullptr;
+    *p = 1;
+
     // In Qt 6.5, QApplication::exit(0) will signal aboutToQuit, and aboutToQuit is connected to cleanup
     // TODO: delete cleanup.
     if (!isCleanupped) {

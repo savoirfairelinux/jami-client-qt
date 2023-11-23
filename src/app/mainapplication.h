@@ -33,8 +33,9 @@
 #include <memory>
 
 class ConnectivityMonitor;
-class AppSettingsManager;
 class SystemTray;
+class AppSettingsManager;
+class CrashReportClient;
 
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
@@ -66,6 +67,7 @@ public:
     void restoreApp();
 
     Q_INVOKABLE void handleUriAction(const QString& uri = {});
+    // Q_INVOKABLE void setSendCrashReports(bool send);
 
     enum class Option {
         StartMinimized = 0,
@@ -121,6 +123,7 @@ private:
     ConnectivityMonitor* connectivityMonitor_;
     SystemTray* systemTray_;
     AppSettingsManager* settingsManager_;
+    CrashReportClient* crashReportClient_;
 
     ScreenInfo screenInfo_;
 
