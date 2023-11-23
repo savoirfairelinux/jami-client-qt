@@ -33,22 +33,48 @@ option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
 option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" OFF)
 option(ENABLE_TESTS "Build with tests" OFF)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
+option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
+option(ENABLE_ASAN "Enable address sanitization" OFF)
+option(ENABLE_CRASHPAD "Enable crashpad" ON)
+
 if(WITH_WEBENGINE)
   add_definitions(-DWITH_WEBENGINE)
 endif()
-option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
+
 if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     OR ENABLE_LIBWRAP
     # because mocks use the same interface present in qtwrapper/
     OR ENABLE_TEST)
   set(ENABLE_LIBWRAP true)
 endif()
-option(ENABLE_ASAN "Enable address sanitization" OFF)
+
 if(ENABLE_ASAN AND NOT MSVC)
   message(STATUS "Address sanitization enabled for client")
   # Add AddressSanitizer flags for both compiler and linker
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-pointer")
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address")
+endif()
+
+# The crashreportclient code is included in the client codebase, but
+# it will only work when ENABLE_CRASHPAD or ENABLE_<OTHER_REPORT_TOOL>
+# is enabled. Crashpad is the only supported report tool for now.
+if(ENABLE_CRASHPAD)
+  message(STATUS "Crashpad enabled for client")
+  add_definitions(-DENABLE_CRASHPAD)
+  include(FetchContent)
+  FetchContent_Declare(
+    crashpad_cmake
+    GIT_REPOSITORY https://github.com/TheAssemblyArmada/crashpad-cmake.git
+  )
+  FetchContent_MakeAvailable(crashpad_cmake)
+  if(MSVC)
+    # Some pretty long paths in crashpad.
+    set(CMAKE_OBJECT_PATH_MAX 256)
+    # Crashpad uses std::min/max.
+    add_definitions(-DNOMINMAX)
+    # This makes sure the console window doesn't show up.
+    set_target_properties(crashpad_handler PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
+  endif()
 endif()
 
 # jami-core
@@ -74,7 +100,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(NOT MSVC)
   set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
 endif()
-
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -259,7 +284,9 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/imagedownloader.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/connectioninfolistmodel.cpp
-  ${APP_SRC_DIR}/pluginversionmanager.cpp)
+  ${APP_SRC_DIR}/pluginversionmanager.cpp
+  ${APP_SRC_DIR}/crashreportclient.cpp
+)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
@@ -327,7 +354,9 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/imagedownloader.h
   ${APP_SRC_DIR}/pluginversionmanager.h
   ${APP_SRC_DIR}/connectioninfolistmodel.h
-  ${APP_SRC_DIR}/pttlistener.h)
+  ${APP_SRC_DIR}/pttlistener.h
+  ${APP_SRC_DIR}/crashreportclient.h
+)
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
@@ -342,6 +371,10 @@ find_package(Vulkan)
 if(Vulkan_FOUND)
   add_definitions(-DHAS_VULKAN)
   include_directories(${Vulkan_INCLUDE_DIR})
+endif()
+
+if(ENABLE_CRASHPAD)
+  list(APPEND CLIENT_LIBS crashpad_client)
 endif()
 
 if(MSVC)
