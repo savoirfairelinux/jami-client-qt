@@ -27,6 +27,7 @@
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "previewengine.h"
+#include "crashreportclient.h"
 
 #include <QWKQuick/qwkquickglobal.h>
 
@@ -181,13 +182,26 @@ MainApplication::MainApplication(int& argc, char** argv)
 
 MainApplication::~MainApplication()
 {
+    // Test the crashpad handler.
+    int* p = nullptr;
+    *p = 1;
+
     engine_.reset();
     lrcInstance_.reset();
+
+    // Set the LastRunWasGraceful key to true if the application exits gracefully.
+    settingsManager_->setValue(Settings::Key::LastExitWasGraceful, true);
 }
 
 bool
 MainApplication::init()
 {
+    // Let's make sure we can provide postmortem debugging information prior
+    // to any other initialization. This won't do anything if crashpad isn't
+    // enabled.
+    settingsManager_ = new AppSettingsManager(this);
+    crashReportClient_ = new CrashReportClient(settingsManager_, this);
+
     // This 2-phase initialisation prevents ephemeral instances from
     // performing unnecessary tasks, like initializing the webengine.
     engine_.reset(new QQmlApplicationEngine(this));
@@ -195,7 +209,6 @@ MainApplication::init()
     QWK::registerTypes(engine_.get());
 
     connectivityMonitor_ = new ConnectivityMonitor(this);
-    settingsManager_ = new AppSettingsManager(this);
     systemTray_ = new SystemTray(settingsManager_, this);
     previewEngine_ = new PreviewEngine(connectivityMonitor_, this);
 
@@ -449,6 +462,9 @@ MainApplication::initQmlLayer()
         [url]() { C_FATAL << "Failed to load QML component:" << url; },
         Qt::QueuedConnection);
     engine_->load(url);
+
+    // Register crashReportClient_ as a context property.
+    engine_->rootContext()->setContextProperty("crashReportClient", crashReportClient_);
 
     // Report the render interface used.
     C_INFO << "Main window loaded using" << getRenderInterfaceString();
