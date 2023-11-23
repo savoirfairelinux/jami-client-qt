@@ -34,6 +34,9 @@ include(${PROJECT_SOURCE_DIR}/extras/build/cmake/extra_tools.cmake)
 option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
 option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" OFF)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
+if(WITH_WEBENGINE)
+  add_definitions(-DWITH_WEBENGINE)
+endif()
 option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
 if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     OR ENABLE_LIBWRAP
@@ -41,13 +44,15 @@ if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     OR ENABLE_TEST)
   set(ENABLE_LIBWRAP true)
 endif()
-option(ENABLE_ASAN "Enable address sanitization" OFF)
+
 if(ENABLE_ASAN AND NOT MSVC)
   message(STATUS "Address sanitization enabled for client")
   # Add AddressSanitizer flags for both compiler and linker
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-pointer")
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address")
 endif()
+
+option(ENABLE_CRASHPAD "Enable crashpad" ON)
 
 # These values are exposed to QML and are better off being defined as values.
 define_macro_with_value(WITH_WEBENGINE)
@@ -108,6 +113,35 @@ add_fetch_content(
 )
 list(APPEND CLIENT_INCLUDE_DIRS ${QWindowKit_BINARY_DIR}/include)
 list(APPEND CLIENT_LIBS QWindowKit::Quick)
+
+# crashpad
+# The crashreportclient code is included in the client codebase, but
+# it will only work when ENABLE_CRASHPAD or ENABLE_<OTHER_REPORT_TOOL>
+# is enabled. Crashpad is the only supported report tool for now.
+if(ENABLE_CRASHPAD)
+  message(STATUS "Crashpad enabled for client")
+  if(WIN32)
+    # Some pretty long paths in crashpad.
+    set(CMAKE_OBJECT_PATH_MAX 256)
+    # Crashpad uses std::min/max.
+    add_definitions(-DNOMINMAX)
+  endif()
+  add_fetch_content(
+    TARGET crashpad_cmake
+    URL https://github.com/TheAssemblyArmada/crashpad-cmake.git
+  )
+  add_definitions(-DENABLE_CRASHPAD)
+  if (WIN32)
+    # This makes sure the console window doesn't show up.
+    set_target_properties(crashpad_handler PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
+  endif()
+  # include(FetchContent)
+  # FetchContent_Declare(
+  #   crashpad_cmake
+  #   GIT_REPOSITORY https://github.com/TheAssemblyArmada/crashpad-cmake.git
+  # )
+  # FetchContent_MakeAvailable(crashpad_cmake)
+endif()
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -303,7 +337,9 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/imagedownloader.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/connectioninfolistmodel.cpp
-  ${APP_SRC_DIR}/pluginversionmanager.cpp)
+  ${APP_SRC_DIR}/pluginversionmanager.cpp
+  ${APP_SRC_DIR}/crashreportclient.cpp
+)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/global.h
@@ -372,7 +408,9 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/imagedownloader.h
   ${APP_SRC_DIR}/pluginversionmanager.h
   ${APP_SRC_DIR}/connectioninfolistmodel.h
-  ${APP_SRC_DIR}/pttlistener.h)
+  ${APP_SRC_DIR}/pttlistener.h
+  ${APP_SRC_DIR}/crashreportclient.h
+)
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
@@ -390,6 +428,10 @@ if(Vulkan_FOUND)
 endif()
 # Define PREFER_VULKAN to prefer Vulkan over the default API
 # on GNU/Linux and Windows. Metal is always preferred on macOS.
+
+if(ENABLE_CRASHPAD)
+  list(APPEND CLIENT_LIBS crashpad_client)
+endif()
 
 if(MSVC)
   set(WINDOWS_SYS_LIBS
