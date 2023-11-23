@@ -29,6 +29,7 @@ Item {
     property color backgroundColor: JamiTheme.welcomeBlockColor
     property color contentColor: JamiTheme.tintedBlue
     property bool centered: true
+    property bool clickOutside: false
     height: getHeight()
 
     function getHeight() {
@@ -53,8 +54,7 @@ Item {
         RoundedBorderRectangle {
             id: leftRect
             fillColor: JamiTheme.jamiIdBackgroundColor
-            Layout.preferredWidth: childrenRect.width
-            Layout.maximumWidth: jamiId.width - rightRect.width
+            Layout.preferredWidth: usernameTextEdit.visible ? childrenRect.width + JamiTheme.pushButtonMargins : childrenRect.width
             Layout.preferredHeight: childrenRect.height
             radius: {
                 "tl": 5,
@@ -71,6 +71,7 @@ Item {
                     Layout.preferredHeight: 40
                     containerHeight: 40
                     containerWidth: 40
+                    Layout.fillHeight: true
                     Layout.leftMargin: JamiTheme.pushButtonMargins
                     source: JamiResources.jami_id_logo_svg
                     color: JamiTheme.tintedBlue
@@ -80,9 +81,10 @@ Item {
                     id: usernameTextEdit
                     visible: !readOnly
                     Layout.preferredHeight: 40
+                    Layout.preferredWidth: 300
                     Layout.alignment: Qt.AlignVCenter
                     textColor: JamiTheme.tintedBlue
-                    fontPixelSize: staticText.length > 16 || dynamicText.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
+                    fontPixelSize: JamiTheme.jamiIdSmallFontSize
                     editMode: false
                     isPersistent: false
                     readOnly: true
@@ -99,19 +101,34 @@ Item {
                                 usernameTextEdit.nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
                             });
                     }
+
+                    onFocusChanged: {
+                        if (!focus && !readOnly){
+                            print("readOnly = true");
+                            readOnly = true;
+                            clickOutside = true;
+                        }
+                    }
                 }
                 Label{
                     id: usernameLabel
                     visible: usernameTextEdit.readOnly
-                    Layout.alignment: Qt.AlignVCenter
+
+                    verticalAlignment: Text.AlignVCenter
+
                     Layout.rightMargin: JamiTheme.pushButtonMargins
+                    Layout.bottomMargin: text == registeredName ? 5 : 0
                     Layout.maximumWidth: leftRect.width - 50
+                    Layout.fillHeight: true
                     elide: Text.ElideRight
                     color: JamiTheme.tintedBlue
                     font.pixelSize : text.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
                     property string registeredName: CurrentAccount.registeredName
                     property string infohash: CurrentAccount.uri
                     text: registeredName ? registeredName : infohash
+                    onRegisteredNameChanged: {
+                        text = registeredName ? registeredName : infohash
+                    }
                 }
             }
         }
@@ -148,24 +165,29 @@ Item {
                         if (!usernameTextEdit.editMode)
                             return true;
                         switch (usernameTextEdit.nameRegistrationState) {
-                        case UsernameTextEdit.NameRegistrationState.BLANK:
                         case UsernameTextEdit.NameRegistrationState.FREE:
                             return true;
                         case UsernameTextEdit.NameRegistrationState.SEARCHING:
                         case UsernameTextEdit.NameRegistrationState.INVALID:
                         case UsernameTextEdit.NameRegistrationState.TAKEN:
+                        case UsernameTextEdit.NameRegistrationState.BLANK:
                             return false;
                         }
                     }
+                    hoverEnabled: enabled
                     source: usernameTextEdit.editMode ? JamiResources.check_black_24dp_svg : JamiResources.assignment_ind_black_24dp_svg
                     toolTipText: JamiStrings.chooseUsername
                     onClicked: {
-                        if (usernameTextEdit.readOnly) {
+                        if (usernameTextEdit.readOnly && !clickOutside) {
                             usernameTextEdit.startEditing();
                             usernameTextEdit.readOnly = false;
+                            print("v1")
                         } else {
                             usernameTextEdit.accepted();
+                            clickOutside = false;
+                            print("v2")
                         }
+                        print("******")
                     }
 
                     Rectangle {

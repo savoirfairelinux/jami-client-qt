@@ -100,7 +100,7 @@ Loader {
             placeholderText: root.placeholderText
             prefixIconSrc: isSwarmDetail ? "" : root.prefixIconSrc
             prefixIconColor: root.prefixIconColor
-        }
+                    }
     }
 
     // This is used when the user is editing the text.
@@ -137,6 +137,7 @@ Loader {
                 if (!focus && root.editMode) {
                     root.editMode = isPersistent;
                 }
+                root.focus = focus;
                 activeChanged(root.editMode);
             }
             onIsActiveChanged: activeChanged(isActive)
