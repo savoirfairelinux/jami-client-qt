@@ -26,6 +26,7 @@ BaseModalDialog {
     id: root
 
     signal accepted
+    signal rejected
 
     property string confirmLabel: ""
     property string textLabel: ""
@@ -38,7 +39,10 @@ BaseModalDialog {
         accepted();
     }
     button2.text: JamiStrings.optionCancel
-    button2.onClicked: close()
+    button2.onClicked: {
+        close();
+        rejected();
+    }
 
     button1Role: DialogButtonBox.AcceptRole
     button2Role: DialogButtonBox.RejectRole
