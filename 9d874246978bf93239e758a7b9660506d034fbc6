@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03f5c85a_42f55c13",
+        "filename": "src/app/pluginadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-23T12:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6773893_9a61378d",
+      "range": {
+        "startLine": 234,
+        "startChar": 33,
+        "endLine": 234,
+        "endChar": 53
+      },
+      "revId": "9d874246978bf93239e758a7b9660506d034fbc6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c49adcfb_af0de3bf",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15713c99_70fb52e3",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-23T12:57:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c49adcfb_af0de3bf",
+      "range": {
+        "startLine": 116,
+        "startChar": 12,
+        "endLine": 116,
+        "endChar": 37
+      },
+      "revId": "9d874246978bf93239e758a7b9660506d034fbc6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15c272e4_d495b354",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-11-20T20:19:34Z",
       "side": 1,
       "message": "the text overflow the blue indication (and seems not centered)",
+      "range": {
+        "startLine": 120,
+        "startChar": 25,
+        "endLine": 120,
+        "endChar": 34
+      },
+      "revId": "9d874246978bf93239e758a7b9660506d034fbc6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "563d3bbe_bb89faf3",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-11-23T12:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15c272e4_d495b354",
       "range": {
         "startLine": 120,
         "startChar": 25,
