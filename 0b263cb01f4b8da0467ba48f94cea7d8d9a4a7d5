@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3107701_828932db",
+        "filename": "src/app/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-23T14:55:07Z",
+      "side": 1,
+      "message": "introduces a new warning: qrc:/mainview/components/AccountComboBoxPopup.qml:76: TypeError: Property \u0027update\u0027 of object AccountComboBoxPopup_QMLTYPE_80(0x55ea25839600) is not a function",
+      "range": {
+        "startLine": 76,
+        "startChar": 25,
+        "endLine": 76,
+        "endChar": 31
+      },
+      "revId": "0b263cb01f4b8da0467ba48f94cea7d8d9a4a7d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
