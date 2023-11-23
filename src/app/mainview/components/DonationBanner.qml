@@ -109,7 +109,7 @@ Rectangle {
                     anchors.fill: parent
                     onClicked: {
                         // When the user clicks on "Not now", we set the donation date to 7 days from now (1 for the test)
-                        UtilsAdapter.setAppValue(Settings.Key.DonationVisibleDate, new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16).replace("T", " "));
+                        UtilsAdapter.setAppValue(Settings.Key.Donation2023VisibleDate, new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16).replace("T", " "));
                         donation.donationVisible = Qt.binding(() => JamiQmlUtils.isDonationBannerVisible());
                     }
                 }
