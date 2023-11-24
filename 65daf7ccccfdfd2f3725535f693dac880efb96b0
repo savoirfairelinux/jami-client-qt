@@ -46,6 +46,30 @@
       },
       "revId": "65daf7ccccfdfd2f3725535f693dac880efb96b0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c1d4aaa_43953e82",
+        "filename": "src/app/commoncomponents/PhotoboothView.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-24T18:48:18Z",
+      "side": 1,
+      "message": "Open Account creation, choose picture \u003d\u003e No more photo\n\nStill the case\n\nAnd I still see \"Clear avatar picture\" at the second account creation even if there is no picture",
+      "parentUuid": "0238e195_beced7f7",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 22
+      },
+      "revId": "65daf7ccccfdfd2f3725535f693dac880efb96b0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
