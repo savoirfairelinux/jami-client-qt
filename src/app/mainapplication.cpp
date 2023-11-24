@@ -371,8 +371,13 @@ MainApplication::initSystray()
 {
     systemTray_->setIcon(QIcon(":/images/jami.svg"));
 
-    // Create a new menu
-    systemTrayMenu_.reset(new QMenu);
+    QMenu* menu {nullptr};
+    // If there was a previous menu, reuse it, otherwise create a new one.
+    if ((menu = systemTray_->contextMenu())) {
+        menu->clear();
+    } else {
+        menu = new QMenu;
+    }
 
     QString quitString;
 #ifdef Q_OS_WINDOWS
@@ -381,10 +386,10 @@ MainApplication::initSystray()
     quitString = tr("&Quit");
 #endif
 
-    QAction* quitAction = new QAction(quitString, systemTrayMenu_.get());
+    QAction* quitAction = new QAction(quitString, this);
     connect(quitAction, &QAction::triggered, this, &MainApplication::closeRequested);
 
-    QAction* restoreAction = new QAction(tr("&Show Jami"), systemTrayMenu_.get());
+    QAction* restoreAction = new QAction(tr("&Show Jami"), this);
     connect(restoreAction, &QAction::triggered, this, &MainApplication::restoreApp);
 
     connect(systemTray_,
@@ -395,20 +400,18 @@ MainApplication::initSystray()
 #ifdef Q_OS_WINDOWS
                     restoreApp();
 #elif !defined(Q_OS_MACOS)
-                QWindow* window = focusWindow();
-                if (window)
-                    window->close();
-                else
-                    restoreApp();
+                    QWindow* window = focusWindow();
+                    if (window)
+                        window->close();
+                    else
+                        restoreApp();
 #endif
                 }
             });
 
-    systemTrayMenu_->addAction(restoreAction);
-    systemTrayMenu_->addAction(quitAction);
-
-    // Set the new menu as the context menu
-    systemTray_->setContextMenu(systemTrayMenu_.get());
+    menu->addAction(restoreAction);
+    menu->addAction(quitAction);
+    systemTray_->setContextMenu(menu);
 
     systemTray_->show();
 }
