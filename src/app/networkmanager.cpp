@@ -55,6 +55,9 @@ NetworkManager::NetworkManager(ConnectivityMonitor* cm, QObject* parent)
     , rng_(std::random_device {}())
 {
 #if QT_CONFIG(ssl)
+    QSslConfiguration sslConfig = QSslConfiguration::defaultConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    QSslConfiguration::setDefaultConfiguration(sslConfig);
     connect(manager_,
             &QNetworkAccessManager::sslErrors,
             this,
