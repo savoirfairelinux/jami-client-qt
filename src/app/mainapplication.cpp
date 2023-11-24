@@ -105,8 +105,7 @@ ScreenInfo::onPhysicalDotsPerInchChanged()
 }
 
 MainApplication::MainApplication(int& argc, char** argv)
-    : QApplication(argc, argv)
-    , isCleanupped(false)
+    : QApplication(argc, argv), isCleanupped(false)
 {
     const char* qtVersion = qVersion();
     qInfo() << "Using Qt runtime version:" << qtVersion;
@@ -135,19 +134,10 @@ MainApplication::init()
     settingsManager_ = new AppSettingsManager(this);
     systemTray_ = new SystemTray(settingsManager_, this);
 
-    // These should should be QueuedConnection to ensure that the
-    // they are executed after the QML engine has been initialized,
-    // and after the QSystemTrayIcon has been created and shown.
     QObject::connect(settingsManager_,
                      &AppSettingsManager::retranslate,
                      engine_.get(),
-                     &QQmlApplicationEngine::retranslate,
-                     Qt::QueuedConnection);
-    QObject::connect(settingsManager_,
-                     &AppSettingsManager::retranslate,
-                     this,
-                     &MainApplication::initSystray,
-                     Qt::QueuedConnection);
+                     &QQmlApplicationEngine::retranslate);
 
     setWindowIcon(QIcon(":/images/jami.ico"));
 
@@ -371,8 +361,7 @@ MainApplication::initSystray()
 {
     systemTray_->setIcon(QIcon(":/images/jami.svg"));
 
-    // Create a new menu
-    systemTrayMenu_.reset(new QMenu);
+    QMenu* systrayMenu = new QMenu();
 
     QString quitString;
 #ifdef Q_OS_WINDOWS
@@ -381,10 +370,10 @@ MainApplication::initSystray()
     quitString = tr("&Quit");
 #endif
 
-    QAction* quitAction = new QAction(quitString, systemTrayMenu_.get());
+    QAction* quitAction = new QAction(quitString, this);
     connect(quitAction, &QAction::triggered, this, &MainApplication::closeRequested);
 
-    QAction* restoreAction = new QAction(tr("&Show Jami"), systemTrayMenu_.get());
+    QAction* restoreAction = new QAction(tr("&Show Jami"), this);
     connect(restoreAction, &QAction::triggered, this, &MainApplication::restoreApp);
 
     connect(systemTray_,
@@ -395,21 +384,18 @@ MainApplication::initSystray()
 #ifdef Q_OS_WINDOWS
                     restoreApp();
 #elif !defined(Q_OS_MACOS)
-                QWindow* window = focusWindow();
-                if (window)
-                    window->close();
-                else
-                    restoreApp();
+                    QWindow* window = focusWindow();
+                    if (window)
+                        window->close();
+                    else
+                        restoreApp();
 #endif
                 }
             });
 
-    systemTrayMenu_->addAction(restoreAction);
-    systemTrayMenu_->addAction(quitAction);
-
-    // Set the new menu as the context menu
-    systemTray_->setContextMenu(systemTrayMenu_.get());
-
+    systrayMenu->addAction(restoreAction);
+    systrayMenu->addAction(quitAction);
+    systemTray_->setContextMenu(systrayMenu);
     systemTray_->show();
 }
 
