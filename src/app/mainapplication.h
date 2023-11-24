@@ -124,8 +124,5 @@ private:
 
     ScreenInfo screenInfo_;
 
-    // We will recreate the system tray menu when the user changes the language.
-    QScopedPointer<QMenu> systemTrayMenu_;
-
     bool isCleanupped;
 };
