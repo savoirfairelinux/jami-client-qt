@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "769b135f_c4c7153b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-24T20:48:14Z",
+      "side": 1,
+      "message": "Ctrl+J is broken (it should open account list, it\u0027s also broekn on master but must be fixed)\n\nIdeally keyboard naviagation should work\n\nTest with a screen reader that labels are correctly handled",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 27
+      },
+      "revId": "4652918172ba614e32553b3064608d6c249d60ce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
