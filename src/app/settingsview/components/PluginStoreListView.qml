@@ -142,8 +142,6 @@ ColumnLayout {
                     source: JamiResources.outline_info_24dp_svg
                 }
                 Text {
-                    Scaffold {
-                    }
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignRight
                     wrapMode: Text.WordWrap
