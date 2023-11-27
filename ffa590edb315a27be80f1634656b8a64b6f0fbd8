@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b4ac77e0_e02d1068",
+        "filename": "src/app/mainview/ConversationView.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-11-27T14:24:15Z",
+      "side": 1,
+      "message": "Open conversation details, start call, click on chat",
+      "parentUuid": "740c10c1_96fa24f0",
+      "range": {
+        "startLine": 103,
+        "startChar": 36,
+        "endLine": 103,
+        "endChar": 38
+      },
+      "revId": "ffa590edb315a27be80f1634656b8a64b6f0fbd8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06f50ff9_9c49143c",
         "filename": "src/app/mainview/components/ChatView.qml",
         "patchSetId": 9
