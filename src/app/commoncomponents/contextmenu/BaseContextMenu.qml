@@ -58,34 +58,28 @@ Menu {
                     menuItems[i].itemRealWidth = menuPreferredWidth;
                 if (menuItemsPreferredHeight)
                     menuItems[i].itemPreferredHeight = menuItemsPreferredHeight;
+                var menuSeparatorComponent, menuSeparatorComponentObj;
                 if (i !== menuItems.length - 1) {
-                    var menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
-                    var menuSeparatorComponentObj = menuSeparatorComponent.createObject();
+                    menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
+                    menuSeparatorComponentObj = menuSeparatorComponent.createObject();
                     generalMenuSeparatorList.push(menuSeparatorComponentObj);
                     root.addItem(menuSeparatorComponentObj);
                 }
                 if (menuItems[i].addMenuSeparatorAfter) {
-                    var menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
-                    var menuSeparatorComponentObj = menuSeparatorComponent.createObject(root, {
+                    menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
+                    menuSeparatorComponentObj = menuSeparatorComponent.createObject(root, {
                             "separatorColor": "#DEDEDE",
                             "separatorPreferredHeight": 0
                         });
                     generalMenuSeparatorList.push(menuSeparatorComponentObj);
                     root.addItem(menuSeparatorComponentObj);
-                    var menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
-                    var menuSeparatorComponentObj = menuSeparatorComponent.createObject();
+                    menuSeparatorComponentObj = menuSeparatorComponent.createObject();
                     generalMenuSeparatorList.push(menuSeparatorComponentObj);
                     root.addItem(menuSeparatorComponentObj);
                 }
             }
         }
         root.addItem(menuBottomBorder);
-        root.open();
-    }
-
-    onVisibleChanged: {
-        if (!visible)
-            root.close();
     }
 
     font.pointSize: JamiTheme.menuFontSize
