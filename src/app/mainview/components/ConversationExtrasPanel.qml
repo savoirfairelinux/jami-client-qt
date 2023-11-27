@@ -27,20 +27,8 @@ StackLayout {
         return visible && currentIndex === panel;
     }
 
-    visible: currentIndex > -1
-
-    property bool detailsShouldOpen: false
-    onVisibleChanged: if (visible)
-        detailsShouldOpen = true
-
-    function restoreState() {
-        // Only applies to Jami accounts, and we musn't be in a call.
-        if (detailsShouldOpen && !inCallView && !CurrentConversation.needsSyncing && !CurrentConversation.isRequest) {
-            switchToPanel(ChatView.SwarmDetailsPanel, false);
-        } else {
-            closePanel();
-        }
-    }
+    currentIndex: -1
+    visible: currentIndex !== -1
 
     Connections {
         target: CurrentConversationMembers
@@ -58,18 +46,25 @@ StackLayout {
     // Additionally, `toggle` being true (default) will close the panel
     // if it is already open to `panel`.
     function switchToPanel(panel, toggle = true) {
-        if (visible && toggle && currentIndex === panel) {
-            closePanel();
+        print("switchToPanel", panel, toggle, currentIndex, visible);
+        if (visible) {
+            // We need to close the panel if it's open and we're switching to
+            // the same panel.
+            if (toggle && currentIndex === panel) {
+                closePanel();
+            } else {
+                currentIndex = panel;
+            }
         } else {
+            // We need to open the panel no matter what.
             currentIndex = panel;
+            visible = true;
         }
     }
 
     function closePanel() {
-        // We need to close the panel, but not save it when appropriate.
+        print("closePanel", currentIndex, visible);
         currentIndex = -1;
-        if (!inCallView)
-            detailsShouldOpen = false;
     }
 
     SwarmDetailsPanel {
@@ -81,8 +76,6 @@ StackLayout {
         // Save it when it changes.
         onTabBarIndexChanged: root.detailsIndex = tabBarIndex
     }
-    MessagesResearchPanel {
-    }
-    AddMemberPanel {
-    }
+    MessagesResearchPanel {}
+    AddMemberPanel {}
 }

@@ -94,13 +94,14 @@ ListSelectionView {
                     }
                 }
 
+                // Handle visibility change for the in-call chat only.
                 onVisibleChanged: {
-                    if (!inCallView)
-                        return;
-                    if (visible && !parent.showDetails) {
-                        focusChatView();
-                    } else {
-                        callStackView.contentView.forceActiveFocus();
+                    if (inCallView) {
+                        if (visible && !extrasPanelVisible) {
+                            focusChatView();
+                        } else {
+                            callStackView.contentView.forceActiveFocus();
+                        }
                     }
                 }
             }

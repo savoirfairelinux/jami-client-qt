@@ -61,6 +61,18 @@ Rectangle {
         }
     }
 
+    property bool extrasPanelVisible: extrasPanel.visible
+
+    // Used externally to switch to a extras panel.
+    function switchToPanel(panel, toggle = true) {
+        extrasPanel.switchToPanel(panel, toggle);
+    }
+
+    // Used externally to close the extras panel.
+    function closePanel() {
+        extrasPanel.closePanel();
+    }
+
     Connections {
         target: PositionManager
         function onOpenNewMap() {
@@ -71,23 +83,20 @@ Rectangle {
     Connections {
         target: CurrentConversation
         function onIdChanged() {
-            extrasPanel.restoreState();
             MessagesAdapter.loadMoreMessages();
         }
     }
 
-    Component.onCompleted: extrasPanel.restoreState()
-
     onVisibleChanged: {
         if (visible) {
             chatViewSplitView.resolvePanes(true);
-            if (root.parent.objectName === "CallViewChatViewContainer") {
-                if (root.parent.showDetails) {
-                    extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel);
-                } else {
-                    extrasPanel.closePanel();
-                }
-            }
+//            if (root.parent.objectName === "CallViewChatViewContainer") {
+//                if (root.parent.showDetails) {
+//                    extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel);
+//                } else {
+//                    extrasPanel.closePanel();
+//                }
+//            }
         }
     }
 
@@ -98,9 +107,6 @@ Rectangle {
 
         ChatViewHeader {
             id: chatViewHeader
-
-            addParticipantOpened: extrasPanel.currentIndex === ChatView.AddMemberPanel
-            swarmDetailsOpened: extrasPanel.currentIndex === ChatView.SwarmDetailsPanel
 
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
@@ -114,9 +120,6 @@ Rectangle {
             }
 
             onBackClicked: root.dismiss()
-            onShowDetailsClicked: extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel)
-            onSearchClicked: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
-            onAddToConversationClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
 
             Connections {
                 target: CurrentConversation
@@ -190,53 +193,38 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-//            property real previousDetailsWidth: extrasPanel.width
-//            property real previousWidth: width
-
             property real previousDetailsWidth: extrasPanel.width
-            property bool isExtrasPanelOpen: extrasPanel.visible
+            property real previousWidth: width
 
             onWidthChanged: resolvePanes()
-
-            function resolvePanes(force = false) {
-                const totalMinWidth = JamiTheme.mainViewPaneMinWidth + JamiTheme.extrasPanelMinWidth;
-                const canShowBoth = width >= totalMinWidth;
-
-                chatContents.visible = canShowBoth || !isExtrasPanelOpen;
-                extrasPanel.visible = canShowBoth || isExtrasPanelOpen;
-
-                if (!canShowBoth && isExtrasPanelOpen) {
-                    previousDetailsWidth = extrasPanel.width;
-                }
-            }
 
             // This function governs the visibility of the chatContents and tracks the
             // the width of the SplitView and the details panel. This function should be
             // called when the width of the SplitView changes, when the SplitView is shown,
             // and when the details panel is shown. When called with force=true, it is being
             // called from a visibleChanged event, and we should not update the previous widths.
-//            function resolvePanes(force = false) {
-//                // If the details panel is not visible, then show the chatContents.
-//                if (!extrasPanel.visible) {
-//                    chatContents.visible = true;
-//                    return;
-//                }
+            function resolvePanes(force = false) {
+                // If the details panel is not visible, then show the chatContents.
+                if (!extrasPanel.visible) {
+                    chatContents.visible = true;
+                    return;
+                }
 
-//                // Next we compute whether the SplitView is expanding or shrinking.
-//                const isExpanding = width > previousWidth;
+                // Next we compute whether the SplitView is expanding or shrinking.
+                const isExpanding = width > previousWidth;
 
-//                // If the SplitView is not wide enough to show both the chatContents
-//                // and the details panel, then hide the chatContents.
-//                if (width < JamiTheme.mainViewPaneMinWidth + extrasPanel.width && (!isExpanding || force) && chatContents.visible) {
-//                    if (!force)
-//                        previousDetailsWidth = extrasPanel.width;
-//                    chatContents.visible = false;
-//                } else if (width >= JamiTheme.mainViewPaneMinWidth + previousDetailsWidth && (isExpanding || force) && !chatContents.visible) {
-//                    chatContents.visible = true;
-//                }
-//                if (!force)
-//                    previousWidth = width;
-//            }
+                // If the SplitView is not wide enough to show both the chatContents
+                // and the details panel, then hide the chatContents.
+                if (width < JamiTheme.mainViewPaneMinWidth + extrasPanel.width && (!isExpanding || force) && chatContents.visible) {
+                    if (!force)
+                        previousDetailsWidth = extrasPanel.width;
+                    chatContents.visible = false;
+                } else if (width >= JamiTheme.mainViewPaneMinWidth + previousDetailsWidth && (isExpanding || force) && !chatContents.visible) {
+                    chatContents.visible = true;
+                }
+                if (!force)
+                    previousWidth = width;
+            }
 
             ColumnLayout {
                 id: chatContents
@@ -335,15 +323,11 @@ Rectangle {
                 SplitView.preferredWidth: JamiTheme.extrasPanelMinWidth
 
                 onVisibleChanged: {
-                    chatViewSplitView.isExtrasPanelOpen = visible;
-                    chatViewSplitView.resolvePanes();
+                    if (!visible) {
+                        width = previousWidth;
+                    }
+                    chatViewSplitView.resolvePanes(true)
                 }
-//                onVisibleChanged: {
-//                    if (!visible) {
-//                        width = previousWidth;
-//                    }
-//                    chatViewSplitView.resolvePanes(true)
-//                }
             }
         }
     }
