@@ -23,6 +23,7 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+
 import "../../commoncomponents"
 import "../../settingsview/components"
 
