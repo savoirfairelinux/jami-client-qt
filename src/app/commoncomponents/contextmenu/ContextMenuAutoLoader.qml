@@ -56,6 +56,7 @@ Loader {
                 contextMenu.menuItemsPreferredHeight = contextMenuItemPreferredHeight;
                 contextMenu.menuSeparatorPreferredHeight = contextMenuSeparatorPreferredHeight;
                 contextMenu.loadMenuItems(menuItemsToLoad);
+                contextMenu.open();
             }
         }
     }

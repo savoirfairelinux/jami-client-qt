@@ -51,7 +51,12 @@ RowLayout {
     signal showMapClicked
     signal emojiButtonClicked
 
-    height: showTypo || multiLine ? messageBarTextArea.height + 25 + 3 * marginSize + 1 : textAreaObj.height + marginSize + 1
+    height: {
+        if (showTypo || multiLine)
+            return messageBarTextArea.height + 25 + 3 * marginSize + 1
+        else
+            return textAreaObj.height + marginSize + 1
+    }
 
     Rectangle {
 
@@ -67,11 +72,16 @@ RowLayout {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: marginSize / 2
 
+            // Used to choose the correct color for the button.
+            readonly property bool highlight: down || hovered
+
             background: Rectangle {
                 implicitWidth: showMoreButton.width
                 implicitHeight: showMoreButton.height
                 radius: 5
-                color: JamiTheme.transparentColor
+                color: showMoreButton.highlight ?
+                           JamiTheme.hoveredButtonColor :
+                           JamiTheme.transparentColor
             }
 
             MaterialToolTip {
@@ -80,7 +90,7 @@ RowLayout {
                 parent: showMoreButton
                 visible: showMoreButton.hovered && (text.length > 0)
                 delay: Qt.styleHints.mousePressAndHoldInterval
-                text: JamiStrings.showMore
+                text: showMoreButton.down ? JamiStrings.showLess : JamiStrings.showMore
             }
 
             indicator: ResponsiveImage {
@@ -93,40 +103,33 @@ RowLayout {
 
                 source: JamiResources.more_menu_black_24dp_svg
 
-                color: JamiTheme.chatViewFooterImgColor
+                color: showMoreButton.highlight ?
+                           JamiTheme.chatViewFooterImgHoverColor :
+                           JamiTheme.chatViewFooterImgColor;
             }
 
-            onHoveredChanged: {
-                if (!sharePopup.opened) {
-                    showMoreButton.indicator.color = hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor;
-                    showMoreButton.background.color = hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor;
+            Component {
+                id: sharePopupComp
+                ShareMenu {
+                    id: sharePopup
+                    onAudioRecordMessageButtonClicked: root.audioRecordMessageButtonClicked()
+                    onVideoRecordMessageButtonClicked: root.videoRecordMessageButtonClicked()
+                    onShowMapClicked: root.showMapClicked()
+                    modelList: listViewMoreButton.menuMoreButton
+                    y: showMoreButton.y + 31
+                    x: showMoreButton.x - 3
                 }
-                toolTipMoreButton.text = sharePopup.opened ? JamiStrings.showLess : JamiStrings.showMore;
             }
 
             popup: ShareMenu {
                 id: sharePopup
-                onAudioRecordMessageButtonClicked: {
-                    root.audioRecordMessageButtonClicked();
-                }
-                onVideoRecordMessageButtonClicked: {
-                    root.videoRecordMessageButtonClicked();
-                }
-                onShowMapClicked: {
-                    root.showMapClicked();
-                }
+                onAudioRecordMessageButtonClicked: root.audioRecordMessageButtonClicked()
+                onVideoRecordMessageButtonClicked: root.videoRecordMessageButtonClicked()
+                onShowMapClicked: root.showMapClicked()
                 modelList: listViewMoreButton.menuMoreButton
                 y: showMoreButton.y + 31
                 x: showMoreButton.x - 3
             }
-        }
-    }
-
-    Connections {
-        target: sharePopup
-        function onOpenedChanged() {
-            showMoreButton.indicator.color = (showMoreButton.parent && showMoreButton.parent.hovered) || (sharePopup != null && sharePopup.opened) ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor;
-            showMoreButton.background.color = (showMoreButton.parent && showMoreButton.parent.hovered) || sharePopup.opened ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor;
         }
     }
 
@@ -349,8 +352,6 @@ RowLayout {
                             }
                             var selectedText = text.substring(start - char1.length, end + char2.length);
                             return (selectedText.startsWith(char1) && selectedText.endsWith(char2));
-                            var res = regex.test(text.substring(start - char1.length, end + char2.length));
-                            return res && start - char1.length >= 0 && end + char2.length <= text.length;
                         }
 
                         function isStarStyle(text, selectionStart, selectionEnd, type) {
@@ -836,14 +837,14 @@ RowLayout {
 
                                 toolTipText: modelData.shortcutText
                                 shortcutKey: modelData.shortcutKey
-                                hasShortcut: modelData.hasShortcut != null ? modelData.hasShortcut : true
+                                hasShortcut: modelData.hasShortcut ? true : false
                                 source: modelData.iconSrc
                                 focusPolicy: Qt.TabFocus
 
                                 normalColor: {
                                     if (showPreview) {
                                         return JamiTheme.primaryBackgroundColor;
-                                    } else if (modelData.normalColor != null) {
+                                    } else if (modelData.normalColor) {
                                         return modelData.normalColor;
                                     } else if (modelData.isStyle) {
                                         return JamiTheme.hoveredButtonColor;
@@ -856,7 +857,7 @@ RowLayout {
                                         return JamiTheme.chatViewFooterImgDisableColor;
                                     } else if (hovered) {
                                         return JamiTheme.chatViewFooterImgHoverColor;
-                                    } else if (modelData.imageColor != null) {
+                                    } else if (modelData.imageColor !== null) {
                                         return modelData.imageColor;
                                     } else if (modelData.isStyle) {
                                         return JamiTheme.chatViewFooterImgHoverColor;
