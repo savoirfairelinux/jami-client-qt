@@ -182,7 +182,7 @@ BaseModalDialog {
                         Layout.leftMargin: 10
                     }
 
-                    Label {
+                    TextEdit {
                         id: contactId
                         Layout.alignment: Qt.AlignLeft
                         Layout.preferredWidth: parent.width - identifierText.width - 35
@@ -191,8 +191,17 @@ BaseModalDialog {
                         font.kerning: true
                         color: JamiTheme.textColor
 
-                        elide: Text.ElideRight
-                        text: idText
+                        selectByMouse: true
+                        readOnly: true
+                        text: textMetricsContacIdText.elidedText
+
+                        TextMetrics {
+                            id: textMetricsContacIdText
+                            font: contactDisplayName.font
+                            text: idText
+                            elideWidth: root.width - 200
+                            elide: Qt.ElideMiddle
+                        }
 
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
