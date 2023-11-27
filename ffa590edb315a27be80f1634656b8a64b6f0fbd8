@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a8787b4_0d276ee7",
+        "filename": "src/app/mainview/ConversationView.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-11-27T18:17:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4ac77e0_e02d1068",
+      "range": {
+        "startLine": 103,
+        "startChar": 36,
+        "endLine": 103,
+        "endChar": 38
+      },
+      "revId": "ffa590edb315a27be80f1634656b8a64b6f0fbd8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06f50ff9_9c49143c",
@@ -61,6 +85,30 @@
       "writtenOn": "2023-11-27T14:17:08Z",
       "side": 1,
       "message": "remove?",
+      "range": {
+        "startLine": 94,
+        "startChar": 17,
+        "endLine": 94,
+        "endChar": 19
+      },
+      "revId": "ffa590edb315a27be80f1634656b8a64b6f0fbd8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b8e9e3d_a732ab2e",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-11-27T18:17:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06f50ff9_9c49143c",
       "range": {
         "startLine": 94,
         "startChar": 17,
