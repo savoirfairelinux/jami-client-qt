@@ -26,11 +26,10 @@ License:       GPLv3+
 Vendor:        Savoir-faire Linux Inc.
 URL:           https://jami.net/
 Source:        jami-libqt-%{version}.tar.xz
-Patch0:        0001-fix-gcc13.patch
-Patch1:        0002-OpenFile-portal-do-not-use-O_PATH-fds.patch
-Patch2:        0003-fix-mathops.patch
-Patch3:        0004-fix-binary-tokenizer.patch
-Patch4:        0005-importlib.patch
+Patch0:        0001-fix-mathops.patch
+Patch1:        0002-fix-binary-tokenizer.patch
+Patch2:        0015-remove-deleted-xkb-keys.patch
+Patch3:        0016-fix-vaapi.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -45,13 +44,13 @@ BuildRequires: bison
 BuildRequires: gperf
 BuildRequires: flex
 BuildRequires: vulkan-devel
-BuildRequires: python-six
 %if %{defined suse_version}
 BuildRequires: ffmpeg-devel
 BuildRequires: ffmpeg
 BuildRequires: python-xml
 BuildRequires: mozilla-nss-devel
 %else
+BuildRequires: python-six
 BuildRequires: pkgconfig(gstreamer-%{gst})
 BuildRequires: pkgconfig(gstreamer-app-%{gst})
 BuildRequires: pkgconfig(gstreamer-audio-%{gst})
@@ -70,7 +69,6 @@ This package contains Qt libraries for Jami.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
 echo "Building Qt using %{job_count} parallel jobs"
