@@ -411,6 +411,7 @@ Item {
     property real lineEditContextMenuItemsHeight: 15
     property real lineEditContextMenuItemsWidth: 100
     property real lineEditContextMenuSeparatorsHeight: 2
+    property color menuSeparatorColor: darkTheme ? "#4d4d4d" : "#DEDEDE"
 
     // Recording
     property real recordingBtnSize: 12
@@ -445,7 +446,6 @@ Item {
     property real switchPreferredHeight: 20
     property real switchPreferredWidth: 40
     property real switchIndicatorPreferredWidth: 20
-
 
     // Modal Popup
     property real modalPopupRadius: 20
@@ -541,7 +541,6 @@ Item {
     property real wizardViewMarginSize: pixelToPoint(10)
     property real wizardViewBlocMarginSize: pixelToPoint(40)
     property real wizardViewDescriptionMarginSize: pixelToPoint(20)
-
 
     // WizardView Welcome Page
     property real welcomeLabelPointSize: 30

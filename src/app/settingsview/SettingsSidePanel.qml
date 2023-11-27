@@ -35,82 +35,155 @@ SidePanelBase {
     property bool isSinglePane
 
     function getHeaders() {
-        return [{
-                "title": JamiStrings.accountSettingsMenuTitle,
-                "icon": JamiResources.account_24dp_svg,
-                "first": 0,
-                "last": 4,
-                "children": [{
-                        "id": 0,
-                        "title": JamiStrings.manageAccountSettingsTitle
-                    }, {
-                        "id": 1,
-                        "title": JamiStrings.customizeProfile,
-                        "visible": CurrentAccount.type !== Profile.Type.SIP
-                    }, {
-                        "id": 2,
-                        "title": JamiStrings.linkedDevicesSettingsTitle,
-                        "visible": CurrentAccount.type !== Profile.Type.SIP
-                    }, {
-                        "id": 3,
-                        "title": JamiStrings.callSettingsTitle
-                    }, {
-                        "id": 4,
-                        "title": JamiStrings.advancedSettingsTitle
-                    }]
-            }, {
-                "title": JamiStrings.generalSettingsTitle,
-                "icon": JamiResources.gear_black_24dp_svg,
-                "first": 5,
-                "last": 11,
-                "children": [{
-                        "id": 5,
-                        "title": JamiStrings.system
-                    }, {
-                        "id": 6,
-                        "title": JamiStrings.appearance
-                    }, {
-                        "id": 7,
-                        "title": JamiStrings.chatSettingsTitle
-                    }, {
-                        "id": 8,
-                        "title": JamiStrings.locationSharingLabel
-                    }, {
-                        "id": 9,
-                        "title": JamiStrings.callRecording
-                    }, {
-                        "id": 10,
-                        "title": JamiStrings.troubleshootTitle
-                    }, {
-                        "id": 11,
-                        "title": JamiStrings.updatesTitle,
-                        "visible": AppVersionManager.isUpdaterEnabled()
-                    }]
-            }, {
-                "title": JamiStrings.audioVideoSettingsTitle,
-                "icon": JamiResources.media_black_24dp_svg,
-                "first": 12,
-                "last": 14,
-                "children": [{
-                        "id": 12,
-                        "title": JamiStrings.audio
-                    }, {
-                        "id": 13,
-                        "title": JamiStrings.video
-                    }, {
-                        "id": 14,
-                        "title": JamiStrings.screenSharing
-                    }]
-            }, {
-                "title": JamiStrings.pluginSettingsTitle,
-                "icon": JamiResources.plugins_24dp_svg,
-                "first": 15,
-                "last": 15,
-                "children": [{
-                        "id": 15,
-                        "title": JamiStrings.pluginSettingsTitle
-                    }]
-            }];
+        if (AppVersionManager.isUpdaterEnabled()) {
+            return [{
+                    "title": JamiStrings.accountSettingsMenuTitle,
+                    "icon": JamiResources.account_24dp_svg,
+                    "first": 0,
+                    "last": 4,
+                    "children": [{
+                            "id": 0,
+                            "title": JamiStrings.manageAccountSettingsTitle
+                        }, {
+                            "id": 1,
+                            "title": JamiStrings.customizeProfile
+                        }, {
+                            "id": 2,
+                            "title": JamiStrings.linkedDevicesSettingsTitle,
+                            "visible": CurrentAccount.type !== Profile.Type.SIP
+                        }, {
+                            "id": 3,
+                            "title": JamiStrings.callSettingsTitle
+                        }, {
+                            "id": 4,
+                            "title": JamiStrings.advancedSettingsTitle
+                        }]
+                }, {
+                    "title": JamiStrings.generalSettingsTitle,
+                    "icon": JamiResources.gear_black_24dp_svg,
+                    "first": 5,
+                    "last": 11,
+                    "children": [{
+                            "id": 5,
+                            "title": JamiStrings.system
+                        }, {
+                            "id": 6,
+                            "title": JamiStrings.appearance
+                        }, {
+                            "id": 7,
+                            "title": JamiStrings.chatSettingsTitle
+                        }, {
+                            "id": 8,
+                            "title": JamiStrings.locationSharingLabel
+                        }, {
+                            "id": 9,
+                            "title": JamiStrings.callRecording
+                        }, {
+                            "id": 10,
+                            "title": JamiStrings.troubleshootTitle
+                        }, {
+                            "id": 11,
+                            "title": JamiStrings.updatesTitle,
+                            "visible": AppVersionManager.isUpdaterEnabled()
+                        }]
+                }, {
+                    "title": JamiStrings.audioVideoSettingsTitle,
+                    "icon": JamiResources.media_black_24dp_svg,
+                    "first": 12,
+                    "last": 14,
+                    "children": [{
+                            "id": 12,
+                            "title": JamiStrings.audio
+                        }, {
+                            "id": 13,
+                            "title": JamiStrings.video
+                        }, {
+                            "id": 14,
+                            "title": JamiStrings.screenSharing
+                        }]
+                }, {
+                    "title": JamiStrings.pluginSettingsTitle,
+                    "icon": JamiResources.plugins_24dp_svg,
+                    "first": 15,
+                    "last": 15,
+                    "children": [{
+                            "id": 15,
+                            "title": JamiStrings.pluginSettingsTitle
+                        }]
+                }];
+        } else {
+            return [{
+                    "title": JamiStrings.accountSettingsMenuTitle,
+                    "icon": JamiResources.account_24dp_svg,
+                    "first": 0,
+                    "last": 4,
+                    "children": [{
+                            "id": 0,
+                            "title": JamiStrings.manageAccountSettingsTitle
+                        }, {
+                            "id": 1,
+                            "title": JamiStrings.customizeProfile
+                        }, {
+                            "id": 2,
+                            "title": JamiStrings.linkedDevicesSettingsTitle,
+                            "visible": CurrentAccount.type !== Profile.Type.SIP
+                        }, {
+                            "id": 3,
+                            "title": JamiStrings.callSettingsTitle
+                        }, {
+                            "id": 4,
+                            "title": JamiStrings.advancedSettingsTitle
+                        }]
+                }, {
+                    "title": JamiStrings.generalSettingsTitle,
+                    "icon": JamiResources.gear_black_24dp_svg,
+                    "first": 5,
+                    "last": 11,
+                    "children": [{
+                            "id": 5,
+                            "title": JamiStrings.system
+                        }, {
+                            "id": 6,
+                            "title": JamiStrings.appearance
+                        }, {
+                            "id": 7,
+                            "title": JamiStrings.chatSettingsTitle
+                        }, {
+                            "id": 8,
+                            "title": JamiStrings.locationSharingLabel
+                        }, {
+                            "id": 9,
+                            "title": JamiStrings.callRecording
+                        }, {
+                            "id": 10,
+                            "title": JamiStrings.troubleshootTitle
+                        }]
+                }, {
+                    "title": JamiStrings.audioVideoSettingsTitle,
+                    "icon": JamiResources.media_black_24dp_svg,
+                    "first": 12,
+                    "last": 14,
+                    "children": [{
+                            "id": 12,
+                            "title": JamiStrings.audio
+                        }, {
+                            "id": 13,
+                            "title": JamiStrings.video
+                        }, {
+                            "id": 14,
+                            "title": JamiStrings.screenSharing
+                        }]
+                }, {
+                    "title": JamiStrings.pluginSettingsTitle,
+                    "icon": JamiResources.plugins_24dp_svg,
+                    "first": 15,
+                    "last": 15,
+                    "children": [{
+                            "id": 15,
+                            "title": JamiStrings.pluginSettingsTitle
+                        }]
+                }];
+        }
     }
 
     function updateModel() {
