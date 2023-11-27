@@ -39,6 +39,9 @@ Rectangle {
     property alias chatViewContainer: chatViewContainer
     property string callPreviewId
 
+    // A link to the first child will provide access to the chat view.
+    property var chatView: chatViewContainer.children[0]
+
     onCallPreviewIdChanged: {
         controlPreview.start();
     }
@@ -59,6 +62,20 @@ Rectangle {
         function onChatviewPositionChanged() {
             mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally);
         }
+    }
+
+    function setCallChatVisibility(visible) {
+        if (visible) {
+            mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally);
+            chatViewContainer.visible = false;
+            chatViewContainer.visible = true;
+        } else {
+            chatViewContainer.visible = false;
+        }
+    }
+
+    function toggleCallChatVisibility() {
+        setCallChatVisibility(!chatViewContainer.visible);
     }
 
     function openInCallConversation() {
@@ -291,10 +308,7 @@ Rectangle {
                 anchors.fill: parent
 
                 function toggleConversation() {
-                    if (inCallMessageWebViewStack.visible)
-                        closeInCallConversation();
-                    else
-                        openInCallConversation();
+                    toggleCallChatVisibility();
                 }
 
                 Connections {
@@ -322,19 +336,13 @@ Rectangle {
                     participantsLayer.hoveredOverVideoMuted = true;
                 }
 
-                onChatButtonClicked: {
-                    var detailsVisible = chatViewContainer.showDetails;
-                    chatViewContainer.showDetails = false;
-                    !chatViewContainer.visible || detailsVisible ? openInCallConversation() : closeInCallConversation();
-                }
-
-                onFullScreenClicked: {
-                    callStackView.toggleFullScreen();
-                }
-
+                onChatButtonClicked: toggleCallChatVisibility()
+                onFullScreenClicked: callStackView.toggleFullScreen()
                 onSwarmDetailsClicked: {
-                    chatViewContainer.showDetails = !chatViewContainer.showDetails;
-                    chatViewContainer.showDetails ? openInCallConversation() : closeInCallConversation();
+                    toggleCallChatVisibility();
+                    if (chatViewContainer.visible) {
+                        chatView.switchToPanel(ChatView.SwarmDetailsPanel);
+                    }
                 }
             }
 
