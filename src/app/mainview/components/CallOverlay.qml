@@ -76,12 +76,17 @@ Item {
         id: callInformationOverlay
 
         visible: false
+
+        // Position just below the overlay title.
+        y: {
+            var title = JamiQmlUtils.findChildByName(mainOverlay, "overlayUpperPartRect");
+            return title ? title.y + title.height : 0;
+        }
+
         advancedList: CallAdapter.callInformationList
         fps: AvAdapter.renderersInfoList
 
-        Component.onDestruction: {
-            CallAdapter.stopTimerInformation();
-        }
+        Component.onDestruction: CallAdapter.stopTimerInformation()
     }
 
     function openShareFileDialog() {

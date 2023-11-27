@@ -31,6 +31,19 @@ Item {
 
     property var accountCreationInputParaObject: ({})
 
+    function findChildByName(parent, objectName) {
+        var item = null;
+        if (parent) {
+            for (var i = 0; i < parent.children.length; i++) {
+                if (parent.children[i].objectName === objectName) {
+                    item = parent.children[i];
+                    break;
+                }
+            }
+        }
+        return item;
+    }
+
     function setUpAccountCreationInputPara(inputPara) {
         JamiQmlUtils.accountCreationInputParaObject = {};
         Object.assign(JamiQmlUtils.accountCreationInputParaObject, inputPara);

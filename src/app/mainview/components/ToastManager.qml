@@ -20,12 +20,17 @@ import QtQuick
 Item {
     id: root
 
-    function instantiate(message, duration, fadingTime) {
+    function instantiate(message, parent, duration = 1000, fadingTime = 400) {
         var component = Qt.createComponent("Toast.qml");
-        var sprite = component.createObject(root, {
-                "message": message,
-                "duration": duration,
-                "fadingTime": fadingTime
-            });
+        if (Component.Error === component.status) {
+            console.log("Error loading component:", component.errorString());
+        } else if (Component.Ready === component.status) {
+            console.log("Component ready");
+            var sprite = component.createObject(parent === undefined ? root : parent, {
+                    "message": message,
+                    "duration": duration,
+                    "fadingTime": fadingTime
+                });
+        }
     }
 }
