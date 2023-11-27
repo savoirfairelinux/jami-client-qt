@@ -1,4 +1,28 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a4038c9_72c5b2f9",
+        "filename": "src/app/settingsview/components/PluginStoreListView.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-11-27T14:59:44Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 145,
+        "startChar": 20,
+        "endLine": 146,
+        "endChar": 21
+      },
+      "revId": "a8be1f0271263f1931263f9c73be191fe109d14e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
