@@ -41,7 +41,6 @@ BaseModalDialog {
             width: aboutPopUpContentRectColumnLayout.implicitWidth
             height: Math.min(root.implicitHeight, aboutPopUpContentRectColumnLayout.implicitHeight)
 
-            Component.onCompleted: print(root.height, aboutPopUpContentRectColumnLayout.implicitHeight)
             contentHeight: aboutPopUpContentRectColumnLayout.implicitHeight
 
             ColumnLayout {
