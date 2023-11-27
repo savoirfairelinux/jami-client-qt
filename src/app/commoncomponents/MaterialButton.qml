@@ -94,87 +94,71 @@ AbstractButton {
         return root.color;
     }
 
-    contentItem: Item {
-        id: item
+    contentItem: RowLayout {
+        anchors.verticalCenter: parent.verticalCenter
+        spacing: hasIcon ? JamiTheme.preferredMarginSize : 0
 
-        Binding on implicitWidth {
-            when: root.preferredWidth === undefined || !root.Layout.fillWidth
-            value: item.childrenRect.width
+        Component {
+            id: iconComponent
+
+            ResponsiveImage {
+                source: source_
+                Layout.preferredWidth: iconSize
+                Layout.preferredHeight: iconSize
+                color: contentColorProvider
+            }
         }
 
-        implicitHeight: childrenRect.height
+        Component {
+            id: animatedIconComponent
 
-        RowLayout {
-            anchors.verticalCenter: parent.verticalCenter
-            Binding on width {
-                when: root.preferredWidth !== undefined || root.Layout.fillWidth
-                value: root.availableWidth
+            AnimatedImage {
+                source: animatedSource_
+                Layout.preferredWidth: iconSize
+                Layout.preferredHeight: iconSize
+                width: iconSize
+                height: iconSize
+                playing: true
+                fillMode: Image.PreserveAspectFit
+                mipmap: true
+            }
+        }
+
+        Loader {
+            id: icon
+
+            property string source_
+            property string animatedSource_
+
+            active: hasIcon
+
+            Layout.preferredWidth: active * width
+
+            Layout.alignment: Qt.AlignVCenter
+            Layout.leftMargin: hasIcon ? JamiTheme.preferredMarginSize : undefined
+            sourceComponent: animatedSource_.length !== 0 ? animatedIconComponent : iconComponent
+        }
+
+        Text {
+            id: textButton
+
+            Layout.rightMargin: {
+                if ((!hasIcon || root.preferredWidth === undefined) && !root.Layout.fillWidth)
+                    return undefined;
+                return icon.width + JamiTheme.preferredMarginSize / 2 + parent.spacing;
             }
 
-            spacing: hasIcon ? JamiTheme.preferredMarginSize : 0
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignHCenter
 
-            Component {
-                id: iconComponent
-
-                ResponsiveImage {
-                    source: source_
-                    Layout.preferredWidth: iconSize
-                    Layout.preferredHeight: iconSize
-                    color: contentColorProvider
-                }
-            }
-
-            Component {
-                id: animatedIconComponent
-
-                AnimatedImage {
-                    source: animatedSource_
-                    Layout.preferredWidth: iconSize
-                    Layout.preferredHeight: iconSize
-                    width: iconSize
-                    height: iconSize
-                    playing: true
-                    fillMode: Image.PreserveAspectFit
-                    mipmap: true
-                }
-            }
-
-            Loader {
-                id: icon
-
-                property string source_
-                property string animatedSource_
-
-                active: hasIcon
-
-                Layout.preferredWidth: active * width
-
-                Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: hasIcon ? JamiTheme.preferredMarginSize : undefined
-                sourceComponent: animatedSource_.length !== 0 ? animatedIconComponent : iconComponent
-            }
-
-            Text {
-                id: textButton
-
-                Layout.rightMargin: {
-                    if ((!hasIcon || root.preferredWidth === undefined) && !root.Layout.fillWidth)
-                        return undefined;
-                    return icon.width + JamiTheme.preferredMarginSize / 2 + parent.spacing;
-                }
-
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignHCenter
-
-                leftPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textLeftPadding
-                rightPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textRightPadding
-                text: root.text
-                elide: Text.ElideRight
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: root.textAlignment
-                color: contentColorProvider
-                font.pixelSize: fontSize
-            }
+            leftPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textLeftPadding
+            rightPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textRightPadding
+            text: root.text
+            elide: Text.ElideRight
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: root.textAlignment
+            color: contentColorProvider
+            font.pixelSize: fontSize
         }
     }
 
