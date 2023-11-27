@@ -73,7 +73,12 @@ def get_latest_toolset_version():
     if vs_ver is None:
         return None
     vs_ver = int(vs_ver.split(".")[0])
-    return "v143" if vs_ver >= 16 else "v142" if vs_ver >= 15 else "v141"
+    if vs_ver == 17:
+        return "v143"
+    elif vs_ver == 16:
+        return "v142"
+    else:
+        return "v141"
 
 def find_latest_qt_path():
     """Find the latest Qt installation path."""
