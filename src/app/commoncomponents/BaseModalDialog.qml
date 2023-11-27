@@ -25,12 +25,13 @@ import "../mainview/components"
 Popup {
     id: root
 
-    // convient access to closePolicy
+    // convenient access to closePolicy
     property bool autoClose: true
     property alias backgroundColor: container.color
     property alias backgroundOpacity: container.background.opacity
     property alias title: titleText.text
     property var popupcontainerSubContentLoader: containerSubContentLoader
+    property alias content: contentLayout
 
     property bool closeButtonVisible: true
     property int button1Role
@@ -59,7 +60,7 @@ Popup {
         property color color: JamiTheme.secondaryBackgroundColor
         anchors.centerIn: parent
         leftPadding: popupMargins
-        bottomPadding: action1.visible || action2.visible ? 10 :popupMargins
+        bottomPadding: action1.visible || action2.visible ? 10 : popupMargins
 
         background: Rectangle {
             id: bgRect
@@ -82,6 +83,7 @@ Popup {
 
             JamiPushButton {
                 id: closeButton
+                objectName: "closeButton"
 
                 visible: closeButtonVisible
 
