@@ -125,6 +125,7 @@ Item {
 
     Item {
         id: overlayUpperPartRect
+        objectName: "overlayUpperPartRect"
 
         anchors.top: parent.top
 

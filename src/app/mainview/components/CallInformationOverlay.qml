@@ -33,12 +33,17 @@ BaseModalDialog {
     property var advancedList
     property var fps
     maximumPopupWidth: popupContent.width + 2 * popupMargins
-    closePolicy: Popup.NoAutoClosed
 
-    onClosed: {
-        CallAdapter.stopTimerInformation();
-    }
+    // Allow user input elsewhere on the screen.
+    modal: false
+    // Keep the overlay open until the user closes it.
+    autoClose: false
+    // Override the Overlay parent so that the popup is positioned
+    // relative to the call overlay when we disable the centering.
+    parent: root.parent
+    anchors.centerIn: undefined
 
+    onClosed: CallAdapter.stopTimerInformation()
     onOpened: {
         AvAdapter.resetRendererInfo();
         CallAdapter.resetCallInfo();
