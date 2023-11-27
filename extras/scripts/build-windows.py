@@ -28,7 +28,7 @@ mutually exclusive required arguments:
   -z, --zip         Build portable archive
 
 examples:
-1.  build.py --qt=C:/Qt/6.4.3/msvc2019_64  # Build the app using a specific Qt
+1.  build.py --qt=C:/Qt/6.5.3/msvc2019_64  # Build the app using a specific Qt
 2.  build.py --init pack --msi             # Build the app and an MSI installer
 3.  build.py --init --tests                # Build the app and run tests
     build.py pack --zip --skip-build       # Generate a 7z archive of the app
