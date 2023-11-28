@@ -38,9 +38,10 @@ Item {
     Connections {
         target: CurrentAccount
         function onIdChanged(id) {
-            if (!usernameTextEdit.readOnly) {
-                usernameTextEdit.readOnly = true;
+            if (usernameTextEdit.editMode) {
+                usernameTextEdit.editMode = false;
             }
+
         }
     }
 
@@ -76,19 +77,17 @@ Item {
                     color: JamiTheme.tintedBlue
                 }
 
-                UsernameTextEdit {
+                IdentifierUsernameTextEdit {
                     id: usernameTextEdit
-                    visible: !readOnly
+                    visible: editMode
                     Layout.preferredHeight: 40
                     Layout.alignment: Qt.AlignVCenter
-                    textColor: JamiTheme.tintedBlue
-                    fontPixelSize: staticText.length > 16 || dynamicText.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
+                    Layout.fillWidth: true
+
                     editMode: false
-                    isPersistent: false
-                    readOnly: true
 
                     onAccepted: {
-                        usernameTextEdit.readOnly = true;
+                        usernameTextEdit.editMode = false;
                         if (dynamicText === '') {
                             return;
                         }
@@ -96,14 +95,18 @@ Item {
                                 "registeredName": dynamicText
                             });
                         dlg.accepted.connect(function () {
-                                usernameTextEdit.nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
+                                usernameTextEdit.nameRegistrationState = IdentifierUsernameTextEdit.NameRegistrationState.BLANK;
                             });
+                        dynamicText = '';
                     }
                 }
                 Label{
                     id: usernameLabel
-                    visible: usernameTextEdit.readOnly
-                    Layout.alignment: Qt.AlignVCenter
+
+                    visible: !usernameTextEdit.editMode
+
+                    verticalAlignment: Text.AlignVCenter
+
                     Layout.rightMargin: JamiTheme.pushButtonMargins
                     Layout.maximumWidth: leftRect.width - 50
                     elide: Text.ElideRight
@@ -157,12 +160,23 @@ Item {
                             return false;
                         }
                     }
+                    hoverEnabled: enabled
+
+                    onHoveredChanged: {
+                        if (hovered) {
+                            usernameTextEdit.btnHovered = true;
+                        } else {
+                            usernameTextEdit.btnHovered = false;
+                        }
+                    }
+
                     source: usernameTextEdit.editMode ? JamiResources.check_black_24dp_svg : JamiResources.assignment_ind_black_24dp_svg
                     toolTipText: JamiStrings.chooseUsername
                     onClicked: {
-                        if (usernameTextEdit.readOnly) {
+                        usernameTextEdit.forceActiveFocus();
+                        if (!usernameTextEdit.editMode) {
                             usernameTextEdit.startEditing();
-                            usernameTextEdit.readOnly = false;
+                            usernameTextEdit.editMode = true;
                         } else {
                             usernameTextEdit.accepted();
                         }
