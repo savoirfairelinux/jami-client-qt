@@ -80,44 +80,29 @@ Item {
                     color: JamiTheme.tintedBlue
                 }
 
-                UsernameTextEdit {
+                NewUsernameTextEdit {
                     id: usernameTextEdit
                     visible: !readOnly
                     Layout.preferredHeight: 40
                     Layout.preferredWidth: 300
                     Layout.alignment: Qt.AlignVCenter
-                    textColor: JamiTheme.tintedBlue
-                    fontPixelSize: JamiTheme.jamiIdSmallFontSize
+                    Layout.fillWidth: true
+
                     editMode: false
-                    isPersistent: false
+                    //isPersistent: false
                     readOnly: true
 
                     onAccepted: {
                         usernameTextEdit.readOnly = true;
-                        if (dynamicText === '' /*|| outsideClic*/) {
-                            print(dynamicText)
-                            outsideClic = false;
-                            print("return");
+                        if (dynamicText === '') {
                             return;
                         }
                         var dlg = viewCoordinator.presentDialog(appWindow, "settingsview/components/NameRegistrationDialog.qml", {
                                 "registeredName": dynamicText
                             });
                         dlg.accepted.connect(function () {
-                                usernameTextEdit.nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
+                                usernameTextEdit.nameRegistrationState = NewUsernameTextEdit.NameRegistrationState.BLANK;
                             });
-                    }
-
-                    onIsActiveChanged: {
-                        print("isActiveChanged: " + isActive);
-                        if (!isActive && !readOnly) {
-                            print("ds if");
-                            readOnly = true;
-                            justChanged = true;
-                            //dynamicText = ''
-                            outsideClic = true;
-                            print("outsideClic: " + outsideClic);
-                        }
                     }
                 }
                 Label{
@@ -188,19 +173,13 @@ Item {
                     source: usernameTextEdit.editMode ? JamiResources.check_black_24dp_svg : JamiResources.assignment_ind_black_24dp_svg
                     toolTipText: JamiStrings.chooseUsername
                     onClicked: {
-                        clic = true;
-                        outsideClic = false;
-                        if (!justChanged /*|| !usernameTextEdit.isActive*/ /*&& !outsideClic*/) {
-                            print("v1");
-                            justChanged = false;
+                        if (usernameTextEdit.readOnly) {
+                            print("start editing");
                             usernameTextEdit.startEditing();
                             usernameTextEdit.readOnly = false;
-                            print("start editing");
                         } else {
-                            print("v2");
-                            usernameTextEdit.accepted();
                             print("accepted");
-                            justChanged = false;
+                            usernameTextEdit.accepted();
                         }
                     }
 
