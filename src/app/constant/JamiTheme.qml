@@ -681,7 +681,7 @@ Item {
     // Donation campaign
     property color donationButtonTextColor: "#005699"
     property color donationBackgroundColor: "#D5E4EF"
-    property string donationUrl: "https://jami.net/donate/"
+    property string donationUrl: "https://jami.net/whydonate/"
 
     //Connection monitoring
     property color connectionMonitoringTableColor1: darkTheme ? "#4D4D4D" : "#f0efef"

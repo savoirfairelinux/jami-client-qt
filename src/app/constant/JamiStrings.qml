@@ -853,7 +853,7 @@ Item {
     property string zoomLevel: qsTr("Text zoom level")
 
     //Donation campaign
-    property string donationTipBoxText: qsTr("Free and private sharing. <a href=\"https://jami.net/donate/\">Donate</a> to expand it.")
+    property string donationTipBoxText: qsTr("Free and private sharing. <a href=\"https://jami.net/whydonate/\">Donate</a> to expand it.")
     property string donation: qsTr("Donate")
     property string donationText: qsTr("If you enjoy using Jami and believe in our mission, would you make a donation?")
     property string notNow: qsTr("Not now")

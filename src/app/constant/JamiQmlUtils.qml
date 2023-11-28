@@ -75,8 +75,8 @@ Item {
         // The banner is visible if the current date is after the date set in the settings and before the end date
         // And if the donation toggle is checked
         var isDonationVisible = UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible);
-        var endDonationDate = new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonationEndDate)));
-        var donationVisibleDate = new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.DonationVisibleDate)));
-        return new Date() < endDonationDate && new Date() > donationVisibleDate && isDonationVisible && false;
+        var endDonationDate = new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.Donation2023EndDate)));
+        var donationVisibleDate = new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.Donation2023VisibleDate)));
+        return new Date() < endDonationDate && new Date() > donationVisibleDate && isDonationVisible;
     }
 }

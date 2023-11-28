@@ -77,7 +77,7 @@ TipsModel::reset()
 
 #ifndef APPSTORE
     QDate date = QDate::currentDate();
-    if (date >= QDate::fromString("2023-11-01", "yyyy-MM-dd") && false) {
+    if (date >= QDate::fromString("2023-11-27", "yyyy-MM-dd")) {
         tips_.append({{"id", "14"}, {"title", tr("Donate")}, {"desc", ""}, {"type", "donation"}});
     }
 #endif
