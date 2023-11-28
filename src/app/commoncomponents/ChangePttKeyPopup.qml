@@ -52,21 +52,20 @@ BaseModalDialog {
     popupContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
         anchors.centerIn: parent
-        spacing: JamiTheme.preferredMarginSize
+        spacing: 20
 
         Component.onCompleted: keyItem.forceActiveFocus()
         Label {
             id: instructionLabel
 
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignLeft
             Layout.preferredWidth: JamiTheme.preferredDialogWidth - 4*JamiTheme.preferredMarginSize
             color: JamiTheme.textColor
             text: JamiStrings.assignmentIndication
 
-            horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            font.pointSize: JamiTheme.textFontSize
+            font.pointSize: JamiTheme.settingsFontSize
             font.kerning: true
 
             wrapMode: Text.Wrap
@@ -74,12 +73,13 @@ BaseModalDialog {
 
         Label {
             id: keyLabel
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignLeft
+            Layout.leftMargin: JamiTheme.preferredMarginSize
 
             color: JamiTheme.blackColor
             wrapMode: Text.WordWrap
             text: ""
-            font.pointSize: JamiTheme.settingsFontSize
+            font.pointSize: JamiTheme.textFontSize
             font.kerning: true
 
             horizontalAlignment: Text.AlignHCenter
